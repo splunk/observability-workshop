@@ -1,19 +1,19 @@
 ---
-title: 1. Synthetics Dashboard
+title: 1. Syntheticsダッシュボード
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **Synthetics**. Click on **All** or **Browser tests** to see the list of active tests.
+Splunk Observability Cloud のメインメニューから、**Synthetics**をクリックします。**すべて**または**ブラウザテスト**をクリックして、アクティブなテストのリストを表示します。
 
-During our investigation in the RUM section, we found there was an issue with the **Place Order** Transaction. Let's see if we can confirm this from the Synthetics test as well. We will be using the metric **First byte time** for the 4th page of the test, which is the **Place Order** step.
+RUM セクションでの調査中に、**注文する**トランザクションに問題があることがわかりました。Synthetics テストからもこれを確認できるか見てみましょう。テストの 4 ページ目の**最初のバイト時間**というメトリクスを使用します。これは**注文する**ステップです。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* In the **Search** box enter **[WORKSHOP NAME]** and select the test for your workshop (your instructor will advise as to which one to select).
-* Under **Performance KPIs** set the Time Picker to **Last 1 hour** and hit enter.
-* Click on **Location** and from the drop-down select **Page**. The next filter will be populated with the pages that are part of the test.
-* Click on **Duration**, deselect **Duration** and select **First byte time**.
-  ![Transaction Filter](../images/synthetics-transaction-filter.png)
-* Look at the legend and note the color of **First byte time - Page 4**.
-* Select the highest data point for **First byte time - Page 4**. You will now be taken to the **Run results** for this particular test run.
-{{% /notice %}}
+- **検索**ボックスに**[ワークショップ名]**を入力し、あなたのワークショップのテストを選択します（インストラクターがどれを選択するか指示します）。
+- **パフォーマンス KPI**の下で、時間選択を**過去 1 時間**に設定して Enter キーを押します。
+- **場所**をクリックし、ドロップダウンから**ページ**を選択します。次のフィルターには、テストの一部であるページが表示されます。
+- **期間**をクリックし、**期間**の選択を解除して**最初のバイト時間**を選択します。
+  ![トランザクションフィルター](../images/synthetics-transaction-filter.png)
+- 凡例を見て、**最初のバイト時間 - ページ 4**の色に注目してください。
+- **最初のバイト時間 - ページ 4**の最も高いデータポイントを選択します。これで、この特定のテスト実行の**実行結果**に移動します。
+  {{% /notice %}}

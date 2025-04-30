@@ -1,40 +1,41 @@
 ---
-title: 2. APM Service View
+title: 2. APMサービスビュー
 weight: 2
 ---
-{{% notice title="Service View" style="info" %}}
 
-As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.
+{{% notice title="サービスビュー" style="info" %}}
 
-{{% /notice %}}
-
-![Service Dashboard](../images/apm-service-dashboard.png)
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Check the **Time** box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previosuly selected to complete (note that the charts are static).
-* In the **Time** box change the timeframe to **-1h**.
-* These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service.
-* Scroll down the page and expand **Infrastructure Metrics**. Here you will see the metrics for the Host and Pod.
-* **Runtime Metrics** are not available as profiling data is not available for services written in Node.js.
-* Now let's go back to the explore view, you can hit the back button in your Browser
+サービスオーナーとして、Splunk APM のサービスビューを使用して、単一のパネルでサービスの健全性の完全なビューを取得できます。サービスビューには、可用性、依存関係、リクエスト、エラー、および期間（RED）メトリクス、ランタイムメトリクス、インフラストラクチャメトリクス、タグスポットライト、エンドポイント、および選択したサービスのログのためのサービスレベルインジケーター（SLI）が含まれています。また、サービスビューからサービスのコードプロファイリングとメモリプロファイリングにすぐにアクセスすることもできます。
 
 {{% /notice %}}
 
-![APM Explore](../images/apm-business-workflow.png)
+![サービスダッシュボード](../images/apm-service-dashboard.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
+
+- **時間**ボックスを確認すると、ダッシュボードは以前に選択した APM トレースが完了するまでにかかった時間に関連するデータのみを表示していることがわかります（チャートは静的であることに注意してください）。
+- **時間**ボックスで時間枠を**-1h**に変更します。
+- これらのチャートはパフォーマンスの問題を素早く特定するのに非常に役立ちます。このダッシュボードを使用して、サービスの健全性を監視できます。
+- ページを下にスクロールして**インフラストラクチャメトリクス**を展開します。ここでホストと Pod のメトリクスが表示されます。
+- **ランタイムメトリクス**は、Node.js で書かれたサービスにはプロファイリングデータが利用できないため、使用できません。
+- では、探索ビューに戻りましょう。ブラウザの戻るボタンを押してください。
+
+{{% /notice %}}
+
+![APM探索](../images/apm-business-workflow.png)
+
+{{% notice title="演習" style="green" icon="running" %}}
 
 {{< tabs >}}
-{{% tab title="Question" %}}
-**In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?**
+{{% tab title="質問" %}}
+**サービスマップで**paymentservice**の上にカーソルを置いてください。ポップアップサービスチャートからどのような結論を導き出せますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**The error percentage is very high.**
+{{% tab title="回答" %}}
+**エラーの割合が非常に高い。**
 {{% /tab %}}
 {{< /tabs >}}
 {{% /notice %}}
 
-![APM Service Chart](../images/apm-service-popup-chart.png)
+![APMサービスチャート](../images/apm-service-popup-chart.png)
 
-We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.
+このエラー率にパターンがあるかどうかを理解する必要があります。そのための便利なツール、**タグスポットライト**があります。

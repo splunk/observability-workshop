@@ -1,40 +1,40 @@
 ---
-title: Adding a Custom Chart
-linkTitle: 2. Adding a Custom Chart
+title: カスタムチャートの追加
+linkTitle: 2. カスタムチャートの追加
 weight: 3
 ---
 
-In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously built. This will allow us to see the behavior of our test and get alerted if one or more of our test runs breach its SLA.
+ワークショップのこのパートでは、ダッシュボードに追加するチャートを作成し、また以前に構築したディテクターにリンクします。これにより、テストの動作を確認し、1 つ以上のテスト実行が SLA を違反した場合にアラートを受け取ることができます。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* At the top of the dashboard click on the **+** and select **Chart**.
-  ![new chart screen](../images/new-chart.png)
-* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**.
-* For this exercise we want a bar or column chart, so click on the 3rd icon {{% icon icon="chart-bar" %}} in the chart option box.
-* In the **Plot editor** enter `synthetics.run.duration.time.ms` (this is runtime in duration for our test) in the **Signal** box and hit enter.
-* Right now we see different colored bars, a different color for each region the test runs from. As this is not needed we can change that behavior by adding some analytics.
-* Click the {{% button style="blue" %}}Add analytics{{% /button %}} button.
-* From the drop-down choose the **Mean** option, then pick `mean:aggregation` and click outside the dialog box. Notice how the chart changes to a single color as the metrics are now aggregated.
-* The x-axis does not currently represent time to change this click on the settings {{% icon icon="cog" %}} icon at the end of the plot line. The following following dialog will open:
-  ![signal setup](../images/signal-setup.png)
-* Change the **Display units** (**2**) in the drop-down box from **None** to **Time (autoscaling)/Milliseconds(ms)**. The drop-down changes to **Millisecond** and the x-axis of the chart now represents the test duration time.
-* Close the dialog, either by clicking on the settings {{% icon icon="cog" %}} icon or the {{% button style="gray" %}}close{{% /button %}} button.
-* Add our detector by clicking the {{% button style="blue" %}}Link Detector{{% /button %}} button and start typing the name of the detector you created earlier.
-* Click on the detector name to select it.
-* Notice that a colored border appears around the chart, indicating the status of the alert, along with a bell icon at the top of the dashboard as shown below:
-  ![detector added](../images/detector-added.png)
-* Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
-* In the dashboard, move the charts so they look like the screenshot below:
-  ![Service Health Dashboard](../images/service-health-dashboard.png)
-* For the final task, click three dots **...** at the top of the page (next to **Event Overlay**) and click on **View fullscreen**. This will be the view you would use on the TV monitor on the wall (press Esc to go back).
-
-{{% /notice %}}
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-
-In your spare time have a try at adding another custom chart to the dashboard using RUM metrics. You could copy a chart from the out-of-the-box **RUM applications** dashboard group. Or you could use the RUM metric `rum.client_error.count` to create a chart that shows the number of client errors in the application.
+- ダッシュボードの上部にある**+**をクリックし、**チャート**を選択します。
+  ![新しいチャート画面](../images/new-chart.png)
+- まず、{{% button style="grey" %}}無題のチャート{{% /button %}}入力フィールドを使用して、チャートに**全体的なテスト所要時間**という名前を付けます。
+- この演習では棒グラフまたは柱状グラフが必要なので、チャートオプションボックスの 3 番目のアイコン{{% icon icon="chart-bar" %}}をクリックします。
+- **プロットエディタ**の**シグナル**ボックスに`synthetics.run.duration.time.ms`（これはテストの実行時間です）と入力し、Enter キーを押します。
+- 現在、異なる色の棒が表示されています。テストが実行される各リージョンごとに異なる色になっています。これは必要ないので、分析を追加することでその動作を変更できます。
+- {{% button style="blue" %}}分析を追加{{% /button %}}ボタンをクリックします。
+- ドロップダウンから**平均**オプションを選択し、`mean:aggregation`を選択してダイアログボックスの外をクリックします。メトリクスが集計されるため、チャートが単色に変わることに注目してください。
+- x 軸は現在、時間を表していません。これを変更するには、プロットラインの最後にある設定{{% icon icon="cog" %}}アイコンをクリックします。次のダイアログが開きます：
+  ![シグナル設定](../images/signal-setup.png)
+- ドロップダウンボックスの**表示単位**（**2**）を**なし**から**時間（自動スケーリング）/ミリ秒（ms）**に変更します。ドロップダウンが**ミリ秒**に変わり、チャートの x 軸がテスト所要時間を表すようになります。
+- 設定{{% icon icon="cog" %}}アイコンをクリックするか、{{% button style="gray" %}}閉じる{{% /button %}}ボタンをクリックして、ダイアログを閉じます。
+- {{% button style="blue" %}}ディテクターをリンク{{% /button %}}ボタンをクリックし、以前に作成したディテクターの名前の入力を開始して、ディテクターを追加します。
+- ディテクター名をクリックして選択します。
+- チャートの周りに色付きの枠が表示され、アラートのステータスが示されます。また、以下のようにダッシュボードの上部にベルアイコンが表示されることに注目してください：
+  ![ディテクター追加済み](../images/detector-added.png)
+- {{% button style="blue" %}}保存して閉じる{{% /button %}}ボタンをクリックします。
+- ダッシュボードで、チャートを移動して以下のスクリーンショットのように表示させます：
+  ![サービスヘルスダッシュボード](../images/service-health-dashboard.png)
+- 最後のタスクとして、ページ上部（**イベントオーバーレイ**の横）にある 3 つのドット**...**をクリックし、**全画面表示**をクリックします。これは壁掛けテレビモニターで使用するビューです（元に戻るには Esc キーを押します）。
 
 {{% /notice %}}
 
- Finally, we will run through a workshop wrap-up.
+{{% notice title="ヒント" style="primary" icon="lightbulb" %}}
+
+時間があれば、RUM メトリクスを使用してダッシュボードにもう 1 つのカスタムチャートを追加してみてください。既製の**RUM アプリケーション**ダッシュボードグループからチャートをコピーすることができます。または、RUM メトリクス`rum.client_error.count`を使用して、アプリケーションのクライアントエラー数を表示するチャートを作成することもできます。
+
+{{% /notice %}}
+
+最後に、ワークショップのまとめを行います。

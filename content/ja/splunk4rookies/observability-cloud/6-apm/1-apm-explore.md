@@ -1,28 +1,28 @@
 ---
-title: 1. APM Explore
+title: 1. APM探索
 weight: 1
 ---
 
-The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
+APM サービスマップは、APM で計装された（インストルメンテーション）サービスと推測されるサービスの間の依存関係と接続を表示します。このマップは、時間範囲、環境、ワークフロー、サービス、タグフィルターでの選択に基づいて動的に生成されます。
 
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **WorkFlow Name** (`frontend:/cart/checkout`).
+RUM ウォーターフォールで APM リンクをクリックすると、そのワークフロー名（`frontend:/cart/checkout`）に関連するサービスを表示するために、サービスマップビューに自動的にフィルターが追加されました。
 
-You can see the services involved in the workflow in the **Service Map**. In the side pane, under **Business Workflow**, charts for the selected workflow are displayed. The **Service Map** and **Business Workflow** charts are synchronized. When you select a service in the **Service Map**, the charts in the **Business Workflow** pane are updated to show metrics for the selected service.
+ワークフローに関連するサービスは**サービスマップ**で確認できます。サイドペインの**ビジネスワークフロー**の下には、選択したワークフローのチャートが表示されています。**サービスマップ**と**ビジネスワークフロー**チャートは同期しています。**サービスマップ**でサービスを選択すると、**ビジネスワークフロー**ペインのチャートが更新され、選択したサービスのメトリクスが表示されます。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Click on the **paymentservice** in the Service Map.
-
-{{% /notice %}}
-
-![APM Explore](../images/apm-business-workflow.png)
-
-Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* In the right hand pane, click on **paymentservice** in blue.
+- サービスマップで**paymentservice**をクリックします。
 
 {{% /notice %}}
 
-![APM Service](../images/apm-service.png)
+![APM探索](../images/apm-business-workflow.png)
+
+Splunk APM はまた、リアルタイムで発生している問題を確認し、問題がサービス、特定のエンドポイント、または基盤となるインフラストラクチャに関連しているかどうかを迅速に判断するのに役立つ組み込みの**サービス中心ビュー**も提供しています。より詳しく見てみましょう。
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+- 右側のペインで、青色の**paymentservice**をクリックします。
+
+{{% /notice %}}
+
+![APMサービス](../images/apm-service.png)

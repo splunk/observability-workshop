@@ -1,64 +1,64 @@
 ---
-title: 5. APM Trace Analyzer
+title: 5. APMトレースアナライザー
 weight: 5
 ---
 
-As Splunk APM provides a **NoSample** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the **Order Confirmation ID** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.
+Splunk APM はすべてのサービスの**NoSample**（サンプリングなし）エンドツーエンドの可視性を提供するため、Splunk APM はすべてのトレースをキャプチャします。このワークショップでは、**注文確認 ID**がタグとして利用可能です。これは、ワークショップの前半で遭遇した不良なユーザー体験の正確なトレースを検索するためにこれを使用できることを意味します。
 
-{{% notice title="Trace Analyzer" style="info" %}}
+{{% notice title="トレースアナライザー" style="info" %}}
 
-Splunk Observability Cloud provides several tools for exploring application monitoring data. **Trace Analyzer** is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.
+Splunk Observability Cloud は、アプリケーション監視データを探索するためのいくつかのツールを提供しています。**トレースアナライザー**は、未知または新しい問題を調査するための高カーディナリティ、高粒度の検索と探索が必要なシナリオに適しています。
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* With the outer box of the **paymentservice** selected, in the right-hand pane, click on **Traces**.
-* To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
-* Set **Time Range** to **Last 15 minutes**.
-* Ensure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
-
-{{% /notice %}}
-
-![APM Trace Analyzer](../images/apm-trace-analyzer.png)
-
-The **Trace & error count** view shows the total traces and traces with errors in a stacked bar chart. You can use your mouse to select a specific period within the available time frame.
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Click on the dropdown menu that says **Trace & error count**, and change it to **Trace duration** 
+- **paymentservice**の外側のボックスを選択した状態で、右側のペインで**トレース**をクリックします。
+- **トレースアナライザー**を使用していることを確認するため、{{% button %}}クラシックビューに切り替え{{% /button %}}ボタンが表示されていることを確認します。表示されていない場合は、{{% button style="blue" %}}トレースアナライザーに切り替え{{% /button %}}をクリックします。
+- **時間範囲**を**過去 15 分**に設定します。
+- **サンプル比率**が`1:10`ではなく`1:1`に設定されていることを確認します。
 
 {{% /notice %}}
 
-![APM Trace Analyzer Heat Map](../images/apm-trace-analyzer-heat-map.png)
+![APMトレースアナライザー](../images/apm-trace-analyzer.png)
 
-The **Trace Duration** view shows a heatmap of traces by duration.  The heatmap represents 3 dimensions of data:
+**トレース＆エラー数**ビューは、積み上げ棒グラフで合計トレース数とエラーのあるトレース数を表示します。マウスを使用して、利用可能な時間枠内の特定の期間を選択できます。
 
-* Time on the x-axis
-* Trace duration on the y-axis
-* The traces (or requests) per second are represented by the heatmap shades
+{{% notice title="演習" style="green" icon="running" %}}
 
-You can use your mouse to select an area on the heatmap, to focus on a specific time period and trace duration range.  
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Switch from **Trace duration** back to **Trace & Error count**.
-* In the time picker select **Last 1 hour**.
-* Note, that most of our traces have errors (red) and there are only a limited amount of traces that are error-free (blue).
-* Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
-* Click on **Add filters**, type in `orderId` and select **orderId** from the list.
-* Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter. If you didn't capture one, please ask your instructor for one.
-  ![Traces by Duration](../images/apm-trace-by-duration.png)
+- **トレース＆エラー数**と表示されているドロップダウンメニューをクリックし、**トレース期間**に変更します
 
 {{% /notice %}}
 
-We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.
+![APMトレースアナライザーヒートマップ](../images/apm-trace-analyzer-heat-map.png)
 
-A secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.
+**トレース期間**ビューは、期間ごとのトレースのヒートマップを表示します。ヒートマップは 3 次元のデータを表しています：
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+- x 軸の時間
+- y 軸のトレース期間
+- ヒートマップの色合いで表される 1 秒あたりのトレース（またはリクエスト）数
 
-* Click on the trace in the list.
+マウスを使ってヒートマップ上の領域を選択し、特定の時間帯とトレース期間の範囲にフォーカスすることができます。
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+- **トレース期間**から**トレース＆エラー数**に戻します。
+- 時間選択で**過去 1 時間**を選択します。
+- ほとんどのトレースにエラー（赤）があり、エラーのないトレース（青）は限られていることに注意してください。
+- **サンプル比率**が`1:10`ではなく`1:1`に設定されていることを確認します。
+- **フィルターを追加**をクリックし、`orderId`と入力してリストから**orderId**を選択します。
+- ワークショップの前半でショッピングを行った際の**注文確認 ID**を貼り付けて Enter キーを押します。もし ID を記録していない場合は、インストラクターに確認してください。
+  ![期間別トレース](../images/apm-trace-by-duration.png)
 
 {{% /notice %}}
 
-Next, we will walk through the trace waterfall.
+これで、非常に長いチェックアウト待ちという不良なユーザーエクスペリエンスに遭遇した正確なトレースまでフィルタリングできました。
+
+このトレースを表示することの二次的な利点は、トレースが最大 13 か月間アクセス可能であることです。これにより、開発者は後の段階でこの問題に戻り、このトレースを引き続き表示することができます。
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+- リスト内のトレースをクリックします。
+
+{{% /notice %}}
+
+次に、トレースウォーターフォールを確認していきます。

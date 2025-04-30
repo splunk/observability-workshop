@@ -2,29 +2,30 @@
 title: 4. Synthetics Detector
 weight: 4
 ---
-Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA instead of getting informed by social media, or Uptime websites.
 
-![Social media](../images/social-media-post.png)
+これらのテストを 24 時間 365 日実行できるため、テストが失敗したり、合意した SLA よりも長く実行され始めた場合に、ソーシャルメディアやアップタイムウェブサイトから通知される前に、早期に警告を受けるための理想的なツールです。
 
- To stop that from happening let's detect if our test is taking more than 1.1 minutes.
+![ソーシャルメディア](../images/social-media-post.png)
 
- {{% notice title="Exercise" style="green" icon="running" %}}
+そのような事態を防ぐために、テストが 1.1 分以上かかっているかどうかを検知しましょう。
 
-* Go back to the Synthetics home page via the menu on the left
-* Select the workshop test again and click the {{% button style="white" %}}Create Detector{{% /button %}} button at the top of the page.  
-  ![synth detector](../images/synth-detector.png)
-* Edit the text **New Synthetics Detector** (**1**) and replace it with `INITIALS -` [WORKSHOPNAME]`.
-* Ensure that {{% button %}}Run duration{{% /button %}} and {{% button %}}Static threshold{{% /button %}} are selected.
-* Set the **Trigger threshold** (**2**) to be around `65,000` to `68,000` and hit enter to update the chart.  Make sure you have more than one spike cutting through the threshold line as shown above (you may have to adjust the threshold value a bit to match your actual latency).
-* Leave the rest as default.
-* Note that there is now a row of red and white triangles appearing below the spikes (**3**). The red triangles let you know that your detector found that your test was above the given threshold & the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.
-* You can change the Alerts criticality (**4**) by changing the drop-down to a different level, as well as the method of alerting.  Make sure you do **NOT** add a Recipient as this could lead to you being subjected to an alert storm!
-* Click {{% button style="blue" %}}Activate{{% /button %}} to deploy your detector.
-* To see your new created detector click {{% button style="white" %}}Edit Test{{% /button %}} button
-* At the bottom of the page is a list of active detectors.
+{{% notice title="演習" style="green" icon="running" %}}
 
-  ![list of detectors](../images/detector-list.png)
+- 左側のメニューから Synthetics ホームページに戻ります
+- ワークショップのテストを再度選択し、ページ上部の{{% button style="white" %}} Detector を作成{{% /button %}}ボタンをクリックします。  
+  ![synth Detector](../images/synth-detector.png)
+- **新しい Synthetics Detector**というテキスト（**1**）を編集し、`イニシャル -` [ワークショップ名]に置き換えます。
+- {{% button %}}実行時間{{% /button %}}と{{% button %}}静的しきい値{{% /button %}}が選択されていることを確認します。
+- **トリガーしきい値**（**2**）を`65,000`〜`68,000`に設定し、Enter キーを押してチャートを更新します。上図のように、しきい値ラインを切る複数のスパイクがあることを確認してください（実際のレイテンシーに合わせてしきい値を少し調整する必要があるかもしれません）。
+- 残りはデフォルトのままにします。
+- スパイクの下に赤と白の三角形の列が表示されるようになったことに注意してください（**3**）。赤い三角形は、テストが指定されたしきい値を超えたことを Detector が検出したことを知らせ、白い三角形は結果がしきい値を下回ったことを示します。各赤い三角形がアラートをトリガーします。
+- アラートの重大度（**4**）は、ドロップダウンを別のレベルに変更することで変更できます。また、アラート方法も変更できます。**受信者を追加しないでください**。アラートストームの対象になる可能性があります！
+- {{% button style="blue" %}}アクティブ化{{% /button %}}をクリックして、 Detector をデプロイします。
+- 新しく作成した Detector を見るには、{{% button style="white" %}}テストを編集{{% /button %}}ボタンをクリックします。
+- ページの下部にアクティブな Detector のリストがあります。
 
-* If you can't find yours, but see one called *New Synthetic Detector*, you may not have saved it correctly with your name. Click on the *New Synthetic Detector* link, and redo the rename.
-* Click on the {{% button %}}Close{{% /button %}} button to exit the edit mode.
-{{% /notice %}}
+  ![ Detectorのリスト](../images/detector-list.png)
+
+- あなたの Detector が見つからず、*新しい Synthetics Detector*という名前のものが表示されている場合は、あなたの名前で正しく保存されていない可能性があります。*新しい Synthetics Detector*のリンクをクリックして、名前の変更をやり直してください。
+- {{% button %}}閉じる{{% /button %}}ボタンをクリックして編集モードを終了します。
+  {{% /notice %}}

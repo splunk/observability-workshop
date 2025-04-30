@@ -1,42 +1,42 @@
 ---
-title: Home Page
-linkTitle: 1.1 Home Page
+title: ホームページ
+linkTitle: 1.1 ホームページ
 weight: 2
-time: 5 minutes
+time: 5分
 ---
 
-After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
+Splunk Observability Cloud に登録してログインすると、ホームページ（ランディングページ）に移動します。ここでは、開始に役立ついくつかの便利な機能が見つかります。
 
-![home page](../images/home-screen.png)
+![ホームページ](../images/home-screen.png)
 
-1. **Explore your data pane:** Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator.
-2. **Documentation pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
-3. **Recents pane:** Recently created/visited dashboards and/or detectors for quick access.
-4. **Main Menu pane:** Navigate the components of Splunk Observability Cloud.
-5. **Org Switcher:** Easily switch between Organizations (if you are a member of more than one Organization).
-6. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
+1. **データ探索パネル:** どの統合が有効になっているかを表示し、管理者の場合は追加の統合を追加できます。
+2. **ドキュメントパネル:** Splunk Observability Cloud の使用を開始するためのトレーニングビデオとドキュメントへのリンク。
+3. **最近のアクティビティパネル:** 最近作成/訪問したダッシュボードやディテクターにすぐにアクセスできます。
+4. **メインメニューパネル:** Splunk Observability Cloud のコンポーネントを操作します。
+5. **組織切り替え:** 複数の組織のメンバーである場合は、組織間を簡単に切り替えることができます。
+6. **メインメニューの展開/縮小:** スペースが限られている場合にメインメニューを展開 **>>** / 折りたたむ **<<** ことができます。
 
-Let's start with our first exercise:
+最初の演習から始めましょう：
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Expand the Main Menu and click on **Settings**.
-* Check in the **Org Switcher** if you have access to more than one Organization.
-
-{{% /notice %}}
-
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Observability before, you may be placed in an Organization you have used previously. Make sure you are in the correct workshop organization. Verify this with your instructor if you have access to multiple Organizations.
-{{% /notice %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Click **Onboarding Guidance** (Here you can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
-* Hide the Onboarding Content for the **Home Page**.
-* At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the **Sign Out** option is? Please don't 😊 !
-* Click **<** to get back to the main menu.
+- メインメニューを展開し、**設定**をクリックします。
+- **組織切り替え**で、複数の組織にアクセスできるかどうかを確認します。
 
 {{% /notice %}}
 
-Next, let's check out **Splunk Real User Monitoring (RUM)**.
+{{% notice title="ヒント" style="primary"  icon="lightbulb" %}}
+以前に Splunk Observability を使用したことがある場合は、以前に使用した組織に配置されている可能性があります。正しいワークショップ組織にいることを確認してください。複数の組織へのアクセス権がある場合は、インストラクターに確認してください。
+{{% /notice %}}
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+- **オンボーディングガイダンス**をクリックします（ここでオンボーディングパネルの表示/非表示を切り替えることができます。製品に十分に精通していて、より多くの情報を表示するためにスペースを使用できる場合に便利です）。
+- **ホームページ**のオンボーディングコンテンツを非表示にします。
+- メニューの下部で、お好みの外観：**ライト**、**ダーク**、または**自動**モードを選択します。
+- これが**サインアウト**オプションがある場所であることにも気づきましたか？どうかサインアウトしないでください 😊！
+- **<**をクリックしてメインメニューに戻ります。
+
+{{% /notice %}}
+
+次に、**Splunk Real User Monitoring (RUM)**を確認しましょう。

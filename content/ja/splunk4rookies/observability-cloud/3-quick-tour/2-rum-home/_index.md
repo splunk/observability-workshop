@@ -1,18 +1,18 @@
 ---
-title: Real User Monitoring Overview
-linkTitle: 2. RUM Overview
+title: リアルユーザーモニタリング概要
+linkTitle: 2. RUM概要
 weight: 2
 time: 5 minutes
-description: Learn about Splunk RUM and how it can help you monitor the full user experience of every web and mobile session.
+description: Splunk RUMについて学び、すべてのWebおよびモバイルセッションの完全なユーザーエクスペリエンスを監視する方法を理解します。
 ---
 
-Splunk RUM is the industry’s only end-to-end, **NoSample** RUM solution - providing visibility into the full user experience of every web and mobile session to uniquely combine all front-end traces with back-end metrics, traces, and logs as they happen. IT Operations and Engineering teams can quickly scope, prioritize and isolate errors, measure how performance impacts real users and optimize end-user experiences by correlating performance metrics alongside video reconstructions of all user interactions.
+Splunk RUMは業界で唯一のエンドツーエンドの**NoSample**（サンプリングなし）RUMソリューションで、すべてのWebおよびモバイルセッションの完全なユーザーエクスペリエンスに関する可視性を提供し、発生時にすべてのフロントエンドトレースとバックエンドのメトリクス、トレース、ログを独自に組み合わせます。ITオペレーションとエンジニアリングチームは、エラーの範囲を迅速に特定し、優先順位を付け、分離し、パフォーマンスが実際のユーザーにどのように影響するかを測定し、すべてのユーザー操作のビデオ再構築とともにパフォーマンスメトリクスを相関させることでエンドユーザーエクスペリエンスを最適化できます。
 
-**Full user session analysis:** Streaming analytics capture full user sessions from single and multi-page apps, measuring the customer impact of every resource, image, route change and API call.  
-**Correlate issues faster:** Infinite cardinality and full transaction analysis help you pinpoint and correlate issues faster across complex distributed systems.  
-**Isolate latency and errors:** Easily identify latency, errors and poor performance for each code change and deployment. Measure how content, images and third-party dependencies impact your customers.  
-**Benchmark and improve page performance:** Leverage core web vitals to measure and improve your page load experience, interactivity and visual stability. Find and fix impactful JavaScript errors, and easily understand which pages to improve first.  
-**Explore meaningful metrics:** Instantly visualize the customer impact with metrics on specific workflows, custom tags and auto-suggest un-indexed tags to quickly find the root cause of issues.  
-**Optimize end-user experience:** Correlate performance metrics alongside video reconstructions of all user interactions to optimize end-user experiences.
+**完全なユーザーセッション分析：** ストリーミング分析により、シングルページおよびマルチページアプリからの完全なユーザーセッションをキャプチャし、すべてのリソース、画像、ルート変更、APIコールの顧客への影響を測定します。  
+**問題をより迅速に関連付ける：** 無限のカーディナリティと完全なトランザクション分析により、複雑な分散システム全体で問題をより迅速に特定し関連付けることができます。  
+**レイテンシーとエラーの分離：** 各コード変更とデプロイメントに対するレイテンシー、エラー、パフォーマンスの低下を簡単に特定します。コンテンツ、画像、サードパーティの依存関係がお客様にどのように影響するかを測定します。  
+**ページパフォーマンスのベンチマークと改善：** コアウェブバイタルを活用して、ページ読み込み体験、インタラクティビティ、視覚的安定性を測定し改善します。影響力のあるJavaScriptエラーを見つけて修正し、最初に改善すべきページを簡単に理解します。  
+**意味のあるメトリクスの探索：** 特定のワークフロー、カスタムタグ、未インデックス化タグの自動提案に関するメトリクスを使用して、顧客への影響を即座に視覚化し、問題の根本原因をすばやく見つけます。  
+**エンドユーザーエクスペリエンスの最適化：** すべてのユーザー操作のビデオ再構築とともにパフォーマンスメトリクスを相関させて、エンドユーザーエクスペリエンスを最適化します。
 
-![Architecture Overview](images/rum-architecture.png)
+![アーキテクチャ概要](images/rum-architecture.png)

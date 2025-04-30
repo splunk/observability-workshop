@@ -1,29 +1,29 @@
 ---
-title: 1. Log Filtering
+title: 1. ログフィルタリング
 weight: 1
 ---
 
-**Log Observer (LO)**, can be used in multiple ways. In the quick tour, you used the LO **no-code interface** to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the **Related Content** link.
+**Log Observer (LO)**は、複数の方法で使用できます。クイックツアーでは、LO の**コード不要インターフェース**を使用して、ログ内の特定のエントリを検索しました。しかし、このセクションでは、**関連コンテンツ**リンクを使用して APM のトレースから LO に到達したと想定しています。
 
-The advantage of this is, as it was with the link between RUM & APM, that you are looking at your logs within the context of your previous actions.  In this case, the context is the time frame (**1**),  which matches that of the trace and the filter (**2**) which is set to the **trace_id**.
+これの利点は、RUM と APM 間のリンクと同様に、以前のアクションのコンテキスト内でログを見ていることです。この場合、コンテキストはトレースの時間枠（**1**）と**trace_id**に設定されたフィルター（**2**）です。
 
-![Trace Logs](../images/log-observer-trace-logs.png)
+![トレースログ](../images/log-observer-trace-logs.png)
 
-This view will include **all** the log lines from **all** applications or services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.
+このビューには、エンドユーザーとオンラインブティックのやり取りによって開始されたバックエンドトランザクションに参加した**すべての**アプリケーションまたはサービスからの**すべての**ログ行が含まれます。
 
-Even in a small application such as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we are investigating.
+私たちのオンラインブティックのような小さなアプリケーションでさえ、見つかるログの膨大な量により、調査している実際のインシデントに関連する特定のログ行を見つけることが難しくなる場合があります。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-We need to focus on just the Error messages in the logs:
+ログ内のエラーメッセージだけに焦点を当てる必要があります：
 
-* Click on the **Group By** drop-down box and use the filter to find **Severity**.
-* Once selected click the {{% button style="blue" %}}Apply{{% /button %}} button (notice that the chart legend changes to show debug, error and info).
-  ![legend](../images/severity-logs.png)
-* Selecting just the error logs can be done by either clicking on the word error (**1**) in the legend, followed by selecting **Add to filter**. Then click {{% button style="blue" %}}Run Search{{% /button %}}
-* You could also add the service name, `sf_service=paymentservice`, to the filter if there are error lines for multiple services, but in our case, this is not necessary.
-  ![Error Logs](../images/log-observer-errors.png)
+- **Group By**（グループ化）ドロップダウンボックスをクリックし、フィルターを使用して**Severity**（重要度）を見つけます。
+- 選択したら{{% button style="blue" %}}適用{{% /button %}}ボタンをクリックします（チャートの凡例がデバッグ、エラー、情報を表示するように変わることに注意してください）。
+  ![凡例](../images/severity-logs.png)
+- エラーログのみを選択するには、凡例の「error」（**1**）という単語をクリックし、**フィルターに追加**を選択します。次に{{% button style="blue" %}}検索を実行{{% /button %}}をクリックします。
+- 複数のサービスにエラー行がある場合は、`sf_service=paymentservice`などのサービス名もフィルターに追加できますが、今回のケースでは必要ありません。
+  ![エラーログ](../images/log-observer-errors.png)
 
 {{% /notice %}}
 
-Next, we will look at log entries in detail.
+次に、ログエントリの詳細を見ていきます。

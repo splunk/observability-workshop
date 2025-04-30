@@ -1,31 +1,31 @@
 ---
-title: Key Takeaways
-linkTitle: 1. Key Takeaways
+title: 主要なポイント
+linkTitle: 1. 主要なポイント
 weight: 1
 ---
 
-During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (**metrics**, **traces** and **logs**) can help you to reduce mean time to detect (**MTTD**) and also reduce mean time to resolution (**MTTR**).
+このワークショップを通じて、Splunk Observability Cloud と OpenTelemetry シグナル（**メトリクス**、**トレース**、**ログ**）の組み合わせが、検出までの平均時間（**MTTD**）と解決までの平均時間（**MTTR**）をどのように短縮できるかを見てきました。
 
-* We have a better understanding of the Main User interface and its components, the *Landing, Infrastructure, APM, RUM, Synthetics, Dashboard* pages, and a quick peek at the *Settings* page.
-* Depending on time, we did an *Infrastructure* exercise and looked at *Metrics* used in the  Kubernetes Navigators and saw related services found on our Kubernetes cluster:
+- メインユーザーインターフェイスとそのコンポーネント、*ランディング、インフラストラクチャ、APM、RUM、Synthetics、ダッシュボード*ページ、そして*設定*ページについて理解を深めました。
+- 時間に応じて、*インフラストラクチャ*の演習を行い、Kubernetes ナビゲーターで使用される*メトリクス*を確認し、Kubernetes クラスターで見つかった関連サービスを見ました：
 
 ![Kubernetes](../images/infra.png)
 
-* Understood what users were experiencing and used RUM & APM to Troubleshoot a particularly long page load, by following its trace across the front and back end and right to the log entries.
-We used tools like RUM *Session replay* and the APM *Dependency map* with Breakdown to discover what is causing our issue:
+- ユーザーが何を体験しているかを理解し、RUM と APM を使用して特に長いページ読み込みのトラブルシューティングを行いました。フロントエンドとバックエンド全体でトレースをたどり、ログエントリーまで追跡しました。
+  RUM の*セッション再生*と APM の*依存関係マップ*を使用し、ブレークダウン機能を使って問題の原因を発見しました：
 
-![rum and apm](../images/rum-apm.png)
+![rumとapm](../images/rum-apm.png)
 
-* Used *Tag Spotlight*, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in *Span's* in the APM *Trace waterfall* to  see how services interacted and find errors:
+- RUM と APM の両方で*タグスポットライト*を使用して、影響範囲を理解し、パフォーマンス問題とエラーのトレンドやコンテキストを検出しました。APM の*トレースウォーターフォール*で*スパン*を詳しく調べ、サービスがどのように相互作用し、エラーを見つけました：
 
-![tag and waterfall](../images/tag-spotlight-waterfall.png)
+![タグとウォーターフォール](../images/tag-spotlight-waterfall.png)
 
-* We used the *Related content* feature to follow the link between our *Trace* directly to the *Logs* related to our *Trace* and used filters to drill down to the exact cause of our issue.
+- *関連コンテンツ*機能を使用して、*トレース*から*トレース*に関連する*ログ*への直接のリンクをたどり、フィルターを使用して問題の正確な原因まで掘り下げました。
 
-![logs](../images/log.png)
+![ログ](../images/log.png)
 
-* We then looked at Synthetics, which can simulate web and mobile traffic and we used the available Synthetic Test, first to confirm our finding from RUM/AMP and Log observer, then we created a *Detector* so we would be alerted if when the run time of a test exceeded our SLA.
+- 次に、Web とモバイルトラフィックをシミュレートできる Synthetics を調べ、利用可能な Synthetics テストを使用して、まず RUM/APM と Log Observer での発見を確認し、次にテストの実行時間が SLA を超えた場合にアラートを受け取るための*ディテクター*を作成しました。
 
-* In the final exercise, we created a health dashboard to keep that running for our Developers and SREs on a TV screen:
+- 最後の演習では、開発者と SRE のために TV スクリーンで継続的に表示するヘルスダッシュボードを作成しました：
 
-![synth and TV](../images/synth-tv.png)
+![synthとTV](../images/synth-tv.png)

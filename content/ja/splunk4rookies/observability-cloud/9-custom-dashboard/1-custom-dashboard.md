@@ -1,39 +1,39 @@
 ---
-title: Enhancing the Dashboard
-linkTitle: 1. Enhancing the Dashboard
+title: ダッシュボードの強化
+linkTitle: 1. ダッシュボードの強化
 weight: 1
 ---
 
-As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.
+Log Observer 演習ですでにいくつかの便利なログチャートをダッシュボードに保存したので、そのダッシュボードを拡張していきます。
 
- ![Wall mounted](../images/wall-mount.png)
+![壁掛け](../images/wall-mount.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* To get back to your dashboard with the two log charts, click on **Dashboards** from the main menu and you will be taken to your Team Dashboard view. Under **Dashboards** click in **Search dashboards** to search for your Service Health Dashboard group.
-* Click on the name and this will bring up your previously saved dashboard.
-  ![log list](../../7-log-observer/images/log-observer-custom-dashboard.png)
-* Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
-* The first step is adding a description chart to the dashboard. Click on the {{% button style="grey" %}}New text note{{% /button %}} and replace the text in the note with the following text and then click the {{% button style="blue" %}}Save and close{{% /button %}} button and name the chart **Instructions**
-{{% notice title=" Information to use with text note" style="grey" %}}
+- 2 つのログチャートがあるダッシュボードに戻るには、メインメニューから**ダッシュボード**をクリックすると、チームダッシュボードビューに移動します。**ダッシュボード**の下にある**ダッシュボードを検索**をクリックして、あなたのサービスヘルスダッシュボードグループを検索します。
+- 名前をクリックすると、以前に保存したダッシュボードが表示されます。
+  ![ログリスト](../../7-log-observer/images/log-observer-custom-dashboard.png)
+- ログ情報は便利ですが、チームにとって意味のあるものにするにはさらに情報が必要なので、もう少し情報を追加しましょう。
+- 最初のステップは、ダッシュボードに説明チャートを追加することです。{{% button style="grey" %}}新しいテキストノート{{% /button %}}をクリックし、ノート内のテキストを次のテキストに置き換えてから、{{% button style="blue" %}}保存して閉じる{{% /button %}}ボタンをクリックし、チャートに**手順**と名前をつけます。
+  {{% notice title="テキストノートで使用する情報" style="grey" %}}
 
 ```text
 
-This is a Custom Health Dashboard for the **Payment service**,  
-Please pay attention to any errors in the logs.
-For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
+これは**支払いサービス**のためのカスタムヘルスダッシュボードです。
+ログのエラーに注意してください。
+詳細については[リンク](https://https://www.splunk.com/en_us/products/observability.html)をご覧ください。
 
 ```
 
 {{% /notice %}}
 
-* The charts are not in a nice order, let's correct that and rearrange the charts so that they are useful.
-* Move your mouse over the top edge of the **Instructions** chart, your mouse pointer will change to a **☩**. This will allow you to drag the chart in the dashboard. Drag the **Instructions** chart to the top left location and resize it to a 1/3rd of the page by dragging the right-hand edge.
-* Drag and add the **Log Timeline view** chart next to the **Instruction** chart, resize it so it fills the other 2/3rd of the page to be the error rate chart next to the two the chart and resize it so it fills the page
-* Next, resize the **Log lines** chart to be the width of the page and resize it the make it at least twice as long.
-* You should have something similar to the dashboard below:
-  ![Initial Dashboard](../images/initial-dashboard.png)
+- チャートが適切な順序になっていません。チャートを役立つように並べ替えましょう。
+- **手順**チャートの上端にマウスを移動すると、マウスポインタが**☩**に変わります。これにより、ダッシュボード内でチャートをドラッグできるようになります。**手順**チャートを左上の位置にドラッグし、右端をドラッグしてページの 1/3 のサイズにリサイズします。
+- **ログタイムラインビュー**チャートを**手順**チャートの横にドラッグして追加し、ページの残りの 2/3 を埋めるようにリサイズして、2 つのチャートの横にエラー率チャートを配置し、ページ全体を埋めるようにリサイズします。
+- 次に、**ログライン**チャートをページの幅にリサイズし、少なくとも 2 倍の長さになるようにリサイズします。
+- 以下のダッシュボードに似た形になっているはずです：
+  ![初期ダッシュボード](../images/initial-dashboard.png)
 
 {{% /notice %}}
 
-This looks great, let's continue and add more meaningful charts.
+これは素晴らしいですね。引き続き、より意味のあるチャートを追加していきましょう。

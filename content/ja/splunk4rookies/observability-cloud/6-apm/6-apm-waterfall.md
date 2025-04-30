@@ -1,45 +1,45 @@
 ---
-title: 6. APM Waterfall
+title: 6. APMウォーターフォール
 weight: 6
 ---
 
-We have arrived at the **Trace Waterfall** from the **Trace Analyzer**. A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
+**トレースアナライザー**から**トレースウォーターフォール**に到達しました。トレースは同じトレース ID を共有するスパンの集まりで、アプリケーションとその構成サービスによって処理される一意のトランザクションを表します。
 
-Each span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.
+Splunk APM の各スパンは、単一の操作をキャプチャします。Splunk APM は、スパンがキャプチャする操作がエラーになった場合、そのスパンをエラースパンとみなします。
 
-![Trace Waterfall](../images/apm-trace-waterfall.png)
+![トレースウォーターフォール](../images/apm-trace-waterfall.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
+- ウォーターフォール内の任意の`paymentservice:grpc.hipstershop.PaymentService/Charge`スパンの横にある{{% button style="red"  %}}!{{% /button %}}をクリックします。
 
 {{< tabs >}}
-{{% tab title="Question" %}}
-**What is the error message and version being reported in the Span Details?**
+{{% tab title="質問" %}}
+**スパン詳細で報告されているエラーメッセージとバージョンは何ですか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**`Invalid request` and `v350.10`**.
+{{% tab title="回答" %}}
+**`Invalid request`（無効なリクエスト）と`v350.10`です**。
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /notice %}}
-Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.
+問題を引き起こしている**paymentservice**のバージョンを特定したので、エラーについてさらに詳しい情報が見つかるか確認してみましょう。ここで**関連ログ**の出番です。
 
-Related Content relies on specific metadata that allow APM, Infrastructure Monitoring, and Log Observer to pass filters around Observability Cloud. For related logs to work, you need to have the following metadata in your logs:
+関連コンテンツは、APM、インフラストラクチャモニタリング、および Log Observer が可観測性クラウド全体でフィルターを渡すことを可能にする特定のメタデータに依存しています。関連ログが機能するためには、ログに以下のメタデータが必要です：
 
-* `service.name`
-* `deployment.environment`
-* `host.name`
-* `trace_id`
-* `span_id`
+- `service.name`
+- `deployment.environment`
+- `host.name`
+- `trace_id`
+- `span_id`
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* At the very bottom of the **Trace Waterfall** click on **Logs (1)**. This highlights that there are **Related Logs** for this trace.
-* Click on the **Logs for trace xxx** entry in the pop-up, this will open the logs for the complete trace in **Log Observer**.
+- **トレースウォーターフォール**の一番下で**ログ (1)**をクリックします。これは、このトレースに**関連ログ**があることを示しています。
+- ポップアップの**Logs for trace xxx**（トレース xxx のログ）エントリをクリックすると、**Log Observer**で完全なトレースのログが開きます。
 
 {{% /notice %}}
 
-![Related Logs](../images/apm-related-logs.png)
+![関連ログ](../images/apm-related-logs.png)
 
-Next, let's find out more about the error in the logs.
+次に、ログのエラーについてさらに詳しく調べてみましょう。

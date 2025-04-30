@@ -1,27 +1,27 @@
 ---
-title: Adding Copied Charts
-linkTitle: 2. Adding Copied Charts
+title: コピーしたチャートの追加
+linkTitle: 2. コピーしたチャートの追加
 weight: 2
 hidden: true
 ---
 
-In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.
+このセクションでは、**コピー＆ペースト**機能を使用してダッシュボードを拡張します。APM サービスダッシュボードのセクションでいくつかのチャートをコピーしたことを思い出してください。これからそれらのチャートをダッシュボードに追加します。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Select the **2+** at the top of the page and select **Paste charts**, this will create the charts in your custom dashboard.
-* The chart currently shows data for all **Environments** and **Services**, so let's add a filter for our environment and the **paymentservice**.
-* Click on the 3 dots **...** at the top right side of the **Request Rate** single value chart. This will open the chart in edit mode.
-* In the new screen, click on the **x** in the {{% button style="blue" %}}sf_environment:* x{{% /button %}} button (**1**) in the middle of the screen to close it.
-* Click on the {{% button style="blue" %}}**+**{{% /button %}}  to add a new filter and select **sf_environment** then pick the [WORKSHOPNAME] from the drop-down and hit **Apply**. The button will change to **sf_environment:[WORKSHOPNAME]**
-* Do the same with for the {{% button style="blue" %}}sf_service.{{% /button %}} button (**2**), close it and create a new filter for **sf_service**. Only this time change it to `paymentservice`.
-  ![edit chart](../images/edit-chart.png)
-* Click the {{% button style="blue" %}}Save and close {{% /button %}} button (**3**).
-* Repeat the previous 4 steps for the **Request Rate** text chart
-* Click {{% button style="blue" %}}Save{{% /button %}} after you  have update the two charts.
-* As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again.
-* Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below.
-  ![New dashboard look](../images/copyandpastedcharts.png)
-{{% /notice %}}
+- ページ上部の**2+**を選択し、**チャートの貼り付け**を選択します。これにより、カスタムダッシュボードにチャートが作成されます。
+- 現在、チャートはすべての**環境**と**サービス**のデータを表示しているので、環境と**paymentservice**のフィルターを追加しましょう。
+- **リクエスト率**単一値チャートの右上にある 3 つのドット**...**をクリックします。これにより、チャートが編集モードで開きます。
+- 新しい画面で、画面中央の{{% button style="blue" %}}sf_environment:\* x{{% /button %}}ボタン（**1**）の**x**をクリックして閉じます。
+- {{% button style="blue" %}}**+**{{% /button %}}をクリックして新しいフィルターを追加し、**sf_environment**を選択してからドロップダウンから[ワークショップ名]を選択し、**適用**を押します。ボタンが**sf_environment:[ワークショップ名]**に変わります。
+- {{% button style="blue" %}}sf_service.{{% /button %}}ボタン（**2**）についても同様に、閉じて**sf_service**の新しいフィルターを作成します。ただし、今回は`paymentservice`に変更します。
+  ![チャートの編集](../images/edit-chart.png)
+- {{% button style="blue" %}}保存して閉じる{{% /button %}}ボタン（**3**）をクリックします。
+- **リクエスト率**テキストチャートについても前の 4 つのステップを繰り返します。
+- 2 つのチャートを更新した後、{{% button style="blue" %}}保存{{% /button %}}をクリックします。
+- 新しく貼り付けられたチャートはダッシュボードの下部に表示されるので、ダッシュボードを再度整理する必要があります。
+- 先ほど学んだドラッグ＆ドロップとリサイズのスキルを使用して、以下の画像のようにダッシュボードを表示させてください。
+  ![新しいダッシュボードの外観](../images/copyandpastedcharts.png)
+  {{% /notice %}}
 
-Next, we are going to create a custom chart based on our Synthetic test that is running.
+次に、実行中の Synthetics テストに基づいてカスタムチャートを作成します。
