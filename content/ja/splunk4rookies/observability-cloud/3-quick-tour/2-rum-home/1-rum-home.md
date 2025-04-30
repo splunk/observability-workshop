@@ -1,47 +1,47 @@
 ---
-title: Real User Monitoring Home Page
-linkTitle: 2.1 RUM Home Page
+title: Real User Monitoring ホームページ
+linkTitle: 2.1 RUMホームページ
 weight: 2
 ---
 
-Click **RUM** in the main menu, this will bring you to the main RUM Home or Landing page. The main concept of this page is to provide you at a glance, the overall status of all selected RUM applications, either in a full dashboard or the compact view.
+メインメニューの**RUM**をクリックすると、RUM のメインホームページ（ランディングページ）に移動します。このページの主な概念は、選択したすべての RUM アプリケーションの全体的な状態を、フルダッシュボードまたはコンパクトビューのいずれかで一目で提供することです。
 
-Independent of the type of Status Dashboard used, the RUM Home Page is made up of 3 distinct sections:
+使用する状態ダッシュボードのタイプに関係なく、RUM ホームページは 3 つの明確なセクションで構成されています：
 
-![RUM Page](../images/rum-main.png)
+![RUMページ](../images/rum-main.png)
 
-1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk RUM. (You can hide this pane in case you need the screen real estate).
-2. **Filter Pane:** Filter on the time frame, environment, application and source type.
-3. **Application Summary Pane:** Summary of all your applications that send RUM data.
+1. **オンボーディングペイン:** Splunk RUM の使用を開始するためのトレーニングビデオとドキュメントへのリンク。（画面のスペースが必要な場合、このペインを非表示にすることができます。）
+2. **フィルターペイン:** 時間枠、環境、アプリケーション、ソースタイプでフィルタリングします。
+3. **アプリケーションサマリーペイン:** RUM データを送信するすべてのアプリケーションの概要。
 
-{{% notice title="RUM Environments & Application and Source Type" style="info" %}}
+{{% notice title="RUM環境とアプリケーション、およびソースタイプ" style="info" %}}
 
-* Splunk Observability uses the **environments** Tag that is sent as part of the RUM trace, (created with every interaction with your website or Mobile App), to separate data coming from different environments like "Production" or "Development".
-* A further separation can be made by the  **Applications** Tag. This allows you to distinguish between separate browser/mobile applications running in the same environment.
-* Splunk RUM is available for both browser and mobile applications, you could use **Source Type** to distinguish between them, however for this workshop, we will only use browser-based RUM.
-
-{{% /notice %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Ensure the time window is set to **-15m**
-* Select the environment for your workshop from the drop-down box. The naming convention is **[NAME OF WORKSHOP]-workshop** (Selecting this will make sure the workshop RUM application is visible)
-* Select the **App** name. There the naming convention is **[NAME OF WORKSHOP]-store**  and leave **Source** set to **All**
-* In the **JavaScript Errors** tile click on the **TypeError** entry that says: *Cannot read properties of undefined (reading 'Prcie')* to see more details. Note that you are given a quick indication of what part of the website the error occurred, allowing you to fix this quickly.
-* Close the pane.
-* The 3rd tile reports **Web Vitals**, a metric that focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Based on the **Web Vitals** metrics, how do you rate the current web performance of the site?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**According to the *Web Vitals* Metrics, the initial load of the site is OK and is rated *Good***
-{{% /tab %}}
-{{< /tabs >}}
-
-* The last tile, **Most recent detectors** tile, will show if any alerts have been triggered for the application.
-* Click on the down **⌵** arrow in front of the Application name to toggle the view to the compact style. Note that you have all the main information available in this view as well. Click anywhere in the compact view to go back to the full view.
+- Splunk Observability は、RUM トレースの一部として送信される**環境**タグ（ウェブサイトやモバイルアプリとの各操作で作成される）を使用して、「本番環境」や「開発環境」などの異なる環境からのデータを分離します。
+- さらに**アプリケーション**タグによる分離も可能です。これにより、同じ環境で実行されている別々のブラウザ/モバイルアプリケーションを区別することができます。
+- Splunk RUM はブラウザとモバイルアプリケーションの両方で利用可能です。**ソースタイプ**を使用してそれらを区別することも可能ですが、このワークショップではブラウザベースの RUM のみを使用します。
 
 {{% /notice %}}
 
-Next, let's check out **Splunk Application Performance Monitoring (APM)**.
+{{% notice title="演習" style="green" icon="running" %}}
+
+- 時間ウィンドウが**-15m**に設定されていることを確認します
+- ドロップダウンボックスからワークショップの環境を選択します。命名規則は**[ワークショップ名]-workshop**です（これを選択すると、ワークショップ RUM アプリケーションが表示されます）
+- **アプリ**名を選択します。命名規則は**[ワークショップ名]-store**で、**ソース**は**すべて**のままにしておきます
+- **JavaScript エラー**タイルで、**TypeError**エントリ：*Cannot read properties of undefined (reading 'Prcie')*をクリックして詳細を確認します。ウェブサイトのどの部分でエラーが発生したかを素早く示してくれることに注意してください。これにより、迅速に修正することができます。
+- ペインを閉じます。
+- 3 番目のタイルは**Web Vitals**を報告します。これはユーザーエクスペリエンスの 3 つの重要な側面である**読み込み、対話性、視覚的安定性**に焦点を当てたメトリクスです。
+  {{< tabs >}}
+  {{% tab title="質問" %}}
+  **Web Vitals メトリクスに基づいて、現在のウェブサイトのパフォーマンスをどのように評価しますか？**
+  {{% /tab %}}
+  {{% tab title="回答" %}}
+  \*\*Web Vitals メトリクスによれば、サイトの初期読み込みは良好であり、\*Good\*と評価されています\*\*
+  {{% /tab %}}
+  {{< /tabs >}}
+
+- 最後のタイル、**最新のディテクター**タイルは、アプリケーションに対してアラートが発生しているかどうかを表示します。
+- アプリケーション名の前にある下向き矢印**⌵**をクリックして、ビューをコンパクトスタイルに切り替えます。このビューでもすべての主要情報が利用可能であることに注目してください。コンパクトビューの任意の場所をクリックすると、フルビューに戻ります。
+
+{{% /notice %}}
+
+次に、**Splunk アプリケーションパフォーマンスモニタリング（APM）**を確認しましょう。
