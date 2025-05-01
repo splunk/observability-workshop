@@ -10,8 +10,8 @@ description: このワークショップでは、Splunk Observability Cloudが�
 
 このワークショップでは、Splunk Observability Cloud がフロントエンドアプリケーションからバックエンドサービスまで、ユーザー体験に関する即時の可視性をどのように提供するかをデモンストレーションします。他の可観測性ソリューションと一線を画す、プラットフォームの最も強力な機能をいくつか体験していただきます：
 
-- **インフラ監視（Infrastructure Monitoring）**
-- **完全で忠実なリアルユーザーモニタリング（RUM）**
+- **インフラ監視（Infrastructure Monitoring, IM）**
+- **完全で忠実な Real User Monitoring（RUM）**
 - **Application Performance Monitoring（APM）による End to End の NoSample で完全忠実なトレースの可視性**
 - **コード入力を必要としないログクエリ**
 - **外形監視・合成監視（Synthetic Monitoring）**
