@@ -44,4 +44,4 @@ weight: 2
 
 {{% /notice %}}
 
-次に、**Splunk アプリケーションパフォーマンスモニタリング（APM）** を確認しましょう。
+次に、**Splunk Application Performance Monitoring（APM）** を確認しましょう。
