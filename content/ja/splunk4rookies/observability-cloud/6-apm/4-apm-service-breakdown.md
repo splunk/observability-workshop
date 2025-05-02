@@ -6,10 +6,10 @@ weight: 4
 {{% notice title="演習" style="green" icon="running" %}}
 
 - サービスマップで**paymentservice**を選択します。
-- 右側のペインで{{% button style="grey"  %}}ブレイクダウン{{% /button %}}をクリックします。
+- 右側のペインで{{% button style="grey"  %}}Breakdown{{% /button %}}をクリックします。
 - リストから`tenant.level`を選択します。
 - サービスマップに戻り、**gold**をクリックします。
-- {{% button style="grey"  %}}ブレイクダウン{{% /button %}}をクリックして`version`を選択します。これはサービスバージョンを表示するタグです。
+- {{% button style="grey"  %}}Breakdown{{% /button %}}をクリックして`version`を選択します。これはサービスバージョンを表示するタグです。
 - これを**silver**と**bronze**についても繰り返します。
 
 {{< tabs >}}
