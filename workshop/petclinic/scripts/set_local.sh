@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the deployment YAML file path
-deployment_file="/home/splunk/workshop/petclinic/petclinic-deploy.yaml"
+deployment_file="/home/splunk/workshop/petclinic/deployment.yaml"
 
 # Define the output file path
 output_file="/home/splunk/workshop/petclinic/petclinic-local.yaml"
