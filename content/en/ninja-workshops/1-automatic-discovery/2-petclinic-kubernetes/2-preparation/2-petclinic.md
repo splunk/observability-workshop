@@ -10,7 +10,7 @@ The first deployment of our application will be using prebuilt containers to giv
 {{% tab title="kubectl apply" %}}
 
 ``` bash
-kubectl apply -f ~/workshop/petclinic/petclinic-deploy.yaml
+kubectl apply -f ~/workshop/petclinic/deployment.yaml
 ```
 
 {{% /tab %}}
@@ -42,7 +42,7 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started so this may take a couple of minutes.
+At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started, so this may take a couple of minutes.
 
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
@@ -82,13 +82,13 @@ curl http://ifconfig.me
 
 ```
 
-You can validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
+Validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
 
 ![Pet shop](../../images/petclinic.png)
 
 Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians** **(2)** tabs, confirming that you see a list of names on each page.
 
-![owners](../../images/petclinic-owners.png)
+![Owners](../../images/petclinic-owners.png)
 
 <!--
 Once they are all running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to check the local private repository is active.

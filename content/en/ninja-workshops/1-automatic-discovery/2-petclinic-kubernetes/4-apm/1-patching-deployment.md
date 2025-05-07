@@ -23,7 +23,7 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-Next, enable the Java automatic discovery and configuration for all of the services by adding the annotation to the deployments. The following command will patch the all deployments. This will trigger the OpenTelemetry Operator to inject the `splunk-otel-java` image into the Pods:
+Next, enable the Java automatic discovery and configuration for all the services by adding the annotation to the deployments. The following command will patch the all deployments. This will trigger the OpenTelemetry Operator to inject the `splunk-otel-java` image into the Pods:
 
 {{< tabs >}}
 {{% tab title="Patch all PetClinic services" %}}
@@ -77,5 +77,3 @@ Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. Aft
 ![restart](../../images/k8s-navigator-restarted-pods.png)
 
 Wait for the Pods to turn green in the Kubernetes Navigator, then go tho the next section.
-
-
