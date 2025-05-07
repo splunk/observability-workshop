@@ -11,7 +11,7 @@ The instructor will provide you with the login information for the instance that
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance, please reach out to your Instructor.
 
 ``` text
-$ ssh -p 2222 splunk@<ip-address>
+$ ssh -p 2222 splunk@<IP-ADDRESS>
 
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
@@ -20,9 +20,7 @@ $ ssh -p 2222 splunk@<ip-address>
 ███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝ 
 ╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝  
 Last login: Mon Feb  5 11:04:54 2024 from [Redacted]
-Waiting for cloud-init status...
-Your instance is ready!
-splunk@show-no-config-i-0d1b29d967cb2e6ff:~$ 
+splunk@show-no-config-i-0d1b29d967cb2e6ff ~ $
 ```
 
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal, run the following script and check that the environment variables are present and set with actual valid values:
