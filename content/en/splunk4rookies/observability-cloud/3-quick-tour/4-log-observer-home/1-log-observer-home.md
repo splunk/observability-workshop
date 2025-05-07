@@ -33,18 +33,20 @@ Let's run a little search exercise:
 * Click on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar then click on **Fields** in the dialog.
 * Type in **cardType** and select it.
 * Under **Top values** click on **visa**, then click on **=** to add it to the filter.
+* Click {{% button style="blue" %}}Run search{{% /button %}}
 
   ![logo search](../images/log-filter-bar.png?width=920px)
 
 * Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
 * Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
-* Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order:` in the **Enter Keyword...** box and press enter.
-* You should now only have log lines that contain the word "order:". There are still a lot of log lines, so let's filter some more.
-* Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field...** search box and select it.
+* Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order` in the **Enter Keyword...** box and press enter.
+* Click {{% button style="blue" %}}Run search{{% /button %}}
+* You should now only have log lines that contain the word `order`. There are still a lot of log lines, so let's filter some more.
+* Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field ...** search box and select it.
   ![severity](../images/find-severity.png?width=15vw&classes=left)
-* Make sure you click the {{% button style="gray" %}}**Exclude all logs with this fields**{{% /button %}}  at the bottom of the dialog box, as the order log line does not have a severity assigned.  This will remove the others.
-* You may need to scroll down the page if you still have the onboarding content displayed at the top to see the **Exclude all logs with this fields** button.
-* You should now have a list of orders sold for the last 15 minutes.
+* Under **Top values** click on **error**, then click on **=** to add it to the filter.
+* Click {{% button style="blue" %}}Run search{{% /button %}}
+* You should now have a list of orders that failed to complete for the last 15 minutes.
 
 {{% /notice %}}
 
