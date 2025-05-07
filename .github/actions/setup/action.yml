@@ -17,7 +17,7 @@ runs:
         yq-url: 'https://github.com/mikefarah/yq/releases/download/v{version}/yq_{platform}_{arch}'
 
     - name: Set up Python 3.12
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12'
         cache: 'pip'
