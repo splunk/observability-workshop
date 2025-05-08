@@ -7,7 +7,7 @@ sudo apt install -y nodejs
 
 export KAFKA_BROKER=localhost:9092
 
-cd ~/otel-discovery-demo/src/riskservice
+cd ~/workshop/demos/otel-discovery-demo/src/riskservice
 
 echo Installing packages required by Node.js app
 npm install

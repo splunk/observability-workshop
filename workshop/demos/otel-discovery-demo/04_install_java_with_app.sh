@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/otel-discovery-demo
+cd ~/workshop/demos/otel-discovery-demo
 
 export KAFKA_BROKER=localhost:9092
 export DB_URL="jdbc:mysql://localhost/MyDB"
