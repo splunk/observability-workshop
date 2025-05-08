@@ -1,0 +1,131 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loanservice
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loanservice
+  template:
+    metadata:
+      labels:
+        app: loanservice
+#      annotations:
+#        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      containers:
+        - name: loanservice
+          image: derekmitchell399/loanservice:v0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KAFKA_BROKER
+              value: kafka-release.default.svc.cluster.local:9092
+            - name: DB_URL
+              value: jdbc:mysql://mysql/MyDB
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loanservice
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: loanservice
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: riskservice
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: riskservice
+  template:
+    metadata:
+      labels:
+        app: riskservice
+#      annotations:
+#        instrumentation.opentelemetry.io/inject-nodejs: "true"
+    spec:
+      containers:
+        - name: riskservice
+          image: derekmitchell399/riskservice:v0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: KAFKA_BROKER
+              value: kafka-release.default.svc.cluster.local:9092
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: riskservice
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: riskservice
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:oraclelinux9
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: MYSQL_ROOT_PASSWORD
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+
