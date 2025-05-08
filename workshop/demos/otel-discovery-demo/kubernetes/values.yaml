@@ -1,0 +1,8 @@
+# Activates the OpenTelemetry Kubernetes Operator
+operator:
+  enabled: true
+
+# Installs the Custom Resource Definitions (CRDs) required by the operator
+# Must be set unless CRDs are pre-installed manually
+operatorcrds:
+  install: true
