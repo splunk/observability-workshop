@@ -14,6 +14,9 @@ tar -xzf ./kafka_2.13-3.8.0.tgz -C .
 echo Starting Zookeeper
 nohup ./kafka_2.13-3.8.0/bin/zookeeper-server-start.sh ./kafka_2.13-3.8.0/config/zookeeper.properties &
 
+# update kafka config to ensure we can connect via localhost
+sed -i 's$#listeners=PLAINTEXT://:9092$listeners=PLAINTEXT://localhost:9092$g' ./kafka_2.13-3.8.0/config/server.properties
+
 # TODO: validate that Zookeeper started successfully
 
 echo Starting Kafka
