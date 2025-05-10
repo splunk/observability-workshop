@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 export TERM=xterm-256color
 
-apt update
-apt install jq curl -y
+apt update -qq
+apt install jq curl -y -qq
 
 function header_info() {
   clear
@@ -26,7 +26,7 @@ GN=$(echo "\033[1;92m")
 DGN=$(echo "\033[32m")
 CL=$(echo "\033[m")
 
-if whiptail --backtitle "Splunk" --title "Workshop VM" --yesno "This will create a Observability Workshop VM. Proceed?" 10 58; then
+if whiptail --backtitle "Splunk" --title "Observability Workshop VM" --yesno "This will create a Observability Workshop VM. Proceed?" 10 58; then
   :
 else
   header_info && echo -e "${RD}User exited script${CL}\n" && exit
@@ -45,6 +45,11 @@ fi
 
 # Call the API and store the response
 JSON_RESPONSE=$(curl -s https://swipe.splunk.show/api?id=${SWIPE_ID})
+
+# Check if Workshop ID not found
+if [[ "$JSON_RESPONSE" == '{"message":"Workshop ID not found"}' ]]; then
+  header_info && echo -e "${RD}Workshop ID not found. Exiting script.${CL}\n" && exit
+fi
 
 # Parse the JSON response and extract values
 REALM=$(echo ${JSON_RESPONSE} | jq -r '.REALM')
@@ -78,7 +83,6 @@ package_reboot_if_required: false
 hostname: $HOSTNAME
 manage_etc_hosts: true
 fqdn: $HOSTNAME
-manage_etc_hosts: true
 user: $USER
 password: $PASSWORD
 chpasswd:
@@ -209,7 +213,7 @@ qm create $VMID --name $HOSTNAME --ostype l26 \
     --memory 8192 --balloon 0 \
     --agent 1 \
     --bios ovmf --machine q35 --efidisk0 $STORAGE:0,pre-enrolled-keys=0 \
-    --cpu host --socket 1 --cores 2 \
+    --cpu host --socket 1 --cores 4 \
     --net0 virtio,bridge=vmbr0 >/dev/null
 qm importdisk $VMID jammy-server-cloudimg-amd64.img $STORAGE >/dev/null
 qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard=on >/dev/null
