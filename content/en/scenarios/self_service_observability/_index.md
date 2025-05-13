@@ -5,7 +5,7 @@ weight: 5
 archetype: chapter
 time: 1 minute
 authors: ["Bill Grant"]
-draft: false
+draft: true
 description: This scenario helps platform engineering (or central tools) teams enable engineers with self-service observability tooling at scale, so developers and SREs can spend less time managing their toolchain and more time building and delivering cool software.
 ---
 
@@ -14,6 +14,7 @@ description: This scenario helps platform engineering (or central tools) teams e
 This workshop will go through some of the ways to apply standardization in your Observability practice.
 
 We will cover:
+
 * Collecting data with standards, and applying metadata at various points in the process
 * Managing costs, by reviewing metrics and applying metrics pipeline management to it
 * Configuring Observability-as-code, using terraform and api's
