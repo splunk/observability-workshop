@@ -6,20 +6,19 @@ weight: 6
 
 ログの外部でコンテキスト伝播の結果を確認するために、もう一度[Splunk APM UI](https://app.us1.signalfx.com/#/apm)を参照します。
 
-#### Splunk APMサービスマップでLambda関数を表示する
+#### Splunk APM サービスマップで Lambda 関数を表示する
 
-もう一度APMで環境のサービスマップを確認してみましょう。
+もう一度 APM で環境のサービスマップを確認してみましょう。
 
-Splunk Observability Cloudで：
+Splunk Observability Cloud で：
 
 - メインメニューの`APM`ボタンをクリックします。
 
-- `Environment:`ドロップダウンからあなたのAPM環境を選択します。
+- `Environment:`ドロップダウンからあなたの APM 環境を選択します。
 
-- APM概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
+- APM 概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
 
-> [!NOTE]
-> _注意：トレースがSplunk APMに表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください_
+> [!NOTE] > _注意：トレースが Splunk APM に表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください_
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 違いに気づきましたか？
@@ -29,18 +28,18 @@ Splunk Observability Cloudで：
 
 ![Splunk APM、サービスマップ](../images/09-Manual-ServiceMap.png)
 
-#### トレースIDでLambdaトレースを調査する
+#### トレース ID で Lambda トレースを調査する
 
 次に、環境に関連するトレースをもう一度確認します。
 
-- コンシューマー関数のログからコピーしたトレースIDを、Traces下の`View Trace ID`検索ボックスに貼り付け、`Go`をクリックします
+- コンシューマー関数のログからコピーしたトレース ID を、Traces 下の`View Trace ID`検索ボックスに貼り付け、`Go`をクリックします
 
 ![Splunk APM、トレースボタン](../images/10-Manual-TraceButton.png)
 
 > [!NOTE]
-> トレースIDは、私たちが伝播したトレースコンテキストの一部でした。
+> トレース ID は、私たちが伝播したトレースコンテキストの一部でした。
 
-最も一般的な2つの伝播規格について読むことができます：
+最も一般的な 2 つの伝播規格について読むことができます：
 
 1. [W3C](https:///www.w3.org/TR/trace-context/#traceparent-header)
 2. [B3](https://github.com/openzipkin/b3-propagation#overall-process)
@@ -48,12 +47,12 @@ Splunk Observability Cloudで：
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 私たちはどちらを使用していますか？
 
-- _私たちのNodeJS関数をサポートするSplunk Distribution of Opentelemetry JSは、[デフォルト](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js)で`W3C`標準を使用しています_
+- _私たちの NodeJS 関数をサポートする Splunk Distribution of Opentelemetry JS は、[デフォルト](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js)で`W3C`標準を使用しています_
 
 {{% /notice %}}
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-ボーナス質問：W3CヘッダーとB3ヘッダーを混在させるとどうなりますか？
+ボーナス質問：W3C ヘッダーと B3 ヘッダーを混在させるとどうなりますか？
 {{% /notice %}}
 
 ![Splunk APM、IDによるトレース](../images/11-Manual-TraceByID.png)
@@ -81,9 +80,9 @@ Splunk Observability Cloudで：
   - これによりバックグラウンドプロセスがフォアグラウンドに移動します。
   - 次に`[CONTROL-C]`を押してプロセスを終了できます。
 
-#### すべてのAWSリソースを破棄する
+#### すべての AWS リソースを破棄する
 
-Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
+Terraform は個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
 以下の手順に従ってリソースを破棄してください：
 
@@ -101,7 +100,7 @@ Terraformは個々のリソースの状態をデプロイメントとして管�
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- 以前にデプロイしたLambda関数とその他のAWSリソースを破棄します：
+- 以前にデプロイした Lambda 関数とその他の AWS リソースを破棄します：
 
   ```bash
   terraform destroy

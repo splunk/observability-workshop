@@ -8,30 +8,34 @@ weight: 1
 
 ## 前提条件
 
-### Observabilityワークショップインスタンス
-Observabilityワークショップは、多くの場合、Splunkが提供する事前設定済みのUbuntu実行EC2インスタンス上で実施されます。
+### Observability ワークショップインスタンス
+
+Observability ワークショップは、多くの場合、Splunk が提供する事前設定済みの Ubuntu 実行 EC2 インスタンス上で実施されます。
 
 ワークショップのインストラクターから、割り当てられたワークショップインスタンスの認証情報が提供されます。
 
 インスタンスには以下の環境変数が既に設定されているはずです：
+
 - **ACCESS_TOKEN**
 - **REALM**
   - _これらはワークショップ用の Splunk Observability Cloud の **Access Token** と **Realm** です。_
-  - _これらはOpenTelemetry Collectorによって、データを正しいSplunk Observability Cloud組織に転送するために使用されます。_
+  - _これらは OpenTelemetry Collector によって、データを正しい Splunk Observability Cloud 組織に転送するために使用されます。_
 
-> [!NOTE]
-> _また、Multipassを使用してローカルのObservabilityワークショップインスタンスをデプロイすることもできます。_
+> [!NOTE] > _また、Multipass を使用してローカルの Observability ワークショップインスタンスをデプロイすることもできます。_
 
 ### AWS Command Line Interface (awscli)
-AWS Command Line Interface、または`awscli`は、AWSリソースと対話するために使用されるAPIです。このワークショップでは、特定のスクリプトがデプロイするリソースと対話するために使用されます。
 
-Splunkが提供するワークショップインスタンスには、既に **awscli** がインストールされているはずです。
+AWS Command Line Interface、または`awscli`は、AWS リソースと対話するために使用される API です。このワークショップでは、特定のスクリプトがデプロイするリソースと対話するために使用されます。
+
+Splunk が提供するワークショップインスタンスには、既に **awscli** がインストールされているはずです。
 
 - インスタンスに **aws** コマンドがインストールされているか、次のコマンドで確認します：
+
   ```bash
   which aws
   ```
-    - _予想される出力は **/usr/local/bin/aws** です_
+
+  - _予想される出力は **/usr/local/bin/aws** です_
 
 - インスタンスに **aws** コマンドがインストールされていない場合は、次のコマンドを実行します：
   ```bash
@@ -39,25 +43,30 @@ Splunkが提供するワークショップインスタンスには、既に **aw
   ```
 
 ### Terraform
-Terraformは、リソースを構成ファイルで定義することで、デプロイ、管理、破棄するためのInfrastructure as Code（IaC）プラットフォームです。TerraformはHCLを使用してこれらのリソースを定義し、さまざまなプラットフォームやテクノロジのための複数のプロバイダーをサポートしています。
 
-このワークショップでは、コマンドラインでTerraformを使用して、以下のリソースをデプロイします：
+Terraform は、リソースを構成ファイルで定義することで、デプロイ、管理、破棄するための Infrastructure as Code（IaC）プラットフォームです。Terraform は HCL を使用してこれらのリソースを定義し、さまざまなプラットフォームやテクノロジのための複数のプロバイダーをサポートしています。
+
+このワークショップでは、コマンドラインで Terraform を使用して、以下のリソースをデプロイします：
+
 1. AWS API Gateway
 2. Lambda 関数
 3. Kinesis ストリーム
 4. CloudWatch ロググループ
 5. S3 バケット
-    - _およびその他のサポートリソース_
-  
-Splunkが提供するワークショップインスタンスには、既に **terraform** がインストールされているはずです。
+   - _およびその他のサポートリソース_
+
+Splunk が提供するワークショップインスタンスには、既に **terraform** がインストールされているはずです。
 
 - インスタンスに **terraform** コマンドがインストールされているか確認します：
+
   ```bash
   which terraform
   ```
-    - _予想される出力は **/usr/local/bin/terraform** です_
 
-- インスタンスに **terraform** コマンドがインストールされていない場合は、以下のTerraformが推奨するインストールコマンドを実行してください：
+  - _予想される出力は **/usr/local/bin/terraform** です_
+
+- インスタンスに **terraform** コマンドがインストールされていない場合は、以下の Terraform が推奨するインストールコマンドを実行してください：
+
   ```bash
   wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
@@ -67,13 +76,16 @@ Splunkが提供するワークショップインスタンスには、既に **te
   ```
 
 ### ワークショップディレクトリ (o11y-lambda-workshop)
-ワークショップディレクトリ `o11y-lambda-workshop` は、今日使用する例のLambdaベースのアプリケーションの自動計装と手動計装の両方を完了するための、すべての設定ファイルとスクリプトを含むリポジトリです。
+
+ワークショップディレクトリ `o11y-lambda-workshop` は、今日使用する例の Lambda ベースのアプリケーションの自動計装と手動計装の両方を完了するための、すべての設定ファイルとスクリプトを含むリポジトリです。
 
 - ホームディレクトリにワークショップディレクトリがあることを確認します：
+
   ```bash
   cd && ls
   ```
-    - _予想される出力には **o11y-lambda-workshop** が含まれるはずです_
+
+  - _予想される出力には **o11y-lambda-workshop** が含まれるはずです_
 
 - **o11y-lambda-workshop** ディレクトリがホームディレクトリにない場合は、次のコマンドでクローンします：
   ```bash
@@ -83,19 +95,22 @@ Splunkが提供するワークショップインスタンスには、既に **te
 ### AWS & Terraform 変数
 
 #### AWS
-AWSのCLIでは、サービスによってデプロイされたリソースにアクセスし管理するための認証情報が必要です。このワークショップでは、TerraformとPythonスクリプトの両方がタスクを実行するためにこれらの変数を必要とします。
+
+AWS の CLI では、サービスによってデプロイされたリソースにアクセスし管理するための認証情報が必要です。このワークショップでは、Terraform と Python スクリプトの両方がタスクを実行するためにこれらの変数を必要とします。
 
 - このワークショップのために **awscli** を _**access key ID**_、_**secret access key**_ および _**region**_ で構成します：
+
   ```bash
   aws configure
   ```
-    - _このコマンドは以下のようなプロンプトを表示するはずです：_
-      ```bash
-      AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
-      AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-      Default region name [None]: us-east-1
-      Default outoput format [None]:
-      ```
+
+  - _このコマンドは以下のようなプロンプトを表示するはずです：_
+    ```bash
+    AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
+    AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Default region name [None]: us-east-1
+    Default outoput format [None]:
+    ```
 
 - インスタンスで **awscli** が設定されていない場合は、次のコマンドを実行し、インストラクターから提供される値を入力してください。
   ```bash
@@ -103,17 +118,19 @@ AWSのCLIでは、サービスによってデプロイされたリソースに�
   ```
 
 #### Terraform
-Terraformでは、機密情報や動的データを.tf設定ファイルにハードコーディングしないようにするため、また、それらの値をリソース定義全体で再利用できるようにするため、変数の受け渡しをサポートしています。
 
-このワークショップでは、OpenTelemetry Lambda layerの適切な値でLambda関数をデプロイするため、Splunk Observability Cloudの取り込み値のため、そして環境とリソースを独自で即座に認識できるようにするための変数をTerraformで必要とします。
+Terraform では、機密情報や動的データを.tf 設定ファイルにハードコーディングしないようにするため、また、それらの値をリソース定義全体で再利用できるようにするため、変数の受け渡しをサポートしています。
 
-Terraform変数は以下の方法で定義されます：
+このワークショップでは、OpenTelemetry Lambda layer の適切な値で Lambda 関数をデプロイするため、Splunk Observability Cloud の取り込み値のため、そして環境とリソースを独自で即座に認識できるようにするための変数を Terraform で必要とします。
+
+Terraform 変数は以下の方法で定義されます：
+
 - 変数を _**main.tf**_ ファイルまたは _**variables.tf**_ に定義する
 - 以下のいずれかの方法で変数の値を設定する：
   - ホストレベルで環境変数を設定し、その定義と同じ変数名を使用して、接頭辞として _**TF_VAR**_ をつける
   - _**terraform.tfvars**_ ファイルに変数の値を設定する
-  - terraform apply実行時に引数として値を渡す
- 
+  - terraform apply 実行時に引数として値を渡す
+
 このワークショップでは、_**variables.tf**_ と _**terraform.tfvars**_ ファイルの組み合わせを使用して変数を設定します。
 
 - **vi** または **nano** のいずれかを使用して、**auto** または **manual** ディレクトリにある _**terraform.tfvars**_ ファイルを開きます
@@ -128,20 +145,21 @@ Terraform変数は以下の方法で定義されます：
   prefix            = "CHANGEME"
   ```
   - _該当する場合は、引用符や括弧をそのまま残し、プレースホルダーのみを変更してください。_
-  - _**prefix**_ は、他の参加者のリソースと区別するために選択できる固有の識別子です。例えば、名前の短い形式を使用することをお勧めします。_
-  - _また、**prefix** には小文字のみを使用してください。S3のような特定のAWSリソースでは、大文字を使用するとエラーが発生します。_
+  - _**prefix**_ は、他の参加者のリソースと区別するために選択できる固有の識別子です。例えば、名前の短い形式を使用することをお勧めします。\_
+  - _また、**prefix** には小文字のみを使用してください。S3 のような特定の AWS リソースでは、大文字を使用するとエラーが発生します。_
 - ファイルを保存してエディタを終了します。
 - 最後に、編集した _**terraform.tfvars**_ ファイルを他のディレクトリにコピーします。
   ```bash
   cp ~/o11y-lambda-workshop/auto/terraform.tfvars ~/o11y-lambda-workshop/manual
   ```
   - _これは、自動計装と手動計装の両方の部分で同じ値を使用するためです_
- 
+
 ### ファイル権限
 
 他のすべてのファイルはそのままでよいですが、`auto`と`manual`の両方にある**send_message.py**スクリプトは、ワークショップの一部として実行する必要があります。そのため、期待通りに実行するには、適切な権限が必要です。以下の手順に従って設定してください。
 
 - まず、`o11y-lambda-workshop`ディレクトリにいることを確認します：
+
   ```bash
   cd ~/o11y-lambda-workshop
   ```
