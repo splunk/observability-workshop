@@ -1,16 +1,16 @@
 ---
-title: Distributed Tracing for AWS Lambda Functions
-linkTitle: Lambda Tracing
-description: This workshop will enable you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis 
+title: AWS Lambda関数の分散トレーシング
+linkTitle: Lambdaトレーシング
+description: このワークショップでは、AWS Lambdaで実行される小規模なサーバーレスアプリケーションの分散トレースを構築し、AWS Kinesisを介してメッセージを生成および消費する方法を学びます
 weight: 6
 authors: ["Guy-Francis Kono"]
 time: 45 minutes
 ---
 
-This workshop will equip you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis.
+このワークショップでは、AWS Lambdaで実行される小規模なサーバーレスアプリケーションの分散トレースを構築し、AWS Kinesisを介してメッセージを生成および消費する方法を学びます。
 
-First, we will see how OpenTelemetry's auto-instrumentation captures traces and exports them to your target of choice.
+まず、OpenTelemetryの自動計装がどのようにトレースをキャプチャし、選択した宛先にエクスポートするかを確認します。
 
-Then, we will see how we can enable context propagation with manual instrumentation.
+次に、手動計装によってコンテキスト伝播を有効にする方法を見ていきます。
 
-For this workshop Splunk has prepared an Ubuntu Linux instance in AWS/EC2 all pre-configured for you. To get access to that instance, please visit the URL provided by the workshop leader.
+このワークショップのために、SplunkはAWS/EC2上のUbuntu Linuxインスタンスを事前に構成しています。このインスタンスにアクセスするには、ワークショップリーダーが提供するURLにアクセスしてください。

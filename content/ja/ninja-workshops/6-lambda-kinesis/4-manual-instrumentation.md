@@ -1,104 +1,104 @@
 ---
-title: Manual Instrumentation
-linkTitle: 4. Manual Instrumentation
+title: 手動計装
+linkTitle: 4. 手動計装
 weight: 4
 ---
 
-The second part of our workshop will focus on demonstrating how manual instrumentation with OpenTelemetry empowers us to enhance telemetry collection. More specifically, in our case, it will enable us to propagate trace context data from the `producer-lambda` function to the `consumer-lambda` function, thus enabling us to see the relationship between the two functions, even across Kinesis Stream, which currently does not support automatic context propagation.
+ワークショップの第2部では、OpenTelemetryによる手動計装が計測データ収集を強化する方法を実演することに焦点を当てます。より具体的には、今回のケースでは、`producer-lambda`関数から`consumer-lambda`関数にトレースコンテキストデータを伝播させることができるようになります。これにより、現在は自動コンテキスト伝播をサポートしていないKinesisストリームを介しても、2つの関数間の関係を見ることができるようになります。
 
-### The Manual Instrumentation Workshop Directory & Contents
+### 手動計装ワークショップディレクトリとコンテンツ
 
-Once again, we will first start by taking a look at our operating directory, and some of its files. This time, it will be `o11y-lambda-workshop/manual` directory. This is where all the content for the manual instrumentation portion of our workshop resides.
+再度、作業ディレクトリとそのファイルの一部を確認することから始めます。今回は `o11y-lambda-workshop/manual` ディレクトリです。ここにはワークショップの手動計装部分のすべてのコンテンツがあります。
 
-#### The `manual` directory
+#### `manual` ディレクトリ
 
-- Run the following command to get into the `o11y-lambda-workshop/manual` directory:
+- 以下のコマンドを実行して `o11y-lambda-workshop/manual` ディレクトリに移動します：
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- Inspect the contents of this directory with the `ls` command:
+- `ls` コマンドでこのディレクトリの内容を確認します：
 
   ```bash
   ls
   ```
 
-  - _The output should include the following files and directories:_
+  - _出力には以下のファイルとディレクトリが含まれるはずです：_
 
     ```bash
     handler             outputs.tf          terraform.tf        variables.tf
     main.tf             send_message.py     terraform.tfvars
     ```
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Do you see any difference between this directory and the auto directory when you first started?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+このディレクトリと最初に始めた auto ディレクトリに何か違いがありますか？
 {{% /notice %}}
 
-#### Compare `auto` and `manual` files
+#### `auto` と `manual` のファイルを比較する
 
-Let's make sure that all these files that LOOK the same, are actually the same.
+見た目が同じように見えるこれらのファイルが実際に同じかどうか確認しましょう。
 
-- Compare the `main.tf` files in the `auto` and `manual` directories:
+- `auto` と `manual` ディレクトリの `main.tf` ファイルを比較します：
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/main.tf ~/o11y-lambda-workshop/manual/main.tf
   ```
 
-  - There is no difference! _(Well, there shouldn't be. Ask your workshop facilitator to assist you if there is)_
+  - 違いはありません！_(違いがあるはずはありません。もし違いがあれば、ワークショップ進行役に支援を求めてください)_
 
-- Now, let's compare the `producer.mjs` files:
+- 次に、`producer.mjs` ファイルを比較してみましょう：
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/handler/producer.mjs ~/o11y-lambda-workshop/manual/handler/producer.mjs
   ```
 
-  - There's quite a few differences here!
+  - ここにはかなりの違いがあります！
 
-- You may wish to view the entire file and examine its content
+- ファイル全体を表示してその内容を調べたい場合は以下を実行します：
 
   ```bash
   cat ~/o11y-lambda-workshop/handler/producer.mjs
   ```
 
-  - Notice how we are now importing some OpenTelemetry objects directly into our function to handle some of the manual instrumentation tasks we require.
+  - 必要な手動計装タスクを処理するために、いくつかのOpenTelemetryオブジェクトを関数に直接インポートしていることに注目してください。
 
   ```js
   import { context, propagation, trace, } from "@opentelemetry/api";
   ```
 
-  - We are importing the following objects from [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) to propagate our context in our producer function:
+  - プロデューサー関数でコンテキストを伝播するために、[@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) から次のオブジェクトをインポートしています：
     - context
     - propagation
     - trace
 
-- Finally, compare the `consumer.mjs` files:
+- 最後に、`consumer.mjs` ファイルを比較します：
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/handler/consumer.mjs ~/o11y-lambda-workshop/manual/handler/consumer.mjs
   ```
 
-  - Here also, there are a few differences of note. Let's take a closer look
+  - ここにもいくつかの注目すべき違いがあります。より詳しく見てみましょう：
 
     ```bash
     cat handler/consumer.mjs
     ```
 
-    - In this file, we are importing the following [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) objects:
+    - このファイルでは、次の [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) オブジェクトをインポートしています：
       - propagation
       - trace
       - ROOT_CONTEXT
-    - We use these to extract the trace context that was propagated from the producer function
-    - Then to add new span attributes based on our `name` and `superpower` to the extracted trace context
+    - これらを使用して、プロデューサー関数から伝播されたトレースコンテキストを抽出します
+    - その後、抽出したトレースコンテキストに `name` と `superpower` に基づいた新しいスパン属性を追加します
 
-#### Propagating the Trace Context from the Producer Function
+#### プロデューサー関数からのトレースコンテキスト伝播
 
-The below code executes the following steps inside the producer function:
+以下のコードはプロデューサー関数内で次のステップを実行します：
 
-1. Get the tracer for this trace
-2. Initialize a context carrier object
-3. Inject the context of the active span into the carrier object
-4. Modify the record we are about to pu on our Kinesis stream to include the carrier that will carry the active span's context to the consumer
+1. このトレース用のトレーサーを取得する
+2. コンテキストキャリアオブジェクトを初期化する
+3. アクティブスパンのコンテキストをキャリアオブジェクトに注入する
+4. Kinesisストリームに配置しようとしているレコードを修正し、アクティブスパンのコンテキストをコンシューマーに運ぶキャリアを含める
 
 ```js
 ...
@@ -129,15 +129,15 @@ const tracer = trace.getTracer('lambda-app');
     span.end();
 ```
 
-#### Extracting Trace Context in the Consumer Function
+#### コンシューマー関数でのトレースコンテキスト抽出
 
-The below code executes the following steps inside the consumer function:
+以下のコードはコンシューマー関数内で次のステップを実行します：
 
-1. Extract the context that we obtained from `producer-lambda` into a carrier object.
-2. Extract the tracer from current context.
-3. Start a new span with the tracer within the extracted context.
-4. Bonus: Add extra attributes to your span, including custom ones with the values from your message!
-5. Once completed, end the span.
+1. `producer-lambda`から取得したコンテキストをキャリアオブジェクトに抽出する
+2. 現在のコンテキストからトレーサーを抽出する
+3. 抽出したコンテキスト内でトレーサーを使用して新しいスパンを開始する
+4. ボーナス：メッセージからの値を含むカスタム属性など、追加の属性をスパンに追加する！
+5. 完了したら、スパンを終了する
 
 ```js
 import { propagation, trace, ROOT_CONTEXT } from "@opentelemetry/api";
@@ -159,4 +159,4 @@ import { propagation, trace, ROOT_CONTEXT } from "@opentelemetry/api";
       span.end();
 ```
 
-Now let's see the different this makes!
+これでどのような違いが生まれるか見てみましょう！

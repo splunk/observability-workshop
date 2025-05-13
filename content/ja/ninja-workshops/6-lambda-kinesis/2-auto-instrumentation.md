@@ -1,51 +1,51 @@
 ---
-title: Auto-Instrumentation
-linkTitle: 2. Auto-Instrumentation
+title: 自動計装
+linkTitle: 2. 自動計装
 weight: 2
 ---
 
-The first part of our workshop will demonstrate how auto-instrumentation with OpenTelemetry allows the OpenTelemetry Collector to auto-detect what language your function is written in, and start capturing traces for those functions.
+ワークショップの最初の部分では、OpenTelemetryによる自動計装がどのようにしてOpenTelemetry Collectorに関数がどの言語で書かれているかを自動検出させ、それらの関数のトレースの取得を開始させるかを示します。
 
-### The Auto-Instrumentation Workshop Directory & Contents
-First, let us take a look at the `o11y-lambda-workshop/auto` directory, and some of its files. This is where all the content for the auto-instrumentation portion of our workshop resides.
+### 自動計装ワークショップディレクトリとコンテンツ
+まず、`o11y-lambda-workshop/auto`ディレクトリとそのファイルの一部を見てみましょう。ここにはワークショップの自動計装部分のすべてのコンテンツがあります。
 
-#### The `auto` Directory
-- Run the following command to get into the **o11y-lambda-workshop/auto** directory:
+#### `auto` ディレクトリ
+- 以下のコマンドを実行して **o11y-lambda-workshop/auto** ディレクトリに移動します：
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- Inspect the contents of this directory:
+- このディレクトリの内容を確認します：
   ```bash
   ls
   ```
-  - _The output should include the following files and directories:_
+  - _出力には以下のファイルとディレクトリが含まれるはずです：_
     ```bash
     handler             outputs.tf          terraform.tf        variables.tf
     main.tf             send_message.py     terraform.tfvars
     ```
 
-  - _The output should include the following files and directories:_
+  - _出力には以下のファイルとディレクトリが含まれるはずです：_
     ```bash
     get_logs.py    main.tf       send_message.py
     handler        outputs.tf    terraform.tf
     ```
 
-#### The `main.tf` file
+#### `main.tf` ファイル
 
-- Take a closer look at the `main.tf` file:
+- `main.tf` ファイルをより詳しく見てみましょう：
   ```bash
   cat main.tf
   ```
 
-{{% notice title="Workshop Questions" style="tip" icon="question" %}}
-- Can you identify which AWS resources are being created by this template?
-- Can you identify where OpenTelemetry instrumentation is being set up?
-  - _Hint: study the lambda function definitions_
-- Can you determine which instrumentation information is being provided by the environment variables we set earlier?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+- このテンプレートによってどのAWSリソースが作成されているか特定できますか？
+- OpenTelemetry計装がどこでセットアップされているか特定できますか？
+  - _ヒント: Lambda関数の定義を調べてください_
+- 以前に設定した環境変数によってどの計装情報が提供されているか判断できますか？
 {{% /notice %}}
 
-You should see a section where the environment variables for each lambda function are being set.
+各Lambda関数の環境変数が設定されているセクションが見つかるはずです。
   ```bash
   environment {
     variables = {
@@ -59,56 +59,56 @@ You should see a section where the environment variables for each lambda functio
   }
   ```
 
-By using these environment variables, we are configuring our auto-instrumentation in a few ways:
-- We are setting environment variables to inform the OpenTelemetry collector of which Splunk Observability Cloud organization we would like to have our data exported to.
+これらの環境変数を使用することで、いくつかの方法で自動計装を構成しています：
+- 環境変数を設定して、データのエクスポート先となるSplunk Observability Cloud組織をOpenTelemetry collectorに伝えています。
   ```bash
   SPLUNK_ACCESS_TOKEN = var.o11y_access_token
   SPLUNK_ACCESS_TOKEN = var.o11y_realm
   ```
 
-- We are also setting variables that help OpenTelemetry identify our function/service, as well as the environment/application it is a part of.
+- また、OpenTelemetryが関数/サービスを識別し、それが属する環境/アプリケーションを認識するのに役立つ変数も設定しています。
   ```bash
-  OTEL_SERVICE_NAME = "producer-lambda" # consumer-lambda in the case of the consumer function
+  OTEL_SERVICE_NAME = "producer-lambda" # consumer関数の場合はconsumer-lambda
   OTEL_RESOURCE_ATTRIBUTES = "deployment.environment=${var.prefix}-lambda-shop"
   ```
 
-- We are setting an environment variable that lets OpenTelemetry know what wrappers it needs to apply to our function's handler so as to capture trace data automatically, based on our code language.
+- コード言語に基づいて、関数のハンドラーに自動的にトレースデータを取得するために適用する必要があるラッパーをOpenTelemetryに知らせる環境変数を設定しています。
   ```bash
   AWS_LAMBDA_EXEC_WRAPPER - "/opt/nodejs-otel-handler"
   ```
 
-- In the case of the `producer-lambda` function, we are setting an environment variable to let the function know what Kinesis Stream to put our record to.
+- `producer-lambda`関数の場合、レコードを配置するKinesisストリームを関数に知らせるための環境変数を設定しています。
   ```bash
   KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
   ```
 
-- These values are sourced from the environment variables we set in the Prerequisites section, as well as resources that will be deployed as a part of this Terraform configuration file.
+- これらの値は、「前提条件」セクションで設定した環境変数、および、このTerraform構成ファイルの一部としてデプロイされるリソースから取得されます。
 
-You should also see an argument for setting the Splunk OpenTelemetry Lambda layer on each function
+また、各関数にSplunk OpenTelemetry Lambda layerを設定する引数も確認できるはずです
   ```bash
   layers = var.otel_lambda_layer
   ```
 
-- The OpenTelemetry Lambda layer is a package that contains the libraries and dependencies necessary to collector, process and export telemetry data for Lambda functions at the moment of invocation.
+- OpenTelemetry Lambda layerは、Lambda関数の呼び出し時に計測データを収集、処理、およびエクスポートするために必要なライブラリと依存関係を含むパッケージです。
 
-- While there is a general OTel Lambda layer that has all the libraries and dependencies for all OpenTelemetry-supported languages, there are also language-specific Lambda layers, to help make your function even more lightweight.
-  - _You can see the relevant Splunk OpenTelemetry Lambda layer ARNs (Amazon Resource Name) and latest versions for each AWS region [HERE](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)_
+- すべてのOpenTelemetryサポート言語のライブラリと依存関係を持つ一般的なOTel Lambda layerがありますが、関数をさらに軽量化するための言語固有のLambda layerも存在します。
+  - _各AWSリージョンの関連するSplunk OpenTelemetry Lambda layer ARN（Amazon Resource Name）と最新バージョンは[こちら](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)で確認できます_
 
-#### The `producer.mjs` file
-Next, let's take a look at the `producer-lambda` function code:
+#### `producer.mjs` ファイル
+次に、`producer-lambda`関数のコードを見てみましょう：
 
-- Run the following command to view the contents of the `producer.mjs` file:
+- 以下のコマンドを実行して`producer.mjs`ファイルの内容を表示します：
   ```bash
   cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
   ```
-  - This NodeJS module contains the code for the producer function.
-  - Essentially, this function receives a message, and puts that message as a record to the targeted Kinesis Stream
+  - このNodeJSモジュールにはプロデューサー関数のコードが含まれています。
+  - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象のKinesisストリームにレコードとして配置します
 
-### Deploying the Lambda Functions & Generating Trace Data
-Now that we are familiar with the contents of our `auto` directory, we can deploy the resources for our workshop, and generate some trace data from our Lambda functions.
+### Lambda関数のデプロイとトレースデータの生成
+`auto`ディレクトリの内容に慣れたところで、ワークショップ用のリソースをデプロイし、Lambda関数からトレースデータを生成していきます。
 
-#### Initialize Terraform in the `auto` directory
-In order to deploy the resources defined in the `main.tf` file, you first need to make sure that Terraform is initialized in the same folder as that file.
+#### `auto`ディレクトリでTerraformを初期化する
+`main.tf`ファイルで定義されたリソースをデプロイするには、まずTerraformがそのファイルと同じフォルダで初期化されていることを確認する必要があります。
 
 - Ensure you are in the `auto` directory:
   ```bash
@@ -229,9 +229,9 @@ Next, let's take a look at the logs for our Lambda functions.
 
 Examine the logs carefully.
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-- Do you see OpenTelemetry being loaded? Look out for the lines with `splunk-extension-wrapper`
-  - - _Consider running `head -n 50 producer.logs` or `head -n 50 consumer.logs` to see the **splunk-extension-wrapper** being loaded._
+- OpenTelemetryが読み込まれているのが見えますか？`splunk-extension-wrapper`のある行に注目してください
+  - - _**splunk-extension-wrapper**が読み込まれているのを見るために`head -n 50 producer.logs`または`head -n 50 consumer.logs`の実行を検討してください。_
 
 {{% /notice %}}

@@ -1,11 +1,11 @@
 ---
-title: Conclusion
-linkTitle: 7. Conclusion
+title: 結論
+linkTitle: 7. 結論
 weight: 7
 ---
 
-Congratulations on finishing the Lambda Tracing Workshop! You have seen how we can complement auto-instrumentation with manual steps to have the `producer-lambda` function's context be sent to the `consumer-lambda` function via a record in a Kinesis stream. This allowed us to build the expected Distributed Trace, and to contextualize the relationship between both functions in Splunk APM.
+Lambda Tracingワークショップを終えたことをおめでとうございます！自動計装を手動のステップで補完して、`producer-lambda`関数のコンテキストをKinesisストリーム内のレコードを介して`consumer-lambda`関数に送信する方法を見てきました。これにより、期待される分散トレースを構築し、Splunk APMで両方の関数間の関係をコンテキスト化することができました。
 
-![Lambda application, fully instrumented](../images/13-Architecture_Instrumented.png)
+![完全に計装されたLambdaアプリケーション](../images/13-Architecture_Instrumented.png)
 
-You can now build out a trace manually by linking two different functions together. This comes in handy when your auto-instrumentation, or 3rd-party systems, do not support context propagation out of the box, or when you wish to add custom attributes to a trace for more relevant trace analaysis.
+これで、2つの異なる関数を手動でリンクしてトレースを構築することができます。これは、自動計装や第三者のシステムがコンテキスト伝播を標準でサポートしていない場合や、より関連性の高いトレース分析のためにカスタム属性をトレースに追加したい場合に役立ちます。

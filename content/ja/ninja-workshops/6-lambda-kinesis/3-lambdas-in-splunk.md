@@ -1,84 +1,84 @@
 ---
-title: Splunk APM, Lambda Functions & Traces
-linkTitle: 3. Lambda Traces in Splunk APM
+title: Splunk APM、Lambda関数およびトレース
+linkTitle: 3. Splunk APMでのLambdaトレース
 weight: 3
 ---
 
-The Lambda functions should be generating a sizeable amount of trace data, which we would need to take a look at. Through the combination of environment variables and the OpenTelemetry Lambda layer configured in the resource definition for our Lambda functions, we should now be ready to view our functions and traces in Splunk APM.
+Lambda関数は相当量のトレースデータを生成しているはずで、それを確認する必要があります。Lambda関数のリソース定義で構成された環境変数とOpenTelemetry Lambda layerの組み合わせにより、Splunk APMで関数とトレースを表示する準備が整いました。
 
-#### View your Environment name in the Splunk APM Overview
-Let's start by making sure that Splunk APM is aware of our `Environment` from the trace data it is receiving. This is the `deployment.name` we set as part of the `OTEL_RESOURCE_ATTRIBUTES` variable we set on our Lambda function definitions in `main.tf`. It was also one of the outputs from the `terraform apply` command we ran earlier.
+#### Splunk APM概要で環境名を確認する
+まず、Splunk APMが受信しているトレースデータから`Environment`を認識していることを確認しましょう。これは`main.tf`のLambda関数定義で設定した`OTEL_RESOURCE_ATTRIBUTES`変数の一部として設定した`deployment.name`です。これは先ほど実行した`terraform apply`コマンドの出力の1つでもありました。
 
-In Splunk Observability Cloud:
+Splunk Observability Cloudで：
 
-- Click on the `APM` Button from the Main Menu on the left. This will take you to the Splunk APM Overview.
+- 左側のメインメニューから`APM`ボタンをクリックします。これによりSplunk APM概要に移動します。
 
-- Select your APM Environment from the `Environment:` dropdown.
-  - _Your APM environment should be in the `PREFIX-lambda-shop` format, where the `PREFIX` is obtained from the environment variable you set in the Prerequisites section_
+- `Environment:`ドロップダウンからあなたのAPM環境を選択します。
+  - _APM環境は`PREFIX-lambda-shop`形式になっているはずです。`PREFIX`は前提条件セクションで設定した環境変数から取得されます_
 
 > [!NOTE]
-> It may take a few minutes for your traces to appear in Splunk APM. Try hitting refresh on your browser until you find your environment name in the list of environments.
+> トレースがSplunk APMに表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください
 
 ![Splunk APM, Environment Name](../images/02-Auto-APM-EnvironmentName.png)
 
-#### View your Environment's Service Map
+#### 環境のサービスマップを表示する
 
-Once you've selected your Environment name from the Environment drop down, you can take a look at the Service Map for your Lambda functions.
+Environmentドロップダウンから環境名を選択したら、Lambda関数のサービスマップを確認できます。
 
-- Click the `Service Map` Button on the right side of the APM Overview page. This will take you to your Service Map view.
+- APM概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
 
-![Splunk APM, Service Map Button](../images/03-Auto-ServiceMapButton.png)
+![Splunk APM、サービスマップボタン](../images/03-Auto-ServiceMapButton.png)
 
-You should be able to see the `producer-lambda` function and the call it is making to the Kinesis Stream to put your record.
+`producer-lambda`関数とそのレコードを配置するためにKinesisストリームに対して行っている呼び出しが表示されるはずです。
 
-![Splunk APM, Service Map](../images/04-Auto-ServiceMap.png)
+![Splunk APM、サービスマップ](../images/04-Auto-ServiceMap.png)
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-What about your `consumer-lambda` function?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+あなたの`consumer-lambda`関数はどうなっていますか？
 {{% /notice %}}
 
-#### Explore the Traces from your Lambda Functions
+#### Lambda関数からのトレースを調査する
 
-- Click the `Traces` button to view the Trace Analyzer.
+- `Traces`ボタンをクリックしてトレースアナライザーを表示します。
 
-![Splunk APM, Trace Button](../images/05-Auto-TraceButton.png)
+![Splunk APM、トレースボタン](../images/05-Auto-TraceButton.png)
 
-On this page, we can see the traces that have been ingested from the OpenTelemetry Lambda layer of your `producer-lambda` function.
+このページでは、`producer-lambda`関数のOpenTelemetry Lambda layerから取り込まれたトレースを確認できます。
 
-![Splunk APM, Trace Analyzer](../images/06-Auto-TraceAnalyzer.png)
+![Splunk APM、トレースアナライザー](../images/06-Auto-TraceAnalyzer.png)
 
-- Select a trace from the list to examine by clicking on its hyperlinked `Trace ID`.
+- リストからハイパーリンクされた`Trace ID`をクリックして、調査するトレースを選択します。
 
-![Splunk APM, Trace and Spans](../images/07-Auto-TraceNSpans.png)
+![Splunk APM、トレースとスパン](../images/07-Auto-TraceNSpans.png)
 
-We can see that the `producer-lambda` function is putting a record into the Kinesis Stream. But the action of the `consumer-lambda` function is missing!
+`producer-lambda`関数がKinesisストリームにレコードを配置しているのが確認できます。しかし、`consumer-lambda`関数のアクションが見当たりません！
 
-This is because the trace context is not being propagated. Trace context propagation is not supported out-of-the-box by Kinesis service at the time of this workshop. Our distributed trace stops at the Kinesis service, and because its context isn't automatically propagated through the stream, we can't see any further.
+これはトレースコンテキストが伝播されていないためです。このワークショップの時点では、Kinesisサービスはトレースコンテキスト伝播をすぐには対応していません。分散トレースはKinesisサービスで止まっており、そのコンテキストがストリームを通じて自動的に伝播されないため、それ以上先を見ることができません。
 
-Not yet, at least...
+少なくとも、今はまだ...
 
-Let's see how we work around this in the next section of this workshop. But before that, let's clean up after ourselves!
+次のセクションでこの問題にどう対処するか見ていきましょう。しかしその前に、後片付けをしましょう！
 
-### Clean Up
+### クリーンアップ
 
-The resources we deployed as part of this auto-instrumenation exercise need to be cleaned. Likewise, the script that was generating traffice against our `producer-lambda` endpoint needs to be stopped, if it's still running. Follow the below steps to clean up.
+この自動計装演習の一部としてデプロイしたリソースはクリーンアップする必要があります。同様に、`producer-lambda`エンドポイントに対してトラフィックを生成していたスクリプトも、まだ実行中であれば停止する必要があります。以下の手順に従ってクリーンアップを行ってください。
 
-#### Kill the `send_message`
+#### `send_message`の停止
 
-- If the `send_message.py` script is still running, stop it with the follwing commands:
+- `send_message.py`スクリプトがまだ実行中の場合は、次のコマンドで停止します：
 
   ```bash
   fg
   ```
 
-  - This brings your background process to the foreground.
-  - Next you can hit `[CONTROL-C]` to kill the process.
+  - これによりバックグラウンドプロセスがフォアグラウンドに移動します。
+  - 次に`[CONTROL-C]`を押してプロセスを終了できます。
 
-#### Destroy all AWS resources
+#### 全てのAWSリソースを破棄する
 
-Terraform is great at managing the state of our resources individually, and as a deployment. It can even update deployed resources with any changes to their definitions. But to start afresh, we will destroy the resources and redeploy them as part of the manual instrumentation portion of this workshop.
+Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
-Please follow these steps to destroy your resources:
+以下の手順に従ってリソースを破棄してください：
 
 - Ensure you are in the `auto` directory:
 

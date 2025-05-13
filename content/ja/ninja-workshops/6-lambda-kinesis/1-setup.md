@@ -1,63 +1,63 @@
 ---
-title: Setup
-linkTitle: 1. Setup
+title: セットアップ
+linkTitle: 1. セットアップ
 weight: 1
 ---
 
-![Lambda application, not yet manually instrumented](../images/01-Architecture.png)
+![手動計装されていないLambdaアプリケーション](../images/01-Architecture.png)
 
-## Prerequisites
+## 前提条件
 
-### Observability Workshop Instance
-The Observability Workshop is most often completed on a Splunk-issued and preconfigured EC2 instance running Ubuntu.
+### Observabilityワークショップインスタンス
+Observabilityワークショップは、多くの場合、Splunkが提供する事前設定済みのUbuntu実行EC2インスタンス上で実施されます。
 
-Your workshop instructor will provide you with the credentials to your assigned workshop instance.
+ワークショップのインストラクターから、割り当てられたワークショップインスタンスの認証情報が提供されます。
 
-Your instance should have the following environment variables already set:
+インスタンスには以下の環境変数が既に設定されているはずです：
 - **ACCESS_TOKEN**
 - **REALM**
-  - _These are the Splunk Observability Cloud **Access Token** and **Realm** for your workshop._
-  - _They will be used by the OpenTelemetry Collector to forward your data to the correct Splunk Observability Cloud organization._
+  - _これらはワークショップ用の Splunk Observability Cloud の **Access Token** と **Realm** です。_
+  - _これらはOpenTelemetry Collectorによって、データを正しいSplunk Observability Cloud組織に転送するために使用されます。_
 
 > [!NOTE]
-> _Alternatively, you can deploy a local observability workshop instance using Multipass._
+> _また、Multipassを使用してローカルのObservabilityワークショップインスタンスをデプロイすることもできます。_
 
 ### AWS Command Line Interface (awscli)
-The AWS Command Line Interface, or `awscli`, is an API used to interact with AWS resources. In this workshop, it is used by certain scripts to interact with the resource you'll deploy. 
+AWS Command Line Interface、または`awscli`は、AWSリソースと対話するために使用されるAPIです。このワークショップでは、特定のスクリプトがデプロイするリソースと対話するために使用されます。
 
-Your Splunk-issued workshop instance should already have the **awscli** installed.
+Splunkが提供するワークショップインスタンスには、既に **awscli** がインストールされているはずです。
 
-- Check if the **aws** command is installed on your instance with the following command:
+- インスタンスに **aws** コマンドがインストールされているか、次のコマンドで確認します：
   ```bash
   which aws
   ```
-    - _The expected output would be **/usr/local/bin/aws**_
+    - _予想される出力は **/usr/local/bin/aws** です_
 
-- If the **aws** command is not installed on your instance, run the following command:
+- インスタンスに **aws** コマンドがインストールされていない場合は、次のコマンドを実行します：
   ```bash
   sudo apt install awscli
   ```
 
 ### Terraform
-Terraform is an Infrastructure as Code (IaC) platform, used to deploy, manage and destroy resource by defining them in configuration files. Terraform employs HCL to define those resources, and supports multiple providers for various platforms and technologies.
+Terraformは、リソースを構成ファイルで定義することで、デプロイ、管理、破棄するためのInfrastructure as Code（IaC）プラットフォームです。TerraformはHCLを使用してこれらのリソースを定義し、さまざまなプラットフォームやテクノロジのための複数のプロバイダーをサポートしています。
 
-We will be using Terraform at the command line in this workshop to deploy the following resources:
+このワークショップでは、コマンドラインでTerraformを使用して、以下のリソースをデプロイします：
 1. AWS API Gateway
-2. Lambda Functions
-3. Kinesis Stream
-4. CloudWatch Log Groups
-5. S3 Bucket
-    - _and other supporting resources_
+2. Lambda 関数
+3. Kinesis ストリーム
+4. CloudWatch ロググループ
+5. S3 バケット
+    - _およびその他のサポートリソース_
   
-Your Splunk-issued workshop instance should already have **terraform** installed.
+Splunkが提供するワークショップインスタンスには、既に **terraform** がインストールされているはずです。
 
-- Check if the **terraform** command is installed on your instance:
+- インスタンスに **terraform** コマンドがインストールされているか確認します：
   ```bash
   which terraform
   ```
-    - _The expected output would be **/usr/local/bin/terraform**_
+    - _予想される出力は **/usr/local/bin/terraform** です_
 
-- If the **terraform** command is not installed on your instance, follow Terraform's recommended installation commands listed below:
+- インスタンスに **terraform** コマンドがインストールされていない場合は、以下のTerraformが推奨するインストールコマンドを実行してください：
   ```bash
   wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
@@ -66,30 +66,30 @@ Your Splunk-issued workshop instance should already have **terraform** installed
   sudo apt update && sudo apt install terraform
   ```
 
-### Workshop Directory (o11y-lambda-workshop)
-The Workshop Directory `o11y-lambda-workshop` is a repository that contains all the configuration files and scripts to complete both the auto-instrumentation and manual instrumentation of the example Lambda-based application we will be using today.
+### ワークショップディレクトリ (o11y-lambda-workshop)
+ワークショップディレクトリ `o11y-lambda-workshop` は、今日使用する例のLambdaベースのアプリケーションの自動計装と手動計装の両方を完了するための、すべての設定ファイルとスクリプトを含むリポジトリです。
 
-- Confirm you have the workshop directory in your home directory:
+- ホームディレクトリにワークショップディレクトリがあることを確認します：
   ```bash
   cd && ls
   ```
-    - _The expected output would include **o11y-lambda-workshop**_
+    - _予想される出力には **o11y-lambda-workshop** が含まれるはずです_
 
-- If the **o11y-lambda-workshop** directory is not in your home directory, clone it with the following command:
+- **o11y-lambda-workshop** ディレクトリがホームディレクトリにない場合は、次のコマンドでクローンします：
   ```bash
   git clone https://github.com/gkono-splunk/o11y-lambda-workshop.git
   ```
 
-### AWS & Terraform Variables
+### AWS & Terraform 変数
 
 #### AWS
-The AWS CLI requires that you have credentials to be able to access and manage resources deployed by their services. Both Terraform and the Python scripts in this workshop require these variables to perform their tasks.
+AWSのCLIでは、サービスによってデプロイされたリソースにアクセスし管理するための認証情報が必要です。このワークショップでは、TerraformとPythonスクリプトの両方がタスクを実行するためにこれらの変数を必要とします。
 
-- Configure the **awscli** with the _**access key ID**_, _**secret access key**_ and _**region**_ for this workshop:
+- このワークショップのために **awscli** を _**access key ID**_、_**secret access key**_ および _**region**_ で構成します：
   ```bash
   aws configure
   ```
-    - _This command should provide a prompt similar to the one below:_
+    - _このコマンドは以下のようなプロンプトを表示するはずです：_
       ```bash
       AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
       AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -97,58 +97,58 @@ The AWS CLI requires that you have credentials to be able to access and manage r
       Default outoput format [None]:
       ```
 
-- If the **awscli** is not configured on your instance, run the following command and provide the values your instructor would provide you with.
+- インスタンスで **awscli** が設定されていない場合は、次のコマンドを実行し、インストラクターから提供される値を入力してください。
   ```bash
   aws configure
   ```
 
 #### Terraform
-Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files, as well as to make those values reusable throughout your resource definitions.
+Terraformでは、機密情報や動的データを.tf設定ファイルにハードコーディングしないようにするため、また、それらの値をリソース定義全体で再利用できるようにするため、変数の受け渡しをサポートしています。
 
-In our workshop, Terraform requires variables necessary for deploying the Lambda functions with the right values for the OpenTelemetry Lambda layer; For the ingest values for Splunk Observability Cloud; And to make your environment and resources unique and immediatley recognizable.
+このワークショップでは、OpenTelemetry Lambda layerの適切な値でLambda関数をデプロイするため、Splunk Observability Cloudの取り込み値のため、そして環境とリソースを独自で即座に認識できるようにするための変数をTerraformで必要とします。
 
-Terraform variables are defined in the following manner:
-- Define the variables in your _**main.tf**_ file or a _**variables.tf**_
-- Set the values for those variables in either of the following ways:
-  - setting environment variables at the host level, with the same variable names as in their definition, and with _**TF_VAR**__ as a prefix
-  - setting the values for your variables in a _**terraform.tfvars**_ file
-  - passing the values as arguments when running terraform apply
+Terraform変数は以下の方法で定義されます：
+- 変数を _**main.tf**_ ファイルまたは _**variables.tf**_ に定義する
+- 以下のいずれかの方法で変数の値を設定する：
+  - ホストレベルで環境変数を設定し、その定義と同じ変数名を使用して、接頭辞として _**TF_VAR**_ をつける
+  - _**terraform.tfvars**_ ファイルに変数の値を設定する
+  - terraform apply実行時に引数として値を渡す
  
-We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ files to set our variables in this workshop.
+このワークショップでは、_**variables.tf**_ と _**terraform.tfvars**_ ファイルの組み合わせを使用して変数を設定します。
 
-- Using either **vi** or **nano**, open the _**terraform.tfvars**_ file in either the **auto** or **manual** directory
+- **vi** または **nano** のいずれかを使用して、**auto** または **manual** ディレクトリにある _**terraform.tfvars**_ ファイルを開きます
   ```bash
   vi ~/o11y-lambda-workshop/auto/terraform.tfvars
   ```
-- Set the variables with their values. Replace the **CHANGEME** placeholders with those provided by your instructor.
+- 変数に値を設定します。**CHANGEME** プレースホルダーをインストラクターから提供された値に置き換えてください。
   ```bash
   o11y_access_token = "CHANGEME"
   o11y_realm        = "CHANGEME"
   otel_lambda_layer = ["CHANGEME"]
   prefix            = "CHANGEME"
   ```
-  - _Ensure you change only the placeholders, leaving the quotes and brackets intact, where applicable._
-  - _The _**prefix**_ is a unique identifier you can choose for yourself, to make your resources distinct from other participants' resources. We suggest using a short form of your name, for example._
-  - _Also, please only lowercase letters for the **prefix**. Certain resouces in AWS, such as S3, would through an error if you use uppercase letters._
-- Save your file and exit the editor.
-- Finally, copy the _**terraform.tfvars**_ file you just edited to the other directory.
+  - _該当する場合は、引用符や括弧をそのまま残し、プレースホルダーのみを変更してください。_
+  - _**prefix**_ は、他の参加者のリソースと区別するために選択できる固有の識別子です。例えば、名前の短い形式を使用することをお勧めします。_
+  - _また、**prefix** には小文字のみを使用してください。S3のような特定のAWSリソースでは、大文字を使用するとエラーが発生します。_
+- ファイルを保存してエディタを終了します。
+- 最後に、編集した _**terraform.tfvars**_ ファイルを他のディレクトリにコピーします。
   ```bash
   cp ~/o11y-lambda-workshop/auto/terraform.tfvars ~/o11y-lambda-workshop/manual
   ```
-  - _We do this as we will be using the same values for both the autoinstrumentation and manual instrumentation protions of the workshop_
+  - _これは、自動計装と手動計装の両方の部分で同じ値を使用するためです_
  
-### File Permissions
+### ファイル権限
 
-While all other files are fine as they are, the **send_message.py** script in both the `auto` and `manual` will have to be executed as part of our workshop. As a result, it needs to have the appropriate permissions to run as expected. Follow these instructions to set them.
+他のすべてのファイルはそのままでよいですが、`auto`と`manual`の両方にある**send_message.py**スクリプトは、ワークショップの一部として実行する必要があります。そのため、期待通りに実行するには、適切な権限が必要です。以下の手順に従って設定してください。
 
-- First, ensure you are in the `o11y-lambda-workshop` directory:
+- まず、`o11y-lambda-workshop`ディレクトリにいることを確認します：
   ```bash
   cd ~/o11y-lambda-workshop
   ```
 
-- Next, run the following command to set executable permissions on the `send_message.py` script:
+- 次に、以下のコマンドを実行して`send_message.py`スクリプトに実行権限を設定します：
   ```bash
   sudo chmod 755 auto/send_message.py manual/send_message.py
   ```
 
-Now that we've squared off the prerequisites, we can get started with the workshop!
+これで前提条件が整いましたので、ワークショップを始めることができます！
