@@ -4,22 +4,28 @@ linkTitle: 2. 自動計装
 weight: 2
 ---
 
-ワークショップの最初の部分では、OpenTelemetryによる自動計装がどのようにしてOpenTelemetry Collectorに関数がどの言語で書かれているかを自動検出させ、それらの関数のトレースの取得を開始させるかを示します。
+ワークショップの最初の部分では、OpenTelemetry による自動計装がどのようにして OpenTelemetry Collector に関数がどの言語で書かれているかを自動検出させ、それらの関数のトレースの取得を開始させるかを示します。
 
 ### 自動計装ワークショップディレクトリとコンテンツ
+
 まず、`o11y-lambda-workshop/auto`ディレクトリとそのファイルの一部を見てみましょう。ここにはワークショップの自動計装部分のすべてのコンテンツがあります。
 
 #### `auto` ディレクトリ
+
 - 以下のコマンドを実行して **o11y-lambda-workshop/auto** ディレクトリに移動します：
+
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
 - このディレクトリの内容を確認します：
+
   ```bash
   ls
   ```
+
   - _出力には以下のファイルとディレクトリが含まれるはずです：_
+
     ```bash
     handler             outputs.tf          terraform.tf        variables.tf
     main.tf             send_message.py     terraform.tfvars
@@ -39,84 +45,98 @@ weight: 2
   ```
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-- このテンプレートによってどのAWSリソースが作成されているか特定できますか？
-- OpenTelemetry計装がどこでセットアップされているか特定できますか？
-  - _ヒント: Lambda関数の定義を調べてください_
-- 以前に設定した環境変数によってどの計装情報が提供されているか判断できますか？
-{{% /notice %}}
 
-各Lambda関数の環境変数が設定されているセクションが見つかるはずです。
-  ```bash
-  environment {
-    variables = {
-      SPLUNK_ACCESS_TOKEN = var.o11y_access_token
-      SPLUNK_REALM = var.o11y_realm
-      OTEL_SERVICE_NAME = "producer-lambda"
-      OTEL_RESOURCE_ATTRIBUTES = "deployment.environment=${var.prefix}-lambda-shop"
-      AWS_LAMBDA_EXEC_WRAPPER = "/opt/nodejs-otel-handler"
-      KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
-    }
+- このテンプレートによってどの AWS リソースが作成されているか特定できますか？
+- OpenTelemetry 計装がどこでセットアップされているか特定できますか？
+  - _ヒント: Lambda 関数の定義を調べてください_
+- 以前に設定した環境変数によってどの計装情報が提供されているか判断できますか？
+  {{% /notice %}}
+
+各 Lambda 関数の環境変数が設定されているセクションが見つかるはずです。
+
+```bash
+environment {
+  variables = {
+    SPLUNK_ACCESS_TOKEN = var.o11y_access_token
+    SPLUNK_REALM = var.o11y_realm
+    OTEL_SERVICE_NAME = "producer-lambda"
+    OTEL_RESOURCE_ATTRIBUTES = "deployment.environment=${var.prefix}-lambda-shop"
+    AWS_LAMBDA_EXEC_WRAPPER = "/opt/nodejs-otel-handler"
+    KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
   }
-  ```
+}
+```
 
 これらの環境変数を使用することで、いくつかの方法で自動計装を構成しています：
-- 環境変数を設定して、データのエクスポート先となるSplunk Observability Cloud組織をOpenTelemetry collectorに伝えています。
+
+- 環境変数を設定して、データのエクスポート先となる Splunk Observability Cloud 組織を OpenTelemetry collector に伝えています。
+
   ```bash
   SPLUNK_ACCESS_TOKEN = var.o11y_access_token
   SPLUNK_ACCESS_TOKEN = var.o11y_realm
   ```
 
-- また、OpenTelemetryが関数/サービスを識別し、それが属する環境/アプリケーションを認識するのに役立つ変数も設定しています。
+- また、OpenTelemetry が関数/サービスを識別し、それが属する環境/アプリケーションを認識するのに役立つ変数も設定しています。
+
   ```bash
   OTEL_SERVICE_NAME = "producer-lambda" # consumer関数の場合はconsumer-lambda
   OTEL_RESOURCE_ATTRIBUTES = "deployment.environment=${var.prefix}-lambda-shop"
   ```
 
-- コード言語に基づいて、関数のハンドラーに自動的にトレースデータを取得するために適用する必要があるラッパーをOpenTelemetryに知らせる環境変数を設定しています。
+- コード言語に基づいて、関数のハンドラーに自動的にトレースデータを取得するために適用する必要があるラッパーを OpenTelemetry に知らせる環境変数を設定しています。
+
   ```bash
   AWS_LAMBDA_EXEC_WRAPPER - "/opt/nodejs-otel-handler"
   ```
 
-- `producer-lambda`関数の場合、レコードを配置するKinesisストリームを関数に知らせるための環境変数を設定しています。
+- `producer-lambda`関数の場合、レコードを配置する Kinesis ストリームを関数に知らせるための環境変数を設定しています。
+
   ```bash
   KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
   ```
 
-- これらの値は、「前提条件」セクションで設定した環境変数、および、このTerraform構成ファイルの一部としてデプロイされるリソースから取得されます。
+- これらの値は、「前提条件」セクションで設定した環境変数、および、この Terraform 構成ファイルの一部としてデプロイされるリソースから取得されます。
 
-また、各関数にSplunk OpenTelemetry Lambda layerを設定する引数も確認できるはずです
-  ```bash
-  layers = var.otel_lambda_layer
-  ```
+また、各関数に Splunk OpenTelemetry Lambda layer を設定する引数も確認できるはずです
 
-- OpenTelemetry Lambda layerは、Lambda関数の呼び出し時に計測データを収集、処理、およびエクスポートするために必要なライブラリと依存関係を含むパッケージです。
+```bash
+layers = var.otel_lambda_layer
+```
 
-- すべてのOpenTelemetryサポート言語のライブラリと依存関係を持つ一般的なOTel Lambda layerがありますが、関数をさらに軽量化するための言語固有のLambda layerも存在します。
-  - _各AWSリージョンの関連するSplunk OpenTelemetry Lambda layer ARN（Amazon Resource Name）と最新バージョンは[こちら](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)で確認できます_
+- OpenTelemetry Lambda layer は、Lambda 関数の呼び出し時に計測データを収集、処理、およびエクスポートするために必要なライブラリと依存関係を含むパッケージです。
+
+- すべての OpenTelemetry サポート言語のライブラリと依存関係を持つ一般的な OTel Lambda layer がありますが、関数をさらに軽量化するための言語固有の Lambda layer も存在します。
+  - _各 AWS リージョンの関連する Splunk OpenTelemetry Lambda layer ARN（Amazon Resource Name）と最新バージョンは[こちら](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)で確認できます_
 
 #### `producer.mjs` ファイル
+
 次に、`producer-lambda`関数のコードを見てみましょう：
 
 - 以下のコマンドを実行して`producer.mjs`ファイルの内容を表示します：
   ```bash
   cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
   ```
-  - このNodeJSモジュールにはプロデューサー関数のコードが含まれています。
-  - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象のKinesisストリームにレコードとして配置します
+  - この NodeJS モジュールにはプロデューサー関数のコードが含まれています。
+  - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象の Kinesis ストリームにレコードとして配置します
 
-### Lambda関数のデプロイとトレースデータの生成
-`auto`ディレクトリの内容に慣れたところで、ワークショップ用のリソースをデプロイし、Lambda関数からトレースデータを生成していきます。
+### Lambda 関数のデプロイとトレースデータの生成
 
-#### `auto`ディレクトリでTerraformを初期化する
-`main.tf`ファイルで定義されたリソースをデプロイするには、まずTerraformがそのファイルと同じフォルダで初期化されていることを確認する必要があります。
+`auto`ディレクトリの内容に慣れたところで、ワークショップ用のリソースをデプロイし、Lambda 関数からトレースデータを生成していきます。
+
+#### `auto`ディレクトリで Terraform を初期化する
+
+`main.tf`ファイルで定義されたリソースをデプロイするには、まず Terraform がそのファイルと同じフォルダで初期化されていることを確認する必要があります。
 
 - Ensure you are in the `auto` directory:
+
   ```bash
   pwd
   ```
+
   - _The expected output would be **~/o11y-lambda-workshop/auto**_
 
 - If you are not in the `auto` directory, run the following command:
+
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
@@ -132,22 +152,28 @@ weight: 2
   - These enable Terraform to manage the creation, state and destruction of resources, as defined within the `main.tf` file of the `auto` directory
 
 #### Deploy the Lambda functions and other AWS resources
+
 Once we've initialized Terraform in this directory, we can go ahead and deploy our resources.
 
 - First, run the **terraform plan** command to ensure that Terraform will be able to create your resources without encountering any issues.
+
   ```bash
   terraform plan
   ```
+
   - _This will result in a plan to deploy resources and output some data, which you can review to ensure everything will work as intended._
   - _Do note that a number of the values shown in the plan will be known post-creation, or are masked for security purposes._
 
 - Next, run the **terraform apply** command to deploy the Lambda functions and other supporting resources from the **main.tf** file:
+
   ```bash
   terraform apply
   ```
+
   - _Respond **yes** when you see the **Enter a value:** prompt_
 
   - This will result in the following outputs:
+
     ```bash
     Outputs:
 
@@ -161,6 +187,7 @@ Once we've initialized Terraform in this directory, we can go ahead and deploy o
     producer_log_group_arn = "arn:aws:logs:us-east-1:############:log-group:/aws/lambda/______-producer"
     producer_log_group_name = "/aws/lambda/______-producer"
     ```
+
     - _Terraform outputs are defined in the **outputs.tf** file._
     - _These outputs will be used programmatically in other parts of our workshop, as well._
 
@@ -169,9 +196,11 @@ Once we've initialized Terraform in this directory, we can go ahead and deploy o
 To start getting some traces from our deployed Lambda functions, we would need to generate some traffic. We will send a message to our `producer-lambda` function's endpoint, which should be put as a record into our Kinesis Stream, and then pulled from the Stream by the `consumer-lambda` function.
 
 - Ensure you are in the `auto` directory:
+
   ```bash
   pwd
   ```
+
   - _The expected output would be **~/o11y-lambda-workshop/auto**_
 
 - If you are not in the `auto` directory, run the following command
@@ -182,10 +211,13 @@ To start getting some traces from our deployed Lambda functions, we would need t
 The `send_message.py` script is a Python script that will take input at the command line, add it to a JSON dictionary, and send it to your `producer-lambda` function's endpoint repeatedly, as part of a while loop.
 
 - Run the `send_message.py` script as a background process
+
   - _It requires the `--name` and `--superpower` arguments_
+
   ```bash
   nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
   ```
+
   - You should see an output similar to the following if your message is successful
     ```bash
     [1] 79829
@@ -198,15 +230,19 @@ The `send_message.py` script is a Python script that will take input at the comm
     - _The `&` tells our shell process to run this process in the background, thus freeing our shell to run other commands._
 
 - Next, check the contents of the `response.logs` file, to ensure your output confirms your requests to your `producer-lambda` endpoint are successful:
+
   ```bash
   cat response.logs
   ```
+
   - You should see the following output among the lines printed to your screen if your message is successful:
+
   ```bash
   {"message": "Message placed in the Event Stream: {prefix}-lambda_stream"}
   ```
 
   - If unsuccessful, you will see:
+
   ```bash
   {"message": "Internal server error"}
   ```
@@ -215,9 +251,11 @@ The `send_message.py` script is a Python script that will take input at the comm
 > If this occurs, ask one of the workshop facilitators for assistance.
 
 #### View the Lambda Function Logs
+
 Next, let's take a look at the logs for our Lambda functions.
 
 - To view your **producer-lambda** logs, check the **producer.logs** file:
+
   ```bash
   cat producer.logs
   ```
@@ -231,7 +269,7 @@ Examine the logs carefully.
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-- OpenTelemetryが読み込まれているのが見えますか？`splunk-extension-wrapper`のある行に注目してください
+- OpenTelemetry が読み込まれているのが見えますか？`splunk-extension-wrapper`のある行に注目してください
   - - _**splunk-extension-wrapper**が読み込まれているのを見るために`head -n 50 producer.logs`または`head -n 50 consumer.logs`の実行を検討してください。_
 
 {{% /notice %}}

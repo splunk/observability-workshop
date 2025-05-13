@@ -4,32 +4,33 @@ linkTitle: 3. Splunk APMでのLambdaトレース
 weight: 3
 ---
 
-Lambda関数は相当量のトレースデータを生成しているはずで、それを確認する必要があります。Lambda関数のリソース定義で構成された環境変数とOpenTelemetry Lambda layerの組み合わせにより、Splunk APMで関数とトレースを表示する準備が整いました。
+Lambda 関数は相当量のトレースデータを生成しているはずで、それを確認する必要があります。Lambda 関数のリソース定義で構成された環境変数と OpenTelemetry Lambda layer の組み合わせにより、Splunk APM で関数とトレースを表示する準備が整いました。
 
-#### Splunk APM概要で環境名を確認する
-まず、Splunk APMが受信しているトレースデータから`Environment`を認識していることを確認しましょう。これは`main.tf`のLambda関数定義で設定した`OTEL_RESOURCE_ATTRIBUTES`変数の一部として設定した`deployment.name`です。これは先ほど実行した`terraform apply`コマンドの出力の1つでもありました。
+#### Splunk APM 概要で環境名を確認する
 
-Splunk Observability Cloudで：
+まず、Splunk APM が受信しているトレースデータから`Environment`を認識していることを確認しましょう。これは`main.tf`の Lambda 関数定義で設定した`OTEL_RESOURCE_ATTRIBUTES`変数の一部として設定した`deployment.name`です。これは先ほど実行した`terraform apply`コマンドの出力の 1 つでもありました。
 
-- 左側のメインメニューから`APM`ボタンをクリックします。これによりSplunk APM概要に移動します。
+Splunk Observability Cloud で：
 
-- `Environment:`ドロップダウンからあなたのAPM環境を選択します。
-  - _APM環境は`PREFIX-lambda-shop`形式になっているはずです。`PREFIX`は前提条件セクションで設定した環境変数から取得されます_
+- 左側のメインメニューから`APM`ボタンをクリックします。これにより Splunk APM 概要に移動します。
+
+- `Environment:`ドロップダウンからあなたの APM 環境を選択します。
+  - _APM 環境は`PREFIX-lambda-shop`形式になっているはずです。`PREFIX`は前提条件セクションで設定した環境変数から取得されます_
 
 > [!NOTE]
-> トレースがSplunk APMに表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください
+> トレースが Splunk APM に表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください
 
 ![Splunk APM, Environment Name](../images/02-Auto-APM-EnvironmentName.png)
 
 #### 環境のサービスマップを表示する
 
-Environmentドロップダウンから環境名を選択したら、Lambda関数のサービスマップを確認できます。
+Environment ドロップダウンから環境名を選択したら、Lambda 関数のサービスマップを確認できます。
 
-- APM概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
+- APM 概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
 
 ![Splunk APM、サービスマップボタン](../images/03-Auto-ServiceMapButton.png)
 
-`producer-lambda`関数とそのレコードを配置するためにKinesisストリームに対して行っている呼び出しが表示されるはずです。
+`producer-lambda`関数とそのレコードを配置するために Kinesis ストリームに対して行っている呼び出しが表示されるはずです。
 
 ![Splunk APM、サービスマップ](../images/04-Auto-ServiceMap.png)
 
@@ -37,13 +38,13 @@ Environmentドロップダウンから環境名を選択したら、Lambda関数
 あなたの`consumer-lambda`関数はどうなっていますか？
 {{% /notice %}}
 
-#### Lambda関数からのトレースを調査する
+#### Lambda 関数からのトレースを調査する
 
 - `Traces`ボタンをクリックしてトレースアナライザーを表示します。
 
 ![Splunk APM、トレースボタン](../images/05-Auto-TraceButton.png)
 
-このページでは、`producer-lambda`関数のOpenTelemetry Lambda layerから取り込まれたトレースを確認できます。
+このページでは、`producer-lambda`関数の OpenTelemetry Lambda layer から取り込まれたトレースを確認できます。
 
 ![Splunk APM、トレースアナライザー](../images/06-Auto-TraceAnalyzer.png)
 
@@ -51,9 +52,9 @@ Environmentドロップダウンから環境名を選択したら、Lambda関数
 
 ![Splunk APM、トレースとスパン](../images/07-Auto-TraceNSpans.png)
 
-`producer-lambda`関数がKinesisストリームにレコードを配置しているのが確認できます。しかし、`consumer-lambda`関数のアクションが見当たりません！
+`producer-lambda`関数が Kinesis ストリームにレコードを配置しているのが確認できます。しかし、`consumer-lambda`関数のアクションが見当たりません！
 
-これはトレースコンテキストが伝播されていないためです。このワークショップの時点では、Kinesisサービスはトレースコンテキスト伝播をすぐには対応していません。分散トレースはKinesisサービスで止まっており、そのコンテキストがストリームを通じて自動的に伝播されないため、それ以上先を見ることができません。
+これはトレースコンテキストが伝播されていないためです。このワークショップの時点では、Kinesis サービスはトレースコンテキスト伝播をすぐには対応していません。分散トレースは Kinesis サービスで止まっており、そのコンテキストがストリームを通じて自動的に伝播されないため、それ以上先を見ることができません。
 
 少なくとも、今はまだ...
 
@@ -74,9 +75,9 @@ Environmentドロップダウンから環境名を選択したら、Lambda関数
   - これによりバックグラウンドプロセスがフォアグラウンドに移動します。
   - 次に`[CONTROL-C]`を押してプロセスを終了できます。
 
-#### 全てのAWSリソースを破棄する
+#### 全ての AWS リソースを破棄する
 
-Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
+Terraform は個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
 以下の手順に従ってリソースを破棄してください：
 
