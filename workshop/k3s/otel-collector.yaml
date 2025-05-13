@@ -17,10 +17,14 @@ agent:
     receivers:
       receiver_creator:
         receivers:
-          smartagent/nginx:
+          nginx:
             rule: type == "port" && pod.name matches "nginx" && port == 8082
             config:
-              type: collectd/nginx
+              endpoint: 'http://`endpoint`/nginx_status'
+          # smartagent/nginx:
+          #   rule: type == "port" && pod.name matches "nginx" && port == 8082
+          #   config:
+          #     type: collectd/nginx
           mysql/workshop:
             rule: type == "port" && pod.name matches "mysql" && port == 3306
             config:
