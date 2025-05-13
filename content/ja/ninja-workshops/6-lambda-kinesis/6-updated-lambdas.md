@@ -1,111 +1,111 @@
 ---
-title: Splunk APM, Lambda Functions and Traces, Again!
-linkTitle: 6. Updated Lambdas in Splunk APM
+title: Splunk APM、Lambda関数とトレース、再び！
+linkTitle: 6. Splunk APMでの更新されたLambda
 weight: 6
 ---
 
-In order to see the result of our context propagation outside of the logs, we'll once again consult the [Splunk APM UI](https://app.us1.signalfx.com/#/apm).
+ログの外部でコンテキスト伝播の結果を確認するために、もう一度[Splunk APM UI](https://app.us1.signalfx.com/#/apm)を参照します。
 
-#### View your Lambda Functions in the Splunk APM Service Map
+#### Splunk APMサービスマップでLambda関数を表示する
 
-Let's take a look at the Service Map for our environment in APM once again.
+もう一度APMで環境のサービスマップを確認してみましょう。
 
-In Splunk Observability Cloud:
+Splunk Observability Cloudで：
 
-- Click on the `APM` Button in the Main Menu.
+- メインメニューの`APM`ボタンをクリックします。
 
-- Select your APM Environment from the `Environment:` dropdown.
+- `Environment:`ドロップダウンからあなたのAPM環境を選択します。
 
-- Click the `Service Map` Button on the right side of the APM Overview page. This will take you to your Service Map view.
+- APM概要ページの右側にある`Service Map`ボタンをクリックします。これによりサービスマップビューに移動します。
 
 > [!NOTE]
-> _Reminder: It may take a few minutes for your traces to appear in Splunk APM. Try hitting refresh on your browser until you find your environment name in the list of environments._
+> _注意：トレースがSplunk APMに表示されるまで数分かかる場合があります。環境のリストにあなたの環境名が表示されるまで、ブラウザの更新ボタンを押してみてください_
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Notice the difference?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+違いに気づきましたか？
 {{% /notice %}}
 
-- You should be able to see the `producer-lambda` and `consumer-lambda` functions linked by the propagated context this time!
+- 今回は、伝播されたコンテキストによってリンクされた`producer-lambda`と`consumer-lambda`関数が見えるはずです！
 
-![Splunk APM, Service Map](../images/09-Manual-ServiceMap.png)
+![Splunk APM、サービスマップ](../images/09-Manual-ServiceMap.png)
 
-#### Explore a Lambda Trace by Trace ID
+#### トレースIDでLambdaトレースを調査する
 
-Next, we will take another look at a trace related to our Environment.
+次に、環境に関連するトレースをもう一度確認します。
 
-- Paste the Trace ID you copied from the consumer function's logs into the `View Trace ID` search box under Traces and click `Go`
+- コンシューマー関数のログからコピーしたトレースIDを、Traces下の`View Trace ID`検索ボックスに貼り付け、`Go`をクリックします
 
-![Splunk APM, Trace Button](../images/10-Manual-TraceButton.png)
+![Splunk APM、トレースボタン](../images/10-Manual-TraceButton.png)
 
 > [!NOTE]
-> The Trace ID was a part of the trace context that we propagated.
+> トレースIDは、私たちが伝播したトレースコンテキストの一部でした。
 
-You can read up on two of the most common propagation standards:
+最も一般的な2つの伝播規格について読むことができます：
 
 1. [W3C](https:///www.w3.org/TR/trace-context/#traceparent-header)
 2. [B3](https://github.com/openzipkin/b3-propagation#overall-process)
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Which one are we using?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+私たちはどちらを使用していますか？
 
-- _The Splunk Distribution of Opentelemetry JS, which supports our NodeJS functions, [defaults](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js) to the `W3C` standard_
+- _私たちのNodeJS関数をサポートするSplunk Distribution of Opentelemetry JSは、[デフォルト](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js)で`W3C`標準を使用しています_
 
 {{% /notice %}}
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Bonus Question: What happens if we mix and match the W3C and B3 headers?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+ボーナス質問：W3CヘッダーとB3ヘッダーを混在させるとどうなりますか？
 {{% /notice %}}
 
-![Splunk APM, Trace by ID](../images/11-Manual-TraceByID.png)
+![Splunk APM、IDによるトレース](../images/11-Manual-TraceByID.png)
 
-Click on the `consumer-lambda` span.
+`consumer-lambda`スパンをクリックしてください。
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Can you find the attributes from your message?
+{{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+あなたのメッセージからの属性を見つけることができますか？
 {{% /notice %}}
 
-![Splunk APM, Span Tags](../images/12-Manual-SpanTags.png)
+![Splunk APM、スパンタグ](../images/12-Manual-SpanTags.png)
 
-### Clean Up
+### クリーンアップ
 
-We are finally at the end of our workshop. Kindly clean up after yourself!
+いよいよワークショップの最後に来ました。後片付けをしましょう！
 
-#### Kill the `send_message`
+#### `send_message`の停止
 
-- If the `send_message.py` script is still running, stop it with the follwing commands:
+- `send_message.py`スクリプトがまだ実行中の場合は、次のコマンドで停止します：
 
   ```bash
   fg
   ```
 
-  - This brings your background process to the foreground.
-  - Next you can hit `[CONTROL-C]` to kill the process.
+  - これによりバックグラウンドプロセスがフォアグラウンドに移動します。
+  - 次に`[CONTROL-C]`を押してプロセスを終了できます。
 
-#### Destroy all AWS resources
+#### すべてのAWSリソースを破棄する
 
-Terraform is great at managing the state of our resources individually, and as a deployment. It can even update deployed resources with any changes to their definitions. But to start afresh, we will destroy the resources and redeploy them as part of the manual instrumentation portion of this workshop.
+Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
-Please follow these steps to destroy your resources:
+以下の手順に従ってリソースを破棄してください：
 
-- Ensure you are in the `manual` directory:
+- `manual`ディレクトリにいることを確認します：
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- If you are not in the `manual` directory, run the following command:
+- `manual`ディレクトリにいない場合は、次のコマンドを実行します：
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- Destroy the Lambda functions and other AWS resources you deployed earlier:
+- 以前にデプロイしたLambda関数とその他のAWSリソースを破棄します：
 
   ```bash
   terraform destroy
   ```
 
-  - respond `yes` when you see the `Enter a value:` prompt
-  - This will result in the resources being destroyed, leaving you with a clean environment
+  - `Enter a value:`プロンプトが表示されたら`yes`と応答します
+  - これにより、リソースが破棄され、クリーンな環境が残ります

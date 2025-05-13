@@ -1,51 +1,51 @@
 ---
-title: Deploying Lambda Functions & Generating Trace Data
-linkTitle: 5. Redeploying Lambda Functions
+title: Lambda関数のデプロイとトレースデータの生成
+linkTitle: 5. Lambda関数の再デプロイ
 weight: 5
 ---
 
-Now that we know how to apply manual instrumentation to the functions and services we wish to capture trace data for, let's go about deploying our Lambda functions again, and generating traffic against our `producer-lambda` endpoint.
+トレースデータを収集したい関数やサービスに手動計装を適用する方法がわかったので、Lambda関数を再度デプロイして、`producer-lambda`エンドポイントに対するトラフィックを生成していきましょう。
 
-#### Initialize Terraform in the `manual` directory
+#### `manual` ディレクトリでTerraformを初期化する
 
-Seeing as we're in a new directory, we will need to initialize Terraform here once again.
+新しいディレクトリにいるので、ここでもう一度Terraformを初期化する必要があります。
 
-- Ensure you are in the `manual` directory:
+- `manual` ディレクトリにいることを確認します：
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- If you are not in the `manual` directory, run the following command:
+- `manual` ディレクトリにいない場合は、次のコマンドを実行します：
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- Run the following command to initialize Terraform in this directory
+- 次のコマンドを実行して、このディレクトリでTerraformを初期化します：
 
   ```bash
   terraform init
   ```
 
-#### Deploy the Lambda functions and other AWS resources
+#### Lambda関数とその他のAWSリソースをデプロイする
 
-Let's go ahead and deploy those resources again as well!
+それでは、これらのリソースを再度デプロイしましょう！
 
-- Run the **terraform plan** command, ensuring there are no issues.
+- 問題がないことを確認するために、**terraform plan** コマンドを実行します。
   ```bash
   terraform plan
   ```
   
-- Follow up with the **terraform apply** command to deploy the Lambda functions and other supporting resources from the **main.tf** file:
+- 続いて、**terraform apply** コマンドを使用して **main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします：
   ```bash
   terraform apply
   ```
-  - _Respond **yes** when you see the **Enter a value:** prompt_
+  - _**Enter a value:** プロンプトが表示されたら **yes** と応答します_
 
-  - This will result in the following outputs:
+  - これにより、以下のような出力が得られます：
     ```bash
     Outputs:
 
@@ -60,82 +60,82 @@ Let's go ahead and deploy those resources again as well!
     producer_log_group_name = "/aws/lambda/______-producer"
     ```
 
-As you can tell, aside from the first portion of the base_url and the log gropu ARNs, the output should be largely the same as when you ran the auto-instrumentation portion of this workshop up to this same point.
+見ての通り、base_urlの最初の部分とログループARN以外は、このワークショップの自動計装部分をこの同じ時点まで実行したときと出力は概ね同じはずです。
 
-#### Send some traffic to the `producer-lambda` endpoint (base_url)
+#### `producer-lambda` エンドポイント (base_url) にトラフィックを送信する
 
-Once more, we will send our `name` and `superpower` as a message to our endpoint. This will then be added to a record in our Kinesis Stream, along with our trace context.
+もう一度、`name` と `superpower` をメッセージとしてエンドポイントに送信します。これはトレースコンテキストとともに、Kinesisストリーム内のレコードに追加されます。
 
-- Ensure you are in the `manual` directory:
+- `manual` ディレクトリにいることを確認します：
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- If you are not in the `manual` directory, run the following command:
+- `manual` ディレクトリにいない場合は、次のコマンドを実行します：
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- Run the `send_message.py` script as a background process:
+- `send_message.py` スクリプトをバックグラウンドプロセスとして実行します：
 
   ```bash
   nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
   ```
 
-- Next, check the contents of the response.logs file for successful calls to our**producer-lambda** endpoint:
+- 次に、response.logsファイルの内容を確認して、**producer-lambda**エンドポイントへの呼び出しが成功しているか確認します：
   ```bash
   cat response.logs
   ```
-  - You should see the following output among the lines printed to your screen if your message is successful:
+  - メッセージが成功していれば、画面に表示される行の中に次の出力が表示されるはずです：
 
     ```bash
     {"message": "Message placed in the Event Stream: hostname-eventStream"}
     ```
 
-  - If unsuccessful, you will see:
+  - 失敗した場合は、次のように表示されます：
 
     ```bash
     {"message": "Internal server error"}
     ```
 
 > [!IMPORTANT]
-> If this occurs, ask one of the workshop facilitators for assistance.
+> これが発生した場合は、ワークショップ進行役の一人に支援を求めてください。
 
-#### View the Lambda Function Logs
+#### Lambda関数のログの確認
 
-Let's see what our logs look like now.
+ログがどのようになっているか見てみましょう。
 
-- Check the **producer.logs** file:
+- **producer.logs** ファイルを確認します：
   ```bash
   cat producer.logs
   ```
 
-- And the **consumer.logs** file:
+- そして **consumer.logs** ファイルを確認します：
   ```bash
   cat consumer.logs
   ```
 
-Examine the logs carefully.
+ログを注意深く調べてください。
 
-##### _Workshop Question_
+##### _ワークショップの質問_
 
-> Do you notice the difference?
+> 違いに気づきましたか？
 
-#### Copy the Trace ID from the `consumer-lambda` logs
+#### `consumer-lambda` ログからのトレース ID のコピー
 
-This time around, we can see that the consumer-lambda log group is logging our message as a `record` together with the `tracecontext` that we propagated.
+今回は、consumer-lambdaのロググループが、我々が伝播した`tracecontext`とともに、メッセージを`record`としてログに記録しているのが確認できます。
 
-To copy the Trace ID:
+トレース ID をコピーするには：
 
-- Take a look at one of the `Kinesis Message` logs. Within it, there is a `data` dictionary
-- Take a closer look at `data` to see the nested `tracecontext` dictionary
-- Within the `tracecontext` dictionary, there is a `traceparent` key-value pair
-- The `traceparent` key-value pair holds the Trace ID we seek
-  - There are 4 groups of values, separated by `-`. The Trace ID is the 2nd group of characters
-- **Copy the Trace ID, and save it.** We will need it for a later step in this workshop
+- `Kinesis Message`ログの1つを見てみましょう。その中には`data`ディクショナリがあります
+- ネストされた`tracecontext`ディクショナリを見るために、`data`をより詳しく見てください
+- `tracecontext`ディクショナリ内には、`traceparent`というキーと値のペアがあります
+- `traceparent`キーと値のペアには、私たちが探しているトレース IDが含まれています
+  - `-`で区切られた4つの値のグループがあります。トレース IDは2番目の文字グループです
+- **トレース IDをコピーして保存してください。** このワークショップの後のステップで必要になります
 
-![Lambda Consumer Logs, Manual Instruamentation](../images/08-Manual-ConsumerLogs.png)
+![Lambda Consumer Logs、手動計装](../images/08-Manual-ConsumerLogs.png)
