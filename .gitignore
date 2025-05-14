@@ -28,11 +28,6 @@ package-lock.json
 .hugo_build.lock
 /resources
 !*/resources/
-workshop/Lambda/Java/MobileShop/target/*
-workshop/Lambda/Java/MobileShop/.classpath
-workshop/Lambda/Java/MobileShop/.factorypath
-workshop/Lambda/Java/MobileShop/.project
-workshop/Lambda/Java/MobileShop/.settings/*
 workshop/aws/ec2/terraform.tfvars.eu0.1.base.tfvars
 workshop/aws/ec2/terraform.tfvars.eu0.1.pre.tfvars
 workshop/aws/ec2/pre-eu.sh
@@ -50,9 +45,6 @@ workshop/aws/ec2/*.conf
 workshop/aws/ec2/*.key
 workshop/aws/ec2/*.csv
 .idea/
-workshop/demo-client/venv/*
-workshop/demo-server/venv/*
-local-hosting/orbstack/start.sh
 local-hosting/multipass/terraform.tfvars
 local-hosting/multipass/ubuntu-cloudinit.yml
 workshop/aws/ec2/terraform.tfvars copy.template

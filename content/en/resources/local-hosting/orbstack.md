@@ -4,20 +4,11 @@ weight: 2
 description: Learn how to create a local hosting environment with OrbStack - Mac (Apple Silicon)
 ---
 
-Install Orbstack:
+Install Orbstack and jq:
 
 ``` bash
-brew install orbstack
+brew install orbstack jq
 ```
-
-Log Observer Connect:
-
-If you plan to use your own Splunk Observability Cloud Suite Org and or Splunk instance, you may need to create a new **Log Observer Connect** connection:
-Follow the instructions found in the [documentation](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html) for [Splunk Cloud](https://docs.splunk.com/observability/en/logs/scp.html#logs-scp) or [Splunk Enterprize](https://docs.splunk.com/observability/en/logs/set-up-logconnect.html).
-
-Additional requirements for running your own **Log Observer Connect** connection are:
-Create an index called **splunk4rookies-workshop**
-Make sure the Service account user used in the **Log observer Connect** Connection has access to the **splunk4rookies-workshop** index. (You can remove all other indexes, as all workshop log data should go to this index)
 
 Clone workshop repository:
 
@@ -31,20 +22,10 @@ Change into Orbstack directory:
 cd observability-workshop/local-hosting/orbstack
 ```
 
-Copy the `start.sh.example` to `start.sh` and edit the file to set the following required variables
-Make sure  that you do not use a Raw Endpoint, but use an Event Endpoint instead as this will process the logs correctly
-
-- `ACCESS_TOKEN`
-- `REALM`
-- `API_TOKEN`
-- `RUM_TOKEN`
-- `HEC_TOKEN`
-- `HEC_URL`
-
-Run the script and provide and instance name e.g.:
+Run the script and provide and instance name and [SWiPE ID](https://swipe.splunk.show) e.g.:
 
 ``` bash
-./start.sh my-instance
+./start.sh my-instance 12345678
 ```
 
 Once the instance has been successfully created (this can take several minutes), you will automatically be logged into the instance. If you exit you can SSH back in using the following command (replace `<my_instance>` with the name of your instance):
