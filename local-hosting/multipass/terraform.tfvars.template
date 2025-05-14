@@ -1,15 +1,6 @@
 # Required
-splunk_access_token = ""
-splunk_api_token = ""
-splunk_realm = ""
-
-# Required if splunk_presetup is true, optional otherwise. See variables.tf and README.md
-splunk_rum_token = ""
-
-# Optional - Splunk Cloud
-splunk_hec_url = ""
-splunk_hec_token = ""
-splunk_index = ""
+swipe_id = ""
+splunk_index = "splunk4rookies-workshop"
 
 # Optional
 splunk_presetup = false
@@ -21,4 +12,4 @@ pub_key = ""
 # Advanced
 wsversion = "5.90"
 user_data_tpl = "userdata.yaml"
-architecture = "amd64" # amd64 or arm64
+architecture = "arm64" # amd64 or arm64
