@@ -52,7 +52,7 @@ write_files:
 
 runcmd:
   # Download Workshop
-  - export WSVERSION=5.90
+  - export WSVERSION=5.91
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/splunk/
