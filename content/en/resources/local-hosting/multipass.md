@@ -7,8 +7,7 @@ description: Learn how to create a local hosting environment with Multipass - Wi
 Install [Multipass](https://multipass.run/) and Terraform for your operating system. On a Mac (Intel), you can also install via [Homebrew](https://brew.sh/) e.g.
 
 ```text
-brew install multipass
-brew install terraform
+brew install multipass terraform jq
 ```
 
 Clone workshop repository:
@@ -17,7 +16,7 @@ Clone workshop repository:
 git clone https://github.com/splunk/observability-workshop
 ```
 
-Change into multipass directory:
+Change into Multipass directory:
 
 ```bash
 cd observability-workshop/local-hosting/multipass
@@ -33,7 +32,7 @@ Additional requirements for running your own **Log Observer Connect** connection
 - Create an index called **splunk4rookies-workshop**
 - Make sure the Service account user used in the **Log observer Connect** connection has access to the **splunk4rookies-workshop** index (you can remove all other indexes, as all workshop log data should go to this index).
 
-Initialise Terraform:
+Initialize Terraform:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -71,12 +70,7 @@ cp terraform.tfvars.template terraform.tfvars
 
 The following Terraform variables are required:
 
-- `splunk_access_token`: Observability Cloud Access Token
-- `splunk_api_token`: Observability Cloud API Token
-- `splunk_rum_token`: Observability Cloud RUM Token
-- `splunk_realm`: Observability Cloud Realm e.g. `eu0`
-- `splunk_hec_url`: Splunk HEC URL. Do not use a `raw` endpoint, use the `event` endpoint so logs process correctly.
-- `splunk_hec_token`: Splunk HEC Token
+- `swipe_id`: [SWiPE ID](https://swipe.splunk.com/) for the instance
 - `splunk_index`: Splunk Index to send logs to. Defaults to `splunk4rookies-workshop`.
 
 Instance type variables:

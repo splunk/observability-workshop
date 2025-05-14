@@ -6,43 +6,17 @@ terraform {
       source  = "larstobi/multipass"
       version = "~> 1.4.1"
     }
+    http = {
+      source  = "hashicorp/http"
+      version = "~> 3.4.0"
+    }
   }
 }
 
-variable "splunk_access_token" {
-  description = "Splunk Observability Cloud Access Token"
-  type        = string
-  nullable    = false
-}
-
-variable "splunk_api_token" {
-  description = "Splunk Observability Cloud API Token"
-  type        = string
-  nullable    = false
-}
-
-variable "splunk_rum_token" {
-  description = "Splunk Observability Cloud RUM Token"
-  type        = string
-  nullable    = false
-}
-
-variable "splunk_realm" {
-  description = "Splunk Observability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+variable "swipe_id" {
+  description = "Splunk Swipe ID"
   type        = string
   default     = ""
-}
-
-variable "splunk_hec_token" {
-  description = "Splunk Cloud HEC Token"
-  type        = string
-  nullable    = false
-}
-
-variable "splunk_hec_url" {
-  description = "Splunk Cloud HEC URL"
-  type        = string
-  nullable    = false
 }
 
 variable "splunk_index" {
@@ -111,14 +85,34 @@ resource "random_string" "hostname" {
   numeric = false
 }
 
+# Fetch tokens from Splunk Swipe API
+data "http" "swipe_tokens" {
+  url = "https://swipe.splunk.show/api?id=${var.swipe_id}"
+
+  request_headers = {
+    "Content-Type" = "application/json"
+  }
+}
+
 locals {
+  # Process API response
+  swipe_data = try(jsondecode(data.http.swipe_tokens.response_body), {})
+  
+  # Extract values from API response
+  access_token = try(local.swipe_data.INGEST, "")
+  api_token    = try(local.swipe_data.API, "")
+  rum_token    = try(local.swipe_data.RUM, "")
+  realm        = try(local.swipe_data.REALM, "")
+  hec_token    = try(local.swipe_data.HEC_TOKEN, "")
+  hec_url      = try(local.swipe_data.HEC_URL, "")
+  
   template_vars = {
-    access_token      = var.splunk_access_token
-    rum_token         = var.splunk_rum_token
-    api_token         = var.splunk_api_token
-    realm             = var.splunk_realm
-    hec_token         = var.splunk_hec_token
-    hec_url           = var.splunk_hec_url
+    access_token      = local.access_token
+    rum_token         = local.rum_token
+    api_token         = local.api_token
+    realm             = local.realm
+    hec_token         = local.hec_token
+    hec_url           = local.hec_url
     index             = var.splunk_index
     presetup          = var.splunk_presetup
     otel_demo         = var.otel_demo
@@ -131,6 +125,7 @@ locals {
     pub_key           = var.pub_key
   }
 }
+
 
 resource "local_file" "user_data" {
   filename = "ubuntu-cloudinit.yml"
@@ -154,14 +149,18 @@ resource "multipass_instance" "ubuntu" {
 
   lifecycle {
     precondition {
-      # if splunk_presetup=true, tokens and realm cannot be empty
-      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "" : true
-      error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
+      condition = try(local.swipe_data.message, "") != "Workshop ID not found"
+      error_message = "SWiPE ID not found. Please check the ID and try again."
     }
-    precondition {
-      # if access_token and realm cannot be empty.
-      condition     = var.splunk_access_token != "" && var.splunk_realm != ""
-      error_message = "splunk_realm and splunk_access_token are required and cannot be null/empty."
-    }
+    # precondition {
+    #   # if splunk_presetup=true, tokens and realm cannot be empty
+    #   condition     = var.splunk_presetup ? try(local.access_token, "") != "" && try(local.realm, "") != "" && try(local.rum_token, "") != "" : true
+    #   error_message = "When requesting a pre-setup instance, REALM, ACCESS_TOKEN and RUM_TOKEN are required and cannot be null/empty"
+    # }
+    # precondition {
+    #   # if access_token and realm cannot be empty.
+    #   condition     = local.access_token != "" && local.realm != ""
+    #   error_message = "REALM and ACCESS_TOKEN are required and cannot be null/empty."
+    # }
   }
 }
