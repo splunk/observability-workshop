@@ -238,7 +238,7 @@ If you don't see traces appear in Splunk Observability Cloud, here's how you can
 First, open the collector config file for editing: 
 
 ``` bash
-vi /etc/otel/collector/agent_config.yaml
+sudo vi /etc/otel/collector/agent_config.yaml
 ```
 
 Next, add the debug exporter to the traces pipeline, which ensures the traces are written to the collector logs:
