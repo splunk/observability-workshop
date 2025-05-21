@@ -3,11 +3,11 @@ title: 1. APM Explore
 weight: 1
 ---
 
+When you click into the APM section of Splunk Observability Cloud you are greated with an overview of your APM data including top services by error rates, and R.E.D. metrics for services and workflows.
+
 The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
 
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **WorkFlow Name** (`frontend:/cart/checkout`).
-
-You can see the services involved in the workflow in the **Service Map**. In the side pane, under **Business Workflow**, charts for the selected workflow are displayed. The **Service Map** and **Business Workflow** charts are synchronized. When you select a service in the **Service Map**, the charts in the **Business Workflow** pane are updated to show metrics for the selected service.
+You can see the services involved in any of your APM user workflows by clicking into the **Service Map**. When you select a service in the **Service Map**, the charts in the **Business Workflow** sidepane are updated to show metrics for the selected service. The **Service Map** and any indicators are syncronized with the time picker and chart data displayed. 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -21,7 +21,7 @@ Splunk APM also provides built-in **Service Centric Views** to help you see prob
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the right hand pane, click on **paymentservice** in blue.
+* In the right hand pane, click on **wire-transfer-service** in blue.
 
 {{% /notice %}}
 

@@ -38,15 +38,15 @@ Let's run a little search exercise:
   ![logo search](../images/log-filter-bar.png?width=920px)
 
 * Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
-* Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
+* Let's find all the wire transfer orders that have been compelted. Click on {{% button style="gray" %}}Clear All{{% /button %}} in the filter bar to remove the previous filter.
 * Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order` in the **Enter Keyword...** box and press enter.
 * Click {{% button style="blue" %}}Run search{{% /button %}}
-* You should now only have log lines that contain the word `order`. There are still a lot of log lines, so let's filter some more.
+* You should now only have log lines that contain the word `order`. There are still a lot of log lines -- some of which may not be our service -- so let's filter some more.
 * Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field ...** search box and select it.
   ![severity](../images/find-severity.png?width=15vw&classes=left)
 * Under **Top values** click on **error**, then click on **=** to add it to the filter.
 * Click {{% button style="blue" %}}Run search{{% /button %}}
-* You should now have a list of orders that failed to complete for the last 15 minutes.
+* You should now have a list of wire transfer orders that failed to complete for the last 15 minutes.
 
 {{% /notice %}}
 

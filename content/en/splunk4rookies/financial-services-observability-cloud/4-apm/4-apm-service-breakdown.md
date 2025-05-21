@@ -8,7 +8,7 @@ weight: 4
 * Select the **wire-transfer-service** in the Service Map.
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
 * Select `tenant.level` in the list.
-* Back in the Service Map click on **gold**.
+* Back in the Service Map click on **gold** (our most valuable user tier).
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
 * Repeat this for **silver** and **bronze**.
 {{< tabs >}}

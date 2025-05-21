@@ -17,6 +17,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 * Right now we see different colored bars, a different color for each region the test runs from. As this is not needed we can change that behavior by adding some analytics.
 * Click the {{% button style="blue" %}}Add analytics{{% /button %}} button.
 * From the drop-down choose the **Sum** option, then pick `sum:aggregation` and click `version` and then click `sf_error` to group by both of these dimensions. Notice how the chart changes as the metrics are now aggregated.
+![new chart screen](../images/spans-sum-version-error.png)
 * Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
 * In the dashboard, move the charts so they look like the screenshot below:
   ![Service Health Dashboard](../images/service-health-dashboard.png)

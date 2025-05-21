@@ -3,7 +3,7 @@ title: 5. APM Trace Analyzer
 weight: 5
 ---
 
-As Splunk APM provides a **NoSample** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the **Order Confirmation ID** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.
+As Splunk APM provides a **NoSample** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the wire transfer **orderId** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience encountered by users.
 
 {{% notice title="Trace Analyzer" style="info" %}}
 
@@ -13,7 +13,6 @@ Splunk Observability Cloud provides several tools for exploring application moni
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * With the outer box of the **wire-transfer-service** selected, in the right-hand pane, click on **Traces**.
-* To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
 * Set **Time Range** to **Last 15 minutes**.
 * Ensure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 
@@ -46,12 +45,12 @@ You can use your mouse to select an area on the heatmap, to focus on a specific 
 * Note, that most of our traces have errors (red) and there are only a limited amount of traces that are error-free (blue).
 * Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 * Click on **Add filters**, type in `orderId` and select **orderId** from the list.
-* Select a couple of values for **orderId** and hit enter.
+* Find and select the **orderId** provided by your workshop leader and hit enter.
   ![Traces by Duration](../images/apm-trace-by-id.png)
 
 {{% /notice %}}
 
-We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.
+We have now filtered down to the exact trace where users reported a poor experience with a very long processing wait.
 
 A secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.
 

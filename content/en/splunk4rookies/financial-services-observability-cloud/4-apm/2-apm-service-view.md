@@ -12,8 +12,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Check the **Time** box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previosuly selected to complete (note that the charts are static).
-* In the **Time** box change the timeframe to **-1h**.
+* In the **Time** box change the timeframe to **-1h**. Note how the charts update.
 * These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service.
 * Scroll down the page and expand **Infrastructure Metrics**. Here you will see the metrics for the Host and Pod.
 * **Runtime Metrics** are not available as profiling data is not available for services written in Node.js.

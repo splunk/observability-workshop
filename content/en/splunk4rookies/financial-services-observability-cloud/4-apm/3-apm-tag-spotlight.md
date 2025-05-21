@@ -24,6 +24,8 @@ It is also possible to configure which tag metrics are displayed in the cards. I
 
 Also ensure that the **Show tags with no values** toggle is unchecked.
 
+Scroll through the cards and get familiar with the tags provided by the wire-transfer-service's telemetry.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 {{< tabs >}}
@@ -37,4 +39,4 @@ Also ensure that the **Show tags with no values** toggle is unchecked.
 
 {{% /notice %}}
 
-Now that we have identified the version of the **wire-transfer-service** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
+Now that we have identified the version of the **wire-transfer-service** that is causing the issue, let's see if we can find out more information about the error. Press the back button on your browser to get back to the Service Map.
