@@ -1,11 +1,11 @@
 ---
 title: Financial Services Observability Cloud
-weight: 1
+weight: 2
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
 time: 30 minutes
 aliases:
   - /en/s4r/
-description: In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.
+description: This workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You'll explore key product features and unique advantages that set Splunk Observability Cloud apart.
 ---
 
 In this workshop, we’ll demonstrate how Splunk Observability Cloud delivers value to our financial services customers due to its ability to provide real-time, full-fidelity, AI-powered monitoring across your entire digital ecosystem from infrastructure to applications to user experiences. It’s purpose-built for modern, cloud-native, microservices-based environments. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions: 
@@ -18,7 +18,7 @@ In this workshop, we’ll demonstrate how Splunk Observability Cloud delivers va
 
 One of the core strengths of Splunk Observability Cloud is its ability to unify telemetry data, creating a comprehensive picture of both the end-user experience and your entire application stack.  
 
-The workshop will focus on a microservices-based Wire transfer application deployed on AWS EC2 instances. Users can browse products, add items to a cart, and complete purchases. This application is fully instrumented with OpenTelemetry to capture detailed performance data. 
+The workshop will focus on a microservices-based Wire transfer application deployed on Kubernetes. Users can initiate a wire transfer and all of the appropriate checks for user, balance, and compliance will be handled. This application is fully instrumented with OpenTelemetry to capture detailed performance data. 
 
 **What is OpenTelemetry?**  
 OpenTelemetry is an open-source collection of tools, APIs, and software development kits (SDKs) designed to help you instrument, generate, collect, and export telemetry data—such as metrics, traces, and logs. This data enables in-depth analysis of your software’s performance and behavior.

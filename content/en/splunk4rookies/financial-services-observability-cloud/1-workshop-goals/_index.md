@@ -8,7 +8,7 @@ description: Workshop Overview
 ---
 
 **Introduction**  
-The goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application that actually mimic a payment workflow that is running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.
+The goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application that actually mimic a wire transfer workflow that is running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.
 
 **Who Should Attend?**  
 This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.

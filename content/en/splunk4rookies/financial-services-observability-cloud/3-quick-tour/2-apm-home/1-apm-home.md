@@ -29,7 +29,7 @@ To easily differentiate between multiple applications, Splunk uses **environment
 **What can you conclude from the *Top Services by Error Rate* chart?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The *paymentservice* has a high error rate**
+**The *wire-transfer-service* has a high error rate**
 {{% /tab %}}
 {{< /tabs >}}
 <!--
