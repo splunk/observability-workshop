@@ -62,3 +62,7 @@ For new trial organizations, you’ll also need to complete the steps outlined i
 ##### **Splunk4Rookies - Observability Cloud Workshop Presentation**
 
 The official workshop presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533). Use this resource to guide your workshop participants through the material.
+
+##### **Splunk4Rookies - FSI Vertical Observability Cloud Workshop Presentation**
+
+The official FSI workshop presentation is available [**here**](https://docs.google.com/presentation/d/162ucBDaAEuJamtBDYEWe07js0ju4dkxfFdG2uAw0Vwc/edit?usp=sharing). Use this resource to prepare your workshop and to guide your participants through the material.
