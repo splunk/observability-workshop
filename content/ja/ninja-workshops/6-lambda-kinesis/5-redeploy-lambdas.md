@@ -35,9 +35,11 @@ weight: 5
 それでは、これらのリソースを再度デプロイしましょう！
 
 - 問題がないことを確認するために、**terraform plan** コマンドを実行します。
+
   ```bash
   terraform plan
   ```
+
 - 続いて、**terraform apply** コマンドを使用して **main.tf** ファイルから Lambda 関数とその他のサポートリソースをデプロイします：
 
   ```bash
@@ -120,6 +122,7 @@ weight: 5
   ```
 
 - そして **consumer.logs** ファイルを確認します：
+
   ```bash
   cat consumer.logs
   ```
