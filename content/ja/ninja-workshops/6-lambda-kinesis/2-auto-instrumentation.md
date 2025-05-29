@@ -32,6 +32,7 @@ weight: 2
     ```
 
   - _出力には以下のファイルとディレクトリが含まれるはずです：_
+
     ```bash
     get_logs.py    main.tf       send_message.py
     handler        outputs.tf    terraform.tf
@@ -40,6 +41,7 @@ weight: 2
 #### `main.tf` ファイル
 
 - `main.tf` ファイルをより詳しく見てみましょう：
+
   ```bash
   cat main.tf
   ```
@@ -113,9 +115,11 @@ layers = var.otel_lambda_layer
 次に、`producer-lambda`関数のコードを見てみましょう：
 
 - 以下のコマンドを実行して`producer.mjs`ファイルの内容を表示します：
+
   ```bash
   cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
   ```
+
   - この NodeJS モジュールにはプロデューサー関数のコードが含まれています。
   - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象の Kinesis ストリームにレコードとして配置します
 
@@ -127,52 +131,54 @@ layers = var.otel_lambda_layer
 
 `main.tf`ファイルで定義されたリソースをデプロイするには、まず Terraform がそのファイルと同じフォルダで初期化されていることを確認する必要があります。
 
-- Ensure you are in the `auto` directory:
+- `auto` ディレクトリにいることを確認します:
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/auto**_
+  - _予想される出力は **~/o11y-lambda-workshop/auto** です_
 
-- If you are not in the `auto` directory, run the following command:
+- `auto` ディレクトリにいない場合は、次のコマンドを実行します：
 
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- Run the following command to initialize Terraform in this directory
+- 次のコマンドを実行して、このディレクトリで Terraform を初期化します
+
   ```bash
   terraform init
   ```
-  - This command will create a number of elements in the same folder:
-    - `.terraform.lock.hcl` file: to record the providers it will use to provide resources
-    - `.terraform` directory: to store the provider configurations
-  - In addition to the above files, when terraform is run using the `apply` subcommand, the `terraform.tfstate` file will be created to track the state of your deployed resources.
-  - These enable Terraform to manage the creation, state and destruction of resources, as defined within the `main.tf` file of the `auto` directory
 
-#### Deploy the Lambda functions and other AWS resources
+  - このコマンドは同じフォルダにいくつかの要素を作成します：
+    - `.terraform.lock.hcl` ファイル：リソースを提供するために使用するプロバイダーを記録します
+    - `.terraform` ディレクトリ：プロバイダーの構成を保存します
+  - 上記のファイルに加えて、`apply` サブコマンドを使用して terraform を実行すると、デプロイされたリソースの状態を追跡するために `terraform.tfstate` ファイルが作成されます。
+  - これらにより、Terraform は `auto` ディレクトリの `main.tf` ファイル内で定義されたとおりに、リソースの作成、状態、破棄を管理できます
 
-Once we've initialized Terraform in this directory, we can go ahead and deploy our resources.
+#### Lambda 関数とその他の AWS リソースをデプロイする
 
-- First, run the **terraform plan** command to ensure that Terraform will be able to create your resources without encountering any issues.
+このディレクトリで Terraform を初期化したら、リソースのデプロイに進むことができます。
+
+- まず、**terraform plan** コマンドを実行して、Terraform が問題なくリソースを作成できることを確認します。
 
   ```bash
   terraform plan
   ```
 
-  - _This will result in a plan to deploy resources and output some data, which you can review to ensure everything will work as intended._
-  - _Do note that a number of the values shown in the plan will be known post-creation, or are masked for security purposes._
+  - _これにより、リソースをデプロイするプランといくつかのデータが出力され、意図したとおりに動作することを確認できます。_
+  - _プランに表示される値の一部は、作成後に判明するか、セキュリティ上の理由でマスクされていることに注意してください。_
 
-- Next, run the **terraform apply** command to deploy the Lambda functions and other supporting resources from the **main.tf** file:
+- 次に、**terraform apply** コマンドを実行して、**main.tf** ファイルから Lambda 関数とその他のサポートリソースをデプロイします：
 
   ```bash
   terraform apply
   ```
 
-  - _Respond **yes** when you see the **Enter a value:** prompt_
+  - _**Enter a value:** プロンプトが表示されたら **yes** と応答します_
 
-  - This will result in the following outputs:
+  - これにより、以下のような出力が得られます：
 
     ```bash
     Outputs:
@@ -188,84 +194,88 @@ Once we've initialized Terraform in this directory, we can go ahead and deploy o
     producer_log_group_name = "/aws/lambda/______-producer"
     ```
 
-    - _Terraform outputs are defined in the **outputs.tf** file._
-    - _These outputs will be used programmatically in other parts of our workshop, as well._
+    - _Terraform 出力は **outputs.tf** ファイルで定義されています。_
+    - _これらの出力は、ワークショップの他の部分でもプログラム的に使用されます。_
 
-#### Send some traffic to the `producer-lambda` URL (`base_url`)
+#### `producer-lambda` URL (`base_url`) にトラフィックを送信する
 
-To start getting some traces from our deployed Lambda functions, we would need to generate some traffic. We will send a message to our `producer-lambda` function's endpoint, which should be put as a record into our Kinesis Stream, and then pulled from the Stream by the `consumer-lambda` function.
+デプロイした Lambda 関数からトレースを取得し始めるには、トラフィックを生成する必要があります。`producer-lambda`関数のエンドポイントにメッセージを送信し、それを Kinesis ストリームにレコードとして配置し、その後`consumer-lambda`関数によってストリームから取得されるようにします。
 
-- Ensure you are in the `auto` directory:
+- `auto` ディレクトリにいることを確認します：
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/auto**_
+  - _予想される出力は **~/o11y-lambda-workshop/auto** です_
 
-- If you are not in the `auto` directory, run the following command
+- `auto` ディレクトリにいない場合は、次のコマンドを実行します
+
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-The `send_message.py` script is a Python script that will take input at the command line, add it to a JSON dictionary, and send it to your `producer-lambda` function's endpoint repeatedly, as part of a while loop.
+`send_message.py` スクリプトは、コマンドラインで入力を受け取り、JSON ディクショナリに追加し、while ループの一部として `producer-lambda` 関数のエンドポイントに繰り返し送信する Python スクリプトです。
 
 - Run the `send_message.py` script as a background process
 
-  - _It requires the `--name` and `--superpower` arguments_
+  - _`--name` と `--superpower` 引数が必要です_
 
   ```bash
   nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
   ```
 
-  - You should see an output similar to the following if your message is successful
+  - メッセージが成功した場合は、以下のような出力が表示されるはずです
+
     ```bash
     [1] 79829
     user@host manual % appending output to nohup.out
     ```
-    - _The two most import bits of information here are:_
-      - _The process ID on the first line (`79829` in the case of my example), and_
-      - _The `appending output to nohup.out` message_
-    - _The `nohup` command ensures the script will not hang up when sent to the background. It also captures the curl output from our command in a nohup.out file in the same folder as the one you're currently in._
-    - _The `&` tells our shell process to run this process in the background, thus freeing our shell to run other commands._
 
-- Next, check the contents of the `response.logs` file, to ensure your output confirms your requests to your `producer-lambda` endpoint are successful:
+    - _ここで重要な情報は 2 つあります:_
+      - _1 行目のプロセス ID（この例では `79829`）、および_
+      - _`appending output to nohup.out` メッセージ_
+    - _`nohup` コマンドはスクリプトがバックグラウンドに送られた時に切断されないようにします。また、コマンドからの curl 出力を、現在いるフォルダと同じフォルダにある nohup.out ファイルにキャプチャします。_
+    - _`&` はシェルプロセスにこのプロセスをバックグラウンドで実行するよう指示し、シェルが他のコマンドを実行できるようにします。_
+
+- 次に、`response.logs` ファイルの内容を確認して、`producer-lambda` エンドポイントへのリクエストが成功したことを確認します：
 
   ```bash
   cat response.logs
   ```
 
-  - You should see the following output among the lines printed to your screen if your message is successful:
+  - メッセージが成功していれば、画面に印刷された行の中に次の出力が表示されるはずです：
 
   ```bash
   {"message": "Message placed in the Event Stream: {prefix}-lambda_stream"}
   ```
 
-  - If unsuccessful, you will see:
+  - 失敗した場合は、次のように表示されます：
 
   ```bash
   {"message": "Internal server error"}
   ```
 
 > [!IMPORTANT]
-> If this occurs, ask one of the workshop facilitators for assistance.
+> この場合は、ワークショップ進行役の一人に支援を求めてください。
 
-#### View the Lambda Function Logs
+#### Lambda 関数のログを表示する
 
-Next, let's take a look at the logs for our Lambda functions.
+次に、Lambda 関数のログを確認しましょう。
 
-- To view your **producer-lambda** logs, check the **producer.logs** file:
+- **producer-lambda** ログを表示するには、**producer.logs** ファイルを確認します：
 
   ```bash
   cat producer.logs
   ```
 
-- To view your **consumer-lambda** logs, check the **consumer.logs** file:
+- **consumer-lambda** ログを表示するには、**consumer.logs** ファイルを確認します：
+
   ```bash
   cat consumer.logs
   ```
 
-Examine the logs carefully.
+ログを注意深く調べてください。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 

@@ -81,27 +81,27 @@ Terraform は個々のリソースの状態をデプロイメントとして管�
 
 以下の手順に従ってリソースを破棄してください：
 
-- Ensure you are in the `auto` directory:
+- `auto`ディレクトリにいることを確認します：
 
   ```bash
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/auto**_
+  - _期待される出力は **~/o11y-lambda-workshop/auto** です_
 
-- If you are not in the `auto` directory, run the following command:
+- `auto`ディレクトリにいない場合は、以下のコマンドを実行します：
 
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- Destroy the Lambda functions and other AWS resources you deployed earlier:
+- 先ほどデプロイした Lambda 関数とその他の AWS リソースを破棄します：
 
   ```bash
   terraform destroy
   ```
 
-  - respond `yes` when you see the `Enter a value:` prompt
-  - This will result in the resources being destroyed, leaving you with a clean environment
+  - `Enter a value:`プロンプトが表示されたら`yes`と応答します
+  - これによりリソースが破棄され、クリーンな環境が残ります
 
-This process will leave you with the files and directories created as a result of our activity. Do not worry about those.
+このプロセスにより、私たちの活動の結果として作成されたファイルとディレクトリは残ります。それらについては心配する必要はありません。

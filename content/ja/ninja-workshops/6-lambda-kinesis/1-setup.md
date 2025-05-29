@@ -10,7 +10,7 @@ weight: 1
 
 ### Observability ワークショップインスタンス
 
-Observability ワークショップは、多くの場合、Splunk が提供する事前設定済みの Ubuntu 実行 EC2 インスタンス上で実施されます。
+Observability ワークショップは、多くの場合、Splunk が提供する事前設定済みの Ubuntu EC2 インスタンス上で実施されます。
 
 ワークショップのインストラクターから、割り当てられたワークショップインスタンスの認証情報が提供されます。
 
@@ -21,7 +21,8 @@ Observability ワークショップは、多くの場合、Splunk が提供す�
   - _これらはワークショップ用の Splunk Observability Cloud の **Access Token** と **Realm** です。_
   - _これらは OpenTelemetry Collector によって、データを正しい Splunk Observability Cloud 組織に転送するために使用されます。_
 
-> [!NOTE] > _また、Multipass を使用してローカルの Observability ワークショップインスタンスをデプロイすることもできます。_
+> [!NOTE]\
+> _また、Multipass を使用してローカルの Observability ワークショップインスタンスをデプロイすることもできます。_
 
 ### AWS Command Line Interface (awscli)
 
@@ -38,6 +39,7 @@ Splunk が提供するワークショップインスタンスには、既に **a
   - _予想される出力は **/usr/local/bin/aws** です_
 
 - インスタンスに **aws** コマンドがインストールされていない場合は、次のコマンドを実行します：
+
   ```bash
   sudo apt install awscli
   ```
@@ -50,7 +52,7 @@ Terraform は、リソースを構成ファイルで定義することで、デ�
 
 1. AWS API Gateway
 2. Lambda 関数
-3. Kinesis ストリーム
+3. Kinesis Stream
 4. CloudWatch ロググループ
 5. S3 バケット
    - _およびその他のサポートリソース_
@@ -88,9 +90,10 @@ Splunk が提供するワークショップインスタンスには、既に **t
   - _予想される出力には **o11y-lambda-workshop** が含まれるはずです_
 
 - **o11y-lambda-workshop** ディレクトリがホームディレクトリにない場合は、次のコマンドでクローンします：
-  ```bash
-  git clone https://github.com/gkono-splunk/o11y-lambda-workshop.git
-  ```
+
+```bash
+git clone https://github.com/gkono-splunk/o11y-lambda-workshop.git
+```
 
 ### AWS & Terraform 変数
 
@@ -105,6 +108,7 @@ AWS の CLI では、サービスによってデプロイされたリソース�
   ```
 
   - _このコマンドは以下のようなプロンプトを表示するはずです：_
+
     ```bash
     AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
     AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -113,17 +117,18 @@ AWS の CLI では、サービスによってデプロイされたリソース�
     ```
 
 - インスタンスで **awscli** が設定されていない場合は、次のコマンドを実行し、インストラクターから提供される値を入力してください。
+
   ```bash
   aws configure
   ```
 
 #### Terraform
 
-Terraform では、機密情報や動的データを.tf 設定ファイルにハードコーディングしないようにするため、また、それらの値をリソース定義全体で再利用できるようにするため、変数の受け渡しをサポートしています。
+Terraform では、機密情報や動的データを.tf 設定ファイルにハードコーディングさせない、またはそれらの値をリソース定義全体で再利用できるようにするため、変数の受け渡しをサポートしています。
 
 このワークショップでは、OpenTelemetry Lambda layer の適切な値で Lambda 関数をデプロイするため、Splunk Observability Cloud の取り込み値のため、そして環境とリソースを独自で即座に認識できるようにするための変数を Terraform で必要とします。
 
-Terraform 変数は以下の方法で定義されます：
+Terraform 変数(variable)は以下の方法で定義されます：
 
 - 変数を _**main.tf**_ ファイルまたは _**variables.tf**_ に定義する
 - 以下のいずれかの方法で変数の値を設定する：
@@ -134,24 +139,31 @@ Terraform 変数は以下の方法で定義されます：
 このワークショップでは、_**variables.tf**_ と _**terraform.tfvars**_ ファイルの組み合わせを使用して変数を設定します。
 
 - **vi** または **nano** のいずれかを使用して、**auto** または **manual** ディレクトリにある _**terraform.tfvars**_ ファイルを開きます
+
   ```bash
   vi ~/o11y-lambda-workshop/auto/terraform.tfvars
   ```
+
 - 変数に値を設定します。**CHANGEME** プレースホルダーをインストラクターから提供された値に置き換えてください。
+
   ```bash
   o11y_access_token = "CHANGEME"
   o11y_realm        = "CHANGEME"
   otel_lambda_layer = ["CHANGEME"]
   prefix            = "CHANGEME"
   ```
-  - _該当する場合は、引用符や括弧をそのまま残し、プレースホルダーのみを変更してください。_
-  - _**prefix**_ は、他の参加者のリソースと区別するために選択できる固有の識別子です。例えば、名前の短い形式を使用することをお勧めします。\_
-  - _また、**prefix** には小文字のみを使用してください。S3 のような特定の AWS リソースでは、大文字を使用するとエラーが発生します。_
+
+  - _引用符（"）や括弧 ( [ ] ) はそのまま残し、プレースホルダー`CHANGEME`のみを変更してください。_
+  - _**prefix**_ は、他の参加者のリソースと区別するため、任意の文字列で設定する固有の識別子です。氏名やメールアドレスのエイリアスを使用することをお勧めします。
+  - _**prefix** には小文字のみを使用してください。S3 のような特定の AWS リソースでは、大文字を使用するとエラーが発生します。_
+
 - ファイルを保存してエディタを終了します。
 - 最後に、編集した _**terraform.tfvars**_ ファイルを他のディレクトリにコピーします。
+
   ```bash
   cp ~/o11y-lambda-workshop/auto/terraform.tfvars ~/o11y-lambda-workshop/manual
   ```
+
   - _これは、自動計装と手動計装の両方の部分で同じ値を使用するためです_
 
 ### ファイル権限
@@ -165,6 +177,7 @@ Terraform 変数は以下の方法で定義されます：
   ```
 
 - 次に、以下のコマンドを実行して`send_message.py`スクリプトに実行権限を設定します：
+
   ```bash
   sudo chmod 755 auto/send_message.py manual/send_message.py
   ```
