@@ -55,7 +55,7 @@ We can see the various settings you can control, such as the `splunk.profiler.di
 
 Another parameter you may want to change is `splunk.profiler.call.stack.interval`. This is how often the system captures a CPU Stack trace. You may want to reduce this interval setting if you have short spans like the ones we have in our Pet Clinic application. For the demo application, we did not change the default interval value, so Spans may not always have a CPU Call Stack related to them.
 
-You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). In the example below, we see how to set a higher collection rate for call stacks in the `deployment.yaml`, by setting this value in the JAVA_OPTIONS config section.
+You can find how to set these parameters [here](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java). In the example below, we see how to set a higher collection rate for call stacks in the `deployment.yaml`, by setting this value in the JAVA_OPTIONS config section.
 
 ``` yaml
 env: 

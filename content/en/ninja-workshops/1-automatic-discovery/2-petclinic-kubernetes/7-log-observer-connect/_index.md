@@ -14,4 +14,4 @@ The **Splunk OpenTelemetry Collector** automatically collects logs from the Spri
 
 **Splunk Log Observer** is then used to view the logs, automatically correlating log information with services and traces.
 
-This feature is called [**Related Content**](https://docs.splunk.com/observability/en/metrics-and-metadata/relatedcontent.html).
+This feature is called [**Related Content**](https://help.splunk.com/en/splunk-observability-cloud/data-tools/related-content).
