@@ -4,7 +4,7 @@ linkTitle: 3. Database Query Performance
 weight: 3
 ---
 
-With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, un-optimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
+With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
 
 To look at the performance of your database queries, make sure you are on the APM **Service Map** page either by going back in the browser or navigating to the APM section in the Menu bar, then click on the **Service Map** tile.
 
@@ -19,7 +19,7 @@ This will bring us to the DB-query Performance overview screen:
 ![DB-query full](../../images/db-query-full.png)
 
 {{% notice title="Database Query Normalization" style="info" %}}
-By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personally identifiable information (PII) from the `db.statements`. You can find how to turn off database query normalization [here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
+By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personally identifiable information (PII) from the `db.statements`. You can find how to turn off database query normalization [here](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/monitor-database-query-performance/troubleshoot-database-query-performance#turn-off-database-query-normalization).
 {{% /notice %}}
 
 This screen will show us all the Database queries **(1)** done to our database from your application, based on the Traces & Spans sent to the Splunk Observability Cloud.  Note that you can compare them across a time block or sort them on Total Time, P90 Latency & Requests **(2)**.
@@ -32,7 +32,7 @@ If you need to see a detailed view of a query:
 
 ![details](../../images/query-details.png)
 
-click on the specific Query **(1)**. This will open  the Query Details pane **(2)**, which you can use for more detailed investigations.
+Click on the specific Query **(1)**. This will open the Query Details pane **(2)**, which you can use for more detailed investigations.
 
 <!--
 

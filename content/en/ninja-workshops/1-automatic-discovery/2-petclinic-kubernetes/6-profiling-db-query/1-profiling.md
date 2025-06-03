@@ -49,7 +49,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 {{< /tabs >}}
-We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**.
+We are interested in the section written by the `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**.
 
 We can see the various settings you can control, such as the `splunk.profiler.directory`, which is the location where the agent writes the call stacks before sending them to Splunk. (This may be different depending on how you configure your containers.)
 
