@@ -51,7 +51,7 @@ The following feature is **not available** in trial organizations by default and
 To send logs to Splunk Observability Cloud, you’ll need access to a **Splunk Cloud** or **Splunk Enterprise** environment. Ensure the following:
 
 - An index named **splunk4rookies-workshop** exists in your Splunk environment.  
-- Log Observer Connect is configured. If you’re using **Splunk Enterprise** or **Splunk Cloud Platform**, follow the [**Log Observer Connect setup instructions**](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html).  
+- Log Observer Connect is configured. If you’re using **Splunk Enterprise** or **Splunk Cloud Platform**, follow the [**Log Observer Connect setup instructions**](https://help.splunk.com/en/splunk-observability-cloud/manage-data/view-splunk-platform-logs/introduction-to-splunk-log-observer-connect).
 
 ##### **Trial Org Configuration**
 
