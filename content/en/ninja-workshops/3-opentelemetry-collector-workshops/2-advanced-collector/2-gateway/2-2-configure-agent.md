@@ -6,7 +6,7 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Add the `otlphttp` exporter**: The [**OTLP/HTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the **OTLP/HTTP** protocol.
+**Add the `otlphttp` exporter**: The [**OTLP/HTTP Exporter**](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/exporters/otlphttp-exporter) is used to send data from the agent to the gateway using the **OTLP/HTTP** protocol.
 
 1. Switch to your **Agent terminal** window.
 2. Validate that the newly generated `gateway-logs.out`, `gateway-metrics.out`, and `gateway-traces.out` are present in the directory.
