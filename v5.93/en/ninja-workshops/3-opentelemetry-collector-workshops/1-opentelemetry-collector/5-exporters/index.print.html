@@ -1,0 +1,272 @@
+<!doctype html><html lang=en dir=ltr itemscope itemtype=http://schema.org/Article data-r-output-format=print><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.145.0"><meta name=generator content="Relearn 7.2.1"><meta name=description content='An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
+For this workshop, we will be using the otlphttp exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta name=author content><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenTelemetry Collector Exporters :: Splunk Observability Cloud Workshops"><meta name=twitter:description content='An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
+For this workshop, we will be using the otlphttp exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.html"><meta property="og:site_name" content="Splunk Observability Cloud Workshops"><meta property="og:title" content="OpenTelemetry Collector Exporters :: Splunk Observability Cloud Workshops"><meta property="og:description" content='An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
+For this workshop, we will be using the otlphttp exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta itemprop=name content="OpenTelemetry Collector Exporters :: Splunk Observability Cloud Workshops"><meta itemprop=description content='An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
+For this workshop, we will be using the otlphttp exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta itemprop=dateModified content="2025-03-03T18:36:44+00:00"><meta itemprop=wordCount content="129"><title>OpenTelemetry Collector Exporters :: Splunk Observability Cloud Workshops</title>
+<link href=https://splunk.github.io/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.html rel=canonical type=text/html title="OpenTelemetry Collector Exporters :: Splunk Observability Cloud Workshops"><link href=/observability-workshop/v5.93/images/favicon.ico?1748945970 rel=icon type=image/x-icon sizes=any><link href=/observability-workshop/v5.93/css/fontawesome-all.min.css?1748945970 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.93/css/fontawesome-all.min.css?1748945970 rel=stylesheet></noscript><link href=/observability-workshop/v5.93/css/auto-complete.css?1748945970 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.93/css/auto-complete.css?1748945970 rel=stylesheet></noscript><link href=/observability-workshop/v5.93/css/perfect-scrollbar.min.css?1748945970 rel=stylesheet><link href=/observability-workshop/v5.93/css/theme.min.css?1748945970 rel=stylesheet><link href=/observability-workshop/v5.93/css/format-print.min.css?1748945970 rel=stylesheet id=R-format-style><script>window.relearn=window.relearn||{},window.relearn.relBasePath="../../../../..",window.relearn.relBaseUri="../../../../../../..",window.relearn.absBaseUri="https://splunk.github.io/observability-workshop/v5.93",window.relearn.min=`.min`,window.relearn.disableAnchorCopy=!1,window.relearn.disableAnchorScrolling=!1,window.relearn.themevariants=["auto","splunk-light","splunk-dark"],window.relearn.customvariantname="my-custom-variant",window.relearn.changeVariant=function(e){var t=document.documentElement.dataset.rThemeVariant;window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e),document.documentElement.dataset.rThemeVariant=e,t!=e&&document.dispatchEvent(new CustomEvent("themeVariantLoaded",{detail:{variant:e,oldVariant:t}}))},window.relearn.markVariant=function(){var t=window.localStorage.getItem(window.relearn.absBaseUri+"/variant"),e=document.querySelector("#R-select-variant");e&&(e.value=t)},window.relearn.initVariant=function(){var e=window.localStorage.getItem(window.relearn.absBaseUri+"/variant")??"";e==window.relearn.customvariantname||(!e||!window.relearn.themevariants.includes(e))&&(e=window.relearn.themevariants[0],window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e)),document.documentElement.dataset.rThemeVariant=e},window.relearn.initVariant(),window.relearn.markVariant(),window.T_Copy_to_clipboard=`Copy to clipboard`,window.T_Copied_to_clipboard=`Copied to clipboard!`,window.T_Copy_link_to_clipboard=`Copy link to clipboard`,window.T_Link_copied_to_clipboard=`Copied link to clipboard!`,window.T_Reset_view=`Reset view`,window.T_View_reset=`View reset!`,window.T_No_results_found=`No results found for "{0}"`,window.T_N_results_found=`{1} results found for "{0}"`</script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js crossorigin=anonymous></script><script>SplunkRum.init({realm:"us1",rumAccessToken:"Z8JjZ8iNiF4jSfNHvJIRJg",applicationName:"observability-workshop",deploymentEnvironment:"splunk.github.io",version:"1.0"}),SplunkSessionRecorder.init({app:"observability-workshop",realm:"us1",rumAccessToken:"Z8JjZ8iNiF4jSfNHvJIRJg"})</script></script><style>:root{--MAIN-WIDTH-MAX:130rem;--MENU-WIDTH-L:23rem}p{margin:.75rem 0}.highlight{max-height:500px;overflow-y:auto}pre:not(.mermaid){margin:0}</style></head><body class="mobile-support print disableInlineCopyToClipboard" data-url=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.html><div id=R-body class=default-animation><div id=R-body-overlay></div><nav id=R-topbar><div class=topbar-wrapper><div class=topbar-sidebar-divider></div><div class="topbar-area topbar-area-start" data-area=start><div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div><div class="topbar-button topbar-button-toc" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button title="Table of Contents (CTRL+ALT+t)"><i class="fa-fw fas fa-list-alt"></i></button><div class=topbar-content><div class=topbar-content-wrapper></div></div></div></div><ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.93/en/index.html><span itemprop=name>Splunk Observability Workshops</span></a><meta itemprop=position content="1">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.93/en/ninja-workshops/index.html><span itemprop=name>Splunk4Ninjas Workshops</span></a><meta itemprop=position content="2">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/index.html><span itemprop=name>OpenTelemetry Collector Workshops</span></a><meta itemprop=position content="3">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/index.html><span itemprop=name>OpenTelemetry Collector Concepts</span></a><meta itemprop=position content="4">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>5. Exporters</span><meta itemprop=position content="5"></li></ol><div class="topbar-area topbar-area-end" data-area=end><div class="topbar-button topbar-button-print" data-content-empty=disable data-width-s=area-more data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.print.html title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></div><div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/3-attributes/index.html title="OpenTelemetry Collector Processors (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></div><div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.93/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/index.html title="OpenTelemetry Collector Exporters (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div><div class="topbar-button topbar-button-more" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button title=More><i class="fa-fw fas fa-ellipsis-v"></i></button><div class=topbar-content><div class=topbar-content-wrapper><div class="topbar-area topbar-area-more" data-area=more></div></div></div></div></div></div></nav><div id=R-main-overlay></div><main id=R-body-inner class="highlightable ninja-workshops" tabindex=-1><div class=flex-block-wrapper><article class=default><header class=headline></header><h1 id=opentelemetry-collector-exporters>OpenTelemetry Collector Exporters</h1><p>An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.</p><p>For this workshop, we will be using the <a href=https://opentelemetry.io/docs/specs/otel/protocol/exporter/ rel=external target=_blank><strong>otlphttp</strong></a> exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both <a href=https://grpc.io/ rel=external target=_blank><strong>gRPC</strong></a> and <a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview rel=external target=_blank><strong>HTTP</strong></a>/<a href=https://www.json.org/json-en.html rel=external target=_blank><strong>JSON</strong></a> protocols.</p><pre class="mermaid align-center">
+%%{
+  init:{
+    &#34;theme&#34;:&#34;base&#34;,
+    &#34;themeVariables&#34;: {
+      &#34;primaryColor&#34;: &#34;#ffffff&#34;,
+      &#34;clusterBkg&#34;: &#34;#eff2fb&#34;,
+      &#34;defaultLinkColor&#34;: &#34;#333333&#34;
+    }
+  }
+}%%
+
+flowchart LR;
+    style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    subgraph Collector
+    A[OTLP] --&gt; M(Receivers)
+    B[JAEGER] --&gt; M(Receivers)
+    C[Prometheus] --&gt; M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --&gt; H(Filters, Attributes, etc)
+    E(Extensions)
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --&gt; S(OTLP)
+    H(Filters, Attributes, etc) --&gt; T(JAEGER)
+    H(Filters, Attributes, etc) --&gt; U(Prometheus)
+    end
+</pre><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>Mar 3, 2025</span></span></footer></article><section><h1 class=a11y-only>Subsections of 5. Exporters</h1><article class=default><header class=headline></header><h1 id=opentelemetry-collector-exporters>OpenTelemetry Collector Exporters</h1><h2 id=otlp-http-exporter>OTLP HTTP Exporter</h2><p>To send metrics over HTTP to Splunk Observability Cloud, we will need to configure the <strong>otlphttp</strong> exporter.</p><p>Let&rsquo;s edit our <code>/etc/otelcol-contrib/config.yaml</code> file and configure the <strong>otlphttp</strong> exporter. Insert the following YAML under the <strong>exporters</strong> section, taking care to indent by two spaces e.g.</p><p>We will also change the verbosity of the logging exporter to prevent the disk from filling up. The default of <code>detailed</code> is very noisy.</p><div class="highlight wrap-code" hl_lines=3-4><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=l>otlphttp/splunk:</span></span></span></code></pre></div><p>Next, we need to define the <code>metrics_endpoint</code> and configure the target URL.</p><details open class="box cstyle notices note"><summary class=box-label><i class="fa-fw fas fa-exclamation-circle"></i>
+Note</summary><div class=box-content><p>If you are an attendee at a Splunk-hosted workshop, the instance you are using has already been configured with a Realm environment variable. We will reference that environment variable in our configuration file. Otherwise, you will need to create a new environment variable and set the Realm e.g.</p><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>REALM</span><span class=o>=</span><span class=s2>&#34;us1&#34;</span></span></span></code></pre></div></div></details><p>The URL to use is <code>https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp</code>. (Splunk has Realms in key geographical locations around the world for data residency).</p><p>The <strong>otlphttp</strong> exporter can also be configured to send traces and logs by defining a target URL for <code>traces_endpoint</code> and <code>logs_endpoint</code> respectively. Configuring these is outside the scope of this workshop.</p><div class="highlight wrap-code" hl_lines=5><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp</span></span></span></code></pre></div><p>By default, <code>gzip</code> compression is enabled for all endpoints. This can be disabled by setting <code>compression: none</code> in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.</p><p>To send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see <a href=https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html rel=external target=_blank>Create a token</a>. The token needs to be of type <strong>INGEST</strong>.</p><details open class="box cstyle notices note"><summary class=box-label><i class="fa-fw fas fa-exclamation-circle"></i>
+Note</summary><div class=box-content><p>If you are an attendee at a Splunk-hosted workshop, the instance you are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable e.g.</p><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>ACCESS_TOKEN</span><span class=o>=</span>&lt;replace-with-your-token&gt;</span></span></code></pre></div></div></details><p>The token is defined in the configuration file by inserting <code>X-SF-TOKEN: ${env:ACCESS_TOKEN}</code> under a <code>headers:</code> section:</p><div class="highlight wrap-code" hl_lines=6-8><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>headers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>X-SF-TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${env:ACCESS_TOKEN}</span></span></span></code></pre></div><h2 id=configuration-check-in>Configuration Check-in</h2><p>Now that we&rsquo;ve covered exporters, let&rsquo;s check our configuration changes:</p><hr><details class="box cstyle notices transparent expand"><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
+<span class="badge cstyle default badge-with-title"><span class=badge-title><i class="fa-fw fas fa-check"></i> <strong>Check-in</strong></span><span class=badge-content style=background-color:green>Review your configuration</span></span></summary><div class=box-content><div class=tab-panel data-tab-group=6845a392029eef80eb039b77da0cf4d6><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=configyaml class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("6845a392029eef80eb039b77da0cf4d6","configyaml")'>
+<span class=tab-nav-text>config.yaml</span></button></div><div class=tab-content-container><div data-tab-item=configyaml class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=83-87 linenos=table><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=hl><span class=lnt> 83
+</span></span><span class=hl><span class=lnt> 84
+</span></span><span class=hl><span class=lnt> 85
+</span></span><span class=hl><span class=lnt> 86
+</span></span><span class=hl><span class=lnt> 87
+</span></span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># To limit exposure to denial of service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>4317</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>4318</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55678</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>14250</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>6832</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>6831</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>14268</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>9411</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>participant.name</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>debug</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>headers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>X-SF-Token</span><span class=p>:</span><span class=w> </span><span class=l>${env:ACCESS_TOKEN}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>debug]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>debug]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>logs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>debug]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span></span></span></code></pre></td></tr></table></div></div></div></div></div></div></div></details><hr><p>Of course, you can easily configure the <code>metrics_endpoint</code> to point to any other solution that supports the <strong>OTLP</strong> protocol.</p><p>Next, we need to enable the receivers, processors and exporters we have just configured in the service section of the <code>config.yaml</code>.</p><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>Mar 3, 2025</span></span></footer></article></section></div></main></div><script src=/observability-workshop/v5.93/js/clipboard.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/perfect-scrollbar.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-color.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-dispatch.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-drag.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-ease.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-interpolate.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-selection.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-timer.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-transition.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/d3/d3-zoom.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/js-yaml.min.js?1748945970 defer></script><script src=/observability-workshop/v5.93/js/mermaid.min.js?1748945970 defer></script><script>window.themeUseMermaid=JSON.parse("{}")</script><script src=/observability-workshop/v5.93/js/theme.js?1748945970 defer></script></body></html>
