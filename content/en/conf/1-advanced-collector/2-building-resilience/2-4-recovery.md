@@ -1,10 +1,10 @@
 ---
-title: 4.4 Recovery
-linkTitle: 4.4 Recovery
+title: 2.4 Recovery
+linkTitle: 2.4 Recovery
 weight: 4
 ---
 
-In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from a network outage by restarting the **Gateway** collector. When the `gateway` becomes available again, the `agent` will resume sending data from its last checkpointed state, ensuring no data loss.
+In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from a network outage by restarting the **Gateway** collector. When the `gateway` becomes available again, the `agent` will resume sending data from its last check-pointed state, ensuring no data loss.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -75,4 +75,4 @@ jq '.resourceSpans | length | "\(.) resourceSpans found"' gateway-traces.out
 
 This exercise demonstrated how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage` extension, enabling retry mechanisms for the `otlp` exporter, and using a file-backed queue for temporary data storage.
 
-By implementing file-based checkpointing and queue persistence, you ensure the telemetry pipeline can gracefully recover from temporary interruptions, making it a more robust and reliable for production environments.
+By implementing file-based check-pointing and queue persistence, you ensure the telemetry pipeline can gracefully recover from temporary interruptions, making it a more robust and reliable for production environments.

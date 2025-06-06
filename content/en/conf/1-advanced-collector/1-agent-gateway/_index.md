@@ -8,12 +8,12 @@ weight: 3
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 During this workshop, you will be using multiple terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.
 
-We will refer to these terminals as: **Agent**, **Gateway**, **Spans**,  **Logs** and **Tests**.
+We will refer to these terminals as: **Agent**, **Gateway**, **Spans**, **Logs** and **Tests**.
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Open or create your first terminal, and name it  **Agent terminal** window, change into the `[WORKSHOP]` directory and create a new subdirectory named `1-agent`.
+1. Open or create your first terminal, and name it **Agent terminal** window, change into the `[WORKSHOP]` directory and create a new subdirectory named `1-agent`.
 
     ```bash
     mkdir 1-agent && \

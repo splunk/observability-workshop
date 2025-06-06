@@ -1,6 +1,6 @@
 ---
-title: 7.2 Setup Environment
-linkTitle: 7.2 Setup Environment
+title: 5.2 Setup Environment
+linkTitle: 5.2 Setup Environment
 weight: 2
 ---
 

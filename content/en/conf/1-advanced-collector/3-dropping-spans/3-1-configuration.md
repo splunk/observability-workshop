@@ -1,6 +1,6 @@
 ---
-title: 5.1 Configuration
-linkTitle: 5.1 Configuration
+title: 3.1 Configuration
+linkTitle: 3.1 Configuration
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: 8.2 Configuring the Pipelines
-linkTitle: 8.2 Pipeline Configuration
+title: 6.2 Configuring the Pipelines
+linkTitle: 6.2 Pipeline Configuration
 weight: 2
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: 6. Redacting Sensitive Data
-linkTitle: 6. Sensitive Data
+title: 4. Redacting Sensitive Data
+linkTitle: 4. Sensitive Data
 time: 10 minutes
-weight: 8
+weight: 6
 ---
 
 In this section, you'll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from telemetry spans. This is crucial for protecting sensitive information such as credit card numbers, personal data, or other security-related details that must be anonymized before being processed or exported.

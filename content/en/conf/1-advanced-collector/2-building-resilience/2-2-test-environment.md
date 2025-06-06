@@ -1,6 +1,6 @@
 ---
-title: 4.2 Setup environment for Resilience Testing
-linkTitle: 4.2 Setup environment
+title: 2.2 Setup environment for Resilience Testing
+linkTitle: 2.2 Setup environment
 weight: 2
 ---
 

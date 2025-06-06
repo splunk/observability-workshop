@@ -1,6 +1,6 @@
 ---
-title: 4.3 Simulate Failure
-linkTitle: 4.3 Simulate Failure
+title: 2.3 Simulate Failure
+linkTitle: 2.3 Simulate Failure
 weight: 3
 ---
 

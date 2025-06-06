@@ -1,6 +1,6 @@
 ---
-title: 8.3 Test Routing Connector
-linkTitle: 8.3 Test Routing Connector
+title: 6.3 Test Routing Connector
+linkTitle: 6.3 Test Routing Connector
 weight: 3
 ---
 
