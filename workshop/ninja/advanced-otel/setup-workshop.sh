@@ -33,7 +33,7 @@ echo "  ├── 3-dropping-spans"
 echo "  ├── 4-sensitive-data"
 echo "  ├── 5-transform-data"
 echo "  └── 6-routing-data"
-echo "Workshop environment setup complete!"
+echo ""
 
 # Set default filename if not provided as argument
 AGENT_CONFIG_FILE="1-agent-gateway/agent.yaml"
@@ -219,3 +219,5 @@ else
     echo "✗ Error: Failed to create configuration file"
     exit 1
 fi
+
+echo "Workshop environment setup complete!"
