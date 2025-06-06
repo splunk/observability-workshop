@@ -1,6 +1,6 @@
 ---
 title: Pre-requisites
-weight: 2.1
+weight: 2
 archetype: chapter
 time: 90 minutes
 ---
@@ -24,14 +24,7 @@ time: 90 minutes
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
-```
-
-**Update file permissions**: Once downloaded, update the file permissions to make both executable:
-
-```bash
-chmod +x otelcol loadgen && \
-./otelcol -v && \
-./loadgen --help
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 ```
 
 {{% /tab %}}
@@ -40,6 +33,7 @@ chmod +x otelcol loadgen && \
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 ```
 
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
@@ -52,23 +46,35 @@ xattr -dr com.apple.quarantine otelcol && \
 xattr -dr com.apple.quarantine loadgen
 ```
 
-**Update file permissions**: Once downloaded, update the file permissions to make both executable:
-
-```bash
-chmod +x otelcol loadgen && \
-./otelcol -v && \
-./loadgen --help
-```
-
 {{% /notice %}}
 
 {{% /tab %}}
 {{% /tabs %}}
 
+**Update file permissions**: Once downloaded, update the file permissions to make both executable:
+
+```bash
+chmod +x otelcol loadgen setup-workshop && \
+./otelcol -v && \
+./loadgen --help
+```
+
+Run the workshop setup script to create the initial directory structure and copy the necessary files:
+
+```bash
+./setup-workshop.sh
+```
+
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
-├── otelcol      # OpenTelemetry Collector binary
-└── loadgen      # Load Generator binary
+├── otelcol         # OpenTelemetry Collector binary
+├── loadgen         # Load Generator binary
+├── 1-agent-gateway
+├── 2-resilience
+├── 3-dropping-spans
+├── 4-sensitive-data
+├── 5-transform-data
+└── 6-routing
 ```
 
 <!--
