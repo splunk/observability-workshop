@@ -1,7 +1,7 @@
 ---
-title: 3.2 Test FileLog Receiver
-linkTitle: 3.2 Test FileLog Receiver
-weight: 4
+title: 1.4 Send Logs
+linkTitle: 1.4 Send Logs
+weight: 5
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}

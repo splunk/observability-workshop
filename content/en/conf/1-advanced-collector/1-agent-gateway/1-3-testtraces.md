@@ -1,6 +1,6 @@
 ---
-title: 2.4 Send traces from the Agent to the Gateway
-linkTitle: 2.4 Send Traces
+title: 1.3 Send traces from the Agent to the Gateway
+linkTitle: 1.3 Send Traces
 weight: 4
 ---
 
