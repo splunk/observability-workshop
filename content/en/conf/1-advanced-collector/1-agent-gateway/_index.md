@@ -16,8 +16,8 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans**, **Logs**
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Open or create your first terminal window and name it  **Agent**. 
-Then, navigate to  directory for the first excersise `[WORKSHOP]/1-agent-gateway` and verify that the required files are generated:
+1. Open or create your first terminal window and name it **Agent**.
+Then, navigate to the directory for the first exercise `[WORKSHOP]/1-agent-gateway` and verify that the required files are generated:
 
     ```bash
     cd 1-agent-gateway
@@ -27,18 +27,18 @@ Then, navigate to  directory for the first excersise `[WORKSHOP]/1-agent-gateway
 2. You should see the following files in the directory.
 If not, re-run the setup-workshop.sh script as described in the *Pre-requisites* section:
 
-```text { title="Directory Structure" }
-.
-├── agent.yaml
-└── gateway.yaml
-```
+    ```text { title="Directory Structure" }
+    .
+    ├── agent.yaml
+    └── gateway.yaml
+    ```
 
-3. 	Next, check the contents of the **agent.yaml** file.
+3. Next, check the contents of the **agent.yaml** file.
 This file outlines the core structure of the OpenTelemetry Collector as deployed in agent mode:
 
-  ```bash
-      cat ./agent.out
-  ```
+    ```bash
+        cat ./agent.out
+    ```
 
 You should see a pre-configured setup tailored for this workshop.:
 
@@ -106,7 +106,7 @@ pipelines:
     - resource/add_mode                # Add collector mode metadata
     - batch                            # Batch processor
     exporters:
-    - debug                            # Debug Exporter                         
+    - debug                            # Debug Exporter
     - otlphttp                         # OTLP/HTTP Exporter
   metrics:
     receivers:
@@ -142,28 +142,33 @@ Let’s review the key components of the agent.yaml file used in this workshop. 
 
 **Receivers:**
 
-The receivers section defines how the agent ingests telemetry data. In this setup, we’ve enabled three types of receivers:
+The `receivers` section defines how the agent ingests telemetry data. In this setup, we’ve enabled three types of receivers:
 
 * Host Metrics Receiver
+
   ```yaml
   hostmetrics:                         # Host Metrics Receiver
     collection_interval: 3600s         # Collection Interval (1hr)
     scrapers:
       cpu:                             # CPU Scraper
-  ```    
-  Collects CPU usage from the local system every hour. We’ll use this to generate example metric data. 
+  ```
+
+  Collects CPU usage from the local system every hour. We’ll use this to generate example metric data.
 
 * OTLP Receiver (HTTP protocol)
+
   ```yaml
   otlp:                                # OTLP Receiver
     protocols:
       http:                            # Configure HTTP protocol
         endpoint: "0.0.0.0:4318"       # Endpoint to bind to
   ```
-  This enables the agent to receive spans, metrics, and logs over HTTP on port 4318.  We use this to send data to the collector in our excersises.
 
-* Filelog Receiver
-  ```yaml      
+This enables the agent to receive spans, metrics, and logs over HTTP on port 4318.  We use this to send data to the collector in our exercises.
+
+* FileLog Receiver
+
+  ```yaml
   filelog/quotes:                      # Receiver Type/Name
     include: ./quotes.log              # The file to read log data from
     include_file_path: true            # Include file path in the log data
@@ -172,19 +177,21 @@ The receivers section defines how the agent ingests telemetry data. In this setu
       com.splunk.source: ./quotes.log  # Source of the log data
       com.splunk.sourcetype: quotes    # Source type of the log data
   ```
-This allows the agent to tail a local log file (quotes.log) and convert it to structured log events, enriched with metadata such as source and sourcetype.
+
+This allows the agent to tail a local log file (`quotes.log`) and convert it to structured log events, enriched with metadata such as `source` and `sourceType`.
 
 **Exporters:**
 
-The exporters section controls where the collected telemetry data is sent:
+The `exporters` section controls where the collected telemetry data is sent:
 
-  ```yaml 
+  ```yaml
   debug:
     verbosity: detailed
   otlphttp:
     endpoint: "http://localhost:5318"
   ```
-  The **debug:** exporter prints data to the console for visibility and debugging during the workshop while the **otlphttp:** exporter forwards all telemetry to a local Gateway instance that we will configure and run next.
+
+The **debug:** exporter prints data to the console for visibility and debugging during the workshop while the **otlphttp:** exporter forwards all telemetry to a local Gateway instance that we will configure and run next.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 This dual-export strategy ensures you can see the raw data locally while also sending it downstream for further processing and export.
