@@ -19,12 +19,11 @@ echo "Creating workshop directories..."
 
 # Common workshop subdirectories
 mkdir -p 1-agent-gateway
-mkdir -p 2-reslience
+mkdir -p 2-building-resilience
 mkdir -p 3-dropping-spans
-mkdir -p 4-senstive-data
+mkdir -p 4-sensitive-data
 mkdir -p 5-transform-data
-mkdir -p 6-routing
-
+mkdir -p 6-routing-data
 
 echo "✓ Created subdirectories:"
 echo "  ├── 1-agent-gateway"
@@ -35,13 +34,12 @@ echo "  ├── 5-transform-data"
 echo "  └── 6-routing-data"
 echo ""
 
-# Set default filename if not provided as argument
-AGENT_CONFIG_FILE="1-agent-gateway/agent.yaml"
-
-echo "Creating OpenTelemetry Collector agent configuration file: ${AGENT_CONFIG_FILE}"
-
-# Write the configuration to the file
-cat > "${AGENT_CONFIG_FILE}" << 'EOF'
+# Function to create agent.yaml configuration
+create_agent_config() {
+    local config_file="$1"
+    echo "Creating OpenTelemetry Collector agent configuration file: ${config_file}"
+    
+    cat > "${config_file}" << 'EOF'
 ###########################            This section holds all the
 ## Configuration section ##            configurations that can be 
 ###########################            used in this OpenTelemetry Collector
@@ -131,23 +129,24 @@ service:                               # Services configured for this Collector
       - otlphttp
 EOF
 
-# Check if the file was created successfully
-if [ $? -eq 0 ]; then
-    echo "✓ Configuration file created successfully: ${AGENT_CONFIG_FILE}"
-    echo "✓ File size: $(wc -c < "${AGENT_CONFIG_FILE}") bytes"
-    echo ""
-else
-    echo "✗ Error: Failed to create configuration file"
-    exit 1
-fi
+    # Check if the file was created successfully
+    if [ $? -eq 0 ]; then
+        echo "✓ Configuration file created successfully: ${config_file}"
+        echo "✓ File size: $(wc -c < "${config_file}") bytes"
+        echo ""
+        return 0
+    else
+        echo "✗ Error: Failed to create configuration file: ${config_file}"
+        return 1
+    fi
+}
 
-# Set default filename if not provided as argument
-GATEWAY_CONFIG_FILE="1-agent-gateway/gateway.yaml"
-
-echo "Creating OpenTelemetry Collector gateway configuration file: ${GATEWAY_CONFIG_FILE}"
-
-# Write the configuration to the file
-cat > "${GATEWAY_CONFIG_FILE}" << 'EOF'
+# Function to create gateway.yaml configuration
+create_gateway_config() {
+    local config_file="$1"
+    echo "Creating OpenTelemetry Collector gateway configuration file: ${config_file}"
+    
+    cat > "${config_file}" << 'EOF'
 ###########################         This section holds all the
 ## Configuration section ##         configurations that can be 
 ###########################         used in this OpenTelemetry Collector
@@ -232,14 +231,44 @@ service:                          # Service configuration
       - file/logs
 EOF
 
-# Check if the file was created successfully
-if [ $? -eq 0 ]; then
-    echo "✓ Configuration file created successfully: ${GATEWAY_CONFIG_FILE}"
-    echo "✓ File size: $(wc -c < "${GATEWAY_CONFIG_FILE}") bytes"
+    # Check if the file was created successfully
+    if [ $? -eq 0 ]; then
+        echo "✓ Configuration file created successfully: ${config_file}"
+        echo "✓ File size: $(wc -c < "${config_file}") bytes"
+        echo ""
+        return 0
+    else
+        echo "✗ Error: Failed to create configuration file: ${config_file}"
+        return 1
+    fi
+}
+
+# Create configuration files for multiple directories
+DIRECTORIES=("1-agent-gateway" "2-building-resilience")
+
+for dir in "${DIRECTORIES[@]}"; do
+    echo "Creating configuration files for ${dir}..."
+    
+    # Create agent.yaml
+    if ! create_agent_config "${dir}/agent.yaml"; then
+        echo "✗ Failed to create agent.yaml in ${dir}"
+        exit 1
+    fi
+    
+    # Create gateway.yaml
+    if ! create_gateway_config "${dir}/gateway.yaml"; then
+        echo "✗ Failed to create gateway.yaml in ${dir}"
+        exit 1
+    fi
+    
+    echo "✓ Completed configuration files for ${dir}"
     echo ""
-else
-    echo "✗ Error: Failed to create configuration file"
-    exit 1
-fi
+done
 
 echo "Workshop environment setup complete!"
+echo "Configuration files created in the following directories:"
+for dir in "${DIRECTORIES[@]}"; do
+    echo "  ${dir}/"
+    echo "    ├── agent.yaml"
+    echo "    └── gateway.yaml"
+done

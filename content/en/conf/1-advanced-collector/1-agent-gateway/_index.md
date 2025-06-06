@@ -185,14 +185,15 @@ This allows the agent to tail a local log file (`quotes.log`) and convert it to 
 * The `exporters` section controls where the collected telemetry data is sent:
 
   ```yaml
-  debug:                               # Exporter Type
-    verbosity: detailed                # Enabled detailed debug output
-  otlphttp:                            # Exporter Type
-    endpoint: "http://localhost:5318"  # Gateway OTLP endpoint  
+  exporters:                             # Array of Exporters
+    debug:                               # Exporter Type
+      verbosity: detailed                # Enabled detailed debug output
+    otlphttp:                            # Exporter Type
+      endpoint: "http://localhost:5318"  # Gateway OTLP endpoint  
   ```
 
   The **debug:** exporter prints data to the console for visibility and debugging during the workshop while the **otlphttp:** exporter forwards all telemetry to a local Gateway instance.
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+{{% notice title="Info" style="info" %}}
 This dual-export strategy ensures you can see the raw data locally while also sending it downstream for further processing and export.
 {{% /notice %}}

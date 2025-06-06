@@ -19,12 +19,10 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Copy `*.yaml` from the `1-agent-gatway` directory into `2-building-resilience`.
-
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `[WORKSHOP]/2-building-resilience` directory.**
 
-Your updated directory structure will now look like this:
+Your directory structure will look like this:
 
 ```text { title="Updated Directory Structure" }
 .
