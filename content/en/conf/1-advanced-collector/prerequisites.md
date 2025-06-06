@@ -67,14 +67,14 @@ Run the workshop setup script to create the initial directory structure and copy
 
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
-├── otelcol         # OpenTelemetry Collector binary
-├── loadgen         # Load Generator binary
-├── 1-agent-gateway
-├── 2-resilience
+├── otelcol                # OpenTelemetry Collector binary
+├── loadgen                # Load Generator binary
+├── 1-agent-gateway        # Directories for exercises
+├── 2-building-resilience
 ├── 3-dropping-spans
 ├── 4-sensitive-data
 ├── 5-transform-data
-└── 6-routing
+└── 6-routing-data
 ```
 
 <!--

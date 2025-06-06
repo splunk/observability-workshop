@@ -19,11 +19,10 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Inside the `[WORKSHOP]` directory, create a new subdirectory named `4-resilience`.
-- Next, copy `*.yaml` from the `3-filelog` directory into `4-resilience`.
+- Copy `*.yaml` from the `1-agent-gatway` directory into `2-building-resilience`.
 
 > [!IMPORTANT]
-> **Change _ALL_ terminal windows to the `[WORKSHOP]/4-resilience` directory.**
+> **Change _ALL_ terminal windows to the `[WORKSHOP]/2-building-resilience` directory.**
 
 Your updated directory structure will now look like this:
 

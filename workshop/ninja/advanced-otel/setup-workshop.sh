@@ -28,9 +28,9 @@ mkdir -p 6-routing
 
 echo "✓ Created subdirectories:"
 echo "  ├── 1-agent-gateway"
-echo "  ├──cd 2-resilience"
+echo "  ├── 2-building-resilience"
 echo "  ├── 3-dropping-spans"
 echo "  ├── 4-sensitive-data"
 echo "  ├── 5-transform-data"
-echo "  └── 6-routing"
+echo "  └── 6-routing-data"
 echo "Workshop environment setup complete!"
