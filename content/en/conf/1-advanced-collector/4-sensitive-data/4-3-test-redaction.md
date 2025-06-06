@@ -1,6 +1,6 @@
 ---
-title: 6.3 Test Redaction Processor
-linkTitle: 6.3 Test Redaction Processor
+title: 4.3 Test Redaction Processor
+linkTitle: 4.3 Test Redaction Processor
 weight: 3
 ---
 

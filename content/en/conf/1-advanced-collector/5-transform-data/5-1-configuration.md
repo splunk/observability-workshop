@@ -1,6 +1,6 @@
 ---
-title: 7.1 Configuration
-linkTitle: 7.1 Configuration
+title: 5.1 Configuration
+linkTitle: 5.1 Configuration
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: 8.1 Configure the Routing Connector
-linkTitle: 8.1 Routing Configuration
+title: 6.1 Configure the Routing Connector
+linkTitle: 6.1 Routing Configuration
 weight: 1
 ---
 

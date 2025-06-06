@@ -1,6 +1,6 @@
 ---
-title: 6.1 Configuration
-linkTitle: 6.1 Configuration
+title: 4.1 Configuration
+linkTitle: 4.1 Configuration
 weight: 1
 ---
 
@@ -45,7 +45,7 @@ In this step, we’ll:
         action: delete                 # Delete the password
   ```
 
-**Add a `redaction` Processor**: The [**The Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) detects and redacts sensitive data in span attributes based on predefined patterns, such as credit card numbers or other personally identifiable information (PII).
+**Add a `redaction` Processor**: The [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) detects and redacts sensitive data in span attributes based on predefined patterns, such as credit card numbers or other personally identifiable information (PII).
 
 In this step:
 

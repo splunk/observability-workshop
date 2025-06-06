@@ -1,6 +1,6 @@
 ---
-title: 4.1 File Storage Configuration
-linkTitle: 4.1 Configuration
+title: 2.1 File Storage Configuration
+linkTitle: 2.1 Configuration
 weight: 1
 ---
 
