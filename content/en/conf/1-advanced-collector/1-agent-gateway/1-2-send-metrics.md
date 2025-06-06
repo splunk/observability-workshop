@@ -8,9 +8,10 @@ Now that the **gateway** is running, it’s time to test the full telemetry flow
 We’ll start the **agent**, which will begin by sending **metrics**. Then we’ll send **traces** and generate **logs** to verify that all signals are properly routed through the agent to the gateway.
 
 You should see the resulting output appear in the following files:
-	•	gateway-traces.out
-	•	gateway-metrics.out
-	•	gateway-logs.out
+
+* `gateway-traces.out`
+* `gateway-metrics.out`
+* `gateway-logs.out`
 
 This will confirm that communication between the agent and gateway is working as expected.
 
@@ -21,7 +22,7 @@ This will confirm that communication between the agent and gateway is working as
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
- 
+
 **Verify CPU Metrics**:
 
 1. Check that when the `agent` starts, it immediately starts sending **CPU** metrics.
