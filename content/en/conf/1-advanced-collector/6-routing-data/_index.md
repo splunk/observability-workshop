@@ -11,9 +11,8 @@ For example, you might want to send *production* data to one exporter while dire
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Inside the `[WORKSHOP]` directory, create a new subdirectory named `8-routing-data`.
-- Next, copy `*.yaml` from the `7-transform-data` directory into `8-routing-data`.
-- Change **all** terminal windows to the `[WORKSHOP]/8-routing-data` directory.
+- Copy `*.yaml` from the `5-transform-data` directory into `6-routing-data`.
+- Change **all** terminal windows to the `[WORKSHOP]/6-routing-data` directory.
 
 Your updated directory structure will now look like this:
 
