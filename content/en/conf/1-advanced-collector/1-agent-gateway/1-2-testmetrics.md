@@ -1,8 +1,18 @@
 ---
-title: 1.2 Test  agent/gateway Setup
-linkTitle: 1.2 Test agent/gateway Setup
+title: 1.2 Send Metrics
+linkTitle: 1.2 Send Metrics
 weight: 3
 ---
+Now that the **gateway** is running, it’s time to test the full telemetry flow.
+
+We’ll start the **agent**, which will begin by sending **metrics**. Then we’ll send **traces** and generate **logs** to verify that all signals are properly routed through the agent to the gateway.
+
+You should see the resulting output appear in the following files:
+	•	gateway-traces.out
+	•	gateway-metrics.out
+	•	gateway-logs.out
+
+This will confirm that communication between the agent and gateway is working as expected.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
