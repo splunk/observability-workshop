@@ -47,7 +47,7 @@ service:
   - file_storage/checkpoint            # Enabled extensions for this collector
 ```
 
-**Update the `metrics` pipeline**: For this exercise we are going to remove the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
+**Update the `metrics` pipeline**: For this exercise we are going to comment out the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
 
 ```yaml
     metrics:
