@@ -98,7 +98,7 @@ service:                          # Services configured for this Collector
       - otlphttp
     metrics:
       receivers:
-      - hostmetrics.              # Hostmetric reciever (cpu only)
+      - hostmetrics               # Hostmetric reciever (cpu only)
       - otlp
       processors:
       - memory_limiter            # Memory Limiter processor
