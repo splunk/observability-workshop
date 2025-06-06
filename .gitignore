@@ -60,3 +60,4 @@ checkpoint-folder
 checkpoint-folder/*
 workshop/ninja/advanced-otel/3-other-logs/important_logs.log
 workshop/ninja/advanced-otel/1-agent/send-trace.sh
+content/en/conf/1-advanced-collector/1-agent-gateway/old.zip
