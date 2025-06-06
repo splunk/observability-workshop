@@ -54,7 +54,7 @@ xattr -dr com.apple.quarantine loadgen
 **Update file permissions**: Once downloaded, update the file permissions to make both executable:
 
 ```bash
-chmod +x otelcol loadgen setup-workshop && \
+chmod +x otelcol loadgen setup-workshop.sh && \
 ./otelcol -v && \
 ./loadgen --help
 ```
