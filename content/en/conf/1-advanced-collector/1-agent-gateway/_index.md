@@ -1,6 +1,8 @@
 ---
-title: 1. Agent & Gateway Configuration
-linkTitle: 1. Agent/Gateway Setup
+title: 1. Agent Configuration
+linkTitle: 1. Agent/Gateway Config
+
+
 time: 10 minutes
 weight: 3
 ---
