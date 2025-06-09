@@ -9,7 +9,7 @@ time: 90 minutes
 
 - Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
 - Supported Environments:
-  - A provided Splunk Workshop Instance (preferred).
+  - A provided Splunk Workshop Instance (preferred). Outbound access to port `2222` is required for `ssh` access.
   - Apple Mac (Apple Silicon). Installation of `jq` is required - [**https://jqlang.org/download/**](https://jqlang.org/download/)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -60,7 +60,7 @@ chmod +x otelcol loadgen setup-workshop.sh && \
 ./setup-workshop.sh
 ```
 
-The `setup-workshop.sh` script will create the necessary directories and generate the initial configuration files for the `agent` and the `gateway`.
+The `setup-workshop.sh` script will create the necessary directories and generate the initial configuration files for the **Agent** and the **Gateway**.
 
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
