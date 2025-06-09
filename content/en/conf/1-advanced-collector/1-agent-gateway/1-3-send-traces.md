@@ -86,7 +86,9 @@ jq -c '.resourceSpans[] as $resource | $resource.scopeSpans[].spans[] | "Span \(
 {{% /tab %}}
 {{% /tabs %}}
 
+<!--
 > [!IMPORTANT]
 > Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+-->
 
 {{% /notice %}}
