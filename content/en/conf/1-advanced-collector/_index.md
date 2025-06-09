@@ -22,9 +22,7 @@ Everything in this workshop is designed to run locally, ensuring a hands-on and 
 
 During this workshop, we will cover the following topics:
 
-- **Setting up the agent locally**: Add metadata, and introduce the debug and file exporters.
-- **Configuring a gateway**: Route traffic from the agent to the gateway.
-- **Configuring the FileLog receiver**: Collect log data from various log files.
+- **Setting up the agent and gateway locally**: Test that metrics, traces, and logs go via the agent to the gateway.
 - **Enhancing agent resilience**: Basic configurations for fault tolerance.
 - **Configuring processors**:
   - Filter out noise by dropping specific spans (e.g., health checks).
@@ -32,6 +30,6 @@ During this workshop, we will cover the following topics:
   - Transform data using OTTL (OpenTelemetry Transformation Language) in the pipeline before exporting.
 - **Configuring Connectors**:
   - Route data to different endpoints based on the values received.
-  - Convert log and span data to metrics.
+  <!--- Convert log and span data to metrics.-->
 
 By the end of this workshop, you'll be familiar with configuring the OpenTelemetry Collector for a variety of real-world use cases.
