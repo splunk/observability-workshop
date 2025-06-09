@@ -27,12 +27,10 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`.
-
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `[WORKSHOP]/5-transform-data` directory.**
 
-Your updated directory structure will now look like this:
+Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`. Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 .
