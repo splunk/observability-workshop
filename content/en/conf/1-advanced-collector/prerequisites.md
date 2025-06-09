@@ -9,21 +9,21 @@ time: 90 minutes
 
 - Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
 - Supported Environments:
-  - Splunk Workshop Instance (preferred)
+  - A provided Splunk Workshop Instance (preferred).
   - Apple Mac (Apple Silicon). Installation of `jq` is required - [**https://jqlang.org/download/**](https://jqlang.org/download/)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Create a workshop directory**: In your environment create a new directory (e.g., `advanced-otel-workshop`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
+**Create a workshop directory**: In your environment create a new directory (e.g. `advanced-otel-workshop`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
 
-**Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector and Load Generator binaries:
+**Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
 
 {{% tabs %}}
 {{% tab title="Splunk Workshop Instance" %}}
 
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 ```
 
@@ -32,7 +32,7 @@ curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/wor
 
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 ```
 
@@ -51,19 +51,16 @@ xattr -dr com.apple.quarantine loadgen
 {{% /tab %}}
 {{% /tabs %}}
 
-**Update file permissions**: Once downloaded, update the file permissions to make both executable:
+**Update file permissions**: Once downloaded, update the file permissions to make all files executable:
 
 ```bash
 chmod +x otelcol loadgen setup-workshop.sh && \
 ./otelcol -v && \
-./loadgen --help
-```
-
-Run the workshop setup script to create the initial directory structure and copy the necessary files:
-
-```bash
+./loadgen --help && \
 ./setup-workshop.sh
 ```
+
+The `setup-workshop.sh` script will create the necessary directories and generate the initial configuration files for the `agent` and the `gateway`.
 
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
