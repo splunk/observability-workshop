@@ -13,9 +13,9 @@ This makes your observability pipeline easier to manage, scale, and analyze—es
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 Open or create your second terminal window and name it **Gateway**. Navigate to the first exercise directory `[WORKSHOP]/1-agent-gateway`
-then check the contents of the gateway.yaml file.
+then check the contents of the `gateway.yaml` file.
 
-This file outlines the core structure of the OpenTelemetry Collector as deployed in gateway mode:
+This file outlines the core structure of the OpenTelemetry Collector as deployed in **Gateway** mode:
 
 ```bash
  cat ./gateway.yaml
@@ -110,7 +110,7 @@ service:                          # Service configuration
 
 ### Understanding the Gateway Configuration
 
-Let’s explore the **gateway.yaml** file that defines how the OpenTelemetry Collector is configured in gateway mode during this workshop. This gateway is responsible for receiving telemetry from the agent, then processing and exporting it for inspection or forwarding.
+Let’s explore the `gateway.yaml` file that defines how the OpenTelemetry Collector is configured in **Gateway** mode during this workshop. This **Gateway** is responsible for receiving telemetry from the **Agent**, then processing and exporting it for inspection or forwarding.
 
 * **OTLP Receiver (Custom Port)**
 
@@ -122,14 +122,14 @@ Let’s explore the **gateway.yaml** file that defines how the OpenTelemetry Col
           endpoint: "0.0.0.0:5318"
   ```
 
-  This port (**5318**) is chosen to match the `otlphttp` exporter in the agent configuration, ensuring that all telemetry data sent by the agent is accepted by the gateway.
+  The port `5318` matches the `otlphttp` exporter in the **Agent** configuration, ensuring that all telemetry data sent by the **Agent** is accepted by the **Gateway**.
 
 > [!NOTE]
 > This separation of ports avoids conflicts and keeps responsibilities clear between agent and gateway roles.
 
 * **File Exporters**
 
-  The gateway uses three file exporters to output telemetry data to local files. These exporters are defined as:
+  The **Gateway** uses three file exporters to output telemetry data to local files. These exporters are defined as:
 
   ```yaml
   exporters:
@@ -143,17 +143,15 @@ Let’s explore the **gateway.yaml** file that defines how the OpenTelemetry Col
 
   Each exporter writes a specific signal type to its corresponding file:
 
-  * gateway-traces.out: stores span (trace) data
-  * gateway-metrics.out: stores metric data
-  * gateway-logs.out: stores log data
+  * `gateway-traces.out`: stores span (trace) data
+  * `gateway-metrics.out`: stores metric data
+  * `gateway-logs.out`: stores log data
 
-  These files are created once the gateway is started and will be populated with real telemetry as the agent sends data.
-
-  You can monitor these files in real time to observe the flow of telemetry through your pipeline.  
+  These files are created once the gateway is started and will be populated with real telemetry as the agent sends data. You can monitor these files in real time to observe the flow of telemetry through your pipeline.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In the **Gateway terminal** window, run the following command to start the `gateway`:
+**Start the Gateway**: In the **Gateway terminal** window, run the following command to start the **Gateway**:
 
 ```bash {title="Start the Gateway"}
 ../otelcol --config=gateway.yaml
