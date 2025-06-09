@@ -8,13 +8,13 @@ To test your configuration, you'll need to generate some trace data that include
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
+**Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
 ```bash
 ../otelcol --config ./gateway.yaml
 ```
 
-**Start the Agent**: In your **Agent terminal** window start the `agent`.
+**Start the Agent**: In your **Agent terminal** window start the **Agent**.
 
 ```bash
 ../otelcol --config ./agent.yaml
@@ -26,7 +26,7 @@ To test your configuration, you'll need to generate some trace data that include
 ../loadgen -health -count 5
 ```
 
-**Verify `agent.out`**: Using `jq` confirm the name of the spans received by the `agent`:
+**Verify `agent.out`**: Using `jq` confirm the name of the spans received by the **Agent**:
 
 {{% tabs %}}
 {{% tab title="Check spans in agent.out" %}}
@@ -54,7 +54,7 @@ jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found 
 {{% /tab %}}
 {{% /tabs %}}
 
-**Check the Gateway Debug output**: Using `jq` confirm the name of the spans received by the `gateway`:
+**Check the Gateway Debug output**: Using `jq` confirm the name of the spans received by the **Gateway**:
 
 {{% tabs %}}
 {{% tab title="Check spans in gateway-traces.out" %}}
@@ -87,10 +87,11 @@ When using the `Filter` processor, make sure you understand the look of your inc
 
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 
-> [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
-
 {{% /notice %}}
+
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
+
 <!--
 ---
 The following excises can be done in your own time after the workshop.

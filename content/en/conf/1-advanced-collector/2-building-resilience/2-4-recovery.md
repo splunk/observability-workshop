@@ -4,13 +4,13 @@ linkTitle: 2.4 Recovery
 weight: 4
 ---
 
-In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from a network outage by restarting the **Gateway** collector. When the `gateway` becomes available again, the `agent` will resume sending data from its last check-pointed state, ensuring no data loss.
+In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from a network outage by restarting the **Gateway** collector. When the **Gateway** becomes available again, the **Agent** will resume sending data from its last check-pointed state, ensuring no data loss.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 **Restart the Gateway**: In the **Gateway terminal** window run:
 
-```bash {title="Gateway"}
+```bash {title="Start the Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 
@@ -22,7 +22,7 @@ In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from
 
 {{% /notice %}}
 
-After the `agent` is up and running, the **File_Storage** extension will detect buffered data in the checkpoint folder.  
+After the **Agent** is up and running, the **File_Storage** extension will detect buffered data in the checkpoint folder.  
 It will start to dequeue the stored spans from the last checkpoint folder, ensuring no data is lost.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -35,7 +35,7 @@ Note that the Agent Debug Screen does **NOT** change and still shows the followi
   ```
 
 **Watch the Gateway Debug output**  
-You should see from the `gateway` debug screen, it has started receiving the previously missed traces without requiring any additional action on your part.  
+You should see from the **Gateway** debug screen, it has started receiving the previously missed traces without requiring any additional action on your part.  
 
   ```txt
   2025-02-07T12:44:32.651+0100    info    service@v0.120.0/service.go:253 Everything is ready. Begin running and processing data.
@@ -46,7 +46,7 @@ You should see from the `gateway` debug screen, it has started receiving the pre
   ```
 
 **Check the `gateway-traces.out` file**  
-Using `jq`, count the number of traces in the recreated `gateway-traces.out`. It should match the number you send when the `gateway` was down.
+Using `jq`, count the number of traces in the recreated `gateway-traces.out`. It should match the number you send when the **Gateway** was down.
 
 {{% tabs %}}
 {{% tab title="Check Gateway Traces Out File" %}}
@@ -66,10 +66,10 @@ jq '.resourceSpans | length | "\(.) resourceSpans found"' gateway-traces.out
 {{% /tab %}}
 {{% /tabs %}}
 
-> [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
-
 {{% /notice %}}
+
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
 ### Conclusion
 
