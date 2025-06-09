@@ -11,12 +11,10 @@ Specifically, we will drop traces based on the span name, which is commonly used
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Copy `*.yaml` from the `2-building-resilience` directory into `3-dropping-spans`.
-
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `[WORKSHOP]/3-dropping-spans` directory.**
 
-Your updated directory structure will now look like this:
+Copy `*.yaml` from the `2-building-resilience` directory into `3-dropping-spans`. Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 .

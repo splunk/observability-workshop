@@ -14,12 +14,10 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Copy `*.yaml` from the `3-dropping-spans` directory into `4-sensitive-data`.
-
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `[WORKSHOP]/4-sensitive-data` directory.**
 
-Your updated directory structure will now look like this:
+Copy `*.yaml` from the `3-dropping-spans` directory into `4-sensitive-data`. Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 .

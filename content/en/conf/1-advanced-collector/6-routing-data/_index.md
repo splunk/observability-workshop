@@ -11,10 +11,10 @@ For example, you might want to send *production* data to one exporter while dire
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Copy `*.yaml` from the `5-transform-data` directory into `6-routing-data`.
-- Change **all** terminal windows to the `[WORKSHOP]/6-routing-data` directory.
+> [!IMPORTANT]
+> **Change _ALL_ terminal windows to the `[WORKSHOP]/6-routing-data` directory.**
 
-Your updated directory structure will now look like this:
+Copy `*.yaml` from the `5-transform-data` directory into `6-routing-data`. Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 .
