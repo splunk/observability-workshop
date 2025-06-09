@@ -4,7 +4,7 @@ linkTitle: 5.3 Test Transform Processor
 weight: 3
 ---
 
-This test verifies that the `com.splunk/source` and `os.type` metadata have been **removed** from the log resource attributes before being exported by the `agent`. Additionally, the test ensures that:  
+This test verifies that the `com.splunk/source` and `os.type` metadata have been **removed** from the log resource attributes before being exported by the **Agent**. Additionally, the test ensures that:  
 
 1. The log body is parsed to extract severity information.  
    - `SeverityText` and `SeverityNumber` are set on the `LogRecord`.  
@@ -14,7 +14,7 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Check the debug output**: For both the `agent` and `gateway` confirm that `com.splunk/source` and `os.type` have been removed:
+**Check the debug output**: For both the **Agent** and **Gateway** confirm that `com.splunk/source` and `os.type` have been removed:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -41,7 +41,7 @@ Resource attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-For both the `agent` and `gateway` confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
+For both the **Agent** and **Gateway** confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -123,7 +123,7 @@ jq '[.resourceLogs[].scopeLogs[].logRecords[] | {severityText, severityNumber, b
 {{% /tab %}}
 {{% /tabs %}}
 
-> [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
-
 {{% /notice %}}
+
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.

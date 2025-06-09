@@ -6,12 +6,12 @@ weight: 3
 
 The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.
 
-In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the `agent`.
+In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 **Prepare the terminals**: Delete the `*.out` files and clear the screen.
 
-**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
+**Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
 ```bash
 ../otelcol --config=gateway.yaml
@@ -36,7 +36,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
       - otlphttp
 ```
 
-**Start the Agent**: In your **Agent terminal** window start the `agent`.
+**Start the Agent**: In your **Agent terminal** window start the **Agent**.
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -48,7 +48,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 ../loadgen -count 1
 ```
 
-**Check the debug output**: For both the `agent` and `gateway` confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
+**Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -126,14 +126,15 @@ Notice that `user.amex` has not been redacted because a matching regex pattern w
 
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
-> [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
-
 {{% /notice %}}
+
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
+
 <!--
 **(Optional) Redact Amex CC number**:
 
-Add the Amex card regex to `blocked_values` and restart `agent` collector.
+Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 
 ```yaml
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'

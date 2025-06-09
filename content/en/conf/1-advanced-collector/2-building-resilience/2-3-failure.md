@@ -4,17 +4,17 @@ linkTitle: 2.3 Simulate Failure
 weight: 3
 ---
 
-To assess the **Agent's** resilience, we'll simulate a temporary `gateway` outage and observe how the `agent` handles it:
+To assess the **Agent's** resilience, we'll simulate a temporary **Gateway** outage and observe how the **Agent** handles it:
 
 **Summary**:
 
-1. **Send Traces to the Agent** – Generate traffic by sending traces to the `agent`.
-2. **Stop the Gateway** – This will trigger the `agent` to enter retry mode.
-3. **Restart the Gateway** – The `agent` will recover traces from its persistent queue and forward them successfully. Without the persistent queue, these traces would have been lost permanently.
+1. **Send Traces to the Agent** – Generate traffic by sending traces to the **Agent**.
+2. **Stop the Gateway** – This will trigger the **Agent** to enter retry mode.
+3. **Restart the Gateway** – The **Agent** will recover traces from its persistent queue and forward them successfully. Without the persistent queue, these traces would have been lost permanently.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Simulate a network failure**: In the **Gateway terminal** stop the `gateway` with `Ctrl-C` and wait until the gateway console shows that it has stopped:
+**Simulate a network failure**: In the **Gateway terminal** stop the **Gateway** with `Ctrl-C` and wait until the gateway console shows that it has stopped:
 
 ```text
 2025-01-28T13:24:32.785+0100  info  service@v0.120.0/service.go:309  Shutdown complete.

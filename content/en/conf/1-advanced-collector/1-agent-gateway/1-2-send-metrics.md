@@ -25,8 +25,8 @@ This will confirm that communication between the agent and gateway is working as
 
 **Verify CPU Metrics**:
 
-1. Check that when the `agent` starts, it immediately starts sending **CPU** metrics.
-2. Both the `agent` and the `gateway` will display this activity in their debug output. The output should resemble the following snippet:
+1. Check that when the **Agent** starts, it immediately starts sending **CPU** metrics.
+2. Both the **Agent** and the **Gateway** will display this activity in their debug output. The output should resemble the following snippet:
 
 ```text
 <snip>
@@ -39,9 +39,9 @@ Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-At this stage, the `agent` continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway.
+At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway.
 
-The `gateway` processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+The **Gateway** processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
 
 **Verify Data arrived at Gateway**: To confirm that CPU metrics, specifically for `cpu0`, have successfully reached the gateway, we’ll inspect the `gateway-metrics.out` file using the `jq` command.
 

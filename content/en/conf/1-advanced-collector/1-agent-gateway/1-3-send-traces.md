@@ -8,8 +8,8 @@ weight: 4
 
 **Send a Test Trace**:
 
-1. Validate `agent` and `gateway` are still running.
-2. In the **Spans terminal** window, run the following command to send 5 spans and validate the output of the `agent` and `gateway` debug logs:
+1. Validate **Agent** and **Gateway** are still running.
+2. In the **Spans terminal** window, run the following command to send 5 spans and validate the output of the **Agent** and **Gateway** debug logs:
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}
@@ -88,7 +88,7 @@ jq -c '.resourceSpans[] as $resource | $resource.scopeSpans[].spans[] | "Span \(
 
 <!--
 > [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 -->
 
 {{% /notice %}}

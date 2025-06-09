@@ -26,7 +26,7 @@ Next, we will configure our environment to be ready for testing the **File Stora
 ../loadgen -count 5
 ```
 
-Both the `agent` and `gateway` should display debug logs, and the `gateway` should create a `./gateway-traces.out` file.
+Both the **Agent** and **Gateway** should display debug logs, and the **Gateway** should create a `./gateway-traces.out` file.
 
 {{% /notice %}}
 

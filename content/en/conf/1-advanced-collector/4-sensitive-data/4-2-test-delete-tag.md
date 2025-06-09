@@ -4,17 +4,17 @@ linkTitle: 4.2 Test Attribute Processor
 weight: 2
 ---
 
-In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the `agent`.
+In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the **Agent**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
+**Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
 ```bash
 ../otelcol --config=gateway.yaml
 ```
 
-**Start the Agent**: In your **Agent terminal** window start the `agent`.
+**Start the Agent**: In your **Agent terminal** window start the **Agent**.
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -26,7 +26,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ../loadgen -count 1
 ```
 
-**Check the debug output**: For both the `agent` and `gateway` debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
+**Check the debug output**: For both the **Agent** and **Gateway** debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -87,6 +87,6 @@ Notice that the `user.account_password` has been removed, and the `user.phone_nu
 {{% /tabs %}}
 
 > [!IMPORTANT]
-> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
 {{% /notice %}}
