@@ -164,7 +164,7 @@ The `receivers` section defines how the agent ingests telemetry data. In this se
         endpoint: "0.0.0.0:4318"       # Endpoint to bind to
   ```
 
-This enables the agent to receive spans, metrics, and logs over HTTP on port 4318.  We use this to send data to the collector in our exercises.
+  This enables the agent to receive spans, metrics, and logs over HTTP on port 4318.  We use this to send data to the collector in our exercises.
 
 * **FileLog Receiver**
 
@@ -178,7 +178,7 @@ This enables the agent to receive spans, metrics, and logs over HTTP on port 431
       com.splunk.sourcetype: quotes    # Source type of the log data
   ```
 
-This allows the agent to tail a local log file (`quotes.log`) and convert it to structured log events, enriched with metadata such as `source` and `sourceType`.
+  This allows the agent to tail a local log file (`quotes.log`) and convert it to structured log events, enriched with metadata such as `source` and `sourceType`.
 
 #### Exporters
 
