@@ -6,9 +6,11 @@ weight: 5
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
+**Start the log load generator:** In the **Logs terminal** window, run the following command to start the `loadgen`:
 
-**Start the Agent**: In your **Agent terminal** window start the `agent`.
+```bash
+../loadgen -logs
+```
 
 A continuous stream of log data from the `quotes.log` will be in the `agent` and `gateway` debug logs:
 
