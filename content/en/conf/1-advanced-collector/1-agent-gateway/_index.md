@@ -1,6 +1,6 @@
 ---
-title: 1. Agent Configuration
-linkTitle: 1. Agent/Gateway Config
+title: 1. Agent/Gateway Configuration
+linkTitle: 1. Agent/Gateway Configuration
 
 
 time: 10 minutes
