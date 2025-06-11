@@ -2,6 +2,7 @@
 
 # Splunk Workshop Setup Script
 # This script displays the Splunk ASCII art and creates workshop directories
+
 echo ""
 echo "███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗"
 echo "██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗"
