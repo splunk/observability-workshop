@@ -17,6 +17,22 @@ This will confirm that communication between the agent and gateway is working as
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
+**Start the Gateway**: In the **Gateway terminal** window, run the following command to start the **Gateway**:
+
+```bash {title="Start the Gateway"}
+../otelcol --config=gateway.yaml
+```
+
+If everything is configured correctly, the first and last lines of the output should look like:
+
+```text
+2025/06/09 09:22:11 settings.go:478: Set config to [gateway.yaml]
+...
+<snip to the end>
+...
+2025-06-09T09:22:11.944+0100    info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data. {"resource": {}}
+```
+
 **Start the Agent**: In the **Agent terminal** window start the agent with the agent configuration:
 
 ```bash { title="Start the Agent" }

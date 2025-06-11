@@ -148,23 +148,3 @@ Let’s explore the `gateway.yaml` file that defines how the OpenTelemetry Colle
   * `gateway-logs.out`: stores log data
 
   These files are created once the gateway is started and will be populated with real telemetry as the agent sends data. You can monitor these files in real time to observe the flow of telemetry through your pipeline.
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-**Start the Gateway**: In the **Gateway terminal** window, run the following command to start the **Gateway**:
-
-```bash {title="Start the Gateway"}
-../otelcol --config=gateway.yaml
-```
-
-If everything is configured correctly, the first and last lines of the output should look like:
-
-```text
-2025/06/09 09:22:11 settings.go:478: Set config to [gateway.yaml]
-...
-<snip to the end>
-...
-2025-06-09T09:22:11.944+0100    info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data. {"resource": {}}
-```
-
-{{% /notice %}}
