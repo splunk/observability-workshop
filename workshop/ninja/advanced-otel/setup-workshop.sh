@@ -15,6 +15,30 @@ echo "Welcome to the Splunk Advanced OpenTelemetry Workshop!"
 echo "======================================================"
 echo ""
 
+# Function to run common commands
+run_commands() {
+    chmod +x otelcol loadgen && \
+    ./otelcol -v && \
+    ./loadgen --help
+}
+
+# Platform-specific setup
+case "$OSTYPE" in
+    darwin*)
+        echo "macOS detected. Removing quarantine attributes..."
+        xattr -dr com.apple.quarantine otelcol loadgen 2>/dev/null
+        run_commands
+        ;;
+    linux-gnu*)
+        echo "Linux detected."
+        run_commands
+        ;;
+    *)
+        echo "Unsupported platform ($OSTYPE). This script only works on macOS and Linux."
+        exit 1
+        ;;
+esac
+
 # Create workshop directories
 echo "Creating workshop directories..."
 
