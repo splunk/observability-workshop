@@ -36,6 +36,7 @@ curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/wor
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 ```
 
+<!--
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
 Before running the binaries on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures they can execute without restrictions.
 
@@ -47,10 +48,11 @@ xattr -dr com.apple.quarantine loadgen
 ```
 
 {{% /notice %}}
-
+-->
 {{% /tab %}}
 {{% /tabs %}}
 
+<!--
 **Update file permissions**: Once downloaded, update the file permissions to make all files executable:
 
 ```bash
@@ -59,8 +61,89 @@ chmod +x otelcol loadgen setup-workshop.sh && \
 ./loadgen --help && \
 ./setup-workshop.sh
 ```
+-->
 
-The `setup-workshop.sh` script will create the necessary directories and generate the initial configuration files for the **Agent** and the **Gateway**.
+Run the `setup-workshop.sh` script which will configure the correct permissions and also create the initial configurations for the **Agent** and the **Gateway**.
+
+{{% tabs %}}
+{{% tab title="Setup Workshop" %}}
+
+```bash
+sh setup-workshop.sh
+```
+
+{{% /tab %}}
+{{% tab title="Verify Setup" %}}
+
+```text
+███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
+██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
+███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
+╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
+███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝
+╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝
+
+Welcome to the Splunk Advanced OpenTelemetry Workshop!
+======================================================
+
+macOS detected. Removing quarantine attributes...
+otelcol version v0.126.0
+Usage: loadgen [OPTIONS]
+Options:
+  -base       Send base traces (enabled by default)
+  -health     Send health traces
+  -security   Send security traces
+  -logs       Enable logging of random quotes to quotes.log
+  -json       Output logs in JSON format (only applicable with -logs)
+  -count      Number of traces or logs to send (default: infinite)
+  -h, --help  Display this help message
+
+Example:
+  loadgen -health -security -count 10   Send 10 health and security traces
+  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log
+Creating workshop directories...
+✓ Created subdirectories:
+  ├── 1-agent-gateway
+  ├── 2-building-resilience
+  ├── 3-dropping-spans
+  ├── 4-sensitive-data
+  ├── 5-transform-data
+  └── 6-routing-data
+
+Creating configuration files for 1-agent-gateway...
+Creating OpenTelemetry Collector agent configuration file: 1-agent-gateway/agent.yaml
+✓ Configuration file created successfully: 1-agent-gateway/agent.yaml
+✓ File size:     4355 bytes
+
+Creating OpenTelemetry Collector gateway configuration file: 1-agent-gateway/gateway.yaml
+✓ Configuration file created successfully: 1-agent-gateway/gateway.yaml
+✓ File size:     3376 bytes
+
+✓ Completed configuration files for 1-agent-gateway
+
+Creating configuration files for 2-building-resilience...
+Creating OpenTelemetry Collector agent configuration file: 2-building-resilience/agent.yaml
+✓ Configuration file created successfully: 2-building-resilience/agent.yaml
+✓ File size:     4355 bytes
+
+Creating OpenTelemetry Collector gateway configuration file: 2-building-resilience/gateway.yaml
+✓ Configuration file created successfully: 2-building-resilience/gateway.yaml
+✓ File size:     3376 bytes
+
+✓ Completed configuration files for 2-building-resilience
+
+Workshop environment setup complete!
+Configuration files created in the following directories:
+  1-agent-gateway/
+    ├── agent.yaml
+    └── gateway.yaml
+  2-building-resilience/
+    ├── agent.yaml
+    └── gateway.yaml
+```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
