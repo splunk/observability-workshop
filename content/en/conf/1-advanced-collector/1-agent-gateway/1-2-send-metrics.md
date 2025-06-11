@@ -3,17 +3,8 @@ title: 1.2 Send Metrics
 linkTitle: 1.2 Send Metrics
 weight: 3
 ---
-Now that the **gateway** is running, it’s time to test the full telemetry flow.
 
-We’ll start the **agent**, which will begin by sending **metrics**. Then we’ll send **traces** and generate **logs** to verify that all signals are properly routed through the agent to the gateway.
-
-You should see the resulting output appear in the following files:
-
-* `gateway-traces.out`
-* `gateway-metrics.out`
-* `gateway-logs.out`
-
-This will confirm that communication between the agent and gateway is working as expected.
+Now, we can start the **Gateway** and the **Agent**, which will start sending **metrics**. Then we will send **traces** and generate **logs** to verify that all signals are properly routed through the **Agent** to the **Gateway**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -32,6 +23,12 @@ If everything is configured correctly, the first and last lines of the output sh
 ...
 2025-06-09T09:22:11.944+0100    info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data. {"resource": {}}
 ```
+
+Once the **Gateway** is running, it will listen for incoming data on port `5318` and export the received data to the following files:
+
+* `gateway-traces.out`
+* `gateway-metrics.out`
+* `gateway-logs.out`
 
 **Start the Agent**: In the **Agent terminal** window start the agent with the agent configuration:
 
@@ -55,9 +52,7 @@ Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway.
-
-The **Gateway** processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway. The **Gateway** processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
 
 **Verify Data arrived at Gateway**: To confirm that CPU metrics, specifically for `cpu0`, have successfully reached the gateway, we’ll inspect the `gateway-metrics.out` file using the `jq` command.
 
