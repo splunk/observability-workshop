@@ -63,7 +63,7 @@ chmod +x otelcol loadgen setup-workshop.sh && \
 ```
 -->
 
-Run the `setup-workshop.sh` script which will configure the correct permissions and also create the initial configurations for the **Agent** and the **Gateway**.
+Run the `setup-workshop.sh` script which will configure the correct permissions and also create the initial configurations for the **Agent** and the **Gateway**:
 
 {{% tabs %}}
 {{% tab title="Setup Workshop" %}}
