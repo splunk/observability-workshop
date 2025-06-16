@@ -1,29 +1,31 @@
 ---
-title: Deploy Application to K8s
-linkTitle: 8. Deploy Application to K8s
+title: アプリケーションをK8sにデプロイ
+linkTitle: 8. アプリケーショ## DockerイメージをKubernetesにインポート
+
+通常であれば、DockerイメージをDocker Hubなどのリポジトリにプッシュします。
+しかし、今回のセッションでは、k3sに直接インポートする回避策を使用します。sにデプロイ
 weight: 8
 time: 15 minutes
 ---
 
-## Update the Dockerfile
+## Dockerfileの更新
 
-With Kubernetes, environment variables are typically managed in the `.yaml` manifest files rather 
-than baking them into the Docker image.  So let's remove the following two environment variables from the Dockerfile:
+Kubernetesでは、環境変数は通常、Dockerイメージに組み込むのではなく`.yaml`マニフェストファイルで管理されます。そこで、Dockerfileから以下の2つの環境変数を削除しましょう：
 
 ``` bash
 vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
-Then remove the following two environment variables: 
+次に、以下の2つの環境変数を削除します：
 
 ``` dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 ```
-> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
+> viでの変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
 
-## Build a new Docker Image 
+## 新しいDockerイメージのビルド
 
-Let's build a new Docker image that excludes the environment variables:
+環境変数を除外した新しいDockerイメージをビルドしましょう：
 
 ``` bash
 cd /home/splunk/workshop/docker-k8s-otel/helloworld 
@@ -64,17 +66,17 @@ docker save --output helloworld.tar helloworld:1.2
 sudo k3s ctr images import helloworld.tar
 ```
 
-## Deploy the .NET Application
+## .NETアプリケーションのデプロイ
 
-> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key. 
+> ヒント：viで編集モードに入るには「i」キーを押します。変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
 
-To deploy our .NET application to K8s, let's create a file named `deployment.yaml` in `/home/splunk`:
+.NETアプリケーションをK8sにデプロイするために、`/home/splunk`に`deployment.yaml`という名前のファイルを作成しましょう：
 
 ``` bash
 vi /home/splunk/deployment.yaml
 ```
 
-And paste in the following:
+そして以下を貼り付けます：
 
 ``` yaml
 apiVersion: apps/v1
@@ -104,13 +106,13 @@ spec:
 > [!tip]- What is a Deployment in Kubernetes?
 > The deployment.yaml file is a kubernetes config file that is used to define a deployment resource. This file is the cornerstone of managing applications in Kubernetes! The deployment config defines the deployment’s ***desired state*** and Kubernetes then ensures the ***actual*** state matches it. This allows application pods to self-heal and also allows for easy updates or roll backs to applications.
 
-Then, create a second file in the same directory named `service.yaml`: 
+次に、同じディレクトリに`service.yaml`という名前の2つ目のファイルを作成します：
 
 ``` bash
 vi /home/splunk/service.yaml
 ```
 
-And paste in the following: 
+そして以下を貼り付けます： 
 
 ``` yaml
 apiVersion: v1
@@ -131,7 +133,7 @@ spec:
 > [!tip]- What is a Service in Kubernetes?
 > A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time. 
 
-We can then use these manifest files to deploy our application: 
+これらのマニフェストファイルを使用してアプリケーションをデプロイできます： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -155,9 +157,9 @@ service/helloworld created
 {{% /tab %}}
 {{< /tabs >}}
 
-## Test the Application
+## アプリケーションのテスト
 
-To access our application, we need to first get the IP address: 
+アプリケーションにアクセスするには、まずIPアドレスを取得する必要があります： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -176,22 +178,21 @@ IP:                10.43.102.103
 {{% /tab %}}
 {{< /tabs >}}
 
-Then we can access the application by using the Cluster IP that was returned 
-from the previous command.  For example: 
+その後、前のコマンドから返されたCluster IPを使用してアプリケーションにアクセスできます。
+例： 
 
 ``` bash
 curl http://10.43.102.103:8080/hello/Kubernetes
 ```
 
-## Configure OpenTelemetry 
+## OpenTelemetryの設定
 
-The .NET OpenTelemetry instrumentation was already baked into the Docker image.  But we need to set a few 
-environment variables to tell it where to send the data. 
+.NET OpenTelemetryインストゥルメンテーションはすでにDockerイメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
 
-Add the following to `deployment.yaml` file you created earlier: 
+先ほど作成した`deployment.yaml`ファイルに以下を追加します：
 
-> **IMPORTANT** replace `$INSTANCE` in the YAML below with your instance name,
-> which can be determined by running `echo $INSTANCE`.
+> **重要** 以下のYAMLの`$INSTANCE`をあなたのインスタンス名に置き換えてください。
+> インスタンス名は`echo $INSTANCE`を実行することで確認できます。
 
 ``` yaml
           env:
@@ -267,12 +268,12 @@ Then use `curl` to generate some traffic.
 
 After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ... 
 
-## A Challenge For You
+## チャレンジ
 
-If you are a developer and just want to quickly grab the trace id or see console feedback, what environment variable could you add to the deployment.yaml file?
+開発者として、トレースIDを素早く取得するか、コンソールフィードバックを見たい場合、deployment.yamlファイルにどのような環境変数を追加できるでしょうか？
 
 <details>
-  <summary><b>Click here to see the answer</b></summary>
+  <summary><b>答えを見るにはここをクリック</b></summary>
 
 If you recall in our challenge from Section 4, *Instrument a .NET Application with OpenTelemetry*, we showed you a trick to write traces to the console using the `OTEL_TRACES_EXPORTER` environment variable. We can add this variable to our deployment.yaml, redeploy our application, and tail the logs from our helloworld app so that we can grab the trace id to then find the trace in Splunk Observability Cloud. (In the next section of our workshop, we will also walk through using the debug exporter, which is how you would typically debug your application in a K8s environment.)
 

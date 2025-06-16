@@ -1,26 +1,24 @@
 ---
-title: Hands-On OpenTelemetry, Docker, and K8s
-linkTitle: Hands-On OpenTelemetry, Docker, and K8s
+title: OpenTelemetry、Docker、K8sを実践で学ぶ
+linkTitle: OpenTelemetry、Docker、K8sを実践で学ぶ
 weight: 8
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: By the end of this workshop you'll have gotten hands-on experience instrumenting a .NET application with OpenTelemetry, then Dockerizing the application and deploying it to Kubernetes.  You’ll also gain experience deploying the OpenTelemetry collector using Helm, customizing the collector configuration, and troubleshooting collector configuration issues.
+description: このワークショップでは、これらの概念を説明するためにシンプルな.NETアプリケーションを使用します。さあ、始めましょう！ワークショップの終わりまでに、OpenTelemetryを使用した.NETアプリケーションのインストゥルメントの実践経験を積み、そのアプリケーションのDocker化およびKubernetesへのデプロイを行います。また、Helmを使用したOpenTelemetryコレクターのデプロイ、コレクター設定のカスタマイズ、コレクター設定の問題のトラブルシューティングの経験も得られます。
 draft: false
 hidden: false
 ---
 
-In this workshop, you'll get hands-on experience with the following: 
+このワークショップでは、以下の項目について実践経験を積むことができます：
 
-* Practice deploying the collector and instrumenting a .NET application with the Splunk distribution of OpenTelemetry .NET in Linux and Kubernetes environments.
-* Practice “dockerizing” a .NET application, running it in Docker, and then adding Splunk OpenTelemetry instrumentation.
-* Practice deploying the Splunk distro of the collector in a K8s environment using Helm.  Then customize the collector config and troubleshoot an issue.
-
-The workshop uses a simple .NET application to illustrate these concepts.  Let's get started!
+- Linux および Kubernetes 環境で、Splunk ディストリビューションの OpenTelemetry .NET を使用してコレクターのデプロイと.NET アプリケーションのインストゥルメントを実践します。
+- .NET アプリケーションの「Docker 化」、Docker での実行、そして Splunk OpenTelemetry インストゥルメンテーションの追加を実践します。
+- Helm を使用した K8s 環境での Splunk ディストロのコレクターのデプロイを実践します。その後、コレクター設定をカスタマイズし、問題のトラブルシューティングを行います。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 The easiest way to navigate through this workshop is by using:
 
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
+- the left/right arrows (**<** | **>**) on the top right of this page
+- the left (◀️) and right (▶️) cursor keys on your keyboard
   {{% /notice %}}

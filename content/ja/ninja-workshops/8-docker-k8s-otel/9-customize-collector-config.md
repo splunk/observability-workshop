@@ -1,22 +1,22 @@
 ---
-title: Customize the OpenTelemetry Collector Configuration
-linkTitle: 9. Customize the OpenTelemetry Collector Configuration
+title: OpenTelemetryコレクター設定のカスタマイズ
+linkTitle: 9. OpenTelemetryコレクター設定のカスタマイズ
 weight: 9
 time: 20 minutes
 ---
 
-We deployed the Splunk Distribution of the OpenTelemetry Collector in our K8s cluster 
-using the default configuration. In this section, we'll walk through several examples 
-showing how to customize the collector config. 
+デフォルト設定を使用してK8sクラスターにSplunk Distribution of OpenTelemetryコレクターを
+デプロイしました。このセクションでは、コレクター設定をカスタマイズする方法をいくつかの例で
+説明します。
 
-## Get the Collector Configuration
+## コレクター設定の取得
 
-Before we customize the collector config, how do we determine what the current configuration 
-looks like?  
+コレクター設定をカスタマイズする前に、現在の設定がどのようになっているかを
+どのように確認するのでしょうか？
 
-In a Kubernetes environment, the collector configuration is stored using a Config Map. 
+Kubernetes環境では、コレクター設定はConfig Mapを使用して保存されます。
 
-We can see which config maps exist in our cluster with the following command: 
+以下のコマンドで、クラスターに存在するconfig mapを確認できます： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -37,9 +37,9 @@ splunk-otel-collector-otel-agent                  1      3h37m
 {{% /tab %}}
 {{< /tabs >}}
 
-> Why are there two config maps? 
+> なぜ2つのconfig mapがあるのでしょうか？
 
-We can then view the config map of the collector agent as follows:
+次に、以下のようにコレクターエージェントのconfig mapを表示できます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -83,21 +83,21 @@ exporters:
 {{< /tabs >}}
 
 
-## How to Update the Collector Configuration in K8s 
+## K8sでコレクター設定を更新する方法
 
-In our earlier example running the collector on a Linux instance, 
-the collector configuration was available in the `/etc/otel/collector/agent_config.yaml` file.  If we 
-needed to make changes to the collector config in that case, we'd simply edit this file, 
-save the changes, and then restart the collector. 
+Linuxインスタンスでコレクターを実行した以前の例では、コレクター設定は
+`/etc/otel/collector/agent_config.yaml`ファイルで利用可能でした。その場合にコレクター設定を
+変更する必要があれば、単純にこのファイルを編集し、変更を保存してから
+コレクターを再起動すればよかったのです。
 
-In K8s, things work a bit differently.  Instead of modifying the `agent_config.yaml` directly, we'll 
-instead customize the collector configuration by making changes to the `values.yaml` file used to deploy 
-the helm chart.  
+K8sでは、少し異なる動作をします。`agent_config.yaml`を直接変更する代わりに、
+helmチャートをデプロイするために使用される`values.yaml`ファイルを変更することで
+コレクター設定をカスタマイズします。
 
-The values.yaml file in [GitHub](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml) 
-describes the customization options that are available to us. 
+[GitHub](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml)のvalues.yamlファイルには、
+利用可能なカスタマイズオプションが記載されています。
 
-Let's look at an example. 
+例を見てみましょう。 
 
 ## Add Infrastructure Events Monitoring 
 

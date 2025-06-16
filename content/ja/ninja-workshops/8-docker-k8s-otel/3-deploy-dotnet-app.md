@@ -1,13 +1,13 @@
 ---
-title: Deploy a .NET Application
-linkTitle: 3. Deploy a .NET Application
+title: .NETアプリケーションのデプロイ
+linkTitle: 3. .NETアプリケーションのデプロイ
 weight: 3
 time: 10 minutes
 ---
 
-## Prerequisites 
+## 前提条件
 
-Before deploying the application, we'll need to install the .NET 8 SDK on our instance.
+アプリケーションをデプロイする前に、インスタンスに.NET 8 SDKをインストールする必要があります。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -46,19 +46,19 @@ etc.
 {{% /tab %}}
 {{< /tabs >}}
 
-Refer to [Install .NET SDK or .NET Runtime on Ubuntu](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404)
-for further details.
+詳細については、[Ubuntuに.NET SDKまたは.NET Runtimeをインストールする](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404)
+を参照してください。
 
-## Review the .NET Application
+## .NETアプリケーションの確認
 
-In the terminal, navigate to the application directory: 
+ターミナルで、アプリケーションディレクトリに移動します：
 
 ``` bash
 cd ~/workshop/docker-k8s-otel/helloworld
 ```
 
-We'll use a simple "Hello World" .NET application for this workshop.  The main logic is found 
-in the HelloWorldController.cs file: 
+このワークショップでは、シンプルな「Hello World」.NETアプリケーションを使用します。主要なロジックは
+HelloWorldController.csファイルにあります：
 
 ``` cs 
 public class HelloWorldController : ControllerBase
@@ -87,9 +87,9 @@ public class HelloWorldController : ControllerBase
 }
 ```
 
-## Build and Run the .NET Application
+## .NETアプリケーションのビルドと実行
 
-We can build the application using the following command:
+以下のコマンドを使用してアプリケーションをビルドできます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -117,7 +117,7 @@ Time Elapsed 00:00:02.04
 {{% /tab %}}
 {{< /tabs >}}
 
-If that's successful, we can run it as follows: 
+ビルドが成功したら、次のように実行できます： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -144,7 +144,7 @@ info: Microsoft.Hosting.Lifetime[0]
 {{% /tab %}}
 {{< /tabs >}}
 
-Once it's running, open a second SSH terminal to your Ubuntu instance and access the application using curl: 
+実行したら、UbuntuインスタンスへのSSH接続を2つ目のターミナルで開き、curlを使用してアプリケーションにアクセスします： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -163,7 +163,7 @@ Hello, World!
 {{% /tab %}}
 {{< /tabs >}}
 
-You can also pass in your name: 
+名前を渡すこともできます： 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -182,13 +182,13 @@ Hello, Tom!
 {{% /tab %}}
 {{< /tabs >}}
 
-> Press Ctrl + C to quit your Helloworld app before moving to the next step.
+> 次のステップに進む前に、Ctrl + Cを押してHelloworldアプリを終了してください。
 
-## Next Steps
+## 次のステップ
 
-What are the three methods that we can use to instrument our application with OpenTelemetry?  
+アプリケーションをOpenTelemetryでインストゥルメントするために使用できる3つの方法は何でしょうか？
 
 ![Traces](../images/NetInstrumentation.png)
 
-See: [Instrument your .NET application for Splunk Observability Cloud](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html) 
-for a discussion of the options. 
+オプションの詳細については、[Splunk Observability Cloud用の.NETアプリケーションのインストゥルメント](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html)
+を参照してください。 

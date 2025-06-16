@@ -1,19 +1,19 @@
 ---
-title: Deploy the OpenTelemetry Collector
-linkTitle: 2. Deploy the OpenTelemetry Collector
+title: OpenTelemetryコレクターのデプロイ
+linkTitle: OpenTelemetryコレクターのデプロイ
 weight: 2
 time: 10 minutes
 ---
 
-## Uninstall the OpenTelemetry Collector
+## OpenTelemetry コレクターのアンインストール
 
-Our EC2 instance may already have an older version the Splunk Distribution of the OpenTelemetry Collector 
-installed.  Before proceeding further, let's uninstall it using the following command:
+EC2 インスタンスには、すでに Splunk Distribution の OpenTelemetry コレクターの古いバージョンが
+インストールされている可能性があります。先に進む前に、次のコマンドを使用してアンインストールしましょう：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh;
 sudo sh /tmp/splunk-otel-collector.sh --uninstall
 ```
@@ -21,7 +21,7 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-``` bash
+```bash
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -33,9 +33,9 @@ After this operation, 766 MB disk space will be freed.
 Removing splunk-otel-collector (0.92.0) ...
 (Reading database ... 147373 files and directories currently installed.)
 Purging configuration files for splunk-otel-collector (0.92.0) ...
-Scanning processes...                                                                                                                                                                                              
-Scanning candidates...                                                                                                                                                                                             
-Scanning linux images...                                                                                                                                                                                           
+Scanning processes...
+Scanning candidates...
+Scanning linux images...
 
 Running kernel seems to be up-to-date.
 
@@ -56,23 +56,20 @@ Successfully removed the splunk-otel-collector package
 {{% /tab %}}
 {{< /tabs >}}
 
+## OpenTelemetry collector のデプロイ
 
-## Deploy the OpenTelemetry Collector
+Linux EC2 インスタンスに、Splunk Distribution の OpenTelemetry コレクターの最新バージョンをデプロイしましょう。
 
-Let’s deploy the latest version of the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance. 
+これは`curl`を使用してコレクターバイナリをダウンロードし、特定の引数を指定して実行することで可能です。
+これらの引数は、データを送信する realm、使用するアクセストークン、
+およびデータを送信するデプロイメント環境をコレクターに指示します。
 
-We can do this by downloading the collector binary using `curl`, and then running it  
-with specific arguments that tell the collector which realm to report data into, which access 
-token to use, and which deployment environment to report into. 
-
-> A deployment environment in Splunk Observability Cloud is a distinct deployment of your system 
-> or application that allows you to set up configurations that don’t overlap with configurations 
-> in other deployments of the same application.
+> Splunk Observability Cloud におけるデプロイメント環境とは、システムまたはアプリケーションの個別のデプロイメントであり、同じアプリケーションの他のデプロイメントの設定と重複しない設定を行うことができます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh; \
 sudo sh /tmp/splunk-otel-collector.sh \
 --realm $REALM \
@@ -85,39 +82,39 @@ sudo sh /tmp/splunk-otel-collector.sh \
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-``` bash
+```bash
 Splunk OpenTelemetry Collector Version: latest
 Memory Size in MIB: 512
 Realm: us1
 Ingest Endpoint: https://ingest.us1.signalfx.com
 API Endpoint: https://api.us1.signalfx.com
 HEC Endpoint: https://ingest.us1.signalfx.com/v1/log
-etc. 
+etc.
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Refer to [Install the Collector for Linux with the installer script](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-linux/install-linux.html#otel-install-linux)
-for further details on how to install the collector. 
+詳細については、[インストーラースクリプトを使用した Linux 用コレクターのインストール](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-linux/install-linux.html#otel-install-linux)
+を参照してください。
 
-## Confirm the Collector is Running
+## コレクターが実行中であることを確認
 
-Let's confirm that the collector is running successfully on our instance. 
+インスタンスでコレクターが正常に実行されていることを確認しましょう。
 
-> Press Ctrl + C to exit out of the status command.
+> ステータスコマンドを終了するには、Ctrl + C を押します。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 sudo systemctl status splunk-otel-collector
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-``` bash
+```bash
 ● splunk-otel-collector.service - Splunk OpenTelemetry Collector
      Loaded: loaded (/lib/systemd/system/splunk-otel-collector.service; enabled; vendor preset: enabled)
     Drop-In: /etc/systemd/system/splunk-otel-collector.service.d
@@ -135,40 +132,38 @@ sudo systemctl status splunk-otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-## How do we view the collector logs? 
+## コレクターログの確認方法
 
-We can view the collector logs using `journalctl`: 
+`journalctl`を使用してコレクターログを表示できます：
 
-> Press Ctrl + C to exit out of tailing the log.
+> ログの監視を終了するには、Ctrl + C を押します。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 sudo journalctl -u splunk-otel-collector -f -n 100
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-``` bash
+```bash
 Dec 20 00:13:14 derek-1 systemd[1]: Started Splunk OpenTelemetry Collector.
 Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:483: Set config to /etc/otel/collector/agent_config.yaml
 Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:539: Set memory limit to 460 MiB
 Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:524: Set soft memory limit set to 460 MiB
 Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:373: Set garbage collection target percentage (GOGC) to 400
 Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:414: set "SPLUNK_LISTEN_INTERFACE" to "127.0.0.1"
-etc. 
+etc.
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-## Collector Configuration
+## コレクターの設定
 
-Where do we find the configuration that is used by this collector? 
+このコレクターが使用している設定はどこで見つけられるでしょうか？
 
-It's available in the `/etc/otel/collector` directory.  Since we installed the 
-collector in `agent` mode, the collector configuration can be found in the 
-`agent_config.yaml` file. 
-
+その設定は`/etc/otel/collector`ディレクトリにあります。コレクターを`agent`モードで
+インストールしたため、コレクター設定は`agent_config.yaml`ファイルにあります。
