@@ -1,21 +1,19 @@
 ---
-title: Connect to EC2 Instance
-linkTitle: 1. Connect to EC2 Instance
+title: EC2インスタンスへの接続
+linkTitle: 1. EC2インスタンスへの接続
 weight: 1
 time: 5 minutes
 ---
 
-## Connect to your EC2 Instance
+## EC2 インスタンスへ接続
 
-We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. 
+各参加者のために、AWS/EC2 に Ubuntu Linux インスタンスを用意しました。
 
-Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below: 
+インストラクターから提供された IP アドレスとパスワードを使用して、以下のいずれかの方法で EC2 インスタンスに接続してください：
 
-* Mac OS / Linux 
-  * ssh splunk@IP address 
-* Windows 10+
-  * Use the OpenSSH client
-* Earlier versions of Windows
-  * Use Putty 
-
+- Mac OS / Linux
+  - ssh splunk@IP アドレス
+- Windows 10+
+  - OpenSSH クライアントを使用
+- 以前のバージョンの Windows
+  - Putty を使用

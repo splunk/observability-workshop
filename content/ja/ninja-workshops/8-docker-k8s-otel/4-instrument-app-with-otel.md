@@ -1,17 +1,17 @@
 ---
-title: Instrument a .NET Application with OpenTelemetry
-linkTitle: 4. Instrument a .NET Application with OpenTelemetry
+title: OpenTelemetryで.NETアプリケーションをインストゥルメントする
+linkTitle: 4. OpenTelemetryで.NETアプリケーションをインストゥルメントする
 weight: 4
 time: 20 minutes
 ---
 
-## Download the Splunk Distribution of OpenTelemetry
+## Splunk Distribution of OpenTelemetryのダウンロード
 
-For this workshop, we'll install the Splunk Distribution of OpenTelemetry manually rather than 
-using the NuGet packages.  
+このワークショップでは、NuGetパッケージを使用せず、Splunk Distribution of OpenTelemetryを
+手動でインストールします。
 
-We'll start by downloading the latest `splunk-otel-dotnet-install.sh` file, 
-which we'll use to instrument our .NET application:
+最新の`splunk-otel-dotnet-install.sh`ファイルをダウンロードすることから始めます。
+これを使用して.NETアプリケーションをインストゥルメントします：
 
 ``` bash
 cd ~/workshop/docker-k8s-otel/helloworld
@@ -19,12 +19,12 @@ cd ~/workshop/docker-k8s-otel/helloworld
 curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 ```
 
-Refer to [Install the Splunk Distribution of OpenTelemetry .NET manually](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually)
-for further details on the installation process.
+インストールプロセスの詳細については、[Splunk Distribution of OpenTelemetry .NETの手動インストール](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually)
+を参照してください。
 
-## Install the Distribution
+## ディストリビューションのインストール
 
-In the terminal, install the distribution as follows
+ターミナルで、以下のようにディストリビューションをインストールします
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -44,51 +44,51 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 {{< /tabs >}}
 
 
-> Note: we may need to include the ARCHITECTURE environment when running the command above: 
+> 注意：上記のコマンドを実行する際には、ARCHITECTURE環境変数を含める必要がある場合があります：
 > ``` bash
 > ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
 > ```
 
-## Activate the Instrumentation
+## インストゥルメンテーションの有効化
 
-Next, we can activate the OpenTelemetry instrumentation: 
+次に、OpenTelemetryインストゥルメンテーションを有効化できます： 
 
 ``` bash
 . $HOME/.splunk-otel-dotnet/instrument.sh
 ```
 
-## Set the Deployment Environment
+## デプロイメント環境の設定
 
-Let's set the deployment environment, to ensure our data flows into its own 
-environment within Splunk Observability Cloud: 
+デプロイメント環境を設定して、データがSplunk Observability Cloud内の独自の
+環境に流れるようにしましょう： 
 
 ``` bash 
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 ```
 
 
-## Run the Application with Instrumentation
+## インストゥルメンテーションを使用したアプリケーションの実行
 
-We can run the application as follows: 
+以下のようにアプリケーションを実行できます： 
 
 ```
 dotnet run
 ```
 
-## A Challenge For You
+## チャレンジ
 
-How can we see what traces are being exported by the .NET application from our Linux instance?
+LinuxインスタンスからC#アプリケーションによってエクスポートされているトレースをどのように確認できるでしょうか？
 
 <details>
-  <summary><b>Click here to see the answer</b></summary>
+  <summary><b>答えを見るにはここをクリック</b></summary>
 
-There are two ways we can do this:
+これを行う方法は2つあります：
 
-1. We could add `OTEL_TRACES_EXPORTER=otlp,console` at the start of the `dotnet run` command, which ensures that traces are both written to collector via OTLP as well as the console.
+1. `dotnet run`コマンドの開始時に`OTEL_TRACES_EXPORTER=otlp,console`を追加することで、トレースがOTLP経由でコレクターに書き込まれるとともに、コンソールにも書き込まれるようになります。
 ``` bash
 OTEL_TRACES_EXPORTER=otlp,console dotnet run 
 ```
-2. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs.
+2. あるいは、コレクター設定にデバッグエクスポーターを追加し、それをトレースパイプラインに追加することで、トレースがコレクターログに書き込まれるようになります。
 
 ``` yaml
 exporters:
@@ -106,17 +106,17 @@ service:
 ```
 </details>
 
-## Access the Application
+## アプリケーションへのアクセス
 
-Once the application is running, use a second SSH terminal and access it using curl:
+アプリケーションが実行中になったら、2つ目のSSHターミナルを使用してcurlでアクセスします：
 
 ``` bash
 curl http://localhost:8080/hello
 ```
 
-As before, it should return `Hello, World!`. 
+以前と同様に、`Hello, World!`が返されるはずです。
 
-If you enabled trace logging, you should see a trace written the console or collector logs such as the following: 
+トレースログを有効にした場合は、以下のようなトレースがコンソールまたはコレクターログに書き込まれているのを確認できるはずです： 
 
 ````
 info: Program[0]
@@ -163,26 +163,26 @@ Resource associated with Activity:
     deployment.environment: otel-derek-1
 ````
 
-## View your application in Splunk Observability Cloud
+## Splunk Observability Cloudでのアプリケーションの確認
 
-Now that the setup is complete, let's confirm that traces are sent to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
+セットアップが完了したので、トレースが**Splunk Observability Cloud**に送信されていることを確認しましょう。アプリケーションが初回デプロイされた場合、データが表示されるまでに数分かかる場合があることに注意してください。
 
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. `otel-instancename`).
+APMにナビゲートし、Environment ドロップダウンを使用してあなたの環境（つまり`otel-instancename`）を選択します。
 
-If everything was deployed correctly, you should see `helloworld` displayed in the list of services:
+すべてが正しくデプロイされている場合、サービスのリストに`helloworld`が表示されるはずです：
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on **Service Map** on the right-hand side to view the service map.  
+右側の**Service Map**をクリックしてサービスマップを表示します。
 
 ![Service Map](../images/service_map.png)
 
-Next, click on **Traces** on the right-hand side to see the traces captured for this application. 
+次に、右側の**Traces**をクリックして、このアプリケーションでキャプチャされたトレースを確認します。
 
 ![Traces](../images/traces.png)
 
-An individual trace should look like the following: 
+個別のトレースは以下のように表示されるはずです：
 
 ![Traces](../images/trace.png)
 
-> Press Ctrl + C to quit your Helloworld app before moving to the next step.
+> 次のステップに進む前に、Ctrl + Cを押してHelloworldアプリを終了してください。

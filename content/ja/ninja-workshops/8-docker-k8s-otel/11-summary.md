@@ -5,16 +5,16 @@ weight: 11
 time: 2 minutes
 ---
 
-This workshop provided hands-on experience with the following concepts:
+このワークショップでは、以下の概念についてハンズオンで体験しました：
 
-* How to deploy the **Splunk Distribution of the OpenTelemetry Collector** on a Linux host. 
-* How to instrument a .NET application with the **Splunk Distribution of OpenTelemetry .NET**. 
-* How to "dockerize" a .NET application and instrument it with the **Splunk Distribution of OpenTelemetry .NET**.
-* How to deploy the **Splunk Distribution of the OpenTelemetry Collector** in a Kubernetes cluster using Helm. 
-* How to customize the collector configuration and troubleshoot an issue.
+* Linuxホストに**Splunk Distribution of the OpenTelemetry Collector**をデプロイする方法。
+* **Splunk Distribution of OpenTelemetry .NET**で.NETアプリケーションを計装する方法。
+* .NETアプリケーションを「Docker化」し、**Splunk Distribution of OpenTelemetry .NET**で計装する方法。
+* Helmを使用してKubernetesクラスターに**Splunk Distribution of the OpenTelemetry Collector**をデプロイする方法。
+* コレクター設定をカスタマイズして問題をトラブルシューティングする方法。
 
-To see how other languages and environments are instrumented with OpenTelemetry,
-explore the [Splunk OpenTelemetry Examples GitHub repository](https://github.com/signalfx/splunk-opentelemetry-examples). 
+他の言語と環境でOpenTelemetryがどのように計装されるかを確認するには、
+[Splunk OpenTelemetry Examples GitHubリポジトリ](https://github.com/signalfx/splunk-opentelemetry-examples)をご覧ください。
 
-To run this workshop on your own in the future, refer back to these instructions and use the **Splunk4Rookies - Observability** 
-workshop template in Splunk Show to provision an EC2 instance. 
+将来このワークショップを独自に実行するには、これらの手順を参照して、Splunk Showの**Splunk4Rookies - Observability**
+ワークショップテンプレートを使用してEC2インスタンスをプロビジョニングしてください。
