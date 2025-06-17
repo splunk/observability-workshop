@@ -98,18 +98,17 @@ helm チャートをデプロイするために使用される`values.yaml`フ�
 
 例を見てみましょう。
 
-## Add Infrastructure Events Monitoring
+## Infrastructure Events Monitoring の追加
 
-For our first example, let's enable infrastructure events monitoring for our K8s cluster.
+最初の例として、K8s クラスターの infrastructure events monitoring を有効にしましょう。
 
-> This will allow us to see Kubernetes events as part of the Events Feed section in charts.
-> The cluster receiver will be configured with a Smart Agent receiver using the kubernetes-events
-> monitor to send custom events. See [Collect Kubernetes events](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-kubernetes/kubernetes-config-logs.html#collect-kubernetes-events)
-> for further details.
+> これにより、charts の Events Feed セクションの一部として Kubernetes イベントを確認できるようになります。
+> cluster receiver は、kubernetes-events
+> monitor を使用して Smart Agent receiver で設定され、custom イベントを送信します。詳細については[Collect Kubernetes events](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-kubernetes/kubernetes-config-logs.html#collect-kubernetes-events)を参照してください。
 
-This is done by adding the following line to the `values.yaml` file:
+これは`values.yaml`ファイルに以下の行を追加することで実行されます：
 
-> Hint: steps to open and save in vi are in previous steps.
+> ヒント：vi での開き方と保存方法は前のステップにあります。
 
 ```yaml
 logsEngine: otel
@@ -118,7 +117,7 @@ splunkObservability:
 agent:
 ```
 
-Once the file is saved, we can apply the changes with:
+ファイルが保存されたら、以下のコマンドで変更を適用できます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -154,7 +153,7 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-We can then view the config map and ensure the changes were applied:
+その後、config map を表示して変更が適用されたことを確認できます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -166,7 +165,7 @@ kubectl describe cm splunk-otel-collector-otel-k8s-cluster-receiver
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-Ensure `smartagent/kubernetes-events` is included in the agent config now:
+`smartagent/kubernetes-events`が agent config に含まれていることを確認してください：
 
 ```bash
   smartagent/kubernetes-events:
@@ -186,16 +185,16 @@ Ensure `smartagent/kubernetes-events` is included in the agent config now:
 {{% /tab %}}
 {{< /tabs >}}
 
-> Note that we specified the cluster receiver config map since that's
-> where these particular changes get applied.
+> これらの特定の変更が適用されるのは
+> cluster receiver config map なので、そちらを指定していることに注意してください。
 
-## Add the Debug Exporter
+## Debug Exporter の追加
 
-Suppose we want to see the traces and logs that are sent to the collector, so we can
-inspect them before sending them to Splunk. We can use the debug exporter for this purpose, which
-can be helpful for troubleshooting OpenTelemetry-related issues.
+collector に送信される trace と log を確認して、
+Splunk に送信する前に検査したいとします。この目的のために debug exporter を使用できます。これは
+OpenTelemetry 関連の問題のトラブルシューティングに役立ちます。
 
-Let's add the debug exporter to the bottom of the values.yaml file as follows:
+values.yaml ファイルの下部に以下のように debug exporter を追加しましょう：
 
 ```yaml
 logsEngine: otel
@@ -217,7 +216,7 @@ agent:
             - debug
 ```
 
-Once the file is saved, we can apply the changes with:
+ファイルが保存されたら、以下のコマンドで変更を適用できます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -253,18 +252,17 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-Exercise the application a few times using curl, then tail the agent collector logs with the
-following command:
+curl を使用してアプリケーションを数回実行してから、以下のコマンドで agent collector の log を tail します：
 
 ```bash
 kubectl logs -l component=otel-collector-agent -f
 ```
 
-You should see traces written to the agent collector logs such as the following:
+以下のような trace が agent collector の log に書き込まれているのが確認できるはずです：
 
 ```
-2024-12-20T01:43:52.929Z	info	Traces	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 2}
-2024-12-20T01:43:52.929Z	info	ResourceSpans #0
+2024-12-20T01:43:52.929Z info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 2}
+2024-12-20T01:43:52.929Z info ResourceSpans #0
 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
      -> splunk.distro.version: Str(1.8.0)
@@ -296,11 +294,11 @@ Resource attributes:
      -> k8s.cluster.name: Str(derek-1-cluster)
 ```
 
-And log entries such as:
+そして以下のような log エントリも確認できます：
 
 ```
-2024-12-20T01:43:53.215Z	info	Logs	{"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 2}
-2024-12-20T01:43:53.215Z	info	ResourceLog #0
+2024-12-20T01:43:53.215Z info Logs {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 2}
+2024-12-20T01:43:53.215Z info ResourceLog #0
 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
      -> splunk.distro.version: Str(1.8.0)
@@ -327,7 +325,7 @@ Resource attributes:
      -> k8s.cluster.name: Str(derek-1-cluster)
 ```
 
-If you return to Splunk Observability Cloud though, you'll notice that traces and logs are
-no longer being sent there by the application.
+ただし、Splunk Observability Cloud に戻ると、アプリケーションから trace と log が
+もはやそこに送信されていないことに気づくでしょう。
 
-Why do you think that is? We'll explore it in the next section.
+なぜそうなったと思いますか？次のセクションで詳しく説明します。

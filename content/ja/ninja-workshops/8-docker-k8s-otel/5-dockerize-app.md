@@ -110,23 +110,23 @@ WORKDIR /app
 EXPOSE 8080
 ```
 
-Note that the `mcr.microsoft.com/dotnet/aspnet:8.0` image includes the .NET runtime only,
-rather than the SDK, so is relatively lightweight. It's based off of the Debian 12 Linux
-distribution. You can find more information about the ASP.NET Core Runtime Docker images
-in [GitHub](https://github.com/dotnet/dotnet-docker/blob/main/README.aspnet.md).
+なお、`mcr.microsoft.com/dotnet/aspnet:8.0`イメージには.NET runtime のみが含まれており、
+SDK は含まれていないため、比較的軽量です。これは Debian 12 Linux
+distribution がベースになっています。ASP.NET Core Runtime Docker イメージの詳細については
+[GitHub](https://github.com/dotnet/dotnet-docker/blob/main/README.aspnet.md)で確認できます。
 
-### The Build Stage
+### Build ステージ
 
-The next stage of the Dockerfile is the build stage. For this stage, the
-`mcr.microsoft.com/dotnet/sdk:8.0` image is used, which is also based off of
-Debian 12 but includes the full [.NET SDK](https://github.com/dotnet/dotnet-docker/blob/main/README.sdk.md) rather than just the runtime.
+Dockerfile の次のステージは build ステージです。このステージでは、
+`mcr.microsoft.com/dotnet/sdk:8.0`イメージが使用されます。これも Debian 12 がベースになっていますが、
+runtime だけでなく完全な[.NET SDK](https://github.com/dotnet/dotnet-docker/blob/main/README.sdk.md)が含まれています。
 
-This stage copies the `.csproj` file to the build image, and then uses `dotnet restore` to
-download any dependencies used by the application.
+このステージでは`.csproj`ファイルを build イメージにコピーし、その後`dotnet restore`を使用して
+アプリケーションが使用する依存関係をダウンロードします。
 
-It then copies the application code to the build image and
-uses `dotnet build` to build the project and its dependencies into a
-set of `.dll` binaries:
+次に、アプリケーションコードを build イメージにコピーし、
+`dotnet build`を使用してプロジェクトとその依存関係を
+`.dll`バイナリのセットにビルドします：
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -139,10 +139,10 @@ COPY . .
 RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 ```
 
-### The Publish Stage
+### Publish ステージ
 
-The third stage is publish, which is based on build stage image rather than a Microsoft image. In this stage, `dotnet publish` is used to
-package the application and its dependencies for deployment:
+3 番目のステージは publish で、これは Microsoft イメージではなく build ステージイメージをベースにしています。このステージでは、`dotnet publish`を使用して
+アプリケーションとその依存関係を deployment 用にパッケージ化します：
 
 ```dockerfile
 FROM build AS publish
@@ -150,11 +150,11 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 ```
 
-### The Final Stage
+### Final ステージ
 
-The fourth stage is our final stage, which is based on the base
-stage image (which is lighter-weight than the build and publish stages). It copies the output from the publish stage image and
-defines the entry point for our application:
+4 番目のステージは最終ステージで、これは base
+ステージイメージをベースにしています（build と publish ステージよりも軽量）。publish ステージイメージからの出力をコピーし、
+アプリケーションの entry point を定義します：
 
 ```dockerfile
 FROM base AS final

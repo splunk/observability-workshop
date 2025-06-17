@@ -49,9 +49,9 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 > ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
 > ```
 
-## インストゥルメンテーションの有効化
+## 計装の有効化
 
-次に、OpenTelemetry インストゥルメンテーションを有効化できます：
+次に、OpenTelemetry 計装を有効化できます：
 
 ```bash
 . $HOME/.splunk-otel-dotnet/instrument.sh
@@ -66,7 +66,7 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 ```
 
-## インストゥルメンテーションを使用したアプリケーションの実行
+## 計装を使用したアプリケーションの実行
 
 以下のようにアプリケーションを実行できます：
 

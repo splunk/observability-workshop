@@ -111,7 +111,7 @@ spec:
 ```
 
 > [!tip]- Kubernetes における Deployment とは？
-> deployment.yaml ファイルは、deployment リソースを定義するために使用される kubernetes 設定ファイルです。このファイルは Kubernetes でアプリケーションを管理するための基盤となります！deployment 設定は deployment の**_望ましい状態_**を定義し、Kubernetes が**_実際の_**状態がそれと一致するよう保証します。これにより、アプリケーション pod の自己修復が可能になり、アプリケーションの簡単な更新やロールバックも可能になります。
+> deployment.yaml ファイルは、deployment リソースを定義するために使用される kubernetes 設定ファイルです。このファイルは Kubernetes でアプリケーションを管理するための基盤となります！deployment 設定は deployment の **_望ましい状態_** を定義し、Kubernetes が **_実際の状態_** がそれと一致するよう保証します。これにより、アプリケーション pod の自己修復が可能になり、アプリケーションの簡単な更新やロールバックも可能になります。
 
 次に、同じディレクトリに`service.yaml`という名前の 2 つ目のファイルを作成します：
 
@@ -194,7 +194,7 @@ curl http://10.43.102.103:8080/hello/Kubernetes
 
 ## OpenTelemetry の設定
 
-.NET OpenTelemetry インストゥルメンテーションはすでに Docker イメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
+.NET OpenTelemetry 計装はすでに Docker イメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
 
 先ほど作成した`deployment.yaml`ファイルに以下を追加します：
 
