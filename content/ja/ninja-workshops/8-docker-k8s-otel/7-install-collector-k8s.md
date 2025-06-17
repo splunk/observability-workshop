@@ -11,7 +11,7 @@ time: 15 minutes
 
 - Linux ホストに Splunk distribution of OpenTelemetry コレクターをデプロイ
 - Splunk Observability Cloud にトレースとメトリクスを送信するよう設定
-- .NET アプリケーションをデプロイし、OpenTelemetry でインストゥルメント
+- .NET アプリケーションをデプロイし、OpenTelemetry で計装
 - .NET アプリケーションを Docker 化し、o11y cloud にトレースが流れることを確認
 
 上記のステップを**完了していない**場合は、ワークショップの残りの部分に進む前に以下のコマンドを実行してください：

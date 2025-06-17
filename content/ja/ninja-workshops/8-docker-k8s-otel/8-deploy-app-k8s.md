@@ -285,7 +285,7 @@ deployment.apps/helloworld configured
 <details>
   <summary><b>答えを見るにはここをクリック</b></summary>
 
-セクション 4「.NET Application を OpenTelemetry でインストゥルメントする」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER`環境変数を使って trace を console に書き込むトリックをお見せしました。この変数を deployment.yaml に追加し、アプリケーションを再 deploy して、helloworld アプリから log を tail することで、trace id を取得して Splunk Observability Cloud で trace を見つけることができます。（ワークショップの次のセクションでは、debug exporter の使用についても説明します。これは K8s 環境でアプリケーションを debug する際の典型的な方法です。）
+セクション 4「.NET Application を OpenTelemetry で計装する」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER`環境変数を使って trace を console に書き込むトリックをお見せしました。この変数を deployment.yaml に追加し、アプリケーションを再 deploy して、helloworld アプリから log を tail することで、trace id を取得して Splunk Observability Cloud で trace を見つけることができます。（ワークショップの次のセクションでは、debug exporter の使用についても説明します。これは K8s 環境でアプリケーションを debug する際の典型的な方法です。）
 
 まず、vi で deployment.yaml ファイルを開きます：
 
