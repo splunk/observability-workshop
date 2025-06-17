@@ -70,7 +70,7 @@ export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 
 以下のようにアプリケーションを実行できます：
 
-```
+```bash
 dotnet run
 ```
 

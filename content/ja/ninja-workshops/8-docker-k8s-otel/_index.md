@@ -17,8 +17,8 @@ hidden: false
 - Helm を使用した K8s 環境での Splunk ディストロのコレクターのデプロイを実践します。その後、コレクター設定をカスタマイズし、問題のトラブルシューティングを行います。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
+このワークショップを最も簡単にナビゲートする方法は以下を使用することです：
 
-- the left/right arrows (**<** | **>**) on the top right of this page
-- the left (◀️) and right (▶️) cursor keys on your keyboard
+- このページの右上にある左右の矢印（**<** | **>**）
+- キーボードの左（◀️）と右（▶️）のカーソルキー
   {{% /notice %}}
