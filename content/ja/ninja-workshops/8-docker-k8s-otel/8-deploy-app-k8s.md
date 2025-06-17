@@ -1,9 +1,6 @@
 ---
 title: アプリケーションをK8sにデプロイ
-linkTitle: 8. アプリケーショ## DockerイメージをKubernetesにインポート
-
-通常であれば、DockerイメージをDocker Hubなどのリポジトリにプッシュします。
-しかし、今回のセッションでは、k3sに直接インポートする回避策を使用します。sにデプロイ
+linkTitle: 8. アプリケーションをK8sにデプロイ
 weight: 8
 time: 15 minutes
 ---
@@ -60,10 +57,10 @@ docker build -t helloworld:1.2 .
 > docker image rm <old image id>
 > ```
 
-## Import the Docker Image to Kubernetes
+## Docker イメージを Kubernetes にインポート
 
-Normally we’d push our Docker image to a repository such as Docker Hub.
-But for this session, we’ll use a workaround to import it to k3s directly.
+通常であれば、Docker イメージを Docker Hub などのリポジトリにプッシュします。
+しかし、今回のセッションでは、k3s に直接インポートする回避策を使用します。
 
 ```bash
 cd /home/splunk
@@ -113,8 +110,8 @@ spec:
               value: "8080"
 ```
 
-> [!tip]- What is a Deployment in Kubernetes?
-> The deployment.yaml file is a kubernetes config file that is used to define a deployment resource. This file is the cornerstone of managing applications in Kubernetes! The deployment config defines the deployment’s **_desired state_** and Kubernetes then ensures the **_actual_** state matches it. This allows application pods to self-heal and also allows for easy updates or roll backs to applications.
+> [!tip]- Kubernetes における Deployment とは？
+> deployment.yaml ファイルは、deployment リソースを定義するために使用される kubernetes 設定ファイルです。このファイルは Kubernetes でアプリケーションを管理するための基盤となります！deployment 設定は deployment の**_望ましい状態_**を定義し、Kubernetes が**_実際の_**状態がそれと一致するよう保証します。これにより、アプリケーション pod の自己修復が可能になり、アプリケーションの簡単な更新やロールバックも可能になります。
 
 次に、同じディレクトリに`service.yaml`という名前の 2 つ目のファイルを作成します：
 
@@ -140,8 +137,8 @@ spec:
       protocol: TCP
 ```
 
-> [!tip]- What is a Service in Kubernetes?
-> A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time.
+> [!tip]- Kubernetes における Service とは？
+> Kubernetes の Service は抽象化レイヤーであり、仲介者のような役割を果たします。Pod にアクセスするための固定 IP アドレスや DNS 名を提供し、時間の経過とともに Pod が追加、削除、または交換されても同じままです。
 
 これらのマニフェストファイルを使用してアプリケーションをデプロイできます：
 
@@ -220,7 +217,7 @@ env:
     value: "deployment.environment=otel-$INSTANCE"
 ```
 
-The complete `deployment.yaml` file should be as follows (with **your** instance name rather than `$INSTANCE`):
+完全な`deployment.yaml`ファイルは以下のようになります（`$INSTANCE`ではなく**あなたの**インスタンス名を使用してください）：
 
 ```yaml
 apiVersion: apps/v1
@@ -258,7 +255,7 @@ spec:
               value: "deployment.environment=otel-$INSTANCE"
 ```
 
-Apply the changes with:
+以下のコマンドで変更を適用します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -277,9 +274,9 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-Then use `curl` to generate some traffic.
+その後、`curl`を使用してトラフィックを生成します。
 
-After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ...
+1 分ほど経過すると、o11y cloud でトレースが流れているのが確認できるはずです。ただし、より早くトレースを確認したい場合は、以下の方法があります...
 
 ## チャレンジ
 
@@ -288,16 +285,16 @@ After a minute or so, you should see traces flowing in the o11y cloud. But, if y
 <details>
   <summary><b>答えを見るにはここをクリック</b></summary>
 
-If you recall in our challenge from Section 4, _Instrument a .NET Application with OpenTelemetry_, we showed you a trick to write traces to the console using the `OTEL_TRACES_EXPORTER` environment variable. We can add this variable to our deployment.yaml, redeploy our application, and tail the logs from our helloworld app so that we can grab the trace id to then find the trace in Splunk Observability Cloud. (In the next section of our workshop, we will also walk through using the debug exporter, which is how you would typically debug your application in a K8s environment.)
+セクション 4「.NET Application を OpenTelemetry でインストゥルメントする」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER`環境変数を使って trace を console に書き込むトリックをお見せしました。この変数を deployment.yaml に追加し、アプリケーションを再 deploy して、helloworld アプリから log を tail することで、trace id を取得して Splunk Observability Cloud で trace を見つけることができます。（ワークショップの次のセクションでは、debug exporter の使用についても説明します。これは K8s 環境でアプリケーションを debug する際の典型的な方法です。）
 
-First, open the deployment.yaml file in vi:
+まず、vi で deployment.yaml ファイルを開きます：
 
 ```bash
 vi deployment.yaml
 
 ```
 
-Then, add the `OTEL_TRACES_EXPORTER` environment variable:
+次に、`OTEL_TRACES_EXPORTER`環境変数を追加します：
 
 ```yaml
 env:
@@ -318,7 +315,7 @@ env:
     value: "otlp,console"
 ```
 
-Save your changes then redeploy the application:
+変更を保存してからアプリケーションを再 deploy します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -337,7 +334,7 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-Tail the helloworld logs:
+helloworld の log を tail します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -397,6 +394,6 @@ Resource associated with Activity:
 {{% /tab %}}
 {{< /tabs >}}
 
-Then, in your other terminal window, generate a trace with your curl command. You will see the trace id in the console in which you are tailing the logs. Copy the `Activity.TraceId:` value and paste it into the Trace search field in APM.
+次に、別の terminal window で curl コマンドを使って trace を生成します。log を tail している console で trace id が表示されるはずです。`Activity.TraceId:`の値をコピーして、APM の Trace 検索フィールドに貼り付けてください。
 
 </details>
