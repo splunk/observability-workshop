@@ -1,6 +1,6 @@
 ---
-title: OpenTelemetryで.NETアプリケーションをインストゥルメントする
-linkTitle: 4. OpenTelemetryで.NETアプリケーションをインストゥルメントする
+title: OpenTelemetryで.NETアプリケーションを計装する
+linkTitle: 4. OpenTelemetryで.NETアプリケーションを計装する
 weight: 4
 time: 20 minutes
 ---
@@ -11,7 +11,7 @@ time: 20 minutes
 手動でインストールします。
 
 最新の`splunk-otel-dotnet-install.sh`ファイルをダウンロードすることから始めます。
-これを使用して.NET アプリケーションをインストゥルメントします：
+これを使用して.NET アプリケーションを計装します：
 
 ```bash
 cd ~/workshop/docker-k8s-otel/helloworld

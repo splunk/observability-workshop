@@ -186,9 +186,9 @@ Hello, Tom!
 
 ## 次のステップ
 
-アプリケーションを OpenTelemetry でインストゥルメントするために使用できる 3 つの方法は何でしょうか？
+アプリケーションを OpenTelemetry で計装するために使用できる 3 つの方法は何でしょうか？
 
 ![Traces](../images/NetInstrumentation.png)
 
-オプションの詳細については、[Splunk Observability Cloud 用の.NET アプリケーションのインストゥルメント](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html)
+オプションの詳細については、[Splunk Observability Cloud 用の.NET アプリケーションの計装](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html)
 を参照してください。
