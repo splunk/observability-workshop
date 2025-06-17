@@ -13,7 +13,7 @@ hidden: false
 このワークショップでは、以下の項目について実践経験を積むことができます：
 
 - Linux および Kubernetes 環境で、Splunk ディストリビューションの OpenTelemetry .NET を使用してコレクターのデプロイと.NET アプリケーションの計装を実践します。
-- .NET アプリケーションの「Docker 化」、Docker での実行、そして Splunk OpenTelemetry インストゥルメンテーションの追加を実践します。
+- .NET アプリケーションの「Docker 化」、Docker での実行、そして Splunk OpenTelemetry 計装の追加を実践します。
 - Helm を使用した K8s 環境での Splunk ディストロのコレクターのデプロイを実践します。その後、コレクター設定をカスタマイズし、問題のトラブルシューティングを行います。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}

@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetryコレクターのデプロイ
-linkTitle: OpenTelemetryコレクターのデプロイ
+linkTitle: 2. OpenTelemetryコレクターのデプロイ
 weight: 2
 time: 10 minutes
 ---

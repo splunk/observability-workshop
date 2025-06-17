@@ -1,11 +1,11 @@
 ---
-title: DockerfileにInstrumentationを追加する
-linkTitle: 6. DockerfileにInstrumentationを追加する
+title: Dockerfileに計装を追加する
+linkTitle: 6. Dockerfileに計装を追加する
 weight: 6
 time: 10 minutes
 ---
 
-アプリケーションを正常に Docker 化したので、次に OpenTelemetry instrumentation を追加しましょう。
+アプリケーションを正常に Docker 化したので、次に OpenTelemetry による計装 を追加しましょう。
 
 これは、Linux で実行しているアプリケーションを計装した際の手順と似ていますが、
 注意すべきいくつかの重要な違いがあります。
@@ -27,7 +27,6 @@ vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
 
 > vi では「i」キーを押して編集モードに入ります
-
 > 'NEW CODE'とマークされている行を Dockerfile のビルドステージセクションに貼り付けてください：
 
 ```dockerfile
@@ -43,7 +42,7 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # NEW CODE: add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
-	apt-get install -y unzip
+ apt-get install -y unzip
 
 # NEW CODE: download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
@@ -113,7 +112,7 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # NEW CODE: add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
-	apt-get install -y unzip
+ apt-get install -y unzip
 
 # NEW CODE: download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
@@ -168,9 +167,7 @@ exec "$@"
 
 > vi での変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
 
-`entrypoint.sh`スクリプトは、instrumentation に含まれる instrument.sh スクリプトから環境変数を
-ソースするために必要です。これにより、各プラットフォームに対して環境変数が正しく
-設定されることが保証されます。
+`entrypoint.sh`スクリプトは、計装に含まれる instrument.sh スクリプトが環境変数を**コンテナ起動時に**取得するために必要です。これにより、各プラットフォームに対して環境変数が正しく設定されることが保証されます。
 
 > 「なぜ Linux ホスト上で OpenTelemetry .NET instrumentation を有効化したときのように、
 > Dockerfile に以下のコマンドを含めるだけではだめなのか？」と疑問に思うかもしれません。

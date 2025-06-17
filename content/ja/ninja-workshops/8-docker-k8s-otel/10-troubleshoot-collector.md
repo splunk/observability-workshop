@@ -186,8 +186,8 @@ kubectl logs -l component=otel-collector-agent -f
 次のようなものが表示されるはずです：
 
 ```
-2024-12-20T21:56:30.858Z	info	Logs	{"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
-2024-12-20T21:56:30.858Z	info	ResourceLog #0
+2024-12-20T21:56:30.858Z info Logs {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
+2024-12-20T21:56:30.858Z info ResourceLog #0
 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
      -> splunk.distro.version: Str(1.8.0)
@@ -226,7 +226,7 @@ Attributes:
 Trace ID: 78db97a12b942c0252d7438d6b045447
 Span ID: 5e9158aa42f96db3
 Flags: 1
-	{"kind": "exporter", "data_type": "logs", "name": "debug"}
+ {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
 この例では、Trace ID と Span ID が
