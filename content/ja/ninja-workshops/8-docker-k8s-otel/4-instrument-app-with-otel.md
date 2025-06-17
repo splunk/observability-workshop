@@ -120,7 +120,7 @@ curl http://localhost:8080/hello
 
 トレースログを有効にした場合は、以下のようなトレースがコンソールまたはコレクターログに書き込まれているのを確認できるはずです：
 
-```
+```bash
 info: Program[0]
       /hello endpoint invoked anonymously
 Activity.TraceId:            c7bbf57314e4856447508cd8addd49b0
