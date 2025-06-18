@@ -10,7 +10,7 @@ weight: 1.06
 
 Now let’s narrow down our data to focus on the **Paris data center**, which will allow us to apply more targeted analytics. We’ll do this by using a **Filter**.
 
-Start by returning to the **Plot Editor** tab. Click the {{% button style=“blue” %}}Add Filter{{% /button %}} button **(2)** as shown in the screenshot above.
+Start by returning to the **Plot Editor** tab. Click the {{% button style="blue" %}}Add Filter{{% /button %}} button **(2)** as shown in the screenshot below.
 
 Wait a moment for the available dimensions to populate. Then:
 
