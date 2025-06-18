@@ -9,7 +9,7 @@ In this section, we’ll start by exploring how charts are built and displayed i
 
 To get started, make sure you have the **SAMPLE CHARTS** dashboard open and adjust the time range in the top-right corner of the dashboard back to **-5M** for Last 5 Minutes or select **reset to default**
 
-Find the **Latency histogram** chart, then click on the **three dots** (...) in the upper-right corner of the chart. From the menu, select **Open**. You can also simply click on the chart title (**Latency histogram**) to open it directly.
+Find the **Latency histogram** chart, then click on the **three dots** (...) **(1)** in the upper-right corner of the chart. From the menu, select **Open (3)**. You can also simply click on the chart title (**Latency histogram**) **(2)** to open it directly.
 
 ![Sample Charts](../../images/latency-histogram-open.png)
 
