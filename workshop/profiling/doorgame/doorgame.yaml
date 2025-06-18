@@ -55,6 +55,9 @@ spec:
               value: "false"
             - name: SPLUNK_PROFILER_MEMORY_ENABLED
               value: "false"
+            - name: SPLUNK_PROFILER_CALL_STACK_INTERVAL
+              value:  "100ms"
+            - name: SPLUNK_PROFILER  
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
