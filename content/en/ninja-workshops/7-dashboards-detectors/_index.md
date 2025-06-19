@@ -7,7 +7,9 @@ authors: ["Pieter Hagen"]
 time: 45 minutes
 draft: false
 ---
-Welcome to the workshop on **Dashboards and Detectors** in the Splunk Observability Cloud. This session is designed to help you get hands-on experience with building insightful visualizations and setting up proactive monitoring using built-in capabilities.
+Welcome to the workshop on **Dashboards** in the Splunk Observability Cloud. This session is designed to help you get hands-on experience with building insightful visualizations.
+
+<!-- Welcome to the workshop on **Dashboards and Detectors** in the Splunk Observability Cloud. This session is designed to help you get hands-on experience with building insightful visualizations and setting up proactive monitoring using built-in capabilities. -->
 
 We’ll be working with existing demo data available in the Splunk Observability Suite. You can follow along using any **trial** or **production** Splunk Observability organization that you have access to.
 
@@ -23,7 +25,7 @@ In the first part of the workshop, we’ll focus on dashboards and charts:
 * Building and customizing formulas
 * Saving charts into a dashboard for reuse
 * An introduction to SignalFlow for advanced charting
-
+<!-- 
 ### Detectors
 
 In the second part, we’ll shift to alerting and monitoring with detectors:
@@ -34,5 +36,5 @@ In the second part, we’ll shift to alerting and monitoring with detectors:
 * Managing alert rules and notification policies
 * Exploring alert timelines and history
 * Best practices for building actionable detectors
-
+ -->
 <!-- {{% children containerstyle="ul" depth="1" description="true" %}} -->
