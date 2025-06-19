@@ -9,11 +9,11 @@ weight: 1.10
 Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button style="white" %}}New Text Note{{% /button %}}
  Button.
 
-![three charts](../../images/M-Notes-0.png)
+![three charts](../../images/add-notes.png)
 
 This will open the notes editor.
 
-![Notes 1](../../images/M-Notes-1.png)
+![Notes 1](../../images/notes-editor.png)
 
 To allow you to add more then just text to you notes, Splunk is allowing you to use Markdown in these notes/panes.
 Markdown is a lightweight markup language for creating formatted text using plain-text often used in Webpages.
@@ -79,13 +79,13 @@ the preview will show you how it will look.
 
 ## 2. Saving our chart
 
-Give the Note chart a name, in our example we used *Example text chart*, then press the {{% button %}}Save And Close{{% /button %}} Button.
+Give the Note chart a name, in our example we used *Example text chart*, then press the {{% button style="blue" %}}Save And Close{{% /button %}} Button.
 
-![saving note](../../images/M-Notes-2.png)
+![saving note](../../images/notes-with-example.png)
 
 This will bring you back to you Dashboard, that now includes the note.
 
-![three charts and note](../../images/M-Notes-3.png)
+![three charts and note](../../images/3-charts-and-note.png)
 
 ---
 
@@ -107,4 +107,4 @@ As a last exercise reduce the width of the note chart to about a third of the ot
 
 ![TaDA!](../../images/M-Notes-6.png)
 
-On to Detectors!
+
