@@ -3,6 +3,7 @@ title: Working with Detectors
 linkTitle: 2. Detectors
 weight: 2.0
 time: 10 minutes
+hidden: true
 ---
 
 * Create a Detector from one of your charts
