@@ -52,19 +52,17 @@ Update the chart title from *Latency history* to **Latency vs Load (4)**, and op
 
 ---
 Click on the {{% button style=blue %}}Add Metric Or Event{{% /button %}} button to create a new signal. In the input field that appears, type and select `demo.trans.count` **(1)** to add it as **Signal D**.
-![Dashboard Info](../../images/M-MoreCharts-8.png)
 
----
 This adds a new signal, **Signal D**, to your chart. It represents the number of active requests being processed.
 
-To focus on the **Paris data center**, add a filter for **demo_datacenter: Paris**. Then, click the Configure Plot button to adjust how the data is displayed. Change the **rollup** type from **Auto (Delta)** to **Rate/sec** to show the rate of incoming requests per second.
+To focus on the **Paris data center**, add a filter for **demo_datacenter: Paris (2)**. Then, click the Configure Plot ⚙️ **(3)** button to adjust how the data is displayed. Change the **rollup** type from **Auto (Delta)** to **Rate/sec (4)** to show the rate of incoming requests per second.
 
-Finally, rename the signal from `demo.trans.count` to `Latency vs Load` to reflect its role in the chart more clearly.
+Finally, rename the signal from `demo.trans.count` to `Latency vs Load` **(5)** to reflect its role in the chart more clearly.
 
-![rollup change](../../images/M-MoreCharts-9.png)
+![rollup change](../../images/rollout-change.png)
 
 Finally press the {{% button %}}Save And Close{{% /button %}} button. This returns you to your dashboard that now has three different charts!
 
-![three charts](../../images/M-MoreCharts-10.png)
+![three charts](../../images/3-charts.png)
 
 Let's add an "instruction" note and arrange the charts!
