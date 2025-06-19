@@ -1,11 +1,11 @@
 ---
-title: Dashboard & Detectors Workshop
-description: Dashboard & Detectors
+title: Dashboard Workshop
+description: Dashboard
 weight: 7
 archetype: chapter
 authors: ["Pieter Hagen"]
 time: 45 minutes
-draft: true
+draft: false
 ---
 Welcome to the workshop on **Dashboards and Detectors** in the Splunk Observability Cloud. This session is designed to help you get hands-on experience with building insightful visualizations and setting up proactive monitoring using built-in capabilities.
 
