@@ -1,4 +1,5 @@
 clusterReceiver:
+  eventsEnabled: true
   k8sObjects:
     - name: events
       mode: watch
