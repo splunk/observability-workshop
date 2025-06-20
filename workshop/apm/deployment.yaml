@@ -842,8 +842,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/splunk/online-boutique/frontend-rum-profile:3.1.0
-          #image: docker.io/harnit/shopdemo-frontend:2.1-customevents
+          image: ghcr.io/splunk/online-boutique/frontend-rum-profile:4.1.0
           ports:
             - containerPort: 8080
           readinessProbe:
