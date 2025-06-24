@@ -13,7 +13,6 @@ Splunk Observability Cloud provides several tools for exploring application moni
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * With the outer box of the **paymentservice** selected, in the right-hand pane, click on **Traces**.
-* To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
 * Set **Time Range** to **Last 15 minutes**.
 * Ensure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 
