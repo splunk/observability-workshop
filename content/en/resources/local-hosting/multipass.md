@@ -83,7 +83,7 @@ Instance type variables:
 Optional advanced variables:
 
 - `wsversion`: Set this to `main` if working on the development of the workshop, otherwise this can be omitted.
-- `architecture`: Set this to `arm64` if you are running on Apple Silicon. Defaults to `amd64`.
+- `architecture`: Set this to the correct architecture, `arm64` or `amd64`. Defaults to `arm64` which is appropriate for Apple Silicon.
 
 Run `terraform plan` to check that all configuration is OK. Once happy run `terraform apply` to create the instance.
 
