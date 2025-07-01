@@ -43,7 +43,7 @@ params:
   alwaysopen: false
   showVisitedLinks: true
   collapsibleMenu: true
-  disableSearch: false
+  search.disable: false
   disableBreadcrumb: false
   disableInlineCopyToClipBoard: true
   disableNextPrev: false
