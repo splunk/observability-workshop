@@ -1,10 +1,10 @@
-FROM gradle:8.6.0-jdk11-jammy AS build
+FROM gradle:8.14.2-jdk21-jammy AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 #RUN gradle build --no-daemon
 RUN ./gradlew shadowJar
 
-FROM openjdk:11-jre-slim as final
+FROM eclipse-temurin:21-jre-jammy as final
 
 EXPOSE 9090
 
