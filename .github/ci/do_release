@@ -49,15 +49,15 @@ if [[ $DRY_RUN == 0 ]]; then
   git fetch --tags origin
   git add README.md
 
-  LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' hugo.yaml)
-  # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
-  NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' hugo.yaml |
-    yq -o=json -I=0 '. += [{ "version": "v'"${TAG}"'", "url": "'"${BASE_URL}observability-workshop/v${TAG}"'"}]' |
-    jq -c --arg latest_url "${LATEST_URL}" 'sort_by(.version[1:] | split(".") | map(tonumber)) | .[-2:] | [{ version: "latest", url: $latest_url}] + .')
+  # LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' hugo.yaml)
+  # # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
+  # NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' hugo.yaml |
+  #   yq -o=json -I=0 '. += [{ "version": "v'"${TAG}"'", "url": "'"${BASE_URL}observability-workshop/v${TAG}"'"}]' |
+  #   jq -c --arg latest_url "${LATEST_URL}" 'sort_by(.version[1:] | split(".") | map(tonumber)) | .[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
-  # set new versions
-  yq e ".params.versions=${NEW_VERSIONS}" -i hugo.yaml
-  git add hugo.yaml
+  # # set new versions
+  # yq e ".params.versions=${NEW_VERSIONS}" -i hugo.yaml
+  # git add hugo.yaml
 
   git commit --amend -m "Releasing v${TAG}"
   git tag -a "v${TAG}" -m "Version ${TAG}"
