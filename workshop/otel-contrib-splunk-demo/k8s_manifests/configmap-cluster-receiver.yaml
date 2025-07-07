@@ -110,6 +110,6 @@ data:
           - resource
           receivers:
           - prometheus/k8s_cluster_receiver
-      telemetry:
-        metrics:
-          address: 0.0.0.0:8889
+      # telemetry:
+      #   metrics:
+      #     address: 0.0.0.0:8889
