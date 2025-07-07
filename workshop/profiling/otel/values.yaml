@@ -1,5 +1,8 @@
 agent:
   config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
     processors:
       resource/envname:
         attributes:
