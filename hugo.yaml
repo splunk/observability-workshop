@@ -51,13 +51,13 @@ params:
   titleSeparator: "::"
   themeVariant: ["auto", "splunk-light", "splunk-dark"]
   additionalContentLanguage: ["ja"]
-  versions:
-    - version: latest
-      url: https://splunk.github.io/observability-workshop/latest/
-    - version: v5.94
-      url: https://splunk.github.io/observability-workshop/v5.94
-    - version: v5.95
-      url: https://splunk.github.io/observability-workshop/v5.95
+  # versions:
+  #   - version: latest
+  #     url: ""
+  #   - version: v5.94
+  #     url: https://splunk.github.io/observability-workshop/v5.94
+  #   - version: v5.95
+  #     url: https://splunk.github.io/observability-workshop/v5.95
   url_latest_version: https://splunk.github.io/observability-workshop/
   stable_otel_version: 0.126.0
   imageEffects:
