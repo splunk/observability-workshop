@@ -8,6 +8,25 @@ weight: 1
 
 ## Prerequisites
 
+### Note to Workshop Instructor
+
+This step only needs to be completed once, as the IAM role created 
+in this step will be shared by all workshop participants: 
+
+``` bash
+cd ~/workshop/lambda/iam_role
+terraform init
+terraform plan
+terraform apply 
+```
+
+After the workshop is complete, cleanup the role as follows: 
+
+``` bash
+cd ~/workshop/lambda/iam_role
+terraform destroy
+```
+
 ### Observability Workshop Instance
 The Observability Workshop uses the `Splunk4Ninjas - Observability` workshop template in Splunk Show, 
 which provides a pre-configured EC2 instance running Ubuntu. 
