@@ -11,7 +11,7 @@ draft: true
 **Send a Test Trace**:
 
 1. Validate **Agent** and **Gateway** are still running.
-2. In the **Spans terminal** window, run the following command to send 5 spans and validate the output of the **Agent** and **Gateway** debug logs:
+2. In the **Loadgen terminal** window, run the following command to send 5 spans and validate the output of the **Agent** and **Gateway** debug logs:
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}

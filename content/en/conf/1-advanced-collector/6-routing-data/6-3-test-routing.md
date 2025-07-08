@@ -20,7 +20,7 @@ In this section, we will test the `routing` rule configured for the **Gateway**.
 ../otelcol --config agent.yaml
 ```
 
-**Send a Regular Span**: In the **Spans terminal** window send a regular span using the `loadgen`:
+**Send a Regular Span**: In the **Loadgen terminal** window send a regular span using the `loadgen`:
 
 ```bash
 ../loadgen -count 1
@@ -32,7 +32,7 @@ Both the **Agent** and **Gateway** will display debug information. The gateway w
 If you check `gateway-traces-standard.out`, it will contain the `span` sent by `loadgen`. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
-**Send a Security Span**: In the **Spans terminal** window send a security span using the `security` flag:
+**Send a Security Span**: In the **Loadgen terminal** window send a security span using the `security` flag:
 
 ```bash
 ../loadgen -security -count 1
