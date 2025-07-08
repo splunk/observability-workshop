@@ -8,14 +8,14 @@ The second part of our workshop will focus on demonstrating how manual instrumen
 
 ### The Manual Instrumentation Workshop Directory & Contents
 
-Once again, we will first start by taking a look at our operating directory, and some of its files. This time, it will be `o11y-lambda-workshop/manual` directory. This is where all the content for the manual instrumentation portion of our workshop resides.
+Once again, we will first start by taking a look at our operating directory, and some of its files. This time, it will be `workshop/lambda/manual` directory. This is where all the content for the manual instrumentation portion of our workshop resides.
 
 #### The `manual` directory
 
-- Run the following command to get into the `o11y-lambda-workshop/manual` directory:
+- Run the following command to get into the `workshop/lambda/manual` directory:
 
   ```bash
-  cd ~/o11y-lambda-workshop/manual
+  cd ~/workshop/lambda/manual
   ```
 
 - Inspect the contents of this directory with the `ls` command:
@@ -42,7 +42,7 @@ Let's make sure that all these files that LOOK the same, are actually the same.
 - Compare the `main.tf` files in the `auto` and `manual` directories:
 
   ```bash
-  diff ~/o11y-lambda-workshop/auto/main.tf ~/o11y-lambda-workshop/manual/main.tf
+  diff ~/workshop/lambda/auto/main.tf ~/workshop/lambda/manual/main.tf
   ```
 
   - There is no difference! _(Well, there shouldn't be. Ask your workshop facilitator to assist you if there is)_
@@ -50,7 +50,7 @@ Let's make sure that all these files that LOOK the same, are actually the same.
 - Now, let's compare the `producer.mjs` files:
 
   ```bash
-  diff ~/o11y-lambda-workshop/auto/handler/producer.mjs ~/o11y-lambda-workshop/manual/handler/producer.mjs
+  diff ~/workshop/lambda/auto/handler/producer.mjs ~/workshop/lambda/manual/handler/producer.mjs
   ```
 
   - There's quite a few differences here!
@@ -58,7 +58,7 @@ Let's make sure that all these files that LOOK the same, are actually the same.
 - You may wish to view the entire file and examine its content
 
   ```bash
-  cat ~/o11y-lambda-workshop/handler/producer.mjs
+  cat ~/workshop/lambda/handler/producer.mjs
   ```
 
   - Notice how we are now importing some OpenTelemetry objects directly into our function to handle some of the manual instrumentation tasks we require.
@@ -75,7 +75,7 @@ Let's make sure that all these files that LOOK the same, are actually the same.
 - Finally, compare the `consumer.mjs` files:
 
   ```bash
-  diff ~/o11y-lambda-workshop/auto/handler/consumer.mjs ~/o11y-lambda-workshop/manual/handler/consumer.mjs
+  diff ~/workshop/lambda/auto/handler/consumer.mjs ~/workshop/lambda/manual/handler/consumer.mjs
   ```
 
   - Here also, there are a few differences of note. Let's take a closer look
