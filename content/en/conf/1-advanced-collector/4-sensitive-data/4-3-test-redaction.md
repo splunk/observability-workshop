@@ -42,7 +42,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 ../otelcol --config=agent.yaml
 ```
 
-**Start the Load Generator**: In the **Spans terminal** window start the `loadgen`:
+**Start the Load Generator**: In the **Loadgen terminal** window start the `loadgen`:
 
 ```bash
 ../loadgen -count 1

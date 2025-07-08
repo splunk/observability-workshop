@@ -8,7 +8,7 @@ draft: true
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the log load generator:** In the **Logs terminal** window, run the following command to start the `loadgen`:
+**Start the log load generator:** In the **Loadgen terminal** window, run the following command to start the `loadgen`:
 
 ```bash
 ../loadgen -logs
@@ -29,7 +29,7 @@ Flags: 0
 LogRecord #1
 ```
 
-**Stop the `loadgen`**: In the **Logs terminal** window, stop the `loadgen` using `Ctrl-C`.
+**Stop the `loadgen`**: In the **Loadgen terminal** window, stop the `loadgen` using `Ctrl-C`.
 
 **Verify the gateway**: Check if the **Gateway** has written a `./gateway-logs.out` file.
 

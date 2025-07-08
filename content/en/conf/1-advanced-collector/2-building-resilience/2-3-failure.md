@@ -20,7 +20,7 @@ To assess the **Agent's** resilience, we'll simulate a temporary **Gateway** out
 2025-01-28T13:24:32.785+0100  info  service@v0.120.0/service.go:309  Shutdown complete.
 ```
 
-**Send traces**: In the **Spans terminal** window send five more traces using the `loadgen`.
+**Send traces**: In the **Loadgen terminal** window send five more traces using the `loadgen`.
 
 Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
 

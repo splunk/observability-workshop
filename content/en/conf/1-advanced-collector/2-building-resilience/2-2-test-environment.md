@@ -20,7 +20,7 @@ Next, we will configure our environment to be ready for testing the **File Stora
 ../otelcol --config=agent.yaml
 ```
 
-**Send five test spans**: In the **Spans terminal** window navigate to the `[WORKSHOP]/4-resilience` directory and run:
+**Send five test spans**: In the **Loadgen terminal** window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
 ```bash { title="Start Load Generator" }
 ../loadgen -count 5

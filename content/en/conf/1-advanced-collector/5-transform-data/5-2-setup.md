@@ -18,7 +18,7 @@ weight: 2
 ../otelcol --config=agent.yaml
 ```
 
-**Start the Load Generator**: Open the **Logs terminal** window and run the `loadgen`.
+**Start the Load Generator**: Open the **Loadgen terminal** window and run the `loadgen`.
 
 > [!IMPORTANT]
 > To ensure the logs are structured in JSON format, include the `-json` flag when starting the script.

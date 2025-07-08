@@ -20,7 +20,7 @@ To test your configuration, you'll need to generate some trace data that include
 ../otelcol --config ./agent.yaml
 ```
 
-**Start the Loadgen**: In the **Spans terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
+**Start the Loadgen**: In the **Loadgen terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
   
 ```bash
 ../loadgen -health -count 5

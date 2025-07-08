@@ -20,7 +20,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ../otelcol --config=agent.yaml
 ```
 
-**Start the Load Generator**: In the **Spans terminal** window start the `loadgen`:
+**Start the Load Generator**: In the **Loadgen terminal** window start the `loadgen`:
 
 ```bash
 ../loadgen -count 1
