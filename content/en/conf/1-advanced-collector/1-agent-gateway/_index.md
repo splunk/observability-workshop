@@ -1,9 +1,9 @@
 ---
-title: 1. Agent/Gateway Configuration
-linkTitle: 1. Agent/Gateway Configuration
+title: 1. Verify Agent Configuration
+linkTitle: 1. Agent Configuration
 
 
-time: 10 minutes
+time: 15 minutes
 weight: 3
 ---
 Welcome! In this section, we’ll begin with a fully functional OpenTelemetry setup that includes both an **Agent** and a **Gateway**.

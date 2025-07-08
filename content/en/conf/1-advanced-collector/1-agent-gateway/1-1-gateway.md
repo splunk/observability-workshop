@@ -1,6 +1,6 @@
 ---
-title: 1.1 Gateway Configuration
-linkTitle: 1.1 Gateway 
+title: 1.1 Verify Gateway Configuration
+linkTitle: 1.1 Gateway Configuration
 weight: 1
 ---
 
