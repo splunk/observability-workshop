@@ -9,7 +9,8 @@ weight: 1
 ## Prerequisites
 
 ### Observability Workshop Instance
-The Observability Workshop is most often completed on a Splunk-issued and preconfigured EC2 instance running Ubuntu.
+The Observability Workshop uses the `Splunk4Ninjas - Observability` workshop template in Splunk Show, 
+which provides a pre-configured EC2 instance running Ubuntu. 
 
 Your workshop instructor will provide you with the credentials to your assigned workshop instance.
 
@@ -66,19 +67,14 @@ Your Splunk-issued workshop instance should already have **terraform** installed
   sudo apt update && sudo apt install terraform
   ```
 
-### Workshop Directory (o11y-lambda-workshop)
-The Workshop Directory `o11y-lambda-workshop` is a repository that contains all the configuration files and scripts to complete both the auto-instrumentation and manual instrumentation of the example Lambda-based application we will be using today.
+### Workshop Directory (lambda)
+The Workshop Directory `lambda` is a repository that contains all the configuration files and scripts to complete both the auto-instrumentation and manual instrumentation of the example Lambda-based application we will be using today.
 
 - Confirm you have the workshop directory in your home directory:
   ```bash
-  cd && ls
+  cd ~/workshop && ls
   ```
-    - _The expected output would include **o11y-lambda-workshop**_
-
-- If the **o11y-lambda-workshop** directory is not in your home directory, clone it with the following command:
-  ```bash
-  git clone https://github.com/gkono-splunk/o11y-lambda-workshop.git
-  ```
+    - _The expected output would include **lambda**_
 
 ### AWS & Terraform Variables
 
@@ -92,7 +88,7 @@ The AWS CLI requires that you have credentials to be able to access and manage r
     - _This command should provide a prompt similar to the one below:_
       ```bash
       AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
-      AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       Default region name [None]: us-east-1
       Default outoput format [None]:
       ```
@@ -101,6 +97,11 @@ The AWS CLI requires that you have credentials to be able to access and manage r
   ```bash
   aws configure
   ```
+
+> Note to the workshop instructor:  create a new user in the target AWS account called `lambda-workshop-user`. 
+> Ensure it has full permissions to perform the required actions via Terraform.  Create an access token for the `lambda-workshop-user`
+> user and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user 
+> when the workshop is complete. 
 
 #### Terraform
 Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files, as well as to make those values reusable throughout your resource definitions.
@@ -118,7 +119,7 @@ We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ 
 
 - Using either **vi** or **nano**, open the _**terraform.tfvars**_ file in either the **auto** or **manual** directory
   ```bash
-  vi ~/o11y-lambda-workshop/auto/terraform.tfvars
+  vi ~/workshop/lambda/auto/terraform.tfvars
   ```
 - Set the variables with their values. Replace the **CHANGEME** placeholders with those provided by your instructor.
   ```bash
@@ -128,12 +129,13 @@ We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ 
   prefix            = "CHANGEME"
   ```
   - _Ensure you change only the placeholders, leaving the quotes and brackets intact, where applicable._
+  - _For the **otel_lambda_layer**, use the value for **us-east-1** found [here](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)
   - _The _**prefix**_ is a unique identifier you can choose for yourself, to make your resources distinct from other participants' resources. We suggest using a short form of your name, for example._
-  - _Also, please only lowercase letters for the **prefix**. Certain resouces in AWS, such as S3, would through an error if you use uppercase letters._
+  - _Also, please only lowercase letters for the **prefix**. Certain resources in AWS, such as S3, would through an error if you use uppercase letters._
 - Save your file and exit the editor.
 - Finally, copy the _**terraform.tfvars**_ file you just edited to the other directory.
   ```bash
-  cp ~/o11y-lambda-workshop/auto/terraform.tfvars ~/o11y-lambda-workshop/manual
+  cp ~/workshop/lambda/auto/terraform.tfvars ~/workshop/lambda/manual
   ```
   - _We do this as we will be using the same values for both the autoinstrumentation and manual instrumentation protions of the workshop_
  
@@ -141,9 +143,9 @@ We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ 
 
 While all other files are fine as they are, the **send_message.py** script in both the `auto` and `manual` will have to be executed as part of our workshop. As a result, it needs to have the appropriate permissions to run as expected. Follow these instructions to set them.
 
-- First, ensure you are in the `o11y-lambda-workshop` directory:
+- First, ensure you are in the `lambda` directory:
   ```bash
-  cd ~/o11y-lambda-workshop
+  cd ~/workshop/lambda
   ```
 
 - Next, run the following command to set executable permissions on the `send_message.py` script:
