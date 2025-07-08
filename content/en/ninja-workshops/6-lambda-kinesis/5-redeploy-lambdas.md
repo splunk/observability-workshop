@@ -125,7 +125,7 @@ Examine the logs carefully.
 
 > Do you notice the difference?
 
-#### Copy the Trace ID from the `consumer-lambda` logs
+#### Copy the Trace ID from the `consumer.logs` file
 
 This time around, we can see that the consumer-lambda log group is logging our message as a `record` together with the `tracecontext` that we propagated.
 
