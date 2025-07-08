@@ -99,9 +99,8 @@ The AWS CLI requires that you have credentials to be able to access and manage r
   ```
 
 > Note to the workshop instructor:  create a new user in the target AWS account called `lambda-workshop-user`. 
-> Ensure it has full permissions to perform the required actions via Terraform.  For example, adding the 
-> `AdministratorAccess` policy to the user is sufficient.  Create an access token for the `lambda-workshop-user`
-> and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user 
+> Ensure it has full permissions to perform the required actions via Terraform.  Create an access token for the `lambda-workshop-user`
+> user and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user 
 > when the workshop is complete. 
 
 #### Terraform
