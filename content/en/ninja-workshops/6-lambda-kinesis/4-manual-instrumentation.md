@@ -58,7 +58,7 @@ Let's make sure that all these files that LOOK the same, are actually the same.
 - You may wish to view the entire file and examine its content
 
   ```bash
-  cat ~/workshop/lambda/handler/producer.mjs
+  cat ~/workshop/lambda/manual/handler/producer.mjs
   ```
 
   - Notice how we are now importing some OpenTelemetry objects directly into our function to handle some of the manual instrumentation tasks we require.
