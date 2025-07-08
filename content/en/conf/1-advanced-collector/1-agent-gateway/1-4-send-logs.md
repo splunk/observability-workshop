@@ -2,6 +2,8 @@
 title: 1.4 Send Logs
 linkTitle: 1.4 Send Logs
 weight: 5
+hidden: true
+draft: true
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}

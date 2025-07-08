@@ -2,6 +2,8 @@
 title: 1.3 Send traces from the Agent to the Gateway
 linkTitle: 1.3 Send Traces
 weight: 4
+hidden: true
+draft: true
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
