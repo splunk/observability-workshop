@@ -1,7 +1,7 @@
 ---
 title: 3. Dropping Spans
 linkTitle: 3. Dropping Spans
-time: 10 minutes
+time: 5 minutes
 weight: 5
 ---
 

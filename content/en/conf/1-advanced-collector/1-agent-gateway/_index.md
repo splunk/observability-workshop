@@ -13,7 +13,7 @@ We’ll start by quickly reviewing their configuration files to get familiar wit
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Throughout the workshop, you’ll work with multiple terminal windows. To keep things organized, give each terminal a unique name or color. This will help you easily recognize and switch between them during the exercises.
 
-We will refer to these terminals as: **Agent**, **Gateway**, **Spans**, **Logs**, and **Tests**.
+We will refer to these terminals as: **Agent**, **Gateway**, **Loadgen**, and **Test**.
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
