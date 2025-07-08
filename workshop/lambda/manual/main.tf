@@ -31,6 +31,28 @@ resource "aws_iam_role_policy_attachment" "lambda_kinesis_execution" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonKinesisFullAccess"
 }
 
+resource "aws_iam_policy" "lambda_cloudwatch_logs" {
+  name = "LambdaCloudWatchLogsCustomPolicy"
+  policy = jsonencode({
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+              ],
+              "Resource": "*"
+          }
+      ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_cloudwatch_logs_attachment" {
+  role       = aws_iam_role.lambda_kinesis.name
+  policy_arn = aws_iam_policy.lambda_cloudwatch_logs.arn
+}
+
 # Create S3 Bucket, Ownership, ACL
 resource "aws_s3_bucket" "lambda_bucket" {
   bucket = "${var.prefix}-lambda-code"
