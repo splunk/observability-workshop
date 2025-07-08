@@ -99,7 +99,7 @@ Next, let's take a look at the `producer-lambda` function code:
 
 - Run the following command to view the contents of the `producer.mjs` file:
   ```bash
-  cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
+  cat ~/workshop/lambda/auto/handler/producer.mjs
   ```
   - This NodeJS module contains the code for the producer function.
   - Essentially, this function receives a message, and puts that message as a record to the targeted Kinesis Stream
