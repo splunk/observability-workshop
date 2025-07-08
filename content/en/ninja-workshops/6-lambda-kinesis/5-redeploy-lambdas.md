@@ -16,12 +16,12 @@ Seeing as we're in a new directory, we will need to initialize Terraform here on
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _The expected output would be **~/workshop/lambda/manual**_
 
 - If you are not in the `manual` directory, run the following command:
 
   ```bash
-  cd ~/o11y-lambda-workshop/manual
+  cd ~/workshop/lambda/manual
   ```
 
 - Run the following command to initialize Terraform in this directory
@@ -72,12 +72,12 @@ Once more, we will send our `name` and `superpower` as a message to our endpoint
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _The expected output would be **~/workshop/lambda/manual**_
 
 - If you are not in the `manual` directory, run the following command:
 
   ```bash
-  cd ~/o11y-lambda-workshop/manual
+  cd ~/workshop/lambda/manual
   ```
 
 - Run the `send_message.py` script as a background process:

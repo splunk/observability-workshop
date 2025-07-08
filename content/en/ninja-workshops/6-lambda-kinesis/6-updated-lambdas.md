@@ -93,12 +93,12 @@ Please follow these steps to destroy your resources:
   pwd
   ```
 
-  - _The expected output would be **~/o11y-lambda-workshop/manual**_
+  - _The expected output would be **~/workshop/lambda/manual**_
 
 - If you are not in the `manual` directory, run the following command:
 
   ```bash
-  cd ~/o11y-lambda-workshop/manual
+  cd ~/workshop/lambda/manual
   ```
 
 - Destroy the Lambda functions and other AWS resources you deployed earlier:
