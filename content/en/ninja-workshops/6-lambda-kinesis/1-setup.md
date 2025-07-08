@@ -71,7 +71,7 @@ The Workshop Directory `o11y-lambda-workshop` is a repository that contains all 
 
 - Confirm you have the workshop directory in your home directory:
   ```bash
-  cd && ls
+  cd ~/workshop && ls
   ```
     - _The expected output would include **o11y-lambda-workshop**_
 
@@ -124,12 +124,12 @@ We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ 
   ```bash
   o11y_access_token = "CHANGEME"
   o11y_realm        = "CHANGEME"
-  otel_lambda_layer = ["CHANGEME"]
+  otel_lambda_layer = ["arn:aws:lambda:us-east-1:254067382080:layer:splunk-apm:117"]
   prefix            = "CHANGEME"
   ```
   - _Ensure you change only the placeholders, leaving the quotes and brackets intact, where applicable._
   - _The _**prefix**_ is a unique identifier you can choose for yourself, to make your resources distinct from other participants' resources. We suggest using a short form of your name, for example._
-  - _Also, please only lowercase letters for the **prefix**. Certain resouces in AWS, such as S3, would through an error if you use uppercase letters._
+  - _Also, please only lowercase letters for the **prefix**. Certain resources in AWS, such as S3, would through an error if you use uppercase letters._
 - Save your file and exit the editor.
 - Finally, copy the _**terraform.tfvars**_ file you just edited to the other directory.
   ```bash
