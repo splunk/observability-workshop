@@ -88,7 +88,7 @@ The AWS CLI requires that you have credentials to be able to access and manage r
     - _This command should provide a prompt similar to the one below:_
       ```bash
       AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
-      AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       Default region name [None]: us-east-1
       Default outoput format [None]:
       ```
@@ -100,7 +100,9 @@ The AWS CLI requires that you have credentials to be able to access and manage r
 
 > Note to the workshop instructor:  create a new user in the target AWS account called `lambda-workshop-user`. 
 > Ensure it has full permissions to perform the required actions via Terraform.  For example, adding the 
-> `AdministratorAccess` policy to the user is sufficient. 
+> `AdministratorAccess` policy to the user is sufficient.  Create an access token for the `lambda-workshop-user`
+> and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user 
+> when the workshop is complete. 
 
 #### Terraform
 Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files, as well as to make those values reusable throughout your resource definitions.
@@ -124,10 +126,11 @@ We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ 
   ```bash
   o11y_access_token = "CHANGEME"
   o11y_realm        = "CHANGEME"
-  otel_lambda_layer = ["arn:aws:lambda:us-east-1:254067382080:layer:splunk-apm:117"]
+  otel_lambda_layer = ["CHANGEME"]
   prefix            = "CHANGEME"
   ```
   - _Ensure you change only the placeholders, leaving the quotes and brackets intact, where applicable._
+  - _For the **otel_lambda_layer**, use the value for **us-east-1** found [here](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)
   - _The _**prefix**_ is a unique identifier you can choose for yourself, to make your resources distinct from other participants' resources. We suggest using a short form of your name, for example._
   - _Also, please only lowercase letters for the **prefix**. Certain resources in AWS, such as S3, would through an error if you use uppercase letters._
 - Save your file and exit the editor.
