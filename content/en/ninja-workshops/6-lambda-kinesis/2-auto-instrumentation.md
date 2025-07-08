@@ -7,12 +7,12 @@ weight: 2
 The first part of our workshop will demonstrate how auto-instrumentation with OpenTelemetry allows the OpenTelemetry Collector to auto-detect what language your function is written in, and start capturing traces for those functions.
 
 ### The Auto-Instrumentation Workshop Directory & Contents
-First, let us take a look at the `o11y-lambda-workshop/auto` directory, and some of its files. This is where all the content for the auto-instrumentation portion of our workshop resides.
+First, let us take a look at the `workshop/lambda/auto` directory, and some of its files. This is where all the content for the auto-instrumentation portion of our workshop resides.
 
 #### The `auto` Directory
-- Run the following command to get into the **o11y-lambda-workshop/auto** directory:
+- Run the following command to get into the **workshop/lambda/auto** directory:
   ```bash
-  cd ~/o11y-lambda-workshop/auto
+  cd ~/workshop/lambda/auto
   ```
 
 - Inspect the contents of this directory:
@@ -114,11 +114,11 @@ In order to deploy the resources defined in the `main.tf` file, you first need t
   ```bash
   pwd
   ```
-  - _The expected output would be **~/o11y-lambda-workshop/auto**_
+  - _The expected output would be **~/workshop/lambda/auto**_
 
 - If you are not in the `auto` directory, run the following command:
   ```bash
-  cd ~/o11y-lambda-workshop/auto
+  cd ~/workshop/lambda/auto
   ```
 
 - Run the following command to initialize Terraform in this directory
@@ -172,11 +172,11 @@ To start getting some traces from our deployed Lambda functions, we would need t
   ```bash
   pwd
   ```
-  - _The expected output would be **~/o11y-lambda-workshop/auto**_
+  - _The expected output would be **~/workshop/lambda/auto**_
 
 - If you are not in the `auto` directory, run the following command
   ```bash
-  cd ~/o11y-lambda-workshop/auto
+  cd ~/workshop/lambda/auto
   ```
 
 The `send_message.py` script is a Python script that will take input at the command line, add it to a JSON dictionary, and send it to your `producer-lambda` function's endpoint repeatedly, as part of a while loop.
