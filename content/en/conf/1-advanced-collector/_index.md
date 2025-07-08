@@ -1,5 +1,5 @@
 ---
-title: Advanced Collector Configuration
+title: Advanced OpenTelemetry Collector Workshop
 description: Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.
 weight: 2
 archetype: chapter

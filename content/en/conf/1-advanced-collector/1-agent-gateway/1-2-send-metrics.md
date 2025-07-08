@@ -1,10 +1,10 @@
 ---
-title: 1.2 Send Metrics
+title: 1.2 Send Test Metrics
 linkTitle: 1.2 Send Metrics
 weight: 3
 ---
 
-Now, we can start the **Gateway** and the **Agent**, which will start sending **metrics**. Then we will send **traces** and generate **logs** to verify that all signals are properly routed through the **Agent** to the **Gateway**.
+Now, we can start the **Gateway** and the **Agent**, which is configured to automaticly send  **Host Metrics** at startup. We do this to  verify that data is properly routed from the **Agent** to the **Gateway**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
