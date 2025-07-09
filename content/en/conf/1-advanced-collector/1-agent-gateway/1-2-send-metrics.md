@@ -93,4 +93,7 @@ jq '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "system.cpu.ti
 {{% /tab %}}
 {{% /tabs %}}
 
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
+
 {{% /notice %}}
