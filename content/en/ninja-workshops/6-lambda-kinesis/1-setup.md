@@ -8,25 +8,6 @@ weight: 1
 
 ## Prerequisites
 
-### Note to Workshop Instructor
-
-This step only needs to be completed once, as the IAM role created 
-in this step will be shared by all workshop participants: 
-
-``` bash
-cd ~/workshop/lambda/iam_role
-terraform init
-terraform plan
-terraform apply 
-```
-
-After the workshop is complete, cleanup the role as follows: 
-
-``` bash
-cd ~/workshop/lambda/iam_role
-terraform destroy
-```
-
 ### Observability Workshop Instance
 The Observability Workshop uses the `Splunk4Ninjas - Observability` workshop template in Splunk Show, 
 which provides a pre-configured EC2 instance running Ubuntu. 
@@ -98,6 +79,12 @@ The Workshop Directory `lambda` is a repository that contains all the configurat
 ### AWS & Terraform Variables
 
 #### AWS
+
+> Note to the workshop instructor:  create a new user in the target AWS account called `lambda-workshop-user`.
+> Ensure it has full permissions to perform the required actions via Terraform.  Create an access token for the `lambda-workshop-user`
+> user and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user
+> when the workshop is complete.
+
 The AWS CLI requires that you have credentials to be able to access and manage resources deployed by their services. Both Terraform and the Python scripts in this workshop require these variables to perform their tasks.
 
 - Configure the **awscli** with the _**access key ID**_, _**secret access key**_ and _**region**_ for this workshop:
@@ -117,10 +104,24 @@ The AWS CLI requires that you have credentials to be able to access and manage r
   aws configure
   ```
 
-> Note to the workshop instructor:  create a new user in the target AWS account called `lambda-workshop-user`. 
-> Ensure it has full permissions to perform the required actions via Terraform.  Create an access token for the `lambda-workshop-user`
-> user and share the Access Key ID and Secret Access Key with the workshop participants.  Delete the user 
-> when the workshop is complete. 
+#### Create an IAM Role (Workshop Instructor Only)
+
+> Note to the workshop instructor:  This step only needs to be completed once, as the IAM role created 
+> in this step will be shared by all workshop participants:
+
+``` bash
+cd ~/workshop/lambda/iam_role
+terraform init
+terraform plan
+terraform apply 
+```
+
+> Note to the workshop instructor:  After the workshop is complete, cleanup the role as follows:
+
+``` bash
+cd ~/workshop/lambda/iam_role
+terraform destroy
+```
 
 #### Terraform
 Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files, as well as to make those values reusable throughout your resource definitions.
