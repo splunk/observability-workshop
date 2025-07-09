@@ -16,18 +16,3 @@ This solution will work for metrics as long as the connection downtime is brief�
 For logs, there are plans to implement a more enterprise-ready solution in one of the upcoming Splunk OpenTelemetry Collector releases.
 
 {{% /notice %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-> [!IMPORTANT]
-> **Change _ALL_ terminal windows to the `[WORKSHOP]/2-building-resilience` directory.**
-
-Your directory structure will look like this:
-
-```text { title="Updated Directory Structure" }
-.
-├── agent.yaml
-└── gateway.yaml
-```
-
-{{% /notice %}}
