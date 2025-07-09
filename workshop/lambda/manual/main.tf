@@ -81,7 +81,7 @@ resource "aws_lambda_function" "lambda_producer" {
 
   source_code_hash = data.archive_file.producer_app.output_base64sha256
 
-  role = aws_iam_role.lambda_kinesis.arn
+  role = data.aws_iam_role.lambda_kinesis.arn
 
   environment {
     variables = {
@@ -110,7 +110,7 @@ resource "aws_lambda_function" "lambda_consumer" {
 
   source_code_hash = data.archive_file.consumer_app.output_base64sha256
 
-  role = aws_iam_role.lambda_kinesis.arn
+  role = data.aws_iam_role.lambda_kinesis.arn
 
   environment {
     variables = {
