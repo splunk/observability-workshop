@@ -32,7 +32,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Loadgen**, and **
     ├── agent.yaml
     └── gateway.yaml
     ```
-
+<!--
 3. Check the contents of the **agent.yaml** file. This file outlines the core structure of the OpenTelemetry Collector as deployed in **Agent** mode:
 
     ```bash
@@ -130,7 +130,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Loadgen**, and **
           - file
           - otlphttp
     ```
-
+-->
 {{% /notice %}}
 
 ### Understanding the Agent configuration
@@ -179,18 +179,20 @@ The `receivers` section defines how the **Agent** ingests telemetry data. In thi
 
 #### Exporters
 
-* The `exporters` section controls where the collected telemetry data is sent:
+* **Debug Exporter**
 
   ```yaml
-  exporters:                             # Array of Exporters
     debug:                               # Exporter Type
       verbosity: detailed                # Enabled detailed debug output
+  ```
+
+* **OTLPHTTP Exporter**
+
+  ```yaml
     otlphttp:                            # Exporter Type
       endpoint: "http://localhost:5318"  # Gateway OTLP endpoint  
   ```
 
   The `debug` exporter sends data to the console for visibility and debugging during the workshop while the `otlphttp` exporter forwards all telemetry to the local **Gateway** instance.
 
-{{% notice title="Info" style="info" %}}
-This dual-export strategy ensures you can see the raw data locally while also sending it downstream for further processing and export.
-{{% /notice %}}
+  **This dual-export strategy ensures you can see the raw data locally while also sending it downstream for further processing and export.**

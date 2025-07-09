@@ -15,8 +15,9 @@ This makes your observability pipeline easier to manage, scale, and analyze—es
 Open or create your second terminal window and name it **Gateway**. Navigate to the first exercise directory `[WORKSHOP]/1-agent-gateway`
 then check the contents of the `gateway.yaml` file.
 
-This file outlines the core structure of the OpenTelemetry Collector as deployed in **Gateway** mode:
+This file outlines the core structure of the OpenTelemetry Collector as deployed in **Gateway** mode.
 
+<!--
 ```bash
  cat ./gateway.yaml
 ```
@@ -105,7 +106,7 @@ service:                          # Service configuration
       - debug                     # Debug exporter
       - file/logs
 ```
-
+-->
 {{% /notice %}}
 
 ### Understanding the Gateway Configuration
@@ -132,19 +133,20 @@ Let’s explore the `gateway.yaml` file that defines how the OpenTelemetry Colle
   The **Gateway** uses three file exporters to output telemetry data to local files. These exporters are defined as:
 
   ```yaml
-  exporters:
-    file/traces:
-      path: ./gateway-traces.out
-    file/metrics:
-      path: ./gateway-metrics.out
-    file/logs:
-      path: ./gateway-logs.out
+  exporters:                        # List of exporters
+    debug:                          # Debug exporter
+      verbosity: detailed           # Enable detailed debug output
+    file/traces:                    # Exporter Type/Name
+      path: "./gateway-traces.out"  # Path for OTLP JSON output for traces
+      append: false                 # Overwrite the file each time
+    file/metrics:                   # Exporter Type/Name
+      path: "./gateway-metrics.out" # Path for OTLP JSON output for metrics
+      append: false                 # Overwrite the file each time
+    file/logs:                      # Exporter Type/Name
+      path: "./gateway-logs.out"    # Path for OTLP JSON output for logs
+      append: false                 # Overwrite the file each time
   ```
 
-  Each exporter writes a specific signal type to its corresponding file:
-
-  * `gateway-traces.out`: stores span (trace) data
-  * `gateway-metrics.out`: stores metric data
-  * `gateway-logs.out`: stores log data
+  Each exporter writes a specific signal type to its corresponding file.
 
   These files are created once the gateway is started and will be populated with real telemetry as the agent sends data. You can monitor these files in real time to observe the flow of telemetry through your pipeline.

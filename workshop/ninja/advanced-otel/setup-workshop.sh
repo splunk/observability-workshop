@@ -190,13 +190,13 @@ exporters:                        # List of exporters
   debug:                          # Debug exporter
     verbosity: detailed           # Enable detailed debug output
   file/traces:                    # Exporter Type/Name
-    path: "./gateway-traces.out"  # Path for OTLP JSON output
+    path: "./gateway-traces.out"  # Path for OTLP JSON output for traces
     append: false                 # Overwrite the file each time
   file/metrics:                   # Exporter Type/Name
-    path: "./gateway-metrics.out" # Path for OTLP JSON output
+    path: "./gateway-metrics.out" # Path for OTLP JSON output for metrics
     append: false                 # Overwrite the file each time
   file/logs:                      # Exporter Type/Name
-    path: "./gateway-logs.out"    # Path for OTLP JSON output
+    path: "./gateway-logs.out"    # Path for OTLP JSON output for logs
     append: false                 # Overwrite the file each time
 
 processors:                       # List of processors
