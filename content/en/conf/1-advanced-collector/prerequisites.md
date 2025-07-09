@@ -14,7 +14,14 @@ time: 5 minutes
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Create a workshop directory**: In your environment create a new directory (e.g. `advanced-otel-workshop`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
+**Create a directory**: In your environment create a new directory and change into it:
+
+``` bash
+mkdir advanced-otel-workshop && \
+cd advanced-otel-workshop
+```
+
+We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
 
 **Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
 
@@ -71,7 +78,7 @@ Run the `setup-workshop.sh` script which will configure the correct permissions 
 {{% tab title="Setup Workshop" %}}
 
 ```bash
-sh setup-workshop.sh
+./setup-workshop.sh
 ```
 
 {{% /tab %}}
@@ -149,14 +156,15 @@ Configuration files created in the following directories:
 
 ```text { title="Initial Directory Structure" }
 [WORKSHOP]
-├── otelcol                # OpenTelemetry Collector binary
-├── loadgen                # Load Generator binary
-├── 1-agent-gateway        # Directories for exercises
+├── 1-agent-gateway
 ├── 2-building-resilience
 ├── 3-dropping-spans
 ├── 4-sensitive-data
 ├── 5-transform-data
-└── 6-routing-data
+├── 6-routing-data
+├── loadgen
+├── otelcol
+└── setup-workshop.sh
 ```
 
 <!--
