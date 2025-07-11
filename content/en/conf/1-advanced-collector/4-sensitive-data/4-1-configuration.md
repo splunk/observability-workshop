@@ -9,7 +9,6 @@ In this step, we'll modify `agent.yaml` to include the `attributes` and `redacti
 Previously, you may have noticed that some span attributes displayed in the console contained personal and sensitive data. We'll now configure the necessary processors to filter out and redact this information effectively.
 
 ```text
-<snip>
 Attributes:
      -> user.name: Str(George Lucas)
      -> user.phone_number: Str(+1555-867-5309)
@@ -23,9 +22,9 @@ Attributes:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data: the Attributes Processor and the Redaction Processor.
+Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data.
 
-**Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to modify span attributes (tags) by updating, deleting, or hashing their values. This is particularly useful for obfuscating sensitive information before it is exported.
+**1. Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to modify span attributes (tags) by updating, deleting, or hashing their values. This is particularly useful for obfuscating sensitive information before it is exported.
 
 In this step, we’ll:
 
@@ -45,7 +44,7 @@ In this step, we’ll:
         action: delete                 # Delete the password
   ```
 
-**Add a `redaction` Processor**: The [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) detects and redacts sensitive data in span attributes based on predefined patterns, such as credit card numbers or other personally identifiable information (PII).
+**2. Add a `redaction` Processor**: The [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) detects and redacts sensitive data in span attributes based on predefined patterns, such as credit card numbers or other personally identifiable information (PII).
 
 In this step:
 
@@ -64,10 +63,7 @@ In this step:
     summary: debug                     # Show debug details about redaction
 ```
 
-**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first (we will enable it later in a separate exercise):
-
-> [!NOTE]
-> Leave the `redaction/redact` processor commented out in this exercise. We will enable it in an upcoming exercise.
+**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first (we will enable it later in a separate exercise). Your configuration should look like this:
 
 ```yaml
     traces:
@@ -88,6 +84,7 @@ In this step:
 
 {{% /notice %}}
 
+<!--
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 
 ```mermaid
@@ -109,14 +106,14 @@ graph LR
     subgraph " "
       subgraph subID1[**Traces**]
       direction LR
-      REC1 --> PRML
-      PRML --> PRUP
-      PRUP --> PRRD
-      PRRD --> PRRS
-      PRRS --> PRBA
-      PRBA --> EXP2
-      PRBA --> EXP3
-      PRBA --> EXP1
+      REC1 -- > PRML
+      PRML -- > PRUP
+      PRUP -- > PRRD
+      PRRD -- > PRRS
+      PRRS -- > PRBA
+      PRBA -- > EXP2
+      PRBA -- > EXP3
+      PRBA -- > EXP1
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
@@ -124,3 +121,4 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
+-->
