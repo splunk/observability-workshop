@@ -25,7 +25,9 @@ To test your configuration, you'll need to generate some trace data that include
 ```bash
 ../loadgen -health -count 5
 ```
- The debug out put in the agetn terminal should show additional  _Helathz spans,:
+
+ The debug output in the **Agent terminal** will show `_healthz` spans:
+
  ```text
  InstrumentationScope healthz 1.0.0
 Span #0
@@ -39,11 +41,10 @@ Span #0
     Status code    : Ok
     Status message : Success
 ```
-They should not be present in the Gatyeway debug as they are dropped  by the gateway.
-Let's check both out files from the test windows:
 
+They will not be present in the **Gateway** debug as they are dropped by the filter processor that was configured earlier.
 
-**Verify `agent.out`**: Using `jq` confirm the name of the spans received by the **Agent**:
+**Verify `agent.out`**: Using `jq`, in the **Test terminal**, confirm the name of the spans received by the **Agent**:
 
 {{% tabs %}}
 {{% tab title="Check spans in agent.out" %}}
@@ -100,10 +101,9 @@ The `gateway-metrics.out` file will not contain any spans named `/_healthz`.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-When using the `Filter` processor, make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
+To ensure optimal performance with the Filter processor, thoroughly understand your incoming data format and rigorously test your configuration. **Use the most specific filtering criteria possible** to minimize the risk of inadvertently dropping important data.
 
-You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
-
+This configuration can be extended to filter spans based on various attributes, tags, or custom criteria, enhancing the OpenTelemetry Collector's flexibility and efficiency for your specific observability requirements.
 {{% /notice %}}
 
 > [!IMPORTANT]
