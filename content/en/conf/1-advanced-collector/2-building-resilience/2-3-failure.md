@@ -16,6 +16,10 @@ To assess the **Agent's** resilience, we'll simulate a temporary **Gateway** out
 
 **Send traces**: In the **Loadgen terminal** window send five more traces using the `loadgen`.
 
+```bash { title="Start Load Generator" }
+../loadgen -count 5
+```
+
 Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
 
 ```text

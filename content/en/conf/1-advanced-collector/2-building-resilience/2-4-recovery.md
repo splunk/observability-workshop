@@ -20,33 +20,31 @@ In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from
 ../otelcol --config=agent.yaml
 ```
 
-{{% /notice %}}
+> After the **Agent** is up and running, the **File_Storage** extension will detect buffered data in the checkpoint folder. It will start to dequeue the stored spans from the last checkpoint folder, ensuring no data is lost.
 
-After the **Agent** is up and running, the **File_Storage** extension will detect buffered data in the checkpoint folder.  
-It will start to dequeue the stored spans from the last checkpoint folder, ensuring no data is lost.
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-**Verify the Agent Debug output**  
-Note that the Agent Debug Screen does **NOT** change and still shows the following line indicating no new data is being exported.
+**Verify the Agent Debug output:** Note that the **Agent** debug output does **NOT** change and still shows the following line indicating no new data is being exported:
   
   ```text
-  2025-02-07T13:40:12.195+0100    info    service@v0.120.0/service.go:253 Everything is ready. Begin running and processing data.
+  2025-07-11T08:31:58.176Z        info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data.   {"resource": {}}
   ```
 
 **Watch the Gateway Debug output**  
-You should see from the **Gateway** debug screen, it has started receiving the previously missed traces without requiring any additional action on your part.  
+You should see from the **Gateway** debug screen, it has started receiving the previously missed traces without requiring any additional action on your part e.g.:
 
   ```txt
-  2025-02-07T12:44:32.651+0100    info    service@v0.120.0/service.go:253 Everything is ready. Begin running and processing data.
-  2025-02-07T12:47:46.721+0100    info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 4, "spans": 4}
-  2025-02-07T12:47:46.721+0100    info    ResourceSpans #0
-  Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
-  Resource attributes:
+Attributes:
+     -> user.name: Str(Luke Skywalker)
+     -> user.phone_number: Str(+1555-867-5309)
+     -> user.email: Str(george@deathstar.email)
+     -> user.password: Str(LOTR>StarWars1-2-3)
+     -> user.visa: Str(4111 1111 1111 1111)
+     -> user.amex: Str(3782 822463 10005)
+     -> user.mastercard: Str(5555 5555 5555 4444)
+     -> payment.amount: Double(75.75)
+        {"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "traces"}
   ```
 
-**Check the `gateway-traces.out` file**  
-Using `jq`, count the number of traces in the recreated `gateway-traces.out`. It should match the number you send when the **Gateway** was down.
+**Check the `gateway-traces.out` file:**  Using `jq`, count the number of traces in the recreated `gateway-traces.out`. It should match the number you send when the **Gateway** was down.
 
 {{% tabs %}}
 {{% tab title="Check Gateway Traces Out File" %}}
