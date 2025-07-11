@@ -6,9 +6,9 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Update the `traces` pipeline to use routing**:
+**Update the original `traces` pipeline to use routing**:
 
-1. To enable `routing`, update the original `traces:` pipeline by using `routing` as the only exporter. This ensures all span data is sent through the **Routing Connector** for evaluation. Also, remove **all** processors and replace it with an empty array (`[]`) as these are now defined in the `traces/route1` and `traces/route2` pipelines.
+1. To enable `routing`, update the original `traces:` pipeline to use `routing` as the only exporter. This ensures all span data is sent through the **Routing Connector** for evaluation and then onwards to connected pipelines. Also, remove **all** processors and replace it with an empty array (`[]`) as this will now behandeld in the `traces/route1-regular` and `traces/route2-security` pipelines, allowing for custom behaviour for each route.  Your `traces:` configuration should look like this:
 
     ```yaml
     traces:                       # Traces pipeline
@@ -19,38 +19,37 @@ weight: 2
       - routing
     ```
 
-**Add both the `route1` and `route2` traces pipelines**:
+**Add both the `route1-regular` and `route2-security` traces pipelines** below the existing `traces:` pipeline:
 
-1. **Configure Route1 pipeline**: This pipeline will handle all spans that match the routing rule for `route1`.
-This uses `routing` as its receiver. Place it below the existing `traces:` pipeline:
+1. **Configure Route1-regular pipeline**: This pipeline will handle all spans that have  **no match** in the routing table in the connector.
+Notice this uses `routing` as its only receiver and will recieve data thought its `connection` from the original traces pipeline. 
 
     ```yaml
-        traces/route1:               # Default pipeline for unmatched spans
+        traces/route1-regular:         # Default pipeline for unmatched spans
           receivers: 
-          - routing                   # Receive data from the routing connector
+          - routing                    # Receive data from the routing connector
           processors:
-          - memory_limiter            # Memory Limiter Processor
-          - resource/add_mode         # Adds collector mode metadata
+          - memory_limiter             # Memory Limiter Processor
+          - resource/add_mode          # Adds collector mode metadata
           - batch
           exporters:
-          - debug                     # Debug Exporter 
-          - file/traces/route1      # File Exporter for unmatched spans 
+          - debug                      # Debug Exporter 
+          - file/traces/route1-regular # File Exporter for unmatched spans 
     ```
 
-2. **Add the Standard pipeline**: This pipeline processes all spans that do not match the routing rule.
-This pipeline is also using `routing` as its receiver. Add this below the `traces/security` one:
+2. **Add the route2-security pipeline**: This pipeline processes all spans that do match our rule "[deployment.environment"] == "security-applications" in the  the routing rule. This pipeline is also using `routing` as its receiver. Add this  pipline below the `traces/route1-regular` one.
 
     ```yaml
-        traces/standard:              # Default pipeline for unmatched spans
+        traces/route2-security:         # Default pipeline for unmatched spans
           receivers: 
-          - routing                   # Receive data from the routing connector
+          - routing                     # Receive data from the routing connector
           processors:
-          - memory_limiter            # Memory Limiter Processor
-          - resource/add_mode         # Adds collector mode metadata
+          - memory_limiter              # Memory Limiter Processor
+          - resource/add_mode           # Adds collector mode metadata
           - batch
           exporters:
-          - debug                     # Debug exporter
-          - file/traces/standard      # File exporter for unmatched spans
+          - debug                       # Debug exporter
+          - file/traces/route2-security # File exporter for unmatched spans
     ```
 
 {{% /notice %}}
