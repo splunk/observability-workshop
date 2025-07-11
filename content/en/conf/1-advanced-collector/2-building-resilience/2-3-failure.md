@@ -34,6 +34,6 @@ Notice that the agent’s retry mechanism is activated as it continuously attemp
 
 {{% /notice %}}
 
-When you stop the agent, any metrics, traces, or logs held in memory for retry will be lost. However, because we have configured the FileStorage Extension, all telemetry that has not yet been accepted by the target endpoint is safely checkpointed on disk. These traces, logs, and metrics will be automatically resent once the connection is restored.
+When you stop the agent, any metrics, traces, or logs held in memory for retry will be lost. However, because we have configured the FileStorage Extension, all telemetry that has not yet been accepted by the target endpoint are safely checkpointed on disk. 
 
 Stopping the agent is a crucial step to clearly demonstrate how the system recovers when the agent is restarted.
