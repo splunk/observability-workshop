@@ -12,7 +12,7 @@ With FileStorage enabled, the Collector can persist intermediate states to disk,
 By integrating the FileStorage Extension into your pipeline, you can strengthen the durability of your observability stack and maintain high-quality telemetry ingestion, even in environments where connectivity may be unreliable.
 {{% notice note %}}
 
-This solution will work for metrics as long as the connection downtime is brief, up to 15 minutes. If the downtime exceeds this, Splunk Observability Cloud might  drop data to make sure no dat is out of order.
+This solution will work for metrics as long as the connection downtime is brief, up to 15 minutes. If the downtime exceeds this, Splunk Observability Cloud might  drop data to make sure no data-point is out of order.
 
 For logs, there are plans to implement a full enterprise-ready solution in one of the upcoming Splunk OpenTelemetry Collector releases.
 
