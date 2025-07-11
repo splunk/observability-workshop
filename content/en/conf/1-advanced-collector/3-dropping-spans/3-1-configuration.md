@@ -12,11 +12,11 @@ Switch to your **Gateway terminal** window and open the `gateway.yaml` file. Upd
    Configure the gateway to exclude spans with the name `/_healthz`. The `error_mode: ignore` directive ensures that any errors encountered during filtering are ignored, allowing the pipeline to continue running smoothly. The `traces` section defines the filtering rules, specifically targeting spans named `/_healthz` for exclusion.
 
    ```yaml
-   filter/health:                       # Defines a filter processor
-     error_mode: ignore                 # Ignore errors
-     traces:                            # Filtering rules for traces
-       span:                            # Exclude spans named "/_healthz"
-         - 'name == "/_healthz"'
+     filter/health:                       # Defines a filter processor
+       error_mode: ignore                 # Ignore errors
+       traces:                            # Filtering rules for traces
+         span:                            # Exclude spans named "/_healthz"
+          - 'name == "/_healthz"'
    ```
 
 2. **Add the `filter` processor to the `traces` pipeline**:  
@@ -36,12 +36,13 @@ Switch to your **Gateway terminal** window and open the `gateway.yaml` file. Upd
        - file/traces
    ```
 
-This setup ensures that health check-related spans (`/_healthz`) are filtered out early in the pipeline, reducing unnecessary noise in your telemetry data.
+This setup ensures that health check related spans (`/_healthz`) are filtered out early in the pipeline, reducing unnecessary noise in your telemetry data.
 
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
+<!--Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:-->
 
+<!--
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
 graph LR
@@ -58,12 +59,12 @@ graph LR
     subgraph " "
       subgraph subID1[**Traces**]
       direction LR
-      REC1 --> PRO1
-      PRO1 --> PRO4
-      PRO4 --> PRO3
-      PRO3 --> PRO5
-      PRO5 --> EXP1
-      PRO5 --> EXP2
+      REC1 -- > PRO1
+      PRO1 -- > PRO4
+      PRO4 -- > PRO3
+      PRO3 -- > PRO5
+      PRO5 -- > EXP1
+      PRO5 -- > EXP2
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
@@ -71,3 +72,4 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
+-->
