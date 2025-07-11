@@ -34,8 +34,6 @@ Notice that the agent’s retry mechanism is activated as it continuously attemp
 
 {{% /notice %}}
 
-By stopping the agent will halt its retry attempts and prevent any future retry activity.
+When you stop the agent, any metrics, traces, or logs held in memory for retry will be lost. However, because we have configured the FileStorage Extension, all telemetry that has not yet been accepted by the target endpoint is safely checkpointed on disk. These traces, logs, and metrics will be automatically resent once the connection is restored.
 
-If the agent runs for too long without successfully delivering data, it may begin dropping traces, depending on the retry configuration, to conserve memory. By stopping the agent, any metrics, traces, or logs currently stored in memory are lost before being dropped, ensuring they remain available for recovery.
-
-This step is essential for clearly observing the recovery process when the agent is restarted.
+Stopping the agent is a crucial step to clearly demonstrate how the system recovers when the agent is restarted.
