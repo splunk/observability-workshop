@@ -26,7 +26,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ../loadgen -count 1
 ```
 
-**Check the debug output**: For both the **Agent** and **Gateway** debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
+**Check the debug output**: For both the **Agent** and **Gateway** confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
