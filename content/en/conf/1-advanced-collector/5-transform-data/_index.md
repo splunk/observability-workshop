@@ -13,14 +13,12 @@ In this exercise we’ll update `agent.yaml` to include a **Transform Processor*
 - **Parse** JSON structured log data into attributes.
 - **Set** log severity levels based on the log message body.
 
-You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined. This is typical of the `filelog` receiver. However, the severity is embedded within the log body:
+You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined. This is typical of the `filelog` receiver. However, the severity is embedded within the log body e.g.:
 
 ```text
-<snip>
 SeverityText: 
 SeverityNumber: Unspecified(0)
 Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
-</snip>
 ```
 
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
@@ -28,7 +26,7 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 > [!IMPORTANT]
-> **Change _ALL_ terminal windows to the `[WORKSHOP]/5-transform-data` directory and run the `clear` command.**
+> **Change _ALL_ terminal windows to the `5-transform-data` directory and run the `clear` command.**
 
 Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`. Your updated directory structure will now look like this:
 

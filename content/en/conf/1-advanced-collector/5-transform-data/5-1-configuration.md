@@ -5,7 +5,7 @@ weight: 1
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-**Add a `transform` processor**: Switch to your **Agent terminal** window and edit the `agent.yaml` and add the following `transform` processor:
+**Add a `transform` processor**: Switch to your **Gateway terminal** window and edit the `gateway.yaml` and add the following `transform` processor:
 
 ```yaml
   transform/logs:                      # Processor Type/Name
@@ -53,7 +53,8 @@ This step is crucial because it ensures that all relevant fields from the log bo
 - **Map Severity Text**: Assigns severity_text from the log’s level attribute.
 - **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
 
-You should have a **single** `transform` processor containing two context blocks: one whose context is for `resource` and one whose context is for `log`.
+> [!IMPORTANT]
+> You should have a **single** `transform` processor containing two context blocks: one whose context is for `resource` and one whose context is for `log`.
 
 This configuration ensures that log severity is correctly extracted, standardized, and structured for efficient processing.
 
@@ -61,26 +62,25 @@ This configuration ensures that log severity is correctly extracted, standardize
 This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
 {{% /notice %}}
 
-**Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline:
+**Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline so your configuration looks like this:
 
 ```yaml
-    logs:
+    logs:                         # Logs pipeline
       receivers:
-      - otlp
-      - filelog/quotes
-      processors:
+      - otlp                      # OTLP receiver
+      processors:                 # Processors for logs
       - memory_limiter
-      - resourcedetection
       - resource/add_mode
-      - transform/logs                 # Transform logs processor
+      - transform/logs
       - batch
       exporters:
-      - debug
-      - otlphttp
+      - debug                     # Debug exporter
+      - file/logs
 ```
 
 {{% /notice %}}
 
+<!--
 Validate the agent configuration using [**https://otelbin.io**](https://otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
@@ -101,14 +101,14 @@ graph LR
     subgraph " "
       subgraph subID1[**Logs**]
       direction LR
-      REC1 --> PRO1
-      REC2 --> PRO1
-      PRO1 --> PRO2
-      PRO2 --> PRO3
-      PRO3 --> PRO4
-      PRO4 --> PRO5
-      PRO5 --> EXP2
-      PRO5 --> EXP1
+      REC1 -- > PRO1
+      REC2 -- > PRO1
+      PRO1 -- > PRO2
+      PRO2 -- > PRO3
+      PRO3 -- > PRO4
+      PRO4 -- > PRO5
+      PRO5 -- > EXP2
+      PRO5 -- > EXP1
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
@@ -116,3 +116,4 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
+-->
