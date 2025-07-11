@@ -23,6 +23,21 @@ cd advanced-otel-workshop
 
 We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
 
+{{% notice title="Remove any existing OpenTelemetry Collectors" style="warning" %}}
+If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
+
+``` bash
+helm delete splunk-otel-collector
+```
+
+The EC2 instance in that case may also run some services that can interfere with this workshop , so run the following command to make sure they are stopped if present:
+
+``` bash
+kubectl delete ~/workshop/apm/deployment.yaml
+```
+
+{{% /notice %}}
+
 **Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
 
 {{% tabs %}}
