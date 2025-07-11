@@ -6,10 +6,8 @@ weight: 3
 
 The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.
 
-In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
+In this exercise, we will **redact** the `user.visa` & `user.mastercard` values in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
-
-**Prepare the terminals**: Delete the `*.out` files and clear the screen.
 
 **Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
@@ -48,7 +46,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 ../loadgen -count 1
 ```
 
-**Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
+**Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was **NOT** redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -124,7 +122,7 @@ Notice that `user.amex` has not been redacted because a matching regex pattern w
 {{% /tab %}}
 {{% /tabs %}}
 
-These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
+These are just a couple of examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
 {{% /notice %}}
 
