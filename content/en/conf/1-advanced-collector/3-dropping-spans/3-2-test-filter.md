@@ -20,7 +20,7 @@ To test your configuration, you'll need to generate some trace data that include
 ../otelcol --config ./agent.yaml
 ```
 
-**Start the Loadgen**: In the **Loadgen terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
+**Start the Loadgen**: In the **Loadgen terminal** window, execute the following command to start the load generator with health check spans enabled:
   
 ```bash
 ../loadgen -health -count 5
@@ -77,7 +77,7 @@ jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found 
 {{% tabs %}}
 {{% tab title="Check spans in gateway-traces.out" %}}
 
-```bash { title="Check spans in gateway-traces.out" }
+```bash
 jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found with name \(.name)"' ./gateway-traces.out
 ```
 

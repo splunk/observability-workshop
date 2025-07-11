@@ -10,14 +10,14 @@ This test verifies that the `com.splunk/source` and `os.type` metadata have been
    - `SeverityText` and `SeverityNumber` are set on the `LogRecord`.  
 2. JSON fields from the log body are promoted to log `attributes`.  
 
-This ensures proper metadata filtering, severity mapping, and structured log enrichment before export.
+This ensures proper metadata filtering, severity mapping, and structured log enrichment before exporting.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 **Check the debug output**: For both the **Agent** and **Gateway** confirm that `com.splunk/source` and `os.type` have been removed:
 
 {{% tabs %}}
-{{% tab title="New Debug Output" %}}
+{{% tab title="Gateway Debug Output" %}}
 
   ```text
 Resource attributes:
@@ -27,7 +27,7 @@ Resource attributes:
   ```
 
 {{% /tab %}}
-{{% tab title="Original Debug Output" %}}
+{{% tab title="Agent Debug Output" %}}
 
   ```text
 Resource attributes:
@@ -44,7 +44,7 @@ Resource attributes:
 For both the **Agent** and **Gateway** confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
 
 {{% tabs %}}
-{{% tab title="New Debug Output" %}}
+{{% tab title="Gateway Debug Output" %}}
 
 ```text
 <snip>
@@ -61,7 +61,7 @@ Attributes:
 ```
 
 {{% /tab %}}
-{{% tab title="Original Debug Output" %}}
+{{% tab title="Agemt Debug Output" %}}
 
 ```text
 <snip>
