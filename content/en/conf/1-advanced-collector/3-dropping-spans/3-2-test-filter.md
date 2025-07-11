@@ -25,6 +25,23 @@ To test your configuration, you'll need to generate some trace data that include
 ```bash
 ../loadgen -health -count 5
 ```
+ The debug out put in the agetn terminal should show additional  _Helathz spans,:
+ ```text
+ InstrumentationScope healthz 1.0.0
+Span #0
+    Trace ID       : 0cce8759b5921c8f40b346b2f6e2f4b6
+    Parent ID      :
+    ID             : bc32bd0e4ddcb174
+    Name           : /_healthz
+    Kind           : Server
+    Start time     : 2025-07-11 08:47:50.938703979 +0000 UTC
+    End time       : 2025-07-11 08:47:51.938704091 +0000 UTC
+    Status code    : Ok
+    Status message : Success
+```
+They should not be present in the Gatyeway debug as they are dropped  by the gateway.
+Let's check both out files from the test windows:
+
 
 **Verify `agent.out`**: Using `jq` confirm the name of the spans received by the **Agent**:
 
