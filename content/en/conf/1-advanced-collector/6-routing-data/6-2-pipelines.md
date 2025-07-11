@@ -8,7 +8,7 @@ weight: 2
 
 **Update the original `traces` pipeline to use routing**:
 
-1. To enable `routing`, update the original `traces:` pipeline to use `routing` as the only exporter. This ensures all span data is sent through the **Routing Connector** for evaluation and then onwards to connected pipelines. Also, remove **all** processors and replace it with an empty array (`[]`) as this will now behandeld in the `traces/route1-regular` and `traces/route2-security` pipelines, allowing for custom behaviour for each route.  Your `traces:` configuration should look like this:
+1. To enable `routing`, update the original `traces` pipeline to use `routing` as the only exporter. This ensures all span data is sent through the **Routing Connector** for evaluation and then onwards to connected pipelines. Also, remove **all** processors and replace it with an empty array (`[]`) as this will now behandeld in the `traces/route1-regular` and `traces/route2-security` pipelines, allowing for custom behaviour for each route.  Your `traces:` configuration should look like this:
 
     ```yaml
     traces:                       # Traces pipeline
@@ -19,7 +19,7 @@ weight: 2
       - routing
     ```
 
-**Add both the `route1-regular` and `route2-security` traces pipelines** below the existing `traces:` pipeline:
+**Add both the `route1-regular` and `route2-security` traces pipelines** below the existing `traces` pipeline:
 
 1. **Configure Route1-regular pipeline**: This pipeline will handle all spans that have  **no match** in the routing table in the connector.
 Notice this uses `routing` as its only receiver and will recieve data thought its `connection` from the original traces pipeline. 
@@ -37,7 +37,7 @@ Notice this uses `routing` as its only receiver and will recieve data thought it
           - file/traces/route1-regular # File Exporter for unmatched spans 
     ```
 
-2. **Add the route2-security pipeline**: This pipeline processes all spans that do match our rule "[deployment.environment"] == "security-applications" in the  the routing rule. This pipeline is also using `routing` as its receiver. Add this  pipline below the `traces/route1-regular` one.
+2. **Add the route2-security pipeline**: This pipeline processes all spans that do match our rule `"[deployment.environment"] == "security-applications"` in the  the routing rule. This pipeline is also using `routing` as its receiver. Add this pipline below the `traces/route1-regular` one.
 
     ```yaml
         traces/route2-security:         # Default pipeline for unmatched spans

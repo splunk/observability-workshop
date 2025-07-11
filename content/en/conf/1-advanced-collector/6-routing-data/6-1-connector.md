@@ -35,7 +35,6 @@ In the **Gateway terminal** window, edit `gateway.yaml` and  find and uncomment 
 
 {{% /notice %}}
 
-The default pipeline in the configuration file  works at a Catch all. It will be the  routing target for any data (spans in our case) that does match a rule in the routing rules table, In this table you find the pipeline that is the target for any span that matches the following rule: "[deployment.environment"] == "security-applications"
-
+The default pipeline in the configuration file  works at a Catch all. It will be the  routing target for any data (spans in our case) that do not match a rule in the routing rules table, In this table you find the pipeline that is the target for any span that matches the following rule: `["deployment.environment"] == "security-applications"`
 
 With the `routing` configuration complete, the next step is to configure the `pipelines` to apply these routing rules.
