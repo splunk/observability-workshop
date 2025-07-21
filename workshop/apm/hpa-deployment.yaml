@@ -820,7 +820,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/splunk/online-boutique/frontend-rum-profile:4.1.0
+          image: ghcr.io/splunk/online-boutique/frontend-rum-profile:4.1.2
           ports:
             - containerPort: 8080
           readinessProbe:
