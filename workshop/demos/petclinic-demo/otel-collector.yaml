@@ -1,0 +1,65 @@
+featureGates:
+  useControlPlaneMetricsHistogramData: true
+clusterReceiver:
+  k8sObjects:
+    - name: events
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+    - name: pods
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+agent:
+  config:
+    exporters:
+      debug:
+        verbosity: "detailed"
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/nginx:
+            rule: type == "port" && pod.name matches "nginx" && port == 8082
+            config:
+              type: collectd/nginx
+          mysql/workshop:
+            rule: type == "port" && pod.name matches "mysql" && port == 3306
+            config:
+              tls:
+                insecure: true
+              endpoint: '`endpoint`'
+              username: root
+              password: root
+              database: LxvGChW075
+          mysql/petclinic:
+            rule: type =="port" && pod.name matches "petclinic-db" && port == 3306
+            config:
+              tls:
+                insecure: true
+              endpoint: '`endpoint`'
+              username: root
+              password: petclinic
+              database: petclinic
+          redis/workshop:
+            rule: type == "port" && pod.name matches "redis-cart" && port == 6379
+            config:
+              endpoint: '`endpoint`'
+    extensions:
+      zpages:
+        endpoint: 0.0.0.0:55679
+logsCollection:
+  extraFileLogs:
+    filelog/syslog:
+      include: [/var/log/syslog]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/syslog
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: syslog
+    filelog/auth_log:
+      include: [/var/log/auth.log]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/auth.log
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: auth_log

@@ -1,0 +1,17 @@
+[Unit]
+Description=My Python Script
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+ExecStart=/home/ubuntu/venv/bin/python3 -u /home/ubuntu/selenium_loadgen.py
+Restart=always
+RestartSec=5
+Environment="PATH=/home/ubuntu/venv/bin:/usr/bin:/bin"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
