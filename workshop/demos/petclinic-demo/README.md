@@ -40,9 +40,10 @@ Exit the terminal and come back in.
 
 ## Run
 
-Run the following. Run `kubectl get po` after each step to confirm pods are ready.
+Run the following. Run `kubectl get pods` after each step to confirm pods are ready. If the collector (agent) is not running before the app is started the agent won't be auto-started.
 
 ```
+cd workshop/demos/petclinic-demo
 ./1_agent_install.sh
 ./2_app_install.sh
 ```
@@ -54,7 +55,7 @@ Then run:
 ./3_app_loadgen.sh
 ```
 
-## Stop/Remove
+## Stop/Remove to cleanup before running again (1-2-3)
 
 ```
 ./99_remove_all.sh
