@@ -45,21 +45,21 @@ agent:
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
-logsCollection:
-  extraFileLogs:
-    filelog/syslog:
-      include: [/var/log/syslog]
-      include_file_path: true
-      include_file_name: false
-      resource:
-        com.splunk.source: /var/log/syslog
-        host.name: 'EXPR(env("K8S_NODE_NAME"))'
-        com.splunk.sourcetype: syslog
-    filelog/auth_log:
-      include: [/var/log/auth.log]
-      include_file_path: true
-      include_file_name: false
-      resource:
-        com.splunk.source: /var/log/auth.log
-        host.name: 'EXPR(env("K8S_NODE_NAME"))'
-        com.splunk.sourcetype: auth_log
+#logsCollection:
+#  extraFileLogs:
+#    filelog/syslog:
+#      include: [/var/log/syslog]
+#      include_file_path: true
+#      include_file_name: false
+#      resource:
+#        com.splunk.source: /var/log/syslog
+#        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+#        com.splunk.sourcetype: syslog
+#    filelog/auth_log:
+#      include: [/var/log/auth.log]
+#      include_file_path: true
+#      include_file_name: false
+#      resource:
+#        com.splunk.source: /var/log/auth.log
+#        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+#        com.splunk.sourcetype: auth_log
