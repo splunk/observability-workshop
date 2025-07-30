@@ -21,7 +21,7 @@ def run_selenium_task(owner_id):
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
-        url = f"http://<<<<<<<<URL>>>>>>>>/#!/owners/details/{owner_id}"
+        url = f"http://localhost/#!/owners/details/{owner_id}"
         print(f"Visiting: {url}")
         driver.get(url)
 
