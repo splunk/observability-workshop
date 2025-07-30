@@ -337,8 +337,8 @@ spec:
     metadata:
       labels:
         app: vets-service
-    annotations:
-      instrumentation.opentelemetry.io/inject-java: "true"
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -408,8 +408,8 @@ spec:
     metadata:
       labels:
         app: visits-service
-    annotations:
-      instrumentation.opentelemetry.io/inject-java: "true"
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
