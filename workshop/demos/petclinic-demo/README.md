@@ -10,6 +10,12 @@ To setup this demo, deploy the following on a linux host. It has been tested on 
 
 The scripts assume you are cloning this repo from /home/ubuntu. If you do it in a different directory you may need to adjust some of these files.
 
+Multipass uses that setup, so this configuration was tested:
+
+```
+multipass launch -n petclinic -c 4 -m 16G -d 40G
+```
+
 ## Preparation
 
 ```
@@ -25,6 +31,7 @@ cd workshop/demos/petclinic-demo
 ```
 ./0_setup_prereqs.sh
 ```
+Exit the terminal and come back in.
 
 ## Run
 
