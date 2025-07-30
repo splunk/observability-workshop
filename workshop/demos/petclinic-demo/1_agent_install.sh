@@ -6,7 +6,7 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 
 helm repo update
 
-helm install splunk-otel-collector --version 0.125.0 \
+helm install splunk-otel-collector --version 0.130.0 \
 --set="operatorcrds.install=true", \
 --set="operator.enabled=true", \
 --set="splunkObservability.realm=$REALM" \
