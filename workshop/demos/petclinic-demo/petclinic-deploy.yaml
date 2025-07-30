@@ -199,14 +199,6 @@ spec:
               value: "api-gateway"
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-front"
-            - name: RUM_REALM
-              value: us1
-            - name: RUM_AUTH
-              value: lQ3hBGkUUhYPybGTq63nvQ
-            - name: RUM_APP_NAME
-              value: petclinic
-            - name: RUM_ENVIRONMENT
-              value: petclinic
             - name: SPLUNK_METRICS_ENDPOINT
               value: "http://$(SPLUNK_OTEL_AGENT):9943"
           resources:
