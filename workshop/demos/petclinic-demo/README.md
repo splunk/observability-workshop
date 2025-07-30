@@ -6,12 +6,9 @@ It assumes you are using a vm with a /home/ubuntu directory, which it will popul
 
 ## Pre-requisites
 
-To setup this demo, deploy the following on a linux host with systemd. (NOTE: You can run this without systemd with pretty basic changes if desired.)
-* [k3s](https://k3s.io/)
-* [helm](https://helm.sh/)
-* [python](https://www.python.org/) with pip
+To setup this demo, deploy the following on a linux host. It has been tested on a host with 4 CPUs, 16GB RAM, and 40GB disk, but may be able to run with less.
 
-This assumes you are cloning this repo from /home/ubuntu. If you do it in a different directory you may need to adjust some of these files.
+The scripts assume you are cloning this repo from /home/ubuntu. If you do it in a different directory you may need to adjust some of these files.
 
 ## Preparation
 
@@ -19,8 +16,8 @@ This assumes you are cloning this repo from /home/ubuntu. If you do it in a diff
 cd /home/ubuntu
 git clone https://github.com/splunk/observability-workshop.git
 mv observability-workshop/workshop .
-cp observability-workshop/workshop/demos/petclinic-demo/* .
-rm -r observability-workshop
+rm -rf observability-workshop
+cd workshop/demos/petclinic-demo
 ```
 
 ## One time Setup

@@ -1,1 +1,1 @@
-sudo systemctl start petclinic_owners_loadgen.service
+/home/ubuntu/workshop/demos/petclinic-demo/venv/bin/python3 -u /home/ubuntu/workshop/demos/petclinic-demo/selenium_loadgen.py
