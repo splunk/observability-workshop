@@ -1,4 +1,3 @@
-set -e
 sudo apt update
 
 # Install k3s
