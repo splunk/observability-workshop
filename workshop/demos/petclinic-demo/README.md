@@ -59,3 +59,7 @@ Then run:
 ```
 ./99_remove_all.sh
 ```
+
+## Other notes
+
+To see more interesting breakdowns, add a custom indexed tag (TMS) for `version` in Observability Cloud.
