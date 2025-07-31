@@ -1,10 +1,7 @@
 sudo apt update
 
 # Install k3s
-# Uses a hack to fix permission issues, should not use in production
-curl -sfL https://get.k3s.io | sh -
-echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
-sudo chmod +r /etc/rancher/k3s/k3s.yaml
+curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -
 
 # Install helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
