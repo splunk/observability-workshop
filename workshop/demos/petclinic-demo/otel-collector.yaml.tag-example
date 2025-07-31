@@ -1,0 +1,75 @@
+# This example shows how you can take certain attributes and build another
+# attribute off of it. In this example we are looking at the spans with
+# /owners/{ownerId} -- and if they are 1, 3, 5, or 7 capture them, and for
+# the rest mark them as "other". You could capture top customers, or those
+# with unique configurations, independently but not do this for every single
+# customer.
+#
+# In Splunk Observability Cloud you would index on this new attribute, owner.num
+
+featureGates:
+  useControlPlaneMetricsHistogramData: true
+clusterReceiver:
+  k8sObjects:
+    - name: events
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+    - name: pods
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+agent:
+  config:
+    processors:
+      transform/top5:
+        trace_statements:
+        - set(span.attributes["owner.num"], "other") where span.attributes["http.route"] == "/owners/{ownerId}"
+        - set(span.attributes["owner.num"], "1") where span.attributes["url.path"] == "/owners/1"
+        - set(span.attributes["owner.num"], "3") where span.attributes["url.path"] == "/owners/3"
+        - set(span.attributes["owner.num"], "5") where span.attributes["url.path"] == "/owners/5"
+        - set(span.attributes["owner.num"], "7") where span.attributes["url.path"] == "/owners/7"
+    service:
+      pipelines:
+        traces:
+          processors:
+          - memory_limiter
+          - k8sattributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          - transform/top5
+    exporters:
+      debug:
+        verbosity: "detailed"
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/nginx:
+            rule: type == "port" && pod.name matches "nginx" && port == 8082
+            config:
+              type: collectd/nginx
+          mysql/workshop:
+            rule: type == "port" && pod.name matches "mysql" && port == 3306
+            config:
+              tls:
+                insecure: true
+              endpoint: '`endpoint`'
+              username: root
+              password: root
+              database: LxvGChW075
+          mysql/petclinic:
+            rule: type =="port" && pod.name matches "petclinic-db" && port == 3306
+            config:
+              tls:
+                insecure: true
+              endpoint: '`endpoint`'
+              username: root
+              password: petclinic
+              database: petclinic
+          redis/workshop:
+            rule: type == "port" && pod.name matches "redis-cart" && port == 6379
+            config:
+              endpoint: '`endpoint`'
+    extensions:
+      zpages:
+        endpoint: 0.0.0.0:55679
