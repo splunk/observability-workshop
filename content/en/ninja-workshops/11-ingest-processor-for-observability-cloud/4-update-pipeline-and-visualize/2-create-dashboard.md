@@ -54,4 +54,125 @@ You should now be taken to your new Kubernetes Audit Events dashboard with the c
 
 ![Audit Dashboard](../../images/audit_dashboard.png?width=40vw)
 
+Make a copy of this chart using the three dots `...` in the top right of your chart's visualization box
+
+![Copy chart button](../image.png)
+
+Paste into the same dashboard you've been working in using the `+` icon in the top right of the UI
+
+![Paste chart into dashboard](../image-1.png)
+
+Click into your pasted chart and change the visualization to a column chart. 
+
+![Change to column chart visualization](../image-2.png)
+
+Change SUM to just resource, namespace (our filters filter to know they are problem codes)
+
+![Group chart by resource and namespace](../image-3.png)
+
+In Chart options change title to Kubernetes Audit Logs - Conflicts by Namespace
+
+![Change chart title](../image-4.png)
+
+Click Save and close
+
+![Save and close chart](../image-5.png)
+
+{{% /notice %}}
+
+
+{{% notice title="Exercise: Create a detector based on Kubernetes Audit Logs" style="green" icon="running" %}}
+
+On your Conflicts by Namespace chart click the little bell icon and create a detector
+
+![Bell icon to create detector](../image-6.png)
+
+Choose a name and click Create alert rule
+
+![Enter name for alert rule](../image-27.png)
+
+For Alert condition click Static Threshold and click Proceed to Alert Settings
+
+![Select static threshold condition](../image-7.png)
+
+Enter a threshold of 20
+
+![Enter threshold value](../image-8.png)
+
+We wont choose any recipients for this email so click into Activate and choose Activate Alert Rule and Save
+
+![Activate alert rule and save](../image-9.png)
+
+Click Save one final time in the top right to save your detector
+
+![Final save for detector](../image-10.png)
+
+Navigate back to your dashboard and you will see a detector associated with the chart denoted by a lit up bell icon on the chart
+
+![Detector bell icon on chart](../image-26.png)
+
+{{% /notice %}}
+
+{{% notice title="Exercise: Visualize your time series data in Splunk Cloud - Dashboard Studio" style="green" icon="running" %}}
+
+Now that we have our time series metrics ingested to the Splunk Observability Cloud data store we can easily visualize these time series metrics in Splunk Cloud! 
+
+In your Splunk Cloud instance browse to Dashboards and select Create New Dashboard
+
+![Create new dashboard in Splunk Cloud](../image-12.png)
+
+Choose a Dashboard title, permissions and **Dashboard Studio** along with any Layout Mode.
+Click Create.
+
+![Dashboard title and layout options](../image-13.png)
+
+In Dashboard Studio click the chart icon and choose Column
+
+![Select column chart in Dashboard Studio](../image-14.png)
+
+In Select data source choose **Create splunk observability cloud metric search**
+
+![Choose observability cloud metric search as data source](../image-15.png)
+
+Choose a name for your new datasource and click the **Content Import** link under **Search for metric or metadata**
+
+Copy and paste the URL for your chart into the Content URL field
+
+Click Import
+
+![Paste chart URL and import](../image-16.png)
+
+![Chart imported to dashboard](../image-17.png)
+
+![Chart visible in dashboard](../image-18.png)
+
+Size your chart to your dashboard
+
+![Resize chart in dashboard](../image-19.png)
+
+Expand **Interactions** in the right side of your charts Configuration and click Add Interaction
+
+![Expand interactions and add interaction](../image-21.png)
+
+In **On click** choose **Link to custom URL** and add the URL for your dashboard in Splunk Observability Cloud for easy navigation back to the source data. 
+Also choose Open in new tab for friendly navigation.
+
+Click Apply
+
+![Apply interaction settings](../image-22.png)
+
+![Interaction added](../image-23.png)
+
+Click Save in the top right to save your Dashboard.
+
+![Save dashboard in Splunk Cloud](../image-20.png)
+
+Highlight and click a Column or name in your chart
+
+![Click column or name in chart](../image-24.png)
+
+You will be told you are navigating back to Splunk Observability. Click Continue
+
+![Continue navigation to Splunk Observability](../image-25.png)
+
 {{% /notice %}}
