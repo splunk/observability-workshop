@@ -1,0 +1,2 @@
+source venv/bin/activate
+/home/ubuntu/workshop/demos/petclinic-demo/venv/bin/python3 -u /home/ubuntu/workshop/demos/petclinic-demo/selenium_loadgen.py

@@ -1,0 +1,929 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: config-server
+          image: quay.io/phagen/spring-petclinic-config-server:0.0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+          volumeMounts:
+            - name: petclinic-repo
+              mountPath: /petclinic-repo
+              readOnly: true
+          env:
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: JAVA_OPTIONS
+              value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: SPLUNK_PROFILER_LOGS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "config-server"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-util"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+      volumes:
+        - name: petclinic-repo
+          # mount /home/splunk/workshop/petclinic/petclinic-repo, but only if that directory already exists
+          hostPath:
+            path: /home/ubuntu/workshop/petclinic/petclinic-repo # directory location on host
+            type: Directory # this field is optional
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: config-server
+  ports:
+    - name: tcp
+      port: 8888
+      targetPort: 8888
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: discovery-server
+  template:
+    metadata:
+      labels:
+        app: discovery-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://config-server:8888
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: quay.io/phagen/spring-petclinic-discovery-server:0.0.2
+          name: discovery-server
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8761
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: JAVA_OPTIONS
+              value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: SPLUNK_PROFILER_LOGS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "discovery-server"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinicim,service.namespace=petclinic-support"
+          resources:
+            requests:
+              #cpu: 125m
+              memory: 512Mi
+            limits:
+              #cpu: 600m
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: discovery-server
+  ports:
+    - name: tcp
+      port: 8761
+      targetPort: 8761
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - -Dsplunk.profiler.enabled=true
+            - org.springframework.boot.loader.JarLauncher
+          name: api-gateway
+          image: quay.io/phagen/spring-petclinic-api-gateway:0.0.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: JAVA_OPTIONS
+              value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "api-gateway"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-front"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      port: 82
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-external
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "5"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "3"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "2"
+    external-dns.alpha.kubernetes.io/hostname: demo.
+spec:
+  type: LoadBalancer
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: customers-service
+  template:
+    metadata:
+      labels:
+        app: customers-service
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - -jar
+            - /application/application.jar
+          image: quay.io/jeremyh/spring-petclinic-customers-service:0.0.22
+          name: customers-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "customers-service"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-svc"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customers-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: customers-service
+  ports:
+    - name: tcp
+      port: 8081
+      targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vets-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: vets-service
+  template:
+    metadata:
+      labels:
+        app: vets-service
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: quay.io/phagen/spring-petclinic-vets-service:0.0.2
+          name: vets-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8083
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "api-gateway"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-svc"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vets-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: vets-service
+  ports:
+    - name: tcp
+      port: 8083
+      targetPort: 8083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visits-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: visits-service
+  template:
+    metadata:
+      labels:
+        app: visits-service
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: quay.io/phagen/spring-petclinic-visits-service:0.0.2
+          name: visits-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "visits-service"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-svc"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: visits-service
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: visits-service
+  ports:
+    - name: tcp
+      port: 8082
+      targetPort: 8082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: admin-server
+  template:
+    metadata:
+      labels:
+        app: admin-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: quay.io/phagen/spring-petclinic-admin-server:0.0.2
+          name: admin-server
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_SNAPSHOT_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_SNAPSHOT_SELECTION_RATE
+              value: ".1"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "admin-server"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=petclinic-us,service.version=1.0,deployment.app=petclinic,service.namespace=petclinic-front"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-server
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: admin-server
+  ports:
+    - name: tcp
+      port: 9090
+      targetPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-db
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: petclinic-db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-db
+spec:
+  selector:
+    matchLabels:
+      app: petclinic-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: petclinic-db
+    spec:
+      containers:
+        - image: biarms/mysql:5.7
+          name: petclinic-db
+          env:
+            # Use secret in real usage
+            - name: MYSQL_ROOT_PASSWORD
+              value: petclinic
+            - name: MYSQL_DATABASE
+              value: "petclinic"
+          ports:
+            - containerPort: 3306
+              name: petclinic-db
+          volumeMounts:
+            - name: petclinic-db-persistent-storage
+              mountPath: /var/lib/mysql
+            - name: petclinic-db-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: petclinic-db-persistent-storage
+        - name: petclinic-db-initdb
+          configMap:
+            name: petclinic-db-initdb-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-db-initdb-config
+data:
+  initdb.sql: |
+    CREATE DATABASE IF NOT EXISTS petclinic;
+    GRANT ALL PRIVILEGES ON petclinic.* TO pcroot@localhost IDENTIFIED BY 'pc';
+
+    USE petclinic;
+
+    CREATE TABLE IF NOT EXISTS types (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(80),
+      INDEX(name)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS owners (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      first_name VARCHAR(30),
+      last_name VARCHAR(30),
+      address VARCHAR(255),
+      city VARCHAR(80),
+      telephone VARCHAR(20),
+      INDEX(last_name)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS pets (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(30),
+      birth_date DATE,
+      type_id INT(4) UNSIGNED NOT NULL,
+      owner_id INT(4) UNSIGNED NOT NULL,
+      INDEX(name),
+      FOREIGN KEY (owner_id) REFERENCES owners(id),
+      FOREIGN KEY (type_id) REFERENCES types(id)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS vets (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      first_name VARCHAR(30),
+      last_name VARCHAR(30),
+      INDEX(last_name)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS specialties (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(80),
+      INDEX(name)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS vet_specialties (
+      vet_id INT(4) UNSIGNED NOT NULL,
+      specialty_id INT(4) UNSIGNED NOT NULL,
+      FOREIGN KEY (vet_id) REFERENCES vets(id),
+      FOREIGN KEY (specialty_id) REFERENCES specialties(id),
+      UNIQUE (vet_id,specialty_id)
+    ) engine=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS visits (
+      id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      pet_id INT(4) UNSIGNED NOT NULL,
+      visit_date DATE,
+      description VARCHAR(8192),
+      FOREIGN KEY (pet_id) REFERENCES pets(id)
+    ) engine=InnoDB;
+
+    INSERT IGNORE INTO types VALUES (1, 'cat');
+    INSERT IGNORE INTO types VALUES (2, 'dog');
+    INSERT IGNORE INTO types VALUES (3, 'lizard');
+    INSERT IGNORE INTO types VALUES (4, 'snake');
+    INSERT IGNORE INTO types VALUES (5, 'bird');
+    INSERT IGNORE INTO types VALUES (6, 'hamster');
+
+    INSERT IGNORE INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023');
+    INSERT IGNORE INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
+    INSERT IGNORE INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763');
+    INSERT IGNORE INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198');
+    INSERT IGNORE INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765');
+    INSERT IGNORE INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654');
+    INSERT IGNORE INTO owners VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387');
+    INSERT IGNORE INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683');
+    INSERT IGNORE INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');
+    INSERT IGNORE INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');
+
+    INSERT IGNORE INTO pets VALUES (1, 'Leo', '2000-09-07', 1, 1);
+    INSERT IGNORE INTO pets VALUES (2, 'Basil', '2002-08-06', 6, 2);
+    INSERT IGNORE INTO pets VALUES (3, 'Rosy', '2001-04-17', 2, 3);
+    INSERT IGNORE INTO pets VALUES (4, 'Jewel', '2000-03-07', 2, 3);
+    INSERT IGNORE INTO pets VALUES (5, 'Iggy', '2000-11-30', 3, 4);
+    INSERT IGNORE INTO pets VALUES (6, 'George', '2000-01-20', 4, 5);
+    INSERT IGNORE INTO pets VALUES (7, 'Samantha', '1995-09-04', 1, 6);
+    INSERT IGNORE INTO pets VALUES (8, 'Max', '1995-09-04', 1, 6);
+    INSERT IGNORE INTO pets VALUES (9, 'Lucky', '1999-08-06', 5, 7);
+    INSERT IGNORE INTO pets VALUES (10, 'Mulligan', '1997-02-24', 2, 8);
+    INSERT IGNORE INTO pets VALUES (11, 'Freddy', '2000-03-09', 5, 9);
+    INSERT IGNORE INTO pets VALUES (12, 'Lucky', '2000-06-24', 2, 10);
+    INSERT IGNORE INTO pets VALUES (13, 'Sly', '2002-06-08', 1, 10);
+
+    INSERT IGNORE INTO vets VALUES (1, 'James', 'Carter');
+    INSERT IGNORE INTO vets VALUES (2, 'Helen', 'Leary');
+    INSERT IGNORE INTO vets VALUES (3, 'Linda', 'Douglas');
+    INSERT IGNORE INTO vets VALUES (4, 'Rafael', 'Ortega');
+    INSERT IGNORE INTO vets VALUES (5, 'Henry', 'Stevens');
+    INSERT IGNORE INTO vets VALUES (6, 'Sharon', 'Jenkins');
+
+    INSERT IGNORE INTO specialties VALUES (1, 'radiology');
+    INSERT IGNORE INTO specialties VALUES (2, 'surgery');
+    INSERT IGNORE INTO specialties VALUES (3, 'dentistry');
+
+    INSERT IGNORE INTO vet_specialties VALUES (2, 1);
+    INSERT IGNORE INTO vet_specialties VALUES (3, 2);
+    INSERT IGNORE INTO vet_specialties VALUES (3, 3);
+    INSERT IGNORE INTO vet_specialties VALUES (4, 2);
+    INSERT IGNORE INTO vet_specialties VALUES (5, 1);
+
+    INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
+    INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
+    INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
+    INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway-ingress
+  annotations:
+spec:
+  ingressClassName: traefik
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api-gateway
+            port:
+              number: 82
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-loadgen-deployment
+  labels:
+    app: petclinic-loadgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic-loadgen
+  template:
+    metadata:
+      labels:
+        app: petclinic-loadgen
+    spec:
+      # If you are NOT running this from AWS, but from multipass for example set the below env variable
+      # set RUM_FRONTEND_IP to the IP address where you can reach your local Online Boutique
+      #env:
+      #  - name: RUM_FRONTEND_IP
+      #    value: "192.168.1.99"
+      containers:
+        - name: petclinic-loadgen
+          image: ghcr.io/splunk/online-boutique/rumloadgen:5.5
+          imagePullPolicy: Always
+          env:
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: RUM_PROTOCOL
+              value: "http"
+            - name: RUM_PORT
+              value: "81"
+          volumeMounts:
+            - name: puppeteer
+              subPath: local-file
+              mountPath: /puppeteer/touchwebsite.js
+      volumes:
+        - name: puppeteer
+          configMap:
+            name: scriptfile
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scriptfile
+data:
+  local-file: |
+    const { Console } = require('console');
+    const puppeteer = require('puppeteer');
+    function run () {
+        return new Promise(async (resolve, reject) => {
+            const browser = await puppeteer.launch({
+                headless: 'new',
+                defaultViewport: null,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            try {
+                const wait_time = 10000;  //Set up delay between page interactions
+                for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
+                    const context = await browser.createBrowserContext();
+                    const page = await context.newPage();
+                    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
+                    const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"];
+                    const timeout = 30000;
+                    for (const element of urls) {
+                      const url = element;
+                      await page.goto(`${url}`);
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('div.navbar-header > a > span'),
+                              targetPage.locator('::-p-xpath(/html/body/layout-nav/nav/div[1]/a/span)'),
+                              targetPage.locator(':scope >>> div.navbar-header > a > span')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 110,
+                                  y: 25,
+                              },
+                              });
+
+                          await page.waitForSelector('body > div > div > div > ui-view > layout-welcome > h1');
+                          const textContent = await page.evaluate(() => document.querySelector('body > div > div > div > ui-view > layout-welcome > h1').textContent);
+                          console.log('{"severity":"info","msg":"Welcome Text = "' + textContent + '"}');
+                        }
+                        { //click on owners link
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(OWNERS)'),
+                              targetPage.locator('li.dropdown > a'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[2]/a)'),
+                              targetPage.locator(':scope >>> li.dropdown > a'),
+                              targetPage.locator('::-p-text(Owners)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 49.6875,
+                                  y: 33,
+                              },
+                              });
+                            console.log('{"severity":"info","msg":"@ALL"}');
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('li.dropdown li:nth-of-type(1) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[2]/ul/li[1]/a/span[2])'),
+                              targetPage.locator(':scope >>> li.dropdown li:nth-of-type(1) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-text(All)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 29.484375,
+                                  y: 7,
+                              },
+                              });
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Maria Escobito[role=\\"link\\"])'),
+                              targetPage.locator('tr:nth-of-type(8) a'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/owner-list/table/tbody/tr[8]/td[1]/a)'),
+                              targetPage.locator(':scope >>> tr:nth-of-type(8) a'),
+                              targetPage.locator('::-p-text(Maria Escobito)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 43,
+                                  y: 9,
+                              },
+                              });
+                        console.log('{"severity":"info","msg":"@owner details page"}');
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Mulligan)'),
+                              targetPage.locator('table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) a'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/owner-details/table[2]/tbody/tr/td[1]/dl/dd[1]/a)'),
+                              targetPage.locator(':scope >>> table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) a'),
+                              targetPage.locator('::-p-text(Mulligan)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 40,
+                                  y: 5,
+                              },
+                              });
+                            console.log('{"severity":"info","msg":"@pet details page"}');
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Submit)'),
+                              targetPage.locator('body > div button'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/pet-form/form/div[5]/div/button)'),
+                              targetPage.locator(':scope >>> body > div button'),
+                              targetPage.locator('::-p-text(Submit)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 48.671875,
+                                  y: 14,
+                              },
+                              });
+                        console.log('{"severity":"info","msg":"@add pet page"}');
+                      }
+
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('li:nth-of-type(3) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[3]/a/span[2])'),
+                              targetPage.locator(':scope >>> li:nth-of-type(3) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-text(Veterinarians)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 31.640625,
+                                  y: 2,
+                              },
+                              });
+                        console.log('{"severity":"info","msg":"@veterinarians page"}');
+                      }
+
+                    }
+                    await delay(wait_time );
+                    await browser.close()
+                }
+                process.exit();
+          } catch (e) {
+            console.log ('{"severity":"error","msg": "'+ e + '"}');
+          } finally {
+            await browser.close();
+          }
+        })
+    }
+    run().then(console.log).catch(console.error);
+
+    function delay(time) {
+      return new Promise(function(resolve) {
+          setTimeout(resolve, time)
+      });
+    }
