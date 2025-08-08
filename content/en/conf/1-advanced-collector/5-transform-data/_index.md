@@ -7,7 +7,7 @@ weight: 7
 
 The [**Transform Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/transformprocessor/README.md) lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the **OpenTelemetry Transformation Language (OTTL)**, you can filter, enrich, and transform data on the fly without touching your application code.
 
-In this exercise we’ll update `agent.yaml` to include a **Transform Processor** that will:
+In this exercise we’ll update `gateway.yaml` to include a **Transform Processor** that will:
 
 - **Filter** log resource attributes.
 - **Parse** JSON structured log data into attributes.
@@ -37,3 +37,4 @@ Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`. Your
 ```
 
 {{% /notice %}}
+
