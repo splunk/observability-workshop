@@ -5,4 +5,4 @@ hidden: false
 description: Learn how to build observability solutions with Splunk
 ---
 
-{{% children description="true" %}}
+{{% children-cards depth="1" description="true" %}}

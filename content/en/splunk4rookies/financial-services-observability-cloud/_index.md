@@ -25,4 +25,4 @@ OpenTelemetry is an open-source collection of tools, APIs, and software developm
 
 The OpenTelemetry community is growing rapidly, supported by leading companies like Splunk, Google, Microsoft, and Amazon. It currently has the second-largest number of contributors within the Cloud Native Computing Foundation, following only Kubernetes.
 
-![Full Stack](images/splunk-full-stack.png)
+![Full Stack](images/a.png)

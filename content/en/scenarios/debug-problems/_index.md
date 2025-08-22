@@ -6,4 +6,4 @@ description: This scenario helps engineering teams identify and fix issues cause
 
 ---
 
-{{% children description="true" %}}
+{{% children-cards description="true" %}}
