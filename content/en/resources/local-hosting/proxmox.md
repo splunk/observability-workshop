@@ -1,3 +1,8 @@
+---
+title: Local Hosting with Proxmox
+weight: 3
+description: Learn how to create a local hosting environment in Proxmox VE
+---
 # Proxmox Workshop Instance Setup
 
 ## Overview
