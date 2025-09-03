@@ -39,7 +39,7 @@
   }
 
 
-  .children.children-card {
+.children.children-card {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
@@ -47,6 +47,15 @@
   padding: 0;
   list-style: none;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+  background: none !important;
+  border: none !important;
+}
+
+.children.children-card::after {
+  display: none !important;
 }
 
 /* Ensure all cards are equal height and proper grid items */
@@ -56,6 +65,7 @@
   height: fit-content;
   max-height: 600px;
   min-height: 300px;
+  margin-bottom: 8px;
 }
 
 /* Prevent nested containers from breaking grid */
@@ -87,7 +97,7 @@
 }
 
 .child-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(233, 30, 140, 0.15);
   border-color: rgba(233, 30, 140, 0.2);
 }
@@ -130,7 +140,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #2d2d2d;
+  color: #f9f9f9;
 }
 
 .card-title a {
@@ -286,7 +296,7 @@
 
 .card-child-link {
   display: block;
-  color: #333;
+  color: #f9f9f9;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.8rem;
@@ -298,13 +308,13 @@
   position: relative;
 }
 
-.card-child-link:hover {
+/* .card-child-link:hover {
   color: #e91e8c;
   text-decoration: none;
   border-left-color: #e91e8c;
   background: rgba(233, 30, 140, 0.05);
   transform: translateX(2px);
-}
+} */
 
 .card-child-link::before {
   content: "→";
@@ -317,20 +327,20 @@
   font-weight: bold;
 }
 
-.card-child-link:hover::before {
+/* .card-child-link:hover::before {
   opacity: 1;
   transform: translateX(0);
 }
 
 .card-child-link:hover {
   padding-left: 1.8rem;
-}
+} */
 
 .card-child-desc {
   margin: 0;
   padding: 0 1rem 0.6rem 1rem;
   font-size: 0.7rem;
-  color: #666;
+  color: #fff;
   line-height: 1.3;
   max-height: 2.6em;
   overflow: hidden;
@@ -375,7 +385,7 @@
 .card-child-link.nested {
   font-size: 0.75rem;
   padding: 0.4rem 0.8rem 0.2rem 0.8rem;
-  color: #666;
+  color: #fff;
   font-weight: 500;
 }
 
@@ -429,25 +439,3 @@ body[data-theme="dark"] .child-card:hover,
 .relearn-dark .child-card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
-
-/* Existing list style compatibility */
-/* .children.children-li {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.children-title {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.children-title a {
-  color: var(--INTERNAL-MAIN-TITLES-TEXT-color);
-  text-decoration: none;
-}
-
-.children-title a:hover {
-  color: var(--INTERNAL-MAIN-LINK-color);
-} */
