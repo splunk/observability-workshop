@@ -843,6 +843,7 @@ spec:
       containers:
         - name: frontend
           image: ghcr.io/splunk/online-boutique/frontend-rum-profile:4.1.3
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
