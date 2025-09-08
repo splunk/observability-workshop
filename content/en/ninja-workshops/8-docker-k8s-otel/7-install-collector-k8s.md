@@ -141,7 +141,7 @@ Now we can use the following command to install the collector:
 {{% tab title="Script" %}}
 
 ``` bash
-  helm install splunk-otel-collector --version 0.111.0 \
+  helm install splunk-otel-collector --version {{< otel-version >}} \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-cluster" \

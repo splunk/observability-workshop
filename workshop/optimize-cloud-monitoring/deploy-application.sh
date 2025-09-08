@@ -89,7 +89,7 @@ echo -e " "
 
 #Install the otel collector.
 echo -e "\e[1mInstalling OpenTelemetry Collector\e[0m"
-helm install splunk-otel-collector --version 0.111.0 \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="operator.enabled=true" \
 --set="certmanager.enabled=true" \
 --set="splunkObservability.realm=$REALM" \
