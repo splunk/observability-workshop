@@ -5,4 +5,4 @@ weight: 1
 description: The following workshops are for Rookies.
 ---
 
-{{% children-cards depth="1" description="true" %}}
+{{% children depth="1" description="true" %}}
