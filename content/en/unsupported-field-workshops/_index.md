@@ -5,4 +5,4 @@ description: Workshops that use unsupported fields in Splunk Observability Cloud
 weight: 20
 ---
 
-{{% children-cards description="true" %}}
+{{% children description="true" %}}
