@@ -73,7 +73,7 @@ It then installed the `splunk-otel-collector-chart` Helm chart and ensured it's 
 And finally, it used `helm install` to install the collector:
 
 ``` bash
-  helm install splunk-otel-collector --version 0.111.0 \
+  helm install splunk-otel-collector --version {{< otel-version >}} \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -283,7 +283,7 @@ Once the file is saved, we can apply the changes with:
 ``` bash
 cd /home/splunk/workshop/tagging
 
-helm upgrade splunk-otel-collector --version 0.111.0 \
+helm upgrade splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
