@@ -77,7 +77,7 @@ echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 cat << EOF | tee /var/lib/vz/snippets/ubuntu.yaml >/dev/null
 #cloud-config
 package_update: true
-#package_upgrade: true
+package_upgrade: true
 package_reboot_if_required: false
 
 hostname: $HOSTNAME
@@ -110,7 +110,9 @@ packages:
   - git
   - wget
   - qemu-guest-agent
-
+snap:
+  commands:
+  - snap install kubectl --classic
 write_files:
   - path: /etc/environment
     append: true
@@ -186,6 +188,12 @@ runcmd:
   # Install Terraform (latest) - Version: ${LATEST_TERRAFORM_VERSION}
   - curl -S -OL https://releases.hashicorp.com/terraform/${LATEST_TERRAFORM_VERSION}/terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip
   - unzip -qq terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
+
+  # Install k3d
+  - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+  # Create 3 node k3d cluster
+  - k3d cluster create ${HOSTNAME}-cluster --agents 2
 EOF
 
 #qm destroy $VMID >/dev/null
