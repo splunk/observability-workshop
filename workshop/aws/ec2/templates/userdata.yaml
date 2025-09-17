@@ -124,7 +124,7 @@ write_files:
         rum_token: ${rum_token}
         hec_token: ${hec_token}
         hec_url: ${hec_url}
-        url: frontend-external
+        url: frontend
 
   - path: /tmp/diab-setup.sh
     permissions: '0755'

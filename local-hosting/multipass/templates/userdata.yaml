@@ -89,7 +89,7 @@ write_files:
         hec_token: ${hec_token}
         hec_url: ${hec_url}
         index: ${index}
-        url: frontend-external
+        url: frontend
 
   - path: /tmp/diab-setup.sh
     permissions: '0755'

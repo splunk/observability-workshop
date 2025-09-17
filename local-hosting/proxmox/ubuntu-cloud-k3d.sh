@@ -154,7 +154,7 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: frontend-external
+        url: frontend
 
 runcmd:
   - systemctl start qemu-guest-agent
