@@ -578,61 +578,6 @@ spec:
     - name: grpc
       port: 50051
       targetPort: 50051
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: loadgenerator
-# spec:
-#   selector:
-#     matchLabels:
-#       app: loadgenerator
-#   replicas: 1
-#   template:
-#     metadata:
-#       labels:
-#         app: loadgenerator
-#       annotations:
-#         sidecar.istio.io/rewriteAppHTTPProbers: "true"
-#     spec:
-#       terminationGracePeriodSeconds: 5
-#       restartPolicy: Always
-#       containers:
-#         - name: loadgenerator
-#           image: ghcr.io/splunk/online-boutique/microservices-demo-loadgenerator:4bf3dfd4f0
-#           ports:
-#             - containerPort: 8089
-#           env:
-#             - name: FRONTEND_ADDR
-#               value: "frontend:80"
-#             - name: USERS
-#               value: "10"
-#           resources:
-#             requests:
-#               cpu: 300m
-#               memory: 256Mi
-#             limits:
-#               cpu: 330m
-#               memory: 280Mi
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: loadgenerator
-#   annotations:
-#     service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
-#     service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "5"
-#     service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "3"
-#     service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "2"
-#     external-dns.alpha.kubernetes.io/hostname: demo-load.
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     app: loadgenerator
-#   ports:
-#     - name: http
-#       port: 82
-#       targetPort: 8089
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -767,8 +712,6 @@ spec:
       containers:
         - name: checkoutservice
           image: ghcr.io/splunk/online-boutique/microservices-demo-checkoutservice:4bf3dfd4f0
-          #image: ghcr.io/splunk/online-boutique/microservices-demo-checkoutservice:a728a64c18
-          #image: harnit/shopdemo-checkoutservice:1.1
           ports:
             - containerPort: 5050
           readinessProbe:
