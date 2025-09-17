@@ -712,9 +712,24 @@ data:
     function run () {
         return new Promise(async (resolve, reject) => {
             const browser = await puppeteer.launch({
-                headless: 'shell',
+                headless: true,
                 defaultViewport: null,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
+                args: [
+                  '--no-sandbox',
+                  '--disable-setuid-sandbox',
+                  '--disable-gpu',
+                  '--disable-dev-shm-usage',
+                  '--disable-web-security',
+                  '--disable-features=VizDisplayCompositor',
+                  '--max-old-space-size=256',
+                  '--disable-extensions',
+                  '--disable-plugins',
+                  '--disable-background-networking',
+                  '--disable-background-timer-throttling',
+                  '--disable-backgrounding-occluded-windows',
+                  '--disable-renderer-backgrounding',
+                  '--memory-pressure-off'
+                ]
             });
             try {
                 const wait_time = 500;  //Set up delay between page interactions
