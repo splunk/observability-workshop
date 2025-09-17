@@ -971,7 +971,7 @@ spec:
     spec:
       containers:
         - name: rum-loadgen
-          image: ghcr.io/splunk/online-boutique/rumloadgen:5.5
+          image: ghcr.io/splunk/online-boutique/rumloadgen:5.6
           imagePullPolicy: Always
           env:
             - name: RUM_FRONTEND_IP
@@ -988,8 +988,8 @@ spec:
               cpu: 150m
               memory: 200Mi
             limits:
-              cpu: 200m
-              memory: 250Mi
+              cpu: 250m
+              memory: 350Mi
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
