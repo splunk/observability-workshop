@@ -683,13 +683,11 @@ spec:
       #    value: "192.168.1.99"
       containers:
         - name: petclinic-loadgen
-          image: ghcr.io/splunk/online-boutique/rumloadgen:5.5
+          image: ghcr.io/splunk/online-boutique/rumloadgen:5.6
           imagePullPolicy: Always
           env:
             - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
+              value: "api-gateway-external"
             - name: RUM_PROTOCOL
               value: "http"
             - name: RUM_PORT
@@ -714,18 +712,18 @@ data:
     function run () {
         return new Promise(async (resolve, reject) => {
             const browser = await puppeteer.launch({
-                headless: 'new',
+                headless: 'shell',
                 defaultViewport: null,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
             try {
-                const wait_time = 10000;  //Set up delay between page interactions
+                const wait_time = 500;  //Set up delay between page interactions
                 for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
                     const context = await browser.createBrowserContext();
                     const page = await context.newPage();
-                    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
+                    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.133 Safari/537.36')
                     const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"];
-                    const timeout = 30000;       
+                    const timeout = 30000;
                     for (const element of urls) {
                       const url = element;
                       await page.goto(`${url}`);
