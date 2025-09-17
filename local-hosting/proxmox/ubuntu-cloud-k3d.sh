@@ -193,7 +193,16 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
   # Create 3 node k3d cluster
-  - k3d cluster create ${HOSTNAME}-cluster --agents 2
+  - k3d cluster create ${HOSTNAME}-cluster --agents 2 --image rancher/k3s:v1.33.4-k3s1
+
+  # Add user splunk to docker group
+  - usermod -aG docker splunk
+
+  # Create k3d kube config and set correct permissions on splunk user home directory
+  - mkdir /home/splunk/.kube && k3d kubeconfig get ${HOSTNAME}-cluster > /home/splunk/.kube/config
+  - chmod 400 /home/splunk/.kube/config
+  - chown -R splunk:splunk /home/splunk
+  
 EOF
 
 #qm destroy $VMID >/dev/null
