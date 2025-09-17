@@ -193,7 +193,7 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
   # Create 3 node k3d cluster
-  - k3d cluster create ${HOSTNAME}-cluster --agents 2 --image rancher/k3s:v1.33.4-k3s1
+  - k3d cluster create ${HOSTNAME}-cluster --agents 2 --image rancher/k3s:v1.33.4-k3s1 --port "81:80@loadbalancer"
 
   # Add user splunk to docker group
   - usermod -aG docker splunk
