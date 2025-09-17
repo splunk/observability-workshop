@@ -202,7 +202,15 @@ runcmd:
   - mkdir /home/splunk/.kube && k3d kubeconfig get ${HOSTNAME}-cluster > /home/splunk/.kube/config
   - chmod 400 /home/splunk/.kube/config
   - chown -R splunk:splunk /home/splunk
-  
+
+  # Deploy private registry
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
+
+  # Chaos Mesh
+  - curl -sSL https://mirrors.chaos-mesh.org/v2.7.1/install.sh | bash -s -- --k3s
+
+  # Deploy Splunk secrets
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
 EOF
 
 #qm destroy $VMID >/dev/null
