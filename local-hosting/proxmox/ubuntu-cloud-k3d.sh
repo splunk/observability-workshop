@@ -216,7 +216,7 @@ EOF
 #qm destroy $VMID >/dev/null
 rm -f jammy-server-cloudimg-amd64.img >/dev/null
 wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-qemu-img resize jammy-server-cloudimg-amd64.img 20G >/dev/null
+qemu-img resize jammy-server-cloudimg-amd64.img 40G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
     --memory 8192 --balloon 0 \
     --agent 1 \
