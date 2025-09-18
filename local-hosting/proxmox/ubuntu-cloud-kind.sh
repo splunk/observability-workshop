@@ -65,7 +65,7 @@ UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
 RANDOM_ADDITION=$((4000 + RANDOM % 1001))
 VMID=$((NEXTID + RANDOM_ADDITION))
 STORAGE=local-lvm
-HOSTNAME=$UNIQUE_HOST_ID-workshop-$VMID
+HOSTNAME=kind-workshop-$VMID
 USER=splunk
 PASSWORD=Splunk123!
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
@@ -200,7 +200,7 @@ runcmd:
   - unzip -qq terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
   # Install kind
-  - [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.30.0/kind-linux-amd64
+  - curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.30.0/kind-linux-amd64
   - chmod +x ./kind
   - mv ./kind /usr/local/bin/kind
 
@@ -211,7 +211,7 @@ runcmd:
   - usermod -aG docker splunk
 
   # Create kube config and set correct permissions on splunk user home directory
-  - mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
+  - mkdir /home/splunk/.kube && /snap/bin/kubectl config view --raw > /home/splunk/.kube/config
   - chmod 400 /home/splunk/.kube/config
   - chown -R splunk:splunk /home/splunk
 
