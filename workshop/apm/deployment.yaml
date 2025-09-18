@@ -979,10 +979,6 @@ spec:
                 secretKeyRef:
                   name: workshop-secret
                   key: url
-            - name: RUM_PROTOCOL
-              value: "http"
-            - name: RUM_PORT
-              value: "81"
           resources:
             requests:
               cpu: 150m
