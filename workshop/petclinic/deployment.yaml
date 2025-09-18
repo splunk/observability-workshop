@@ -686,12 +686,11 @@ spec:
           image: ghcr.io/splunk/online-boutique/rumloadgen:5.6
           imagePullPolicy: Always
           env:
-            - name: NODE_IP
-              value: "api-gateway-external"
-            - name: RUM_PROTOCOL
-              value: "http"
-            - name: RUM_PORT
-              value: "81"
+            - name: RUM_FRONTEND_IP
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: url
           volumeMounts:
             - name: puppeteer
               subPath: local-file
@@ -737,7 +736,7 @@ data:
                     const context = await browser.createBrowserContext();
                     const page = await context.newPage();
                     await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.133 Safari/537.36')
-                    const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"];
+                    const urls= [process.env.RUM_FRONTEND_IP + "/#!/welcome"];
                     const timeout = 30000;
                     for (const element of urls) {
                       const url = element;
