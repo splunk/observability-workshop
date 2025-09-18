@@ -161,6 +161,7 @@ write_files:
     content: |
       kind: Cluster
       apiVersion: kind.x-k8s.io/v1alpha4
+      name: $HOSTNAME
       nodes:
       - role: control-plane
       - role: worker
@@ -219,7 +220,7 @@ runcmd:
   - /snap/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
 
   # Chaos Mesh
-  - curl -sSL https://mirrors.chaos-mesh.org/v2.7.1/install.sh | bash -s -- --k3s
+  - curl -sSL https://mirrors.chaos-mesh.org/v2.7.2/install.sh | bash -s -- --local kind
 
   # Deploy Splunk secrets
   - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
