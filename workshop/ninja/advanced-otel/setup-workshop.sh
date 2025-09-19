@@ -49,6 +49,7 @@ mkdir -p 3-dropping-spans
 mkdir -p 4-sensitive-data
 mkdir -p 5-transform-data
 mkdir -p 6-routing-data
+mkdir -p 7-sum-count
 
 echo "✓ Created subdirectories:"
 echo "  ├── 1-agent-gateway"
@@ -56,7 +57,8 @@ echo "  ├── 2-building-resilience"
 echo "  ├── 3-dropping-spans"
 echo "  ├── 4-sensitive-data"
 echo "  ├── 5-transform-data"
-echo "  └── 6-routing-data"
+echo "  ├── 6-routing-data"
+echo "  └── 7-sum-count"
 echo ""
 
 # Function to create agent.yaml configuration

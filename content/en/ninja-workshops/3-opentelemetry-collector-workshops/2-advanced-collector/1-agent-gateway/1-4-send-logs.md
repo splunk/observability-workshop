@@ -1,0 +1,154 @@
+---
+title: 1.4 Send Logs
+linkTitle: 1.4 Send Logs
+weight: 5
+hidden: true
+draft: true
+---
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+**Start the log load generator:** In the **Loadgen terminal** window, run the following command to start the `loadgen`:
+
+```bash
+../loadgen -logs
+```
+
+A continuous stream of log data from the `quotes.log` will be in the **Agent** and **Gateway** debug logs:
+
+```text { title="Agent/Gateway Debug Output" }
+Timestamp: 1970-01-01 00:00:00 +0000 UTC
+SeverityText:
+SeverityNumber: Unspecified(0)
+Body: Str(2025-03-06 15:18:32 [ERROR] - There is some good in this world, and it's worth fighting for. LOTR)
+Attributes:
+     -> log.file.path: Str(quotes.log)
+Trace ID:
+Span ID:
+Flags: 0
+LogRecord #1
+```
+
+**Stop the `loadgen`**: In the **Loadgen terminal** window, stop the `loadgen` using `Ctrl-C`.
+
+**Verify the gateway**: Check if the **Gateway** has written a `./gateway-logs.out` file.
+
+At this point, your directory structure will appear as follows:
+
+```text { title="Updated Directory Structure" }
+.
+├── agent.out
+├── agent.yaml
+├── gateway-logs.out     # Output from the logs pipeline
+├── gateway-metrics.out  # Output from the metrics pipeline
+├── gateway-traces.out   # Output from the traces pipeline
+├── gateway.yaml
+└── quotes.log           # File containing Random log lines
+```
+
+**Examine a log line**: In `gateway-logs.out` compare a log line with the snippet below. Verify that the log entry includes the same attributes as we have seen in metrics and traces data previously:
+
+{{% tabs %}}
+{{% tab title="cat /gateway-logs.out" %}}
+
+```json
+{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.source","value":{"stringValue":"./quotes.log"}},{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"host.name","value":{"stringValue":"workshop-instance"}},{"key":"os.type","value":{"stringValue":"linux"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1741274312475540000","body":{"stringValue":"2025-03-06 15:18:32 [DEBUG] - All we have to decide is what to do with the time that is given us. LOTR"},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""},{"observedTimeUnixNano":"1741274312475560000","body":{"stringValue":"2025-03-06 15:18:32 [DEBUG] - Your focus determines your reality. SW"},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+```
+
+{{% /tab %}}
+{{% tab title="cat ./gateway-logs.out | jq" %}}
+
+```json
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "com.splunk.source",
+            "value": {
+              "stringValue": "./quotes.log"
+            }
+          },
+          {
+            "key": "com.splunk.sourcetype",
+            "value": {
+              "stringValue": "quotes"
+            }
+          },
+          {
+            "key": "host.name",
+            "value": {
+              "stringValue": "workshop-instance"
+            }
+          },
+          {
+            "key": "os.type",
+            "value": {
+              "stringValue": "linux"
+            }
+          },
+          {
+            "key": "otelcol.service.mode",
+            "value": {
+              "stringValue": "gateway"
+            }
+          }
+        ]
+      },
+      "scopeLogs": [
+        {
+          "scope": {},
+          "logRecords": [
+            {
+              "observedTimeUnixNano": "1741274312475540000",
+              "body": {
+                "stringValue": "2025-03-06 15:18:32 [DEBUG] - All we have to decide is what to do with the time that is given us. LOTR"
+              },
+              "attributes": [
+                {
+                  "key": "log.file.path",
+                  "value": {
+                    "stringValue": "quotes.log"
+                  }
+                }
+              ],
+              "traceId": "",
+              "spanId": ""
+            },
+            {
+              "observedTimeUnixNano": "1741274312475560000",
+              "body": {
+                "stringValue": "2025-03-06 15:18:32 [DEBUG] - Your focus determines your reality. SW"
+              },
+              "attributes": [
+                {
+                  "key": "log.file.path",
+                  "value": {
+                    "stringValue": "quotes.log"
+                  }
+                }
+              ],
+              "traceId": "",
+              "spanId": ""
+            }
+          ]
+        }
+      ],
+      "schemaUrl": "https://opentelemetry.io/schemas/1.6.1"
+    }
+  ]
+}
+```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+You may also have noticed that every log line contains empty placeholders for `"traceId":""` and `"spanId":""`.
+The FileLog receiver will populate these fields only if they are not already present in the log line.
+For example, if the log line is generated by an application instrumented with an OpenTelemetry instrumentation library, these fields will already be included and will not be overwritten.
+
+> [!IMPORTANT]
+> Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
+
+{{% /notice %}}
