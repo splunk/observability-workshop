@@ -26,7 +26,7 @@ rosa create cluster \
     --version 4.18.23 \
     --ec2-metadata-http-tokens optional \
     --replicas 2 \
-    --compute-machine-type m5.xlarge \
+    --compute-machine-type g5.2xlarge \
     --machine-cidr 10.0.0.0/16 \
     --service-cidr 172.30.0.0/16 \
     --pod-cidr 10.128.0.0/14 \
@@ -36,6 +36,11 @@ rosa create cluster \
     --additional-compute-security-group-ids <security group ID> \
     --billing-account <AWS Account>
 ```
+
+> Note that we've specified the `g5.2xlarge` instance type, which includes NVIDIA 
+> GPUs that we'll be using later in the workshop.  This instance type is relatively expensive, 
+> about $1.21 per hour at the time of writing, and we've requested 2 replicas, 
+> so be mindful of how long your cluster is running for, as costs will accumulate quickly. 
 
 Run the following commands to continue the cluster creation:
 
@@ -57,13 +62,15 @@ rosa logs install -c rosa-test --watch
 
 ## Connect to the OpenShift Cluster
 
-``` bash
- oc login -u cluster-admin
-```
+Use the command below to connect the oc CLI to your OpenShift cluster: 
 
-When prompted, specify the server name for your OpenShift cluster, which you can find with the 
-`rosa describe cluster -c rosa-test` command. For example, the server name might be something like 
-`https://api.rosa-test.aaa.bb.openshiftapps.com:443`. 
+> Note: Run the `rosa describe cluster -c rosa-test` command and substitute the
+> resulting API Server URL into the command below before running it. For example, 
+> the server name might be something like `https://api.rosa-test.aaa.bb.openshiftapps.com:443`.
+
+``` bash
+ oc login <API Server URL> -u cluster-admin
+```
 
 Once connected to your cluster, confirm that the nodes are up and running: 
 
