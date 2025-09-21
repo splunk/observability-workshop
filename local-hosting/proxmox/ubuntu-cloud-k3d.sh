@@ -211,6 +211,10 @@ runcmd:
 
   # Deploy Splunk secrets
   - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
+  # Increase inotify limits for k3s
+  - sysctl -w fs.inotify.max_user_watches=524288
+  - sysctl -w fs.inotify.max_user_instances=8192
 EOF
 
 #qm destroy $VMID >/dev/null
