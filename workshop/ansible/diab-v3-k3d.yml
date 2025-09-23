@@ -51,16 +51,6 @@
 
     - name: Install and configure k3d
       block:
-      - name: Add splunk user to docker group
-        user:
-          name: splunk
-          groups: docker
-          append: yes
-        become: true
-
-      - name: Reset SSH connection to pick up group changes
-        meta: reset_connection
-
       - name: Get latest kubectl version
         uri:
           url: https://dl.k8s.io/release/stable.txt
@@ -86,7 +76,7 @@
         become: true
 
       - name: Create 3-node k3d cluster
-        command: k3d cluster create {{ instance }}-cluster --agents 2
+        command: k3d cluster create {{ instance }}-cluster --agents 2 --image rancher/k3s:v1.33.4-k3s1 --port "81:80@loadbalancer"
         become_user: splunk
         become: true
 
