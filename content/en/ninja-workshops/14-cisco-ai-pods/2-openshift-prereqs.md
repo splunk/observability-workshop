@@ -136,6 +136,9 @@ create a new VPC in our AWS account using the following command:
 rosa create network --param Region=us-east-2
 ```
 
+> Important: make note of the subnet ids created as a result of this command 
+> as you'll need them when creating the cluster.
+
 > Note: by default, each AWS region is limited to 5 elastic IP addresses.  
 > If you receive the following error: 
 > "The maximum number of addresses has been reached."
@@ -150,3 +153,5 @@ configuration with the following command:
 ``` bash
 rosa create oidc-config --mode=auto --yes
 ```
+
+> Important: make note of the oidc-provider id that is created.
