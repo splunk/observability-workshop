@@ -13,7 +13,7 @@ After you have registered and logged into Splunk Observability Cloud you will be
 2. **Org Switcher:** Switch between Organizations (if you are a member of more than one Organization).
 3. **Environments:** Focus on specific Environments in your Organization (for example, Prod and Dev).
 4. **Active Alerts:** Quickly see what might require your immediate attention.
-5. **AI Assistant:** Navigate the components of Splunk Observability Cloud.
+5. **AI Assistant:** Accelerate root cause analysis and get expert guidance to find and fix issues faster.
 
 Let's start with our first exercise:
 
