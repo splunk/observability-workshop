@@ -21,3 +21,14 @@ We used a t3.xlarge instance type using Ubuntu 24.04 LTS while creating the work
 but a smaller instance type can also be used.
 
 ssh into the instance once it's up and running.
+
+
+## Clone the GitHub Repository 
+
+Clone the GitHub repository to your EC2 instance: 
+
+``` bash
+git clone https://github.com/splunk/observability-workshop.git
+
+cd observability-workshop/workshop/cisco-ai-pods 
+```
