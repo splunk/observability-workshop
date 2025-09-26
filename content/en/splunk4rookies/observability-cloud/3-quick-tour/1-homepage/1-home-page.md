@@ -11,7 +11,7 @@ After you have registered and logged into Splunk Observability Cloud you will be
 
 1. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
 2. **Org Switcher:** Switch between Organizations (if you are a member of more than one Organization).
-3. **Environments:** Focus on specific Environments in your Organization (for example, Prod and Dev).
+3. **Teams:** Focus on assets of interest to the Teams you belong to.
 4. **Active Alerts:** Quickly see what might require your immediate attention.
 5. **AI Assistant:** Accelerate root cause analysis and get expert guidance to find and fix issues faster.
 
