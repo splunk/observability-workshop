@@ -37,6 +37,7 @@ rosa create cluster \
     --hosted-cp \
     --sts \
     --create-admin-user \
+    --operator-roles-prefix $OPERATOR_ROLES_PREFIX
     --oidc-config-id=$OIDC_ID \
     --subnet-ids=$SUBNET_IDS \
     --compute-machine-type $AWS_INSTANCE_TYPE \
