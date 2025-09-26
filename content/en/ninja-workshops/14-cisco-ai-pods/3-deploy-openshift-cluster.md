@@ -35,6 +35,7 @@ rosa create cluster \
     --cluster-name=$CLUSTER_NAME \
     --mode=auto \
     --hosted-cp \
+    --sts \
     --create-admin-user \
     --oidc-config-id=$OIDC_ID \
     --subnet-ids=$SUBNET_IDS \
