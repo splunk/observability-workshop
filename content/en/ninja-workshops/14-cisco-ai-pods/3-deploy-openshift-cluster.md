@@ -7,64 +7,64 @@ time: 25 minutes
 
 ## Deploy an OpenShift Cluster 
 
-You can run `rosa create cluster` and provide the details when prompted. 
+We'll use the ROSA CLI to deploy an OpenShift Cluster. 
 
-Alternatively, you can modify the following command and then execute it 
-to begin the cluster deployment process: 
+First, we'll need to set a few environment variables: 
+
+> Note: be sure to fill in the Subnet IDs and OIDC ID before running the EXPORT commands
+
+``` bash
+export CLUSTER_NAME=rosa-test
+export AWS_REGION=us-east-2
+export AWS_INSTANCE_TYPE=g5.2xlarge
+export SUBNET_IDS=<comma separated list of subnet IDs from earlier rosa create network command>
+export OIDC_ID=<the oidc-provider id returned from the rosa create oidc-config command> 
+export OPERATOR_ROLES_PREFIX=rosa-test-a6x9
+```
+
+Create operator roles for the OIDC configuration using the following command: 
+
+``` bash
+rosa create operator-roles --hosted-cp --prefix $OPERATOR_ROLES_PREFIX --oidc-config-id $OIDC_ID
+```
+
+Then we can create the cluster as follows: 
 
 ``` bash
 rosa create cluster \
-    --cluster-name rosa-test \
-    --sts \
-    --create-admin-user \
-    --role-arn arn:aws:iam::<AWS Account>>:role/ManagedOpenShift-HCP-ROSA-Installer-Role \
-    --support-role-arn arn:aws:iam::<AWS Account>:role/ManagedOpenShift-HCP-ROSA-Support-Role \
-    --worker-iam-role arn:aws:iam::<AWS Account>:role/ManagedOpenShift-HCP-ROSA-Worker-Role \
-    --operator-roles-prefix rosa-test-s4f8 \
-    --oidc-config-id <OIDC Config ID> \
-    --region us-east-2 \
-    --version 4.18.23 \
-    --ec2-metadata-http-tokens optional \
-    --replicas 2 \
-    --compute-machine-type g5.2xlarge \
-    --machine-cidr 10.0.0.0/16 \
-    --service-cidr 172.30.0.0/16 \
-    --pod-cidr 10.128.0.0/14 \
-    --host-prefix 23 \
-    --subnet-ids <subnet IDs>> \
+    --cluster-name=$CLUSTER_NAME \
+    --mode=auto \
     --hosted-cp \
-    --additional-compute-security-group-ids <security group ID> \
-    --billing-account <AWS Account>
+    --create-admin-user \
+    --oidc-config-id=$OIDC_ID \
+    --subnet-ids=$SUBNET_IDS \
+    --compute-machine-type $AWS_INSTANCE_TYPE \
+    --replicas 2 \
+    --region $AWS_REGION
 ```
 
 > Note that we've specified the `g5.2xlarge` instance type, which includes NVIDIA 
 > GPUs that we'll be using later in the workshop.  This instance type is relatively expensive, 
 > about $1.21 per hour at the time of writing, and we've requested 2 replicas, 
-> so be mindful of how long your cluster is running for, as costs will accumulate quickly. 
-
-Run the following commands to continue the cluster creation:
-
-``` bash
-rosa create operator-roles --cluster rosa-test
-```
+> so be mindful of how long your cluster is running for, as costs will accumulate quickly.
 
 To determine when your cluster is Ready, run:
 
 ``` bash
-rosa describe cluster -c rosa-test
+rosa describe cluster -c $CLUSTER_NAME
 ```
 
 To watch your cluster installation logs, run:
 
 ``` bash
-rosa logs install -c rosa-test --watch
+rosa logs install -c $CLUSTER_NAME --watch
 ```
 
 ## Connect to the OpenShift Cluster
 
 Use the command below to connect the oc CLI to your OpenShift cluster: 
 
-> Note: Run the `rosa describe cluster -c rosa-test` command and substitute the
+> Note: Run the `rosa describe cluster -c $CLUSTER_NAME` command and substitute the
 > resulting API Server URL into the command below before running it. For example, 
 > the server name might be something like `https://api.rosa-test.aaa.bb.openshiftapps.com:443`.
 
