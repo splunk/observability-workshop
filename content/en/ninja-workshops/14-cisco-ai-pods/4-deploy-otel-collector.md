@@ -16,7 +16,6 @@ First, we'll create a new project for the collector and switch to that project:
 
 ```bash
 oc new-project otel 
-oc project otel
 ```
 
 Ensure Helm is installed: 
@@ -41,59 +40,33 @@ Ensure the repository is up-to-date:
 helm repo update
 ````
 
-Define a file named `otel-collector-values.yaml` with the following content: 
+Review the file named `./otel-collector/otel-collector-values.yaml` as we'll be using it 
+to install the OpenTelemetry collector. 
 
-``` yaml
-distribution: openshift
-readinessProbe:
-  initialDelaySeconds: 180
-livenessProbe:
-  initialDelaySeconds: 180
-operator:
-  enabled: false
-operatorcrds:
-  installed: false
-gateway:
-  enabled: false
-splunkObservability:
-  profilingEnabled: true
-clusterReceiver:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 2000Mi
-agent:
-  discovery:
-    enabled: true
-  resources:
-    limits:
-      cpu: 200m
-      memory: 2000Mi
-  config:
-    exporters:
-      signalfx:
-        send_otlp_histograms: true
-    receivers:
-      kubeletstats:
-        insecure_skip_verify: true
+Set environment variables to configure the Splunk environment you'd like 
+the collector to send data to: 
+
+``` bash
+export ENVIRONMENT_NAME=<which environment to send data to for Splunk Observability Cloud>
+export SPLUNK_ACCESS_TOKEN=<your access token for Splunk Observability Cloud> 
+export SPLUNK_REALM=<your realm for Splunk Observability Cloud i.e. us0, us1, eu0, etc.>
+export SPLUNK_HEC_URL=<HEC endpoint to send logs to Splunk platform i.e. https://<hostname>:443/services/collector/event> 
+export SPLUNK_HEC_TOKEN=<HEC token to send logs to Splunk platform> 
+export SPLUNK_INDEX=<name of index to send logs to in Splunk platform>
 ```
 
 Then install the collector using the following command:
 
-> Note: update the command below before running it
-> to include the desired cluster name, environment, access token, etc.
-> for the target Splunk environment.
-
 ```bash
 helm install splunk-otel-collector \
-  --set="clusterName=<cluster name>" \
-  --set="environment=<environment name>" \
-  --set="splunkObservability.accessToken=***" \
-  --set="splunkObservability.realm=<realm e.g. us0, us1, eu0>" \
-  --set="splunkPlatform.endpoint=https://<hostname>:443/services/collector/event" \
-  --set="splunkPlatform.token=***" \
-  --set="splunkPlatform.index=<index name>" \
-  -f ./otel-collector-values.yaml \
+  --set="clusterName=$CLUSTER_NAME" \
+  --set="environment=$ENVIRONMENT_NAME" \
+  --set="splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN" \
+  --set="splunkObservability.realm=$SPLUNK_REALM" \
+  --set="splunkPlatform.endpoint=$SPLUNK_HEC_URL" \
+  --set="splunkPlatform.token=$SPLUNK_HEC_TOKEN" \
+  --set="splunkPlatform.index=$SPLUNK_INDEX" \
+  -f ./otel-collector/otel-collector-values.yaml \
   -n otel \
   splunk-otel-collector-chart/splunk-otel-collector
 ```

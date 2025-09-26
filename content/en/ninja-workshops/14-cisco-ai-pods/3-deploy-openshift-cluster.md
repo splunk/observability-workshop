@@ -32,17 +32,17 @@ Then we can create the cluster as follows:
 
 ``` bash
 rosa create cluster \
-    --cluster-name=$CLUSTER_NAME \
-    --mode=auto \
+    --cluster-name $CLUSTER_NAME \
+    --mode auto \
     --hosted-cp \
     --sts \
     --create-admin-user \
-    --operator-roles-prefix $OPERATOR_ROLES_PREFIX
-    --oidc-config-id=$OIDC_ID \
-    --subnet-ids=$SUBNET_IDS \
+    --operator-roles-prefix $OPERATOR_ROLES_PREFIX \
+    --oidc-config-id $OIDC_ID \
+    --subnet-ids $SUBNET_IDS \
     --compute-machine-type $AWS_INSTANCE_TYPE \
     --replicas 2 \
-    --region $AWS_REGION
+    --region $AWS_REGION 
 ```
 
 > Note that we've specified the `g5.2xlarge` instance type, which includes NVIDIA 
