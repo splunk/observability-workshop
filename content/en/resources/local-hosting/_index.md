@@ -14,4 +14,4 @@ Please disable any VPNs or proxies before setting up an instance e.g:
 These tools **will** prevent the instance from being created properly.
 {{% /notice %}}
 
-{{% children depth="2" description="true" %}}
+{{% children depth="2" type="card" description="true" %}}

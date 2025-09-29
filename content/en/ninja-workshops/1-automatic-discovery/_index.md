@@ -4,4 +4,4 @@ description: Automatic Discovery Workshops
 weight: 1
 ---
 
-{{% children containerstyle="ul" depth="1" description="true" %}}
+{{% children type="card" depth="1" description="true" %}}
