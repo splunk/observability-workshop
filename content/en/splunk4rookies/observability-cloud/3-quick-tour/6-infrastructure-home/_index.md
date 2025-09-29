@@ -14,5 +14,5 @@ Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observa
 **AutoDetect alerts and detectors:** Automatically identify the most important metrics, out-of-the-box, to create alert conditions for detectors that accurately alert from the moment telemetry data is ingested and use real-time alerting capabilities for important notifications in seconds.  
 **Log views in dashboards:** Combine log messages and real-time metrics on one page with common filters and time controls for faster in-context troubleshooting.  
 **Metrics pipeline management:** Control metrics volume at the point of ingest without re-instrumentation with a set of aggregation and data-dropping rules to store and analyze only the needed data. Reduce metrics volume and optimize observability spend.  
-
+<!--TODO update screenshot-->
 ![Infrastructure Overview](images/infrastructure-overview.png)
