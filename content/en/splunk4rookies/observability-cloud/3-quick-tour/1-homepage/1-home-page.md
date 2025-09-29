@@ -7,7 +7,7 @@ time: 5 minutes
 
 After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 
-![home page](../images/home-screen.png)
+![home page](../images/home-page.png)
 
 1. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
 2. **Org Switcher:** Switch between Organizations (if you are a member of more than one Organization).
@@ -19,7 +19,7 @@ Let's start with our first exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on your name in the top right and check the Organization name. 
+* Click on your name in the top right and check the Organization name.
 * If you are not in **Observability Workshop AMER**, select it now.
 * At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
 * Did you also notice this is where the **Log Out** option is? Please don't 😊 !
