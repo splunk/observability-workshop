@@ -37,4 +37,4 @@ In the second part, we’ll shift to alerting and monitoring with detectors:
 * Exploring alert timelines and history
 * Best practices for building actionable detectors
  -->
-<!-- {{% children containerstyle="ul" depth="1" description="true" %}} -->
+<!-- {{% children type="card" depth="1" description="true" %}} -->
