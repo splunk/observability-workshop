@@ -1,7 +1,7 @@
 ---
 title: PetClinic Monolith Workshop
 weight: 1
-description: A workshop using automatic discovery and configuration for Java.
+description: Hands-on workshop demonstrating Splunk Observability Cloud's automatic discovery and configuration capabilities for Java applications using the Spring PetClinic sample application.
 archetype: chapter
 authors: ["Robert Castley"]
 time: 30 minutes

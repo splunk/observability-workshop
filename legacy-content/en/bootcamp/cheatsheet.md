@@ -229,7 +229,6 @@ helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkRealm=$REALM" \
 --set="splunkAccessToken=$ACCESS_TOKEN" \
 --set="clusterName=<MY-CLUSTER>" \
---set="logsEnabled=false" \
 --set="environment=$<MY-ENV>" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml

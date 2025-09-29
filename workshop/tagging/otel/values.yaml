@@ -1,5 +1,4 @@
 splunkObservability:
-  logsEnabled: false
   profilingEnabled: true
   infrastructureMonitoringEventsEnabled: true
 certmanager:

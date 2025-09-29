@@ -61,7 +61,6 @@ helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=true" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \

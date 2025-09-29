@@ -154,7 +154,7 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: frontend
+        url: http://frontend
 
 runcmd:
   - systemctl start qemu-guest-agent
@@ -211,6 +211,10 @@ runcmd:
 
   # Deploy Splunk secrets
   - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
+  # Increase inotify limits for k3s
+  - sysctl -w fs.inotify.max_user_watches=524288
+  - sysctl -w fs.inotify.max_user_instances=8192
 EOF
 
 #qm destroy $VMID >/dev/null

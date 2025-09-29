@@ -1,0 +1,287 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  pre_tasks:
+    - name: Set the required variables
+      set_fact:
+        ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
+        rum_token: "{{ lookup('env','RUM_TOKEN') }}"
+        realm: "{{ lookup('env','REALM') }}"
+        instance: "{{ lookup('env','INSTANCE') }}"
+        hec_url: "{{ lookup('env','HEC_URL') }}"
+        hec_token: "{{ lookup('env','HEC_TOKEN') }}"
+
+  tasks:
+    - name: Check for existing K3s installation
+      block:
+      - name: Check if K3s is installed
+        stat:
+          path: /usr/local/bin/k3s
+        register: k3s_binary
+
+      - name: Check if K3s service is running
+        systemd:
+          name: k3s
+        register: k3s_service
+        failed_when: false
+
+      - name: Uninstall K3s if present
+        block:
+        - name: Stop K3s service
+          systemd:
+            name: k3s
+            state: stopped
+          become: true
+          when: k3s_service.status is defined and k3s_service.status.ActiveState == "active"
+
+        - name: Run K3s uninstall script
+          command: /usr/local/bin/k3s-uninstall.sh
+          become: true
+          when: k3s_binary.stat.exists
+
+        - name: Remove K3s binary if still present
+          file:
+            path: /usr/local/bin/k3s
+            state: absent
+          become: true
+          when: k3s_binary.stat.exists
+
+        when: k3s_binary.stat.exists
+
+    - name: Install and configure k3d
+      block:
+      - name: Get latest kubectl version
+        uri:
+          url: https://dl.k8s.io/release/stable.txt
+          return_content: yes
+        register: kubectl_version
+
+      - name: Download kubectl binary
+        get_url:
+          url: "https://dl.k8s.io/release/{{ kubectl_version.content | trim }}/bin/linux/amd64/kubectl"
+          dest: /usr/local/bin/kubectl
+          mode: '0755'
+        become: true
+
+      - name: Download k3d install script
+        get_url:
+          url: https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh
+          dest: /tmp/k3d-install.sh
+          mode: '0755'
+        become: true
+
+      - name: Install k3d
+        command: /tmp/k3d-install.sh
+        become: true
+
+      - name: Create 3-node k3d cluster
+        command: k3d cluster create {{ instance }}-cluster --agents 2 --image rancher/k3s:v1.33.4-k3s1 --port "81:80@loadbalancer"
+        become_user: splunk
+        become: true
+
+      - name: Create .kube directory for splunk user
+        file:
+          path: /home/splunk/.kube
+          state: directory
+          owner: splunk
+          group: splunk
+          mode: '0755'
+        become: true
+
+      - name: Generate kubeconfig for splunk user
+        shell: k3d kubeconfig get {{ instance }}-cluster > /home/splunk/.kube/config
+        become_user: splunk
+        become: true
+
+      - name: Set kubeconfig file permissions
+        file:
+          path: /home/splunk/.kube/config
+          owner: splunk
+          group: splunk
+          mode: '0600'
+        become: true
+
+      - name: Install Chaos Mesh
+        shell: curl -sSL https://mirrors.chaos-mesh.org/v2.7.2/install.sh | bash -s -- --k3s
+        become_user: splunk
+        become: true
+        environment:
+          KUBECONFIG: /home/splunk/.kube/config
+
+    - name: Configure Demo-in-a-Box
+      block:
+      - name: Check to see if the config has run
+        stat:
+          path: /white_rabbit.followed
+        register: wh_result
+
+      - name: Extract demo-in-a-box.zip into /home/splunk/
+        unarchive:
+          src: demo-in-a-box.zip
+          dest: /home/splunk/
+          owner: splunk
+          group: splunk
+          remote_src: yes
+          list_files: yes
+        become: true
+        register: diab_dir_name
+        when: not wh_result.stat.exists
+
+      #- name: Delete demo-in-a-box.zip
+      #  file:
+      #    path: /home/splunk/demo-in-a-box.zip
+      #    state: absent
+      #  become: true
+      #  when: not wh_result.stat.exists
+        
+      - debug:
+          var: diab_dir_name.files[0]
+        when: not wh_result.stat.exists
+
+      - name: Create K8s secrets YAML
+        file:
+          path: /home/splunk/workshop-secrets.yaml
+          owner: splunk
+          group: splunk
+          state: touch
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Update secrets YAML
+        ansible.builtin.blockinfile:
+          path: /home/splunk/workshop-secrets.yaml
+          block: |
+            apiVersion: v1
+            kind: Secret
+            metadata:
+              name: workshop-secret
+              namespace: default
+            type: Opaque
+            stringData:
+              app: {{ instance }}-store
+              env: {{ instance}}
+              deployment: "deployment.environment={{ instance }}"
+              access_token: {{ ingest_token }}
+              realm: {{ realm }}
+              rum_token: {{ rum_token }}
+              hec_token: {{ hec_token }}
+              hec_url: {{ hec_url }}
+              url: "http://frontend-external:81"
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Demo-in-a-Box Kubernetes setup
+        command: kubectl apply -f /home/splunk/workshop-secrets.yaml
+        when: not wh_result.stat.exists
+
+      - name: Create service for Demo-in-a-Box Manager API
+        file:
+          path: /etc/systemd/system/diab-manager-api.service
+          state: touch
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Update service for diab-manager-api.service
+        ansible.builtin.blockinfile:
+          path: /etc/systemd/system/diab-manager-api.service
+          block: |
+            [Unit]
+            Description=Demo-in-a-Box Manager API Service
+            After=network.target
+            StartLimitIntervalSec=0
+            [Service]
+            Type=simple
+            Restart=always
+            RestartSec=1
+            User=splunk
+            Environment="KUBECONFIG=/home/splunk/.kube/config"
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}v3
+            ExecStart=/bin/bash scripts/run-manager-api.sh
+            [Install]
+            WantedBy=multi-user.target
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Create service for Demo-in-a-Box Manager UI
+        file:
+          path: /etc/systemd/system/diab-manager-ui.service
+          state: touch
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Update service for diab-manager-ui.service
+        ansible.builtin.blockinfile:
+          path: /etc/systemd/system/diab-manager-ui.service
+          block: |
+            [Unit]
+            Description=Demo-in-a-Box Manager UI Service
+            After=network.target
+            StartLimitIntervalSec=0
+            [Service]
+            Type=simple
+            Restart=always
+            RestartSec=1
+            User=splunk
+            Environment="KUBECONFIG=/home/splunk/.kube/config"
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}v3
+            ExecStart=/bin/bash scripts/run-manager-ui.sh
+            [Install]
+            WantedBy=multi-user.target
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Helm OTel Collector repository add
+        command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        when: not wh_result.stat.exists
+
+      - name: Helm repository update
+        command: helm repo update
+        when: not wh_result.stat.exists
+
+      - name: Start the diab-manager-api service
+        command: systemctl enable --now diab-manager-api.service
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Wait for diab-manager-api.service to start
+        pause:
+          seconds: 20
+        when: not wh_result.stat.exists
+
+      - name: Start the diab-manager service
+        command: systemctl enable --now diab-manager-ui.service
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Wait for diab-manager-ui.service to start
+        pause:
+          seconds: 5
+        when: not wh_result.stat.exists
+
+      - name: Enable Chaos Mesh dashboard
+        command: kubectl apply -f /home/splunk/{{ diab_dir_name.files[0] }}v3/chaos-mesh/chaos-mesh-dashboard-lb.yaml
+        when: not wh_result.stat.exists
+
+      - name: Save Demo-in-a-Box configuration
+        uri:
+          url: "http://localhost:8082/saveConfig"
+          method: POST
+          body: "realm={{ realm }}&ingest_token={{ ingest_token }}&rum_token={{ rum_token }}&hec_url={{ hec_url}}&hec_token={{ hec_token }}&splunk_index=splunk4rookies-workshop&instance={{ instance }}"
+          status_code: [ 200, 201 ]
+          timeout: 30
+        register: splunk_api
+        until: splunk_api.status == 200
+        retries: 10
+        delay: 5
+        when: not wh_result.stat.exists
+
+      - name: Create a file to signify that the config has run successfully
+        file:
+          path: "/white_rabbit.followed"
+          state: touch
+        become: true
+        when: not wh_result.stat.exists

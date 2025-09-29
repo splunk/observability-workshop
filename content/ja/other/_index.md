@@ -5,4 +5,4 @@ title: その他のワークショップ
 weight: 19
 ---
 
-{{%children containerstyle="div" style="h5" description="true" %}}
+{{%children type="card" description="true" %}}
