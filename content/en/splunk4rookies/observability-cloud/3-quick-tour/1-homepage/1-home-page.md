@@ -7,21 +7,22 @@ time: 5 minutes
 
 After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 
-![home page](../images/home-screen.png)
+![home page](../images/home-page.png)
 
-1. **Explore your data pane:** Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator.
-2. **Documentation pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
-3. **Recents pane:** Recently created/visited dashboards and/or detectors for quick access.
-4. **Main Menu pane:** Navigate the components of Splunk Observability Cloud.
-5. **Org Switcher:** Easily switch between Organizations (if you are a member of more than one Organization).
-6. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
+1. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
+2. **Org Switcher:** Switch between Organizations (if you are a member of more than one Organization).
+3. **Teams:** Focus on assets of interest to the Teams you belong to.
+4. **Active Alerts:** Quickly see what might require your immediate attention.
+5. **AI Assistant:** Accelerate root cause analysis and get expert guidance to find and fix issues faster.
 
 Let's start with our first exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Expand the Main Menu and click on **Settings**.
-* Check in the **Org Switcher** if you have access to more than one Organization.
+* Click on your name in the top right and check the Organization name.
+* If you are not in **Observability Workshop AMER**, select it now.
+* At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
+* Did you also notice this is where the **Log Out** option is? Please don't 😊 !
 
 {{% /notice %}}
 
@@ -31,10 +32,9 @@ If you have used Splunk Observability before, you may be placed in an Organizati
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click **Onboarding Guidance** (Here you can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
+* Click the help icon and select **Onboarding Guidance**. (You can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
 * Hide the Onboarding Content for the **Home Page**.
-* At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the **Sign Out** option is? Please don't 😊 !
+
 * Click **<** to get back to the main menu.
 
 {{% /notice %}}

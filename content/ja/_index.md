@@ -27,4 +27,4 @@ Splunk Observability Cloud の監視、分析、対応ツールを使用して�
 [Splunk](https://twitter.com/splunk)のTwitterチャンネルでは、アップデート情報や興味深い読み物を紹介しています。
 {{% /notice %}}
 
-{{%children containerstyle="div" style="h6" description="true" %}}
+{{%children type="card" description="true" %}}

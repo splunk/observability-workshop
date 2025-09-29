@@ -231,7 +231,6 @@ After these changes, the `values.yaml` file should include the following content
 
 ``` yaml
 splunkObservability:
-  logsEnabled: false
   profilingEnabled: true
   infrastructureMonitoringEventsEnabled: true
 certmanager:

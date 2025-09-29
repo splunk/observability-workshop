@@ -163,7 +163,6 @@ write_files:
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
-        --set="splunkObservability.logsEnabled=false" \
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="environment=${instance_name}-workshop" \
@@ -193,7 +192,6 @@ write_files:
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
-        --set="splunkObservability.logsEnabled=true" \
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="environment=${instance_name}-workshop" \

@@ -203,12 +203,19 @@ runcmd:
 
   # Deploy Splunk secrets
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
+  # Add splunk user to docker group
+  - usermod -aG docker splunk
+
+  # Increase inotify limits for k3s
+  - sysctl -w fs.inotify.max_user_watches=524288
+  - sysctl -w fs.inotify.max_user_instances=8192
 EOF
 
 #qm destroy $VMID >/dev/null
 rm -f jammy-server-cloudimg-amd64.img >/dev/null
 wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-qemu-img resize jammy-server-cloudimg-amd64.img 20G >/dev/null
+qemu-img resize jammy-server-cloudimg-amd64.img 40G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
     --memory 8192 --balloon 0 \
     --agent 1 \
