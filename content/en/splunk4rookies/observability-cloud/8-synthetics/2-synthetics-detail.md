@@ -10,7 +10,7 @@ Right now we are looking at the result of a single Synthetic Browser Test. This 
 The screenshot below doesn't contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.
 
 {{% /notice %}}
-
+# TODO - update image
 ![waterfall](../images/synth-waterfall.png)
 
 1. **Filmstrip:** Offers a set of screenshots of site performance so that you can see how the page responds in real-time.
