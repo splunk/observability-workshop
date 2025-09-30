@@ -43,7 +43,7 @@ Then run the following command to send a question to the LLM:
 
 ``` bash
 curl -X "POST" \
- 'http://llm-app.llm-app:8080/askquestion"' \
+ 'http://llm-app.llm-app.svc.cluster.local:8080/askquestion' \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -55,7 +55,7 @@ curl -X "POST" \
 {{% tab title="Example Output" %}}
 
 ``` bash
-TBD
+The NVIDIA H200 graphics card has 5536 MB of GDDR6 memory.
 ```
 
 {{% /tab %}}
