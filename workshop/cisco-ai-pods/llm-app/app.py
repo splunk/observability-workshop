@@ -3,6 +3,7 @@ import weaviate
 import openlit
 
 from flask import Flask, request
+from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
@@ -29,7 +30,7 @@ prompt = ChatPromptTemplate.from_messages([
         "You are a helpful and friendly AI!"
         "Your responses should be concise and no longer than two sentences."
         "Do not hallucinate. Say you don't know if you don't have this information."
-        # "Answer the question using only the context"
+        "Answer the question using only the context"
         "\n\nQuestion: {question}\n\nContext: {context}"
     ),
     ("user", "{question}")
@@ -52,9 +53,11 @@ def ask_question():
     )
 
     # connect with the vector store that was populated earlier
-    vector_store = Weaviate(
+    vector_store = WeaviateVectorStore(
         client=weaviate_client,
-        embedding=embeddings_model
+        embedding=embeddings_model,
+        index_name=None,
+        text_key="text"
     )
 
     chain = (

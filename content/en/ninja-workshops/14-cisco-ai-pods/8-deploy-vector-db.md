@@ -61,6 +61,14 @@ Let's create a new namespace:
 oc create namespace weaviate
 ```
 
+Run the following command to allow Weaviate to run a privileged container:
+
+> Note: this approach is not recommended for production 
+
+``` bash
+oc adm policy add-scc-to-user privileged -z default -n weaviate
+```
+
 Then deploy Weaviate: 
 
 ``` bash
@@ -196,7 +204,7 @@ A job is used rather than a pod to ensure that this process runs only once:
 
 ``` bash
 oc create namespace llm-app
-oc apply -f k8s-job.yaml
+oc apply -f ./load-embeddings/k8s-job.yaml
 ```
 
 > Note: to build a Docker image for the Python application that loads the embeddings 

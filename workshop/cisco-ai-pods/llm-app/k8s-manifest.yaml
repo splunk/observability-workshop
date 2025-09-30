@@ -46,11 +46,11 @@ spec:
             - name: EMBEDDINGS_MODEL_URL
               value: "http://llama-32-nv-embedqa-1b-v2.nim-service:8000/v1"
             - name: WEAVIATE_HTTP_HOST
-              value: "weaviate.weaviate.svc.cluster.local"
+              value: "weaviate-headless.weaviate.svc.cluster.local"
             - name: WEAVIATE_HTTP_PORT
-              value: "80"
+              value: "8080"
             - name: WEAVIATE_GRPC_HOST
-              value: "weaviate.weaviate.svc.cluster.local"
+              value: "weaviate-headless.weaviate.svc.cluster.local"
             - name: WEAVIATE_GRPC_PORT
               value: "50051"
           resources: {}
