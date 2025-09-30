@@ -57,7 +57,7 @@ This will bring you to your teams dashboard, We use the team ***Example Team*** 
 
 ![Team Dashboard](../../images/team-dashboard.png)
 
-Press the {{< button style="white" >}}+{{< /button >}} *Add Dashboard Group* button to add you dashboard to the team page.
+Press the {{< button >}}+{{< /button >}} *Add Dashboard Group* button to add you dashboard to the team page.
 
 This will bring you to the **Select a dashboard group to link to this team** dialog.
 Type your name (that you used above) in the search box to find your Dashboard. Select it so its highlighted and click the **Ok** button to add your dashboard.

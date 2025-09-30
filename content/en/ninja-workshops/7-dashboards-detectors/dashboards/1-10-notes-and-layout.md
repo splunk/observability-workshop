@@ -6,7 +6,7 @@ weight: 1.10
 
 ## 1. Adding Notes
 
-Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button style="white" %}}New Text Note{{% /button %}}
+Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button %}}New Text Note{{% /button %}}
  Button.
 
 ![three charts](../../images/add-notes.png)
