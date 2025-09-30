@@ -195,6 +195,7 @@ We'll deploy a Kubernetes Job to our OpenShift cluster to load the embeddings.
 A job is used rather than a pod to ensure that this process runs only once: 
 
 ``` bash
+oc create namespace llm-app
 oc apply -f k8s-job.yaml
 ```
 

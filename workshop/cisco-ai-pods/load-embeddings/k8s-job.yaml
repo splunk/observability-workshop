@@ -3,6 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: load-embeddings
+  namespace: llm-app
 spec:
   template:
     spec:
