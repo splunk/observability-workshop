@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-embeddings
+spec:
+  template:
+    spec:
+      containers:
+        - name: load-embeddings
+          image: "derekmitchell399/load-embeddings:1.0"
+          command: ["python", "app.py"]
+          env:
+            - name: DOCUMENT_URL
+              value: "https://nvdam.widen.net/content/udc6mzrk7a/original/hpc-datasheet-sc23-h200-datasheet-3002446.pdf"
+            - name: EMBEDDINGS_MODEL_URL
+              value: "http://llama-32-nv-embedqa-1b-v2.nim-service:8000/v1"
+            - name: WEAVIATE_HTTP_HOST
+              value: "weaviate.weaviate.svc.cluster.local"
+            - name: WEAVIATE_HTTP_PORT
+              value: "80"
+            - name: WEAVIATE_GRPC_HOST
+              value: "weaviate.weaviate.svc.cluster.local"
+            - name: WEAVIATE_GRPC_PORT
+              value: "50051"
+      restartPolicy: Never # Ensure the job only runs once
+  backoffLimit: 0 # Prevent retries if the Pod fails
