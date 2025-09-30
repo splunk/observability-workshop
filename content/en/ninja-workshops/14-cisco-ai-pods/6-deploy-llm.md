@@ -179,3 +179,51 @@ curl -X "POST" \
 
 {{% /tab %}}
 {{< /tabs >}}
+
+## Deploy an Embeddings Model
+
+We're also going to deploy an [embeddings model](https://build.nvidia.com/nvidia/llama-3_2-nv-embedqa-1b-v2/deploy) 
+in our cluster, which will be used later in the workshop to implement Retrieval Augmented Generation (RAG). 
+
+Run the following command to deploy the embeddings model: 
+
+``` bash
+oc apply -n nim-service -f nvidia-embeddings.yaml
+```
+
+## Test the Embeddings Model
+
+Let's ensure the embeddings is working as expected.
+
+Start a pod that has access to the curl command:
+
+``` bash
+oc run --rm -it -n default curl --image=curlimages/curl:latest -- sh
+```
+
+Then run the following command to send a prompt to the LLM:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+curl -X "POST" \
+ 'http://llama-32-nv-embedqa-1b-v2.nim-service:8000/v1/embeddings"' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "nvidia/llama-3.2-nv-embedqa-1b-v2",
+    "input": ["Hello world"],
+    "input_type": "query"
+  }'
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+TBD
+```
+
+{{% /tab %}}
+{{< /tabs >}}
