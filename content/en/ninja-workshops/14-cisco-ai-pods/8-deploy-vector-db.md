@@ -85,9 +85,14 @@ Now that Weaviate is installed in our OpenShift cluster, let's modify the
 OpenTelemetry collector configuration to scrape Weaviate's Prometheus 
 metrics. 
 
-To do so, let's add an additional Prometheus receiver to the `otel-collector-values.yaml` file: 
+To do so, let's add an additional Prometheus receiver creator section 
+to the `otel-collector-values.yaml` file: 
 
 ``` yaml
+      receiver_creator/weaviate:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
           prometheus/weaviate:
             config:
               config:
@@ -142,12 +147,12 @@ that we can more easily distinguish Weaviate metrics from other metrics that use
 `service.instance.id`, which is a standard OpenTelemetry property used in 
 Splunk Observability Cloud. 
 
-We'll need to add this Resource processor to the metrics pipeline as well: 
+We'll need to add a new metrics pipeline for Weaviate metrics as well (we 
+need to use a separate pipeline since we don't want the `weaviate.instance.id` 
+metric to be added to non-Weaviate metrics):  
 
 ``` yaml
-    service:
-      pipelines:
-        metrics/nvidia-metrics:
+        metrics/weaviate:
           exporters:
             - signalfx
           processors:
@@ -158,7 +163,7 @@ We'll need to add this Resource processor to the metrics pipeline as well:
             - resourcedetection
             - resource
           receivers:
-            - receiver_creator/nvidia
+            - receiver_creator/weaviate
 ```
 
 Before applying the configuration changes to the collector, take a moment to compare the
