@@ -12,7 +12,7 @@ weight: 4
 {{% notice title="演習" style="green" icon="running" %}}
 
 - 左側のメニューから Synthetics ホームページに戻ります
-- ワークショップのテストを再度選択し、ページ上部の{{% button style="white" %}} Create Detector {{% /button %}}ボタンをクリックします。  
+- ワークショップのテストを再度選択し、ページ上部の{{% button %}} Create Detector {{% /button %}}ボタンをクリックします。  
   ![synth Detector](../images/synth-detector.png)
 - **New Synthetics Detector**というテキスト（**1**）を編集し、`イニシャル -` [ワークショップ名]に置き換えます。
 - {{% button %}}Run Duration{{% /button %}}と{{% button %}}Static threashold{{% /button %}}が選択されていることを確認します。
@@ -21,7 +21,7 @@ weight: 4
 - スパイクの下に赤と白の三角形の列が表示されるようになったことに注意してください（**3**）。赤い三角形は、テストが指定されたしきい値を超えたことを Detector が検出したことを知らせ、白い三角形は結果がしきい値を下回ったことを示します。各赤い三角形がアラートをトリガーします。
 - アラートの重大度（**4**）は、ドロップダウンを別のレベルに変更することで変更できます。また、アラート方法も変更できます。**受信者を追加しないでください**。アラートストームの対象になる可能性があります！
 - {{% button style="blue" %}}Actibate{{% /button %}}をクリックして、 Detector をデプロイします。
-- 新しく作成した Detector を見るには、{{% button style="white" %}}Edit Test{{% /button %}}ボタンをクリックします。
+- 新しく作成した Detector を見るには、{{% button %}}Edit Test{{% /button %}}ボタンをクリックします。
 - ページの下部にアクティブな Detector のリストがあります。
 
   ![Detectorのリスト](../images/detector-list.png)
