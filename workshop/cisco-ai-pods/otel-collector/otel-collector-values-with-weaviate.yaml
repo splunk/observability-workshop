@@ -147,6 +147,10 @@ agent:
                       - targets:
                           - '`endpoint`:8000'
             rule: type == "pod" && labels["app"] == "meta-llama-3-2-1b-instruct"
+      receiver_creator/weaviate:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
           prometheus/weaviate:
             config:
               config:
@@ -165,9 +169,20 @@ agent:
           processors:
             - memory_limiter
             - filter/metrics_to_be_included
-            - resource/weaviate
             - batch
             - resourcedetection
             - resource
           receivers:
             - receiver_creator/nvidia
+        metrics/weaviate:
+          exporters:
+            - signalfx
+          processors:
+            - memory_limiter
+            - filter/metrics_to_be_included
+            - resource/weaviate
+            - batch
+            - resourcedetection
+            - resource
+          receivers:
+            - receiver_creator/weaviate
