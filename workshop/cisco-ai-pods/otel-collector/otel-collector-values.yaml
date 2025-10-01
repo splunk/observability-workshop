@@ -1,0 +1,32 @@
+distribution: openshift
+readinessProbe:
+  initialDelaySeconds: 180
+livenessProbe:
+  initialDelaySeconds: 180
+operator:
+  enabled: false
+operatorcrds:
+  installed: false
+gateway:
+  enabled: false
+splunkObservability:
+  profilingEnabled: true
+clusterReceiver:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 2000Mi
+agent:
+  discovery:
+    enabled: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 2000Mi
+  config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
