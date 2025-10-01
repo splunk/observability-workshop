@@ -60,3 +60,14 @@ The NVIDIA H200 graphics card has 5536 MB of GDDR6 memory.
 
 {{% /tab %}}
 {{< /tabs >}}
+
+## View Trace Data in Splunk Observability Cloud
+
+In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`. 
+Ensure the `llm-app` environment is selected.  You should see a service map 
+that looks like the following: 
+
+Click on `Traces` on the right-hand side menu.  Then select one of the slower running 
+traces. 
+
+
