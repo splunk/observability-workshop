@@ -11,7 +11,10 @@ from langchain_weaviate import WeaviateVectorStore
 DOCUMENT_URL = os.getenv('DOCUMENT_URL') # i.e. https://nvdam.widen.net/content/udc6mzrk7a/original/hpc-datasheet-sc23-h200-datasheet-3002446.pdf
 EMBEDDINGS_MODEL_URL = os.getenv('EMBEDDINGS_MODEL_URL') # i.e. http://localhost:8001/v1
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 logger.info(f"Loading data from {DOCUMENT_URL}")
+
 try:
     # Load the specified PDF document
     loader = PyPDFLoader(

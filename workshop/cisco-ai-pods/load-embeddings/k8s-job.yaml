@@ -10,6 +10,7 @@ spec:
       containers:
         - name: load-embeddings
           image: "derekmitchell399/load-embeddings:1.0"
+          imagePullPolicy: Always
           command: ["python", "app.py"]
           env:
             - name: DOCUMENT_URL
