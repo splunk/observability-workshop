@@ -192,15 +192,24 @@ following example:
 
 ## Populate the Vector Database 
 
-Now that Weaviate is up and running, and we're capturing metrics from it 
-to ensure it's healthy, let's add some data to it that we'll use in the next part 
+Now that Weaviate is up and running, and we're capturing metrics from it, 
+let's add some data to it that we'll use in the next part 
 of the workshop with a custom application. 
 
 The application used to do this is based on 
 [LangChain Playbook for NeMo Retriever Text Embedding NIM](https://docs.nvidia.com/nim/nemo-retriever/text-embedding/latest/playbook.html#generate-embeddings-with-text-embedding-nim). 
 
+Per the configuration in `./load-embeddings/k8s-job.yaml`, we're going to load 
+a [datasheet for the NVIDIA H200 Tensor Core GPU](https://nvdam.widen.net/content/udc6mzrk7a/original/hpc-datasheet-sc23-h200-datasheet-3002446.pdf) 
+into our vector database. 
+
+This document includes information about NVIDIA's H200 GPUs that our large language model 
+isn't trained on. And in the next part of the workshop, we'll build an application that 
+uses an LLM to answer questions using the context from this document, which will be loaded 
+into the vector database. 
+
 We'll deploy a Kubernetes Job to our OpenShift cluster to load the embeddings. 
-A job is used rather than a pod to ensure that this process runs only once: 
+A Kubernetes Job is used rather than a Pod to ensure that this process runs only once: 
 
 ``` bash
 oc create namespace llm-app

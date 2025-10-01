@@ -1,6 +1,7 @@
 import os
 import weaviate
 import openlit
+import logging
 
 from flask import Flask, request
 from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
@@ -56,8 +57,8 @@ def ask_question():
     vector_store = WeaviateVectorStore(
         client=weaviate_client,
         embedding=embeddings_model,
-        index_name=None,
-        text_key="text"
+        index_name="CustomDocs",
+        text_key="page_content"
     )
 
     chain = (
@@ -70,8 +71,15 @@ def ask_question():
         | StrOutputParser()
     )
 
+    # Get the schema which contains all collections
+    schema = weaviate_client.collections.list_all()
+
+    logger.info("Available collections in Weaviate:")
+    for collection_name, collection_config in schema.items():
+        print(f"- {collection_name}")
+
     response = chain.invoke(question)
-    print(response)
+    logger.info(response)
 
     weaviate_client.close()
 
