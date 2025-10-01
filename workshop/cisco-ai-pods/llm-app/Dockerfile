@@ -13,6 +13,10 @@ RUN pip install -r requirements.txt
 # Add additional OpenTelemetry instrumentation packages
 RUN opentelemetry-bootstrap --action=install
 
+# Remove unwanted instrumentation to ensure we get a clean trace
+RUN pip uninstall -y opentelemetry-instrumentation-httpx
+RUN pip uninstall -y opentelemetry-instrumentation-requests
+
 # Copy the application code
 COPY . /app
 

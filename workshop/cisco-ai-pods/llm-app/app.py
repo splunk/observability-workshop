@@ -11,9 +11,12 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_weaviate import WeaviateVectorStore
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = Flask(__name__)
 
-openlit.init()
+openlit.init(environment="llm-app")
 
 # Read environment variables
 INSTRUCT_MODEL_URL = os.getenv('INSTRUCT_MODEL_URL') # i.e. http://localhost:8000/v1
@@ -40,47 +43,53 @@ prompt = ChatPromptTemplate.from_messages([
 @app.route("/askquestion", methods=['POST'])
 def ask_question():
 
-    data = request.json
-    question = data.get('question')
+    logger.info(f"Responding to question")
+    try:
+        data = request.json
+        question = data.get('question')
 
-    weaviate_client = weaviate.connect_to_custom(
-        # url is:  http://weaviate.weaviate.svc.cluster.local:80
-        http_host=os.getenv('WEAVIATE_HTTP_HOST'),
-        http_port=os.getenv('WEAVIATE_HTTP_PORT'),
-        http_secure=False,
-        grpc_host=os.getenv('WEAVIATE_GRPC_HOST'),
-        grpc_port=os.getenv('WEAVIATE_GRPC_PORT'),
-        grpc_secure=False
-    )
+        weaviate_client = weaviate.connect_to_custom(
+            # url is:  http://weaviate.weaviate.svc.cluster.local:80
+            http_host=os.getenv('WEAVIATE_HTTP_HOST'),
+            http_port=os.getenv('WEAVIATE_HTTP_PORT'),
+            http_secure=False,
+            grpc_host=os.getenv('WEAVIATE_GRPC_HOST'),
+            grpc_port=os.getenv('WEAVIATE_GRPC_PORT'),
+            grpc_secure=False
+        )
 
-    # connect with the vector store that was populated earlier
-    vector_store = WeaviateVectorStore(
-        client=weaviate_client,
-        embedding=embeddings_model,
-        index_name="CustomDocs",
-        text_key="page_content"
-    )
+        # connect with the vector store that was populated earlier
+        vector_store = WeaviateVectorStore(
+            client=weaviate_client,
+            embedding=embeddings_model,
+            index_name="CustomDocs",
+            text_key="page_content"
+        )
 
-    chain = (
-        {
-            "context": vector_store.as_retriever(),
-            "question": RunnablePassthrough()
-        }
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
+        chain = (
+            {
+                "context": vector_store.as_retriever(),
+                "question": RunnablePassthrough()
+            }
+            | prompt
+            | llm
+            | StrOutputParser()
+        )
 
-    # Get the schema which contains all collections
-    schema = weaviate_client.collections.list_all()
+        # Get the schema which contains all collections
+        schema = weaviate_client.collections.list_all()
 
-    logger.info("Available collections in Weaviate:")
-    for collection_name, collection_config in schema.items():
-        print(f"- {collection_name}")
+        logger.info("Available collections in Weaviate:")
+        for collection_name, collection_config in schema.items():
+            print(f"- {collection_name}")
 
-    response = chain.invoke(question)
-    logger.info(response)
+        response = chain.invoke(question)
+        logger.info(response)
 
-    weaviate_client.close()
+        weaviate_client.close()
 
-    return response
+        return response
+
+    except Exception as e:
+        logger.error(f"Error responding to question: {e}")
+        return None
