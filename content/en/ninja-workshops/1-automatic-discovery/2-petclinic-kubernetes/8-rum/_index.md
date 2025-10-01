@@ -34,9 +34,13 @@ If you'd like to verify the snippet, you can view the page source in your browse
             });
     
             SplunkSessionRecorder.init({
-                app: appName,
+                applicationName: appName,
                 realm: realm,
-                rumAccessToken: auth
+                rumAccessToken: auth,
+                  recorder: "splunk",
+                  features: {
+                    video: true,
+                }
             });
             const Provider = SplunkRum.provider; 
             var tracer=Provider.getTracer('appModuleLoader');
