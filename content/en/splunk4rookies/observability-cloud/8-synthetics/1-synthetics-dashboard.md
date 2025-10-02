@@ -8,7 +8,6 @@ In Splunk Observability Cloud from the main menu, click on **Synthetics**. Click
 During our investigation in the RUM section, we found there was an issue with the **Place Order** Transaction. Let's see if we can confirm this from the Synthetics test as well. We will be using the metric **First byte time** for the 4th page of the test, which is the **Place Order** step.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-<!-- todo clicking on point on graph doesn't go to the run results, have to use list of recent runs -->
 * In the **Search** box enter **[WORKSHOP NAME]** and select the test for your workshop (your instructor will advise as to which one to select).
 * Under **Performance KPIs** set the Time Picker to **Last 1 hour** and hit enter.
 * Click on **Location** and from the drop-down select **Page**. The next filter will be populated with the pages that are part of the test.
