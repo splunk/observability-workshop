@@ -1,0 +1,7 @@
+Flask==3.0.3
+langchain_community==0.3.22
+langchain-nvidia-ai-endpoints==0.3.7
+langchain-weaviate==0.0.5
+weaviate-client==4.17.0
+splunk-opentelemetry==2.7.0
+openlit==1.35.4

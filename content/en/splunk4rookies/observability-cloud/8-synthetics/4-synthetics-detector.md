@@ -11,7 +11,8 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
  {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Go back to the Synthetics home page via the menu on the left
-* Select the workshop test again and click the {{% button %}}Create Detector{{% /button %}} button at the top of the page.  
+* Select the workshop test again and click the {{% button %}}**Create Detector**{{% /button %}} button at the top of the page.
+
   ![synth detector](../images/synth-detector.png)
 * Edit the text **New Synthetics Detector** (**1**) and replace it with `INITIALS -` [WORKSHOPNAME]`.
 * Change the alert criteria so that the metric is Run Duration (instead of Uptime) and the condition is Static Threshold.

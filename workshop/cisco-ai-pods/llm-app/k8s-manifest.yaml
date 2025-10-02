@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-app
+  namespace: llm-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: llm-app
+      app.kubernetes.io/instance: llm-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: llm-app
+        app.kubernetes.io/instance: llm-app
+    spec:
+      containers:
+        - name: llm-app
+          image: "derekmitchell399/llm-app:1.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: "llm-app"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=llm-app"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+              # filter out health check requests to the root URL
+            - name: OTEL_PYTHON_EXCLUDED_URLS
+              value: "^(https?://)?[^/]+(/)?$"
+            - name: OTEL_PYTHON_DISABLED_INSTRUMENTATIONS
+              value: "httpx,requests"
+            - name: SPLUNK_PROFILER_ENABLED
+              value: "true"
+            - name: INSTRUCT_MODEL_URL
+              value: "http://meta-llama-3-2-1b-instruct.nim-service:8000/v1"
+            - name: EMBEDDINGS_MODEL_URL
+              value: "http://llama-32-nv-embedqa-1b-v2.nim-service:8000/v1"
+            - name: WEAVIATE_HTTP_HOST
+              value: "weaviate-headless.weaviate.svc.cluster.local"
+            - name: WEAVIATE_HTTP_PORT
+              value: "8080"
+            - name: WEAVIATE_GRPC_HOST
+              value: "weaviate-headless.weaviate.svc.cluster.local"
+            - name: WEAVIATE_GRPC_PORT
+              value: "50051"
+          resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm-app
+  namespace: llm-app
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: llm-app
+    app.kubernetes.io/instance: llm-app
