@@ -24,6 +24,8 @@ export OPERATOR_ROLES_PREFIX=rosa-test-a6x9
 
 Create operator roles for the OIDC configuration using the following command: 
 
+> Note: just accept the default values when prompted. 
+
 ``` bash
 rosa create operator-roles --hosted-cp --prefix $OPERATOR_ROLES_PREFIX --oidc-config-id $OIDC_ID
 ```
