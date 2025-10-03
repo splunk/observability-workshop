@@ -5,11 +5,14 @@ weight: 5
 time: 20 minutes
 ---
 
-The NVIDIA NIM Operator is used to deploy LLMs in Kubernetes environments, such 
+The **NVIDIA GPU Operator** is a Kubernetes Operator that automates the deployment, configuration,
+and management of all necessary NVIDIA software components to provision GPUs within a Kubernetes cluster.
+
+The **NVIDIA NIM Operator** is used to deploy LLMs in Kubernetes environments, such 
 as the OpenShift cluster we created earlier in this workshop. 
 
-This section of the workshop walks through the steps necessary to deploy the 
-NVIDIA NIM operator in our OpenShift cluster. 
+This section of the workshop walks through the steps necessary to deploy both the 
+NVIDIA GPU and NIM operators in our OpenShift cluster. 
 
 ## Create a NVIDIA NGC Account
 

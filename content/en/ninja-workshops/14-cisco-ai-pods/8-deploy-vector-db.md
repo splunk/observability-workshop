@@ -5,20 +5,20 @@ weight: 8
 time: 10 minutes
 ---
 
-In this step, we'll deploy a vector database to the AI POD and populate it with 
+In this step, we'll deploy a vector database to the OpenShift cluster and populate it with 
 test data. 
 
 ## What is a Vector Database? 
 
-A vector database stores and indexes data as numerical "vector embeddings," which capture
-the semantic meaning of information like text or images. Unlike traditional databases,
-they excel at "similarity searches," finding conceptually related data points rather
+A **vector database** stores and indexes data as numerical "vector embeddings," which capture
+the **semantic meaning** of information like text or images. Unlike traditional databases,
+they excel at **similarity searches**, finding conceptually related data points rather
 than exact matches.
 
 ## How is a Vector Database Used? 
 
 Vector databases play a key role in a pattern called
-Retrieval Augmented Generation (RAG), which is widely used by 
+**Retrieval Augmented Generation (RAG)**, which is widely used by 
 applications that leverage Large Language Models (LLMs). 
 
 The pattern is as follows: 
@@ -63,7 +63,7 @@ oc create namespace weaviate
 
 Run the following command to allow Weaviate to run a privileged container:
 
-> Note: this approach is not recommended for production 
+> Note: this approach is not recommended for production environments 
 
 ``` bash
 oc adm policy add-scc-to-user privileged -z default -n weaviate
