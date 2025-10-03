@@ -8,7 +8,7 @@ time: 10 minutes
 Now that our OpenShift cluster is up and running, let's deploy the
 OpenTelemetry Collector, which gathers metrics, logs, and traces 
 from the infrastructure and applications running in the cluster, and 
-sends the resulting data to Splunk. 
+sends the resulting data to Splunk Observability Cloud. 
 
 ## Deploy the OpenTelemetry Collector
 

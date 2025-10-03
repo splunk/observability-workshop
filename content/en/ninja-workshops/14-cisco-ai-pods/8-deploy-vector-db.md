@@ -5,20 +5,20 @@ weight: 8
 time: 10 minutes
 ---
 
-In this step, we'll deploy a vector database to the AI POD and populate it with 
+In this step, we'll deploy a vector database to the OpenShift cluster and populate it with 
 test data. 
 
 ## What is a Vector Database? 
 
-A vector database stores and indexes data as numerical "vector embeddings," which capture
-the semantic meaning of information like text or images. Unlike traditional databases,
-they excel at "similarity searches," finding conceptually related data points rather
+A **vector database** stores and indexes data as numerical "vector embeddings," which capture
+the **semantic meaning** of information like text or images. Unlike traditional databases,
+they excel at **similarity searches**, finding conceptually related data points rather
 than exact matches.
 
 ## How is a Vector Database Used? 
 
 Vector databases play a key role in a pattern called
-Retrieval Augmented Generation (RAG), which is widely used by 
+**Retrieval Augmented Generation (RAG)**, which is widely used by 
 applications that leverage Large Language Models (LLMs). 
 
 The pattern is as follows: 
@@ -63,7 +63,7 @@ oc create namespace weaviate
 
 Run the following command to allow Weaviate to run a privileged container:
 
-> Note: this approach is not recommended for production 
+> Note: this approach is not recommended for production environments 
 
 ``` bash
 oc adm policy add-scc-to-user privileged -z default -n weaviate
@@ -85,9 +85,14 @@ Now that Weaviate is installed in our OpenShift cluster, let's modify the
 OpenTelemetry collector configuration to scrape Weaviate's Prometheus 
 metrics. 
 
-To do so, let's add an additional Prometheus receiver to the `otel-collector-values.yaml` file: 
+To do so, let's add an additional Prometheus receiver creator section 
+to the `otel-collector-values.yaml` file: 
 
 ``` yaml
+      receiver_creator/weaviate:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
           prometheus/weaviate:
             config:
               config:
@@ -142,12 +147,12 @@ that we can more easily distinguish Weaviate metrics from other metrics that use
 `service.instance.id`, which is a standard OpenTelemetry property used in 
 Splunk Observability Cloud. 
 
-We'll need to add this Resource processor to the metrics pipeline as well: 
+We'll need to add a new metrics pipeline for Weaviate metrics as well (we 
+need to use a separate pipeline since we don't want the `weaviate.instance.id` 
+metric to be added to non-Weaviate metrics):  
 
 ``` yaml
-    service:
-      pipelines:
-        metrics/nvidia-metrics:
+        metrics/weaviate:
           exporters:
             - signalfx
           processors:
@@ -158,7 +163,7 @@ We'll need to add this Resource processor to the metrics pipeline as well:
             - resourcedetection
             - resource
           receivers:
-            - receiver_creator/nvidia
+            - receiver_creator/weaviate
 ```
 
 Before applying the configuration changes to the collector, take a moment to compare the
