@@ -5,7 +5,7 @@ weight: 6
 time: 20 minutes
 ---
 
-In this section, we'll use the NVIDIA NIM Operator to deploy a Large Language Model 
+In this section, we'll use the NVIDIA NIM Operator to deploy two Large Language Models 
 to our OpenShift Cluster. 
 
 ## Create a Namespace
