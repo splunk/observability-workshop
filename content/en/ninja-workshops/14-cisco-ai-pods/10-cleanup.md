@@ -22,11 +22,15 @@ rosa delete cluster --cluster=$CLUSTER_NAME --watch
 
 Delete the cluster-specific Operator IAM roles: 
 
+> Note: just accept the default values when prompted.
+
 ``` bash
 rosa delete operator-roles --prefix $OPERATOR_ROLES_PREFIX
 ```
 
 Delete the OIDC provider: 
+
+> Note: just accept the default values when prompted.
 
 ``` bash
 rosa delete oidc-provider --oidc-config-id $OIDC_ID
