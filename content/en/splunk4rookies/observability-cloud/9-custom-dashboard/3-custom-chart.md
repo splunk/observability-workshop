@@ -27,7 +27,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 * Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
 * In the dashboard, move the charts so they look like the screenshot below:
   ![Service Health Dashboard](../images/service-health-dashboard.png)
-* For the final task, click three dots **...** at the top of the page (next to **Event Overlay**) and click on **View fullscreen**. This will be the view you would use on the TV monitor on the wall (press Esc to go back).
+* For the final task, click three vertical dots **⋮** at the top right of the page (next to **AI Assistant**) and click on **View fullscreen**. This will be the view you would use on the TV monitor on the wall (press Esc to go back).
 
 {{% /notice %}}
 
