@@ -74,7 +74,6 @@ Validate the **Agent** configuration using **[otelbin.io](https://www.otelbin.io
 graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      REC2(filelog<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
       PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
@@ -87,7 +86,6 @@ graph LR
       subgraph subID1[**Metrics**]
       direction LR
       REC1 --> PRO1
-      REC2 --> PRO1
       PRO1 --> PRO2
       PRO2 --> PRO3
       PRO3 --> EXP1
