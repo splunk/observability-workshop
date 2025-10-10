@@ -207,7 +207,7 @@ runcmd:
   - /snap/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
 
   # Chaos Mesh
-  - curl -sSL https://mirrors.chaos-mesh.org/v2.7.1/install.sh | bash -s -- --k3s
+  - curl -sSL https://mirrors.chaos-mesh.org/v2.8.0/install.sh | bash -s -- --k3s
 
   # Deploy Splunk secrets
   - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
