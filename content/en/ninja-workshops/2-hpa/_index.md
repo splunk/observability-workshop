@@ -1,15 +1,15 @@
 ---
 title: Monitoring Horizontal Pod Autoscaling in Kubernetes
 linkTitle: Horizontal Pod Autoscaling
-description: This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector
+description: Learn to monitor Kubernetes Horizontal Pod Autoscaling (HPA) with the Splunk OpenTelemetry Collector, exploring metrics, events, and auto-scaling behavior in real-time
 weight: 2
 authors: ["Robert Castley"]
 time: 45 minutes
 ---
 
-This workshop will equip you with a basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector. During the workshop, you will deploy PHP/Apache and a load generator.
+This hands-on workshop teaches you how to monitor Kubernetes Horizontal Pod Autoscaling (HPA) using the Splunk OpenTelemetry Collector. You'll deploy a PHP/Apache application with a load generator to trigger auto-scaling events and observe the complete scaling lifecycle.
 
-You will learn about OpenTelemetry Receivers, Kubernetes Namespaces, ReplicaSets, Kubernetes Horizontal Pod AutoScaling and how to monitor all this using the Splunk Observability Cloud. The main learnings from the workshop will be a better understanding of the Kubernetes Navigator (and Dashboards) in Splunk Observability Cloud as well as seeing Kubernetes metrics, events and Detectors.
+Through practical exercises, you'll explore OpenTelemetry Receivers, Kubernetes Namespaces, ReplicaSets, and HPA mechanics while monitoring everything in Splunk Observability Cloud. You'll master the Kubernetes Navigator, build custom dashboards, analyze metrics and events, and configure detectors to alert on scaling activities.
 
 For this workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2 all pre-configured for you.
 

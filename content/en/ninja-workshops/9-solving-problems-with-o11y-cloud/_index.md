@@ -5,7 +5,7 @@ weight: 9
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: By the end of this workshop you'll have gotten hands-on experience deploying the OpenTelemetry Collector, instrumenting an application with OpenTelemetry, capturing tags from the application, and using Troubleshooting MetricSets and Tag Spotlight to determine the root cause of an issue. 
+description: Learn how to deploy and configure the OpenTelemetry Collector, instrument applications with OpenTelemetry, and leverage Troubleshooting MetricSets and Tag Spotlight to identify and resolve performance issues in Splunk Observability Cloud. 
 draft: false
 hidden: false
 ---

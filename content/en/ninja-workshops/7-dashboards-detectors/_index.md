@@ -1,6 +1,6 @@
 ---
 title: Dashboard Workshop
-description: Dashboard
+description: Learn to build insightful visualizations and custom dashboards using Splunk Observability Cloud's charting capabilities, filters, analytical functions, and SignalFlow
 weight: 7
 archetype: chapter
 authors: ["Pieter Hagen"]

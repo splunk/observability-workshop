@@ -5,7 +5,7 @@ weight: 14
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: By the end of this workshop you'll have experience deploying and working several of the technologies that are used to monitor Cisco AI Pods with Splunk Observability Cloud.  This includes deploying an OpenTelemetry Collector in a Red Hat OpenShift cluster, using Prometheus receivers with the collector to ingest infrastructure metrics, and configuring APM to monitor Python services that interact with Large Language Models (LLMs). 
+description: This hands-on workshop demonstrates how to monitor Cisco AI Pods with Splunk Observability Cloud. Learn to deploy the OpenTelemetry Collector in Red Hat OpenShift, ingest infrastructure metrics using Prometheus receivers, and configure APM to monitor Python services that interact with Large Language Models (LLMs). 
 draft: false
 hidden: false
 ---

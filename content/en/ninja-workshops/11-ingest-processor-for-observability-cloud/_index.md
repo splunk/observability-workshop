@@ -4,7 +4,7 @@ linkTitle: Ingest Processor for Observability Cloud
 weight: 11
 archetype: chapter
 authors: ["Tim Hard"]
-description: Scenario Description
+description: Learn how to optimize observability costs and improve MTTD by transforming logs into metrics using Splunk Ingest Processor with hands-on exercises in Splunk Observability Cloud.
 ---
 
 As infrastructure and application environments become exceedingly complex, the volume of data they generate continues to grow significantly. This increase in data volume and variety makes it challenging to gain actionable insights and can impact problem identification and troubleshooting efficiencies. Additionally, the cost of storing and accessing this data can skyrocket. Many data sources, particularly logs and events, provide critical visibility into system operations. However, in most cases, only a few details from these extensive logs are actually needed for effective monitoring and alerting.
