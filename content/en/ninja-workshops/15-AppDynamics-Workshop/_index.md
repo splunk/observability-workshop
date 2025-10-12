@@ -16,6 +16,7 @@ Splunk AppDynamics is a full-stack performance monitoring solution for your crit
 You can optimize the total cost of ownership by leveraging existing personnel, processes, and training on AppDynamics platform for traditional, cloud, or hybrid deployments.
 
 ![Screenshot of AppDynamics Dashboard](images/controller-vm.png)
+
 ## Workshop Overview
 
 In this workshop, we’ll cover the fundamentals of Splunk AppDynamics. We'll demonstrate how Splunk AppDynamics enables you to monitor the health of your application services, Web Applications, Databases and more. When you have completed this workshop, you will be able to :
