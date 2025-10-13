@@ -7,9 +7,11 @@ draft: true
 ---
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Verify transaction load to the application
+
 Check the application flow map:
 
 1. Select the last 1 hour time frame.
@@ -52,6 +54,7 @@ Use the following command to stop the running instance of Apache Tomcat.
 cd /usr/local/apache/apache-tomcat-9/bin
 ./shutdown.sh
 ```
+
 Use the command below to check for remaining application JVMs still running.
 
 ```bash
@@ -102,4 +105,3 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 You should see output similar to the following image.
 
 ![Restart App And Load](images/restart-app-and-load-03.png)
-

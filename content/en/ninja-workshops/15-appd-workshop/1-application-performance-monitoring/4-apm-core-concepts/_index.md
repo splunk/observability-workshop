@@ -1,10 +1,11 @@
 ---
-title: AppDynamics Core Concepts
+title: 4. AppDynamics Core Concepts
 weight: 4
 description: In this section you will learn about the core concepts of Splunk Appdynamics APM features 
 ---
 
 In this section you will learn about the core concepts of Splunk Appdynamics APM features. By the end of the section you will understand the following concepts:
+
 - Application Flow Maps
 - Business Transactions (BTs)
 - Snapshots
@@ -24,30 +25,27 @@ Familiarize yourself with the some of the different features of the Flow Map.
 4. Explore the options for editing the Flow Map.
 
 You can read more about Flow Maps [here](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/25.7.0/business-applications/flow-maps/flow-map-overview)  
-  
+
 ![Flow Map Components](images/FlowMapComponents.png)  
-  
+
 ## Business Transactions  
-  
+
 In the AppDynamics model, a Business Transaction represents the data processing flow for a request, most often a user request. In real-world terms, many different components in your application may interact to provide services to fulfill the following types of requests:
 
 - In an e-commerce application, a user logging in, searching for items or adding items to the cart.
 - In a content portal, a user requests content such as sports, business or entertainment news.
 - In a stock trading application, operations such as receiving a stock quote, buying or selling stocks.  
-  
 Because AppDynamics orients performance monitoring around Business Transactions, you can focus on the performance of your application components from the user perspective. You can quickly identify whether a component is readily available or if it is having performance issues. For instance, you can check whether users are able to log in, check out or view their data. You can see response times for users, and the causes of problems when they occur.
 
 You can read more about Business Transactions [here](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/25.7.0/overview-of-application-monitoring/business-transactions) and [here](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/25.7.0/business-transactions)  
 
-## Verifying Business Transactions 
+## Verifying Business Transactions
 
 Verify that Business Transactions are being automatically detected by following these steps.
 
 1. Click the **Business Transactions** option on the left menu.
 2. Look at the list of Business Transactions and their performance.
 
-
-  
 ![Business Transactions](images/business-transactions.png)  
   
 ## Snapshots
@@ -91,4 +89,3 @@ You can read more about Transaction Snapshots [here](https://help.splunk.com/en/
 You can read more about Call Graphs [here](https://help.splunk.com/en/appdynamics-saas/application-performance-monitoring/25.7.0/business-transactions/troubleshoot-business-transaction-performance-with-transaction-snapshots/call-graphs)  
   
 ![Call Graph](images/call-graph.png)  
-
