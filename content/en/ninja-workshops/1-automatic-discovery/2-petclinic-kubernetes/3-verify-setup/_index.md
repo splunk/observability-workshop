@@ -11,14 +11,18 @@ From the left-hand menu, click on **Infrastructure** and select **Kubernetes**, 
 
 ![NavigatorList](../images/navigatorlist.png)
 
-Once you are in the **Kubernetes nodes** overview, change the **Time** filter from **-4h** to the last 15 minutes **(-15m)** to focus on the latest data, then select **Table** to list all the nodes that are reporting metrics.
+Once you are in the **Kubernetes nodes** overview, change the **Time** filter from **-1h** to the last 15 minutes **(-15m)** to focus on the latest data, then select **Table** to list all the nodes that are reporting metrics.
 
-Next, from the list of nodes, select the **Node name** of your workshop instance.
+Next, in the **Refine by:** panel, select **Cluster name** and choose your cluster from the list.
 
 {{% notice title="Tip" style="info" icon="lightbulb" %}}
 To identify your specific cluster, use the `INSTANCE` value from the shell script output you ran during setup. This unique identifier helps you locate your workshop cluster among other nodes in the list.
 {{% /notice %}}
 
-You will now only have your cluster visible. Scroll down the page to see the metrics coming in from your cluster. Locate the **Node log events rate** chart and click on a vertical bar to see the log entries coming in from your cluster.
+This will filter the list to show only the nodes from your cluster.
+
+![K8s Nodes](../images/k8s-nodes.png)
+
+Switch to the **K8s node logs** view to see the logs from your nodes.
 
 ![Logs](../images/k8s-peek-at-logs.png)
