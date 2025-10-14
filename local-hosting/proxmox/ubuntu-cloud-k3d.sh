@@ -209,9 +209,6 @@ runcmd:
   # Chaos Mesh
   - curl -sSL https://mirrors.chaos-mesh.org/v2.8.0/install.sh | bash -s -- --k3s
 
-  # Get VM IP and update workshop-secrets with actual IP
-  - sed -i "s|http://frontend|http://$(ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '^127\.' | head -n1):81|g" /tmp/workshop-secrets.yaml
-
   # Deploy Splunk secrets
   - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
 
