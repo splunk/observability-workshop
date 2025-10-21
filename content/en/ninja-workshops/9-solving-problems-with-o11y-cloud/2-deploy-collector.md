@@ -222,7 +222,7 @@ Add the debug exporter by copying and pasting the following text to the bottom o
       pipelines:
         traces:
           exporters:
-            - sapm
+            - otlphttp
             - signalfx
             - debug
 ```
@@ -237,6 +237,8 @@ certmanager:
   enabled: true
 operator:
   enabled: true
+operatorcrds:
+  install: true
 
 agent:
   config:
@@ -266,7 +268,7 @@ agent:
       pipelines:
         traces:
           exporters:
-            - sapm
+            - otlphttp
             - signalfx
             - debug
 ```
@@ -282,7 +284,7 @@ Once the file is saved, we can apply the changes with:
 ``` bash
 cd /home/splunk/workshop/tagging
 
-helm upgrade splunk-otel-collector --version {{< otel-version >}} \
+helm upgrade splunk-otel-collector  \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -320,7 +322,7 @@ We can see that the debug exporter was added to the traces pipeline, as desired:
 ``` yaml
   traces:
     exporters:
-    - sapm
+    - otlphttp
     - signalfx
     - debug
 ```
