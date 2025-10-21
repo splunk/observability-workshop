@@ -5,6 +5,8 @@ certmanager:
   enabled: true
 operator:
   enabled: true
+operatorcrds:
+  install: true
 
 agent:
   config:
