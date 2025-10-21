@@ -110,9 +110,6 @@ packages:
   - git
   - wget
   - qemu-guest-agent
-snap:
-  commands:
-  - snap install kubectl --classic
 write_files:
   - path: /etc/environment
     append: true
@@ -189,6 +186,10 @@ runcmd:
   - curl -S -OL https://releases.hashicorp.com/terraform/${LATEST_TERRAFORM_VERSION}/terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip
   - unzip -qq terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
+  # Install kubectl
+  - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  - install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   
   # Install k3d
   - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
@@ -204,13 +205,13 @@ runcmd:
   - chown -R splunk:splunk /home/splunk
 
   # Deploy private registry
-  - /snap/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
 
   # Chaos Mesh
   - curl -sSL https://mirrors.chaos-mesh.org/v2.8.0/install.sh | bash -s -- --k3s
 
   # Deploy Splunk secrets
-  - /snap/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
 
   # Increase inotify limits for k3s
   - sysctl -w fs.inotify.max_user_watches=524288
