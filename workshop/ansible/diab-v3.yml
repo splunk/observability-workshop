@@ -71,7 +71,7 @@
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
               hec_url: {{ hec_url }}
-              url: "frontend-external"
+              url: "http://frontend-external"
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
