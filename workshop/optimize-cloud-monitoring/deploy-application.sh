@@ -91,6 +91,7 @@ echo -e " "
 echo -e "\e[1mInstalling OpenTelemetry Collector\e[0m"
 helm install splunk-otel-collector \
 --set="operator.enabled=true" \
+--set="operatorcrds.install=true" \
 --set="certmanager.enabled=true" \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
