@@ -12,8 +12,8 @@ Since we have been having so many issues related to "location" and we have added
 
 ![9-chicago-1-metricset](../images/9-chicago-1-metricset.png)
 
-* Open a browser and navigate to [http://[EC2-Address]:8010](http://[EC2-Address]:8010)
-  * Replace [EC2-Address] with the ip address of your host
+* Open a browser and navigate to [http://EC2-Address:8010](http://EC2-Address:8010)
+  * Replace **EC2-Address** with the ip address of your host
 * Select a few locations and hit the Login button.
   * Make sure to also select the Chicago Location and hit the Login button.
 
@@ -89,7 +89,7 @@ public Object findInstruments() {
 
 Now let's test the Chicago location once again
 
-* Open a browser and navigate to [http://[EC2-Address]:8010](http://[EC2-Address]:8010)
+* Open a browser and navigate to [http://EC2-Address:8010](http://EC2-Address:8010)
 * Select the Chicago location and Login
 
 We now see the 500 error is gone!
