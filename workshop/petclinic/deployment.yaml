@@ -99,12 +99,6 @@ spec:
           env:
             - name: JAVA_OPTIONS
               value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               #cpu: 125m
@@ -183,12 +177,6 @@ spec:
                 secretKeyRef:
                   name: workshop-secret
                   key: env
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -264,13 +252,6 @@ spec:
           env:
             - name: _JAVA_OPTIONS
               value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
-
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -325,13 +306,6 @@ spec:
           env:
             - name: _JAVA_OPTIONS
               value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
-
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -386,12 +360,6 @@ spec:
           env:
             - name: _JAVA_OPTIONS
               value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -445,13 +413,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9090
-          env:
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
