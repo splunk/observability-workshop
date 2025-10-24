@@ -196,6 +196,7 @@ resource "aws_instance" "observability-instance" {
   }))
 
   root_block_device {
+    encrypted = true
     volume_size = var.instance_disk_aws
   }
 
