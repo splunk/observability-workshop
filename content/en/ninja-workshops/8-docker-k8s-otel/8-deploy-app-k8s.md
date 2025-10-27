@@ -57,11 +57,8 @@ But for this session, we’ll use a workaround to import it to k3s directly.
 ``` bash
 cd /home/splunk
 
-# Export the image from docker
-docker save --output helloworld.tar helloworld:1.2
-
-# Import the image into k3s
-sudo k3s ctr images import helloworld.tar
+# Import the image into k3d
+sudo k3d image import helloworld:1.2 --cluster $INSTANCE-cluster
 ```
 
 ## Deploy the .NET Application
