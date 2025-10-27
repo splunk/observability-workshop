@@ -86,11 +86,34 @@ apiVersion: v1
 kind: Service
 metadata:
   name: doorgame
+  namespace: default
 spec:
-  type: LoadBalancer
   selector:
     app: doorgame
   ports:
-    - protocol: TCP
-      port: 81
+    - name: http
+      port: 9090
       targetPort: 9090
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: doorgame-ingress
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  # If Traefik is the default IngressClass, you can omit ingressClassName.
+  ingressClassName: traefik
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: doorgame
+                port:
+                  number: 9090
