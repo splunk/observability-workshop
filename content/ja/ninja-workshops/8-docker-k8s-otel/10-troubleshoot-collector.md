@@ -314,11 +314,8 @@ docker build -t helloworld:1.3 .
 ```bash
 cd /home/splunk
 
-# Export the image from docker
-docker save --output helloworld.tar helloworld:1.3
-
-# Import the image into k3s
-sudo k3s ctr images import helloworld.tar
+# Import the image into k3d
+sudo k3d image import helloworld:1.3 --cluster $INSTANCE-cluster
 ```
 
 最後に、`deployment.yaml`ファイルを更新してコンテナーイメージの 1.3 バージョンを使用する必要があります：
