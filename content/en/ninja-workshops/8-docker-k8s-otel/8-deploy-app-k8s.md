@@ -128,6 +128,36 @@ spec:
 > [!tip]- What is a Service in Kubernetes?
 > A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time. 
 
+Then, create a second file in the same directory named `service.yaml`:
+
+``` bash
+vi /home/splunk/ingress.yaml
+```
+
+And paste in the following:
+
+``` yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helloworld-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: helloworld.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: helloworld
+                port:
+                  number: 8080
+```
+
 We can then use these manifest files to deploy our application: 
 
 {{< tabs >}}
@@ -139,6 +169,9 @@ kubectl apply -f deployment.yaml
 
 # create the service
 kubectl apply -f service.yaml
+
+# create the ingress
+kubectl apply -f ingress.yaml
 ```
 
 {{% /tab %}}
@@ -154,30 +187,10 @@ service/helloworld created
 
 ## Test the Application
 
-To access our application, we need to first get the IP address: 
-
-{{< tabs >}}
-{{% tab title="Script" %}}
+Use the following command to access the application: 
 
 ``` bash
-kubectl describe svc helloworld | grep IP:
-```
-
-{{% /tab %}}
-{{% tab title="Example Output" %}}
-
-``` bash
-IP:                10.43.102.103
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-Then we can access the application by using the Cluster IP that was returned 
-from the previous command.  For example: 
-
-``` bash
-curl http://10.43.102.103:8080/hello/Kubernetes
+curl http://helloworld.localhost/hello/Kubernetes
 ```
 
 ## Configure OpenTelemetry 
@@ -260,7 +273,11 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-Then use `curl` to generate some traffic. 
+Then use the following command to generate some traffic: 
+
+``` bash
+curl http://helloworld.localhost/hello/Kubernetes
+```
 
 After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ... 
 
