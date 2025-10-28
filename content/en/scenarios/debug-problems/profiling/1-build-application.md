@@ -34,19 +34,8 @@ cd workshop/profiling
 
 Now that the application is deployed, let's play with it and generate some observability data.
 
-Get the external IP address for your application instance using the following command:
-
-```` bash
-kubectl describe svc doorgame | grep "LoadBalancer Ingress"
-````
-
-The output should look like the following:
-
-```` text
-LoadBalancer Ingress:     52.23.184.60
-````
-
-You should be able to access The Door Game application by pointing your browser to port 81 of the provided IP address.  For example:
+You should be able to access The Door Game application by pointing your browser to port 81 
+of the IP address for your EC2 instance.  For example:
 
 ```` text
 http://52.23.184.60:81
