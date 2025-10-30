@@ -44,7 +44,8 @@ rosa create cluster \
     --subnet-ids $SUBNET_IDS \
     --compute-machine-type $AWS_INSTANCE_TYPE \
     --replicas 2 \
-    --region $AWS_REGION 
+    --region $AWS_REGION \
+    --tags "splunkit_environment_type:non-prd,splunkit_data_classification:private"
 ```
 
 > Note that we've specified the `g5.2xlarge` instance type, which includes NVIDIA 
