@@ -133,11 +133,12 @@ create a new VPC in our AWS account using the following command:
 > Note:  update the region as appropriate for your environment.
 
 ``` bash
-rosa create network --param Region=us-east-2
+rosa create network network-template --param Region=us-east-2 --template-dir='.'
 ```
 
 > Important: make note of the subnet ids created as a result of this command 
-> as you'll need them when creating the cluster.
+> as you'll need them when creating the cluster.  Make a note of the CloudFormation 
+> stack name as well, which will be needed later if you want to delete the network. 
 
 > Note: by default, each AWS region is limited to 5 elastic IP addresses.  
 > If you receive the following error: 
