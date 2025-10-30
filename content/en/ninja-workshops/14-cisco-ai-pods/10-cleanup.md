@@ -53,6 +53,15 @@ Delete the OIDC provider:
 rosa delete oidc-provider --oidc-config-id $OIDC_ID
 ```
 
+Delete the network: 
+
+> Note: add the name of the CloudFormation stack used to create the network before 
+> running the following command
+
+``` bash
+aws cloudformation delete-stack --region $AWS_REGION --stack-name <stack name i.e. rosa-network-stack-nnnnnnnnnnn>
+```
+
 Refer to [OpenShift documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-deleting-cluster) 
 if you'd like to completely remove the Red Hat OpenShift Service from your AWS account. 
 
