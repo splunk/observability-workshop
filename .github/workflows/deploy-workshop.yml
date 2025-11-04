@@ -80,7 +80,51 @@ jobs:
 
       - name: Build Hugo site
         run: |
-          hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod
+          hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod --cacheDir /tmp/hugo_cache
+
+      - name: Create redirect handler for old URLs
+        run: |
+          cat > public/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>Redirecting...</title>
+            <script>
+              // Handle redirects from old versioned URLs to new root URLs
+              (function() {
+                var path = window.location.pathname;
+
+                // Match /latest/ or /v{version}/ patterns (e.g., /latest/en/index.html or /v6.13/en/index.html)
+                var versionPattern = /^\/(latest|v[\d.]+)\/(.*)/;
+                var match = path.match(versionPattern);
+
+                if (match) {
+                  // Extract the path after the version (e.g., "en/index.html")
+                  var newPath = '/' + match[2];
+
+                  // Preserve query string and hash if present
+                  var newUrl = window.location.origin + '/observability-workshop' + newPath + window.location.search + window.location.hash;
+
+                  // Redirect to new URL
+                  window.location.replace(newUrl);
+                } else {
+                  // If no version pattern matched, show a friendly 404 message
+                  document.write('<h1>404 - Page Not Found</h1>');
+                  document.write('<p>The page you are looking for does not exist.</p>');
+                  document.write('<p>Visit the <a href="/observability-workshop/">Splunk Observability Workshop homepage</a>.</p>');
+                }
+              })();
+            </script>
+            <noscript>
+              <meta http-equiv="refresh" content="0; url=/observability-workshop/">
+            </noscript>
+          </head>
+          <body>
+            <p>Redirecting... If you are not redirected, <a href="/observability-workshop/">click here</a>.</p>
+          </body>
+          </html>
+          EOF
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
