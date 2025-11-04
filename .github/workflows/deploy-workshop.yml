@@ -1,0 +1,100 @@
+name: Deploy Workshop to GitHub Pages
+
+permissions: write-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Type of version bump'
+        required: true
+        type: choice
+        options:
+          - minor
+          - major
+        default: minor
+
+jobs:
+  deploy:
+    name: Build and deploy workshop
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.145.0'
+          extended: true
+
+      - name: Setup yq
+        uses: chrisdickinson/setup-yq@latest
+        with:
+          yq-version: '4.45.1'
+          yq-url: 'https://github.com/mikefarah/yq/releases/download/v{version}/yq_{platform}_{arch}'
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Cache go dependencies
+        uses: actions/cache@v4
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+
+      - name: Bump version and create tag
+        id: bumpversion
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git pull --rebase
+
+          TAG=$(bumpversion --list "${{ inputs.release_type }}" | awk -F= '/new_version=/ { print $2 }')
+          echo "tag_name=${TAG}" >> $GITHUB_OUTPUT
+
+          BASE_URL="$(yq .baseURL hugo.yaml)"
+          echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
+
+          # Update README with new release link
+          awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://splunk.github.io/observability-workshop/)\";next }1" README.md |
+          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
+          mv README.new.md README.md
+
+          git fetch --tags origin
+          git add README.md
+          git commit --amend -m "Releasing v${TAG}"
+          git tag -a "v${TAG}" -m "Version ${TAG}"
+          git push --follow-tags origin main || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+
+      - name: Build Hugo site
+        run: |
+          hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: false
+          user_name: ${{ github.actor }}
+          user_email: ${{ github.actor }}@users.noreply.github.com
+          commit_message: "Deploy v${{ steps.bumpversion.outputs.tag_name }}"
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.bumpversion.outputs.tag_name }}
+          tag_name: v${{ steps.bumpversion.outputs.tag_name }}
