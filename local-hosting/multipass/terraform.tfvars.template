@@ -10,6 +10,6 @@ tagging_workshop = false
 pub_key = ""
 
 # Advanced
-wsversion = "6.15"
+wsversion = "6.16"
 user_data_tpl = "userdata.yaml"
 architecture = "arm64" # amd64 or arm64
