@@ -8,16 +8,16 @@
     (function() {
       var path = window.location.pathname;
 
-      // Match /latest/ or /v{version}/ patterns (e.g., /latest/en/index.html or /v6.13/en/index.html)
-      var versionPattern = /^\/(latest|v[\d.]+)\/(.*)/;
+      // Match /observability-workshop/latest/ or /observability-workshop/v{version}/ patterns
+      var versionPattern = /^\/observability-workshop\/(latest|v[\d.]+)\/(.*)/;
       var match = path.match(versionPattern);
 
       if (match) {
         // Extract the path after the version (e.g., "en/index.html")
-        var newPath = '/' + match[2];
+        var newPath = match[2];
 
         // Preserve query string and hash if present
-        var newUrl = window.location.origin + '/observability-workshop' + newPath + window.location.search + window.location.hash;
+        var newUrl = window.location.origin + '/observability-workshop/' + newPath + window.location.search + window.location.hash;
 
         // Redirect to new URL
         window.location.replace(newUrl);
