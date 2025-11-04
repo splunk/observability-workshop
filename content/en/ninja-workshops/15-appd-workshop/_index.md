@@ -3,7 +3,6 @@ title: Splunk4Ninjas AppDynamics
 weight: 15
 time: 2 minutes
 description: Learn how to use Splunk AppDynamics for full-stack application performance monitoring, from installing Java APM agents and monitoring application health to troubleshooting performance issues, tracking browser metrics with BRUM, analyzing database performance, and gaining business insights with Business IQ.
-draft: true
 ---
 
 ## Introduction
