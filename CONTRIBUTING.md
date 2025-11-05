@@ -115,3 +115,4 @@ and visit [http://localhost:8000/](http://localhost:8000/) to inspect the site.
 6. Click **Run workflow**.
 
 The release will run through the CI/CD pipeline and be deployed to `https://splunk.github.io/observability-workshop/` shortly after.
+
