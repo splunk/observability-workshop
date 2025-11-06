@@ -1,7 +1,7 @@
 ---
 title: Fix PHP/Apache Issue
-linkTitle: 4. Fix PHP/Apache Issue
-weight: 4
+linkTitle: 5. Fix PHP/Apache Issue
+weight: 5
 ---
 ## 1. Kubernetes Resources
 

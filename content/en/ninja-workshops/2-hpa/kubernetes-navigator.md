@@ -2,6 +2,7 @@
 title: Tour of the Kubernetes Navigator
 linkTitle: 2. Kubernetes Navigator
 weight: 2
+hidden: true
 --- 
 
 ## 1. Cluster vs Workload View
