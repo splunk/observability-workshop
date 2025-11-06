@@ -1,7 +1,7 @@
 ---
 title: Deploy Load Generator
-linkTitle: 5. Deploy Load Generator
-weight: 5
+linkTitle: 6. Deploy Load Generator
+weight: 6
 ---
 
 Now let's apply some load against the `php-apache` pod. To do this, you will need to start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending HTTP GETs to the `php-apache` service.

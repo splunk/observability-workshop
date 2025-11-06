@@ -1,7 +1,7 @@
 ---
 title: Setup Horizontal Pod Autoscaling (HPA)
-linkTitle: 6. Setup HPA
-weight: 6
+linkTitle: 7. Setup HPA
+weight: 7
 ---
 
 In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), to automatically scale the workload to match demand.
@@ -62,12 +62,11 @@ kubectl get hpa -n apache
 
 Go to the **Workloads** or **Node Detail** tab in Kubernetes and check the HPA deployment.
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-How many additional `php-apache-x` pods have been created?
-{{% /notice %}}
+{{% notice title="Workshop Questions" style="tip" icon="question" %}}
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-Which metrics in the Apache Navigator have significantly increased again?
+1. How many additional `php-apache-x` pods have been created?
+2. Which metrics in the **Apache web servers (OTel) Navigator** have significantly increased again?
+
 {{% /notice %}}
 
 ## 3. Increase the HPA replica count
