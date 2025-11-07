@@ -665,6 +665,9 @@ data:
     const puppeteer = require('puppeteer');
     function run () {
         return new Promise(async (resolve, reject) => {
+            const customUserAgent = 'Mozilla/5.0 (X11; Linux x86_64; Splunk RUM_LoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36';
+            console.log('DEBUG: Using User Agent:', customUserAgent);
+
             const browser = await puppeteer.launch({
                 headless: true,
                 defaultViewport: null,
@@ -682,7 +685,8 @@ data:
                   '--disable-background-timer-throttling',
                   '--disable-backgrounding-occluded-windows',
                   '--disable-renderer-backgrounding',
-                  '--memory-pressure-off'
+                  '--memory-pressure-off',
+                  `--user-agent=${customUserAgent}`
                 ]
             });
             try {
@@ -690,7 +694,6 @@ data:
                 for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
                     const context = await browser.createBrowserContext();
                     const page = await context.newPage();
-                    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.133 Safari/537.36')
                     const urls= [process.env.RUM_FRONTEND_IP + "/#!/welcome"];
                     const timeout = 30000;
                     for (const element of urls) {
