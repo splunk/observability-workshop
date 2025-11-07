@@ -22,6 +22,7 @@ cd spring-petclinic && git checkout 276880e
 
 ```bash
 cd spring-petclinic
+git checkout b26f235250627a235a2974a22f2317dbef27338d
 ```
 
 Using Docker, start a MySQL database for PetClinic to use:
