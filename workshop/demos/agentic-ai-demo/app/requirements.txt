@@ -8,3 +8,5 @@ python-dotenv>=1.0
 pytest>=8.0
 pydantic[email]
 typing-extensions>=4.9
+fastapi==0.121.1
+uvicorn==0.38.0

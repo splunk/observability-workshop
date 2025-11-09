@@ -164,7 +164,7 @@ service:
         - batch
         - resourcedetection
       #- resource/add_environment
-      exporters: [otlphttp, signalfx]
+      exporters: [otlphttp, signalfx, debug]
     # Required for Splunk Infrastructure Monitoring
     metrics:
       receivers: [hostmetrics, otlp]

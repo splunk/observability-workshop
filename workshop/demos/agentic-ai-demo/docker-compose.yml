@@ -78,7 +78,7 @@ services:
           memory: 100M
     restart: unless-stopped
     ports:
-      - "${APP_PORT}"
+      - "${APP_PORT}:${APP_PORT}"
     environment:
       - APP_PORT
       - OTEL_PYTHON_LOG_CORRELATION=true

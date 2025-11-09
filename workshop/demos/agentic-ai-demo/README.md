@@ -32,6 +32,50 @@ cd workshop/demos/agentic-ai-demo
 docker compose --env-file .env --env-file .env.override up --force-recreate --remove-orphans --detach --build 
 ```
 
+### Send a test order 
+
+Send a pickup order: 
+
+``` bash
+curl -X POST "http://localhost:8080/orders" \
+-H "Content-Type: application/json" \
+-d '{
+  "customer_info": {
+    "customer_id": 101
+  },
+  "order_type": "pickup",
+  "items": [
+    {"sku": "SKU-001", "quantity": 2},
+    {"sku": "SKU-005", "quantity": 1}
+  ],
+  "store_id": 123
+}'
+```
+
+Send a delivery order: 
+
+``` bash
+curl -X POST "http://localhost:8080/orders" \
+-H "Content-Type: application/json" \
+-d '{
+  "customer_info": {
+    "customer_id": 102
+  },
+  "order_type": "delivery",
+  "items": [
+    {"sku": "SKU-003", "quantity": 1}
+  ],
+  "shipping_address": {
+    "line1": "456 Oak Ave",
+    "line2": "Apt B",
+    "city": "Springfield",
+    "state": "IL",
+    "postal_code": "62704",
+    "country": "USA"
+  }
+}'
+```
+
 ## Run in Kubernetes  
 
 Coming soon. 

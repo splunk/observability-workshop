@@ -19,4 +19,4 @@ WORKDIR /app
 COPY ./app/. /app
 
 EXPOSE 8080
-ENTRYPOINT [ "/venv/bin/opentelemetry-instrument", "/venv/bin/python", "app.py" ]
+ENTRYPOINT [ "/venv/bin/opentelemetry-instrument", "/venv/bin/uvicorn", "app:app", "--reload", "--host", "0.0.0.0", "--port", "8080" ]

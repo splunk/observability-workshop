@@ -1,10 +1,12 @@
 from typing import Dict, Any
-from models.schemas import GraphState
+from models.schemas import GraphState, PaymentResult, InventoryReservation, FulfillmentResult
 
 def initial_state() -> GraphState:
     return {
-        "notifications": [],
         "messages": [],
+        "notifications": [],
         "heartbeat": {},
-        "next": "order_intake",
+        "payment": PaymentResult(),
+        "inventory": InventoryReservation(),
+        "fulfillment": FulfillmentResult(),
     }
