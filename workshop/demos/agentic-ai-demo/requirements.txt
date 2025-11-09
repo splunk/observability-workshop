@@ -1,8 +1,0 @@
-langchain>=0.2
-langgraph>=0.0.44
-langchain-openai>=0.2
-pydantic>=2.6
-python-dotenv>=1.0
-typing-extensions>=4.9
-pytest>=8.0
-pydantic[email]

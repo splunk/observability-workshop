@@ -1,0 +1,98 @@
+x-default-logging: &logging
+  driver: "json-file"
+  options:
+    max-size: "5m"
+    max-file: "2"
+    tag: "{{.Name}}"
+
+networks:
+  default:
+    name: agentic-ai-demo-app-network
+    driver: bridge
+
+services:
+  postgresql:
+    image: ghcr.io/splunk/agentic-ai-demo-db:1.0
+    container_name: db
+    build:
+      context: ./
+      dockerfile: ${POSTGRES_DOCKERFILE}
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-db:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 80M
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    logging: *logging
+
+  otel-collector:
+    image: ${COLLECTOR_IMAGE}
+    container_name: otel-collector
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    restart: unless-stopped
+    command: [ "--config=/etc/otelcol-config.yml" ]
+    user: 0:0
+    volumes:
+      - ${HOST_FILESYSTEM}:/hostfs:ro
+      - ${DOCKER_SOCK}:/var/run/docker.sock:ro
+      - ${OTEL_COLLECTOR_CONFIG}:/etc/otelcol-config.yml
+    ports:
+      - "${OTEL_COLLECTOR_PORT_GRPC}"
+      - "${OTEL_COLLECTOR_PORT_HTTP}"
+    environment:
+      - HOST_FILESYSTEM
+      - OTEL_COLLECTOR_HOST
+      - OTEL_COLLECTOR_PORT_GRPC
+      - OTEL_COLLECTOR_PORT_HTTP
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - SPLUNK_ACCESS_TOKEN
+      - SPLUNK_API_URL
+      - SPLUNK_MEMORY_LIMIT_MIB
+      - SPLUNK_HEC_TOKEN
+      - SPLUNK_HEC_URL
+      - SPLUNK_INGEST_URL
+
+  app:
+    image: ghcr.io/splunk/agentic-ai-demo-app:1.0
+    container_name: app
+    build:
+      context: ./
+      dockerfile: ${APP_DOCKERFILE}
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-app:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}"
+    environment:
+      - APP_PORT
+      - OTEL_PYTHON_LOG_CORRELATION=true
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=agentic-ai-demo-app
+      - OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+      - DB_CONNECTION_STRING=host=${POSTGRES_HOST} user=dbuser password=dbpass dbname=${POSTGRES_DB}
+      - OPENAI_API_KEY
+    depends_on:
+      postgresql:
+        condition: service_started
+      otel-collector:
+        condition: service_started
+    logging: *logging
