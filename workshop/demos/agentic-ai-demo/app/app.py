@@ -1,12 +1,15 @@
 import logging
 import uuid
 
-
 from typing import List, Optional, TypedDict
-from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from opentelemetry import trace
+from opentelemetry.instrumentation.auto_instrumentation import initialize
+# initialize() must be called before importing FastAPI because of how instrumentation is patched
+initialize()
+
+from fastapi import FastAPI, HTTPException
 
 # local
 from config import Settings
