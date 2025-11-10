@@ -3,6 +3,10 @@ FROM docker.io/library/python:3.12-alpine3.22 AS build-venv
 RUN apk update && \
     apk add gcc g++ linux-headers
 
+# install git, which is referenced by requirements.txt
+RUN apk update && \
+    apk add --no-cache git
+
 COPY ./app/requirements.txt requirements.txt
 
 RUN python -m venv venv && \

@@ -6,7 +6,9 @@ from pydantic import BaseModel, Field
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.auto_instrumentation import initialize
-# initialize() must be called before importing FastAPI because of how instrumentation is patched
+from opentelemetry.instrumentation.langchain import LangchainInstrumentor
+
+# OpenTelemetry initialize() must be called before importing FastAPI because of how instrumentation is patched
 initialize()
 
 from fastapi import FastAPI, HTTPException
@@ -20,6 +22,11 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
+
+instrumentor = LangchainInstrumentor()
+instrumentor.instrument()
+
+LangchainInstrumentor().instrument()
 
 app = FastAPI(
     title="Order Processing API",
