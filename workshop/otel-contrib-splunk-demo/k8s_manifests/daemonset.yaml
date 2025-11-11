@@ -36,8 +36,16 @@ spec:
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
+          operator: Exists
         - effect: NoSchedule
           key: node-role.kubernetes.io/control-plane
+          operator: Exists
+        - effect: NoSchedule
+          key: kubernetes.io/system-node
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+          operator: Exists
       containers:
       - name: otel-collector
         command:
@@ -58,14 +66,7 @@ spec:
           protocol: TCP
         - name: otlp-http
           containerPort: 4318
-          protocol: TCP
-        - name: sfx-forwarder
-          containerPort: 9080
-          hostPort: 9080
-          protocol: TCP
-        - name: signalfx
-          containerPort: 9943
-          hostPort: 9943
+          hostPort: 4318
           protocol: TCP
         - name: zipkin
           containerPort: 9411
@@ -90,6 +91,11 @@ spec:
               configMapKeyRef:
                 name: otel-contrib-configmap
                 key: splunk_ingest_url
+          - name: DEPLOYMENT_ENVIRONMENT
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: deployment_environment
           - name: K8S_CLUSTER_NAME
             valueFrom:
               configMapKeyRef:

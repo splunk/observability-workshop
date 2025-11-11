@@ -53,6 +53,21 @@ spec:
               configMapKeyRef:
                 name: otel-contrib-configmap
                 key: splunk_ingest_url
+          - name: DEPLOYMENT_ENVIRONMENT
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: deployment_environment
+          - name: SPLUNK_HEC_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_hec_url
+          - name: SPLUNK_INDEX
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_index
           - name: K8S_CLUSTER_NAME
             valueFrom:
               configMapKeyRef:
@@ -80,14 +95,19 @@ spec:
               secretKeyRef:
                 name: otel-contrib-collector
                 key: splunk_observability_access_token
+          - name: SPLUNK_PLATFORM_HEC_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: otel-contrib-collector
+                key: splunk_hec_token
         readinessProbe:
           httpGet:
             path: /
-            port: 13133
+            port: 13134
         livenessProbe:
           httpGet:
             path: /
-            port: 13133
+            port: 13134
         resources:
           limits:
             cpu: 200m
