@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 from models.schemas import OrderItem, Customer, GraphState, OrderRequest
-from tools.database_tool import add_order_to_db
+from tools.order_tool import add_order_to_db
 
 prompt = PromptTemplate.from_template(
     "Extract structured order details.\n\nUser message:\n{message}\n\nReturn JSON with fields: items[{sku, quantity}], customer{name, email, phone}."
@@ -16,7 +16,7 @@ def intake(state: GraphState) -> GraphState:
 
     order = state["order"]
 
-    order_id = add_order_to_db(order)
+    order_id = add_order_to_db.func(order)
     order.order_id = order_id
 
     return {"order": order, "order_intake": True, "next": "inventory"}
