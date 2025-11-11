@@ -3,10 +3,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def read_env_variable(key: str, isRequired: bool):
+    value = os.environ.get(key)
+    if value is None and isRequired:
+        raise Exception(f'{key} environment variable must be set')
+    return value
+
 class Settings:
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-    PAYMENT_GATEWAY_API_KEY = os.getenv("PAYMENT_GATEWAY_API_KEY", "")
-    NOTIFICATION_API_KEY = os.getenv("NOTIFICATION_API_KEY", "")
-    OTEL_SERVICE_NAME = os.getenv("OTEL_SERVICE_NAME", "")
+    OPENAI_API_KEY = read_env_variable("OPENAI_API_KEY", True)
+    PAYMENT_GATEWAY_API_KEY = read_env_variable("PAYMENT_GATEWAY_API_KEY", False)
+    NOTIFICATION_API_KEY = read_env_variable("NOTIFICATION_API_KEY", False)
+    OTEL_SERVICE_NAME = read_env_variable("OTEL_SERVICE_NAME", True)
+    DB_CONNECTION_STRING = read_env_variable("DB_CONNECTION_STRING", True)
 
 settings = Settings()

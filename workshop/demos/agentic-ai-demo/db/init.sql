@@ -1,31 +1,6 @@
 CREATE USER dbuser WITH PASSWORD 'dbpass';
 
 -- Create tables
-CREATE TABLE orders (
-                        order_id SERIAL PRIMARY KEY,
-                        customer_id INTEGER NOT NULL REFERENCES customers(customer_id),
-                        order_status VARCHAR(50) NOT NULL,
-                        order_type VARCHAR(20) NOT NULL CHECK (order_type IN ('delivery', 'pickup')),
-                        order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                        store_id INTEGER REFERENCES stores(store_id),
-                        warehouse_id INTEGER REFERENCES warehouses(warehouse_id),
-                        total_amount NUMERIC(10,2),
-                        shipping_address_line1 VARCHAR(255),
-                        shipping_address_line2 VARCHAR(255),
-                        shipping_city VARCHAR(100),
-                        shipping_state VARCHAR(100),
-                        shipping_postal_code VARCHAR(20),
-                        shipping_country VARCHAR(100),
-);
-
-CREATE TABLE order_items (
-                             order_item_id SERIAL PRIMARY KEY,
-                             order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
-                             product_id INTEGER NOT NULL REFERENCES products(product_id),
-                             quantity INTEGER NOT NULL CHECK (quantity > 0),
-                             unit_price NUMERIC(10,2) NOT NULL
-);
-
 CREATE TABLE products (
                           product_id SERIAL PRIMARY KEY,
                           product_name VARCHAR(255) NOT NULL,
@@ -60,15 +35,6 @@ CREATE TABLE warehouses (
                             country VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE inventory (
-                           inventory_id SERIAL PRIMARY KEY,
-                           product_id INTEGER NOT NULL REFERENCES products(product_id),
-                           store_id INTEGER REFERENCES stores(store_id),
-                           warehouse_id INTEGER REFERENCES warehouses(warehouse_id),
-                           quantity INTEGER NOT NULL DEFAULT 0,
-                           last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE customers (
                            customer_id SERIAL PRIMARY KEY,
                            first_name VARCHAR(100) NOT NULL,
@@ -83,6 +49,42 @@ CREATE TABLE customers (
                            country VARCHAR(100),
                            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE orders (
+                        order_id SERIAL PRIMARY KEY,
+                        customer_id INTEGER NOT NULL REFERENCES customers(customer_id),
+                        order_status VARCHAR(50) NOT NULL CHECK (order_status IN ('new', 'fulfilled')),
+                        order_type VARCHAR(20) NOT NULL CHECK (order_type IN ('delivery', 'pickup')),
+                        order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        store_id INTEGER REFERENCES stores(store_id),
+                        warehouse_id INTEGER REFERENCES warehouses(warehouse_id),
+                        total_amount NUMERIC(10,2),
+                        shipping_address_line1 VARCHAR(255),
+                        shipping_address_line2 VARCHAR(255),
+                        shipping_city VARCHAR(100),
+                        shipping_state VARCHAR(100),
+                        shipping_postal_code VARCHAR(20),
+                        shipping_country VARCHAR(100)
+);
+
+CREATE TABLE order_items (
+                             order_item_id SERIAL PRIMARY KEY,
+                             order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+                             product_id INTEGER NOT NULL REFERENCES products(product_id),
+                             quantity INTEGER NOT NULL CHECK (quantity > 0),
+                             unit_price NUMERIC(10,2) NOT NULL
+);
+
+
+CREATE TABLE inventory (
+                           inventory_id SERIAL PRIMARY KEY,
+                           product_id INTEGER NOT NULL REFERENCES products(product_id),
+                           store_id INTEGER REFERENCES stores(store_id),
+                           warehouse_id INTEGER REFERENCES warehouses(warehouse_id),
+                           quantity INTEGER NOT NULL DEFAULT 0,
+                           last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 
 -- Add products
 INSERT INTO products (product_name, product_description, cost, sku, category)
@@ -180,4 +182,5 @@ VALUES
     (3, 3, 200, NOW());
 
 -- Grant permissions
-GRANT SELECT, INSERT, UPDATE ON ALL TABLES TO dbuser;
+GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO dbuser;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public to dbuser;

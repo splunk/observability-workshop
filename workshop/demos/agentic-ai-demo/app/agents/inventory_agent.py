@@ -1,5 +1,5 @@
 from models.schemas import GraphState
-from tools.inventory_db import check_and_reserve_inventory
+from tools.database_tool import check_and_reserve_inventory
 
 def reserve(state: GraphState) -> GraphState:
     items = state.get("items", [])

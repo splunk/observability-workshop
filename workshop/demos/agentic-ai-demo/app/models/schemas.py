@@ -45,17 +45,16 @@ class ShippingAddressRequest(BaseModel):
 
 class OrderRequest(BaseModel):
     order_id: Optional[str] = Field(None, description="Optional unique identifier for the order. If not provided, one will be generated.")
-    customer_info: Customer
-    order_type: str = Field(..., pattern="^(delivery|pickup)$", description="Type of order: 'delivery' or 'pickup'")
-    items: List[OrderItemRequest] = Field(..., min_items=1, description="List of items in the order")
+    customer_info: Customer = None
+    order_type: str = Field("delivery", pattern="^(delivery|pickup)$", description="Type of order: 'delivery' or 'pickup'")
+    items: List[OrderItemRequest] = Field([], min_items=1, description="List of items in the order")
     store_id: Optional[int] = Field(None, description="ID of the store for pickup orders")
     warehouse_id: Optional[int] = Field(None, description="ID of the warehouse for fulfillment")
     shipping_address: Optional[ShippingAddressRequest] = Field(None, description="Shipping address details for delivery orders")
 
 class GraphState(TypedDict, total=False):
-    order_id: str
-    items: List[OrderItem]
-    customer: Customer
+    order: OrderRequest
+    order_intake: bool = False
     payment: PaymentResult
     inventory: InventoryReservation
     fulfillment: FulfillmentResult
@@ -64,7 +63,3 @@ class GraphState(TypedDict, total=False):
     error: Optional[str]
     next: str  # routing key the coordination agent uses
     heartbeat: dict  # agent name -> last timestamp or counters
-    order_type: str
-    store_id: Optional[int]
-    warehouse_id: Optional[int]
-    shipping_address: Optional['ShippingAddressRequest']

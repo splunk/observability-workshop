@@ -2,7 +2,8 @@ from typing import Dict, Any
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
-from models.schemas import OrderItem, Customer, GraphState
+from models.schemas import OrderItem, Customer, GraphState, OrderRequest
+from tools.database_tool import add_order_to_db
 
 prompt = PromptTemplate.from_template(
     "Extract structured order details.\n\nUser message:\n{message}\n\nReturn JSON with fields: items[{sku, quantity}], customer{name, email, phone}."
@@ -12,17 +13,13 @@ parser = PydanticOutputParser(pydantic_object=Customer)
 llm = ChatOpenAI(model="gpt-4o-mini")  # replace with your provider/model
 
 def intake(state: GraphState) -> GraphState:
-    # Either use provided structured data or LLM extraction from messages.
-    msg = next((m.content for m in state.get("messages", []) if m.role == "user"), "")
-    if state.get("items") and state.get("customer"):
-        return {"next": "inventory"}
-    if not msg:
-        return {"error": "No user message with order details.", "next": "notify"}
-    # Minimal demo parsing: In production, use robust parsing and validation.
-    # Here we simulate extracted data for clarity.
-    items = [OrderItem(sku="SKU-001", quantity=1)]
-    customer = Customer(name="Jane Doe", email="jane@example.com", phone="+12065550123")
-    return {"items": items, "customer": customer, "next": "inventory"}
+
+    order = state["order"]
+
+    order_id = add_order_to_db(order)
+    order.order_id = order_id
+
+    return {"order": order, "order_intake": True, "next": "inventory"}
 
 def payment(state: GraphState) -> GraphState:
     from tools.payment_tool import process_payment

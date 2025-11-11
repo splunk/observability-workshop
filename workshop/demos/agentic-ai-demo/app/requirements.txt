@@ -11,6 +11,7 @@ pydantic[email]
 typing-extensions>=4.9
 fastapi==0.121.1
 uvicorn==0.38.0
+psycopg2-binary==2.9.11
 git+https://github.com/signalfx/splunk-otel-python-contrib.git@main#subdirectory=util/opentelemetry-util-genai
 git+https://github.com/signalfx/splunk-otel-python-contrib.git@main#subdirectory=instrumentation-genai/opentelemetry-instrumentation-langchain
 git+https://github.com/signalfx/splunk-otel-python-contrib.git@main#subdirectory=util/opentelemetry-util-genai-emitters-splunk

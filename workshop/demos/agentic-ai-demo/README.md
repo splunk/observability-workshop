@@ -41,14 +41,14 @@ curl -X POST "http://localhost:8080/orders" \
 -H "Content-Type: application/json" \
 -d '{
   "customer_info": {
-    "customer_id": 101
+    "customer_id": 1
   },
   "order_type": "pickup",
   "items": [
-    {"sku": "SKU-001", "quantity": 2},
-    {"sku": "SKU-005", "quantity": 1}
+    {"sku": "COF-COL-DR-12", "quantity": 2},
+    {"sku": "KIT-CB-START", "quantity": 1}
   ],
-  "store_id": 123
+  "store_id": 1
 }'
 ```
 
@@ -59,11 +59,11 @@ curl -X POST "http://localhost:8080/orders" \
 -H "Content-Type: application/json" \
 -d '{
   "customer_info": {
-    "customer_id": 102
+    "customer_id": 1
   },
   "order_type": "delivery",
   "items": [
-    {"sku": "SKU-003", "quantity": 1}
+    {"sku": "COF-COL-DR-12", "quantity": 1}
   ],
   "shipping_address": {
     "line1": "456 Oak Ave",

@@ -13,14 +13,14 @@ def set_heartbeat(state: GraphState, agent_name: str) -> None:
 
 def route(state: GraphState) -> GraphState:
 
-    logging.debug(f"about to route based on {state}", state)
+    logging.getLogger().info(f"about to route based on {state}", state)
     set_heartbeat(state, "coordination")
     # If an error exists, decide whether to end or retry.
     if state.get("error"):
         state["next"] = "notify"
         return {"next": state["next"]}
     # Routing policy.
-    if "items" not in state or "customer" not in state:
+    if not state["order_intake"]:
         state["next"] = "order_intake"
     elif "inventory" not in state:
         state["next"] = "inventory"
