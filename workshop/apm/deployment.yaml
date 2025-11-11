@@ -290,8 +290,6 @@ spec:
                   fieldPath: status.hostIP
             - name: SIGNALFX_ENDPOINT_URL
               value: "http://$(NODE_IP):9411/api/v2/spans"
-            - name: SIGNALFX_METRICS_ENDPOINT_URL
-              value: "http://$(NODE_IP):9943/v2/datapoint"
             - name: SIGNALFX_PROFILER_ENABLED
               value: "true"
             - name: SIGNALFX_PROFILER_LOGS_ENDPOINT
@@ -397,8 +395,6 @@ spec:
               value: "true"
             - name: SPLUNK_METRICS_ENABLED
               value: "true"
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
             - name: ENABLE_COPYRIGHT_CERTIFICATION
               value: "true"
             - name: STOCK_PHOTO_MAX_FINGERPRINT_SIZE
