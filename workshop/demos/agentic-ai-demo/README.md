@@ -82,6 +82,15 @@ Get orders for a specific customer:
 curl "http://localhost:8080/get_orders_for_customer?customer_id=1"
 ```
 
+Send a question: 
+
+``` bash
+curl -sS -X POST "http://localhost:8080/ask_question" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"question":"What is the total dollar amount of all my orders?"}'
+```
+
 ## Run in Kubernetes  
 
 Coming soon. 

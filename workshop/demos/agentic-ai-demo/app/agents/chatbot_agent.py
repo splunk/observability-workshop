@@ -1,16 +1,81 @@
-from typing import List
+from typing import Any, Dict, List, Union, Optional
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+from langchain_core.tools import BaseTool
+from langchain.tools import tool
 from langchain_openai import ChatOpenAI
-from models.schemas import GraphState, Message
+from pydantic import BaseModel, Field
+from models.schemas import OrderRequest
+from tools.order_tool import fetch_orders_for_customer
 
-# Safe defaults; add toggles to demonstrate issues in a controlled, non-harmful way.
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+llm_with_tools = llm.bind_tools([fetch_orders_for_customer])
 
-def chat(state: GraphState) -> GraphState:
-    messages: List[Message] = state.get("messages", [])
-    if not messages:
-        return {"next": "end"}
-    # A basic chat turn; consider retrieval or guardrails for production.
-    user = next((m.content for m in messages[::-1] if m.role == "user"), "")
-    answer = f"I received: {user}. (Demo response; do not rely on this for factual information.)"
-    new_messages = messages + [Message(role="assistant", content=answer)]
-    return {"messages": new_messages, "next": "end"}
+TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [fetch_orders_for_customer]}
+
+SYSTEM_INSTRUCTIONS = (
+    "You are a helpful support chatbot. Use tools when they can improve accuracy. "
+    "For any order-related questions, prefer the 'fetch_orders_for_customer' tool. "
+    "Do not fabricate order details. Keep answers concise and actionable."
+)
+
+def chat(customer_id: int, question: str) -> str:
+    """
+    Answers a user's question. The model may call tools; we enforce the caller's customer_id.
+    """
+    messages = [
+        SystemMessage(SYSTEM_INSTRUCTIONS),
+        # Provide relevant context explicitly.
+        SystemMessage(f"Context: The current authenticated customer's ID is {customer_id}. "
+                      "Never change this ID when calling tools."),
+        HumanMessage(question),
+    ]
+
+    # First pass: let the model decide whether to call a tool.
+    ai_msg: AIMessage = llm_with_tools.invoke(messages)
+
+    if not getattr(ai_msg, "tool_calls", None):
+        # Model answered directly.
+        return ai_msg.content or ""
+
+    # Execute each tool call and collect ToolMessage responses.
+    tool_messages: List[ToolMessage] = []
+
+    for call in ai_msg.tool_calls:
+        tool_name: str = call["name"]
+        tool_args: Dict[str, Any] = call.get("args", {}) or {}
+
+        tool = TOOLS_BY_NAME.get(tool_name)
+        if tool is None:
+            # Unknown tool; inform the model.
+            tool_messages.append(
+                ToolMessage(
+                    content=f"Error: requested unknown tool '{tool_name}'.",
+                    tool_call_id=call["id"],
+                )
+            )
+            continue
+
+        # Enforce customer_id from the authenticated session.
+        tool_args["customer_id"] = customer_id
+
+        try:
+            result = tool.invoke(tool_args)  # Tools are Runnables in LangChain 0.2+
+            # Keep the tool result compact; large payloads can be summarized first if needed.
+            tool_messages.append(
+                ToolMessage(
+                    content=str(result),  # Or json.dumps(result) if you prefer strict JSON
+                    tool_call_id=call["id"],
+                )
+            )
+        except Exception as e:
+            tool_messages.append(
+                ToolMessage(
+                    content=f"Tool execution failed: {type(e).__name__}: {e}",
+                    tool_call_id=call["id"],
+                )
+            )
+
+    # Second pass: give the model the tool outputs to produce a final answer.
+    final_ai: AIMessage = llm_with_tools.invoke(messages + [ai_msg] + tool_messages)
+    return final_ai.content or ""
+

@@ -1,7 +1,7 @@
 import logging
 import asyncio
 
-from typing import List, Optional, TypedDict
+from typing import List, Dict, Optional, Any, TypedDict
 from pydantic import BaseModel, Field
 
 from opentelemetry import trace
@@ -20,6 +20,7 @@ from shared.state import initial_state
 from models.schemas import Message, OrderItem, OrderRequest, Customer, PaymentResult, InventoryReservation, FulfillmentResult, GraphState
 from dotenv import load_dotenv
 from tools.order_tool import fetch_orders_for_customer, FetchOrdersForCustomerArgs
+from agents.chatbot_agent import chat
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -74,7 +75,7 @@ async def create_order(order_data: OrderRequest):
             span.end()
         raise HTTPException(status_code=500, detail=f"Error processing order: {str(e)}")
 
-@app.get("/get_orders_for_customer", response_model=List[OrderRequest], summary="Get orders for a specific customer")
+@app.get("/get_orders_for_customer", response_model=List[Dict[str, Any]], summary="Get orders for a specific customer")
 async def get_orders_for_customer(customer_id: int):
     """
     Receives an HTTP GET request with a customer_id, and returns a list of orders for
@@ -101,3 +102,35 @@ async def get_orders_for_customer(customer_id: int):
             span.record_exception(e)
             span.end()
         raise HTTPException(status_code=500, detail=f"Error retrieving customers: {str(e)}")
+
+class AskQuestionRequest(BaseModel):
+    customer_id: int = Field(..., gt=0, description="Authenticated customer's ID.")
+    question: str = Field(..., min_length=1, max_length=4000, description="User's question.")
+
+class AskQuestionResponse(BaseModel):
+    answer: str
+
+@app.post("/ask_question", response_model=AskQuestionResponse, summary="Ask a question")
+async def ask_question(payload: AskQuestionRequest) -> AskQuestionResponse:
+    """
+    Receives a POST with customer_id and question, calls the chat agent, and returns an answer.
+    """
+    try:
+        with tracer.start_as_current_span("ask_question") as span:
+            # Optional: annotate the span
+            span.set_attribute("customer_id", payload.customer_id)
+            span.set_attribute("question.length", len(payload.question))
+
+            logging.getLogger().info(
+                f"Ask question: customer_id={payload.customer_id}, question={payload.question[:200]}..."
+            )
+
+            # Run the synchronous chat function off the event loop
+            answer: str = await asyncio.to_thread(chat, payload.customer_id, payload.question)
+
+            return AskQuestionResponse(answer=answer)
+
+    except Exception as e:
+        logging.getLogger().exception("ask_question failed")
+        # Let FastAPI produce a 500 response with a generic detail
+        raise HTTPException(status_code=500, detail="Internal server error")

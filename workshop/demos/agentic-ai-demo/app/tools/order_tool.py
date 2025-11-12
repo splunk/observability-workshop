@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
 from langchain.tools import tool
 from models.schemas import OrderItem, OrderRequest, OrderItemRequest, Customer, ShippingAddressRequest
@@ -105,19 +105,16 @@ class FetchOrdersForCustomerArgs(BaseModel):
     customer_id: int = Field(..., description="The ID of the customer to fetch orders for.")
 
 @tool("fetch_orders_for_customer", args_schema=FetchOrdersForCustomerArgs)
-def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[OrderRequest]:
+def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[Dict[str, Any]]:
     """Retrieves all orders for the specified customer"""
     connection = None
     customer_id = args.customer_id
-    result_orders: List[OrderRequest] = []
+    result_orders: List[Dict[str, Any]] = [] # Changed type hint
 
     try:
         with psycopg2.connect(Settings.DB_CONNECTION_STRING) as connection:
-            # Use DictCursor to access columns by name, which is more readable
             with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
 
-                # 1. Fetch main order details for the customer
-                # We select only the columns relevant to the OrderRequest Pydantic model
                 orders_query = """
                     SELECT
                         order_id, customer_id, order_type, store_id, warehouse_id,
@@ -130,13 +127,10 @@ def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[OrderReq
                 order_records = cursor.fetchall()
 
                 if not order_records:
-                    return [] # No orders found for this customer, return empty list
+                    return []
 
                 order_ids = [record['order_id'] for record in order_records]
 
-                # 2. Fetch all order items (with SKU) for these orders
-                # We join with the products table to get the SKU
-                # Using `ANY(%s)` is the standard way to pass a list to an IN clause in psycopg2
                 order_items_query = """
                     SELECT
                         oi.order_id, p.sku, oi.quantity
@@ -147,7 +141,6 @@ def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[OrderReq
                 cursor.execute(order_items_query, (order_ids,))
                 order_item_records = cursor.fetchall()
 
-                # Group order items by order_id for easier reconstruction
                 order_items_map: Dict[int, List[Dict[str, Any]]] = {}
                 for item_record in order_item_records:
                     order_id = item_record['order_id']
@@ -158,48 +151,46 @@ def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[OrderReq
                         "quantity": item_record['quantity']
                     })
 
-                # 3. Reconstruct OrderRequest objects
                 for order_record in order_records:
-                    shipping_address_obj: Optional[ShippingAddressRequest] = None
-                    # Only create ShippingAddressRequest if it's a delivery order and address details exist
+                    shipping_address_dict: Optional[Dict[str, Any]] = None
                     if order_record['order_type'] == "delivery" and order_record['shipping_address_line1']:
-                        shipping_address_obj = ShippingAddressRequest(
-                            line1=order_record['shipping_address_line1'],
-                            line2=order_record['shipping_address_line2'],
-                            city=order_record['shipping_city'],
-                            state=order_record['shipping_state'],
-                            postal_code=order_record['shipping_postal_code'],
-                            country=order_record['shipping_country']
-                        )
+                        shipping_address_dict = {
+                            "line1": order_record['shipping_address_line1'],
+                            "line2": order_record['shipping_address_line2'],
+                            "city": order_record['shipping_city'],
+                            "state": order_record['shipping_state'],
+                            "postal_code": order_record['shipping_postal_code'],
+                            "country": order_record['shipping_country']
+                        }
 
-                    # Get the items for the current order from the map
+                    # Get the items for the current order from the map as a list of dictionaries
                     items_for_this_order = [
-                        OrderItemRequest(sku=item['sku'], quantity=item['quantity'])
+                        {"sku": item['sku'], "quantity": item['quantity']}
                         for item in order_items_map.get(order_record['order_id'], [])
                     ]
 
-                    # Create the OrderRequest Pydantic object
-                    order_req = OrderRequest(
-                        order_id=str(order_record['order_id']), # Convert DB int ID to str as per OrderRequest model
-                        customer_info=Customer(customer_id=order_record['customer_id']),
-                        order_type=order_record['order_type'],
-                        items=items_for_this_order,
-                        store_id=order_record['store_id'],
-                        warehouse_id=order_record['warehouse_id'],
-                        shipping_address=shipping_address_obj
-                    )
-                    result_orders.append(order_req)
+                    # Create a dictionary representing the order
+                    order_dict = {
+                        "order_id": str(order_record['order_id']),
+                        "customer_info": {"customer_id": order_record['customer_id']},
+                        "order_type": order_record['order_type'],
+                        "items": items_for_this_order,
+                        "store_id": order_record['store_id'],
+                        "warehouse_id": order_record['warehouse_id'],
+                        "shipping_address": shipping_address_dict
+                    }
+                    result_orders.append(order_dict) # Append the dictionary
 
                 return result_orders
 
     except Exception as e:
         if connection:
-            connection.rollback() # Rollback in case of any error during the transaction
+            connection.rollback()
         print(f"Error fetching orders for customer {customer_id}: {e}")
         raise e
     finally:
         if connection is not None:
-            try:
+             try:
                 connection.close()
-            except Exception as e:
+             except Exception as e:
                 print(f"Error closing database connection: {e}")
