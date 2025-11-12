@@ -76,6 +76,12 @@ curl -X POST "http://localhost:8080/orders" \
 }'
 ```
 
+Get orders for a specific customer:
+
+``` bash
+curl "http://localhost:8080/get_orders_for_customer?customer_id=1"
+```
+
 ## Run in Kubernetes  
 
 Coming soon. 

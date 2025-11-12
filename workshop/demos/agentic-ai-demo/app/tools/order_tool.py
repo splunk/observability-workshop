@@ -1,9 +1,11 @@
 from typing import List, Dict
 from pydantic import BaseModel, Field
 from langchain.tools import tool
-from models.schemas import OrderItem, OrderRequest
+from models.schemas import OrderItem, OrderRequest, OrderItemRequest, Customer, ShippingAddressRequest
+
 # Postgres
 import psycopg2
+import psycopg2.extras
 
 from config import Settings
 

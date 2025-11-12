@@ -1,4 +1,5 @@
 import logging
+import asyncio
 
 from typing import List, Optional, TypedDict
 from pydantic import BaseModel, Field
@@ -18,6 +19,7 @@ from graph import build_graph
 from shared.state import initial_state
 from models.schemas import Message, OrderItem, OrderRequest, Customer, PaymentResult, InventoryReservation, FulfillmentResult, GraphState
 from dotenv import load_dotenv
+from tools.order_tool import fetch_orders_for_customer, FetchOrdersForCustomerArgs
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -59,23 +61,43 @@ async def create_order(order_data: OrderRequest):
 
             logging.getLogger().info(f"final_state: {final_state}")
 
-            return final_state
+            if span:
+                span.end()
 
-            # Convert the final_state objects to dictionaries for JSON serialization
-#            serializable_final_state = {}
-#            for key, value in final_state["order"].items():
-#                if hasattr(value, 'to_dict'):
-#                    serializable_final_state[key] = value.to_dict()
-#                elif isinstance(value, list):
-#                    serializable_final_state[key] = [item.to_dict() if hasattr(item, 'to_dict') else item for item in value]
-#                elif isinstance(value, BaseModel): # Handle Pydantic models if they are in the final_state
-#                    serializable_final_state[key] = value.model_dump()
-#                else:
-#                    serializable_final_state[key] = value
-#
-#            return serializable_final_state
+            return final_state
 
     except Exception as e:
         # Log the error for debugging
         logging.getLogger().error(f"An error occurred: {e}")
+        if span:
+            span.record_exception(e)
+            span.end()
         raise HTTPException(status_code=500, detail=f"Error processing order: {str(e)}")
+
+@app.get("/get_orders_for_customer", response_model=List[OrderRequest], summary="Get orders for a specific customer")
+async def get_orders_for_customer(customer_id: int):
+    """
+    Receives an HTTP GET request with a customer_id, and returns a list of orders for
+    that customer.
+    """
+    try:
+        with tracer.start_as_current_span("get_orders_for_customer") as span:
+            logging.getLogger().info(f"About to get orders for customer_id: {customer_id}")
+
+            fetch_orders_for_customer_args = FetchOrdersForCustomerArgs(customer_id=customer_id)
+
+            # Call the synchronous function in a separate thread using asyncio.to_thread
+            # This prevents blocking the event loop.
+            orders = await asyncio.to_thread(fetch_orders_for_customer.func, fetch_orders_for_customer_args)
+
+            if span:
+                span.end()
+            return orders
+
+    except Exception as e:
+        # Log the error for debugging
+        logging.getLogger().error(f"An error occurred: {e}")
+        if span:
+            span.record_exception(e)
+            span.end()
+        raise HTTPException(status_code=500, detail=f"Error retrieving customers: {str(e)}")
