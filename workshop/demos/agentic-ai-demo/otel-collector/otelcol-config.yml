@@ -34,7 +34,7 @@ extensions:
 
 receivers:
   fluentforward:
-    endpoint: 127.0.0.1:8006
+    endpoint: 0.0.0.0:8006
   hostmetrics:
     collection_interval: 10s
     scrapers:
@@ -89,6 +89,7 @@ receivers:
               action: drop
   zipkin:
     endpoint: 0.0.0.0:9411
+
   nop:
 
 processors:
@@ -145,6 +146,14 @@ exporters:
       "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
     auth:
       authenticator: headers_setter
+  splunk_hec:
+    token: "${SPLUNK_HEC_TOKEN}"
+    endpoint: "${SPLUNK_HEC_URL}/services/collector"
+    source: "otel"
+    sourcetype: "otel"
+    profiling_data_enabled: false
+    tls:
+      insecure_skip_verify: false
   splunk_hec/profiling:
     token: "${SPLUNK_ACCESS_TOKEN}"
     endpoint: "https://ingest.${SPLUNK_REALM}.signalfx.com/v1/log"
@@ -180,8 +189,16 @@ service:
       receivers: [nop]
       processors: [memory_limiter, batch, resourcedetection]
       exporters: [otlphttp/entities]
-    # Required for profiling
     logs:
+      receivers: [otlp, fluentforward]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      #- resource/add_environment
+      exporters: [splunk_hec]
+    # Required for profiling
+    logs/profiling:
       receivers: [otlp]
       processors:
         - memory_limiter

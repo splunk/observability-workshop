@@ -6,9 +6,24 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from models.schemas import OrderRequest
 from tools.order_tool import fetch_orders_for_customer
+from shared.create_llm import _create_llm
+from langchain.agents import (
+    create_agent as _create_react_agent,  # type: ignore[attr-defined]
+)
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+llm = _create_llm("chat_agent", temperature=0.2, session_id=None)
 llm_with_tools = llm.bind_tools([fetch_orders_for_customer])
+
+agent = _create_react_agent(llm_with_tools, tools=[fetch_orders_for_customer]).with_config(
+    {
+        "run_name": "chat_agent",
+        "tags": ["agent", "agent:chat_agent"],
+        "metadata": {
+            "agent_name": "chat_agent",
+        },
+    }
+)
+
 
 TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [fetch_orders_for_customer]}
 

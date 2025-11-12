@@ -11,6 +11,7 @@ def read_env_variable(key: str, isRequired: bool):
 
 class Settings:
     OPENAI_API_KEY = read_env_variable("OPENAI_API_KEY", True)
+    OPENAI_MODEL = read_env_variable("OPENAI_MODEL", True)
     PAYMENT_GATEWAY_API_KEY = read_env_variable("PAYMENT_GATEWAY_API_KEY", False)
     NOTIFICATION_API_KEY = read_env_variable("NOTIFICATION_API_KEY", False)
     OTEL_SERVICE_NAME = read_env_variable("OTEL_SERVICE_NAME", True)
