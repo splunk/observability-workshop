@@ -37,7 +37,7 @@ def chat(customer_id: int, question: str) -> str:
     """
     Answers a user's question. The model may call tools; we enforce the caller's customer_id.
     """
-    messages = [
+    initial_messages = [
         SystemMessage(SYSTEM_INSTRUCTIONS),
         # Provide relevant context explicitly.
         SystemMessage(f"Context: The current authenticated customer's ID is {customer_id}. "
@@ -46,7 +46,7 @@ def chat(customer_id: int, question: str) -> str:
     ]
 
     # First pass: let the model decide whether to call a tool.
-    ai_msg: AIMessage = llm_with_tools.invoke(messages)
+    ai_msg: AIMessage = agent.invoke({"messages": initial_messages})
 
     if not getattr(ai_msg, "tool_calls", None):
         # Model answered directly.
@@ -91,6 +91,7 @@ def chat(customer_id: int, question: str) -> str:
             )
 
     # Second pass: give the model the tool outputs to produce a final answer.
-    final_ai: AIMessage = llm_with_tools.invoke(messages + [ai_msg] + tool_messages)
+    all_messages = initial_messages + [ai_msg] + tool_messages
+    final_ai: AIMessage = agent.invoke({"messages": all_messages})
     return final_ai.content or ""
 
