@@ -111,6 +111,13 @@ packages:
   - wget
   - qemu-guest-agent
 write_files:
+  - path: /etc/sysctl.conf
+    append: true
+    content: |
+      # Increase inotify limits
+      fs.inotify.max_user_watches=524288
+      fs.inotify.max_user_instances=8192
+
   - path: /etc/environment
     append: true
     content: |
