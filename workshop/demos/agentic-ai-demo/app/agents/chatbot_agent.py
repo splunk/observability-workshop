@@ -10,11 +10,14 @@ from shared.create_llm import _create_llm
 from langchain.agents import (
     create_agent as _create_react_agent,  # type: ignore[attr-defined]
 )
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 llm = _create_llm("chat_agent", temperature=0.2, session_id=None)
-llm_with_tools = llm.bind_tools([fetch_orders_for_customer])
 
-agent = _create_react_agent(llm_with_tools, tools=[fetch_orders_for_customer]).with_config(
+agent = _create_react_agent(llm, tools=[fetch_orders_for_customer]).with_config(
     {
         "run_name": "chat_agent",
         "tags": ["agent", "agent:chat_agent"],
@@ -45,17 +48,27 @@ def chat(customer_id: int, question: str) -> str:
         HumanMessage(question),
     ]
 
-    # First pass: let the model decide whether to call a tool.
-    ai_msg: AIMessage = agent.invoke({"messages": initial_messages})
+    logging.getLogger().info(f"about to invoke the agent with: {initial_messages}")
 
-    if not getattr(ai_msg, "tool_calls", None):
+    # First pass: let the model decide whether to call a tool.
+    results = agent.invoke({"messages": initial_messages})
+
+    msgs = results["messages"]
+
+    last_ai = next((m for m in reversed(msgs) if isinstance(m, AIMessage)), None)
+    if last_ai is None:
+        return ""
+
+    logging.getLogger().info(f"last_ai: {last_ai}")
+
+    if not getattr(last_ai, "tool_calls", None):
         # Model answered directly.
-        return ai_msg.content or ""
+        return last_ai.content or ""
 
     # Execute each tool call and collect ToolMessage responses.
     tool_messages: List[ToolMessage] = []
 
-    for call in ai_msg.tool_calls:
+    for call in last_ai.tool_calls:
         tool_name: str = call["name"]
         tool_args: Dict[str, Any] = call.get("args", {}) or {}
 
@@ -91,7 +104,7 @@ def chat(customer_id: int, question: str) -> str:
             )
 
     # Second pass: give the model the tool outputs to produce a final answer.
-    all_messages = initial_messages + [ai_msg] + tool_messages
+    all_messages = initial_messages + [last_ai] + tool_messages
     final_ai: AIMessage = agent.invoke({"messages": all_messages})
     return final_ai.content or ""
 

@@ -105,10 +105,9 @@ class FetchOrdersForCustomerArgs(BaseModel):
     customer_id: int = Field(..., description="The ID of the customer to fetch orders for.")
 
 @tool("fetch_orders_for_customer", args_schema=FetchOrdersForCustomerArgs)
-def fetch_orders_for_customer(args: FetchOrdersForCustomerArgs) -> List[Dict[str, Any]]:
+def fetch_orders_for_customer(customer_id: int) -> List[Dict[str, Any]]:
     """Retrieves all orders for the specified customer"""
     connection = None
-    customer_id = args.customer_id
     result_orders: List[Dict[str, Any]] = [] # Changed type hint
 
     try:
