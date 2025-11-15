@@ -86,11 +86,9 @@ async def get_orders_for_customer(customer_id: int):
         with tracer.start_as_current_span("get_orders_for_customer") as span:
             logging.getLogger().info(f"About to get orders for customer_id: {customer_id}")
 
-            fetch_orders_for_customer_args = FetchOrdersForCustomerArgs(customer_id=customer_id)
-
             # Call the synchronous function in a separate thread using asyncio.to_thread
             # This prevents blocking the event loop.
-            orders = await asyncio.to_thread(fetch_orders_for_customer.func, fetch_orders_for_customer_args)
+            orders = await asyncio.to_thread(fetch_orders_for_customer.func, customer_id)
 
             if span:
                 span.end()

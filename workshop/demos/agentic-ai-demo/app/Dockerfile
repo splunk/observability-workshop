@@ -12,9 +12,10 @@ COPY ./app/requirements.txt requirements.txt
 RUN python -m venv venv && \
     venv/bin/pip install --no-cache-dir -r requirements.txt
 
-# Don't run the bootstrap command since the opentelemetry-instrumentation-openai-v2 package
-# causes issues when running the application
-#RUN venv/bin/opentelemetry-bootstrap -a install
+RUN venv/bin/opentelemetry-bootstrap -a install
+
+# uninstall opentelemetry-instrumentation-openai-v2 as it causes issues with our application
+RUN venv/bin/pip uninstall -y opentelemetry-instrumentation-openai-v2 opentelemetry.instrumentation.httpx
 
 FROM docker.io/library/python:3.12-alpine3.22
 

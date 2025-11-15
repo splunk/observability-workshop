@@ -88,7 +88,7 @@ Send a question:
 curl -sS -X POST "http://localhost:8080/ask_question" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
-  -d '{"customer_id":1,"question":"What is the total dollar amount of all my orders?"}'
+  -d '{"customer_id":1,"question":"What is the total dollar amount of all my orders? Just provide the amount, not the details."}'
 ```
 
 ## Run in Kubernetes  

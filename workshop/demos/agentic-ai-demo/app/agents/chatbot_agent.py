@@ -6,6 +6,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from models.schemas import OrderRequest
 from tools.order_tool import fetch_orders_for_customer
+from tools.product_tool import get_product_info
 from shared.create_llm import _create_llm
 from langchain.agents import (
     create_agent as _create_react_agent,  # type: ignore[attr-defined]
@@ -17,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 
 llm = _create_llm("chat_agent", temperature=0.2, session_id=None)
 
-agent = _create_react_agent(llm, tools=[fetch_orders_for_customer]).with_config(
+agent = _create_react_agent(llm, tools=[fetch_orders_for_customer, get_product_info]).with_config(
     {
         "run_name": "chat_agent",
         "tags": ["agent", "agent:chat_agent"],
@@ -28,7 +29,7 @@ agent = _create_react_agent(llm, tools=[fetch_orders_for_customer]).with_config(
 )
 
 
-TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [fetch_orders_for_customer]}
+TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [fetch_orders_for_customer, get_product_info]}
 
 SYSTEM_INSTRUCTIONS = (
     "You are a helpful support chatbot. Use tools when they can improve accuracy. "
