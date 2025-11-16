@@ -1,47 +1,32 @@
-from langgraph.graph import StateGraph, END, START
-from models.schemas import GraphState
-from agents.coordination_agent import route as coordination_node
-from agents.order_agent import intake as order_intake_node, payment as payment_node
-from agents.inventory_agent import reserve as inventory_node
-from agents.fulfillment_agent import fulfill as fulfillment_node
-from agents.notification_agent import notify as notification_node
-from agents.chatbot_agent import chat as chatbot_node
+from langgraph.graph import StateGraph, END
+from models.schemas import AgentState
+from agents.coordination_agent import coordinator_node, route_based_on_state
+from agents.order_agent import order_agent as order_node
+from agents.product_agent import product_agent as product_node
 
 def build_graph():
-    graph = StateGraph(GraphState)
+    graph = StateGraph(AgentState)
 
     # Nodes
-    graph.add_node("coordination", coordination_node)
-    graph.add_node("order_intake", order_intake_node)
-    graph.add_node("inventory", inventory_node)
-    graph.add_node("payment", payment_node)
-    graph.add_node("fulfillment", fulfillment_node)
-    graph.add_node("notify", notification_node)
-    graph.add_node("chat", chatbot_node)  # optional path
+    graph.add_node("coordinator", coordinator_node)
+    graph.add_node("product", product_node)
+    graph.add_node("order", order_node)
 
-    # Start at coordination
-    graph.add_edge(START, "coordination")
-
-    # Conditional routing driven by state["next"]
-    def router(state: GraphState) -> str:
-        return state.get("next", "end")
+    # Start at coordinator
+    graph.set_entry_point("coordinator")
 
     graph.add_conditional_edges(
-        "coordination",
-        router,
+        "coordinator",
+        route_based_on_state,
         {
-            "order_intake": "order_intake",
-            "inventory": "inventory",
-            "payment": "payment",
-            "fulfillment": "fulfillment",
-            "notify": "notify",
-            "chat": "chat",
-            "end": END,
+            "product": "product",
+            "order": "order",
+            "complete": END,
         },
     )
 
     # After each node, return to coordination for next decision.
-    for node in ["order_intake", "inventory", "payment", "fulfillment", "notify", "chat"]:
-        graph.add_edge(node, "coordination")
+    for node in ["product", "order"]:
+        graph.add_edge(node, "coordinator")
 
     return graph.compile()

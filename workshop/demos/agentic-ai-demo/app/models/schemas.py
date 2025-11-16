@@ -1,5 +1,10 @@
 from typing import List, Optional, Literal, TypedDict
 from pydantic import BaseModel, Field, EmailStr
+from langgraph.graph import MessagesState
+
+class AgentState(MessagesState):
+    next_agent: str  # Store routing decision
+    customer_id: int
 
 class OrderItem(BaseModel):
     sku: str = Field(..., min_length=1)

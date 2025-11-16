@@ -3,6 +3,8 @@ import asyncio
 
 from typing import List, Dict, Optional, Any, TypedDict
 from pydantic import BaseModel, Field
+from langchain_core.messages import HumanMessage
+from dotenv import load_dotenv
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.auto_instrumentation import initialize
@@ -16,12 +18,8 @@ from fastapi import FastAPI, HTTPException
 # local
 from config import Settings
 from graph import build_graph
-from shared.state import initial_state
-from models.schemas import Message, OrderItem, OrderRequest, Customer, PaymentResult, InventoryReservation, FulfillmentResult, GraphState
-from dotenv import load_dotenv
-from tools.order_tool import fetch_orders_for_customer, FetchOrdersForCustomerArgs
-from agents.chatbot_agent import chat
-from langchain_core.messages import HumanMessage, SystemMessage
+from models.schemas import AgentState
+from agents.coordination_agent import coordinator_node
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -30,8 +28,8 @@ instrumentor = LangchainInstrumentor()
 instrumentor.instrument()
 
 app = FastAPI(
-    title="Order Processing API",
-    description="API for submitting customer orders to the LangGraph application.",
+    title="Dark Mode Coffee Agents API",
+    description="API for submitting requests to Dark Mode Coffee agents.",
     version="1.0.0",
 )
 
@@ -42,94 +40,40 @@ tracer = trace.get_tracer_provider().get_tracer(service_name)
 
 langgraph_app = build_graph()
 
-@app.post("/orders", response_model=dict, summary="Submit a new order")
-async def create_order(order_data: OrderRequest):
-    """
-    Receives an HTTP POST request with order details, processes it through the LangGraph application,
-    and returns the final state of the order.
-    """
-    try:
-        with tracer.start_as_current_span("create_order") as span:
-            logging.getLogger().info(f"About to process order: {order_data}")
-
-            # Prepare the initial state for LangGraph
-            state: GraphState = initial_state()
-
-            state["order"] = order_data
-            logging.getLogger().info(f"Invoking the graph")
-
-            # Invoke the LangGraph application
-            final_state = langgraph_app.invoke(state)
-
-            logging.getLogger().info(f"final_state: {final_state}")
-
-            if span:
-                span.end()
-
-            return final_state
-
-    except Exception as e:
-        # Log the error for debugging
-        logging.getLogger().error(f"An error occurred: {e}")
-        if span:
-            span.record_exception(e)
-            span.end()
-        raise HTTPException(status_code=500, detail=f"Error processing order: {str(e)}")
-
-@app.get("/get_orders_for_customer", response_model=List[Dict[str, Any]], summary="Get orders for a specific customer")
-async def get_orders_for_customer(customer_id: int):
-    """
-    Receives an HTTP GET request with a customer_id, and returns a list of orders for
-    that customer.
-    """
-    try:
-        with tracer.start_as_current_span("get_orders_for_customer") as span:
-            logging.getLogger().info(f"About to get orders for customer_id: {customer_id}")
-
-            # Call the synchronous function in a separate thread using asyncio.to_thread
-            # This prevents blocking the event loop.
-            orders = await asyncio.to_thread(fetch_orders_for_customer.func, customer_id)
-
-            if span:
-                span.end()
-            return orders
-
-    except Exception as e:
-        # Log the error for debugging
-        logging.getLogger().error(f"An error occurred: {e}")
-        if span:
-            span.record_exception(e)
-            span.end()
-        raise HTTPException(status_code=500, detail=f"Error retrieving customers: {str(e)}")
-
-class AskQuestionRequest(BaseModel):
+class ChatRequest(BaseModel):
     customer_id: int = Field(..., gt=0, description="Authenticated customer's ID.")
-    question: str = Field(..., min_length=1, max_length=4000, description="User's question.")
+    request: str = Field(..., min_length=1, max_length=4000, description="User's request.")
 
-class AskQuestionResponse(BaseModel):
+class ChatResponse(BaseModel):
     answer: str
 
-@app.post("/ask_question", response_model=AskQuestionResponse, summary="Ask a question")
-async def ask_question(payload: AskQuestionRequest) -> AskQuestionResponse:
+@app.post("/chat", response_model=ChatResponse, summary="Chat with the AI assistant")
+async def chat(payload: ChatRequest) -> ChatResponse:
     """
-    Receives a POST with customer_id and question, calls the chat agent, and returns an answer.
+    Receives a POST with customer_id and request. Calls the coordinator agent which
+    routes the request to other agents as required, then returns an answer.
     """
     try:
-        with tracer.start_as_current_span("ask_question") as span:
-            # Optional: annotate the span
+        with tracer.start_as_current_span("chat") as span:
             span.set_attribute("customer_id", payload.customer_id)
-            span.set_attribute("question.length", len(payload.question))
+            span.set_attribute("request.length", len(payload.request))
 
             logging.getLogger().info(
-                f"Ask question: customer_id={payload.customer_id}, question={payload.question[:200]}..."
+                f"Chat request: customer_id={payload.customer_id}, request={payload.request[:200]}..."
             )
 
-            # Run the synchronous chat function off the event loop
-            answer: str = await asyncio.to_thread(chat, payload.customer_id, payload.question)
+            state = {
+                "messages": [HumanMessage(content=payload.request)],
+                "customer_id": payload.customer_id
+            }
 
-            return AskQuestionResponse(answer=answer)
+            answer: AgentState = langgraph_app.invoke(state)
+
+            logging.getLogger().info(f"Answer is: {answer}")
+
+            return ChatResponse(answer=answer["messages"][-1].content)
 
     except Exception as e:
-        logging.getLogger().exception("ask_question failed")
+        logging.getLogger().exception("/chat request failed")
         # Let FastAPI produce a 500 response with a generic detail
         raise HTTPException(status_code=500, detail="Internal server error")

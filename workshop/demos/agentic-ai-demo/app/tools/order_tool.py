@@ -9,8 +9,8 @@ import psycopg2.extras
 
 from config import Settings
 
-@tool("add_order_to_db", args_schema=OrderRequest)
-def add_order_to_db(order: OrderRequest) -> int:
+@tool("create_order", args_schema=OrderRequest)
+def create_order(order: OrderRequest) -> int:
     """Adds the specified order to the database"""
     connection = None
 

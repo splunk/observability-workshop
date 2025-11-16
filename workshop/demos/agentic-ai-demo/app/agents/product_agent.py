@@ -1,13 +1,13 @@
-from typing import Any, Dict, List, Union, Optional
-from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
-from langchain_core.tools import BaseTool
-from langchain.tools import tool
+from typing import Dict, Any
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, Field
-from models.schemas import OrderRequest
-from tools.order_tool import fetch_orders_for_customer
+from langchain_core.messages import BaseMessage, SystemMessage, AIMessage
+from langchain_core.tools import BaseTool
+from models.schemas import AgentState
 from tools.product_tool import get_product_info
 from shared.create_llm import _create_llm
+
 from langchain.agents import (
     create_agent as _create_react_agent,  # type: ignore[attr-defined]
 )
@@ -16,43 +16,44 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-llm = _create_llm("chat_agent", temperature=0.2, session_id=None)
+llm = _create_llm("product_agent", temperature=0.2, session_id=None)
 
-agent = _create_react_agent(llm, tools=[fetch_orders_for_customer, get_product_info]).with_config(
+agent = _create_react_agent(llm, tools=[get_product_info]).with_config(
     {
-        "run_name": "chat_agent",
-        "tags": ["agent", "agent:chat_agent"],
+        "run_name": "product_agent",
+        "tags": ["agent", "agent:product_agent"],
         "metadata": {
-            "agent_name": "chat_agent",
+            "agent_name": "product_agent",
         },
     }
 )
 
-
-TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [fetch_orders_for_customer, get_product_info]}
-
 SYSTEM_INSTRUCTIONS = (
-    "You are a helpful support chatbot. Use tools when they can improve accuracy. "
-    "For any order-related questions, prefer the 'fetch_orders_for_customer' tool. "
-    "Do not fabricate order details. Keep answers concise and actionable."
+    "You are an product specialist.  Answer questions about product details, specifications, and features. "
+    "Use tools when they can improve accuracy. "
+    "Do not fabricate product details. Keep answers concise and actionable."
 )
 
-def chat(customer_id: int, question: str) -> str:
-    """
-    Answers a user's question. The model may call tools; we enforce the caller's customer_id.
-    """
-    initial_messages = [
-        SystemMessage(SYSTEM_INSTRUCTIONS),
-        # Provide relevant context explicitly.
-        SystemMessage(f"Context: The current authenticated customer's ID is {customer_id}. "
-                      "Never change this ID when calling tools."),
-        HumanMessage(question),
+TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [get_product_info]}
+
+def product_agent(state: AgentState):
+    """Handle product-related requests"""
+
+    # Build messages without nesting.
+    messages = [
+        SystemMessage(content=SYSTEM_INSTRUCTIONS),
+        SystemMessage(content=f"Context: The current authenticated customer's ID is {state['customer_id']}. Never change this ID when calling tools."),
     ]
 
-    logging.getLogger().info(f"about to invoke the agent with: {initial_messages}")
+    # If state["messages"] is a single BaseMessage, append it; if it's a list, extend.
+    prior = state["messages"]
 
-    # First pass: let the model decide whether to call a tool.
-    results = agent.invoke({"messages": initial_messages})
+    if isinstance(prior, BaseMessage):
+        messages.append(prior)
+    else:
+        messages.extend(prior)
+
+    results = agent.invoke({"messages": messages})
 
     msgs = results["messages"]
 
@@ -106,8 +107,8 @@ def chat(customer_id: int, question: str) -> str:
 
     # Second pass: give the model the tool outputs to produce a final answer.
     all_messages = initial_messages + [last_ai] + tool_messages
-    final_ai: AIMessage = agent.invoke({"messages": all_messages})
+    response = agent.invoke({"messages": all_messages})
 
-    response = all_message + final_ai
     return {"messages": [response]}
+
 
