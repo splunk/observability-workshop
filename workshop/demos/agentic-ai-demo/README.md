@@ -41,6 +41,15 @@ curl -sS -X POST "http://localhost:8080/chat" \
   -d '{"customer_id":1,"request":"What products were included in my most recent order?"}'
 ```
 
+Ask a question about an order amounts:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"What was the total dollar amount of my most recent order?"}'
+```
+
 Ask a question that requires product info? 
 
 ``` bash
@@ -58,7 +67,7 @@ Send a pickup order:
 curl -sS -X POST "http://localhost:8080/chat" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
-  -d '{"customer_id":1,"request":"I''d like to order 2 of sku COF-COL-DR-12 and 1 of sku KIT-CB-START, for pickup at store number 1."}'
+  -d '{"customer_id":1,"request":"I''d like to order 2 of sku COF-COL-DR-12 and 1 of sku KIT-CB-START, for pickup at store_id 1."}'
 ```
 
 Send a delivery order: 

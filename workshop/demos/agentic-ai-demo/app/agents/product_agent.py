@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import BaseMessage, SystemMessage, AIMessage
 from langchain_core.tools import BaseTool
 from models.schemas import AgentState
-from tools.product_tool import get_product_info
+from tools.product_tool import get_products_by_sku, get_all_products
 from shared.create_llm import _create_llm
 
 from langchain.agents import (
@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 
 llm = _create_llm("product_agent", temperature=0.2, session_id=None)
 
-agent = _create_react_agent(llm, tools=[get_product_info]).with_config(
+agent = _create_react_agent(llm, tools=[get_products_by_sku, get_all_products]).with_config(
     {
         "run_name": "product_agent",
         "tags": ["agent", "agent:product_agent"],
@@ -34,7 +34,7 @@ SYSTEM_INSTRUCTIONS = (
     "Do not fabricate product details. Keep answers concise and actionable."
 )
 
-TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [get_product_info]}
+TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [get_products_by_sku, get_all_products]}
 
 def product_agent(state: AgentState):
     """Handle product-related requests"""

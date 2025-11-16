@@ -1,7 +1,7 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 from pydantic import BaseModel, Field
 from langchain.tools import tool
-from models.schemas import OrderItem, OrderRequest, OrderItemRequest, Customer, ShippingAddressRequest
+from models.schemas import Customer, OrderRequest, OrderItemRequest, ShippingAddressRequest
 
 # Postgres
 import psycopg2
@@ -10,8 +10,27 @@ import psycopg2.extras
 from config import Settings
 
 @tool("create_order", args_schema=OrderRequest)
-def create_order(order: OrderRequest) -> int:
-    """Adds the specified order to the database"""
+def create_order(
+    order_id: Optional[str] = None,
+    customer_info: Customer = None,
+    order_type: Literal["delivery", "pickup"] = "delivery",
+    items: List[OrderItemRequest] = None,
+    store_id: Optional[int] = None,
+    warehouse_id: Optional[int] = None,
+    shipping_address: Optional[ShippingAddressRequest] = None,
+) -> int:
+    """Adds the specified order to the database and returns the new order_id."""
+    # Re-construct and validate the full request inside the tool
+    order = OrderRequest(
+        order_id=order_id,
+        customer_info=customer_info,
+        order_type=order_type,
+        items=items,
+        store_id=store_id,
+        warehouse_id=warehouse_id,
+        shipping_address=shipping_address,
+    )
+
     connection = None
 
     try:
@@ -116,7 +135,8 @@ def fetch_orders_for_customer(customer_id: int) -> List[Dict[str, Any]]:
 
                 orders_query = """
                     SELECT
-                        order_id, customer_id, order_type, store_id, warehouse_id,
+                        order_id, customer_id, order_status, order_type, order_date,
+                        store_id, warehouse_id, total_amount,
                         shipping_address_line1, shipping_address_line2, shipping_city,
                         shipping_state, shipping_postal_code, shipping_country
                     FROM orders
@@ -171,11 +191,13 @@ def fetch_orders_for_customer(customer_id: int) -> List[Dict[str, Any]]:
                     # Create a dictionary representing the order
                     order_dict = {
                         "order_id": str(order_record['order_id']),
-                        "customer_info": {"customer_id": order_record['customer_id']},
-                        "order_type": order_record['order_type'],
+                        "customer_id": str(order_record['customer_id']),
+                        "order_status": str(order_record['order_status']),
+                        "order_type": str(order_record['order_type']),
+                        "store_id": str(order_record['store_id']),
+                        "warehouse_id": str(order_record['warehouse_id']),
+                        "total_amount": str(order_record['total_amount']),
                         "items": items_for_this_order,
-                        "store_id": order_record['store_id'],
-                        "warehouse_id": order_record['warehouse_id'],
                         "shipping_address": shipping_address_dict
                     }
                     result_orders.append(order_dict) # Append the dictionary
