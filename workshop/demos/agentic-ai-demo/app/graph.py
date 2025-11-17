@@ -3,6 +3,7 @@ from models.schemas import AgentState
 from agents.coordination_agent import coordinator_node, route_based_on_state
 from agents.order_agent import order_agent as order_node
 from agents.product_agent import product_agent as product_node
+from agents.inventory_agent import inventory_agent as inventory_node
 
 def build_graph():
     graph = StateGraph(AgentState)
@@ -11,6 +12,7 @@ def build_graph():
     graph.add_node("coordinator", coordinator_node)
     graph.add_node("product", product_node)
     graph.add_node("order", order_node)
+    graph.add_node("inventory", inventory_node)
 
     # Start at coordinator
     graph.set_entry_point("coordinator")
@@ -21,12 +23,13 @@ def build_graph():
         {
             "product": "product",
             "order": "order",
+            "inventory": "inventory",
             "complete": END,
         },
     )
 
     # After each node, return to coordination for next decision.
-    for node in ["product", "order"]:
+    for node in ["product", "order", "inventory"]:
         graph.add_edge(node, "coordinator")
 
     return graph.compile()

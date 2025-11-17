@@ -31,6 +31,7 @@ Use the following command to run the application:
 cd workshop/demos/agentic-ai-demo
 docker compose --env-file .env --env-file .env.override up --force-recreate --remove-orphans --detach --build 
 ```
+### Test the Application
 
 Ask a question about an order: 
 
@@ -41,7 +42,7 @@ curl -sS -X POST "http://localhost:8080/chat" \
   -d '{"customer_id":1,"request":"What products were included in my most recent order?"}'
 ```
 
-Ask a question about an order amounts:
+Ask a question about order amounts:
 
 ``` bash
 curl -sS -X POST "http://localhost:8080/chat" \
@@ -59,7 +60,14 @@ curl -sS -X POST "http://localhost:8080/chat" \
   -d '{"customer_id":1,"request":"Can you describe the product that I''ve ordered most frequently? Please include the price and total quantity ordered."}'
 ```
 
-### Send a test order 
+Ask a question about inventory:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"What is the inventory for product_id 2 at store_id 1, 2, and 3?"}'
+```
 
 Send a pickup order: 
 
