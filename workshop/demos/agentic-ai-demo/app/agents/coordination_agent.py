@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 class RoutingDecision(BaseModel):
     """Decision about which agent to route to next"""
-    next_agent: Literal["product","order","complete"] = Field(
+    next_agent: Literal["product","order","inventory","complete"] = Field(
         description="The next agent to route to, or 'complete' if the task is done"
     )
     reasoning: str = Field(
@@ -40,6 +40,7 @@ SYSTEM_INSTRUCTIONS = """You are a coordinator agent that routes requests to spe
 Available agents:
 - product: Handles product details, descriptions, pricing
 - order: Handles new order creation, retrieving order history
+- inventory: Handles inventory requests, such as getting the current inventory for a product and store, or decrementing inventory when an order is placed
 
 Analyze the conversation history and determine which agent should handle the next step.
 Choose 'complete' if the user's request has been fully addressed.
