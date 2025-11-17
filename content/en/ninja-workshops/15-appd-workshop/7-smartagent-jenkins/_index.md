@@ -1,6 +1,6 @@
 ---
 title: SmartAgent Jenkins Automation
-weight: 6
+weight: 7
 time: 2 minutes
 description: Learn how to automate AppDynamics Smart Agent deployment and lifecycle management across multiple hosts using Jenkins pipelines.
 ---
