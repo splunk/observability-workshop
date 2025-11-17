@@ -1,6 +1,6 @@
 ---
-title: SmartAgent Remote Installation
-weight: 6
+title: Remote Installation
+weight: 1
 time: 2 minutes
 description: Learn how to install and manage AppDynamics Smart Agent on multiple remote hosts using smartagentctl.
 ---

@@ -1,6 +1,6 @@
 ---
-title: SmartAgent GitHub Actions Automation
-weight: 8
+title: GitHub Actions Automation
+weight: 3
 time: 2 minutes
 description: Learn how to automate AppDynamics Smart Agent deployment using GitHub Actions with self-hosted runners.
 ---
