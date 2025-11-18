@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Literal
+from typing import Any, Literal, Dict, Tuple, List
 from pydantic import BaseModel, Field
 from models.schemas import AgentState
 from shared.create_llm import _create_llm
@@ -35,26 +35,81 @@ agent = _create_react_agent(llm, tools=[], response_format=RoutingDecision).with
     }
 )
 
-SYSTEM_INSTRUCTIONS = """You are a coordinator agent that routes requests to specialized agents.
+AGENT_CATALOG: Dict[str, Tuple[str, str]] = {
+    # name: (description, state_field_name)
+    "product": (
+        "Handles product details, descriptions, pricing.",
+        "product_summary",
+    ),
+    "order": (
+        "Handles new order creation, retrieving order history.",
+        "order_summary",
+    ),
+    "inventory": (
+        "Handles inventory requests, such as getting the current inventory for a product and store, or decrementing inventory when an order is placed.",
+        "inventory_summary",
+    ),
+}
 
-Available agents:
-- product: Handles product details, descriptions, pricing
-- order: Handles new order creation, retrieving order history
-- inventory: Handles inventory requests, such as getting the current inventory for a product and store, or decrementing inventory when an order is placed
+def _is_invoked(value: Any) -> bool:
+    # Treat None/empty string/whitespace as not invoked.
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return value.strip() != ""
+    return bool(value)
 
-Analyze the conversation history and determine which agent should handle the next step.
-If the 'summary' field for a particular agent is not None, don't invoke that agent again.
-For example, if the 'product_summary' field is not None, don't invoke the product agent again.
-Choose 'complete' if the user's request has been fully addressed.
-"""
+def remaining_agents_from_state(state: dict) -> List[str]:
+    remaining = []
+    for agent_name, (_, field_name) in AGENT_CATALOG.items():
+        invoked = _is_invoked(state.get(field_name))
+        if not invoked:
+            remaining.append(agent_name)
+    return remaining
+
+def build_system_instructions(state: dict) -> str:
+    remaining = remaining_agents_from_state(state)
+
+    if remaining:
+        lines = [
+            "You are a coordinator agent that routes requests to specialized agents.",
+            "",
+            "Available agents:",
+        ]
+        for name in remaining:
+            desc = AGENT_CATALOG[name][0]
+            lines.append(f"- {name}: {desc}")
+        lines.extend([
+            "",
+            "Rules:",
+            f"- Only choose one of: {', '.join(remaining)}.",
+            "- Choose 'complete' if the user's request has been fully addressed.",
+            "- Do not choose agents that are not listed as available.",
+        ])
+    else:
+        # Nothing left to call.
+        lines = [
+            "You are a coordinator agent that routes requests to specialized agents.",
+            "",
+            "Available agents:",
+            "- None remaining; all specialized agents have already been invoked.",
+            "",
+            "Rules:",
+            "- Choose 'complete' if the user's request has been fully addressed.",
+            "- Do not choose agents that are not listed as available.",
+        ]
+    return "\n".join(lines)
 
 def coordinator_node(state: AgentState) -> AgentState:
     """Decide routing and store only JSON-serializable data in state."""
     logging.getLogger().info(f"Using the following state to route the request: {state}")
 
+    # Build dynamic coordinator instructions based on which agents remain.
+    dynamic_system = build_system_instructions(state)
+
     # Build messages without nesting and ensure elements are BaseMessage only.
     messages = [
-        SystemMessage(content=SYSTEM_INSTRUCTIONS),
+        SystemMessage(content=dynamic_system),
         SystemMessage(content=f"Context: The current authenticated customer's ID is {state['customer_id']}. Never change this ID when calling tools."),
     ]
 
@@ -82,17 +137,18 @@ def coordinator_node(state: AgentState) -> AgentState:
 
     logging.info("Routing decision (not serialized): %s", decision)
 
-    state["next_agent"] = decision["structured_response"].next_agent
+    next_agent = decision["structured_response"].next_agent
 
-#    if state["next_agent"]=="inventory" and state["inventory_summary"] is not None:
-        # avoid routing to the inventory agent again, we already have the response
-#        state["next_agent"] = "complete"
-#    elif state["next_agent"]=="order" and state["order_summary"] is not None:
-        # avoid routing to the order agent again, we already have the response
-#        state["next_agent"] = "complete"
-#    elif state["next_agent"]=="product" and state["product_summary"] is not None:
-        # avoid routing to the product agent again, we already have the response
-#        state["next_agent"] = "complete"
+    # validate the model's choice to avoid calling agents already used.
+    remaining = set(remaining_agents_from_state(state))
+    if next_agent not in remaining and next_agent != "complete":
+        logger.warning(
+            "Model chose unavailable agent '%s'. Remaining: %s. Coercing to 'complete'.",
+            next_agent, sorted(remaining)
+        )
+        next_agent = "complete"
+
+    state["next_agent"] = next_agent
 
     logging.info("Returning state: %s", state)
     return state
