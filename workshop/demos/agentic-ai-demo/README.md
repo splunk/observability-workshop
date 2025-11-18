@@ -135,7 +135,7 @@ export SPLUNK_INDEX=<name of index to send logs to in Splunk platform>
 Deploy the Splunk Distribution of the OpenTelemetry Collector for Kubernetes:
 
 ``` bash
-helm install ucs-otel-collector \
+helm install splunk-otel-collector \
 --set="clusterName=$CLUSTER_NAME" \
 --set="environment=$ENVIRONMENT_NAME" \
 --set="splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN" \
