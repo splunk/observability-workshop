@@ -40,8 +40,10 @@ TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [create_order, fetch_or
 def order_agent(state: AgentState):
     """Handle order-related requests"""
 
+    logging.getLogger().info(f"In {__file__} with state:{state}")
+
     # Build messages without nesting.
-    messages = [
+    initial_messages = [
         SystemMessage(content=SYSTEM_INSTRUCTIONS),
         SystemMessage(content=f"Context: The current authenticated customer's ID is {state['customer_id']}. Never change this ID when calling tools."),
     ]
@@ -50,68 +52,33 @@ def order_agent(state: AgentState):
     prior = state["messages"]
 
     if isinstance(prior, BaseMessage):
-        messages.append(prior)
+        initial_messages.append(prior)
     else:
-        messages.extend(prior)
+        initial_messages.extend(prior)
 
-    results = agent.invoke({"messages": messages})
+    logging.getLogger().info(f"In {__file__}, invoking LLM with: {initial_messages}")
 
-    msgs = results["messages"]
+    result = agent.invoke({"messages": initial_messages})
+    logging.getLogger().info(f"In {__file__}, LLM returned: {result}")
 
-    last_ai = next((m for m in reversed(msgs) if isinstance(m, AIMessage)), None)
-    if last_ai is None:
-        return ""
+    final_message = result["messages"][-1]
+    logging.getLogger().info(f"In {__file__}, final_message: {final_message}")
 
-    logging.getLogger().info(f"last_ai: {last_ai}")
+    # keep track of the response from the order agent separately
+    state["order_summary"] = (
+        final_message.content
+        if isinstance(final_message, BaseMessage)
+        else str(final_message)
+    )
 
-    if not getattr(last_ai, "tool_calls", None):
-        # Model answered directly.
-        return {"messages": [last_ai]}
+    state["messages"].append(
+        final_message
+        if isinstance(final_message, BaseMessage)
+        else AIMessage(content=str(final_message))
+    )
 
-    # Execute each tool call and collect ToolMessage responses.
-    tool_messages: List[ToolMessage] = []
+    logging.getLogger().info(f"In {__file__}, returning state: {state}")
 
-    for call in last_ai.tool_calls:
-        tool_name: str = call["name"]
-        tool_args: Dict[str, Any] = call.get("args", {}) or {}
-
-        tool = TOOLS_BY_NAME.get(tool_name)
-        if tool is None:
-            # Unknown tool; inform the model.
-            tool_messages.append(
-                ToolMessage(
-                    content=f"Error: requested unknown tool '{tool_name}'.",
-                    tool_call_id=call["id"],
-                )
-            )
-            continue
-
-        # Enforce customer_id from the authenticated session.
-        tool_args["customer_id"] = customer_id
-
-        try:
-            result = tool.invoke(tool_args)  # Tools are Runnables in LangChain 0.2+
-            # Keep the tool result compact; large payloads can be summarized first if needed.
-            tool_messages.append(
-                ToolMessage(
-                    content=str(result),  # Or json.dumps(result) if you prefer strict JSON
-                    tool_call_id=call["id"],
-                )
-            )
-        except Exception as e:
-            tool_messages.append(
-                ToolMessage(
-                    content=f"Tool execution failed: {type(e).__name__}: {e}",
-                    tool_call_id=call["id"],
-                )
-            )
-
-    # Second pass: give the model the tool outputs to produce a final answer.
-    all_messages = initial_messages + [last_ai] + tool_messages
-    response = agent.invoke({"messages": all_messages})
-
-    logging.getLogger().info(f"response: {response}")
-
-    return {"messages": [response]}
+    return state
 
 

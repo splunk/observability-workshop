@@ -5,6 +5,10 @@ from langgraph.graph import MessagesState
 class AgentState(MessagesState):
     next_agent: str  # Store routing decision
     customer_id: int
+    inventory_summary: Optional[str]
+    order_summary: Optional[str]
+    product_summary: Optional[str]
+
 
 class Customer(BaseModel):
     customer_id: int = Field(..., description="Unique identifier for the customer")

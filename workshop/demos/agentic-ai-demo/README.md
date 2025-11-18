@@ -51,13 +51,23 @@ curl -sS -X POST "http://localhost:8080/chat" \
   -d '{"customer_id":1,"request":"What was the total dollar amount of my most recent order?"}'
 ```
 
-Ask a question that requires product info? 
+Ask a question that requires both order and product info:
 
 ``` bash
 curl -sS -X POST "http://localhost:8080/chat" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{"customer_id":1,"request":"Can you describe the product that I''ve ordered most frequently? Please include the price and total quantity ordered."}'
+```
+
+
+Ask a question that requires product info:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"What''s the most expensive product you sell?"}'
 ```
 
 Ask a question about inventory:

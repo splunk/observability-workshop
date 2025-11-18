@@ -60,7 +60,10 @@ async def chat(payload: ChatRequest) -> ChatResponse:
 
             state = {
                 "messages": [HumanMessage(content=payload.request)],
-                "customer_id": payload.customer_id
+                "customer_id": payload.customer_id,
+                "inventory_summary": None,
+                "order_summary": None,
+                "product_summary": None,
             }
 
             answer: AgentState = langgraph_app.invoke(state)

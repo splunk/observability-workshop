@@ -43,6 +43,8 @@ Available agents:
 - inventory: Handles inventory requests, such as getting the current inventory for a product and store, or decrementing inventory when an order is placed
 
 Analyze the conversation history and determine which agent should handle the next step.
+If the 'summary' field for a particular agent is not None, don't invoke that agent again.
+For example, if the 'product_summary' field is not None, don't invoke the product agent again.
 Choose 'complete' if the user's request has been fully addressed.
 """
 
@@ -81,6 +83,16 @@ def coordinator_node(state: AgentState) -> AgentState:
     logging.info("Routing decision (not serialized): %s", decision)
 
     state["next_agent"] = decision["structured_response"].next_agent
+
+#    if state["next_agent"]=="inventory" and state["inventory_summary"] is not None:
+        # avoid routing to the inventory agent again, we already have the response
+#        state["next_agent"] = "complete"
+#    elif state["next_agent"]=="order" and state["order_summary"] is not None:
+        # avoid routing to the order agent again, we already have the response
+#        state["next_agent"] = "complete"
+#    elif state["next_agent"]=="product" and state["product_summary"] is not None:
+        # avoid routing to the product agent again, we already have the response
+#        state["next_agent"] = "complete"
 
     logging.info("Returning state: %s", state)
     return state

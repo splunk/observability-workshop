@@ -40,7 +40,7 @@ TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [get_inventory_for_prod
 
 def inventory_agent(state: AgentState):
     """Handle inventory-related requests"""
-    logging.getLogger().info(f"In inventory_agent function with state:{state}")
+    logging.getLogger().info(f"In {__file__} with state:{state}")
 
     # Build messages without nesting.
     initial_messages = [
@@ -56,20 +56,29 @@ def inventory_agent(state: AgentState):
     else:
         initial_messages.extend(prior)
 
-    logging.getLogger().info(f"In inventory_agent function, invoking LLM with: {initial_messages}")
+    logging.getLogger().info(f"In {__file__}, invoking LLM with: {initial_messages}")
 
-    results = agent.invoke({"messages": initial_messages})
+    result = agent.invoke({"messages": initial_messages})
+    logging.getLogger().info(f"In {__file__}, LLM returned: {result}")
 
-    logging.getLogger().info(f"In inventory_agent function, LLM returned: {results}")
+    final_message = result["messages"][-1]
+    logging.getLogger().info(f"In {__file__}, final_message: {final_message}")
 
-    resulting_messages = results["messages"]
+    # keep track of the response from the inventory agent separately
+    state["inventory_summary"] = (
+        final_message.content
+        if isinstance(final_message, BaseMessage)
+        else str(final_message)
+    )
 
-    last_ai_message = next((m for m in reversed(resulting_messages) if isinstance(m, AIMessage)), None)
-    if last_ai_message is None:
-        return ""
+    state["messages"].append(
+        final_message
+        if isinstance(final_message, BaseMessage)
+        else AIMessage(content=str(final_message))
+    )
 
-    logging.getLogger().info(f"In inventory_agent function, returning last_ai_message: {last_ai_message}")
+    logging.getLogger().info(f"In {__file__}, returning state: {state}")
 
-    return {"messages": [last_ai_message]}
+    return state
 
 
