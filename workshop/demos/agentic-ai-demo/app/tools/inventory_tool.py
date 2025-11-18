@@ -9,6 +9,10 @@ import psycopg2
 import psycopg2.extras
 
 from config import Settings
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class ProductStorePair(BaseModel):
     product_id: int = Field(..., description="Unique identifier for the product.")
@@ -22,6 +26,8 @@ class GetInventoryForPairsArgs(BaseModel):
 @tool("get_inventory_for_products_and_stores", args_schema=GetInventoryForPairsArgs)
 def get_inventory_for_products_and_stores(pairs: List[Dict[str, int]]) -> List[Dict[str, Any]]:
     """Retrieves inventory for the specified (product_id, store_id) pairs."""
+    logging.getLogger().info(f"In get_inventory_for_products_and_stores with the following args: {pairs}")
+
     connection = None
     result_inventory: List[Dict[str, Any]] = []
 
@@ -30,7 +36,7 @@ def get_inventory_for_products_and_stores(pairs: List[Dict[str, int]]) -> List[D
 
     # Flatten parameters for (%s, %s), (%s, %s), ...
     tuple_placeholders = ", ".join(["(%s, %s)"] * len(pairs))
-    params = list(chain.from_iterable((p["product_id"], p["store_id"]) for p in pairs))
+    params = list(chain.from_iterable((p.product_id, p.store_id) for p in pairs))
 
     try:
         with psycopg2.connect(Settings.DB_CONNECTION_STRING) as connection:

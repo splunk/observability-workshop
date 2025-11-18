@@ -77,7 +77,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 100M
+          memory: 500M
     restart: unless-stopped
     ports:
       - "${APP_PORT}:${APP_PORT}"

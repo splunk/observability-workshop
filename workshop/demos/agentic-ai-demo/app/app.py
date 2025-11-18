@@ -7,11 +7,7 @@ from langchain_core.messages import HumanMessage
 from dotenv import load_dotenv
 
 from opentelemetry import trace
-from opentelemetry.instrumentation.auto_instrumentation import initialize
 from opentelemetry.instrumentation.langchain import LangchainInstrumentor
-
-# OpenTelemetry initialize() must be called before importing FastAPI because of how instrumentation is patched
-initialize()
 
 from fastapi import FastAPI, HTTPException
 
