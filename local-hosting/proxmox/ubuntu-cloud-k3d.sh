@@ -63,9 +63,10 @@ NEXTID=$(pvesh get /cluster/nextid)
 
 UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
 RANDOM_ADDITION=$((4000 + RANDOM % 1001))
-VMID=$((NEXTID + RANDOM_ADDITION))
+#VMID=$((NEXTID + RANDOM_ADDITION))
+VMID=$((NEXTID))
 STORAGE=local-lvm
-HOSTNAME=$UNIQUE_HOST_ID-workshop-$VMID
+HOSTNAME=$VMID-workshop-$UNIQUE_HOST_ID
 USER=splunk
 PASSWORD=Splunk123!
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
@@ -227,22 +228,22 @@ runcmd:
 EOF
 
 #qm destroy $VMID >/dev/null
-rm -f jammy-server-cloudimg-amd64.img >/dev/null
-wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-qemu-img resize jammy-server-cloudimg-amd64.img 40G >/dev/null
+rm -f noble-server-cloudimg-amd64.img >/dev/null
+wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qemu-img resize noble-server-cloudimg-amd64.img 40G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
     --memory 16384 --balloon 0 \
     --agent 1 \
     --bios ovmf --machine q35 --efidisk0 $STORAGE:0,pre-enrolled-keys=0 \
     --cpu host --socket 1 --cores 4 \
     --net0 virtio,bridge=vmbr0 >/dev/null
-qm importdisk $VMID jammy-server-cloudimg-amd64.img $STORAGE >/dev/null
+qm importdisk $VMID noble-server-cloudimg-amd64.img $STORAGE >/dev/null
 qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard=on >/dev/null
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
 qm set $VMID --cicustom "user=local:snippets/ubuntu.yaml" >/dev/null
-qm set $VMID --tags o11y-workshop,jammy,cloudinit >/dev/null
+qm set $VMID --tags o11y-workshop,noble >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
 #qm set $VMID --ciupdate 0
