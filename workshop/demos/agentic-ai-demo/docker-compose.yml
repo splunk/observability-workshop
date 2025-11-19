@@ -18,6 +18,8 @@ services:
     build:
       context: ./
       dockerfile: ${POSTGRES_DOCKERFILE}
+      platforms:
+        - linux/amd64
       cache_from:
         - ghcr.io/splunk/agentic-ai-demo-db:1.0
     deploy:
@@ -72,6 +74,8 @@ services:
     build:
       context: ./
       dockerfile: ${APP_DOCKERFILE}
+      platforms:
+        - linux/amd64
       cache_from:
         - ghcr.io/splunk/agentic-ai-demo-app:1.0
     deploy:

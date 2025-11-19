@@ -101,7 +101,7 @@ curl -sS -X POST "http://localhost:8080/chat" \
 
 ### Create Secrets
 
-Create Kubernetes secrets for the OpenAI API key and database passwords: 
+Create Kubernetes secrets for the OpenAI API key: 
 
 ``` bash
 kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='<your Open AI API Key>'
@@ -182,17 +182,31 @@ curl -sS -X POST "http://localhost:8080/chat" \
 
 ## Run on a Cisco AI POD
 
-### Create Secrets
-
-Create Kubernetes secrets for the OpenAI API key and database passwords:
+### Clone the Repo
 
 ``` bash
-kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='<your Open AI API Key>'
+git clone https://github.com/splunk/observability-workshop.git 
+
+cd observability-workshop 
+
+git fetch
+git switch agentic-ai-demo-app  
+
+cd workshop/demos/agentic-ai-demo 
+```
+
+### Create Secrets
+
+Create Kubernetes secrets for the OpenAI API key:
+
+``` bash
+oc new-project agentic-ai-demo-app
+kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='dummy' -n agentic-ai-demo-app
 ```
 
 ### Build Docker Images (locally)
 
-Build Docker images and push them to the local container repository at `localhost:9999`:
+Build Docker images and push them to the `ghcr.io/splunk` repository: 
 
 ``` bash
 docker compose build postgresql
@@ -207,7 +221,6 @@ docker push ghcr.io/splunk/agentic-ai-demo-app:1.0
 Next, we can deploy our application to OpenShift:
 
 ``` bash
-oc create project agentic-ai-demo-app
 oc apply -f ./ai-pod.yaml -n agentic-ai-demo-app
 ```
 
