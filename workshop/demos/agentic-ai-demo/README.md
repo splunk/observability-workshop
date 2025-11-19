@@ -104,10 +104,7 @@ curl -sS -X POST "http://localhost:8080/chat" \
 Create Kubernetes secrets for the OpenAI API key and database passwords: 
 
 ``` bash
-kubectl create secret generic agentic-ai-secret \
---from-literal=openai_api_key='<your Open AI API Key>' \
---from-literal=db_connection_string='host=postgresql user=dbuser password=dbpass dbname=agentic-ai-demo' \
---from-literal=db_root_password='agents' 
+kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='<your Open AI API Key>'
 ```
 
 ### Deploy the OpenTelemetry Collector

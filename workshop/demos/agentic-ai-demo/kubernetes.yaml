@@ -23,10 +23,7 @@ spec:
             - name: POSTGRES_USER
               value: "root"
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: agentic-ai-secret
-                  key: db_root_password
+              value: "agents"
             - name: POSTGRES_DB
               value: "agentic-ai-demo"
           resources:
@@ -117,10 +114,7 @@ spec:
             - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
               value: "python"
             - name: DB_CONNECTION_STRING
-              valueFrom:
-                secretKeyRef:
-                  name: agentic-ai-secret
-                  key: db_connection_string
+              value: "host=postgresql user=dbuser password=dbpass dbname=agentic-ai-demo"
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
