@@ -228,7 +228,7 @@ qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
 qm set $VMID --cicustom "user=local:snippets/ubuntu.yaml" >/dev/null
-qm set $VMID --tags o11y-workshop,jammy,cloudinit >/dev/null
+qm set $VMID --tags o11y-workshop,jammy >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
 #qm set $VMID --ciupdate 0
