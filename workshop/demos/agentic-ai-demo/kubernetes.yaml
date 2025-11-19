@@ -83,10 +83,6 @@ spec:
               value: "http://$(SPLUNK_OTEL_AGENT):4317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "grpc"
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: ""
-            - name: OTEL_EXPORTER_OTLP_PROTOCOL
-              value: "grpc"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: "delta"
             - name: OTEL_RESOURCE_ATTRIBUTES
