@@ -1,0 +1,125 @@
+---
+# Source: splunk-otel-collector/templates/deployment-cluster-receiver.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-contrib-collector-k8s-cluster-receiver
+  namespace: default
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app: otel-collector
+    component: otel-k8s-cluster-receiver
+    app.kubernetes.io/component: otel-k8s-cluster-receiver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-collector
+      component: otel-k8s-cluster-receiver
+      release: default
+  template:
+    metadata:
+      labels:
+        app: otel-collector
+        component: otel-k8s-cluster-receiver
+        release: default
+      annotations:
+        checksum/config: 4b62199b9bbcfb6f7dc9ae4dd0ec6fc45a2a5953d7002ed90e884883b6f0ad4b
+    spec:
+      serviceAccountName: otel-contrib-collector
+      nodeSelector:
+          kubernetes.io/os: linux
+      containers:
+      - name: otel-collector
+        command:
+        - /otelcol-contrib
+        - --config=/conf/relay.yaml
+        image: otel/opentelemetry-collector-contrib
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: SPLUNK_MEMORY_TOTAL_MIB
+            value: "500"
+          - name: K8S_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: SPLUNK_OTLP_METRIC_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_otlp_metric_url
+          - name: SPLUNK_OTLP_TRACE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_otlp_trace_url
+          - name: SPLUNK_OTLP_LOG_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_otlp_log_url
+          - name: SPLUNK_API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_api_url
+          - name: SPLUNK_INGEST_URL
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: splunk_ingest_url
+          - name: DEPLOYMENT_ENVIRONMENT
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: deployment_environment
+          - name: K8S_CLUSTER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: otel-contrib-configmap
+                key: k8s_cluster_name
+          - name: K8S_POD_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.podIP
+          - name: K8S_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: K8S_POD_UID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.uid
+          - name: K8S_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: SPLUNK_OBSERVABILITY_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: otel-contrib-collector
+                key: splunk_observability_access_token
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 13134
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 13134
+        resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /conf
+          name: collector-configmap
+      terminationGracePeriodSeconds: 600
+      volumes:
+      - name: collector-configmap
+        configMap:
+          name: otel-contrib-collector-otel-k8s-cluster-receiver
+          items:
+            - key: relay
+              path: relay.yaml
