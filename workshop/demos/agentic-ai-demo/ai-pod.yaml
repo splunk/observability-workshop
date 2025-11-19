@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgresql
   labels:
     app: postgresql
 spec:
-  replicas: 1
+  serviceName: "postgresql-headless" # Must match the name of the headless service
+  replicas: 1 # Start with 1 replica for a single PostgreSQL instance
   selector:
     matchLabels:
       app: postgresql
@@ -14,9 +15,14 @@ spec:
       labels:
         app: postgresql
     spec:
+      # Security context for OpenShift compatibility
+      securityContext:
+        runAsUser: 999       # UID of the 'postgres' user in the official image
+        fsGroup: 999         # GID for volume ownership, allows 'postgres' user to write
+        runAsGroup: 999      # Primary group ID
       containers:
         - name: postgresql
-          image: ghcr.io/splunk/agentic-ai-demo-db:1.0
+          image: ghcr.io/splunk/agentic-ai-demo-db:1.0 # Your custom image
           ports:
             - containerPort: 5432
           env:
@@ -28,22 +34,38 @@ spec:
               value: "agentic-ai-demo"
           resources:
             limits:
-              memory: "80Mi"
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          volumeMounts:
+            - name: postgres-data # Must match the name in volumeClaimTemplates
+              mountPath: /var/lib/postgresql/data # Standard data directory for PostgreSQL
+              # For the official PostgreSQL image, the data directory is /var/lib/postgresql/data
+              # If your custom image uses a different path, adjust this accordingly.
+  volumeClaimTemplates: # This is where the PVC definition goes
+    - metadata:
+        name: postgres-data # This name is referenced in volumeMounts
+      spec:
+        accessModes: [ "ReadWriteOnce" ] # Only one pod can mount this volume at a time
+        resources:
+          requests:
+            storage: 1Gi # Request 1 GB of storage (adjust size as needed)
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgresql
+  name: postgresql-headless # Name of the headless service
   labels:
     app: postgresql
 spec:
-  type: ClusterIP
+  ports:
+    - port: 5432
+      name: postgresql
+  clusterIP: None # This makes it a headless service
   selector:
     app: postgresql
-  ports:
-    - name: postgres
-      port: 5432
-      targetPort: 5432
 ---
 apiVersion: apps/v1
 kind: Deployment
