@@ -149,9 +149,11 @@ Build Docker images and push them to the local container repository at `localhos
 
 ``` bash
 docker compose build postgresql
-docker compose build app
-
+docker tag ghcr.io/splunk/agentic-ai-demo-db:1.0 localhost:9999/agentic-ai-demo-db:1.0
 docker push localhost:9999/agentic-ai-demo-db:1.0
+
+docker compose build app
+docker tag ghcr.io/splunk/agentic-ai-demo-app:1.0 localhost:9999/agentic-ai-demo-app:1.0
 docker push localhost:9999/agentic-ai-demo-app:1.0
 ```
 
@@ -167,6 +169,52 @@ kubectl apply -f ./kubernetes.yaml
 
 ``` bash
 kubectl port-forward service/agentic-ai-demo-app 8080:8080
+```
+
+Send a pickup order:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"I''d like to order 2 of sku COF-COL-DR-12 and 1 of sku KIT-CB-START, for pickup at store_id 1."}'
+```
+
+## Run on a Cisco AI POD
+
+### Create Secrets
+
+Create Kubernetes secrets for the OpenAI API key and database passwords:
+
+``` bash
+kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='<your Open AI API Key>'
+```
+
+### Build Docker Images (locally)
+
+Build Docker images and push them to the local container repository at `localhost:9999`:
+
+``` bash
+docker compose build postgresql
+docker push ghcr.io/splunk/agentic-ai-demo-db:1.0
+
+docker compose build app
+docker push ghcr.io/splunk/agentic-ai-demo-app:1.0
+```
+
+### Deploy the Application
+
+Next, we can deploy our application to OpenShift:
+
+``` bash
+oc create project agentic-ai-demo-app
+oc apply -f ./ai-pod.yaml -n agentic-ai-demo-app
+```
+
+### Test the Application
+
+``` bash
+oc port-forward service/agentic-ai-demo-app -n agentic-ai-demo-app 8080:8080
 ```
 
 Send a pickup order:

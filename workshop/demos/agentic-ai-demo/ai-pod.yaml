@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: postgresql
-          image: localhost:9999/agentic-ai-demo-db:1.0
+          image: ghcr.io/splunk/agentic-ai-demo-db:1.0
           ports:
             - containerPort: 5432
           env:
@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: localhost:9999/agentic-ai-demo-app:1.0
+          image: ghcr.io/splunk/agentic-ai-demo-app:1.0
           ports:
             - containerPort: 8080 # Replace with your APP_PORT.
           env:
@@ -110,9 +110,9 @@ spec:
             - name: DB_CONNECTION_STRING
               value: "host=postgresql user=dbuser password=dbpass dbname=agentic-ai-demo"
             - name: OPENAI_MODEL
-              value: "gpt-4o-mini"
+              value: "meta/llama-3.1-8b-instruct"
             - name: OPENAI_BASE_URL
-              value: "https://api.openai.com/v1"
+              value: "http://llm.nim.svc.cluster.local:8000/v1"
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
