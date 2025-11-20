@@ -195,12 +195,21 @@ git switch agentic-ai-demo-app
 cd workshop/demos/agentic-ai-demo 
 ```
 
+### Create an OpenShift Project
+
+Create a new OpenShift project to work with, then ensure the anyuid Security Context Constraint (SCC) 
+is added to the default service account in the new project: 
+
+``` bash
+oc new-project agentic-ai-demo-app
+oc adm policy add-scc-to-user anyuid -z default
+```
+
 ### Create Secrets
 
 Create Kubernetes secrets for the OpenAI API key:
 
 ``` bash
-oc new-project agentic-ai-demo-app
 kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='dummy' -n agentic-ai-demo-app
 ```
 

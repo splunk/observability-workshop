@@ -15,14 +15,10 @@ spec:
       labels:
         app: postgresql
     spec:
-      # Security context for OpenShift compatibility
-      securityContext:
-        runAsUser: 999       # UID of the 'postgres' user in the official image
-        fsGroup: 999         # GID for volume ownership, allows 'postgres' user to write
-        runAsGroup: 999      # Primary group ID
       containers:
         - name: postgresql
           image: ghcr.io/splunk/agentic-ai-demo-db:1.0 # Your custom image
+          imagePullPolicy: Always
           ports:
             - containerPort: 5432
           env:
@@ -42,8 +38,6 @@ spec:
           volumeMounts:
             - name: postgres-data # Must match the name in volumeClaimTemplates
               mountPath: /var/lib/postgresql/data # Standard data directory for PostgreSQL
-              # For the official PostgreSQL image, the data directory is /var/lib/postgresql/data
-              # If your custom image uses a different path, adjust this accordingly.
   volumeClaimTemplates: # This is where the PVC definition goes
     - metadata:
         name: postgres-data # This name is referenced in volumeMounts
@@ -86,6 +80,7 @@ spec:
       containers:
         - name: app
           image: ghcr.io/splunk/agentic-ai-demo-app:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080 # Replace with your APP_PORT.
           env:
@@ -130,7 +125,7 @@ spec:
             - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
               value: "python"
             - name: DB_CONNECTION_STRING
-              value: "host=postgresql user=dbuser password=dbpass dbname=agentic-ai-demo"
+              value: "host=postgresql-headless.agentic-ai-demo-app.svc.cluster.local user=dbuser password=dbpass dbname=agentic-ai-demo"
             - name: OPENAI_MODEL
               value: "meta/llama-3.1-8b-instruct"
             - name: OPENAI_BASE_URL
