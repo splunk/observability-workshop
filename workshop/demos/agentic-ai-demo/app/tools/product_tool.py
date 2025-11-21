@@ -2,6 +2,8 @@ from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
 from langchain.tools import tool
 
+import simplejson as json
+
 # Postgres
 import psycopg2
 import psycopg2.extras
@@ -60,7 +62,7 @@ def get_products_by_sku(skus: List[str]) -> List[Dict[str, Any]]:
                     }
                     result_products.append(product_dict) # Append the dictionary
 
-                return result_products
+                return json.dumps(result_products, use_decimal=True)
 
     except Exception as e:
         if connection:
@@ -116,7 +118,7 @@ def get_all_products() -> List[Dict[str, Any]]:
                     }
                     result_products.append(product_dict) # Append the dictionary
 
-                return result_products
+                return json.dumps(result_products, use_decimal=True)
 
     except Exception as e:
         if connection:

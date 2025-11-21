@@ -9,6 +9,8 @@ import psycopg2
 import psycopg2.extras
 
 from config import Settings
+
+import simplejson as json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -60,7 +62,7 @@ def get_inventory_for_products_and_stores(pairs: List[Dict[str, int]]) -> List[D
                         "quantity": r["quantity"],
                     })
 
-        return result_inventory
+        return json.dumps(result_inventory, use_decimal=True)
 
     except Exception as e:
         if connection:
@@ -97,8 +99,8 @@ def batch_decrement_inventory(items: List[Dict[str, int]], all_or_none: bool = T
     # Aggregate duplicates (sum quantities per (product_id, store_id))
     agg = defaultdict(int)
     for it in items:
-        key = (int(it["product_id"]), int(it["store_id"]))
-        qty = int(it["quantity"])
+        key = (int(it.product_id), int(it.store_id))
+        qty = int(it.quantity)
         if qty <= 0:
             continue
         agg[key] += qty
@@ -198,8 +200,8 @@ def batch_upsert_increment_inventory(items: List[Dict[str, int]]) -> Dict[str, A
     from collections import defaultdict
     agg = defaultdict(int)
     for it in items:
-        key = (int(it["product_id"]), int(it["store_id"]))
-        qty = int(it["quantity"])
+        key = (int(it.product_id), int(it.store_id))
+        qty = int(it.quantity)
         if qty <= 0:
             continue
         agg[key] += qty

@@ -7,6 +7,8 @@ from models.schemas import Customer, OrderRequest, OrderItemRequest, ShippingAdd
 import psycopg2
 import psycopg2.extras
 
+import simplejson as json
+
 from config import Settings
 
 @tool("create_order", args_schema=OrderRequest)
@@ -107,7 +109,7 @@ def create_order(
                     )
 
                 connection.commit()  # Commit the transaction after all insertions
-                return order_id
+                return json.dumps(order_id, use_decimal=True)
 
     except Exception as e:
         if connection:
@@ -202,7 +204,7 @@ def fetch_orders_for_customer(customer_id: int) -> List[Dict[str, Any]]:
                     }
                     result_orders.append(order_dict) # Append the dictionary
 
-                return result_orders
+                return json.dumps(result_orders, use_decimal=True)
 
     except Exception as e:
         if connection:

@@ -55,7 +55,8 @@ def product_agent(state: AgentState):
     else:
         initial_messages.extend(prior)
 
-    logging.getLogger().info(f"In {__file__}, invoking LLM with: {initial_messages}")
+    log_messages = {"messages": initial_messages}
+    logging.getLogger().info(f"In {__file__}, invoking LLM with: {log_messages}")
 
     result = agent.invoke({"messages": initial_messages})
     logging.getLogger().info(f"In {__file__}, LLM returned: {result}")
