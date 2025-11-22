@@ -84,6 +84,7 @@ def build_system_instructions(state: dict) -> str:
             "Rules:",
             f"- Only choose one of: {', '.join(remaining)}.",
             "- Choose 'complete' if the user's request has been fully addressed.",
+            "- There's no need to use all of the agents once. Only use agents that are needed to fulfill the request.",
             "- Do not choose agents that are not listed as available.",
         ])
     else:
@@ -96,6 +97,7 @@ def build_system_instructions(state: dict) -> str:
             "",
             "Rules:",
             "- Choose 'complete' if the user's request has been fully addressed.",
+            "- There's no need to use all of the agents once. Only use agents that are needed to fulfill the request.",
             "- Do not choose agents that are not listed as available.",
         ]
     return "\n".join(lines)

@@ -148,7 +148,7 @@ def fetch_orders_for_customer(customer_id: int) -> List[Dict[str, Any]]:
                 order_records = cursor.fetchall()
 
                 if not order_records:
-                    return []
+                    return json.dumps("No orders found for the provided customer_id.")
 
                 order_ids = [record['order_id'] for record in order_records]
 

@@ -47,7 +47,7 @@ def get_products_by_sku(skus: List[str]) -> List[Dict[str, Any]]:
                 product_records = cursor.fetchall()
 
                 if not product_records:
-                    return []
+                    return json.dumps("No products found for the provided SKUs.")
 
                 for product_record in product_records:
                     # Create a dictionary representing the product
@@ -103,7 +103,7 @@ def get_all_products() -> List[Dict[str, Any]]:
                 product_records = cursor.fetchall()
 
                 if not product_records:
-                    return []
+                    return json.dumps("No products found.")
 
                 for product_record in product_records:
                     # Create a dictionary representing the product

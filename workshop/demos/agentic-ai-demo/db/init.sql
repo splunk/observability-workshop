@@ -85,6 +85,7 @@ CREATE TABLE inventory (
                            last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE inventory ADD CONSTRAINT unique_product_store UNIQUE (product_id, store_id);
 
 -- Add products
 INSERT INTO products (product_name, product_description, cost, sku, category)
