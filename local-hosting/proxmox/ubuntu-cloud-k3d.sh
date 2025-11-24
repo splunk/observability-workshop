@@ -43,6 +43,23 @@ else
   header_info && echo -e "${RD}User exited script${CL}\n" && exit
 fi
 
+if ENV_NAME=$(whiptail --backtitle "Splunk" --title "Environment Name" --inputbox "Enter environment name (default: workshop):" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -z "$ENV_NAME" ]]; then
+    ENV_NAME="workshop"
+  fi
+  echo -e "Environment: ${YW}${ENV_NAME}${CL}"
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
+if whiptail --backtitle "Splunk" --title "Demo-in-a-Box Version" --yesno "Use staging version of demo-in-a-box?\n\nYes = Staging\nNo = Production" 12 58; then
+  DIAB_VERSION="staging"
+  echo -e "Demo-in-a-Box Version: ${YW}Staging${CL}"
+else
+  DIAB_VERSION="production"
+  echo -e "Demo-in-a-Box Version: ${YW}Production${CL}"
+fi
+
 # Call the API and store the response
 JSON_RESPONSE=$(curl -s https://swipe.splunk.show/api?id=${SWIPE_ID})
 
@@ -66,7 +83,7 @@ RANDOM_ADDITION=$((4000 + RANDOM % 1001))
 #VMID=$((NEXTID + RANDOM_ADDITION))
 VMID=$((NEXTID))
 STORAGE=local-lvm
-HOSTNAME=$VMID-workshop-$UNIQUE_HOST_ID
+HOSTNAME=$VMID-$ENV_NAME-$UNIQUE_HOST_ID
 USER=splunk
 PASSWORD=Splunk123!
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
@@ -183,6 +200,12 @@ runcmd:
   - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-main
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
+
+  # Copy staging version of demo-in-a-box if selected and available
+  - |
+    if [ "$DIAB_VERSION" = "staging" ] && [ -f /home/splunk/workshop/k3s/demo-in-a-box-staging.zip ]; then
+      cp /home/splunk/workshop/k3s/demo-in-a-box-staging.zip /home/splunk/workshop/k3s/demo-in-a-box.zip
+    fi
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
 
   # Download Splunk Observability Content Contrib Repo
