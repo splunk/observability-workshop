@@ -7,7 +7,7 @@ description: Learn multiple approaches to deploy and manage AppDynamics Smart Ag
 
 ## Introduction
 
-AppDynamics **Smart Agent** is a lightweight, intelligent agent that provides comprehensive monitoring capabilities for your infrastructure. This section covers three different deployment approaches, allowing you to choose the method that best fits your organization's needs and existing tooling.
+AppDynamics **Smart Agent** is a lightweight, intelligent agent that provides comprehensive monitoring capabilities for your infrastructure. This section covers four different deployment approaches, allowing you to choose the method that best fits your organization's needs and existing tooling.
 
 ![AppDynamics](https://img.shields.io/badge/AppDynamics-0078D4?style=flat)
 
@@ -23,7 +23,7 @@ Smart Agent is AppDynamics' next-generation monitoring agent that provides:
 
 ## Deployment Approaches
 
-This section covers three distinct approaches to deploying Smart Agent at scale:
+This section covers four distinct approaches to deploying Smart Agent at scale:
 
 ### 1. Remote Installation (smartagentctl)
 
@@ -73,16 +73,31 @@ Modern CI/CD approach using GitHub Actions workflows with self-hosted runners.
 - GitHub secrets integration
 - Automatic batching for scalability
 
+### 4. Ansible Automation
+
+Configuration management approach using Ansible playbooks for infrastructure as code.
+
+**Best for:**
+- Teams using Ansible for configuration management
+- Declarative infrastructure definition
+- Consistent state management across fleets
+
+**Key Features:**
+- Infrastructure as Code (IaC)
+- Idempotent playbooks
+- Inventory management
+- Role-based organization
+
 ## Choosing the Right Approach
 
-| Factor | Remote Installation | Jenkins | GitHub Actions |
-|--------|-------------------|---------|----------------|
-| **Setup Complexity** | Low | Medium | Medium |
-| **Scalability** | Good (100s of hosts) | Excellent (1000s) | Excellent (1000s) |
-| **Prerequisites** | SSH access only | Jenkins server | GitHub account |
-| **Learning Curve** | Minimal | Moderate | Moderate |
-| **Automation Level** | Manual execution | Full automation | Full automation |
-| **Best Use Case** | Quick deployments | Enterprise CI/CD | Modern DevOps |
+| Factor | Remote Installation | Jenkins | GitHub Actions | Ansible |
+|--------|-------------------|---------|----------------|---------|
+| **Setup Complexity** | Low | Medium | Medium | Low |
+| **Scalability** | Good (100s of hosts) | Excellent (1000s) | Excellent (1000s) | Excellent (1000s) |
+| **Prerequisites** | SSH access only | Jenkins server | GitHub account | Ansible Control Node |
+| **Learning Curve** | Minimal | Moderate | Moderate | Low/Moderate |
+| **Automation Level** | Manual execution | Full automation | Full automation | Full automation |
+| **Best Use Case** | Quick deployments | Enterprise CI/CD | Modern DevOps | Infrastructure as Code |
 
 ## Common Features Across All Approaches
 
@@ -102,6 +117,7 @@ Each deployment approach has its own dedicated section:
 1. **Remote Installation** - Direct CLI-based deployment
 2. **Jenkins Automation** - Pipeline-based enterprise deployment
 3. **GitHub Actions** - Modern workflow-based deployment
+4. **Ansible Automation** - Infrastructure as Code deployment
 
 You can follow one or all approaches depending on your needs.
 
@@ -126,5 +142,6 @@ Choose your preferred deployment approach and proceed to that section:
 - **Start Simple**: Begin with Remote Installation to learn the fundamentals
 - **Scale with Jenkins**: Move to Jenkins for enterprise-grade automation
 - **Modernize with GitHub**: Adopt GitHub Actions for cloud-native workflows
+- **Automate with Ansible**: Use Ansible for declarative configuration management
 
 Each section provides complete, hands-on guidance for deploying Smart Agent at scale!
