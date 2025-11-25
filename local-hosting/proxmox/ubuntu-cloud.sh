@@ -43,6 +43,42 @@ else
   header_info && echo -e "${RD}User exited script${CL}\n" && exit
 fi
 
+if ENV_NAME=$(whiptail --backtitle "Splunk" --title "Environment Name" --inputbox "Enter environment name (default: workshop):" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -z "$ENV_NAME" ]]; then
+    ENV_NAME="workshop"
+  fi
+  echo -e "Environment: ${YW}${ENV_NAME}${CL}"
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
+if whiptail --backtitle "Splunk" --title "Demo-in-a-Box Version" --yesno "Use staging version of demo-in-a-box?\n\nYes = Staging\nNo = Production" 12 58; then
+  DIAB_VERSION="staging"
+  echo -e "Demo-in-a-Box Version: ${YW}Staging${CL}"
+else
+  DIAB_VERSION="production"
+  echo -e "Demo-in-a-Box Version: ${YW}Production${CL}"
+fi
+
+if DNS_SERVER=$(whiptail --backtitle "Splunk" --title "DNS Server" --inputbox "Enter DNS server IP address:" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -n "$DNS_SERVER" ]]; then
+    echo -e "DNS Server: ${YW}${DNS_SERVER}${CL}"
+  else
+    header_info && echo -e "${RD}Invalid DNS server. Exiting script.${CL}\n" && exit
+  fi
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
+if DOMAIN=$(whiptail --backtitle "Splunk" --title "Domain Name" --inputbox "Enter domain name (default: localdomain):" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -z "$DOMAIN" ]]; then
+    DOMAIN="localdomain"
+  fi
+  echo -e "Domain: ${YW}${DOMAIN}${CL}"
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
 # Call the API and store the response
 JSON_RESPONSE=$(curl -s https://swipe.splunk.show/api?id=${SWIPE_ID})
 
@@ -63,9 +99,10 @@ NEXTID=$(pvesh get /cluster/nextid)
 
 UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
 RANDOM_ADDITION=$((4000 + RANDOM % 1001))
-VMID=$((NEXTID + RANDOM_ADDITION))
+#VMID=$((NEXTID + RANDOM_ADDITION))
+VMID=$((NEXTID))
 STORAGE=local-lvm
-HOSTNAME=$UNIQUE_HOST_ID-workshop-$VMID
+HOSTNAME=$VMID-$ENV_NAME-$UNIQUE_HOST_ID
 USER=splunk
 PASSWORD=Splunk123!
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
@@ -77,12 +114,12 @@ echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 cat << EOF | tee /var/lib/vz/snippets/ubuntu.yaml >/dev/null
 #cloud-config
 package_update: true
-#package_upgrade: true
+package_upgrade: true
 package_reboot_if_required: false
 
 hostname: $HOSTNAME
 manage_etc_hosts: true
-fqdn: $HOSTNAME
+fqdn: $HOSTNAME.$DOMAIN
 user: $USER
 password: $PASSWORD
 chpasswd:
@@ -110,8 +147,21 @@ packages:
   - git
   - wget
   - qemu-guest-agent
-
 write_files:
+  - path: /etc/systemd/resolved.conf.d/dns.conf
+    content: |
+      [Resolve]
+      DNS=$DNS_SERVER
+      Domains=$DOMAIN
+    permissions: '0644'
+
+  - path: /etc/sysctl.conf
+    append: true
+    content: |
+      # Increase inotify limits
+      fs.inotify.max_user_watches=524288
+      fs.inotify.max_user_instances=8192
+
   - path: /etc/environment
     append: true
     content: |
@@ -133,7 +183,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
 
-  - path: /tmp/workshop-secrets.yaml
+  - path: /home/splunk/workshop-secrets.yaml
     permissions: '0755'
     content: |
       apiVersion: v1
@@ -152,11 +202,14 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: http://frontend
+        url: http://$HOSTNAME.$DOMAIN
 
 runcmd:
   - systemctl start qemu-guest-agent
   - systemctl enable qemu-guest-agent
+
+  # Configure DNS via systemd-resolved
+  - systemctl restart systemd-resolved
 
   #- chsh -s $(which zsh) splunk
   #- echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
@@ -176,6 +229,12 @@ runcmd:
   - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-main
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
+
+  # Copy staging version of demo-in-a-box if selected and available
+  - |
+    if [ "$DIAB_VERSION" = "staging" ] && [ -f /home/splunk/workshop/k3s/demo-in-a-box-staging.zip ]; then
+      cp /home/splunk/workshop/k3s/demo-in-a-box-staging.zip /home/splunk/workshop/k3s/demo-in-a-box.zip
+    fi
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
 
   # Download Splunk Observability Content Contrib Repo
@@ -204,31 +263,33 @@ runcmd:
   # Deploy Splunk secrets
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
 
-  # Add splunk user to docker group
+  # Add user splunk to docker group
   - usermod -aG docker splunk
+
 
   # Increase inotify limits for k3s
   - sysctl -w fs.inotify.max_user_watches=524288
   - sysctl -w fs.inotify.max_user_instances=8192
+
 EOF
 
 #qm destroy $VMID >/dev/null
-rm -f jammy-server-cloudimg-amd64.img >/dev/null
-wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-qemu-img resize jammy-server-cloudimg-amd64.img 40G >/dev/null
+rm -f noble-server-cloudimg-amd64.img >/dev/null
+wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qemu-img resize noble-server-cloudimg-amd64.img 40G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
-    --memory 8192 --balloon 0 \
+    --memory 16384 --balloon 0 \
     --agent 1 \
     --bios ovmf --machine q35 --efidisk0 $STORAGE:0,pre-enrolled-keys=0 \
     --cpu host --socket 1 --cores 4 \
     --net0 virtio,bridge=vmbr0 >/dev/null
-qm importdisk $VMID jammy-server-cloudimg-amd64.img $STORAGE >/dev/null
+qm importdisk $VMID noble-server-cloudimg-amd64.img $STORAGE >/dev/null
 qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard=on >/dev/null
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
 qm set $VMID --cicustom "user=local:snippets/ubuntu.yaml" >/dev/null
-qm set $VMID --tags o11y-workshop,jammy >/dev/null
+qm set $VMID --tags o11y-workshop,noble,k3s >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
 #qm set $VMID --ciupdate 0
