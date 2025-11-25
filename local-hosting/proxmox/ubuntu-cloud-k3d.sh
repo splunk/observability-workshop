@@ -256,9 +256,6 @@ runcmd:
   # Create 3 node k3d cluster
   - k3d cluster create ${HOSTNAME}-cluster --agents 2 --agents-memory 6G --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@server:0" --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@agent:*" --image rancher/k3s:v1.33.4-k3s1 --port "80:80@loadbalancer" --port "81:80@loadbalancer" --port "82:82@loadbalancer" --port "9999:9999@loadbalancer" -v /home/splunk:/home/splunk -v /var/log/syslog:/var/log/syslog -v /var/log/auth.log:/var/log/auth.log
 
-  # Add user splunk to docker group
-  - usermod -aG docker splunk
-
   # Create k3d kube config and set correct permissions on splunk user home directory
   - mkdir /home/splunk/.kube && k3d kubeconfig get ${HOSTNAME}-cluster > /home/splunk/.kube/config
   - chmod 400 /home/splunk/.kube/config
@@ -272,6 +269,10 @@ runcmd:
 
   # Deploy Splunk secrets
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
+  # Add user splunk to docker group
+  - usermod -aG docker splunk
+
 
   # Increase inotify limits for k3s
   - sysctl -w fs.inotify.max_user_watches=524288
@@ -295,7 +296,7 @@ qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
 qm set $VMID --cicustom "user=local:snippets/ubuntu.yaml" >/dev/null
-qm set $VMID --tags o11y-workshop,noble >/dev/null
+qm set $VMID --tags o11y-workshop,noble,k3d >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
 #qm set $VMID --ciupdate 0
