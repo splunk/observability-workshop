@@ -11,20 +11,36 @@ The `ubuntu-cloud.sh` script automates the creation of a Splunk Observability Wo
 - Available VM ID range and storage space
 - Valid SWiPE ID for workshop access
 
-## Quick Start
+## K3s Quick Start
 
 Run the script directly on your Proxmox host:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3s.sh)"
 ```
 
 Or download and run locally:
 
 ```bash
-wget https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud.sh
-chmod +x ubuntu-cloud.sh
-./ubuntu-cloud.sh
+wget https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3s.sh
+chmod +x ubuntu-cloud-k3s.sh
+./ubuntu-cloud-k3s.sh
+```
+
+## K3d Quick Start
+
+Run the script directly on your Proxmox host:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3d.sh)"
+```
+
+Or download and run locally:
+
+```bash
+wget https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3d.sh
+chmod +x ubuntu-cloud-k3d.sh
+./ubuntu-cloud-k3d.sh
 ```
 
 ## What the Script Does
@@ -32,20 +48,20 @@ chmod +x ubuntu-cloud.sh
 ### 1. Initial Setup
 
 - Updates package repositories and installs required tools (`jq`, `curl`)
-- Displays interactive prompts for user confirmation and SWiPE ID input
+- Displays interactive prompts for user confirmation and SWiPE ID, environment name, DNS server and DNS domain input
 
 ### 2. Authentication & Configuration
 
 - Validates SWiPE ID against the Splunk workshop API
 - Retrieves workshop tokens and configuration (REALM, RUM_TOKEN, INGEST_TOKEN, etc.)
-- Generates unique VM ID and hostname
+- Generates unique VM ID and hostname based on user input
 
 ### 3. VM Creation
 
-- Downloads Ubuntu 22.04 Jammy cloud image
+- Downloads Ubuntu 24.04 Noble cloud image
 - Resizes disk to 20GB
 - Creates Proxmox VM with:
-  - **Memory**: 8GB RAM
+  - **Memory**: 16GB RAM
   - **CPU**: 4 cores (host CPU type)
   - **Storage**: Uses `local-lvm` storage
   - **Network**: Bridged to `vmbr0` with DHCP
@@ -56,7 +72,7 @@ chmod +x ubuntu-cloud.sh
 The cloud-init configuration automatically installs:
 
 - **Container Tools**: Docker, Docker Compose
-- **Kubernetes**: K3s, kubectl, Helm, K9s
+- **Kubernetes**: K3s/K3d, kubectl, Helm, K9s
 - **Development**: OpenJDK 17, Maven, Python3, Git
 - **Infrastructure**: Terraform, Ansible
 - **Monitoring**: Chaos Mesh
@@ -67,15 +83,6 @@ The cloud-init configuration automatically installs:
 - Sets up Kubernetes secrets with workshop tokens
 - Configures private container registry
 - Prepares demo applications and content
-
-## VM Specifications
-
-- **OS**: Ubuntu 22.04 LTS (Jammy)
-- **Memory**: 8GB RAM
-- **CPU**: 4 cores
-- **Disk**: 20GB (expandable)
-- **User**: `splunk` / `Splunk123!`
-- **SSH**: Password authentication enabled
 
 ## Environment Variables
 
@@ -101,22 +108,6 @@ The script configures these environment variables in the VM:
    # Password: Splunk123!
    ```
 
-## Useful Commands in the VM
-
-```bash
-# Check Kubernetes status
-kubectl get nodes
-
-# Access Kubernetes dashboard
-k9s
-
-# View workshop materials
-ls ~/workshop/
-
-# Check environment variables
-env | grep -E "(TOKEN|REALM)"
-```
-
 ## Troubleshooting
 
 - **Invalid SWiPE ID**: Verify your workshop registration and ID
@@ -126,4 +117,4 @@ env | grep -E "(TOKEN|REALM)"
 
 ## Tags
 
-Created VMs are tagged with: `o11y-workshop`, `jammy`, `cloudinit`
+Created VMs are tagged with: `o11y-workshop`, `noble`, `k3s` or `k3d` for easy identification in Proxmox.

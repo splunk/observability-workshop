@@ -94,7 +94,7 @@ echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 cat << EOF | tee /var/lib/vz/snippets/k3d.yaml >/dev/null
 #cloud-config
 package_update: true
-package_upgrade: false
+package_upgrade: true
 package_reboot_if_required: false
 
 hostname: $HOSTNAME
