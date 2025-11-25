@@ -111,7 +111,7 @@ LATEST_TERRAFORM_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraf
 echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 #set -x
 
-cat << EOF | tee /var/lib/vz/snippets/ubuntu.yaml >/dev/null
+cat << EOF | tee /var/lib/vz/snippets/k3d.yaml >/dev/null
 #cloud-config
 package_update: true
 package_upgrade: true
@@ -295,7 +295,7 @@ qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
-qm set $VMID --cicustom "user=local:snippets/ubuntu.yaml" >/dev/null
+qm set $VMID --cicustom "user=local:snippets/k3d.yaml" >/dev/null
 qm set $VMID --tags o11y-workshop,noble,k3d >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
