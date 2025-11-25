@@ -60,6 +60,25 @@ else
   echo -e "Demo-in-a-Box Version: ${YW}Production${CL}"
 fi
 
+if DNS_SERVER=$(whiptail --backtitle "Splunk" --title "DNS Server" --inputbox "Enter DNS server IP address:" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -n "$DNS_SERVER" ]]; then
+    echo -e "DNS Server: ${YW}${DNS_SERVER}${CL}"
+  else
+    header_info && echo -e "${RD}Invalid DNS server. Exiting script.${CL}\n" && exit
+  fi
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
+if DOMAIN=$(whiptail --backtitle "Splunk" --title "Domain Name" --inputbox "Enter domain name (default: localdomain):" 10 58 3>&1 1>&2 2>&3); then
+  if [[ -z "$DOMAIN" ]]; then
+    DOMAIN="localdomain"
+  fi
+  echo -e "Domain: ${YW}${DOMAIN}${CL}"
+else
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+
 # Call the API and store the response
 JSON_RESPONSE=$(curl -s https://swipe.splunk.show/api?id=${SWIPE_ID})
 
@@ -100,7 +119,7 @@ package_reboot_if_required: false
 
 hostname: $HOSTNAME
 manage_etc_hosts: true
-fqdn: $HOSTNAME
+fqdn: $HOSTNAME.$DOMAIN
 user: $USER
 password: $PASSWORD
 chpasswd:
@@ -129,6 +148,13 @@ packages:
   - wget
   - qemu-guest-agent
 write_files:
+  - path: /etc/systemd/resolved.conf.d/dns.conf
+    content: |
+      [Resolve]
+      DNS=$DNS_SERVER
+      Domains=$DOMAIN
+    permissions: '0644'
+
   - path: /etc/sysctl.conf
     append: true
     content: |
@@ -157,7 +183,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
 
-  - path: /tmp/workshop-secrets.yaml
+  - path: /home/splunk/workshop-secrets.yaml
     permissions: '0755'
     content: |
       apiVersion: v1
@@ -176,11 +202,14 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: http://frontend
+        url: http://$HOSTNAME.$DOMAIN
 
 runcmd:
   - systemctl start qemu-guest-agent
   - systemctl enable qemu-guest-agent
+
+  # Configure DNS via systemd-resolved
+  - systemctl restart systemd-resolved
 
   #- chsh -s $(which zsh) splunk
   #- echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
