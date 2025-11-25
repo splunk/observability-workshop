@@ -60,25 +60,6 @@ else
   echo -e "Demo-in-a-Box Version: ${YW}Production${CL}"
 fi
 
-if DNS_SERVER=$(whiptail --backtitle "Splunk" --title "DNS Server" --inputbox "Enter DNS server IP address:" 10 58 3>&1 1>&2 2>&3); then
-  if [[ -n "$DNS_SERVER" ]]; then
-    echo -e "DNS Server: ${YW}${DNS_SERVER}${CL}"
-  else
-    header_info && echo -e "${RD}Invalid DNS server. Exiting script.${CL}\n" && exit
-  fi
-else
-  header_info && echo -e "${RD}User exited script${CL}\n" && exit
-fi
-
-if DOMAIN=$(whiptail --backtitle "Splunk" --title "Domain Name" --inputbox "Enter domain name (default: localdomain):" 10 58 3>&1 1>&2 2>&3); then
-  if [[ -z "$DOMAIN" ]]; then
-    DOMAIN="localdomain"
-  fi
-  echo -e "Domain: ${YW}${DOMAIN}${CL}"
-else
-  header_info && echo -e "${RD}User exited script${CL}\n" && exit
-fi
-
 # Call the API and store the response
 JSON_RESPONSE=$(curl -s https://swipe.splunk.show/api?id=${SWIPE_ID})
 
@@ -99,7 +80,6 @@ NEXTID=$(pvesh get /cluster/nextid)
 
 UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
 RANDOM_ADDITION=$((4000 + RANDOM % 1001))
-#VMID=$((NEXTID + RANDOM_ADDITION))
 VMID=$((NEXTID))
 STORAGE=local-lvm
 HOSTNAME=$VMID-$ENV_NAME-$UNIQUE_HOST_ID
@@ -114,12 +94,12 @@ echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 cat << EOF | tee /var/lib/vz/snippets/k3d.yaml >/dev/null
 #cloud-config
 package_update: true
-package_upgrade: true
+package_upgrade: false
 package_reboot_if_required: false
 
 hostname: $HOSTNAME
 manage_etc_hosts: true
-fqdn: $HOSTNAME.$DOMAIN
+fqdn: $HOSTNAME
 user: $USER
 password: $PASSWORD
 chpasswd:
@@ -129,13 +109,13 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
 ssh_pwauth: True
+
 packages:
   - bash
   - ansible
-  - docker
-  - docker-buildx
+  - ca-certificates
   - curl
-  - docker-compose
+  - gnupg
   - jq
   - maven
   - net-tools
@@ -148,13 +128,6 @@ packages:
   - wget
   - qemu-guest-agent
 write_files:
-  - path: /etc/systemd/resolved.conf.d/dns.conf
-    content: |
-      [Resolve]
-      DNS=$DNS_SERVER
-      Domains=$DOMAIN
-    permissions: '0644'
-
   - path: /etc/sysctl.conf
     append: true
     content: |
@@ -183,7 +156,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
 
-  - path: /home/splunk/workshop-secrets.yaml
+  - path: /tmp/workshop-secrets.yaml
     permissions: '0755'
     content: |
       apiVersion: v1
@@ -202,14 +175,22 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: http://$HOSTNAME.$DOMAIN
+        url: http://$HOSTNAME
 
 runcmd:
   - systemctl start qemu-guest-agent
   - systemctl enable qemu-guest-agent
 
-  # Configure DNS via systemd-resolved
-  - systemctl restart systemd-resolved
+  # Install Docker from official repository
+  - export DEBIAN_FRONTEND=noninteractive
+  - install -m 0755 -d /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  - chmod a+r /etc/apt/keyrings/docker.gpg
+  - |
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu noble stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - apt-get update -qq
+  - apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  - usermod -aG docker splunk
 
   #- chsh -s $(which zsh) splunk
   #- echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
@@ -269,10 +250,6 @@ runcmd:
 
   # Deploy Splunk secrets
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
-
-  # Add user splunk to docker group
-  - usermod -aG docker splunk
-
 
   # Increase inotify limits for k3s
   - sysctl -w fs.inotify.max_user_watches=524288
