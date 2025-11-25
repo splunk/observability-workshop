@@ -11,6 +11,16 @@ This guide will walk you through the steps required to set up your workshop envi
 
 ---
 
+##### **Splunk4Rookies - Observability Cloud Workshop Presentation**
+
+The official workshop presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533). Use this resource to guide your workshop participants through the material.
+
+##### **Splunk4Rookies - FSI Vertical Observability Cloud Workshop Presentation**
+
+The official FSI workshop presentation is available [**here**](https://docs.google.com/presentation/d/162ucBDaAEuJamtBDYEWe07js0ju4dkxfFdG2uAw0Vwc/edit?usp=sharing). Use this resource to prepare your workshop and to guide your participants through the material.
+
+---
+
 ##### **Provided Organizations (For Splunk Employees Only)**
 
 If you’re a Splunk employee, you can use the following pre-configured organizations to run Observability Workshops. These organizations have all the necessary features enabled to support any of the available workshops:
@@ -56,13 +66,3 @@ To send logs to Splunk Observability Cloud, you’ll need access to a **Splunk C
 ##### **Trial Org Configuration**
 
 For new trial organizations, you’ll also need to complete the steps outlined in the [**Trial Org Configuration**](4-org-configuration) section.
-
----
-
-##### **Splunk4Rookies - Observability Cloud Workshop Presentation**
-
-The official workshop presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533). Use this resource to guide your workshop participants through the material.
-
-##### **Splunk4Rookies - FSI Vertical Observability Cloud Workshop Presentation**
-
-The official FSI workshop presentation is available [**here**](https://docs.google.com/presentation/d/162ucBDaAEuJamtBDYEWe07js0ju4dkxfFdG2uAw0Vwc/edit?usp=sharing). Use this resource to prepare your workshop and to guide your participants through the material.
