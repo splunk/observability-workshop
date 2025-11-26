@@ -1,0 +1,7 @@
+# Exclude everything by default
+**/*
+
+# Re-include all Python files (.py)
+!**/*.py
+
+# Re-include other essential files/directories
