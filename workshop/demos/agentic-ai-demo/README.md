@@ -49,6 +49,20 @@ Add the `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL` to send logs to your Splunk Ente
 or Splunk Cloud instance. For Splunk Cloud, the `SPLUNK_HEC_URL` should be something like 
 `https://<hostname>.splunkcloud.com:443`. 
 
+### Enable LLM Quality Evaluation
+
+Splunk Observability Cloud is able to evaluate the quality of LLM responses, to check 
+for relevancy, correctness, bias, etc. 
+
+Currently, this functionality is only available when using an OpenAI API such as `gpt-4o-mini`. 
+To enable this functionality, uncomment the following two lines of the 
+[requirements.txt](./app/requirements.txt) file: 
+
+````
+splunk-otel-util-genai-evals==0.1.4
+splunk-otel-genai-evals-deepeval==0.1.4
+````
+
 ### Run the Application 
 
 Use the following command to run the application: 
