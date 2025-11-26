@@ -1,0 +1,209 @@
+# Minimum configuration file for the OpenTelemetry Collector Contrib distribution
+# https://github.com/open-telemetry/opentelemetry-collector-contrib
+#
+# For official documentation, see the following page:
+# https://docs.splunk.com/Observability/gdi/other-ingestion-methods/upstream-collector.html
+
+# The following environment variables are required to be manually defined or
+# configured below:
+# - SPLUNK_ACCESS_TOKEN: The Splunk access token to authenticate requests
+# - SPLUNK_API_URL: The Splunk API URL, e.g. https://api.us0.signalfx.com
+# - SPLUNK_MEMORY_LIMIT_MIB: 90% of memory allocated
+# - SPLUNK_HEC_TOKEN: The Splunk HEC authentication token
+# - SPLUNK_HEC_URL: The Splunk HEC endpoint URL, e.g. https://http-inputs-acme.splunkcloud.com/services/collector
+# - SPLUNK_INGEST_URL: The Splunk ingest URL, e.g. https://ingest.us0.signalfx.com
+
+extensions:
+  headers_setter:
+    headers:
+      - action: upsert
+        key: X-SF-TOKEN
+        from_context: X-SF-TOKEN
+        default_value: "${SPLUNK_ACCESS_TOKEN}"
+  health_check:
+    endpoint: 0.0.0.0:13133
+  http_forwarder:
+    ingress:
+      endpoint: 0.0.0.0:6060
+    egress:
+      endpoint: "${SPLUNK_API_URL}"
+  zpages:
+    #endpoint: 0.0.0.0:55679
+    expvar:
+      enabled: true
+
+receivers:
+  fluentforward:
+    endpoint: 0.0.0.0:8006
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      memory:
+      network:
+      # System load average metrics https://en.wikipedia.org/wiki/Load_(computing)
+      load:
+      # Paging/Swap space utilization and I/O metrics
+      paging:
+      # Aggregated system process count metrics
+      processes:
+      # System processes metrics, disabled by default
+      # process:
+  jaeger:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:14250
+      thrift_binary:
+        endpoint: 0.0.0.0:6832
+      thrift_compact:
+        endpoint: 0.0.0.0:6831
+      thrift_http:
+        endpoint: 0.0.0.0:14268
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+        # Uncomment below config to preserve incoming access token and use it instead of the token value set in exporter config
+        # include_metadata: true
+      http:
+        endpoint: 0.0.0.0:4318
+        # Uncomment below config to preserve incoming access token and use it instead of the token value set in exporter config
+        # include_metadata: true
+  # This section is used to collect the OpenTelemetry Collector metrics
+  # Even if just a Splunk APM customer, these metrics are included
+  prometheus/internal:
+    config:
+      scrape_configs:
+        - job_name: 'otel-collector'
+          scrape_interval: 10s
+          static_configs:
+            - targets: ['0.0.0.0:8888']
+          metric_relabel_configs:
+            - source_labels: [ __name__ ]
+              regex: 'promhttp_metric_handler_errors.*'
+              action: drop
+            - source_labels: [ __name__ ]
+              regex: 'otelcol_processor_batch_.*'
+              action: drop
+  zipkin:
+    endpoint: 0.0.0.0:9411
+
+  nop:
+
+processors:
+  batch:
+    metadata_keys:
+      - X-SF-Token
+  # Enabling the memory_limiter is strongly recommended for every pipeline.
+  # Configuration is based on the amount of memory allocated to the collector.
+  # In general, the limit should be 90% of the collector's memory. The simplest way to specify the
+  # memory allocation is set the value of GOMEMLIMIT env variable.
+  # For more information about memory limiter, see
+  # https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/memorylimiter/README.md
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: ${SPLUNK_MEMORY_LIMIT_MIB}
+
+  # Detect if the collector is running on a cloud system, which is important for creating unique cloud provider dimensions.
+  # Detector order is important: the `system` detector goes last so it can't preclude cloud detectors from setting host/os info.
+  # Resource detection processor is configured to override all host and cloud attributes because instrumentation
+  # libraries can send wrong values from container environments.
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourcedetectionprocessor#ordering
+  resourcedetection:
+    detectors: [gcp, ecs, ec2, azure, system]
+    override: true
+
+      # Optional: The following processor can be used to add a default "deployment.environment" attribute to the logs and
+      # traces when it's not populated by instrumentation libraries.
+      # If enabled, make sure to enable this processor in the pipeline below.
+      #resource/add_environment:
+      #attributes:
+      #- action: insert
+      #value: staging/production/...
+    #key: deployment.environment
+
+exporters:
+  # Traces
+  otlphttp:
+    traces_endpoint: "${SPLUNK_INGEST_URL}/v2/trace/otlp"
+    headers:
+      "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  # Metrics + Events
+  signalfx:
+    access_token: "${SPLUNK_ACCESS_TOKEN}"
+    api_url: "${SPLUNK_API_URL}"
+    ingest_url: "${SPLUNK_INGEST_URL}"
+    send_otlp_histograms: true
+    sync_host_metadata: true
+    correlation:
+  # Entities (applicable only if discovery mode is enabled)
+  otlphttp/entities:
+    logs_endpoint: "${SPLUNK_INGEST_URL}/v3/event"
+    headers:
+      "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  splunk_hec:
+    token: "${SPLUNK_HEC_TOKEN}"
+    endpoint: "${SPLUNK_HEC_URL}/services/collector"
+    source: "otel"
+    sourcetype: "otel"
+    profiling_data_enabled: false
+    tls:
+      insecure_skip_verify: false
+  splunk_hec/profiling:
+    token: "${SPLUNK_ACCESS_TOKEN}"
+    endpoint: "https://ingest.${SPLUNK_REALM}.signalfx.com/v1/log"
+    log_data_enabled: false
+  # Debug
+  debug:
+    verbosity: detailed
+
+service:
+  extensions: [headers_setter, health_check, http_forwarder, zpages]
+  pipelines:
+    # Required for Splunk APM
+    traces:
+      receivers: [jaeger, otlp, zipkin]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      #- resource/add_environment
+      exporters: [otlphttp, signalfx, debug]
+    # Required for Splunk Infrastructure Monitoring
+    metrics:
+      receivers: [hostmetrics, otlp]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [signalfx]
+    # Required for Splunk APM and/or Infrastructure Monitoring
+    metrics/internal:
+      receivers: [prometheus/internal]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [signalfx]
+    logs/entities:
+      # Receivers are dynamically added if discovery mode is enabled
+      receivers: [nop]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [otlphttp/entities]
+    logs:
+      receivers: [otlp, fluentforward]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      #- resource/add_environment
+      exporters: [splunk_hec]
+    # Required for profiling
+    logs/profiling:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      #- resource/add_environment
+      exporters: [splunk_hec/profiling]

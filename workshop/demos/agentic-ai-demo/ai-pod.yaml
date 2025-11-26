@@ -1,0 +1,225 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  serviceName: "postgresql-headless" # Must match the name of the headless service
+  replicas: 1 # Start with 1 replica for a single PostgreSQL instance
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+        - name: postgresql
+          image: ghcr.io/splunk/agentic-ai-demo-db:1.0 # Your custom image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "root"
+            - name: POSTGRES_PASSWORD
+              value: "agents"
+            - name: POSTGRES_DB
+              value: "agentic-ai-demo"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          volumeMounts:
+            - name: postgres-data # Must match the name in volumeClaimTemplates
+              mountPath: /var/lib/postgresql/data # Standard data directory for PostgreSQL
+  volumeClaimTemplates: # This is where the PVC definition goes
+    - metadata:
+        name: postgres-data # This name is referenced in volumeMounts
+      spec:
+        accessModes: [ "ReadWriteOnce" ] # Only one pod can mount this volume at a time
+        resources:
+          requests:
+            storage: 1Gi # Request 1 GB of storage (adjust size as needed)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-headless # Name of the headless service
+  labels:
+    app: postgresql
+spec:
+  ports:
+    - port: 5432
+      name: postgresql
+  clusterIP: None # This makes it a headless service
+  selector:
+    app: postgresql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-ai-demo-app
+  labels:
+    app: agentic-ai-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentic-ai-demo-app
+  template:
+    metadata:
+      labels:
+        app: agentic-ai-demo-app
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/splunk/agentic-ai-demo-app:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080 # Replace with your APP_PORT.
+          env:
+            - name: APP_PORT
+              value: "8080" # Replace with your APP_PORT value.
+            - name: OTEL_LOGS_EXPORTER
+              value: "otlp"
+            - name: OTEL_PYTHON_LOG_CORRELATION
+              value: "true"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: "delta"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=agentic-ai-demo"
+            - name: OTEL_SERVICE_NAME
+              value: "agentic-ai-demo-app"
+            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
+              value: "SPAN_AND_EVENT"
+            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
+              value: "span_metric_event,splunk"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION
+              value: "replace-category:SplunkEvaluationResults"
+            - name: OTEL_INSTRUMENTATION_GENAI_DEBUG
+              value: "false"
+            - name: OTEL_INSTRUMENTATION_LANGCHAIN_DEBUG
+              value: "false"
+            - name: DEEPEVAL_FILE_SYSTEM
+              value: "READ_ONLY"
+            - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
+              value: "python"
+            - name: DB_CONNECTION_STRING
+              value: "host=postgresql-headless.agentic-ai-demo-app.svc.cluster.local user=dbuser password=dbpass dbname=agentic-ai-demo"
+            - name: OPENAI_MODEL
+              value: "meta/llama-3.1-8b-instruct"
+            - name: OPENAI_BASE_URL
+              value: "http://llm.nim.svc.cluster.local:8000/v1"
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: openai_api_key
+            - name: PAYMENT_SERVICE_URL
+              value: "http://payment.agentic-ai-demo-app.svc.cluster.local:5000"
+          resources:
+            limits:
+              memory: "500Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentic-ai-demo-app
+  labels:
+    app: agentic-ai-demo-app
+spec:
+  type: ClusterIP
+  selector:
+    app: agentic-ai-demo-app
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-ai-demo-payment
+  labels:
+    app: agentic-ai-demo-payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentic-ai-demo-payment
+  template:
+    metadata:
+      labels:
+        app: agentic-ai-demo-payment
+    spec:
+      containers:
+        - name: app
+          image: localhost:9999/agentic-ai-demo-payment:1.0
+          ports:
+            - containerPort: 5000 # Replace with your APP_PORT.
+          resources:
+            limits:
+              memory: "100Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentic-ai-demo-payment
+  labels:
+    app: agentic-ai-demo-payment
+spec:
+  type: ClusterIP
+  selector:
+    app: agentic-ai-demo-payment
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-ai-demo-loadgen
+  labels:
+    app: agentic-ai-demo-loadgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentic-ai-demo-loadgen
+  template:
+    metadata:
+      labels:
+        app: agentic-ai-demo-loadgen
+    spec:
+      containers:
+        - name: app
+          image: localhost:9999/agentic-ai-demo-loadgen:1.0
+          ports:
+            - containerPort: 8089 # Replace with your APP_PORT.
+          environment:
+            - name: APP_URL
+              value: "http://app:8080"
+          resources:
+            limits:
+              memory: "500Mi"

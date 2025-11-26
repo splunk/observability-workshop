@@ -1,0 +1,164 @@
+x-default-logging: &logging
+  driver: "fluentd"
+  options:
+    fluentd-address: "localhost:8006"
+    fluentd-async: "true"
+    fluentd-retry-wait: 1s
+    fluentd-max-retries: 10
+
+networks:
+  default:
+    name: agentic-ai-demo-app-network
+    driver: bridge
+
+services:
+  postgresql:
+    image: ghcr.io/splunk/agentic-ai-demo-db:1.0
+    container_name: db
+    build:
+      context: ./
+      dockerfile: ${POSTGRES_DOCKERFILE}
+      platforms:
+        - linux/amd64
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-db:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 80M
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    logging: *logging
+
+  otel-collector:
+    image: ${COLLECTOR_IMAGE}
+    container_name: otel-collector
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    restart: unless-stopped
+    command: [ "--config=/etc/otelcol-config.yml" ]
+    user: 0:0
+    volumes:
+      - ${HOST_FILESYSTEM}:/hostfs:ro
+      - ${DOCKER_SOCK}:/var/run/docker.sock:ro
+      - ${OTEL_COLLECTOR_CONFIG}:/etc/otelcol-config.yml
+    ports:
+      - "${OTEL_COLLECTOR_PORT_GRPC}"
+      - "${OTEL_COLLECTOR_PORT_HTTP}"
+      - "8006:8006"  # fluent forward port
+    environment:
+      - HOST_FILESYSTEM
+      - OTEL_COLLECTOR_HOST
+      - OTEL_COLLECTOR_PORT_GRPC
+      - OTEL_COLLECTOR_PORT_HTTP
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - SPLUNK_ACCESS_TOKEN
+      - SPLUNK_API_URL
+      - SPLUNK_MEMORY_LIMIT_MIB
+      - SPLUNK_HEC_TOKEN
+      - SPLUNK_HEC_URL
+      - SPLUNK_INGEST_URL
+
+  payment:
+    image: ghcr.io/splunk/agentic-ai-demo-payment:1.0
+    container_name: payment
+    build:
+      context: ./
+      dockerfile: ${PAYMENT_DOCKERFILE}
+      platforms:
+        - linux/amd64
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-payment:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    restart: unless-stopped
+    ports:
+      - "${PAYMENT_PORT}:${PAYMENT_PORT}"
+    logging: *logging
+
+  app:
+    image: ghcr.io/splunk/agentic-ai-demo-app:1.0
+    container_name: app
+    build:
+      context: ./
+      dockerfile: ${APP_DOCKERFILE}
+      platforms:
+        - linux/amd64
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-app:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      - APP_PORT
+      - OTEL_LOGS_EXPORTER=otlp
+      - OTEL_PYTHON_LOG_CORRELATION=true
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=agentic-ai-demo-app
+      - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
+      - OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+      - OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE=SPAN_AND_EVENT
+      - OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION=true
+      - OTEL_INSTRUMENTATION_GENAI_EMITTERS=span_metric_event,splunk
+      - OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION=replace-category:SplunkEvaluationResults
+      - OTEL_INSTRUMENTATION_GENAI_DEBUG=false
+      - OTEL_INSTRUMENTATION_LANGCHAIN_DEBUG=false
+      - OTEL_GENAI_EVAL_DEBUG_SKIPS=false
+      - OTEL_GENAI_EVAL_DEBUG_EACH=false
+      - DEEPEVAL_FILE_SYSTEM=READ_ONLY
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+      - DB_CONNECTION_STRING=host=${POSTGRES_HOST} user=dbuser password=dbpass dbname=${POSTGRES_DB}
+      - OPENAI_MODEL
+      - OPENAI_BASE_URL
+      - OPENAI_API_KEY
+      - PAYMENT_SERVICE_URL
+    depends_on:
+      postgresql:
+        condition: service_started
+      otel-collector:
+        condition: service_started
+      payment:
+        condition: service_started
+    logging: *logging
+
+  load-generator:
+    image: ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
+    container_name: loadgen
+    build:
+      context: ./
+      dockerfile: ${LOADGEN_DOCKERFILE}
+      platforms:
+        - linux/amd64
+      cache_from:
+        - ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    restart: unless-stopped
+    ports:
+      - "${LOADGEN_PORT}:${LOADGEN_PORT}"
+    environment:
+      - APP_ADDR
+    depends_on:
+      app:
+        condition: service_started
+    logging: *logging
