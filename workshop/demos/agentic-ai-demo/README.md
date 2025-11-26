@@ -124,6 +124,15 @@ curl -sS -X POST "http://localhost:8080/chat" \
   -d '{"customer_id":1,"request":"What is the inventory for product_sku COF-COL-DR-12 at store_id 1, 2, and 3?"}'
 ```
 
+Ask a question about inventory with stores that don't exist:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"What is the inventory for product_sku COF-COL-DR-12 at store_id 9 and 10?"}'
+```
+
 ### Test Maintenance Endpoints
 
 Restore inventory to its original state: 

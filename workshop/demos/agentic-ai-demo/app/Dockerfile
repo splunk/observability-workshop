@@ -26,4 +26,9 @@ WORKDIR /app
 COPY ./app/. /app
 
 EXPOSE 8080
-ENTRYPOINT [ "/venv/bin/opentelemetry-instrument", "/venv/bin/gunicorn", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "180", "--bind", "0.0.0.0:8080", "app:app" ]
+
+# Per https://opentelemetry.io/docs/zero-code/python/troubleshooting/#pre-fork-server-issues
+# if we use uvicorn with more than 1 worker and opentelemetry-instrument, we'll lose metrics
+# The workaround is to use gunicorn + uvicorn workers, but then evals don't work
+#ENTRYPOINT [ "/venv/bin/opentelemetry-instrument", "/venv/bin/gunicorn", "--workers", "2", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "300", "--bind", "0.0.0.0:8080", "app:app" ]
+ENTRYPOINT [ "/venv/bin/opentelemetry-instrument", "/venv/bin/uvicorn", "app:app", "--workers", "1", "--host", "0.0.0.0", "--port", "8080" ]
