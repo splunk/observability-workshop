@@ -128,7 +128,7 @@ def process_order_payment(order_id: int) -> str:
                 )
 
             # --- Step 4: Update the payment_status based on the charge result ---
-            if charge_status == "succeeded":
+            if charge_status == "approved":
                 cursor.execute(
                     """
                     UPDATE orders

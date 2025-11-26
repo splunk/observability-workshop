@@ -1,36 +1,72 @@
 # Agentic AI Demo Application 
 
-## Run in Docker (for development/testing) 
+## Run with Docker Compose
 
 ### Prerequisites
 
 * Docker
+* Docker Compose
+
+### Clone the Repo
+
+``` bash
+git clone https://github.com/splunk/observability-workshop.git
+cd observability-workshop/workshop/demos/agentic-ai-demo
+```
 
 ### Define Environment Variables
 
-Add an `.env.override` file with the following environment variables: 
+Add an `.env.override` file to the `observability-workshop/workshop/demos/agentic-ai-demo`
+folder with the following contents:
 
-````
+``` bash
+# OpenAI
 OPENAI_API_KEY=your_key_here
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-4o-mini
+
 SPLUNK_ACCESS_TOKEN=your_token_here
 SPLUNK_API_URL=e.g. https://api.us1.signalfx.com
+SPLUNK_INGEST_URL=e.g. https://ingest.us1.signalfx.com
 SPLUNK_MEMORY_LIMIT_MIB=1024 # adjust as needed
 SPLUNK_HEC_TOKEN=your_HEC_token_here
 SPLUNK_HEC_URL=your_HEC_URL_here
-SPLUNK_INGEST_URL=e.g. https://ingest.us1.signalfx.com
 OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-demo
-````
+```
 
 > Note: ensure this file isn't added to GitHub 
+
+If using OpenAI, add your OpenAI API key to the above file. If using another LLM such as
+`meta-llama-3.1-70b`, then use `dummy` for the `OPENAI_API_KEY` value,
+and then update the `OPENAI_BASE_URL` and `OPENAI_MODEL` as appropriate
+for the target LLM. 
+
+Add the `SPLUNK_ACCESS_TOKEN` token required to send data to your Splunk 
+Observability Cloud organization.  Modify the realm in the `SPLUNK_API_URL` and 
+`SPLUNK_INGEST_URL` environment variables if your org is not in `us1`. 
+
+Add the `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL` to send logs to your Splunk Enterprise 
+or Splunk Cloud instance. For Splunk Cloud, the `SPLUNK_HEC_URL` should be something like 
+`https://<hostname>.splunkcloud.com:443`. 
 
 ### Run the Application 
 
 Use the following command to run the application: 
 
 ``` bash
-cd workshop/demos/agentic-ai-demo
 docker compose --env-file .env --env-file .env.override up --force-recreate --remove-orphans --detach --build 
 ```
+
+This will start the command with the load generator, which will send requests 
+to exercise application functionality every 30 to 90 seconds. 
+
+If you'd like to start the application without the load generator, use 
+the following command instead: 
+
+``` bash
+docker compose --env-file .env --env-file .env.override up --force-recreate --remove-orphans --detach --build postgresql otel-collector app payment
+```
+
 ### Test the Application
 
 Send a pickup order:
