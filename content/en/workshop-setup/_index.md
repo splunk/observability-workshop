@@ -13,11 +13,7 @@ This guide will walk you through the steps required to set up your workshop envi
 
 ##### **Splunk4Rookies - Observability Cloud Workshop Presentation**
 
-The official workshop presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533). Use this resource to guide your workshop participants through the material.
-
-##### **Splunk4Rookies - FSI Vertical Observability Cloud Workshop Presentation**
-
-The official FSI workshop presentation is available [**here**](https://docs.google.com/presentation/d/162ucBDaAEuJamtBDYEWe07js0ju4dkxfFdG2uAw0Vwc/edit?usp=sharing). Use this resource to prepare your workshop and to guide your participants through the material.
+The official workshop presentation is available on the [**Cisco Sharepoint**](https://cisco.sharepoint.com/:p:/s/spk_splunkshowcontentrepo/EVOz38iE_mVU5ejCZMOkQE8BN9YSp5VvabMLhPTGUWddpg). Use this resource to guide your workshop participants through the material.
 
 ---
 
@@ -27,18 +23,18 @@ If you’re a Splunk employee, you can use the following pre-configured organiza
 
 ##### **Available Workshop Organizations**
 
-- **[CoE Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)**  
-- **[Observability Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EaJHc4vAEAA)**  
-- **[Observability Workshop AMER (US1)](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)**  
-- **[APAC-O11y-Workshop (US1)](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)**  
+- **[CoE Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)**
+- **[Observability Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EaJHc4vAEAA)**
+- **[Observability Workshop AMER (US1)](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)**
+- **[APAC-O11y-Workshop (US1)](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)**
 
 ##### **Blocked Organizations**
 
 The following organizations are **blocked** and cannot be used for running workshops:
 
-- **EU Splunk Show (EU0)**  
-- **US Splunk Show (US1)**  
-- **Show Playground (US1)**  
+- **EU Splunk Show (EU0)**
+- **US Splunk Show (US1)**
+- **Show Playground (US1)**
 
 ---
 
