@@ -130,6 +130,10 @@ services:
       - OPENAI_BASE_URL
       - OPENAI_API_KEY
       - PAYMENT_SERVICE_URL
+      - USE_CISCO_API
+      - CISCO_CLIENT_ID
+      - CISCO_CLIENT_SECRET
+      - CISCO_APP_KEY
     depends_on:
       postgresql:
         condition: service_started

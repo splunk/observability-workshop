@@ -49,6 +49,16 @@ Add the `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL` to send logs to your Splunk Ente
 or Splunk Cloud instance. For Splunk Cloud, the `SPLUNK_HEC_URL` should be something like 
 `https://<hostname>.splunkcloud.com:443`. 
 
+If using Cisco APIs for LLM access, include the following environment variables instead of 
+the `OPENAI` ones: 
+
+````
+USE_CISCO_API=true
+CISCO_CLIENT_ID=your_cisco_client_id
+CISCO_CLIENT_SECRET=your_cisco_client_secret
+CISCO_APP_KEY=_your_cisco_app_key
+````
+
 ### Enable LLM Quality Evaluation
 
 Splunk Observability Cloud is able to evaluate the quality of LLM responses, to check 
@@ -174,10 +184,14 @@ curl "http://localhost:8080/archive_orders"
 
 ### Create Secrets
 
-Create Kubernetes secrets for the OpenAI API key: 
+Create Kubernetes secrets for the OpenAI API and Cisco Circuit API keys (if applicable): 
 
 ``` bash
-kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='<your Open AI API Key>'
+kubectl create secret generic agentic-ai-secret \
+    --from-literal=openai_api_key='<your Open AI API Key>' \
+    --from-literal=cisco_client_id='<your Cisco Client ID>' \
+    --from-literal=cisco_client_secret='<your Cisco Client Secret>' \
+    --from-literal=cisco_app_key='<your Cisco App Key>'
 ```
 
 ### Deploy the OpenTelemetry Collector
@@ -295,10 +309,14 @@ oc adm policy add-scc-to-user anyuid -z default
 
 ### Create Secrets
 
-Create Kubernetes secrets for the OpenAI API key:
+Create Kubernetes secrets for the OpenAI API and Cisco Circuit API keys (if applicable):
 
 ``` bash
-kubectl create secret generic agentic-ai-secret --from-literal=openai_api_key='dummy' -n agentic-ai-demo-app
+kubectl create secret generic agentic-ai-secret -n agentic-ai-demo-app \
+    --from-literal=openai_api_key='dummy' \
+    --from-literal=cisco_client_id='<your Cisco Client ID>' \
+    --from-literal=cisco_client_secret='<your Cisco Client Secret>' \
+    --from-literal=cisco_app_key='<your Cisco App Key>'
 ```
 
 ### Build Docker Images (locally)

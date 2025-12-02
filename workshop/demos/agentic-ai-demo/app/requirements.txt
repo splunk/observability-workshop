@@ -12,6 +12,7 @@ typing-extensions>=4.9
 fastapi==0.121.1
 uvicorn==0.38.0
 gunicorn==23.0.0
+requests==2.32.5
 psycopg2-binary==2.9.11
 simplejson==3.20.2
 deepeval==3.7.0

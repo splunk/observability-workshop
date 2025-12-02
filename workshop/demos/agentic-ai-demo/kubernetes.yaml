@@ -118,6 +118,23 @@ spec:
                 secretKeyRef:
                   name: agentic-ai-secret
                   key: openai_api_key
+            - name: USE_CISCO_API
+              value: "false"
+            - name: CISCO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_client_id
+            - name: CISCO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_client_secret
+            - name: CISCO_APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_app_key
             - name: PAYMENT_SERVICE_URL
               value: "http://payment:5000"
           resources:

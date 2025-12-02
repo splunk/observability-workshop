@@ -20,7 +20,7 @@ from tools.inventory_tool import restore_inventory
 from tools.order_tool import archive_orders
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 instrumentor = LangchainInstrumentor()
 instrumentor.instrument()
