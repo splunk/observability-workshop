@@ -83,13 +83,22 @@ docker compose --env-file .env --env-file .env.override up --force-recreate --re
 
 ### Test the Application
 
-Send a pickup order:
+Create an order:
 
 ``` bash
 curl -sS -X POST "http://localhost:8080/chat" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{"customer_id":1,"request":"I''d like to order 2 of sku COF-COL-DR-12 and 1 of sku KIT-CB-START, for pickup at store_id 1."}'
+```
+
+Create an order that includes PII in the prompt:
+
+``` bash
+curl -sS -X POST "http://localhost:8080/chat" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"customer_id":1,"request":"I''d like to order 2 of sku COF-COL-DR-12 and 1 of sku KIT-CB-START, for pickup at store_id 1. My credit card number is 5555555555554444."}'
 ```
 
 Ask a question about an order: 

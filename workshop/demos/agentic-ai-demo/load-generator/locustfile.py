@@ -70,6 +70,11 @@ def build_order_request():
     store_id = random.choice(STORE_IDS)
     return f"I'd like to order {items_text}, for pickup at store_id {store_id}."
 
+def build_insecure_order_request():
+    # take a regular order request and make it insecure by adding a credit card number
+    secure_order_request = build_order_request()
+    return f" My credit card number is 5555555555554444."
+
 def build_previous_order_question():
     return "What products were included in my most recent order?"
 
@@ -88,6 +93,8 @@ def choose_request_text():
     Weighted to send more 'order' traffic, with a mix of questions.
     """
     r = random.random()
+    if r < 0.10:
+        return ("order", build_insecure_order_request())
     if r < 0.35:
         return ("order", build_order_request())
     elif r < 0.50:
