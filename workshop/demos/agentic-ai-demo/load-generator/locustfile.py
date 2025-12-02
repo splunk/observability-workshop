@@ -95,7 +95,7 @@ def choose_request_text():
     r = random.random()
     if r < 0.10:
         return ("order", build_insecure_order_request())
-    if r < 0.35:
+    elif r < 0.35:
         return ("order", build_order_request())
     elif r < 0.50:
         return ("previous_orders", build_previous_order_question())
@@ -138,7 +138,7 @@ class InventoryRefresher(HttpUser):
 
     @task
     def refresh_inventory(self):
-        with self.client.post(
+        with self.client.get(
             "/refresh_inventory",
             name="Inventory Refresh: /refresh_inventory", # Name for Locust UI
             catch_response=True,
@@ -156,7 +156,7 @@ class ArchiveOrders(HttpUser):
 
     @task
     def archive_orders(self):
-        with self.client.post(
+        with self.client.get(
             "/archive_orders",
             name="Archive Orders: /archive_orders", # Name for Locust UI
             catch_response=True,
