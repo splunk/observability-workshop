@@ -1,6 +1,6 @@
 ---
-title: Automatic Discovery Workshops
-description: Learn how to leverage Splunk's automatic discovery and configuration capabilities for Java applications. These workshops demonstrate zero-code instrumentation to instantly generate metrics, traces, and logs for comprehensive observability across monolith and Kubernetes deployments.
+title: 自動ディスカバリー (Automatic Discovery) ワークショップ
+description: Java アプリケーション向けの Splunk 自動ディスカバリーおよび設定機能の活用方法を学びます。これらのワークショップでは、ゼロコード計装 (zero-code instrumentation) を使用して、モノリスおよび Kubernetes デプロイメント全体でメトリクス、トレース、ログを即座に生成し、包括的なオブザーバビリティを実現する方法をデモンストレーションします。
 weight: 1
 ---
 

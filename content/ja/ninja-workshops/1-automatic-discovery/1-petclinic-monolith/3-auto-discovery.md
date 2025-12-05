@@ -1,10 +1,10 @@
 ---
-title: Automatic discovery and configuration for Java
-linkTitle: 3. Automatic Discovery
+title: Java 向け自動ディスカバリーおよび設定
+linkTitle: 3. 自動ディスカバリー
 weight: 3
 ---
 
-You can now start the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` and `otel.resource.attributes` to a logical names using the instance name. These will also be used in the UI for filtering:
+以下のコマンドでアプリケーションを起動できます。`mysql` プロファイルをアプリケーションに渡していることに注目してください。これにより、先ほど起動した MySQL データベースを使用するようアプリケーションに指示します。また、`otel.service.name` と `otel.resource.attributes` をインスタンス名を使用した論理名に設定しています。これらは UI でのフィルタリングにも使用されます：
 
 ```bash
 java \
@@ -14,13 +14,13 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-You can validate the application is running by visiting `http://<IP_ADDRESS>:8083` (replace `<IP_ADDRESS>` with the IP address you obtained earlier).
+`http://<IP_ADDRESS>:8083`（`<IP_ADDRESS>` を先ほど取得した IP アドレスに置き換えてください）にアクセスして、アプリケーションが実行されていることを確認できます。
 
-When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
+Collector をインストールした際、**AlwaysOn Profiling** と **Metrics** を有効にするように設定しました。これにより、Collector はアプリケーションの CPU およびメモリプロファイルを自動的に生成し、Splunk Observability Cloud に送信します。
 
-When you start the PetClinic application you will see the collector automatically detect the application and instrument it for traces and profiling.
+PetClinic アプリケーションを起動すると、Collector がアプリケーションを自動的に検出し、トレースとプロファイリングのために計装するのが確認できます。
 
-{{% tab title="Example output" %}}
+{{% tab title="出力例" %}}
 
 ``` text {wrap="false"}
 Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/lib/splunk-instrumentation/splunk-otel-javaagent.jar
@@ -45,13 +45,13 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu click **APM** and then click the **Environment** dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
+Splunk APM UI にアクセスして、アプリケーションコンポーネント、トレース、プロファイリング、DB Query パフォーマンス、メトリクスを確認できます。左側のメニューから **APM** をクリックし、**Environment** ドロップダウンをクリックして、ご自身の環境（例：`<INSTANCE>-petclinic`、`<INSTANCE>` は先ほどメモした値に置き換えてください）を選択します。
 
-Once your validation is complete you can stop the application by pressing `Ctrl-c`.
+検証が完了したら、`Ctrl-c` を押してアプリケーションを停止できます。
 
-Resource attributes can be added to every reported span. For example `version=0.314`. A comma-separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
+リソース属性は、報告されるすべてのスパンに追加できます。例えば `version=0.314` のように指定します。カンマ区切りのリソース属性リストも定義できます（例：`key1=val1,key2=val2`）。
 
-Let's launch the PetClinic again using new resource attributes. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. Let's add a new resource attribute `version=0.314`:
+新しいリソース属性を使用して PetClinic を再度起動しましょう。実行コマンドにリソース属性を追加すると、Collector のインストール時に定義された内容が上書きされることに注意してください。新しいリソース属性 `version=0.314` を追加しましょう：
 
 ```bash
 java \
@@ -61,4 +61,4 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Back in the Splunk APM UI we can drill down on a recent trace and see the new `version` attribute in a span.
+Splunk APM UI に戻り、最近のトレースをドリルダウンすると、スパン内に新しい `version` 属性が表示されます。

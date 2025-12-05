@@ -1,18 +1,18 @@
 ---
-title: Building the Spring PetClinic Application
-linkTitle: 2. Building PetClinic
+title: Spring PetClinic アプリケーションのビルド
+linkTitle: 2. PetClinic のビルド
 weight: 2
 ---
 
-The first thing we need to set up APM is... well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
+APM をセットアップするために最初に必要なのは...そう、アプリケーションです。この演習では、Spring PetClinic アプリケーションを使用します。これは、Spring フレームワーク（Springboot）で構築された非常に人気のあるサンプル Java アプリケーションです。
 
-First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
+まず、PetClinic の GitHub リポジトリをクローンし、その後アプリケーションのコンパイル、ビルド、パッケージ化、テストを行います：
 
 ```bash
 git clone https://github.com/spring-projects/spring-petclinic
 ```
 
-Change into the `spring-petclinic` directory:
+`spring-petclinic` ディレクトリに移動します：
 
 <!--
 ```bash
@@ -25,31 +25,31 @@ cd spring-petclinic
 git checkout b26f235250627a235a2974a22f2317dbef27338d
 ```
 
-Using Docker, start a MySQL database for PetClinic to use:
+Docker を使用して、PetClinic が使用する MySQL データベースを起動します：
 
 ```bash
 docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/biarms/mysql:5.7
 ```
 
-Next, we will start another container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load-testing tool that can be used to generate traffic to a web application.
+次に、PetClinic アプリケーションにシンプルなトラフィックを生成する Locust を実行する別のコンテナを起動します。Locust は、Web アプリケーションにトラフィックを生成するために使用できるシンプルな負荷テストツールです。
 
 ```bash
 docker run --network="host" -d -p 8090:8090 -v ~/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8083
 ```
 
-Next, compile, build and package PetClinic using `maven`:
+次に、`maven` を使用して PetClinic をコンパイル、ビルド、パッケージ化します：
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
 ```
 
 > [!INFO]
-> This will take a few minutes the first time you run and will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
+> 初回実行時は数分かかり、アプリケーションをコンパイルする前に多くの依存関係をダウンロードします。以降のビルドはより高速になります。
 
-Once the build completes, you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
+ビルドが完了したら、実行しているインスタンスのパブリック IP アドレスを取得する必要があります。以下のコマンドを実行して取得できます：
 
 ```bash
 curl http://ifconfig.me
 ```
 
-You will see an IP address returned, make a note of this as we will need it to validate that the application is running.
+IP アドレスが返されます。アプリケーションが実行されていることを確認するために必要になるので、この IP アドレスをメモしておいてください。
