@@ -6,11 +6,11 @@ archetype: chapter
 time: 15 minutes
 ---
 
-As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, allowing you to identify issues faster.
+前の章で見てきたように、APMを使用して、コードに触れることなく、さまざまなサービス間のインタラクション (interaction) をトレース (trace) することができ、問題をより迅速に特定できます。
 
-In addition to tracing, **automatic discovery and configuration** offers additional features out of the box that can help you find issues even faster! In this section we are going to look at two of them:
+トレーシング (tracing) に加えて、**automatic discovery and configuration**は、問題をさらに迅速に発見するのに役立つ追加機能を最初から提供します。このセクションでは、そのうちの2つを見ていきます：
 
 - **Always-on Profiling and Java Metrics**
 - **Database Query Performance**
 
-If you want to dive deeper into Always-on Profiling or DB-Query performance, we have a separate Ninja Workshop called [**Debug Problems in Microservices**](/en/scenarios/debug_problems/) that you can follow.
+Always-on ProfilingまたはDB-Queryパフォーマンス (performance) についてさらに深く学びたい場合は、[**Debug Problems in Microservices**](/en/scenarios/debug_problems/)という別のNinja Workshopがありますので、そちらをご覧ください。

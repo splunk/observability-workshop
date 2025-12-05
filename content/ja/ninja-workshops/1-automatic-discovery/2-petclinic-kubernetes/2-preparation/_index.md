@@ -1,29 +1,29 @@
 ---
-title: Preparation of the Workshop instance
-linkTitle: 2. Preparation
+title: ワークショップインスタンスの準備
+linkTitle: 2. 準備
 weight: 3
 archetype: chapter
 time: 15 minutes
 ---
 
-The instructor will provide you with the login information for the instance that we will be using during the workshop.
+インストラクターが、このワークショップで使用するインスタンスのログイン情報を提供します。
 
-When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance, please reach out to your Instructor.
+インスタンスに初めてログインすると、以下のような Splunk ロゴが表示されます。ワークショップインスタンスへの接続に問題がある場合は、インストラクターにお問い合わせください。
 
 ``` text
 $ ssh -p 2222 splunk@<IP-ADDRESS>
 
-███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
-██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
+███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
+██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
 ███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
 ╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
-███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝ 
-╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝  
+███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝
+╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝
 Last login: Mon Feb  5 11:04:54 2024 from [Redacted]
 splunk@show-no-config-i-0d1b29d967cb2e6ff ~ $
 ```
 
-To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal, run the following script and check that the environment variables are present and set with actual valid values:
+インスタンスが正しく設定されていることを確認するために、このワークショップに必要な環境変数が正しく設定されているか確認する必要があります。ターミナルで以下のスクリプトを実行し、環境変数が存在し、実際の有効な値が設定されていることを確認してください：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -47,14 +47,14 @@ INSTANCE = <instance_name>
 {{% /tab %}}
 {{< /tabs >}}
 
-Please make a note of the `INSTANCE` environment variable value as this will be used later to filter data in **Splunk Observability Cloud**.
+`INSTANCE` 環境変数の値をメモしておいてください。後で **Splunk Observability Cloud** でデータをフィルタリングする際に使用します。
 
-For this workshop, **all** the above environment variables are required. If any have values missing, please contact your Instructor.
+このワークショップでは、上記の環境変数が**すべて**必要です。値が不足しているものがある場合は、インストラクターに連絡してください。
 
-> [!SPLUNK] Delete any existing OpenTelemetry Collectors
->If you have previously completed a Splunk Observability workshop using this EC2 instance, you
->need to ensure that any existing installation of the Splunk OpenTelemetry Collector is
->deleted. This can be achieved by running the following command:
+> [!SPLUNK] 既存の OpenTelemetry Collector の削除
+>この EC2 インスタンスを使用して以前に Splunk Observability ワークショップを完了している場合は、
+>既存の Splunk OpenTelemetry Collector のインストールが削除されていることを確認する必要があります。
+>これは以下のコマンドを実行することで行えます：
 >
 >``` bash
 >helm delete splunk-otel-collector

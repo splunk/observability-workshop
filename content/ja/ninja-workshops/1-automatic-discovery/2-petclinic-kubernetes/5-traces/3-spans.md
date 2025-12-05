@@ -4,19 +4,19 @@ linkTitle: 3. APM Spans
 weight: 3
 ---
 
-While we examine our spans, let's look at several out-of-the-box features that you get **without code modifications** when using **automatic discovery and configuration** on top of tracing:
+スパン (span) を調べる際、トレーシング (tracing) の上で**自動検出と設定 (automatic discovery and configuration)** を使用すると、**コード変更なし**で得られるいくつかの標準機能を見てみましょう：
 
-First, in the Waterfall Pane, make sure the `customers-service:SELECT petclinic` or similar span is selected as shown in the screenshot below:
+まず、Waterfall Paneで、以下のスクリーンショットに示すように`customers-service:SELECT petclinic`または類似のスパンが選択されていることを確認してください：
 
 ![DB-query](../../images/db-query.png)
 
-* The basic latency information is shown as a bar for the instrumented function or call. In our example above, it took 17.8 Milliseconds.
-* Several similar Spans **(1)** are only visible if the span is repeated multiple times. In this case, there are 10 repeats in our example. You can show/hide them all by clicking on the `10x` and all spans will show in order.
-* **Inferred Services**: Calls made to external systems that are not instrumented show up as a grey 'inferred' span. The Inferred Service or span in our example is a call to the Mysql Database `mysql:petclinic SELECT petclinic` **(2)** as shown above.
-* **Span Tags**: In the Tag Pane, we see standard tags produced by the automatic discovery and configuration. In this case, the span is calling a Database, so it includes the `db.statement` tag **(3)**. This tag will hold the DB query statement and is used by the Database call performed during this span. This will be used by the DB-Query Performance feature. We look at DB-Query Performance in the next section.
-* **Always-on Profiling**: **IF** the system is configured to capture Profiling data during a Span life cycle. It will show the number of Call Stacks captured in the Spans timeline. In our example above, we see 18 Call Stacks for the `customer-service:GET /owners` Span. **(4)**
+* 基本的なレイテンシ (latency) 情報は、インストルメント (instrument) された関数または呼び出しのバーとして表示されます。上記の例では、17.8ミリ秒かかりました。
+* いくつかの類似したスパン**(1)**は、スパンが複数回繰り返される場合にのみ表示されます。この場合、例では10回の繰り返しがあります。`10x`をクリックすると、すべてのスパンが順番に表示されるように表示/非表示を切り替えることができます。
+* **Inferred Services**：インストルメントされていない外部システムへの呼び出しは、グレーの「推測された (inferred)」スパンとして表示されます。この例のInferred Serviceまたはスパンは、上記に示すようにMysqlデータベース (Database) `mysql:petclinic SELECT petclinic` **(2)**への呼び出しです。
+* **Span Tags**：Tag Paneには、自動検出と設定によって生成された標準タグが表示されます。この場合、スパンはデータベースを呼び出しているため、`db.statement`タグ**(3)**が含まれています。このタグは、このスパン中に実行されたデータベース呼び出しで使用されるDBクエリ (query) ステートメント (statement) を保持します。これはDB-Query Performance機能で使用されます。DB-Query Performanceについては次のセクションで見ていきます。
+* **Always-on Profiling**：システムがスパンのライフサイクル (life cycle) 中にプロファイリング (Profiling) データをキャプチャ (capture) するように設定されている**場合**、スパンのタイムライン (timeline) でキャプチャされたコールスタック (Call Stack) の数が表示されます。上記の例では、`customer-service:GET /owners`スパンに対して18個のコールスタックがあることがわかります。**(4)**
 
-We will look at Profiling in the next section.
+次のセクションでプロファイリングを見ていきます。
 
 <!--
 ## 3. Review Profiling Data Collection

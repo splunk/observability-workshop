@@ -6,8 +6,8 @@ archetype: chapter
 time: 15 minutes
 ---
 
-As we have seen in the previous section, once you enable **automatic discovery and configuration** on your services, traces are sent to **Splunk Observability Cloud**.
+前のセクションで見てきたように、サービスで**自動検出と設定 (automatic discovery and configuration)** を有効にすると、トレース (trace) が**Splunk Observability Cloud**に送信されます。
 
-With these traces, Splunk will automatically generate **Service Maps** and **RED Metrics**. These are the first steps in understanding the behavior of your services and how they interact with each other.
+これらのトレースにより、Splunkは自動的に**Service Maps**と**RED Metrics**を生成します。これらは、サービスの動作とサービス間の相互作用を理解するための最初のステップです。
 
-In this next section, we are going to examine the traces themselves and the information they provide to help you understand the behavior of your services -- all without touching your code!
+次のセクションでは、トレース自体と、コードに触れることなくサービスの動作を理解するのに役立つ情報を詳しく見ていきます。

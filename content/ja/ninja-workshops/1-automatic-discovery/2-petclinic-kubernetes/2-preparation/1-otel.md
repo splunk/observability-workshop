@@ -1,13 +1,13 @@
 ---
 
-title: Deploy the Splunk OpenTelemetry Collector
-linkTitle: 1. Deploy OpenTelemetry Collector
+title: Splunk OpenTelemetry Collector のデプロイ
+linkTitle: 1. OpenTelemetry Collector のデプロイ
 weight: 1
 ---
 
-To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** we need to deploy the Splunk OpenTelemetry Collector into the Kubernetes cluster.
+オブザーバビリティシグナル（**メトリクス、トレース**、**ログ**）を **Splunk Observability Cloud** に送信するには、Kubernetes クラスターに Splunk OpenTelemetry Collector をデプロイする必要があります。
 
-For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First, we need to add the Helm chart repository to Helm and run `helm repo update` to ensure the latest version:
+このワークショップでは、Splunk OpenTelemetry Collector Helm Chart を使用します。まず、Helm chart リポジトリを Helm に追加し、`helm repo update` を実行して最新バージョンを確認します：
 
 {{< tabs >}}
 {{% tab title="Install Helm Chart" %}}
@@ -33,12 +33,12 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator for automatic discovery and configuration and code profiling.
+**Splunk Observability Cloud** では、Kubernetes 上での OpenTelemetry Collector のセットアップを案内する UI ウィザードが提供されていますが、時間の都合上、以下の Helm install コマンドを使用します。自動ディスカバリーおよび設定とコードプロファイリング用のオペレーターを有効にするための追加パラメータが設定されています。
 
-* `--set="operator.enabled=true"` - this will install the OpenTelemetry operator that will be used to handle automatic discovery and configuration.
-* `--set="splunkObservability.profilingEnabled=true"` - this enables Code Profiling via the operator.
+* `--set="operator.enabled=true"` - 自動ディスカバリーおよび設定を処理するための OpenTelemetry オペレーターをインストールします。
+* `--set="splunkObservability.profilingEnabled=true"` - オペレーター経由でコードプロファイリングを有効にします。
 
-To install the collector run the following command. Do **NOT** edit this:
+Collector をインストールするには、以下のコマンドを実行してください。これを編集**しないでください**：
 
 {{< tabs >}}
 {{% tab title="Helm Install" %}}
@@ -80,13 +80,13 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-Ensure the Pods are reported as **Running** before continuing (this typically takes around 30 seconds).
+続行する前に、Pod が **Running** として報告されていることを確認してください（通常約30秒かかります）。
 
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
 ``` bash
-kubectl get pods | grep splunk-otel 
+kubectl get pods | grep splunk-otel
 ```
 
 {{% /tab %}}
@@ -101,7 +101,7 @@ splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Ensure there are no errors reported by the Splunk OpenTelemetry Collector (press `ctrl + c` to exit) or use the installed **awesome** `k9s` terminal UI for bonus points!
+Splunk OpenTelemetry Collector からエラーが報告されていないことを確認してください（`ctrl + c` で終了）。または、インストール済みの**素晴らしい** `k9s` ターミナル UI を使用するとボーナスポイントです！
 
 {{< tabs >}}
 {{% tab title="kubectl logs" %}}
@@ -129,9 +129,9 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
->[!INFO] Deleting a failed installation
->If you make an error installing the OpenTelemetry Collector you can start over by deleting the
->installation with the following command:
+>[!INFO] 失敗したインストールの削除
+>OpenTelemetry Collector のインストールでエラーが発生した場合は、
+>以下のコマンドでインストールを削除してやり直すことができます：
 >
 >``` bash
 >helm delete splunk-otel-collector

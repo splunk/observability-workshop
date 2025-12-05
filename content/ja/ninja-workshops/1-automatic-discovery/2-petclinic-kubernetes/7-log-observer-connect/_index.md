@@ -6,12 +6,12 @@ archetype: chapter
 time: 10 minutes
 ---
 
-Up until this point, there have been **no code changes**, yet tracing, profiling and Database Query Performance data is being sent to Splunk Observability Cloud.
+この時点まで、**コード変更は一切なく**、トレース (tracing)、プロファイリング (profiling)、データベースクエリパフォーマンス (Database Query Performance) のデータが Splunk Observability Cloud に送信されています。
 
-Next, we will work with **Splunk Log Observer** to obtain log data from the Spring PetClinic application.
+次に、**Splunk Log Observer** を使用して Spring PetClinic アプリケーションからログデータ (log data) を取得します。
 
-The **Splunk OpenTelemetry Collector** automatically collects logs from the Spring PetClinic application and sends them to Splunk Observability Cloud using the OTLP exporter, annotating the log events with `trace_id`, `span_id` and trace flags.
+**Splunk OpenTelemetry Collector** は、Spring PetClinic アプリケーションからログを自動的に収集し、OTLP エクスポーター (exporter) を使用して Splunk Observability Cloud に送信します。その際、ログイベントには `trace_id`、`span_id`、トレースフラグ (trace flags) が付与されます。
 
-**Splunk Log Observer** is then used to view the logs, automatically correlating log information with services and traces.
+**Splunk Log Observer** を使用してログを表示し、ログ情報をサービス (services) やトレース (traces) と自動的に関連付けます。
 
-This feature is called [**Related Content**](https://help.splunk.com/en/splunk-observability-cloud/data-tools/related-content).
+この機能は [**Related Content**](https://help.splunk.com/en/splunk-observability-cloud/data-tools/related-content) と呼ばれています。

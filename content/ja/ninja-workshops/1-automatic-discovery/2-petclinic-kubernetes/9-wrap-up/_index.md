@@ -3,18 +3,18 @@ title: Workshop Wrap-up 🎁
 linkTitle: 9. Workshop Wrap-up
 weight: 9
 archetype: chapter
-description: Congratulations, you have completed the Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry. Today, you have become familiar with how easy it is to add tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes to immediately improve the observability of your applications and infrastructure.
+description: おめでとうございます。OpenTelemetry の自動検出と設定を使用して既存の Kubernetes Java アプリケーションを最大限に活用するワークショップを完了しました。今日、既存の Kubernetes 上の Java アプリケーションにトレース、コードプロファイリング、データベースクエリパフォーマンスを追加することがいかに簡単かを学びました。これにより、アプリケーションとインフラストラクチャの可観測性を即座に向上させることができます。
 ---
 
-Congratulations, you have completed the **Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry** workshop.
+おめでとうございます。**Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry** ワークショップを完了しました。
 
-Today, you have learned how easy it is to add Tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes.
+今日、既存の Kubernetes 上の Java アプリケーションにトレース (Tracing)、コードプロファイリング (Code Profiling)、データベースクエリパフォーマンス (Database Query Performance) を追加することがいかに簡単かを学びました。
 
-You immediately improved the observability of the application and infrastructure without touching a line of code or configuration using **Automatic Discovery and Configuration**.
+**Automatic Discovery and Configuration** を使用して、コードや設定に一切触れることなく、アプリケーションとインフラストラクチャの可観測性を即座に向上させました。
 
-You also learned that with simple configuration changes, you can add even more observability (**logging** and **RUM**) to the application in order to provide end-to-end observability.
+また、シンプルな設定変更により、さらに多くの可観測性 (**logging** や **RUM**) をアプリケーションに追加して、エンドツーエンドの可観測性を提供できることも学びました。
 
-<!-- 
+<!--
 Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="fab fa-fw fa-linkedin-in" >}}{{< linkedin >}}{{< /badge >}} profile.
 
 Let's recap what we have learned and what you can do next.

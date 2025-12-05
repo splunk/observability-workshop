@@ -1,10 +1,10 @@
 ---
-title: Deploy the PetClinic Application
-linkTitle: 2. Deploy PetClinic Application
+title: PetClinic アプリケーションのデプロイ
+linkTitle: 2. PetClinic アプリケーションのデプロイ
 weight: 3
 ---
 
-The first deployment of our application will be using prebuilt containers to give this base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy the application:
+アプリケーションの最初のデプロイメントでは、ビルド済みのコンテナを使用して、観測を開始したい Kubernetes で実行される通常の Java マイクロサービスベースのアプリケーションという基本シナリオを作成します。それでは、アプリケーションをデプロイしましょう：
 
 {{< tabs >}}
 {{% tab title="kubectl apply" %}}
@@ -42,7 +42,7 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started, so this may take a couple of minutes.
+この時点で、Pod が実行されていることを確認してデプロイメントを検証できます。コンテナのダウンロードと起動が必要なため、数分かかる場合があります。
 
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
@@ -73,20 +73,20 @@ discovery-server-554b45cfb-bqhgt                                1/1     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of `kubectl get pods` matches the output as shown in the above Output tab. Ensure all the services are shown as **Running** (or use `k9s` to continuously monitor the status).
+`kubectl get pods` の出力が、上記の Output タブに示されている出力と一致することを確認してください。すべてのサービスが **Running** と表示されていることを確認してください（または `k9s` を使用してステータスを継続的に監視できます）。
 
-To test the application, you need to obtain the public IP address of your instance. You can do this by running the following command:
+アプリケーションをテストするには、インスタンスのパブリック IP アドレスを取得する必要があります。以下のコマンドを実行して取得できます：
 
 ``` bash
 curl http://ifconfig.me
 
 ```
 
-Validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
+**http://<IP_ADDRESS>:81**（**<IP_ADDRESS>** を上記で取得した IP アドレスに置き換えてください）にアクセスして、アプリケーションが実行されていることを確認してください。PetClinic アプリケーションが実行されているのが確認できるはずです。アプリケーションはポート **80** と **443** でも実行されているので、これらを使用するか、ポート **81** に到達できない場合はそちらを使用してください。
 
 ![Pet shop](../../images/petclinic.png)
 
-Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians** **(2)** tabs, confirming that you see a list of names on each page.
+**All Owners** **(1)** タブと **Veterinarians** **(2)** タブにアクセスして、各ページに名前のリストが表示されることを確認し、アプリケーションが正しく動作していることを確認してください。
 
 ![Owners](../../images/petclinic-owners.png)
 

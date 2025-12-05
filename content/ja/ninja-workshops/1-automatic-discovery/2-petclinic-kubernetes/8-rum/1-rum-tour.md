@@ -4,20 +4,20 @@ linkTitle: 1. Verify RUM Data
 weight: 1
 ---
 
-Lets start with a quick, high level tour of RUM by clicking **RUM** in the left-hand menu. Then change the **Environment** filter **(1)** to the name of your workshop instance from the dropdown box, selecting **`<INSTANCE>-workshop`** **(1)** (where **`INSTANCE`** is the value from the shell script you ran earlier). Make sure it is the only one selected.
+左側のメニューで **RUM** をクリックして、RUM の簡単な概要ツアーを始めましょう。次に、**Environment** フィルター **(1)** をドロップダウンボックスから変更し、ワークショップインスタンスの名前 **`<INSTANCE>-workshop`** **(1)** を選択します (ここで **`INSTANCE`** は、以前に実行したシェルスクリプトの値です)。これのみが選択されていることを確認してください。
 
-Then change the **App** **(2)** dropdown box to the name of your app, it will be **`<INSTANCE>-store`**
+次に、**App** **(2)** ドロップダウンボックスをアプリの名前に変更します。これは **`<INSTANCE>-store`** になります。
 
 ![rum select](../../images/rum-env-select.png)
 
-Once you have selected your **Environment** and **App**, you will see an overview page showing the RUM status of your Application. (If your Summary Dashboard is just a single row of numbers, you are looking at the condensed view. You can expand it by clicking on the **> (1)** in front of the Application name). If any JavaScript errors occurred, they will show up as shown below:
+**Environment** と **App** を選択すると、アプリケーションの RUM ステータスを示す概要ページが表示されます。(Summary Dashboard が単一行の数値だけの場合は、縮小表示になっています。アプリケーション名の前にある **> (1)** をクリックして展開できます)。JavaScript エラーが発生した場合は、以下のように表示されます:
 
 ![rum overview](../../images/rum-overview.png)
 
-To continue, click on the blue link (with your workshop name) to get to the details page. This will bring up a new dashboard view breaking down the interactions by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).
+続けるには、青いリンク (ワークショップ名) をクリックして詳細ページに移動します。これにより、UX Metrics、Front-end Health、Back-end Health、Custom Events によるインタラクションの内訳が表示され、過去のメトリクス (metrics) (デフォルトでは 1 時間) と比較される新しいダッシュボードビューが表示されます。
 
 ![rum  main](../../images/rum-main.png)
-Normally, you have only one line inside the first chart. Click on the link that relates to your Petclinic shop,
-http://198.19.249.202:81 in our example:
+通常、最初のチャートには 1 つの線のみがあります。Petclinic ショップに関連するリンクをクリックしてください。
+この例では http://198.19.249.202:81 です:
 
-This will bring us to the Tag Spotlight page.
+これにより、Tag Spotlight ページに移動します。

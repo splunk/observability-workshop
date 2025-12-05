@@ -1,19 +1,19 @@
 ---
-title: RUM trace Waterfall view & linking to APM 
+title: RUM trace Waterfall view & linking to APM
 linkTitle: 3. RUM Waterfall
 weight: 3
 ---
 
-We are now looking at the RUM Trace waterfall, this will tell you what happened during the session on the user device as they visited the page of our petclinic application.
+RUM トレースウォーターフォール (waterfall) を見ています。これは、ユーザーが petclinic アプリケーションのページにアクセスしたときに、ユーザーデバイス上で何が起こったかを示します。
 
-If you scroll down the waterfall find click on the **#!/owners/details** segment on the right **(1)**, you see a list of actions that occurred during the handling of the Vets request. Note, that the HTTP request have a blue **APM** link before the return code. Pick one, and click on the APM link.  This will show you the APM info for this backend service call hosted in Kubernetes.
+ウォーターフォールを下にスクロールして、右側の **#!/owners/details** セグメント **(1)** を見つけてクリックすると、Vets リクエストの処理中に発生したアクションのリストが表示されます。HTTP リクエストには、リターンコードの前に青い **APM** リンクがあることに注意してください。1 つを選択し、APM リンクをクリックします。これにより、Kubernetes でホストされているこのバックエンドサービスコールの APM 情報が表示されます。
 
 ![rum apm link](../../images/rum-trace.png)
 
-Note, if you want to drill down to verify what happened with the request, click on the Trace ID url.
+リクエストで何が起こったかを確認するためにドリルダウンしたい場合は、Trace ID の URL をクリックしてください。
 
-This will show you the trace related to your request from RUM:
+これにより、RUM からのリクエストに関連するトレースが表示されます:
 
 ![RUm-apm linked](../../images/rum-apm-waterfall.png)
 
-You can see that the entry point into your service now has a **RUM (1)** related content link added, allowing you to return back to your RUM session after you validated what happened in your backend service.
+サービスへのエントリーポイントに **RUM (1)** 関連コンテンツリンクが追加されており、バックエンドサービスで何が起こったかを確認した後、RUM セッションに戻ることができるようになっていることがわかります。

@@ -1,26 +1,26 @@
 ---
-title: Spring PetClinic SpringBoot Based Microservices On Kubernetes
-linkTitle: PetClinic Kubernetes Workshop
+title: Kubernetes 上の Spring PetClinic SpringBoot ベースのマイクロサービス
+linkTitle: PetClinic Kubernetes ワークショップ
 weight: 2
 archetype: chapter
 authors: ["Pieter Hagen"]
-description: Learn how to enable automatic discovery and configuration for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
+description: Kubernetes で実行される Java ベースのアプリケーション向けの自動ディスカバリーおよび設定を有効にする方法を学びます。リアルタイムモニタリングを体験し、エンドツーエンドの可視性でアプリケーションの動作を最大限に活用しましょう。
 time: 90 minutes
 ---
 
-The goal of this workshop is to introduce the features of Splunk's **automatic discovery and configuration** for Java.
+このワークショップの目的は、Java 向けの Splunk **自動ディスカバリーおよび設定**機能を紹介することです。
 
-The workshop scenario will be created by installing a simple (**un-instrumented**) Java microservices application in Kubernetes.
+ワークショップのシナリオは、Kubernetes にシンプルな（**計装されていない**）Java マイクロサービスアプリケーションをインストールすることで作成されます。
 
-Following simple steps to install the Splunk OpenTelemetry Collector with automatic discovery for existing Java based deployments, we will see how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
+既存の Java ベースのデプロイメント向けに自動ディスカバリー機能付きの Splunk OpenTelemetry Collector をインストールする簡単な手順に従うことで、メトリクス、トレース、ログを **Splunk Observability Cloud** に送信することがいかに簡単かを確認できます。
 
-> [!SPLUNK]Prerequisites
+> [!SPLUNK]前提条件
 >
-> * Outbound SSH access to port **2222**.
-> * Outbound HTTP access to port **81**.
-> * Familiarity with the Linux command line.
+> * ポート **2222** へのアウトバウンド SSH アクセス
+> * ポート **81** へのアウトバウンド HTTP アクセス
+> * Linux コマンドラインの基本的な知識
 
-During this workshop we will cover the following components:
+このワークショップでは、以下のコンポーネントをカバーします：
 
 * Splunk Infrastructure Monitoring (**IM**)
 * Splunk automatic discovery and configuration for Java (**APM**)
@@ -29,4 +29,4 @@ During this workshop we will cover the following components:
 * Splunk Log Observer (**LO**)
 * Splunk Real User Monitoring (**RUM**)
 
-_Splunk Synthetics is feeling a little left out here, but we cover that in other workshops_ {{% icon icon="heart" %}}
+_Splunk Synthetics は少し寂しそうですが、他のワークショップでカバーしています_ {{% icon icon="heart" %}}

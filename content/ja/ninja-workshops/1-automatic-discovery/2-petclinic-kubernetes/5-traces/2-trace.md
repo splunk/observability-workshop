@@ -4,20 +4,20 @@ linkTitle: 2. APM Trace
 weight: 2
 ---
 
-To pick a trace, select a line in the `Service Requests & Errors` chart **(1)**. A selection of related traces will appear.
+トレース (trace) を選択するには、`Service Requests & Errors`チャート**(1)**の線を選択します。関連するトレースの選択肢が表示されます。
 
-Once you have the list of related traces, click on the blue **(2)** Trace ID Link, making sure the trace you select has the same three services mentioned in the Services Column.
+関連するトレースのリストが表示されたら、青い**(2)** Trace ID Linkをクリックします。選択するトレースがServicesカラムに記載されている3つのサービスと同じものであることを確認してください。
 
 ![workflow-trace-pick](../../images/selecting-a-trace.png)
 
-This brings us to the selected Trace in the Waterfall view:
+これにより、ウォーターフォール (Waterfall) ビュー (view) で選択されたトレースが表示されます：
 
-Here we find several sections:  
+ここにはいくつかのセクションがあります：
 
-* The Waterfall Pane **(1)**, where you see the trace and all the instrumented functions visible as spans, with their duration representation and order/relationship showing.
-* The Trace Info Pane  **(2)**, which shows the selected Span information (highlighted with a box around the Span in the Waterfall Pane).
-* The Span Pane **(3)** where you can find all the Tags that have been sent in the selected Span. You can scroll down to see all of them.
-* The process Pane, with tags related to the process that created the Span (scroll down to see as it is not in the screenshot).
-* The Trace Properties, located at the top right-hand side of the pane is collapsed by default.
+* Waterfall Pane **(1)**：トレースとスパン (span) として表示されるすべてのインストルメント (instrument) された関数が、その期間表示と順序/関係とともに表示されます。
+* Trace Info Pane **(2)**：選択されたスパン情報が表示されます（Waterfall Pane内でスパンの周りにボックスでハイライトされています）。
+* Span Pane **(3)**：選択されたスパンで送信されたすべてのタグ (tag) を見つけることができます。下にスクロールしてすべてを確認できます。
+* Process Pane：スパンを作成したプロセス (process) に関連するタグが表示されます（スクリーンショットに含まれていないため、下にスクロールして確認してください）。
+* Trace Properties：ペインの右上にあり、デフォルトでは折りたたまれています。
 
 ![waterfall](../../images/waterfall-view.png)

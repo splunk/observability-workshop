@@ -1,13 +1,13 @@
 ---
-title: Patching the Deployment
-linkTitle: 1. Patching the Deployment
+title: デプロイメントのパッチ適用
+linkTitle: 1. デプロイメントのパッチ適用
 weight: 1
 ---
 
-To configure **automatic discovery and configuration**, the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the `api-gateway` does not have the `splunk-otel-java` image by running the following:
+**自動検出と設定**を構成するには、デプロイメント (deployment) にインストゥルメンテーションアノテーションを追加するためのパッチを適用する必要があります。パッチが適用されると、OpenTelemetry Collectorが自動検出と設定ライブラリを注入し、Podが再起動されてトレース (trace) とプロファイリング (profiling) データの送信が開始されます。まず、以下を実行して`api-gateway`に`splunk-otel-java`イメージがないことを確認します：
 
 {{< tabs >}}
-{P}{{% tab title="Describe api-gateway" %}}
+{{% tab title="Describe api-gateway" %}}
 
 ``` bash
 kubectl describe pods api-gateway | grep Image:
@@ -23,7 +23,7 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-Next, enable the Java automatic discovery and configuration for all the services by adding the annotation to the deployments. The following command will patch the all deployments. This will trigger the OpenTelemetry Operator to inject the `splunk-otel-java` image into the Pods:
+次に、デプロイメントにアノテーションを追加して、すべてのサービスのJava自動検出と設定を有効にします。以下のコマンドは、すべてのデプロイメントにパッチを適用します。これにより、OpenTelemetry Operatorが`splunk-otel-java`イメージをPodに注入します：
 
 {{< tabs >}}
 {{% tab title="Patch all PetClinic services" %}}
@@ -48,9 +48,9 @@ deployment.apps/api-gateway patched
 {{% /tab %}}
 {{< /tabs >}}
 
-There will be no change for the **config-server**, **discovery-server** and **admin-server** as these have already been patched.
+**config-server**、**discovery-server**、**admin-server**については、すでにパッチが適用されているため変更はありません。
 
-To check the container image(s) of the `api-gateway` pod again, run the following command:
+`api-gateway` Podのコンテナイメージを再度確認するには、以下のコマンドを実行します：
 
 {{< tabs >}}
 {{% tab title="Describe api-gateway" %}}
@@ -70,10 +70,10 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-A new image has been added to the `api-gateway` which will pull `splunk-otel-java` from `ghcr.io` (Note: if you see two `api-gateway` containers, the original one is probably still terminating, so give it a few seconds).
+`api-gateway`に新しいイメージが追加され、`ghcr.io`から`splunk-otel-java`がプルされます（注：2つの`api-gateway`コンテナが表示される場合、元のコンテナがまだ終了処理中の可能性があるため、数秒待ってください）。
 
-Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes, you will see that the Pods are being restarted by the operator and the automatic discovery and configuration container will be added. This will look similar to the screenshot below:
+**Splunk Observability Cloud**のKubernetes Navigatorに戻ります。数分後、Podがオペレーターによって再起動され、自動検出と設定コンテナが追加されることが確認できます。以下のスクリーンショットのような表示になります：
 
 ![restart](../../images/k8s-navigator-restarted-pods.png)
 
-Wait for the Pods to turn green in the Kubernetes Navigator, then go tho the next section.
+Kubernetes NavigatorでPodが緑色になるまで待ってから、次のセクションに進んでください。

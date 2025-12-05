@@ -6,16 +6,16 @@ time: 10 minutes
 archetype: chapter
 ---
 
-To enable Real User Monitoring (RUM) instrumentation for an application, you need to add the Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet to the code base.
+アプリケーションに Real User Monitoring (RUM) インストルメンテーション (instrumentation) を有効にするには、コードベースに Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) スニペット (snippet) を追加する必要があります。
 
-The Spring PetClinic application uses a single [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTML page, that is reused across all views of the application. This is the perfect location to insert the Splunk RUM instrumentation library as it will be loaded for all pages automatically.
+Spring PetClinic アプリケーションは、アプリケーションのすべてのビューで再利用される単一の [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTML ページを使用しています。これは、Splunk RUM インストルメンテーションライブラリを挿入するのに最適な場所です。すべてのページで自動的に読み込まれるためです。
 
-The `api-gateway` service is already running the instrumentation and sending RUM traces to Splunk Observability Cloud and we will review the data in the next section.
+`api-gateway` サービスはすでにインストルメンテーションを実行しており、RUM トレースを Splunk Observability Cloud に送信しています。次のセクションでデータを確認します。
 
-If you'd like to verify the snippet, you can view the page source in your browser by right-clicking on the page and selecting **View Page Source**.
+スニペットを確認したい場合は、ブラウザでページを右クリックして **View Page Source** を選択することで、ページソースを表示できます。
 
 ``` html
-    <script src="/env.js"></script>  
+    <script src="/env.js"></script>
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
     <script>
@@ -32,7 +32,7 @@ If you'd like to verify the snippet, you can view the page source in your browse
                 deploymentEnvironment: environmentName,
                 version: '1.0.0',
             });
-    
+
             SplunkSessionRecorder.init({
                 applicationName: appName,
                 realm: realm,
@@ -42,7 +42,7 @@ If you'd like to verify the snippet, you can view the page source in your browse
                     video: true,
                 }
             });
-            const Provider = SplunkRum.provider; 
+            const Provider = SplunkRum.provider;
             var tracer=Provider.getTracer('appModuleLoader');
         } else {
         // Realm or auth is empty, provide default values or skip initialization

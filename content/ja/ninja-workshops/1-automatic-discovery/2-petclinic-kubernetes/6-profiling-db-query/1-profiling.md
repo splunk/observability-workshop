@@ -4,11 +4,11 @@ linkTitle: 1. Always-On Profiling
 weight: 1
 ---
 
-When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.
+先ほどHelmチャート (chart) を使用してSplunk Distribution of the OpenTelemetry Collectorをインストール (install) した際、**AlwaysOn Profiling**と**Metrics**を有効にするように設定しました。これにより、OpenTelemetry Javaはアプリケーション (application) のCPUとメモリ (memory) のプロファイリング (profiling) を自動的に生成し、Splunk Observability Cloudに送信します。
 
-When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:
+PetClinicアプリケーションをデプロイ (deploy) してアノテーション (annotation) を設定すると、collectorは自動的にアプリケーションを検出し、トレース (trace) とプロファイリング (profiling) のためにインストルメント (instrument) します。これを確認するために、次のスクリプト (script) を実行して、インストルメント (instrument) しているJavaコンテナ (container) の1つの起動ログ (log) を調べることができます：
 
-The logs will show the flags that were picked up by the Java automatic discovery and configuration:
+ログ (log) には、Javaの自動検出と設定によって取得されたフラグ (flag) が表示されます：
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}
@@ -49,16 +49,16 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 {{< /tabs >}}
-We are interested in the section written by the `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**.
+私たちが注目しているのは、`com.splunk.opentelemetry.profiler.ConfigurationLogger`によって書き込まれたセクション、つまり**Profiling Configuration**です。
 
-We can see the various settings you can control, such as the `splunk.profiler.directory`, which is the location where the agent writes the call stacks before sending them to Splunk. (This may be different depending on how you configure your containers.)
+`splunk.profiler.directory`など、制御できるさまざまな設定を確認できます。これは、エージェント (agent) がSplunkに送信する前にコールスタック (call stack) を書き込む場所です。（これは、コンテナ (container) の設定方法によって異なる場合があります。）
 
-Another parameter you may want to change is `splunk.profiler.call.stack.interval`. This is how often the system captures a CPU Stack trace. You may want to reduce this interval setting if you have short spans like the ones we have in our Pet Clinic application. For the demo application, we did not change the default interval value, so Spans may not always have a CPU Call Stack related to them.
+変更したいもう1つのパラメータ (parameter) は`splunk.profiler.call.stack.interval`です。これは、システム (system) がCPU Stack traceをキャプチャ (capture) する頻度です。Pet Clinicアプリケーションのような短いスパン (span) がある場合は、このインターバル (interval) 設定を短くすることをお勧めします。デモ (demo) アプリケーションでは、デフォルト (default) のインターバル (interval) 値を変更しなかったため、スパン (span) に常にCPU Call Stackが関連付けられているとは限りません。
 
-You can find how to set these parameters [here](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java). In the example below, we see how to set a higher collection rate for call stacks in the `deployment.yaml`, by setting this value in the JAVA_OPTIONS config section.
+これらのパラメータ (parameter) を設定する方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java)で確認できます。以下の例では、`deployment.yaml`でコールスタック (call stack) のより高い収集レート (rate) を設定する方法を示しています。これは、JAVA_OPTIONS configセクション (section) でこの値を設定することで行います。
 
 ``` yaml
-env: 
+env:
 - name: JAVA_OPTIONS
   value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
 ```

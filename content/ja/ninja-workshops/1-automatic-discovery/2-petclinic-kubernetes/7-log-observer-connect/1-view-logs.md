@@ -4,18 +4,18 @@ linkTitle: 1. Viewing the Logs
 weight: 2
 ---
 
-In order to see logs click on the ![Logo](../images/logo-icon.png?classes=inline&height=25px)  **Log Observer** in the left-hand menu. Once in Log Observer please ensure **Index** on the filter bar is set to **splunk4rookies-workshop**. **(1)**
+ログを表示するには、左側のメニューで ![Logo](../images/logo-icon.png?classes=inline&height=25px) **Log Observer** をクリックします。Log Observer に入ったら、フィルターバー (filter bar) の **Index** が **splunk4rookies-workshop** に設定されていることを確認してください。**(1)**
 
-Next, click **Add Filter** and search, using the *Fields* **(2)** option for the field `deployment.environment` **(3)**.   Then from the dropdown list, select your workshop instance, **(4)** and click `=` (to include). You will now see only the log messages from your PetClinic application.
+次に、**Add Filter** をクリックし、*Fields* **(2)** オプションを使用して `deployment.environment` フィールド **(3)** を検索します。ドロップダウンリストから、あなたのワークショップインスタンスを選択し **(4)**、`=` (含める) をクリックします。これで、PetClinic アプリケーションからのログメッセージのみが表示されます。
 
 ![Log Observer sort](../../images/log-observer-sort.png)
 
-Next, search for the field `service.name`, selecting the value `customers-service` and click `=` (to include). This should now appear in the filter bar **(1)**. Next click on the Button **Run Search** **(2)**.
+次に、`service.name` フィールドを検索し、値 `customers-service` を選択して `=` (含める) をクリックします。これがフィルターバー **(1)** に表示されます。次に、**Run Search** ボタン **(2)** をクリックします。
 
 ![Log Observer run](../../images/log-observer-run.png)
 
-This wil refresh the log entries and they will now be reduced to show the entries from your `customers-service` only.
+これによりログエントリがリフレッシュされ、`customers-service` からのエントリのみが表示されるように絞り込まれます。
 
 ![Log Observer](../../images/log-observer-trace-info.png)
 
-Click on an entry that starts with *"Saving pet"* **(1)**. A side pane will open where you can see the detailed information, including the relevant trace and span IDs **(2)**.
+*"Saving pet"* で始まるエントリ **(1)** をクリックします。サイドペーンが開き、関連するトレース ID (trace ID) やスパン ID (span ID) **(2)** を含む詳細情報を確認できます。

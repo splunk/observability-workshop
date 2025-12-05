@@ -1,27 +1,27 @@
 ---
-title: Setting up automatic discovery and configuration for APM
-linkTitle: 4. Automatic discovery and configuration
+title: APMの自動検出と設定のセットアップ
+linkTitle: 4. 自動検出と設定
 weight: 5
-time: 10 minutes
+time: 10分
 ---
 
-In this section, we will enable **automatic discovery and configuration** for the Java services running in Kubernetes. This means that the OpenTelemetry Collector will look for Pod annotations that indicate that the Java application should be instrumented with the Splunk OpenTelemetry Java agent. This will allow us to get traces, spans, and profiling data from Java services running on the cluster.
+このセクションでは、Kubernetes上で実行されているJavaサービスに対して**自動検出と設定**を有効化します。これにより、OpenTelemetry CollectorがPodアノテーションを検索し、JavaアプリケーションにSplunk OpenTelemetry Javaエージェントでインストゥルメンテーション (instrumentation) を行う必要があることを示します。これにより、クラスター上で実行されているJavaサービスからトレース (trace)、スパン (span)、およびプロファイリング (profiling) データを取得できるようになります。
 
-{{% notice title="automatic discovery and configuration" style="note" %}}
+{{% notice title="自動検出と設定" style="note" %}}
 
-It is important to understand that automatic discovery and configuration is designed to get **trace, span & profiling** data out of your application **without requiring code changes or recompilation**.
+自動検出と設定は、**コード変更や再コンパイルを必要とせず**にアプリケーションから**トレース、スパン、およびプロファイリング**データを取得するように設計されていることを理解することが重要です。
 
-This is a great way to get started with APM, but it is **not** a replacement for manual instrumentation. Manual instrumentation allows you to add custom spans, tags, and logs to your application, which can provide more context and detail to your traces.
+これはAPMを始めるための優れた方法ですが、手動インストゥルメンテーション (manual instrumentation) の**代替ではありません**。手動インストゥルメンテーションでは、カスタムスパン、タグ、ログをアプリケーションに追加でき、トレースにより多くのコンテキストと詳細を提供できます。
 
 {{% /notice %}}
 
-For Java applications, the OpenTelemetry Collector will look for the annotation `instrumentation.opentelemetry.io/inject-java`.
+Javaアプリケーションの場合、OpenTelemetry Collectorは`instrumentation.opentelemetry.io/inject-java`というアノテーションを検索します。
 
-The annotation can have the value set to `true` or to the `namespace/daemonset` of the OpenTelemetry Collector e.g. `default/splunk-otel-collector`. This allows working across namespaces and is what we will use in this workshop.
+このアノテーションの値は`true`に設定するか、OpenTelemetry Collectorの`namespace/daemonset`（例：`default/splunk-otel-collector`）に設定できます。これにより、名前空間をまたいで動作することができ、このワークショップではこれを使用します。
 
-{{% notice title="Using the deployment.yaml" style="info" %}}
+{{% notice title="deployment.yamlの使用" style="info" %}}
 
-If you want your Pods to send traces automatically, you can add the annotation to the `deployment.yaml` as shown below. This will add the instrumentation library during the initial deployment. To speed things up we have done that for the following Pods:
+Podが自動的にトレースを送信するようにしたい場合は、以下に示すように`deployment.yaml`にアノテーションを追加できます。これにより、初期デプロイメント (deployment) 時にインストゥルメンテーションライブラリが追加されます。時間を節約するために、以下のPodに対してこれを実施済みです：
 
 - **admin-server**
 - **config-server**
@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: admin-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:

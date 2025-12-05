@@ -6,14 +6,14 @@ weight: 1
 
 ![apm map](../../images/zero-config-first-services-map.png)
 
-The above map shows all the interactions between all the services. The map may still be in an interim state as it will take the PetClinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of **2 minutes** by entering **-2m** will help. You can click on the **Refresh** button **(1)** in the top right-hand corner of the screen. The initial startup-related errors indicated by red circles will eventually disappear.
+上記のマップは、すべてのサービス間のすべての相互作用を示しています。PetClinic Microserviceアプリケーションが起動して完全に同期するまで数分かかるため、マップはまだ中間状態にある可能性があります。時間フィルタを**-2m**と入力してカスタム時間の**2分**に減らすと役立ちます。画面右上の**Refresh**ボタン**(1)**をクリックできます。赤い円で示される初期起動関連のエラーは最終的に消えます。
 
-Next, let's examine the metrics that are available for each service that is instrumented by visiting the request, error, and duration (RED) metrics Dashboard.
+次に、各サービスで利用可能なメトリクス (metric) を調べるために、リクエスト、エラー、期間（RED）メトリクスダッシュボード (dashboard) を見てみましょう。
 
-For this exercise, we are going to use a common scenario you would use if your service operation was showing high latency or errors.
+この演習では、サービスオペレーション (operation) が高いレイテンシ (latency) やエラー (error) を示している場合に使用する一般的なシナリオを使用します。
 
-Click on **customers-service** in the Dependency map, then make sure the `customers-service` is selected in the **Services** dropdown box **(1)**. Next, select `GET /owners` from the Operations dropdown **(2)** adjacent to the Service name.
+依存関係マップで**customers-service**をクリックし、**Services**ドロップダウンボックス**(1)**で`customers-service`が選択されていることを確認します。次に、サービス名に隣接するOperationsドロップダウン**(2)**から`GET /owners`を選択します。
 
-This should give you the workflow with a filter on `GET /owners` as shown below:
+これにより、以下に示すように`GET /owners`でフィルタリングされたワークフロー (workflow) が表示されます：
 
 ![select a trace](../../images/select-workflow.png)

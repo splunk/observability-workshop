@@ -1,18 +1,18 @@
 ---
-title: Architecture
-linkTitle: 1. Architecture
+title: アーキテクチャ
+linkTitle: 1. アーキテクチャ
 weight: 2
 time: 5 minutes
 ---
 
-The Spring PetClinic Java application is a simple microservices application that consists of frontend and backend services. The frontend service is a Spring Boot application that serves a web interface to interact with backend services. The backend services are Spring Boot applications that serve RESTful API's to interact with a MySQL database.
+Spring PetClinic Java アプリケーションは、フロントエンドとバックエンドのサービスで構成されるシンプルなマイクロサービスアプリケーションです。フロントエンドサービスは、バックエンドサービスと対話するための Web インターフェースを提供する Spring Boot アプリケーションです。バックエンドサービスは、MySQL データベースと対話するための RESTful API を提供する Spring Boot アプリケーションです。
 
-By the end of this workshop, you will have a better understanding of how to enable **automatic discovery and configuration** for your Java-based applications running in Kubernetes.
+このワークショップを終えるころには、Kubernetes で実行される Java ベースのアプリケーション向けの**自動ディスカバリーおよび設定**を有効にする方法をより深く理解できるようになります。
 
-The diagram below details the architecture of the Spring PetClinic Java application running in Kubernetes with the Splunk OpenTelemetry Operator and automatic discovery and configuration enabled.
+以下の図は、Splunk OpenTelemetry Operator と自動ディスカバリーおよび設定を有効にした状態で Kubernetes 上で実行される Spring PetClinic Java アプリケーションのアーキテクチャを詳しく示しています。
 
 ![Splunk Otel Architecture](../images/auto-instrumentation-java-diagram.png)
 
 ---
 
-Based on the [**example**](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/enable-operator-and-auto-instrumentation/spring-petclinic-java.md) **Josh Voravong** created.
+**Josh Voravong** が作成した[**サンプル**](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/enable-operator-and-auto-instrumentation/spring-petclinic-java.md)に基づいています。
