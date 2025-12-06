@@ -59,7 +59,7 @@ roundrobin==0.0.4
     # via locust
 six==1.16.0
     # via geventhttpclient
-urllib3==2.5.0
+urllib3==2.6.0
     # via requests
 werkzeug==3.0.6
     # via
