@@ -1,0 +1,5007 @@
+{
+  "chartExports": [
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PFnGbA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Queries",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "source",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_queries_total - Sum by source",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "req/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total').sum(by=['source']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PGlrdA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 DNS Queries",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "query"
+              },
+              {
+                "enabled": false,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "destination_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "destination_workload"
+              },
+              {
+                "enabled": false,
+                "property": "host.name"
+              },
+              {
+                "enabled": false,
+                "property": "ips_returned"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.cluster.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.container.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.daemonset.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.namespace.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.node.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.uid"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "qtypes"
+              },
+              {
+                "enabled": false,
+                "property": "server.port"
+              },
+              {
+                "enabled": false,
+                "property": "service.instance.id"
+              },
+              {
+                "enabled": false,
+                "property": "service.name"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "source_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_workload"
+              },
+              {
+                "enabled": false,
+                "property": "url.scheme"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_queries_total - Top 10 by query",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total').top(by=['query'], count=10).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PI0BGAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Errors",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "rcode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "destination",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_responses_total",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('hubble_dns_responses_total', filter=not filter('rcode', 'No Error')).sum(by=['destination', 'rcode']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PNUxEA0AI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing DNS Responses",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "Histogram",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Queries without responses",
+              "label": "Queries without responses",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total').mean(over='1m').sum()\nB = data('hubble_dns_responses_total').mean(over='1m').sum()\nC = (A - B).publish(label='Queries without responses')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PN6omA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Flows processed by type",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ops/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "type"
+              },
+              {
+                "enabled": true,
+                "property": "subtype"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "subtype",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by type,subtype",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "AreaChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total').sum(by=['type', 'subtype']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3POqbdA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Flows processed by verdict",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ops/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "type"
+              },
+              {
+                "enabled": true,
+                "property": "subtype"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "verdict"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "verdict",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by verdict",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "AreaChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total').sum(by=['verdict']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PTfUCA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 sources",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "destination_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "destination_workload"
+              },
+              {
+                "enabled": false,
+                "property": "host.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.cluster.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.container.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.daemonset.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.namespace.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.node.name"
+              },
+              {
+                "enabled": true,
+                "property": "k8s.pod.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.uid"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "protocol"
+              },
+              {
+                "enabled": false,
+                "property": "server.port"
+              },
+              {
+                "enabled": false,
+                "property": "service.instance.id"
+              },
+              {
+                "enabled": false,
+                "property": "service.name"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "source_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_workload"
+              },
+              {
+                "enabled": false,
+                "property": "subtype"
+              },
+              {
+                "enabled": false,
+                "property": "type"
+              },
+              {
+                "enabled": false,
+                "property": "url.scheme"
+              },
+              {
+                "enabled": false,
+                "property": "verdict"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by source",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A - Top 10",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total').sum(by=['source']).publish(label='A')\nB = (A).top(count=10).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PTtQOA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 destinations",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "k8s.pod.name"
+              },
+              {
+                "enabled": true,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "destination_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "destination_workload"
+              },
+              {
+                "enabled": false,
+                "property": "host.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.cluster.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.container.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.daemonset.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.namespace.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.node.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.uid"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "protocol"
+              },
+              {
+                "enabled": false,
+                "property": "server.port"
+              },
+              {
+                "enabled": false,
+                "property": "service.instance.id"
+              },
+              {
+                "enabled": false,
+                "property": "service.name"
+              },
+              {
+                "enabled": false,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "source_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_workload"
+              },
+              {
+                "enabled": false,
+                "property": "subtype"
+              },
+              {
+                "enabled": false,
+                "property": "type"
+              },
+              {
+                "enabled": false,
+                "property": "url.scheme"
+              },
+              {
+                "enabled": false,
+                "property": "verdict"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by destination",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A - Top 10",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total').sum(by=['destination']).publish(label='A')\nB = (A).top(count=10).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PVToNA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing TCP SYN-ACKs",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "p/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_tcp_flags_total - Mean(1m) - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "hubble_tcp_flags_total - Mean(1m) - Sum",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Unanswered SYN packets",
+              "label": "Unanswered SYN packets",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_tcp_flags_total', filter=filter('flag', 'SYN')).mean(over='1m').sum().publish(label='A', enable=False)\nB = data('hubble_tcp_flags_total', filter=filter('flag', 'SYN-ACK')).mean(over='1m').sum().publish(label='B', enable=False)\nC = (A-B).publish(label='Unanswered SYN packets')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PWmLcAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing ICMP Echo Replys",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "p/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_icmp_total - Mean(1m) - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "hubble_icmp_total - Mean(1m) - Sum",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Unanswered ICMP Echo Requests",
+              "label": "Unanswered ICMP Echo Requests",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_icmp_total', filter=filter('type', 'EchoRequest')).mean(over='1m').sum().publish(label='A', enable=False)\nB = data('hubble_icmp_total', filter=filter('type', 'EchoReply')).mean(over='1m').sum().publish(label='B', enable=False)\nC = (A-B).publish(label='Unanswered ICMP Echo Requests')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PXjcmAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network Policy drops by source",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "p/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "reason"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.container.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.namespace.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.cluster.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.uid"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": false,
+                "property": "url.scheme"
+              },
+              {
+                "enabled": false,
+                "property": "protocol"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.name"
+              },
+              {
+                "enabled": false,
+                "property": "service.instance.id"
+              },
+              {
+                "enabled": false,
+                "property": "server.port"
+              },
+              {
+                "enabled": false,
+                "property": "host.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.daemonset.name"
+              },
+              {
+                "enabled": false,
+                "property": "service.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.node.name"
+              },
+              {
+                "enabled": false,
+                "property": "destination_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_workload"
+              },
+              {
+                "enabled": false,
+                "property": "destination_workload"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "reason",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_drop_total - Sum by source,reason",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_drop_total').sum(by=['source', 'reason']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PYfNlA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network Policy drops by destination",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "p/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "reason",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_drop_total - Sum by destination,reason",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_drop_total').sum(by=['destination', 'reason']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PZKqHAwAM",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Request Volume",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Incoming Request Volume",
+              "label": "Incoming Request Volume",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "req/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('hubble_http_requests_total').mean(over='1m').sum().scale(0.001).publish(label='Incoming Request Volume')\n",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PpRTAA0AQ",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Request Success Rate (non-5xx responses)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "%",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Success Rate",
+              "label": "Success Rate",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total', filter=not filter('status', '5*')).mean(over='1m').sum()\nB = data('hubble_http_requests_total').mean(over='1m').sum()\n(A/B).scale(100).publish(label='Success Rate')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PqLGoAwAM",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Request Duration - (p50, p95,p99)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ms",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "P99",
+              "label": "A",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P95",
+              "label": "B",
+              "paletteIndex": 6,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P50",
+              "label": "C",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_request_duration_seconds_bucket').percentile(pct=99).publish(label='A')\nB = data('hubble_http_request_duration_seconds_bucket').percentile(pct=95).publish(label='B')\nC = data('hubble_http_request_duration_seconds_bucket').percentile(pct=50).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3Pq3cmA0AI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Requests by Source & Response Code",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "req/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "status",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_http_requests_total - Sum by status,k8s.cluster.name,k8s.namespace.name,k8s.workload.name",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total').mean(over='1m').sum(by=['status', 'k8s.cluster.name', 'k8s.namespace.name', 'k8s.workload.name']).scale(0.001).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PrMJZAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Request Success Rate (non-5xx responses) By Source",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "%",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "source_workload",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Success Rate",
+              "label": "Success Rate",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total', filter=not filter('status', '5*')).mean(over='1m').sum(by=['source_namespace','source_workload'])\nB = data('hubble_http_requests_total').mean(over='1m').sum(by=['source_namespace', 'source_workload'])\n(A/B).scale(100).publish(label='Success Rate')\n",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PrmTPA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "HTTP Request Duration by Source (P50, P95, P99)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ms",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "source_workload",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "P50 by Source",
+              "label": "P50 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P95 by Source",
+              "label": "P95 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P99 by Source",
+              "label": "P99 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=50, bucket_name='le').sum(by=['k8s.cluster.name','source_namespace','source_workload','le']).scale(1000).publish(label='P50 by Source')\ndata('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=95, bucket_name='le').sum(by=['k8s.cluster.name','source_namespace','source_workload','le']).scale(1000).publish(label='P95 by Source')\ndata('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=99, bucket_name='le').sum(by=['k8s.cluster.name','source_namespace','source_workload','le']).scale(1000).publish(label='P99 by Source')\n",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3Pr7wHAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CPU Usage by source",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "CPU Usage by Source",
+              "label": "CPU Usage by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate').sum(by=['namespace','workload']).publish(label='CPU Usage by Source')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PsIwgA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Requests by Destination and Response Code",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "req/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "destination_workload",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Requests by Destination and Status",
+              "label": "Requests by Destination and Status",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('hubble_http_requests_total').mean(over='1m').sum(by=['k8s.cluster.name', 'destination_namespace', 'destination_workload', 'status']).scale(0.001).publish(label='Requests by Destination and Status')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PseXYAwAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Incoming Request Success Rate (non-5xx responses) By Destination",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "%",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "destination_workload",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Success Rate by Destination",
+              "label": "Success Rate by Destination",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total', filter=not filter('status', '5*')).mean(over='1m').sum(by=['k8s.cluster.name','destination_namespace', 'destination_workload'])\nB = data('hubble_http_requests_total').mean(over='1m').sum(by=['k8s.cluster.name', 'destination_namespace', 'destination_workload'])\n(A/B).scale(100).publish(label='Success Rate by Destination')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PsxTVAwAQ",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "HTTP Request Duration by Destination (P50, P95, P99)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ms",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "destination_workload",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "P50 by Source",
+              "label": "P50 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P95 by Source",
+              "label": "P95 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "P99 by Source",
+              "label": "P99 by Source",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "data('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=50, bucket_name='le').sum(by=['k8s.cluster.name','destination_namespace','destination_workload','le']).scale(1000).publish(label='P50 by Source')\ndata('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=95, bucket_name='le').sum(by=['k8s.cluster.name','destination_namespace','destination_workload','le']).scale(1000).publish(label='P95 by Source')\ndata('hubble_http_request_duration_seconds_bucket').histogram_percentile(pct=99, bucket_name='le').sum(by=['k8s.cluster.name','destination_namespace','destination_workload','le']).scale(1000).publish(label='P99 by Source')\n\n\n#data('hubble_http_request_duration_seconds').percentile(50, by=['cluster', 'destination_namespace','destination_workload']).publish(label='P50 by Destination')\n#data('hubble_http_request_duration_seconds').percentile(95, by=['cluster', 'destination_namespace','destination_workload']).publish(label='P95 by Destination')\n#data('hubble_http_request_duration_seconds').percentile(99, by=['cluster', 'destination_namespace','destination_workload']).publish(label='P99 by Destination')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3PtIPaA4BE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CPU Usage",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "k8s.workload.name",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container.cpu.usage - Sum by k8s.namespace.name,k8s.workload.name",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container.cpu.usage').sum(by=['k8s.namespace.name', 'k8s.workload.name']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P0oYNA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "L7 Flow Distribution",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "subtype",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by subtype",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "AreaChart",
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total', filter=filter('type', 'L7'), rollup='rate').sum(by=['subtype']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P1XlCA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Flows Types",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total', rollup='rate').sum(by=['type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P1i5RAwAI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Flows processed per node",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "ops/s",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Maximum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Minimum",
+              "label": "B",
+              "paletteIndex": 6,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Mean",
+              "label": "C",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total', rollup='rate').max().publish(label='A')\nB = data('hubble_flows_processed_total', rollup='rate').min().publish(label='B')\nC = data('hubble_flows_processed_total', rollup='rate').mean().publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P1nYOA0AI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Trace Flow Distribution",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "subtype",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by subtype",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total', filter=filter('type', 'Trace'), rollup='rate').sum(by=['subtype']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P1xkqA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Drop Reason",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "reason",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_drop_total - Sum by reason",
+              "label": "A",
+              "paletteIndex": 2,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_drop_total', rollup='rate').sum(by=['reason']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P2AHpA4Ag",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Forwarded vs Dropped",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "verdict",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_flows_processed_total - Sum by verdict",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_flows_processed_total', rollup='rate').sum(by=['verdict']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P3KisA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "TCPv4",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "flag",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_tcp_flags_total - Sum by flag",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_tcp_flags_total', rollup='rate').sum(by=['flag']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P3bh1A0AI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "ICMPv4",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "type",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_icmp_total - Sum by type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_icmp_total', filter=filter('family', 'IPv4'), rollup='rate').sum(by=['type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P3j3qA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing TCPv4 SYN-ACKs",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Unanswered SYN packets by pod",
+              "label": "Unanswered SYN packets by pod",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_tcp_flags_total', filter=filter('family', 'IPv4') and filter('flag','SYN')).mean(over='1m').sum(by='pod')\nB = data('hubble_tcp_flags_total', filter=filter('family', 'IPv4') and filter('flag','SYN-ACK')).mean(over='1m').sum(by='pod')\n(A - B).publish(label='Unanswered SYN packets by pod')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P3loGA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing ICMPv4 Echo-Reply",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Unanswered ICMP Echo Requests by pod",
+              "label": "Unanswered ICMP Echo Requests by pod",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_icmp_total', filter=filter('family', 'IPv4') and filter('type',\n  'EchoRequest')).mean(over='1m').sum(by='pod')\nB = data('hubble_icmp_total', filter=filter('family', 'IPv4') and filter('type',\n  'EchoReply')).mean(over='1m').sum(by='pod')\n(A - B).publish(label='Unanswered ICMP Echo Requests by pod')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P3mZ6A4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "HTTP Requests",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_http_requests_total - Sum by method",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total', rollup='rate').sum(by=['method']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P5LoFA0AM",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Requests",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "qtypes",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_queries_total - Sum by qtypes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "req/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total', rollup='rate').sum(by=['qtypes']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P5PJNA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "HTTP Protocol Usage",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "protocol",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_http_requests_total - Sum by protocol",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_http_requests_total', rollup='rate').sum(by=['protocol']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P6BmzAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Missing DNS Responses",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "qtypes",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_queries_total - Sum by qtypes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "hubble_dns_responses_total - Sum by qtypes",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A-B",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total', rollup='rate').sum(by=['qtypes']).publish(label='A', enable=False)\nB = data('hubble_dns_responses_total', rollup='rate').sum(by=['qtypes']).publish(label='B', enable=False)\nC = (A-B).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P6z4kAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Responses",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_responses_total - Sum by qtypes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "req/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_responses_total', filter=filter('rcode', 'No Error'), rollup='rate').sum(by=['qtypes']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P60olA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Response IPs Returned",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_responses_total - Sum by ips_returned",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_responses_total', filter=filter('rcode', 'No Error'), rollup='rate').sum(by=['ips_returned']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P7QBsA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "DNS Errors",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_responses_total - Sum by qtypes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_responses_total', filter=(not filter('rcode', 'No Error'))).sum(by=['qtypes']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P7WNrA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Pods with DNS Errors",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "destination"
+              },
+              {
+                "enabled": false,
+                "property": "destination_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "destination_workload"
+              },
+              {
+                "enabled": false,
+                "property": "host.name"
+              },
+              {
+                "enabled": false,
+                "property": "ips_returned"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.cluster.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.container.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.daemonset.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.namespace.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.node.name"
+              },
+              {
+                "enabled": true,
+                "property": "k8s.pod.name"
+              },
+              {
+                "enabled": false,
+                "property": "k8s.pod.uid"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "qtypes"
+              },
+              {
+                "enabled": false,
+                "property": "query"
+              },
+              {
+                "enabled": false,
+                "property": "rcode"
+              },
+              {
+                "enabled": false,
+                "property": "server.port"
+              },
+              {
+                "enabled": false,
+                "property": "service.instance.id"
+              },
+              {
+                "enabled": false,
+                "property": "service.name"
+              },
+              {
+                "enabled": false,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "source_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "source_workload"
+              },
+              {
+                "enabled": false,
+                "property": "url.scheme"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_responses_total - Top 10 by k8s.pod.name",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_responses_total', filter=(not filter('rcode', 'No Error'))).top(by=['k8s.pod.name'], count=10).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "chartLinks": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "G3P8XVWAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 queries ",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "query",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "hubble_dns_queries_total - Top 10 by query",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('hubble_dns_queries_total', rollup='rate').top(by=['query'], count=10).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    }
+  ],
+  "crossLinkExports": [],
+  "dashboardExports": [
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "G3PN6omA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3POqbdA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3PTfUCA0AA",
+            "column": 0,
+            "height": 2,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3PTtQOA0AA",
+            "column": 6,
+            "height": 2,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3PVToNA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3PWmLcAwAA",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3PXjcmAwAA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "G3PYfNlA4AE",
+            "column": 6,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": [
+            {
+              "NOT": false,
+              "applyIfExists": false,
+              "property": "k8s.cluster.name",
+              "value": "k8s-02.uktme.cisco.com"
+            }
+          ],
+          "time": null,
+          "variables": []
+        },
+        "groupId": "G3PE8nhA4AM",
+        "groupName": "Hubble by Isovalent",
+        "id": "G3POSj3AwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "Network Overview",
+        "permissions": null,
+        "selectedEventOverlays": [],
+        "tags": []
+      }
+    },
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "G3PFnGbA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3PGlrdA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3PNUxEA0AI",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3PI0BGAwAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": [
+            {
+              "NOT": false,
+              "applyIfExists": false,
+              "property": "k8s.cluster.name",
+              "value": "k8s-02.uktme.cisco.com"
+            }
+          ],
+          "time": null,
+          "variables": []
+        },
+        "groupId": "G3PE8nhA4AM",
+        "groupName": "Hubble by Isovalent",
+        "id": "G3PE97wAwAo",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "DNS Overview",
+        "permissions": null,
+        "selectedEventOverlays": [],
+        "tags": []
+      }
+    },
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "HIGH",
+        "charts": [
+          {
+            "chartId": "G3PZKqHAwAM",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "G3PpRTAA0AQ",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "G3PqLGoAwAM",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "G3Pq3cmA0AI",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3PrMJZAwAA",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3PrmTPA0AA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "G3Pr7wHAwAA",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "G3PseXYAwAE",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3PsIwgA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3PsxTVAwAQ",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "G3PtIPaA4BE",
+            "column": 6,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": [
+            {
+              "NOT": false,
+              "applyIfExists": false,
+              "property": "k8s.cluster.name",
+              "value": "k8s-02.uktme.cisco.com"
+            }
+          ],
+          "time": {
+            "end": "Now",
+            "start": "-15m"
+          },
+          "variables": []
+        },
+        "groupId": "G3PE8nhA4AM",
+        "groupName": "Hubble by Isovalent",
+        "id": "G3PZT8nA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "L7 HTTP Metrics",
+        "permissions": null,
+        "selectedEventOverlays": [],
+        "tags": []
+      }
+    },
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "G3P1i5RAwAI",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3P1XlCA4AE",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "G3P0oYNA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3P1nYOA0AI",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "G3P2AHpA4Ag",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "G3P1xkqA0AA",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "G3P3KisA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3P3j3qA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "G3P3bh1A0AI",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "G3P3loGA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "G3P3mZ6A4AA",
+            "column": 0,
+            "height": 1,
+            "row": 5,
+            "width": 6
+          },
+          {
+            "chartId": "G3P5PJNA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 5,
+            "width": 6
+          },
+          {
+            "chartId": "G3P5LoFA0AM",
+            "column": 0,
+            "height": 1,
+            "row": 6,
+            "width": 4
+          },
+          {
+            "chartId": "G3P6z4kAwAA",
+            "column": 4,
+            "height": 1,
+            "row": 6,
+            "width": 4
+          },
+          {
+            "chartId": "G3P6BmzAwAA",
+            "column": 8,
+            "height": 1,
+            "row": 6,
+            "width": 4
+          },
+          {
+            "chartId": "G3P60olA4AA",
+            "column": 0,
+            "height": 1,
+            "row": 7,
+            "width": 6
+          },
+          {
+            "chartId": "G3P7QBsA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 7,
+            "width": 6
+          },
+          {
+            "chartId": "G3P7WNrA0AA",
+            "column": 0,
+            "height": 1,
+            "row": 8,
+            "width": 6
+          },
+          {
+            "chartId": "G3P8XVWAwAA",
+            "column": 0,
+            "height": 1,
+            "row": 9,
+            "width": 12
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": [
+            {
+              "NOT": false,
+              "applyIfExists": false,
+              "property": "k8s.cluster.name",
+              "value": "k8s-02.uktme.cisco.com"
+            }
+          ],
+          "time": null,
+          "variables": []
+        },
+        "groupId": "G3PE8nhA4AM",
+        "groupName": "Hubble by Isovalent",
+        "id": "G3P1n6KA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "Metrics & Monitoring",
+        "permissions": null,
+        "selectedEventOverlays": [],
+        "tags": []
+      }
+    }
+  ],
+  "groupExport": {
+    "group": {
+      "authorizedWriters": null,
+      "created": 0,
+      "creator": null,
+      "dashboardConfigs": [
+        {
+          "configId": "G3POTKcA0AA",
+          "dashboardId": "G3POSj3AwAA",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        },
+        {
+          "configId": "G3PE--WA0AA",
+          "dashboardId": "G3PE97wAwAo",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        },
+        {
+          "configId": "G3PZUS1A4AE",
+          "dashboardId": "G3PZT8nA0AA",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        },
+        {
+          "configId": "G3P1oVwAwAE",
+          "dashboardId": "G3P1n6KA4AE",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        }
+      ],
+      "dashboards": [
+        "G3POSj3AwAA",
+        "G3PE97wAwAo",
+        "G3PZT8nA0AA",
+        "G3P1n6KA4AE"
+      ],
+      "description": "",
+      "email": null,
+      "id": "G3PE8nhA4AM",
+      "importQualifiers": [
+        {
+          "filters": [],
+          "metric": ""
+        }
+      ],
+      "lastUpdated": 0,
+      "lastUpdatedBy": null,
+      "name": "Hubble by Isovalent",
+      "permissions": null,
+      "teams": null
+    }
+  },
+  "hashCode": -2072164354,
+  "id": "G3PE8nhA4AM",
+  "modelVersion": 1,
+  "packageType": "GROUP"
+}
