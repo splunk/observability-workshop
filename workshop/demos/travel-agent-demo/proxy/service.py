@@ -75,7 +75,7 @@ async def forward_request(
     target_url = f"{CISCO_BASE_URL}{upstream_path}"
     upstream_headers = get_cisco_headers()
 
-    async with httpx.AsyncClient(timeout=60.0) as client:
+    async with httpx.AsyncClient(timeout=120.0) as client:
         if stream:
             async with client.stream(
                 method,

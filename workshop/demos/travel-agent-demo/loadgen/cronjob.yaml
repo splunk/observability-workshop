@@ -29,8 +29,7 @@ spec:
               command:
                 - python
                 - client.py
-                - --no-poison
-                # No poison config - clean quality baseline testing
+                # - --no-poison
               resources:
                 requests:
                   memory: "256Mi"
