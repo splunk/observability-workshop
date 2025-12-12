@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cisco-circuit-proxy
+  namespace: travel-agent
+  labels:
+    app: cisco-circuit-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cisco-circuit-proxy
+  template:
+    metadata:
+      labels:
+        app: cisco-circuit-proxy
+    spec:
+      containers:
+        - name: cisco-circuit-proxy
+          image: docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            # Load Cisco keys from secret
+            - name: CISCO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cisco-circuit-keys
+                  key: cisco-client-id
+            - name: CISCO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cisco-circuit-keys
+                  key: cisco-client-secret
+            - name: CISCO_APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cisco-circuit-keys
+                  key: cisco-app-key
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "128m"
+            limits:
+              memory: "512mi"
+              cpu: "256m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cisco-circuit-proxy
+  namespace: travel-agent
+spec:
+  selector:
+    app: cisco-circuit-proxy
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

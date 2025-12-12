@@ -20,7 +20,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: mcp-client
-              image: travel-planner-langchain-client:latest
+              image: docker.io/derekmitchell399/travel-planner-loadgen:1.0
               imagePullPolicy: Always
               env:
                 # Flask Server URL - using k8s service

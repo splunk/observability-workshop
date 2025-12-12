@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: travel-planner-langchain
-          image: ertserendavga918/travel-planner-langchain-server:v1.0.2
+          image: docker.io/derekmitchell399/travel-planner-langchain-server:1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -25,13 +25,13 @@ spec:
           env:
             # Load OpenAI API key from secret
             - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: openai-api-keys
-                  key: openai-api-key
+              value: "dummy"
             # OpenAI Model
             - name: OPENAI_MODEL
-              value: "gpt-5-nano"
+              value: "gpt-4o-mini"
+            # Point the OpenAI Base URL to the Cisco Circuit proxy
+            - name: OPENAI_BASE_URL
+              value: "http://cisco-circuit-proxy.travel-agent.svc.cluster.local:8000/v1"
             # Service Name
             - name: OTEL_SERVICE_NAME
               value: "travel-planner"

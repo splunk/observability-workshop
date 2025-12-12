@@ -95,4 +95,63 @@ curl http://localhost:8080/travel/plan \
     "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
     "travelers": 2
   }'
+```
+
+## Build Docker Images
+
+The following commands were used to build Docker images for each of the application components. 
+
+### Circuit Proxy
+
+To build the proxy image: 
+
+``` bash
+cd proxy
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/cisco-circuit-proxy:1.0 .
+docker push docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+```
+
+To test the image: 
+
+``` bash
+docker run -d \
+  -p 8000:8000 \
+  -e CISCO_CLIENT_ID="your_cisco_client_id" \
+  -e CISCO_CLIENT_SECRET="your_cisco_client_secret" \
+  -e CISCO_APP_KEY="your_cisco_app_key" \
+  --name cisco-circuit-proxy \
+  docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+```
+
+Test the proxy service using curl:
+
+``` bash
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      { "role": "user", "content": "Hello, can you hear me?" }
+    ]
+  }'
 ````
+
+### Travel Agent App
+
+To build the travel agent application image:
+
+``` bash
+cd app
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.0 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.0
+```
+
+### Load Generator
+
+To build the travel agent load generator image:
+
+``` bash
+cd loadgen
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-loadgen:1.0 .
+docker push docker.io/derekmitchell399/travel-planner-loadgen:1.0
+```

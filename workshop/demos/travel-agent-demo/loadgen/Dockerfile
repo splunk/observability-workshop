@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install dependencies
-COPY instrumentation-genai/opentelemetry-instrumentation-langchain/examples/multi_agent_travel_planner/client_server_version/requirements.txt /app/
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy client application
-COPY instrumentation-genai/opentelemetry-instrumentation-langchain/examples/multi_agent_travel_planner/client_server_version/client.py /app/
+COPY client.py /app/
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && \
