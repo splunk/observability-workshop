@@ -232,7 +232,9 @@ splunk-otel-collector-chart/splunk-otel-collector
 
 ### Build Docker Images 
 
-Build Docker images: 
+### Build Docker Images (locally)
+
+Build Docker images and push them to the `ghcr.io/splunk` repository:
 
 ``` bash
 docker compose build app
@@ -241,22 +243,27 @@ docker compose build payment
 docker compose build postgresql
 ```
 
-Tag them: 
+Push them to the `ghcr.io/splunk` repository:
 
 ``` bash
-docker tag ghcr.io/splunk/agentic-ai-demo-app:1.0 localhost:9999/agentic-ai-demo-app:1.0
-docker tag ghcr.io/splunk/agentic-ai-demo-db:1.0 localhost:9999/agentic-ai-demo-db:1.0
-docker tag ghcr.io/splunk/agentic-ai-demo-loadgen:1.0 localhost:9999/agentic-ai-demo-loadgen:1.0
-docker tag ghcr.io/splunk/agentic-ai-demo-payment:1.0 localhost:9999/agentic-ai-demo-payment:1.0
+docker push ghcr.io/splunk/agentic-ai-demo-app:1.0
+docker push ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
+docker push ghcr.io/splunk/agentic-ai-demo-db:1.0
+docker push ghcr.io/splunk/agentic-ai-demo-payment:1.0
 ```
 
-Then push them to the local container repository at `localhost:9999`:
+### Create Secrets
+
+Create Kubernetes secrets for the OpenAI API and Cisco Circuit API keys (if applicable):
 
 ``` bash
-docker push localhost:9999/agentic-ai-demo-app:1.0
-docker push localhost:9999/agentic-ai-demo-db:1.0
-docker push localhost:9999/agentic-ai-demo-loadgen:1.0
-docker push localhost:9999/agentic-ai-demo-payment:1.0
+kubectl create ns agentic-ai-demo-app
+
+kubectl create secret generic agentic-ai-secret -n agentic-ai-demo-app \
+    --from-literal=openai_api_key='dummy' \
+    --from-literal=cisco_client_id='<your Cisco Client ID>' \
+    --from-literal=cisco_client_secret='<your Cisco Client Secret>' \
+    --from-literal=cisco_app_key='<your Cisco App Key>'
 ```
 
 ### Deploy the Application
@@ -264,13 +271,13 @@ docker push localhost:9999/agentic-ai-demo-payment:1.0
 Next, we can deploy our application to Kubernetes: 
 
 ``` bash
-kubectl apply -f ./kubernetes.yaml
+kubectl apply -f ./kubernetes.yaml -n agentic-ai-demo-app
 ```
 
 ### Test the Application
 
 ``` bash
-kubectl port-forward service/agentic-ai-demo-app 8080:8080
+kubectl port-forward service/agentic-ai-demo-app -n agentic-ai-demo-app 8080:8080
 ```
 
 Send a pickup order:
@@ -288,13 +295,7 @@ curl -sS -X POST "http://localhost:8080/chat" \
 
 ``` bash
 git clone https://github.com/splunk/observability-workshop.git 
-
-cd observability-workshop 
-
-git fetch
-git switch agentic-ai-demo-app  
-
-cd workshop/demos/agentic-ai-demo 
+cd observability-workshop/workshop/demos/agentic-ai-demo 
 ```
 
 ### Create an OpenShift Project

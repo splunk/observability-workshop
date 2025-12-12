@@ -17,5 +17,4 @@ ENTRYPOINT ["locust", "-f", "locustfile.py"]
 CMD ["--headless", \
      "--users", "3", \
      "--spawn-rate", "1", \
-     "-H", "http://app:8080", \
      "--loglevel", "INFO"]

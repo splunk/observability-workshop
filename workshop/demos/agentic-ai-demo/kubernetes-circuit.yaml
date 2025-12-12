@@ -17,6 +17,7 @@ spec:
       containers:
         - name: postgresql
           image: ghcr.io/splunk/agentic-ai-demo-db:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 5432
           env:
@@ -48,6 +49,67 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: cisco-circuit-proxy
+  labels:
+    app: cisco-circuit-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cisco-circuit-proxy
+  template:
+    metadata:
+      labels:
+        app: cisco-circuit-proxy
+    spec:
+      containers:
+        - name: cisco-circuit-proxy
+          image: docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            # Load Cisco keys from secret
+            - name: CISCO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_client_id
+            - name: CISCO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_client_secret
+            - name: CISCO_APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: agentic-ai-secret
+                  key: cisco_app_key
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "128m"
+            limits:
+              memory: "512Mi"
+              cpu: "256m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cisco-circuit-proxy
+spec:
+  selector:
+    app: cisco-circuit-proxy
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: agentic-ai-demo-app
   labels:
     app: agentic-ai-demo-app
@@ -64,6 +126,7 @@ spec:
       containers:
         - name: app
           image: ghcr.io/splunk/agentic-ai-demo-app:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080 # Replace with your APP_PORT.
           env:
@@ -112,12 +175,9 @@ spec:
             - name: OPENAI_MODEL
               value: "gpt-4o-mini"
             - name: OPENAI_BASE_URL
-              value: "https://api.openai.com/v1"
+              value: "http://cisco-circuit-proxy.agentic-ai-demo-app.svc.cluster.local:8000/v1"
             - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: agentic-ai-secret
-                  key: openai_api_key
+              value: "dummy"
             - name: USE_CISCO_API
               value: "false"
             - name: CISCO_CLIENT_ID
@@ -175,6 +235,7 @@ spec:
       containers:
         - name: app
           image: ghcr.io/splunk/agentic-ai-demo-payment:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000 # Replace with your APP_PORT.
           resources:
