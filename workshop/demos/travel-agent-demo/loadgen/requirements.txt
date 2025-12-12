@@ -1,0 +1,7 @@
+langchain>=1.0.0
+langchain-openai>=1.0.0
+langgraph>=1.0.0
+python-dotenv>=1.0.0
+deepeval
+flask>=3.0.0
+requests>=2.31.0

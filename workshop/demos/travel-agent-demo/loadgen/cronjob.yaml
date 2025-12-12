@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: travel-planner-langchain-loadgen
+  namespace: travel-agent
+spec:
+  schedule: "0,30 16-23,0-2 * * 1-5"  # Every 30 min, 8am-6pm PST Mon-Fri (16:00-02:00 UTC)
+  concurrencyPolicy: Forbid  # Prevent overlapping runs
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app: travel-planner-langchain-client
+            scenario: no-poison
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: mcp-client
+              image: travel-planner-langchain-client:latest
+              imagePullPolicy: Always
+              env:
+                # Flask Server URL - using k8s service
+                - name: SERVER_URL
+                  value: "http://travel-planner-langchain-service.travel-agent.svc.cluster.local:8080"
+              command:
+                - python
+                - client.py
+                - --no-poison
+                # No poison config - clean quality baseline testing
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+              securityContext:
+                allowPrivilegeEscalation: false
+                runAsNonRoot: true
+                runAsUser: 1000
+                capabilities:
+                  drop:
+                    - ALL
+                readOnlyRootFilesystem: false

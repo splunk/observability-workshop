@@ -1,0 +1,12 @@
+langchain>=1.0.0
+langchain-openai>=1.0.0
+langgraph>=1.0.0
+python-dotenv>=1.0.0
+deepeval
+flask>=3.0.0
+requests>=2.31.0
+splunk-otel-instrumentation-langchain==0.1.4
+splunk-otel-genai-emitters-splunk==0.1.4
+splunk-otel-util-genai==0.1.4
+splunk-otel-util-genai-evals==0.1.4
+splunk-otel-genai-evals-deepeval==0.1.4

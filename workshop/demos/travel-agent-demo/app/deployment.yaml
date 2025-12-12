@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-planner-langchain
+  namespace: travel-agent
+  labels:
+    app: travel-planner-langchain
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: travel-planner-langchain
+  template:
+    metadata:
+      labels:
+        app: travel-planner-langchain
+    spec:
+      containers:
+        - name: travel-planner-langchain
+          image: ertserendavga918/travel-planner-langchain-server:v1.0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            # Load OpenAI API key from secret
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api-keys
+                  key: openai-api-key
+            # OpenAI Model
+            - name: OPENAI_MODEL
+              value: "gpt-5-nano"
+            # Service Name
+            - name: OTEL_SERVICE_NAME
+              value: "travel-planner"
+            # Additional OTEL configuration
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=travel-planner-demo"
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: HOME
+              value: "/tmp"
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: "DELTA"
+            - name: OTEL_LOGS_EXPORTER
+              value: "otlp"
+            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+              value: "true"
+            - name: OTEL_PYTHON_EXCLUDED_URLS
+              value: "^(https?://)?[^/]+(/health)?$"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
+              value: "SPAN_AND_EVENT"
+            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
+              value: "span_metric_event,splunk"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION
+              value: "replace-category:SplunkEvaluationResults"
+            - name: OTEL_GENAI_EVAL_DEBUG_SKIPS
+              value: "true"
+            - name: OTEL_GENAI_EVAL_DEBUG_EACH
+              value: "false"
+            - name: OTEL_INSTRUMENTATION_GENAI_DEBUG
+              value: "false"
+            - name: SPLUNK_PROFILER_ENABLED
+              value: "true"
+            - name: DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE
+              value: "300"
+            - name: DEEPEVAL_RETRY_MAX_ATTEMPTS
+              value: "2"
+            - name: DEEPEVAL_FILE_SYSTEM
+              value: "READ_ONLY"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: travel-planner-langchain-service
+  namespace: travel-agent
+spec:
+  selector:
+    app: travel-planner-langchain
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: sse
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
