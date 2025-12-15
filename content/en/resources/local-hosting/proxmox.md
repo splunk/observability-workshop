@@ -3,66 +3,61 @@ title: Local Hosting with Proxmox
 weight: 3
 description: Learn how to create a local hosting environment in Proxmox VE
 ---
-# Proxmox Workshop Instance Setup
 
-## Overview
+## Proxmox Workshop Instance Setup
 
-The `ubuntu-cloud.sh` script automates the creation of a Splunk Observability Workshop VM on Proxmox VE. It creates a complete Ubuntu 22.04 cloud-init based VM with all necessary tools and configurations pre-installed.
+### Overview
 
-## Prerequisites
+The `ubuntu-cloud-k3d.sh` script automates the creation of a Splunk Observability Workshop VM on Proxmox VE. It creates a complete Ubuntu 24.04 cloud-init based VM with all necessary tools and configurations pre-installed.
+
+#### Prerequisites
 
 - Proxmox VE cluster with administrative access
 - Internet connectivity for downloading cloud images and packages
 - Available VM ID range and storage space
 - Valid SWiPE ID for workshop access
 
-## Quick Start
+#### Quick Start
 
 Run the script directly on your Proxmox host:
 
-```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud.sh)"
-```
-
-BETA: `k3d` script:
+`k3d` script:
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3d.sh)"
 ```
 
-Or download and run locally:
+`k3s` script (LEGACY):
 
 ```bash
-wget https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud.sh
-chmod +x ubuntu-cloud.sh
-./ubuntu-cloud.sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3s.sh)"
 ```
 
-## What the Script Does
+### What the Script Does
 
-### 1. Initial Setup
+#### 1. Initial Setup
 
 - Updates package repositories and installs required tools (`jq`, `curl`)
 - Displays interactive prompts for user confirmation and SWiPE ID input
 
-### 2. Authentication & Configuration
+#### 2. Authentication & Configuration
 
 - Validates SWiPE ID against the Splunk workshop API
 - Retrieves workshop tokens and configuration (REALM, RUM_TOKEN, INGEST_TOKEN, etc.)
 - Generates unique VM ID and hostname
 
-### 3. VM Creation
+#### 3. VM Creation
 
-- Downloads Ubuntu 22.04 Jammy cloud image
-- Resizes disk to 20GB
+- Downloads Ubuntu 24.04 Noble cloud image
+- Resizes disk to 40GB
 - Creates Proxmox VM with:
-  - **Memory**: 8GB RAM
+  - **Memory**: 16GB RAM
   - **CPU**: 4 cores (host CPU type)
   - **Storage**: Uses `local-lvm` storage
   - **Network**: Bridged to `vmbr0` with DHCP
   - **Boot**: UEFI with cloud-init support
 
-### 4. Software Installation
+#### 4. Software Installation
 
 The cloud-init configuration automatically installs:
 
@@ -72,23 +67,23 @@ The cloud-init configuration automatically installs:
 - **Infrastructure**: Terraform, Ansible
 - **Monitoring**: Chaos Mesh
 
-### 5. Workshop Content
+#### 5. Workshop Content
 
 - Downloads Splunk Observability Workshop materials
 - Sets up Kubernetes secrets with workshop tokens
 - Configures private container registry
 - Prepares demo applications and content
 
-## VM Specifications
+### VM Specifications
 
-- **OS**: Ubuntu 22.04 LTS (Jammy)
-- **Memory**: 8GB RAM
+- **OS**: Ubuntu 24.04 LTS (Noble)
+- **Memory**: 16GB RAM
 - **CPU**: 4 cores
-- **Disk**: 20GB (expandable)
+- **Disk**: 40GB (expandable)
 - **User**: `splunk` / `Splunk123!`
 - **SSH**: Password authentication enabled
 
-## Environment Variables
+### Environment Variables
 
 The script configures these environment variables in the VM:
 
@@ -101,7 +96,7 @@ The script configures these environment variables in the VM:
 - `INSTANCE`: Unique hostname
 - `CLUSTER_NAME`: Kubernetes cluster name
 
-## Accessing the VM
+### Accessing the VM
 
 1. Wait for VM creation and boot to complete (5-10 minutes)
 2. Find the VM's IP address in Proxmox console or DHCP logs
@@ -112,7 +107,7 @@ The script configures these environment variables in the VM:
    # Password: Splunk123!
    ```
 
-## Useful Commands in the VM
+### Useful Commands in the VM
 
 ```bash
 # Check Kubernetes status
@@ -128,13 +123,13 @@ ls ~/workshop/
 env | grep -E "(TOKEN|REALM)"
 ```
 
-## Troubleshooting
+### Troubleshooting
 
 - **Invalid SWiPE ID**: Verify your workshop registration and ID
 - **VM creation fails**: Check Proxmox storage space and permissions
 - **Network issues**: Ensure `vmbr0` bridge is properly configured
 - **Slow deployment**: Allow extra time for cloud-init to complete all installations
 
-## Tags
+### Tags
 
-Created VMs are tagged with: `o11y-workshop`, `jammy`, `cloudinit`
+Created VMs are tagged with: `o11y-workshop`, `noble`, `k3d`
