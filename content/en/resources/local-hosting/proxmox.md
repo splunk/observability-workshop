@@ -16,6 +16,11 @@ The `ubuntu-cloud-k3d.sh` script automates the creation of a Splunk Observabilit
 - Internet connectivity for downloading cloud images and packages
 - Available VM ID range and storage space
 - Valid SWiPE ID for workshop access
+- **Snippets enabled on local storage** - Required for cloud-init configuration files. To enable:
+  1. In Proxmox web UI, go to **Datacenter → Storage → local**
+  2. Click **Edit**
+  3. Under **Content**, add **Snippets** to the list
+  4. Click **OK**
 
 #### Quick Start
 
