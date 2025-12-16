@@ -27,7 +27,7 @@ Run the script directly on your Proxmox host:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3d.sh)"
 ```
 
-`k3s` script (LEGACY):
+`k3s` script (**LEGACY**):
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3s.sh)"
