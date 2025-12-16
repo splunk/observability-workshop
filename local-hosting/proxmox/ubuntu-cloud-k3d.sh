@@ -156,7 +156,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
 
-  - path: /tmp/workshop-secrets.yaml
+  - path: /home/splunk/workshop-secrets.yaml
     permissions: '0755'
     content: |
       apiVersion: v1
@@ -249,7 +249,7 @@ runcmd:
   - curl -sSL https://mirrors.chaos-mesh.org/v2.8.0/install.sh | bash -s -- --k3s
 
   # Deploy Splunk secrets
-  - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop-secrets.yaml
 
   # Increase inotify limits for k3s
   - sysctl -w fs.inotify.max_user_watches=524288
