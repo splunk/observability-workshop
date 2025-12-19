@@ -228,7 +228,8 @@ runcmd:
   - unzip -qq terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
   # Install kubectl
-  - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  # - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  - curl -LO https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl
   - install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
    
   # Install k3d
