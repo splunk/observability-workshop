@@ -70,7 +70,7 @@ To enable this functionality, uncomment the following two lines of the
 
 ````
 splunk-otel-util-genai-evals==0.1.4
-splunk-otel-genai-evals-deepeval==0.1.4
+splunk-otel-genai-evals-deepeval==0.1.8
 ````
 
 ### Run the Application 
