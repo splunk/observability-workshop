@@ -10,9 +10,9 @@ def read_env_variable(key: str, isRequired: bool):
     return value
 
 class Settings:
-    OPENAI_API_KEY = read_env_variable("OPENAI_API_KEY", True)
-    OPENAI_MODEL = read_env_variable("OPENAI_MODEL", True)
-    OPENAI_BASE_URL = read_env_variable("OPENAI_BASE_URL", True)
+    OPENAI_API_KEY = read_env_variable("OPENAI_API_KEY", False)
+    OPENAI_MODEL = read_env_variable("OPENAI_MODEL", False)
+    OPENAI_BASE_URL = read_env_variable("OPENAI_BASE_URL", False)
     PAYMENT_SERVICE_URL = read_env_variable("PAYMENT_SERVICE_URL", True)
     OTEL_SERVICE_NAME = read_env_variable("OTEL_SERVICE_NAME", True)
     DB_CONNECTION_STRING = read_env_variable("DB_CONNECTION_STRING", True)

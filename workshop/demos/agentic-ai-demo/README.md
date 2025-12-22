@@ -20,11 +20,6 @@ Add an `.env.override` file to the `observability-workshop/workshop/demos/agenti
 folder with the following contents:
 
 ``` bash
-# OpenAI
-OPENAI_API_KEY=your_key_here
-OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_MODEL=gpt-4o-mini
-
 SPLUNK_ACCESS_TOKEN=your_token_here
 SPLUNK_API_URL=e.g. https://api.us1.signalfx.com
 SPLUNK_INGEST_URL=e.g. https://ingest.us1.signalfx.com
@@ -34,23 +29,41 @@ SPLUNK_HEC_URL=your_HEC_URL_here
 OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-demo
 ```
 
+Add the `SPLUNK_ACCESS_TOKEN` token required to send data to your Splunk
+Observability Cloud organization.  Modify the realm in the `SPLUNK_API_URL` and
+`SPLUNK_INGEST_URL` environment variables if your org is not in `us1`.
+
+Add the `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL` to send logs to your Splunk Enterprise
+or Splunk Cloud instance. For Splunk Cloud, the `SPLUNK_HEC_URL` should be something like
+`https://<hostname>.splunkcloud.com:443`.
+
 > Note: ensure this file isn't added to GitHub 
 
-If using OpenAI, add your OpenAI API key to the above file. If using another LLM such as
-`meta-llama-3.1-70b`, then use `dummy` for the `OPENAI_API_KEY` value,
-and then update the `OPENAI_BASE_URL` and `OPENAI_MODEL` as appropriate
-for the target LLM. 
+#### Using OpenAI
 
-Add the `SPLUNK_ACCESS_TOKEN` token required to send data to your Splunk 
-Observability Cloud organization.  Modify the realm in the `SPLUNK_API_URL` and 
-`SPLUNK_INGEST_URL` environment variables if your org is not in `us1`. 
+If using OpenAI, add your OpenAI API key to the `.env.override` file: 
 
-Add the `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL` to send logs to your Splunk Enterprise 
-or Splunk Cloud instance. For Splunk Cloud, the `SPLUNK_HEC_URL` should be something like 
-`https://<hostname>.splunkcloud.com:443`. 
+``` bash
+# OpenAI
+OPENAI_API_KEY=your_key_here
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-4o-mini
+```
 
-If using Cisco APIs for LLM access, include the following environment variables instead of 
-the `OPENAI` ones: 
+#### Using Together AI
+
+If using Together AI, add the following to the `.env.override` file:
+
+``` bash
+# Together AI
+OPENAI_API_KEY=your_key_here
+OPENAI_BASE_URL=https://api.together.xyz/v1
+OPENAI_MODEL=meta-llama/Llama-3.3-70B-Instruct-Turbo
+```
+
+#### Using Cisco Circuit API
+
+If using Cisco APIs for LLM access, add the following to the `.env.override` file:
 
 ````
 USE_CISCO_API=true
@@ -64,13 +77,27 @@ CISCO_APP_KEY=_your_cisco_app_key
 Splunk Observability Cloud is able to evaluate the quality of LLM responses, to check 
 for relevancy, correctness, bias, etc. 
 
-Currently, this functionality is only available when using an OpenAI API such as `gpt-4o-mini`. 
+Currently, this functionality is only available when using an OpenAI API such as `gpt-4o-mini`, 
+either directly or via Cisco Circuit API. 
+
 To enable this functionality, uncomment the following two lines of the 
 [requirements.txt](./app/requirements.txt) file: 
 
 ````
 splunk-otel-util-genai-evals==0.1.4
 splunk-otel-genai-evals-deepeval==0.1.8
+````
+
+If using the Cisco Circuit API, add the following to the `.env.override` file:  
+
+````
+DEEPEVAL_LLM_BASE_URL=https://chat-ai.cisco.com/openai/deployments/gpt-4o-mini
+DEEPEVAL_LLM_MODEL="gpt-4o-mini"
+DEEPEVAL_LLM_PROVIDER=openai
+DEEPEVAL_LLM_CLIENT_ID=your_client_id
+DEEPEVAL_LLM_CLIENT_SECRET=your_client_secret
+DEEPEVAL_LLM_TOKEN_URL=https://id.cisco.com/oauth2/default/v1/token
+DEEPEVAL_LLM_CLIENT_APP_NAME=your_app_key
 ````
 
 ### Run the Application 

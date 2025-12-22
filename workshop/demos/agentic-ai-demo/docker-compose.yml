@@ -134,6 +134,14 @@ services:
       - CISCO_CLIENT_ID
       - CISCO_CLIENT_SECRET
       - CISCO_APP_KEY
+      - DEEPEVAL_LLM_BASE_URL
+      - DEEPEVAL_LLM_MODEL
+      - DEEPEVAL_LLM_PROVIDER
+      - DEEPEVAL_LLM_CLIENT_ID
+      - DEEPEVAL_LLM_CLIENT_SECRET
+      - DEEPEVAL_LLM_TOKEN_URL
+      - DEEPEVAL_LLM_CLIENT_APP_NAME
+      - DEEPEVAL_TELEMETRY_OPT_OUT
     depends_on:
       postgresql:
         condition: service_started
