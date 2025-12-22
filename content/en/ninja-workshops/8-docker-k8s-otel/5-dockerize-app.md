@@ -254,14 +254,14 @@ Let's ensure that our Docker container is running:
 {{% tab title="Script" %}}
 
 ``` bash
-docker ps
+docker ps | grep helloworld
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` bash
-$ docker ps
+$ docker ps | grep helloworld
 CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS       PORTS     NAMES
 5f5b9cd56ac5   helloworld:1.0   "dotnet helloworld.d…"   2 mins ago    Up 2 mins              helloworld
 ```

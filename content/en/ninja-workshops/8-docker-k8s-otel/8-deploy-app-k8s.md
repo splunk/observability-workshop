@@ -34,7 +34,7 @@ docker build -t helloworld:1.2 .
 > Note: we've used a different version (1.2) to distinguish the image from our earlier version.
 > To clean up the older versions, run the following command to get the container id:
 > ``` bash
-> docker ps -a
+> docker ps -a | grep helloworld
 > ```
 > Then run the following command to delete the container:
 > ``` bash
@@ -49,16 +49,18 @@ docker build -t helloworld:1.2 .
 > docker image rm <old image id>
 > ```
 
-## Import the Docker Image to Kubernetes
+## Import the Docker Image to Local Container Repository 
 
 Normally we’d push our Docker image to a repository such as Docker Hub.
-But for this session, we’ll use a workaround to import it to k3s directly. 
+But for this workshop, we’ll push the Docker image to the local container 
+repository running on our EC2 instance at `localhost:9999`
 
 ``` bash
-cd /home/splunk
+# Update the image tag
+docker tag helloworld:1.2 localhost:9999/helloworld:1.2
 
-# Import the image into k3d
-sudo k3d image import helloworld:1.2 --cluster $INSTANCE-cluster
+# Import the image into the local repository
+docker push localhost:9999/helloworld:1.2
 ```
 
 ## Deploy the .NET Application
@@ -90,8 +92,8 @@ spec:
     spec:
       containers:
         - name: helloworld
-          image: docker.io/library/helloworld:1.2
-          imagePullPolicy: Never
+          image: localhost:9999/helloworld:1.2
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
@@ -128,7 +130,7 @@ spec:
 > [!tip]- What is a Service in Kubernetes?
 > A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time. 
 
-Then, create a second file in the same directory named `service.yaml`:
+Then, create a third file in the same directory named `ingress.yaml`:
 
 ``` bash
 vi /home/splunk/ingress.yaml
@@ -164,6 +166,8 @@ We can then use these manifest files to deploy our application:
 {{% tab title="Script" %}}
 
 ``` bash
+cd /home/splunk
+
 # create the deployment
 kubectl apply -f deployment.yaml
 
@@ -180,6 +184,7 @@ kubectl apply -f ingress.yaml
 ``` bash
 deployment.apps/helloworld created
 service/helloworld created
+ingress.networking.k8s.io/helloworld-ingress created
 ```
 
 {{% /tab %}}
@@ -238,8 +243,8 @@ spec:
     spec:
       containers:
         - name: helloworld
-          image: docker.io/library/helloworld:1.2
-          imagePullPolicy: Never
+          image: localhost:9999/helloworld:1.2
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

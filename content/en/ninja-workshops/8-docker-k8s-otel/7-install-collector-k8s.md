@@ -186,8 +186,10 @@ kubectl get pods
 
 ``` bash
 NAME                                                         READY   STATUS    RESTARTS   AGE
-splunk-otel-collector-agent-8xvk8                            1/1     Running   0          49s
-splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0          49s
+splunk-otel-collector-agent-dkn88                            1/1     Running   0          53s
+splunk-otel-collector-agent-ksmh4                            1/1     Running   0          53s
+splunk-otel-collector-agent-lc2lf                            1/1     Running   0          53s
+splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0          53s
 ```
 
 {{% /tab %}}

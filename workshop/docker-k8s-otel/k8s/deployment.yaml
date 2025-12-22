@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: helloworld
-          image: docker.io/library/helloworld:1.2
-          imagePullPolicy: Never
+          image: localhost:9999/helloworld:1.2
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

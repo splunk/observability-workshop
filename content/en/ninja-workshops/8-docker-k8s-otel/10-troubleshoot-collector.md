@@ -39,7 +39,6 @@ like this:
       - resource/add_environment
       receivers:
       - filelog
-      - fluentforward
       - otlp
     ...
     traces:
@@ -55,7 +54,6 @@ like this:
       receivers:
       - otlp
       - jaeger
-      - smartagent/signalfx-forwarder
       - zipkin
 ```
 
@@ -312,13 +310,16 @@ cd /home/splunk/workshop/docker-k8s-otel/helloworld
 docker build -t helloworld:1.3 .
 ```
 
-And then we'll import the updated image into Kubernetes: 
+And then we'll import the updated image into our local container repository: 
 
 ``` bash
 cd /home/splunk
 
-# Import the image into k3d
-sudo k3d image import helloworld:1.3 --cluster $INSTANCE-cluster
+# Tag the image 
+docker tag helloworld:1.3 localhost:9999/helloworld:1.3
+
+# Import the image into our local container repo
+docker push localhost:9999/helloworld:1.3
 ```
 
 Finally, we'll need to update the `deployment.yaml' file to use the 1.3 version
@@ -328,7 +329,7 @@ of the container image:
     spec:
       containers:
         - name: helloworld
-          image: docker.io/library/helloworld:1.3
+          image: localhost:9999/helloworld:1.3
 ```
 
 And then apply the changes:

@@ -192,7 +192,7 @@ docker build -t helloworld:1.1 .
 > Note: we've used a different version (1.1) to distinguish the image from our earlier version. 
 > To clean up the older versions, run the following command to get the container id:  
 > ``` bash
-> docker ps -a
+> docker ps -a | grep helloworld
 > ```
 > Then run the following command to delete the container: 
 > ``` bash
@@ -245,7 +245,7 @@ Next, add the debug exporter to the traces pipeline, which ensures the traces ar
 
 ``` yaml
 service:
-  extensions: [health_check, http_forwarder, zpages, smartagent]
+  extensions: [headers_setter, health_check, http_forwarder, zpages, smartagent]
   pipelines:
     traces:
       receivers: [jaeger, otlp, zipkin]

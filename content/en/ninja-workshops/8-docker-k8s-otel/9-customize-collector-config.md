@@ -58,10 +58,9 @@ Labels:       app=splunk-otel-collector
               app.kubernetes.io/instance=splunk-otel-collector
               app.kubernetes.io/managed-by=Helm
               app.kubernetes.io/name=splunk-otel-collector
-              app.kubernetes.io/version=0.113.0
-              chart=splunk-otel-collector-0.113.0
-              helm.sh/chart=splunk-otel-collector-0.113.0
-              heritage=Helm
+              app.kubernetes.io/version=0.136.1
+              chart=splunk-otel-collector-0.136.0
+              helm.sh/chart=splunk-otel-collector-0.136.0
               release=splunk-otel-collector
 Annotations:  meta.helm.sh/release-name: splunk-otel-collector
               meta.helm.sh/release-namespace: default
@@ -72,8 +71,8 @@ relay:
 ----
 exporters:
   otlphttp:
-    headers:
-      X-SF-Token: ${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}
+    auth:
+      authenticator: headers_setter
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
     (followed by the rest of the collector config in yaml format) 
