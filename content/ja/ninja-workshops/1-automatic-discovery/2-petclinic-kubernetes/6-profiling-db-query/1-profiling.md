@@ -4,11 +4,11 @@ linkTitle: 1. Always-On Profiling
 weight: 1
 ---
 
-先ほどHelmチャート (chart) を使用してSplunk Distribution of the OpenTelemetry Collectorをインストール (install) した際、**AlwaysOn Profiling**と**Metrics**を有効にするように設定しました。これにより、OpenTelemetry Javaはアプリケーション (application) のCPUとメモリ (memory) のプロファイリング (profiling) を自動的に生成し、Splunk Observability Cloudに送信します。
+先ほどHelmチャートを使用してSplunk Distribution of the OpenTelemetry Collectorをインストールした際、**AlwaysOn Profiling**と**Metrics**を有効にするように設定しました。これにより、OpenTelemetry JavaはアプリケーションのCPUとメモリのプロファイリングを自動的に生成し、Splunk Observability Cloudに送信します。
 
-PetClinicアプリケーションをデプロイ (deploy) してアノテーション (annotation) を設定すると、collectorは自動的にアプリケーションを検出し、トレース (trace) とプロファイリング (profiling) のためにインストルメント (instrument) します。これを確認するために、次のスクリプト (script) を実行して、インストルメント (instrument) しているJavaコンテナ (container) の1つの起動ログ (log) を調べることができます：
+PetClinicアプリケーションをデプロイしてアノテーションを設定すると、collectorは自動的にアプリケーションを検出し、トレースとプロファイリングのためにインストルメントします。これを確認するために、次のスクリプトを実行して、インストルメントしているJavaコンテナの1つの起動ログを調べることができます：
 
-ログ (log) には、Javaの自動検出と設定によって取得されたフラグ (flag) が表示されます：
+ログには、Javaの自動検出と設定によって取得されたフラグが表示されます：
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}
@@ -51,11 +51,11 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 {{< /tabs >}}
 私たちが注目しているのは、`com.splunk.opentelemetry.profiler.ConfigurationLogger`によって書き込まれたセクション、つまり**Profiling Configuration**です。
 
-`splunk.profiler.directory`など、制御できるさまざまな設定を確認できます。これは、エージェント (agent) がSplunkに送信する前にコールスタック (call stack) を書き込む場所です。（これは、コンテナ (container) の設定方法によって異なる場合があります。）
+`splunk.profiler.directory`など、制御できるさまざまな設定を確認できます。これは、エージェントがSplunkに送信する前にコールスタックを書き込む場所です。（これは、コンテナの設定方法によって異なる場合があります。）
 
-変更したいもう1つのパラメータ (parameter) は`splunk.profiler.call.stack.interval`です。これは、システム (system) がCPU Stack traceをキャプチャ (capture) する頻度です。Pet Clinicアプリケーションのような短いスパン (span) がある場合は、このインターバル (interval) 設定を短くすることをお勧めします。デモ (demo) アプリケーションでは、デフォルト (default) のインターバル (interval) 値を変更しなかったため、スパン (span) に常にCPU Call Stackが関連付けられているとは限りません。
+変更したいもう1つのパラメータは`splunk.profiler.call.stack.interval`です。これは、システムがCPU Stack traceをキャプチャする頻度です。Pet Clinicアプリケーションのような短いスパンがある場合は、このインターバル設定を短くすることをお勧めします。デモアプリケーションでは、デフォルトのインターバル値を変更しなかったため、スパンに常にCPU Call Stackが関連付けられているとは限りません。
 
-これらのパラメータ (parameter) を設定する方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java)で確認できます。以下の例では、`deployment.yaml`でコールスタック (call stack) のより高い収集レート (rate) を設定する方法を示しています。これは、JAVA_OPTIONS configセクション (section) でこの値を設定することで行います。
+これらのパラメータを設定する方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java)で確認できます。以下の例では、`deployment.yaml`でコールスタックのより高い収集レートを設定する方法を示しています。これは、JAVA_OPTIONS configセクションでこの値を設定することで行います。
 
 ``` yaml
 env:

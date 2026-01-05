@@ -4,7 +4,7 @@ linkTitle: 1. ログを確認する
 weight: 2
 ---
 
-ログを表示するには、左側のメニューで ![Logo](../images/logo-icon.png?classes=inline&height=25px) **Log Observer** をクリックします。Log Observer に入ったら、フィルターバー (filter bar) の **Index** が **splunk4rookies-workshop** に設定されていることを確認してください。**(1)**
+ログを表示するには、左側のメニューで ![Logo](../images/logo-icon.png?classes=inline&height=25px) **Log Observer** をクリックします。Log Observer に入ったら、フィルターバーの **Index** が **splunk4rookies-workshop** に設定されていることを確認してください。**(1)**
 
 次に、**Add Filter** をクリックし、_Fields_ **(2)** オプションを使用して `deployment.environment` フィールド **(3)** を検索します。ドロップダウンリストから、あなたのワークショップインスタンスを選択し **(4)**、`=` (含める) をクリックします。これで、PetClinic アプリケーションからのログメッセージのみが表示されます。
 
@@ -18,4 +18,4 @@ weight: 2
 
 ![Log Observer](../../images/log-observer-trace-info.png)
 
-_"Saving pet"_ で始まるエントリ **(1)** をクリックします。サイドペーンが開き、関連するトレース ID (trace ID) やスパン ID (span ID) **(2)** を含む詳細情報を確認できます。
+_"Saving pet"_ で始まるエントリ **(1)** をクリックします。サイドペーンが開き、関連するトレースIDやスパンID **(2)** を含む詳細情報を確認できます。

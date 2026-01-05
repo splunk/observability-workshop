@@ -8,7 +8,7 @@ weight: 3
 
 ![RC](../../images/log-apm-rc.png)
 
-**Trace for 960432ac9f16b98be84618778905af50** **(2)** をクリックすると、このログ行が生成された特定のトレースの APM ウォーターフォール (waterfall) に移動します:
+**Trace for 960432ac9f16b98be84618778905af50** **(2)** をクリックすると、このログ行が生成された特定のトレースの APM ウォーターフォールに移動します:
 
 ![waterfall logs](../../images/waterfall-with-logs.png)
 
