@@ -113,7 +113,7 @@ Splunk Observability Cloud は、メトリクスの使用量を管理するた�
 
 ## まとめ
 
-このドキュメントでは、大規模な OpenTelemetry インストゥルメンテーションの展開を開始する前に、OpenTelemetry タグの命名規則を定義することの重要性を強調しました。
+このドキュメントでは、大規模な OpenTelemetry 計装の展開を開始する前に、OpenTelemetry タグの命名規則を定義することの重要性を強調しました。
 
 OpenTelemetry のリソースセマンティック規約がいくつかの属性の命名規則を定義し、多くの属性が OpenTelemetry SDKや OpenTelemetry コレクター内で動作するプロセッサーを通じて自動的に収集される方法について説明しました。
 

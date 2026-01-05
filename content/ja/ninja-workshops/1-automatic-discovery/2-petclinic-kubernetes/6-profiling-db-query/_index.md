@@ -13,4 +13,4 @@ time: 15 minutes
 - **Always-on Profiling and Java Metrics**
 - **Database Query Performance**
 
-Always-on ProfilingまたはDB-Queryパフォーマンスについてさらに深く学びたい場合は、[**Debug Problems in Microservices**](/en/scenarios/debug_problems/)という別のNinja Workshopがありますので、そちらをご覧ください。
+**Always-on Profiling**または**Database Query Performance**についてさらに深く学びたい場合は、[**Debug Problems in Microservices**](/en/scenarios/debug_problems/)という別のNinja Workshopがありますので、そちらをご覧ください。
