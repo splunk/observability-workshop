@@ -6,7 +6,7 @@ time: 10 minutes
 archetype: chapter
 ---
 
-アプリケーションに Real User Monitoring (RUM) インストルメンテーション (instrumentation) を有効にするには、コードベースに Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) スニペット (snippet) を追加する必要があります。
+アプリケーションに Real User Monitoring (RUM) インストルメンテーションを有効にするには、コードベースに Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) スニペットを追加する必要があります。
 
 Spring PetClinic アプリケーションは、アプリケーションのすべてのビューで再利用される単一の [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTML ページを使用しています。これは、Splunk RUM インストルメンテーションライブラリを挿入するのに最適な場所です。すべてのページで自動的に読み込まれるためです。
 

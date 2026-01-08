@@ -5,29 +5,29 @@ weight: 5
 time: 10分
 ---
 
-このセクションでは、Kubernetes上で実行されているJavaサービスに対して**自動検出と設定**を有効化します。これにより、OpenTelemetry CollectorがPodアノテーションを検索し、JavaアプリケーションにSplunk OpenTelemetry Javaエージェントでインストゥルメンテーション (instrumentation) を行う必要があることを示します。これにより、クラスター上で実行されているJavaサービスからトレース (trace)、スパン (span)、およびプロファイリング (profiling) データを取得できるようになります。
+このセクションでは、Kubernetes 上で実行されている Java サービスに対して**自動検出と設定**を有効化します。これにより、OpenTelemetry Collector が Pod アノテーションを検索し、Java アプリケーションに Splunk OpenTelemetry Java エージェントで計装を行う必要があることを示します。これにより、クラスター上で実行されている Java サービスからトレース、スパン、およびプロファイリングデータを取得できるようになります。
 
 {{% notice title="自動検出と設定" style="note" %}}
 
 自動検出と設定は、**コード変更や再コンパイルを必要とせず**にアプリケーションから**トレース、スパン、およびプロファイリング**データを取得するように設計されていることを理解することが重要です。
 
-これはAPMを始めるための優れた方法ですが、手動インストゥルメンテーション (manual instrumentation) の**代替ではありません**。手動インストゥルメンテーションでは、カスタムスパン、タグ、ログをアプリケーションに追加でき、トレースにより多くのコンテキストと詳細を提供できます。
+これは APM を始めるための優れた方法ですが、手動計装 の**代替ではありません**。手動計装では、カスタムスパン、タグ、ログをアプリケーションに追加でき、トレースにより多くのコンテキストと詳細を提供できます。
 
 {{% /notice %}}
 
-Javaアプリケーションの場合、OpenTelemetry Collectorは`instrumentation.opentelemetry.io/inject-java`というアノテーションを検索します。
+Java アプリケーションの場合、OpenTelemetry Collector は`instrumentation.opentelemetry.io/inject-java`というアノテーションを検索します。
 
-このアノテーションの値は`true`に設定するか、OpenTelemetry Collectorの`namespace/daemonset`（例：`default/splunk-otel-collector`）に設定できます。これにより、名前空間をまたいで動作することができ、このワークショップではこれを使用します。
+このアノテーションの値は`true`に設定するか、OpenTelemetry Collector の`namespace/daemonset`（例：`default/splunk-otel-collector`）に設定できます。これにより、名前空間をまたいで動作することができ、このワークショップではこれを使用します。
 
 {{% notice title="deployment.yamlの使用" style="info" %}}
 
-Podが自動的にトレースを送信するようにしたい場合は、以下に示すように`deployment.yaml`にアノテーションを追加できます。これにより、初期デプロイメント (deployment) 時にインストゥルメンテーションライブラリが追加されます。時間を節約するために、以下のPodに対してこれを実施済みです：
+Pod が自動的にトレースを送信するようにしたい場合は、以下に示すように`deployment.yaml`にアノテーションを追加できます。これにより、初期デプロイメント時に計装ライブラリが追加されます。時間を節約するために、以下の Pod に対してこれを実施済みです：
 
 - **admin-server**
 - **config-server**
 - **discovery-server**
 
-``` yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -14,7 +14,7 @@ time: 30 minutes
   * Database Query Performance
   * AlwaysOn Profiling
 * Splunk Real User Monitoring (RUM)
-* RUM から APM への相関 (Correlation)
+* RUM から APM への相関
 * Splunk Log Observer (LO)
 
 また、サンプル Java アプリケーション（Spring PetClinic）のクローン（ダウンロード）方法、およびアプリケーションのコンパイル、パッケージ化、実行方法についても説明します。
@@ -23,7 +23,7 @@ time: 30 minutes
 
 その後、**Splunk OpenTelemetry Javascript Libraries (RUM)** を使用して PetClinic のエンドユーザーインターフェース（アプリケーションがレンダリングする HTML ページ）を計装します。これにより、エンドユーザーが実行するすべてのクリックやページ読み込みに対して RUM トレースが生成されます。
 
-最後に、PetClinic アプリケーションログへのトレースメタデータの自動インジェクション (injection) によって生成されたログを確認します。
+最後に、PetClinic アプリケーションログへのトレースメタデータの自動インジェクションによって生成されたログを確認します。
 
 {{% notice title="前提条件" style="primary" icon="info" %}}
 

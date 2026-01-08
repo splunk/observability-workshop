@@ -14,7 +14,7 @@ weight: 1
 
 ![rum overview](../../images/rum-overview.png)
 
-続けるには、青いリンク (ワークショップ名) をクリックして詳細ページに移動します。これにより、UX Metrics、Front-end Health、Back-end Health、Custom Events によるインタラクションの内訳が表示され、過去のメトリクス (metrics) (デフォルトでは 1 時間) と比較される新しいダッシュボードビューが表示されます。
+続けるには、青いリンク (ワークショップ名) をクリックして詳細ページに移動します。これにより、UX Metrics、Front-end Health、Back-end Health、Custom Events によるインタラクションの内訳が表示され、過去のメトリクス (デフォルトでは 1 時間) と比較される新しいダッシュボードビューが表示されます。
 
 ![rum  main](../../images/rum-main.png)
 通常、最初のチャートには 1 つの線のみがあります。Petclinic ショップに関連するリンクをクリックしてください。
