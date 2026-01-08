@@ -1,0 +1,363 @@
+name: Sync Upstream and Translate
+
+on:
+  schedule:
+    # Run every Monday at 9:00 AM JST (00:00 UTC)
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+    inputs:
+      translate_all_untranslated:
+        description: 'Also translate all untranslated content'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+env:
+  AWS_REGION: us-west-2
+  ANTHROPIC_MODEL: global.anthropic.claude-opus-4-5-20250514-v1:0
+  UPSTREAM_REPO: splunk/observability-workshop
+  UPSTREAM_BRANCH: main
+
+jobs:
+  sync-and-detect:
+    name: Sync upstream and detect changes
+    runs-on: ubuntu-24.04
+    outputs:
+      has_changes: ${{ steps.detect.outputs.has_changes }}
+      changed_files: ${{ steps.detect.outputs.changed_files }}
+      untranslated_files: ${{ steps.detect.outputs.untranslated_files }}
+      sync_commit: ${{ steps.sync.outputs.sync_commit }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Add upstream remote
+        run: |
+          if git remote | grep -q '^upstream$'; then
+            git remote remove upstream
+          fi
+          git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
+          git fetch upstream ${{ env.UPSTREAM_BRANCH }}
+
+      - name: Check for upstream changes
+        id: check-upstream
+        run: |
+          # Get the latest commit from upstream
+          UPSTREAM_COMMIT=$(git rev-parse upstream/${{ env.UPSTREAM_BRANCH }})
+
+          # Check if we've already synced this commit
+          if git log --all --grep="Sync upstream at ${UPSTREAM_COMMIT}" --format=%H | head -1; then
+            echo "Already synced with upstream at ${UPSTREAM_COMMIT}"
+            echo "has_upstream_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "has_upstream_changes=true" >> $GITHUB_OUTPUT
+          echo "upstream_commit=${UPSTREAM_COMMIT}" >> $GITHUB_OUTPUT
+
+      - name: Sync with upstream
+        id: sync
+        if: steps.check-upstream.outputs.has_upstream_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create a temporary branch for syncing
+          SYNC_BRANCH="sync/upstream-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "${SYNC_BRANCH}"
+
+          # Merge upstream changes
+          UPSTREAM_COMMIT="${{ steps.check-upstream.outputs.upstream_commit }}"
+
+          if git merge upstream/${{ env.UPSTREAM_BRANCH }} --no-edit -m "Sync upstream at ${UPSTREAM_COMMIT}"; then
+            echo "Successfully merged upstream changes"
+            SYNC_COMMIT=$(git rev-parse HEAD)
+            echo "sync_commit=${SYNC_COMMIT}" >> $GITHUB_OUTPUT
+            echo "sync_branch=${SYNC_BRANCH}" >> $GITHUB_OUTPUT
+
+            # Push the sync branch
+            git push -u origin "${SYNC_BRANCH}"
+          else
+            echo "Merge conflict detected. Manual intervention required."
+            git merge --abort
+            exit 1
+          fi
+
+      - name: Detect changed and untranslated files
+        id: detect
+        run: |
+          if [ "${{ steps.check-upstream.outputs.has_upstream_changes }}" != "true" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          SYNC_COMMIT="${{ steps.sync.outputs.sync_commit }}"
+
+          # Get the previous sync commit
+          PREVIOUS_SYNC=$(git log --all --grep="Sync upstream at" --format=%H --skip=1 | head -1)
+
+          if [ -z "$PREVIOUS_SYNC" ]; then
+            echo "No previous sync found, using HEAD~100"
+            PREVIOUS_SYNC="HEAD~100"
+          fi
+
+          # Get changed English markdown files since last sync
+          CHANGED_FILES=$(git diff --name-only "${PREVIOUS_SYNC}..${SYNC_COMMIT}" -- 'content/en/**/*.md' | sort || true)
+
+          # Filter files that need translation
+          TRANSLATION_TARGETS=""
+          for file in $CHANGED_FILES; do
+            if [ ! -f "$file" ]; then
+              continue
+            fi
+
+            JA_FILE="${file/content\/en/content\/ja}"
+
+            if [ -f "$JA_FILE" ]; then
+              # Check if source is newer
+              EN_MODIFIED=$(git log -1 --format="%ct" "${SYNC_COMMIT}" -- "$file" 2>/dev/null || echo "0")
+              JA_MODIFIED=$(git log -1 --format="%ct" "${SYNC_COMMIT}" -- "$JA_FILE" 2>/dev/null || echo "0")
+
+              if [ "$EN_MODIFIED" -gt "$JA_MODIFIED" ]; then
+                TRANSLATION_TARGETS="${TRANSLATION_TARGETS}${file}"$'\n'
+              fi
+            else
+              TRANSLATION_TARGETS="${TRANSLATION_TARGETS}${file}"$'\n'
+            fi
+          done
+
+          # Find all untranslated files if requested
+          UNTRANSLATED_FILES=""
+          if [ "${{ inputs.translate_all_untranslated }}" = "true" ]; then
+            echo "Scanning for all untranslated files..."
+
+            for en_file in $(find content/en -name "*.md" -type f | sort); do
+              ja_file="${en_file/content\/en/content\/ja}"
+
+              if [ ! -f "$ja_file" ]; then
+                UNTRANSLATED_FILES="${UNTRANSLATED_FILES}${en_file}"$'\n'
+              fi
+            done
+          fi
+
+          # Combine changed and untranslated files
+          ALL_FILES="${TRANSLATION_TARGETS}${UNTRANSLATED_FILES}"
+
+          if [ -z "$ALL_FILES" ] || [ "$ALL_FILES" = $'\n' ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No files need translation"
+            exit 0
+          fi
+
+          # Convert to JSON arrays
+          CHANGED_JSON=$(echo "$TRANSLATION_TARGETS" | grep -v '^$' | jq -R . | jq -s . || echo "[]")
+          UNTRANSLATED_JSON=$(echo "$UNTRANSLATED_FILES" | grep -v '^$' | jq -R . | jq -s . || echo "[]")
+
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "changed_files=${CHANGED_JSON}" >> $GITHUB_OUTPUT
+          echo "untranslated_files=${UNTRANSLATED_JSON}" >> $GITHUB_OUTPUT
+
+          echo "Changed files to translate:"
+          echo "$TRANSLATION_TARGETS"
+
+          if [ -n "$UNTRANSLATED_FILES" ]; then
+            echo ""
+            echo "Untranslated files:"
+            echo "$UNTRANSLATED_FILES"
+          fi
+
+  translate:
+    name: Translate content
+    needs: sync-and-detect
+    if: needs.sync-and-detect.outputs.has_changes == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 480
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.sync-and-detect.outputs.sync_commit || 'main' }}
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: github-actions-translation
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Create translation branch
+        id: branch
+        run: |
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          BRANCH_NAME="auto-translate/${TIMESTAMP}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "${BRANCH_NAME}"
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Translate files
+        id: translate
+        env:
+          CHANGED_FILES: ${{ needs.sync-and-detect.outputs.changed_files }}
+          UNTRANSLATED_FILES: ${{ needs.sync-and-detect.outputs.untranslated_files }}
+          CLAUDE_CODE_USE_BEDROCK: "1"
+        run: |
+          # Combine changed and untranslated files
+          ALL_FILES=$(jq -s 'add | unique' <(echo "$CHANGED_FILES") <(echo "$UNTRANSLATED_FILES") | jq -r '.[]')
+
+          TRANSLATED_COUNT=0
+          FAILED_COUNT=0
+          FAILED_FILES=""
+
+          for EN_FILE in $ALL_FILES; do
+            if [ -z "$EN_FILE" ]; then
+              continue
+            fi
+
+            echo "========================================"
+            echo "Translating: ${EN_FILE}"
+            echo "========================================"
+
+            # Calculate target path
+            JA_FILE="${EN_FILE/content\/en/content\/ja}"
+            JA_DIR=$(dirname "$JA_FILE")
+
+            # Create target directory if it doesn't exist
+            mkdir -p "$JA_DIR"
+
+            # Copy the English file to Japanese location first
+            cp "$EN_FILE" "$JA_FILE"
+
+            # Copy associated images if this is the first file in a directory
+            EN_DIR=$(dirname "$EN_FILE")
+            if [ -d "${EN_DIR}/img" ] && [ ! -d "${JA_DIR}/img" ]; then
+              echo "Copying images from ${EN_DIR}/img to ${JA_DIR}/img"
+              cp -r "${EN_DIR}/img" "${JA_DIR}/"
+            fi
+
+            # Invoke Claude Code to translate the file
+            if claude --print \
+              "Translate the file at ${JA_FILE} from English to Japanese following the /splunk-workshop-ja-translator skill guidelines. The source English file is ${EN_FILE}. Translate in place, overwriting the current content of ${JA_FILE}. Do not translate code blocks, CLI commands, file paths, URLs, or product names. Use です/ます form. Ensure Markdown formatting is preserved." \
+              --allowedTools "Edit,Read,Write" \
+              --max-turns 10 \
+              2>&1; then
+
+              echo "Successfully translated: ${EN_FILE}"
+              TRANSLATED_COUNT=$((TRANSLATED_COUNT + 1))
+            else
+              echo "Failed to translate: ${EN_FILE}"
+              FAILED_COUNT=$((FAILED_COUNT + 1))
+              FAILED_FILES="${FAILED_FILES}\n- ${EN_FILE}"
+            fi
+
+            # Add a small delay to avoid rate limiting
+            sleep 2
+          done
+
+          echo "translated_count=${TRANSLATED_COUNT}" >> $GITHUB_OUTPUT
+          echo "failed_count=${FAILED_COUNT}" >> $GITHUB_OUTPUT
+          echo "failed_files<<EOF" >> $GITHUB_OUTPUT
+          echo -e "${FAILED_FILES}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Commit translations
+        id: commit
+        run: |
+          git add content/ja/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "has_commits=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          COMMIT_MSG="Add Japanese translations from upstream sync
+
+Automatically translated using Claude Code with Bedrock backend.
+
+- Translated files: ${{ steps.translate.outputs.translated_count }}
+- Failed files: ${{ steps.translate.outputs.failed_count }}
+
+Generated by GitHub Actions"
+
+          git commit -m "$COMMIT_MSG"
+          echo "has_commits=true" >> $GITHUB_OUTPUT
+
+      - name: Push branch
+        if: steps.commit.outputs.has_commits == 'true'
+        run: |
+          git push -u origin "${{ steps.branch.outputs.branch_name }}"
+
+      - name: Create Pull Request
+        if: steps.commit.outputs.has_commits == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TIMESTAMP=$(date +%Y-%m-%d)
+          TRANSLATED_COUNT="${{ steps.translate.outputs.translated_count }}"
+          FAILED_COUNT="${{ steps.translate.outputs.failed_count }}"
+          FAILED_FILES="${{ steps.translate.outputs.failed_files }}"
+
+          # Build PR body
+          PR_BODY="## Summary
+
+Automatic Japanese translations from upstream sync (${TIMESTAMP}).
+
+- **Translated files**: ${TRANSLATED_COUNT}
+- **Failed files**: ${FAILED_COUNT}
+
+This PR contains translations of changes from the upstream repository [\`${UPSTREAM_REPO}\`](https://github.com/${UPSTREAM_REPO})."
+
+          if [ "$FAILED_COUNT" != "0" ]; then
+            PR_BODY="${PR_BODY}
+
+### Failed Translations
+
+The following files could not be translated and may need manual attention:
+${FAILED_FILES}"
+          fi
+
+          PR_BODY="${PR_BODY}
+
+## Review Checklist
+
+- [ ] Markdown renders correctly
+- [ ] All links work
+- [ ] Code blocks unchanged
+- [ ] Terminology is consistent
+- [ ] Bold markup displays correctly
+
+## Test Plan
+
+- [ ] Run \`hugo serve\` locally and verify Japanese pages render correctly
+- [ ] Check that images are displayed
+- [ ] Verify navigation works
+
+Generated with [Claude Code](https://claude.ai/claude-code)"
+
+          gh pr create \
+            --title "日本語翻訳: upstream同期 (${TIMESTAMP})" \
+            --body "$PR_BODY" \
+            --base main \
+            --head "${{ steps.branch.outputs.branch_name }}" \
+            --label "translation,automated" \
+            --draft

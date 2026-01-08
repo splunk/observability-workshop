@@ -240,18 +240,20 @@ jobs:
 
           - **Translated files**: ${TRANSLATED_COUNT}
           - **Failed files**: ${FAILED_COUNT}
-          "
+
+          This translation is maintained in this fork and will not be merged to upstream."
 
           if [ "$FAILED_COUNT" != "0" ]; then
             PR_BODY="${PR_BODY}
+
           ### Failed Translations
 
           The following files could not be translated and may need manual attention:
-          ${FAILED_FILES}
-          "
+          ${FAILED_FILES}"
           fi
 
           PR_BODY="${PR_BODY}
+
           ## Review Checklist
 
           - [ ] Markdown renders correctly
@@ -269,8 +271,9 @@ jobs:
           Generated with [Claude Code](https://claude.ai/claude-code)"
 
           gh pr create \
-            --title "Japanese translations for ${VERSION}" \
+            --title "日本語翻訳: ${VERSION}" \
             --body "$PR_BODY" \
             --base main \
             --head "${{ steps.branch.outputs.branch_name }}" \
-            --label "translation,automated"
+            --label "translation,automated" \
+            --draft
