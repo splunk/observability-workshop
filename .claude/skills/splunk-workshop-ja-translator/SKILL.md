@@ -1,6 +1,7 @@
 ---
 name: splunk-workshop-ja-translator
 description: Splunk Observability Workshopの英日翻訳・ローカライゼーション。Hugoベースの技術ドキュメントを日本語に翻訳する際に使用。翻訳依頼、日本語化、ローカライズ、i18n作業時にトリガーされる。Markdown構文を維持しながら、コードブロックや製品名を保持し、日本の開発者向けに自然な表現に変換する。
+context: fork
 ---
 
 # Splunk Workshop 日本語翻訳スキル
