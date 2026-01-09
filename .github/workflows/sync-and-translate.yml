@@ -32,6 +32,8 @@ jobs:
       changed_files: ${{ steps.detect.outputs.changed_files }}
       untranslated_files: ${{ steps.detect.outputs.untranslated_files }}
       sync_commit: ${{ steps.sync.outputs.sync_commit }}
+      sync_branch: ${{ steps.sync.outputs.sync_branch }}
+      main_head: ${{ steps.sync.outputs.main_head }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -53,9 +55,17 @@ jobs:
           # Get the latest commit from upstream
           UPSTREAM_COMMIT=$(git rev-parse upstream/${{ env.UPSTREAM_BRANCH }})
 
-          # Check if we've already synced this commit
-          if git log --all --grep="Sync upstream at ${UPSTREAM_COMMIT}" --format=%H | head -1; then
+          # Check if upstream commit is already in our main branch
+          if git merge-base --is-ancestor "${UPSTREAM_COMMIT}" HEAD; then
             echo "Already synced with upstream at ${UPSTREAM_COMMIT}"
+            echo "has_upstream_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Also check if we've already synced this commit (via commit message)
+          SYNCED_COMMIT=$(git log --all --grep="Sync upstream at ${UPSTREAM_COMMIT}" --format=%H | head -1)
+          if [ -n "$SYNCED_COMMIT" ]; then
+            echo "Already synced with upstream at ${UPSTREAM_COMMIT} (commit: ${SYNCED_COMMIT})"
             echo "has_upstream_changes=false" >> $GITHUB_OUTPUT
             exit 0
           fi
@@ -69,6 +79,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Record current main HEAD before merging
+          MAIN_HEAD=$(git rev-parse HEAD)
+          echo "main_head=${MAIN_HEAD}" >> $GITHUB_OUTPUT
 
           # Create a temporary branch for syncing
           SYNC_BRANCH="sync/upstream-$(date +%Y%m%d-%H%M%S)"
@@ -100,17 +114,12 @@ jobs:
           fi
 
           SYNC_COMMIT="${{ steps.sync.outputs.sync_commit }}"
+          MAIN_HEAD="${{ steps.sync.outputs.main_head }}"
 
-          # Get the previous sync commit
-          PREVIOUS_SYNC=$(git log --all --grep="Sync upstream at" --format=%H --skip=1 | head -1)
+          echo "Comparing changes between main (${MAIN_HEAD}) and sync commit (${SYNC_COMMIT})"
 
-          if [ -z "$PREVIOUS_SYNC" ]; then
-            echo "No previous sync found, using HEAD~100"
-            PREVIOUS_SYNC="HEAD~100"
-          fi
-
-          # Get changed English markdown files since last sync
-          CHANGED_FILES=$(git diff --name-only "${PREVIOUS_SYNC}..${SYNC_COMMIT}" -- 'content/en/**/*.md' | sort || true)
+          # Get changed English markdown files from upstream merge
+          CHANGED_FILES=$(git diff --name-only "${MAIN_HEAD}..${SYNC_COMMIT}" -- 'content/en/**/*.md' | sort || true)
 
           # Filter files that need translation
           TRANSLATION_TARGETS=""
@@ -359,5 +368,15 @@ Generated with [Claude Code](https://claude.ai/claude-code)"
             --body "$PR_BODY" \
             --base main \
             --head "${{ steps.branch.outputs.branch_name }}" \
-            --label "translation,automated" \
             --draft
+
+      - name: Cleanup sync branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SYNC_BRANCH="${{ needs.sync-and-detect.outputs.sync_branch }}"
+          if [ -n "$SYNC_BRANCH" ]; then
+            echo "Deleting sync branch: ${SYNC_BRANCH}"
+            git push origin --delete "${SYNC_BRANCH}" || echo "Branch already deleted or does not exist"
+          fi

@@ -207,15 +207,16 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Add Japanese translations for ${{ github.event.release.tag_name }}
+          COMMIT_MSG="Add Japanese translations for ${{ github.event.release.tag_name }}
 
-          Automatically translated using Claude Code with Bedrock backend.
+Automatically translated using Claude Code with Bedrock backend.
 
-          Translated files: ${{ steps.translate.outputs.translated_count }}
-          Failed files: ${{ steps.translate.outputs.failed_count }}
+- Translated files: ${{ steps.translate.outputs.translated_count }}
+- Failed files: ${{ steps.translate.outputs.failed_count }}
 
-          Generated with Claude Code"
+Generated with Claude Code"
 
+          git commit -m "$COMMIT_MSG"
           echo "has_commits=true" >> $GITHUB_OUTPUT
 
       - name: Push branch
@@ -236,44 +237,43 @@ jobs:
           # Build PR body
           PR_BODY="## Summary
 
-          Automatic Japanese translations for release ${VERSION}.
+Automatic Japanese translations for release ${VERSION}.
 
-          - **Translated files**: ${TRANSLATED_COUNT}
-          - **Failed files**: ${FAILED_COUNT}
+- **Translated files**: ${TRANSLATED_COUNT}
+- **Failed files**: ${FAILED_COUNT}
 
-          This translation is maintained in this fork and will not be merged to upstream."
+This translation is maintained in this fork and will not be merged to upstream."
 
           if [ "$FAILED_COUNT" != "0" ]; then
             PR_BODY="${PR_BODY}
 
-          ### Failed Translations
+### Failed Translations
 
-          The following files could not be translated and may need manual attention:
-          ${FAILED_FILES}"
+The following files could not be translated and may need manual attention:
+${FAILED_FILES}"
           fi
 
           PR_BODY="${PR_BODY}
 
-          ## Review Checklist
+## Review Checklist
 
-          - [ ] Markdown renders correctly
-          - [ ] All links work
-          - [ ] Code blocks unchanged
-          - [ ] Terminology is consistent
-          - [ ] Bold markup displays correctly
+- [ ] Markdown renders correctly
+- [ ] All links work
+- [ ] Code blocks unchanged
+- [ ] Terminology is consistent
+- [ ] Bold markup displays correctly
 
-          ## Test Plan
+## Test Plan
 
-          - [ ] Run \`hugo serve\` locally and verify Japanese pages render correctly
-          - [ ] Check that images are displayed
-          - [ ] Verify navigation works
+- [ ] Run \`hugo serve\` locally and verify Japanese pages render correctly
+- [ ] Check that images are displayed
+- [ ] Verify navigation works
 
-          Generated with [Claude Code](https://claude.ai/claude-code)"
+🤖 Generated with [Claude Code](https://claude.ai/claude-code)"
 
           gh pr create \
             --title "日本語翻訳: ${VERSION}" \
             --body "$PR_BODY" \
             --base main \
             --head "${{ steps.branch.outputs.branch_name }}" \
-            --label "translation,automated" \
             --draft
