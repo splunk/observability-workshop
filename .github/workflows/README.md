@@ -1,57 +1,59 @@
 # GitHub Actions ワークフロー
 
-このディレクトリには、Splunk Observability Workshopのビルドとメンテナンスに使用されるGitHub Actionsワークフローが含まれています。
+このディレクトリには、Splunk Observability Workshopの日本語翻訳を自動化するGitHub Actionsワークフローが含まれています。
 
-## ワークフロー一覧
+## アーキテクチャ
 
-### 1. Deploy Workshop to GitHub Pages (`deploy-workshop.yml`)
+```
+フォークリポジトリ
+├── main                    ← upstreamと完全同期（翻訳システムファイルなし）
+├── ja-translation-system   ← 翻訳ワークフロー、.claude/などを管理（デフォルトブランチ）
+└── translate/*             ← upstreamへのPR用ブランチ（content/ja/のみ）
+```
 
-ワークショップサイトをGitHub Pagesにデプロイします。
+### ブランチの役割
 
-- **トリガー**: 手動実行 (`workflow_dispatch`)
-- **用途**: リリースバージョンを作成し、GitHub Pagesにデプロイ
-- **実行者**: メンテナー
+| ブランチ | 役割 |
+|---------|------|
+| `main` | upstreamリポジトリと完全に同期。翻訳システムのファイルは含まない |
+| `ja-translation-system` | 翻訳ワークフロー、Claude Codeスキル、設定ファイルを管理。デフォルトブランチとして設定 |
+| `translate/*` | 翻訳結果をupstreamにPRするためのブランチ。`content/ja/`のみを含む |
 
-### 2. Sync Upstream and Translate (`sync-and-translate.yml`)
+## ワークフロー
 
-フォーク元リポジトリの変更を定期的に取り込み、日本語に自動翻訳します。
+### Sync Upstream and Translate (`sync-and-translate.yml`)
 
-- **トリガー**:
-  - スケジュール: 毎週月曜日 9:00 JST (00:00 UTC)
-  - 手動実行 (`workflow_dispatch`)
-- **処理内容**:
-  1. upstream (`splunk/observability-workshop`) から最新の変更を取得
-  2. 前回の同期以降に変更された英語コンテンツを検出
-  3. 未翻訳のコンテンツを検出（手動実行時のオプション）
-  4. Claude Code (Bedrock) を使用して日本語に翻訳
-  5. 翻訳結果をコミットし、ドラフトPRを作成
+upstreamリポジトリの新しいリリースを検出し、日本語に自動翻訳してPRを作成します。
+
+#### トリガー
+
+- **スケジュール**: 毎週月曜日 9:00 JST (00:00 UTC)
+- **手動実行**: `workflow_dispatch`
 
 #### 手動実行オプション
 
-- `translate_all_untranslated`: すべての未翻訳コンテンツも翻訳する（デフォルト: false）
+| オプション | 説明 | デフォルト |
+|-----------|------|-----------|
+| `force_translate` | 新しいタグがなくても翻訳を実行 | false |
+| `translate_all_untranslated` | すべての未翻訳コンテンツも翻訳 | false |
+
+#### 処理フロー
+
+1. **新リリースチェック**: upstreamの最新タグを取得し、前回翻訳したタグと比較
+2. **mainブランチ同期**: 新しいタグがあれば、mainをupstreamのタグにリセット
+3. **翻訳**: 変更されたファイルをClaude Code (Bedrock)で翻訳
+4. **PR作成**: upstreamリポジトリにドラフトPRを作成
+5. **タグ記録**: 翻訳したタグを`.last-translated-tag`に記録
 
 #### 必要なシークレット
 
 - `AWS_ROLE_ARN`: AWS BedrockへのアクセスにOIDCで使用するIAMロールARN
 
-### 3. Translate Content on Release (`translate-on-release.yml`)
+#### 必要な権限
 
-このフォークリポジトリでリリースが公開されたときに、変更された英語コンテンツを日本語に自動翻訳します。
-
-- **トリガー**: リリース公開時 (`release.published`)
-- **処理内容**:
-  1. 前回のリリースタグとの差分を検出
-  2. 変更された英語コンテンツを特定
-  3. Claude Code (Bedrock) を使用して日本語に翻訳
-  4. 翻訳結果をコミットし、ドラフトPRを作成
-
-#### 注意事項
-
-このワークフローは、このフォークリポジトリ内でのリリースに対して実行されます。upstream (`splunk/observability-workshop`) のリリースには反応しません。
-
-#### 必要なシークレット
-
-- `AWS_ROLE_ARN`: AWS BedrockへのアクセスにOIDCで使用するIAMロールARN
+- `id-token: write` - AWS OIDC認証
+- `contents: write` - ブランチの作成・プッシュ
+- `pull-requests: write` - PRの作成
 
 ## 翻訳について
 
@@ -77,7 +79,7 @@
 
 ### 翻訳結果の確認
 
-翻訳が完了すると、ドラフトPRが自動的に作成されます。レビュー後、以下を確認してください：
+翻訳が完了すると、upstreamリポジトリにドラフトPRが自動的に作成されます。レビュー後、以下を確認してください：
 
 - [ ] Markdownが正しくレンダリングされる
 - [ ] すべてのリンクが機能する
@@ -85,16 +87,47 @@
 - [ ] 用語が一貫している
 - [ ] 太字マークアップが正しく表示される
 
-## ローカルでの翻訳テスト
+## セットアップ手順
+
+### 1. ブランチ構成の設定
 
 ```bash
-# Hugoサーバーを起動
-hugo serve
+# ja-translation-systemブランチを作成（現在のブランチから）
+git checkout -b ja-translation-system
 
-# ブラウザで http://localhost:1313/ja/ にアクセス
+# mainブランチをupstreamと同期
+git checkout main
+git remote add upstream https://github.com/splunk/observability-workshop.git
+git fetch upstream
+git reset --hard upstream/main
+git push origin main --force
 ```
 
+### 2. GitHubリポジトリ設定
+
+1. **デフォルトブランチの変更**:
+   - Settings → General → Default branch
+   - `ja-translation-system`に変更
+
+2. **ブランチ保護ルール**:
+   - `main`ブランチを保護（force pushを許可）
+   - `ja-translation-system`ブランチを保護
+
+### 3. シークレットの設定
+
+- `AWS_ROLE_ARN`: AWS BedrockへのアクセスにOIDCで使用するIAMロールARN
+
+### 4. AWS OIDC設定
+
+GitHub ActionsからAWS Bedrockにアクセスするために、OIDCプロバイダーとIAMロールを設定します。
+
 ## トラブルシューティング
+
+### 翻訳が実行されない
+
+- upstreamに新しいタグがあるか確認
+- 手動実行で`force_translate`を有効にして実行
+- `.last-translated-tag`ファイルの内容を確認
 
 ### 翻訳が失敗する
 
@@ -102,24 +135,23 @@ hugo serve
 - Claude Code CLIが最新バージョンか確認
 - ログを確認し、エラーメッセージを特定
 
-### マージコンフリクトが発生する
+### upstream へのPRが作成できない
 
-`sync-and-translate.yml` でupstreamとのマージでコンフリクトが発生した場合：
-
-1. ローカルで手動マージを実行
-2. コンフリクトを解決
-3. 解決後、手動でワークフローを再実行
+- フォークリポジトリの権限を確認
+- `GITHUB_TOKEN`の権限を確認
+- upstreamリポジトリへのPR作成権限を確認
 
 ## フォーク元との関係
 
 このリポジトリはupstream (`splunk/observability-workshop`) からフォークされています。
 
 - **フォーク元**: https://github.com/splunk/observability-workshop
-- **同期方針**: 定期的にupstreamの変更を取り込み、日本語翻訳を維持
-- **マージ方針**: 日本語翻訳はこのフォークリポジトリ内でのみ管理し、upstreamにはマージしません
+- **同期方針**: upstreamの新リリース時にmainブランチを同期
+- **翻訳方針**: 翻訳結果はupstreamリポジトリにPRとして提出
 
 ## 参考リンク
 
 - [Claude Code](https://claude.ai/claude-code)
 - [Splunk Observability Workshop](https://splunk.github.io/observability-workshop/)
 - [Hugo Documentation](https://gohugo.io/documentation/)
+- [GitHub Actions OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
