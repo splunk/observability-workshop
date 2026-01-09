@@ -1,22 +1,22 @@
 ---
-title: Installing OpenTelemetry Collector Contrib
-linkTitle: 1.1 Confirm Installation
+title: OpenTelemetry Collector Contrib のインストール
+linkTitle: 1.1 インストールの確認
 weight: 1
 ---
 
-## Confirm the Collector is running
+## Collector が動作していることを確認する
 
-The collector should now be running. We will verify this as root using `systemctl` command. To exit the status just press `q`.
+Collector が動作しているはずです。`systemctl` コマンドを使用して root として確認します。ステータス表示を終了するには `q` を押してください。
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="コマンド" %}}
 
 ``` bash
 sudo systemctl status otelcol-contrib
 ```
 
 {{% /tab %}}
-{{% tab title="Status Output" %}}
+{{% tab title="ステータス出力" %}}
 
 ``` text
 ● otelcol-contrib.service - OpenTelemetry Collector Contrib
@@ -44,10 +44,10 @@ Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:         {"kind": "
 {{% /tab %}}
 {{< /tabs >}}
 
-Because we will be making multiple configuration file changes, setting environment variables and restarting the collector, we need to stop the collector service and disable it from starting on boot.
+このワークショップでは、設定ファイルの変更、環境変数の設定、Collector の再起動を複数回行うため、Collector サービスを停止し、起動時の自動起動を無効にする必要があります。
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="コマンド" %}}
 
 ``` bash
 sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
@@ -58,10 +58,10 @@ sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
-For this part we will require the following installed on your system:
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Open Telemetry Collector Builder (ocb) を使用して独自の Collector をビルドする{{% /badge %}}" %}}
+このパートでは、システムに以下がインストールされている必要があります：
 
-- Golang (latest version)
+- Golang（最新バージョン）
 
   ``` bash
   cd /tmp
@@ -69,7 +69,7 @@ For this part we will require the following installed on your system:
   sudo tar -C /usr/local -xzf go1.20.linux-amd64.tar.gz
   ```
 
-  Edit `.profile` and add the following environment variables:
+  `.profile` を編集して、以下の環境変数を追加します：
 
   ``` bash
   export GOROOT=/usr/local/go
@@ -77,74 +77,73 @@ For this part we will require the following installed on your system:
   export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
   ```
 
-  Renew your shell session:
-  
+  シェルセッションを更新します：
+
   ``` bash
   source ~/.profile
   ```
 
-  Check Go version:
+  Go のバージョンを確認します：
 
   ``` bash
   go version
-  ```  
+  ```
 
-- ocb installed
-  - Download the ocb binary from the [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)
-    and run the following commands:
+- ocb のインストール
+  - [プロジェクトリリース](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)から ocb バイナリをダウンロードし、以下のコマンドを実行します：
 
     ```bash
     mv ocb_0.80.0_darwin_arm64 /usr/bin/ocb
     chmod 755 /usr/bin/ocb
     ```
 
-    An alternative approach would be to use the golang tool chain to build the binary locally by doing:
+    別の方法として、golang ツールチェーンを使用してローカルでバイナリをビルドすることもできます：
 
     ```bash
     go install go.opentelemetry.io/collector/cmd/builder@v0.80.0
     mv $(go env GOPATH)/bin/builder /usr/bin/ocb
     ```
 
-- (Optional) Docker
+- （オプション）Docker
 
-## Why build your own collector?
+## なぜ独自の Collector をビルドするのか？
 
-The default distribution of the collector (core and contrib) either contains too much or too little in what they have to offer.
+Collector のデフォルトディストリビューション（core と contrib）は、提供する機能が多すぎるか少なすぎるかのどちらかです。
 
-It is also not advised to run the contrib collector in your production environments due to the amount of components installed which more than likely are not needed by your deployment.
+また、contrib Collector を本番環境で実行することは推奨されません。これは、インストールされるコンポーネントの量が多く、そのほとんどがデプロイメントに必要ないためです。
 
-## Benefits of building your own collector?
+## 独自の Collector をビルドするメリットは？
 
-When creating your own collector binaries, (commonly referred to as distribution), means you build what you need.
+独自の Collector バイナリ（一般的にディストリビューションと呼ばれる）を作成することは、必要なものだけをビルドすることを意味します。
 
-The benefits of this are:
+これには以下のメリットがあります：
 
-1. Smaller sized binaries
-2. Can use existing go scanners for vulnerabilities
-3. Include internal components that can tie in with your organization
+1. より小さなサイズのバイナリ
+2. 脆弱性に対して既存の Go スキャナーを使用できる
+3. 組織と連携できる内部コンポーネントを含めることができる
 
-## Considerations for building your collector?
+## Collector をビルドする際の考慮事項は？
 
-Now, this would not be a 🥷 Ninja zone if it didn't come with some drawbacks:
+さて、いくつかのデメリットがなければ 🥷 Ninja ゾーンとは言えません：
 
-1. Go experience is recommended if not required
-1. **No** Splunk support
-1. Responsibility for distribution and lifecycle management
+1. Go の経験が推奨される（必須ではないが）
+1. Splunk サポート**なし**
+1. ディストリビューションとライフサイクル管理の責任
 
-It is important to note that the project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provides increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
+プロジェクトは安定性に向けて取り組んでいますが、変更によってワークフローが壊れないとは限らないことに注意することが重要です。Splunk のチームは、より高いサポートと安定性を提供しており、デプロイメントのニーズに応じたキュレーションされた体験を提供できます。
 
-## The Ninja Zone
+## Ninja ゾーン
 
-Once you have all the required tools installed to get started, you will need to create a new file named `otelcol-builder.yaml` and we will follow this directory structure:
+必要なツールがすべてインストールされたら、`otelcol-builder.yaml` という名前の新しいファイルを作成し、以下のディレクトリ構造に従います：
 
 ``` bash
 .
 └── otelcol-builder.yaml
 ```
 
-Once we have the file created, we need to add a list of components for it to install with some additional metadata.
+ファイルを作成したら、いくつかの追加メタデータとともにインストールするコンポーネントのリストを追加する必要があります。
 
-For this example, we are going to create a builder manifest that will install only the components we need for the introduction config:
+この例では、入門用の設定に必要なコンポーネントのみをインストールするビルダーマニフェストを作成します：
 
 ```yaml
 dist:
@@ -176,28 +175,28 @@ receivers:
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.80.0
 ```
 
-Once the yaml file has been updated for the _ocb_, then run the following command:
+yaml ファイルが _ocb_ 用に更新されたら、以下のコマンドを実行します：
 
 ```shell
 ocb --config=otelcol-builder.yaml
 ```
 
-Which leave you with the following directory structure:
+これにより、以下のディレクトリ構造が作成されます：
 
 ``` text
 ├── dist
-│   ├── components.go
-│   ├── components_test.go
-│   ├── go.mod
-│   ├── go.sum
-│   ├── main.go
-│   ├── main_others.go
-│   ├── main_windows.go
-│   └── otelcol-ninja
+│   ├── components.go
+│   ├── components_test.go
+│   ├── go.mod
+│   ├── go.sum
+│   ├── main.go
+│   ├── main_others.go
+│   ├── main_windows.go
+│   └── otelcol-ninja
 └── otelcol-builder.yaml
 ```
 
-### References
+### 参考資料
 
 1. [https://opentelemetry.io/docs/collector/custom-collector/](https://opentelemetry.io/docs/collector/custom-collector/)
 
@@ -205,12 +204,12 @@ Which leave you with the following directory structure:
 
 ---
 
-## Default configuration
+## デフォルト設定
 
-OpenTelemetry is configured through YAML files. These files have default configurations that we can modify to meet our needs. Let's look at the default configuration that is supplied:
+OpenTelemetry は YAML ファイルを通じて設定されます。これらのファイルには、ニーズに合わせて変更できるデフォルト設定があります。提供されるデフォルト設定を見てみましょう：
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="コマンド" %}}
 
 ```bash
 cat /etc/otelcol-contrib/config.yaml
@@ -296,16 +295,16 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to becoming an OTel Ninja. But first let's walk through configuration files and different distributions of the OpenTelemetry Collector.
+おめでとうございます！OpenTelemetry Collector のダウンロードとインストールに成功しました。OTel Ninja への道を順調に歩んでいます。しかしまず、設定ファイルと OpenTelemetry Collector の異なるディストリビューションについて説明していきましょう。
 
 {{% notice style="note" %}}
 
-Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [**Splunk GitHub Repository**](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes many additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
+Splunk は独自の、完全にサポートされた OpenTelemetry Collector ディストリビューションを提供しています。このディストリビューションは、[**Splunk GitHub リポジトリ**](https://github.com/signalfx/splunk-otel-collector)からインストールするか、Splunk Observability Cloud のウィザードを使用してコピー＆ペーストするだけの簡単なインストールスクリプトを作成できます。このディストリビューションには、OpenTelemetry Collector Contrib ディストリビューションでは利用できない多くの追加機能と拡張が含まれています。
 
-- The Splunk Distribution of the OpenTelemetry Collector is production-tested; it is in use by the majority of customers in their production environments.
-- Customers that use our distribution can receive direct help from official Splunk support within SLAs.
-- Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's metrics.
+- Splunk Distribution of the OpenTelemetry Collector は本番環境でテスト済みです。大多数のお客様が本番環境で使用しています。
+- このディストリビューションを使用するお客様は、SLA 内で Splunk の公式サポートから直接サポートを受けることができます。
+- お客様は、メトリクスとトレース収集のコア設定体験に対する将来の破壊的変更を心配することなく、Splunk Distribution of the OpenTelemetry Collector を使用または移行できます（OpenTelemetry ログ収集の設定はベータ版です）。Collector のメトリクスには破壊的変更がある可能性があります。
 
 {{% /notice %}}
 
-We will now walk through each section of the configuration file and modify it to send host metrics to Splunk Observability Cloud.
+これから設定ファイルの各セクションを説明し、ホストメトリクスを Splunk Observability Cloud に送信するように変更していきます。
