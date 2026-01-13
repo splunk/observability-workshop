@@ -24,7 +24,7 @@ permissions:
 
 env:
   AWS_REGION: us-west-2
-  ANTHROPIC_MODEL: us.anthropic.claude-opus-4-5-20250514-v1:0
+  ANTHROPIC_MODEL: global.anthropic.claude-opus-4-5-20251101-v1:0
   UPSTREAM_REPO: splunk/observability-workshop
   UPSTREAM_BRANCH: main
   FORK_REPO: ${{ github.repository }}
@@ -276,21 +276,41 @@ jobs:
               cp -r "${EN_DIR}/img" "${JA_DIR}/"
             fi
 
-            # Invoke Claude Code to translate
-            if claude --print \
-              "Translate the file at ${JA_FILE} from English to Japanese following the /splunk-workshop-ja-translator skill guidelines. The source English file is ${EN_FILE}. Translate in place, overwriting the current content of ${JA_FILE}. Do not translate code blocks, CLI commands, file paths, URLs, or product names. Use です/ます form. Ensure Markdown formatting is preserved." \
-              --allowedTools "Edit,Read,Write" \
-              --max-turns 10 \
-              2>&1; then
+            # Invoke Claude Code to translate with retry logic
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            TRANSLATE_SUCCESS=false
 
-              echo "Successfully translated: ${EN_FILE}"
-              TRANSLATED_COUNT=$((TRANSLATED_COUNT + 1))
-            else
-              echo "Failed to translate: ${EN_FILE}"
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ] && [ "$TRANSLATE_SUCCESS" = "false" ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "Translation attempt ${RETRY_COUNT}/${MAX_RETRIES}..."
+
+              if claude --print \
+                "Translate the file at ${JA_FILE} from English to Japanese following the /splunk-workshop-ja-translator skill guidelines. The source English file is ${EN_FILE}. Translate in place, overwriting the current content of ${JA_FILE}. Do not translate code blocks, CLI commands, file paths, URLs, or product names. Use です/ます form. Ensure Markdown formatting is preserved." \
+                --allowedTools "Edit,Read,Write" \
+                --max-turns 10 \
+                2>&1; then
+                TRANSLATE_SUCCESS=true
+                echo "Successfully translated: ${EN_FILE}"
+                TRANSLATED_COUNT=$((TRANSLATED_COUNT + 1))
+              else
+                echo "Attempt ${RETRY_COUNT} failed for: ${EN_FILE}"
+                if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                  echo "Retrying in 10 seconds..."
+                  sleep 10
+                fi
+              fi
+            done
+
+            if [ "$TRANSLATE_SUCCESS" = "false" ]; then
+              echo "ERROR: All ${MAX_RETRIES} attempts failed for: ${EN_FILE}"
               FAILED_COUNT=$((FAILED_COUNT + 1))
               FAILED_FILES="${FAILED_FILES}\n- ${EN_FILE}"
+              # Remove the untranslated file to avoid committing English content
+              rm -f "$JA_FILE"
             fi
 
+            # Rate limiting delay
             sleep 2
           done
 
