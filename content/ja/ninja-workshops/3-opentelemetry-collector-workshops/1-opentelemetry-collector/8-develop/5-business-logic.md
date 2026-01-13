@@ -154,6 +154,7 @@ func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     return s.mb.Emit(), nil
 }
 ```
+
 {{% /tab%}}
 {{% tab title="4. Report the delta" %}}
 
@@ -222,4 +223,3 @@ func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
 
 この時間を使って、遊んでみたり、壊してみたり、変更したり、ビルドからログをキャプチャしてみたりしてください。
 
-[^1]: [DORA Metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance)
