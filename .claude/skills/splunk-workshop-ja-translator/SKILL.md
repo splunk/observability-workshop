@@ -2,6 +2,12 @@
 name: splunk-workshop-ja-translator
 description: Splunk Observability Workshopの英日翻訳・ローカライゼーション。Hugoベースの技術ドキュメントを日本語に翻訳する際に使用。翻訳依頼、日本語化、ローカライズ、i18n作業時にトリガーされる。Markdown構文を維持しながら、コードブロックや製品名を保持し、日本の開発者向けに自然な表現に変換する。
 context: fork
+hooks:
+  PostToolUse:
+    - matcher: "Write|Edit"
+      hooks:
+        - type: command
+          command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$"; then npx markdownlint-cli --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
 ---
 
 # Splunk Workshop 日本語翻訳スキル
