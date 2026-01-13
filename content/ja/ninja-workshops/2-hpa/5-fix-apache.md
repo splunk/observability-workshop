@@ -88,7 +88,9 @@ Pod が Splunk Observability Cloud で実行中であることを確認します
 数分間、Apache web servers Navigator ダッシュボードを監視してください。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
+
 # Hosts reporting チャートでは何が起きていますか？
+
 {{% /notice %}}
 
 ## 4. メモリの問題の修正

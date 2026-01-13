@@ -16,13 +16,13 @@ weight: 2
 
 4. **テンプレートを選択:** **Link service to a service template** を選択し、テンプレートのドロップダウンから "Splunk APM Business Workflow KPIs" を検索します。**Create** をクリックして新しいサービスを保存します。
 
-6. **エンティティの割り当て:**
+5. **エンティティの割り当て:**
     * ページが読み込まれ、新しいサービスが表示され、Entities ページが表示されます。このデモでは、デフォルトで *paymentservice:grpc.hipstershop.PaymentService/Charge* エンティティが選択されます。実際の状況では、ワークフローをエンティティ名に手動でマッチさせる必要があります。
     * **Direct Entity Selection (利用可能な場合):** `sf_workflow="paymentservice:grpc.hipstershop.PaymentService/Charge"` を使用してエンティティを検索し、選択します。
 
-7. **サービスを保存 (PaymentService2):** **Save** をクリックして "PaymentService2" を作成します。
+6. **サービスを保存 (PaymentService2):** **Save** をクリックして "PaymentService2" を作成します。
 
-8. **Settings:** **Settings** タブをクリックし、*Backfill* を有効にして標準の7日間を維持します。サービスを有効にし、**Save** をクリックします。
+7. **Settings:** **Settings** タブをクリックし、*Backfill* を有効にして標準の7日間を維持します。サービスを有効にし、**Save** をクリックします。
 
 ## PaymentService2 の Service Health を Online-Boutique-US の依存関係として設定
 

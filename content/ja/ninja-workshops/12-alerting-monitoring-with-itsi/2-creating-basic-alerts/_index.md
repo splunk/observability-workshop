@@ -21,6 +21,7 @@ Splunk アラートは、特定の条件に一致する検索結果によって�
    ```splunk
    index=main "Invalid user"
    ```
+
     タイムピッカーを使用して "Last 15 minutes" を選択します。
 
 2. **アラートを設定:**
@@ -28,7 +29,7 @@ Splunk アラートは、特定の条件に一致する検索結果によって�
    * アラートにわかりやすい名前を付けます（例: "Numerous Invalid User Logins Attempted"）。
    * **Alert type:**
       * **Scheduled:** 設定されたスケジュールで検索を評価するには **Scheduled** を選択します。Scheduled の下に頻度を選択するボタンがあるので、**Run on Cron Schedule** を選択します。
-      * **Cron Expression:** */15 * * * *
+      * **Cron Expression:** */15* ** *
       * **Triggered when:** **Number of results** **is greater than** **100** を選択します。
       * **Time Range:** "15 minutes" に設定します。
    * **Trigger Actions:**
@@ -41,23 +42,23 @@ Splunk アラートは、特定の条件に一致する検索結果によって�
 
 **時間範囲と頻度:** Splunk コアのすべては検索であるため、検索の期間と頻度を考慮する必要があります。これにより、a) 期間の重複により同じデータを複数回検索すること、b) 期間と頻度のギャップによりイベントを見逃すこと、c) 頻繁に実行しすぎてオーバーヘッドが増加すること、d) 実行頻度が低すぎてアラートに遅延が発生すること、を防ぐことができます。
 
-
 ## 2. Splunk Observability Cloud アラート (Detectors)
 
 **Detector を作成:**
-   * 左側のメニューで **Detectors & SLOs** をクリックします
-   * **Create Detector -> Custom Detector** をクリックします
-   * Detector にわかりやすい名前を付けます（例: "High CPU Utilization Alert - INITIALS"）。
-   * **Signal:**
-      * 監視したいメトリクスを選択します ("cpu.utilization")。
-      * ホストを指定するために必要なフィルターを追加します (`service.name:otelshop-loadgenerator`)。
-      * **Proceed to Alert Condition** をクリックします
-   * **Condition:**
-      * Static Threshold を選択します
-      * しきい値を設定します: **is above** **90**
-   * **Notifications:**
-      * この例では、シンプルな通知方法を選択します（例: テスト用の Webhook）。実際のシナリオでは、PagerDuty、Slack、またはその他の通知システムとの統合を設定することになります。
-   * **Save:** Detector を保存します。
+
+* 左側のメニューで **Detectors & SLOs** をクリックします
+* **Create Detector -> Custom Detector** をクリックします
+* Detector にわかりやすい名前を付けます（例: "High CPU Utilization Alert - INITIALS"）。
+* **Signal:**
+  * 監視したいメトリクスを選択します ("cpu.utilization")。
+  * ホストを指定するために必要なフィルターを追加します (`service.name:otelshop-loadgenerator`)。
+  * **Proceed to Alert Condition** をクリックします
+* **Condition:**
+  * Static Threshold を選択します
+  * しきい値を設定します: **is above** **90**
+* **Notifications:**
+  * この例では、シンプルな通知方法を選択します（例: テスト用の Webhook）。実際のシナリオでは、PagerDuty、Slack、またはその他の通知システムとの統合を設定することになります。
+* **Save:** Detector を保存します。
 
 ![show-entry](../images/detector_preview.png?classes=inline)
 

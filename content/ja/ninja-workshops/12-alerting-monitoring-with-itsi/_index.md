@@ -12,7 +12,6 @@ hidden: true
 
 このハンズオンワークショップは、Splunk Enterprise、AppDynamics、Splunk Observability Cloud、および Splunk IT Service Intelligence (ITSI) の統合されたパワーを効果的にデモンストレーションし、ポジショニングしたい方を対象に設計されています。参加者は、潜在的なクライアントに響く実世界のシナリオとユースケースに焦点を当てながら、これらのプラットフォームを統合する実践的な経験を得ることができます。このワークショップは、技術的な機能をビジネス価値に変換することを重視し、ソリューションアーキテクトが重要な顧客課題にどのように対応するかを自信を持ってデモンストレーションできるようにします。
 
-
 ## イントロダクションと概要
 
 今日の複雑なIT環境において、アプリケーションとサービスのパフォーマンスと可用性を確保することは最も重要です。このワークショップでは、包括的な監視とアラート機能を提供するために連携する強力なツールの組み合わせ、すなわち Splunk、AppDynamics、Splunk Observability Cloud、および Splunk IT Service Intelligence (ITSI) をご紹介します。
@@ -37,13 +36,12 @@ hidden: true
 
 このワークショップの終了時には、参加者は以下のことができるようになります:
 
-*   包括的なオブザーバビリティ戦略における Splunk、AppDynamics、Splunk Observability Cloud、および Splunk IT Service Intelligence の相互補完的な価値提案を明確に説明する。
-*   データフローと相関機能を強調しながら、これらのプラットフォーム間の統合ポイントを自信を持ってデモンストレーションする。
-*   実践的なアラートシナリオを紹介しながら、Splunk Enterprise、AppDynamics、および Splunk Observability Cloud で基本的なアラートを作成および設定する。
-*   サービス中心の監視を強調しながら、Splunk ITSI での Key Performance Indicator (KPI) の作成とアラートの説得力のあるデモンストレーションを構築および提示する。
-*   インシデント管理の改善と MTTR の短縮のための Splunk ITSI におけるエピソードの価値を説明およびデモンストレーションする。
-*   ROI に焦点を当て、特定の顧客の課題に対処しながら、技術的な機能をビジネス成果に変換する。
-
+* 包括的なオブザーバビリティ戦略における Splunk、AppDynamics、Splunk Observability Cloud、および Splunk IT Service Intelligence の相互補完的な価値提案を明確に説明する。
+* データフローと相関機能を強調しながら、これらのプラットフォーム間の統合ポイントを自信を持ってデモンストレーションする。
+* 実践的なアラートシナリオを紹介しながら、Splunk Enterprise、AppDynamics、および Splunk Observability Cloud で基本的なアラートを作成および設定する。
+* サービス中心の監視を強調しながら、Splunk ITSI での Key Performance Indicator (KPI) の作成とアラートの説得力のあるデモンストレーションを構築および提示する。
+* インシデント管理の改善と MTTR の短縮のための Splunk ITSI におけるエピソードの価値を説明およびデモンストレーションする。
+* ROI に焦点を当て、特定の顧客の課題に対処しながら、技術的な機能をビジネス成果に変換する。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 このワークショップを最も簡単にナビゲートする方法は以下の通りです:
