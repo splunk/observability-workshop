@@ -353,38 +353,39 @@ jobs:
           FAILED_COUNT="${{ needs.sync-and-translate.outputs.failed_count }}"
 
           cat > /tmp/pr_body.md << 'PREOF'
-## Summary
+          ## Summary
 
-Japanese translations for release NEW_TAG_PLACEHOLDER.
+          Japanese translations for release NEW_TAG_PLACEHOLDER.
 
-- **Translated files**: TRANSLATED_PLACEHOLDER
-- **Failed files**: FAILED_PLACEHOLDER
+          - **Translated files**: TRANSLATED_PLACEHOLDER
+          - **Failed files**: FAILED_PLACEHOLDER
 
-This PR adds Japanese translations for the workshop content.
+          This PR adds Japanese translations for the workshop content.
 
-## Review Checklist
+          ## Review Checklist
 
-- [ ] Markdown renders correctly
-- [ ] All links work
-- [ ] Code blocks unchanged
-- [ ] Terminology is consistent
+          - [ ] Markdown renders correctly
+          - [ ] All links work
+          - [ ] Code blocks unchanged
+          - [ ] Terminology is consistent
 
-## Test Plan
+          ## Test Plan
 
-- [ ] Run `hugo serve` locally and verify Japanese pages render correctly
-- [ ] Check that images are displayed
-- [ ] Verify navigation works
+          - [ ] Run `hugo serve` locally and verify Japanese pages render correctly
+          - [ ] Check that images are displayed
+          - [ ] Verify navigation works
 
-## Next Steps
+          ## Next Steps
 
-After merging this PR, create a PR to upstream:
-```
-gh pr create --repo splunk/observability-workshop --base main --head gentksb/observability-workshop:main
-```
+          After merging this PR, create a PR to upstream:
+          gh pr create --repo splunk/observability-workshop --base main --head gentksb/observability-workshop:main
 
----
-Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow.
-PREOF
+          ---
+          Generated with Claude Code via automated translation workflow.
+          PREOF
+
+          # Remove leading spaces from heredoc content
+          sed -i 's/^          //' /tmp/pr_body.md
 
           sed -i "s/NEW_TAG_PLACEHOLDER/${NEW_TAG}/g" /tmp/pr_body.md
           sed -i "s/TRANSLATED_PLACEHOLDER/${TRANSLATED_COUNT}/g" /tmp/pr_body.md
