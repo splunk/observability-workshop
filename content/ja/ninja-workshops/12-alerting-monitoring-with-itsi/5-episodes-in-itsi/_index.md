@@ -39,7 +39,7 @@ weight: 1
     * **Policy Title:** *Service Name* Alert Grouping
     * **Description:** Grouping *Service Name* alerts together.
 
-8. **ポリシーを保存:** **Next** ボタンをクリックして Aggregation Policy を作成します。
+10. **ポリシーを保存:** **Next** ボタンをクリックして Aggregation Policy を作成します。
 
 ## 確認
 
@@ -48,4 +48,3 @@ weight: 1
 特定のアラートの名前が付いたエピソードがすでに存在する場合は、それを閉じて、新しいタイトルで新しいエピソードが生成されるのを待ちます。
 
 ![show-entry](../images/episode.png?classes=inline)
-

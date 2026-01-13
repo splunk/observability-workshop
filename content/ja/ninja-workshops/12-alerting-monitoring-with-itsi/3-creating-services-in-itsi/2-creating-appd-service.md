@@ -20,7 +20,7 @@ weight: 3
     * ページが読み込まれ、新しいサービスが表示され、Entities ページが表示されます。このデモでは、デフォルトで *AD-Ecommerce:18112:demo1.saas.appdynamics.com* エンティティが選択されます。実際の状況では、entity_name をエンティティ名に手動でマッチさせる必要があります。
     * **Direct Entity Selection (利用可能な場合):** `entity_name="AD-Ecommerce:18112:demo1.saas.appdynamics.com"` を使用してエンティティを検索し、選択します。
 
-7. **Settings:** **Settings** タブをクリックし、*Backfill* を有効にして標準の7日間を維持します。サービスを有効にし、**Save** をクリックします。
+6. **Settings:** **Settings** タブをクリックし、*Backfill* を有効にして標準の7日間を維持します。サービスを有効にし、**Save** をクリックします。
 
 ## AD-Ecommerce2 の Service Health を AD.Ecommerce の依存関係として設定
 

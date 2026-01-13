@@ -17,7 +17,7 @@ credit check service と credit processor service の2つのサービスに焦�
 ## アプリケーションのデプロイ
 
 時間を節約するため、両方のサービスの Docker イメージを既に構築して Docker Hub で公開しています。
-以下のコマンドで、K8s クラスターに credit check service をデプロイできます： 
+以下のコマンドで、K8s クラスターに credit check service をデプロイできます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -57,7 +57,7 @@ service/creditprocessorservice created
 {{% /tab %}}
 {{< /tabs >}}
 
-最後に、トラフィックを生成するロードジェネレーターをデプロイしましょう： 
+最後に、トラフィックを生成するロードジェネレーターをデプロイしましょう：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -85,7 +85,7 @@ deployment.apps/loadgenerator created
 
 credit check service と credit processor service のビルドに使用される Dockerfile を見ると、
 OpenTelemetry で既に計装されていることがわかります。例として、
-`/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/Dockerfile` を見てみましょう： 
+`/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/Dockerfile` を見てみましょう：
 
 ``` dockerfile
 FROM python:3.11-slim
@@ -122,7 +122,7 @@ CMD ["splunk-py-trace", "python3", "main.py"]
 
 最後に、このサービスのデプロイに使用した Kubernetes マニフェスト（`/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/creditcheckservice-dockerhub.yaml`）を確認すると、
 コンテナに環境変数が設定されており、OTLP データのエクスポート先を
-OpenTelemetry に伝えていることがわかります： 
+OpenTelemetry に伝えていることがわかります：
 
 ``` yaml
   env:
@@ -266,4 +266,4 @@ Attributes:
 
 トレースに、コードでキャプチャした `credit.score` や `credit.score.category` などの
 タグ（属性とも呼ばれる）が含まれていることに注目してください。次のセクションで、
-Splunk Observability Cloud でトレースを分析してパフォーマンス問題の根本原因を見つける際に、これらを使用します。 
+Splunk Observability Cloud でトレースを分析してパフォーマンス問題の根本原因を見つける際に、これらを使用します。
