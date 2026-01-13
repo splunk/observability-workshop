@@ -330,7 +330,9 @@ jobs:
       - name: Push translation branch
         if: steps.commit.outputs.has_commits == 'true'
         run: |
-          git push -u origin "${{ steps.translate-branch.outputs.branch_name }}"
+          BRANCH="${{ steps.translate-branch.outputs.branch_name }}"
+          # Force push if branch already exists (from previous failed run)
+          git push -u origin "${BRANCH}" --force
 
   create-pr:
     name: Create PR for review
