@@ -134,7 +134,7 @@ installplan.operators.coreos.com/install-rc9xq patched
 
 ## NVIDIA GPU Operatorのインストール確認
 
-以下のコマンドを使用して、NVIDIA GPU Operatorが正常にインストールされたことを確認します： 
+以下のコマンドを使用して、NVIDIA GPU Operatorが正常にインストールされたことを確認します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -306,7 +306,7 @@ export NGC_API_KEY=<your NGC API key>
 ./install-nim-operator.sh
 ```
 
-コントローラーPodが実行されていることを確認します： 
+コントローラーPodが実行されていることを確認します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}

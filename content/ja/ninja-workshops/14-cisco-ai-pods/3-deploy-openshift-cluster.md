@@ -81,4 +81,3 @@ NAME                                       STATUS   ROLES    AGE   VERSION
 ip-10-0-1-184.us-east-2.compute.internal   Ready    worker   14m   v1.31.11
 ip-10-0-1-50.us-east-2.compute.internal    Ready    worker   20m   v1.31.11
 ```
-

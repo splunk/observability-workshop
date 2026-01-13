@@ -58,5 +58,4 @@ rosa delete oidc-provider --oidc-config-id $OIDC_ID
 aws cloudformation delete-stack --region $AWS_REGION --stack-name <stack name i.e. rosa-network-stack-nnnnnnnnnnn>
 ```
 
-Red Hat OpenShift ServiceをAWSアカウントから完全に削除したい場合は、[OpenShiftドキュメント](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-deleting-cluster)を参照してください。 
-
+Red Hat OpenShift ServiceをAWSアカウントから完全に削除したい場合は、[OpenShiftドキュメント](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-deleting-cluster)を参照してください。

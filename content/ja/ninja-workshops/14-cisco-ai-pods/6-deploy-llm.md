@@ -41,7 +41,7 @@ oc apply -n nim-service -f nvidia-llm.yaml
 
 Persistent Volumeが作成され、Persistent Volume Claimが正常にバインドされたことを確認します：
 
-> 注意: これには数分かかる場合があります 
+> 注意: これには数分かかる場合があります
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -66,7 +66,7 @@ persistentvolumeclaim/meta-llama-3-2-1b-instruct-pvc   Bound    pvc-a603b8a7-144
 {{% /tab %}}
 {{< /tabs >}}
 
-NIMCacheがReadyであることを確認します： 
+NIMCacheがReadyであることを確認します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -116,7 +116,7 @@ curlコマンドにアクセスできるPodを起動します：
 oc run --rm -it -n default curl --image=curlimages/curl:latest -- sh
 ```
 
-次に、以下のコマンドを実行してLLMにプロンプトを送信します： 
+次に、以下のコマンドを実行してLLMにプロンプトを送信します：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
