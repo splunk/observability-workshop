@@ -24,7 +24,7 @@ permissions:
 
 env:
   AWS_REGION: us-west-2
-  ANTHROPIC_MODEL: global.anthropic.claude-opus-4-5-20250514-v1:0
+  ANTHROPIC_MODEL: us.anthropic.claude-opus-4-5-20250514-v1:0
   UPSTREAM_REPO: splunk/observability-workshop
   UPSTREAM_BRANCH: main
   FORK_REPO: ${{ github.repository }}
@@ -332,8 +332,8 @@ jobs:
         run: |
           git push -u origin "${{ steps.translate-branch.outputs.branch_name }}"
 
-  create-upstream-pr:
-    name: Create PR to upstream
+  create-pr:
+    name: Create PR for review
     needs: [check-new-release, sync-and-translate]
     if: needs.sync-and-translate.outputs.translation_branch != ''
     runs-on: ubuntu-24.04
@@ -344,7 +344,7 @@ jobs:
           ref: ${{ needs.sync-and-translate.outputs.translation_branch }}
           fetch-depth: 0
 
-      - name: Create Pull Request to upstream
+      - name: Create Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -353,50 +353,53 @@ jobs:
           FAILED_COUNT="${{ needs.sync-and-translate.outputs.failed_count }}"
 
           cat > /tmp/pr_body.md << 'PREOF'
-          ## Summary
+## Summary
 
-          Japanese translations for release NEW_TAG_PLACEHOLDER.
+Japanese translations for release NEW_TAG_PLACEHOLDER.
 
-          - **Translated files**: TRANSLATED_PLACEHOLDER
-          - **Failed files**: FAILED_PLACEHOLDER
+- **Translated files**: TRANSLATED_PLACEHOLDER
+- **Failed files**: FAILED_PLACEHOLDER
 
-          This PR adds Japanese translations for the workshop content.
+This PR adds Japanese translations for the workshop content.
 
-          ## Review Checklist
+## Review Checklist
 
-          - [ ] Markdown renders correctly
-          - [ ] All links work
-          - [ ] Code blocks unchanged
-          - [ ] Terminology is consistent
+- [ ] Markdown renders correctly
+- [ ] All links work
+- [ ] Code blocks unchanged
+- [ ] Terminology is consistent
 
-          ## Test Plan
+## Test Plan
 
-          - [ ] Run `hugo serve` locally and verify Japanese pages render correctly
-          - [ ] Check that images are displayed
-          - [ ] Verify navigation works
+- [ ] Run `hugo serve` locally and verify Japanese pages render correctly
+- [ ] Check that images are displayed
+- [ ] Verify navigation works
 
-          ---
-          Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow.
-          PREOF
+## Next Steps
 
-          # Remove leading spaces and replace placeholders
-          sed -i 's/^          //' /tmp/pr_body.md
+After merging this PR, create a PR to upstream:
+```
+gh pr create --repo splunk/observability-workshop --base main --head gentksb/observability-workshop:main
+```
+
+---
+Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow.
+PREOF
+
           sed -i "s/NEW_TAG_PLACEHOLDER/${NEW_TAG}/g" /tmp/pr_body.md
           sed -i "s/TRANSLATED_PLACEHOLDER/${TRANSLATED_COUNT}/g" /tmp/pr_body.md
           sed -i "s/FAILED_PLACEHOLDER/${FAILED_COUNT}/g" /tmp/pr_body.md
 
-          # Create PR to upstream repository
+          # Create PR to fork's main branch for review
           gh pr create \
-            --repo "${{ env.UPSTREAM_REPO }}" \
             --title "日本語翻訳: ${NEW_TAG}" \
             --body-file /tmp/pr_body.md \
             --base main \
-            --head "${{ env.FORK_REPO }}:${{ needs.sync-and-translate.outputs.translation_branch }}" \
-            --draft
+            --head "${{ needs.sync-and-translate.outputs.translation_branch }}"
 
   update-tag-tracking:
     name: Update last translated tag
-    needs: [check-new-release, create-upstream-pr]
+    needs: [check-new-release, create-pr]
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout translation system branch
