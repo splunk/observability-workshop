@@ -184,14 +184,23 @@ jobs:
             exit 0
           fi
 
-          # Convert to JSON array
-          FILES_JSON=$(echo "$ALL_FILES" | grep -v '^$' | jq -R . | jq -s . || echo "[]")
+          # Write file list to a temporary file (avoids GITHUB_OUTPUT size limits)
+          echo "$ALL_FILES" | grep -v '^$' > /tmp/files_to_translate.txt
+          FILE_COUNT=$(wc -l < /tmp/files_to_translate.txt)
 
           echo "has_files=true" >> $GITHUB_OUTPUT
-          echo "files=${FILES_JSON}" >> $GITHUB_OUTPUT
+          echo "file_count=${FILE_COUNT}" >> $GITHUB_OUTPUT
 
-          echo "Files to translate:"
-          echo "$ALL_FILES"
+          echo "Files to translate (${FILE_COUNT} files):"
+          cat /tmp/files_to_translate.txt
+
+      - name: Upload file list
+        if: steps.detect.outputs.has_files == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: translation-file-list
+          path: /tmp/files_to_translate.txt
+          retention-days: 1
 
       - name: Configure AWS credentials via OIDC
         if: steps.detect.outputs.has_files == 'true'
@@ -221,14 +230,21 @@ jobs:
           git checkout -b "${BRANCH_NAME}"
           echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
 
+      - name: Download file list
+        if: steps.detect.outputs.has_files == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: translation-file-list
+          path: /tmp
+
       - name: Translate files
         id: translate
         if: steps.detect.outputs.has_files == 'true'
         env:
-          FILES_TO_TRANSLATE: ${{ steps.detect.outputs.files }}
           CLAUDE_CODE_USE_BEDROCK: "1"
         run: |
-          FILES=$(echo "$FILES_TO_TRANSLATE" | jq -r '.[]')
+          # Read file list from downloaded artifact
+          FILES=$(cat /tmp/files_to_translate.txt)
 
           TRANSLATED_COUNT=0
           FAILED_COUNT=0
