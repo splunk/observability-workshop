@@ -1,5 +1,8 @@
 {
   "skills": {
-    "project": [".claude/skills/splunk-workshop-ja-translator"]
+    "project": [
+      ".claude/skills/splunk-workshop-ja-translator",
+      "Bash(npx markdownlint-cli:*)"
+    ]
   }
 }
