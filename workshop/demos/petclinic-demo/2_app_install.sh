@@ -1,1 +1,0 @@
-kubectl apply -f petclinic-deploy.yaml

@@ -1,8 +1,0 @@
-splunk.discovery:
-  receivers:
-    mysql:
-      enabled: true
-      config:
-        username: "MyUser"
-        password: "MyPassword"
-        database: "MyDB"

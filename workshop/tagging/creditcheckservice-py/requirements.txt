@@ -1,5 +1,0 @@
-Flask==2.2.5
-Werkzeug==3.0.6
-requests
-waitress
-splunk-opentelemetry[all]

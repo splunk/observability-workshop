@@ -1,2 +1,0 @@
-wheel
-bump2version>=1.0.1

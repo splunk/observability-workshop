@@ -1,4 +1,0 @@
-enableCriticalPriorityClass: true
-metrics:
-  serviceMonitor:
-    enabled: true

@@ -1,26 +1,43 @@
-# Splunk Observability Cloud Workshops
+# Splunk Observability Workshop 翻訳システム
 
-![GitHub release](https://img.shields.io/github/v/tag/splunk/observability-workshop)
-![GitHub commits since the latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
-![GitHub repo size](https://img.shields.io/github/repo-size/splunk/observability-workshop)
-![GitHub issues](https://img.shields.io/github/issues/splunk/observability-workshop)
+このブランチ (`ja-translation-system`) は翻訳自動化ワークフローを管理します。
 
-## Splunk Copyright Notice
+## ブランチの目的
 
-``` text
-© 2005 - 2025 Splunk LLC All rights reserved.
+- upstream (splunk/observability-workshop) の新しいリリースを検出
+- 変更された英語コンテンツを日本語に自動翻訳
+- 翻訳結果を PR として作成
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+## 含まれるファイル
 
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+```text
+.claude/                                    # Claude Code スキル設定
+├── settings.json
+└── skills/splunk-workshop-ja-translator/
+    ├── SKILL.md                            # 翻訳スキル定義
+    └── references/translation-guide.md     # 翻訳ガイドライン
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+.github/workflows/
+├── sync-and-translate.yml                  # 翻訳ワークフロー
+├── CLAUDE.md                               # ワークフロー用指示
+└── README.md                               # ワークフロー説明
+
+.gitignore                                  # Git ignore設定
+.last-translated-tag                        # 最後に翻訳したタグ
+.markdownlint.json                          # Markdownlint設定
+README.md                                   # このファイル
 ```
 
----
+## 使用方法
 
-To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://splunk.github.io/observability-workshop/latest/).
+1. upstream で新しいリリースが作成されると、ワークフローが自動実行
+2. 変更された英語ファイルを検出し、日本語に翻訳
+3. PR が自動作成される
 
-Latest versions of the workshop are:
-- [v6.22](https://splunk.github.io/observability-workshop/)
-- [v6.21](https://splunk.github.io/observability-workshop/)
+詳細は `.github/workflows/README.md` を参照してください。
+
+## 注意事項
+
+- このブランチにはコンテンツファイル（content/, assets/ 等）は含まれません
+- コンテンツは `main` ブランチで管理されます
+- 翻訳結果は `translate/*` ブランチに作成され、`main` への PR となります

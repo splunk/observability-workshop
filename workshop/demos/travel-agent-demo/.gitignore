@@ -1,5 +1,0 @@
-venv/
-.venv/
-__pycache__/
-.env.override
-.deepeval
