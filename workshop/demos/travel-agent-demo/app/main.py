@@ -239,9 +239,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-# httpx logs request line + response status; DEBUG can be very verbose
-logging.getLogger("httpx").setLevel(logging.DEBUG)
-logging.getLogger("openai").setLevel(logging.DEBUG)
+# Uncomment if debug logs are required (which are verbose)
+#logging.getLogger("httpx").setLevel(logging.DEBUG)
+#logging.getLogger("openai").setLevel(logging.DEBUG)
 
 # Configure tracing/metrics/logging once per process so exported data goes to OTLP.
 trace.set_tracer_provider(TracerProvider())
@@ -299,29 +299,59 @@ DESTINATIONS = {
     },
 }
 
-def sanitize_toolcall_messages(messages: list[BaseMessage]) -> list[BaseMessage]:
-    out: list[BaseMessage] = []
-    for m in messages:
-        if isinstance(m, AIMessage) and m.tool_calls and m.content is None:
-            out.append(
-                AIMessage(
-                    content="",  # critical
-                    additional_kwargs=m.additional_kwargs,
-                    response_metadata=m.response_metadata,
-                    tool_calls=m.tool_calls,
-                    invalid_tool_calls=getattr(m, "invalid_tool_calls", None),
-                    id=getattr(m, "id", None),
-                )
-            )
-        else:
-            out.append(m)
-    return out
+# AI Defense rejects requests where "content: None" is passed with a request
+# to OpenAI, so this patch passes an empty string instead
+class PatchToolCallNullContentTransport(httpx.BaseTransport):
+    def __init__(self, inner: httpx.BaseTransport):
+        self._inner = inner
 
-def invoke_agent_safely(agent, inp: dict, **kwargs):
-    inp = dict(inp)
-    if "messages" in inp:
-        inp["messages"] = sanitize_toolcall_messages(inp["messages"])
-    return agent.invoke(inp, **kwargs)
+    def handle_request(self, request: httpx.Request) -> httpx.Response:
+        should_patch = (
+            request.method == "POST"
+            and request.url.path.endswith("/chat/completions")
+            and request.headers.get("content-type", "").split(";")[0] == "application/json"
+        )
+
+        if should_patch:
+            raw = request.read()  # bytes of the outgoing body
+            try:
+                data = json.loads(raw.decode("utf-8"))
+            except Exception:
+                return self._inner.handle_request(request)
+
+            msgs = data.get("messages")
+            changed = False
+            if isinstance(msgs, list):
+                for m in msgs:
+                    if (
+                        isinstance(m, dict)
+                        and m.get("role") == "assistant"
+                        and m.get("tool_calls")
+                        and m.get("content") is None
+                    ):
+                        m["content"] = ""
+                        changed = True
+
+            if changed:
+                new_raw = json.dumps(data, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+
+                # IMPORTANT: drop Content-Length so httpx recalculates it
+                new_headers = request.headers.copy()
+                new_headers.pop("content-length", None)
+                new_headers.pop("transfer-encoding", None)
+
+                request = httpx.Request(
+                    method=request.method,
+                    url=request.url,
+                    headers=new_headers,
+                    content=new_raw,
+                    extensions=request.extensions,
+                )
+
+        return self._inner.handle_request(request)
+
+transport = PatchToolCallNullContentTransport(httpx.HTTPTransport())
+client = httpx.Client(transport=transport)
 
 def _compute_dates() -> tuple[str, str]:
     start = datetime.now() + timedelta(days=30)
@@ -413,6 +443,7 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Chat
         temperature=temperature,
         tags=tags,
         metadata=metadata,
+        http_client=client,
     )
 
     return base
@@ -669,7 +700,7 @@ def coordinator_node(
         "coordinator", system_message.content, state, custom_poison_config
     )
     system_message = SystemMessage(content=poisoned_system)
-    result = invoke_agent_safely(agent, {"messages": [system_message] + list(state["messages"])})
+    result = agent.invoke({"messages": [system_message] + list(state["messages"])})
     final_message = result["messages"][-1]
     state["messages"].append(
         final_message
@@ -710,7 +741,7 @@ def flight_specialist_node(
         HumanMessage(content=step),
     ]
 
-    result = invoke_agent_safely(agent, {"messages": messages})
+    result = agent.invoke({"messages": messages})
     final_message = result["messages"][-1]
     state["flight_summary"] = final_message.content if isinstance(final_message, BaseMessage) else str(final_message)
     state["messages"].append(final_message if isinstance(final_message, BaseMessage) else AIMessage(content=str(final_message)))
@@ -748,7 +779,7 @@ def hotel_specialist_node(
         HumanMessage(content=step),
     ]
 
-    result = invoke_agent_safely(agent, {"messages": messages})
+    result = agent.invoke({"messages": messages})
 
     final_message = result["messages"][-1]
     state["hotel_summary"] = (
@@ -792,7 +823,7 @@ def activity_specialist_node(
         HumanMessage(content=step),
     ]
 
-    result = invoke_agent_safely(agent, {"messages": messages})
+    result = agent.invoke({"messages": messages})
 
     final_message = result["messages"][-1]
     state["activities_summary"] = (
