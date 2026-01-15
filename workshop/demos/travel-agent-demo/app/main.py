@@ -191,6 +191,7 @@ Trace ID: f1d34b2cb227acbc19e5da0a3220f918
 from __future__ import annotations
 
 import json
+import httpx
 import os
 import random
 import sys
@@ -207,6 +208,7 @@ from langchain_core.messages import (
     SystemMessage,
 )
 from langchain_core.tools import tool
+from langchain_core.runnables import RunnableLambda
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
@@ -233,6 +235,13 @@ from opentelemetry.sdk._logs import LoggerProvider
 from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.sdk.metrics import MeterProvider
 from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+# httpx logs request line + response status; DEBUG can be very verbose
+logging.getLogger("httpx").setLevel(logging.DEBUG)
+logging.getLogger("openai").setLevel(logging.DEBUG)
 
 # Configure tracing/metrics/logging once per process so exported data goes to OTLP.
 trace.set_tracer_provider(TracerProvider())
@@ -290,6 +299,29 @@ DESTINATIONS = {
     },
 }
 
+def sanitize_toolcall_messages(messages: list[BaseMessage]) -> list[BaseMessage]:
+    out: list[BaseMessage] = []
+    for m in messages:
+        if isinstance(m, AIMessage) and m.tool_calls and m.content is None:
+            out.append(
+                AIMessage(
+                    content="",  # critical
+                    additional_kwargs=m.additional_kwargs,
+                    response_metadata=m.response_metadata,
+                    tool_calls=m.tool_calls,
+                    invalid_tool_calls=getattr(m, "invalid_tool_calls", None),
+                    id=getattr(m, "id", None),
+                )
+            )
+        else:
+            out.append(m)
+    return out
+
+def invoke_agent_safely(agent, inp: dict, **kwargs):
+    inp = dict(inp)
+    if "messages" in inp:
+        inp["messages"] = sanitize_toolcall_messages(inp["messages"])
+    return agent.invoke(inp, **kwargs)
 
 def _compute_dates() -> tuple[str, str]:
     start = datetime.now() + timedelta(days=30)
@@ -375,12 +407,15 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Chat
         "ls_model_name": model,
         "ls_temperature": temperature,
     }
-    return ChatOpenAI(
+
+    base = ChatOpenAI(
         model=model,
         temperature=temperature,
         tags=tags,
         metadata=metadata,
     )
+
+    return base
 
 
 # ---------------------------------------------------------------------------
@@ -634,7 +669,7 @@ def coordinator_node(
         "coordinator", system_message.content, state, custom_poison_config
     )
     system_message = SystemMessage(content=poisoned_system)
-    result = agent.invoke({"messages": [system_message] + list(state["messages"])})
+    result = invoke_agent_safely(agent, {"messages": [system_message] + list(state["messages"])})
     final_message = result["messages"][-1]
     state["messages"].append(
         final_message
@@ -668,18 +703,17 @@ def flight_specialist_node(
     step = maybe_add_quality_noise(
         "flight_specialist", step, state, custom_poison_config
     )
-    result = agent.invoke({"messages": [HumanMessage(content=step)]})
+
+    # IMPORTANT: pass a proper list of messages (not stringified)
+    messages = [
+        SystemMessage(content="You are a flight booking specialist. Provide concise options."),
+        HumanMessage(content=step),
+    ]
+
+    result = invoke_agent_safely(agent, {"messages": messages})
     final_message = result["messages"][-1]
-    state["flight_summary"] = (
-        final_message.content
-        if isinstance(final_message, BaseMessage)
-        else str(final_message)
-    )
-    state["messages"].append(
-        final_message
-        if isinstance(final_message, BaseMessage)
-        else AIMessage(content=str(final_message))
-    )
+    state["flight_summary"] = final_message.content if isinstance(final_message, BaseMessage) else str(final_message)
+    state["messages"].append(final_message if isinstance(final_message, BaseMessage) else AIMessage(content=str(final_message)))
     state["current_agent"] = "hotel_specialist"
     return state
 
@@ -707,7 +741,15 @@ def hotel_specialist_node(
     step = maybe_add_quality_noise(
         "hotel_specialist", step, state, custom_poison_config
     )
-    result = agent.invoke({"messages": [HumanMessage(content=step)]})
+
+    # IMPORTANT: pass a proper list of messages (not stringified)
+    messages = [
+        SystemMessage(content="You are a hotel booking specialist. Provide concise options."),
+        HumanMessage(content=step),
+    ]
+
+    result = invoke_agent_safely(agent, {"messages": messages})
+
     final_message = result["messages"][-1]
     state["hotel_summary"] = (
         final_message.content
@@ -743,7 +785,15 @@ def activity_specialist_node(
     step = maybe_add_quality_noise(
         "activity_specialist", step, state, custom_poison_config
     )
-    result = agent.invoke({"messages": [HumanMessage(content=step)]})
+
+    # IMPORTANT: pass a proper list of messages (not stringified)
+    messages = [
+        SystemMessage(content="You are a hotel booking specialist. Provide concise options."),
+        HumanMessage(content=step),
+    ]
+
+    result = invoke_agent_safely(agent, {"messages": messages})
+
     final_message = result["messages"][-1]
     state["activities_summary"] = (
         final_message.content

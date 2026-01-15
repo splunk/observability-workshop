@@ -142,8 +142,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.0 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.0
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.1 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.1
 ```
 
 ### Load Generator
