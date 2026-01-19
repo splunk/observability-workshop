@@ -1,0 +1,20 @@
+distribution: openshift
+readinessProbe:
+  initialDelaySeconds: 180
+livenessProbe:
+  initialDelaySeconds: 180
+operator:
+  enabled: false
+operatorcrds:
+  installed: false
+gateway:
+  enabled: false
+splunkObservability:
+  profilingEnabled: false
+clusterReceiver:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 2000Mi
+agent:
+  enabled: false

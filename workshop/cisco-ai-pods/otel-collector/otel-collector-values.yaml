@@ -9,20 +9,27 @@ operatorcrds:
   installed: false
 gateway:
   enabled: false
+# use existing RBAC resources created by the cluster-admin
+rbac:
+  create: false
+# use existing ServiceAccount created by the cluster-admin
+serviceAccount:
+  create: false
+  name: splunk-otel-collector
+# use existing SCC created by the cluster-admin
+securityContextConstraints:
+  create: false
 splunkObservability:
   profilingEnabled: true
 clusterReceiver:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 2000Mi
+  enabled: false
 agent:
   discovery:
     enabled: true
   resources:
     limits:
       cpu: 200m
-      memory: 2000Mi
+      memory: 500Mi
   config:
     exporters:
       signalfx:

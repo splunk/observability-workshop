@@ -2,7 +2,7 @@
 title: Setup Users
 linkTitle: 6. Setup Users
 weight: 6
-time: 2 minutes
+time: 5 minutes
 ---
 
 In this section, we'll create users for each workshop participant, with a namespace and resource 
