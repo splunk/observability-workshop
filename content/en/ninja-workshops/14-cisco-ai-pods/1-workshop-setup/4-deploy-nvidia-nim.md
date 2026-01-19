@@ -1,7 +1,7 @@
 ---
 title: Deploy the NVIDIA NIM Operator
-linkTitle: 5. Deploy the NVIDIA NIM Operator
-weight: 5
+linkTitle: 4. Deploy the NVIDIA NIM Operator
+weight: 4
 time: 20 minutes
 ---
 

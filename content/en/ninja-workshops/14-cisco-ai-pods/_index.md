@@ -20,18 +20,13 @@ However, it's not always possible to get access to a Cisco AI POD environment to
 
 This workshop provides hands-on experience deploying and working with several of the technologies that are used to monitor Cisco AI PODs with Splunk Observability Cloud, without requiring access to an actual Cisco AI POD.  This includes:
 
-* Practice deploying a **RedHat OpenShift** cluster with GPU-based worker nodes.
-* Practice deploying the **NVIDIA NIM Operator** and **NVIDIA GPU Operator**.
-* Practice deploying **Large Language Models (LLMs)** using NVIDIA NIM to the cluster.
 * Practice deploying the **OpenTelemetry Collector** in the Red Hat OpenShift cluster.
 * Practice adding **Prometheus** receivers to the collector to ingest infrastructure metrics.
 * Practice deploying the **Weaviate** vector database to the cluster.
 * Practice instrumenting Python services that interact with Large Language Models (LLMs) with **OpenTelemetry**.
 * Understanding which details which OpenTelemetry captures in the trace from applications that interact with LLMs.
 
-> Please note: Red Hat OpenShift and NVIDIA AI Enterprise components
-> are typically pre-installed with an actual AI POD. However, because we’re using AWS for this workshop,
-> it’s necessary to perform these setup steps manually.
+> Note: the workshop setup section only needs to be executed by the workshop organizer
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 The easiest way to navigate through this workshop is by using:

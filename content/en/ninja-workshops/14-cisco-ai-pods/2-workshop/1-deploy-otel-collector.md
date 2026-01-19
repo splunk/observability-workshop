@@ -1,7 +1,7 @@
 ---
 title: Deploy the OpenTelemetry Collector
-linkTitle: 4. Deploy the OpenTelemetry collector
-weight: 4
+linkTitle: 1. Deploy the OpenTelemetry collector
+weight: 1
 time: 10 minutes
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Deploy an LLM
-linkTitle: 6. Deploy an LLM
-weight: 6
+linkTitle: 5. Deploy an LLM
+weight: 5
 time: 20 minutes
 ---
 
