@@ -227,4 +227,4 @@ Navigate to the [Cisco AI Pod](https://app.us1.signalfx.com/#/dashboard/GvmWJyPA
 dashboard in Splunk Observability Cloud.  Ensure it's filtered on your OpenShift cluster name, and that 
 the charts are populated as in the following example: 
 
-![Kubernetes Pods](../images/Cisco-AI-Pod-dashboard.png)
+![Kubernetes Pods](../../images/Cisco-AI-Pod-dashboard.png)

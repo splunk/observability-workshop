@@ -133,7 +133,7 @@ create a new VPC in our AWS account using the following command:
 > Note:  update the region as appropriate for your environment.
 
 ``` bash
-rosa create network network-template --param Region=us-east-2 --template-dir='.'
+rosa create network network-template --param Region=us-east-2 --param Name=rosa-network-stack --template-dir='.'
 ```
 
 > Important: make note of the subnet ids created as a result of this command 

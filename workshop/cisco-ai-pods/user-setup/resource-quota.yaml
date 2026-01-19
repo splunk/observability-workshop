@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: participant-quota
+spec:
+  hard:
+    requests.nvidia.com/gpu: "1"  # Limit GPU access
+    limits.memory: "16Gi"
+    limits.cpu: "4"
+    persistentvolumeclaims: "5"

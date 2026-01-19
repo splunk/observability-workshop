@@ -27,7 +27,7 @@ to get access to NVIDIA NIM, which we'll use later in the workshop to deploy LLM
 
 Ensure that `NVIDIA Developer Program` appears on your list of NVIDIA subscriptions in NGC: 
 
-![NVIDIA Subscriptions](../images/NVIDIA-Subscriptions.png)
+![NVIDIA Subscriptions](../../images/NVIDIA-Subscriptions.png)
 
 ## Generate an NGC API Key
 

@@ -188,12 +188,12 @@ In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`.
 Ensure the `llm-app` environment is selected.  You should see a service map 
 that looks like the following: 
 
-![Service Map](../images/ServiceMap.png)
+![Service Map](../../images/ServiceMap.png)
 
 Click on `Traces` on the right-hand side menu.  Then select one of the slower running 
 traces. It should look like the following example: 
 
-![Trace](../images/Trace.png)
+![Trace](../../images/Trace.png)
 
 The trace shows all the interactions that our application executed to return an answer 
 to the users question (i.e. "How much memory does the NVIDIA H200 have?")
@@ -201,14 +201,14 @@ to the users question (i.e. "How much memory does the NVIDIA H200 have?")
 For example, we can see where our application performed a similarity search to look 
 for documents related to the question at hand in the Weaviate vector database: 
 
-![Document Retrieval](../images/DocumentRetrieval.png)
+![Document Retrieval](../../images/DocumentRetrieval.png)
 
 We can also see how the application created a prompt to send to the LLM, including the 
 context that was retrieved from the vector database: 
 
-![Prompt Template](../images/PromptTemplate.png)
+![Prompt Template](../../images/PromptTemplate.png)
 
 Finally, we can see the response from the LLM, the time it took, and the number of 
 input and output tokens utilized: 
 
-![LLM Response](../images/LLMResponse.png)
+![LLM Response](../../images/LLMResponse.png)

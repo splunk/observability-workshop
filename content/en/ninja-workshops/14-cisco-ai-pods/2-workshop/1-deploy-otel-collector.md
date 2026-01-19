@@ -86,4 +86,4 @@ Confirm that you can see the cluster in Splunk Observability Cloud by navigating
 Infrastructure Monitoring -> Kubernetes -> Kubernetes Pods and then filtering on your 
 cluster name: 
 
-![Kubernetes Pods](../images/KubernetesPods.png)
+![Kubernetes Pods](../../images/KubernetesPods.png)

@@ -193,7 +193,7 @@ In Splunk Observability Cloud, navigate to `Infrastructure` -> `AI Frameworks` -
 Filter on the `k8s.cluster.name` of interest, and ensure the navigator is populated as in the 
 following example: 
 
-![Kubernetes Pods](../images/WeaviateNavigator.png)
+![Kubernetes Pods](../../images/WeaviateNavigator.png)
 
 ## Populate the Vector Database 
 
