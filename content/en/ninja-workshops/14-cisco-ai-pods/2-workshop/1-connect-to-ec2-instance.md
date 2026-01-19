@@ -45,9 +45,27 @@ sudo mv kubectl /usr/local/bin/kubectl
 
 ## Connect to the OpenShift Cluster
 
-Use the cluster API, participant user name, and password provided by the workshop 
+Ensure the Kube config file is modifiable by the splunk user: 
+
+``` bash
+chmod 600 /home/splunk/.kube/config
+```
+
+Use the cluster API, participant username, and password provided by the workshop 
 organizer to log in to the OpenShift cluster: 
 
 ``` bash
-sudo oc login https://api.<cluster-domain>:443 -u participant1 -p '<password>'
+oc login https://api.<cluster-domain>:443 -u participant1 -p '<password>'
 ```
+
+Ensure you're connected to the OpenShift cluster: 
+
+``` bash
+oc whoami --show-server  
+```
+
+It should return something like the following: 
+
+````
+https://api.***.openshiftapps.com:443
+````

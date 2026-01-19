@@ -122,7 +122,7 @@ agent:
               config:
                 scrape_configs:
                   - job_name: gpu-metrics
-                    scrape_interval: 10s
+                    scrape_interval: 60s
                     static_configs:
                       - targets:
                           - '`endpoint`:9400'
@@ -132,7 +132,7 @@ agent:
               config:
                 scrape_configs:
                   - job_name: nim-for-llm-metrics
-                    scrape_interval: 10s
+                    scrape_interval: 60s
                     metrics_path: /v1/metrics
                     static_configs:
                       - targets:

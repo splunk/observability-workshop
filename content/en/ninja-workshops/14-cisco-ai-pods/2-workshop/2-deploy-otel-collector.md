@@ -58,6 +58,7 @@ the collector to send data to:
 export USER_NAME=workshop-participant-<number>
 export CLUSTER_NAME=rosa-$USER_NAME
 export ENVIRONMENT_NAME=$CLUSTER_NAME
+export SPLUNK_INDEX=playground
 ```
 
 Navigate to the workshop directory: 
@@ -76,6 +77,7 @@ helm install splunk-otel-collector \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkPlatform.endpoint=$HEC_URL" \
   --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.index=$SPLUNK_INDEX" \
   -f ./otel-collector/otel-collector-values.yaml \
   -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector

@@ -154,7 +154,7 @@ Let's ensure the application is working as expected.
 Start a pod that has access to the curl command:
 
 ``` bash
-oc run --rm -it -n default curl --image=curlimages/curl:latest -- sh
+oc run --rm -it curl --image=curlimages/curl:latest -- sh
 ```
 
 Then run the following command to send a question to the LLM:
@@ -164,7 +164,7 @@ Then run the following command to send a question to the LLM:
 
 ``` bash
 curl -X "POST" \
- 'http://llm-app.llm-app.svc.cluster.local:8080/askquestion' \
+ 'http://llm-app:8080/askquestion' \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -185,8 +185,8 @@ The NVIDIA H200 has 141GB of HBM3e memory, which is twice the capacity of the NV
 ## View Trace Data in Splunk Observability Cloud
 
 In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`. 
-Ensure the `llm-app` environment is selected.  You should see a service map 
-that looks like the following: 
+Ensure your environment name is selected (e.g. `rosa-workshop-participant-1`).  
+You should see a service map that looks like the following: 
 
 ![Service Map](../../images/ServiceMap.png)
 

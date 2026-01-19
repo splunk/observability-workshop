@@ -1,12 +1,12 @@
 ---
-title: Configure the Prometheus Receiver
-linkTitle: 3. Configure the Prometheus Receiver
+title: Monitor NVIDIA Components
+linkTitle: 3. Monitor NVIDIA Components
 weight: 3
 time: 10 minutes
 ---
 
-Now that our LLM is up and running, we'll add the Prometheus receiver to our 
-OpenTelemetry collector to gather metrics from it. 
+In this section, we'll use the Prometheus receiver with the OpenTelemetry collector 
+to monitor the NVIDIA components running in the OpenShift cluster. 
 
 ## Capture the NVIDIA DCGM Exporter metrics 
 
@@ -28,7 +28,7 @@ Add the following content, just below the `kubeletstats` section:
               config:
                 scrape_configs:
                   - job_name: gpu-metrics
-                    scrape_interval: 10s
+                    scrape_interval: 60s
                     static_configs:
                       - targets:
                           - '`endpoint`:9400'
@@ -72,7 +72,7 @@ following to the `otel-collector-values.yaml` file, just below the receiver we a
               config:
                 scrape_configs:
                   - job_name: nim-for-llm-metrics
-                    scrape_interval: 10s
+                    scrape_interval: 60s
                     metrics_path: /v1/metrics
                     static_configs:
                       - targets:
@@ -211,13 +211,13 @@ following Helm command:
 helm upgrade splunk-otel-collector \
   --set="clusterName=$CLUSTER_NAME" \
   --set="environment=$ENVIRONMENT_NAME" \
-  --set="splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN" \
-  --set="splunkObservability.realm=$SPLUNK_REALM" \
-  --set="splunkPlatform.endpoint=$SPLUNK_HEC_URL" \
-  --set="splunkPlatform.token=$SPLUNK_HEC_TOKEN" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
   --set="splunkPlatform.index=$SPLUNK_INDEX" \
   -f ./otel-collector/otel-collector-values.yaml \
-  -n otel \
+  -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
 
