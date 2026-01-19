@@ -1,7 +1,7 @@
 ---
 title: Deploy the Vector Database
-linkTitle: 3. Deploy the Vector Database
-weight: 3
+linkTitle: 4. Deploy the Vector Database
+weight: 4
 time: 10 minutes
 ---
 

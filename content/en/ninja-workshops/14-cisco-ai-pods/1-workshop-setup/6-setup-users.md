@@ -54,7 +54,7 @@ For MacOS, we can install the OpenShift CLI using the Homebrew package manager:
 brew install openshift-cli
 ```
 
-For other installation options, please revfr to the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.8/html/cli_tools/openshift-cli-oc). 
+For other installation options, please refer to the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.8/html/cli_tools/openshift-cli-oc). 
 
 ### Login as Workshop User 
 

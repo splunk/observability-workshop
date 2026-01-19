@@ -1,7 +1,7 @@
 ---
 title: Configure the Prometheus Receiver
-linkTitle: 2. Configure the Prometheus Receiver
-weight: 2
+linkTitle: 3. Configure the Prometheus Receiver
+weight: 3
 time: 10 minutes
 ---
 
