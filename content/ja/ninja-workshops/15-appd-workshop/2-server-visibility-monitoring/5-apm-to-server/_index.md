@@ -16,14 +16,14 @@ Server Visibility を有効にすると、アプリケーションのコンテ�
 
 ![Server to APM](images/server-apm-link.png)
 
-2. リストされている Tier の1つで下矢印をクリックします。
-3. Tier の Node リンクをクリックします。
+1. リストされている Tier の1つで下矢印をクリックします。
+2. Tier の Node リンクをクリックします。
 
 ![Dashboard Example](images/server-tier-link.png)
 
 これで **Node Dashboard** に移動しました。
 
-4. **Server** タブをクリックして関連するホストメトリクスを確認します。
+1. **Server** タブをクリックして関連するホストメトリクスを確認します。
 
 ![Dashboard Example](images/server-node-server.png)
 

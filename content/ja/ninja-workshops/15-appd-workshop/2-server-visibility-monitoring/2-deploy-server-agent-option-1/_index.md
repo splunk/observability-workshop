@@ -80,4 +80,3 @@ ps -ef | grep machine
 以下の画像のような出力が表示されるはずです。
 
 ![Install](images/svm-install-01.png)
-

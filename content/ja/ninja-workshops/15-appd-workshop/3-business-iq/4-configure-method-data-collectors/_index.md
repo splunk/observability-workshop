@@ -9,13 +9,12 @@ description: この演習では、WebブラウザからAppDynamics Controllerに
 
 この演習では、以下のタスクを実行します：
 
-*   メソッドを発見する。
-*   ディスカバリーセッションを開く。
-*   メソッドパラメータを発見する。
-*   コード内のオブジェクトにドリルダウンする。
-*   メソッド呼び出しデータコレクターを作成する。
-*   メソッド呼び出しデータコレクターのAnalyticsを検証する。
-
+* メソッドを発見する。
+* ディスカバリーセッションを開く。
+* メソッドパラメータを発見する。
+* コード内のオブジェクトにドリルダウンする。
+* メソッド呼び出しデータコレクターを作成する。
+* メソッド呼び出しデータコレクターのAnalyticsを検証する。
 
 ## ディスカバリーセッションを開く
 
@@ -30,20 +29,19 @@ description: この演習では、WebブラウザからAppDynamics Controllerに
 
 ![OpenDiscoverySession](images/05-live-preview.png)
 
-
-7. **Start Discovery Session** ボタンをクリックします。
-8. ポップアップウィンドウで **Web-Portal Node** を選択します。調査しているメソッドが実行されているのと同じNodeである必要があります。
-9. **Ok** をクリックします。
+1. **Start Discovery Session** ボタンをクリックします。
+2. ポップアップウィンドウで **Web-Portal Node** を選択します。調査しているメソッドが実行されているのと同じNodeである必要があります。
+3. **Ok** をクリックします。
 
 ![OpenDiscoverySession](images/05-biq-trans-disco.png)
 
-10. 右側のトグルで **Tools** を選択します。
-11. ドロップダウンリストで **Classes/Methods** を選択します。
-12. **Search** セクションで **Classes** with nameを選択します。
-13. テキストボックスにクラス名 **supercars.dataloader.CarDataLoader** を入力します。クラス名を見つけるには、コールグラフを検索するか、理想的にはソースコードで見つけます。
-14. **Apply** をクリックして一致するクラスメソッドを検索します。
-15. 結果が表示されたら、検索に一致するクラスを展開します。
-16. 同じメソッド **saveCar** を探します。
+1. 右側のトグルで **Tools** を選択します。
+2. ドロップダウンリストで **Classes/Methods** を選択します。
+3. **Search** セクションで **Classes** with nameを選択します。
+4. テキストボックスにクラス名 **supercars.dataloader.CarDataLoader** を入力します。クラス名を見つけるには、コールグラフを検索するか、理想的にはソースコードで見つけます。
+5. **Apply** をクリックして一致するクラスメソッドを検索します。
+6. 結果が表示されたら、検索に一致するクラスを展開します。
+7. 同じメソッド **saveCar** を探します。
 
 ![OpenDiscoverySession](images/05-biq-trans-disco-config.png)
 
@@ -77,12 +75,12 @@ description: この演習では、WebブラウザからAppDynamics Controllerに
 
 車の詳細をキャプチャするメソッド呼び出しデータコレクターを作成します。
 
-7. **Name** に **SellCarMI-YOURINITIALS** を指定します。
-8. **Transaction Snapshots** を有効にします。
-9. **Transaction Analytics** を有効にします。
-10. **with a Class Name that** を選択します。
-11. **Class Name** に **supercars.dataloader.CarDataLoader** を追加します。
-12. **Method Name** に **saveCar** を追加します。
+1. **Name** に **SellCarMI-YOURINITIALS** を指定します。
+2. **Transaction Snapshots** を有効にします。
+3. **Transaction Analytics** を有効にします。
+4. **with a Class Name that** を選択します。
+5. **Class Name** に **supercars.dataloader.CarDataLoader** を追加します。
+6. **Method Name** に **saveCar** を追加します。
 
 ![NewMIDCDataCollector](images/05-biq-midc-config.png)
 
@@ -90,20 +88,20 @@ description: この演習では、WebブラウザからAppDynamics Controllerに
 
 MIDCでその値をどのように取得したかを説明すると、以下のようになります：
 
-13. MIDCパネルの下部にある **Add** をクリックして、収集する新しいデータを指定します。
-14. Display Nameに **CarPrice_MIDC** を指定します。
-15. Collect Data Fromで、**CarForm Object** である **Method Parameter of Index 0** を選択します。
-16. **Operation on Method Parameter** で **Use Getter Chain** を選択します。CarForm内のメソッドを呼び出して車の詳細を返します。
-17. 次に、価格を返す **CarForm** クラス内のGetterメソッド **getPrice()** を指定します。
-18. **Save** をクリックします。
+1. MIDCパネルの下部にある **Add** をクリックして、収集する新しいデータを指定します。
+2. Display Nameに **CarPrice_MIDC** を指定します。
+3. Collect Data Fromで、**CarForm Object** である **Method Parameter of Index 0** を選択します。
+4. **Operation on Method Parameter** で **Use Getter Chain** を選択します。CarForm内のメソッドを呼び出して車の詳細を返します。
+5. 次に、価格を返す **CarForm** クラス内のGetterメソッド **getPrice()** を指定します。
+6. **Save** をクリックします。
 
 ![CreateMIDCDataCollector1](images/05-biq-midc-datacoll.png)
 
-19. color、modelなど、データを収集したいすべてのプロパティについて、上記の手順を繰り返します。
+1. color、modelなど、データを収集したいすべてのプロパティについて、上記の手順を繰り返します。
 
 ![CreateMIDCDataCollector2](images/05-biq-midc-details.png)
 
-20. **MIDC** を保存し、**"/Supercar-Trader/sell.do"** ビジネストランザクションに適用します。
+1. **MIDC** を保存し、**"/Supercar-Trader/sell.do"** ビジネストランザクションに適用します。
 
 MIDCの実装にはJVMの再起動が必要です：
 
@@ -127,21 +125,24 @@ sudo pkill -f Supercar-Trader
 {{% /tab %}}
 {{< /tabs >}}
 
-3. Tomcatサーバーを再起動します。
+1. Tomcatサーバーを再起動します。
 
 ``` bash
 ./startup.sh
 ```
 
-4. Tomcatサーバーが実行されていることを確認します。これには数分かかる場合があります。
+1. Tomcatサーバーが実行されていることを確認します。これには数分かかる場合があります。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 curl localhost:8080
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 <!DOCTYPE html>
 <html lang="en">
@@ -156,9 +157,9 @@ curl localhost:8080
         <div id="wrapper"
 ....
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ## MDパラメータのAnalyticsの検証
 

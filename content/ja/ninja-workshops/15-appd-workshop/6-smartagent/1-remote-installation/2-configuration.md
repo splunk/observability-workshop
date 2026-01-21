@@ -14,6 +14,7 @@ cd /home/ubuntu/appdsm
 ```
 
 構成する2つのファイル：
+
 - `config.ini` - すべてのリモートホストにデプロイされる Smart Agent 構成
 - `remote.yaml` - リモートホストと SSH 接続設定
 
@@ -37,6 +38,7 @@ EnableSSL        = true
 ```
 
 **主要パラメータ：**
+
 - `ControllerURL`：AppDynamics SaaS コントローラーエンドポイント
 - `ControllerPort`：コントローラーの HTTPS ポート（デフォルト：443）
 - `FMServicePort`：Flow Monitoring サービスポート
@@ -57,6 +59,7 @@ ServiceName          = my-application
 ```
 
 **パラメータ：**
+
 - `AgentName`：エージェントの名前識別子
 - `PollingIntervalInSec`：エージェントがデータをポーリングする頻度（秒単位）
 - `Tags`：エージェントを分類するためのカスタムタグ（カンマ区切り）
@@ -74,6 +77,7 @@ Profiling = false
 ```
 
 **パラメータ：**
+
 - `LogLevel`：ログの詳細度（`DEBUG`、`INFO`、`WARN`、`ERROR`）
 - `LogFile`：リモートホストでログが書き込まれるパス
 - `Profiling`：パフォーマンスプロファイリングを有効にする（`true`/`false`）
@@ -91,6 +95,7 @@ AgentNoProxy    =
 ```
 
 **パラメータ：**
+
 - `Insecure`：TLS 証明書の検証をスキップ（本番環境では推奨されません）
 - `AgentHTTPProxy`：HTTP プロキシサーバー URL（必要な場合）
 - `AgentHTTPSProxy`：HTTPS プロキシサーバー URL（必要な場合）
@@ -111,6 +116,7 @@ AutoInstall               = false
 ```
 
 **パラメータ：**
+
 - `RunAutoDiscovery`：アプリケーションを自動的に検出する（`true`/`false`）
 - `ExcludeLabels`：検出から除外するメトリクス
 - `ExcludeProcesses`：監視から除外するプロセス名
@@ -132,6 +138,7 @@ AutoUpdateLdPreload = true
 ```
 
 **パラメータ：**
+
 - `NativeEnable`：ネイティブ計装を有効にする
 - `AutoUpdateLdPreload`：LD_PRELOAD 設定を自動的に更新
 
@@ -176,11 +183,13 @@ hosts:
 ### グローバル設定
 
 **max_concurrency：** 同時に処理するホストの最大数
+
 - デフォルト：`4`
 - 多くのホストへの高速デプロイのために増加
 - ネットワークまたはリソースの制約がある場合は減少
 
 **remote_dir：** リモートホストのインストールディレクトリ
+
 - デフォルト：`/opt/appdynamics/appdsmartagent`
 - 絶対パスである必要があります
 - ユーザーは書き込み権限を持っている必要があります
@@ -188,26 +197,32 @@ hosts:
 ### Protocol 構成
 
 **type：** 接続プロトコル
+
 - 値：`ssh`
 
 **auth.username：** 認証用の SSH ユーザー名
+
 - 例：`ubuntu`、`ec2-user`、`centos`
 - リモートホストで構成されているユーザーと一致する必要があります
 
 **auth.private_key_path：** SSH 秘密鍵へのパス
+
 - 絶対パスである必要があります
 - キーはアクセス可能で適切なパーミッション（600）を持っている必要があります
 
 **auth.privileged：** 昇格した権限でエージェントを実行
+
 - `true`：root/systemd サービスとしてインストール
 - `false`：ユーザープロセスとしてインストール
 - 推奨：本番デプロイでは `true`
 
 **auth.ignore_host_key_validation：** SSH ホストキー検証をスキップ
+
 - `true`：検証をスキップ（テストに便利）
 - `false`：ホストキーを検証（本番環境で推奨）
 
 **auth.known_hosts_path：** SSH known_hosts ファイルへのパス
+
 - デフォルト：`/home/ubuntu/.ssh/known_hosts`
 - ホストキー検証が有効な場合に使用
 
@@ -216,18 +231,22 @@ hosts:
 各ホストエントリには以下が必要です：
 
 **host：** リモートマシンの IP アドレスまたはホスト名
+
 - IPv4、IPv6、またはホスト名が使用可能
 - Control Node から到達可能である必要があります
 
 **port：** SSH ポート
+
 - デフォルト：`22`
 - SSH が非標準ポートで実行されている場合は変更
 
 **user：** Smart Agent プロセスを所有するユーザーアカウント
+
 - システム全体のインストールでは通常 `root`
 - ユーザー固有のインストールでは通常のユーザーも可能
 
 **group：** Smart Agent プロセスを所有するグループ
+
 - 通常はユーザーと一致（例：`root`）
 
 ### ホストの追加
@@ -261,6 +280,7 @@ cat /home/ubuntu/appdsm/remote.yaml
 ```
 
 以下を確認します：
+
 - すべてのホスト IP アドレスが正しいこと
 - SSH キーパスが有効であること
 - リモートディレクトリパスが適切であること
@@ -272,6 +292,7 @@ cat /home/ubuntu/appdsm/config.ini
 ```
 
 以下を確認します：
+
 - Controller URL とアカウント情報が正しいこと
 - ログファイルパスが有効であること
 - 設定が環境要件に一致していること

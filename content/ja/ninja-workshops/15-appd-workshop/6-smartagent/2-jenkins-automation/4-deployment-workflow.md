@@ -60,6 +60,7 @@ Preparing Smart Agent deployment to 3 hosts: 172.31.1.243, 172.31.1.48, 172.31.1
 ```
 
 Key stages you'll see:
+
 1. ✅ **Preparation** - Loads and validates host list
 2. ✅ **Extract Smart Agent** - Extracts ZIP file
 3. ✅ **Configure Smart Agent** - Creates config.ini
@@ -71,12 +72,14 @@ Key stages you'll see:
 After completion, you'll see:
 
 **Success:**
+
 ```
 Smart Agent successfully deployed to all hosts
 Finished: SUCCESS
 ```
 
 **Partial Success:**
+
 ```
 Deployment completed with some failures
 Failed hosts: 172.31.1.48
@@ -84,6 +87,7 @@ Finished: UNSTABLE
 ```
 
 **Failure:**
+
 ```
 Smart Agent deployment failed. Check logs for details.
 Finished: FAILURE
@@ -109,6 +113,7 @@ sudo ./smartagentctl status
 ```
 
 **Expected output:**
+
 ```
 Smart Agent is running (PID: 12345)
 Service: appdsmartagent.service
@@ -123,6 +128,7 @@ sudo ./smartagentctl list
 ```
 
 **Expected output:**
+
 ```
 No agents currently installed
 (Use install-machine-agent or install-db-agent pipelines to add agents)
@@ -158,6 +164,7 @@ Once Smart Agent is deployed, you can install specific agent types using the oth
 4. Click **Build**
 
 The pipeline will SSH to each host and execute:
+
 ```bash
 cd /opt/appdynamics/appdsmartagent
 sudo ./smartagentctl install --component machine
@@ -182,6 +189,7 @@ sudo ./smartagentctl list
 ```
 
 **Expected output:**
+
 ```
 Installed agents:
 - machine-agent (running)
@@ -193,6 +201,7 @@ Installed agents:
 ### Scenario 1: Initial Deployment
 
 **Workflow:**
+
 1. Run **Deploy-Smart-Agent** pipeline
 2. Wait for completion and verify
 3. Run **Install-Machine-Agent** if needed
@@ -207,6 +216,7 @@ To update Smart Agent to a new version:
 3. Run **Deploy-Smart-Agent** pipeline again
 
 The pipeline automatically:
+
 - Stops existing Smart Agent
 - Removes old files
 - Installs new version
@@ -221,6 +231,7 @@ To add Smart Agent to new hosts:
 3. Run **Deploy-Smart-Agent** pipeline
 
 The pipeline will:
+
 - Skip already-configured hosts (if idempotent)
 - Deploy to new hosts only
 
@@ -246,6 +257,7 @@ This will permanently delete `/opt/appdynamics/appdsmartagent` directory from al
 **Cause**: Missing or incorrect `deployment-hosts` credential
 
 **Solution**:
+
 1. Go to **Manage Jenkins → Credentials**
 2. Verify `deployment-hosts` credential exists
 3. Check format (one IP per line, no commas)
@@ -258,6 +270,7 @@ This will permanently delete `/opt/appdynamics/appdsmartagent` directory from al
 **Solutions**:
 
 **Check security group:**
+
 ```bash
 # Verify Jenkins agent can reach target
 ping 172.31.1.243
@@ -265,12 +278,14 @@ telnet 172.31.1.243 22
 ```
 
 **Test SSH manually:**
+
 ```bash
 # From Jenkins agent machine
 ssh -i /path/to/key ubuntu@172.31.1.243
 ```
 
 **Verify SSH key:**
+
 1. Ensure `ssh-private-key` credential is correct
 2. Verify public key is in `~/.ssh/authorized_keys` on target hosts
 
@@ -281,12 +296,14 @@ ssh -i /path/to/key ubuntu@172.31.1.243
 **Solution**:
 
 **Check logs on target host:**
+
 ```bash
 cd /opt/appdynamics/appdsmartagent
 cat log.log
 ```
 
 **Common issues:**
+
 - **Invalid access key**: Check `account-access-key` credential
 - **Network connectivity**: Verify outbound HTTPS to Controller
 - **Permission issues**: Ensure APPD_USER has correct permissions
@@ -325,6 +342,7 @@ After triggering a build, add a description:
 ### 3. Monitor Build History
 
 Regularly check build history for patterns:
+
 - Failed builds
 - Duration trends
 - Error messages
@@ -332,6 +350,7 @@ Regularly check build history for patterns:
 ### 4. Schedule Deployments During Maintenance Windows
 
 For production systems:
+
 - Use Jenkins scheduled builds
 - Deploy during low-traffic periods
 - Have rollback plan ready

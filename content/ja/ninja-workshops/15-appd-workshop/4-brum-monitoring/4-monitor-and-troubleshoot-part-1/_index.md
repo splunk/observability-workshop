@@ -7,10 +7,10 @@ description: この演習では、ダッシュボードをレビューし、デ�
 
 この演習では、以下のタスクを完了します：
 
-*   Browser Application Overviewダッシュボードをレビューする
-*   Browser Application Geoダッシュボードをレビューする
-*   Browser Application Usage Statsダッシュボードをレビューする
-*   Supercar-Traderアプリケーションのウェブページをナビゲートする
+* Browser Application Overviewダッシュボードをレビューする
+* Browser Application Geoダッシュボードをレビューする
+* Browser Application Usage Statsダッシュボードをレビューする
+* Supercar-Traderアプリケーションのウェブページをナビゲートする
 
 ## Browser Application Overviewダッシュボードのレビュー
 
@@ -24,23 +24,23 @@ User Experienceダッシュボードに移動し、以下の手順に従って�
 
 Overviewダッシュボードには、設定可能なウィジェットのセットが表示されます。デフォルトのウィジェットには、アプリケーションパフォーマンスの一般的な高レベル指標を含む複数のグラフとリストが含まれています：
 
-*   End User Response Time Distribution
-*   End User Response Time Trend
-*   Total Page Requests by Geo
-*   End User Response Time by Geo
-*   Top 10 Browsers
-*   Top 10 Devices
-*   Page Requests per Minute
-*   Top 5 Pages by Total Requests
-*   Top 5 Countries by Total Page Requests
+* End User Response Time Distribution
+* End User Response Time Trend
+* Total Page Requests by Geo
+* End User Response Time by Geo
+* Top 10 Browsers
+* Top 10 Devices
+* Page Requests per Minute
+* Top 5 Pages by Total Requests
+* Top 5 Countries by Total Page Requests
 
 ダッシュボードの機能を探索します。
 
-4. **+** をクリックして、ダッシュボードに追加するグラフとウィジェットを選択します。
-5. 任意のウィジェットの右下隅をクリックしてドラッグしてサイズを変更します。
-6. 任意のウィジェットの枠線部分を選択して、ダッシュボード上で移動して配置します。
-7. 任意のウィジェットのタイトルをクリックして、詳細ダッシュボードにドリルダウンします。
-8. 任意のウィジェットの右上隅にある **X** をクリックしてダッシュボードから削除します。
+1. **+** をクリックして、ダッシュボードに追加するグラフとウィジェットを選択します。
+2. 任意のウィジェットの右下隅をクリックしてドラッグしてサイズを変更します。
+3. 任意のウィジェットの枠線部分を選択して、ダッシュボード上で移動して配置します。
+4. 任意のウィジェットのタイトルをクリックして、詳細ダッシュボードにドリルダウンします。
+5. 任意のウィジェットの右上隅にある **X** をクリックしてダッシュボードから削除します。
 
 ダッシュボードウィジェットのレイアウトに加えた変更は自動的に保存されます。
 
@@ -70,10 +70,11 @@ Browser Application Geoダッシュボードについて詳しくは、[**こち
 **Usage Stats** ダッシュボードは、ユーザーのブラウザタイプとデバイス/プラットフォームに基づいて集約されたページロード使用データを表示します。
 
 Browser Application Usage Statsダッシュボードは、以下のことを発見するのに役立ちます：
-*   合計エンドユーザー応答時間の面で最も遅いブラウザ。
-*   応答ページをレンダリングするのに最も遅いブラウザ。
-*   エンドユーザーの大半が使用しているブラウザ。
-*   特定の国やリージョンでエンドユーザーの大半が使用しているブラウザ。
+
+* 合計エンドユーザー応答時間の面で最も遅いブラウザ。
+* 応答ページをレンダリングするのに最も遅いブラウザ。
+* エンドユーザーの大半が使用しているブラウザ。
+* 特定の国やリージョンでエンドユーザーの大半が使用しているブラウザ。
 
 Browser Application Usage Statsダッシュボードに移動し、以下に説明するダッシュボードの機能を探索します。
 
@@ -86,18 +87,18 @@ Browser Application Usage Statsダッシュボードに移動し、以下に説�
 
 以下の手順を使用して、ブラウザとバージョンごとのその他のメトリクスを探索します。
 
-5. 右側のスクロールバーを使用してページの下部までスクロールします。
-6. ブラウザとバージョンごとの利用可能なメトリクスを探索します。
-7. 国ごとの利用可能なメトリクスを探索します。
+1. 右側のスクロールバーを使用してページの下部までスクロールします。
+2. ブラウザとバージョンごとの利用可能なメトリクスを探索します。
+3. 国ごとの利用可能なメトリクスを探索します。
 
 ![BRUM Dash 5](images/04-brum-usage-stats2.png)
 
 Devicesダッシュボードに移動し、以下に説明するダッシュボードの機能を探索します。
 
-8. **Devices** オプションをクリックします。
-9. デバイス別の負荷の内訳を確認します。
-10. 円グラフのセクションにカーソルを合わせて詳細を確認します。
-11. デバイス別の利用可能なパフォーマンスメトリクスを探索します。
+1. **Devices** オプションをクリックします。
+2. デバイス別の負荷の内訳を確認します。
+3. 円グラフのセクションにカーソルを合わせて詳細を確認します。
+4. デバイス別の利用可能なパフォーマンスメトリクスを探索します。
 
 Browser Application Usage Statsダッシュボードについて詳しくは、[**こちら**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-app-dashboard/usage-stats)をご覧ください。
 

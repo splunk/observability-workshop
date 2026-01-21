@@ -11,7 +11,6 @@ description: Server Agent を手動でインストールします。
 2. Machine Agent を設定する
 3. Machine Agent を起動する
 
-
 {{% notice title="注意" style="orange"  %}}
 スクリプトを使用して Machine Agent を EC2 インスタンスにダウンロードします。通常は [https://accounts.appdynamics.com/](https://accounts.appdynamics.com/) にログインして Machine Agent をダウンロードする必要がありますが、アクセス制限の可能性があるため、ポータルから直接ダウンロードするスクリプトを使用します。AppDynamics ポータルにアクセスでき、Machine Agent をダウンロードしたい場合は、以下のステップに従ってダウンロードし、APM ラボの Install Agent セクションで使用したステップを参照して VM に SCP してください。
 
@@ -23,7 +22,6 @@ description: Server Agent を手動でインストールします。
 6. Install Agent セクションのステップに従って、ダウンロードしたファイルを EC2 インスタンスに SCP します
 7. zip ファイルを /opt/appdynamics/machineagent ディレクトリに解凍し、このラボの設定セクションに進みます
 {{% /notice %}}
-
 
 ## インストールスクリプトの実行
 
@@ -88,6 +86,3 @@ ps -ef | grep machine
 以下の画像のような出力が表示されるはずです。
 
 ![Example Output](images/run-machine-agent.png)
-
-
-

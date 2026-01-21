@@ -11,6 +11,7 @@ Analyticsは以前、Machine Agentにバンドルされた別のエージェン�
 この演習では、WebブラウザからAppDynamics Controllerにアクセスし、エージェントレスAnalyticsを有効化します。
 
 ## Controllerへのログイン
+
 Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/)にログインします。
 
 ## Analytics設定への移動
@@ -23,13 +24,12 @@ Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-la
 
 ![Enable Analytics](images/05-biq-transaction-analytics.png)
 
-
 ## Transaction Summaryの検証
 
 Analyticsがそのアプリケーションで機能し、トランザクションが表示されていることを確認します。
 
-1.  左メニューの **Analytics tab** タブを選択します。
-2.  **Home** タブを選択します。
-3.  **Transactions from** でアプリケーション **Supercar-Trader-YOURINITIALS** にフィルターします。
+1. 左メニューの **Analytics tab** タブを選択します。
+2. **Home** タブを選択します。
+3. **Transactions from** でアプリケーション **Supercar-Trader-YOURINITIALS** にフィルターします。
 
 ![Validate Analytics](images/05-biq-transaction-analytics.png)

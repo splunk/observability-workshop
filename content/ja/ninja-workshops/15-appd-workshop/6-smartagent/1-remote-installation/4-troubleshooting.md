@@ -10,6 +10,7 @@ This section covers common issues you may encounter when deploying Smart Agent t
 ### Problem: Cannot Connect to Remote Hosts
 
 **Symptoms:**
+
 - Connection timeout errors
 - "Permission denied" messages
 - Host key verification failures
@@ -80,6 +81,7 @@ Disabling host key validation should only be used for testing. Always enable it 
 ### Problem: Permission Denied During Installation
 
 **Symptoms:**
+
 - "Permission denied" when creating directories
 - Cannot write to `/opt/appdynamics/`
 - Insufficient privileges errors
@@ -126,6 +128,7 @@ ls -la /opt/appdynamics/
 ### Problem: Agent Installation Succeeds But Agent Doesn't Start
 
 **Symptoms:**
+
 - Installation completes without errors
 - Agent process not running on remote hosts
 - No errors in control node logs
@@ -142,6 +145,7 @@ tail -100 /opt/appdynamics/appdsmartagent/log.log
 ```
 
 Look for error messages indicating:
+
 - Configuration errors
 - Network connectivity issues
 - Missing dependencies
@@ -173,6 +177,7 @@ cat /opt/appdynamics/appdsmartagent/config.ini
 ```
 
 Ensure:
+
 - Controller URL is correct
 - Account credentials are valid
 - All required fields are populated
@@ -201,6 +206,7 @@ free -m  # Check memory
 ### Problem: Invalid Configuration
 
 **Symptoms:**
+
 - YAML parsing errors
 - Invalid configuration parameter errors
 - Agent fails to start with config errors
@@ -216,6 +222,7 @@ python3 -c "import yaml; yaml.safe_load(open('/home/ubuntu/appdsm/remote.yaml'))
 ```
 
 Common YAML issues:
+
 - Incorrect indentation (use spaces, not tabs)
 - Missing colons
 - Unquoted special characters
@@ -229,6 +236,7 @@ cat /home/ubuntu/appdsm/config.ini
 ```
 
 Common INI issues:
+
 - Missing section headers (e.g., `[CommonConfig]`)
 - Invalid parameter names
 - Missing equals signs
@@ -236,6 +244,7 @@ Common INI issues:
 #### 3. Validate Controller Credentials
 
 Ensure your AppDynamics credentials are correct:
+
 - **ControllerURL**: Should not include `https://` or `/controller`
 - **AccountAccessKey**: Should be the full access key
 - **AccountName**: Should match your account name exactly
@@ -253,6 +262,7 @@ AccountName      = fso-tme
 ### Problem: Agent Starts But Doesn't Appear in Controller UI
 
 **Symptoms:**
+
 - Agent process is running on remote hosts
 - No errors in agent logs
 - Agent doesn't appear in Controller UI
@@ -297,6 +307,7 @@ Verify that outbound HTTPS (port 443) is allowed from remote hosts to the Contro
 #### 6. Verify Account Credentials
 
 Double-check that your AccountAccessKey and AccountName are correct in the Controller UI:
+
 - Log into AppDynamics Controller
 - Go to Settings → License
 - Verify your account name and access key
@@ -306,6 +317,7 @@ Double-check that your AccountAccessKey and AccountName are correct in the Contr
 ### Problem: Slow Deployment or Timeouts
 
 **Symptoms:**
+
 - Deployment takes too long
 - Timeout errors when deploying to many hosts
 - System resource exhaustion
@@ -331,6 +343,7 @@ max_concurrency: 8  # Higher value for faster deployment
 For very large deployments, split hosts into multiple groups:
 
 **remote-batch1.yaml:**
+
 ```yaml
 hosts:
   - host: "172.31.1.1"
@@ -339,6 +352,7 @@ hosts:
 ```
 
 **remote-batch2.yaml:**
+
 ```yaml
 hosts:
   - host: "172.31.1.4"
@@ -369,6 +383,7 @@ tail -f /home/ubuntu/appdsm/log.log
 ```
 
 Look for:
+
 - SSH connection failures
 - File transfer errors
 - Permission denied errors
@@ -384,6 +399,7 @@ tail -f /opt/appdynamics/appdsmartagent/log.log
 ```
 
 Look for:
+
 - Controller connection errors
 - Configuration errors
 - Agent startup failures
@@ -403,6 +419,7 @@ LogLevel = DEBUG
 If you're still experiencing issues:
 
 1. **Check Documentation**: Review the smartagentctl help:
+
    ```bash
    ./smartagentctl --help
    ./smartagentctl start --help
@@ -412,7 +429,7 @@ If you're still experiencing issues:
 
 3. **Check Log Files**: Always review both control node and remote host logs
 
-4. **Test Components Individually**: 
+4. **Test Components Individually**:
    - Test SSH connectivity separately
    - Test agent startup on a single host manually
    - Verify controller connectivity independently

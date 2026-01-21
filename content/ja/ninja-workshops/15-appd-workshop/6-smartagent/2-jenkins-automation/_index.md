@@ -73,6 +73,7 @@ All pipeline code and configuration files are available in the GitHub repository
 **[https://github.com/chambear2809/sm-jenkins](https://github.com/chambear2809/sm-jenkins)**
 
 The repository includes:
+
 - Complete Jenkinsfile pipeline definitions
 - Detailed setup documentation
 - Configuration examples
@@ -81,6 +82,6 @@ The repository includes:
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 The easiest way to navigate through this workshop is by using:
 
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
+- the left/right arrows (**<** | **>**) on the top right of this page
+- the left (◀️) and right (▶️) cursor keys on your keyboard
 {{% /notice %}}

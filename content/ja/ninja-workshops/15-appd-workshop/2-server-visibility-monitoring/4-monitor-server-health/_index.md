@@ -26,6 +26,7 @@ Machine Agent がインストールされたので、Server Visibility モジュ
 これでサーバーダッシュボードを探索できます。このダッシュボードでは、以下のタスクを実行できます：
 
 選択した監視対象サーバーの主要なパフォーマンスメトリクスのチャートを表示します。これには以下が含まれます：
+
 - サーバーの可用性
 - CPU、メモリ、ネットワーク使用率
 - サーバープロパティ
@@ -35,6 +36,7 @@ Machine Agent がインストールされたので、Server Visibility モジュ
 Server Main ダッシュボードについて詳しくは[こちら](https://help.splunk.com/en/appdynamics-saas/infrastructure-visibility/25.7.0/server-visibility/monitor-your-servers-using-server-visibility/server-dashboard)をご覧ください。
 
 ダッシュボードの **Top Pane** を確認します。以下の情報が表示されます：
+
 - Host Id: Splunk AppDynamics Controller で一意のサーバー ID です
 - Health: サーバーの全体的な健全性を表示します
 - Hierarchy: サーバーをグループ化するための任意の階層です。詳細については[こちら](https://help.splunk.com/en/appdynamics-saas/infrastructure-visibility/25.7.0/machine-agent/configure-the-machine-agent/machine-agent-configuration-properties)のドキュメントをご覧ください
@@ -45,19 +47,18 @@ Server Main ダッシュボードについて詳しくは[こちら](https://hel
 ![Server Health](images/server-health.png)
 ![Server violations](images/server-health-violations.png)
 
-3. **CPU Usage too high** ルールをクリックします
-4. **Edit Health Rule** をクリックします。**Edit Health Rule** パネルが開きます
+1. **CPU Usage too high** ルールをクリックします
+2. **Edit Health Rule** をクリックします。**Edit Health Rule** パネルが開きます
 
 ![Edit Health Rule](images/server-edit-hr.png)
 
 このパネルでは Health Rule を設定できます。別のラボで Health Rule の作成とカスタマイズについて詳しく説明します。ここでは既存のルールを確認するだけにします。
 
-5. **Warning Criteria** をクリックします
+1. **Warning Criteria** をクリックします
 
 ![Edit Health Rule - Warning](images/server-warning.png)
 
 この例では、CPU が5%を超えたときに警告条件が設定されていることがわかります。これが、Health Rule が正常な状態ではなく警告を表示している理由です。**Edit Health Rule** パネルをキャンセルして **Server Dashboard** に戻ります。
-
 
 ## Server Processes Dashboard の確認
 
@@ -65,6 +66,7 @@ Server Main ダッシュボードについて詳しくは[こちら](https://hel
 2. **View Options** をクリックして異なるデータカラムを選択します。表示可能な KPI を確認します。
 
 これでサーバープロセスダッシュボードを探索できます。このダッシュボードでは、以下のタスクを実行できます：
+
 - 選択した期間中にアクティブなすべてのプロセスを表示します。プロセスは ServerMonitoring.yml ファイルで指定されたクラスごとにグループ化されます。
 - Command Line カラムのプロセスエントリにマウスを合わせると、このプロセスを開始したフルコマンドラインを表示できます。
 - プロセスクラスを展開して、そのクラスに関連するプロセスを確認できます。

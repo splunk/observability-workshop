@@ -21,24 +21,27 @@ AppDynamics Database Agent は、データベースインスタンスとデー�
 
 ローカルマシンでターミナルウィンドウを開き、Database Agent ファイルがダウンロードされたディレクトリに移動します。以下のコマンドを使用して、ファイルを EC2 インスタンスにアップロードします。これには時間がかかる場合があります。Windows OS を使用している場合は、WinSCP などのプログラムを使用する必要があるかもしれません。
 
-* IP アドレスまたはパブリック DNS をインスタンスに合わせて更新してください。
-* ファイル名を正確なバージョンに合わせて更新してください。
+- IP アドレスまたはパブリック DNS をインスタンスに合わせて更新してください。
+- ファイル名を正確なバージョンに合わせて更新してください。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 cd ~/Downloads
 scp -P 2222 db-agent-*.zip splunk@i-0267b13f78f891b64.splunk.show:/home/splunk
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 splunk@i-0267b13f78f891b64.splunk.show's password:
 db-agent-25.7.0.5137.zip                                                                                                                               100%   70MB   5.6MB/s   00:12
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ## Database Agent のインストール
 

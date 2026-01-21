@@ -7,10 +7,10 @@ description: この演習では、ダッシュボードをレビューし、Brow
 
 この演習では、以下のタスクを完了します：
 
-*   作成したBrowser Sessionをレビューする。
-*   Pages & AJAX Requestsダッシュボードをレビューする。
-*   特定のBase Pageのダッシュボードをレビューする。
-*   Browser Snapshotをトラブルシューティングする。
+* 作成したBrowser Sessionをレビューする。
+* Pages & AJAX Requestsダッシュボードをレビューする。
+* 特定のBase Pageのダッシュボードをレビューする。
+* Browser Snapshotをトラブルシューティングする。
 
 ## 作成したBrowser Sessionのレビュー
 
@@ -33,12 +33,12 @@ Webアプリケーションの最後のページにアクセスしてからブ�
 
 > _注意:_ ステップ5に示されているように、セッション内のどのページにも **View Snapshot** リンクがない場合があります。後でこの演習で、リンクがあるセッションを見つけて探索します。
 
-5. **Session Summary** リンクをクリックしてサマリーデータを表示します。
-6. 左側に表示されているページをクリックすると、右側にそのページの詳細が表示されます。
-7. 左側のリストで選択したページの完全名を常に確認できます。
-8. ウォーターフォールビューの水平の青いバーをクリックすると、そのアイテムの詳細が表示されます。
-9. 一部のページには、サーバー側でキャプチャされた相関スナップショットへのリンクがある場合があります。
-10. 設定アイコンをクリックして、ページリストに表示される列を変更します。
+1. **Session Summary** リンクをクリックしてサマリーデータを表示します。
+2. 左側に表示されているページをクリックすると、右側にそのページの詳細が表示されます。
+3. 左側のリストで選択したページの完全名を常に確認できます。
+4. ウォーターフォールビューの水平の青いバーをクリックすると、そのアイテムの詳細が表示されます。
+5. 一部のページには、サーバー側でキャプチャされた相関スナップショットへのリンクがある場合があります。
+6. 設定アイコンをクリックして、ページリストに表示される列を変更します。
 
 Browser RUM Sessionsについて詳しくは、[**こちら**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/overview-of-the-controller-ui-for-browser-rum/browser-rum-sessions)をご覧ください。
 
@@ -54,7 +54,6 @@ Pages & AJAX Requestsダッシュボードに移動し、そこにあるオプ�
 4. **Details** をクリックしてBase Pageダッシュボードを開きます。
 
 ![BRUM Dash 3](images/05-brum-ajax-list.png)
-
 
 ## 特定のBase Pageのダッシュボードのレビュー
 
@@ -73,7 +72,6 @@ Timing Breakdownセクションには、ページロードプロセスの各側�
 Base Pageダッシュボードについて詳しくは、[**こちら**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/overview-of-the-controller-ui-for-browser-rum/pages-and-ajax-requests/page-ajax-and-iframe-dashboards/page-and-iframe-dashboards)をご覧ください。
 
 ![BRUM Dash 4](images/05-brum-main-page-summary.png)
-
 
 ## Browser Snapshotのトラブルシューティング
 

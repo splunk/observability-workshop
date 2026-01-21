@@ -7,8 +7,8 @@ description: この演習では、JavaScript Injectionを有効化し、イン�
 
 この演習では、以下のタスクを完了します：
 
-*   JavaScript Agentインジェクションを有効化する。
-*   インジェクション用のビジネストランザクションを選択する。
+* JavaScript Agentインジェクションを有効化する。
+* インジェクション用のビジネストランザクションを選択する。
 
 ## JavaScript Agentインジェクションの有効化
 
@@ -20,20 +20,19 @@ AppDynamicsはJavaScript Agentをインジェクトするさまざまな方法�
 
 ![BRUM Dash 1](images/03-brum-app-integration.png)
 
-4. **JavaScript Agent Injection** タブをクリックします。
-5. **Enable** をクリックして青色に切り替えます。
-6. **Supercar-Trader-Web-##-####** が選択されたブラウザアプリであることを確認します。前のセクションで作成したアプリケーションを選択してください。
-7. **Enable JavaScript Injection** の下にある **Enable** チェックボックスをオンにします。
-8. **Save** をクリックします。
+1. **JavaScript Agent Injection** タブをクリックします。
+2. **Enable** をクリックして青色に切り替えます。
+3. **Supercar-Trader-Web-##-####** が選択されたブラウザアプリであることを確認します。前のセクションで作成したアプリケーションを選択してください。
+4. **Enable JavaScript Injection** の下にある **Enable** チェックボックスをオンにします。
+5. **Save** をクリックします。
 
 ![BRUM Dash 2](images/03-brum-agent-injection.png)
 
-
 Auto-Injectionが潜在的なビジネストランザクションを検出するまで数分かかります。この間に、以下の手順でBusiness Transaction Correlationを有効化します。新しいAPMエージェントでは、これは自動的に行われます。
 
-9. **Business Transaction Correlation** タブをクリックします。
-10. **Manually Enable Business Transactions** セクションの下にある **Enable** ボタンをクリックします。
-11. **Save** をクリックします。
+1. **Business Transaction Correlation** タブをクリックします。
+2. **Manually Enable Business Transactions** セクションの下にある **Enable** ボタンをクリックします。
+3. **Save** をクリックします。
 
 ![BRUM Dash 3](images/03-brum-bt-manual.png)
 

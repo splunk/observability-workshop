@@ -16,6 +16,7 @@ Database Agent Collector は、Database Agent 内で実行され、データベ�
 - Database Collector がデータを収集していることを確認する
 
 ## Controller へのログイン
+
 Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインします。
 
 ## Controller での Database Collector の構成
@@ -25,35 +26,34 @@ Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-
 1. 左メニューの **Databases** タブをクリックします。
 2. 左下の **Configuration** タブをクリックします。
 3. **Remove literals from the queries** のチェックボックスのチェックを外します。
-5. **Collectors** オプションをクリックします。
+4. **Collectors** オプションをクリックします。
 
 ![Configuration](images/05-db-configure-collector.png)
 
 以下の手順に従って、新しい Database Collector を構成します。
 
-6. **Add** ボタンをクリックします。
-7. データベースタイプとして **MySQL** を選択します。
-8. Database Agent として **DBMon-Lab-Agent** を選択し、以下のパラメータを入力します。
-9. Collector Name: **Supercar-MySQL-YOURINITIALS**
-10. Hostname or IP Address: **localhost**
-11. Listener Port: **3306**
+1. **Add** ボタンをクリックします。
+2. データベースタイプとして **MySQL** を選択します。
+3. Database Agent として **DBMon-Lab-Agent** を選択し、以下のパラメータを入力します。
+4. Collector Name: **Supercar-MySQL-YOURINITIALS**
+5. Hostname or IP Address: **localhost**
+6. Listener Port: **3306**
 
 ![Configuration1](images/05-db-collector-config1.png)
 
-12. Username: **root**
-13. Password: **Welcome1!**
+1. Username: **root**
+2. Password: **Welcome1!**
 
 ![Configuration2](images/05-db-username.png)
 
-14. **Advanced Options** の下にある **Monitor Operating System** チェックボックスを選択します。
-15. オペレーティングシステムとして **Linux** を選択し、以下のパラメータを入力します。
-16. SSH Port: **22**
-17. Username: **splunk**
-18. Password: **EC2 インスタンスに SSH 接続するためにインストラクターから提供されたパスワード**
-19. **OK** をクリックしてコレクターを保存します。
+1. **Advanced Options** の下にある **Monitor Operating System** チェックボックスを選択します。
+2. オペレーティングシステムとして **Linux** を選択し、以下のパラメータを入力します。
+3. SSH Port: **22**
+4. Username: **splunk**
+5. Password: **EC2 インスタンスに SSH 接続するためにインストラクターから提供されたパスワード**
+6. **OK** をクリックしてコレクターを保存します。
 
 ![Advance Options](images/05-db-advance-options.png)
-
 
 ## Database Collector がデータを収集していることの確認
 
@@ -69,6 +69,5 @@ _注意：コレクターを構成してから Top 10 SQL Wait States と Querie
 ![Application](images/04-db-db-controller.png)
 
 ![Application](images/04-db-db-dashboard.png)
-
 
 Database Collector の構成の詳細については、[こちら](https://docs.appdynamics.com/appd/24.x/latest/en/database-visibility/add-database-collectors)を参照してください。

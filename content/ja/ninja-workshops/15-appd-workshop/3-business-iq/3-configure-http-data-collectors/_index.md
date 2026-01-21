@@ -12,10 +12,10 @@ HTTPデータコレクターは、ビジネストランザクションで交換�
 
 この演習では、以下のタスクを実行します：
 
-*   すべてのHTTPデータコレクターを有効化する。
-*   関連するHTTPデータコレクターを観察して選択する。
-*   HTTPパラメータを使用してAnalyticsでビジネスデータをキャプチャする。
-*   HTTPパラメータのAnalyticsを検証する。
+* すべてのHTTPデータコレクターを有効化する。
+* 関連するHTTPデータコレクターを観察して選択する。
+* HTTPパラメータを使用してAnalyticsでビジネスデータをキャプチャする。
+* HTTPパラメータのAnalyticsを検証する。
 
 ## すべてのHTTPデータコレクターの有効化
 
@@ -46,12 +46,11 @@ HTTPデータコレクターは、ビジネストランザクションで交換�
 
 ![HTTPDataCollectors 2](images/05-biq-http-collector.png)
 
-8. "Ok"をクリックしてデータコレクターを確認します。
-9. **/Supercar-Trader/sell.do** トランザクションを有効にします。
-10. **Save** をクリックします。
+1. "Ok"をクリックしてデータコレクターを確認します。
+2. **/Supercar-Trader/sell.do** トランザクションを有効にします。
+3. **Save** をクリックします。
 
 ![HTTPDataCollectors 2](images/05-biq-bt-enble.png)
-
 
 ## 関連するHTTPデータコレクターの観察と選択
 
@@ -59,11 +58,10 @@ HTTPデータコレクターは、ビジネストランザクションで交換�
 
 これですべてのHTTPパラメータを確認できます。Car Price、Color、Yearなど、多くの重要なメトリクスが表示されます。
 
-2. 正確なパラメータ名をメモし、**HTTP Parameters** リストに再度追加してTransaction Analyticsで有効にします。
-3. 追加したら、**All HTTP Param** HTTPデータコレクターを削除します。
+1. 正確なパラメータ名をメモし、**HTTP Parameters** リストに再度追加してTransaction Analyticsで有効にします。
+2. 追加したら、**All HTTP Param** HTTPデータコレクターを削除します。
 
 ![HTTPDataCollectors 2](images/05-biq-snapshot-collector.png)
-
 
 ## HTTPパラメータを使用したAnalyticsでのビジネスデータのキャプチャ
 
@@ -82,13 +80,12 @@ HTTPデータコレクターは、ビジネストランザクションで交換�
 ![SaveHttpDataCollectors](images/05-biq-httpcollector-cardetails.png)
 ![Car Params](images/05-biq-car-params.png)
 
-10. **/Supercar-Trader/sell.do** トランザクションを有効にします。
-11. **Save** をクリックします。
+1. **/Supercar-Trader/sell.do** トランザクションを有効にします。
+2. **Save** をクリックします。
 
 ![HTTPDataCollectors 2](images/05-biq-cardetails-bt.png)
 
-12. **All HTTP Param** コレクターをクリックして選択し、**Delete** ボタンをクリックして削除します。
-
+1. **All HTTP Param** コレクターをクリックして選択し、**Delete** ボタンをクリックして削除します。
 
 ## HTTPパラメータのAnalyticsの検証
 
@@ -100,9 +97,9 @@ HTTPデータコレクターは、ビジネストランザクションで交換�
 
 ![Drag and Drop Search](images/05-biq-search.png)
 
-4. **+ Add Criteria** をクリックします。
-5. **Application** を選択し、アプリケーション名 **Supercar-Trader-YOURINITIALS** を検索します。
-6. **Fields** パネルで、**Business Parameters** がCustom HTTP Request Dataのフィールドとして表示されていることを確認します。
-7. **CarPrice_http** のチェックボックスをオンにし、フィールドにデータがあることを確認します。
+1. **+ Add Criteria** をクリックします。
+2. **Application** を選択し、アプリケーション名 **Supercar-Trader-YOURINITIALS** を検索します。
+3. **Fields** パネルで、**Business Parameters** がCustom HTTP Request Dataのフィールドとして表示されていることを確認します。
+4. **CarPrice_http** のチェックボックスをオンにし、フィールドにデータがあることを確認します。
 
 ![ValidateHttpDataCollectors](images/05-biq-search-validation.png)

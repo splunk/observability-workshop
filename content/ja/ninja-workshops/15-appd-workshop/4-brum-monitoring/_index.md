@@ -15,7 +15,6 @@ description: このラーニングラボでは、AppDynamicsを使用してブ�
 - Browser Real User Monitoring (BRUM) エージェントを設定してWebアプリケーションの正常性を監視する
 - パフォーマンス問題をトラブルシューティングし、ブラウザ側またはサーバー側のどちらで発生したかにかかわらず根本原因を見つける
 
-
 ## ワークショップ環境
 
 ワークショップ環境には2つのホストがあります：
@@ -28,7 +27,6 @@ description: このラーニングラボでは、AppDynamicsを使用してブ�
 このワークショップでは、[AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/)を使用します。
 
 ![Controller](images/controller-vm.png)
-
 
 ## Application VM
 

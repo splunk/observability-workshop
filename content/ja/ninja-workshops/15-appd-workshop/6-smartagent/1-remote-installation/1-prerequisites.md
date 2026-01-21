@@ -21,6 +21,7 @@ cd /home/ubuntu/appdsm
 ```
 
 ディレクトリには以下が含まれます：
+
 - `smartagentctl` - SmartAgent を管理するためのコマンドラインユーティリティ
 - `smartagent` - SmartAgent バイナリ
 - `config.ini` - メイン構成ファイル

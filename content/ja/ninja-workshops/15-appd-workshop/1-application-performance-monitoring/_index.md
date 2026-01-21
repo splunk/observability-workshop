@@ -6,6 +6,7 @@ description: このラボでは、Splunk AppDynamics を使用してアプリケ
 ---
 
 ## 目標
+
 このラボでは、AppDynamics を使用してアプリケーションサービスの健全性を監視する方法を学びます。このワークショップの他のラボを開始する前に、まずこのラボを完了する必要があります。
 
 このラボを完了すると、以下のことができるようになります：
@@ -27,15 +28,15 @@ description: このラボでは、Splunk AppDynamics を使用してアプリケ
 - 2つ目のホストはラボで使用する Supercar Trader アプリケーションを実行しています。ここに AppDynamics エージェントをインストールするホストであり、以降は Application VM と呼びます。
 
 ## Controller
+
 このワークショップでは [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) を使用します。
 
 ![Controller](images/controller-vm.png)
 
-
 ## Application VM
+
 Supercar Trader は Java ベースの Web アプリケーションです。
 
 Supercar-Trader コレクションの目的は、AppDynamics Controller のための動的なトラフィック（Business Transactions）を生成することです。
 
 ![Application VM](images/application-vm.png)
-

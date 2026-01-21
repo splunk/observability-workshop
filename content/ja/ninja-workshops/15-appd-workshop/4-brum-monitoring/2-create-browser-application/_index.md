@@ -7,9 +7,9 @@ description: この演習では、Controllerでアプリケーションを作成
 
 この演習では、以下のタスクを完了します：
 
-*   WebブラウザからAppDynamics Controllerにアクセスする。
-*   ControllerでBrowser Applicationを作成する。
-*   Browser Applicationを設定する。
+* WebブラウザからAppDynamics Controllerにアクセスする。
+* ControllerでBrowser Applicationを作成する。
+* Browser Applicationを設定する。
 
 ## Controllerへのログイン
 
@@ -43,10 +43,10 @@ Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-la
 
 以下の手順に従って、ブラウザ監視エージェントによってキャプチャされるデータと一緒にIPアドレスが保存されるようにデフォルト設定を変更します。
 
-3. **Settings** タブをクリックします。
-4. 右側のスクロールバーを使用して画面の下部までスクロールします。
-5. **Store IP Address** チェックボックスをオンにします。
-6. **Save** をクリックします。
+1. **Settings** タブをクリックします。
+2. 右側のスクロールバーを使用して画面の下部までスクロールします。
+3. **Store IP Address** チェックボックスをオンにします。
+4. **Save** をクリックします。
 
 Browser RUM用のController UIの設定について詳しくは、[こちら](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/overview-of-the-controller-ui-for-browser-rum/configure-the-controller-ui-for-browser-rum)をご覧ください。
 

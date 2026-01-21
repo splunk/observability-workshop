@@ -7,11 +7,12 @@ description: この演習では、Controllerにアクセスし、アプリケー
 
 この演習では、以下のタスクを完了します：
 
-*   WebブラウザからAppDynamics Controllerにアクセスする。
-*   アプリケーションへのトランザクション負荷を確認する。
-*   必要に応じてアプリケーションとトランザクション負荷を再起動する。
+* WebブラウザからAppDynamics Controllerにアクセスする。
+* アプリケーションへのトランザクション負荷を確認する。
+* 必要に応じてアプリケーションとトランザクション負荷を再起動する。
 
 ## Controllerへのログイン
+
 Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/)にログインします。
 
 ## アプリケーションへのトランザクション負荷の確認
@@ -26,9 +27,9 @@ Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-la
 
 ビジネストランザクションのリストを確認します：
 
-4. 左メニューの **Business Transactions** オプションをクリックします。
-5. 下記に示す11個のビジネストランザクションが表示されていることを確認します。
-6. 過去1時間に何らかの呼び出し数があることを確認します。
+1. 左メニューの **Business Transactions** オプションをクリックします。
+2. 下記に示す11個のビジネストランザクションが表示されていることを確認します。
+3. 過去1時間に何らかの呼び出し数があることを確認します。
 
 **注意:** **Calls** 列が表示されない場合は、**View Options** ツールバーボタンをクリックしてその列を表示できます。
 
@@ -36,12 +37,11 @@ Ciscoの認証情報を使用して[AppDynamics SE Lab Controller](https://se-la
 
 Nodeのエージェントステータスを確認します：
 
-7. 左メニューの **Tiers & Nodes** オプションをクリックします。
-8. **Grid View** をクリックします。
-9. 各Nodeの **App Agent Status** が過去1時間で90%以上であることを確認します。
+1. 左メニューの **Tiers & Nodes** オプションをクリックします。
+2. **Grid View** をクリックします。
+3. 各Nodeの **App Agent Status** が過去1時間で90%以上であることを確認します。
 
 ![Verify Agents](images/01-prereq-tiersnodes.png)
-
 
 ## 必要に応じてアプリケーションと負荷生成の再起動
 
@@ -91,6 +91,7 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 ```
 
 Tomcatサーバーを再起動します：
+
 ``` bash
 cd /usr/local/apache/apache-tomcat-9/bin
 ./startup.sh
@@ -100,11 +101,14 @@ cd /usr/local/apache/apache-tomcat-9/bin
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 curl localhost:8080
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 <!DOCTYPE html>
 <html lang="en">
@@ -119,6 +123,7 @@ curl localhost:8080
         <div id="wrapper"
 ....
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

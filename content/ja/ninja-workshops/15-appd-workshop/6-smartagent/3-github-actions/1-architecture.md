@@ -115,24 +115,29 @@ sequenceDiagram
 ### GitHub Repository
 
 **Stores:**
+
 - 11 workflow YAML files
 - Smart Agent installation package
 - Configuration file (config.ini)
 
 **Secrets:**
+
 - SSH private key
 
 **Variables:**
+
 - Host list (DEPLOYMENT_HOSTS)
 - User/group settings (optional)
 
 ### Self-hosted Runner
 
 **Location:**
+
 - AWS VPC (same as targets)
 - Private network access
 
 **Responsibilities:**
+
 - Poll GitHub for workflow jobs
 - Execute workflow steps
 - SSH to target hosts
@@ -141,12 +146,14 @@ sequenceDiagram
 - Error collection
 
 **Requirements:**
+
 - Ubuntu/Amazon Linux 2
 - Outbound HTTPS (443) to GitHub
 - Outbound SSH (22) to target hosts
 - SSH key authentication
 
 **Access:**
+
 - Outbound HTTPS (443) to GitHub
 - Outbound SSH (22) to target hosts
 - Uses SSH key authentication
@@ -154,12 +161,14 @@ sequenceDiagram
 ### Target Hosts
 
 **Pre-requisites:**
+
 - Ubuntu 20.04+
 - SSH server running
 - User with sudo access
 - Authorized SSH key
 
 **Post-deployment:**
+
 ```
 /opt/appdynamics/
 └── appdsmartagent/
@@ -270,11 +279,13 @@ WITHIN EACH BATCH:
 ### Why Sequential Batches?
 
 **Resource Management:**
+
 - Prevents overwhelming the self-hosted runner
 - Each batch opens 256 parallel SSH connections
 - Sequential processing ensures stable performance
 
 **Configurable:**
+
 - Default batch size: 256 (GitHub Actions matrix limit)
 - Adjustable via workflow input for smaller batches
 - Balance between speed and resource usage
@@ -282,6 +293,7 @@ WITHIN EACH BATCH:
 ### Scaling Characteristics
 
 **Deployment Speed (default BATCH_SIZE=256):**
+
 - 10 hosts → 1 batch → ~2 minutes
 - 100 hosts → 1 batch → ~3 minutes
 - 500 hosts → 2 batches → ~6 minutes
@@ -289,6 +301,7 @@ WITHIN EACH BATCH:
 - 5,000 hosts → 20 batches → ~60 minutes
 
 **Factors affecting speed:**
+
 - Network bandwidth (19MB package per host)
 - SSH connection overhead (~1s per host)
 - Target host CPU/disk speed
