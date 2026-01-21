@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portworx-metrics-sim
+spec:
+  selector:
+    matchLabels:
+      app: portworx-metrics-sim
+  template:
+    metadata:
+      labels:
+        app: portworx-metrics-sim
+    spec:
+      tolerations:
+      nodeSelector:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: portworx-metrics-sim
+          image: derekmitchell399/portworx-metrics-sim:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 17001
+          resources:
+            requests:
+              cpu: 150m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portworx-metrics-sim
+spec:
+  type: LoadBalancer
+  selector:
+    app: portworx-metrics-sim
+  ports:
+    - protocol: TCP
+      port: 17001
+      targetPort: 17001
