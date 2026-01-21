@@ -1,7 +1,7 @@
 ---
 title: Clean Up
-linkTitle: 9. Clean Up
-weight: 9
+linkTitle: 10. Clean Up
+weight: 10
 time: 5 minutes
 ---
 
