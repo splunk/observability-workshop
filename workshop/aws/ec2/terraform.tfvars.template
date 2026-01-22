@@ -21,5 +21,5 @@ tagging_workshop = false
 pub_key = ""
 
 # Advanced
-wsversion = "6.24"
+wsversion = "6.25"
 user_data_tpl = "userdata.yaml"
