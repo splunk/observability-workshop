@@ -80,6 +80,9 @@ spec:
               value: "2"
             - name: DEEPEVAL_FILE_SYSTEM
               value: "READ_ONLY"
+            # specify a subset of evaluators to avoid hitting Circuit API token limits
+            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS
+              value: "deepeval(AgentInvocation(relevance,hallucination))"
           resources:
             requests:
               memory: "512Mi"

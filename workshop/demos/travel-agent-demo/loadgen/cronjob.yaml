@@ -29,7 +29,7 @@ spec:
               command:
                 - python
                 - client.py
-                - --no-poison
+                # - --no-poison
               resources:
                 requests:
                   memory: "256Mi"
