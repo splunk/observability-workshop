@@ -25,6 +25,12 @@ gentksb/observability-workshop
 
 **注意**: `ja-translation-system` にはコンテンツファイル（content/, assets/等）がありません。翻訳作業は `main` ブランチをベースに `translate/*` ブランチで行います。
 
+### コミット保護
+
+`translate/*` ブランチでは `.claude` ディレクトリへの変更をコミットできません。Claude Code の PreToolUse hook により、コミット時に自動検証されます。
+
+翻訳システムの設定変更は `ja-translation-system` ブランチで行ってください。
+
 ## 翻訳スキル
 
 翻訳作業には `/splunk-workshop-ja-translator` スキルを使用します。
@@ -44,6 +50,8 @@ gentksb/observability-workshop
 ```text
 .claude/
 ├── settings.json                           # プロジェクト設定
+├── hooks/
+│   └── validate-commit.sh                  # コミット検証フック
 └── skills/splunk-workshop-ja-translator/
     ├── SKILL.md                            # 翻訳スキル定義
     └── references/translation-guide.md     # 翻訳ガイドライン
