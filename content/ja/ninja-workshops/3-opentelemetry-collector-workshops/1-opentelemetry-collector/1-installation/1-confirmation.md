@@ -59,7 +59,7 @@ sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
 ---
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Open Telemetry Collector Builder (ocb) を使用して独自の Collector をビルドする{{% /badge %}}" %}}
-このパートでは、システムに以下がインストールされている必要があります：
+このパートでは、システムに以下がインストールされている必要があります
 
 - Golang（最新バージョン）
 
@@ -69,7 +69,7 @@ sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
   sudo tar -C /usr/local -xzf go1.20.linux-amd64.tar.gz
   ```
 
-  `.profile` を編集して、以下の環境変数を追加します：
+  `.profile` を編集して、以下の環境変数を追加します
 
   ``` bash
   export GOROOT=/usr/local/go
@@ -77,27 +77,27 @@ sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
   export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
   ```
 
-  シェルセッションを更新します：
+  シェルセッションを更新します
 
   ``` bash
   source ~/.profile
   ```
 
-  Go のバージョンを確認します：
+  Go のバージョンを確認します
 
   ``` bash
   go version
   ```
 
 - ocb のインストール
-  - [プロジェクトリリース](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)から ocb バイナリをダウンロードし、以下のコマンドを実行します：
+  - [プロジェクトリリース](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)から ocb バイナリをダウンロードし、以下のコマンドを実行します
 
     ```bash
     mv ocb_0.80.0_darwin_arm64 /usr/bin/ocb
     chmod 755 /usr/bin/ocb
     ```
 
-    別の方法として、golang ツールチェーンを使用してローカルでバイナリをビルドすることもできます：
+    別の方法として、golang ツールチェーンを使用してローカルでバイナリをビルドすることもできます
 
     ```bash
     go install go.opentelemetry.io/collector/cmd/builder@v0.80.0
@@ -116,7 +116,7 @@ Collector のデフォルトディストリビューション（core と contrib
 
 独自の Collector バイナリ（一般的にディストリビューションと呼ばれる）を作成することは、必要なものだけをビルドすることを意味します。
 
-これには以下のメリットがあります：
+これには以下のメリットがあります
 
 1. より小さなサイズのバイナリ
 2. 脆弱性に対して既存の Go スキャナーを使用できる
@@ -124,7 +124,7 @@ Collector のデフォルトディストリビューション（core と contrib
 
 ## Collector をビルドする際の考慮事項は？
 
-さて、いくつかのデメリットがなければ 🥷 Ninja ゾーンとは言えません：
+さて、いくつかのデメリットがなければ 🥷 Ninja ゾーンとは言えません
 
 1. Go の経験が推奨される（必須ではないが）
 1. Splunk サポート**なし**
@@ -134,7 +134,7 @@ Collector のデフォルトディストリビューション（core と contrib
 
 ## Ninja ゾーン
 
-必要なツールがすべてインストールされたら、`otelcol-builder.yaml` という名前の新しいファイルを作成し、以下のディレクトリ構造に従います：
+必要なツールがすべてインストールされたら、`otelcol-builder.yaml` という名前の新しいファイルを作成し、以下のディレクトリ構造に従います
 
 ``` bash
 .
@@ -143,7 +143,7 @@ Collector のデフォルトディストリビューション（core と contrib
 
 ファイルを作成したら、いくつかの追加メタデータとともにインストールするコンポーネントのリストを追加する必要があります。
 
-この例では、入門用の設定に必要なコンポーネントのみをインストールするビルダーマニフェストを作成します：
+この例では、入門用の設定に必要なコンポーネントのみをインストールするビルダーマニフェストを作成します
 
 ```yaml
 dist:
@@ -175,13 +175,13 @@ receivers:
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.80.0
 ```
 
-yaml ファイルが _ocb_ 用に更新されたら、以下のコマンドを実行します：
+yaml ファイルが _ocb_ 用に更新されたら、以下のコマンドを実行します
 
 ```shell
 ocb --config=otelcol-builder.yaml
 ```
 
-これにより、以下のディレクトリ構造が作成されます：
+これにより、以下のディレクトリ構造が作成されます
 
 ``` text
 ├── dist
@@ -206,7 +206,7 @@ ocb --config=otelcol-builder.yaml
 
 ## デフォルト設定
 
-OpenTelemetry は YAML ファイルを通じて設定されます。これらのファイルには、ニーズに合わせて変更できるデフォルト設定があります。提供されるデフォルト設定を見てみましょう：
+OpenTelemetry は YAML ファイルを通じて設定されます。これらのファイルには、ニーズに合わせて変更できるデフォルト設定があります。提供されるデフォルト設定を見てみましょう
 
 {{< tabs >}}
 {{% tab title="コマンド" %}}

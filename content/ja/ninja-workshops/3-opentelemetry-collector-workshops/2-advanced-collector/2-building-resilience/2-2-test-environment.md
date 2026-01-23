@@ -8,19 +8,19 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Gateway の起動**: **Gateway ターミナル** ウィンドウで以下を実行します：
+**Gateway の起動**: **Gateway ターミナル** ウィンドウで以下を実行します
 
 ```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Agent の起動**: **Agent ターミナル** ウィンドウで以下を実行します：
+**Agent の起動**: **Agent ターミナル** ウィンドウで以下を実行します
 
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 
-**5つのテストスパンを送信**: **Loadgen ターミナル** ウィンドウで以下を実行します：
+**5つのテストスパンを送信**: **Loadgen ターミナル** ウィンドウで以下を実行します
 
 ```bash { title="Start Load Generator" }
 ../loadgen -count 5

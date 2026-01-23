@@ -8,7 +8,7 @@ weight: 2
 
 **prometheus** という別の Receiver があることにも気づくでしょう。[**Prometheus**](https://prometheus.io/docs/introduction/overview/) は、OpenTelemetry Collector が使用するオープンソースのツールキットです。この Receiver は、OpenTelemetry Collector 自体からメトリクスをスクレイピングするために使用されます。これらのメトリクスは、Collector の健全性を監視するために使用できます。
 
-`prometheus` Receiver を変更して、Collector 自体からメトリクスを収集するためのものであることを明確にしましょう。Receiver の名前を `prometheus` から `prometheus/internal` に変更することで、その Receiver が何をしているかがより明確になります。設定ファイルを以下のように更新してください：
+`prometheus` Receiver を変更して、Collector 自体からメトリクスを収集するためのものであることを明確にしましょう。Receiver の名前を `prometheus` から `prometheus/internal` に変更することで、その Receiver が何をしているかがより明確になります。設定ファイルを以下のように更新してください
 
 {{% tab title="Prometheus Receiver Configuration" %}}
 

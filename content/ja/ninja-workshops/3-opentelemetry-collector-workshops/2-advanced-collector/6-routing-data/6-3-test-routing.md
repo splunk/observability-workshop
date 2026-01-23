@@ -20,7 +20,7 @@ weight: 3
 ../otelcol --config agent.yaml
 ```
 
-**通常のスパンを送信する**: **Loadgen terminal** ウィンドウで `loadgen` を使用して通常のスパンを送信します：
+**通常のスパンを送信する**: **Loadgen terminal** ウィンドウで `loadgen` を使用して通常のスパンを送信します
 
 ```bash
 ../loadgen -count 1
@@ -32,7 +32,7 @@ weight: 3
 `gateway-traces-route1-regular.out` を確認すると、`loadgen` によって送信された `span` が含まれています。また、空の `gateway-traces-route2-security..out` ファイルも表示されます。これは、ルーティング設定が、一致するスパンがまだ処理されていなくても、すぐに出力ファイルを作成するためです。
 {{% /notice %}}
 
-**セキュリティスパンを送信する**: **Loadgen terminal** ウィンドウで `security` フラグを使用してセキュリティスパンを送信します：
+**セキュリティスパンを送信する**: **Loadgen terminal** ウィンドウで `security` フラグを使用してセキュリティスパンを送信します
 
 ```bash
 ../loadgen -security -count 1

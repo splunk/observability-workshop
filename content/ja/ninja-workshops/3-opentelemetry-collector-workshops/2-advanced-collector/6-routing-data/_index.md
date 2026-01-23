@@ -14,7 +14,7 @@ OpenTelemetry の [**Routing Connector**](https://github.com/open-telemetry/open
 > [!IMPORTANT]
 > **すべてのターミナルウィンドウを `6-routing-data` ディレクトリに移動し、`clear` コマンドを実行してください。**
 
-`5-transform-data` ディレクトリから `*.yaml` を `6-routing-data` にコピーします。更新後のディレクトリ構造は次のようになります：
+`5-transform-data` ディレクトリから `*.yaml` を `6-routing-data` にコピーします。更新後のディレクトリ構造は次のようになります
 
 ```text { title="Updated Directory Structure" }
 .

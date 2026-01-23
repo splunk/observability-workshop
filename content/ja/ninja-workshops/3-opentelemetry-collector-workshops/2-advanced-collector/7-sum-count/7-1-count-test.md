@@ -6,22 +6,22 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Gateway を起動する**：
-**Gateway terminal** ウィンドウで以下を実行します：
+**Gateway を起動する**
+**Gateway terminal** ウィンドウで以下を実行します
 
 ```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Agent を起動する**：
-**Agent terminal** ウィンドウで以下を実行します：
+**Agent を起動する**
+**Agent terminal** ウィンドウで以下を実行します
 
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 
-**Loadgen で12行のログを送信する**：
-**Spans terminal** ウィンドウで、12行のログを送信します。これらは2つのインターバルで読み取られるはずです。以下の `loadgen` コマンドを実行してください：
+**Loadgen で12行のログを送信する**
+**Spans terminal** ウィンドウで、12行のログを送信します。これらは2つのインターバルで読み取られるはずです。以下の `loadgen` コマンドを実行してください
 
 ```bash { title="Loadgen" }
 ../loadgen -logs -json -count 12
@@ -32,7 +32,7 @@ weight: 1
 **メトリクスが生成されたことを確認する**
 ログが処理されると、**Agent** がメトリクスを生成して **Gateway** に転送し、Gateway がそれらを `gateway-metrics.out` に書き込みます。
 
-出力に `logs.full.count`、`logs.sw.count`、`logs.lotr.count`、`logs.error.count` のメトリクスが含まれているか確認するには、以下の **jq** クエリを実行します：
+出力に `logs.full.count`、`logs.sw.count`、`logs.lotr.count`、`logs.error.count` のメトリクスが含まれているか確認するには、以下の **jq** クエリを実行します
 
 {{% tabs %}}
 {{% tab title="jq query command" %}}

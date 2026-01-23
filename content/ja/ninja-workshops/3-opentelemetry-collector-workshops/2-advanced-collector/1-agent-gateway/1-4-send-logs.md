@@ -8,13 +8,13 @@ draft: true
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**ログ Load Generator の起動:** **Loadgen ターミナル** ウィンドウで、以下のコマンドを実行して `loadgen` を起動します：
+**ログ Load Generator の起動:** **Loadgen ターミナル** ウィンドウで、以下のコマンドを実行して `loadgen` を起動します
 
 ```bash
 ../loadgen -logs
 ```
 
-`quotes.log` からの継続的なログデータストリームが **Agent** と **Gateway** のデバッグログに表示されます：
+`quotes.log` からの継続的なログデータストリームが **Agent** と **Gateway** のデバッグログに表示されます
 
 ```text { title="Agent/Gateway Debug Output" }
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
@@ -33,7 +33,7 @@ LogRecord #1
 
 **Gateway の確認**: **Gateway** が `./gateway-logs.out` ファイルを書き込んだか確認します。
 
-この時点で、ディレクトリ構造は以下のようになります：
+この時点で、ディレクトリ構造は以下のようになります
 
 ```text { title="Updated Directory Structure" }
 .
@@ -46,7 +46,7 @@ LogRecord #1
 └── quotes.log           # File containing Random log lines
 ```
 
-**ログ行の検査**: `gateway-logs.out` 内のログ行を以下のスニペットと比較します。ログエントリに、以前メトリクスとトレースデータで確認したのと同じ属性が含まれていることを確認します：
+**ログ行の検査**: `gateway-logs.out` 内のログ行を以下のスニペットと比較します。ログエントリに、以前メトリクスとトレースデータで確認したのと同じ属性が含まれていることを確認します
 
 {{% tabs %}}
 {{% tab title="cat /gateway-logs.out" %}}

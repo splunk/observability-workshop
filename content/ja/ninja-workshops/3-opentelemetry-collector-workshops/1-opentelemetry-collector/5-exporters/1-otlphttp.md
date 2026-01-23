@@ -22,7 +22,7 @@ exporters:
 次に、`metrics_endpoint` を定義してターゲット URL を設定する必要があります。
 
 {{% notice style="note" %}}
-Splunk 主催のワークショップに参加されている場合、使用しているインスタンスにはすでに Realm 環境変数が設定されています。設定ファイルでその環境変数を参照します。それ以外の場合は、新しい環境変数を作成して Realm を設定する必要があります。例：
+Splunk 主催のワークショップに参加されている場合、使用しているインスタンスにはすでに Realm 環境変数が設定されています。設定ファイルでその環境変数を参照します。それ以外の場合は、新しい環境変数を作成して Realm を設定する必要があります。例
 
 ``` bash
 export REALM="us1"
@@ -47,7 +47,7 @@ exporters:
 Splunk Observability Cloud にメトリクスを送信するには、アクセストークンを使用する必要があります。これは、Splunk Observability Cloud UI で新しいトークンを作成することで行えます。トークンの作成方法の詳細については、[Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html) を参照してください。トークンは **INGEST** タイプである必要があります。
 
 {{% notice style="note" %}}
-Splunk 主催のワークショップに参加されている場合、使用しているインスタンスにはすでにアクセストークンが設定されています（環境変数として設定されています）。設定ファイルでその環境変数を参照します。それ以外の場合は、新しいトークンを作成して環境変数として設定する必要があります。例：
+Splunk 主催のワークショップに参加されている場合、使用しているインスタンスにはすでにアクセストークンが設定されています（環境変数として設定されています）。設定ファイルでその環境変数を参照します。それ以外の場合は、新しいトークンを作成して環境変数として設定する必要があります。例
 
 ``` bash
 export ACCESS_TOKEN=<replace-with-your-token>
@@ -55,7 +55,7 @@ export ACCESS_TOKEN=<replace-with-your-token>
 
 {{% /notice %}}
 
-トークンは、`headers:` セクションの下に `X-SF-TOKEN: ${env:ACCESS_TOKEN}` を挿入することで設定ファイルに定義されます：
+トークンは、`headers:` セクションの下に `X-SF-TOKEN: ${env:ACCESS_TOKEN}` を挿入することで設定ファイルに定義されます
 
 ```yaml {hl_lines="6-8"}
 exporters:
@@ -69,7 +69,7 @@ exporters:
 
 ## 設定の確認
 
-Exporter について説明したので、設定の変更を確認しましょう：
+Exporter について説明したので、設定の変更を確認しましょう
 
 ---
 

@@ -16,7 +16,7 @@ weight: 2
 **Agent terminal** ウィンドウに切り替えて、エディターで `agent.yaml` ファイルを開きます。
 
 - **Sum Connector を追加する**
-設定の connectors セクションに Sum Connector を追加し、メトリクスカウンターを定義します：
+設定の connectors セクションに Sum Connector を追加し、メトリクスカウンターを定義します
 
 ```yaml
   sum:
@@ -87,7 +87,7 @@ weight: 2
       - otlphttp
 ```
 
-- **[otelbin.io](https://www.otelbin.io/)** を使用して agent 設定を**検証**してください。参考として、パイプラインの `traces` と `metrics:` セクションは以下のようになります：
+- **[otelbin.io](https://www.otelbin.io/)** を使用して agent 設定を**検証**してください。参考として、パイプラインの `traces` と `metrics:` セクションは以下のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

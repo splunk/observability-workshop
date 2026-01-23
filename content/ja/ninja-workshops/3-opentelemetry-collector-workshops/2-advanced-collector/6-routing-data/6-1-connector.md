@@ -8,7 +8,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**新しい `file` エクスポーターを追加する**: `routing` コネクターには、ルーティング用に異なるターゲットが必要です。**Gateway terminal** で、`gateway.yaml` の `exporters` セクションに 2 つの新しいファイルエクスポーター `file/traces/route1-regular` と `file/traces/route2-security` を作成し、データが正しく振り分けられるようにします：
+**新しい `file` エクスポーターを追加する**: `routing` コネクターには、ルーティング用に異なるターゲットが必要です。**Gateway terminal** で、`gateway.yaml` の `exporters` セクションに 2 つの新しいファイルエクスポーター `file/traces/route1-regular` と `file/traces/route2-security` を作成し、データが正しく振り分けられるようにします
 
 ```yaml
   file/traces/route1-regular:                     # Exporter for regular traces
@@ -21,7 +21,7 @@ weight: 1
 
 **ルーティングを有効にする**: `routing` コネクターを追加します。OpenTelemetry の設定ファイルでは、`connectors` はレシーバーやプロセッサーと同様に専用のセクションを持っています。
 
-`#connectors:` セクションを見つけてコメントを解除します。次に、`connectors:` セクションの下に以下を追加します：
+`#connectors:` セクションを見つけてコメントを解除します。次に、`connectors:` セクションの下に以下を追加します
 
 ```yaml
   routing:

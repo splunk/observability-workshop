@@ -18,14 +18,14 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. 最初のターミナルウィンドウを作成し、**Agent** と名前を付けます。最初の演習用ディレクトリ `[WORKSHOP]/1-agent-gateway` に移動し、必要なファイルが生成されていることを確認します：
+1. 最初のターミナルウィンドウを作成し、**Agent** と名前を付けます。最初の演習用ディレクトリ `[WORKSHOP]/1-agent-gateway` に移動し、必要なファイルが生成されていることを確認します
 
     ```bash
     cd 1-agent-gateway
     ls -l
     ```
 
-2. ディレクトリに以下のファイルが表示されるはずです。表示されない場合は、**前提条件** セクションで説明されている `setup-workshop.sh` スクリプトを再実行してください：
+2. ディレクトリに以下のファイルが表示されるはずです。表示されない場合は、**前提条件** セクションで説明されている `setup-workshop.sh` スクリプトを再実行してください
 
     ```text { title="Directory Structure" }
     .
@@ -33,13 +33,13 @@ weight: 3
     └── gateway.yaml
     ```
 <!--
-3. **agent.yaml** ファイルの内容を確認します。このファイルは、**Agent** モードでデプロイされた OpenTelemetry Collector のコア構造を示しています：
+3. **agent.yaml** ファイルの内容を確認します。このファイルは、**Agent** モードでデプロイされた OpenTelemetry Collector のコア構造を示しています
 
     ```bash
         cat ./agent.yaml
     ```
 
-4. このワークショップ用に事前設定されたセットアップが表示されます：
+4. このワークショップ用に事前設定されたセットアップが表示されます
 
     ```yaml { title="agent.yaml" }
     ###########################            This section holds all the
@@ -139,7 +139,7 @@ weight: 3
 
 #### Receiver
 
-`receivers` セクションは、**Agent** がテレメトリーデータを取り込む方法を定義します。このセットアップでは、3種類の Receiver が設定されています：
+`receivers` セクションは、**Agent** がテレメトリーデータを取り込む方法を定義します。このセットアップでは、3種類の Receiver が設定されています
 
 * **Host Metrics Receiver**
 

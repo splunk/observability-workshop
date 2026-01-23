@@ -11,7 +11,7 @@ draft: true
 **テストトレースの送信**:
 
 1. **Agent** と **Gateway** がまだ実行中であることを確認します。
-2. **Loadgen ターミナル** ウィンドウで、以下のコマンドを実行して5つのスパンを送信し、**Agent** と **Gateway** のデバッグログの出力を確認します：
+2. **Loadgen ターミナル** ウィンドウで、以下のコマンドを実行して5つのスパンを送信し、**Agent** と **Gateway** のデバッグログの出力を確認します
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}

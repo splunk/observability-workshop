@@ -6,9 +6,9 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Gateway terminal** ウィンドウに切り替えて、`gateway.yaml` ファイルを開きます。以下の設定で `processors` セクションを更新します：
+**Gateway terminal** ウィンドウに切り替えて、`gateway.yaml` ファイルを開きます。以下の設定で `processors` セクションを更新します
 
-1. **`filter` プロセッサを追加する**：
+1. **`filter` プロセッサを追加する**
    `/_healthz` という名前のSpanを除外するようにGatewayを設定します。`error_mode: ignore` ディレクティブは、フィルタリング中に発生したエラーを無視し、パイプラインがスムーズに動作し続けることを保証します。`traces` セクションはフィルタリングルールを定義し、`/_healthz` という名前のSpanを除外対象として指定します。
 
    ```yaml
@@ -19,8 +19,8 @@ weight: 1
           - 'name == "/_healthz"'
    ```
 
-2. **`traces` パイプラインに `filter` プロセッサを追加する**：
-   `traces` パイプラインに `filter/health` プロセッサを追加します。最適なパフォーマンスを得るために、フィルターはできるだけ早い段階に配置します。`memory_limiter` の直後、`batch` プロセッサの前に配置してください。設定は次のようになります：
+2. **`traces` パイプラインに `filter` プロセッサを追加する**
+   `traces` パイプラインに `filter/health` プロセッサを追加します。最適なパフォーマンスを得るために、フィルターはできるだけ早い段階に配置します。`memory_limiter` の直後、`batch` プロセッサの前に配置してください。設定は次のようになります
 
    ```yaml
      traces:
@@ -40,7 +40,7 @@ weight: 1
 
 {{% /notice %}}
 
-**[otelbin.io](https://www.otelbin.io/)** を使用してAgent設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります：
+**[otelbin.io](https://www.otelbin.io/)** を使用してAgent設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

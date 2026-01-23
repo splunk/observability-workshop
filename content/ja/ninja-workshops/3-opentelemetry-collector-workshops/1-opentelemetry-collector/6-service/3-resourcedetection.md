@@ -8,7 +8,7 @@ weight: 3
 
 また、Collector がインスタンスのホスト名と AWS/EC2 メタデータをキャプチャできるように、`resourcedetection/system` と `resourcedetection/ec2` processor を追加しました。ここで、metrics パイプラインでこれら2つの processor を有効にする必要があります。
 
-`metrics` パイプラインの `processors` セクションに `resourcedetection/system` と `resourcedetection/ec2` を含めるように更新します：
+`metrics` パイプラインの `processors` セクションに `resourcedetection/system` と `resourcedetection/ec2` を含めるように更新します
 
 ```yaml {hl_lines="12"}
 service:

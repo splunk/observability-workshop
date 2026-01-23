@@ -8,7 +8,7 @@ weight: 2
 
 **元の `traces` パイプラインをルーティングを使用するように更新する**:
 
-1. `routing` を有効にするには、元の `traces` パイプラインを更新して、`routing` のみをエクスポーターとして使用します。これにより、すべてのスパンデータが **Routing Connector** を経由して評価され、接続されたパイプラインに転送されます。また、**すべての** プロセッサーを削除し、空の配列（`[]`）に置き換えます。これは、`traces/route1-regular` と `traces/route2-security` パイプラインで処理されるようになり、各ルートに対してカスタム動作が可能になるためです。`traces:` の設定は次のようになります：
+1. `routing` を有効にするには、元の `traces` パイプラインを更新して、`routing` のみをエクスポーターとして使用します。これにより、すべてのスパンデータが **Routing Connector** を経由して評価され、接続されたパイプラインに転送されます。また、**すべての** プロセッサーを削除し、空の配列（`[]`）に置き換えます。これは、`traces/route1-regular` と `traces/route2-security` パイプラインで処理されるようになり、各ルートに対してカスタム動作が可能になるためです。`traces:` の設定は次のようになります
 
     ```yaml
     traces:                       # Traces pipeline
@@ -54,7 +54,7 @@ weight: 2
 
 {{% /notice %}}
 
-**[otelbin.io](https://www.otelbin.io/)** を使用して Agent の設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります：
+**[otelbin.io](https://www.otelbin.io/)** を使用して Agent の設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

@@ -88,7 +88,7 @@ package jenkinscireceiver
 
 Factory は、オブジェクト（この場合は `jenkinscireceiver`）を提供された設定で動的に作成できるようにするソフトウェアデザインパターンです。より現実世界の例を使うと、電話ショップに行き、自分の説明と正確に一致する電話を求め、それを提供してもらうようなものです。
 
-`go generate -x ./...` コマンドを実行すると、定義されたメトリクスをエクスポートするために必要なすべてのコードを含む新しいフォルダー `jenkinscireceiver/internal/metadata` が作成されます。必要なコードは以下の通りです：
+`go generate -x ./...` コマンドを実行すると、定義されたメトリクスをエクスポートするために必要なすべてのコードを含む新しいフォルダー `jenkinscireceiver/internal/metadata` が作成されます。必要なコードは以下の通りです
 
 {{% tabs %}}
 {{% tab title="factory.go" %}}

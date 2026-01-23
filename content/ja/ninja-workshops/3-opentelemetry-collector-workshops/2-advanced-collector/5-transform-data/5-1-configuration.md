@@ -5,7 +5,7 @@ weight: 1
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-**`transform` プロセッサーを追加する**: **Gateway terminal** ウィンドウに切り替え、`gateway.yaml` を編集して次の `transform` プロセッサーを追加します：
+**`transform` プロセッサーを追加する**: **Gateway terminal** ウィンドウに切り替え、`gateway.yaml` を編集して次の `transform` プロセッサーを追加します
 
 ```yaml
   transform/logs:                      # Processor Type/Name
@@ -19,7 +19,7 @@ weight: 1
 
 この設定により、関連するリソース属性（`com.splunk.sourcetype`、`host.name`、`otelcol.service.mode`）のみが保持され、ログの効率が向上し、不要なメタデータが削減されます。
 
-**ログ重大度マッピング用のコンテキストブロックを追加する**: ログレコードの `severity_text` と `severity_number` フィールドを適切に設定するために、`log_statements` 内に `log` コンテキストブロックを追加します。この設定では、ログ本文から `level` 値を抽出し、`severity_text` にマッピングし、ログレベルに基づいて対応する `severity_number` を割り当てます：
+**ログ重大度マッピング用のコンテキストブロックを追加する**: ログレコードの `severity_text` と `severity_number` フィールドを適切に設定するために、`log_statements` 内に `log` コンテキストブロックを追加します。この設定では、ログ本文から `level` 値を抽出し、`severity_text` にマッピングし、ログレベルに基づいて対応する `severity_number` を割り当てます
 
 ```yaml
       - context: log                   # Log Context
@@ -62,7 +62,7 @@ weight: 1
 すべてのJSONフィールドをトップレベルの属性にマッピングするこの方法は、**OTTLのテストとデバッグ**のみに使用してください。本番環境では高いカーディナリティが発生します。
 {{% /notice %}}
 
-**`logs` パイプラインを更新する**: `logs:` パイプラインに `transform/logs:` プロセッサーを追加し、設定が次のようになるようにします：
+**`logs` パイプラインを更新する**: `logs:` パイプラインに `transform/logs:` プロセッサーを追加し、設定が次のようになるようにします
 
 ```yaml
     logs:                         # Logs pipeline
@@ -80,7 +80,7 @@ weight: 1
 
 {{% /notice %}}
 
-[**https://otelbin.io**](https://otelbin.io/) を使用して Agent の設定を検証します。参考として、パイプラインの `logs:` セクションは次のようになります：
+[**https://otelbin.io**](https://otelbin.io/) を使用して Agent の設定を検証します。参考として、パイプラインの `logs:` セクションは次のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

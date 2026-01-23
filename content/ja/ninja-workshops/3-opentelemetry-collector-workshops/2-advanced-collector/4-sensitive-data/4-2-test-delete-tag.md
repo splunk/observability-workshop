@@ -20,13 +20,13 @@ weight: 2
 ../otelcol --config=agent.yaml
 ```
 
-**Load Generatorを起動する**：**Loadgen terminal** ウィンドウで `loadgen` を起動します：
+**Load Generatorを起動する**：**Loadgen terminal** ウィンドウで `loadgen` を起動します
 
 ```bash
 ../loadgen -count 1
 ```
 
-**デバッグ出力を確認する**：**Agent** と **Gateway** の両方で、`user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることを確認します：
+**デバッグ出力を確認する**：**Agent** と **Gateway** の両方で、`user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることを確認します
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -58,7 +58,7 @@ weight: 2
 {{% /tab %}}
 {{% /tabs %}}
 
-**ファイル出力を確認する**：`jq` を使用して、`gateway-traces.out` で `user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることを検証します：
+**ファイル出力を確認する**：`jq` を使用して、`gateway-traces.out` で `user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることを検証します
 
 {{% tabs %}}
 {{% tab title="Validate attribute changes" %}}
@@ -70,7 +70,7 @@ jq '.resourceSpans[].scopeSpans[].spans[].attributes[] | select(.key == "user.pa
 {{% /tabs %}}
 {{% tab title="Output" %}}
 
-`user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることに注目してください：
+`user.account_password` が削除され、`user.phone_number` と `user.email` が更新されていることに注目してください
 
 ```json
 {

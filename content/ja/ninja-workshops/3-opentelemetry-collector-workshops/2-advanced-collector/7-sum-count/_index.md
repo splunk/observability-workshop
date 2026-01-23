@@ -13,7 +13,7 @@ weight: 9
 > [!IMPORTANT]
 > **すべてのターミナルウィンドウを `7-sum-count` ディレクトリに変更し、`clear` コマンドを実行してください。**
 
-`6-routing-data` ディレクトリから `*.yaml` を `7-sum-count` にコピーしてください。更新後のディレクトリ構造は以下のようになります：
+`6-routing-data` ディレクトリから `*.yaml` を `7-sum-count` にコピーしてください。更新後のディレクトリ構造は以下のようになります
 
 ```text { title="Updated Directory Structure" }
 .
@@ -22,7 +22,7 @@ weight: 9
 ```
 
 - **agent.yaml を更新**して、ログを読み取る頻度を変更します。
-`agent.yaml` 内の `filelog/quotes` レシーバーを見つけ、`poll_interval` 属性を追加してください：
+`agent.yaml` 内の `filelog/quotes` レシーバーを見つけ、`poll_interval` 属性を追加してください
 
 ```yaml
   filelog/quotes:                      # Receiver Type/Name
@@ -39,7 +39,7 @@ weight: 9
 
 - **Count Connector を追加する**
 
-設定の connectors セクションに Count Connector を追加し、使用するメトリクスカウンターを定義します：
+設定の connectors セクションに Count Connector を追加し、使用するメトリクスカウンターを定義します
 
 ```yaml
 connectors:
@@ -127,7 +127,7 @@ connectors:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **[otelbin.io](https://www.otelbin.io/)** を使用して agent 設定を**検証**してください。参考として、パイプラインの `logs` と `metrics:` セクションは以下のようになります：
+- **[otelbin.io](https://www.otelbin.io/)** を使用して agent 設定を**検証**してください。参考として、パイプラインの `logs` と `metrics:` セクションは以下のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

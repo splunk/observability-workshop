@@ -8,13 +8,13 @@ time: 5 minutes
 ### 前提条件
 
 - `vi`、`vim`、`nano`、またはお好みのテキストエディタを使用して YAML ファイルを編集するスキル
-- サポートされている環境：
+- サポートされている環境
   - 提供される Splunk Workshop インスタンス（推奨）。`ssh` アクセス用にポート `2222` への外部アクセスが必要です。
   - Apple Mac（Apple Silicon）。`jq` のインストールが必要です - [**https://jqlang.org/download/**](https://jqlang.org/download/)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**ディレクトリの作成**: 環境内で新しいディレクトリを作成し、そのディレクトリに移動します：
+**ディレクトリの作成**: 環境内で新しいディレクトリを作成し、そのディレクトリに移動します
 
 ``` bash
 mkdir advanced-otel-workshop && \
@@ -24,13 +24,13 @@ cd advanced-otel-workshop
 このワークショップの残りの部分では、このディレクトリを `[WORKSHOP]` と呼びます。
 
 {{% notice title="既存の OpenTelemetry Collector を削除してください" style="warning" %}}
-Splunk IM ワークショップを完了している場合は、続行する前に Kubernetes で実行中の Collector を削除してください。以下のコマンドを実行して削除できます：
+Splunk IM ワークショップを完了している場合は、続行する前に Kubernetes で実行中の Collector を削除してください。以下のコマンドを実行して削除できます
 
 ``` bash
 helm delete splunk-otel-collector
 ```
 
-その場合、EC2 インスタンスでこのワークショップと干渉する可能性のあるサービスが実行されている場合があるため、以下のコマンドを実行してそれらが存在する場合は停止してください：
+その場合、EC2 インスタンスでこのワークショップと干渉する可能性のあるサービスが実行されている場合があるため、以下のコマンドを実行してそれらが存在する場合は停止してください
 
 ``` bash
 kubectl delete ~/workshop/apm/deployment.yaml
@@ -38,7 +38,7 @@ kubectl delete ~/workshop/apm/deployment.yaml
 
 {{% /notice %}}
 
-**ワークショップバイナリのダウンロード**: `[WORKSHOP]` ディレクトリに移動し、OpenTelemetry Collector、Load Generator バイナリ、およびセットアップスクリプトをダウンロードします：
+**ワークショップバイナリのダウンロード**: `[WORKSHOP]` ディレクトリに移動し、OpenTelemetry Collector、Load Generator バイナリ、およびセットアップスクリプトをダウンロードします
 
 {{% tabs %}}
 {{% tab title="Splunk Workshop Instance" %}}
@@ -64,7 +64,7 @@ chmod +x setup-workshop.sh
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
 macOS でバイナリを実行する前に、macOS がダウンロードしたファイルに適用する隔離属性を削除する必要があります。この手順により、制限なく実行できるようになります。
 
-ターミナルで以下のコマンドを実行してください：
+ターミナルで以下のコマンドを実行してください
 
 ```bash { title="Remove Quarantine Attribute"}
 xattr -dr com.apple.quarantine otelcol && \
@@ -77,7 +77,7 @@ xattr -dr com.apple.quarantine loadgen
 {{% /tabs %}}
 
 <!--
-**ファイル権限の更新**: ダウンロード後、ファイル権限を更新してすべてのファイルを実行可能にします：
+**ファイル権限の更新**: ダウンロード後、ファイル権限を更新してすべてのファイルを実行可能にします
 
 ```bash
 chmod +x otelcol loadgen setup-workshop.sh && \
@@ -87,7 +87,7 @@ chmod +x otelcol loadgen setup-workshop.sh && \
 ```
 -->
 
-`setup-workshop.sh` スクリプトを実行します。このスクリプトは正しい権限を設定し、**Agent** と **Gateway** の初期設定も作成します：
+`setup-workshop.sh` スクリプトを実行します。このスクリプトは正しい権限を設定し、**Agent** と **Gateway** の初期設定も作成します
 
 {{% tabs %}}
 {{% tab title="Setup Workshop" %}}

@@ -13,7 +13,7 @@ weight: 1
 > [!IMPORTANT]
 > **_すべての_ ターミナルウィンドウを `2-building-resilience` ディレクトリに移動し、`clear` コマンドを実行してください。**
 
-ディレクトリ構造は以下のようになります：
+ディレクトリ構造は以下のようになります
 
 ```text { title="Updated Directory Structure" }
 .
@@ -21,7 +21,7 @@ weight: 1
 └── gateway.yaml
 ```
 
-**`agent.yaml` の更新**: **Agent ターミナル** ウィンドウで、既存の `health_check` Extension の下に `file_storage` Extension を追加します：
+**`agent.yaml` の更新**: **Agent ターミナル** ウィンドウで、既存の `health_check` Extension の下に `file_storage` Extension を追加します
 
 ```yaml
   file_storage/checkpoint:             # Extension Type/Name
@@ -35,7 +35,7 @@ weight: 1
       max_transaction_size: 65536      # Max. size limit before compaction occurs
 ```
 
-**Exporter への `file_storage` の追加**: `otlphttp` Exporter を変更して、リトライとキューイングメカニズムを設定し、障害が発生した場合にデータが保持され再送信されるようにします。`endpoint: "http://localhost:5318"` の下に以下を追加し、インデントが `endpoint` と一致していることを確認してください：
+**Exporter への `file_storage` の追加**: `otlphttp` Exporter を変更して、リトライとキューイングメカニズムを設定し、障害が発生した場合にデータが保持され再送信されるようにします。`endpoint: "http://localhost:5318"` の下に以下を追加し、インデントが `endpoint` と一致していることを確認してください
 
 ```yaml
     retry_on_failure:
@@ -47,7 +47,7 @@ weight: 1
       storage: file_storage/checkpoint # File storage extension
 ```
 
-**`services` セクションの更新**: 既存の `extensions:` セクションに `file_storage/checkpoint` Extension を追加します。設定は以下のようになります：
+**`services` セクションの更新**: 既存の `extensions:` セクションに `file_storage/checkpoint` Extension を追加します。設定は以下のようになります
 
 ```yaml
 service:
@@ -56,7 +56,7 @@ service:
   - file_storage/checkpoint            # Enabled extensions for this collector
 ```
 
-**`metrics` パイプラインの更新**: この演習では、デバッグとログのノイズを減らすために、Metric パイプラインから `hostmetrics` Receiver をコメントアウトします。設定は以下のようになります：
+**`metrics` パイプラインの更新**: この演習では、デバッグとログのノイズを減らすために、Metric パイプラインから `hostmetrics` Receiver をコメントアウトします。設定は以下のようになります
 
 ```yaml
     metrics:
@@ -67,7 +67,7 @@ service:
 
 {{% /notice %}}
 
-**[otelbin.io](https://www.otelbin.io/)** を使用して **Agent** 設定を検証してください。参考までに、パイプラインの `metrics:` セクションは以下のようになります：
+**[otelbin.io](https://www.otelbin.io/)** を使用して **Agent** 設定を検証してください。参考までに、パイプラインの `metrics:` セクションは以下のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

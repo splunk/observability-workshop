@@ -40,7 +40,7 @@ weight: 3
 ../otelcol --config=agent.yaml
 ```
 
-**Load Generatorを起動する**：**Loadgen terminal** ウィンドウで `loadgen` を起動します：
+**Load Generatorを起動する**：**Loadgen terminal** ウィンドウで `loadgen` を起動します
 
 ```bash
 ../loadgen -count 1
@@ -102,7 +102,7 @@ jq '.resourceSpans[].scopeSpans[].spans[].attributes[] | select(.key == "user.vi
 {{% /tabs %}}
 {{% tab title="Output" %}}
 
-`blocked_values` に一致する正規表現パターンが追加されていないため、`user.amex` は秘匿化されていないことに注意してください：
+`blocked_values` に一致する正規表現パターンが追加されていないため、`user.amex` は秘匿化されていないことに注意してください
 
 ```json
 {

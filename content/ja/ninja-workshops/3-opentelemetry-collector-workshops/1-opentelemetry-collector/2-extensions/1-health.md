@@ -26,7 +26,7 @@ extensions:
 
 {{% /tab %}}
 
-Collector を起動します：
+Collector を起動します
 
 {{% tab title="Command" %}}
 
@@ -38,7 +38,7 @@ otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 
 この拡張機能により、OpenTelemetry Collector のステータスを確認するためにプローブできる HTTP URL が有効になります。この拡張機能は、Kubernetes で liveness プローブや readiness プローブとして使用できます。`curl` コマンドについて詳しく知るには、[curl man page](https://curl.se/docs/manpage.html) を確認してください。
 
-新しいターミナルセッションを開き、インスタンスに SSH 接続して以下のコマンドを実行します：
+新しいターミナルセッションを開き、インスタンスに SSH 接続して以下のコマンドを実行します
 
 {{< tabs >}}
 {{% tab title="curl Command" %}}

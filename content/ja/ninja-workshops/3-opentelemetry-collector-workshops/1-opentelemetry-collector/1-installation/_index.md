@@ -16,7 +16,7 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
 ## OpenTelemetry Collector Contrib ディストリビューションのインストール
 
-`dpkg` を使用して `.deb` パッケージをインストールします。インストールが成功した場合の出力例は、下の **dpkg Output** タブを確認してください：
+`dpkg` を使用して `.deb` パッケージをインストールします。インストールが成功した場合の出力例は、下の **dpkg Output** タブを確認してください
 
 {{< tabs >}}
 {{% tab title="インストール" %}}

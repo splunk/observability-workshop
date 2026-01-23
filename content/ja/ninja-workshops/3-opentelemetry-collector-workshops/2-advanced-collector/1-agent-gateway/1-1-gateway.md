@@ -129,7 +129,7 @@ service:                          # Service configuration
 
 * **File Exporter**
 
-  **Gateway** は3つの File Exporter を使用して、テレメトリーデータをローカルファイルに出力します。これらの Exporter は以下のように定義されています：
+  **Gateway** は3つの File Exporter を使用して、テレメトリーデータをローカルファイルに出力します。これらの Exporter は以下のように定義されています
 
   ```yaml
   exporters:                        # List of exporters

@@ -29,12 +29,12 @@ receiver creator とそれに関連する observer extension を使い始める�
 
 ## Ninja ゾーン
 
-この Ninja ゾーンに必要なことは2つだけです：
+この Ninja ゾーンに必要なことは2つだけです
 
 1. ビルダーマニフェストに receiver creator と observer extension が追加されていることを確認します。
 2. 検出されたエンドポイントとマッチングするために使用できる設定を作成します。
 
-テンプレート化された設定を作成するには、以下のようにします：
+テンプレート化された設定を作成するには、以下のようにします
 
 ```yaml
 receiver_creator:

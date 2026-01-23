@@ -8,7 +8,7 @@ weight: 4
 
 また、このワークショップの Processors セクションで、Collector がすべてのメトリクスに `participant.name` という新しい属性を挿入するように `attributes/conf` processor を追加しました。ここで、metrics パイプラインでこれを有効にする必要があります。
 
-`metrics` パイプラインの `processors` セクションに `attributes/conf` を含めるように更新します：
+`metrics` パイプラインの `processors` セクションに `attributes/conf` を含めるように更新します
 
 ```yaml {hl_lines="12"}
 service:

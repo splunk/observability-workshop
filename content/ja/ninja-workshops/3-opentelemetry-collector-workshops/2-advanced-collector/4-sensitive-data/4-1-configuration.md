@@ -26,7 +26,7 @@ Attributes:
 
 **1. `attributes` プロセッサを追加する**：[**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) を使用すると、Span属性（タグ）の値を更新、削除、またはハッシュ化して変更できます。これは、機密情報をエクスポートする前に難読化する場合に特に便利です。
 
-このステップでは：
+このステップでは
 
 1. `user.phone_number` 属性を静的な値（`"UNKNOWN NUMBER"`）に**更新**します。
 2. `user.email` 属性を**ハッシュ化**して、元のメールアドレスが公開されないようにします。
@@ -46,7 +46,7 @@ Attributes:
 
 **2. `redaction` プロセッサを追加する**：[**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) は、クレジットカード番号やその他の個人識別情報（PII）などの定義済みパターンに基づいて、Span属性内の機密データを検出して秘匿化します。
 
-このステップでは：
+このステップでは
 
 - すべての属性が処理されるように `allow_all_keys: true` を設定します（`false` に設定すると、明示的に許可されたキーのみが保持されます）。
 
@@ -63,7 +63,7 @@ Attributes:
     summary: debug                     # Show debug details about redaction
 ```
 
-**`traces` パイプラインを更新する**：両方のプロセッサを `traces` パイプラインに統合します。最初は redaction プロセッサをコメントアウトしておいてください（後の演習で有効にします）。設定は次のようになります：
+**`traces` パイプラインを更新する**：両方のプロセッサを `traces` パイプラインに統合します。最初は redaction プロセッサをコメントアウトしておいてください（後の演習で有効にします）。設定は次のようになります
 
 ```yaml
     traces:
@@ -84,7 +84,7 @@ Attributes:
 
 {{% /notice %}}
 
-**[otelbin.io](https://www.otelbin.io/)** を使用してAgent設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります：
+**[otelbin.io](https://www.otelbin.io/)** を使用してAgent設定を検証します。参考として、パイプラインの `traces:` セクションは次のようになります
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

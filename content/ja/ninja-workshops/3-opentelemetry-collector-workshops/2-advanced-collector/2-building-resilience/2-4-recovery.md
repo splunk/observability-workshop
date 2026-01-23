@@ -8,13 +8,13 @@ weight: 4
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Gateway の再起動**: **Gateway ターミナル** ウィンドウで以下を実行します：
+**Gateway の再起動**: **Gateway ターミナル** ウィンドウで以下を実行します
 
 ```bash {title="Start the Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 
-**Agent の再起動**: **Agent ターミナル** ウィンドウで以下を実行します：
+**Agent の再起動**: **Agent ターミナル** ウィンドウで以下を実行します
 
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
@@ -22,14 +22,14 @@ weight: 4
 
 > **Agent** が起動して実行されると、**File_Storage** Extension がチェックポイントフォルダー内のバッファされたデータを検出します。最後のチェックポイントフォルダーから保存されたスパンをデキューし始め、データが失われないことを保証します。
 
-**Agent デバッグ出力の確認:** **Agent** のデバッグ出力は変化**せず**、以下の行を表示し続け、新しいデータがエクスポートされていないことを示していることに注意してください：
+**Agent デバッグ出力の確認:** **Agent** のデバッグ出力は変化**せず**、以下の行を表示し続け、新しいデータがエクスポートされていないことを示していることに注意してください
 
   ```text
   2025-07-11T08:31:58.176Z        info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data.   {"resource": {}}
   ```
 
 **Gateway デバッグ出力の確認**
-**Gateway** のデバッグ画面から、以前見逃されていたトレースを追加のアクションなしで受信し始めていることが確認できるはずです。例：
+**Gateway** のデバッグ画面から、以前見逃されていたトレースを追加のアクションなしで受信し始めていることが確認できるはずです。例
 
   ```txt
 Attributes:

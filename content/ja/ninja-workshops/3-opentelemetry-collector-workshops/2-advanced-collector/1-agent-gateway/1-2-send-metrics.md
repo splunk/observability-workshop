@@ -8,25 +8,25 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Gateway**: **Gateway ターミナル** ウィンドウで、以下のコマンドを実行して **Gateway** を起動します：
+**Gateway**: **Gateway ターミナル** ウィンドウで、以下のコマンドを実行して **Gateway** を起動します
 
 ```bash {title="Start the Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 
-すべてが正しく設定されている場合、Collector が起動し、出力に `Everything is ready. Begin running and processing data.` と表示されます。以下のような出力になります：
+すべてが正しく設定されている場合、Collector が起動し、出力に `Everything is ready. Begin running and processing data.` と表示されます。以下のような出力になります
 
 ```text
 2025-06-09T09:22:11.944+0100    info    service@v0.126.0/service.go:289 Everything is ready. Begin running and processing data. {"resource": {}}
 ```
 
-**Gateway** が実行されると、ポート `5318` で受信データをリッスンし、受信したデータを以下のファイルにエクスポートします：
+**Gateway** が実行されると、ポート `5318` で受信データをリッスンし、受信したデータを以下のファイルにエクスポートします
 
 * `gateway-traces.out`
 * `gateway-metrics.out`
 * `gateway-logs.out`
 
-**Agent の起動**: **Agent ターミナル** ウィンドウで、Agent 設定を使用して Agent を起動します：
+**Agent の起動**: **Agent ターミナル** ウィンドウで、Agent 設定を使用して Agent を起動します
 
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
@@ -35,7 +35,7 @@ weight: 3
 **CPU メトリクスの確認**:
 
 1. **Agent** が起動すると、すぐに **CPU** メトリクスの送信を開始することを確認します。
-2. **Agent** と **Gateway** の両方がデバッグ出力にこのアクティビティを表示します。出力は以下のスニペットのようになります：
+2. **Agent** と **Gateway** の両方がデバッグ出力にこのアクティビティを表示します。出力は以下のスニペットのようになります
 
 ```text
 <snip>
@@ -55,7 +55,7 @@ Value: 77.380000
 
 以下のコマンドは、`system.cpu.time` メトリクスをフィルタリングして抽出し、`cpu0` に焦点を当てます。メトリクスの状態（例：`user`、`system`、`idle`、`interrupt`）と対応する値を表示します。
 
-3つ目のターミナルウィンドウを開くか作成し、**Tests** と名前を付けます。**Tests ターミナル** で以下のコマンドを実行して `system.cpu.time` メトリクスを確認します：
+3つ目のターミナルウィンドウを開くか作成し、**Tests** と名前を付けます。**Tests ターミナル** で以下のコマンドを実行して `system.cpu.time` メトリクスを確認します
 
 {{% tabs %}}
 {{% tab title="Check CPU Metrics" %}}

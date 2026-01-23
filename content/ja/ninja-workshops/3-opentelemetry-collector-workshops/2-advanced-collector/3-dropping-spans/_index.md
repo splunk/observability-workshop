@@ -14,7 +14,7 @@ weight: 5
 > [!IMPORTANT]
 > **すべてのターミナルウィンドウを `3-dropping-spans` ディレクトリに移動し、`clear` コマンドを実行してください。**
 
-`2-building-resilience` ディレクトリから `*.yaml` を `3-dropping-spans` にコピーします。更新後のディレクトリ構造は次のようになります：
+`2-building-resilience` ディレクトリから `*.yaml` を `3-dropping-spans` にコピーします。更新後のディレクトリ構造は次のようになります
 
 ```text { title="Updated Directory Structure" }
 .

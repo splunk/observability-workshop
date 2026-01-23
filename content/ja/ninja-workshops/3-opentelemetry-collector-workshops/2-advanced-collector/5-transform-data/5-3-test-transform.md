@@ -4,7 +4,7 @@ linkTitle: 5.3 Test Transform Processor
 weight: 3
 ---
 
-このテストでは、**Agent** によってエクスポートされる前に、`com.splunk/source` と `os.type` のメタデータがログリソース属性から **削除** されていることを確認します。さらに、このテストでは以下を確認します：
+このテストでは、**Agent** によってエクスポートされる前に、`com.splunk/source` と `os.type` のメタデータがログリソース属性から **削除** されていることを確認します。さらに、このテストでは以下を確認します
 
 1. 重大度情報を抽出するためにログ本文がパースされていること
    - `SeverityText` と `SeverityNumber` が `LogRecord` に設定されていること
@@ -14,7 +14,7 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**デバッグ出力を確認する**: **Agent** と **Gateway** の両方で、`com.splunk/source` と `os.type` が削除されていることを確認します：
+**デバッグ出力を確認する**: **Agent** と **Gateway** の両方で、`com.splunk/source` と `os.type` が削除されていることを確認します
 
 {{% tabs %}}
 {{% tab title="Gateway Debug Output" %}}
@@ -41,7 +41,7 @@ Resource attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-**Agent** と **Gateway** の両方で、`LogRecord` の `SeverityText` と `SeverityNumber` がログ本文の重大度 `level` で定義されていることを確認します。また、本文の JSON フィールドがトップレベルのログ `Attributes` としてアクセスできることを確認します：
+**Agent** と **Gateway** の両方で、`LogRecord` の `SeverityText` と `SeverityNumber` がログ本文の重大度 `level` で定義されていることを確認します。また、本文の JSON フィールドがトップレベルのログ `Attributes` としてアクセスできることを確認します
 
 {{% tabs %}}
 {{% tab title="Gateway Debug Output" %}}
@@ -76,7 +76,7 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-**ファイル出力を確認する**: 新しい `gateway-logs.out` ファイルでデータが変換されていることを確認します：
+**ファイル出力を確認する**: 新しい `gateway-logs.out` ファイルでデータが変換されていることを確認します
 
 {{% tabs %}}
 {{% tab title="jq Query" %}}

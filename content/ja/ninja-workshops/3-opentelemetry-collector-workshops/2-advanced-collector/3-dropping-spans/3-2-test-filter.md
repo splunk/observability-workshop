@@ -20,13 +20,13 @@ weight: 2
 ../otelcol --config ./agent.yaml
 ```
 
-**Loadgenを起動する**：**Loadgen terminal** ウィンドウで、次のコマンドを実行してヘルスチェックSpanを有効にした状態でロードジェネレーターを起動します：
+**Loadgenを起動する**：**Loadgen terminal** ウィンドウで、次のコマンドを実行してヘルスチェックSpanを有効にした状態でロードジェネレーターを起動します
 
 ```bash
 ../loadgen -health -count 5
 ```
 
- **Agent terminal** のデバッグ出力に `_healthz` Spanが表示されます：
+ **Agent terminal** のデバッグ出力に `_healthz` Spanが表示されます
 
  ```text
  InstrumentationScope healthz 1.0.0
@@ -44,7 +44,7 @@ Span #0
 
 これらは、先ほど設定したFilter Processorによってドロップされるため、**Gateway** のデバッグ出力には表示されません。
 
-**`agent.out` を確認する**：**Test terminal** で `jq` を使用して、**Agent** が受信したSpanの名前を確認します：
+**`agent.out` を確認する**：**Test terminal** で `jq` を使用して、**Agent** が受信したSpanの名前を確認します
 
 {{% tabs %}}
 {{% tab title="Check spans in agent.out" %}}
@@ -72,7 +72,7 @@ jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found 
 {{% /tab %}}
 {{% /tabs %}}
 
-**Gateway のデバッグ出力を確認する**：`jq` を使用して、**Gateway** が受信したSpanの名前を確認します：
+**Gateway のデバッグ出力を確認する**：`jq` を使用して、**Gateway** が受信したSpanの名前を確認します
 
 {{% tabs %}}
 {{% tab title="Check spans in gateway-traces.out" %}}
