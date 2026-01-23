@@ -5,8 +5,9 @@ set -e
 # Read hook input from stdin (JSON format from Claude Code)
 input=$(cat)
 
-# Extract the command being executed
-command=$(echo "$input" | jq -r '.tool_input.command // ""')
+# Extract the command being executed (without jq dependency)
+# Input format: {"tool_input": {"command": "..."}}
+command=$(echo "$input" | grep -o '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*"command"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' || echo "")
 
 # Only validate git commit commands
 if [[ ! "$command" =~ git[[:space:]]+commit ]]; then
