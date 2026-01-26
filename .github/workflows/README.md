@@ -48,6 +48,7 @@ upstreamリポジトリの新しいリリースを検出し、日本語に自動
 #### 必要なシークレット
 
 - `AWS_ROLE_ARN`: AWS BedrockへのアクセスにOIDCで使用するIAMロールARN
+- `UPSTREAM_PAT`: upstreamリポジトリへのPR作成に使用するPersonal Access Token（Fine-grained PAT推奨、`Pull requests: Read and write`権限が必要）
 
 #### 必要な権限
 
@@ -116,6 +117,11 @@ git push origin main --force
 ### 3. シークレットの設定
 
 - `AWS_ROLE_ARN`: AWS BedrockへのアクセスにOIDCで使用するIAMロールARN
+- `UPSTREAM_PAT`: upstreamリポジトリへのPR作成用Personal Access Token
+  - GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens
+  - Resource owner: `splunk`
+  - Repository access: `splunk/observability-workshop`
+  - Permissions: `Pull requests: Read and write`
 
 ### 4. AWS OIDC設定
 
@@ -137,8 +143,9 @@ GitHub ActionsからAWS Bedrockにアクセスするために、OIDCプロバイ
 
 ### upstream へのPRが作成できない
 
-- フォークリポジトリの権限を確認
-- `GITHUB_TOKEN`の権限を確認
+- `UPSTREAM_PAT`シークレットが正しく設定されているか確認
+- PATの有効期限が切れていないか確認
+- PATに`Pull requests: Read and write`権限があるか確認
 - upstreamリポジトリへのPR作成権限を確認
 
 ## フォーク元との関係
