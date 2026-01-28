@@ -3,11 +3,13 @@ title: 1. Real User Monitoring
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting **overview** from the Real user Monitoring  section as show below. 
+In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting **overview** (**1**) from the Real user Monitoring  section as show below. 
 
 ![RUM](../images/rum-de.png)
 
-This will open up the RUM
+This will open up the Real User Monitoring Overview:
+
+![main page](../images/rum-dashboard.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
