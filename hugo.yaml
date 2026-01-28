@@ -2,10 +2,10 @@ baseURL: https://splunk.github.io/
 relativeURLs: false
 #canonifyURLs: true
 noChmod: true
-contentDir: content/en
+#contentDir: content/en
 title: Splunk Observability Cloud Workshops
-defaultContentLanguage: en
-defaultContentLanguageInSubdir: true
+#defaultContentLanguage: en
+#defaultContentLanguageInSubdir: true
 enableMissingTranslationPlaceholders: false
 enableRobotsTXT: true
 enableGitInfo: true
