@@ -65,4 +65,4 @@ Since OpenTelemetry is vendor-neutral and supported by many industry leaders in 
 
 Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops. -->
 
-![Full Stack](images/a.png)
+![Full Stack](images/a.jpg)
