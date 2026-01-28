@@ -13,7 +13,8 @@ You are a **frontend engineer**, or an **SRE** tasked to do the first triage of 
 
 {{% /notice %}}
 
-![Messages](images/messages.png)
+![Messages](images/messages.png?width=700px)
+
 We are going to examine the real user data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
 
 To do this, open the following url in a new browser window : **[https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)**
@@ -23,8 +24,8 @@ This presents you with the login screen of Splunk Observability Cloud, and use t
 * **E-mail  :** `workshop@splunk.com`
 * **Password:** `Cisco_Live_2026`
 
-![login](images/login-password.png)
+![login](images/login-password.png?width=400px)
 
 This will result in landing you on the home page of Splunk Observability Cloud.
 
-![COE Workshop](images/home_screen_workshop.png)
+![COE Workshop](images/home_screen_workshop.png?width=920px)
