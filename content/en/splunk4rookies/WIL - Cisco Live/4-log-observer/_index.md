@@ -1,7 +1,7 @@
 ---
 title: Splunk Log Observer
-linkTitle: 7. Splunk Log Observer
-weight: 7
+linkTitle: 4. Splunk Log Observer
+weight: 4
 archetype: chapter
 time: 20 minutes
 description: In this section, we will use Log Observer to drill down and identify what the problem is.

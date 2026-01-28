@@ -1,8 +1,8 @@
 ---
 title: Splunk Synthetics
-linkTitle: 8. Splunk Synthetics*
+linkTitle: 5. Splunk Synthetics*
 archetype: chapter
-weight: 8
+weight: 5
 time: 15 minutes
 description: In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.
 ---

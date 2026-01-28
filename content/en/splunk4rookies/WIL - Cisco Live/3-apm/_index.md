@@ -1,7 +1,7 @@
 ---
 title: Splunk APM
-linkTitle: 6. Splunk APM
-weight: 6
+linkTitle: 3. Splunk APM
+weight: 3
 archetype: chapter
 time: 20 minutes
 description: In this section, we will use APM to drill down and identify where the problem is.
