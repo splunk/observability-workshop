@@ -1,6 +1,6 @@
 ---
-title: Splunk Synthetics
-linkTitle: 5. Splunk Synthetics*
+title: Digital Experience (Synthetics)
+linkTitle: 5. Digital Experience (Synthetics)
 archetype: chapter
 weight: 5
 time: 15 minutes

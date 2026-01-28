@@ -1,6 +1,6 @@
 ---
-title: Splunk APM
-linkTitle: 3. Splunk APM
+title: Application Performance Monitoring (APM)
+linkTitle: 3. APM
 weight: 3
 archetype: chapter
 time: 20 minutes

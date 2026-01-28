@@ -1,6 +1,6 @@
 ---
-title: Splunk Log Observer
-linkTitle: 4. Splunk Log Observer
+title: Logs
+linkTitle: 4. Logs
 weight: 4
 archetype: chapter
 time: 20 minutes

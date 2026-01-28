@@ -1,6 +1,6 @@
 ---
-title: Splunk Digital Experience - RUM
-linkTitle:  2. Digital Experience
+title: Digital Experience (RUM)
+linkTitle:  2. Digital Experience (RUM)
 weight: 2
 archetype: chapter
 time: 15 minutes
