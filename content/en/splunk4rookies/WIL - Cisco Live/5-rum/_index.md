@@ -1,7 +1,7 @@
 ---
 title: Splunk RUM
-linkTitle:  5. Splunk RUM
-weight: 5
+linkTitle:  2. Splunk RUM
+weight: 2
 archetype: chapter
 time: 15 minutes
 description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
@@ -13,4 +13,17 @@ You are a **frontend engineer**, or an **SRE** tasked to do the first triage of 
 
 {{% /notice %}}
 
-We are going to examine the real user data that has been provided by the telemetry received from all participants' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+We are going to examine the real user data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+
+To do this, open the following url in a new browser window : https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA
+
+This present you with the login screen of Splunk Observability Cloud, and use the following login credentials, then click Sign In:
+
+* **E-mail  :** workshop@splunk.com
+* **Password:** Cisco_Live_2026
+
+![login](images/login-password.png)
+
+This will result in landing on the home page of Splunk Observability Cloud
+ 
+![COE Workshop](images/Home_screen_workshop.png)
