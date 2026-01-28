@@ -27,4 +27,4 @@ This is what a poor user experience can feel like and since this is a potential 
 
 ![Online Boutique](images/shop.png)
 
-Let’s go  to the next page where we will start using Splunktake a look at what the data looks like in **Splunk RUM**.
+Let’s goto the next page where we will start using Splunk Observability Cloud and take a look at what the data looks like in **Splunk RUM**.

@@ -3,7 +3,7 @@ title: 1. RUM Dashboard
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
+In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting  You arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
 
 ![multiple apps](../images/rum-dashboard.png)
 

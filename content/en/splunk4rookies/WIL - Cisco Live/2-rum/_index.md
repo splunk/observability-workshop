@@ -17,7 +17,7 @@ We are going to examine the real user data that has been provided by the telemet
 
 To do this, open the following url in a new browser window : https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA
 
-This present you with the login screen of Splunk Observability Cloud, and use the following login credentials, then click Sign In:
+This presents you with the login screen of Splunk Observability Cloud, and use the following login credentials, then click the **Sign In** button:
 
 * **E-mail  :** workshop@splunk.com
 * **Password:** Cisco_Live_2026
