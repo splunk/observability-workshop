@@ -5,7 +5,7 @@ weight: 12
 archetype: chapter
 authors: ["Doug Erkkila"]
 description: Scenario Description
-hidden: true
+hidden: false
 ---
 
 # Workshop: Monitoring and Alerting with Splunk IT Service Intelligence
