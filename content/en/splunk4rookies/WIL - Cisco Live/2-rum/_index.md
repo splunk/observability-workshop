@@ -1,6 +1,7 @@
 ---
 title: Digital Experience (RUM)
 linkTitle:  2. Digital Experience (RUM)
+menuPost: " <i class='fa fa-warning'></i>"
 weight: 2
 archetype: chapter
 time: 15 minutes
