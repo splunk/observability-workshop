@@ -27,7 +27,7 @@ The tabs available on this page include:
 {{% tab title="Questions" %}}
 
 1. If you examine the charts in the **Custom Events** tab, what chart shows clearly the latency spikes?
-2. Check the **Map View**, where is the largest request volume coming from?
+2. In the **Map View** tab, where is the largest request volume coming from?
 
 {{% /tab %}}
 {{% tab title="Answers" %}}
