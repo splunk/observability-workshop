@@ -3,7 +3,7 @@ title: Advanced OpenTelemetry Collector
 description: OpenTelemetry Collector の設定をゼロから行う練習を行い、いくつかの高度な設定シナリオを体験します。
 weight: 2
 archetype: chapter
-authors: ["Robert Castley,", "Charity Anderson,", "Pieter Hagen", "&", "Geoff Higginbottom"]
+authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom"]
 time: 75 minutes
 ---
 

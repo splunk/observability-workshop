@@ -3,7 +3,7 @@ title: Advanced Collector Configuration
 description: Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.
 weight: 2
 archetype: chapter
-authors: ["Robert Castley,", "Charity Anderson,", "Pieter Hagen", "&", "Geoff Higginbottom"]
+authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom"]
 time: 90 minutes
 hidden: true
 ---
