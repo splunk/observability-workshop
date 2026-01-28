@@ -9,23 +9,60 @@ description: In this workshop, we will be showing how Splunk Observability Cloud
 draft: true
 ---
 
-In this workshop, we'll demonstrate how Splunk Observability Cloud delivers instant visibility into the user experience—covering everything from front-end applications to back-end services. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions:
+**Introduction**  
+The goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.
 
-- **Infrastructure Monitoring**  
-- **Full-fidelity Real User Monitoring (RUM)**  
-- **Complete end-to-end trace visibility with NoSample Full-fidelity Application Performance Monitoring (APM)**  
-- **No-code log querying**  
-- **Synthetic Monitoring**  
-- **Root cause analysis with tag analytics and error stacks**  
-- **Related Content** for seamless navigation between components
+**Who Should Attend?**  
+This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.
 
-One of the core strengths of Splunk Observability Cloud is its ability to unify telemetry data, creating a comprehensive picture of both the end-user experience and your entire application stack.  
+**What You’ll Need**  
+All you need is either your laptopor a workshop station and a browser to  access the external  Online Boutique & the Splunk Observability Cloud websites. 
 
-The workshop will focus on a microservices-based e-commerce application deployed on AWS EC2 instances. Users can browse products, add items to a cart, and complete purchases. This application is fully instrumented with OpenTelemetry to capture detailed performance data.
+**Workshop Overview**  
+In this 1-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here's what you can expect:
 
-**What is OpenTelemetry?**  
-OpenTelemetry is an open-source collection of tools, APIs, and software development kits (SDKs) designed to help you instrument, generate, collect, and export telemetry data—such as metrics, traces, and logs. This data enables in-depth analysis of your software’s performance and behavior.
+- **Generate Real User Data**  
+  Dive into a simulated retail experience on the Online Boutique Website. Using your browser, mobile, or tablet, explore the site and generate real user data that includes metrics (Is there a problem?), traces (Where is the problem?), and logs (What’s causing the problem?).
 
-The OpenTelemetry community is growing rapidly, supported by leading companies like Splunk, Google, Microsoft, and Amazon. It currently has the second-largest number of contributors within the Cloud Native Computing Foundation, following only Kubernetes.
+- **Splunk Real User Monitoring (RUM)**  
+  Analyze the real user data collected from your browser sessions. Your task is to identify poorly performing sessions and begin the troubleshooting process.
+
+- **Splunk Application Performance Monitoring (APM)**  
+  Gain end-to-end visibility by linking a RUM trace (front-end) to an APM trace (back-end). You’ll explore how telemetry from various services is captured and visualized in Splunk Observability Cloud, helping you detect anomalies and errors.
+
+- **Splunk Log Observer (LO)**  
+  Learn how to leverage the "Related Content" feature to easily navigate between components. In this case, we’ll move from an APM trace to the related logs for deeper insight into issues.
+
+- **Splunk Synthetics**  
+  Discover how Synthetics can help with 24/7 monitoring of your application. We’ll walk you through setting up a simple synthetic test that runs every minute to monitor the performance and availability of the Online Boutique website.
+
+By the end of this session, you'll have gained practical experience with Splunk Observability Cloud and a solid understanding of how to troubleshoot and resolve issues across your application stack.
+
+<!-- ## OpenTelemetry
+
+With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
+
+To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
+
+| Metrics | Traces | Logs |
+|:-------:|:------:|:----:|
+| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
+
+OpenTelemetry does two important things:
+
+* Allows you to **own** the data that you generate rather than be stuck with a proprietary data format or tool.
+* Allows you to learn **a single set** of APIs and conventions
+
+These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.
+
+There are a lot of variables to consider when getting started with Observability, including the all-important question: _"How do I get my data into an Observability tool?"_. The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.
+
+## Why Should You Care?
+
+OpenTelemetry is completely open-source and free to use. In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level.
+
+Since OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation. This is true regardless of which distribution of OpenTelemetry is used – like with Linux, the various distributions bundle settings and add-ons but are all fundamentally based on the community-driven OpenTelemetry project.
+
+Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops. -->
 
 ![Full Stack](images/a.png)

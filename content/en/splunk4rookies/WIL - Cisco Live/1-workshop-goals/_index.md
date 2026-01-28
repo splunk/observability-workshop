@@ -5,6 +5,7 @@ weight: 1
 archetype: chapter
 time: 2 minutes
 description: Workshop Overview
+Hidden: true
 ---
 
 **Introduction**  
