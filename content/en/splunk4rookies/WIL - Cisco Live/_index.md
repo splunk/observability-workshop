@@ -3,8 +3,6 @@ title: WIL - Cisco Live - LABOBS-1037
 weight: 3
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 2 minutes
-aliases:
-  - /en/s4r/
 description: In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.
 ---
 
@@ -14,8 +12,8 @@ The goal of this workshop is to give you hands-on experience troubleshooting an 
 **Who Should Attend?**  
 This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.
 
-**What You’ll Need**  
-All you need is either your laptopor a workshop station and a browser to  access the external  Online Boutique & the Splunk Observability Cloud websites.
+**What You'll Need**
+All you need is either your laptop or a workshop station and a browser to access the external Online Boutique & the Splunk Observability Cloud websites.
 
 **Workshop Overview**  
 In this 1-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here's what you can expect:

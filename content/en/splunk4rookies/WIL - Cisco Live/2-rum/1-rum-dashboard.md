@@ -3,7 +3,7 @@ title: 1. Real User Monitoring
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting **overview** (**1**) from the Real user Monitoring  section as show below. 
+In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting **overview** (**1**) from the Real User Monitoring section as shown below. 
 
 ![RUM](../images/rum-de.png?width=920px)
 
@@ -25,13 +25,15 @@ This will open up the *Real User Monitoring Overview* and you should see your sh
 
 ![RUM Dashboard](../images/rum-metric-map-charts.png?width=920px)
 
+The tabs available on this page include:
+
 * **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
 * **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.
 * **Back-end Health:** Network Errors and Requests and Time to First Byte.
 * **Custom Events:** RED metrics (Rate, Error & Duration) for custom events.
 * **Network Requests:** Sortable lists of all Network Requests
 * **Pages:** Sortable lists of all Pages visited
-* **Map View** Show where request where made from in the world
+* **Map View:** Shows where requests were made from in the world
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -39,12 +41,16 @@ This will open up the *Real User Monitoring Overview* and you should see your sh
 
 {{< tabs >}}
 {{% tab title="Questions" %}}
-* **If you examine the charts in the *Custom Events* Tab, **what chart **shows** clearly the** latency Spikes?**
-* **Check the Map view, where is the largest  REquest volume coming from?**
+
+* **If you examine the charts in the *Custom Events* Tab, what chart shows clearly the latency spikes?**
+* **Check the Map view, where is the largest request volume coming from?**
+
 {{% /tab %}}
 {{% tab title="Answers" %}}
+
 * **It is the *Custom Event Latency* chart**
 * **It is *Ireland***
+
 {{% /tab %}}
 {{< /tabs >}}
 

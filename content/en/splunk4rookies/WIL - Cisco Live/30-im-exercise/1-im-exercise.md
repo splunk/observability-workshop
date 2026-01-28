@@ -5,7 +5,7 @@ weight: 1
 time: 5 minutes
 ---
 
-This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you're not familiar with it.
+This is the first section of our optional Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you're not familiar with it.
 
 {{% notice title=" Kubernetes Terminology" style="info" %}}
 K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application

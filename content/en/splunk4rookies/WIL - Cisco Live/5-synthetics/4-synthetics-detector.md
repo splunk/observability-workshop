@@ -26,6 +26,6 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
 
   ![list of detectors](../images/detector-list.png)
 
-* If you can't find yours, but see one called *New Synthetic Detector*, you may not have saved it correctly with your name. Click on the *New Synthetic Detector* link, and redo the rename.
+* If you can't find yours, but see one called *New Synthetics Detector*, you may not have saved it correctly with your name. Click on the *New Synthetics Detector* link, and redo the rename.
 * Click on the {{% button %}}Close{{% /button %}} button to exit the edit mode.
 {{% /notice %}}

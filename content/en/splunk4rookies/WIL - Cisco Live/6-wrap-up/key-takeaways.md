@@ -16,7 +16,7 @@ We used tools like RUM *Session replay* and the APM *Dependency map* with Breakd
 
 ![rum and apm](../images/rum-apm.png)
 
-* Used *Tag Spotlight*, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in *Span's* in the APM *Trace waterfall* to  see how services interacted and find errors:
+* Used *Tag Spotlight*, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in *Spans* in the APM *Trace waterfall* to see how services interacted and find errors:
 
 ![tag and waterfall](../images/tag-spotlight-waterfall.png)
 
@@ -24,7 +24,7 @@ We used tools like RUM *Session replay* and the APM *Dependency map* with Breakd
 
 ![logs](../images/log.png)
 
-* We then looked at Synthetics, which can simulate web and mobile traffic and we used the available Synthetic Test, first to confirm our finding from RUM/AMP and Log observer, then we created a *Detector* so we would be alerted if when the run time of a test exceeded our SLA.
+* We then looked at Synthetics, which can simulate web and mobile traffic and we used the available Synthetic Test, first to confirm our finding from RUM/APM and Log Observer, then we created a *Detector* so we would be alerted when the run time of a test exceeded our SLA.
 
 * In the final exercise, we created a health dashboard to keep that running for our Developers and SREs on a TV screen:
 
