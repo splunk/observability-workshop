@@ -6,19 +6,19 @@ time: 60 minutes
 description: Experience Splunk Observability Cloud's end-to-end visibility from front-end to back-end services through hands-on troubleshooting exercises.
 ---
 
-**Introduction**
+## Introduction
 
 Gain hands-on experience troubleshooting issues using Splunk Observability Cloud. You'll work with a fully instrumented microservices application on Kubernetes that sends metrics, traces, and logs for real-time analysis.
 
-**Who Should Attend?**
+## Who Should Attend?
 
 Anyone looking to learn Splunk Observability, no prior experience required.
 
-**What You'll Need**
+## What You'll Need
 
 A laptop or workshop station with a browser.
 
-**Workshop Overview**
+## Workshop Overview
 
 In this 1-hour hands-on session, you'll cover:
 

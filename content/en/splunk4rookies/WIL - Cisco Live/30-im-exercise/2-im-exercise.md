@@ -32,8 +32,8 @@ The Splunk Kubernetes Analyzer is a smart process that runs in the background in
 
 * The **K8s Analyzer** should have detected that the two **red** pods are similar, indicated by the 2 after each line, and running in the same Namespace.
 * In the K8s analyzer view can you find what namespace? (hint, look for `k8s.namespace.name`).
-* Next, we want to check this on the node level as well, so drill down to the node, first by hovering your mouse over the cluster until you see a blue line appear around the node with a ![blue triangle ](../images/node-blue-traingle.png?classes=inline) in the left top, inside the black Cluster Line. 
-* Click on the triangle . Your view should now show little boxes in each pod, these represent the  containers that run the actual code. The *K8s Analyzer* should confirm that this issue is also occurring on the node level.
+* Next, we want to check this on the node level as well, so drill down to the node, first by hovering your mouse over the cluster until you see a blue line appear around the node with a ![blue triangle ](../images/node-blue-traingle.png?classes=inline) in the left top, inside the black Cluster Line.
+* Click on the triangle. Your view should now show little boxes in each pod, these represent the  containers that run the actual code. The *K8s Analyzer* should confirm that this issue is also occurring on the node level.
 
 ![Analyser result](../images/k8s-analyser-result.png?width=20vw)
 

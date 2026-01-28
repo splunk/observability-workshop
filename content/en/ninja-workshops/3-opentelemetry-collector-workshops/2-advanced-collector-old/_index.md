@@ -19,7 +19,7 @@ To make the most of this workshop, you should have:
 
 Everything in this workshop is designed to run locally, ensuring a hands-on and accessible learning experience. Let’s dive in and start building!
 
-### Workshop Overview
+## Workshop Overview
 
 During this workshop, we will cover the following topics:
 
