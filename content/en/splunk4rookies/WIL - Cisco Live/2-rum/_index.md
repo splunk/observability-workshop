@@ -1,6 +1,6 @@
 ---
-title: Splunk RUM
-linkTitle:  2. Splunk RUM
+title: Splunk Digital Experience - RUM
+linkTitle:  2. Digital Experience
 weight: 2
 archetype: chapter
 time: 15 minutes
@@ -24,6 +24,6 @@ This presents you with the login screen of Splunk Observability Cloud, and use t
 
 ![login](images/login-password.png)
 
-This will result in landing on the home page of Splunk Observability Cloud
+This will result in landing you on the home page of Splunk Observability Cloud.
  
-![COE Workshop](images/Home_screen_workshop.png)
+![COE Workshop](images/home_screen_workshop.png)

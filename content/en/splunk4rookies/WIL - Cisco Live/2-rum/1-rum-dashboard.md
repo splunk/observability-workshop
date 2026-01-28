@@ -1,11 +1,13 @@
 ---
-title: 1. RUM Dashboard
+title: 1. Real User Monitoring 
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting  You arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
+In Splunk Observability Cloud from the main menu, click on **Digital Experience**, followed by selecting **overview** from the Real user Monitoring  section as show below. 
 
-![multiple apps](../images/rum-dashboard.png)
+![RUM](../images/rum-de.png)
+
+This will open up the RUM
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
