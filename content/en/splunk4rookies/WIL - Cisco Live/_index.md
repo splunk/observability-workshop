@@ -2,38 +2,31 @@
 title: WIL - Cisco Live - LABOBS-1037
 weight: 3
 authors: ["Robert Castley", "Pieter Hagen"]
-time: 2 minutes
-description: In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.
+time: 60 minutes
+description: Experience Splunk Observability Cloud's end-to-end visibility from front-end to back-end services through hands-on troubleshooting exercises.
 ---
 
-**Introduction**  
-The goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.
+**Introduction**
 
-**Who Should Attend?**  
-This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.
+Gain hands-on experience troubleshooting issues using Splunk Observability Cloud. You'll work with a fully instrumented microservices application on Kubernetes that sends metrics, traces, and logs for real-time analysis.
+
+**Who Should Attend?**
+
+Anyone looking to learn Splunk Observability, no prior experience required.
 
 **What You'll Need**
-All you need is either your laptop or a workshop station and a browser to access the external Online Boutique & the Splunk Observability Cloud websites.
 
-**Workshop Overview**  
-In this 1-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here's what you can expect:
+A laptop or workshop station with a browser.
 
-- **Generate Real User Data**  
-  Dive into a simulated retail experience on the Online Boutique Website. Using your browser, mobile, or tablet, explore the site and generate real user data that includes metrics (Is there a problem?), traces (Where is the problem?), and logs (What’s causing the problem?).
+**Workshop Overview**
 
-- **Splunk Real User Monitoring (RUM)**  
-  Analyze the real user data collected from your browser sessions. Your task is to identify poorly performing sessions and begin the troubleshooting process.
+In this 1-hour hands-on session, you'll cover:
 
-- **Splunk Application Performance Monitoring (APM)**  
-  Gain end-to-end visibility by linking a RUM trace (front-end) to an APM trace (back-end). You’ll explore how telemetry from various services is captured and visualized in Splunk Observability Cloud, helping you detect anomalies and errors.
-
-- **Splunk Log Observer (LO)**  
-  Learn how to leverage the "Related Content" feature to easily navigate between components. In this case, we’ll move from an APM trace to the related logs for deeper insight into issues.
-
-- **Splunk Synthetics**  
-  Discover how Synthetics can help with 24/7 monitoring of your application. We’ll walk you through setting up a simple synthetic test that runs every minute to monitor the performance and availability of the Online Boutique website.
-
-By the end of this session, you'll have gained practical experience with Splunk Observability Cloud and a solid understanding of how to troubleshoot and resolve issues across your application stack.
+- **Generate Real User Data** - Browse the Online Boutique website to generate metrics, traces, and logs
+- **RUM** - Identify poorly performing browser sessions and begin troubleshooting
+- **APM** - Link front-end RUM traces to back-end APM traces to detect anomalies and errors
+- **Log Observer** - Use "Related Content" to navigate from APM traces to related logs
+- **Synthetics** - Set up 24/7 monitoring with synthetic tests running every minute
 
 <!-- ## OpenTelemetry
 

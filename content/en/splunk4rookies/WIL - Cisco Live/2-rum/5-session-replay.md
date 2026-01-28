@@ -1,6 +1,6 @@
 ---
-title: 3. Session Replay
-weight: 3
+title: 5. Session Replay
+weight: 5
 hidden: true
 ---
 
