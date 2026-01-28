@@ -1,18 +1,7 @@
 ---
-title: 2. Viewing Log Entries
-weight: 2
+title: 3. Viewing Log Entries
+weight: 3
 ---
-
-Before we look at a specific log line, let's quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:
-
-| Metrics | Traces | Logs |
-|:-------:|:------:|:----:|
-| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
-
-* Using metrics we identified **we have a problem** with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be.
-* Using traces and span tags we found **where the problem is**. The **paymentservice** comprises of two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
-* We did see that this error from the **paymentservice** `v350.10` caused multiple retries and a long delay in the response back from the Online Boutique checkout.
-* From the trace, using the power of **Related Content**, we arrived at the log entries for the failing **paymentservice** version. Now, we can determine **what the problem is**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -40,5 +29,3 @@ You also learned how to use Splunk's **intelligent tagging and analysis** with *
 {{% /notice %}}
 
 In the next part of the workshop, we will move from **problem-finding mode** into **mitigation**, **prevention** and **process improvement mode**.
-
-Next up, creating log charts in a custom dashboard.

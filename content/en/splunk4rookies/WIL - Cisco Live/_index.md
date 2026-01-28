@@ -16,7 +16,7 @@ The goal of this workshop is to give you hands-on experience troubleshooting an 
 This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.
 
 **What You’ll Need**  
-All you need is either your laptopor a workshop station and a browser to  access the external  Online Boutique & the Splunk Observability Cloud websites. 
+All you need is either your laptopor a workshop station and a browser to  access the external  Online Boutique & the Splunk Observability Cloud websites.
 
 **Workshop Overview**  
 In this 1-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here's what you can expect:
