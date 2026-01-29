@@ -12,7 +12,7 @@ weight: 1
 ---
 
 * Select the test **WIL - Cisco Live - LABOBS-1037 Online Boutique**.
-* Under **Performance KPIs** set the Time Picker to **Last 1 hour** and hit enter.
+* In the **Performance KPIs** tab, set the Time Picker to **Last 1 hour** and hit enter.
 * Click on **Location** and from the drop-down select **Page**. The next filter will be populated with the pages that are part of the test.
 * Click on **Duration**, deselect **Duration** and select **First byte time**.
 
