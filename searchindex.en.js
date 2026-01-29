@@ -5,7 +5,7 @@ var relearn_searchindex = [
     "description": "Background Let’s review a few background concepts on Open Telemetry before jumping into the details.\nFirst we have the Open Telemetry Collector, which lives on hosts or kubernetes nodes. These collectors can collect local information (like cpu, disk, memory, etc.). They can also collect metrics from other sources like prometheus (push or pull) or databases and other middleware.\nSource: OTel Documentation\nThe way the OTel Collector collects and sends data is using pipelines. Pipelines are made up of:",
     "tags": [],
     "title": "Background",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/1-background/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/1-background/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -13,7 +13,7 @@ var relearn_searchindex = [
     "description": "Introduction For this workshop, we’ll be using a Java-based application called The Door Game. It will be hosted in Kubernetes.\nPre-requisites You will start with an EC2 instance and perform some initial steps in order to get to the following state:\nDeploy the Splunk distribution of the OpenTelemetry Collector Deploy the MySQL database container and populate data Build and deploy the doorgame application container Initial Steps The initial setup can be completed by executing the following steps on the command line of your EC2 instance.",
     "tags": [],
     "title": "Build the Sample Application",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/1-build-application/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/1-build-application/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop \u003e 7. Use Tags for Monitoring",
@@ -21,7 +21,7 @@ var relearn_searchindex = [
     "description": "Dashboards Navigate to Metric Finder, then type in the name of the tag, which is credit_score_category (remember that the dots in the tag name were replaced by underscores when the Monitoring MetricSet was created). You’ll see that multiple metrics include this tag as a dimension:\nBy default, Splunk Observability Cloud calculates several metrics using the trace data it receives. See Learn about MetricSets in APM for more details.",
     "tags": [],
     "title": "Use Tags with Dashboards",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/1-dashboards/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/1-dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -29,7 +29,7 @@ var relearn_searchindex = [
     "description": "How to retrieve the IP address of the AWS/EC2 instance assigned to you. Connect to your instance using SSH, Putty1 or your web browser. Verify your connection to your AWS/EC2 cloud instance. Using Putty (Optional) Using Multipass (Optional) 1. AWS/EC2 IP Address In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.\nTo get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.",
     "tags": [],
     "title": "How to connect to your workshop environment",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/initial-setup/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/initial-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 6. Advanced Features",
@@ -37,7 +37,7 @@ var relearn_searchindex = [
     "description": "When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable AlwaysOn Profiling and Metrics. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.\nWhen you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:",
     "tags": [],
     "title": "Always-On Profiling \u0026 Metrics",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -45,7 +45,7 @@ var relearn_searchindex = [
     "description": "When you click into the APM section of Splunk Observability Cloud you are greated with an overview of your APM data including top services by error rates, and R.E.D. metrics for services and workflows.\nThe APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.",
     "tags": [],
     "title": "1. APM Explore",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -53,15 +53,15 @@ var relearn_searchindex = [
     "description": "The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.\nWhen we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that WorkFlow Name (frontend:/cart/checkout).\nYou can see the services involved in the workflow in the Service Map. In the side pane, under Business Workflow, charts for the selected workflow are displayed. The Service Map and Business Workflow charts are synchronized. When you select a service in the Service Map, the charts in the Business Workflow pane are updated to show metrics for the selected service.",
     "tags": [],
     "title": "1. APM Explore",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/1-apm-explore/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/1-apm-explore/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
-    "content": "The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.\nWhen we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that WorkFlow Name (frontend:/cart/checkout).\nYou can see the services involved in the workflow in the Service Map. In the side pane, under Business Workflow, charts for the selected workflow are displayed. The Service Map and Business Workflow charts are synchronized. When you select a service in the Service Map, the charts in the Business Workflow pane are updated to show metrics for the selected service.\nExercise Click on the paymentservice in the Service Map. Splunk APM also provides built-in Service Centric Views to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let’s have a closer look.\nExercise In the right hand pane, click on paymentservice in blue.",
-    "description": "The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.\nWhen we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that WorkFlow Name (frontend:/cart/checkout).\nYou can see the services involved in the workflow in the Service Map. In the side pane, under Business Workflow, charts for the selected workflow are displayed. The Service Map and Business Workflow charts are synchronized. When you select a service in the Service Map, the charts in the Business Workflow pane are updated to show metrics for the selected service.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
+    "content": "The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.\nWhen we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that WorkFlow Name (frontend:/cart/checkout).\nYou can see the services involved in the workflow in the Service Map. In the side pane, charts for the selected workflow are displayed. When you select a service in the Service Map, the charts in the side pane are updated to show metrics for the selected service.\nExercise Click on the paymentservice in the Service Map. Splunk APM also provides built-in Service Centric Views to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let’s have a closer look.\nIn the right hand pane, click on paymentservice in blue.",
+    "description": "The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.\nWhen we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that WorkFlow Name (frontend:/cart/checkout).\nYou can see the services involved in the workflow in the Service Map. In the side pane, charts for the selected workflow are displayed. When you select a service in the Service Map, the charts in the side pane are updated to show metrics for the selected service.",
     "tags": [],
     "title": "1. APM Explore",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/1-apm-explore/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/1-apm-explore/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 5. APM Features",
@@ -69,7 +69,7 @@ var relearn_searchindex = [
     "description": "The above map shows all the interactions between all the services. The map may still be in an interim state as it will take the PetClinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of 2 minutes by entering -2m will help. You can click on the Refresh button (1) in the top right-hand corner of the screen. The initial startup-related errors indicated by red circles will eventually disappear.",
     "tags": [],
     "title": "APM Service Map",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -77,7 +77,7 @@ var relearn_searchindex = [
     "description": "Enable the Red Hat OpenShift Service in AWS To deploy OpenShift in your AWS account, we’ll need to first enable the Red Hat OpenShift service using the AWS console.\nNext, follow the instructions to connect your AWS account with your Red Hat account.\nProvision an EC2 Instance Let’s provision an EC2 instance that we’ll use to deploy the Red Hat cluster. This avoids the limitations running the ROSA command-line interface on Mac OS.",
     "tags": [],
     "title": "AWS Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/1-aws-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/1-aws-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -85,7 +85,7 @@ var relearn_searchindex = [
     "description": "Introduction For this workshop, we’ll be using a microservices-based application. This application is for an online retailer and normally includes more than a dozen services. However, to keep the workshop simple, we’ll be focusing on two services used by the retailer as part of their payment processing workflow: the credit check service and the credit processor service.\nPre-requisites You will start with an EC2 instance and perform some initial steps in order to get to the following state:",
     "tags": [],
     "title": "Build the Sample Application",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/1-build-application/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/1-build-application/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop \u003e 3. Capture Tags with OpenTelemetry",
@@ -93,7 +93,7 @@ var relearn_searchindex = [
     "description": "Let’s add some tags to our traces, so we can find out why some customers receive a poor experience from our application.\nIdentify Useful Tags We’ll start by reviewing the code for the creditCheck function of creditcheckservice (which can be found in the file /home/splunk/workshop/tagging/creditcheckservice-java/src/main/java/com/example/creditcheckservice/CreditCheckController.java):\n@GetMapping(\"/check\") public ResponseEntity\u003cString\u003e creditCheck(@RequestParam(\"customernum\") String customerNum) { // Get Credit Score int creditScore; try { String creditScoreUrl = \"http://creditprocessorservice:8899/getScore?customernum=\" + customerNum; creditScore = Integer.parseInt(restTemplate.getForObject(creditScoreUrl, String.class)); } catch (HttpClientErrorException e) { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(\"Error getting credit score\"); } String creditScoreCategory = getCreditCategoryFromScore(creditScore); // Run Credit Check String creditCheckUrl = \"http://creditprocessorservice:8899/runCreditCheck?customernum=\" + customerNum + \"\u0026score=\" + creditScore; String checkResult; try { checkResult = restTemplate.getForObject(creditCheckUrl, String.class); } catch (HttpClientErrorException e) { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(\"Error running credit check\"); } return ResponseEntity.ok(checkResult); } We can see that this function accepts a customer number as an input. This would be helpful to capture as part of a trace. What else would be helpful?",
     "tags": [],
     "title": "1. Capture Tags - Java",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/3-capture-tags/1-capture-tags-java/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/3-capture-tags/1-capture-tags-java/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -101,7 +101,7 @@ var relearn_searchindex = [
     "description": "Connect to your EC2 Instance We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.\nUsing the IP address and password provided by your instructor, connect to your EC2 instance using one of the methods below:\nMac OS / Linux ssh splunk@IP address Windows 10+ Use the OpenSSH client Earlier versions of Windows Use Putty Install the OpenShift CLI To access the OpenShift cluster, we’ll need to install the OpenShift CLI.",
     "tags": [],
     "title": "Connect to EC2 Instance",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/1-connect-to-ec2-instance/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/1-connect-to-ec2-instance/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -109,7 +109,7 @@ var relearn_searchindex = [
     "description": "Connect to your EC2 Instance We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.\nUsing the IP address and password provided by your instructor, connect to your EC2 instance using one of the methods below:\nMac OS / Linux ssh splunk@IP address Windows 10+ Use the OpenSSH client Earlier versions of Windows Use Putty",
     "tags": [],
     "title": "Connect to EC2 Instance",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -117,7 +117,7 @@ var relearn_searchindex = [
     "description": "Connect to your EC2 Instance We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. Using the IP address and password provided by your instructor, connect to your EC2 instance using one of the methods below:\nmacOS / Linux ssh splunk@IP address Windows 10+ Use the OpenSSH client Earlier versions of Windows Use Putty Editing Files We’ll use vi to edit files during the workshop. Here’s a quick primer.",
     "tags": [],
     "title": "Connect to EC2 Instance",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/1-connect-to-instance/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/1-connect-to-instance/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Frontend Dashboards",
@@ -125,7 +125,7 @@ var relearn_searchindex = [
     "description": "We have some good charts in our dashboard, but let’s add a few more.\nGo to Dashboards by clicking the dasboard icon on the left side of the screen. Find the Browser app health dashboard and scroll to the Largest Contentful Paint (LCP) chart. Click the chart actions icon to open the flyout menu, and click “Copy” to add this chart to your clipboard.",
     "tags": [],
     "title": "Copying and editing charts",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/4-dashboards/1-copying-charts/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/4-dashboards/1-copying-charts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop",
@@ -133,7 +133,7 @@ var relearn_searchindex = [
     "description": "1. Dashboards Dashboards are collections of charts and visualizations that display key metrics in one place. A well-designed dashboard gives you quick, actionable insights into the health and performance of your system. They can be as simple or as detailed as needed—ranging from a few focused charts to complex views across multiple services.\nIn this module, you’ll build several charts and bring them together into the following custom dashboard.",
     "tags": [],
     "title": "Intro to Dashboards",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 2. Preparation",
@@ -141,7 +141,7 @@ var relearn_searchindex = [
     "description": "To get Observability signals (metrics, traces and logs) into Splunk Observability Cloud we need to deploy the Splunk OpenTelemetry Collector into the Kubernetes cluster.\nFor this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First, we need to add the Helm chart repository to Helm and run helm repo update to ensure the latest version:\n​ Install Helm Chart Output helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart \u0026\u0026 helm repo update Using ACCESS_TOKEN={REDACTED} Using REALM=eu0 \"splunk-otel-collector-chart\" has been added to your repositories Using ACCESS_TOKEN={REDACTED} Using REALM=eu0 Hang tight while we grab the latest from your chart repositories... ...Successfully got an update from the \"splunk-otel-collector-chart\" chart repository Update Complete. ⎈Happy Helming!⎈ Splunk Observability Cloud offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator for automatic discovery and configuration and code profiling.",
     "tags": [],
     "title": "Deploy the Splunk OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -149,7 +149,7 @@ var relearn_searchindex = [
     "description": "1. Create a namespace To not conflict with other workshops, we will deploy the OpenTelemetry Demo in a separate namespace called otel-demo. To create the namespace, run the following command:\nkubectl create namespace otel-demo 2. Deploy the OpenTelemetry Demo Next, change to the directory containing the OpenTelemetry Demo application:\ncd ~/workshop/apm Deploy the OpenTelemetry Demo application:\n​ Command Output kubectl apply -n otel-demo -f otel-demo.yaml serviceaccount/opentelemetry-demo created service/opentelemetry-demo-adservice created service/opentelemetry-demo-cartservice created service/opentelemetry-demo-checkoutservice created service/opentelemetry-demo-currencyservice created service/opentelemetry-demo-emailservice created service/opentelemetry-demo-featureflagservice created service/opentelemetry-demo-ffspostgres created service/opentelemetry-demo-frontend created service/opentelemetry-demo-kafka created service/opentelemetry-demo-loadgenerator created service/opentelemetry-demo-paymentservice created service/opentelemetry-demo-productcatalogservice created service/opentelemetry-demo-quoteservice created service/opentelemetry-demo-recommendationservice created service/opentelemetry-demo-redis created service/opentelemetry-demo-shippingservice created deployment.apps/opentelemetry-demo-accountingservice created deployment.apps/opentelemetry-demo-adservice created deployment.apps/opentelemetry-demo-cartservice created deployment.apps/opentelemetry-demo-checkoutservice created deployment.apps/opentelemetry-demo-currencyservice created deployment.apps/opentelemetry-demo-emailservice created deployment.apps/opentelemetry-demo-featureflagservice created deployment.apps/opentelemetry-demo-ffspostgres created deployment.apps/opentelemetry-demo-frauddetectionservice created deployment.apps/opentelemetry-demo-frontend created deployment.apps/opentelemetry-demo-kafka created deployment.apps/opentelemetry-demo-loadgenerator created deployment.apps/opentelemetry-demo-paymentservice created deployment.apps/opentelemetry-demo-productcatalogservice created deployment.apps/opentelemetry-demo-quoteservice created deployment.apps/opentelemetry-demo-recommendationservice created deployment.apps/opentelemetry-demo-redis created deployment.apps/opentelemetry-demo-shippingservice created Once the application is deployed, we need to wait for the pods to be in a Running state. To check the status of the pods, run the following command:",
     "tags": [],
     "title": "Deploying the OpenTelemetry Demo",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -157,7 +157,7 @@ var relearn_searchindex = [
     "description": "1. Connect to EC2 instance You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device. Open the link to the sheet provided by your instructor. This sheet contains the IP addresses and the password for the workshop instances.\nInfo Your workshop instance has been pre-configured with the correct Access Token and Realm for this workshop. There is no need for you to configure these.",
     "tags": [],
     "title": "Deploying the OpenTelemetry Collector in Kubernetes",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/1-deploy-otel/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/1-deploy-otel/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -165,7 +165,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your AppDynamics Controller from your web browser and download the Java APM agent from there.",
     "tags": [],
     "title": "1. Download Java Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/1-download-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/1-download-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6. Service Health Dashboard",
@@ -173,7 +173,7 @@ var relearn_searchindex = [
     "description": "As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.\nExercise To get back to your dashboard with the two log charts, click on Dashboards from the main menu and you will be taken to your Team Dashboard view. Under Dashboards click in Search dashboards to search for your Service Health Dashboard group. Click on the name and this will bring up your previously saved dashboard. Even if the log information is useful, it will need more information to have it make sense for our team so let’s add a bit more information The first step is adding a description chart to the dashboard. Click on the New text note and replace the text in the note with the following text and then click the Save and close button and name the chart Instructions Information to use with text note This is a Custom Health Dashboard for the **wire-transfer-service**, Please pay attention to any errors in the logs. For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html) The charts are not in a nice order, let’s correct that and rearrange the charts so that they are useful. Move your mouse over the top edge of the Instructions chart, your mouse pointer will change to a ☩. This will allow you to drag the chart in the dashboard. Drag the Instructions chart to the top left location and resize it to a 1/3rd of the page by dragging the right-hand edge. Drag and add the Log Timeline view chart next to the Instruction chart, resize it so it fills the other 2/3rd of the page to be the error rate chart next to the two the chart and resize it so it fills the page Next, resize the Log lines chart to be the width of the page and resize it the make it at least twice as long. You should have something similar to the dashboard below: This looks great, let’s continue and add more meaningful charts.",
     "tags": [],
     "title": "Enhancing the Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 9. Service Health Dashboard",
@@ -181,7 +181,7 @@ var relearn_searchindex = [
     "description": "As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.\nExercise To get back to your dashboard with the two log charts, click on Dashboards from the main menu and you will be taken to your Team Dashboard view. Under Dashboards click in Search dashboards to search for your Service Health Dashboard group. Click on the name and this will bring up your previously saved dashboard. Even if the log information is useful, it will need more information to have it make sense for our team so let’s add a bit more information The first step is adding a description chart to the dashboard. Click on the New text note and replace the text in the note with the following text and then click the Save and close button and name the chart Instructions Information to use with text note This is a Custom Health Dashboard for the **Payment service**, Please pay attention to any errors in the logs. For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html) The charts are not in a nice order, let’s correct that and rearrange the charts so that they are useful. Move your mouse over the top edge of the Instructions chart, your mouse pointer will change to a ☩. This will allow you to drag the chart in the dashboard. Drag the Instructions chart to the top left location and resize it to a 1/3rd of the page by dragging the right-hand edge. Drag and add the Log Timeline view chart next to the Instruction chart, resize it so it fills the other 2/3rd of the page to be the error rate chart next to the two the chart and resize it so it fills the page Next, resize the Log lines chart to be the width of the page and resize it the make it at least twice as long. You should have something similar to the dashboard below: This looks great, let’s continue and add more meaningful charts.",
     "tags": [],
     "title": "Enhancing the Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/9-custom-dashboard/1-custom-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/9-custom-dashboard/1-custom-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud",
@@ -189,7 +189,7 @@ var relearn_searchindex = [
     "description": "During this technical Ingest Processor1 for Splunk Observability Cloud workshop you will have the opportunity to get hands-on with Ingest Processor in Splunk Enterprise Cloud.\nTo simplify the workshop modules, a pre-configured Splunk Enterprise Cloud instance is provided.\nThe instance is pre-configured with all the requirements for creating an Ingest Processor pipeline.\nThis workshop will introduce you to the benefits of using Ingest Processor to convert robust logs to metrics and send those metrics to Splunk Observability Cloud. By the end of these technical workshops, you will have a good understanding of some key features and capabilities of Ingest Processor in Splunk Enterprise Cloud and the value of using Splunk Observability Cloud as a destination within an Ingest Processor pipeline.",
     "tags": [],
     "title": "Getting Started",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/1-getting-started/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/1-getting-started/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -197,7 +197,7 @@ var relearn_searchindex = [
     "description": "Monitoring and Alerting with Splunk, AppDynamics, and Splunk Observability Cloud Introduction and Overview In today’s complex IT landscape, ensuring the performance and availability of applications and services is paramount. This workshop will introduce you to a powerful combination of tools – Splunk, AppDynamics, Splunk Observability Cloud, and Splunk IT Service Intelligence (ITSI) – that work together to provide comprehensive monitoring and alerting capabilities.\nThe Challenge of Modern Monitoring Modern applications often rely on distributed architectures, microservices, and cloud infrastructure. This complexity makes it challenging to pinpoint the root cause of performance issues or outages. Traditional monitoring tools often focus on individual components, leaving gaps in understanding the overall health and performance of a service.",
     "tags": [],
     "title": "Getting Started",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/1-getting-started/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/1-getting-started/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -205,7 +205,7 @@ var relearn_searchindex = [
     "description": "During this technical Optimize Cloud Monitoring Workshop, you will build out an environment based on a lightweight Kubernetes1 cluster.\nTo simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.\nThe instance is pre-configured with all the software required to deploy the Splunk OpenTelemetry Connector2 and the microservices-based OpenTelemetry Demo Application3 in Kubernetes which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs.\nThis workshop will introduce you to the benefits of standardized data collection, how content can be re-used across teams, correlating metrics and logs, and creating detectors to fire alerts. By the end of these technical workshops, you will have a good understanding of some of the key features and capabilities of the Splunk Observability Cloud.",
     "tags": [],
     "title": "Getting Started",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/1-getting-started/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour",
@@ -213,7 +213,7 @@ var relearn_searchindex = [
     "description": "Learn how to get started with Splunk Observability Cloud.",
     "tags": [],
     "title": "Getting Started",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -221,7 +221,7 @@ var relearn_searchindex = [
     "description": "Learn how to get started with Splunk Observability Cloud.",
     "tags": [],
     "title": "Getting Started",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall",
@@ -229,7 +229,7 @@ var relearn_searchindex = [
     "description": "Aim The aim of this module is for you to configure your personal profile which controls how you will be notified by Splunk On-Call whenever you get paged.\n1. Contact Methods Switch to the Splunk On-Call UI and click on your login name in the top right hand corner and chose Profile from the drop down. Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.",
     "tags": [],
     "title": "User Profile",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/getting_started/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e GDI (OTel \u0026 UF)",
@@ -237,7 +237,7 @@ var relearn_searchindex = [
     "description": "Please note to begin the following lab, you must have completed the prework:\nObtain a Splunk Observability Cloud access key Understand cli commands Follow these steps if using O11y Workshop EC2 instances\n1. Verify yelp data files are present ll /var/appdata/yelp* 2. Export the following variables export ACCESS_TOKEN=\u003cyour-access-token\u003e export REALM=\u003cyour-o11y-cloud-realm\u003e export clusterName=\u003cyour-k8s-cluster\u003e 3. Clone the following repo cd /home/splunk git clone https://github.com/leungsteve/realtime_enrichment.git cd realtime_enrichment/workshop python3 -m venv rtapp-workshop source rtapp-workshop/bin/activate",
     "tags": [],
     "title": "Getting Started with O11y GDI - Real Time Enrichment Workshop",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/1-getting-started/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/1-getting-started/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 3. Receivers",
@@ -245,7 +245,7 @@ var relearn_searchindex = [
     "description": "Host Metrics Receiver The Host Metrics Receiver generates metrics about the host system scraped from various sources. This is intended to be used when the collector is deployed as an agent which is what we will be doing in this workshop.\nLet’s update the /etc/otel-contrib/config.yaml file and configure the hostmetrics receiver. Insert the following YAML under the receivers section, taking care to indent by two spaces.\nsudo vi /etc/otelcol-contrib/config.yaml ​ Host Metrics Receiver Configuration receivers: hostmetrics: collection_interval: 10s scrapers: # CPU utilization metrics cpu: # Disk I/O metrics disk: # File System utilization metrics filesystem: # Memory utilization metrics memory: # Network interface I/O metrics \u0026 TCP connection metrics network: # CPU load metrics load: # Paging/Swap space utilization and I/O metrics paging: # Process count metrics processes: # Per process CPU, Memory and Disk I/O metrics. Disabled by default. # process:",
     "tags": [],
     "title": "OpenTelemetry Collector Receivers",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/1-hostmetrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/1-hostmetrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -253,7 +253,15 @@ var relearn_searchindex = [
     "description": "Download the OpenTelemetry Collector Contrib distribution The first step in installing the Open Telemetry Collector is downloading it. For our lab, we will use the wget command to download the .deb package from the OpenTelemetry Github repository.\nObtain the .deb package for your platform from the OpenTelemetry Collector Contrib releases page\nwget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.111.0/otelcol-contrib_0.111.0_linux_amd64.deb Install the OpenTelemetry Collector Contrib distribution Install the .deb package using dpkg. Take a look at the dpkg Output tab below to see what the example output of a successful install will look like:",
     "tags": [],
     "title": "Installing OpenTelemetry Collector Contrib",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/1-installation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/1-installation/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 5. Logs",
+    "content": "You’ve now navigated directly from an APM trace into Logs using the Related Content link. Logs is Splunk Observability Cloud’s no-code interface for exploring and analyzing log data.\nThe key advantage, just as with the RUM and APM integration, is that you’re viewing your logs in the context of your previous actions. In this case, that context includes the matching time range (1) from the trace and a filter (2) automatically applied to the trace_id.\nThis view will include all the log lines from all services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.\nEven in a small application such as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we are investigating.\nBefore we go any further, let’s quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? Using RUM metrics we identified we have a problem with our application. This was obvious from the duration metrics for the user sessions. Using traces and span tags we found where the problem is. The paymentservice comprises of two versions, v350.9 and v350.10, and the error rate was 100% for v350.10. We did see that this error from the paymentservice v350.10 caused multiple retries and a long delay in the response back from the Online Boutique checkout. From the trace, using the power of Related Content, we arrived at the log entries for the failing paymentservice version. Now, we can determine what the problem is.",
+    "description": "You’ve now navigated directly from an APM trace into Logs using the Related Content link. Logs is Splunk Observability Cloud’s no-code interface for exploring and analyzing log data.\nThe key advantage, just as with the RUM and APM integration, is that you’re viewing your logs in the context of your previous actions. In this case, that context includes the matching time range (1) from the trace and a filter (2) automatically applied to the trace_id.",
+    "tags": [],
+    "title": "1. Introduction to Logs",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/5-logs/1-introduction/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 7. Workshop Wrap-up",
@@ -261,7 +269,7 @@ var relearn_searchindex = [
     "description": "During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (metrics, traces and logs) can help you to reduce mean time to detect (MTTD) and also reduce mean time to resolution (MTTR).\nWe have a better understanding of the Main User interface and its components, the Landing, Infrastructure, APM, Log Observer, Dashboard pages, and a quick peek at the Settings page. Depending on time, we did an Infrastructure exercise and looked at Metrics used in the Kubernetes Navigators and saw related services found on our Kubernetes cluster:",
     "tags": [],
     "title": "Key Takeaways",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/7-wrap-up/key-takeaways/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/7-wrap-up/key-takeaways/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 10. Workshop Wrap-up",
@@ -269,15 +277,15 @@ var relearn_searchindex = [
     "description": "During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (metrics, traces and logs) can help you to reduce mean time to detect (MTTD) and also reduce mean time to resolution (MTTR).\nWe have a better understanding of the Main User interface and its components, the Landing, Infrastructure, APM, RUM, Synthetics, Dashboard pages, and a quick peek at the Settings page. Depending on time, we did an Infrastructure exercise and looked at Metrics used in the Kubernetes Navigators and saw related services found on our Kubernetes cluster:",
     "tags": [],
     "title": "Key Takeaways",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/10-wrap-up/key-takeaways/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/10-wrap-up/key-takeaways/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 10. Workshop Wrap-up",
-    "content": "During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (metrics, traces and logs) can help you to reduce mean time to detect (MTTD) and also reduce mean time to resolution (MTTR).\nWe have a better understanding of the Main User interface and its components, the Landing, Infrastructure, APM, RUM, Synthetics, Dashboard pages, and a quick peek at the Settings page. Depending on time, we did an Infrastructure exercise and looked at Metrics used in the Kubernetes Navigators and saw related services found on our Kubernetes cluster: Understood what users were experiencing and used RUM \u0026 APM to Troubleshoot a particularly long page load, by following its trace across the front and back end and right to the log entries. We used tools like RUM Session replay and the APM Dependency map with Breakdown to discover what is causing our issue: Used Tag Spotlight, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in Span’s in the APM Trace waterfall to see how services interacted and find errors: We used the Related content feature to follow the link between our Trace directly to the Logs related to our Trace and used filters to drill down to the exact cause of our issue. We then looked at Synthetics, which can simulate web and mobile traffic and we used the available Synthetic Test, first to confirm our finding from RUM/AMP and Log observer, then we created a Detector so we would be alerted if when the run time of a test exceeded our SLA.\nIn the final exercise, we created a health dashboard to keep that running for our Developers and SREs on a TV screen:",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 7. Workshop Wrap-up",
+    "content": "During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (metrics, traces and logs) can help you to reduce mean time to detect (MTTD) and also reduce mean time to resolution (MTTR).\nWe have a better understanding of the Main User interface and its components, the Landing, Infrastructure, APM, RUM, Synthetics, Dashboard pages, and a quick peek at the Settings page. Depending on time, we did an Infrastructure exercise and looked at Metrics used in the Kubernetes Navigators and saw related services found on our Kubernetes cluster: Understood what users were experiencing and used RUM \u0026 APM to Troubleshoot a particularly long page load, by following its trace across the front and back end and right to the log entries. We used tools like RUM Session replay and the APM Dependency map with Breakdown to discover what is causing our issue: Used Tag Spotlight, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in Spans in the APM Trace waterfall to see how services interacted and find errors: We used the Related content feature to follow the link between our Trace directly to the Logs related to our Trace and used filters to drill down to the exact cause of our issue. We then looked at Synthetics, which can simulate web and mobile traffic and we used the available Synthetic Test, first to confirm our finding from RUM/APM and Log Observer, then we created a Detector so we would be alerted when the run time of a test exceeded our SLA.\nIn the final exercise, we created a health dashboard to keep that running for our Developers and SREs on a TV screen:",
     "description": "During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (metrics, traces and logs) can help you to reduce mean time to detect (MTTD) and also reduce mean time to resolution (MTTR).\nWe have a better understanding of the Main User interface and its components, the Landing, Infrastructure, APM, RUM, Synthetics, Dashboard pages, and a quick peek at the Settings page. Depending on time, we did an Infrastructure exercise and looked at Metrics used in the Kubernetes Navigators and saw related services found on our Kubernetes cluster:",
     "tags": [],
     "title": "Key Takeaways",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/10-wrap-up/key-takeaways/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/7-wrap-up/key-takeaways/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 5. Splunk Log Observer",
@@ -285,7 +293,7 @@ var relearn_searchindex = [
     "description": "Log Observer (LO), can be used in multiple ways. In the quick tour, you used the LO no-code interface to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the Related Content link.\nThe advantage of this is, as it was with the link between RUM \u0026 APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame (1), which matches that of the trace and the filter (2) which is set to the trace_id.",
     "tags": [],
     "title": "1. Log Filtering",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/1-log-filtering/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/5-log-observer/1-log-filtering/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 7. Splunk Log Observer",
@@ -293,15 +301,15 @@ var relearn_searchindex = [
     "description": "Log Observer (LO), can be used in multiple ways. In the quick tour, you used the LO no-code interface to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the Related Content link.\nThe advantage of this is, as it was with the link between RUM \u0026 APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame (1), which matches that of the trace and the filter (2) which is set to the trace_id.",
     "tags": [],
     "title": "1. Log Filtering",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 7. Splunk Log Observer",
-    "content": "Log Observer (LO), can be used in multiple ways. In the quick tour, you used the LO no-code interface to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the Related Content link.\nThe advantage of this is, as it was with the link between RUM \u0026 APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame (1), which matches that of the trace and the filter (2) which is set to the trace_id.\nThis view will include all the log lines from all applications or services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.\nEven in a small application such as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we are investigating.\nExercise We need to focus on just the Error messages in the logs:\nClick on the Group By drop-down box and use the filter to find Severity. Once selected click the Apply button (notice that the chart legend changes to show debug, error and info). Selecting just the error logs can be done by either clicking on the word error (1) in the legend, followed by selecting Add to filter. Then click Run Search You could also add the service name, sf_service=paymentservice, to the filter if there are error lines for multiple services, but in our case, this is not necessary. Next, we will look at log entries in detail.",
-    "description": "Log Observer (LO), can be used in multiple ways. In the quick tour, you used the LO no-code interface to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the Related Content link.\nThe advantage of this is, as it was with the link between RUM \u0026 APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame (1), which matches that of the trace and the filter (2) which is set to the trace_id.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona You are a frontend engineer, or an SRE tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.\nWe are going to examine the real user data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.\nTo do this, open the following url in a new browser window : https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA\nThis presents you with the login screen of Splunk Observability Cloud, and use the following login credentials, then click the Sign In button:\nE-mail : workshop@splunk.com Password: Cisco_Live_2026 This will result in landing you on the home page of Splunk Observability Cloud.",
+    "description": "This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.",
     "tags": [],
-    "title": "1. Log Filtering",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/7-log-observer/1-log-filtering/index.html"
+    "title": "Login to Splunkk Observability Cloud",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/1-login/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Monolith Workshop",
@@ -309,7 +317,7 @@ var relearn_searchindex = [
     "description": "The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications. Its role is to collect and send:\nInfrastructure metrics (disk, CPU, memory, etc.) Application Performance Monitoring (APM) traces Profiling data Host and application logs Remove any existing OpenTelemetry Collectors If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:",
     "tags": [],
     "title": "Installing the OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -317,7 +325,7 @@ var relearn_searchindex = [
     "description": "The aim of this Splunk Real User Monitoring (RUM) workshop is to let you:\nShop for items on the Online Boutique to create traffic, and create RUM User Sessions1 that you can view in the Splunk Observability Suite. See an overview of the performance of all your application(s) in the Application Summary Dashboard Examine the performance of a specific website with RUM metrics. In order to reach this goal, we will use an online boutique to order various products. While shopping on the online boutique you will create what is called a User Session.",
     "tags": [],
     "title": "Overview",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/1-overview/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/1-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e ThousandEyes Integration",
@@ -325,7 +333,7 @@ var relearn_searchindex = [
     "description": "ThousandEyes Agent Types Enterprise Agents Enterprise Agents are software-based monitoring agents that you deploy within your own infrastructure. They provide:\nInside-out visibility: Monitor and test from your internal network to external services Customizable placement: Deploy where your users and applications are Full test capabilities: HTTP, network, DNS, voice, and other test types Persistent monitoring: Continuously running agents that execute scheduled tests In this workshop, we’re deploying an Enterprise Agent as a containerized workload inside a Kubernetes cluster.",
     "tags": [],
     "title": "Overview",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/1-overview/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/1-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -333,7 +341,7 @@ var relearn_searchindex = [
     "description": "Overview of the RUM Workshop The aim of this Splunk Real User Monitoring (RUM) workshop is to let you:\nShop for some fantastic items on the Online Boutique to create traffic, and create a number of RUM User Sessions1 that you can view in the Splunk Observability Suite.\nSee an overview of the performance of all your application(s) in the Application Summary Dashboard (Both Mobile and Web based)\nExamine the performance of a specific website or Mobile App with RUM metrics.",
     "tags": [],
     "title": "1. Overview",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/1-overview/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/1-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 4. Automatic discovery and configuration",
@@ -341,7 +349,7 @@ var relearn_searchindex = [
     "description": "To configure automatic discovery and configuration, the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the api-gateway does not have the splunk-otel-java image by running the following:\n​ Describe api-gateway Describe Output kubectl describe pods api-gateway | grep Image: Image: quay.io/phagen/spring-petclinic-api-gateway:0.0.2 Next, enable the Java automatic discovery and configuration for all the services by adding the annotation to the deployments. The following command will patch the all deployments. This will trigger the OpenTelemetry Operator to inject the splunk-otel-java image into the Pods:",
     "tags": [],
     "title": "Patching the Deployment",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/1-patching-deployment/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/1-patching-deployment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Remote Installation",
@@ -349,7 +357,7 @@ var relearn_searchindex = [
     "description": "Before you begin installing Smart Agent on remote hosts, ensure you have the following prerequisites in place:\nRequired Access SSH Access: You must have SSH access to all remote hosts where you plan to install Smart Agent SSH Private Key: A configured SSH private key for authentication Sudo Privileges: The control node user needs sudo privileges to run smartagentctl Remote SSH: Remote hosts must have SSH enabled and accessible Directory Structure The Smart Agent installation directory should be set up on your control node:",
     "tags": [],
     "title": "1. Prerequisites",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/1-prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/1-prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting",
@@ -357,7 +365,15 @@ var relearn_searchindex = [
     "description": "Introduction This workshop walks you through using the Chrome DevTools Recorder to create a synthetic transaction against a Splunk demonstration instance.\nThe exported JSON from the Chrome DevTools Recorder will then be used to create a Splunk Synthetic Monitoring Real Browser Test.\nIn addition, you will also get to learn other Splunk Synthetic Monitoring checks like API Test and Uptime Test.\nPre-requisites Google Chrome Browser installed Access to Splunk Observability Cloud",
     "tags": [],
     "title": "1. Real Browser Test",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "In Splunk Observability Cloud from the main menu, click on Digital Experience, followed by selecting overview (1) from the Real user Monitoring section as show below.\nThis will open up the Real User Monitoring Overview:\nExercise Make sure you select your workshop by ensuring the drop-downs are set/selected as follows: The Time frame is set to -15m. The Environment selected is [NAME OF WORKSHOP]-workshop. The App selected is [NAME OF WORKSHOP]-store. The Source is set to All. Next, click on the [NAME OF WORKSHOP]-store above the Page Views / JavaScript Errors chart. This will bring up a new dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default). UX Metrics: Page Views, Page Load and Web Vitals metrics. Front-end Health: Breakdown of Javascript Errors and Long Task duration and count. Back-end Health: Network Errors and Requests and Time to First Byte. Custom Events: RED metrics (Rate, Error \u0026 Duration) for custom events. Exercise Click through each of the tabs (UX Metrics, Front-end Health, Back-end Health and Custom Events) and examine the data. ​ Question Answer If you examine the charts in the Custom Events Tab, what chart shows clearly the latency Spikes?\nIt is the Custom Event Latency chart",
+    "description": "In Splunk Observability Cloud from the main menu, click on Digital Experience, followed by selecting overview (1) from the Real user Monitoring section as show below.\nThis will open up the Real User Monitoring Overview:\nExercise Make sure you select your workshop by ensuring the drop-downs are set/selected as follows: The Time frame is set to -15m. The Environment selected is [NAME OF WORKSHOP]-workshop. The App selected is [NAME OF WORKSHOP]-store. The Source is set to All. Next, click on the [NAME OF WORKSHOP]-store above the Page Views / JavaScript Errors chart. This will bring up a new dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).",
+    "tags": [],
+    "title": "1. Real User Monitoring",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/1-rum-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -365,7 +381,7 @@ var relearn_searchindex = [
     "description": "Write down a short user journey you want to test. Remember: smaller bites are easier to chew! In other words, get started with just a few steps. This is easier not only to create and maintain the test, but also to understand and act on the results. Test the essential features to your users, like a support contact form, login widget, or date picker.\nNote Record the test in the same type of viewport that you want to run it. For example, if you want to run a test on a mobile viewport, narrow your browser width to mobile and refresh before starting the recording. This way you are capturing the correct elements that could change depending on responsive style rules.",
     "tags": [],
     "title": "Record a test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/1-recording-a-test/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/1-recording-a-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 5. Splunk RUM",
@@ -373,15 +389,15 @@ var relearn_searchindex = [
     "description": "In Splunk Observability Cloud from the main menu, click on RUM. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.\nExercise Make sure you select your workshop by ensuring the drop-downs are set/selected as follows: The Time frame is set to -15m. The Environment selected is [NAME OF WORKSHOP]-workshop. The App selected is [NAME OF WORKSHOP]-store. The Source is set to All. Next, click on the [NAME OF WORKSHOP]-store above the Page Views / JavaScript Errors chart. This will bring up a new dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).",
     "tags": [],
     "title": "1. RUM Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/1-rum-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/5-rum/1-rum-dashboard/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 5. Splunk RUM",
-    "content": "In Splunk Observability Cloud from the main menu, click on RUM. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.\nExercise Make sure you select your workshop by ensuring the drop-downs are set/selected as follows: The Time frame is set to -15m. The Environment selected is [NAME OF WORKSHOP]-workshop. The App selected is [NAME OF WORKSHOP]-store. The Source is set to All. Next, click on the [NAME OF WORKSHOP]-store above the Page Views / JavaScript Errors chart. This will bring up a new dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default). UX Metrics: Page Views, Page Load and Web Vitals metrics. Front-end Health: Breakdown of Javascript Errors and Long Task duration and count. Back-end Health: Network Errors and Requests and Time to First Byte. Custom Events: RED metrics (Rate, Error \u0026 Duration) for custom events. Exercise Click through each of the tabs (UX Metrics, Front-end Health, Back-end Health and Custom Events) and examine the data. ​ Question Answer If you examine the charts in the Custom Events Tab, what chart shows clearly the latency Spikes?\nIt is the Custom Event Latency chart",
-    "description": "In Splunk Observability Cloud from the main menu, click on RUM. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.\nExercise Make sure you select your workshop by ensuring the drop-downs are set/selected as follows: The Time frame is set to -15m. The Environment selected is [NAME OF WORKSHOP]-workshop. The App selected is [NAME OF WORKSHOP]-store. The Source is set to All. Next, click on the [NAME OF WORKSHOP]-store above the Page Views / JavaScript Errors chart. This will bring up a new dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "Exercise In Splunk Observability Cloud from the main menu, click on Digital Experience, followed by selecting Overview (1) from the Real User Monitoring section as shown below. This will open up the Real User Monitoring Overview with the Application Summary Dashboard. This section shows quick overview of all the applications being monitored.\nTo ensure we are looking at the right data, please check the following settings (2):\nThe Time frame is set to -15m. The Environment selected is labobs-1037. The App selected is labobs-1037-store. The Source is set to Browser. Next, click on the labobs-1037-store (3) above the Page Views / JavaScript Errors chart.",
+    "description": "Exercise In Splunk Observability Cloud from the main menu, click on Digital Experience, followed by selecting Overview (1) from the Real User Monitoring section as shown below. This will open up the Real User Monitoring Overview with the Application Summary Dashboard. This section shows quick overview of all the applications being monitored.\nTo ensure we are looking at the right data, please check the following settings (2):",
     "tags": [],
-    "title": "1. RUM Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/5-rum/1-rum-dashboard/index.html"
+    "title": "1. RUM Overview",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/1-rum-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -389,7 +405,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Observability Workshop Instance The Observability Workshop uses the Splunk4Ninjas - Observability workshop template in Splunk Show, which provides a pre-configured EC2 instance running Ubuntu.\nYour workshop instructor will provide you with the credentials to your assigned workshop instance.\nYour instance should have the following environment variables already set:\nACCESS_TOKEN REALM These are the Splunk Observability Cloud Access Token and Realm for your workshop. They will be used by the OpenTelemetry Collector to forward your data to the correct Splunk Observability Cloud organization. Note Alternatively, you can deploy a local observability workshop instance using Multipass.",
     "tags": [],
     "title": "Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/1-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/1-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -397,7 +413,7 @@ var relearn_searchindex = [
     "description": "This lab will make a tracing superhero out of you!\nIn this lab you will learn how a distributed trace is constructed for a small serverless application that runs on AWS Lambda, producing and consuming your message via AWS Kinesis.\nPre-requisites You should already have the lab content available on your EC2 lab host.\nEnsure that this lab’s required folder o11y-lambda-lab is on your home directory:",
     "tags": [],
     "title": "Setup",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/1-setup/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/1-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -405,7 +421,7 @@ var relearn_searchindex = [
     "description": "Environment Setup - Mac Note If you wish to run this on Mac directly, you can see the instructions here in the appendix and skip the next section on Linux.\nAll installs must continue at setting up the app.\nEnvironment Setup - Linux You can skip past the EC2 configuration to Linux Software Requirements if you already have an Ec2 that meets the specifications below !!!!",
     "tags": [],
     "title": "Setting up your AWS Instance",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/1-setup-os/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/1-setup-os/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 8. Splunk Synthetics",
@@ -413,15 +429,15 @@ var relearn_searchindex = [
     "description": "In Splunk Observability Cloud from the main menu, click on Synthetics. Click on All or Browser tests to see the list of active tests.\nDuring our investigation in the RUM section, we found there was an issue with the Place Order Transaction. Let’s see if we can confirm this from the Synthetics test as well. We will be using the metric First byte time for the 4th page of the test, which is the Place Order step.",
     "tags": [],
     "title": "1. Synthetics Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 8. Splunk Synthetics*",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6. Digital Experience (Synthetics)",
     "content": "In Splunk Observability Cloud from the main menu, click on Synthetics. Click on All or Browser tests to see the list of active tests.\nDuring our investigation in the RUM section, we found there was an issue with the Place Order Transaction. Let’s see if we can confirm this from the Synthetics test as well. We will be using the metric First byte time for the 4th page of the test, which is the Place Order step.\nExercise In the Search box enter [WORKSHOP NAME] and select the test for your workshop (your instructor will advise as to which one to select). Under Performance KPIs set the Time Picker to Last 1 hour and hit enter. Click on Location and from the drop-down select Page. The next filter will be populated with the pages that are part of the test. Click on Duration, deselect Duration and select First byte time. Look at the legend and note the color of First byte time - Page 4. Select the highest data point for First byte time - Page 4. You will now be taken to the Run results for this particular test run.",
     "description": "In Splunk Observability Cloud from the main menu, click on Synthetics. Click on All or Browser tests to see the list of active tests.\nDuring our investigation in the RUM section, we found there was an issue with the Place Order Transaction. Let’s see if we can confirm this from the Synthetics test as well. We will be using the metric First byte time for the 4th page of the test, which is the Place Order step.",
     "tags": [],
     "title": "1. Synthetics Dashboard",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/8-synthetics/1-synthetics-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/6-synthetics/1-synthetics-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Detectors",
@@ -429,7 +445,7 @@ var relearn_searchindex = [
     "description": "Why would we want a detector on a single Synthetic test? Some examples:\nThe endpoint, API transaction, or browser journey is highly critical We have deployed code changes and want to know if the resulting KPI is or is not as we expect We need to temporarily keep a close eye on a specific change we are testing and don’t want to create a lot of noise, and will disable the detector later We want to know about unexpected issues before a real user encounters them On the test overview page, click Create Detector on the top right.",
     "tags": [],
     "title": "Test Detectors",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM",
@@ -437,7 +453,7 @@ var relearn_searchindex = [
     "description": "Verify the Online Boutique application is deployed into Kubernetes (K3s) and generates some artificial traffic using a Load Generator (Locust).",
     "tags": [],
     "title": "1. The Online Boutique",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/online-boutique/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics",
@@ -445,7 +461,7 @@ var relearn_searchindex = [
     "description": "Introduction The simplest way to keep an eye on endpoint availability is with an Uptime test. This lightweight test can run internally or externally around the world, as frequently as every minute. Because this is the easiest (and cheapest!) test to set up, and because this is ideal for monitoring availability of your most critical enpoints and ports, let’s start here.\nPre-requisites Publicly accessible HTTP(S) endpoint(s) to test Access to Splunk Observability Cloud",
     "tags": [],
     "title": "Uptime Test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Workshop Setup",
@@ -453,7 +469,7 @@ var relearn_searchindex = [
     "description": "Configure your Org using SWiPE Important Information SWiPE does not provision EC2 instances. These instances are provisioned separately using Splunk Show.\nSWiPE is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access SWiPE here.\nSWiPE will perform the following tasks your workshop environment:\nCreate and Invite Users to the Organization",
     "tags": [],
     "title": "1. Using SWiPE",
-    "uri": "/observability-workshop/en/workshop-setup/1-swipe/index.html"
+    "uri": "/observability-workshop/workshop-setup/1-swipe/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 8. Real User Monitoring",
@@ -461,7 +477,7 @@ var relearn_searchindex = [
     "description": "Lets start with a quick, high level tour of RUM by clicking RUM in the left-hand menu. Then change the Environment filter (1) to the name of your workshop instance from the dropdown box, selecting \u003cINSTANCE\u003e-workshop (1) (where INSTANCE is the value from the shell script you ran earlier). Make sure it is the only one selected.\nThen change the App (2) dropdown box to the name of your app, it will be \u003cINSTANCE\u003e-store",
     "tags": [],
     "title": "Select the RUM view for the Petclinic App",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -469,7 +485,7 @@ var relearn_searchindex = [
     "description": "Workshop Overview",
     "tags": [],
     "title": "Workshop Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/1-workshop-goals/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/1-workshop-goals/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -477,15 +493,7 @@ var relearn_searchindex = [
     "description": "Workshop Overview",
     "tags": [],
     "title": "Workshop Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/1-workshop-goals/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Introduction\nThe goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.\nWho Should Attend?\nThis workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It’s designed for individuals with little or no prior experience with the platform.\nWhat You’ll Need\nAll you need is your laptop and a browser with access to external websites. The workshop can be attended either in-person or via Zoom. If you don’t have the Zoom client installed, you can still join using your browser.\nWorkshop Overview\nIn this 3-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here’s what you can expect:\nOpenTelemetry\nLearn why OpenTelemetry is essential for modern observability and how it enhances visibility into your systems.\nTour of the Splunk Observability User Interface\nTake a guided tour of Splunk Observability Cloud’s interface, where we’ll show you how to navigate the five key components: APM, RUM, Log Observer, Synthetics, and Infrastructure.\nGenerate Real User Data\nDive into a simulated retail experience on the Online Boutique Website. Using your browser, mobile, or tablet, explore the site and generate real user data that includes metrics (Is there a problem?), traces (Where is the problem?), and logs (What’s causing the problem?).\nSplunk Real User Monitoring (RUM)\nAnalyze the real user data collected from participants’ browser sessions. Your task is to identify poorly performing sessions and begin the troubleshooting process.\nSplunk Application Performance Monitoring (APM)\nGain end-to-end visibility by linking a RUM trace (front-end) to an APM trace (back-end). You’ll explore how telemetry from various services is captured and visualized in Splunk Observability Cloud, helping you detect anomalies and errors.\nSplunk Log Observer (LO)\nLearn how to leverage the “Related Content” feature to easily navigate between components. In this case, we’ll move from an APM trace to the related logs for deeper insight into issues.\nSplunk Synthetics\nDiscover how Synthetics can help with 24/7 monitoring of your application. We’ll walk you through setting up a simple synthetic test that runs every minute to monitor the performance and availability of the Online Boutique website.\nBy the end of this session, you’ll have gained practical experience with Splunk Observability Cloud and a solid understanding of how to troubleshoot and resolve issues across your application stack.\nOpenTelemetry With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes metrics, traces, and logs.\nTo make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as Splunk Observability Cloud.\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? OpenTelemetry does two important things:\nAllows you to own the data that you generate rather than be stuck with a proprietary data format or tool. Allows you to learn a single set of APIs and conventions These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.\nThere are a lot of variables to consider when getting started with Observability, including the all-important question: “How do I get my data into an Observability tool?”. The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.\nWhy Should You Care? OpenTelemetry is completely open-source and free to use. In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level.\nSince OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation. This is true regardless of which distribution of OpenTelemetry is used – like with Linux, the various distributions bundle settings and add-ons but are all fundamentally based on the community-driven OpenTelemetry project.\nSplunk has fully committed to OpenTelemetry so that our customers can collect and use ALL their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops.",
-    "description": "Workshop Overview",
-    "tags": [],
-    "title": "Workshop Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/1-workshop-goals/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/1-workshop-goals/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud",
@@ -493,7 +501,7 @@ var relearn_searchindex = [
     "description": "This section includes the steps that the workshop organizer should follow to setup the workshop:\nAWS account setup OpenShift prerequisites Deploy a RedHat OpenShift cluster with GPU-based worker nodes using AWS ROSA. Deploy the NVIDIA NIM Operator and NVIDIA GPU Operator. Deploy a Large Language Model (LLM) using NVIDIA NIM to the cluster. Create OpenShift logins and namespaces for each workshop user, with appropriate permissions. Install the Cluster Receiver component of the Splunk OpenTelemetry collector. Deploy a Weviate vector database to the cluster. Deploy a service that mimics the Portworx Prometheus exporter.",
     "tags": [],
     "title": "Workshop Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -501,7 +509,7 @@ var relearn_searchindex = [
     "description": "1. Exploring the Sample Data In the list of available dashboards, look for a group called Sample Data (2).\nThis group contains dashboards that showcase visualizations built from sample metrics. These will give you a sense of how different data can be represented using charts and dashboards in Splunk Observability.\nExpand the Sample Data dashboard group by clicking on it, then select the Sample Charts (3) dashboard.",
     "tags": [],
     "title": "Locating our Sample Data",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-01-sample_data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-01-sample_data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -509,7 +517,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll start by exploring how charts are built and displayed in Splunk Observability. By examining and interacting with an existing chart, you’ll get a feel for how the chart editor works—how data sources are selected, how visual options are configured, and how different settings shape what you see.\n1. Select a chart To get started, make sure you have the SAMPLE CHARTS dashboard open and adjust the time range in the top-right corner of the dashboard back to -5M for Last 5 Minutes or select reset to default",
     "tags": [],
     "title": "Exploring Charts",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-02-exploring_charts/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-02-exploring_charts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -517,7 +525,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll start exploring how charts are structured by editing an existing one. This is a great way to get hands-on experience with the chart editor and understand how chart settings, data sources, and visualization options all come together.\nWith the Latency histogram chart open in the chart editor, let’s begin configuring it for our workshop.\nClick on the Line chart type icon (1) in the visualization pane to change the chart type. The data will now be displayed as a line plot.",
     "tags": [],
     "title": "Editing Charts",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-03-editing-chart/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-03-editing-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -525,7 +533,7 @@ var relearn_searchindex = [
     "description": "Once you’ve customized a chart to fit your needs, the next step is to save it as part of a dashboard. Saving your work lets you reuse, share, and monitor key visualizations over time. In this section, you’ll learn how to name and describe your chart, and how to add it to a dashboard for easy access later.\n1. Saving a Chart To begin saving your chart, let’s give it a clear name and description.",
     "tags": [],
     "title": "Saving Charts and Dashboards",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-04-saving-charts/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-04-saving-charts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -533,7 +541,7 @@ var relearn_searchindex = [
     "description": "1 Creating a New Chart Now let’s create a new chart and add it to the dashboard we’ve been working on!\nTo get started, click the plus icon (1) in the top-middle part of the interface. From the dropdown, select Chart (2). Alternatively, you can click the + New Chart Button (3) button to create a new chart directly.",
     "tags": [],
     "title": "Create New Chart",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-05-new-chart/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-05-new-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -541,7 +549,7 @@ var relearn_searchindex = [
     "description": "1. Filtering and Analytics Splunk Observability makes it easy to explore large volumes of metric data by using filters and analytics functions. Filters help you focus on specific segments of your data—such as a particular service, host, or location—while analytics functions let you transform and analyze that data for deeper insights.\nNow let’s narrow down our data to focus on the Paris data center, which will allow us to apply more targeted analytics. We’ll do this by using a Filter.",
     "tags": [],
     "title": "Using Filters \u0026 Analytics",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-06-filtering/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-06-filtering/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -549,7 +557,7 @@ var relearn_searchindex = [
     "description": "1. Using Timeshift Analytical Function In many cases, it’s useful to compare current performance against historical data—for example, to identify trends, regressions, or improvements over time. The Timeshift function makes this easy by shifting a time series backward in time, letting you see past values side by side with the present.\nTo get started, clone Signal A by clicking the ... menu (1) next to it and selecting Clone (2) from the dropdown.",
     "tags": [],
     "title": "Using TimeShift \u0026 Formula's",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-07-timeshift/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-07-timeshift/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -557,7 +565,7 @@ var relearn_searchindex = [
     "description": "1. Introduction to SignalFlow Now let’s take a closer look at SignalFlow, the powerful analytics language behind Splunk Observability Cloud. SignalFlow enables you to define monitoring logic as code, offering a flexible and real-time way to work with metrics and automate alerting.\nAt the core of Splunk Infrastructure Monitoring is the SignalFlow analytics engine, which processes streaming metric data in real time. SignalFlow is written in a Python-like syntax and allows you to build computations that take in metric time series (MTS), perform transformations or calculations, and output new MTS.",
     "tags": [],
     "title": "Using SignalFlow",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-08-signalflow/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-08-signalflow/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -565,7 +573,7 @@ var relearn_searchindex = [
     "description": "1. Saving to an Existing Dashboard Before saving your chart, check the top-left corner to confirm that YOUR_NAME-Dashboard: YOUR_NAME-Dashboard (1) is selected. This ensures that your chart will be saved to the correct dashboard.\nNext, give your chart a name. Enter Latency History (2), and if you’d like, add a brief description in the Chart Description (3) if you wish like in our example.",
     "tags": [],
     "title": "Adding charts to dashboards",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-09-adding-charts/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-09-adding-charts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 1. Installation",
@@ -573,7 +581,7 @@ var relearn_searchindex = [
     "description": "Confirm the Collector is running The collector should now be running. We will verify this as root using systemctl command. To exit the status just press q.\n​ Command Status Output sudo systemctl status otelcol-contrib ● otelcol-contrib.service - OpenTelemetry Collector Contrib Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled) Active: active (running) since Mon 2024-10-07 10:27:49 BST; 52s ago Main PID: 17113 (otelcol-contrib) Tasks: 13 (limit: 19238) Memory: 34.8M CPU: 155ms CGroup: /system.slice/otelcol-contrib.service └─17113 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Descriptor: Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: -\u003e Name: up Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: -\u003e Description: The scraping was successful Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: -\u003e Unit: Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: -\u003e DataType: Gauge Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: NumberDataPoints #0 Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: StartTimestamp: 1970-01-01 00:00:00 +0000 UTC Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Timestamp: 2024-10-07 09:28:36.942 +0000 UTC Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Value: 1.000000 Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: {\"kind\": \"exporter\", \"data_type\": \"metrics\", \"name\": \"debug\"} Because we will be making multiple configuration file changes, setting environment variables and restarting the collector, we need to stop the collector service and disable it from starting on boot.",
     "tags": [],
     "title": "Installing OpenTelemetry Collector Contrib",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/1-installation/1-confirmation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/1-installation/1-confirmation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 1. Uptime Test",
@@ -581,7 +589,7 @@ var relearn_searchindex = [
     "description": "Open Synthetics Click the Add new test button on the right side of the screen, then select Uptime and HTTP test. Name your test with your team name (provided by your workshop instructor), your initials, and any other details you’d like to include, like geographic region.\nFor now let’s test a GET request. Fill in the URL field. You can use one of your own, or one of ours like https://online-boutique-eu.splunko11y.com, https://online-boutique-us.splunko11y.com, or https://www.splunk.com.",
     "tags": [],
     "title": "Creating a test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/1-create-uptime/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/1-create-uptime/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 1. Agent Configuration",
@@ -589,7 +597,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Gateway serves as a central hub for receiving, processing, and exporting telemetry data. It sits between your telemetry sources (such as applications and services) and your observability backends like Splunk Observability Cloud.\nBy centralizing telemetry traffic, the gateway enables advanced features such as data filtering, enrichment, transformation, and routing to one or more destinations. It helps reduce the burden on individual services by offloading telemetry processing and ensures consistent, standardized data across distributed systems.",
     "tags": [],
     "title": "1.1 Verify Gateway Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/1-agent-gateway/1-1-gateway/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/1-agent-gateway/1-1-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 1. Agent Configuration",
@@ -597,7 +605,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Gateway serves as a central hub for receiving, processing, and exporting telemetry data. It sits between your telemetry sources (such as applications and services) and your observability backends like Splunk Observability Cloud.\nBy centralizing telemetry traffic, the gateway enables advanced features such as data filtering, enrichment, transformation, and routing to one or more destinations. It helps reduce the burden on individual services by offloading telemetry processing and ensures consistent, standardized data across distributed systems.",
     "tags": [],
     "title": "1.1 Verify Gateway Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/1-1-gateway/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/1-1-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 2. API Test",
@@ -605,7 +613,7 @@ var relearn_searchindex = [
     "description": "Global Variables View the global variable that we’ll use to perform our API test. Click on Global Variables under the cog. The global variable named env.encoded_auth will be the one that we’ll use to build the spotify API transaction.",
     "tags": [],
     "title": "Global Variables",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -613,7 +621,7 @@ var relearn_searchindex = [
     "description": "Open the starting URL Open the starting URL for the workshop in Chrome. Click on the appropriate link below to open the site in a new tab.\nNote The starting URL for the workshop is different for EMEA and AMER/APAC. Please use the correct URL for your region.\n​ EMEA Workshop URL AMER/APAC Workshop URL https://online-boutique-eu.splunko11y.com/",
     "tags": [],
     "title": "1.1 Recording a test",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/1-recording-a-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/1-recording-a-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 1. Getting Started",
@@ -621,7 +629,7 @@ var relearn_searchindex = [
     "description": "Aim The aim of this module is for you to complete the first step of Team configuration by adding users to your Team.\n1. Find your Team Navigate to the Teams tab on the main toolbar, you should find you that a Team has been created for you as part of the workshop pre-setup and you would have been informed of your Team Name via e-mail.\nIf you have found your pre-configured Team, skip Step 2. and proceed to Step 3. Configure Your Team. However, if you cannot find your allocated Team, you will need to create a new one, so proceed with Step 2. Create Team",
     "tags": [],
     "title": "Teams",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/team/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/getting_started/team/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup",
@@ -629,7 +637,7 @@ var relearn_searchindex = [
     "description": "In this workshop, we’ll use https://otelbin.io to quickly validate YAML syntax and ensure your OpenTelemetry configurations are accurate. This step helps avoid errors before running tests during the session.\nExercise Here’s how to validate your configuration:\nOpen https://otelbin.io and replace the existing configuration by pasting your YAML into the left pane.\nInfo If are on a Mac and not using a Splunk Workshop instance, you can quickly copy the contents of the agent.yaml file to your clipboard by running the following command:",
     "tags": [],
     "title": "1.1 Validation \u0026 Load Generation",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-1-validation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-1-validation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 1. Dashboards",
@@ -637,7 +645,7 @@ var relearn_searchindex = [
     "description": "1. Adding Notes Often on dashboards it makes sense to place a short “instruction” pane that helps users of a dashboard. Lets add one now by clicking on the New Text Note Button.\nThis will open the notes editor.\nTo allow you to add more then just text to you notes, Splunk is allowing you to use Markdown in these notes/panes. Markdown is a lightweight markup language for creating formatted text using plain-text often used in Webpages.",
     "tags": [],
     "title": "Adding Notes and Dashboard Layout",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/dashboards/1-10-notes-and-layout/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/dashboards/1-10-notes-and-layout/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup \u003e 1.3 File Exporter",
@@ -645,7 +653,7 @@ var relearn_searchindex = [
     "description": "Exercise Restart your agent: Find your Agent terminal window, and (re)start the agent using the modified configuration:\n​ Start the Agent Agent Output ../otelcol --config=agent.yaml 2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data. Send a Trace: From the Spans terminal window, send another span and verify you get the same output on the console as we saw previously:",
     "tags": [],
     "title": "1.3.1 Test File Exporter",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/1-test-fileexporter/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/1-test-fileexporter/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup \u003e 1.4 Resource Metadata",
@@ -653,7 +661,7 @@ var relearn_searchindex = [
     "description": "Exercise Restart your Agent: In your Agent terminal window, and restart the agent using the updated configuration to test the changes:\n​ Start the Agent ../otelcol --config=agent.yaml If everything is set up correctly, the last line of the output should confirm the collector is running:\n2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data. Send a Trace: From the Spans terminal window (making sure you are in the 1-agent directory), send spans again with the loadgen binary to create a new agent.out:",
     "tags": [],
     "title": "1.4.1 Test Resource Metadata",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-4-metadata/1-4-1-test-metadata/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-4-metadata/1-4-1-test-metadata/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -661,7 +669,7 @@ var relearn_searchindex = [
     "description": "Setting Up Basic Alerts in Splunk Enterprise, AppDynamics, and Splunk Observability Cloud This section covers the creation of basic alerts in Splunk Enterprise, AppDynamics, and Splunk Observability Cloud. These examples focus on simplicity and demonstrating the core concepts. Remember that real-world alerting scenarios often require more complex configurations and thresholds.\n1. Splunk Enterprise Alerts Splunk alerts are triggered by search results that match specific criteria. We’ll create a real-time alert that notifies us when a certain condition is met.",
     "tags": [],
     "title": "Creating Basic Alerts",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/2-creating-basic-alerts/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/2-creating-basic-alerts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud",
@@ -669,7 +677,7 @@ var relearn_searchindex = [
     "description": "System architecture The primary components of the Ingest Processor service include the Ingest Processor service and SPL2 pipelines that support data processing. The following diagram provides an overview of how the components of the Ingest Processor solution work together:\nIngest Processor service The Ingest Processor service is a cloud service hosted by Splunk. It is part of the data management experience, which is a set of services that fulfill a variety of data ingest and processing use cases.",
     "tags": [],
     "title": "How Ingest Processor Works",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/2-ingest-processor-pipelines/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/2-ingest-processor-pipelines/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall",
@@ -677,7 +685,7 @@ var relearn_searchindex = [
     "description": "Aim The aim of this module is for you to get more familiar with the Timeline Tab and the filtering features.\n1. Timeline The aim of Splunk On-Call is to make being on call more bearable, and it does this by getting the critical data, to the right people, at the right time.\nThe key to making it work for you is to centralize all your alerting sources, sending them all to the Splunk On-Call platform, then you have a single pane of glass in which to manage all of your alerting.",
     "tags": [],
     "title": "Incident Lifecycle",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/incident_lifecycle/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -685,7 +693,7 @@ var relearn_searchindex = [
     "description": "Why Standards Matter As cloud adoption grows, we often face requests to support new technologies within a diverse landscape, posing challenges in delivering timely content. Take, for instance, a team containerizing five workloads on AWS requiring EKS visibility. Usually, this involves assisting with integration setup, configuring metadata, and creating dashboards and alerts—a process that’s both time-consuming and increases administrative overhead and technical debt.\nSplunk Observability Cloud was designed to handle customers with a diverse set of technical requirements and stacks – from monolithic to microservices architectures, from homegrown applications to Software-as-a-Service.",
     "tags": [],
     "title": "Standardize Data Collection",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/2-standardize-data-collection/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/2-standardize-data-collection/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -693,7 +701,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will update the extensions: section of the agent.yaml file. This section is part of the OpenTelemetry configuration YAML and defines optional components that enhance or modify the OpenTelemetry Collector’s behavior.\nWhile these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.\nExercise Important Change ALL terminal windows to the 2-building-resilience directory and run the clear command.",
     "tags": [],
     "title": "2.1 File Storage Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/2-building-resilience/2-1-configuration/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/2-building-resilience/2-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -701,7 +709,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will update the extensions: section of the agent.yaml file. This section is part of the OpenTelemetry configuration YAML and defines optional components that enhance or modify the OpenTelemetry Collector’s behavior.\nWhile these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.\nExercise Important Change ALL terminal windows to the 2-building-resilience directory and run the clear command.",
     "tags": [],
     "title": "2.1 File Storage Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 2. Incident Lifecycle",
@@ -709,7 +717,7 @@ var relearn_searchindex = [
     "description": "Aim The aim of this module is for you to place yourself ‘On-Call’ then generate an Incident using the supplied EC2 Instance so you can then work through the lifecycle of an Incident.\n1. On-Call Before generating any incidents you should assign yourself to the current Shift within your Follow the Sun Support - Business Hours Rotation and also place yourself On-Call.\nClick on the Schedule link within your Team in the People section on the left, or navigate to Teams → [Your Team] → Rotations Expand the Follow the Sun Support - Business Hours Rotation Click on the Manage members icon (the figures) for the current active shift depending on your time zone Use the Select a user to add… dropdown to add yourself to the shift Then click on Set Current next to your name to make yourself the current on-call user within the shift You should now get a Push Notification to your phone informing you that You Are Now On-Call 2. Trigger Alert Switch back to your shell session connected to your EC2 Instance; all of the following commands will be executed from your Instance.",
     "tags": [],
     "title": "Create Incidents",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability \u003e 2 Collect Data with Standards",
@@ -717,7 +725,7 @@ var relearn_searchindex = [
     "description": "Gateway First we will deploy the OTel Gateway. The workshop instructor will deploy the gateway, but we will walk through the steps here if you wish to try this yourself on a second instance.\nThe steps:\nClick the Data Management icon in the toolbar Click the + Add integration button Click Deploy the Splunk OpenTelemetry Collector button Click Next Select Linux Change mode to Data forwarding (gateway) Set the environment to prod Choose the access token for this workshop Click Next Copy the installer script and run it in the provided linux environment. Once our gateway is started we will notice… Nothing. The gateway, by default, doesn’t send any data. It can be configured to send data, but it doesn’t by default.",
     "tags": [],
     "title": "Deploy Gateway",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/2-collect-with-standards/1-deploy-gateway/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/2-collect-with-standards/1-deploy-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 2. API Test",
@@ -725,7 +733,7 @@ var relearn_searchindex = [
     "description": "Global variables allow us to use stored strings in multiple tests, so we only need to update them in one place.\nView the global variable that we’ll use to perform our API test. Click on Global Variables under the cog icon. The global variable named env.encoded_auth will be the one that we’ll use to build the spotify API transaction.",
     "tags": [],
     "title": "Global Variables",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/1-global-variables/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/1-global-variables/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 2. Extensions",
@@ -733,7 +741,7 @@ var relearn_searchindex = [
     "description": "Health Check Extensions are configured in the same config.yaml file that we referenced in the installation step. Let’s edit the config.yaml file and configure the extensions. Note that the pprof and zpages extensions are already configured in the default config.yaml file. For the purpose of this workshop, we will only be updating the health_check extension to expose the port on all network interfaces on which we can access the health of the collector.",
     "tags": [],
     "title": "OpenTelemetry Collector Extensions",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/1-health/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/1-health/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 2. Gateway Setup",
@@ -741,7 +749,7 @@ var relearn_searchindex = [
     "description": "The configuration for the gateway does not need any additional configuration changes to function. This has been done to save time and focus on the core concepts of the Gateway.\nValidate the gateway configuration using otelbin.io. For reference, the logs: section of your pipelines will look similar to this:\n%%{init:{\"fontFamily\":\"monospace\"}}%% graph LR %% Nodes REC1(\u0026nbsp;\u0026nbsp;otlp\u0026nbsp;\u0026nbsp;\u003cbr\u003efa:fa-download):::receiver PRO1(memory_limiter\u003cbr\u003efa:fa-microchip):::processor PRO2(resource\u003cbr\u003efa:fa-microchip\u003cbr\u003eadd_mode):::processor PRO3(batch\u003cbr\u003efa:fa-microchip):::processor EXP1(\u0026ensp;file\u0026ensp;\u003cbr\u003efa:fa-upload\u003cbr\u003elogs):::exporter EXP2(\u0026ensp;debug\u0026ensp;\u003cbr\u003efa:fa-upload):::exporter %% Links subID1:::sub-logs subgraph \" \" subgraph subID1[**Logs**] direction LR REC1 --\u003e PRO1 PRO1 --\u003e PRO2 PRO2 --\u003e PRO3 PRO3 --\u003e EXP2 PRO3 --\u003e EXP1 end end classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff; classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff; classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff; classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3; Exercise Start the Gateway: In the Gateway terminal window, run the following command to start the gateway:",
     "tags": [],
     "title": "2.1 Start Gateway",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-1-start-gateway/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-1-start-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud",
@@ -749,7 +757,7 @@ var relearn_searchindex = [
     "description": "Scenario Overview In this scenario you will be playing the role of a Splunk Admin responsible for managing your organizations Splunk Enterprise Cloud environment. You recently worked with an internal application team on instrumenting their Kubernetes environment with Splunk APM and Infrastructure monitoring using OpenTelemetry to monitor their critical microservice applications.\nThe logs from the Kubernetes environment are also being collected and sent to Splunk Enter Prize Cloud. These logs include:",
     "tags": [],
     "title": "Create an Ingest Pipeline",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -757,7 +765,7 @@ var relearn_searchindex = [
     "description": "Creating Services in ITSI with Dependencies Based on Entity Type This workshop outlines how to create a service in Splunk IT Service Intelligence (ITSI) using an existing entity and establishing dependencies based on the entity’s type. We’ll differentiate between entities representing business workflows from Splunk Observability Cloud and those representing AppDynamics Business Transactions.\nScenario:\nWe have two existing services: “Online-Boutique-US” (representing an application running in Kubernetes and being monitored by Splunk Observability Cloud) and “AD.ECommerce” (representing an application monitored by AppDynamics). We want to create a new service and add it as a dependent of one of those services. It is not necessary to create a service for both during your first run through this workshop so pick one that you are more interested in to start with.",
     "tags": [],
     "title": "Creating Services in ITSI",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -765,7 +773,7 @@ var relearn_searchindex = [
     "description": "In today’s rapidly evolving technological landscape, where hybrid and cloud environments are becoming the norm, the need for effective monitoring and troubleshooting solutions has never been more critical. However, managing the elasticity and complexity of these modern infrastructures poses a significant challenge for teams across various industries. One of the primary pain points encountered in this endeavor is the inadequacy of existing monitoring and troubleshooting experiences.\nTraditional monitoring approaches often fall short in addressing the intricacies of hybrid and cloud environments. Teams frequently encounter slow data visualization and troubleshooting processes, compounded by the clutter of bespoke yet similar dashboards and the manual correlation of data from disparate sources. This cumbersome workflow is made worse by the absence of monitoring tools tailored to ephemeral technologies such as containers, orchestrators like Kubernetes, and serverless functions.",
     "tags": [],
     "title": "Reuse Content Across Teams",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/3-reuse-content-across-teams/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/3-reuse-content-across-teams/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 3. Dropping Spans",
@@ -773,7 +781,7 @@ var relearn_searchindex = [
     "description": "Exercise Switch to your Gateway terminal window and open the gateway.yaml file. Update the processors section with the following configuration:\nAdd a filter processor:\nConfigure the gateway to exclude spans with the name /_healthz. The error_mode: ignore directive ensures that any errors encountered during filtering are ignored, allowing the pipeline to continue running smoothly. The traces section defines the filtering rules, specifically targeting spans named /_healthz for exclusion.",
     "tags": [],
     "title": "3.1 Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/3-dropping-spans/3-1-configuration/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/3-dropping-spans/3-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 3. FileLog Setup",
@@ -781,7 +789,7 @@ var relearn_searchindex = [
     "description": "Exercise In the Agent terminal window edit the agent.yaml and configure the FileLog receiver.\nConfigure FileLog Receiver: The filelog receiver reads log data from a file and includes custom resource attributes in the log data:\nfilelog/quotes: # Receiver Type/Name include: ./quotes.log # The file to read log data from include_file_path: true # Include file path in the log data include_file_name: false # Exclude file name from the log data resource: # Add custom resource attributes com.splunk.source: ./quotes.log # Source of the log data com.splunk.sourcetype: quotes # Source type of the log data Update logs pipeline: Add thefilelog/quotes receiver to the logs pipeline only:",
     "tags": [],
     "title": "3.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/3-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/3-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 3. Dropping Spans",
@@ -789,7 +797,7 @@ var relearn_searchindex = [
     "description": "Exercise Switch to your Gateway terminal window and open the gateway.yaml file. Update the processors section with the following configuration:\nAdd a filter processor:\nConfigure the gateway to exclude spans with the name /_healthz. The error_mode: ignore directive ensures that any errors encountered during filtering are ignored, allowing the pipeline to continue running smoothly. The traces section defines the filtering rules, specifically targeting spans named /_healthz for exclusion.",
     "tags": [],
     "title": "3.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/3-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/3-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -797,7 +805,7 @@ var relearn_searchindex = [
     "description": "1. Editing a chart Select the SAMPLE CHARTS dashboard and then click on the three dots ... on the Latency histogram chart, then on Open (or you can click on the name of the chart which here is Latency histogram).\nYou will see the plot options, current plot and signal (metric) for the Latency histogram chart in the chart editor UI.",
     "tags": [],
     "title": "Editing charts",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/editing/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/editing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -805,7 +813,7 @@ var relearn_searchindex = [
     "description": "Correlating infrastructure metrics and logs is often a challenging task, primarily due to inconsistencies in naming conventions across various data sources, including hosts operating on different systems. However, leveraging the capabilities of OpenTelemetry can significantly simplify this process. With OpenTelemetry’s robust framework, which offers rich metadata and attribution, metrics, traces, and logs can seamlessly correlate using standardized field names. This automated correlation not only alleviates the burden of manual effort but also enhances the overall observability of the system.",
     "tags": [],
     "title": "Correlate Metrics and Logs",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/4-correlate-metrics-logs/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/4-correlate-metrics-logs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -813,7 +821,7 @@ var relearn_searchindex = [
     "description": "Configuring a Basic Alert in Splunk ITSI This section guides you through configuring a basic alert in Splunk IT Service Intelligence (ITSI). We’ll set up an alert that triggers when our previously created Service breaches a KPI threshold.\nDepending on the Service You Created, the KPI we use for this alert will change. In the instruction steps below replace Service Name and KPI appropriately\nPaymentService2: Business Workflow Error Rate AD-Ecommerce2: Availability Steps:",
     "tags": [],
     "title": "Creating Alerts in ITSI",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/4-creating-alerts-in-itsi/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/4-creating-alerts-in-itsi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud",
@@ -821,7 +829,7 @@ var relearn_searchindex = [
     "description": "Context Matters In the previous section, you reviewed the raw Kubernetes audit logs and created an Ingest Processor Pipeline to convert them to metrics and send those metrics to Splunk Observability Cloud.\nNow that this pipeline is defined we are collecting the new metrics in Splunk Observability Cloud. This is a great start; however, you will only see a single metric showing the total number of Kubernetes audit events for a given time period. It would be much more valuable to add dimensions so that you can split the metric by the event type, user, response status, and so on.",
     "tags": [],
     "title": "Update Pipeline and Visualize Metrics",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 4. Processors",
@@ -829,7 +837,7 @@ var relearn_searchindex = [
     "description": "Batch Processor By default, only the batch processor is enabled. This processor is used to batch up data before it is exported. This is useful for reducing the number of network calls made to exporters. For this workshop, we will inherit the following defaults which are hard-coded into the Collector:\nsend_batch_size (default = 8192): Number of spans, metric data points, or log records after which a batch will be sent regardless of the timeout. send_batch_size acts as a trigger and does not affect the size of the batch. If you need to enforce batch size limits sent to the next component in the pipeline see send_batch_max_size. timeout (default = 200ms): Time duration after which a batch will be sent regardless of size. If set to zero, send_batch_size is ignored as data will be sent immediately, subject to only send_batch_max_size. send_batch_max_size (default = 0): The upper limit of the batch size. 0 means no upper limit on the batch size. This property ensures that larger batches are split into smaller units. It must be greater than or equal to send_batch_size. For more information on the Batch processor, see the Batch Processor documentation.",
     "tags": [],
     "title": "OpenTelemetry Collector Processors",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/1-batch-processor/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/1-batch-processor/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -837,7 +845,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll modify agent.yaml to include the attributes and redaction processors. These processors will help ensure that sensitive data within span attributes is properly handled before being logged or exported.\nPreviously, you may have noticed that some span attributes displayed in the console contained personal and sensitive data. We’ll now configure the necessary processors to filter out and redact this information effectively.\nAttributes: -\u003e user.name: Str(George Lucas) -\u003e user.phone_number: Str(+1555-867-5309) -\u003e user.email: Str(george@deathstar.email) -\u003e user.account_password: Str(LOTR\u003eStarWars1-2-3) -\u003e user.visa: Str(4111 1111 1111 1111) -\u003e user.amex: Str(3782 822463 10005) -\u003e user.mastercard: Str(5555 5555 5555 4444) {\"kind\": \"exporter\", \"data_type\": \"traces\", \"name\": \"debug\"} Exercise Switch to your Agent terminal window and open the agent.yaml file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data.",
     "tags": [],
     "title": "4.1 Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/4-sensitive-data/4-1-configuration/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/4-sensitive-data/4-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 4. Building Resilience",
@@ -845,7 +853,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will update the extensions: section of the agent.yaml file. This section is part of the OpenTelemetry configuration YAML and defines optional components that enhance or modify the OpenTelemetry Collector’s behavior.\nWhile these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.\nExercise Update the agent.yaml: In the Agent terminal window, add the file_storage extension and name it checkpoint:",
     "tags": [],
     "title": "4.1 File Storage Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -853,7 +861,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll modify agent.yaml to include the attributes and redaction processors. These processors will help ensure that sensitive data within span attributes is properly handled before being logged or exported.\nPreviously, you may have noticed that some span attributes displayed in the console contained personal and sensitive data. We’ll now configure the necessary processors to filter out and redact this information effectively.\nAttributes: -\u003e user.name: Str(George Lucas) -\u003e user.phone_number: Str(+1555-867-5309) -\u003e user.email: Str(george@deathstar.email) -\u003e user.account_password: Str(LOTR\u003eStarWars1-2-3) -\u003e user.visa: Str(4111 1111 1111 1111) -\u003e user.amex: Str(3782 822463 10005) -\u003e user.mastercard: Str(5555 5555 5555 4444) {\"kind\": \"exporter\", \"data_type\": \"traces\", \"name\": \"debug\"} Exercise Switch to your Agent terminal window and open the agent.yaml file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data.",
     "tags": [],
     "title": "4.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 4. Detectors",
@@ -861,7 +869,7 @@ var relearn_searchindex = [
     "description": "Learn how to configure Muting Rules Learn how to resume notifications 1. Configuring Muting Rules There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let’s create one!\nClick on Alerts \u0026 Detectors in the sidebar and then click Detectors to see the list of active detectors.",
     "tags": [],
     "title": "Working with Muting Rules",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/detectors/muting/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/detectors/muting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud",
@@ -869,7 +877,7 @@ var relearn_searchindex = [
     "description": "In this workshop, you walked through the entire process of optimizing Kubernetes log management by converting detailed log events into actionable metrics using Splunk Ingest Pipelines. You started by defining a pipeline that efficiently converts Kubernetes audit logs into metrics, drastically reducing the data volume while retaining critical information. You then ensured the raw log events were securely stored in S3 for long-term retention and deeper analysis.",
     "tags": [],
     "title": "Conclusion",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/5-workshop-conclusion/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/5-workshop-conclusion/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -877,7 +885,7 @@ var relearn_searchindex = [
     "description": "Creating an Aggregation Policy in Splunk ITSI This section outlines the steps to create an aggregation policy in Splunk ITSI that matches the alerts we just set up. This policy will group related alerts, reducing noise and improving incident management.\nDepending on the Alert You Created, the title we use for this alert will change. In the instruction steps below replace AlertName with the Service Name used\nPaymentService2 or AD-Ecommerce2 Steps Navigate to Notable Event Aggregation Policies: In Splunk, go to “Configuration” -\u003e “Notable Event Aggregation Policies”.",
     "tags": [],
     "title": "Creating Episodes in ITSI",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/5-episodes-in-itsi/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/5-episodes-in-itsi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -885,7 +893,7 @@ var relearn_searchindex = [
     "description": "When monitoring hybrid and cloud environments, ensuring timely alerts for critical infrastructure and applications poses a significant challenge. Typically, this involves crafting intricate queries, meticulously scheduling searches, and managing alerts across various monitoring solutions. Moreover, the proliferation of disparate alerts generated from identical data sources often results in unnecessary duplication, contributing to alert fatigue and noise within the monitoring ecosystem.\nIn this section, we’ll explore how Splunk Observability Cloud addresses these challenges by enabling the effortless creation of alert criteria. Leveraging its 10-second default data collection capability, alerts can be triggered swiftly, surpassing the timeliness achieved by traditional monitoring tools. This enhanced responsiveness not only reduces Mean Time to Detect (MTTD) but also accelerates Mean Time to Resolve (MTTR), ensuring that critical issues are promptly identified and remediated.",
     "tags": [],
     "title": "Improve Timeliness of Alerts",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/5-improve-alert-timeliness/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/5-improve-alert-timeliness/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -893,7 +901,7 @@ var relearn_searchindex = [
     "description": "Exercise Add a transform processor: Switch to your Gateway terminal window and edit the gateway.yaml and add the following transform processor:\ntransform/logs: # Processor Type/Name log_statements: # Log Processing Statements - context: resource # Log Context statements: # List of attribute keys to keep - keep_keys(attributes, [\"com.splunk.sourcetype\", \"host.name\", \"otelcol.service.mode\"]) By using the -context: resource key we are targeting the resourceLog attributes of logs.",
     "tags": [],
     "title": "5.1 Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/5-transform-data/5-1-configuration/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/5-transform-data/5-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 5. Dropping Spans",
@@ -901,7 +909,7 @@ var relearn_searchindex = [
     "description": "Exercise Switch to your Gateway terminal window and open the gateway.yaml file. Update the processors section with the following configuration:\nAdd a filter processor:\nConfigure the gateway to exclude spans with the name /_healthz. The error_mode: ignore directive ensures that any errors encountered during filtering are ignored, allowing the pipeline to continue running smoothly. The traces section defines the filtering rules, specifically targeting spans named /_healthz for exclusion.",
     "tags": [],
     "title": "5.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/5-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/5-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -909,7 +917,7 @@ var relearn_searchindex = [
     "description": "Exercise Add a transform processor: Switch to your Gateway terminal window and edit the gateway.yaml and add the following transform processor:\ntransform/logs: # Processor Type/Name log_statements: # Log Processing Statements - context: resource # Log Context statements: # List of attribute keys to keep - keep_keys(attributes, [\"com.splunk.sourcetype\", \"host.name\", \"otelcol.service.mode\"]) By using the -context: resource key we are targeting the resourceLog attributes of logs.",
     "tags": [],
     "title": "5.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 5. Exporters",
@@ -917,7 +925,7 @@ var relearn_searchindex = [
     "description": "OTLP HTTP Exporter To send metrics over HTTP to Splunk Observability Cloud, we will need to configure the otlphttp exporter.\nLet’s edit our /etc/otelcol-contrib/config.yaml file and configure the otlphttp exporter. Insert the following YAML under the exporters section, taking care to indent by two spaces e.g.\nWe will also change the verbosity of the logging exporter to prevent the disk from filling up. The default of detailed is very noisy.",
     "tags": [],
     "title": "OpenTelemetry Collector Exporters",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring",
@@ -925,7 +933,7 @@ var relearn_searchindex = [
     "description": "Today you’ve seen how Splunk Observability Cloud can help you overcome many of the challenges you face monitoring hybrid and cloud environments. You’ve demonstrated how Splunk Observability Cloud streamlines operations with standardized data collection and tags, ensuring consistency across all IT infrastructure. The Unified Service Telemetry has been a game-changer, providing in-context metrics, logs, and trace data that make troubleshooting swift and efficient. By enabling the reuse of content across teams, you’re minimizing technical debt and bolstering the performance of our monitoring systems.",
     "tags": [],
     "title": "Conclusion",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/6-workshop-conclusion/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/6-workshop-conclusion/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence",
@@ -933,7 +941,7 @@ var relearn_searchindex = [
     "description": "Part 2: Sending Alerts from Splunk Observability Cloud to Splunk ITSI Since we have a detector configured in Splunk Observability Cloud that we set up earlier, the next step is to ensure that when it triggers an alert, this alert is sent to Splunk IT Service Intelligence (ITSI). This integration allows ITSI to ingest these alerts as notable events, which can then be correlated with other events and contribute to service health scores. The most common method to achieve this is by using a webhook in Splunk Observability Cloud to send alert data to an HTTP Event Collector (HEC) endpoint configured in Splunk ITSI.",
     "tags": [],
     "title": "Using Observability Cloud Detectors in ITSI",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/6-detectors-to-itsi/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/6-detectors-to-itsi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 6. Sensitive Data",
@@ -941,7 +949,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll modify agent.yaml to include the attributes and redaction processors. These processors will help ensure that sensitive data within span attributes is properly handled before being logged or exported.\nPreviously, you may have noticed that some span attributes displayed in the console contained personal and sensitive data. We’ll now configure the necessary processors to filter out and redact this information effectively.\n\u003csnip\u003e Attributes: -\u003e user.name: Str(George Lucas) -\u003e user.phone_number: Str(+1555-867-5309) -\u003e user.email: Str(george@deathstar.email) -\u003e user.account_password: Str(LOTR\u003eStarWars1-2-3) -\u003e user.visa: Str(4111 1111 1111 1111) -\u003e user.amex: Str(3782 822463 10005) -\u003e user.mastercard: Str(5555 5555 5555 4444) {\"kind\": \"exporter\", \"data_type\": \"traces\", \"name\": \"debug\"} Exercise Switch to your Agent terminal window and open the agent.yaml file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data: the Attributes Processor and the Redaction Processor.",
     "tags": [],
     "title": "6.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 6. Service",
@@ -949,7 +957,7 @@ var relearn_searchindex = [
     "description": "Hostmetrics Receiver If you recall from the Receivers portion of the workshop, we defined the Host Metrics Receiver to generate metrics about the host system, which are scraped from various sources. To enable the receiver, we must include the hostmetrics receiver in the metrics pipeline.\nIn the metrics pipeline, add hostmetrics to the metrics receivers section.\nservice: pipelines: traces: receivers: [otlp, opencensus, jaeger, zipkin] processors: [batch] exporters: [debug] metrics: receivers: [hostmetrics, otlp, opencensus, prometheus] processors: [batch] exporters: [debug]",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/1-hostmetrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/1-hostmetrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -957,7 +965,7 @@ var relearn_searchindex = [
     "description": "In this exercise, you will configure the Routing Connector in the gateway.yaml. The Routing Connector can route metrics, traces, and logs based on any attributes, we will focus exclusively on trace routing based on the deployment.environment attribute (though any span/log/metirc attribute can be used).\nExercise Add new file exporters: The routing connector requires different targets for routing. Create two new file exporters, file/traces/route1-regular and file/traces/route2-security, to ensure data is directed correctly in the exporters section of the gateway.yaml:",
     "tags": [],
     "title": "6.1 Configure the Routing Connector",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/6-routing-data/6-1-connector/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/6-routing-data/6-1-connector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -965,7 +973,7 @@ var relearn_searchindex = [
     "description": "In this exercise, you will configure the Routing Connector in the gateway.yaml. The Routing Connector can route metrics, traces, and logs based on any attributes, we will focus exclusively on trace routing based on the deployment.environment attribute (though any span/log/metirc attribute can be used).\nExercise Add new file exporters: The routing connector requires different targets for routing. In the Gateway terminal create two new file exporters, file/traces/route1-regular and file/traces/route2-security, to ensure data is directed correctly in the exporters section of the gateway.yaml:",
     "tags": [],
     "title": "6.1 Configure the Routing Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-1-connector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-1-connector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 6. Service Bureau",
@@ -973,7 +981,7 @@ var relearn_searchindex = [
     "description": "Introduction to Teams Create a Team and add members to the Team 1. Introduction to Teams To make sure that users see the dashboards and alerts that are relevant to them when using Observability Cloud, most organizations will use Observability Cloud’s Teams feature to assign a member to one or more Teams.\nIdeally, this matches work-related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in Observability Cloud.",
     "tags": [],
     "title": "Teams",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/servicebureau/teams/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/teams/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 7. Transform Data",
@@ -981,7 +989,7 @@ var relearn_searchindex = [
     "description": "Exercise Add a transform processor: Switch to your Agent terminal window and edit the agent.yaml and add the following transform processor:\ntransform/logs: # Processor Type/Name log_statements: # Log Processing Statements - context: resource # Log Context statements: # List of attribute keys to keep - keep_keys(attributes, [\"com.splunk.sourcetype\", \"host.name\", \"otelcol.service.mode\"]) By using the -context: resource key we are targeting the resourceLog attributes of logs.",
     "tags": [],
     "title": "7.1 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-1-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-1-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 7. Count \u0026 Sum Connector",
@@ -989,7 +997,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway:\nIn the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent:\nIn the Agent terminal window run:\n​ Start the Agent ../otelcol --config=agent.yaml Send 12 Logs lines with the Loadgen:\nIn the Spans terminal window send 12 log lines, they should be read in two intervals. Do this with the following loadgen command:",
     "tags": [],
     "title": "7.1 Testing the Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-1-count-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-1-count-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 8. Routing Data",
@@ -997,7 +1005,7 @@ var relearn_searchindex = [
     "description": "In this exercise, you will configure the Routing Connector in the gateway.yaml file. This setup enables the gateway to route traces based on the deployment.environment attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.\nExercise In OpenTelemetry configuration files, connectors have their own dedicated section, similar to receivers and processors.\nAdd the routing connector: In the Gateway terminal window, edit gateway.yaml and uncomment the #connectors: section. Then, add the following below the connectors: section:",
     "tags": [],
     "title": "8.1 Configure the Routing Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-1-connector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-1-connector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 9. Count \u0026 Sum Connector",
@@ -1005,7 +1013,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway:\nIn the Gateway terminal window navigate to the [WORKSHOP]/9-sum-count directory and run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent:\nIn the Agent terminal window navigate to the [WORKSHOP]/9-sum-count directory and run:\n​ Start the Agent ../otelcol --config=agent.yaml Send 12 Logs lines with the Loadgen:\nIn the Spans terminal window navigate to the [WORKSHOP]/9-sum-count directory.\nSend 12 log lines, they should be read in two intervals. Do this with the following loadgen command:",
     "tags": [],
     "title": "9.1 Testing the Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-1-count-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-1-count-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -1013,7 +1021,7 @@ var relearn_searchindex = [
     "description": "In this Lab you learn how to use Splunk AppDynamics to monitor the health of your application services.",
     "tags": [],
     "title": "Application Performance Monitoring (APM)",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Jenkins Automation",
@@ -1021,7 +1029,7 @@ var relearn_searchindex = [
     "description": "System Architecture The Jenkins-based Smart Agent deployment system uses a hub-and-spoke architecture where a Jenkins agent in your AWS VPC orchestrates deployments to multiple target hosts via SSH.\nHigh-Level Architecture graph TB subgraph \"Jenkins Infrastructure\" JM[Jenkins Master\u003cbr/\u003eWeb UI + Orchestration] JA[Jenkins Agent\u003cbr/\u003eEC2 in VPC\u003cbr/\u003eLabel: linux] end subgraph \"AWS VPC - Private Network\" subgraph \"Target EC2 Instances\" H1[Host 1\u003cbr/\u003e172.31.1.243] H2[Host 2\u003cbr/\u003e172.31.1.48] H3[Host 3\u003cbr/\u003e172.31.1.5] HN[Host N\u003cbr/\u003e172.31.x.x] end end DEV[Developer/Operator] APPD[AppDynamics\u003cbr/\u003eController] DEV --\u003e|1. Triggers Pipeline| JM JM --\u003e|2. Assigns Job| JA JA --\u003e|3. SSH Deploy\u003cbr/\u003ePrivate IPs| H1 JA --\u003e|3. SSH Deploy\u003cbr/\u003ePrivate IPs| H2 JA --\u003e|3. SSH Deploy\u003cbr/\u003ePrivate IPs| H3 JA --\u003e|3. SSH Deploy\u003cbr/\u003ePrivate IPs| HN H1 -.-\u003e|Metrics| APPD H2 -.-\u003e|Metrics| APPD H3 -.-\u003e|Metrics| APPD HN -.-\u003e|Metrics| APPD style JM fill:#d4e6f1 style JA fill:#a9cce3 style H1 fill:#aed6f1 style H2 fill:#aed6f1 style H3 fill:#aed6f1 style HN fill:#aed6f1 Network Architecture All infrastructure runs in a single AWS VPC with a shared security group. The Jenkins agent communicates with target hosts via private IPs, eliminating the need for public IP addresses on target hosts.",
     "tags": [],
     "title": "Architecture \u0026 Design",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/1-architecture/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/1-architecture/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e GitHub Actions Automation",
@@ -1029,7 +1037,7 @@ var relearn_searchindex = [
     "description": "System Architecture The GitHub Actions-based Smart Agent deployment system uses a self-hosted runner within your AWS VPC to orchestrate deployments to multiple target hosts via SSH.\nHigh-Level Architecture graph TB subgraph Internet GH[GitHub.com\u003cbr/\u003eRepository \u0026 Actions] User[Developer\u003cbr/\u003eLocal Machine] end subgraph AWS[\"AWS VPC (172.31.0.0/16)\"] subgraph SG[\"Security Group: smartagent-lab\"] Runner[Self-hosted Runner\u003cbr/\u003eEC2 Instance\u003cbr/\u003e172.31.1.x] subgraph Targets[\"Target Hosts\"] T1[Target Host 1\u003cbr/\u003eUbuntu EC2\u003cbr/\u003e172.31.1.243] T2[Target Host 2\u003cbr/\u003eUbuntu EC2\u003cbr/\u003e172.31.1.48] T3[Target Host 3\u003cbr/\u003eUbuntu EC2\u003cbr/\u003e172.31.1.5] end end end User --\u003e|git push| GH GH \u003c--\u003e|HTTPS:443\u003cbr/\u003ePoll for jobs| Runner Runner --\u003e|SSH:22\u003cbr/\u003ePrivate IPs| T1 Runner --\u003e|SSH:22\u003cbr/\u003ePrivate IPs| T2 Runner --\u003e|SSH:22\u003cbr/\u003ePrivate IPs| T3 style GH fill:#24292e,color:#fff style User fill:#0366d6,color:#fff style Runner fill:#28a745,color:#fff style T1 fill:#ffd33d,color:#000 style T2 fill:#ffd33d,color:#000 style T3 fill:#ffd33d,color:#000 Network Architecture All infrastructure runs in a single AWS VPC with a shared security group. The self-hosted runner communicates with target hosts via private IPs.",
     "tags": [],
     "title": "Architecture \u0026 Design",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/1-architecture/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/1-architecture/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -1037,7 +1045,7 @@ var relearn_searchindex = [
     "description": "Learn how to leverage Splunk's automatic discovery and configuration capabilities for Java applications. These workshops demonstrate zero-code instrumentation to instantly generate metrics, traces, and logs for comprehensive observability across monolith and Kubernetes deployments.",
     "tags": [],
     "title": "Automatic Discovery Workshops",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Browser Real User Monitoring (BRUM)",
@@ -1045,7 +1053,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your Controller and verify application load.",
     "tags": [],
     "title": "BRUM Lab Prerequisits",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/1-lab-prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/1-lab-prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -1053,7 +1061,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your Controller and verify application load.",
     "tags": [],
     "title": "Lab Prerequisite",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/1-lab-prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/1-lab-prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -1061,7 +1069,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your Controller and verify application load.",
     "tags": [],
     "title": "Lab Prerequisite",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/1-lab-prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/1-lab-prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources \u003e Local Hosting",
@@ -1069,7 +1077,7 @@ var relearn_searchindex = [
     "description": "Learn how to create a local hosting environment with Multipass - Windows/Linux/Mac(Intel)",
     "tags": [],
     "title": "Local Hosting with Multipass",
-    "uri": "/observability-workshop/en/resources/local-hosting/multipass/index.html"
+    "uri": "/observability-workshop/resources/local-hosting/multipass/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops",
@@ -1077,7 +1085,7 @@ var relearn_searchindex = [
     "description": "In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.",
     "tags": [],
     "title": "Observability Cloud",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops",
@@ -1085,7 +1093,7 @@ var relearn_searchindex = [
     "description": "Learn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.",
     "tags": [],
     "title": "Making Your Observability Cloud Native With OpenTelemetry",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios",
@@ -1093,7 +1101,7 @@ var relearn_searchindex = [
     "description": "This scenario is for ITOps teams managing a hybrid infrastructure that need to troubleshoot cloud-native performance issues, by correlating real-time metrics with logs to troubleshoot faster, improve MTTD/MTTR, and optimize costs.",
     "tags": [],
     "title": "Optimize Cloud Monitoring",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -1101,7 +1109,7 @@ var relearn_searchindex = [
     "description": "What is Isovalent Enterprise Platform? The Isovalent Enterprise Platform consists of three core components built on eBPF (Extended Berkeley Packet Filter) technology:\nCilium Cloud Native CNI and Network Security\neBPF-based networking and security for Kubernetes Replaces kube-proxy with high-performance eBPF datapath Native support for AWS ENI mode (pods get VPC IP addresses) Network policy enforcement at L3-L7 Transparent encryption and load balancing Hubble Network Observability\nBuilt on top of Cilium’s eBPF visibility Real-time network flow monitoring L7 protocol visibility (HTTP, DNS, gRPC, Kafka) Flow export and historical data storage (Timescape) Metrics exposed on port 9965 Tetragon Runtime Security and Observability",
     "tags": [],
     "title": "Overview",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/1-overview/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/1-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6.2 Optional Exercise",
@@ -1109,7 +1117,7 @@ var relearn_searchindex = [
     "description": "This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 1",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/30-im-exercise/1-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/30-im-exercise/1-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6.2 Optional Exercise",
@@ -1117,15 +1125,15 @@ var relearn_searchindex = [
     "description": "This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 1",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/30-im-exercise/1-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/30-im-exercise/1-im-exercise/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live6.2 Optional Exercise",
-    "content": "This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.\nThe screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters \u0026 their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.\nBefore we dive deeper, let’s make sure we are looking at our cluster.\nExercise First, use the option to pick your cluster. This can be done by selecting k8s.cluster.name from the filter drop-down box. You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a . Click the Apply Filter button to focus on our Cluster We now should have a single cluster visible. Let’s move on to the next page of this exercise and look at your cluster in detail.",
-    "description": "This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6.2 Optional Exercise",
+    "content": "This is the first section of our optional Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.\nThe screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters \u0026 their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.\nBefore we dive deeper, let’s make sure we are looking at our cluster.\nExercise First, use the option to pick your cluster. This can be done by selecting k8s.cluster.name from the filter drop-down box. You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a . Click the Apply Filter button to focus on our Cluster We now should have a single cluster visible. Let’s move on to the next page of this exercise and look at your cluster in detail.",
+    "description": "This is the first section of our optional Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you’re not familiar with it.\nKubernetes Terminology K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application\nSome terminology:\nA Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications. Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop. Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management Applications are a collection of one or more Pods interacting together to provide a service. Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster. Workloads are like a task list and define how many instances of your application should run, how they should be created, and how they should respond to failures Please select the K8s nodes tile from the Tile pane if you have not yet done so. (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 1",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/30-im-exercise/1-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/30-im-exercise/1-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops",
@@ -1133,7 +1141,7 @@ var relearn_searchindex = [
     "description": "Hands-on workshop demonstrating Splunk Observability Cloud's automatic discovery and configuration capabilities for Java applications using the Spring PetClinic sample application.",
     "tags": [],
     "title": "PetClinic Monolith Workshop",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment",
@@ -1141,7 +1149,7 @@ var relearn_searchindex = [
     "description": "Learn how to install and manage AppDynamics Smart Agent on multiple remote hosts using smartagentctl.",
     "tags": [],
     "title": "Remote Installation",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -1149,23 +1157,23 @@ var relearn_searchindex = [
     "description": "Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.",
     "tags": [],
     "title": "Splunk IM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/index.html"
   },
   {
     "breadcrumb": "",
-    "content": "Welcome Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud\nThese workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.\nSplunk4Rookies WorkshopsThe following workshops are for Rookies.\nObservability CloudIn this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.\nFinancial Services Observability CloudThis workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You'll explore key product features and unique advantages that set Splunk Observability Cloud apart.\nSplunk4Ninjas WorkshopsThe following workshops require Ninja skills, wax on, wax off.\nAutomatic Discovery WorkshopsLearn how to leverage Splunk's automatic discovery and configuration capabilities for Java applications. These workshops demonstrate zero-code instrumentation to instantly generate metrics, traces, and logs for comprehensive observability across monolith and Kubernetes deployments.\nHorizontal Pod AutoscalingLearn to monitor Kubernetes Horizontal Pod Autoscaling (HPA) with the Splunk OpenTelemetry Collector, exploring metrics, events, and auto-scaling behavior in real-time\nOpenTelemetry Collector Workshops\rOpenTelemetry Collector Concepts\rLearn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.\rAdvanced OpenTelemetry Collector\rPractice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios’s.\rSplunk Synthetic ScriptingProactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.\nLambda TracingThis workshop will enable you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis\nDashboard WorkshopLearn to build insightful visualizations and custom dashboards using Splunk Observability Cloud's charting capabilities, filters, analytical functions, and SignalFlow\nHands-On OpenTelemetry, Docker, and K8sThis hands-on workshop guides you through instrumenting a .NET application with OpenTelemetry, containerizing it with Docker, and deploying it to Kubernetes. You'll learn to deploy and configure the OpenTelemetry collector using Helm and troubleshoot common configuration issues.\nSolving Problems with O11y CloudLearn how to deploy and configure the OpenTelemetry Collector, instrument applications with OpenTelemetry, and leverage Troubleshooting MetricSets and Tag Spotlight to identify and resolve performance issues in Splunk Observability Cloud.\nIngest Processor for Observability CloudLearn how to optimize observability costs and improve MTTD by transforming logs into metrics using Splunk Ingest Processor with hands-on exercises in Splunk Observability Cloud.\nMonitoring Cisco AI Pods with Splunk Observability CloudThis hands-on workshop demonstrates how to monitor Cisco AI Pods with Splunk Observability Cloud. Learn to deploy the OpenTelemetry Collector in Red Hat OpenShift, ingest infrastructure metrics using Prometheus receivers, and configure APM to monitor Python services that interact with Large Language Models (LLMs).\nSplunk4Ninjas AppDynamicsLearn how to use Splunk AppDynamics for full-stack application performance monitoring, from installing Java APM agents and monitoring application health to troubleshooting performance issues, tracking browser metrics with BRUM, analyzing database performance, and gaining business insights with Business IQ.\nScenariosLearn how to build observability solutions with Splunk\nOptimize Cloud MonitoringThis scenario is for ITOps teams managing a hybrid infrastructure that need to troubleshoot cloud-native performance issues, by correlating real-time metrics with logs to troubleshoot faster, improve MTTD/MTTR, and optimize costs.\nDebug Problems in MicroservicesThis scenario helps engineering teams identify and fix issues caused by planned and unplanned changes to their microservices-based applications.\nOptimize End User ExperiencesUse Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user experience, and proactively test scenarios to improve that experience.\nThousandEyes IntegrationDeploy ThousandEyes Enterprise Agent in Kubernetes and integrate synthetic monitoring data with Splunk Observability Cloud for unified visibility across your infrastructure.\nIsovalent Splunk Observability IntegrationDeploy Isovalent Enterprise Platform (Cilium, Hubble, and Tetragon) on Amazon EKS and integrate with Splunk Observability Cloud for comprehensive eBPF-based monitoring and observability.\nResourcesResources for learning about Splunk Observability Cloud\nDimension, Properties and TagsOne conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other.\nOpenTelemetry TaggingWhen deploying OpenTelemetry in a large organization, it’s critical to define a standardized naming convention for tagging, and a governance process to ensure the convention is adhered to.\nSplunk Arcade - Play, Learn \u0026 Observe!SPLUNK ARCADE - Where Retro Gaming Meets Real-World Observability\nLocal HostingResources for setting up a locally hosted workshop environment.\nUnsupported Field WorkshopsWorkshops that use unsupported fields in Splunk Observability Cloud\nSplunk IMSplunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.\nNodeJS Zero-Config WorkshopA workshop using Zero Configuration Auto-Instrumentation for NodeJS.\nGDI (OTel \u0026 UF)Learn how to get data into Splunk Observability Cloud with OpenTelemetry and the Splunk Universal Forwarder.\nSplunk OnCallMake expensive service outages a thing of the past. Remediate issues faster, reduce on-call burnout and keep your services up and running.",
+    "content": "Welcome Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud\nThese workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.\nSplunk4Rookies Workshops\rThe following workshops are for Rookies.\rSplunk4Ninjas Workshops\rThe following workshops require Ninja skills, wax on, wax off.\rScenarios\rLearn how to build observability solutions with Splunk\rResources\rResources for learning about Splunk Observability Cloud\rUnsupported Field Workshops\rWorkshops that use unsupported fields in Splunk Observability Cloud",
     "description": "Learn how to build observability solutions with Splunk",
     "tags": [],
     "title": "Splunk Observability Workshops",
-    "uri": "/observability-workshop/en/index.html"
+    "uri": "/observability-workshop/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
-    "content": "Observability Cloud\rIn this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.\rFinancial Services Observability Cloud\rThis workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You’ll explore key product features and unique advantages that set Splunk Observability Cloud apart.",
+    "content": "Observability Cloud\rIn this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.\rFinancial Services Observability Cloud\rThis workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You’ll explore key product features and unique advantages that set Splunk Observability Cloud apart.\rWIL - Cisco Live - LABOBS-1037\rExperience Splunk Observability Cloud’s end-to-end visibility from front-end to back-end services through hands-on troubleshooting exercises.",
     "description": "The following workshops are for Rookies.",
     "tags": [],
     "title": "Splunk4Rookies Workshops",
-    "uri": "/observability-workshop/en/splunk4rookies/index.html"
+    "uri": "/observability-workshop/splunk4rookies/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -1173,7 +1181,7 @@ var relearn_searchindex = [
     "description": "Let’s quickly set up some tests in Synthetics to immediately start understanding our end user experience, without waiting for real users to interact with our app.\nWe can capture not only the performance and availability of our own apps and endpoints, but also those third parties we rely on any time of the day or night.\nTip If you find that your tests are being bot-blocked, see the docs for tips on how to allow Synthetic testing. if you need to test something that is not accessible externally, see private location instructions.",
     "tags": [],
     "title": "Synthetics",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -1181,7 +1189,7 @@ var relearn_searchindex = [
     "description": "The Spring PetClinic Java application is a simple microservices application that consists of frontend and backend services. The frontend service is a Spring Boot application that serves a web interface to interact with backend services. The backend services are Spring Boot applications that serve RESTful API’s to interact with a MySQL database.\nBy the end of this workshop, you will have a better understanding of how to enable automatic discovery and configuration for your Java-based applications running in Kubernetes.",
     "tags": [],
     "title": "Architecture",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/1-architecture/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/1-architecture/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 7. Log Observer",
@@ -1189,7 +1197,7 @@ var relearn_searchindex = [
     "description": "In order to see logs click on the Log Observer in the left-hand menu. Once in Log Observer please ensure Index on the filter bar is set to splunk4rookies-workshop. (1)\nNext, click Add Filter and search, using the Fields (2) option for the field deployment.environment (3). Then from the dropdown list, select your workshop instance, (4) and click = (to include). You will now see only the log messages from your PetClinic application.",
     "tags": [],
     "title": "Viewing the Logs",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 1. Getting Started",
@@ -1197,7 +1205,7 @@ var relearn_searchindex = [
     "description": "How to retrieve the IP address of the AWS/EC2 instance assigned to you. Connect to your instance using SSH, Putty1 or your web browser. Verify your connection to your AWS/EC2 cloud instance. Using Putty (Optional) Using Multipass (Optional) 1. AWS/EC2 IP Address In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.\nTo get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.",
     "tags": [],
     "title": "How to connect to your workshop environment",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/1-access-ec2/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/1-getting-started/1-access-ec2/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour \u003e 1. Getting Started",
@@ -1205,7 +1213,7 @@ var relearn_searchindex = [
     "description": "After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.\nExplore your data pane: Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator. Documentation pane: Training videos and links to documentation to get you started with Splunk Observability Cloud. Recents pane: Recently created/visited dashboards and/or detectors for quick access. Main Menu pane: Navigate the components of Splunk Observability Cloud. Org Switcher: Easily switch between Organizations (if you are a member of more than one Organization). Expand/Contract Main Menu: Expand » / Collapse « the main menu if space is at a premium. Let’s start with our first exercise:",
     "tags": [],
     "title": "Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 1. Getting Started",
@@ -1213,7 +1221,7 @@ var relearn_searchindex = [
     "description": "After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.\nExpand/Contract Main Menu: Expand » / Collapse « the main menu if space is at a premium. Org Switcher: Switch between Organizations (if you are a member of more than one Organization). Teams: Focus on assets of interest to the Teams you belong to. Active Alerts: Quickly see what might require your immediate attention. AI Assistant: Accelerate root cause analysis and get expert guidance to find and fix issues faster. Let’s start with our first exercise:",
     "tags": [],
     "title": "Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/1-home-page/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/1-home-page/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 1. Getting Started",
@@ -1221,7 +1229,7 @@ var relearn_searchindex = [
     "description": "How to retrieve the URL for your Splunk Enterprise Cloud instances. How to access the Splunk Observability Cloud workshop organization. 1. Splunk Cloud Instances There are three instances that will be used throughout this workshop which have already been provisioned for you:\nSplunk Enterprise Cloud Splunk Ingest Processor (SCS Tenant) Splunk Observability Cloud The Splunk Enterprise Cloud and Ingest Processor instances are hosted in Splunk Show. If you were invited to the workshop, you should have received an email with an invite to the event in Splunk Show or a link to the event will have been provided at the beginning of the workshop.",
     "tags": [],
     "title": "How to connect to your workshop environment",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/1-getting-started/1-access-cloud-instances/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/1-getting-started/1-access-cloud-instances/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence \u003e 1. Getting Started",
@@ -1229,7 +1237,7 @@ var relearn_searchindex = [
     "description": "Starting up your Workshop This workshop is available on Splunk Show and will take some time to start up all of your resources. It contains a Splunk environment with IT Service Intelligence, the Splunk Infrastructure Monitoring Add-On, as well as the recently updated AppDynamics Add-on all preconfigured.\nThe Workshop is titled “Tech Summit 2025: OBS-122” or you can go directly to it’s entry on Splunk Show. It takes approximately 15 minutes to start up however data generation and ingestion will take up to a half hour.",
     "tags": [],
     "title": "How to connect to your workshop environment",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/1-getting-started/1-access-cloud-instances/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/1-getting-started/1-access-cloud-instances/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM \u003e 1. The Online Boutique",
@@ -1237,7 +1245,7 @@ var relearn_searchindex = [
     "description": "1. RED Metrics Go to Dashboards → All Dashboards → APM Services → Service. Here we can view the RED metrics (Rate, Error \u0026 Duration) for the Online Boutique application.\nFor this, we need to know the name of your application environment. In this workshop all the environments use: \u003cinstance\u003e-workshop.\nTo find the instance, on the AWS/EC2 instance run the following command:\n​ Echo Instance Output Example echo $INSTANCE-workshop bdzx-workshop Select the environment you found in the previous step then select the frontend service and set the time to Past 15 minutes.",
     "tags": [],
     "title": "1.1 Validate APM data",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/online-boutique/validate-apm/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/validate-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 2. API Test",
@@ -1245,7 +1253,7 @@ var relearn_searchindex = [
     "description": "Create a new API test Create a new API test by clicking on the Add new test button and select API test from the dropdown. Name the test using your initials followed by Spotify API e.g. RWC - Spotify API",
     "tags": [],
     "title": "Create new API test",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -1253,7 +1261,7 @@ var relearn_searchindex = [
     "description": "In Splunk Observability Cloud, navigate to Synthetics and click on Add new test.\nFrom the dropdown select Browser test.\nYou will then be presented with the Browser test content configuration page.",
     "tags": [],
     "title": "1.2 Create Real Browser Test",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/2-create-real-browser-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/2-create-real-browser-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 1. Getting Started",
@@ -1261,7 +1269,7 @@ var relearn_searchindex = [
     "description": "Aim A rotation is a recurring schedule, that consists of one or more shifts, with members who rotate through a shift.\nThe aim of this module is for you to configure two example Rotations, and assign Team Members to the Rotations.\nNavigate to the Rotations tab on the Teams sub menu, you should have no existing Rotations so we need to create some.\nThe 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.",
     "tags": [],
     "title": "Configure Rotations",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/rotations/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/getting_started/rotations/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup",
@@ -1269,7 +1277,7 @@ var relearn_searchindex = [
     "description": "You’re ready to start the OpenTelemetry Collector with the newly created agent.yaml. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.\nExercise Start the Agent: In the Agent terminal window run the following command:\n​ Start Collector ../otelcol --config=agent.yaml Verify debug output: If everything is configured correctly, the first and last lines of the output will look like:",
     "tags": [],
     "title": "1.2 Test Agent Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-2-test-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-2-test-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 1. Uptime Test",
@@ -1277,7 +1285,7 @@ var relearn_searchindex = [
     "description": "From the Synthetics landing page, click into a test to see its summary view and play with the Performance KPIs chart filters to see how you can slice and dice your data. This is a good place to get started understanding trends. Later, we will see what custom charts look like, so you can tailor dashboards to the KPIs you care about most. Workshop Question: Using the Performance KPIs chart What metrics are available? Is your data consistent across time and locations? Do certain locations run slower than others? Are there any spikes or failures?",
     "tags": [],
     "title": "Understanding results",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/2-understand-uptime-results/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/2-understand-uptime-results/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup",
@@ -1285,7 +1293,7 @@ var relearn_searchindex = [
     "description": "To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we’ll add a File Exporter to write OTLP data to files for comparison.\nThe difference between the OpenTelemetry debug exporter and the file exporter lies in their purpose and output destination:\nFeature Debug Exporter File Exporter Output Location Console/Log File on disk Purpose Real-time debugging Persistent offline analysis Best for Quick inspection during testing Temporary storage and sharing Production Use No Rare, but possible Persistence No Yes In summary, the Debug Exporter is great for real-time, in-development troubleshooting, while the File Exporter is better suited for storing telemetry data locally for later use.",
     "tags": [],
     "title": "1.3 File Exporter",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability",
@@ -1293,7 +1301,7 @@ var relearn_searchindex = [
     "description": "Introduction For this workshop, we’ll be doing things that only a central tools or administration would do.\nThe workshop uses scripts to help with steps that aren’t part of the focus of this workshop – like how to change a kubernetes app, or start an application from a host.\nTip It can be useful to review what the scripts are doing.\nSo along the way it is advised to run cat \u003cfilename\u003e from time to time to see what that step just did.",
     "tags": [],
     "title": "Collect Data with Standards",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/2-collect-with-standards/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/2-collect-with-standards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -1301,7 +1309,7 @@ var relearn_searchindex = [
     "description": "Let’s use Splunk Observability Cloud to determine why the game started so slowly.\nView your application in Splunk Observability Cloud Note: when the application is deployed for the first time, it may take a few minutes for the data to appear.\nNavigate to APM, then use the Environment dropdown to select your environment (i.e. profiling-workshop-name).\nIf everything was deployed correctly, you should see doorgame displayed in the list of services:",
     "tags": [],
     "title": "Troubleshoot Game Startup",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/2-troubleshoot-game-startup/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/2-troubleshoot-game-startup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop \u003e 7. Use Tags for Monitoring",
@@ -1309,7 +1317,7 @@ var relearn_searchindex = [
     "description": "Alerts It’s great that we have a dashboard to monitor the response times of the credit check service by credit score, but we don’t want to stare at a dashboard all day.\nLet’s create an alert so we can be notified proactively if customers with exceptional credit scores encounter slow requests.\nTo create this alert, click on the little bell on the top right-hand corner of the chart, then select New detector from chart:",
     "tags": [],
     "title": "Use Tags with Alerting",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/2-alerting/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/2-alerting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6. Service Health Dashboard",
@@ -1317,7 +1325,7 @@ var relearn_searchindex = [
     "description": "In this section, we are going to use the Copy and Paste functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.\nExercise Select the 2+ at the top of the page and select Paste charts, this will create the charts in your custom dashboard. The chart currently shows data for all Environments and Services, so let’s add a filter for our environment and the paymentservice. Click on the 3 dots … at the top right side of the Request Rate single value chart. This will open the chart in edit mode. In the new screen, click on the x in the sf_environment:* x button (1) in the middle of the screen to close it. Click on the + to add a new filter and select sf_environment then pick the [WORKSHOPNAME] from the drop-down and hit Apply. The button will change to sf_environment:[WORKSHOPNAME] Do the same with for the sf_service. button (2), close it and create a new filter for sf_service. Only this time change it to paymentservice. Click the Save and close button (3). Repeat the previous 4 steps for the Request Rate text chart Click Save after you have update the two charts. As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again. Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below. Next, we are going to create a custom chart based on our Synthetic test that is running.",
     "tags": [],
     "title": "Adding Copied Charts",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 9. Service Health Dashboard",
@@ -1325,7 +1333,7 @@ var relearn_searchindex = [
     "description": "In this section, we are going to use the Copy and Paste functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.\nExercise Select the 2+ at the top of the page and select Paste charts, this will create the charts in your custom dashboard. The chart currently shows data for all Environments and Services, so let’s add a filter for our environment and the paymentservice. Click on the 3 dots … at the top right side of the Request Rate single value chart. This will open the chart in edit mode. In the new screen, click on the x in the sf_environment:* x button (1) in the middle of the screen to close it. Click on the + to add a new filter and select sf_environment then pick the [WORKSHOPNAME] from the drop-down and hit Apply. The button will change to sf_environment:[WORKSHOPNAME] Do the same with for the sf_service. button (2), close it and create a new filter for sf_service. Only this time change it to paymentservice. Click the Save and close button (3). Repeat the previous 4 steps for the Request Rate text chart Click Save after you have update the two charts. As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again. Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below. Next, we are going to create a custom chart based on our Synthetic test that is running.",
     "tags": [],
     "title": "Adding Copied Charts",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/9-custom-dashboard/2-add-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/9-custom-dashboard/2-add-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting",
@@ -1333,7 +1341,7 @@ var relearn_searchindex = [
     "description": "The API Test provides a flexible way to check the functionality and performance of API endpoints. The shift toward API-first development has magnified the necessity to monitor the back-end services that provide your core front-end functionality.\nWhether you’re interested in testing the multi-step API interactions or you want to gain visibility into the performance of your endpoints, the API Test can help you accomplish your goals.",
     "tags": [],
     "title": "API Test",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics",
@@ -1341,7 +1349,7 @@ var relearn_searchindex = [
     "description": "The API test provides a flexible way to check the functionality and performance of API endpoints. The shift toward API-first development has magnified the necessity to monitor the back-end services that provide your core front-end functionality.\nWhether you’re interested in testing multi-step API interactions or you want to gain visibility into the performance of your endpoints, the API Test can help you accomplish your goals.\nThis excercise will walk through a multi-step test on the Spotify API. You can also use it as a reference to build tests on your own APIs or on those of your critical third parties.",
     "tags": [],
     "title": "API Test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -1349,7 +1357,7 @@ var relearn_searchindex = [
     "description": "Service View As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.",
     "tags": [],
     "title": "2. APM Service View",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/2-apm-service-view/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/2-apm-service-view/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -1357,15 +1365,15 @@ var relearn_searchindex = [
     "description": "Service View As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.",
     "tags": [],
     "title": "2. APM Service View",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/2-apm-service-view/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/2-apm-service-view/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
-    "content": "Service View As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.\nExercise Check the Time box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previosuly selected to complete (note that the charts are static). In the Time box change the timeframe to -1h. These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service. Scroll down the page and expand Infrastructure Metrics. Here you will see the metrics for the Host and Pod. Runtime Metrics are not available as profiling data is not available for services written in Node.js. Now let’s go back to the explore view, you can hit the back button in your Browser Exercise ​ Question Answer In the Service Map hover over the paymentservice. What can you conclude from the popup service chart?\nThe error percentage is very high.\nWe need to understand if there is a pattern to this error rate. We have a handy tool for that, Tag Spotlight.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
+    "content": "Service View As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.\nExercise Check the Time box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previously selected to complete (note that the charts are static). In the Time box change the timeframe to -1h. These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service. Scroll down the page and expand Infrastructure Metrics. Here you will see the metrics for the Host and Pod. Runtime Metrics are not available as profiling data is not available for services written in Node.js. Now let’s go back to the explore view, you can hit the back button in your Browser Exercise ​ Question Answer In the Service Map hover over the paymentservice. What can you conclude from the popup service chart?\nThe error percentage is very high.\nWe need to understand if there is a pattern to this error rate. We have a handy tool for that, Tag Spotlight.",
     "description": "Service View As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.",
     "tags": [],
     "title": "2. APM Service View*",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/2-apm-service-view/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/2-apm-service-view/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 5. APM Features",
@@ -1373,7 +1381,15 @@ var relearn_searchindex = [
     "description": "To pick a trace, select a line in the Service Requests \u0026 Errors chart (1). A selection of related traces will appear.\nOnce you have the list of related traces, click on the blue (2) Trace ID Link, making sure the trace you select has the same three services mentioned in the Services Column.\nThis brings us to the selected Trace in the Waterfall view:",
     "tags": [],
     "title": "APM Trace",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "Exercise You will now see a dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events, comparing them to historic metrics (1 hour by default). The tabs available on this page include:\nTab Description UX Metrics Page Views, Page Load and Web Vitals metrics Front-end Health Breakdown of Javascript Errors and Long Task duration and count Back-end Health Network Errors and Requests and Time to First Byte Custom Events RED metrics (Rate, Error \u0026 Duration) for custom events Network Requests Sortable lists of all Network Requests Pages Sortable lists of all Pages visited Map View Shows where requests were made from in the world Click through each of the tabs (UX Metrics, Front-end Health, Back-end Health, Custom Events, Network Requests:, Pages: and Map View) and examine the data. ​ Questions Answers If you examine the charts in the Custom Events tab, what chart shows clearly the latency spikes? In the Map View tab, where is the largest request volume coming from? Custom Event Latency P75 Ireland",
+    "description": "Exercise You will now see a dashboard view breaking down the metrics by UX Metrics, Front-end Health, Back-end Health and Custom Events, comparing them to historic metrics (1 hour by default). The tabs available on this page include:\nTab Description UX Metrics Page Views, Page Load and Web Vitals metrics Front-end Health Breakdown of Javascript Errors and Long Task duration and count Back-end Health Network Errors and Requests and Time to First Byte Custom Events RED metrics (Rate, Error \u0026 Duration) for custom events Network Requests Sortable lists of all Network Requests Pages Sortable lists of all Pages visited Map View Shows where requests were made from in the world Click through each of the tabs (UX Metrics, Front-end Health, Back-end Health, Custom Events, Network Requests:, Pages: and Map View) and examine the data. ​ Questions Answers If you examine the charts in the Custom Events tab, what chart shows clearly the latency spikes? In the Map View tab, where is the largest request volume coming from? Custom Event Latency P75 Ireland",
+    "tags": [],
+    "title": "2. Application View",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/2-rum-app-view/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -1381,7 +1397,7 @@ var relearn_searchindex = [
     "description": "The first part of our workshop will demonstrate how auto-instrumentation with OpenTelemetry allows the OpenTelemetry Collector to auto-detect what language your function is written in, and start capturing traces for those functions.\nThe Auto-Instrumentation Workshop Directory \u0026 Contents First, let us take a look at the workshop/lambda/auto directory, and some of its files. This is where all the content for the auto-instrumentation portion of our workshop resides.\nThe auto Directory Run the following command to get into the workshop/lambda/auto directory:",
     "tags": [],
     "title": "Auto-Instrumentation",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -1389,7 +1405,7 @@ var relearn_searchindex = [
     "description": "Auto-Instrumentation Navigate to the auto directory that contains auto-instrumentation code.\n​ Command cd ~/o11y-lambda-lab/auto Inspect the contents of the files in this directory. Take a look at the serverless.yml template.\n​ Command cat serverless.yml Workshop Question Can you identify which AWS entities are being created by this template? Can you identify where OpenTelemetry instrumentation is being set up? Can you determine which instrumentation information is being provided by the Environment Variables? You should see the Splunk OpenTelemetry Lambda layer being added to each fuction.",
     "tags": [],
     "title": "Auto-Instrumentation",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Monolith Workshop",
@@ -1397,7 +1413,7 @@ var relearn_searchindex = [
     "description": "The first thing we need to set up APM is… well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).\nFirst, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:\ngit clone https://github.com/spring-projects/spring-petclinic Change into the spring-petclinic directory:\ncd spring-petclinic git checkout b26f235250627a235a2974a22f2317dbef27338d Using Docker, start a MySQL database for PetClinic to use:",
     "tags": [],
     "title": "Building the Spring PetClinic Application",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop \u003e 3. Capture Tags with OpenTelemetry",
@@ -1405,7 +1421,7 @@ var relearn_searchindex = [
     "description": "Let’s add some tags to our traces, so we can find out why some customers receive a poor experience from our application.\nIdentify Useful Tags We’ll start by reviewing the code for the credit_check function of creditcheckservice (which can be found in the /home/splunk/workshop/tagging/creditcheckservice-py/main.py file):\n@app.route('/check') def credit_check(): customerNum = request.args.get('customernum') # Get Credit Score creditScoreReq = requests.get(\"http://creditprocessorservice:8899/getScore?customernum=\" + customerNum) creditScoreReq.raise_for_status() creditScore = int(creditScoreReq.text) creditScoreCategory = getCreditCategoryFromScore(creditScore) # Run Credit Check creditCheckReq = requests.get(\"http://creditprocessorservice:8899/runCreditCheck?customernum=\" + str(customerNum) + \"\u0026score=\" + str(creditScore)) creditCheckReq.raise_for_status() checkResult = str(creditCheckReq.text) return checkResult We can see that this function accepts a customer number as an input. This would be helpful to capture as part of a trace. What else would be helpful?",
     "tags": [],
     "title": "2. Capture Tags - Python",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/3-capture-tags/2-capture-tags-python/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/3-capture-tags/2-capture-tags-python/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Remote Installation",
@@ -1413,7 +1429,7 @@ var relearn_searchindex = [
     "description": "Smart Agent remote installation requires two key configuration files: config.ini for Smart Agent settings and remote.yaml for defining remote hosts and connection parameters.\nConfiguration Files Overview Both configuration files should be located in the Smart Agent installation directory:\ncd /home/ubuntu/appdsm The two files you’ll configure:\nconfig.ini - Smart Agent configuration deployed to all remote hosts remote.yaml - Remote hosts and SSH connection settings config.ini - Smart Agent Configuration The config.ini file contains the main Smart Agent configuration that will be deployed to all remote hosts.",
     "tags": [],
     "title": "2. Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/2-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/2-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -1421,7 +1437,7 @@ var relearn_searchindex = [
     "description": "In Splunk Observability Cloud, navigate to Synthetics and click on Add new test.\nFrom the dropdown select Browser test.\nYou will then be presented with the Browser test content configuration page.",
     "tags": [],
     "title": "Create a Browser Test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/2-create-real-browser-test/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/2-create-real-browser-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -1429,7 +1445,7 @@ var relearn_searchindex = [
     "description": "In this section we’ll deploy the OpenTelemetry Collector in our OpenShift namespace, which gathers metrics, logs, and traces from the infrastructure and applications running in the cluster, and sends the resulting data to Splunk Observability Cloud.\nDeploy the OpenTelemetry Collector Ensure Helm is installed:\nhelm version It should return something like the following:\nversion.BuildInfo{Version:\"v3.19.4\", GitCommit:\"7cfb6e486dac026202556836bb910c37d847793e\", GitTreeState:\"clean\", GoVersion:\"go1.24.11\"} If it’s not installed, execute the following commands:\nsudo apt-get install curl gpg apt-transport-https --yes curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg \u003e /dev/null echo \"deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main\" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list sudo apt-get update sudo apt-get install helm Add the Splunk OpenTelemetry Collector for Kubernetes’ Helm chart repository:",
     "tags": [],
     "title": "Deploy the OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/2-deploy-otel-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/2-deploy-otel-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -1437,7 +1453,7 @@ var relearn_searchindex = [
     "description": "Uninstall the OpenTelemetry Collector Our EC2 instance may already have an older version the Splunk Distribution of the OpenTelemetry Collector installed. Before proceeding further, let’s uninstall it using the following command:\n​ Script Example Output curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh \u003e /tmp/splunk-otel-collector.sh; sudo sh /tmp/splunk-otel-collector.sh --uninstall Reading package lists... Done Building dependency tree... Done Reading state information... Done The following packages will be REMOVED: splunk-otel-collector* 0 upgraded, 0 newly installed, 1 to remove and 167 not upgraded. After this operation, 766 MB disk space will be freed. (Reading database ... 157441 files and directories currently installed.) Removing splunk-otel-collector (0.92.0) ... (Reading database ... 147373 files and directories currently installed.) Purging configuration files for splunk-otel-collector (0.92.0) ... Scanning processes... Scanning candidates... Scanning linux images... Running kernel seems to be up-to-date. Restarting services... systemctl restart fail2ban.service falcon-sensor.service Service restarts being deferred: systemctl restart networkd-dispatcher.service systemctl restart unattended-upgrades.service No containers need to be restarted. No user sessions are running outdated binaries. No VM guests are running outdated hypervisor (qemu) binaries on this host. Successfully removed the splunk-otel-collector package Deploy the OpenTelemetry Collector Let’s deploy the latest version of the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance.",
     "tags": [],
     "title": "Deploy the OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -1445,7 +1461,7 @@ var relearn_searchindex = [
     "description": "The first step to “getting data in” is to deploy an OpenTelemetry collector, which receives and processes telemetry data in our environment before exporting it to Splunk Observability Cloud.\nWe’ll be using Kubernetes for this workshop, and will deploy the collector in our K8s cluster using Helm.\nWhat is Helm? Helm is a package manager for Kubernetes which provides the following benefits:\nManage Complexity deal with a single values.yaml file rather than dozens of manifest files Easy Updates in-place upgrades Rollback support Just use helm rollback to roll back to an older version of a release Install the Collector using Helm Let’s change into the correct directory and run a script to install the collector:",
     "tags": [],
     "title": "Deploy the OpenTelemetry Collector and Customize Config",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/2-deploy-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/2-deploy-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e ThousandEyes Integration",
@@ -1453,7 +1469,7 @@ var relearn_searchindex = [
     "description": "This section guides you through deploying the ThousandEyes Enterprise Agent in your Kubernetes cluster.\nComponents The deployment consists of two files:\n1. Secrets File (credentialsSecret.yaml) Contains your ThousandEyes agent token (base64 encoded). This secret is referenced by the deployment to authenticate the agent with ThousandEyes Cloud.\napiVersion: v1 kind: Secret metadata: name: te-creds type: Opaque data: TEAGENT_ACCOUNT_TOKEN: \u003cbase64-encoded-token\u003e 2. Deployment Manifest (thousandEyesDeploy.yaml) Defines the Enterprise Agent pod configuration with the following key settings:",
     "tags": [],
     "title": "Deployment",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/2-deployment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e GDI (OTel \u0026 UF)",
@@ -1461,7 +1477,7 @@ var relearn_searchindex = [
     "description": "Objective: Learn how to efficiently deploy complex infrastructure components such as Kafka and MongoDB to demonstrate metrics collection with Splunk O11y IM integrations\nDuration: 15 Minutes\nScenario A prospect uses Kafka and MongoDB in their environment. Since there are integrations for these services, you’d like to demonstrate this to the prospect. What is a quick and efficient way to set up a live environment with these services and have metrics collected?",
     "tags": [],
     "title": "Deploy Complex Environments and Capture Metrics",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/2-deploy/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/2-deploy/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop",
@@ -1469,7 +1485,7 @@ var relearn_searchindex = [
     "description": "Create a Detector from one of your charts Setting Alert conditions Running a pre-flight check Working with muting rules 1. Introduction Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.",
     "tags": [],
     "title": "Working with Detectors",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/detectors/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/detectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Frontend Dashboards",
@@ -1477,7 +1493,7 @@ var relearn_searchindex = [
     "description": "Seeing the visualization of our KPIs is great. What’s better? KPIs in context with events! Overlaying events on a dashboard can help us more quickly understand if an event like a deployment caused a change in metrics, for better or worse.\nYour instructor will push a condition change to the workshop application. Click the event marker on any of your dashboard charts to see more details.",
     "tags": [],
     "title": "Events in context with chart data",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/4-dashboards/2-event-overlay/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/4-dashboards/2-event-overlay/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -1485,7 +1501,7 @@ var relearn_searchindex = [
     "description": "Now that we have the OpenTelemetry Collector installed, let’s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.\n%%{ init:{ \"theme\": \"base\", \"themeVariables\": { \"primaryColor\": \"#ffffff\", \"clusterBkg\": \"#eff2fb\", \"defaultLinkColor\": \"#333333\" } } }%% flowchart LR; style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --\u003e M(Receivers) B[JAEGER] --\u003e M(Receivers) C[Prometheus] --\u003e M(Receivers) end subgraph Processors M(Receivers) --\u003e H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --\u003e S(OTLP) H(Filters, Attributes, etc) --\u003e T(JAEGER) H(Filters, Attributes, etc) --\u003e U(Prometheus) end",
     "tags": [],
     "title": "OpenTelemetry Collector Extensions",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 8. Real User Monitoring",
@@ -1493,7 +1509,7 @@ var relearn_searchindex = [
     "description": "In the TAG Spotlight view, you are presented with all the tags associated with the RUM data. Tags are key-value pairs that are used to identify the data. In this case, the tags are automatically generated by the OpenTelemetry instrumentation. The tags are used to filter the data and to create the charts and tables. The Tag Spotlight view allows you detect trends in behavior and to drill down into a user session.",
     "tags": [],
     "title": "RUM trace Waterfall view \u0026 linking to APM",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/2-rum-tour/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/2-rum-tour/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -1501,7 +1517,7 @@ var relearn_searchindex = [
     "description": "Use the Splunk Helm chart to install the OpenTelemetry Collector in K3s Explore your cluster in the Kubernetes Navigator 1. Installation using Helm Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:\n​ Helm Repo Add Helm Repo Add Output helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart \u0026\u0026 helm repo update Using ACCESS_TOKEN={REDACTED} Using REALM=eu0 “splunk-otel-collector-chart” has been added to your repositories Using ACCESS_TOKEN={REDACTED} Using REALM=eu0 Hang tight while we grab the latest from your chart repositories… …Successfully got an update from the “splunk-otel-collector-chart” chart repository Update Complete. ⎈Happy Helming!⎈",
     "tags": [],
     "title": "Deploying the OpenTelemetry Collector in Kubernetes",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/gdi/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/gdi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -1509,7 +1525,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will SSH into your server and proceed to install the Java agent.",
     "tags": [],
     "title": "2. Install the Java Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/2-install-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/2-install-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -1517,7 +1533,7 @@ var relearn_searchindex = [
     "description": "1. Introduction Delete any existing OpenTelemetry Collectors If you have completed any other Observability workshops, please ensure you delete the collector running in Kubernetes before continuing. This can be done by running the following command:\nhelm delete splunk-otel-collector 2. Confirm environment variables To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:",
     "tags": [],
     "title": "Installing the OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -1525,7 +1541,7 @@ var relearn_searchindex = [
     "description": "1. Namespaces in Kubernetes Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.\nNamespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their resources.",
     "tags": [],
     "title": "K8s Namespaces and DNS",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/2-k8s-namespaces-dns/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/2-k8s-namespaces-dns/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -1533,7 +1549,15 @@ var relearn_searchindex = [
     "description": "1. Cluster vs Workload View The Kubernetes Navigator offers you two separate use cases to view your Kubernetes data.\nThe K8s workloads are focusing on providing information in regards to workloads a.k.a. your deployments. The K8s nodes are focusing on providing insight into the performance of clusters, nodes, pods and containers. You will initially select either view depending on your need (you can switch between the view on the fly if required). The most common one we will use in this workshop is the workload view and we will focus on that specifically.",
     "tags": [],
     "title": "Tour of the Kubernetes Navigator",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/kubernetes-navigator/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/kubernetes-navigator/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 5. Logs",
+    "content": "Exercise We need to focus on just the Error messages in the logs:\nClick on the Group By drop-down box and use the filter to find Severity.\nOnce selected click the Apply button (notice that the chart legend changes to show debug, error and info).\nSelecting just the error logs can be done by either clicking on the word error (1) in the legend, followed by selecting Add to filter. Then click Run Search\nYou could also add the service name, sf_service=paymentservice, to the filter if there are error lines for multiple services, but in our case, this is not necessary.\nNext, we will look at log entries in detail.",
+    "description": "Exercise We need to focus on just the Error messages in the logs:\nClick on the Group By drop-down box and use the filter to find Severity.\nOnce selected click the Apply button (notice that the chart legend changes to show debug, error and info).\nSelecting just the error logs can be done by either clicking on the word error (1) in the legend, followed by selecting Add to filter. Then click Run Search",
+    "tags": [],
+    "title": "2. Log Filtering",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/5-logs/2-log-filtering/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -1541,7 +1565,7 @@ var relearn_searchindex = [
     "description": "The steps below are required before deploying the OpenShift cluster in AWS.\nCreate a Red Hat Login The first thing we’ll need to do is create an account with Red Hat, which we can do by filling out the form here.\nInstall the AWS CLI To install the AWS CLI on the EC2 instance provisioned previously, run the following commands:\ncurl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\" sudo apt install unzip unzip awscliv2.zip sudo ./aws/install Use the following command to ensure it was installed successfully:",
     "tags": [],
     "title": "OpenShift Prerequisites",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/2-openshift-prereqs/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/2-openshift-prereqs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -1549,7 +1573,7 @@ var relearn_searchindex = [
     "description": "Learn about OpenTelemetry and why you should care about it.",
     "tags": [],
     "title": "What is OpenTelemetry \u0026 why should you care?",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/2-opentelemetry/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/2-opentelemetry/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -1557,15 +1581,7 @@ var relearn_searchindex = [
     "description": "Learn about OpenTelemetry and why you should care about it.",
     "tags": [],
     "title": "What is OpenTelemetry \u0026 why should you care?",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/2-opentelemetry/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "OpenTelemetry With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes metrics, traces, and logs.\nTo make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as Splunk Observability Cloud.\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? OpenTelemetry does two important things:\nAllows you to own the data that you generate rather than be stuck with a proprietary data format or tool. Allows you to learn a single set of APIs and conventions These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.\nThere are a lot of variables to consider when getting started with Observability, including the all-important question: “How do I get my data into an Observability tool?”. The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.\nWhy Should You Care? OpenTelemetry is completely open-source and free to use. In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level.\nSince OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation. This is true regardless of which distribution of OpenTelemetry is used – like with Linux, the various distributions bundle settings and add-ons but are all fundamentally based on the community-driven OpenTelemetry project.\nSplunk has fully committed to OpenTelemetry so that our customers can collect and use ALL their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops.",
-    "description": "Learn about OpenTelemetry and why you should care about it.",
-    "tags": [],
-    "title": "What is OpenTelemetry \u0026 why should you care?",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/2-opentelemetry/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/2-opentelemetry/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 3. Receivers",
@@ -1573,7 +1589,7 @@ var relearn_searchindex = [
     "description": "Prometheus Receiver You will also notice another receiver called prometheus. Prometheus is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.\nLet’s modify the prometheus receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from prometheus to prometheus/internal, it is now much clearer as to what that receiver is doing. Update the configuration file to look like this:",
     "tags": [],
     "title": "OpenTelemetry Collector Receivers",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/2-prometheus/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/2-prometheus/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Detectors",
@@ -1581,7 +1597,7 @@ var relearn_searchindex = [
     "description": "Let’s say we want to know about an issue in production without waiting for a ticket from our support center. This is where creating detectors in RUM will be helpful for us.\nGo to the RUM overview of our App. Scroll to the LCP chart, click the chart menu icon, and click Create Detector.",
     "tags": [],
     "title": "RUM Detectors",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -1589,7 +1605,7 @@ var relearn_searchindex = [
     "description": "Check the HEAD section of the Online-boutique webpage in your browser Find the code that instruments RUM 1. Browse to the Online Boutique Your workshop instructor will provide you with the Online Boutique URL that has RUM installed so that you can complete the next steps.\n2. Inspecting the HTML source The changes needed for RUM are placed in the \u003chead\u003e section of the hosts Web page. Right click to view the page source or to inspect the code. Below is an example of the \u003chead\u003e section with RUM:",
     "tags": [],
     "title": "RUM instrumentation in a browser app",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/2-setup/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -1597,7 +1613,7 @@ var relearn_searchindex = [
     "description": "Learn about Splunk RUM and how it can help you monitor the full user experience of every web and mobile session.",
     "tags": [],
     "title": "Real User Monitoring Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -1605,7 +1621,15 @@ var relearn_searchindex = [
     "description": "Environment Setup - Application Clone the workshop repository: git clone -b distributed-tracing-for-development-teams https://github.com/shabuhabs/javashop-otel.git Access the workshop directory: cd javashop-otel Set Environment Variables nano .env Note NO spaces in \u003cyour_name\u003e The shop_user provides us an Environment Tag. To get your access token, go to your Splunk O11y UI -\u003e Settings -\u003eAccess Tokens. It is assumed in this workshop that you can send traces to the org and token you are using. Set the following values: SHOP_USER=\u003cyour_name\u003e SPLUNK_ACCESS_TOKEN=\u003cyour_token\u003e SPLUNK_REALM=\u003cyour_realm\u003e Save in nano with [CTRL]-o [ENTER] Exit nano with [CTRL]-x Build and Deploy Application Let’s get started by building and deploying our Application, the Splunk Instrument Shop. Run the commands below to begin and start reading ahead as your traces are coming up!",
     "tags": [],
     "title": "Setting up your Application",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona You are a hip urban professional, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.\nThe purpose of this exercise is for you to interact with the Online Boutique web application. This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout. You will experience some issues and use the data you generate to identify the root cause of that issue.\nExercise - Let’s go shopping Please visit the famous Online Boutique shop by going to https://labobs-1037.splunko11y.com/ Once you have access to the Online Boutique, have a browse through a few items, add them to your cart and then, finally, do a checkout. Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore. Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? When this happens please copy the Order Confirmation ID and save it locally somewhere as we will need it later. Close the browser sessions you used to shop. This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot. Let’s go to the next page where we will start using Splunk Observability Cloud and take a look at what the data looks like in Splunk RUM.",
+    "description": "Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.",
+    "tags": [],
+    "title": "Let's go shopping 💶",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/2-online-boutique/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 8. Splunk Synthetics",
@@ -1613,15 +1637,15 @@ var relearn_searchindex = [
     "description": "Right now we are looking at the result of a single Synthetic Browser Test. This test is split up into Business Transactions, think of this as a group of one or more logically related interactions that represent a business-critical user flow.\nInfo The screenshot below doesn’t contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.",
     "tags": [],
     "title": "2. Synthetics Test Detail",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 8. Splunk Synthetics*",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6. Digital Experience (Synthetics)",
     "content": "Right now we are looking at the result of a single Synthetic Browser Test. This test is split up into Business Transactions, think of this as a group of one or more logically related interactions that represent a business-critical user flow.\nInfo The screenshot below doesn’t contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.\nFilter: Focus in on specific parts of your test; filters the filmstrip, video, and waterfall. Filmstrip: Offers a set of screenshots of site performance so that you can see how the page responds in real-time. Waterfall chart: The waterfall chart is a visual representation of the interaction between the test runner and the site being tested. Video: This lets you see exactly what a user trying to load your site from the location and device of a particular test run would experience. Browser test metrics: A view that offers you a picture of website performance. By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page etc.\nExercise Use your mouse to scroll left and right through the filmstrip to see how the site was being rendered during the test run. In the Video pane, press on the play button ▶ to see the test playback. If you click the vertical three dots ⋮ you can change the playback speed, view it Picture in Picture and even Download the video. Using the filter above the filmstrip, under the header Synthetic Transactions, click on Home The waterfall below will show all the objects that make up the page. The first line is the HTML page itself. The next lines are the objects that make up the page (HTML, CSS, JavaScript, Images, Fonts, etc.). In the waterfall find the line GET splunk-otel-web.js. Click on the \u003e button to open the metadata section to see the Request/Response Header information. In the filter, switch to the second Synthetic Transaction Shop. Note that the filmstrip and video adjust and move to the beginning of the new transaction. Repeat this for all the other Transactions, then finally select the PlaceOrder transaction.",
     "description": "Right now we are looking at the result of a single Synthetic Browser Test. This test is split up into Business Transactions, think of this as a group of one or more logically related interactions that represent a business-critical user flow.\nInfo The screenshot below doesn’t contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.",
     "tags": [],
     "title": "2. Synthetics Test Detail",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/8-synthetics/2-synthetics-detail/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/6-synthetics/2-synthetics-detail/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 5. Splunk RUM",
@@ -1629,15 +1653,15 @@ var relearn_searchindex = [
     "description": "Exercise Make sure you are on the Custom Events tab by selecting it.\nHave a look at the Custom Event Latency chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).\nClick on the see all link under the chart title.",
     "tags": [],
     "title": "2. Tag Spotlight",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/2-tag-spotlight/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/5-rum/2-tag-spotlight/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 5. Splunk RUM",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
     "content": "Exercise Make sure you are on the Custom Events tab by selecting it.\nHave a look at the Custom Event Latency chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).\nClick on the see all link under the chart title.\nIn this dashboard view, you are presented with all the tags associated with the RUM data. Tags are key-value pairs that are used to identify the data. In this case, the tags are automatically generated by the OpenTelemetry instrumentation. The tags are used to filter the data and to create the charts and tables. The Tag Spotlight view allows you to drill down into a user session.\nExercise Change the timeframe to Last 1 hour. Click Add Filters, select OS Version, click != and select Synthetics and RUMLoadGen then click the Apply Filter button. Find the Custom Event Name chart, locate PlaceOrder in the list, click on it and select Add to filter. Notice the large spikes in the graph across the top. Click on the User Sessions tab. Click on the Duration heading twice to sort the sessions by duration (longest at the top). Click on the above the table and select Sf Geo City from the list of additional columns and click Save We now have a User Session table that is sorted by longest duration descending and includes the cities of all the users that have been shopping on the site. We could apply more filters to further narrow down the data e.g. OS version, browser version, etc.",
     "description": "Exercise Make sure you are on the Custom Events tab by selecting it.\nHave a look at the Custom Event Latency chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).\nClick on the see all link under the chart title.",
     "tags": [],
     "title": "2. Tag Spotlight",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/5-rum/2-tag-spotlight/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/2-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 6. Advanced Features",
@@ -1645,7 +1669,7 @@ var relearn_searchindex = [
     "description": "Make sure you have your original (or similar) Trace \u0026 Span (1) selected in the APM Waterfall view and select Memory Stack Traces (2) from the right-hand pane:\nThe pane should show you the Memory Stack Trace Flame Graph (3). You can scroll down and/or expand by dragging the right side of the pane.\nAlwaysOn Profiling is constantly taking snapshots, or stack traces, of your application’s code. Imagine having to read through thousands of stack traces! It is simply not practical. To assist with this, AlwaysOn Profiling aggregates and summarizes profiling data, providing a convenient way to explore Call Stacks in a view called the Flame Graph. It represents a summary of all stack traces captured from your application. You can use the Flame Graph to discover which lines of code might be causing performance issues and to confirm whether changes you make to the code have the intended effect.",
     "tags": [],
     "title": "Always-On Profiling in the Trace Waterfall",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/2-waterfall/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/2-waterfall/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -1653,7 +1677,7 @@ var relearn_searchindex = [
     "description": "Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser Find the Web address of your workshop hosts Online Boutique Compare the changes made to the hosts Online-Boutique and compare with the base one. 1. Browse to the Online Boutique If you have access to an EC2 instance and have previously installed the Online Boutique as part of the APM session, you can view it on port 81 of the EC2 instance’s IP address.",
     "tags": [],
     "title": "2. Example of RUM enablement in your Website",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/2-setup/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Workshop Setup",
@@ -1661,7 +1685,7 @@ var relearn_searchindex = [
     "description": "Observability Workshop Templates Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:\nWorkshop Type Description Template Splunk4Rookies - Observability This workshop template is designed for beginners. The template pre-deploys the OpenTelemetry Collector and the Online Boutique application. Attendees only need a browser to participate and complete the workshop. Rookies Splunk4Ninjas - Observability This workshop template is tailored for advanced users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed. Ninja Ninja Workshops Only Set the Estimated Participants to the number of attendees you expect, and match this value in the O11y Shop Quantity field.",
     "tags": [],
     "title": "2. Using Splunk Show",
-    "uri": "/observability-workshop/en/workshop-setup/2-splunk-show/index.html"
+    "uri": "/observability-workshop/workshop-setup/2-splunk-show/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 4. Automatic discovery and configuration",
@@ -1669,7 +1693,7 @@ var relearn_searchindex = [
     "description": "In the left-hand menu click on APM to see the data generated by the traces from the newly instrumented services.\nChange the Environment filter (1) to the name of your workshop instance in the dropdown box.\nNote This will be \u003cINSTANCE\u003e-workshop where INSTANCE is the value from the shell script you ran earlier. Ensure it is the only one selected.",
     "tags": [],
     "title": "Viewing the data in Splunk APM",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/2-apm-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/2-apm-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 5. Splunk Log Observer",
@@ -1677,7 +1701,7 @@ var relearn_searchindex = [
     "description": "Before we look at a specific log line, let’s quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? Using metrics we identified we have a problem with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be. Using traces and span tags we found where the problem is. The wire-transfer-service comprises of two versions, v350.9 and v350.10, and the error rate was 100% for v350.10. We did see that this error from the wire-transfer-service v350.10 caused multiple retries and a long delay in the response back from the compliance check service. From the trace, using the power of Related Content, we arrived at the log entries for the failing wire-transfer-service version. Now, we can determine what the problem is. Exercise Click on an error entry in the log table (make sure it says hostname: \"wire-transfer-service-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?",
     "tags": [],
     "title": "2. Viewing Log Entries",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/2-log-entry/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/5-log-observer/2-log-entry/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 7. Splunk Log Observer",
@@ -1685,15 +1709,7 @@ var relearn_searchindex = [
     "description": "Before we look at a specific log line, let’s quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? Using metrics we identified we have a problem with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be. Using traces and span tags we found where the problem is. The paymentservice comprises of two versions, v350.9 and v350.10, and the error rate was 100% for v350.10. We did see that this error from the paymentservice v350.10 caused multiple retries and a long delay in the response back from the Online Boutique checkout. From the trace, using the power of Related Content, we arrived at the log entries for the failing paymentservice version. Now, we can determine what the problem is. Exercise Click on an error entry in the log table (make sure it says hostname: \"paymentservice-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?",
     "tags": [],
     "title": "2. Viewing Log Entries",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/2-log-entry/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 7. Splunk Log Observer",
-    "content": "Before we look at a specific log line, let’s quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? Using metrics we identified we have a problem with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be. Using traces and span tags we found where the problem is. The paymentservice comprises of two versions, v350.9 and v350.10, and the error rate was 100% for v350.10. We did see that this error from the paymentservice v350.10 caused multiple retries and a long delay in the response back from the Online Boutique checkout. From the trace, using the power of Related Content, we arrived at the log entries for the failing paymentservice version. Now, we can determine what the problem is. Exercise Click on an error entry in the log table (make sure it says hostname: \"paymentservice-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?\nThe development team needs to rebuild and deploy the container with a valid API Token or rollback to v350.9.\nClick on the X in the log message pane to close it. Congratulations You have successfully used Splunk Observability Cloud to understand why you experienced a poor user experience whilst shopping at the Online Boutique. You used RUM, APM and logs to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, metrics, traces and logs\nYou also learned how to use Splunk’s intelligent tagging and analysis with Tag Spotlight to detect patterns in your applications’ behavior and to use the full stack correlation power of Related Content to quickly move between the different components whilst keeping in context of the issue.\nIn the next part of the workshop, we will move from problem-finding mode into mitigation, prevention and process improvement mode.\nNext up, creating log charts in a custom dashboard.",
-    "description": "Before we look at a specific log line, let’s quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:\nMetrics Traces Logs Do I have a problem? Where is the problem? What is the problem? Using metrics we identified we have a problem with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be. Using traces and span tags we found where the problem is. The paymentservice comprises of two versions, v350.9 and v350.10, and the error rate was 100% for v350.10. We did see that this error from the paymentservice v350.10 caused multiple retries and a long delay in the response back from the Online Boutique checkout. From the trace, using the power of Related Content, we arrived at the log entries for the failing paymentservice version. Now, we can determine what the problem is. Exercise Click on an error entry in the log table (make sure it says hostname: \"paymentservice-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?",
-    "tags": [],
-    "title": "2. Viewing Log Entries",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/7-log-observer/2-log-entry/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/7-log-observer/2-log-entry/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -1701,7 +1717,7 @@ var relearn_searchindex = [
     "description": "To understand why some requests have errors or slow performance, we’ll need to add context to our traces. We’ll do this by adding tags. But first, let’s take a moment to discuss what tags are, and why they’re so important for observability.\nWhat are tags? Tags are key-value pairs that provide additional metadata about spans in a trace, allowing you to enrich the context of the spans you send to Splunk APM.",
     "tags": [],
     "title": "What are Tags?",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/2-what-are-tags/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/2-what-are-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud",
@@ -1709,7 +1725,7 @@ var relearn_searchindex = [
     "description": "This section includes the steps that workshop attendees will follow:\nPractice deploying the OpenTelemetry Collector in the Red Hat OpenShift cluster. Practice adding Prometheus receivers to the collector to ingest infrastructure metrics. Practice deploying the Weaviate vector database to the cluster. Practice instrumenting Python services that interact with Large Language Models (LLMs) with OpenTelemetry. Understanding which details which OpenTelemetry captures in the trace from applications that interact with LLMs.",
     "tags": [],
     "title": "Workshop",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour \u003e 2. APM Overview",
@@ -1717,7 +1733,7 @@ var relearn_searchindex = [
     "description": "Click APM in the main menu, the APM Home Page is made up of 3 distinct sections:\nOnboarding Pane Pane: Training videos and links to documentation to get you started with Splunk APM. APM Overview Pane: Real-time metrics for the Top Services and Top Business Workflows. Functions Pane: Links for deeper analysis of your services, tags, traces, database query performance and code profiling. The APM Overview pan provides a high-level view of the health of your application. It includes a summary of the services, latency and errors in your application. It also includes a list of the top services by error rate and the top business workflows by error rate (a business workflow is the start-to-finish journey of the collection of traces associated with a given activity or transaction and enables monitoring of end-to-end KPIs and identifying root causes and bottlenecks).",
     "tags": [],
     "title": "Application Performance Monitoring Home page",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/1-apm-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/1-apm-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Dashboard Workshop \u003e 2. Detectors",
@@ -1725,7 +1741,7 @@ var relearn_searchindex = [
     "description": "Learn how to configure Muting Rules Learn how to resume notifications 1. Configuring Muting Rules There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let’s create one!\nClick on Alerts \u0026 Detectors in the sidebar and then click Detectors to see the list of active detectors.",
     "tags": [],
     "title": "Working with Muting Rules",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/detectors/muting/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/detectors/muting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 2. RUM Overview",
@@ -1733,7 +1749,7 @@ var relearn_searchindex = [
     "description": "Click RUM in the main menu, this will bring you to the main RUM Home or Landing page. The main concept of this page is to provide you at a glance, the overall status of all selected RUM applications, either in a full dashboard or the compact view.\nIndependent of the type of Status Dashboard used, the RUM Home Page is made up of 3 distinct sections:",
     "tags": [],
     "title": "Real User Monitoring Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM \u003e 2. Using Splunk APM",
@@ -1741,7 +1757,7 @@ var relearn_searchindex = [
     "description": "Service Map Click on paymentservice in the service map and select version from the breakdown drop down filter underneath paymentservice. This will filter our service map by the custom span tag version.\nYou will now see the service map has been updated like the below screenshot to show the different versions of the paymentservice.\nSplunk Observability shows that not only is paymentservice experiencing errors (you can see request rate vs error rate) but that this service is the root cause.",
     "tags": [],
     "title": "2.1 Service Map",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 2. Standardize Data Collection",
@@ -1749,7 +1765,7 @@ var relearn_searchindex = [
     "description": "Tags are key-value pairs that provide additional metadata about metrics, spans in a trace, or logs allowing you to enrich the context of the data you send to Splunk Observability Cloud. Many tags are collected by default such as hostname or OS type. Custom tags can be used to provide environment or application-specific context. Examples of custom tags include:\nInfrastructure specific attributes What data center a host is in What services are hosted on an instance What team is responsible for a set of hosts Application specific attributes What Application Version is running Feature flags or experimental identifiers Tenant ID in multi-tenant applications User related attributes User ID User role (e.g. admin, guest, subscriber) User geographical location (e.g. country, city, region) There are two ways to add tags to your data Add tags as OpenTelemetry attributes to metrics, traces, and logs when you send data to the Splunk Distribution of OpenTelemetry Collector. This option lets you add spans in bulk. Instrument your application to create span tags. This option gives you the most flexibility at the per-application level. Why are tags so important? Tags are essential for an application to be truly observable. Tags add context to the traces to help us understand why some users get a great experience and others don’t. Powerful features in Splunk Observability Cloud utilize tags to help you jump quickly to the root cause.",
     "tags": [],
     "title": "What Are Tags?",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/2-standardize-data-collection/1-what-are-tags/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/2-standardize-data-collection/1-what-are-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 2. Gateway Setup",
@@ -1757,7 +1773,7 @@ var relearn_searchindex = [
     "description": "Exercise Add the otlphttp exporter: The OTLP/HTTP Exporter is used to send data from the agent to the gateway using the OTLP/HTTP protocol.\nSwitch to your Agent terminal window. Validate that the newly generated gateway-logs.out, gateway-metrics.out, and gateway-traces.out are present in the directory. Open the agent.yaml file in your editor. Add the otlphttp exporter configuration to the exporters: section: otlphttp: # Exporter Type endpoint: \"http://localhost:5318\" # Gateway OTLP endpoint Add a Batch Processor configuration: The Batch Processor will accept spans, metrics, or logs and place them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.",
     "tags": [],
     "title": "2.2 Configure Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-2-configure-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-2-configure-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 2. API Test",
@@ -1765,7 +1781,7 @@ var relearn_searchindex = [
     "description": "Create a new API test by clicking on the Add new test button and select API test from the dropdown. Name the test using your team name, your initials, and Spotify API e.g. [Daisy] RWC - Spotify API",
     "tags": [],
     "title": "Create new API test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/2-create-new-test/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/2-create-new-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability \u003e 2 Collect Data with Standards",
@@ -1773,7 +1789,7 @@ var relearn_searchindex = [
     "description": "Collector (Agent) Now we will deploy a collector. At first this will be configured to go directly to the back-end, but we will change the configuration and restart the collector to use the gateway.\nThe steps:\nClick the Data Management icon in the toolbar Click the + Add integration button Click Deploy the Splunk OpenTelemetry Collector button Click Next Select Linux Leave the mode as Host monitoring (agent) Set the environment to prod Leave the rest as defaults Choose the access token for this workshop Click Next Copy the installer script and run it in the provided linux environment. This collector is sending host metrics, so you can find it in common navigators:",
     "tags": [],
     "title": "Deploy Collector (Agent)",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/2-collect-with-standards/2-deploy-collector-agent/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/2-collect-with-standards/2-deploy-collector-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 2. Incident Lifecycle",
@@ -1781,7 +1797,7 @@ var relearn_searchindex = [
     "description": "1. Acknowledge Use your Splunk On-Call App on your phone to acknowledge the Incident by clicking on the push notification …\n…to open the alert in the Splunk On-Call mobile app, then clicking on either the single tick in the top right hand corner, or the Acknowledge link to acknowledge the incident and stop the escalation process.\nThe :fontawesome-solid-check: will then transform into a :fontawesome-solid-check::fontawesome-solid-check:, and the status will change from TRIGGERED to ACKNOWLEDGED.",
     "tags": [],
     "title": "Manage Incidents",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 2. Extensions",
@@ -1789,7 +1805,7 @@ var relearn_searchindex = [
     "description": "Performance Profiler Performance Profiler extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.",
     "tags": [],
     "title": "OpenTelemetry Collector Extensions",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/2-performance/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/2-performance/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -1797,7 +1813,7 @@ var relearn_searchindex = [
     "description": "Next, we will configure our environment to be ready for testing the File Storage configuration.\nExercise Start the Gateway: In the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal window run:\n​ Start the Agent ../otelcol --config=agent.yaml Send five test spans: In the Loadgen terminal window run:",
     "tags": [],
     "title": "2.2 Setup environment for Resilience Testing",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/2-building-resilience/2-2-test-environment/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/2-building-resilience/2-2-test-environment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -1805,7 +1821,7 @@ var relearn_searchindex = [
     "description": "Next, we will configure our environment to be ready for testing the File Storage configuration.\nExercise Start the Gateway: In the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal window run:\n​ Start the Agent ../otelcol --config=agent.yaml Send five test spans: In the Loadgen terminal window run:",
     "tags": [],
     "title": "2.2 Setup environment for Resilience Testing",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-2-test-environment/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-2-test-environment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 3. APM Overview",
@@ -1813,7 +1829,7 @@ var relearn_searchindex = [
     "description": "Click APM in the main menu, the APM Home Page is made up of 3 distinct sections:\nOnboarding Pane Pane: Training videos and links to documentation to get you started with Splunk APM. APM Overview Pane: Real-time metrics for the Top Services and Top Business Workflows. Functions Pane: Links for deeper analysis of your services, tags, traces, database query performance and code profiling. The APM Overview pan provides a high-level view of the health of your application. It includes a summary of the services, latency and errors in your application. It also includes a list of the top services by error rate and the top business workflows by error rate (a business workflow is the start-to-finish journey of the collection of traces associated with a given activity or transaction and enables monitoring of end-to-end KPIs and identifying root causes and bottlenecks).",
     "tags": [],
     "title": "Application Performance Monitoring Home page",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/1-apm-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/1-apm-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence \u003e 3. Creating Services in ITSI",
@@ -1821,7 +1837,7 @@ var relearn_searchindex = [
     "description": "Starting with an Observability Cloud Based Service Access Services: In ITSI click “Configuration”, click on “Services”.\nCreate New Service: PaymentService2: Click “Create New Service”.\nService Details (PaymentService2):\nTitle: “PaymentService2” Description (Optional): e.g., “Payment Service for Hipster Shop - version 2” Select Template: Choose “Link service to a service template” and search for “Splunk APM Business Workflow KPIs” from the template dropdown. Click Create to save the new service.\nEntity Assignment:",
     "tags": [],
     "title": "Creating an O11y Based Service",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/1-creating-o11y-service/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/1-creating-o11y-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 3. Reuse Content Across Teams",
@@ -1829,7 +1845,7 @@ var relearn_searchindex = [
     "description": "Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observability service for hybrid cloud environments. Built on a patented streaming architecture, it provides a real-time solution for engineering teams to visualize and analyze performance across infrastructure, services, and applications in a fraction of the time and with greater accuracy than traditional solutions.\n300+ Easy-to-use OOTB content: Pre-built navigators and dashboards, deliver immediate visualizations of your entire environment so that you can interact with all your data in real time.\nKubernetes navigator: Provides an instant, comprehensive out-of-the-box hierarchical view of nodes, pods, and containers. Ramp up even the most novice Kubernetes user with easy-to-understand interactive cluster maps.\nAutoDetect alerts and detectors: Automatically identify the most important metrics, out-of-the-box, to create alert conditions for detectors that accurately alert from the moment telemetry data is ingested and use real-time alerting capabilities for important notifications in seconds.\nLog views in dashboards: Combine log messages and real-time metrics on one page with common filters and time controls for faster in-context troubleshooting.\nMetrics pipeline management: Control metrics volume at the point of ingest without re-instrumentation with a set of aggregation and data-dropping rules to store and analyze only the needed data. Reduce metrics volume and optimize observability spend.",
     "tags": [],
     "title": "Infrastrcuture Navigators",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/3-reuse-content-across-teams/1-infrastructure-dashboards/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/3-reuse-content-across-teams/1-infrastructure-dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour \u003e 3. Log Observer Overview",
@@ -1837,7 +1853,7 @@ var relearn_searchindex = [
     "description": "Click Log Observer in the main menu, the Log Observer Home Page is made up of 4 distinct sections:\nOnboarding Pane: Training videos and links to documentation to get you started with Splunk Log Observer. Filter Bar: Filter on time, indexes, and fields and also Save Queries. Logs Table Pane: List of log entries that match the current filter criteria. Fields Pane: List of fields available in the currently selected index. Splunk indexes Generally, in Splunk, an “index” refers to a designated place where your data is stored. It’s like a folder or container for your data. Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze. Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.",
     "tags": [],
     "title": "Log Observer Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/3-log-observer-home/1-log-observer-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/3-log-observer-home/1-log-observer-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 3. Create an Ingest Pipeline",
@@ -1845,7 +1861,7 @@ var relearn_searchindex = [
     "description": "In this section you will create an Ingest Pipeline which will convert Kubernetes Audit Logs to metrics which are sent to the Splunk Observability Cloud workshop organization. Before getting started you will need to access the Splunk Cloud and Ingest Processor SCS Tenant environments provided in the Splunk Show event details.\nPre-requisite: Login to Splunk Enterprise Cloud 1. Open the Ingest Processor Cloud Stack URL provided in the Splunk Show event details.",
     "tags": [],
     "title": "Login to Splunk Cloud",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/1-login-to-splunk/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/1-login-to-splunk/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -1853,7 +1869,7 @@ var relearn_searchindex = [
     "description": "1. Saving a chart To start saving your chart, lets give it a name and description. Click the name of the chart Copy of Latency Histogram and rename it to “Active Latency”.\nTo change the description click on Spread of latency values across time. and change this to Overview of latency values in real-time.\nClick the Save As button. Make sure your chart has a name, it will use the name Active Latency the you defined in the previous step, but you can edit it here if needed.",
     "tags": [],
     "title": "Saving charts",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/savingcharts/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/savingcharts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 3. Dropping Spans",
@@ -1861,7 +1877,7 @@ var relearn_searchindex = [
     "description": "To test your configuration, you’ll need to generate some trace data that includes a span named \"/_healthz\".\nExercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config ./gateway.yaml Start the Agent: In your Agent terminal window start the Agent.\n../otelcol --config ./agent.yaml Start the Loadgen: In the Loadgen terminal window, execute the following command to start the load generator with health check spans enabled:",
     "tags": [],
     "title": "3.2 Test Filter Processor",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/3-dropping-spans/3-2-test-filter/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/3-dropping-spans/3-2-test-filter/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 3. Dropping Spans",
@@ -1869,7 +1885,7 @@ var relearn_searchindex = [
     "description": "To test your configuration, you’ll need to generate some trace data that includes a span named \"/_healthz\".\nExercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config ./gateway.yaml Start the Agent: In your Agent terminal window start the Agent.\n../otelcol --config ./agent.yaml Start the Loadgen: In the Loadgen terminal window, execute the following command to start the load generator with health check spans enabled:",
     "tags": [],
     "title": "3.2 Test Filter Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/3-2-test-filter/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/3-2-test-filter/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour \u003e 4. Infrastructure Overview",
@@ -1877,7 +1893,7 @@ var relearn_searchindex = [
     "description": "Click on Infrastructure in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.\nOnboarding Pane: Training videos and links to documentation to get you started with Splunk Infrastructure Monitoring. Time \u0026 Filter Pane: Time window (not configurable at the top level) Integrations Pane: List of all the technologies that are sending metrics to Splunk Observability Cloud. Tile Pane: Total number of services being monitored broken down by integration. Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let’s do that now.",
     "tags": [],
     "title": "Infrastructure Navigators",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/4-infrastructure-home/1-infrastructure-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/4-infrastructure-home/1-infrastructure-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 4. Log Observer Overview",
@@ -1885,7 +1901,7 @@ var relearn_searchindex = [
     "description": "Click Log Observer in the main menu, the Log Observer Home Page is made up of 4 distinct sections:\nOnboarding Pane: Training videos and links to documentation to get you started with Splunk Log Observer. Filter Bar: Filter on time, indexes, and fields and also Save Queries. Logs Table Pane: List of log entries that match the current filter criteria. Fields Pane: List of fields available in the currently selected index. Splunk indexes Generally, in Splunk, an “index” refers to a designated place where your data is stored. It’s like a folder or container for your data. Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze. Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.",
     "tags": [],
     "title": "Log Observer Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/1-log-observer-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/1-log-observer-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 4. Update Pipeline and Visualize Metrics",
@@ -1893,7 +1909,7 @@ var relearn_searchindex = [
     "description": "Exercise: Update Ingest Pipeline 1. Navigate back to the configuration page for the Ingest Pipeline you created in the previous step.\n2. To add dimensions to the metric from the raw Kubernetes audit logs update the SPL2 query you created for the pipeline by replacing the logs_to_metrics portion of the query with the following:",
     "tags": [],
     "title": "Update Ingest Pipeline",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/1-update-ingest-pipeline/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/1-update-ingest-pipeline/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 4. Processors",
@@ -1901,7 +1917,7 @@ var relearn_searchindex = [
     "description": "Resource Detection Processor The resourcedetection processor can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.\nBy default, the hostname is set to the FQDN if possible, otherwise, the hostname provided by the OS is used as a fallback. This logic can be changed from using using the hostname_sources configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the hostname_sources to os.",
     "tags": [],
     "title": "OpenTelemetry Collector Processors",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/2-resource-detection/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/2-resource-detection/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 4. Building Resilience",
@@ -1909,7 +1925,7 @@ var relearn_searchindex = [
     "description": "Next, we will configure our environment to be ready for testing the File Storage configuration.\nExercise Start the Gateway: In the Gateway terminal window navigate to the [WORKSHOP]/4-resilience directory and run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal window navigate to the [WORKSHOP]/4-resilience directory and run:",
     "tags": [],
     "title": "4.2 Setup environment for Resilience Testing",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-2-test-environment/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-2-test-environment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -1917,7 +1933,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will delete the user.account_password, update the user.phone_number attribute and hash the user.email in the span data before it is exported by the Agent.\nExercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config=gateway.yaml Start the Agent: In your Agent terminal window start the Agent.\n../otelcol --config=agent.yaml Start the Load Generator: In the Loadgen terminal window start the loadgen:",
     "tags": [],
     "title": "4.2 Test Attribute Processor",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/4-sensitive-data/4-2-test-delete-tag/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/4-sensitive-data/4-2-test-delete-tag/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -1925,7 +1941,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will delete the user.account_password, update the user.phone_number attribute and hash the user.email in the span data before it is exported by the Agent.\nExercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config=gateway.yaml Start the Agent: In your Agent terminal window start the Agent.\n../otelcol --config=agent.yaml Start the Load Generator: In the Loadgen terminal window start the loadgen:",
     "tags": [],
     "title": "4.2 Test Attribute Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-2-test-delete-tag/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-2-test-delete-tag/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 5. Synthetics Overview",
@@ -1933,7 +1949,7 @@ var relearn_searchindex = [
     "description": "Click on Synthetics in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.\nOnboarding Pane: Training videos and links to documentation to get you started with Splunk Synthetics. Test Pane: List of all the tests that are configured (Browser, API and Uptime) Create Test Pane: Drop-down for creating new Synthetic tests. Info As part of the workshop we have created a default browser test against the application we are running. You find it in the Test Pane (2). It will have the following name Workshop Browser Test for, followed by the name of your Workshop (your instructor should have provided that to you).",
     "tags": [],
     "title": "Synthetics Home Page",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/1-synthetics-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/1-synthetics-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -1941,7 +1957,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway: In the Gateway terminal run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal run:\n​ Start the Agent ../otelcol --config=agent.yaml Start the Load Generator: In the Loadgen terminal window, execute the following command to start the load generator with JSON enabled:",
     "tags": [],
     "title": "5.2 Setup Environment",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/5-transform-data/5-2-setup/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/5-transform-data/5-2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -1949,7 +1965,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway: In the Gateway terminal run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal run:\n​ Start the Agent ../otelcol --config=agent.yaml Start the Load Generator: In the Loadgen terminal window, execute the following command to start the load generator with JSON enabled:",
     "tags": [],
     "title": "5.2 Setup Environment",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-2-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 5. Dropping Spans",
@@ -1957,7 +1973,7 @@ var relearn_searchindex = [
     "description": "To test your configuration, you’ll need to generate some trace data that includes a span named \"/_healthz\".\nExercise Start the Gateway: In your Gateway terminal window start the gateway.\n../otelcol --config ./gateway.yaml Start the Agent: In your Agent terminal window start the agent.\n../otelcol --config ./agent.yaml Start the Loadgen: In the Spans terminal window run the loadgen with the flag to also send healthz spans along with base spans:",
     "tags": [],
     "title": "5.2 Test Filter Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/5-2-test-filter/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/5-2-test-filter/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 6. Infrastructure Overview",
@@ -1965,7 +1981,7 @@ var relearn_searchindex = [
     "description": "Click on Infrastructure in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.\nOnboarding Pane: Training videos and links to documentation to get you started with Splunk Infrastructure Monitoring. Time \u0026 Filter Pane: Time window (not configurable at the top level) Integrations Pane: List of all the technologies that are sending metrics to Splunk Observability Cloud. Tile Pane: Total number of services being monitored broken down by integration. Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let’s do that now.",
     "tags": [],
     "title": "Infrastructure Navigators",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 6. Service Bureau",
@@ -1973,7 +1989,7 @@ var relearn_searchindex = [
     "description": "Discover how you can restrict usage by creating separate Access Tokens and setting limits. 1. Access Tokens If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.\nIn the UI click on the » bottom left and select the Settings → Access Tokens under General Settings.\nThe Access Tokens Interface provides an overview of your allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a Default token generated when they are first set up, but there will typically be multiple Tokens configured.",
     "tags": [],
     "title": "Controlling Usage",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/servicebureau/tokens/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/tokens/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -1981,7 +1997,7 @@ var relearn_searchindex = [
     "description": "Exercise Update the original traces pipeline to use routing:\nTo enable routing, update the original traces pipeline to use routing as the only exporter. This ensures all span data is sent through the Routing Connector for evaluation and then onwards to connected pipelines. Also, remove all processors and replace it with an empty array ([]) as this will now behandeld in the traces/route1-regular and traces/route2-security pipelines, allowing for custom behaviour for each route. Your traces: configuration should look like this:",
     "tags": [],
     "title": "6.2 Configuring the Pipelines",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/6-routing-data/6-2-pipelines/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/6-routing-data/6-2-pipelines/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -1989,7 +2005,7 @@ var relearn_searchindex = [
     "description": "Exercise Update the original traces pipeline to use routing:\nTo enable routing, update the original traces pipeline to use routing as the only exporter. This ensures all span data is sent through the Routing Connector for evaluation and then onwards to connected pipelines. Also, remove all processors and replace it with an empty array ([]) as this will now behandeld in the traces/route1-regular and traces/route2-security pipelines, allowing for custom behaviour for each route. Your traces: configuration should look like this:",
     "tags": [],
     "title": "6.2 Configuring the Pipelines",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-2-pipelines/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-2-pipelines/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 6. Service",
@@ -1997,7 +2013,7 @@ var relearn_searchindex = [
     "description": "Prometheus Internal Receiver Earlier in the workshop, we also renamed the prometheus receiver to reflect that is was collecting metrics internal to the collector, renaming it to prometheus/internal.\nWe now need to enable the prometheus/internal receiver under the metrics pipeline. Update the receivers section to include prometheus/internal under the metrics pipeline:\nservice: pipelines: traces: receivers: [otlp, opencensus, jaeger, zipkin] processors: [batch] exporters: [debug] metrics: receivers: [hostmetrics, otlp, opencensus, prometheus/internal] processors: [batch] exporters: [debug]",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/2-prometheus/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/2-prometheus/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 6. Sensitive Data",
@@ -2005,7 +2021,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we will delete the user.account_password, update the user.phone_number attribute and hash the user.email in the span data before it is exported by the agent.\nExercise Start the Gateway: In your Gateway terminal window start the gateway.\n../otelcol --config=gateway.yaml Start the Agent: In your Agent terminal window start the agent.\n../otelcol --config=agent.yaml Start the Load Generator: In the Spans terminal window start the loadgen:",
     "tags": [],
     "title": "6.2 Test Attribute Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-2-test-delete-tag/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-2-test-delete-tag/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 7. Transform Data",
@@ -2013,7 +2029,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway: In the Gateway terminal run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent: In the Agent terminal run:\n​ Start the Agent ../otelcol --config=agent.yaml Start the Load Generator: Open the Logs terminal window and run the loadgen.",
     "tags": [],
     "title": "7.2 Setup Environment",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-2-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 7. Count \u0026 Sum Connector",
@@ -2021,7 +2037,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll explore how the Sum Connector can extract values from spans and convert them into metrics.\nWe’ll specifically use the credit card charges from our base spans and leverage the Sum Connector to retrieve the total charges as a metric.\nThe connector can be used to collect (sum) attribute values from spans, span events, metrics, data points, and log records. It captures each individual value, transforms it into a metric, and passes it along. However, it’s the backend’s job to use these metrics and their attributes for calculations and further processing.",
     "tags": [],
     "title": "7.2 Create metrics with Sum Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-2-sum/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-2-sum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 8. Routing Data",
@@ -2029,7 +2045,7 @@ var relearn_searchindex = [
     "description": "Exercise Update the traces pipeline to use routing:\nTo enable routing, update the original traces: pipeline by using routing as the only exporter. This ensures all span data is sent through the routing connector for evaluation.\nRemove all processors and replace it with an empty array ([]). These are now defined in the traces/standard and traces/security pipelines.\npipelines: traces: # Original traces pipeline receivers: - otlp # OTLP Receiver processors: [] exporters: - routing # Routing Connector Add both the standard and security traces pipelines:",
     "tags": [],
     "title": "8.2 Configuring the Pipelines",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-2-pipelines/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-2-pipelines/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 9. Count \u0026 Sum Connector",
@@ -2037,7 +2053,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll explore how the Sum Connector can extract values from spans and convert them into metrics.\nWe’ll specifically use the credit card charges from our base spans and leverage the Sum Connector to retrieve the total charges as a metric.\nThe connector can be used to collect (sum) attribute values from spans, span events, metrics, data points, and log records. It captures each individual value, transforms it into a metric, and passes it along. However, it’s the backend’s job to use these metrics and their attributes for calculations and further processing.",
     "tags": [],
     "title": "Create metrics with Sum Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-2-sum/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-2-sum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops",
@@ -2045,7 +2061,7 @@ var relearn_searchindex = [
     "description": "Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.",
     "tags": [],
     "title": "Advanced Collector Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops",
@@ -2053,7 +2069,7 @@ var relearn_searchindex = [
     "description": "Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.",
     "tags": [],
     "title": "Advanced OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops",
@@ -2061,7 +2077,7 @@ var relearn_searchindex = [
     "description": "Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.",
     "tags": [],
     "title": "Advanced OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Browser Real User Monitoring (BRUM)",
@@ -2069,7 +2085,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will create and configure your application in the Controller.",
     "tags": [],
     "title": "Create Browser Application",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/2-create-browser-application/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/2-create-browser-application/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -2077,7 +2093,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your AppDynamics Controller from your web browser and download the Database Visibility agent from there.",
     "tags": [],
     "title": "Download Database Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/2-download-database-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/2-download-database-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -2085,7 +2101,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your AppDynamics Controller from your web browser and enable the Agentless Analytics from there.",
     "tags": [],
     "title": "Enable Analytics on the Application",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/2-enable-analytics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/2-enable-analytics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources",
@@ -2093,7 +2109,7 @@ var relearn_searchindex = [
     "description": "A collection of the common questions and their answers associated with Observability, DevOps, Incident Response and Splunk On-Call.",
     "tags": [],
     "title": "Frequently Asked Questions",
-    "uri": "/observability-workshop/en/resources/faq/index.html"
+    "uri": "/observability-workshop/resources/faq/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops",
@@ -2101,7 +2117,7 @@ var relearn_searchindex = [
     "description": "This workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You'll explore key product features and unique advantages that set Splunk Observability Cloud apart.",
     "tags": [],
     "title": "Financial Services Observability Cloud",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e GitHub Actions Automation",
@@ -2109,7 +2125,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Before you begin, ensure you have:\nGitHub account with repository access AWS VPC with Ubuntu EC2 instances SSH key pair (PEM file) for authentication to target hosts AppDynamics Smart Agent package Target Ubuntu EC2 instances with SSH access Fork or Clone the Repository First, get access to the GitHub Actions lab repository:\nRepository URL: https://github.com/chambear2809/github-actions-lab\n# Option 1: Fork the repository via GitHub UI # Go to https://github.com/chambear2809/github-actions-lab # Click \"Fork\" button # Option 2: Clone directly (for testing) git clone https://github.com/chambear2809/github-actions-lab.git cd github-actions-lab Configure Self-hosted Runner Your self-hosted runner must be deployed in the same AWS VPC as your target EC2 instances.",
     "tags": [],
     "title": "GitHub Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/2-github-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/2-github-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -2117,7 +2133,7 @@ var relearn_searchindex = [
     "description": "Learn to monitor Kubernetes Horizontal Pod Autoscaling (HPA) with the Splunk OpenTelemetry Collector, exploring metrics, events, and auto-scaling behavior in real-time",
     "tags": [],
     "title": "Monitoring Horizontal Pod Autoscaling in Kubernetes",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment",
@@ -2125,7 +2141,7 @@ var relearn_searchindex = [
     "description": "Learn how to automate AppDynamics Smart Agent deployment and lifecycle management across multiple hosts using Jenkins pipelines.",
     "tags": [],
     "title": "Jenkins Automation",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Jenkins Automation",
@@ -2133,7 +2149,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Before you begin, ensure you have:\nJenkins server (version 2.300 or later) A Jenkins agent in the same AWS VPC as your target EC2 instances SSH key pair for authentication to target hosts AppDynamics Smart Agent package Target Ubuntu EC2 instances with SSH access Required Jenkins Plugins Install these plugins via Manage Jenkins → Plugins → Available Plugins:\nPipeline (core plugin, usually pre-installed) SSH Agent Plugin Credentials Plugin (usually pre-installed) Git Plugin (if using SCM) To install:",
     "tags": [],
     "title": "Jenkins Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/2-jenkins-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/2-jenkins-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources \u003e Local Hosting",
@@ -2141,7 +2157,7 @@ var relearn_searchindex = [
     "description": "Learn how to create a local hosting environment with OrbStack - Mac (Apple Silicon)",
     "tags": [],
     "title": "Local Hosting with OrbStack",
-    "uri": "/observability-workshop/en/resources/local-hosting/orbstack/index.html"
+    "uri": "/observability-workshop/resources/local-hosting/orbstack/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6.2 Optional Exercise",
@@ -2149,7 +2165,7 @@ var relearn_searchindex = [
     "description": "This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.\nIn the Kubernetes Navigator, the cluster is represented by the square with the black line around it. It will contain one or more blue squares representing the node(s) or compute engines. Each of them containing one or more colored boxes that represent Pods. (this is where your services run in). And as you can guess, green means healthy and red means that there is a problem. Given there are two red boxes or tiles, let’s see what is going on and if this will affect our Online Boutique site.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 2",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/30-im-exercise/2-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/30-im-exercise/2-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6.2 Optional Exercise",
@@ -2157,15 +2173,15 @@ var relearn_searchindex = [
     "description": "This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.\nIn the Kubernetes Navigator, the cluster is represented by the square with the black line around it. It will contain one or more blue squares representing the node(s) or compute engines. Each of them containing one or more colored boxes that represent Pods. (this is where your services run in). And as you can guess, green means healthy and red means that there is a problem. Given there are two red boxes or tiles, let’s see what is going on and if this will affect our Online Boutique site.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 2",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/30-im-exercise/2-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/30-im-exercise/2-im-exercise/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live6.2 Optional Exercise",
-    "content": "This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.\nIn the Kubernetes Navigator, the cluster is represented by the square with the black line around it. It will contain one or more blue squares representing the node(s) or compute engines. Each of them containing one or more colored boxes that represent Pods. (this is where your services run in). And as you can guess, green means healthy and red means that there is a problem. Given there are two red boxes or tiles, let’s see what is going on and if this will affect our Online Boutique site.\nExercise First, set the time window we are working with to the last 15 minutes. You do this by changing the the Time picker in the filter pane from -4h to Last 15 minutes. Hover with your mouse over the Cluster, Node and pods, both green and red ones. The resulting information pane that appears will tell you the state of the object. Note, That the red Pods show that they are in Pod Phase: Failed. This means they have crashed and are not working. Examine the Cluster Metric charts that provide information on your cluster. (The charts below the cluster image). They provide general information about the health of your cluster like Memory consumption and the number of pods per node. Nothing flags for the red pods, as crashed pods do not affect the performance of Kubernetes. Let’s check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on K8s Analyzer. Spunk Kubernetes Analyzer The Splunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.\nThe K8s Analyzer should have detected that the two red pods are similar, indicated by the 2 after each line, and running in the same Namespace. In the K8s analyzer view can you find what namespace? (hint, look for k8s.namespace.name). Next, we want to check this on the node level as well, so drill down to the node, first by hovering your mouse over the cluster until you see a blue line appear around the node with a in the left top, inside the black Cluster Line. Click on the triangle . Your view should now show little boxes in each pod, these represent the containers that run the actual code. The K8s Analyzer should confirm that this issue is also occurring on the node level. Click on K8s node. This will show the node metrics, and if you examine the charts, you can see that there are only two pods in the development namespace. It is easier to see if you filter on the k8s.namespace.name=development in the Filter Pane. The # Total Pods chart shows only two pods and in the Node Workload chart there is only the test-job and it has failed. Spunk Kubernetes Analyzer The above scenario is common in a shared Kubernetes environment, where teams deploy applications in different stages. Kubernetes is designed to keep these environments completely separate.\nNone of the Pods that make up our Online Boutique site run in the development namespace and all the other pods are green, we can safely assume these pods do not affect us, so let’s move on to look at a few more things.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6.2 Optional Exercise",
+    "content": "This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.\nIn the Kubernetes Navigator, the cluster is represented by the square with the black line around it. It will contain one or more blue squares representing the node(s) or compute engines. Each of them containing one or more colored boxes that represent Pods. (this is where your services run in). And as you can guess, green means healthy and red means that there is a problem. Given there are two red boxes or tiles, let’s see what is going on and if this will affect our Online Boutique site.\nExercise First, set the time window we are working with to the last 15 minutes. You do this by changing the Time picker in the filter pane from -4h to Last 15 minutes. Hover with your mouse over the Cluster, Node and pods, both green and red ones. The resulting information pane that appears will tell you the state of the object. Note, That the red Pods show that they are in Pod Phase: Failed. This means they have crashed and are not working. Examine the Cluster Metric charts that provide information on your cluster. (The charts below the cluster image). They provide general information about the health of your cluster like Memory consumption and the number of pods per node. Nothing flags for the red pods, as crashed pods do not affect the performance of Kubernetes. Let’s check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on K8s Analyzer. Splunk Kubernetes Analyzer The Splunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.\nThe K8s Analyzer should have detected that the two red pods are similar, indicated by the 2 after each line, and running in the same Namespace. In the K8s analyzer view can you find what namespace? (hint, look for k8s.namespace.name). Next, we want to check this on the node level as well, so drill down to the node, first by hovering your mouse over the cluster until you see a blue line appear around the node with a in the left top, inside the black Cluster Line. Click on the triangle. Your view should now show little boxes in each pod, these represent the containers that run the actual code. The K8s Analyzer should confirm that this issue is also occurring on the node level. Click on K8s node. This will show the node metrics, and if you examine the charts, you can see that there are only two pods in the development namespace. It is easier to see if you filter on the k8s.namespace.name=development in the Filter Pane. The # Total Pods chart shows only two pods and in the Node Workload chart there is only the test-job and it has failed. Splunk Kubernetes Analyzer The above scenario is common in a shared Kubernetes environment, where teams deploy applications in different stages. Kubernetes is designed to keep these environments completely separate.\nNone of the Pods that make up our Online Boutique site run in the development namespace and all the other pods are green, we can safely assume these pods do not affect us, so let’s move on to look at a few more things.",
     "description": "This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.\nIn the Kubernetes Navigator, the cluster is represented by the square with the black line around it. It will contain one or more blue squares representing the node(s) or compute engines. Each of them containing one or more colored boxes that represent Pods. (this is where your services run in). And as you can guess, green means healthy and red means that there is a problem. Given there are two red boxes or tiles, let’s see what is going on and if this will affect our Online Boutique site.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 2",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/30-im-exercise/2-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/30-im-exercise/2-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops",
@@ -2173,7 +2189,7 @@ var relearn_searchindex = [
     "description": "Learn how to enable automatic discovery and configuration for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.",
     "tags": [],
     "title": "Spring PetClinic SpringBoot Based Microservices On Kubernetes",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -2181,7 +2197,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Proficiency in editing YAML files using vi, vim, nano, or your preferred text editor. Supported Environments: A provided Splunk Workshop Instance (preferred). Outbound access to port 2222 is required for ssh access. Apple Mac (Apple Silicon). Installation of jq is required - https://jqlang.org/download/ Exercise Create a directory: In your environment create a new directory and change into it:\nmkdir advanced-otel-workshop \u0026\u0026 \\ cd advanced-otel-workshop We will refer to this directory as [WORKSHOP] for the remainder of the workshop.",
     "tags": [],
     "title": "Pre-requisites",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/prerequisites/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -2189,7 +2205,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Proficiency in editing YAML files using vi, vim, nano, or your preferred text editor. Supported Environments: Splunk Workshop Instance (preferred) Apple Mac (Apple Silicon). Installation of jq is required - https://jqlang.org/download/ Exercise Create a workshop directory: In your environment create a new directory (e.g., advanced-otel-workshop). We will refer to this directory as [WORKSHOP] for the remainder of the workshop.\nDownload workshop binaries: Change into your [WORKSHOP] directory and download the OpenTelemetry Collector and Load Generator binaries:",
     "tags": [],
     "title": "Pre-requisites",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -2197,7 +2213,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Proficiency in editing YAML files using vi, vim, nano, or your preferred text editor. Supported Environments: A provided Splunk Workshop Instance (preferred). Outbound access to port 2222 is required for ssh access. Apple Mac (Apple Silicon). Installation of jq is required - https://jqlang.org/download/ Exercise Create a directory: In your environment create a new directory and change into it:\nmkdir advanced-otel-workshop \u0026\u0026 \\ cd advanced-otel-workshop We will refer to this directory as [WORKSHOP] for the remainder of the workshop.",
     "tags": [],
     "title": "Pre-requisites",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/prerequisites/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -2205,7 +2221,7 @@ var relearn_searchindex = [
     "description": "Required Tools Before starting this workshop, ensure you have the following tools installed:\nAWS CLI # Check installation aws --version # Should output: aws-cli/2.x.x or higher kubectl # Check installation kubectl version --client # Should output: Client Version: v1.28.0 or higher eksctl # Check installation eksctl version # Should output: 0.150.0 or higher Helm # Check installation helm version # Should output: version.BuildInfo{Version:\"v3.x.x\"} AWS Requirements AWS account with permissions to create: EKS clusters VPCs and subnets EC2 instances IAM roles and policies Elastic Network Interfaces AWS CLI configured with credentials (aws configure) Splunk Observability Cloud You’ll need:",
     "tags": [],
     "title": "Prerequisites",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/2-prerequisites/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/2-prerequisites/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -2213,7 +2229,7 @@ var relearn_searchindex = [
     "description": "End-to-end visibility helps you pinpoint customer-impacting issues from web browsers and native mobile apps to your backend services.",
     "tags": [],
     "title": "RUM",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -2221,7 +2237,7 @@ var relearn_searchindex = [
     "description": "In this Lab you learn about AppDynamics Server Visibility Monitoring and Service Availability Monitoring.",
     "tags": [],
     "title": "Server Visibility Monitoring",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Ansible Automation",
@@ -2229,7 +2245,7 @@ var relearn_searchindex = [
     "description": "Step 2: Prepare Your Files and Directory Structure Create a project directory for your Ansible deployment. It should contain the following files:\n. ├── appdsmartagent_64_linux_24.6.0.2143.deb # Debian package ├── appdsmartagent_64_linux_24.6.0.2143.rpm # RedHat package ├── inventory-cloud.yaml # Inventory file ├── smartagent.yaml # Playbook └── variables.yaml # Variables file Ensure you have downloaded the correct Smart Agent packages for your target environments.\nStep 3: Understanding the Files 1. Inventory Files (inventory-cloud.yaml) The inventory file lists the hosts where the Smart Agent will be deployed. Define your hosts and authentication details here.",
     "tags": [],
     "title": "Setup \u0026 Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -2237,15 +2253,15 @@ var relearn_searchindex = [
     "description": "Splunk APM is a NoSample Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.",
     "tags": [],
     "title": "Splunk APM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
-    "content": "Automatic Discovery Workshops\rLearn how to leverage Splunk’s automatic discovery and configuration capabilities for Java applications. These workshops demonstrate zero-code instrumentation to instantly generate metrics, traces, and logs for comprehensive observability across monolith and Kubernetes deployments.\rHorizontal Pod Autoscaling\rLearn to monitor Kubernetes Horizontal Pod Autoscaling (HPA) with the Splunk OpenTelemetry Collector, exploring metrics, events, and auto-scaling behavior in real-time\rOpenTelemetry Collector Workshops\rOpenTelemetry Collector Concepts\rLearn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.\rAdvanced OpenTelemetry Collector\rPractice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios’s.\rSplunk Synthetic Scripting\rProactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.\rLambda Tracing\rThis workshop will enable you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis\rDashboard Workshop\rLearn to build insightful visualizations and custom dashboards using Splunk Observability Cloud’s charting capabilities, filters, analytical functions, and SignalFlow\rHands-On OpenTelemetry, Docker, and K8s\rThis hands-on workshop guides you through instrumenting a .NET application with OpenTelemetry, containerizing it with Docker, and deploying it to Kubernetes. You’ll learn to deploy and configure the OpenTelemetry collector using Helm and troubleshoot common configuration issues.\rSolving Problems with O11y Cloud\rLearn how to deploy and configure the OpenTelemetry Collector, instrument applications with OpenTelemetry, and leverage Troubleshooting MetricSets and Tag Spotlight to identify and resolve performance issues in Splunk Observability Cloud.\rIngest Processor for Observability Cloud\rLearn how to optimize observability costs and improve MTTD by transforming logs into metrics using Splunk Ingest Processor with hands-on exercises in Splunk Observability Cloud.\rMonitoring Cisco AI Pods with Splunk Observability Cloud\rThis hands-on workshop demonstrates how to monitor Cisco AI Pods with Splunk Observability Cloud. Learn to deploy the OpenTelemetry Collector in Red Hat OpenShift, ingest infrastructure metrics using Prometheus receivers, and configure APM to monitor Python services that interact with Large Language Models (LLMs).\rSplunk4Ninjas AppDynamics\rLearn how to use Splunk AppDynamics for full-stack application performance monitoring, from installing Java APM agents and monitoring application health to troubleshooting performance issues, tracking browser metrics with BRUM, analyzing database performance, and gaining business insights with Business IQ.",
+    "content": "Automatic Discovery Workshops\rLearn how to leverage Splunk’s automatic discovery and configuration capabilities for Java applications. These workshops demonstrate zero-code instrumentation to instantly generate metrics, traces, and logs for comprehensive observability across monolith and Kubernetes deployments.\rHorizontal Pod Autoscaling\rLearn to monitor Kubernetes Horizontal Pod Autoscaling (HPA) with the Splunk OpenTelemetry Collector, exploring metrics, events, and auto-scaling behavior in real-time\rOpenTelemetry Collector Workshops\rOpenTelemetry Collector Concepts\rLearn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.\rAdvanced OpenTelemetry Collector\rPractice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios’s.\rSplunk Synthetic Scripting\rProactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.\rLambda Tracing\rThis workshop will enable you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis\rDashboard Workshop\rLearn to build insightful visualizations and custom dashboards using Splunk Observability Cloud’s charting capabilities, filters, analytical functions, and SignalFlow\rHands-On OpenTelemetry, Docker, and K8s\rThis hands-on workshop guides you through instrumenting a .NET application with OpenTelemetry, containerizing it with Docker, and deploying it to Kubernetes. You’ll learn to deploy and configure the OpenTelemetry collector using Helm and troubleshoot common configuration issues.\rSolving Problems with O11y Cloud\rLearn how to deploy and configure the OpenTelemetry Collector, instrument applications with OpenTelemetry, and leverage Troubleshooting MetricSets and Tag Spotlight to identify and resolve performance issues in Splunk Observability Cloud.\rIngest Processor for Observability Cloud\rLearn how to optimize observability costs and improve MTTD by transforming logs into metrics using Splunk Ingest Processor with hands-on exercises in Splunk Observability Cloud.\rAlerting and Monitoring with Splunk IT Service Intelligence\rScenario Description\rMonitoring Cisco AI Pods with Splunk Observability Cloud\rThis hands-on workshop demonstrates how to monitor Cisco AI Pods with Splunk Observability Cloud. Learn to deploy the OpenTelemetry Collector in Red Hat OpenShift, ingest infrastructure metrics using Prometheus receivers, and configure APM to monitor Python services that interact with Large Language Models (LLMs).\rSplunk4Ninjas AppDynamics\rLearn how to use Splunk AppDynamics for full-stack application performance monitoring, from installing Java APM agents and monitoring application health to troubleshooting performance issues, tracking browser metrics with BRUM, analyzing database performance, and gaining business insights with Business IQ.",
     "description": "The following workshops require Ninja skills, wax on, wax off.",
     "tags": [],
     "title": "Splunk4Ninjas Workshops",
-    "uri": "/observability-workshop/en/ninja-workshops/index.html"
+    "uri": "/observability-workshop/ninja-workshops/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices",
@@ -2253,7 +2269,7 @@ var relearn_searchindex = [
     "description": "This workshop shows how tags can be used to reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help engineering get a head start on debugging.",
     "tags": [],
     "title": "Tagging Workshop",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -2261,7 +2277,7 @@ var relearn_searchindex = [
     "description": "Welcome! In this section, we’ll begin with a fully functional OpenTelemetry setup that includes both an Agent and a Gateway.\nWe’ll start by quickly reviewing their configuration files to get familiar with the overall structure and to highlight key sections that control the telemetry pipeline.\nTip Throughout the workshop, you’ll work with multiple terminal windows. To keep things organized, give each terminal a unique name or color. This will help you easily recognize and switch between them during the exercises.",
     "tags": [],
     "title": "1. Verify Agent Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/1-agent-gateway/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/1-agent-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -2269,7 +2285,7 @@ var relearn_searchindex = [
     "description": "Welcome! In this section, we’ll begin with a fully functional OpenTelemetry setup that includes both an Agent and a Gateway.\nWe’ll start by quickly reviewing their configuration files to get familiar with the overall structure and to highlight key sections that control the telemetry pipeline.\nTip Throughout the workshop, you’ll work with multiple terminal windows. To keep things organized, give each terminal a unique name or color. This will help you easily recognize and switch between them during the exercises.",
     "tags": [],
     "title": "1. Verify Agent Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -2277,7 +2293,7 @@ var relearn_searchindex = [
     "description": "Tip During this workshop, you will be using up to five terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.\nWe will refer to these terminals as: Agent, Gateway, Spans, Logs and Tests.\nExercise In the Agent terminal window, change into the [WORKSHOP] directory and create a new subdirectory named 1-agent.",
     "tags": [],
     "title": "1. Agent Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 1. Getting Started",
@@ -2285,7 +2301,7 @@ var relearn_searchindex = [
     "description": "Introduction For this workshop, we’ll be using the OpenTelemetry Demo Application running in Kubernetes. This application is for an online retailer and includes more than a dozen services written in many different languages. While metrics, traces, and logs are being collected from this application, this workshop is primarily focused on how Splunk Observability Cloud can be used to more efficiently monitor infrastructure.\nPre-requisites You should have access to the EC2 instance provided in section 1.1 Access AWS/EC2 Instance Initial Steps The initial setup can be completed by executing the following steps on the command line of your EC2 instance.",
     "tags": [],
     "title": "Deploy OpenTelemetry Demo Applciation",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 1. Agent Configuration",
@@ -2293,7 +2309,7 @@ var relearn_searchindex = [
     "description": "Now, we can start the Gateway and the Agent, which is configured to automatically send Host Metrics at startup. We do this to verify that data is properly routed from the Agent to the Gateway.\nExercise Gateway: In the Gateway terminal window, run the following command to start the Gateway:\n​ Start the Gateway ../otelcol --config=gateway.yaml If everything is configured correctly, the collector will start and state Everything is ready. Begin running and processing data. in the output, similar to the following:",
     "tags": [],
     "title": "1.2 Validate \u0026 Test Configuration",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/1-agent-gateway/1-2-send-metrics/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/1-agent-gateway/1-2-send-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 1. Agent Configuration",
@@ -2301,7 +2317,7 @@ var relearn_searchindex = [
     "description": "Now, we can start the Gateway and the Agent, which is configured to automatically send Host Metrics at startup. We do this to verify that data is properly routed from the Agent to the Gateway.\nExercise Gateway: In the Gateway terminal window, run the following command to start the Gateway:\n​ Start the Gateway ../otelcol --config=gateway.yaml If everything is configured correctly, the collector will start and state Everything is ready. Begin running and processing data. in the output, similar to the following:",
     "tags": [],
     "title": "1.2 Validate \u0026 Test Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/1-2-send-metrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/1-agent-gateway/1-2-send-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 2. API Test",
@@ -2309,7 +2325,7 @@ var relearn_searchindex = [
     "description": "Add Authentication Request Click on + Add requests and enter the request step name e.g. Authenticate with Spotify API.\nExpand the Request section, from the drop-down change the request method to POST and enter the following URL:\nhttps://accounts.spotify.com/api/token In the Payload body section enter the following:\ngrant_type=client_credentials Next, add two request headers with the following key/value pairings:\nCONTENT-TYPE: application/x-www-form-urlencoded AUTHORIZATION: Basic {{env.encoded_auth}} Expand the Validation section and add the following extraction:",
     "tags": [],
     "title": "Authentication Request",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 1. Getting Started",
@@ -2317,7 +2333,7 @@ var relearn_searchindex = [
     "description": "Aim Escalation policies determine who is actually on-call for a given team and are the link to utilizing any rotations that have been created.\nThe aim of this module is for you to create three different Escalation Policies to demonstrate a number of different features and operating models.\nThe instructor will start by explaining the concepts before you proceed with the configuration.\nNavigate to the Escalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.",
     "tags": [],
     "title": "Configure Escalation Policies",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/escalation/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/getting_started/escalation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -2325,7 +2341,7 @@ var relearn_searchindex = [
     "description": "To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the Import button, we must first give our test a name e.g. \u003cyour initials\u003e - Online Boutique.\nOnce the Import button is enabled, click on it and either drop the JSON file that you exported from the Chrome DevTools Recorder or upload the file.",
     "tags": [],
     "title": "1.3 Import JSON",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/3-import-json/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/3-import-json/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 1. Agent Setup",
@@ -2333,7 +2349,7 @@ var relearn_searchindex = [
     "description": "So far, we’ve simply exported an exact copy of the span sent through the OpenTelemetry Collector.\nNow, let’s improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting and correlation.\nExercise Stop the collector: In your Agent terminal window, and stop the running collector by pressing Ctrl-C. Once the agent has stopped, open the agent.yaml.\nUpdate All Pipelines: Add both processors (resourcedetection and resource/add_mode) to the processors array in all pipelines. Ensure memory_limiter remains the first processor.",
     "tags": [],
     "title": "1.4 Resource Metadata",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-4-metadata/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-4-metadata/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6. Service Health Dashboard",
@@ -2341,7 +2357,7 @@ var relearn_searchindex = [
     "description": "In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously built. This will allow us to see the behavior of our test and get alerted if one or more of our test runs breach its SLA.\nExercise At the top of the dashboard click on the + and select Chart. First, use the Untitled chart input field and name the chart Requests by version \u0026 error. For this exercise we want a bar or column chart, so click on the 3rd icon in the chart option box. In the Plot editor enter spans.count (this is runtime in duration for our test) in the Signal box and hit enter. Click Add filter and choose sf_service:wire-transfer-service Right now we see different colored bars, a different color for each region the test runs from. As this is not needed we can change that behavior by adding some analytics. Click the Add analytics button. From the drop-down choose the Sum option, then pick sum:aggregation and click version and then click sf_error to group by both of these dimensions. Notice how the chart changes as the metrics are now aggregated. Click the Save and close button. In the dashboard, move the charts so they look like the screenshot below: For the final task, click three dots … at the top of the page (next to Event Overlay) and click on View fullscreen. This will be the view you would use on the TV monitor on the wall (press Esc to go back). Tip In your spare time have a try at adding another custom chart to the dashboard using APM or Infrastructure metrics. You could copy a chart from the out-of-the-box Kubernetes dashboard group. Or you could use the APM metric traces.count to create a chart that shows the number of errors on a specific endpoint.",
     "tags": [],
     "title": "Adding a Custom Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/3-custom-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/3-custom-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 9. Service Health Dashboard",
@@ -2349,7 +2365,7 @@ var relearn_searchindex = [
     "description": "In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously built. This will allow us to see the behavior of our test and get alerted if one or more of our test runs breach its SLA.\nExercise At the top of the dashboard click on the + and select Chart. First, use the Untitled chart input field and name the chart Overall Test Duration. For this exercise we want a bar or column chart, so click on the 3rd icon in the chart option box. In the Plot editor enter synthetics.run.duration.time.ms (this is runtime in duration for our test) in the Signal box and hit enter. Right now we see different colored bars, a different color for each region the test runs from. As this is not needed we can change that behavior by adding some analytics. Click the Add analytics button. From the drop-down choose the Mean option, then pick mean:aggregation and click outside the dialog box. Notice how the chart changes to a single color as the metrics are now aggregated. The x-axis does not currently represent time to change this click on the settings icon at the end of the plot line. The following following dialog will open: Change the Display units (2) in the drop-down box from None to Time (autoscaling)/Milliseconds(ms). The drop-down changes to Millisecond and the x-axis of the chart now represents the test duration time. Close the dialog, either by clicking on the settings icon or the close button. Add our detector by clicking the Link Detector button and start typing the name of the detector you created earlier. Click on the detector name to select it. Notice that a colored border appears around the chart, indicating the status of the alert, along with a bell icon at the top of the dashboard as shown below: Click the Save and close button. In the dashboard, move the charts so they look like the screenshot below: For the final task, click three vertical dots ⋮ at the top right of the page (next to AI Assistant) and click on View fullscreen. This will be the view you would use on the TV monitor on the wall (press Esc to go back). Tip In your spare time have a try at adding another custom chart to the dashboard using RUM metrics. You could copy a chart from the out-of-the-box RUM applications dashboard group. Or you could use the RUM metric rum.client_error.count to create a chart that shows the number of client errors in the application.",
     "tags": [],
     "title": "Adding a Custom Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/9-custom-dashboard/3-custom-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/9-custom-dashboard/3-custom-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour",
@@ -2357,7 +2373,7 @@ var relearn_searchindex = [
     "description": "Splunk APM provides a NoSample end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.\nReal-time monitoring and alerting: Splunk provides out-of-the-box service dashboards and automatically detects and alerts on RED metrics (rate, error and duration) when there is a sudden change.",
     "tags": [],
     "title": "Application Performance Monitoring Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 2. Preparation",
@@ -2365,7 +2381,7 @@ var relearn_searchindex = [
     "description": "The first deployment of our application will be using prebuilt containers to give this base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let’s deploy the application:\n​ kubectl apply Output kubectl apply -f ~/workshop/petclinic/deployment.yaml deployment.apps/config-server created service/config-server created deployment.apps/discovery-server created service/discovery-server created deployment.apps/api-gateway created service/api-gateway created service/api-gateway-external created deployment.apps/customers-service created service/customers-service created deployment.apps/vets-service created service/vets-service created deployment.apps/visits-service created service/visits-service created deployment.apps/admin-server created service/admin-server created service/petclinic-db created deployment.apps/petclinic-db created configmap/petclinic-db-initdb-config created deployment.apps/petclinic-loadgen-deployment created configmap/scriptfile created At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started, so this may take a couple of minutes.",
     "tags": [],
     "title": "Deploy the PetClinic Application",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -2373,7 +2389,7 @@ var relearn_searchindex = [
     "description": "The instructor will provide you with the login information for the instance that we will be using during the workshop.\nWhen you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance, please reach out to your Instructor.\n$ ssh -p 2222 splunk@\u003cIP-ADDRESS\u003e ███████╗██████╗ ██╗ ██╗ ██╗███╗ ██╗██╗ ██╗ ██╗ ██╔════╝██╔══██╗██║ ██║ ██║████╗ ██║██║ ██╔╝ ╚██╗ ███████╗██████╔╝██║ ██║ ██║██╔██╗ ██║█████╔╝ ╚██╗ ╚════██║██╔═══╝ ██║ ██║ ██║██║╚██╗██║██╔═██╗ ██╔╝ ███████║██║ ███████╗╚██████╔╝██║ ╚████║██║ ██╗ ██╔╝ ╚══════╝╚═╝ ╚══════╝ ╚═════╝ ╚═╝ ╚═══╝╚═╝ ╚═╝ ╚═╝ Last login: Mon Feb 5 11:04:54 2024 from [Redacted] splunk@show-no-config-i-0d1b29d967cb2e6ff ~ $ To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal, run the following script and check that the environment variables are present and set with actual valid values:",
     "tags": [],
     "title": "Preparation of the Workshop instance",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 7. Log Observer",
@@ -2381,7 +2397,7 @@ var relearn_searchindex = [
     "description": "The bottom pane is where any related content will be reported. In the screenshot below you can see that APM has found a trace that is related to this log line (1):\nBy clicking (2) on Trace for 960432ac9f16b98be84618778905af50 we will be taken to the waterfall in APM for this specific trace, where this log line was generated:",
     "tags": [],
     "title": "Related Content",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/2-related-content/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/2-related-content/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM",
@@ -2389,7 +2405,7 @@ var relearn_searchindex = [
     "description": "An overview of how to use Splunk APM",
     "tags": [],
     "title": "2. Using Splunk APM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/using-splunk-apm/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 2. Get Data In",
@@ -2397,7 +2413,7 @@ var relearn_searchindex = [
     "description": "Deploy a NGINX ReplicaSet into your K3s cluster and confirm the discovery of your NGINX deployment. Run a load test to create metrics and confirm them streaming into Splunk Observability Cloud! 1. Start your NGINX Verify the number of pods running in the Splunk UI by selecting the WORKLOADS tab. This should give you an overview of the workloads on your cluster.",
     "tags": [],
     "title": "Deploying NGINX in K3s",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/gdi/nginx/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/gdi/nginx/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 2. Standardize Data Collection",
@@ -2405,7 +2421,7 @@ var relearn_searchindex = [
     "description": "When you deployed the OpenTelemetry Demo Application in the Getting Started section of this workshop, you were asked to enter your favorite city. For this workshop, we’ll be using that to show the value of custom tags.\nFor this workshop, the OpenTelemetry collector is pre-configured to use the city you provided as a custom tag called store.location which will be used to emulate Kubernetes Clusters running in different geographic locations. We’ll use this tag as a filter to show how you can use Out-of-the-Box integration dashboards to quickly create views for specific teams, applications, or other attributes about your environment. Efficiently enabling content to be reused across teams without increasing technical debt.",
     "tags": [],
     "title": "Adding Context With Tags",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/2-standardize-data-collection/2-adding-context-with-tags/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/2-standardize-data-collection/2-adding-context-with-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM \u003e 2. Using Splunk APM",
@@ -2413,7 +2429,7 @@ var relearn_searchindex = [
     "description": "Tag Spotlight On the right hand side of the screen scroll down on Tag Spotlight, ensure Top Across All Indexed Tags is selected in the dropdown click the full screen button as indicated in the screenshot below.\nThe Tag Spotlight Page will be displayed. From this page you can view the top tags in your application and their corresponding error rates and request rates.",
     "tags": [],
     "title": "2.2 Tag Spotlight",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/using-splunk-apm/tag_spotlight/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/tag_spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 2. API Test",
@@ -2421,7 +2437,7 @@ var relearn_searchindex = [
     "description": "Click on + Add requests and enter the request step name e.g. Authenticate with Spotify API.\nExpand the Request section, from the drop-down change the request method to POST and enter the following URL:\nhttps://accounts.spotify.com/api/token In the Payload body section enter the following:\ngrant_type=client_credentials Next, add two + Request headers with the following key/value pairings:\nCONTENT-TYPE: application/x-www-form-urlencoded AUTHORIZATION: Basic {{env.encoded_auth}} Expand the Validation section and add the following extraction:",
     "tags": [],
     "title": "Authentication Request",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/3-authentication-request/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/3-authentication-request/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability \u003e 2 Collect Data with Standards",
@@ -2429,7 +2445,7 @@ var relearn_searchindex = [
     "description": "Reconfigure Collector To reconfigure the collector we need to make these changes:\nIn agent_config.yaml We need to adjust the signalfx exporter to use the gateway The otlp exporter is already there, so we leave it alone We need to change the pipelines to use otlp In splunk-otel-collector.conf We need to set the SPLUNK_GATEWAY_URL to the url provided by the instructor See this documentation page for more details.\nThe exporters will be the following:",
     "tags": [],
     "title": "Reconfigure Collector",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/2-collect-with-standards/3-reconfigure-collector/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/2-collect-with-standards/3-reconfigure-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 2. Gateway Setup",
@@ -2437,7 +2453,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Agent: In the Agent terminal window start the agent with the updated configuration:\n​ Start the Agent ../otelcol --config=agent.yaml Verify CPU Metrics:\nCheck that when the agent starts, it immediately starts sending CPU metrics. Both the agent and the gateway will display this activity in their debug output. The output should resemble the following snippet: \u003csnip\u003e NumberDataPoints #37 Data point attributes: -\u003e cpu: Str(cpu0) -\u003e state: Str(system) StartTimestamp: 2024-12-09 14:18:28 +0000 UTC Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC Value: 9637.660000 At this stage, the agent continues to collect CPU metrics once per hour or upon each restart and sends them to the gateway.",
     "tags": [],
     "title": "2.3 Send metrics from the Agent to the Gateway",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-3-send-metrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-3-send-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -2445,7 +2461,7 @@ var relearn_searchindex = [
     "description": "To assess the Agent’s resilience, we’ll simulate a temporary Gateway outage and observe how the Agent handles it:\nExercise Simulate a network failure: In the Gateway terminal stop the Gateway with Ctrl-C and wait until the gateway console shows that it has stopped. The Agent will continue running, but it will not be able to send data to the gateway. The output in the Gateway terminal should look similar to this:",
     "tags": [],
     "title": "2.3 Simulate Failure",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/2-building-resilience/2-3-failure/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/2-building-resilience/2-3-failure/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -2453,7 +2469,7 @@ var relearn_searchindex = [
     "description": "To assess the Agent’s resilience, we’ll simulate a temporary Gateway outage and observe how the Agent handles it:\nExercise Simulate a network failure: In the Gateway terminal stop the Gateway with Ctrl-C and wait until the gateway console shows that it has stopped. The Agent will continue running, but it will not be able to send data to the gateway. The output in the Gateway terminal should look similar to this:",
     "tags": [],
     "title": "2.3 Simulate Failure",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-3-failure/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-3-failure/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 2. Extensions",
@@ -2461,7 +2477,7 @@ var relearn_searchindex = [
     "description": "zPages zPages are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages are an extremely useful diagnostic feature to ensure the collector is running as expected.\n​ ServiceZ PipelineZ ExtensionZ ServiceZ gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.",
     "tags": [],
     "title": "OpenTelemetry Collector Extensions",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/3-zpages/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/2-extensions/3-zpages/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -2469,7 +2485,7 @@ var relearn_searchindex = [
     "description": "Let’s learn how to enable the memory and CPU profilers, verify their operation, and use the results in Splunk Observability Cloud to find out why our application startup is slow.\nUpdate the application configuration We will need to pass additional configuration arguments to the Splunk OpenTelemetry Java agent in order to enable both profilers. The configuration is documented here in detail, but for now we just need the following settings:\nSPLUNK_PROFILER_ENABLED=\"true\" SPLUNK_PROFILER_MEMORY_ENABLED=\"true\" Since our application is deployed in Kubernetes, we can update the Kubernetes manifest file to set these environment variables. Open the doorgame/doorgame.yaml file for editing, and ensure the values of the following environment variables are set to “true”:",
     "tags": [],
     "title": "Enable AlwaysOn Profiling",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/3-enable-profiling/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/3-enable-profiling/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability",
@@ -2477,7 +2493,7 @@ var relearn_searchindex = [
     "description": "Introduction Managing Observability costs is a huge challenge. Users can send in data at will, change data, turn on new integrations, and incur costs that are hard to detect before the surprise overage at the end of the month. Exactly the kind of thing that’s likely to happen to this new team as they set up their new application.\nLet’s walk through some ways we can mitigate those challenges, while still making the platform easy for teams to send the data they need to.",
     "tags": [],
     "title": "Manage Costs",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/3-manage-costs/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/3-manage-costs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop \u003e 7. Use Tags for Monitoring",
@@ -2485,7 +2501,7 @@ var relearn_searchindex = [
     "description": "We can now use the created Monitoring MetricSet together with Service Level Objectives a similar way we used them with dashboards and detectors/alerts before. For that we want to be clear about some key concepts:\nKey Concepts of Service Level Monitoring (skip if you know this)\nConcept Definition Examples Service level indicator (SLI) An SLI is a quantitative measurement showing some health of a service, expressed as a metric or combination of metrics. Availability SLI: Proportion of requests that resulted in a successful response\nPerformance SLI: Proportion of requests that loaded in \u003c 100 ms Service level objective (SLO) An SLO defines a target for an SLI and a compliance period over which that target must be met. An SLO contains 3 elements: an SLI, a target, and a compliance period. Compliance periods can be calendar, such as monthly, or rolling, such as past 30 days. Availability SLI over a calendar period: Our service must respond successfully to 95% of requests in a month\nPerformance SLI over a rolling period: Our service must respond to 99% of requests in \u003c 100 ms over a 7-day period Service level agreement (SLA) An SLA is a contractual agreement that indicates service levels your users can expect from your organization. If an SLA is not met, there can be financial consequences. A customer service SLA indicates that 90% of support requests received on a normal support day must have a response within 6 hours. Error budget A measurement of how your SLI performs relative to your SLO over a period of time. Error budget measures the difference between actual and desired performance. It determines how unreliable your service might be during this period and serves as a signal when you need to take corrective action. Our service can respond to 1% of requests in \u003e100 ms over a 7 day period. Burn rate A unitless measurement of how quickly a service consumes the error budget during the compliance window of the SLO. Burn rate makes the SLO and error budget actionable, showing service owners when a current incident is serious enough to page an on-call responder. For an SLO with a 30-day compliance window, a constant burn rate of 1 means your error budget is used up in exactly 30 days. Creating a new Service Level Objective There is an easy to follow wizard to create a new Service Level Objective (SLO). In the left navigation just follow the link “Detectors \u0026 SLOs”. From there select the third tab “SLOs” and click the blue button to the right that says “Create SLO”.",
     "tags": [],
     "title": "Use Tags with Service Level Objectives",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/3-slos/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/3-slos/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -2493,7 +2509,7 @@ var relearn_searchindex = [
     "description": "1. Review OTel receiver for PHP/Apache Inspect the YAML file ~/workshop/k3s/otel-apache.yaml and validate the contents using the following command:\ncat ~/workshop/k3s/otel-apache.yaml This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.\nagent: config: receivers: receiver_creator: receivers: apache: rule: type == \"port\" \u0026\u0026 pod.name matches \"apache\" \u0026\u0026 port == 80 config: endpoint: http://php-apache-svc.apache.svc.cluster.local/server-status?auto 2. Observation Rules in the OpenTelemetry config The above file contains an observation rule for Apache using the OTel receiver_creator. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.",
     "tags": [],
     "title": "Apache OTel Receiver",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/3-apache-otel-receiver/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/3-apache-otel-receiver/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -2501,7 +2517,7 @@ var relearn_searchindex = [
     "description": "Splunk APM provides a NoSample end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.\nReal-time monitoring and alerting: Splunk provides out-of-the-box service dashboards and automatically detects and alerts on RED metrics (rate, error and duration) when there is a sudden change. Dynamic telemetry maps: Easily visualize service performance in modern production environments in real-time. End-to-end visibility of service performance from infrastructure, applications, end users, and all dependencies helps quickly scope new issues and troubleshoot more effectively.\nIntelligent tagging and analysis: View all tags from your business, infrastructure and applications in one place to easily compare new trends in latency or errors to their specific tag values.\nAI-directed troubleshooting identifies the most impactful issues: Instead of manually digging through individual dashboards, isolate problems more efficiently. Automatically identify anomalies and the sources of errors that impact services and customers the most.\nComplete distributed tracing analyses every transaction: Identify problems in your cloud-native environment more effectively. Splunk distributed tracing visualizes and correlates every transaction from the back-end and front-end in context with your infrastructure, business workflows and applications.\nFull stack correlation: Within Splunk Observability, APM links traces, metrics, logs and profiling together to easily understand the performance of every component and its dependency across your stack.\nMonitor database query performance: Easily identify how slow and high execution queries from SQL and NoSQL databases impact your services, endpoints and business workflows — no instrumentation required.",
     "tags": [],
     "title": "Application Performance Monitoring Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 5. APM Features",
@@ -2509,7 +2525,7 @@ var relearn_searchindex = [
     "description": "While we examine our spans, let’s look at several out-of-the-box features that you get without code modifications when using automatic discovery and configuration on top of tracing:\nFirst, in the Waterfall Pane, make sure the customers-service:SELECT petclinic or similar span is selected as shown in the screenshot below:\nThe basic latency information is shown as a bar for the instrumented function or call. In our example above, it took 17.8 Milliseconds. Several similar Spans (1) are only visible if the span is repeated multiple times. In this case, there are 10 repeats in our example. You can show/hide them all by clicking on the 10x and all spans will show in order. Inferred Services: Calls made to external systems that are not instrumented show up as a grey ‘inferred’ span. The Inferred Service or span in our example is a call to the Mysql Database mysql:petclinic SELECT petclinic (2) as shown above. Span Tags: In the Tag Pane, we see standard tags produced by the automatic discovery and configuration. In this case, the span is calling a Database, so it includes the db.statement tag (3). This tag will hold the DB query statement and is used by the Database call performed during this span. This will be used by the DB-Query Performance feature. We look at DB-Query Performance in the next section. Always-on Profiling: IF the system is configured to capture Profiling data during a Span life cycle. It will show the number of Call Stacks captured in the Spans timeline. In our example above, we see 18 Call Stacks for the customer-service:GET /owners Span. (4) We will look at Profiling in the next section.",
     "tags": [],
     "title": "APM Span",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -2517,7 +2533,7 @@ var relearn_searchindex = [
     "description": "Exercise To view the tags for the wire-transfer-service click on the wire-transfer-service and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).* Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.",
     "tags": [],
     "title": "3. APM Tag Spotlight",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/3-apm-tag-spotlight/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/3-apm-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -2525,15 +2541,15 @@ var relearn_searchindex = [
     "description": "Exercise To view the tags for the paymentservice click on the paymentservice and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).* Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.",
     "tags": [],
     "title": "3. APM Tag Spotlight",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/3-apm-tag-spotlight/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/3-apm-tag-spotlight/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
-    "content": "Exercise To view the tags for the paymentservice click on the paymentservice and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).* Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.\nIt is also possible to configure which tag metrics are displayed in the cards. It is possible to select any combinations of:\nRequests Errors Root cause errors P50 Latency P90 Latency P99 Latency Also ensure that the Show tags with no values toggle is unchecked.\nExercise ​ Question Answer Which card exposes the tag that identifies what the problem is?\nThe version card. The number of requests against v350.10 matches the number of errors i.e. 100%\nNow that we have identified the version of the paymentservice that is causing the issue, let’s see if we can find out more information about the error. Click on ← Tag Spotlight at the top of the page to get back to the Service Map.",
-    "description": "Exercise To view the tags for the paymentservice click on the paymentservice and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).* Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
+    "content": "Exercise To view the tags for the paymentservice click on the paymentservice and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution). Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.\nIt is also possible to configure which tag metrics are displayed in the cards. It is possible to select any combinations of:\nRequests Errors Root cause errors P50 Latency P90 Latency P99 Latency Also ensure that the Show tags with no values toggle is unchecked.\nExercise ​ Question Answer Which card exposes the tag that identifies what the problem is?\nThe version card. The number of requests against v350.10 matches the number of errors i.e. 100%\nNow that we have identified the version of the paymentservice that is causing the issue, let’s see if we can find out more information about the error. Click on ← Tag Spotlight at the top of the page to get back to the Service Map.",
+    "description": "Exercise To view the tags for the paymentservice click on the paymentservice and then click on Tag Spotlight in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution). Once in Tag Spotlight ensure the toggle Show tags with no values is off. The views in Tag Spotlight are configurable for both the chart and cards. The view defaults to Requests \u0026 Errors.",
     "tags": [],
     "title": "3. APM Tag Spotlight*",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/3-apm-tag-spotlight/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/3-apm-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Monolith Workshop",
@@ -2541,7 +2557,7 @@ var relearn_searchindex = [
     "description": "You can now start the application with the following command. Notice that we are passing the mysql profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the otel.service.name and otel.resource.attributes to a logical names using the instance name. These will also be used in the UI for filtering:\njava \\ -Dserver.port=8083 \\ -Dotel.service.name=$INSTANCE-petclinic-service \\ -Dotel.resource.attributes=deployment.environment=$INSTANCE-petclinic-env \\ -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql You can validate the application is running by visiting http://\u003cIP_ADDRESS\u003e:8083 (replace \u003cIP_ADDRESS\u003e with the IP address you obtained earlier).",
     "tags": [],
     "title": "Automatic discovery and configuration for Java",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/3-auto-discovery/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/3-auto-discovery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics",
@@ -2549,7 +2565,7 @@ var relearn_searchindex = [
     "description": "We have started testing our endpoints, now let’s test the front end browser experience.\nStarting with a single page browser test will let us capture how first- and third-party resources impact how our end users experience our browser-based site. It also allows us to start to understand our user experience metrics before introducing the complexity of multiple steps in one test.\nA page where your users commonly “land” is a good choice to start with a single page test. This could be your site homepage, a section main page, or any other high-traffic URL that is important to you and your end users.",
     "tags": [],
     "title": "Single Page Browser Test",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/3-browser/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/3-browser/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -2557,7 +2573,7 @@ var relearn_searchindex = [
     "description": "Please proceed to one of the subsections for Java or Python. Ask your instructor for the one used during the workshop!",
     "tags": [],
     "title": "Capture Tags with OpenTelemetry",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/3-capture-tags/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/3-capture-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Detectors",
@@ -2565,7 +2581,7 @@ var relearn_searchindex = [
     "description": "With our custom dashboard charts, we can create detectors focussed directly on the data and conditions we care about. In building our charts, we also built signals that can trigger alerts.\nStatic detectors For many KPIs, we have a static value in mind as a threshold.\nIn your custom End User Experience dashboard, go to the “LCP - all tests” chart.\nClick the bell icon on the top right of the chart, and select “New detector from chart”",
     "tags": [],
     "title": "Chart Detectors",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e GDI (OTel \u0026 UF)",
@@ -2573,7 +2589,7 @@ var relearn_searchindex = [
     "description": "Code to Kubernetes - Python Objective: Understand activities to instrument a python application and run it on Kubernetes.\nVerify the code Containerize the app Deploy the container in Kubernetes Note: these steps do not involve Splunk\nDuration: 15 Minutes\n1. Verify the code - Review service Navigate to the review directory\ncd /home/splunk/realtime_enrichment/flask_apps/review/ Inspect review.py (realtime_enrichment/flask_apps/review)\ncat review.py from flask import Flask, jsonify import random import subprocess review = Flask(__name__) num_reviews = 8635403 num_reviews = 100000 reviews_file = '/var/appdata/yelp_academic_dataset_review.json' @review.route('/') def hello_world(): return jsonify(message='Hello, you want to hit /get_review. We have ' + str(num_reviews) + ' reviews!') @review.route('/get_review') def get_review(): random_review_int = str(random.randint(1,num_reviews)) line_num = random_review_int + 'q;d' command = [\"sed\", line_num, reviews_file] # sed \"7997242q;d\" \u003cfile\u003e random_review = subprocess.run(command, stdout=subprocess.PIPE, text=True) return random_review.stdout if __name__ == \"__main__\": review.run(host ='0.0.0.0', port = 5000, debug = True) Inspect requirements.txt",
     "tags": [],
     "title": "Code to Kubernetes - Python",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -2581,7 +2597,7 @@ var relearn_searchindex = [
     "description": "Introduction to the Dashboards and Charts Editing and creating charts Filtering and analytical functions Using formulas Saving charts in a dashboard Introduction to SignalFlow 1. Dashboards Dashboards are groupings of charts and visualizations of metrics. Well-designed dashboards can provide useful and actionable insight into your system at a glance. Dashboards can be complex or contain just a few charts that drill down only into the data you want to see.",
     "tags": [],
     "title": "Working with Dashboards",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 6. Advanced Features",
@@ -2589,7 +2605,7 @@ var relearn_searchindex = [
     "description": "With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.\nTo look at the performance of your database queries, make sure you are on the APM Service Map page either by going back in the browser or navigating to the APM section in the Menu bar, then click on the Service Map tile.",
     "tags": [],
     "title": "Database Query Performance",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/3-dbquery/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/3-dbquery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -2597,7 +2613,7 @@ var relearn_searchindex = [
     "description": "Prerequisites Before deploying the application, we’ll need to install the .NET 8 SDK on our instance.\n​ Script Example Output sudo apt-get update \u0026\u0026 \\ sudo apt-get install -y dotnet-sdk-8.0 Hit:1 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy InRelease Hit:2 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-updates InRelease Hit:3 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-backports InRelease Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease Ign:5 https://splunk.jfrog.io/splunk/otel-collector-deb release InRelease Hit:6 https://splunk.jfrog.io/splunk/otel-collector-deb release Release Reading package lists... Done Reading package lists... Done Building dependency tree... Done Reading state information... Done The following additional packages will be installed: aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0 liblttng-ust-common1 liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0 The following NEW packages will be installed: aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-sdk-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0 liblttng-ust-common1 liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0 0 upgraded, 13 newly installed, 0 to remove and 0 not upgraded. Need to get 138 MB of archives. After this operation, 495 MB of additional disk space will be used. etc. Refer to Install .NET SDK or .NET Runtime on Ubuntu for further details.",
     "tags": [],
     "title": "Deploy a .NET Application",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -2605,7 +2621,7 @@ var relearn_searchindex = [
     "description": "Deploy an OpenShift Cluster We’ll use the ROSA CLI to deploy an OpenShift Cluster.\nFirst, we’ll need to set a few environment variables:\nNote: be sure to fill in the Subnet IDs and OIDC ID before running the EXPORT commands\nexport CLUSTER_NAME=rosa-test export AWS_REGION=us-east-2 export AWS_INSTANCE_TYPE=g5.2xlarge export SUBNET_IDS=\u003ccomma separated list of subnet IDs from earlier rosa create network command\u003e export OIDC_ID=\u003cthe oidc-provider id returned from the rosa create oidc-config command\u003e export OPERATOR_ROLES_PREFIX=rosa-test-a6x9 Create operator roles for the OIDC configuration using the following command:",
     "tags": [],
     "title": "Deploy OpenShift Cluster in AWS",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -2613,7 +2629,15 @@ var relearn_searchindex = [
     "description": "At this point, we’ve deployed an OpenTelemetry collector in our K8s cluster, and it’s successfully collecting infrastructure metrics.\nThe next step is to deploy a sample application and instrument with OpenTelemetry to capture traces.\nWe’ll use a microservices-based application written in Python. To keep the workshop simple, we’ll focus on two services: a credit check service and a credit processor service.\nDeploy the Application To save time, we’ve built Docker images for both of these services already which are available in Docker Hub. We can deploy the credit check service in our K8s cluster with the following command:",
     "tags": [],
     "title": "Deploy the Sample Application and Instrument with OpenTelemetry",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona You are a frontend engineer, or an SRE tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.\nWe are going to examine the RUM data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.",
+    "description": "This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.",
+    "tags": [],
+    "title": "Digital Experience (RUM)",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -2621,7 +2645,7 @@ var relearn_searchindex = [
     "description": "1. Patching the Frontend service First, confirm that you can see your environment in APM. There should be a service called loadgenerator displayed in the Service map.\nNext, we will patch the frontend deployment with an annotation to inject the NodeJS auto instrumentation. This will allow us to see the frontend service in APM. Note, that at this point we have not edited any code.",
     "tags": [],
     "title": "Zero Configuration - Frontend Service",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/3-frontend-service/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/3-frontend-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -2629,7 +2653,7 @@ var relearn_searchindex = [
     "description": "In this section you will install the sample application and begin the load generation",
     "tags": [],
     "title": "3. Generate Application Load",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/3-generate-application-load/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/3-generate-application-load/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -2637,7 +2661,7 @@ var relearn_searchindex = [
     "description": "To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the Import button, we must first give our test a name e.g. [\u003cyour team name\u003e] \u003cyour initials\u003e - Online Boutique.\nOnce the Import button is enabled, click on it and either drop the JSON file that you exported from the Chrome DevTools Recorder or upload the file.",
     "tags": [],
     "title": "Import JSON",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Remote Installation",
@@ -2645,7 +2669,7 @@ var relearn_searchindex = [
     "description": "Now that your configuration files are ready, you can install and start Smart Agent on your remote hosts using the smartagentctl command-line tool.\nInstallation Process Overview The installation process involves:\nConnection: Establishes SSH connections to all defined hosts Transfer: Copies Smart Agent binaries and configuration to remote hosts Installation: Installs Smart Agent in /opt/appdynamics/appdsmartagent/ on each host Startup: Starts the Smart Agent process on each remote host Logging: Outputs detailed progress to console and log file Step 1: Navigate to Installation Directory Change to the Smart Agent installation directory:",
     "tags": [],
     "title": "3. Installation \u0026 Startup",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/3-installation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/3-installation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -2653,7 +2677,7 @@ var relearn_searchindex = [
     "description": "The Lambda functions should be generating a sizeable amount of trace data, which we would need to take a look at. Through the combination of environment variables and the OpenTelemetry Lambda layer configured in the resource definition for our Lambda functions, we should now be ready to view our functions and traces in Splunk APM.\nView your Environment name in the Splunk APM Overview Let’s start by making sure that Splunk APM is aware of our Environment from the trace data it is receiving. This is the deployment.name we set as part of the OTEL_RESOURCE_ATTRIBUTES variable we set on our Lambda function definitions in main.tf. It was also one of the outputs from the terraform apply command we ran earlier.",
     "tags": [],
     "title": "Splunk APM, Lambda Functions \u0026 Traces",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -2661,7 +2685,7 @@ var relearn_searchindex = [
     "description": "Lambdas in Splunk APM Now it’s time to check how your Lambda traffic has been captured in Splunk APM.\nNavigate to your Splunk Observability Cloud Select APM from the Main Menu and then select your APM Environment. Your APM environment should be in the format $INSTANCE-apm-lambda where the hostname value is a four letter name of your lab host. (Check it by looking at your command prompt, or by running echo $INSTANCE).",
     "tags": [],
     "title": "Lambdas in Splunk APM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 5. Splunk Log Observer",
@@ -2669,7 +2693,7 @@ var relearn_searchindex = [
     "description": "Once you have a specific view in Log Observer, it is very useful to be able to use that view in a dashboard, to help in the future with reducing the time to detect or resolve issues. As part of the workshop, we will create an example custom dashboard that will use these charts.\nLet’s look at creating a Log Timeline chart. The Log Timeline chart is used for visualizing log messages over time. It is a great way to see the frequency of log messages and to identify patterns. It is also a great way to see the distribution of log messages across your environment. These charts can be saved to a custom dashboard.",
     "tags": [],
     "title": "3. Log Timeline Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/3-log-timeline-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/5-log-observer/3-log-timeline-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 7. Splunk Log Observer",
@@ -2677,7 +2701,7 @@ var relearn_searchindex = [
     "description": "Once you have a specific view in Log Observer, it is very useful to be able to use that view in a dashboard, to help in the future with reducing the time to detect or resolve issues. As part of the workshop, we will create an example custom dashboard that will use these charts.\nLet’s look at creating a Log Timeline chart. The Log Timeline chart is used for visualizing log messages over time. It is a great way to see the frequency of log messages and to identify patterns. It is also a great way to see the distribution of log messages across your environment. These charts can be saved to a custom dashboard.",
     "tags": [],
     "title": "3. Log Timeline Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/3-log-timeline-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/7-log-observer/3-log-timeline-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -2685,7 +2709,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll use the Prometheus receiver with the OpenTelemetry collector to monitor the NVIDIA components running in the OpenShift cluster.\nCapture the NVIDIA DCGM Exporter metrics The NVIDIA DCGM exporter is running in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.\nTo do this, let’s customize the configuration of the collector by editing the otel-collector-values.yaml file that we used earlier when deploying the collector.",
     "tags": [],
     "title": "Monitor NVIDIA Components",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/3-monitor-nvidia-components/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/3-monitor-nvidia-components/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 3. Receivers",
@@ -2693,7 +2717,7 @@ var relearn_searchindex = [
     "description": "Other Receivers You will notice in the default configuration there are other receivers: otlp, opencensus, jaeger and zipkin. These are used to receive telemetry data from other sources. We will not be covering these receivers in this workshop and they can be left as they are.\nNinja: Create receivers dynamically To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the receiver creator with observer extensions to create a new receiver as these services start up.",
     "tags": [],
     "title": "OpenTelemetry Collector Receivers",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/3-other-receivers/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/3-other-receivers/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -2701,7 +2725,7 @@ var relearn_searchindex = [
     "description": "Users and Workflows As we go through this workshop we will be switching roles from SRE to Developer. First we will start with alert responders or SREs who will identify an issue in Splunk Observability UI. Next, we will jump to a Developer Role to see how a Developer will debug and repair/fix a software problem using trace data provided by our SRE.\nOf course, we are not requiring 2 people for this workshop as each participant will play both roles.",
     "tags": [],
     "title": "Overview of the Workshop",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/3-overview/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/3-overview/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Monolith Workshop",
@@ -2709,7 +2733,7 @@ var relearn_searchindex = [
     "description": "For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript https://github.com/signalfx/splunk-otel-js-web snippet in the pages, we will use the wizard again Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation.\nYour instructor will inform you which token to use from the dropdown, click Next. Enter App name and Environment using the following syntax:\n\u003cINSTANCE\u003e-petclinic-service - replacing \u003cINSTANCE\u003e with the value you noted down earlier. \u003cINSTANCE\u003e-petclinic-env - replacing \u003cINSTANCE\u003e with the value you noted down earlier. The wizard will then show a snippet of HTML code that needs to be placed at the top of the pages in the \u003chead\u003e section. The following is an example of the (do not use this snippet, use the one generated by the wizard):",
     "tags": [],
     "title": "3. Real User Monitoring",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/4-rum/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/4-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -2717,7 +2741,7 @@ var relearn_searchindex = [
     "description": "Welcome to the receiver portion of the workshop! This is the starting point of the data pipeline of the OpenTelemetry Collector. Let’s dive in.\nA receiver, which can be push or pull based, is how data gets into the Collector. Receivers may support one or more data sources. Generally, a receiver accepts data in a specified format, translates it into the internal format and passes it to processors and exporters defined in the applicable pipelines.",
     "tags": [],
     "title": "OpenTelemetry Collector Receivers",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/3-receivers/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -2725,7 +2749,7 @@ var relearn_searchindex = [
     "description": "Visit the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based) 1. Visit the RUM Landing Page Login into Splunk Observability. From the left side menu bar select RUM . This will bring you to your the RUM Landing Page.\nThe goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)",
     "tags": [],
     "title": "RUM Landing Page",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/3-rum-landing/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/3-rum-landing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -2733,7 +2757,7 @@ var relearn_searchindex = [
     "description": "Visit the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based) 1. Visit the RUM Landing Page Login into your Splunk IM/APM/RUM Website. From the left side menu bar select RUM . This will bring you to your the RUM Landing Page.\nThe goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)",
     "tags": [],
     "title": "3. RUM Landing Page",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/3-rum-landing/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/3-rum-landing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 8. Real User Monitoring",
@@ -2741,7 +2765,7 @@ var relearn_searchindex = [
     "description": "We are now looking at the RUM Trace waterfall, this will tell you what happened during the session on the user device as they visited the page of our petclinic application.\nIf you scroll down the waterfall find click on the #!/owners/details segment on the right (1), you see a list of actions that occurred during the handling of the Vets request. Note, that the HTTP request have a blue APM link before the return code. Pick one, and click on the APM link. This will show you the APM info for this backend service call hosted in Kubernetes.",
     "tags": [],
     "title": "RUM trace Waterfall view \u0026 linking to APM",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/3-rum-tour/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/3-rum-tour/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 5. Splunk RUM",
@@ -2749,15 +2773,15 @@ var relearn_searchindex = [
     "description": "Sessions A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.\nExercise In the User Sessions table, click on the top Session ID with the longest Duration (over 20 seconds or longer), this will take you to the RUM Session view.",
     "tags": [],
     "title": "3. Session Replay",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/3-session-replay/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/5-rum/3-session-replay/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 5. Splunk RUM",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
     "content": "Sessions A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.\nExercise In the User Sessions table, click on the top Session ID with the longest Duration (over 20 seconds or longer), this will take you to the RUM Session view. Exercise Click the RUM Session Replay Replay button. RUM Session Replay allows you to replay and see the user session. This is a great way to see exactly what the user experienced. Click the button to start the replay. RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.\nTip When playing back the session, notice how the mouse movements are captured. This is useful to see where the user is focusing their attention.",
     "description": "Sessions A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.\nExercise In the User Sessions table, click on the top Session ID with the longest Duration (over 20 seconds or longer), this will take you to the RUM Session view.",
     "tags": [],
     "title": "3. Session Replay",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/5-rum/3-session-replay/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/3-session-replay/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e ThousandEyes Integration",
@@ -2765,7 +2789,7 @@ var relearn_searchindex = [
     "description": "About Splunk Observability Cloud Splunk Observability Cloud is a real-time observability platform purpose-built for monitoring metrics, traces, and logs at scale. It ingests OpenTelemetry data and provides advanced dashboards and analytics to help teams detect and resolve performance issues quickly. This section explains how to integrate ThousandEyes data with Splunk Observability Cloud using OpenTelemetry.\nStep 1: Create a Splunk Observability Cloud Access Token To send data to Splunk Observability Cloud, you need an access token. Follow these steps:",
     "tags": [],
     "title": "Splunk Integration",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/3-splunk-integration/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/3-splunk-integration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 8. Splunk Synthetics",
@@ -2773,15 +2797,23 @@ var relearn_searchindex = [
     "description": "We now should have a view similar to the one below.\nExercise In the waterfall find an entry that starts with POST checkout. Click on the \u003e button in front of it to drop open the metadata section. Observe the metadata that is collected, and note the Server-Timing header. This header is what allows us to correlate the test run to a back-end trace. Click on the blue APM link on the POST checkout line in the waterfall.",
     "tags": [],
     "title": "3. Synthetics to APM",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/3-synthetics-to-apm/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/8-synthetics/3-synthetics-to-apm/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 8. Splunk Synthetics*",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6. Digital Experience (Synthetics)",
     "content": "We now should have a view similar to the one below.\nExercise In the waterfall find an entry that starts with POST checkout. Click on the \u003e button in front of it to drop open the metadata section. Observe the metadata that is collected, and note the Server-Timing header. This header is what allows us to correlate the test run to a back-end trace. Click on the blue APM link on the POST checkout line in the waterfall. Exercise Validate you see one or more errors for the paymentservice (1). To validate that it’s the same error, click on the related content for Logs (2). Repeat the earlier exercise to filter down to the errors only. View the error log to validate the failed payment due to an invalid token.",
     "description": "We now should have a view similar to the one below.\nExercise In the waterfall find an entry that starts with POST checkout. Click on the \u003e button in front of it to drop open the metadata section. Observe the metadata that is collected, and note the Server-Timing header. This header is what allows us to correlate the test run to a back-end trace. Click on the blue APM link on the POST checkout line in the waterfall.",
     "tags": [],
     "title": "3. Synthetics to APM",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/8-synthetics/3-synthetics-to-apm/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/6-synthetics/3-synthetics-to-apm/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "Exercise Make sure you are on the Custom Events tab by selecting it.\nHave a look at the Custom Event Latency chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).\nClick on the see all link under the chart title.\nIn this dashboard view, you are presented with all the tags associated with the RUM data. Tags are key-value pairs that are used to identify the data. In this case, the tags are automatically generated by the OpenTelemetry instrumentation. The tags are used to filter the data and to create the charts and tables. The Tag Spotlight view allows you to drill down into a user session.\nChange the timeframe to Last 1 hour.\nClick Add Filters, select OS Version, click != and select Synthetics and RUMLoadGen then click the Apply Filter button.\nFind the Custom Event Name chart, locate PlaceOrder in the list, click on it and select Add to filter.\nNotice the large spikes in the graph across the top.\nClick on the User Sessions tab.\nClick on the Duration heading twice to sort the sessions by duration (longest at the top).\nClick on the above the table and select Sf Geo City from the list of additional columns and click Save\nWe now have a User Session table that is sorted by longest duration descending and includes the cities of all the users that have been shopping on the site. We could apply more filters to further narrow down the data e.g. OS version, browser version, etc.",
+    "description": "Exercise Make sure you are on the Custom Events tab by selecting it.\nHave a look at the Custom Event Latency chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).\nClick on the see all link under the chart title.",
+    "tags": [],
+    "title": "3. Tag Spotlight",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/3-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -2789,7 +2821,7 @@ var relearn_searchindex = [
     "description": "A quick tour of the Splunk Observability Cloud UI.",
     "tags": [],
     "title": "UI - Quick Tour 🚌",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -2797,7 +2829,15 @@ var relearn_searchindex = [
     "description": "A quick tour of the Splunk Observability Cloud UI.",
     "tags": [],
     "title": "UI - Quick Tour 🚌",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 5. Logs",
+    "content": "Exercise Click on an error entry in the log table (make sure it says hostname: \"paymentservice-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?\nThe development team needs to rebuild and deploy the container with a valid API Token or rollback to v350.9.\nClick on the X in the log message pane to close it. Congratulations You have successfully used Splunk Observability Cloud to understand why you experienced a poor user experience whilst shopping at the Online Boutique. You used RUM, APM and logs to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, metrics, traces and logs\nYou also learned how to use Splunk’s intelligent tagging and analysis with Tag Spotlight to detect patterns in your applications’ behavior and to use the full stack correlation power of Related Content to quickly move between the different components whilst keeping in context of the issue.\nIn the next part of the workshop, we will move from problem-finding mode into mitigation, prevention and process improvement mode.",
+    "description": "Exercise Click on an error entry in the log table (make sure it says hostname: \"paymentservice-xxxx\" in case there is a rare error from a different service in the list too. ​ Question Answer Based on the message, what would you tell the development team to do to resolve the issue?",
+    "tags": [],
+    "title": "3. Viewing Log Entries",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/5-logs/3-log-entry/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Workshop Setup",
@@ -2805,7 +2845,7 @@ var relearn_searchindex = [
     "description": "Workshop Cleanup After completing your workshop session, it’s important to clean up the environment to save costs and ensure resources are properly managed. Use SWiPE to handle the cleanup process efficiently.\nWhat SWiPE Deletes SWiPE automates the following cleanup tasks:\nDelete all users associated with the workshop. Delete the team created for the workshop. Delete tokens, including INGEST, API, and RUM tokens. Delete user dashboards created during the workshop.",
     "tags": [],
     "title": "3. Workshop Clean-up",
-    "uri": "/observability-workshop/en/workshop-setup/3-clean-up/index.html"
+    "uri": "/observability-workshop/workshop-setup/3-clean-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Alerting and Monitoring with Splunk IT Service Intelligence \u003e 3. Creating Services in ITSI",
@@ -2813,7 +2853,7 @@ var relearn_searchindex = [
     "description": "Starting with an AppDynamics Based Service Access Services: In ITSI click “Configuration”, click on “Services”.\nCreate Service: AD-Ecommerce2: Click “Create Service -\u003e Create Service”.\nService Details (AD-Ecommerce2):\nTitle: “AD-Ecommerce2” Description (Optional): e.g., “Ecommerce Service - version 2” Select Template: Choose “Link service to a service template” and search for “AppDynamics App Performance Monitoring” from the template dropdown. Click Create to save the new service.\nEntity Assignment:\nThe page will load and display the new Service and you will be on the Entities page. This demo defaults to selecting the AD-Ecommerce:18112:demo1.saas.appdynamics.com entity. In a real world situation you would need to match the entity_name to the entity name manually. Direct Entity Selection (If Available): Search for the entity using entity_name=\"AD-Ecommerce:18112:demo1.saas.appdynamics.com\" and select it. Settings: Click the “Settings” tab, enable Backfill and keep that standard 7 days. Enable the Service, and click “Save”",
     "tags": [],
     "title": "Creating an AppD Based Service",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/2-creating-appd-service/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/2-creating-appd-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 3. Reuse Content Across Teams",
@@ -2821,7 +2861,7 @@ var relearn_searchindex = [
     "description": "ITOps teams responsible for monitoring fleets of infrastructure frequently find themselves manually creating dashboards to visualize and analyze metrics, traces, and log data emanating from rapidly changing cloud-native workloads hosted in Kubernetes and serverless architectures, alongside existing on-premises systems. Moreover, due to the absence of a standardized troubleshooting workflow, teams often resort to creating numerous custom dashboards, each resembling the other in structure and content. As a result, administrative overhead skyrockets and MTTR slows.",
     "tags": [],
     "title": "Dashboard Cloning",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/3-reuse-content-across-teams/2-clone-dashboards/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/3-reuse-content-across-teams/2-clone-dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 3. Create an Ingest Pipeline",
@@ -2829,7 +2869,7 @@ var relearn_searchindex = [
     "description": "In this section you will review the Kubernetes Audit Logs that are being collected. You can see that the events are quite robust, which can make charting them inefficient. To address this, you will create an Ingest Pipeline in Ingest Processor that will convert these events to metrics that will be sent to Splunk Observability Cloud. This will allow you to chart the events much more efficiently and take advantage of the real-time streaming metrics in Splunk Observability Cloud.",
     "tags": [],
     "title": "Review Kubernetes Audit Logs",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/2-review-k8s-events/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/2-review-k8s-events/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 3. Reuse Content Across Teams",
@@ -2837,7 +2877,7 @@ var relearn_searchindex = [
     "description": "Not only do the out-of-the-box dashboards provide rich visibility into the infrastructure that is being monitored they can also be mirrored. This is important because it enables you to create standard dashboards for use by teams throughout your organization. This allows all teams to see any changes to the charts in the dashboard, and members of each team can set dashboard variables and filter customizations relevant to their requirements.\nExercise: Create a Mirrored Dashboard While on the Kubernetes Pods dashboard, you created in the previous step, In the upper right corner of the dashboard click the Dashboard actions button (3 horizontal dots) -\u003e Click Add a mirror…. A configuration modal for the Dashboard Mirror will open.",
     "tags": [],
     "title": "Dashboard Mirroring",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/3-reuse-content-across-teams/3-mirror-dashboards/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/3-reuse-content-across-teams/3-mirror-dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -2845,7 +2885,7 @@ var relearn_searchindex = [
     "description": "1 Creating a new chart Let’s now create a new chart and save it in our dashboard!\nSelect the plus icon (top right of the UI) and from the drop down, choose the option Chart. Or click on the + New Chart Button to create a new chart.\nYou will now see a chart template like the following.",
     "tags": [],
     "title": "3.3 Using Filters \u0026 Formulas",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/filtering/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/filtering/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 4. Correlate Metrics and Logs",
@@ -2853,7 +2893,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll dive into the seamless correlation of metrics and logs facilitated by the robust naming standards offered by OpenTelemetry. By harnessing the power of OpenTelemetry within Splunk Observability Cloud, we’ll demonstrate how troubleshooting issues becomes significantly more efficient for Site Reliability Engineers (SREs) and operators. With this integration, contextualizing data across various telemetry sources no longer demands manual effort to correlate information. Instead, SREs and operators gain immediate access to the pertinent context they need, allowing them to swiftly pinpoint and resolve issues, improving system reliability and performance.",
     "tags": [],
     "title": "Correlate Metrics and Logs",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/4-correlate-metrics-logs/1-correlate-metrics-and-logs/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/4-correlate-metrics-logs/1-correlate-metrics-and-logs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 4. Correlate Metrics and Logs",
@@ -2861,7 +2901,7 @@ var relearn_searchindex = [
     "description": "In Log Observer, you can perform codeless queries on logs to detect the source of problems in your systems. You can also extract fields from logs to set up log processing rules and transform your data as it arrives or send data to Infinite Logging S3 buckets for future use. See What can I do with Log Observer? to learn more about Log Observer capabilities.\nIn this section, you’ll create a chart filtered to logs that include errors which will be added to the K8s Pod Dashboard you cloned in section 3.2 Dashboard Cloning.",
     "tags": [],
     "title": "Create Log-based Chart",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/4-correlate-metrics-logs/2-create-log-based-chart/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/4-correlate-metrics-logs/2-create-log-based-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 4. Update Pipeline and Visualize Metrics",
@@ -2869,7 +2909,7 @@ var relearn_searchindex = [
     "description": "Now that your metric has dimensions you will create a chart showing the health of different Kubernetes actions using the verb dimension from the events.\nExercise: Visualize Kubernetes Audit Event Metrics 1. If you closed the chart you created in the previous section, in the upper-right corner, click the + Icon → Chart to create a new chart.",
     "tags": [],
     "title": "Visualize Kubernetes Audit Event Metrics",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/2-create-dashboard/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/2-create-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 4. Processors",
@@ -2877,7 +2917,7 @@ var relearn_searchindex = [
     "description": "Attributes Processor The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.\nIt takes a list of actions that are performed in the order specified in the config. The supported actions are:\ninsert: Inserts a new attribute in input data where the key does not already exist. update: Updates an attribute in input data where the key does exist. upsert: Performs insert or update. Inserts a new attribute in input data where the key does not already exist and updates an attribute in input data where the key does exist. delete: Deletes an attribute from the input data. hash: Hashes (SHA1) an existing attribute value. extract: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden. We are going to create an attributes processor to insert a new attribute to all our host metrics called participant.name with a value of your name e.g. marge_simpson.",
     "tags": [],
     "title": "OpenTelemetry Collector Processors",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/3-attributes/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/3-attributes/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 4. Building Resilience",
@@ -2885,7 +2925,7 @@ var relearn_searchindex = [
     "description": "To assess the Agent’s resilience, we’ll simulate a temporary gateway outage and observe how the agent handles it:\nSummary:\nSend Traces to the Agent – Generate traffic by sending traces to the agent. Stop the Gateway – This will trigger the agent to enter retry mode. Restart the Gateway – The agent will recover traces from its persistent queue and forward them successfully. Without the persistent queue, these traces would have been lost permanently. Exercise Simulate a network failure: In the Gateway terminal stop the gateway with Ctrl-C and wait until the gateway console shows that it has stopped:",
     "tags": [],
     "title": "4.3 Simulate Failure",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -2893,7 +2933,7 @@ var relearn_searchindex = [
     "description": "The redaction processor gives precise control over which attributes and values are permitted or removed from telemetry data.\nIn this exercise, we will redact the user.visa \u0026 user.mastercard values in the span data before it is exported by the Agent. Exercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config=gateway.yaml Enable the redaction/redact processor: In the Agent terminal window, edit agent.yaml and remove the # we inserted in the previous exercise.",
     "tags": [],
     "title": "4.3 Test Redaction Processor",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/4-sensitive-data/4-3-test-redaction/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/4-sensitive-data/4-3-test-redaction/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 4. Sensitive Data",
@@ -2901,7 +2941,7 @@ var relearn_searchindex = [
     "description": "The redaction processor gives precise control over which attributes and values are permitted or removed from telemetry data.\nIn this exercise, we will redact the user.visa \u0026 user.mastercard values in the span data before it is exported by the Agent. Exercise Start the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config=gateway.yaml Enable the redaction/redact processor: In the Agent terminal window, edit agent.yaml and remove the # we inserted in the previous exercise.",
     "tags": [],
     "title": "4.3 Test Redaction Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-3-test-redaction/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/4-3-test-redaction/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -2909,7 +2949,7 @@ var relearn_searchindex = [
     "description": "This test verifies that the com.splunk/source and os.type metadata have been removed from the log resource attributes before being exported by the Agent. Additionally, the test ensures that:\nThe log body is parsed to extract severity information. SeverityText and SeverityNumber are set on the LogRecord. JSON fields from the log body are promoted to log attributes. This ensures proper metadata filtering, severity mapping, and structured log enrichment before exporting.\nExercise Check the debug output: For both the Agent and Gateway confirm that com.splunk/source and os.type have been removed:",
     "tags": [],
     "title": "5.3 Test Transform Processor",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/5-transform-data/5-3-test-transform/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/5-transform-data/5-3-test-transform/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 5. Transform Data",
@@ -2917,7 +2957,7 @@ var relearn_searchindex = [
     "description": "This test verifies that the com.splunk/source and os.type metadata have been removed from the log resource attributes before being exported by the Agent. Additionally, the test ensures that:\nThe log body is parsed to extract severity information. SeverityText and SeverityNumber are set on the LogRecord. JSON fields from the log body are promoted to log attributes. This ensures proper metadata filtering, severity mapping, and structured log enrichment before exporting.\nExercise Check the debug output: For both the Agent and Gateway confirm that com.splunk/source and os.type have been removed:",
     "tags": [],
     "title": "5.3 Test Transform Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-3-test-transform/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/5-3-test-transform/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 6. Service",
@@ -2925,7 +2965,7 @@ var relearn_searchindex = [
     "description": "Resource Detection Processor We also added resourcedetection/system and resourcedetection/ec2 processors so that the collector can capture the instance hostname and AWS/EC2 metadata. We now need to enable these two processors under the metrics pipeline.\nUpdate the processors section to include resourcedetection/system and resourcedetection/ec2 under the metrics pipeline:\nservice: pipelines: traces: receivers: [otlp, opencensus, jaeger, zipkin] processors: [batch] exporters: [debug] metrics: receivers: [hostmetrics, otlp, opencensus, prometheus/internal] processors: [batch, resourcedetection/system, resourcedetection/ec2] exporters: [debug]",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/3-resourcedetection/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/3-resourcedetection/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 6. Sensitive Data",
@@ -2933,7 +2973,7 @@ var relearn_searchindex = [
     "description": "The redaction processor gives precise control over which attributes and values are permitted or removed from telemetry data.\nIn this exercise, we will redact the user.visa \u0026 user.mastercard values in the span data before it is exported by the agent. Exercise Prepare the terminals: Delete the *.out files and clear the screen.\nStart the Gateway: In your Gateway terminal window start the gateway.",
     "tags": [],
     "title": "6.3 Test Redaction Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-3-test-redaction/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/6-3-test-redaction/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -2941,7 +2981,7 @@ var relearn_searchindex = [
     "description": "Exercise In this section, we will test the routing rule configured for the Gateway. The expected result is that a span generated by the loadgen that match the \"[deployment.environment\"] == \"security-applications\" rule will be sent to the gateway-traces-route2-security.out file.\nStart the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config gateway.yaml Start the Agent: In your Agent terminal window start the Agent.",
     "tags": [],
     "title": "6.3 Test Routing Connector",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/6-routing-data/6-3-test-routing/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/6-routing-data/6-3-test-routing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 6. Routing Data",
@@ -2949,7 +2989,7 @@ var relearn_searchindex = [
     "description": "Exercise In this section, we will test the routing rule configured for the Gateway. The expected result is that a span generated by the loadgen that match the \"[deployment.environment\"] == \"security-applications\" rule will be sent to the gateway-traces-route2-security.out file.\nStart the Gateway: In your Gateway terminal window start the Gateway.\n../otelcol --config gateway.yaml Start the Agent: In your Agent terminal window start the Agent.",
     "tags": [],
     "title": "6.3 Test Routing Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-3-test-routing/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/6-3-test-routing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 7. Count \u0026 Sum Connector",
@@ -2957,7 +2997,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway:\nIn the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent:\nIn the Agent terminal window run:\n​ Start the Agent ../otelcol --config=agent.yaml Start the Loadgen:\nIn the Spans terminal window send 8 spans with the following loadgen command:",
     "tags": [],
     "title": "7.3 Testing the Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 7. Transform Data",
@@ -2965,7 +3005,7 @@ var relearn_searchindex = [
     "description": "This test verifies that the com.splunk/source and os.type metadata have been removed from the log resource attributes before being exported by the agent. Additionally, the test ensures that:\nThe log body is parsed to extract severity information. SeverityText and SeverityNumber are set on the LogRecord. JSON fields from the log body are promoted to log attributes. This ensures proper metadata filtering, severity mapping, and structured log enrichment before export.\nExercise Check the debug output: For both the agent and gateway confirm that com.splunk/source and os.type have been removed:",
     "tags": [],
     "title": "7.3 Test Transform Processor",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-3-test-transform/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/7-3-test-transform/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 8. Routing Data",
@@ -2973,7 +3013,7 @@ var relearn_searchindex = [
     "description": "Exercise In this section, we will test the routing rule configured for the Gateway. The expected result is that thespan generated by the loadgen will be sent to the gateway-traces-security.out file.\nStart the Gateway: In your Gateway terminal window start the gateway.\n../otelcol --config gateway.yaml Start the Agent: In your Agent terminal window start the agent.\n../otelcol --config agent.yaml Send a Regular Span: In the Spans terminal window send a regular span using the loadgen:",
     "tags": [],
     "title": "8.3 Test Routing Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-3-test-routing/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/8-3-test-routing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 9. Count \u0026 Sum Connector",
@@ -2981,7 +3021,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway:\nIn the Gateway terminal window navigate to the [WORKSHOP]/9-sum-count directory and run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Start the Agent:\nIn the Agent terminal window navigate to the [WORKSHOP]/9-sum-count directory and run:\n​ Start the Agent ../otelcol --config=agent.yaml Start the Loadgen:\nIn the Spans terminal window navigate to the [WORKSHOP]/9-sum-count directory. Send 8 spans with the following loadgen command:",
     "tags": [],
     "title": "9.3 Testing the Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-3-sum-test/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-3-sum-test/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -2989,7 +3029,7 @@ var relearn_searchindex = [
     "description": "Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.",
     "tags": [],
     "title": "Advanced Synthetics",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -2997,7 +3037,7 @@ var relearn_searchindex = [
     "description": "In this Learning Lab you learn about AppDynamics Business iQ.",
     "tags": [],
     "title": "Business iQ",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Browser Real User Monitoring (BRUM)",
@@ -3005,7 +3045,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will enable JavaScript Injection and select BT for injection.",
     "tags": [],
     "title": "Configure Agent Injection",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/3-configure-agent-injection/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/3-configure-agent-injection/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -3013,7 +3053,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will enable and use HTTP data collectors.",
     "tags": [],
     "title": "Configure HTTP Data Collectors",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/3-configure-http-data-collectors/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/3-configure-http-data-collectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios",
@@ -3021,7 +3061,7 @@ var relearn_searchindex = [
     "description": "This scenario helps engineering teams identify and fix issues caused by planned and unplanned changes to their microservices-based applications.",
     "tags": [],
     "title": "Debug Problems in Microservices",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Server Visibility Monitoring",
@@ -3029,7 +3069,7 @@ var relearn_searchindex = [
     "description": "Manually install server agent.",
     "tags": [],
     "title": "Deploy Machine Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/3-deploy-server-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/3-deploy-server-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Ansible Automation",
@@ -3037,7 +3077,7 @@ var relearn_searchindex = [
     "description": "Step 4: Execute the Playbook To deploy the Smart Agent, run the following command from your project directory:\nansible-playbook -i inventory-cloud.yaml smartagent.yaml Replace inventory-cloud.yaml with the appropriate inventory file for your setup if you named it differently.\nVerification After the playbook completes successfully, you can verify the deployment by logging into one of the target hosts and checking the service status:\nsystemctl status smartagent You should see the service is active (running).",
     "tags": [],
     "title": "Deployment",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources",
@@ -3045,7 +3085,7 @@ var relearn_searchindex = [
     "description": "One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other.",
     "tags": [],
     "title": "Dimension, Properties and Tags",
-    "uri": "/observability-workshop/en/resources/dimensions-properties-tags/index.html"
+    "uri": "/observability-workshop/resources/dimensions-properties-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -3053,7 +3093,7 @@ var relearn_searchindex = [
     "description": "Step 1: Add Helm Repositories Add the required Helm repositories:\n# Add Isovalent Helm repository helm repo add isovalent https://helm.isovalent.com # Add Splunk OpenTelemetry Collector Helm repository helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart # Update Helm repositories helm repo update Step 2: Create EKS Cluster Configuration Create a file named cluster.yaml:\napiVersion: eksctl.io/v1alpha5 kind: ClusterConfig metadata: name: isovalent-demo region: us-east-1 version: \"1.30\" iam: withOIDC: true addonsConfig: disableDefaultAddons: true addons: - name: coredns Key Configuration Details:",
     "tags": [],
     "title": "EKS Setup",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/3-eks-setup/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/3-eks-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment",
@@ -3061,7 +3101,7 @@ var relearn_searchindex = [
     "description": "Learn how to automate AppDynamics Smart Agent deployment using GitHub Actions with self-hosted runners.",
     "tags": [],
     "title": "GitHub Actions Automation",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -3069,7 +3109,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will upload the database visiblity agent, unzip the downloaded file, and start the database visiblity agent.",
     "tags": [],
     "title": "Install Database Agent",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/3-install-database-agent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/3-install-database-agent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources \u003e Local Hosting",
@@ -3077,7 +3117,7 @@ var relearn_searchindex = [
     "description": "Learn how to create a local hosting environment in Proxmox VE",
     "tags": [],
     "title": "Local Hosting with Proxmox",
-    "uri": "/observability-workshop/en/resources/local-hosting/proxmox/index.html"
+    "uri": "/observability-workshop/resources/local-hosting/proxmox/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -3085,7 +3125,7 @@ var relearn_searchindex = [
     "description": "A workshop using Zero Configuration Auto-Instrumentation for NodeJS.",
     "tags": [],
     "title": "NodeJS Zero-Config Workshop",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -3093,7 +3133,7 @@ var relearn_searchindex = [
     "description": "OpenTelemetry Collector Concepts\rLearn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.\rAdvanced OpenTelemetry Collector\rPractice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios’s.",
     "tags": [],
     "title": "OpenTelemetry Collector Workshops",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 6.2 Optional Exercise",
@@ -3101,7 +3141,7 @@ var relearn_searchindex = [
     "description": "Let’s look at some other parts of the UI like the Information Pane on the right of the navigator or the Related Content Pane at the bottom.\nFirst, let’s look at the Information Pane, this pane provides alert and detected services information and the metadata related to the object you’re looking at.\nMeta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 3",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/30-im-exercise/3-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/30-im-exercise/3-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6.2 Optional Exercise",
@@ -3109,15 +3149,15 @@ var relearn_searchindex = [
     "description": "Let’s look at some other parts of the UI like the Information Pane on the right of the navigator or the Related Content Pane at the bottom.\nFirst, let’s look at the Information Pane, this pane provides alert and detected services information and the metadata related to the object you’re looking at.\nMeta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 3",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/30-im-exercise/3-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/30-im-exercise/3-im-exercise/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live6.2 Optional Exercise",
-    "content": "Let’s look at some other parts of the UI like the Information Pane on the right of the navigator or the Related Content Pane at the bottom.\nFirst, let’s look at the Information Pane, this pane provides alert and detected services information and the metadata related to the object you’re looking at.\nMeta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.\nExercise Can you identify the Operating System and Architecture of the node from the metadata? As we have seen in the previous exercise, these fields are very useful for filtering the view in charts and Navigators down to a specific subset of metrics we are interested in.\nAnother feature in the UI is Related content.\nRelated Content The Splunk Observability User Interface will attempt to show you additional information that is related to what you’re actively looking at. A good example of this is the Kubernetes Navigator showing you related Content tiles in the information Pane for the services found running on this node.\nIn the Information Pane, you should see two tiles for services detected, the two databases used by our e-commerce application. Let’s use this Related Content.\nExercise First, make sure you no longer have a filter for the development namespace active. (Simply click on the x to remove it from the Filter Pane) as there are no databases in the Development Namespace. Hoover on the Redis tile, and click on the Goto all my Redis instances button The Navigator view should change to the overall Redis instances view. Select the the instance running on your cluster. (Click on the blue link, named redis-[the name of your workshop], in the Redis Instances pane). We should now see just the information for your Redis Instance \u0026 there should also be an Information Pane. Again we see Meta Data, but we also see that UI is showing in the Related Content tiles that this Redis Server runs in a Container running on Kubernetes. Let’s verify that by clicking on the Kubernetes Tile. We should be back in the Kubernetes Navigator, at the container level. Confirm that the names of our cluster and node are all visible at the top of the page and we are back looking at our K8s Cluster, where we started. This completes the tour of Splunk Observability Cloud. Let’s go and look at our e-commerce site and do some shopping.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6.2 Optional Exercise",
+    "content": "Let’s look at some other parts of the UI like the Information Pane on the right of the navigator or the Related Content Pane at the bottom.\nFirst, let’s look at the Information Pane, this pane provides alert and detected services information and the metadata related to the object you’re looking at.\nMeta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.\nExercise Can you identify the Operating System and Architecture of the node from the metadata? As we have seen in the previous exercise, these fields are very useful for filtering the view in charts and Navigators down to a specific subset of metrics we are interested in.\nAnother feature in the UI is Related content.\nRelated Content The Splunk Observability User Interface will attempt to show you additional information that is related to what you’re actively looking at. A good example of this is the Kubernetes Navigator showing you related Content tiles in the information Pane for the services found running on this node.\nIn the Information Pane, you should see two tiles for services detected, the two databases used by our e-commerce application. Let’s use this Related Content.\nExercise First, make sure you no longer have a filter for the development namespace active. (Simply click on the x to remove it from the Filter Pane) as there are no databases in the Development Namespace. Hover on the Redis tile, and click on the Goto all my Redis instances button The Navigator view should change to the overall Redis instances view. Select the the instance running on your cluster. (Click on the blue link, named redis-[the name of your workshop], in the Redis Instances pane). We should now see just the information for your Redis Instance \u0026 there should also be an Information Pane. Again we see Meta Data, but we also see that UI is showing in the Related Content tiles that this Redis Server runs in a Container running on Kubernetes. Let’s verify that by clicking on the Kubernetes Tile. We should be back in the Kubernetes Navigator, at the container level. Confirm that the names of our cluster and node are all visible at the top of the page and we are back looking at our K8s Cluster, where we started. This completes the tour of Splunk Observability Cloud. Let’s go and look at our e-commerce site and do some shopping.",
     "description": "Let’s look at some other parts of the UI like the Information Pane on the right of the navigator or the Related Content Pane at the bottom.\nFirst, let’s look at the Information Pane, this pane provides alert and detected services information and the metadata related to the object you’re looking at.\nMeta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.",
     "tags": [],
     "title": "Infrastructure Exercise - Part 3",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/30-im-exercise/3-im-exercise/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/30-im-exercise/3-im-exercise/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Jenkins Automation",
@@ -3125,7 +3165,7 @@ var relearn_searchindex = [
     "description": "Overview The GitHub repository contains four main pipelines for managing the Smart Agent lifecycle:\nDeploy Smart Agent - Installs and starts Smart Agent service Install Machine Agent - Installs Machine Agent via smartagentctl Install Database Agent - Installs Database Agent via smartagentctl Cleanup All Agents - Removes /opt/appdynamics directory All pipeline code is available in the sm-jenkins GitHub repository.\nPipeline Files The repository contains these Jenkinsfile pipeline definitions:\nsm-jenkins/ └── pipelines/ ├── Jenkinsfile.deploy # Deploy Smart Agent ├── Jenkinsfile.install-machine-agent # Install Machine Agent ├── Jenkinsfile.install-db-agent # Install Database Agent └── Jenkinsfile.cleanup # Cleanup All Agents Creating Pipelines in Jenkins For each Jenkinsfile you want to use, follow these steps to create a pipeline in Jenkins.",
     "tags": [],
     "title": "Pipeline Creation",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/3-pipeline-creation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/3-pipeline-creation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices",
@@ -3133,7 +3173,7 @@ var relearn_searchindex = [
     "description": "This workshop shows how Database Query Performance and AlwaysOn Profiling can be used to reduce the time required for engineers to debug problems in microservices.",
     "tags": [],
     "title": "Profiling Workshop",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -3141,7 +3181,7 @@ var relearn_searchindex = [
     "description": "Learn how to build observability solutions with Splunk",
     "tags": [],
     "title": "Scenarios",
-    "uri": "/observability-workshop/en/scenarios/index.html"
+    "uri": "/observability-workshop/scenarios/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e GitHub Actions Automation",
@@ -3149,7 +3189,15 @@ var relearn_searchindex = [
     "description": "Available Workflows The GitHub Actions lab includes 11 workflows for complete Smart Agent lifecycle management. All workflow files are available in the repository at .github/workflows/.\nRepository: https://github.com/chambear2809/github-actions-lab\nWorkflow Categories 1. Deployment (1 workflow) Deploy Smart Agent (Batched) File: deploy-agent-batched.yml Purpose: Installs Smart Agent and starts the service Features: Automatic batching (default: 256 hosts per batch) Configurable batch size Parallel deployment within each batch Sequential batch processing Inputs: batch_size: Number of hosts per batch (default: 256) Trigger: Manual only (workflow_dispatch) 2. Agent Installation (4 workflows) All installation workflows use smartagentctl to install specific agent types:",
     "tags": [],
     "title": "Understanding Workflows",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/3-workflows/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/3-workflows/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops",
+    "content": "Introduction Gain hands-on experience troubleshooting issues using Splunk Observability Cloud. You’ll work with a fully instrumented microservices application on Kubernetes that sends metrics, traces, and logs for real-time analysis.\nWorkshop Overview In this 1-hour hands-on session, you’ll cover:\nGenerate Real User Data - Browse the Online Boutique website to generate metrics, traces, and logs RUM - Identify poorly performing browser sessions and begin troubleshooting APM - Link front-end RUM traces to back-end APM traces to detect anomalies and errors Log Observer - Use “Related Content” to navigate from APM traces to related logs Synthetics - Set up 24/7 monitoring with synthetic tests running every minute Let’s go shopping!",
+    "description": "Experience Splunk Observability Cloud's end-to-end visibility from front-end to back-end services through hands-on troubleshooting exercises.",
+    "tags": [],
+    "title": "WIL - Cisco Live - LABOBS-1037",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk OnCall \u003e 1. Getting Started",
@@ -3157,7 +3205,7 @@ var relearn_searchindex = [
     "description": "Aim Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.\nNote that routing keys are case insensitive and should only be composed of letters, numbers, hyphens, and underscores.\nThe aim of this module is for you to create some routing keys and then link them to your Escalation Policies you have created in the previous exercise.",
     "tags": [],
     "title": "Creating Routing Keys",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/getting_started/routing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 2. API Test",
@@ -3165,7 +3213,7 @@ var relearn_searchindex = [
     "description": "Add Search Request Click on + Add Request to add the next step. Name the step Search for Tracks named “Up around the bend”.\nExpand the Request section and change the request method to GET and enter the following URL:\nhttps://api.spotify.com/v1/search?q=Up%20around%20the%20bend\u0026type=track\u0026offset=0\u0026limit=5 Next, add two request headers with the following key/value pairings:\nCONTENT-TYPE: application/json AUTHORIZATION: Bearer {{custom.access_token}} Expand the Validation section and add the following extraction:",
     "tags": [],
     "title": "Search Request",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -3173,7 +3221,7 @@ var relearn_searchindex = [
     "description": "The simple settings allow you to configure the basics of the test:\nName: The name of the test (e.g. RWC - Online Boutique). Details: Locations: The locations where the test will run from. Device: Emulate different devices and connection speeds. Also, the viewport will be adjusted to match the chosen device. Frequency: How often the test will run. Round-robin: If multiple locations are selected, the test will run from one location at a time, rather than all locations at once. Active: Set the test to active or inactive. ![Return to Test]For this workshop, we will configure the locations that we wish to monitor from. Click in the Locations field and you will be presented with a list of global locations (over 50 in total).",
     "tags": [],
     "title": "1.4 Settings",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/4-edit-test-settings/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/4-edit-test-settings/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -3181,7 +3229,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Collector’s FileStorage Extension is a critical component for building a more resilient telemetry pipeline. It enables the Collector to reliably checkpoint in-flight data, manage retries efficiently, and gracefully handle temporary failures without losing valuable telemetry.\nWith FileStorage enabled, the Collector can persist intermediate states to disk, ensuring that your traces, metrics, and logs are not lost during network disruptions, backend outages, or Collector restarts. This means that even if your network connection drops or your backend becomes temporarily unavailable, the Collector will continue to receive and buffer telemetry, resuming delivery seamlessly once connectivity is restored.",
     "tags": [],
     "title": "2. Building In Resilience",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/2-building-resilience/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/2-building-resilience/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -3189,7 +3237,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Collector’s FileStorage Extension is a critical component for building a more resilient telemetry pipeline. It enables the Collector to reliably checkpoint in-flight data, manage retries efficiently, and gracefully handle temporary failures without losing valuable telemetry.\nWith FileStorage enabled, the Collector can persist intermediate states to disk, ensuring that your traces, metrics, and logs are not lost during network disruptions, backend outages, or Collector restarts. This means that even if your network connection drops or your backend becomes temporarily unavailable, the Collector will continue to receive and buffer telemetry, resuming delivery seamlessly once connectivity is restored.",
     "tags": [],
     "title": "2. Building In Resilience",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -3197,7 +3245,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Gateway is designed to receive, process, and export telemetry data. It acts as an intermediary between telemetry sources (e.g. applications, services) and backends (e.g., observability platforms like Prometheus, Jaeger, or Splunk Observability Cloud).\nThe gateway is useful because it centralizes telemetry data collection, enabling features like data filtering, transformation, and routing to multiple destinations. It also reduces the load on individual services by offloading telemetry processing and ensures consistent data formats across distributed systems. This makes it easier to manage, scale, and analyze telemetry data in complex environments.",
     "tags": [],
     "title": "2. Gateway Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk APM \u003e 2. Using Splunk APM",
@@ -3205,7 +3253,7 @@ var relearn_searchindex = [
     "description": "Example Trace You should now see the entire trace along with the spans for the example trace that was selected. Spans which have errors are indicated by a red exclamation mark beside it. If you have a number such as x6 in a grey box, click it to expand the compacted paymentservice spans.",
     "tags": [],
     "title": "2.3 Example trace",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/2-apm/using-splunk-apm/example_trace/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/example_trace/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -3213,7 +3261,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we’ll test how the OpenTelemetry Collector recovers from a network outage by restarting the Gateway collector. When the Gateway becomes available again, the Agent will resume sending data from its last check-pointed state, ensuring no data loss.\nExercise Restart the Gateway: In the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Restart the Agent: In the Agent terminal window run:",
     "tags": [],
     "title": "2.4 Recovery",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/2-building-resilience/2-4-recovery/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/2-building-resilience/2-4-recovery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector \u003e 2. Building Resilience",
@@ -3221,7 +3269,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we’ll test how the OpenTelemetry Collector recovers from a network outage by restarting the Gateway collector. When the Gateway becomes available again, the Agent will resume sending data from its last check-pointed state, ensuring no data loss.\nExercise Restart the Gateway: In the Gateway terminal window run:\n​ Start the Gateway ../otelcol --config=gateway.yaml Restart the Agent: In the Agent terminal window run:",
     "tags": [],
     "title": "2.4 Recovery",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-4-recovery/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/2-building-resilience/2-4-recovery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 2. API Test",
@@ -3229,7 +3277,7 @@ var relearn_searchindex = [
     "description": "Click on + Add Request to add the next step. Name the step Search for Tracks named “Up around the bend”.\nExpand the Request section and change the request method to GET and enter the following URL:\nhttps://api.spotify.com/v1/search?q=Up%20around%20the%20bend\u0026type=track\u0026offset=0\u0026limit=5 Next, add two request headers with the following key/value pairings:\nCONTENT-TYPE: application/json AUTHORIZATION: Bearer {{custom.access_token}} This uses the custom variable we created in the previous step!",
     "tags": [],
     "title": "Search Request",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/4-search-request/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/4-search-request/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 2. Gateway Setup",
@@ -3237,7 +3285,7 @@ var relearn_searchindex = [
     "description": "Exercise Send a Test Trace:\nValidate agent and gateway are still running. In the Spans terminal window, run the following command to send 5 spans and validate the output of the agent and gateway debug logs: ​ Start the Load Generator Agent/Gateway Debug Output ../loadgen -count 5 2025-03-06T11:49:00.456Z info Traces {\"otelcol.component.id\": \"debug\", \"otelcol.component.kind\": \"Exporter\", \"otelcol.signal\": \"traces\", \"resource spans\": 1, \"spans\": 1} 2025-03-06T11:49:00.456Z info ResourceSpans #0 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1 Resource attributes: -\u003e service.name: Str(cinema-service) -\u003e deployment.environment: Str(production) -\u003e host.name: Str(workshop-instance) -\u003e os.type: Str(linux) -\u003e otelcol.service.mode: Str(agent) ScopeSpans #0 ScopeSpans SchemaURL: InstrumentationScope cinema.library 1.0.0 InstrumentationScope attributes: -\u003e fintest.scope.attribute: Str(Starwars, LOTR) Span #0 Trace ID : 97fb4e5b13400b5689e3306da7cff077 Parent ID : ID : 413358465e5b4f15 Name : /movie-validator Kind : Server Start time : 2025-03-06 11:49:00.431915 +0000 UTC End time : 2025-03-06 11:49:01.431915 +0000 UTC Status code : Ok Status message : Success Attributes: -\u003e user.name: Str(George Lucas) -\u003e user.phone_number: Str(+1555-867-5309) -\u003e user.email: Str(george@deathstar.email) -\u003e user.password: Str(LOTR\u003eStarWars1-2-3) -\u003e user.visa: Str(4111 1111 1111 1111) -\u003e user.amex: Str(3782 822463 10005) -\u003e user.mastercard: Str(5555 5555 5555 4444) -\u003e payment.amount: Double(87.01) {\"otelcol.component.id\": \"debug\", \"otelcol.component.kind\": \"Exporter\", \"otelcol.signal\": \"traces\"} Verify the Gateway has handled the spans: Once the gateway processes incoming spans, it writes the trace data to a file named gateway-traces.out. To confirm that the spans have been successfully handled, you can inspect this file.",
     "tags": [],
     "title": "2.4 Send traces from the Agent to the Gateway",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-4-send-traces/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-4-send-traces/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour",
@@ -3245,7 +3293,7 @@ var relearn_searchindex = [
     "description": "Log Observer Connect allows you to seamlessly bring in the same log data from your Splunk Platform into an intuitive and no-code interface designed to help you find and fix problems quickly. You can easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.\nEnd-to-end visibility: By combining the powerful logging capabilities of Splunk Platform with Splunk Observability Cloud’s traces and real-time metrics for deeper insights and more context of your hybrid environment.",
     "tags": [],
     "title": "Log Observer Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/3-log-observer-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/3-log-observer-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -3253,7 +3301,7 @@ var relearn_searchindex = [
     "description": "Once the installation has completed, you can log in to Splunk Observability Cloud and verify that the metrics are flowing in from your Kubernetes cluster.\nFrom the left-hand menu, click on Infrastructure and select Kubernetes, then select the Kubernetes nodes tile.\nOnce you are in the Kubernetes nodes overview, change the Time filter from -1h to the last 15 minutes (-15m) to focus on the latest data, then select Table to list all the nodes that are reporting metrics.",
     "tags": [],
     "title": "Verify Kubernetes Cluster metrics",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/3-verify-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/3-verify-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 3. FileLog Setup",
@@ -3261,7 +3309,7 @@ var relearn_searchindex = [
     "description": "Exercise Start the Gateway: In your Gateway terminal window start the gateway.\nStart the Agent: In your Agent terminal window start the agent.\nA continuous stream of log data from the quotes.log will be in the agent and gateway debug logs:\n​ Agent/Gateway Debug Output Timestamp: 1970-01-01 00:00:00 +0000 UTC SeverityText: SeverityNumber: Unspecified(0) Body: Str(2025-03-06 15:18:32 [ERROR] - There is some good in this world, and it's worth fighting for. LOTR) Attributes: -\u003e log.file.path: Str(quotes.log) Trace ID: Span ID: Flags: 0 LogRecord #1 Stop the loadgen: In the Logs terminal window, stop the loadgen using Ctrl-C.",
     "tags": [],
     "title": "3.2 Test FileLog Receiver",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/3-2-test-filelog/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/3-2-test-filelog/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 3. Create an Ingest Pipeline",
@@ -3269,7 +3317,7 @@ var relearn_searchindex = [
     "description": "In this section you will create an Ingest Pipeline which will convert Kubernetes Audit Logs to metrics which are sent to the Splunk Observability Cloud workshop organization.\nExercise: Create Ingest Pipeline 1. Open the Ingest Processor SCS Tenant using the connection details provided in the Splunk Show event.\nNote When you open the Ingest Processor SCS Tenant, if you are taken to a welcome page, click on Launch under Splunk Cloud Platform to be taken to the Data Management page where you will configure the Ingest Pipeline.",
     "tags": [],
     "title": "Create an Ingest Pipeline",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/3-create-ingest-pipeline/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/3-create-ingest-pipeline/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -3277,7 +3325,7 @@ var relearn_searchindex = [
     "description": "1. Introduction Let’s take a look at SignalFlow - the analytics language of Observability Cloud that can be used to setup monitoring as code.\nThe heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine that runs computations written in a Python-like language. SignalFlow programs accept streaming input and produce output in real time. SignalFlow provides built-in analytical functions that take metric time series (MTS) as input, perform computations, and output a resulting MTS.",
     "tags": [],
     "title": "3.4 SignalFlow",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/signalflow/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/signalflow/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -3285,7 +3333,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll use what we learned from the profiling data in Splunk Observability Cloud to resolve the slowness we saw when starting our application.\nExamining the Source Code Open the corresponding source file once again (./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java) and focus on the following code:\npublic class UserData { static final String DB_URL = \"jdbc:mysql://mysql/DoorGameDB\"; static final String USER = \"root\"; static final String PASS = System.getenv(\"MYSQL_ROOT_PASSWORD\"); static final String SELECT_QUERY = \"select * FROM DoorGameDB.Users, DoorGameDB.Organizations\"; HashMap\u003cString, User\u003e users; public UserData() { users = new HashMap\u003cString, User\u003e(); } public void loadUserData() { // Load user data from the database and store it in a map Connection conn = null; Statement stmt = null; ResultSet rs = null; try{ conn = DriverManager.getConnection(DB_URL, USER, PASS); stmt = conn.createStatement(); rs = stmt.executeQuery(SELECT_QUERY); while (rs.next()) { User user = new User(rs.getString(\"UserId\"), rs.getString(\"FirstName\"), rs.getString(\"LastName\")); users.put(rs.getString(\"UserId\"), user); } After speaking with a database engineer, you discover that the SQL query being executed includes a cartesian join:",
     "tags": [],
     "title": "Fix Application Startup Slowness",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/4-fix-app-startup-slowness/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/4-fix-app-startup-slowness/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Self-Service Observability",
@@ -3293,7 +3341,15 @@ var relearn_searchindex = [
     "description": "Introduction xx",
     "tags": [],
     "title": "Observability as Code",
-    "uri": "/observability-workshop/en/scenarios/self-service-observability/4-configure-o11yascode/index.html"
+    "uri": "/observability-workshop/scenarios/self-service-observability/4-configure-o11yascode/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona You are a back-end developer and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.\nDiscover the power of full end-to-end visibility by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.\nRUM and APM are two sides of the same coin. RUM is the client-side view of the application and APM is the server-side view. In this section, we will use APM to drill down and identify where the problem is.",
+    "description": "In this section, we will use APM to drill down and identify where the problem is.",
+    "tags": [],
+    "title": "Application Performance Monitoring (APM)",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -3301,7 +3357,7 @@ var relearn_searchindex = [
     "description": "Exercise Select the wire-transfer-service in the Service Map. In the right-hand pane click on the Breakdown. Select tenant.level in the list. Back in the Service Map click on gold (our most valuable user tier). Click on Breakdown and select version, this is the tag that exposes the service version. Repeat this for silver and bronze. ​ Question Answer What can you conclude from what you are seeing?",
     "tags": [],
     "title": "4. APM Service Breakdown",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/4-apm-service-breakdown/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/4-apm-service-breakdown/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -3309,15 +3365,15 @@ var relearn_searchindex = [
     "description": "Exercise Select the paymentservice in the Service Map. In the right-hand pane click on the Breakdown. Select tenant.level in the list. Back in the Service Map click on gold. Click on Breakdown and select version, this is the tag that exposes the service version. Repeat this for silver and bronze. ​ Question Answer What can you conclude from what you are seeing?",
     "tags": [],
     "title": "4. APM Service Breakdown",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/4-apm-service-breakdown/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/4-apm-service-breakdown/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
     "content": "Exercise Select the paymentservice in the Service Map. In the right-hand pane click on the Breakdown. Select tenant.level in the list. Back in the Service Map click on gold. Click on Breakdown and select version, this is the tag that exposes the service version. Repeat this for silver and bronze. ​ Question Answer What can you conclude from what you are seeing?\nEvery tenant.level is being impacted by v350.10\nYou will now see the paymentservice broken down into three services, gold, silver and bronze. Each tenant is broken down into two services, one for each version (v350.10 and v350.9).\nSpan Tags Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that v350.10 of the paymentservice is causing problems for all our customers.\nNext, we need to drill down into a trace to see what is going on.",
     "description": "Exercise Select the paymentservice in the Service Map. In the right-hand pane click on the Breakdown. Select tenant.level in the list. Back in the Service Map click on gold. Click on Breakdown and select version, this is the tag that exposes the service version. Repeat this for silver and bronze. ​ Question Answer What can you conclude from what you are seeing?",
     "tags": [],
     "title": "4. APM Service Breakdown",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/4-apm-service-breakdown/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/4-apm-service-breakdown/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -3325,7 +3381,7 @@ var relearn_searchindex = [
     "description": "In this section you will learn about the core concepts of Splunk Appdynamics APM features",
     "tags": [],
     "title": "4. AppDynamics Core Concepts",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/4-apm-core-concepts/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/4-apm-core-concepts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -3333,7 +3389,7 @@ var relearn_searchindex = [
     "description": "Get familiar with the UI and options available from this landing page Identify Page Views/JavaScript Errors and Request/Errors in a single view Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application Application Summary Dashboard 1.Header Bar As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections. The first section is the selection header, where you can collapse the Pane via the Browser icon or the \u003e in front of the application name, which is jmcj-store in the example below. It also provides access to the Application Overview page if you click the link with your application name which is jmcj-store in the example below.",
     "tags": [],
     "title": "Check Browser Applications health at a glance",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -3341,7 +3397,7 @@ var relearn_searchindex = [
     "description": "Get familiar with the UI and options available from this landing page Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application 1. Application Summary Dashboard Overview 1.1. Header Bar As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections. The first section is the selection header, where you can collapse the Pane via the Browser icon or the \u003e in front of the application name, which is jmcj-store in the example below. It also provides access to the Application Overview page if you click the link with your application name which is jmcj-store in the example below.",
     "tags": [],
     "title": "4. Check Browser Applications health at a glance",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/4-browser-summary/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/4-browser-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -3349,7 +3405,7 @@ var relearn_searchindex = [
     "description": "Index Tags To use advanced features in Splunk Observability Cloud such as Tag Spotlight, we’ll need to first index one or more tags.\nTo do this, navigate to Settings -\u003e MetricSets and ensure the APM tab is selected. Then click the + Add Custom MetricSet button.\nLet’s index the credit.score.category tag by entering the following details (note: since everyone in the workshop is using the same organization, the instructor will do this step on your behalf):",
     "tags": [],
     "title": "Create a Troubleshooting MetricSet",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -3357,7 +3413,7 @@ var relearn_searchindex = [
     "description": "1. Review PHP/Apache deployment YAML Inspect the YAML file ~/workshop/k3s/php-apache.yaml and validate the contents using the following command:\ncat ~/workshop/k3s/php-apache.yaml This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.\nA stateless application does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.",
     "tags": [],
     "title": "Deploy Apache",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/4-deploy-apache/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/4-deploy-apache/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -3365,7 +3421,7 @@ var relearn_searchindex = [
     "description": "The NVIDIA GPU Operator is a Kubernetes Operator that automates the deployment, configuration, and management of all necessary NVIDIA software components to provision GPUs within a Kubernetes cluster.\nThe NVIDIA NIM Operator is used to deploy LLMs in Kubernetes environments, such as the OpenShift cluster we created earlier in this workshop.\nThis section of the workshop walks through the steps necessary to deploy both the NVIDIA GPU and NIM operators in our OpenShift cluster.",
     "tags": [],
     "title": "Deploy the NVIDIA NIM Operator",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -3373,7 +3429,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll configure the Prometheus receiver to monitor the Weaviate vector database.\nWhat is a Vector Database? A vector database stores and indexes data as numerical “vector embeddings,” which capture the semantic meaning of information like text or images. Unlike traditional databases, they excel at similarity searches, finding conceptually related data points rather than exact matches.\nHow is a Vector Database Used? Vector databases play a key role in a pattern called Retrieval Augmented Generation (RAG), which is widely used by applications that leverage Large Language Models (LLMs).",
     "tags": [],
     "title": "Deploy the Vector Database",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/4-monitor-vector-db/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/4-monitor-vector-db/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -3381,7 +3437,7 @@ var relearn_searchindex = [
     "description": "Create a Detector from one of your charts Setting Alert conditions Running a pre-flight check Working with muting rules 1. Introduction Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.",
     "tags": [],
     "title": "Working with Detectors",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/detectors/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/detectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -3389,7 +3445,7 @@ var relearn_searchindex = [
     "description": "Now that we’ve captured several tags from our application, let’s explore some of the trace data we’ve captured that include this additional context, and see if we can identify what’s causing a poor user experience in some cases.\nUse Trace Analyzer Navigate to APM, then select Traces. This takes us to the Trace Analyzer, where we can add filters to search for traces of interest. For example, we can filter on traces where the credit score starts with 7:",
     "tags": [],
     "title": "Explore Trace Data",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/4-explore-trace-data/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/4-explore-trace-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -3397,7 +3453,7 @@ var relearn_searchindex = [
     "description": "Download the Splunk Distribution of OpenTelemetry For this workshop, we’ll install the Splunk Distribution of OpenTelemetry manually rather than using the NuGet packages.\nWe’ll start by downloading the latest splunk-otel-dotnet-install.sh file, which we’ll use to instrument our .NET application:\ncd ~/workshop/docker-k8s-otel/helloworld curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O Refer to Install the Splunk Distribution of OpenTelemetry .NET manually for further details on the installation process.\nInstall the Distribution In the terminal, install the distribution as follows",
     "tags": [],
     "title": "Instrument a .NET Application with OpenTelemetry",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e GDI (OTel \u0026 UF)",
@@ -3405,7 +3461,7 @@ var relearn_searchindex = [
     "description": "1. Use Data Setup to instrument a Python application Within the O11y Cloud UI:\nData Management -\u003e Add Integration -\u003e Monitor Applications -\u003e Python (traces) -\u003e Add Integration\nProvide the following to the Configure Integration Wizard:\nService: review\nDjango: no\ncollector endpoint: http://localhost:4317\nEnvironment: rtapp-workshop-[YOURNAME]\nKubernetes: yes\nLegacy Agent: no\nWe are instructed to:\nInstall the instrumentation packages for your Python environment. pip install splunk-opentelemetry[all] splunk-py-trace-bootstrap Configure the Downward API to expose environment variables to Kubernetes resources.",
     "tags": [],
     "title": "Instrument REVIEWS for Tracing",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/4-instrument/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/4-instrument/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e ThousandEyes Integration",
@@ -3413,7 +3469,7 @@ var relearn_searchindex = [
     "description": "Replicating AppDynamics Test Recommendations AppDynamics offers a feature called “Test Recommendations” that automatically suggests synthetic tests for your application endpoints. With ThousandEyes deployed inside your Kubernetes cluster, you can replicate this capability by leveraging Kubernetes service discovery combined with Splunk Observability Cloud’s unified view.\nSince the ThousandEyes Enterprise Agent runs inside the cluster, it can directly test internal Kubernetes services using their service names as hostnames. This provides a powerful way to monitor backend services that may not be exposed externally.",
     "tags": [],
     "title": "Kubernetes Service Testing",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/4-kubernetes-testing/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/4-kubernetes-testing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Monolith Workshop",
@@ -3421,7 +3477,7 @@ var relearn_searchindex = [
     "description": "For the Splunk Log Observer component, the Splunk OpenTelemetry Collector automatically collects logs from the Spring PetClinic application and sends them to Splunk Observability Cloud using the OTLP exporter, anotating the log events with trace_id, span_id and trace flags.\nLog Observer provides a real-time view of logs from your applications and infrastructure. It allows you to search, filter, and analyze logs to troubleshoot issues and monitor your environment.\nGo back to the PetClinic web application and click on the Error link several times. This will generate some log messages in the PetClinic application logs.",
     "tags": [],
     "title": "4. Log Observer",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/5-log-observer/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/5-log-observer/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -3429,7 +3485,7 @@ var relearn_searchindex = [
     "description": "Log Observer Connect allows you to seamlessly bring in the same log data from your Splunk Platform into an intuitive and no-code interface designed to help you find and fix problems quickly. You can easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.\nEnd-to-end visibility: By combining the powerful logging capabilities of Splunk Platform with Splunk Observability Cloud’s traces and real-time metrics for deeper insights and more context of your hybrid environment.\nPerform quick and easy log-based investigations: By reusing logs that are already ingested in Splunk Cloud Platform or Enterprise in a simplified and intuitive interface (no need to know SPL!) with customizable and out-of-the-box dashboards\nAchieve higher economies of scale and operational efficiency: By centralizing log management across teams, breaking down data and team silos, and getting better overall support",
     "tags": [],
     "title": "Log Observer Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 5. Splunk Log Observer",
@@ -3437,7 +3493,7 @@ var relearn_searchindex = [
     "description": "The next chart type that can be used with logs is the Log View chart type. This chart will allow us to see log messages based on predefined filters.\nAs with the previous Log Timeline chart, we will add a version of this chart to our Customer Health Service Dashboard:\nExercise After the previous exercise make sure you are still in Log Observer. The filters should be the same as the previous exercise, with the time picker set to the Last 15 minutes and filtering on severity=error, sf_service=wire-transfer-service and sf_environment=[WORKSHOPNAME]. Make sure we have the header with just the fields we wanted. Click again on Save and then Save to Dashboard. This will again provide you with the Chart creation dialog. For the Chart name use Log View. This time Click Select Dashboard and search for the Dashboard you created in the previous exercise. You can start by typing your initials in the search box (1). Click on your dashboard name to highlight it (2) and click OK (3). This will return you to the create chart dialog. Ensure Log View is selected as the Chart Type. To see your dashboard click Save and go to dashboard. The result should be similar to the dashboard below: As the last step in this exercise, let us add your dashboard to your workshop team page, this will make it easy to find later in the workshop. At the top of the page, click on the … to the left of your dashboard name. Select Link to teams from the drop-down. In the following Link to teams dialog box, find the Workshop team that your instructor will have provided for you and click Done.",
     "tags": [],
     "title": "4. Log View Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/4-log-view-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/5-log-observer/4-log-view-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 7. Splunk Log Observer",
@@ -3445,7 +3501,7 @@ var relearn_searchindex = [
     "description": "The next chart type that can be used with logs is the Log View chart type. This chart will allow us to see log messages based on predefined filters.\nAs with the previous Log Timeline chart, we will add a version of this chart to our Customer Health Service Dashboard:\nExercise After the previous exercise make sure you are still in Log Observer. The filters should be the same as the previous exercise, with the time picker set to the Last 15 minutes and filtering on severity=error, sf_service=paymentservice and sf_environment=[WORKSHOPNAME]. Make sure we have the header with just the fields we wanted. Click again on Save and then Save to Dashboard. This will again provide you with the Chart creation dialog. For the Chart name use Log View. This time Click Select Dashboard and search for the Dashboard you created in the previous exercise. You can start by typing your initials in the search box (1). Click on your dashboard name to highlight it (2) and click OK (3). This will return you to the create chart dialog. Ensure Log View is selected as the Chart Type. To see your dashboard click Save and go to dashboard. The result should be similar to the dashboard below: As the last step in this exercise, let us add your dashboard to your workshop team page, this will make it easy to find later in the workshop. At the top of the page, click on the vertical 3 dots menu ⋮ on the top right, select Dashboard Group Actions \u003e Link to teams. In the following Link to teams dialog box, find the Workshop team that your instructor will have provided for you and click Done. In the next session, we will look at Splunk Synthetics and see how we can automate the testing of web-based applications.",
     "tags": [],
     "title": "4. Log View Chart",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/4-log-view-chart/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/7-log-observer/4-log-view-chart/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -3453,7 +3509,7 @@ var relearn_searchindex = [
     "description": "The second part of our workshop will focus on demonstrating how manual instrumentation with OpenTelemetry empowers us to enhance telemetry collection. More specifically, in our case, it will enable us to propagate trace context data from the producer-lambda function to the consumer-lambda function, thus enabling us to see the relationship between the two functions, even across Kinesis Stream, which currently does not support automatic context propagation.\nThe Manual Instrumentation Workshop Directory \u0026 Contents Once again, we will first start by taking a look at our operating directory, and some of its files. This time, it will be workshop/lambda/manual directory. This is where all the content for the manual instrumentation portion of our workshop resides.",
     "tags": [],
     "title": "Manual Instrumentation",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -3461,7 +3517,7 @@ var relearn_searchindex = [
     "description": "Manual Instrumentation Navigate to the manual directory that contains manually instrumentated code.\n​ Command cd ~/o11y-lambda-lab/manual Inspect the contents of the files in this directory. Take a look at the serverless.yml template.\n​ Command cat serverless.yml Workshop Question Do you see any difference from the same file in your auto directory?",
     "tags": [],
     "title": "Manual Instrumentation",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -3469,7 +3525,7 @@ var relearn_searchindex = [
     "description": "1. Patching the Payment Service Finally, we will patch the paymentservice deployment with an annotation to inject the NodeJS auto instrumentation. This will allow us to see the paymentservice service in APM.\nkubectl patch deployment opentelemetry-demo-paymentservice -n otel-demo -p '{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-nodejs\":\"default/splunk-otel-collector\"}}}} }' This will cause the opentelemetry-demo-paymentservice pod to restart and after a few minutes, you should see the paymentservice service in APM.",
     "tags": [],
     "title": "Zero Configuration - Payment Service",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/4-payment-service/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/4-payment-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -3477,7 +3533,7 @@ var relearn_searchindex = [
     "description": "Processors are run on data between being received and being exported. Processors are optional though some are recommended. There are a large number of processors included in the OpenTelemetry contrib Collector.\n%%{ init:{ \"theme\":\"base\", \"themeVariables\": { \"primaryColor\": \"#ffffff\", \"clusterBkg\": \"#eff2fb\", \"defaultLinkColor\": \"#333333\" } } }%% flowchart LR; style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --\u003e M(Receivers) B[JAEGER] --\u003e M(Receivers) C[Prometheus] --\u003e M(Receivers) end subgraph Processors M(Receivers) --\u003e H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --\u003e S(OTLP) H(Filters, Attributes, etc) --\u003e T(JAEGER) H(Filters, Attributes, etc) --\u003e U(Prometheus) end",
     "tags": [],
     "title": "OpenTelemetry Collector Processors",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/4-processors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -3485,7 +3541,7 @@ var relearn_searchindex = [
     "description": "View Service Map Next step is open your Observability UI, accessing the proper org ( where you sent the traces to ) and click APM and Access the Environemnnt that matches the username you put in .env.\nPlease note it may take 4-5 minutes or more for traces to show up and you will see full map “form” as traces are coming in, so you may have to refresh the page a few times each time we Build and Deploy.",
     "tags": [],
     "title": "Review APM in the UI",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/4-review-apm/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/4-review-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop \u003e 5. APM Features",
@@ -3493,7 +3549,7 @@ var relearn_searchindex = [
     "description": "Splunk APM provide Service Centric Views that provide engineers a deep understanding of service performance in one centralized view. Now, across every service, engineers can quickly identify errors or bottlenecks from a service’s underlying infrastructure, pinpoint performance degradation from new deployments, and visualize the health of every third party dependency.\nTo see this dashboard for the api-gateway, click on APM from the left-hand menu and then click on the api-gateway service in the list. This will bring you to the Service Centric View dashboard:",
     "tags": [],
     "title": "Service Centric View",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -3501,7 +3557,7 @@ var relearn_searchindex = [
     "description": "The simple settings allow you to configure the basics of the test:\nName: The name of the test (e.g. RWC - Online Boutique). Details: Locations: The locations where the test will run from. Device: Emulate different devices and connection speeds. Also, the viewport will be adjusted to match the chosen device. Frequency: How often the test will run. Round-robin: If multiple locations are selected, the test will run from one location at a time, rather than all locations at once. Active: Set the test to active or inactive. For this workshop, we will configure the locations that we wish to monitor from. Click in the Locations field and you will be presented with a list of global locations (over 50 in total).",
     "tags": [],
     "title": "Test settings",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/4-edit-test-settings/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/4-edit-test-settings/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -3509,15 +3565,7 @@ var relearn_searchindex = [
     "description": "Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.",
     "tags": [],
     "title": "Let's go shopping 💶",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/4-online-boutique/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Persona You are a hip urban professional, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.\nThe purpose of this exercise is for you to interact with the Online Boutique web application. This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout.\nThe application will already be deployed for you and your instructor will provide you with a link to the Online Boutique website e.g:\nhttp://\u003cs4r-workshop-i-xxx.splunk\u003e.show:81/. The application is also running on ports 80 \u0026 443 if you prefer to use those or port 81 is unreachable. Exercise - Let’s go shopping Once you have the link to the Online Boutique, have a browse through a few items, add them to your cart and then, finally, do a checkout. Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore. Exercise (cont.) Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? When this happens please copy the Order Confirmation ID and save it locally somewhere as we will need it later. Close the browser sessions you used to shop. This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.\nLet’s go take a look at what the data looks like in Splunk RUM.",
-    "description": "Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.",
-    "tags": [],
-    "title": "Let's go shopping 💶",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/4-online-boutique/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/4-online-boutique/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -3525,7 +3573,7 @@ var relearn_searchindex = [
     "description": "In this section, we will use APM to drill down and identify where the problem is.",
     "tags": [],
     "title": "Splunk APM",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 8. Splunk Synthetics",
@@ -3533,15 +3581,15 @@ var relearn_searchindex = [
     "description": "Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA instead of getting informed by social media, or Uptime websites.\nTo stop that from happening let’s detect if our test is taking more than 1.1 minutes.\nExercise Go back to the Synthetics home page via the menu on the left",
     "tags": [],
     "title": "4. Synthetics Detector",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/4-synthetics-detector/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/8-synthetics/4-synthetics-detector/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 8. Splunk Synthetics*",
-    "content": "Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA instead of getting informed by social media, or Uptime websites.\nTo stop that from happening let’s detect if our test is taking more than 1.1 minutes.\nExercise Go back to the Synthetics home page via the menu on the left\nSelect the workshop test again and click the Create Detector button at the top of the page.\nEdit the text New Synthetics Detector (1) and replace it with INITIALS - [WORKSHOPNAME].\nChange the alert criteria so that the metric is Run Duration (instead of Uptime) and the condition is Static Threshold.\nSet the Trigger threshold (2) to be around 65,000 to 68,000 and hit enter to update the chart. Make sure you have more than one spike cutting through the threshold line as shown above (you may have to adjust the threshold value a bit to match your actual latency).\nLeave the rest as default.\nNote that there is now a row of red and white triangles appearing below the spikes (3). The red triangles let you know that your detector found that your test was above the given threshold \u0026 the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.\nYou can change the Alerts criticality (4) by changing the drop-down to a different level, as well as the method of alerting. Make sure you do NOT add a Recipient as this could lead to you being subjected to an alert storm!\nClick Activate to deploy your detector.\nTo see your new created detector click Edit Test button\nAt the bottom of the page is a list of active detectors.\nIf you can’t find yours, but see one called New Synthetic Detector, you may not have saved it correctly with your name. Click on the New Synthetic Detector link, and redo the rename.\nClick on the Close button to exit the edit mode.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 6. Digital Experience (Synthetics)",
+    "content": "Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA instead of getting informed by social media, or Uptime websites.\nTo stop that from happening let’s detect if our test is taking more than 1.1 minutes.\nExercise Go back to the Synthetics home page via the menu on the left\nSelect the workshop test again and click the Create Detector button at the top of the page.\nEdit the text New Synthetics Detector (1) and replace it with INITIALS - [WORKSHOPNAME].\nChange the alert criteria so that the metric is Run Duration (instead of Uptime) and the condition is Static Threshold.\nSet the Trigger threshold (2) to be around 65,000 to 68,000 and hit enter to update the chart. Make sure you have more than one spike cutting through the threshold line as shown above (you may have to adjust the threshold value a bit to match your actual latency).\nLeave the rest as default.\nNote that there is now a row of red and white triangles appearing below the spikes (3). The red triangles let you know that your detector found that your test was above the given threshold \u0026 the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.\nYou can change the Alerts criticality (4) by changing the drop-down to a different level, as well as the method of alerting. Make sure you do NOT add a Recipient as this could lead to you being subjected to an alert storm!\nClick Activate to deploy your detector.\nTo see your new created detector click Edit Test button\nAt the bottom of the page is a list of active detectors.\nIf you can’t find yours, but see one called New Synthetics Detector, you may not have saved it correctly with your name. Click on the New Synthetics Detector link, and redo the rename.\nClick on the Close button to exit the edit mode.",
     "description": "Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA instead of getting informed by social media, or Uptime websites.\nTo stop that from happening let’s detect if our test is taking more than 1.1 minutes.\nExercise Go back to the Synthetics home page via the menu on the left",
     "tags": [],
     "title": "4. Synthetics Detector",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/8-synthetics/4-synthetics-detector/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/6-synthetics/4-synthetics-detector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Workshop Setup",
@@ -3549,7 +3597,7 @@ var relearn_searchindex = [
     "description": "Log Observer Connect The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. SWiPE provides a simple form to configure this and is available here.\nLog Field Aliasing Log Field Aliasing configuration is required to ensure Related Content works correctly in the Splunk Observability Cloud UI. Configure as per the following:",
     "tags": [],
     "title": "4. Trial Org Configuration",
-    "uri": "/observability-workshop/en/workshop-setup/4-org-configuration/index.html"
+    "uri": "/observability-workshop/workshop-setup/4-org-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Remote Installation",
@@ -3557,7 +3605,7 @@ var relearn_searchindex = [
     "description": "This section covers common issues you may encounter when deploying Smart Agent to remote hosts and how to resolve them.\nSSH Connection Issues Problem: Cannot Connect to Remote Hosts Symptoms:\nConnection timeout errors “Permission denied” messages Host key verification failures Solutions:\n1. Verify SSH Key Permissions SSH keys must have the correct permissions:\nchmod 600 /home/ubuntu/.ssh/id_rsa chmod 644 /home/ubuntu/.ssh/id_rsa.pub chmod 700 /home/ubuntu/.ssh 2. Test SSH Connectivity Manually Test connection to each remote host:",
     "tags": [],
     "title": "4. Troubleshooting",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/4-troubleshooting/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/4-troubleshooting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 5. Splunk RUM",
@@ -3565,15 +3613,15 @@ var relearn_searchindex = [
     "description": "Exercise Close the RUM Session Replay by clicking on the X in the top right corner. Note the length of the span, this is the time it took to complete the order, not good! Scroll down the page and you will see the Tags metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.) Keep scrolling down the page until you come to a blue APM link (the one with /cart/checkout at the end of the URL) and hover over it.",
     "tags": [],
     "title": "4. User Sessions",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/4-user-sessions/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/5-rum/4-user-sessions/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 5. Splunk RUM",
-    "content": "Exercise Close the RUM Session Replay by clicking on the X in the top right corner. Note the length of the span, this is the time it took to complete the order, not good! Scroll down the page and you will see the Tags metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.) Keep scrolling down the page until you come to a blue APM link (the one with /cart/checkout at the end of the URL) and hover over it. This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.\nExercise You will see paymentservice and checkoutservice are in an error state as per the screenshot above. Under Workflow Name click on front-end:/cart/checkout, this will bring up the APM Service Map.",
-    "description": "Exercise Close the RUM Session Replay by clicking on the X in the top right corner. Note the length of the span, this is the time it took to complete the order, not good! Scroll down the page and you will see the Tags metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.) Keep scrolling down the page until you come to a blue APM link (the one with /cart/checkout at the end of the URL) and hover over it.",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "Exercise In the User Sessions table, click on the Session ID with the longest Duration (over 20 seconds or longer). This will take you to the RUM Session view. Note the length of the span, this is the time it took to complete the order, not good! Scroll down the page and you will see the Tags metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.) Keep scrolling down the page until you come to a blue APM link (the one with /cart/checkout at the end of the URL) and hover over it. This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.\nYou will see paymentservice and checkoutservice are in an error state as per the screenshot above.\nUnder Workflow Name click on front-end:/cart/checkout, this will bring up the APM Service Map.",
+    "description": "Exercise In the User Sessions table, click on the Session ID with the longest Duration (over 20 seconds or longer). This will take you to the RUM Session view. Note the length of the span, this is the time it took to complete the order, not good! Scroll down the page and you will see the Tags metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.) Keep scrolling down the page until you come to a blue APM link (the one with /cart/checkout at the end of the URL) and hover over it.",
     "tags": [],
     "title": "4. User Sessions",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/5-rum/4-user-sessions/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/4-user-sessions/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 4. Building Resilience",
@@ -3581,7 +3629,7 @@ var relearn_searchindex = [
     "description": "In this exercise, we’ll test how the OpenTelemetry Collector recovers from a network outage by restarting the Gateway collector. When the gateway becomes available again, the agent will resume sending data from its last checkpointed state, ensuring no data loss.\nExercise Restart the Gateway: In the Gateway terminal window run:\n​ Gateway ../otelcol --config=gateway.yaml Restart the Agent: In the Agent terminal window run:",
     "tags": [],
     "title": "4.4 Recovery",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-4-recovery/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-4-recovery/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 6. Service",
@@ -3589,7 +3637,7 @@ var relearn_searchindex = [
     "description": "Attributes Processor Also in the Processors section of this workshop, we added the attributes/conf processor so that the collector will insert a new attribute called participant.name to all the metrics. We now need to enable this under the metrics pipeline.\nUpdate the processors section to include attributes/conf under the metrics pipeline:\nservice: pipelines: traces: receivers: [otlp, opencensus, jaeger, zipkin] processors: [batch] exporters: [debug] metrics: receivers: [hostmetrics, otlp, opencensus, prometheus/internal] processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf] exporters: [debug]",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/4-attributes/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/4-attributes/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment",
@@ -3597,7 +3645,7 @@ var relearn_searchindex = [
     "description": "Learn how to automate AppDynamics Smart Agent deployment using Ansible.",
     "tags": [],
     "title": "Monitoring as Code with Smart Agent and Ansible",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -3605,7 +3653,7 @@ var relearn_searchindex = [
     "description": "In this Learning Lab you learn how to use AppDynamics to monitor the health of your browser-based application.",
     "tags": [],
     "title": "Browser Real User Monitoring (BRUM)",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -3613,7 +3661,7 @@ var relearn_searchindex = [
     "description": "Step 1: Configure Cilium Enterprise Create a file named cilium-enterprise-values.yaml. Replace \u003cYOUR-EKS-API-SERVER-ENDPOINT\u003e with the endpoint from the previous step (without https:// prefix):\n# Configure unique cluster name \u0026 ID cluster: name: isovalent-demo id: 0 # Configure ENI specifics eni: enabled: true updateEC2AdapterLimitViaAPI: true awsEnablePrefixDelegation: true enableIPv4Masquerade: false loadBalancer: serviceTopology: true ipam: mode: eni routingMode: native # BPF / KubeProxyReplacement kubeProxyReplacement: \"true\" k8sServiceHost: \u003cYOUR-EKS-API-SERVER-ENDPOINT\u003e k8sServicePort: 443 # Configure TLS configuration tls: ca: certValidityDuration: 3650 # 10 years # Enable Cilium Hubble for visibility hubble: enabled: true metrics: enableOpenMetrics: true enabled: - dns:labelsContext=source_namespace,destination_namespace - drop:labelsContext=source_namespace,destination_namespace - tcp:labelsContext=source_namespace,destination_namespace - port-distribution:labelsContext=source_namespace,destination_namespace - icmp:labelsContext=source_namespace,destination_namespace - flow:sourceContext=workload-name|reserved-identity - \"httpV2:exemplars=true;labelsContext=source_namespace,destination_namespace\" - \"policy:labelsContext=source_namespace,destination_namespace\" serviceMonitor: enabled: true tls: enabled: true auto: enabled: true method: cronJob certValidityDuration: 1095 # 3 years relay: enabled: true tls: server: enabled: true prometheus: enabled: true serviceMonitor: enabled: true timescape: enabled: true # Enable Cilium Operator metrics operator: prometheus: enabled: true serviceMonitor: enabled: true # Enable Cilium Agent metrics prometheus: enabled: true serviceMonitor: enabled: true # Configure Cilium Envoy envoy: prometheus: enabled: true serviceMonitor: enabled: true # Enable DNS Proxy HA support extraConfig: external-dns-proxy: \"true\" enterprise: featureGate: approved: - DNSProxyHA - HubbleTimescape Configuration Highlights ENI Mode: Pods get native VPC IP addresses Kube-Proxy Replacement: eBPF-based service load balancing Hubble: Network observability with L7 visibility Timescape: Historical network flow storage Step 2: Install Cilium Enterprise Install Cilium using Helm:",
     "tags": [],
     "title": "Cilium Installation",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/4-cilium-installation/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/4-cilium-installation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -3621,7 +3669,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your controller, configure a database collector, and confirm the database collector is collecting.",
     "tags": [],
     "title": "Configure Database Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/4-configure-database-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/4-configure-database-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -3629,7 +3677,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will access your AppDynamics Controller from your web browser and enable the Agentless Analytics from there.",
     "tags": [],
     "title": "Configure Method Data Collectors",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/4-configure-method-data-collectors/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/4-configure-method-data-collectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e Jenkins Automation",
@@ -3637,7 +3685,7 @@ var relearn_searchindex = [
     "description": "First Deployment Now that your pipelines are configured, let’s walk through executing your first Smart Agent deployment.\nStep 1: Navigate to Pipeline Go to Jenkins Dashboard Click on your Deploy-Smart-Agent pipeline Step 2: Build with Parameters Click Build with Parameters in the left sidebar\nReview the default parameters:\nSMARTAGENT_ZIP_PATH: Verify path is correct REMOTE_INSTALL_DIR: /opt/appdynamics/appdsmartagent APPD_USER: ubuntu (or your SSH user) APPD_GROUP: ubuntu SSH_PORT: 22 AGENT_NAME: smartagent LOG_LEVEL: DEBUG Adjust parameters if needed",
     "tags": [],
     "title": "Deployment Workflow",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -3645,7 +3693,7 @@ var relearn_searchindex = [
     "description": "Go to Dashboards and find the End User Experiences dashboard group.\nClick the three dots on the top right to open the dashboard menu, and select Save As, and include your team name and initials in the dashboard name.\nSave to the dashboard group that matches your email address. Now you have your own copy of this dashboard to customize!",
     "tags": [],
     "title": "Frontend Dashboards",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/4-dashboards/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/4-dashboards/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Browser Real User Monitoring (BRUM)",
@@ -3653,7 +3701,7 @@ var relearn_searchindex = [
     "description": "In this exercise you review dashboards and navigate the demo app.",
     "tags": [],
     "title": "Monitor and Troubleshoot - Part 1",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/4-monitor-and-troubleshoot-part-1/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/4-monitor-and-troubleshoot-part-1/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -3661,7 +3709,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will review the overall database and server dashboard, review the main dashboard, and review the reports in the database activity window.",
     "tags": [],
     "title": "Monitor and Troubleshoot - Part 1",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/5-monitor-and-troubleshoot-option-1/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/5-monitor-and-troubleshoot-option-1/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Server Visibility Monitoring",
@@ -3669,7 +3717,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will review several dashboards to monitor server health and navigate between server and application contexts.",
     "tags": [],
     "title": "Monitor Server Health",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/4-monitor-server-health/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/4-monitor-server-health/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources",
@@ -3677,7 +3725,7 @@ var relearn_searchindex = [
     "description": "When deploying OpenTelemetry in a large organization, it’s critical to define a standardized naming convention for tagging, and a governance process to ensure the convention is adhered to.",
     "tags": [],
     "title": "Naming Conventions for Tagging with OpenTelemetry and Splunk",
-    "uri": "/observability-workshop/en/resources/otel-tagging/index.html"
+    "uri": "/observability-workshop/resources/otel-tagging/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios",
@@ -3685,7 +3733,7 @@ var relearn_searchindex = [
     "description": "Use Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user experience, and proactively test scenarios to improve that experience.",
     "tags": [],
     "title": "Optimize End User Experiences",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -3693,7 +3741,7 @@ var relearn_searchindex = [
     "description": "Resources for learning about Splunk Observability Cloud",
     "tags": [],
     "title": "Resources",
-    "uri": "/observability-workshop/en/resources/index.html"
+    "uri": "/observability-workshop/resources/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e SmartAgent Deployment \u003e GitHub Actions Automation",
@@ -3701,7 +3749,7 @@ var relearn_searchindex = [
     "description": "Triggering Workflows All workflows are configured with workflow_dispatch, meaning they must be triggered manually. There are two main ways to run workflows:\nGitHub UI - Visual interface, easiest for most users GitHub CLI - Command-line interface, great for automation Method 1: GitHub UI Step 1: Navigate to Actions Tab Go to your forked repository on GitHub Click the Actions tab at the top Step 2: Select Workflow On the left sidebar, you’ll see all available workflows:",
     "tags": [],
     "title": "Running Workflows",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources",
@@ -3709,7 +3757,7 @@ var relearn_searchindex = [
     "description": "SPLUNK ARCADE - Where Retro Gaming Meets Real-World Observability",
     "tags": [],
     "title": "Splunk Arcade - Play, Learn \u0026 Observe!",
-    "uri": "/observability-workshop/en/resources/splunk-arcade/index.html"
+    "uri": "/observability-workshop/resources/splunk-arcade/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -3717,7 +3765,7 @@ var relearn_searchindex = [
     "description": "Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.",
     "tags": [],
     "title": "Splunk Synthetic Scripting",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -3725,7 +3773,7 @@ var relearn_searchindex = [
     "description": "Click on Advanced, these settings are optional and can be used to further configure the test.\nNote In the case of this workshop, we will not be using any of these settings as this is for informational purposes only.\nSecurity: TLS/SSL validation: When activated, this feature is used to enforce the validation of expired, invalid hostname, or untrusted issuer on SSL/TLS certificates. Authentication: Add credentials to authenticate with sites that require additional security protocols, for example from within a corporate network. By using concealed global variables in the Authentication field, you create an additional layer of security for your credentials and simplify the ability to share credentials across checks. Custom Content: Custom headers: Specify custom headers to send with each request. For example, you can add a header in your request to filter out requests from analytics on the back end by sending a specific header in the requests. You can also use custom headers to set cookies. Cookies: Set cookies in the browser before the test starts. For example, to prevent a popup modal from randomly appearing and interfering with your test, you can set cookies. Any cookies that are set will apply to the domain of the starting URL of the check. Splunk Synthetics Monitoring uses the public suffix list to determine the domain. Host overrides: Add host override rules to reroute requests from one host to another. For example, you can create a host override to test an existing production site against page resources loaded from a development site or a specific CDN edge node. Next, we will edit the test steps to provide more meaningful names for each step.",
     "tags": [],
     "title": "1.5 Advanced Settings",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/5-advanced-settings/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/5-advanced-settings/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 2. API Test",
@@ -3733,7 +3781,7 @@ var relearn_searchindex = [
     "description": "View results Wait for a few minutes for the test to provision and run. Once you see the test has run successfully, click on the run to view the test results:\n6. Resources How to Create an API Test\nAPI Test Overview",
     "tags": [],
     "title": "View results",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration \u003e 2. Gateway Setup",
@@ -3741,7 +3789,7 @@ var relearn_searchindex = [
     "description": "Tip Introduction to the otlphttp Exporter The otlphttp exporter is now the default method for sending metrics and traces to Splunk Observability Cloud. This exporter provides a standardized and efficient way to transmit telemetry data using the OpenTelemetry Protocol (OTLP) over HTTP.\nWhen deploying the Splunk Distribution of the OpenTelemetry Collector in host monitoring (agent) mode, the otlphttp exporter is included by default. This replaces older exporters such as sapm and signalfx, which are gradually being phased out.",
     "tags": [],
     "title": "2.5 Addendum - Info on Access Tokens and Batch Processing",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-5-addendum/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/2-gateway/2-5-addendum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Synthetics \u003e 2. API Test",
@@ -3749,7 +3797,7 @@ var relearn_searchindex = [
     "description": "Wait for a few minutes for the test to provision and run. Once you see the test has run successfully, click on the run to view the results:\nResources How to Create an API Test API Test Overview",
     "tags": [],
     "title": "View results",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/5-view-results/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/1-synthetics/2-api-test/5-view-results/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -3757,7 +3805,7 @@ var relearn_searchindex = [
     "description": "In this section, we will explore how to use the Filter Processor to selectively drop spans based on certain conditions.\nSpecifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces. In this case, we will be filtering out spans that contain \"/_healthz\", typically associated with health check requests and usually are quite “noisy”.\nExercise Important Change ALL terminal windows to the 3-dropping-spans directory and run the clear command.",
     "tags": [],
     "title": "3. Dropping Spans",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/3-dropping-spans/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/3-dropping-spans/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -3765,7 +3813,7 @@ var relearn_searchindex = [
     "description": "In this section, we will explore how to use the Filter Processor to selectively drop spans based on certain conditions.\nSpecifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces. In this case, we will be filtering out spans that contain \"/_healthz\", typically associated with health check requests and usually are quite “noisy”.\nExercise Important Change ALL terminal windows to the 3-dropping-spans directory and run the clear command.",
     "tags": [],
     "title": "3. Dropping Spans",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/3-dropping-spans/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -3773,7 +3821,7 @@ var relearn_searchindex = [
     "description": "The FileLog Receiver in the OpenTelemetry Collector is used to ingest logs from files.\nIt monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is also useful for testing and development purposes.\nFor this part of the workshop, the loadgen will generate logs using random quotes:\nlotrQuotes := []string{ \"One does not simply walk into Mordor.\", \"Even the smallest person can change the course of the future.\", \"All we have to decide is what to do with the time that is given us.\", \"There is some good in this world, and it's worth fighting for.\", } starWarsQuotes := []string{ \"Do or do not, there is no try.\", \"The Force will be with you. Always.\", \"I find your lack of faith disturbing.\", \"In my experience, there is no such thing as luck.\", } The FileLog receiver in the agent collector will read these log lines and send them to the gateway.",
     "tags": [],
     "title": "3. FileLog Setup",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/3-filelog/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Ingest Processor for Observability Cloud \u003e 3. Create an Ingest Pipeline",
@@ -3781,7 +3829,7 @@ var relearn_searchindex = [
     "description": "Now that an Ingest Pipeline has been configured to convert Kubernetes Audit Logs into metrics and send them to Splunk Observability Cloud the metrics should be available. To confirm the metrics are being collected complete the following steps:\nExercise: Confirm Metrics in Splunk Observability Cloud 1. Login to the Splunk Observability Cloud organization you were invited for the workshop. In the upper-right corner, click the + Icon → Chart to create a new chart.",
     "tags": [],
     "title": "Confirm Metrics in Observability Cloud",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/4-confirm-metrics/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/3-create-an-ingest-pipeline/4-confirm-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -3789,7 +3837,7 @@ var relearn_searchindex = [
     "description": "1. Save to existing dashboard Check that you have YOUR_NAME-Dashboard: YOUR_NAME-Dashboard in the top left corner. This means you chart will be saved in this Dashboard.\nName the Chart Latency History and add a Chart Description if you wish.\nClick on Save And Close. This returns you to your dashboard that now has two charts!\nNow let’s quickly add another Chart based on the previous one.",
     "tags": [],
     "title": "Adding charts to dashboards",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/adding-charts/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/adding-charts/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -3797,7 +3845,7 @@ var relearn_searchindex = [
     "description": "In this section, we will enable automatic discovery and configuration for the Java services running in Kubernetes. This means that the OpenTelemetry Collector will look for Pod annotations that indicate that the Java application should be instrumented with the Splunk OpenTelemetry Java agent. This will allow us to get traces, spans, and profiling data from Java services running on the cluster.\nautomatic discovery and configuration It is important to understand that automatic discovery and configuration is designed to get trace, span \u0026 profiling data out of your application without requiring code changes or recompilation.",
     "tags": [],
     "title": "Setting up automatic discovery and configuration for APM",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -3805,7 +3853,7 @@ var relearn_searchindex = [
     "description": "Now that our game startup slowness has been resolved, let’s play several rounds of the Door Game and ensure the rest of the game performs quickly.\nAs you play the game, do you notice any other slowness? Let’s look at the data in Splunk Observability Cloud to put some numbers on what we’re seeing.\nReview Game Performance in Splunk Observability Cloud Navigate to APM then click on Traces on the right-hand side of the screen. Sort the traces by Duration in descending order:",
     "tags": [],
     "title": "Fix In Game Slowness",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/5-fix-ingame-slowness/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/5-fix-ingame-slowness/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -3813,7 +3861,7 @@ var relearn_searchindex = [
     "description": "Click on Advanced, these settings are optional and can be used to further configure the test.\nNote In the case of this workshop, we will not be using any of these settings; this is for informational purposes only.\nSecurity: TLS/SSL validation: When activated, this feature is used to enforce the validation of expired, invalid hostname, or untrusted issuer on SSL/TLS certificates. Authentication: Add credentials to authenticate with sites that require additional security protocols, for example from within a corporate network. By using concealed global variables in the Authentication field, you create an additional layer of security for your credentials and simplify the ability to share credentials across checks. Custom Content: Custom headers: Specify custom headers to send with each request. For example, you can add a header in your request to filter out requests from analytics on the back end by sending a specific header in the requests. You can also use custom headers to set cookies. Cookies: Set cookies in the browser before the test starts. For example, to prevent a popup modal from randomly appearing and interfering with your test, you can set cookies. Any cookies that are set will apply to the domain of the starting URL of the check. Splunk Synthetics Monitoring uses the public suffix list to determine the domain. Host overrides: Add host override rules to reroute requests from one host to another. For example, you can create a host override to test an existing production site against page resources loaded from a development site or a specific CDN edge node. See the Advanced Settings for Browser Tests section of the Docs for more information.",
     "tags": [],
     "title": "Advanced Test Settings",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/5-advanced-settings/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/5-advanced-settings/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -3821,7 +3869,7 @@ var relearn_searchindex = [
     "description": "See RUM Metrics and Session information in the RUM UI See correlated APM traces in the RUM \u0026 APM UI 1. RUM Overview Pages From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot menu on the right by selecting Open Application Overview or by clicking the link with your application name which is jmcj-rum-app in the example below.",
     "tags": [],
     "title": "Analyzing RUM Metrics",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/5-analyzing-metrics/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/5-analyzing-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -3829,7 +3877,7 @@ var relearn_searchindex = [
     "description": "See RUM Metrics and Session information in the RUM UI See correlated APM traces in the RUM \u0026 APM UI 1. RUM Overview Pages From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot menu on the right by selecting Open Application Overview or by clicking the link with your application name which is jmcj-store in the example below.",
     "tags": [],
     "title": "5. Analyzing RUM Metrics",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/5-analyzing-metrics/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/5-analyzing-metrics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -3837,7 +3885,7 @@ var relearn_searchindex = [
     "description": "As Splunk APM provides a NoSample end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the wire transfer orderId is available as a tag. This means that we can use this to search for the exact trace of the poor user experience encountered by users.\nTrace Analyzer Splunk Observability Cloud provides several tools for exploring application monitoring data. Trace Analyzer is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.",
     "tags": [],
     "title": "5. APM Trace Analyzer",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/5-apm-trace-analyzer/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/5-apm-trace-analyzer/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -3845,15 +3893,15 @@ var relearn_searchindex = [
     "description": "As Splunk APM provides a NoSample end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the Order Confirmation ID is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.\nTrace Analyzer Splunk Observability Cloud provides several tools for exploring application monitoring data. Trace Analyzer is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.",
     "tags": [],
     "title": "5. APM Trace Analyzer",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/5-apm-trace-analyzer/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/5-apm-trace-analyzer/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
     "content": "As Splunk APM provides a NoSample end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the Order Confirmation ID is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.\nTrace Analyzer Splunk Observability Cloud provides several tools for exploring application monitoring data. Trace Analyzer is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.\nExercise With the outer box of the paymentservice selected, in the right-hand pane, click on Traces. Set Time Range to Last 15 minutes. Ensure the Sample Ratio is set to 1:1 and not 1:10. The Trace \u0026 error count view shows the total traces and traces with errors in a stacked bar chart. You can use your mouse to select a specific period within the available time frame.\nExercise Click on the dropdown menu that says Trace \u0026 error count, and change it to Trace duration The Trace Duration view shows a heatmap of traces by duration. The heatmap represents 3 dimensions of data:\nTime on the x-axis Trace duration on the y-axis The traces (or requests) per second are represented by the heatmap shades You can use your mouse to select an area on the heatmap, to focus on a specific time period and trace duration range.\nExercise Switch from Trace duration back to Trace \u0026 Error count. In the time picker select Last 1 hour. Note, that most of our traces have errors (red) and there are only a limited amount of traces that are error-free (blue). Make sure the Sample Ratio is set to 1:1 and not 1:10. Click on Add filters, type in orderId and select orderId from the list. Paste in your Order Confirmation ID from when you went shopping earlier in the workshop and hit enter. If you didn’t capture one, please ask your instructor for one. We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.\nA secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.\nExercise Click on the trace in the list. Next, we will walk through the trace waterfall.",
     "description": "As Splunk APM provides a NoSample end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the Order Confirmation ID is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.\nTrace Analyzer Splunk Observability Cloud provides several tools for exploring application monitoring data. Trace Analyzer is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.",
     "tags": [],
     "title": "5. APM Trace Analyzer",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/5-apm-trace-analyzer/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/5-apm-trace-analyzer/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -3861,7 +3909,7 @@ var relearn_searchindex = [
     "description": "1. AlwaysOn Profiling for the Payment Service AlwaysOn Profiling is a feature of the Splunk Distribution of OpenTelemetry Collector that allows you to collect CPU and Memory profiling data for your services without having to modify your code. This is useful for troubleshooting performance issues in your services. Here are some of the benefits of AlwaysOn Profiling:\nPerform continuous profiling of your applications. The profiler is always on once you activate it. Collect code performance context and link it to trace data. Explore memory usage and garbage collection of your application. Analyze code bottlenecks that impact service performance. Identify inefficiencies that increase the need for scaling up cloud resources. With the opentelemetry-demo-paymentservice selected, click on AlwaysOn Profiling to view the code profiling data for the service.",
     "tags": [],
     "title": "Code Profiling - Payment Service",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -3869,7 +3917,7 @@ var relearn_searchindex = [
     "description": "In this section you will learn how to configure various APM settings within the Controller",
     "tags": [],
     "title": "5. Configure Controller Settings",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/5-configure-controller/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/5-configure-controller/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -3877,7 +3925,7 @@ var relearn_searchindex = [
     "description": "Now let’s play the role of the developer As a developer we must debug the function products:ProductResource.getAllProducts to find the problem.\nDebugging 101, the Line by Line method Without anything to go on other than “BAD FUNCTION”, a Developer must then look at code visually line by line to find and fix the problem. To make this worse, functions call other functions, and it can get very messy in bad code scenarios.",
     "tags": [],
     "title": "Debugging 101",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/5-debugging101/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/5-debugging101/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -3885,7 +3933,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll use the NVIDIA NIM Operator to deploy two Large Language Models to our OpenShift Cluster.\nCreate a Namespace oc create namespace nim-service Add Secrets with NGC API Key Add a Docker registry secret for downloading container images from NVIDIA NGC:\noc create secret -n nim-service docker-registry ngc-secret \\ --docker-server=nvcr.io \\ --docker-username='$oauthtoken' \\ --docker-password=$NGC_API_KEY Add a generic secret that model puller containers use to download the model from NVIDIA NGC:",
     "tags": [],
     "title": "Deploy an LLM",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/5-deploy-llm/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/5-deploy-llm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -3893,7 +3941,7 @@ var relearn_searchindex = [
     "description": "In the final step of the workshop, we’ll deploy an application to our OpenShift cluster that uses the instruct and embeddings models that we deployed earlier using the NVIDIA NIM operator.\nApplication Overview Like most applications that interact with LLMs, our application is written in Python. It also uses LangChain, which is an open-source orchestration framework that simplifies the development of applications powered by LLMs.\nOur application starts by connecting to two LLMs that we’ll be using:",
     "tags": [],
     "title": "Deploy the LLM Application",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/5-deploy-llm-app/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/5-deploy-llm-app/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -3901,7 +3949,7 @@ var relearn_searchindex = [
     "description": "Later on in this workshop, we’re going to deploy our .NET application into a Kubernetes cluster.\nBut how do we do that?\nThe first step is to create a Docker image for our application. This is known as “dockerizing” and application, and the process begins with the creation of a Dockerfile.\nBut first, let’s define some key terms.\nKey Terms What is Docker? “Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security lets you run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you don’t need to rely on what’s installed on the host.”",
     "tags": [],
     "title": "Dockerize the Application",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -3909,7 +3957,7 @@ var relearn_searchindex = [
     "description": "An exporter, which can be push or pull-based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.\nFor this workshop, we will be using the otlphttp exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.\n%%{ init:{ \"theme\":\"base\", \"themeVariables\": { \"primaryColor\": \"#ffffff\", \"clusterBkg\": \"#eff2fb\", \"defaultLinkColor\": \"#333333\" } } }%% flowchart LR; style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --\u003e M(Receivers) B[JAEGER] --\u003e M(Receivers) C[Prometheus] --\u003e M(Receivers) end subgraph Processors M(Receivers) --\u003e H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --\u003e S(OTLP) H(Filters, Attributes, etc) --\u003e T(JAEGER) H(Filters, Attributes, etc) --\u003e U(Prometheus) end",
     "tags": [],
     "title": "OpenTelemetry Collector Exporters",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -3917,7 +3965,7 @@ var relearn_searchindex = [
     "description": "1. Kubernetes Resources Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources. Cluster Operators will normally require you to specify the amount of CPU and Memory your Pod or Service will require in the deployment, so they can have the Cluster automatically manage on which Node(s) your solution will be placed.\nYou do this by placing a Resource section in the deployment of your application/Pod\nExample:\nresources: limits: # Maximum amount of CPU \u0026 memory for peek use cpu: \"8\" # Maximum of 8 cores of CPU allowed at for peek use memory: \"8Mi\" # Maximum allowed 8Mb of memory requests: # Request are the expected amount of CPU \u0026 memory for normal use cpu: \"6\" # Requesting 4 cores of a CPU memory: \"4Mi\" # Requesting 4Mb of memory More information can be found here: Resource Management for Pods and Containers",
     "tags": [],
     "title": "Fix PHP/Apache Issue",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/5-fix-apache/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/5-fix-apache/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -3925,7 +3973,15 @@ var relearn_searchindex = [
     "description": "Index Tags To use advanced features in Splunk Observability Cloud such as Tag Spotlight, we’ll need to first index one or more tags.\nTo do this, navigate to Settings -\u003e APM MetricSets. Then click the + New MetricSet button.\nLet’s index the credit.score.category tag by entering the following details (note: since everyone in the workshop is using the same organization, the instructor will do this step on your behalf):",
     "tags": [],
     "title": "Index Tags",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/5-index-tags/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/5-index-tags/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona Remaining in your back-end developer role, you need to inspect the logs from your application to determine the root cause of the issue.\nUsing the content related to the APM trace (logs) we will now use Logs to drill down further to understand exactly what the problem is.\nRelated Content is a powerful feature that allows you to jump from one component to another and is available for metrics, traces and logs.",
+    "description": "In this section, we will use Log Observer to drill down and identify what the problem is.",
+    "tags": [],
+    "title": "Logs",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/5-logs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -3933,7 +3989,7 @@ var relearn_searchindex = [
     "description": "Use Terraform1 to manage Observability Cloud Dashboards and Detectors Initialize the Terraform Splunk Provider2. Run Terraform to create detectors and dashboards from code using the Splunk Terraform Provider. See how Terraform can also delete detectors and dashboards. 1. Initial setup Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.\nYou can use monitoring as code to build out your visualizations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.",
     "tags": [],
     "title": "Monitoring as Code",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/monitoring-as-code/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/monitoring-as-code/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -3941,7 +3997,7 @@ var relearn_searchindex = [
     "description": "Re-deploy your Lambdas While remaining in your manual directory, run the following commandd to re-deploy your Lambda Functions:\n​ Deploy Producer Code Expected Output sls deploy -f producer Deploying function producer to stage dev (us-east-1) ✔ Function code deployed (6s) Configuration did not change. Configuration update skipped. (6s) ​ Deploy Consumer Code Expected Output sls deploy -f consumer Deploying function consumer to stage dev (us-east-1) ✔ Function code deployed (6s) Configuration did not change. Configuration update skipped. (6s) Note that this deployment now only updates the code changes within the function. Our configuration remains the same.",
     "tags": [],
     "title": "Redeploy Lambdas",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -3949,7 +4005,15 @@ var relearn_searchindex = [
     "description": "Now that we know how to apply manual instrumentation to the functions and services we wish to capture trace data for, let’s go about deploying our Lambda functions again, and generating traffic against our producer-lambda endpoint.\nInitialize Terraform in the manual directory Seeing as we’re in a new directory, we will need to initialize Terraform here once again.\nEnsure you are in the manual directory:\npwd The expected output would be ~/workshop/lambda/manual If you are not in the manual directory, run the following command:",
     "tags": [],
     "title": "Deploying Lambda Functions \u0026 Generating Trace Data",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 3. Digital Experience (RUM)",
+    "content": "Sessions A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.\nExercise In the User Sessions table, click on the top Session ID with the longest Duration (over 20 seconds or longer), this will take you to the RUM Session view. Exercise Click the RUM Session Replay Replay button. RUM Session Replay allows you to replay and see the user session. This is a great way to see exactly what the user experienced. Click the button to start the replay. RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.\nTip When playing back the session, notice how the mouse movements are captured. This is useful to see where the user is focusing their attention.",
+    "description": "Sessions A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.\nExercise In the User Sessions table, click on the top Session ID with the longest Duration (over 20 seconds or longer), this will take you to the RUM Session view.",
+    "tags": [],
+    "title": "5. Session Replay",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/3-rum/5-session-replay/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -3957,7 +4021,7 @@ var relearn_searchindex = [
     "description": "In this section, we will use Log Observer to drill down and identify what the problem is.",
     "tags": [],
     "title": "Splunk Log Observer",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/5-log-observer/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -3965,15 +4029,7 @@ var relearn_searchindex = [
     "description": "This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.",
     "tags": [],
     "title": "Splunk RUM",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Persona You are a frontend engineer, or an SRE tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.\nWe are going to examine the real user data that has been provided by the telemetry received from all participants’ browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.",
-    "description": "This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.",
-    "tags": [],
-    "title": "Splunk RUM",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/5-rum/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/5-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -3981,7 +4037,7 @@ var relearn_searchindex = [
     "description": "Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical web services to solve problems faster. IT Operations and engineering teams can easily detect, alert and prioritize issues, simulate multi-step user journeys, measure business impact from new code deployments and optimize web performance with guided step-by-step recommendations to ensure better digital experiences.\nEnsure Availability: Proactively monitor and alert on the health and availability of critical services, URLs and APIs with customizable browser tests to simulate multi-step workflows that make up the user experience.\nImprove Metrics: Core Web Vitals and modern performance metrics allow users to view all their performance defects in one place, measure and improve page load, interactivity and visual stability, and find and fix JavaScript errors to improve page performance.\nfront-end to back-end: Integrations with Splunk APM, Infrastructure Monitoring, On-Call and ITSI help teams view endpoint uptime against back-end services, the underlying infrastructure and within their incident response coordination so they can troubleshoot across their entire environment, in a single UI.\nDetect and Alert: Monitor and simulate end-user experiences to detect, communicate and resolve issues for APIs, service endpoints and critical business transactions before they impact customers.\nBusiness Performance: Easily define multi-step user flows for key business transactions and start recording and testing your critical user journeys in minutes. Track and report SLAs and SLOs for uptime and performance.\nFilmstrips and Video Playback: View screen recordings, film strips, and screenshots alongside modern performance scores, competitive benchmarking, and metrics to visualize artificial end-user experiences. Optimize how fast you deliver visual content, and improve page stability and interactivity to deploy better digital experiences.",
     "tags": [],
     "title": "Synthetics Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -3989,7 +4045,7 @@ var relearn_searchindex = [
     "description": "Explore APM Data Let’s explore some of the APM data we’ve captured to see how our application is performing.\nNavigate to APM, then use the Environment dropdown to select your environment (i.e. tagging-workshop-instancename).\nYou should see creditprocessorservice and creditcheckservice displayed in the list of services:\nClick on Service Map on the right-hand side to view the service map. We can see that the creditcheckservice makes calls to the creditprocessorservice, with an average response time of at least 3 seconds:",
     "tags": [],
     "title": "Troubleshoot a Problem Using Tag Spotlight",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e ThousandEyes Integration",
@@ -3997,7 +4053,7 @@ var relearn_searchindex = [
     "description": "This section covers common issues you may encounter when deploying and using the ThousandEyes Enterprise Agent in Kubernetes.\nTest Failing with DNS Resolution Error If your tests are failing with DNS resolution errors, verify DNS from within the ThousandEyes pod:\n# Verify DNS resolution from within the pod kubectl exec -n te-demo -it \u003cpod-name\u003e -- nslookup api-gateway.production.svc.cluster.local # Check CoreDNS logs kubectl logs -n kube-system -l k8s-app=kube-dns Common causes:",
     "tags": [],
     "title": "Troubleshooting",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/5-troubleshooting/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/5-troubleshooting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e GDI (OTel \u0026 UF)",
@@ -4005,7 +4061,7 @@ var relearn_searchindex = [
     "description": "Objective: Learn how to monitor Linux system logs with the Universal Forwarder sending logs to Splunk Enterprise\nDuration: 10 Minutes\nScenario You’ve been tasked with monitoring the OS logs of the host running your Kubernetes cluster. We are going to utilize a script that will autodeploy the Splunk Universal Forwarder. You will then configure the Universal Forwarder to send logs to the Splunk Enterprise instance assigned to you.\n1. Ensure You’re in the Correct Directory we will need to be in /home/splunk/session-2 cd /home/splunk/session-2 2. Review the Universal Forwarder Install Script Let’s take a look at the script that will install the Universal Forwarder and Linux TA automatically for you. This script is primarily used for remote instances. Note we are not using a deployment server in this lab, however it is recommended in production we do that. What user are we installing Splunk as? #!/bin/sh # This EXAMPLE script shows how to deploy the Splunk universal forwarder # to many remote hosts via ssh and common Unix commands. # For \"real\" use, this script needs ERROR DETECTION AND LOGGING!! # --Variables that you must set ----- # Set username using by splunkd to run. SPLUNK_RUN_USER=\"ubuntu\" # Populate this file with a list of hosts that this script should install to, # with one host per line. This must be specified in the form that should # be used for the ssh login, ie. username@host # # Example file contents: # splunkuser@10.20.13.4 # splunkker@10.20.13.5 HOSTS_FILE=\"myhost.txt\" # This should be a WGET command that was *carefully* copied from splunk.com!! # Sign into splunk.com and go to the download page, then look for the wget # link near the top of the page (once you have selected your platform) # copy and paste your wget command between the \"\" WGET_CMD=\"wget -O splunkforwarder-9.0.3-dd0128b1f8cd-Linux-x86_64.tgz 'https://download.splunk.com/products/universalforwarder/releases/9.0.3/linux/splunkforwarder-9.0.3-dd0128b1f8cd-Linux-x86_64.tgz'\" # Set the install file name to the name of the file that wget downloads # (the second argument to wget) INSTALL_FILE=\"splunkforwarder-9.0.3-dd0128b1f8cd-Linux-x86_64.tgz\" # After installation, the forwarder will become a deployment client of this # host. Specify the host and management (not web) port of the deployment server # that will be managing these forwarder instances. # Example 1.2.3.4:8089 # DEPLOY_SERVER=\"x.x.x.x:8089\" # After installation, the forwarder can have additional TA's added to the # /app directory please provide the local where TA's will be. TA_INSTALL_DIRECTORY=\"/home/splunk/session-2\" # Set the seed app folder name for deploymentclien.conf # DEPLOY_APP_FOLDER_NAME=\"seed_all_deploymentclient\" # Set the new Splunk admin password PASSWORD=\"buttercup\" REMOTE_SCRIPT_DEPLOY=\" cd /opt sudo $WGET_CMD sudo tar xvzf $INSTALL_FILE sudo rm $INSTALL_FILE #sudo useradd $SPLUNK_RUN_USER sudo find $TA_INSTALL_DIRECTORY -name '*.tgz' -exec tar xzvf {} --directory /opt/splunkforwarder/etc/apps \\; sudo chown -R $SPLUNK_RUN_USER:$SPLUNK_RUN_USER /opt/splunkforwarder echo \\\"[user_info] USERNAME = admin PASSWORD = $PASSWORD\\\" \u003e /opt/splunkforwarder/etc/system/local/user-seed.conf #sudo cp $TA_INSTALL_DIRECTORY/*.tgz /opt/splunkforwader/etc/apps/ #sudo find /opt/splunkforwarder/etc/apps/ -name '*.tgz' -exec tar xzvf {} \\; #sudo -u splunk /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --auto-ports --no-prompt /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --auto-ports --no-prompt #sudo /opt/splunkforwarder/bin/splunk enable boot-start -user $SPLUNK_RUN_USER /opt/splunkforwarder/bin/splunk enable boot-start -user $SPLUNK_RUN_USER #sudo cp $TA_INSTALL_DIRECTORY/*.tgz /opt/splunkforwarder/etc/apps/ exit \" DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" \u003e/dev/null \u0026\u0026 pwd )\" #=============================================================================================== echo \"In 5 seconds, will run the following script on each remote host:\" echo echo \"====================\" echo \"$REMOTE_SCRIPT_DEPLOY\" echo \"====================\" echo sleep 5 echo \"Reading host logins from $HOSTS_FILE\" echo echo \"Starting.\" for DST in `cat \"$DIR/$HOSTS_FILE\"`; do if [ -z \"$DST\" ]; then continue; fi echo \"---------------------------\" echo \"Installing to $DST\" echo \"Initial UF deployment\" sudo ssh -t \"$DST\" \"$REMOTE_SCRIPT_DEPLOY\" done echo \"---------------------------\" echo \"Done\" echo \"Please use the following app folder name to override deploymentclient.conf options: $DEPLOY_APP_FOLDER_NAME\" 3. Run the install script We will run the install script now. You will see some Warnings at the end. This is totally normal. The script is built for use on remote machines, however for todays lab you will be using localhost.",
     "tags": [],
     "title": "Monitor System Logs with Splunk Universal Forwarder",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/5-forwarder/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/5-forwarder/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize Cloud Monitoring \u003e 5. Improve Timeliness of Alerts",
@@ -4013,7 +4069,7 @@ var relearn_searchindex = [
     "description": "Splunk Observability Cloud provides detectors, events, alerts, and notifications to keep you informed when certain criteria are met. There are a number of pre-built AutoDetect Detectors that automatically surface when common problem patterns occur, such as when an EC2 instance’s CPU utilization is expected to reach its limit. Additionally, you can also create custom detectors if you want something more optimized or specific. For example, you want a message sent to a Slack channel or to an email address for the Ops team that manages this Kubernetes cluster when Memory Utilization on their pods has reached 85%.",
     "tags": [],
     "title": "Create Custom Detector",
-    "uri": "/observability-workshop/en/scenarios/optimize-monitoring/5-improve-alert-timeliness/1-create-custom-detector/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-monitoring/5-improve-alert-timeliness/1-create-custom-detector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 6. Service",
@@ -4021,7 +4077,7 @@ var relearn_searchindex = [
     "description": "OTLP HTTP Exporter In the Exporters section of the workshop, we configured the otlphttp exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline.\nUpdate the exporters section to include otlphttp/splunk under the metrics pipeline:\nservice: pipelines: traces: receivers: [otlp, opencensus, jaeger, zipkin] processors: [batch] exporters: [debug] metrics: receivers: [hostmetrics, otlp, opencensus, prometheus/internal] processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf] exporters: [debug, otlphttp/splunk] Ninja: Observing the collector internals The collector captures internal signals about its behavior this also includes additional signals from running components. The reason for this is that components that make decisions about the flow of data need a way to surface that information as metrics or traces.",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/5-otlphttp/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/5-otlphttp/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Server Visibility Monitoring",
@@ -4029,7 +4085,7 @@ var relearn_searchindex = [
     "description": "You will review how to correlate between server metrics and the applications running on the server",
     "tags": [],
     "title": "Correlate Between Server and APM",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/5-apm-to-server/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/2-server-visibility-monitoring/5-apm-to-server/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -4037,7 +4093,7 @@ var relearn_searchindex = [
     "description": "In this exercise,you will work with some of the dashboard components that can be used to build compelling dashboards.",
     "tags": [],
     "title": "Dashboard Components",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/5-dashboard-components/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/5-dashboard-components/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -4045,7 +4101,7 @@ var relearn_searchindex = [
     "description": "In this Lab you learn about AppDynamics Database Visibility Monitoring.",
     "tags": [],
     "title": "Database Monitoring",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -4053,7 +4109,7 @@ var relearn_searchindex = [
     "description": "After we have a good understanding of our performance baseline, we can start to create Detectors so that we receive alerts when our KPIs are unexpected. If we create detectors before understanding our baseline, we run the risk of generating unnecessary alert noise.\nFor RUM and Synthetics, we will explore how to create detectors:\non a single Synthetic test on a single KPI in RUM on a dashboard chart For more Detector resources, please see our Observability docs, Lantern, and consider an Education course if you’d like to go more in depth with instructor guidance.",
     "tags": [],
     "title": "Detectors",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Resources",
@@ -4061,7 +4117,7 @@ var relearn_searchindex = [
     "description": "Resources for setting up a locally hosted workshop environment.",
     "tags": [],
     "title": "Local Hosting",
-    "uri": "/observability-workshop/en/resources/local-hosting/index.html"
+    "uri": "/observability-workshop/resources/local-hosting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Browser Real User Monitoring (BRUM)",
@@ -4069,7 +4125,7 @@ var relearn_searchindex = [
     "description": "In this exercise you review dashboards and troubleshoot a Browser Snapshot.",
     "tags": [],
     "title": "Monitor and Troubleshoot - Part 2",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/4-brum-monitoring/5-monitor-and-troubleshoot-part-2/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/4-brum-monitoring/5-monitor-and-troubleshoot-part-2/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Database Monitoring",
@@ -4077,7 +4133,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will review the queries dashboard, review the details of an expensive query, and troubleshoot an expensive query.",
     "tags": [],
     "title": "Monitor and Troubleshoot - Part 2",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/5-database-monitoring/6-monitor-and-troubleshoot-option-2/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/5-database-monitoring/6-monitor-and-troubleshoot-option-2/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -4085,7 +4141,7 @@ var relearn_searchindex = [
     "description": "Overview The Splunk OpenTelemetry Collector uses Prometheus receivers to scrape metrics from all Isovalent components. Each component exposes metrics on different ports:\nComponent Port Metrics Cilium Agent 9962 CNI, networking, policy Cilium Envoy 9964 L7 proxy metrics Cilium Operator 9963 Cluster operations Hubble 9965 Network flows, DNS, HTTP Tetragon 2112 Runtime security events Step 1: Create Configuration File Create a file named splunk-otel-isovalent.yaml with your Splunk credentials:\nagent: config: receivers: prometheus/isovalent_cilium: config: scrape_configs: - job_name: 'cilium_metrics_9962' metrics_path: /metrics kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_k8s_app] action: keep regex: cilium - source_labels: [__meta_kubernetes_pod_ip] target_label: __address__ replacement: ${__meta_kubernetes_pod_ip}:9962 - job_name: 'hubble_metrics_9965' metrics_path: /metrics kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_k8s_app] action: keep regex: cilium - source_labels: [__meta_kubernetes_pod_ip] target_label: __address__ replacement: ${__meta_kubernetes_pod_ip}:9965 prometheus/isovalent_envoy: config: scrape_configs: - job_name: 'envoy_metrics_9964' metrics_path: /metrics kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_k8s_app] action: keep regex: cilium-envoy - source_labels: [__meta_kubernetes_pod_ip] target_label: __address__ replacement: ${__meta_kubernetes_pod_ip}:9964 prometheus/isovalent_operator: config: scrape_configs: - job_name: 'cilium_operator_metrics_9963' metrics_path: /metrics kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_io_cilium_app] action: keep regex: operator prometheus/isovalent_tetragon: config: scrape_configs: - job_name: 'tetragon_metrics_2112' metrics_path: /metrics kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name] action: keep regex: tetragon - source_labels: [__meta_kubernetes_pod_ip] target_label: __address__ replacement: ${__meta_kubernetes_pod_ip}:2112 processors: filter/includemetrics: metrics: include: match_type: strict metric_names: # Cilium metrics - cilium_endpoint_state - cilium_bpf_map_ops_total - cilium_policy_l7_total # Hubble metrics - hubble_flows_processed_total - hubble_drop_total - hubble_dns_queries_total - hubble_http_requests_total # Tetragon metrics - tetragon_dns_total - tetragon_http_response_total service: pipelines: metrics: receivers: - prometheus/isovalent_cilium - prometheus/isovalent_envoy - prometheus/isovalent_operator - prometheus/isovalent_tetragon - hostmetrics - kubeletstats processors: - filter/includemetrics - resourcedetection clusterName: isovalent-demo splunkObservability: accessToken: \u003cYOUR-SPLUNK-ACCESS-TOKEN\u003e realm: \u003cYOUR-SPLUNK-REALM\u003e cloudProvider: aws distribution: eks Important: Replace:",
     "tags": [],
     "title": "Splunk Integration",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/5-splunk-integration/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/5-splunk-integration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios",
@@ -4093,7 +4149,7 @@ var relearn_searchindex = [
     "description": "Deploy ThousandEyes Enterprise Agent in Kubernetes and integrate synthetic monitoring data with Splunk Observability Cloud for unified visibility across your infrastructure.",
     "tags": [],
     "title": "ThousandEyes Integration with Splunk Observability Cloud",
-    "uri": "/observability-workshop/en/scenarios/thousandeyes-integration/index.html"
+    "uri": "/observability-workshop/scenarios/thousandeyes-integration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -4101,7 +4157,7 @@ var relearn_searchindex = [
     "description": "To edit the steps click on the + Edit steps or synthetic transactions button. From here, we are going to give meaningful names to each step.\nFor each of the four steps, we are going to give them a meaningful name.\nStep 1 replace the text Go to URL with HomePage - Online Boutique Step 2 enter the text Select Vintage Camera Lens. Step 3 enter Add to Cart. Step 4 enter Place Order.",
     "tags": [],
     "title": "1.6 Edit test steps",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/6-edit-steps/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/6-edit-steps/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM \u003e 3. Dashboards",
@@ -4109,7 +4165,7 @@ var relearn_searchindex = [
     "description": "1. Adding Notes Often on dashboards it makes sense to place a short “instruction” pane that helps users of a dashboard. Lets add one now by clicking on the New Text Note Button.\nThis will open the notes editor.\nTo allow you to add more then just text to you notes, Splunk is allowing you to use Markdown in these notes/panes. Markdown is a lightweight markup language for creating formatted text using plain-text often used in Webpages.",
     "tags": [],
     "title": "Adding Notes and Dashboard Layout",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4117,7 +4173,7 @@ var relearn_searchindex = [
     "description": "The OpenTelemetry Collector’s FileStorage Extension enhances the resilience of your telemetry pipeline by providing reliable checkpointing, managing retries, and handling temporary failures effectively.\nWith this extension enabled, the OpenTelemetry Collector can store intermediate states on disk, preventing data loss during network disruptions and allowing it to resume operations seamlessly.\nNote This solution will work for metrics as long as the connection downtime is brief—up to 15 minutes. If the downtime exceeds this, Splunk Observability Cloud will drop data due to datapoints being out of order.",
     "tags": [],
     "title": "4. Building In Resilience",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour",
@@ -4125,7 +4181,7 @@ var relearn_searchindex = [
     "description": "Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observability service for hybrid cloud environments. Built on a patented streaming architecture, it provides a real-time solution for engineering teams to visualize and analyze performance across infrastructure, services, and applications in a fraction of the time and with greater accuracy than traditional solutions.\nOpenTelemetry standardization: Gives you full control over your data — freeing you from vendor lock-in and implementing proprietary agents.",
     "tags": [],
     "title": "Infrastructure Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/4-infrastructure-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/4-infrastructure-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4133,7 +4189,7 @@ var relearn_searchindex = [
     "description": "In this section, you’ll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from telemetry spans. This is crucial for protecting sensitive information such as credit card numbers, personal data, or other security-related details that must be anonymized before being processed or exported.\nWe’ll walk through configuring key processors in the OpenTelemetry Collector, including:\nAttributes Processor: Modifies or removes specific span attributes. Redaction Processor: Ensures sensitive data is sanitized before being stored or transmitted. Exercise Important Change ALL terminal windows to the 4-sensitive-data directory and run the clear command.",
     "tags": [],
     "title": "4. Redacting Sensitive Data",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/4-sensitive-data/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/4-sensitive-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4141,7 +4197,7 @@ var relearn_searchindex = [
     "description": "In this section, you’ll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from telemetry spans. This is crucial for protecting sensitive information such as credit card numbers, personal data, or other security-related details that must be anonymized before being processed or exported.\nWe’ll walk through configuring key processors in the OpenTelemetry Collector, including:\nAttributes Processor: Modifies or removes specific span attributes. Redaction Processor: Ensures sensitive data is sanitized before being stored or transmitted. Exercise Important Change ALL terminal windows to the 4-sensitive-data directory and run the clear command.",
     "tags": [],
     "title": "4. Redacting Sensitive Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/4-sensitive-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -4149,7 +4205,7 @@ var relearn_searchindex = [
     "description": "As we have seen in the previous section, once you enable automatic discovery and configuration on your services, traces are sent to Splunk Observability Cloud.\nWith these traces, Splunk will automatically generate Service Maps and RED Metrics. These are the first steps in understanding the behavior of your services and how they interact with each other.\nIn this next section, we are going to examine the traces themselves and the information they provide to help you understand the behavior of your services – all without touching your code!",
     "tags": [],
     "title": "APM Features",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Profiling Workshop",
@@ -4157,7 +4213,7 @@ var relearn_searchindex = [
     "description": "In this workshop, we accomplished the following:\nWe deployed our application and captured traces with Splunk Observability Cloud. We used Database Query Performance to find a slow-running query that impacted the game startup time. We enabled AlwaysOn Profiling and used it to confirm which line of code was causing the increased startup time and memory usage. We found another application performance issue and used AlwaysOn Profiling again to find the problematic line of code. We applied fixes for both of these issues and verified the result using Splunk Observability Cloud. Enabling AlwaysOn Profiling and utilizing Database Query Performance for your applications will let you get even more value from the data you’re sending to Splunk Observability Cloud.",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/profiling/6-summary/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/profiling/6-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4165,7 +4221,7 @@ var relearn_searchindex = [
     "description": "Now that we’ve successfully Dockerized our application, let’s add in OpenTelemetry instrumentation.\nThis is similar to the steps we took when instrumenting the application running on Linux, but there are some key differences to be aware of.\nUpdate the Dockerfile Let’s update the Dockerfile in the /home/splunk/workshop/docker-k8s-otel/helloworld directory.\nAfter the .NET application is built in the Dockerfile, we want to:\nAdd dependencies needed to download and execute splunk-otel-dotnet-install.sh Download the Splunk OTel .NET installer Install the distribution We can add the following to the build stage of the Dockerfile. Let’s open the Dockerfile in vi:",
     "tags": [],
     "title": "Add Instrumentation to Dockerfile",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 4. Splunk APM",
@@ -4173,7 +4229,7 @@ var relearn_searchindex = [
     "description": "We have arrived at the Trace Waterfall from the Trace Analyzer. A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.\nEach span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.",
     "tags": [],
     "title": "6. APM Waterfall",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/6-apm-waterfall/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/4-apm/6-apm-waterfall/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 6. Splunk APM",
@@ -4181,15 +4237,15 @@ var relearn_searchindex = [
     "description": "We have arrived at the Trace Waterfall from the Trace Analyzer. A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.\nEach span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.",
     "tags": [],
     "title": "6. APM Waterfall",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/6-apm-waterfall/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/6-apm-waterfall/index.html"
   },
   {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live \u003e 6. Splunk APM",
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037 \u003e 4. APM",
     "content": "We have arrived at the Trace Waterfall from the Trace Analyzer. A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.\nEach span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.\nExercise Click on the ! next to any of the paymentservice:grpc.hipstershop.PaymentService/Charge spans in the waterfall. ​ Question Answer What is the error message and version being reported in the Span Details?\nInvalid request and v350.10.\nNow that we have identified the version of the paymentservice that is causing the issue, let’s see if we can find out more information about the error. This is where Related Logs come in.\nRelated Content relies on specific metadata that allow APM, Infrastructure Monitoring, and Log Observer to pass filters around Observability Cloud. For related logs to work, you need to have the following metadata in your logs:\nservice.name deployment.environment host.name trace_id span_id Exercise At the very bottom of the Trace Waterfall click on Logs (1). This highlights that there are Related Logs for this trace. Click on the Logs for trace xxx entry in the pop-up, this will open the logs for the complete trace in Log Observer. Next, let’s find out more about the error in the logs.",
     "description": "We have arrived at the Trace Waterfall from the Trace Analyzer. A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.\nEach span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.",
     "tags": [],
     "title": "6. APM Waterfall",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/6-apm-waterfall/index.html"
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/4-apm/6-apm-waterfall/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -4197,7 +4253,7 @@ var relearn_searchindex = [
     "description": "Custom Attribution (Custom Tags) To take a deeper look at this issue and make this much easier to debug we will implement Custom Attributes via Opentelemetry Manual Instrumentation.\nTo speed up manual instrumentation in Java you can leverage OpenTelemetry Annotations, which automatically create a span around a method without modifying the actual code inside the method. This can be very valuable if you are working with an SRE that may have limited access to source code changes.",
     "tags": [],
     "title": "Custom Tags",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/6-custom-tags/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/6-custom-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -4205,7 +4261,15 @@ var relearn_searchindex = [
     "description": "Now let’s apply some load against the php-apache pod. To do this, you will need to start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending HTTP GETs to the php-apache service.\n1. Review loadgen YAML Inspect the YAML file ~/workshop/k3s/loadgen.yaml and validate the contents using the following command:\ncat ~/workshop/k3s/loadgen.yaml This file contains the configuration for the load generator and will create a new ReplicaSet with two replicas of the load generator image.",
     "tags": [],
     "title": "Deploy Load Generator",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/6-deploy-loadgen/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/6-deploy-loadgen/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Persona Putting your SRE hat back on, you have been asked to set up monitoring for the Online Boutique. You need to ensure that the application is available and performing well 24 hours a day, 7 days a week.\nWouldn’t it be great if we could have 24/7 monitoring of our application, and be alerted when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.",
+    "description": "In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.",
+    "tags": [],
+    "title": "Digital Experience (Synthetics)",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/6-synthetics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -4213,7 +4277,7 @@ var relearn_searchindex = [
     "description": "To edit the steps click on the + Edit steps or synthetic transactions button. From here, we are going to give meaningful names to each step.\nFor each step, we are going to give them a meaningful, readable name. That could look like:\nStep 1 replace the text Go to URL with Go to Homepage Step 2 enter the text Select Typewriter. Step 3 enter Add to Cart. Step 4 enter Place Order.",
     "tags": [],
     "title": "Edit test steps",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/6-edit-steps/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/6-edit-steps/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour",
@@ -4221,7 +4285,7 @@ var relearn_searchindex = [
     "description": "Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observability service for hybrid cloud environments. Built on a patented streaming architecture, it provides a real-time solution for engineering teams to visualize and analyze performance across infrastructure, services, and applications in a fraction of the time and with greater accuracy than traditional solutions.\nOpenTelemetry standardization: Gives you full control over your data — freeing you from vendor lock-in and implementing proprietary agents.\nSplunk’s OTel Collector: Seamless installation and dynamic configuration, auto-discovers your entire stack in seconds for visibility across clouds, services, and systems.\n300+ Easy-to-use OOTB content: Pre-built navigators and dashboards, deliver immediate visualizations of your entire environment so that you can interact with all your data in real time.\nKubernetes navigator: Provides an instant, comprehensive out-of-the-box hierarchical view of nodes, pods, and containers. Ramp up even the most novice Kubernetes user with easy-to-understand interactive cluster maps.\nAutoDetect alerts and detectors: Automatically identify the most important metrics, out-of-the-box, to create alert conditions for detectors that accurately alert from the moment telemetry data is ingested and use real-time alerting capabilities for important notifications in seconds.\nLog views in dashboards: Combine log messages and real-time metrics on one page with common filters and time controls for faster in-context troubleshooting.\nMetrics pipeline management: Control metrics volume at the point of ingest without re-instrumentation with a set of aggregation and data-dropping rules to store and analyze only the needed data. Reduce metrics volume and optimize observability spend.",
     "tags": [],
     "title": "Infrastructure Overview",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e NodeJS Zero-Config Workshop",
@@ -4229,7 +4293,7 @@ var relearn_searchindex = [
     "description": "1. Viewing the logs for the Payment Service Navigate back to APM from the main menu and under Services click on opentelemetry-demo-paymentservice. This will open up the Service map for the paymentservice service only.\nAt the bottom of the page, click on the Logs(1) tab to view the logs for the paymentservice service.\nOnce in Log Observer select one of the log entries to view the metadata for the log entry.",
     "tags": [],
     "title": "Logs - Payment Service",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/6-logs/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/3-nodejs-kubernetes/6-logs/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -4237,7 +4301,7 @@ var relearn_searchindex = [
     "description": "The Service section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections.\nInfo If a component is configured, but not defined within the Service section then it is not enabled.\nThe service section consists of three sub-sections:\nextensions pipelines telemetry In the default configuration, the extension section has been configured to enable health_check, pprof and zpages, which we configured in the Extensions module earlier.",
     "tags": [],
     "title": "OpenTelemetry Collector Service",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/6-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk IM",
@@ -4245,7 +4309,7 @@ var relearn_searchindex = [
     "description": "How to keep track of the usage of Observability Cloud in your organization Learn how to keep track of spend by exploring the Subscription Usage interface Creating Teams Adding notification rules to Teams Controlling usage 1. Understanding engagement To fully understand Observability Cloud engagement inside your organization, click on the » bottom left and select the Settings → Organization Overview, this will provide you with the following dashboards that show you how your Observability Cloud organization is being used:",
     "tags": [],
     "title": "Service Bureau",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/1-imt/servicebureau/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -4253,7 +4317,7 @@ var relearn_searchindex = [
     "description": "In this section, you will learn how to build a custom Service Health Dashboard to monitor the health of your services.",
     "tags": [],
     "title": "Custom Service Health Dashboard 🏥",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -4261,7 +4325,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll create users for each workshop participant, with a namespace and resource quota for each.\nCreate User Namespaces and Resource Quotas cd user-setup ./create-namespaces.sh Create Users Create an HTPasswd file with participant credentials, then replace the ROSA-managed HTPasswd IdP with a custom one:\n./create-users.sh Re-create the cluster-admin user then login again Re-create the cluster-admin user then login again:\nrosa create admin -c rosa-test oc login \u003cCluster API URL\u003e --username cluster-admin --password \u003ccluster admin password\u003e Add Role to Users Grant each user access to their namespace only:",
     "tags": [],
     "title": "Setup Users",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/6-setup-users/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/6-setup-users/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -4269,15 +4333,7 @@ var relearn_searchindex = [
     "description": "In this section, we will use APM to drill down and identify where the problem is.",
     "tags": [],
     "title": "Splunk APM",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Persona You are a back-end developer and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.\nDiscover the power of full end-to-end visibility by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.\nRUM and APM are two sides of the same coin. RUM is the client-side view of the application and APM is the server-side view. In this section, we will use APM to drill down and identify where the problem is.",
-    "description": "In this section, we will use APM to drill down and identify where the problem is.",
-    "tags": [],
-    "title": "Splunk APM",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/6-apm/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/6-apm/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Solving Problems with O11y Cloud",
@@ -4285,7 +4341,7 @@ var relearn_searchindex = [
     "description": "This workshop provided hands-on experience with the following concepts:\nHow to deploy the Splunk Distribution of the OpenTelemetry Collector using Helm. How instrument an application with OpenTelemetry. How to capture tags of interest from your application using an OpenTelemetry SDK. How to index tags in Splunk Observability Cloud using Troubleshooting MetricSets. How to utilize tags in Splunk Observability Cloud to find “unknown unknowns” using the Tag Spotlight and Dynamic Service Map features. Collecting tags aligned with the best practices shared in this workshop will let you get even more value from the data you’re sending to Splunk Observability Cloud. Now that you’ve completed this workshop, you have the knowledge you need to start collecting tags from your own applications!",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/6-summary/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/6-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -4293,7 +4349,7 @@ var relearn_searchindex = [
     "description": "In this section you will learn how to troubleshoot slow transactions utilizing snapshots",
     "tags": [],
     "title": "6. Troubleshooting Slow Transactions",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/6-apm-part1/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/6-apm-part1/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -4301,7 +4357,7 @@ var relearn_searchindex = [
     "description": "Navigate back to APM in Splunk Observabilty Cloud\nGo back to your Service Dependency map.\nWorkshop Question Notice the difference?\nYou should be able to see the consumer-lambda now clearly connected to the producer-lambda.\nRemember the value you copied from your producer logs? You can run sls logs -f consumer command again on your EC2 lab host to fetch one.",
     "tags": [],
     "title": "Updated Lambdas in Splunk APM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/6-updated-in-splunk/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/6-updated-in-splunk/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -4309,7 +4365,7 @@ var relearn_searchindex = [
     "description": "In order to see the result of our context propagation outside of the logs, we’ll once again consult the Splunk APM UI.\nView your Lambda Functions in the Splunk APM Service Map Let’s take a look at the Service Map for our environment in APM once again.\nIn Splunk Observability Cloud:\nClick on the APM Button in the Main Menu.\nSelect your APM Environment from the Environment: dropdown.\nClick the Service Map Button on the right side of the APM Overview page. This will take you to your Service Map view.",
     "tags": [],
     "title": "Splunk APM, Lambda Functions and Traces, Again!",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/6-updated-lambdas/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/6-updated-lambdas/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -4317,7 +4373,7 @@ var relearn_searchindex = [
     "description": "Using Tag Spotlight Now that we’ve indexed the credit.score.category tag, we can use it with Tag Spotlight to troubleshoot our application.\nNavigate to APM then click on Tag Spotlight on the right-hand side. Ensure the creditcheckservice service is selected from the Service drop-down (if not already selected).\nWith Tag Spotlight, we can see 100% of credit score requests that result in a score of impossible have an error, yet requests for all other credit score types have no errors at all!",
     "tags": [],
     "title": "Use Tags for Troubleshooting",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/6-use-tags/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/6-use-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -4325,7 +4381,7 @@ var relearn_searchindex = [
     "description": "Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis 1. Find an url for the Cart endpoint From the RUM Overview page, please select the url for the Cart endpoint to dive deeper into the information available for this endpoint.\nOnce you have selected and clicked on the blue url, you will find yourself in the Tag Spotlight overview",
     "tags": [],
     "title": "Analyzing RUM Tags in the Tag Spotlight view",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/6-tag-spotlight/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/6-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -4333,7 +4389,7 @@ var relearn_searchindex = [
     "description": "Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis 1. Find an url for the Cart endpoint From the RUM Overview page, please select the url for the Cart endpoint to dive deeper into the information available for this endpoint.\nOnce you have selected and clicked on the blue url, you will find yourself in the Tag Spotlight overview",
     "tags": [],
     "title": "6. Analyzing RUM Tags in the Tag Spotlight view",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/6-tag-spotlight/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/6-tag-spotlight/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 2. Workshop",
@@ -4341,7 +4397,7 @@ var relearn_searchindex = [
     "description": "Wrap-Up We hope you enjoyed this workshop, which provided hands-on experience deploying and working with several of the technologies that are used to monitor Cisco AI PODs with Splunk Observability Cloud. Specifically, you had the opportunity to:\nWork with a RedHat OpenShift cluster with GPU-based worker nodes. Work with the NVIDIA NIM Operator and NVIDIA GPU Operator. Work with Large Language Models (LLMs) deployed using NVIDIA NIM to the cluster. Deploy the OpenTelemetry Collector in the Red Hat OpenShift cluster. Add Prometheus receivers to the collector to ingest infrastructure metrics. Deploy the Weaviate vector database to the cluster. Instrument Python services that interact with Large Language Models (LLMs) with OpenTelemetry. Understand which details which OpenTelemetry captures in the trace from applications that interact with LLMs.",
     "tags": [],
     "title": "Wrap-Up",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/2-workshop/6-wrapup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/2-workshop/6-wrapup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Business iQ",
@@ -4349,7 +4405,7 @@ var relearn_searchindex = [
     "description": "In this exercise you will use the business data that was captured in the earlier exercise using method invocation data collectors and your understanding of the dashboard components to build an IT Business Impact Dashboard.",
     "tags": [],
     "title": "Build Your Dashboard",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/3-business-iq/6-build-your-dashboard/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/3-business-iq/6-build-your-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios",
@@ -4357,7 +4413,7 @@ var relearn_searchindex = [
     "description": "Deploy Isovalent Enterprise Platform (Cilium, Hubble, and Tetragon) on Amazon EKS and integrate with Splunk Observability Cloud for comprehensive eBPF-based monitoring and observability.",
     "tags": [],
     "title": "Isovalent Enterprise Platform Integration with Splunk Observability Cloud",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4365,7 +4421,7 @@ var relearn_searchindex = [
     "description": "This workshop will enable you to build a distributed trace for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis",
     "tags": [],
     "title": "Distributed Tracing for AWS Lambda Functions",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -4373,7 +4429,7 @@ var relearn_searchindex = [
     "description": "This workshop will equip you with how a distributed trace is constructed for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis",
     "tags": [],
     "title": "Build a Distributed Trace in Lambda and Kinesis",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics",
@@ -4381,7 +4437,7 @@ var relearn_searchindex = [
     "description": "Learn multiple approaches to deploy and manage AppDynamics Smart Agent at scale across your infrastructure.",
     "tags": [],
     "title": "SmartAgent Deployment",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/6-smartagent/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/6-smartagent/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -4389,7 +4445,7 @@ var relearn_searchindex = [
     "description": "In this workshop, we learned the following:\nHow to create simple synthetic tests so that we can quickly begin to understand the availability and performance of our application How to understand what RUM shows us about the end user experience, including specific user sessions How to write advanced synthetic browser tests to proactively test our most important user actions How to visualize our frontend performance data in context with events on dashboards How to set up detectors so we don’t have to wait to hear about issues from our end users How all of the above, plus Splunk and Google’s resources, helps us optimize end user experience There is a lot more we can do with front end performance monitoring. If you have extra time, be sure to play with the charts, detectors, and do some more synthetic testing. Remember our resources such as Lantern, Splunk Docs, and experiment with apps for Mobile RUM.",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/6-summary/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/6-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Isovalent Splunk Observability Integration",
@@ -4397,7 +4453,7 @@ var relearn_searchindex = [
     "description": "Verify All Components Run this comprehensive check to ensure everything is running:\necho \"=== Cluster Nodes ===\" kubectl get nodes echo -e \"\\n=== Cilium Components ===\" kubectl get pods -n kube-system -l k8s-app=cilium echo -e \"\\n=== Hubble Components ===\" kubectl get pods -n kube-system | grep hubble echo -e \"\\n=== Tetragon ===\" kubectl get pods -n tetragon echo -e \"\\n=== Splunk OTel Collector ===\" kubectl get pods -n otel-splunk Expected Output:",
     "tags": [],
     "title": "Verification",
-    "uri": "/observability-workshop/en/scenarios/isovalent-cilium-integration/6-verification/index.html"
+    "uri": "/observability-workshop/scenarios/isovalent-cilium-integration/6-verification/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Synthetic Scripting \u003e 1. Real Browser Test",
@@ -4405,7 +4461,7 @@ var relearn_searchindex = [
     "description": "In the Scatterplot from the previous step, click on one of the dots to drill into the test run data. Preferably, select the most recent test run (farthest to the right).",
     "tags": [],
     "title": "1.7 View test results",
-    "uri": "/observability-workshop/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/7-view-test-results/index.html"
+    "uri": "/observability-workshop/ninja-workshops/4-synthetics-scripting/1-real-browser-test/7-view-test-results/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4413,7 +4469,7 @@ var relearn_searchindex = [
     "description": "In this section, we will explore how to use the Filter Processor to selectively drop spans based on certain conditions.\nSpecifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces. In this case, we will be filtering out spans whose name is \"/_healthz\", typically associated with health check requests and usually are quite “noisy”.",
     "tags": [],
     "title": "5. Dropping Spans",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/5-dropping-spans/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4421,7 +4477,7 @@ var relearn_searchindex = [
     "description": "The Transform Processor lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the OpenTelemetry Transformation Language (OTTL), you can filter, enrich, and transform data on the fly without touching your application code.\nIn this exercise we’ll update gateway.yaml to include a Transform Processor that will:\nFilter log resource attributes. Parse JSON structured log data into attributes. Set log severity levels based on the log message body. You may have noticed that in previous logs, fields like SeverityText and SeverityNumber were undefined. This is typical of the filelog receiver. However, the severity is embedded within the log body e.g.:",
     "tags": [],
     "title": "5. Transform Data",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/5-transform-data/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/5-transform-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4429,7 +4485,7 @@ var relearn_searchindex = [
     "description": "The Transform Processor lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the OpenTelemetry Transformation Language (OTTL), you can filter, enrich, and transform data on the fly without touching your application code.\nIn this exercise we’ll update gateway.yaml to include a Transform Processor that will:\nFilter log resource attributes. Parse JSON structured log data into attributes. Set log severity levels based on the log message body. You may have noticed that in previous logs, fields like SeverityText and SeverityNumber were undefined. This is typical of the filelog receiver. However, the severity is embedded within the log body e.g.:",
     "tags": [],
     "title": "5. Transform Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/5-transform-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -4437,7 +4493,7 @@ var relearn_searchindex = [
     "description": "As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, allowing you to identify issues faster.\nIn addition to tracing, automatic discovery and configuration offers additional features out of the box that can help you find issues even faster! In this section we are going to look at two of them:\nAlways-on Profiling and Java Metrics Database Query Performance If you want to dive deeper into Always-on Profiling or DB-Query performance, we have a separate Ninja Workshop called Debug Problems in Microservices that you can follow.",
     "tags": [],
     "title": "Always-On Profiling \u0026 DB Query Performance",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e RUM",
@@ -4445,7 +4501,7 @@ var relearn_searchindex = [
     "description": "Dive into RUM Session information in the RUM UI Identify Javascript errors in the Span of an user interaction 1. Drill down in the Sessions After you have analyzed the information and drilled down via the Tag Spotlight to a subset of the traces, you can view the actual session as it was run by the end-user’s browser.\nYou do this by clicking on the link User Sessions as shown below:",
     "tags": [],
     "title": "Analyzing RUM Sessions",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/7-rum-sessions/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/2-rum/7-rum-sessions/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -4453,7 +4509,7 @@ var relearn_searchindex = [
     "description": "Dive into RUM Session information in the RUM UI Identify Javascript errors in the Span of an user interaction 1. Again select the cart URL After you have focussed the time slot with the time selector, you need to reselect the cart url from Url Name view, as shown below:\nIn the example above we selected http://34.246.124.162:81/cart\n2. Drill down in the Sessions After you have analyzed the information and drilled down via the Tag Spotlight to a subset of the traces, you can view the actual session as it was run by the end-user’s browser.",
     "tags": [],
     "title": "7. Analyzing RUM Sessions",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/7-rum-sessions/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/7-rum-sessions/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambda Tracing",
@@ -4461,7 +4517,7 @@ var relearn_searchindex = [
     "description": "Congratulations on finishing the Lambda Tracing Workshop! You have seen how we can complement auto-instrumentation with manual steps to have the producer-lambda function’s context be sent to the consumer-lambda function via a record in a Kinesis stream. This allowed us to build the expected Distributed Trace, and to contextualize the relationship between both functions in Splunk APM.",
     "tags": [],
     "title": "Conclusion",
-    "uri": "/observability-workshop/en/ninja-workshops/6-lambda-kinesis/7-summary/index.html"
+    "uri": "/observability-workshop/ninja-workshops/6-lambda-kinesis/7-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -4469,7 +4525,7 @@ var relearn_searchindex = [
     "description": "Finding the Problem How did we get here? How did the 999 end up in the trace as a Custom Attribute?\nTake a look at the function signature\nprivate void myCoolFunction234234234(@SpanAttribute(\"myInt\") int myInt) @SpanAttribute(\"myint\") is an OpenTelemetry Annotation that was added by our Java Otel Annotator tool.\nFixing the code Change this: private void myCoolFunction234234234(@SpanAttribute(\"myInt\") int myInt) { // Generate a FAST sleep of 0 time ! Random sleepy = new Random(); try{ if (999==myInt) Thread.sleep( sleepy.nextInt(5000 - 3000) + 3000); } catch (Exception e){ to this: private void myCoolFunction234234234(@SpanAttribute(\"myInt\") int myInt) { // Generate a FAST sleep of 0 time ! Random sleepy = new Random(); try{ // if (999==myInt) // Thread.sleep( // sleepy.nextInt(5000 - 3000) // + 3000); } catch (Exception e){ which is basically placing comments (//) before the lines in myCoolFunction234234234 that are causing the slowness:",
     "tags": [],
     "title": "Fixing Code",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/7-fixing-code/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/7-fixing-code/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -4477,7 +4533,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll install the OpenTelemetry collector with only the clusterReceiver enabled (as the workshop participants will install their own agent in their namespace). We’ll then take the ClusterRole created by this collector installation and bind it to each of the workshop participant namespaces.\nInstall the OpenTelemetry Collector First, we’ll create a new project for the collector and switch to that project:\noc new-project admin-otel Add the Splunk OpenTelemetry Collector for Kubernetes’ Helm chart repository:",
     "tags": [],
     "title": "Install the OpenTelemetry Collector",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/7-install-otel-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/7-install-otel-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4485,7 +4541,7 @@ var relearn_searchindex = [
     "description": "Recap of Part 1 of the Workshop At this point in the workshop, we’ve successfully:\nDeployed the Splunk distribution of the OpenTelemetry Collector on our Linux Host Configured it to send traces and metrics to Splunk Observability Cloud Deployed a .NET application and instrumented it with OpenTelemetry Dockerized the .NET application and ensured traces are flowing to o11y cloud If you haven’t completed the steps listed above, please execute the following commands before proceeding with the remainder of the workshop:",
     "tags": [],
     "title": "Install the OpenTelemetry Collector in K8s",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Horizontal Pod Autoscaling",
@@ -4493,7 +4549,7 @@ var relearn_searchindex = [
     "description": "In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), to automatically scale the workload to match demand.\nHorizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources (for example: memory or CPU) to the Pods that are already running for the workload.\nIf the load decreases, and the number of Pods is above the configured minimum, the HorizontalPodAutoscaler instructs the workload resource (the Deployment, StatefulSet, or other similar resource) to scale back down.",
     "tags": [],
     "title": "Setup Horizontal Pod Autoscaling (HPA)",
-    "uri": "/observability-workshop/en/ninja-workshops/2-hpa/7-setup-hpa/index.html"
+    "uri": "/observability-workshop/ninja-workshops/2-hpa/7-setup-hpa/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -4501,15 +4557,7 @@ var relearn_searchindex = [
     "description": "In this section, we will use Log Observer to drill down and identify what the problem is.",
     "tags": [],
     "title": "Splunk Log Observer",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Persona Remaining in your back-end developer role, you need to inspect the logs from your application to determine the root cause of the issue.\nUsing the content related to the APM trace (logs) we will now use Splunk Log Observer to drill down further to understand exactly what the problem is.\nRelated Content is a powerful feature that allows you to jump from one component to another and is available for metrics, traces and logs.",
-    "description": "In this section, we will use Log Observer to drill down and identify what the problem is.",
-    "tags": [],
-    "title": "Splunk Log Observer",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/7-log-observer/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/7-log-observer/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Lambda Tracing and Kinesis",
@@ -4517,7 +4565,7 @@ var relearn_searchindex = [
     "description": "Before you Go Please kindly clean up your lab using the following command:\n​ Remove Functions sls remove Conclusion Congratuations on finishing the lab. You have seen how we complement auto-instrumentation with manual steps to force Producer function’s context to be sent to Consumer function via a Record put on a Kinesis stream. This allowed us to build the expected Distributed Trace.",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/7-summary/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/6-lambda-kinesis/7-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk4Ninjas AppDynamics \u003e Application Performance Monitoring (APM)",
@@ -4525,7 +4573,7 @@ var relearn_searchindex = [
     "description": "In this section you will learn how to troubleshoot errors within your application",
     "tags": [],
     "title": "7. Troubleshooting Errors \u0026 Exceptions",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/7-apm-part2/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/1-application-performance-monitoring/7-apm-part2/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -4533,7 +4581,7 @@ var relearn_searchindex = [
     "description": "Earlier, we created a Troubleshooting Metric Set on the credit.score.category tag, which allowed us to use Tag Spotlight with that tag and identify a pattern to explain why some users received a poor experience.\nIn this section of the workshop, we’ll explore a related concept: Monitoring MetricSets.\nWhat are Monitoring MetricSets? Monitoring MetricSets go beyond troubleshooting and allow us to use tags for alerting, dashboards and SLOs.\nCreate a Monitoring MetricSet (note: your workshop instructor will do the following for you, but observe the steps)",
     "tags": [],
     "title": "Use Tags for Monitoring",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/7-alerting-dashboards-slos/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences \u003e Advanced Synthetics",
@@ -4541,7 +4589,7 @@ var relearn_searchindex = [
     "description": "1. Click into a spike or failure in your test run results.\n2. What can you learn about this test run? If it failed, use the error message, filmstrip, video replay, and waterfall to understand what happened.",
     "tags": [],
     "title": "View test results",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/7-view-test-results/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/3-advanced-synthetics/7-view-test-results/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -4549,7 +4597,7 @@ var relearn_searchindex = [
     "description": "Splunk Observability Cloud Now that we have configured the OpenTelemetry Collector to send metrics to Splunk Observability Cloud, let’s take a look at the data in Splunk Observability Cloud. If you have not received an invite to Splunk Observability Cloud, your instructor will provide you with login credentials.\nBefore that, let’s make things a little more interesting and run a stress test on the instance. This in turn will light up the dashboards.",
     "tags": [],
     "title": "Data Visualisations",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/7-visualisation/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/7-visualisation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud",
@@ -4557,7 +4605,15 @@ var relearn_searchindex = [
     "description": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.",
     "tags": [],
     "title": "Workshop Wrap-up 🎁",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/7-wrap-up/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/7-wrap-up/index.html"
+  },
+  {
+    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live - LABOBS-1037",
+    "content": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.\nCelebrate your achievement by adding this certificate to your LinkedIn profile.\nLet’s recap what we have learned and what you can do next.",
+    "description": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.",
+    "tags": [],
+    "title": "Workshop Wrap-up 🎁",
+    "uri": "/observability-workshop/splunk4rookies/wil---cisco-live/7-wrap-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4565,7 +4621,7 @@ var relearn_searchindex = [
     "description": "Learn to build insightful visualizations and custom dashboards using Splunk Observability Cloud's charting capabilities, filters, analytical functions, and SignalFlow",
     "tags": [],
     "title": "Dashboard Workshop",
-    "uri": "/observability-workshop/en/ninja-workshops/7-dashboards-detectors/index.html"
+    "uri": "/observability-workshop/ninja-workshops/7-dashboards-detectors/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -4573,7 +4629,7 @@ var relearn_searchindex = [
     "description": "This workshop offers a method for automatically adding annotations to your application.",
     "tags": [],
     "title": "Improving MTTR with Custom Tags",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4581,7 +4637,7 @@ var relearn_searchindex = [
     "description": "The Routing Connector in OpenTelemetry is a powerful feature that allows you to direct data (traces, metrics, or logs) to different pipelines/destinations based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.\nFor example, you might want to send production data to one exporter while directing test or development data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.",
     "tags": [],
     "title": "6. Routing Data",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/6-routing-data/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/6-routing-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4589,7 +4645,7 @@ var relearn_searchindex = [
     "description": "The Routing Connector in OpenTelemetry is a powerful feature that allows you to direct data (traces, metrics, or logs) to different pipelines/destinations based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.\nFor example, you might want to send production data to one exporter while directing test or development data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.",
     "tags": [],
     "title": "6. Routing Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/6-routing-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4597,7 +4653,7 @@ var relearn_searchindex = [
     "description": "In this section, you’ll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from telemetry spans. This is crucial for protecting sensitive information such as credit card numbers, personal data, or other security-related details that must be anonymized before being processed or exported.\nWe’ll walk through configuring key processors in the OpenTelemetry Collector, including:\nAttributes Processor: Modifies or removes specific span attributes. Redaction Processor: Ensures sensitive data is sanitized before being stored or transmitted. Exercise Inside the [WORKSHOP] directory, create a new subdirectory named 6-sensitive-data. Next, copy *.yaml from the 5-dropping-spans directory into 6-sensitive-data. Important Change ALL terminal windows to the [WORKSHOP]/6-sensitive-data directory.",
     "tags": [],
     "title": "6. Redacting Sensitive Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/6-sensitive-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -4605,7 +4661,7 @@ var relearn_searchindex = [
     "description": "Up until this point, there have been no code changes, yet tracing, profiling and Database Query Performance data is being sent to Splunk Observability Cloud.\nNext, we will work with Splunk Log Observer to obtain log data from the Spring PetClinic application.\nThe Splunk OpenTelemetry Collector automatically collects logs from the Spring PetClinic application and sends them to Splunk Observability Cloud using the OTLP exporter, annotating the log events with trace_id, span_id and trace flags.",
     "tags": [],
     "title": "Log Observer",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -4613,7 +4669,7 @@ var relearn_searchindex = [
     "description": "Continue with the RUM Session information in the RUM UI See correlated APM traces and logs in the APM \u0026 Log Observer UI 1. Finding backend service issues Click on the to close the Span view. Now continue to scroll down and find the POST /cart/checkout line.\nClick on the blue link, this should pop up a dialog showing information on the backend services that were part of the checkout action taken by the end user.",
     "tags": [],
     "title": "8. Correlate between Splunk RUM and APM backend services",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/8-apm-correlation/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/8-apm-correlation/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4621,7 +4677,7 @@ var relearn_searchindex = [
     "description": "Update the Dockerfile With Kubernetes, environment variables are typically managed in the .yaml manifest files rather than baking them into the Docker image. So let’s remove the following two environment variables from the Dockerfile:\nvi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile Then remove the following two environment variables:\nENV OTEL_SERVICE_NAME=helloworld ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE' To save your changes in vi, press the esc key to enter command mode, then type :wq! followed by pressing the enter/return key.",
     "tags": [],
     "title": "Deploy Application to K8s",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -4629,7 +4685,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll deploy a vector database to the OpenShift cluster and populate it with test data that will be used by workshop participants.\nDeploy a Vector Database For the workshop, we’ll deploy an open-source vector database named Weaviate.\nFirst, add the Weaviate helm repo that contains the Weaviate helm chart:\nhelm repo add weaviate https://weaviate.github.io/weaviate-helm helm repo update The weaviate/weaviate-values.yaml file includes the configuration we’ll use to deploy the Weviate vector database.",
     "tags": [],
     "title": "Deploy the Vector Database",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts",
@@ -4637,7 +4693,7 @@ var relearn_searchindex = [
     "description": "Developing a custom component Building a component for the Open Telemetry Collector requires three key parts:\nThe Configuration - What values are exposed to the user to configure The Factory - Make the component using the provided values The Business Logic - What the component needs to do For this, we will use the example of building a component that works with Jenkins so that we can track important DevOps metrics of our project(s).",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -4645,7 +4701,7 @@ var relearn_searchindex = [
     "description": "Rebuild and Deploy Run ./BuildAndDeploy.sh Wait a few minutes . . . Return to the service map If you do NOT see RED in your service map, you have completed the Latency Repair for the Colorado Location!\nNow let’s check for our exception in the traces.\nClick on shop service Click Traces (on the right side) Click Errors Only If you do not have red in your service map and you do not see Errors in traces, you have successfully completed our Inventory application review for Sri Lanka and Colorado locations.",
     "tags": [],
     "title": "Rebuild and Deploy",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -4653,15 +4709,7 @@ var relearn_searchindex = [
     "description": "In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.",
     "tags": [],
     "title": "Splunk Synthetics",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Persona Putting your SRE hat back on, you have been asked to set up monitoring for the Online Boutique. You need to ensure that the application is available and performing well 24 hours a day, 7 days a week.\nWouldn’t it be great if we could have 24/7 monitoring of our application, and be alerted when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.",
-    "description": "In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.",
-    "tags": [],
-    "title": "Splunk Synthetics",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/8-synthetics/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/8-synthetics/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Debug Problems in Microservices \u003e Tagging Workshop",
@@ -4669,7 +4717,7 @@ var relearn_searchindex = [
     "description": "In this workshop, we learned the following:\nWhat are tags and why are they such a critical part of making an application observable? How to use OpenTelemetry to capture tags of interest from your application. How to index tags in Splunk Observability Cloud and the differences between Troubleshooting MetricSets and Monitoring MetricSets. How to utilize tags in Splunk Observability Cloud to find “unknown unknowns” using the Tag Spotlight and Dynamic Service Map features. How to utilize tags for dashboards, alerting and service level objectives. Collecting tags aligned with the best practices shared in this workshop will let you get even more value from the data you’re sending to Splunk Observability Cloud. Now that you’ve completed this workshop, you have the knowledge you need to start collecting tags from your own applications!",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/scenarios/debug-problems/tagging/8-summary/index.html"
+    "uri": "/observability-workshop/scenarios/debug-problems/tagging/8-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -4677,7 +4725,7 @@ var relearn_searchindex = [
     "description": "Learn how to get data into Splunk Observability Cloud with OpenTelemetry and the Splunk Universal Forwarder.",
     "tags": [],
     "title": "Getting Data In (GDI) with OTel and UF",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/8-gdi/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/8-gdi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4685,7 +4733,7 @@ var relearn_searchindex = [
     "description": "This hands-on workshop guides you through instrumenting a .NET application with OpenTelemetry, containerizing it with Docker, and deploying it to Kubernetes. You'll learn to deploy and configure the OpenTelemetry collector using Helm and troubleshoot common configuration issues.",
     "tags": [],
     "title": "Hands-On OpenTelemetry, Docker, and K8s",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4693,7 +4741,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll explore how to use the Count Connector to extract attribute values from logs and convert them into meaningful metrics.\nSpecifically, we’ll use the Count Connector to track the number of “Star Wars” and “Lord of the Rings” quotes appearing in our logs, turning them into measurable data points.\nExercise Important Change ALL terminal windows to the 7-sum-count directory and run the clear command.",
     "tags": [],
     "title": "7. Create metrics with Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4701,7 +4749,7 @@ var relearn_searchindex = [
     "description": "The Transform Processor lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the OpenTelemetry Transformation Language (OTTL), you can filter, enrich, and transform data on the fly without touching your application code.\nIn this exercise we’ll update agent.yaml to include a Transform Processor that will:\nFilter log resource attributes. Parse JSON structured log data into attributes. Set log severity levels based on the log message body. You may have noticed that in previous logs, fields like SeverityText and SeverityNumber were undefined. This is typical of the filelog receiver. However, the severity is embedded within the log body:",
     "tags": [],
     "title": "7. Transform Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/7-transform-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk .conf25 Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4709,7 +4757,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Wrap-up",
-    "uri": "/observability-workshop/en/conf/1-advanced-collector/9-wrap-up/index.html"
+    "uri": "/observability-workshop/conf/1-advanced-collector/9-wrap-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -4717,7 +4765,7 @@ var relearn_searchindex = [
     "description": "To enable Real User Monitoring (RUM) instrumentation for an application, you need to add the Open Telemetry Javascript https://github.com/signalfx/splunk-otel-js-web snippet to the code base.\nThe Spring PetClinic application uses a single index HTML page, that is reused across all views of the application. This is the perfect location to insert the Splunk RUM instrumentation library as it will be loaded for all pages automatically.\nThe api-gateway service is already running the instrumentation and sending RUM traces to Splunk Observability Cloud and we will review the data in the next section.",
     "tags": [],
     "title": "Real User Monitoring",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 8. Develop",
@@ -4725,7 +4773,7 @@ var relearn_searchindex = [
     "description": "Project Setup Ninja Note The time to finish this section of the workshop can vary depending on experience.\nA complete solution can be found here in case you’re stuck or want to follow along with the instructor.\nTo get started developing the new Jenkins CI receiver, we first need to set up a Golang project. The steps to create your new Golang project is:",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/1-project-setup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/1-project-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Splunk RUM",
@@ -4733,7 +4781,7 @@ var relearn_searchindex = [
     "description": "Use RUM Metrics to set up Alerts to be warned in case of an issue Create a Custom Chart based on RUM Metrics 1. Overview The fact that Splunk’s RUM is designed as a full-fidelity solution, and thus can take 100% of your traces, allows it to detect and alert you to any change to the behavior of your website. It also gives you the ability to give you accurate insight into how your website is behaving by allowing you to create custom Charts and Dashboards. This allows you to combine data from your Website, Backend service and underlying Infrastructure. Allowing you to observe the complete stack that makes up your application/solution.",
     "tags": [],
     "title": "9. Custom alerts and charts based on RUM Metrics",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/9-alerting/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/9-alerting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4741,7 +4789,7 @@ var relearn_searchindex = [
     "description": "We deployed the Splunk Distribution of the OpenTelemetry Collector in our K8s cluster using the default configuration. In this section, we’ll walk through several examples showing how to customize the collector config.\nGet the Collector Configuration Before we customize the collector config, how do we determine what the current configuration looks like?\nIn a Kubernetes environment, the collector configuration is stored using a Config Map.\nWe can see which config maps exist in our cluster with the following command:",
     "tags": [],
     "title": "Customize the OpenTelemetry Collector Configuration",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -4749,7 +4797,7 @@ var relearn_searchindex = [
     "description": "Don’t forget Chicago We are nearly done, one more location to go… Chicago.\nSince we have been having so many issues related to “location” and we have added that custom attribute via Opentelemetry Manual Instrumentation, lets go to the Splunk Observability UI and look at an APM metric set around that tag that I created for us.\nOpen a browser and navigate to http://EC2-Address:8010 Replace EC2-Address with the ip address of your host Select a few locations and hit the Login button. Make sure to also select the Chicago Location and hit the Login button.",
     "tags": [],
     "title": "Don't Forget Chicago",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/9-chicago/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/9-chicago/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -4757,7 +4805,7 @@ var relearn_searchindex = [
     "description": "In this step, we’ll deploy a Python service that mimics the Portworx metrics endpoint. This will be used in the workshop to configure monitoring for Pure Storage.\nDeploy the Portworx Metrics Endpoint Run the following command to deploy the Portworx metrics endpoint service:\noc create project portworx oc apply -f ./portworx/k8s.yaml -n portworx Test the Portworx Metrics Endpoint Let’s ensure the Portworx metrics endpoint is working as expected.\nStart a pod that has access to the curl command:",
     "tags": [],
     "title": "Deploy the Portworx Metrics Endpoint",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/9-deploy-portworx-service/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/9-deploy-portworx-service/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -4765,7 +4813,7 @@ var relearn_searchindex = [
     "description": "In this section, you will learn how to build a custom Service Health Dashboard to monitor the health of your services.",
     "tags": [],
     "title": "Custom Service Health Dashboard 🏥",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/9-custom-dashboard/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/9-custom-dashboard/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Automatic Discovery Workshops \u003e PetClinic Kubernetes Workshop",
@@ -4773,7 +4821,7 @@ var relearn_searchindex = [
     "description": "Congratulations, you have completed the Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry. Today, you have become familiar with how easy it is to add tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes to immediately improve the observability of your applications and infrastructure.",
     "tags": [],
     "title": "Workshop Wrap-up 🎁",
-    "uri": "/observability-workshop/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/9-wrap-up/index.html"
+    "uri": "/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/9-wrap-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4781,7 +4829,7 @@ var relearn_searchindex = [
     "description": "Learn how to deploy and configure the OpenTelemetry Collector, instrument applications with OpenTelemetry, and leverage Troubleshooting MetricSets and Tag Spotlight to identify and resolve performance issues in Splunk Observability Cloud.",
     "tags": [],
     "title": "Solving Problems with O11y Cloud",
-    "uri": "/observability-workshop/en/ninja-workshops/9-solving-problems-with-o11y-cloud/index.html"
+    "uri": "/observability-workshop/ninja-workshops/9-solving-problems-with-o11y-cloud/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -4789,7 +4837,7 @@ var relearn_searchindex = [
     "description": "End-to-end visibility helps you pinpoint customer-impacting issues from web browsers and native mobile apps to your backend services.",
     "tags": [],
     "title": "Splunk RUM",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/9-rum/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/9-rum/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Monitoring Cisco AI Pods with Splunk Observability Cloud \u003e 1. Workshop Setup",
@@ -4797,7 +4845,7 @@ var relearn_searchindex = [
     "description": "Clean Up Steps Once the workshop is complete, follow the steps in this section to uninstall the OpenShift cluster.\nGet the cluster ID, the Amazon Resource Names (ARNs) for the cluster-specific Operator roles, and the endpoint URL for the OIDC provider by running the following command:\nrosa describe cluster --cluster=$CLUSTER_NAME Delete the cluster using the following command\nrosa delete cluster --cluster=$CLUSTER_NAME --watch Delete the cluster-specific Operator IAM roles:",
     "tags": [],
     "title": "Clean Up",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/10-cleanup/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/1-workshop-setup/10-cleanup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4805,7 +4853,7 @@ var relearn_searchindex = [
     "description": "In the previous section, we added the debug exporter to the collector configuration, and made it part of the pipeline for traces and logs. We see the debug output written to the agent collector logs as expected.\nHowever, traces are no longer sent to o11y cloud. Let’s figure out why and fix it.\nReview the Collector Config Whenever a change to the collector config is made via a values.yaml file, it’s helpful to review the actual configuration applied to the collector by looking at the config map:",
     "tags": [],
     "title": "Troubleshoot OpenTelemetry Collector Issues",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud",
@@ -4813,15 +4861,7 @@ var relearn_searchindex = [
     "description": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.",
     "tags": [],
     "title": "Workshop Wrap-up 🎁",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/10-wrap-up/index.html"
-  },
-  {
-    "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e WIL - Cisco Live",
-    "content": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.\nCelebrate your achievement by adding this certificate to your LinkedIn profile.\nLet’s recap what we have learned and what you can do next.",
-    "description": "Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.",
-    "tags": [],
-    "title": "Workshop Wrap-up 🎁",
-    "uri": "/observability-workshop/en/splunk4rookies/wil---cisco-live/10-wrap-up/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/10-wrap-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4829,7 +4869,7 @@ var relearn_searchindex = [
     "description": "The Routing Connector in OpenTelemetry is a powerful feature that allows you to direct data (traces, metrics, or logs) to different pipelines based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.\nFor example, you might want to send production data to one exporter while directing test or development data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.",
     "tags": [],
     "title": "8. Routing Data",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/8-routing-data/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced OpenTelemetry Collector",
@@ -4837,7 +4877,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "8. Wrap-up",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/8-wrap-up/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/8-wrap-up/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 8. Develop",
@@ -4845,7 +4885,7 @@ var relearn_searchindex = [
     "description": "Building The Configuration The configuration portion of the component is how the user is able to have their inputs over the component, so the values that is used for the configuration need to be:\nIntuitive for users to understand what that field controls Be explicit in what is required and what is optional Reuse common names and fields Keep the options simple ​ bad config good config --- jenkins_server_addr: hostname jenkins_server_api_port: 8089 interval: 10m filter_builds_by: - name: my-awesome-build status: amber track: values: example.metric.1: yes example.metric.2: yes example.metric.3: no example.metric.4: no --- # Required Values endpoint: http://my-jenkins-server:8089 auth: authenticator: basicauth/jenkins # Optional Values collection_interval: 10m metrics: example.metric.1: enabled: true example.metric.2: enabled: true example.metric.3: enabled: true example.metric.4: enabled: true The bad configuration highlights how doing the opposite of the recommendations of configuration practices impacts the usability of the component. It doesn’t make it clear what field values should be, it includes features that can be pushed to existing processors, and the field naming is not consistent with other components that exist in the collector.",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/2-configuration/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/2-configuration/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops",
@@ -4853,7 +4893,7 @@ var relearn_searchindex = [
     "description": "Make expensive service outages a thing of the past. Remediate issues faster, reduce on-call burnout and keep your services up and running.",
     "tags": [],
     "title": "Splunk OnCall",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/10-oncall/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/10-oncall/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Hands-On OpenTelemetry, Docker, and K8s",
@@ -4861,7 +4901,7 @@ var relearn_searchindex = [
     "description": "This workshop provided hands-on experience with the following concepts:\nHow to deploy the Splunk Distribution of the OpenTelemetry Collector on a Linux host. How to instrument a .NET application with the Splunk Distribution of OpenTelemetry .NET. How to “dockerize” a .NET application and instrument it with the Splunk Distribution of OpenTelemetry .NET. How to deploy the Splunk Distribution of the OpenTelemetry Collector in a Kubernetes cluster using Helm. How to customize the collector configuration and troubleshoot an issue. To see how other languages and environments are instrumented with OpenTelemetry, explore the Splunk OpenTelemetry Examples GitHub repository.",
     "tags": [],
     "title": "Summary",
-    "uri": "/observability-workshop/en/ninja-workshops/8-docker-k8s-otel/11-summary/index.html"
+    "uri": "/observability-workshop/ninja-workshops/8-docker-k8s-otel/11-summary/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 8. Develop",
@@ -4869,7 +4909,7 @@ var relearn_searchindex = [
     "description": "Component Review To recap the type of component we will need to capture metrics from Jenkins:\n​ Extension Receiver Processor Exporter Ninja: Connectors The business use case an extension helps solves for are:\nHaving shared functionality that requires runtime configuration Indirectly helps with observing the runtime of the collector See Extensions Overview for more details.",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/3-component/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/3-component/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4877,7 +4917,7 @@ var relearn_searchindex = [
     "description": "In this section, we’ll explore how to use the Count Connector to extract attribute values from logs and convert them into meaningful metrics.\nSpecifically, we’ll use the Count Connector to track the number of “Star Wars” and “Lord of the Rings” quotes appearing in our logs, turning them into measurable data points.\nExercise Inside the [WORKSHOP] directory, create a new subdirectory named 9-sum-count. Next, copy *.yaml from the 8-routing-data directory into 9-sum-count. Change all terminal windows to the [WORKSHOP]/9-sum-count directory. ​ Updated Directory Structure . ├── agent.yaml └── gateway.yaml Update the agent.yaml to change the frequency that we read logs. Find the filelog/quotes receiver in the agent.yaml and add a poll_interval attribute: filelog/quotes: # Receiver Type/Name poll_interval: 10s # Only read every ten seconds The reason for the delay is that the Count Connector in the OpenTelemetry Collector counts logs only within each processing interval. This means that every time the data is read, the count resets to zero for the next interval. With the default Filelog reciever interval of 200ms, it reads every line the loadgen writes, giving us counts of 1. With this interval we make sure we have multiple entries to count.",
     "tags": [],
     "title": "Create metrics with Count Connector",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4885,7 +4925,7 @@ var relearn_searchindex = [
     "description": "Learn how to optimize observability costs and improve MTTD by transforming logs into metrics using Splunk Ingest Processor with hands-on exercises in Splunk Observability Cloud.",
     "tags": [],
     "title": "Ingest Processor for Observability Cloud",
-    "uri": "/observability-workshop/en/ninja-workshops/11-ingest-processor-for-observability-cloud/index.html"
+    "uri": "/observability-workshop/ninja-workshops/11-ingest-processor-for-observability-cloud/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e Advanced Collector Configuration",
@@ -4893,7 +4933,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Wrap-up",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/99-end/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector-old/99-end/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 8. Develop",
@@ -4901,7 +4941,7 @@ var relearn_searchindex = [
     "description": "Designing The Metrics To help define and export the metrics captured by our receiver, we will be using, mdatagen, a tool developed for the collector that turns YAML defined metrics into code.\n​ metadata.yaml gen.go --- # Type defines the name to reference the component # in the configuration file type: jenkins # Status defines the component type and the stability level status: class: receiver stability: development: [metrics] # Attributes are the expected fields reported # with the exported values. attributes: job.name: description: The name of the associated Jenkins job type: string job.status: description: Shows if the job had passed, or failed type: string enum: - failed - success - unknown # Metrics defines all the pontentially exported values from this receiver. metrics: jenkins.jobs.count: enabled: true description: Provides a count of the total number of configured jobs unit: \"{Count}\" gauge: value_type: int jenkins.job.duration: enabled: true description: Show the duration of the job unit: \"s\" gauge: value_type: int attributes: - job.name - job.status jenkins.job.commit_delta: enabled: true description: The calculation difference of the time job was finished minus commit timestamp unit: \"s\" gauge: value_type: int attributes: - job.name - job.status // To generate the additional code needed to capture metrics, // the following command to be run from the shell: // go generate -x ./... //go:generate go run github.com/open-telemetry/opentelemetry-collector-contrib/cmd/mdatagen@v0.80.0 metadata.yaml package jenkinscireceiver // There is no code defined within this file. Create these files within the project folder before continuing onto the next section.",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/4-design/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/4-design/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4909,7 +4949,7 @@ var relearn_searchindex = [
     "description": "Scenario Description",
     "tags": [],
     "title": "Alerting and Monitoring with Splunk IT Service Intelligence",
-    "uri": "/observability-workshop/en/ninja-workshops/12-alerting-monitoring-with-itsi/index.html"
+    "uri": "/observability-workshop/ninja-workshops/12-alerting-monitoring-with-itsi/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e OpenTelemetry Collector Workshops \u003e OpenTelemetry Collector Concepts \u003e 8. Develop",
@@ -4917,7 +4957,7 @@ var relearn_searchindex = [
     "description": "Building The Business Logic At this point, we have a custom component that currently does nothing so we need to add in the required logic to capture this data from Jenkins.\nFrom this point, the steps that we need to take are:\nCreate a client that connect to Jenkins Capture all the configured jobs Report the status of the last build for the configured job Calculate the time difference between commit timestamp and job completion. The changes will be made to scraper.go.",
     "tags": [],
     "title": "OpenTelemetry Collector Development",
-    "uri": "/observability-workshop/en/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/5-business-logic/index.html"
+    "uri": "/observability-workshop/ninja-workshops/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/5-business-logic/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4925,7 +4965,7 @@ var relearn_searchindex = [
     "description": "TBD",
     "tags": [],
     "title": "Observing Business Journeys",
-    "uri": "/observability-workshop/en/ninja-workshops/13-observing-business-journeys/index.html"
+    "uri": "/observability-workshop/ninja-workshops/13-observing-business-journeys/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4933,7 +4973,7 @@ var relearn_searchindex = [
     "description": "This hands-on workshop demonstrates how to monitor Cisco AI Pods with Splunk Observability Cloud. Learn to deploy the OpenTelemetry Collector in Red Hat OpenShift, ingest infrastructure metrics using Prometheus receivers, and configure APM to monitor Python services that interact with Large Language Models (LLMs).",
     "tags": [],
     "title": "Monitoring Cisco AI Pods with Splunk Observability Cloud",
-    "uri": "/observability-workshop/en/ninja-workshops/14-cisco-ai-pods/index.html"
+    "uri": "/observability-workshop/ninja-workshops/14-cisco-ai-pods/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops",
@@ -4941,7 +4981,7 @@ var relearn_searchindex = [
     "description": "Learn how to use Splunk AppDynamics for full-stack application performance monitoring, from installing Java APM agents and monitoring application health to troubleshooting performance issues, tracking browser metrics with BRUM, analyzing database performance, and gaining business insights with Business IQ.",
     "tags": [],
     "title": "Splunk4Ninjas AppDynamics",
-    "uri": "/observability-workshop/en/ninja-workshops/15-appd-workshop/index.html"
+    "uri": "/observability-workshop/ninja-workshops/15-appd-workshop/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -4949,7 +4989,7 @@ var relearn_searchindex = [
     "description": "Workshops that use unsupported fields in Splunk Observability Cloud",
     "tags": [],
     "title": "Unsupported Field Workshops",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Unsupported Field Workshops \u003e Improving MTTR w/ Custom Tags",
@@ -4957,7 +4997,7 @@ var relearn_searchindex = [
     "description": "Mac Setup Tested on Macos Ventura 13.2.1 Mac M1/M2 Intel Macs should be work; however if they are slower you may need to run ./BuildAndDeploy multiple times.\nIMPORTANT: Docker must have access to 6-GB RAM.\nPrerequisites XCode Command line tools Homebrew Install Homebrew full install details mkdir homebrew \u0026\u0026 curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew eval \"$(homebrew/bin/brew shellenv)\" brew update --force --quiet chmod -R go-w \"$(brew --prefix)/share/zsh\" Install Colima Colima - Colima is a docker daemon that does not require Docker Desktop. This is used to avoid any docker license issues with Docker Desktop.",
     "tags": [],
     "title": "Appendix - Setting up on Mac",
-    "uri": "/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/appendix-a-setup-mac/index.html"
+    "uri": "/observability-workshop/unsupported-field-workshops/7-mttr-custom-tags/appendix-a-setup-mac/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Financial Services Observability Cloud \u003e 3. UI - Quick Tour \u003e 1. Getting Started",
@@ -4965,7 +5005,7 @@ var relearn_searchindex = [
     "description": "This FAQ will address some of the more common issues we have encountered when logging into the Workshop.\n1. Invite email or password renewal email not arriving The first step to take is to search for an email from noreply@signalfx.com, across all your email folders, as this is the address used to send the invite and password renewal emails. If you don’t see the email, check your spam/junk folder.\nIf you are sure the email does not exist your email, ask the Instructor to verify the email used for the workshop and have him/her resend the invite.",
     "tags": [],
     "title": "Log on FAQ",
-    "uri": "/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/99-login-faq/index.html"
+    "uri": "/observability-workshop/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/99-login-faq/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Rookies Workshops \u003e Observability Cloud \u003e 3. UI - Quick Tour \u003e 1. Getting Started",
@@ -4973,7 +5013,7 @@ var relearn_searchindex = [
     "description": "This FAQ will address some of the more common issues we have encountered when logging into the Workshop.\n1. Invite email or password renewal email not arriving The first step to take is to search for an email from noreply@signalfx.com, across all your email folders, as this is the address used to send the invite and password renewal emails. If you don’t see the email, check your spam/junk folder.\nIf you are sure the email does not exist your email, ask the Instructor to verify the email used for the workshop and have him/her resend the invite.",
     "tags": [],
     "title": "Log on FAQ",
-    "uri": "/observability-workshop/en/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/99-login-faq/index.html"
+    "uri": "/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/99-login-faq/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -4981,7 +5021,7 @@ var relearn_searchindex = [
     "description": "Learn how to build observability solutions with Splunk",
     "tags": [],
     "title": "Splunk .conf25 Workshops",
-    "uri": "/observability-workshop/en/conf/index.html"
+    "uri": "/observability-workshop/conf/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Scenarios \u003e Optimize End User Experiences",
@@ -4989,7 +5029,7 @@ var relearn_searchindex = [
     "description": "Please follow these steps for the Optimize End User Experiences workshop setup, “behind the scenes” instructions during the workshop, and cleanup.\nBefore the workshop See instructions on using SWiPE for provisioning. Come up with a simple team name that your attendees will use when naming dashboards, detectors, and synthetic tests. This is intended to help you during cleanup later. For example, a specific dog breed, flower name, etc. Remind attendees throughout the workshop to include the team name and their initials when they are creating asset names. Create a SynCreator account if you do not have one already Click “Enable RUM” on the top right of the SynCreator screen. Enter your realm and your RUM token and save the form. Access your Syncreator browser site URL which is linked on the left side of the SynCreator screen. Perform some interactions and close your browser session, and make sure the data starts coming into RUM in your o11y org. Check the site’s \u003chead\u003e code to make sure the RUM instrumentation is there. Start with the Default condition active in Syncreator. Download the dashboard group and import into the workshop org if it’s not already there. Participants will clone and edit this dashboard in section 4. Download Dashboard Group JSON optimize-end-user-experiences.json (32 KB) During the workshop Provide the team name and SynCreator browser site URL to your attendees. Once everyone has saved both their RUM LCP detector and their synthetic test detector, change the SynCreator condition to Hero Image. This will mimic a large image being used on the homepage, which will spike the LCP metric. There is an exercise built in at the end of the RUM detector instructions. After the workshop Please follow the cleanup instructions. Please also use SWiPE to delete the detectors and synthetic tests created in your workshop. Per the instructions, attendees should have included your “team name” and their initials in the asset names.",
     "tags": [],
     "title": "Workshop Setup and Cleanup",
-    "uri": "/observability-workshop/en/scenarios/optimize-end-user-experiences/setup/index.html"
+    "uri": "/observability-workshop/scenarios/optimize-end-user-experiences/setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -4997,7 +5037,7 @@ var relearn_searchindex = [
     "description": "Welcome to the Observability Workshop Setup Guide This guide will walk you through the steps required to set up your workshop environments in Splunk Observability Cloud. Whether you’re using a pre-configured organization or setting up a trial, this guide has you covered.\nSplunk4Rookies - Observability Cloud Workshop Presentation The official workshop presentation is available on the Cisco Sharepoint. Use this resource to guide your workshop participants through the material.\nProvided Organizations (For Splunk Employees Only) If you’re a Splunk employee, you can use the following pre-configured organizations to run Observability Workshops. These organizations have all the necessary features enabled to support any of the available workshops:",
     "tags": [],
     "title": "Workshop Setup",
-    "uri": "/observability-workshop/en/workshop-setup/index.html"
+    "uri": "/observability-workshop/workshop-setup/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -5005,7 +5045,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Categories",
-    "uri": "/observability-workshop/en/categories/index.html"
+    "uri": "/observability-workshop/categories/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops",
@@ -5013,6 +5053,6 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Tags",
-    "uri": "/observability-workshop/en/tags/index.html"
+    "uri": "/observability-workshop/tags/index.html"
   }
 ]
