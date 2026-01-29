@@ -1,7 +1,7 @@
 ---
 title: Let's go shopping 💶
-linkTitle: 1. Shopping at the Online Boutique
-weight: 1
+linkTitle: 2. Shopping at the Online Boutique
+weight: 2
 time: 5 minutes
 description: Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.
 ---
@@ -18,9 +18,12 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 {{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
 
-* Please visit the famous Online Boutique shop by going to **[https://labobs-1037.splunko11y.com/](https://labobs-1037.splunko11y.com/)**
+* Please visit the famous Online Boutique shop by going to **[https://labobs-1037.splunko11y.com/](https://labobs-1037.splunko11y.com/?target=_blank)**
 * Once you have access to the Online Boutique, have a browse through a few items, add them to your cart and then, finally, do a checkout.
 * Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore.
+
+---
+
 * Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? When this happens please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
 * Close the browser sessions you used to shop.
 * This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.

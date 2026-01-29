@@ -1,7 +1,7 @@
 ---
 title: Logs
-linkTitle: 4. Logs
-weight: 4
+linkTitle: 5. Logs
+weight: 5
 archetype: chapter
 time: 20 minutes
 description: In this section, we will use Log Observer to drill down and identify what the problem is.

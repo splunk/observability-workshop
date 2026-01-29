@@ -1,8 +1,8 @@
 ---
-title: Digital Experience (RUM)
-linkTitle:  2. Digital Experience (RUM)
+title: Login to Splunkk Observability Cloud 
+linkTitle:  1. Login 
 menuPost: " <i class='fa fa-warning'></i>"
-weight: 2
+weight: 1 
 archetype: chapter
 time: 15 minutes
 description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
@@ -30,3 +30,4 @@ This presents you with the login screen of Splunk Observability Cloud, and use t
 This will result in landing you on the home page of Splunk Observability Cloud.
 
 ![COE Workshop](images/home_screen_workshop.png?width=920px)
+

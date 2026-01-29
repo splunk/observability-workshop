@@ -10,14 +10,6 @@ description: Experience Splunk Observability Cloud's end-to-end visibility from 
 
 Gain hands-on experience troubleshooting issues using Splunk Observability Cloud. You'll work with a fully instrumented microservices application on Kubernetes that sends metrics, traces, and logs for real-time analysis.
 
-## Who Should Attend?
-
-Anyone looking to learn Splunk Observability, no prior experience required.
-
-## What You'll Need
-
-A laptop or workshop station with a browser.
-
 ## Workshop Overview
 
 In this 1-hour hands-on session, you'll cover:
@@ -56,3 +48,5 @@ Since OpenTelemetry is vendor-neutral and supported by many industry leaders in 
 Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops. -->
 
 ![Full Stack](images/a.jpg)
+
+**Let's go shopping!**
