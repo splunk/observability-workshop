@@ -7,7 +7,7 @@ description: Experience Splunk Observability Cloud's end-to-end visibility from 
 params:
   images:
     - images/featured-cisco-live.jpg
-hidden: false
+hidden: true
 ---
 
 ## Introduction
