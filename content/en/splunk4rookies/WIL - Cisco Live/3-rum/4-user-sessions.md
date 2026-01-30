@@ -16,4 +16,7 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 
 ![RUM Session](../images/rum-waterfall.png)
 
+* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
+* Under **Workflow Name** click on `front-end:/cart/checkout`, this will bring up the **APM Service Map**.
+
 {{% /notice %}}

@@ -5,11 +5,10 @@ weight: 5
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.
-
-* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
-* Under **Workflow Name** click on `front-end:/cart/checkout`, this will bring up the **APM Service Map**.
+* In the **APM Service Map** you can clearly see there is an issue with the `paymentservice`.
 
 ![RUM to APM](../images/rum-to-apm.png)
 
 {{% /notice %}}
+
+We have now successfully navigated from RUM into APM, providing us with an end-to-end view of the user experience. This integration allows us to trace performance issues from the front-end all the way through to the back-end services, enabling more effective troubleshooting and optimization of our applications.
