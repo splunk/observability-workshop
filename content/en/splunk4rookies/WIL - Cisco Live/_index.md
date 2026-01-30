@@ -4,7 +4,10 @@ weight: 3
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 60 minutes
 description: Experience Splunk Observability Cloud's end-to-end visibility from front-end to back-end services through hands-on troubleshooting exercises.
-hidden: true
+params:
+  images:
+    - images/featured-cisco-live.jpg
+hidden: false
 ---
 
 ## Introduction
