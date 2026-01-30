@@ -5,7 +5,7 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**, comparing them to historic metrics (1 hour by default).
+* You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Events**, **Network Requests**, **Pages** and a **Map View** comparing them to historic metrics (1 hour by default).
 
 ![RUM Dashboard](../images/rum-metric-map-charts.png)
 
