@@ -13,10 +13,16 @@ to monitor the NVIDIA components running in the OpenShift cluster.
 The NVIDIA DCGM exporter is running in our OpenShift cluster. It 
 exposes GPU metrics that we can send to Splunk. 
 
+Start by navigating to the following directory: 
+
+``` bash
+cd otel-collector
+```
+
 To do this, let's customize the configuration of the collector by editing the 
 `otel-collector-values.yaml` file that we used earlier when deploying the collector. 
 
-Add the following content, just below the `kubeletstats` section: 
+Add the following content, just below the `kubeletstats` receiver: 
 
 ``` yaml
       receiver_creator/nvidia:
@@ -64,7 +70,8 @@ Before applying the changes, let's add one more Prometheus receiver in the next 
 
 The `meta-llama-3-2-1b-instruct` LLM that we just deployed with NVIDIA NIM also 
 includes a Prometheus endpoint that we can scrape with the collector.  Let's add the 
-following to the `otel-collector-values.yaml` file, just below the receiver we added earlier: 
+following to the `otel-collector-values.yaml` file, just below the 
+`prometheus/dcgm` receiver we added earlier: 
 
 ``` yaml
           prometheus/nim-llm:
@@ -216,15 +223,16 @@ helm upgrade splunk-otel-collector \
   --set="splunkPlatform.endpoint=$HEC_URL" \
   --set="splunkPlatform.token=$HEC_TOKEN" \
   --set="splunkPlatform.index=$SPLUNK_INDEX" \
-  -f ./otel-collector/otel-collector-values.yaml \
+  -f ./otel-collector-values.yaml \
   -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
 
 ## Confirm Metrics are Sent to Splunk 
 
-Navigate to the [Cisco AI Pod](https://app.us1.signalfx.com/#/dashboard/GvmWJyPA4Ak?startTime=-15m&endTime=Now&variables%5B%5D=K8s%20cluster%3Dk8s.cluster.name:%5B%22rosa-test%22%5D&groupId=GvmVcarA4AA&configId=GuzVkWWA4BE) 
-dashboard in Splunk Observability Cloud.  Ensure it's filtered on your OpenShift cluster name, and that 
-the charts are populated as in the following example: 
+Navigate to `Dashboards` in Splunk Observability Cloud, then search for the
+`Cisco AI PODs Dashboard`, which is included in the `Built-in dashboard groups`. 
+Ensure the dashboard is filtered on your OpenShift cluster name. 
+The charts should be populated as in the following example: 
 
 ![Kubernetes Pods](../../images/Cisco-AI-Pod-dashboard.png)

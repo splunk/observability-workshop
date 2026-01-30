@@ -41,6 +41,11 @@ Grant each user access to their namespace only:
 ./add-role-to-users.sh
 ```
 
+Note: if you see errors such as the following, they can be safely ignored
+````
+Warning: User 'participant1' not found
+clusterrole.rbac.authorization.k8s.io/admin added: "participant1"
+````
 
 ## Test Login
 

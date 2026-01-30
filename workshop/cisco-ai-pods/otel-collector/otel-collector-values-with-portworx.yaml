@@ -1,0 +1,231 @@
+distribution: openshift
+readinessProbe:
+  initialDelaySeconds: 180
+livenessProbe:
+  initialDelaySeconds: 180
+operator:
+  enabled: false
+operatorcrds:
+  installed: false
+gateway:
+  enabled: false
+# use existing RBAC resources created by the cluster-admin
+rbac:
+  create: false
+# use existing ServiceAccount created by the cluster-admin
+serviceAccount:
+  create: false
+  name: splunk-otel-collector
+# use existing SCC created by the cluster-admin
+securityContextConstraints:
+  create: false
+splunkObservability:
+  profilingEnabled: true
+clusterReceiver:
+  enabled: false
+agent:
+  discovery:
+    enabled: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 500Mi
+  config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
+    processors:
+      filter/metrics_to_be_included:
+        metrics:
+          # Include only metrics used in charts and detectors
+          include:
+            match_type: strict
+            metric_names:
+              - DCGM_FI_DEV_FB_FREE
+              - DCGM_FI_DEV_FB_USED
+              - DCGM_FI_DEV_GPU_TEMP
+              - DCGM_FI_DEV_GPU_UTIL
+              - DCGM_FI_DEV_MEM_CLOCK
+              - DCGM_FI_DEV_MEM_COPY_UTIL
+              - DCGM_FI_DEV_MEMORY_TEMP
+              - DCGM_FI_DEV_POWER_USAGE
+              - DCGM_FI_DEV_SM_CLOCK
+              - DCGM_FI_DEV_TOTAL_ENERGY_CONSUMPTION
+              - DCGM_FI_PROF_DRAM_ACTIVE
+              - DCGM_FI_PROF_GR_ENGINE_ACTIVE
+              - DCGM_FI_PROF_PCIE_RX_BYTES
+              - DCGM_FI_PROF_PCIE_TX_BYTES
+              - DCGM_FI_PROF_PIPE_TENSOR_ACTIVE
+              - generation_tokens_total
+              - go_info
+              - go_memstats_alloc_bytes
+              - go_memstats_alloc_bytes_total
+              - go_memstats_buck_hash_sys_bytes
+              - go_memstats_frees_total
+              - go_memstats_gc_sys_bytes
+              - go_memstats_heap_alloc_bytes
+              - go_memstats_heap_idle_bytes
+              - go_memstats_heap_inuse_bytes
+              - go_memstats_heap_objects
+              - go_memstats_heap_released_bytes
+              - go_memstats_heap_sys_bytes
+              - go_memstats_last_gc_time_seconds
+              - go_memstats_lookups_total
+              - go_memstats_mallocs_total
+              - go_memstats_mcache_inuse_bytes
+              - go_memstats_mcache_sys_bytes
+              - go_memstats_mspan_inuse_bytes
+              - go_memstats_mspan_sys_bytes
+              - go_memstats_next_gc_bytes
+              - go_memstats_other_sys_bytes
+              - go_memstats_stack_inuse_bytes
+              - go_memstats_stack_sys_bytes
+              - go_memstats_sys_bytes
+              - go_sched_gomaxprocs_threads
+              - gpu_cache_usage_perc
+              - gpu_total_energy_consumption_joules
+              - http.server.active_requests
+              - num_request_max
+              - num_requests_running
+              - num_requests_waiting
+              - process_cpu_seconds_total
+              - process_max_fds
+              - process_open_fds
+              - process_resident_memory_bytes
+              - process_start_time_seconds
+              - process_virtual_memory_bytes
+              - process_virtual_memory_max_bytes
+              - promhttp_metric_handler_requests_in_flight
+              - promhttp_metric_handler_requests_total
+              - prompt_tokens_total
+              - python_gc_collections_total
+              - python_gc_objects_collected_total
+              - python_gc_objects_uncollectable_total
+              - python_info
+              - request_finish_total
+              - request_success_total
+              - system.cpu.time
+              - e2e_request_latency_seconds
+              - time_to_first_token_seconds
+              - time_per_output_token_seconds
+              - request_prompt_tokens
+              - request_generation_tokens
+              - object_count
+              - vector_index_size
+              - vector_index_operations
+              - vector_index_tombstones
+              - vector_index_tombstone_cleanup_threads
+              - vector_index_tombstone_cleanup_threads
+              - requests_total
+              - objects_durations_ms_sum
+              - objects_durations_ms_count
+              - batch_delete_durations_ms_sum
+              - batch_delete_durations_ms_count
+              - px_cluster_cpu_percent
+              - px_cluster_disk_total_bytes
+              - px_cluster_disk_utilized_bytes
+              - px_cluster_status_nodes_offline
+              - px_cluster_status_nodes_online
+              - px_volume_read_latency_seconds
+              - px_volume_reads_total
+              - px_volume_readthroughput
+              - px_volume_write_latency_seconds
+              - px_volume_writes_total
+              - px_volume_writethroughput
+      resource/weaviate:
+        attributes:
+          - key: weaviate.instance.id
+            from_attribute: service.instance.id
+            action: insert
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+      receiver_creator/nvidia:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
+          prometheus/dcgm:
+            config:
+              config:
+                scrape_configs:
+                  - job_name: gpu-metrics
+                    scrape_interval: 60s
+                    static_configs:
+                      - targets:
+                          - '`endpoint`:9400'
+            rule: type == "pod" && labels["app"] == "nvidia-dcgm-exporter"
+          prometheus/nim-llm:
+            config:
+              config:
+                scrape_configs:
+                  - job_name: nim-for-llm-metrics
+                    scrape_interval: 60s
+                    metrics_path: /v1/metrics
+                    static_configs:
+                      - targets:
+                          - '`endpoint`:8000'
+            rule: type == "pod" && labels["app"] == "meta-llama-3-2-1b-instruct"
+      receiver_creator/weaviate:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
+          prometheus/weaviate:
+            config:
+              config:
+                scrape_configs:
+                  - job_name: weaviate-metrics
+                    scrape_interval: 60s
+                    static_configs:
+                      - targets:
+                          - '`endpoint`:2112'
+            rule: type == "pod" && labels["app"] == "weaviate"
+      receiver_creator/storage:
+        # Name of the extensions to watch for endpoints to start and stop.
+        watch_observers: [ k8s_observer ]
+        receivers:
+          prometheus/portworx:
+            config:
+              config:
+                scrape_configs:
+                  - job_name: portworx-metrics
+                    static_configs:
+                      - targets:
+                          - '`endpoint`:17001'
+                          - '`endpoint`:17018'
+            rule: type == "pod" && labels["app"] == "portworx-metrics-sim"
+    service:
+      pipelines:
+        metrics/nvidia-metrics:
+          exporters:
+            - signalfx
+          processors:
+            - memory_limiter
+            - filter/metrics_to_be_included
+            - batch
+            - resourcedetection
+            - resource
+          receivers:
+            - receiver_creator/nvidia
+        metrics/weaviate:
+          exporters:
+            - signalfx
+          processors:
+            - memory_limiter
+            - filter/metrics_to_be_included
+            - resource/weaviate
+            - batch
+            - resourcedetection
+            - resource
+          receivers:
+            - receiver_creator/weaviate
+        metrics/storage:
+          exporters:
+            - signalfx
+          processors:
+            - memory_limiter
+            - filter/metrics_to_be_included
+            - batch
+            - resourcedetection
+            - resource
+          receivers:
+            - receiver_creator/storage

@@ -13,7 +13,7 @@ This will be used in the workshop to configure monitoring for Pure Storage.
 Run the following command to deploy the Portworx metrics endpoint service: 
 
 ``` bash
-oc create project portworx
+oc new-project portworx
 oc apply -f ./portworx/k8s.yaml -n portworx
 ```
 

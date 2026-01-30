@@ -56,9 +56,9 @@ the collector to send data to:
 
 ``` bash
 export USER_NAME=workshop-participant-<number>
-export CLUSTER_NAME=rosa-$USER_NAME
-export ENVIRONMENT_NAME=$CLUSTER_NAME
-export SPLUNK_INDEX=playground
+export CLUSTER_NAME=ai-pod-$USER_NAME
+export ENVIRONMENT_NAME=ai-pod-$USER_NAME
+export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
 Navigate to the workshop directory: 

@@ -1,6 +1,6 @@
 ---
-title: Deploy the Vector Database
-linkTitle: 4. Deploy the Vector Database
+title: Monitor the Vector Database
+linkTitle: 4. Monitor the Vector Database
 weight: 4
 time: 10 minutes
 ---
@@ -132,7 +132,7 @@ helm upgrade splunk-otel-collector \
   --set="splunkPlatform.endpoint=$HEC_URL" \
   --set="splunkPlatform.token=$HEC_TOKEN" \
   --set="splunkPlatform.index=$SPLUNK_INDEX" \
-  -f ./otel-collector/otel-collector-values.yaml \
+  -f ./otel-collector-values.yaml \
   -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector
 ```

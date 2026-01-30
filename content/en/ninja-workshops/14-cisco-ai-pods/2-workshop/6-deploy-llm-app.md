@@ -1,7 +1,7 @@
 ---
 title: Deploy the LLM Application
-linkTitle: 5. Deploy the LLM Application
-weight: 5
+linkTitle: 6. Deploy the LLM Application
+weight: 6
 time: 10 minutes
 ---
 

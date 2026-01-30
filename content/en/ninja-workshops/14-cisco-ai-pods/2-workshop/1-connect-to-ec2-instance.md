@@ -55,7 +55,7 @@ Use the cluster API, participant username, and password provided by the workshop
 organizer to log in to the OpenShift cluster: 
 
 ``` bash
-oc login https://api.<cluster-domain>:443 -u participant1 -p '<password>'
+oc login https://api.<cluster-domain>:443 -u <username> -p '<password>'
 ```
 
 Ensure you're connected to the OpenShift cluster: 

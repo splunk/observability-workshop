@@ -37,13 +37,13 @@ Set environment variables to configure the Splunk environment you'd like
 the collector to send data to:
 
 ``` bash
-export CLUSTER_NAME=rosa-test
-export ENVIRONMENT_NAME=<which environment to send data to for Splunk Observability Cloud>
+export CLUSTER_NAME=ai-pod-workshop-admin
+export ENVIRONMENT_NAME=ai-pod-workshop-admin
 export SPLUNK_ACCESS_TOKEN=<your access token for Splunk Observability Cloud> 
 export SPLUNK_REALM=<your realm for Splunk Observability Cloud i.e. us0, us1, eu0, etc.>
 export SPLUNK_HEC_URL=<HEC endpoint to send logs to Splunk platform i.e. https://<hostname>:443/services/collector/event> 
 export SPLUNK_HEC_TOKEN=<HEC token to send logs to Splunk platform> 
-export SPLUNK_INDEX=<name of index to send logs to in Splunk platform>
+export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
 Then install the collector using the following command:
@@ -74,7 +74,7 @@ splunk-otel-collector-k8s-cluster-receiver-7b7f5cdc5b-rhxsj   1/1     Running   
 ## Create Service Account for each Workshop Participant and Bind to Cluster Role
 
 ``` bash
-for i in {1..20}; do
+for i in {1..30}; do
   ns="workshop-participant-$i"
 
   oc get ns "$ns" >/dev/null 2>&1 || continue
@@ -100,7 +100,7 @@ done
 We also need to grant the SecurityContextConstraint (SCC) to each namespace ServiceAccount: 
 
 ``` bash
-for i in {1..20}; do
+for i in {1..30}; do
   ns="workshop-participant-$i"
   oc get ns "$ns" >/dev/null 2>&1 || continue
   oc -n "$ns" adm policy add-scc-to-user splunk-otel-collector -z splunk-otel-collector
