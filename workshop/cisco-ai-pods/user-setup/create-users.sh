@@ -5,7 +5,7 @@ sudo apt install apache2-utils
 # 2. Create an HTPasswd file with participant credentials
 htpasswd -c -B -b users.htpasswd participant1 TempPass123!
 
-for i in {2..20}; do
+for i in {2..30}; do
   htpasswd -B -b users.htpasswd participant$i TempPass123!
 done
 

@@ -4,7 +4,7 @@ metadata:
   name: participant-quota
 spec:
   hard:
-    requests.nvidia.com/gpu: "1"  # Limit GPU access
-    limits.memory: "16Gi"
-    limits.cpu: "4"
+    requests.nvidia.com/gpu: "0.25"  # Limit GPU access
+    limits.memory: "500Mi"
+    limits.cpu: "0.5"
     persistentvolumeclaims: "5"
