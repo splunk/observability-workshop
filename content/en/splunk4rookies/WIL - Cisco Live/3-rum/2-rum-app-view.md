@@ -17,11 +17,11 @@ The tabs available on this page include:
 | **Front-end Health** | Breakdown of Javascript Errors and Long Task duration and count |
 | **Back-end Health** | Network Errors and Requests and Time to First Byte |
 | **Custom Events** | RED metrics (Rate, Error & Duration) for custom events |
-| **Network Requests** | Sortable lists of all Network Requests |
-| **Pages** | Sortable lists of all Pages visited |
-| **Map View** | Shows where requests were made from in the world |
+| **Network Requests** | Network URL grouping and key metrics |
+| **Pages** | URL grouping and key metrics and web vitals |
+| **Map View** | Geographical requests by location |
 
-* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Events**, **Network Requests:**, **Pages:** and **Map View**) and examine the data.
+* Click through each of the tabs and examine the data.
 
 {{< tabs >}}
 {{% tab title="Questions" %}}

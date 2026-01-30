@@ -1,7 +1,6 @@
 ---
 title: Digital Experience (RUM)
 linkTitle:  3. Digital Experience (RUM)
-menuPost: " <i class='fa fa-warning'></i>"
 weight: 3
 archetype: chapter
 time: 15 minutes
@@ -12,7 +11,7 @@ description: This section helps you understand how to use Splunk RUM to monitor 
 
 You are a **frontend engineer**, or an **SRE** tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.
 
-We are going to examine the **RUM** data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+> [!splunk] We are going to examine the **RUM** data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
 
 {{% /notice %}}
 

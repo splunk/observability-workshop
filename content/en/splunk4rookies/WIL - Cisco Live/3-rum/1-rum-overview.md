@@ -9,7 +9,7 @@ weight: 1
 
 ![RUM](../images/rum-de.png)
 
-* This will open up the **Real User Monitoring Overview** with the **Application Summary Dashboard**. This section shows quick overview of **all** the applications being monitored.
+* This will open up the **Application Summary Dashboard**. This section shows a quick overview of **all** the applications being monitored.
 
 * To ensure we are looking at the right data, please check the following settings (**2**):
   * The **Time frame** is set to **-15m**.
