@@ -185,7 +185,7 @@ The NVIDIA H200 has 141GB of HBM3e memory, which is twice the capacity of the NV
 ## View Trace Data in Splunk Observability Cloud
 
 In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`. 
-Ensure your environment name is selected (e.g. `rosa-workshop-participant-1`).  
+Ensure your environment name is selected (e.g. `ai-pod-workshop-participant-1`).  
 You should see a service map that looks like the following: 
 
 ![Service Map](../../images/ServiceMap.png)
@@ -212,3 +212,14 @@ Finally, we can see the response from the LLM, the time it took, and the number 
 input and output tokens utilized: 
 
 ![LLM Response](../../images/LLMResponse.png)
+
+## Confirm Metrics are Sent to Splunk
+
+Navigate to `Dashboards` in Splunk Observability Cloud, then search for the
+`Cisco AI PODs Dashboard`, which is included in the `Built-in dashboard groups`.
+Navigate to the `NIM FOR LLMS` tab and ensure the dashboard is filtered
+on your OpenShift cluster name. The charts should be populated as in the
+following example:
+
+![NIM LLMS Dashboard](../../images/NIMLLM.png)
+
