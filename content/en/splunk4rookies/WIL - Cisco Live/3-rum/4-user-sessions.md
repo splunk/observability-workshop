@@ -3,6 +3,10 @@ title: 4. User Sessions
 weight: 4
 ---
 
+A **User Session** in RUM represents a single user's complete interaction with your web application from the moment they arrive until they leave or become inactive. Each session captures a timeline of all page views, user interactions (clicks, scrolls, form submissions), network requests, errors, and performance metrics.
+
+Sessions are identified by a unique Session ID and include metadata such as browser type, device, geographic location, and custom tags. This allows you to replay and analyze the exact experience a specific user had, making it invaluable for troubleshooting issues, understanding user behavior, and identifying performance bottlenecks.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 20 seconds or longer). This will take you to the RUM Session view.
@@ -11,12 +15,5 @@ weight: 4
 * Keep scrolling down the page until you come to a blue **APM** link (the one with `/cart/checkout` at the end of the URL) and hover over it.
 
 ![RUM Session](../images/rum-waterfall.png)
-
-* This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.
-
-* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
-* Under **Workflow Name** click on `front-end:/cart/checkout`, this will bring up the **APM Service Map**.
-
-![RUM to APM](../images/rum-to-apm.png)
 
 {{% /notice %}}
