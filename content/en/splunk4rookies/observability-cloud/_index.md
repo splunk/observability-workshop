@@ -6,6 +6,9 @@ time: 2 minutes
 aliases:
   - /en/s4r/
 description: In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.
+params:
+  images:
+    - /images/featured.png
 ---
 
 In this workshop, we'll demonstrate how Splunk Observability Cloud delivers instant visibility into the user experience—covering everything from front-end applications to back-end services. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions:

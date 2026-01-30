@@ -13,4 +13,4 @@ weight: 1
 
 <!--![gif](images/observability-hero-dashboard.gif)-->
 
-{{% children type="card" description="true" %}}
+{{% children type="card" description="true" image="true" %}}

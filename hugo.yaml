@@ -29,6 +29,9 @@ markup:
       unsafe: true
   highlight:
     noClasses: false
+  parser:
+    attribute:
+      block: true
 outputs:
   home:
     - HTML
