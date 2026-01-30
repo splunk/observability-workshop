@@ -14,6 +14,8 @@ spec:
       labels:
         app.kubernetes.io/name: llm-app
         app.kubernetes.io/instance: llm-app
+      annotations:
+        splunk.com/include: "true"
     spec:
       containers:
         - name: llm-app

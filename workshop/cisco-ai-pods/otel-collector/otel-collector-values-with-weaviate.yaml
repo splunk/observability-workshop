@@ -23,7 +23,25 @@ splunkObservability:
   profilingEnabled: true
 clusterReceiver:
   enabled: false
+logsCollection:
+  containers:
+    useSplunkIncludeAnnotation: true
 agent:
+  # Ensure hostNetwork is false
+  hostNetwork: false
+  # To explicitly remove hostPort from the OTLP receiver:
+  ports:
+    otlp:
+      hostPort: null  # Setting this to null removes the hostPort binding
+    otlp-http:
+      hostPort: null
+    zipkin:
+      hostPort: null
+    jaeger-thrift:
+      hostPort: null
+    jaeger-grpc:
+      hostPort: null
+
   discovery:
     enabled: true
   resources:
@@ -127,6 +145,9 @@ agent:
             from_attribute: service.instance.id
             action: insert
     receivers:
+      filelog:
+        # disable storage to avoid conflicts when running multiple collectors
+        storage: null
       kubeletstats:
         insecure_skip_verify: true
       receiver_creator/nvidia:
