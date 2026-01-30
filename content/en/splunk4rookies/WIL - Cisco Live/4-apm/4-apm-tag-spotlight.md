@@ -21,6 +21,6 @@ weight: 4
 {{% /tab %}}
 {{< /tabs >}}
 
-* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **←APM** at the top of the page to get back to the Service Map.
+* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. To return to the Service Map, you can hit the back button in your Browser..
 
 {{% /notice %}}

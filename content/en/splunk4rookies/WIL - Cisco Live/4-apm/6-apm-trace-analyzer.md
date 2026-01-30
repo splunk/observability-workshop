@@ -17,3 +17,5 @@ Trace Analyzer enables you to:
 This makes Trace Analyzer ideal for investigating unknown issues, researching specific transactions, and performing root cause analysis when you need to find a needle in a haystack.
 
 ![APM Trace Analyzer](../images/apm-trace-analyzer.png)
+ 
+ Pleas find a trace with an error in the **checkoutservice** and the **paymentservice**  (**1**), then select the blue Trace ID (**2**) to continue 

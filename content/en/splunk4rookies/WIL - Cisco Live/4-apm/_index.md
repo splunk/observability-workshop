@@ -1,7 +1,6 @@
 ---
 title: Application Performance Monitoring (APM)
 linkTitle: 4. APM
-menuPost: " <i class='fa fa-warning'></i>"
 weight: 4
 archetype: chapter
 time: 20 minutes
