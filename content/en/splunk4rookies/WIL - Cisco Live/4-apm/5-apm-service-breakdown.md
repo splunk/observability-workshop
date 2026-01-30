@@ -1,6 +1,7 @@
 ---
-title: 4. APM Service Breakdown
-weight: 4
+title: 5. APM Service Breakdown
+menuPost: " <i class='fa fa-warning'></i>"
+weight: 5
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -20,14 +21,12 @@ weight: 4
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
-
-You will now see the **paymentservice** broken down into three services, **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
-
 ![APM Service Breakdown](../images/apm-service-breakdown.png)
 
 {{% notice title="Span Tags" style="info" %}}
 Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for all our customers.
 {{% /notice %}}
 
-Next, we need to drill down into a trace to see what is going on.
+* Next, we need to drill down into a trace to see what is going on. Click on the **Traces** tab in the right-hand pane.
+
+{{% /notice %}}
