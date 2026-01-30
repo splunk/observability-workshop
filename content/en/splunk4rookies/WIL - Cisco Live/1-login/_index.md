@@ -7,9 +7,9 @@ time: 5 minutes
 description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
 ---
 
-We are going to examine the real user data that has been provided by the telemetry received from all workshop attendees browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+We are going to examine the real user data that has been provided by the telemetry received from all workshop attendees' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
 
-If you have not already logged into **Splunk Observability Cloud**, open the following url in a new browser window: **[https://app.eu0.signalfx.com/](https://app.eu0.signalfx.com/?target=_blank)**.
+If you have not already logged into **Splunk Observability Cloud**, open the following URL in a new browser window: **[https://app.eu0.signalfx.com/](https://app.eu0.signalfx.com/?target=_blank)**.
 
 Use the following login credentials, then click the **SIGN IN** button:
 
@@ -18,4 +18,4 @@ Use the following login credentials, then click the **SIGN IN** button:
 
 ![login](images/login-password.png)
 
-This will result in landing you on the home page of Splunk Observability Cloud.
+You will land on the home page of Splunk Observability Cloud.

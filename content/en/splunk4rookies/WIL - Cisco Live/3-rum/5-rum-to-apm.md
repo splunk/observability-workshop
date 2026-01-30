@@ -11,5 +11,6 @@ weight: 5
 
 {{% /notice %}}
 
-We have now successfully navigated from RUM into APM, providing us with an end-to-end view of the user experience. This integration allows us to trace performance issues from the front-end all the way through to the back-end services, enabling more effective troubleshooting and optimization of our applications  
+We have now successfully navigated from RUM into APM, providing us with an end-to-end view of the user experience. This integration allows us to trace performance issues from the front-end all the way through to the back-end services, enabling more effective troubleshooting and optimization of our applications.
+
 Let's ask our friends in the paymentservice team to continue the investigation.

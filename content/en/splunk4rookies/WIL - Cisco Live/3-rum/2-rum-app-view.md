@@ -14,7 +14,7 @@ The tabs available on this page include:
 | Tab | Description |
 | --- | ----------- |
 | **UX Metrics** | Page Views, Page Load and Web Vitals metrics |
-| **Front-end Health** | Breakdown of Javascript Errors and Long Task duration and count |
+| **Front-end Health** | Breakdown of JavaScript Errors and Long Task duration and count |
 | **Back-end Health** | Network Errors and Requests and Time to First Byte |
 | **Custom Events** | RED metrics (Rate, Error & Duration) for custom events |
 | **Network Requests** | Network URL grouping and key metrics |

@@ -24,7 +24,7 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 * Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? <!-- When this happens please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later. -->
 * Close the browser sessions you used to shop.
-* This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
+* This is what a poor user experience can feel like, and since this is a potential customer satisfaction issue, we had better jump on this and troubleshoot.
 
 ![Online Boutique](images/shop.png)
 

@@ -7,7 +7,7 @@ weight: 8
 
 Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.
 
-Related Content relies on specific metadata that allow APM, Infrastructure Monitoring, and Log Observer to pass filters around Observability Cloud. For related logs to work, you need to have the following metadata in your logs:
+Related Content relies on specific metadata that allows APM, Infrastructure Monitoring, and Log Observer to pass filters around Observability Cloud. For related logs to work, you need to have the following metadata in your logs:
 
 * `service.name`
 * `deployment.environment`

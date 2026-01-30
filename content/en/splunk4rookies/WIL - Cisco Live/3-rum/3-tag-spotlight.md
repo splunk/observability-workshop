@@ -19,7 +19,7 @@ weight: 3
 * Click on the **User Sessions** tab.
 * Click on the **Duration** heading twice to sort the sessions by duration (longest at the top).
 
-* We now have a User Session table that is sorted by longest duration descending that have been shopping on the site. We could apply more filters to further narrow down the data e.g. OS version, browser version, etc.
+* We now have a User Session table sorted by longest duration (descending), showing users who have been shopping on the site. We could apply more filters to further narrow down the data, e.g. OS version, browser version, etc.
 
 ![RUM Tag Spotlight](../images/rum-user-sessions.png)
 

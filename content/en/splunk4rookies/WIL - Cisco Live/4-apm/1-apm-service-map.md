@@ -17,6 +17,6 @@ You can see the services involved in the workflow in the **Service Map**. In the
 
 Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
 
-* In the right hand pane, click on **paymentservice** in blue.
+* In the right-hand pane, click on **paymentservice** in blue.
 
 {{% /notice %}}
