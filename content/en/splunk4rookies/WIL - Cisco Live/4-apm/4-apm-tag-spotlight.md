@@ -1,6 +1,5 @@
 ---
 title: 4. APM Tag Spotlight
-menuPost: " <i class='fa fa-warning'></i>"
 weight: 4
 ---
 
