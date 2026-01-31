@@ -154,7 +154,25 @@ Let's ensure the application is working as expected.
 Start a pod that has access to the curl command:
 
 ``` bash
-oc run --rm -it curl --image=curlimages/curl:latest -- sh
+oc run curl --rm -it --image=curlimages/curl:latest \
+  --overrides='{
+    "spec": {
+      "containers": [{
+        "name": "curl",
+        "image": "curlimages/curl:latest",
+        "resources": {
+          "limits": {
+            "cpu": "50m",
+            "memory": "50Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "50Mi"
+          }
+        }
+      }]
+    }
+  }' -- sh
 ```
 
 Then run the following command to send a question to the LLM:

@@ -16,7 +16,7 @@ First, we'll need to set a few environment variables:
 ``` bash
 export CLUSTER_NAME=rosa-test
 export AWS_REGION=us-east-2
-export AWS_INSTANCE_TYPE=g5.2xlarge
+export AWS_INSTANCE_TYPE=g5.4xlarge
 export SUBNET_IDS=<comma separated list of subnet IDs from earlier rosa create network command>
 export OIDC_ID=<the oidc-provider id returned from the rosa create oidc-config command> 
 export OPERATOR_ROLES_PREFIX=rosa-test-a6x9
@@ -48,9 +48,9 @@ rosa create cluster \
     --tags "splunkit_environment_type:non-prd,splunkit_data_classification:private"
 ```
 
-> Note that we've specified the `g5.2xlarge` instance type, which includes NVIDIA 
+> Note that we've specified the `g5.4xlarge` instance type, which includes NVIDIA 
 > GPUs that we'll be using later in the workshop.  This instance type is relatively expensive, 
-> about $1.21 per hour at the time of writing, and we've requested 2 replicas, 
+> about $1.64 per hour at the time of writing, and we've requested 2 replicas, 
 > so be mindful of how long your cluster is running for, as costs will accumulate quickly.
 
 To determine when your cluster is Ready, run:

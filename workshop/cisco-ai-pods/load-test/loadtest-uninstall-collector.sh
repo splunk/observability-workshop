@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-set -x   # prints each command as it runs
+#set -x   # prints each command as it runs
 
 usage() {
   cat <<'EOF'

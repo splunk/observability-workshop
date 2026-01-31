@@ -50,7 +50,10 @@ spec:
               value: "weaviate-headless.weaviate.svc.cluster.local"
             - name: WEAVIATE_GRPC_PORT
               value: "50051"
-          resources: {}
+          resources:
+            limits:
+              cpu: "50m"   # 50 millicores (0.05 CPU core)
+              memory: "50Mi"
 ---
 apiVersion: v1
 kind: Service
