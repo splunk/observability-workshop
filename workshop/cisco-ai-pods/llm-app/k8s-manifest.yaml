@@ -53,7 +53,7 @@ spec:
           resources:
             limits:
               cpu: "50m"   # 50 millicores (0.05 CPU core)
-              memory: "50Mi"
+              memory: "100Mi"
 ---
 apiVersion: v1
 kind: Service

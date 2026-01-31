@@ -86,10 +86,10 @@ spec:
     resources:
       limits:
         cpu: "50m"
-        memory: "50Mi"
+        memory: "100Mi"
       requests:
         cpu: "50m"
-        memory: "50Mi"
+        memory: "100Mi"
   restartPolicy: Never
 EOF
 

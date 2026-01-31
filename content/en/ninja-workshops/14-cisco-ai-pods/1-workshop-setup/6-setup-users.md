@@ -93,11 +93,11 @@ oc run curl --rm -it --image=curlimages/curl:latest \
         "resources": {
           "limits": {
             "cpu": "50m",
-            "memory": "50Mi"
+            "memory": "100Mi"
           },
           "requests": {
             "cpu": "50m",
-            "memory": "50Mi"
+            "memory": "100Mi"
           }
         }
       }]
