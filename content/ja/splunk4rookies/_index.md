@@ -1,8 +1,11 @@
 ---
-title: Splunk4Rookies ワークショップ
+title: Splunk4Rookies Workshops
 menuPost: " <i class='fa fa-graduation-cap'></i>"
-weight: 1 
-description: 以下は初心者向けワークショップです。
+weight: 1
+description: 以下のワークショップは初心者向けです。
+params:
+  images:
+    - images/s4r-featured.png
 ---
 
-{{% children depth="1" description="true" %}}
+{{% children depth="1" type="card" description="true" image="true" %}}

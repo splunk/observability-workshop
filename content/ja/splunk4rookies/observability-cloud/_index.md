@@ -4,28 +4,30 @@ weight: 1
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 2 minutes
 aliases:
-  - /ja/s4r/
-description: このワークショップでは、Splunk Observability Cloudがフロントエンドアプリケーションからバックエンドサービスまで、ユーザー体験の視点からどのように即座に可視性を提供するかをお見せします - Splunk Observability Cloudの最も魅力的な機能と差別化要因を体験していただきます。
+  - /en/s4r/
+description: このワークショップでは、Splunk Observability Cloud がフロントエンドアプリケーションからバックエンドサービスまで、ユーザーエクスペリエンスを即座に可視化する方法をご紹介します。Splunk Observability Cloud の最も魅力的な製品機能と差別化要素を体験していただきます。
+params:
+  images:
+    - /images/featured.png
 ---
 
-このワークショップでは、Splunk Observability Cloud がフロントエンドアプリケーションからバックエンドサービスまで、ユーザー体験に関する即時の可視性をどのように提供するかをデモンストレーションします。他の可観測性ソリューションと一線を画す、プラットフォームの最も強力な機能をいくつか体験していただきます：
+このワークショップでは、Splunk Observability Cloud がフロントエンドアプリケーションからバックエンドサービスまで、ユーザーエクスペリエンスを即座に可視化する方法をご紹介します。他のオブザーバビリティソリューションとの差別化要素となる、プラットフォームの最も強力な機能をいくつか体験していただきます。
 
-- **インフラ監視（Infrastructure Monitoring, IM）**
-- **完全で忠実な Real User Monitoring（RUM）**
-- **Application Performance Monitoring（APM）による End to End の NoSample で完全忠実なトレースの可視性**
-- **コード入力を必要としないログクエリ**
-- **外形監視・合成監視（Synthetic Monitoring）**
+- **Infrastructure Monitoring**
+- **フルフィデリティ Real User Monitoring (RUM)**
+- **NoSample フルフィデリティ Application Performance Monitoring (APM) による完全なエンドツーエンドのトレース可視性**
+- **ノーコードログクエリ**
+- **Synthetic Monitoring**
 - **タグ分析とエラースタックによる根本原因分析**
-- **Related Contents によるコンポーネント間のシームレスなナビゲーション**
+- **Related Content** によるコンポーネント間のシームレスなナビゲーション
 
-Splunk Observability Cloud のコアとなる強みの一つは、テレメトリデータを統合し、エンドユーザーエクスペリエンスとアプリケーションスタック全体の包括的な全体像を作成する能力です。
+Splunk Observability Cloud の主要な強みの1つは、テレメトリデータを統合し、エンドユーザーエクスペリエンスとアプリケーションスタック全体の包括的な全体像を作成できることです。
 
-このワークショップでは、AWS EC2 インスタンス上にデプロイされたマイクロサービスベースの e コマースアプリケーションに焦点を当てます。ユーザーは商品を閲覧し、カートに商品を追加し、注文を完了できます。このアプリケーションは、詳細なパフォーマンスデータを取得するために OpenTelemetry で計装されています。
+このワークショップでは、AWS EC2 インスタンスにデプロイされたマイクロサービスベースの e コマースアプリケーションに焦点を当てます。ユーザーは商品を閲覧し、カートにアイテムを追加し、購入を完了できます。このアプリケーションは、詳細なパフォーマンスデータをキャプチャするために OpenTelemetry で完全に計装されています。
 
 **OpenTelemetry とは？**
+OpenTelemetry は、メトリクス、トレース、ログなどのテレメトリデータの計装、生成、収集、エクスポートを支援するために設計されたオープンソースのツール、API、ソフトウェア開発キット（SDK）のコレクションです。このデータにより、ソフトウェアのパフォーマンスと動作の詳細な分析が可能になります。
 
-[OpenTelemetry](https://opentelemetry.io/) は、メトリクス、トレース、ログなどのテレメトリデータの計装、生成、収集、エクスポートを支援するために設計されたオープンソースのツール、API、ソフトウェア開発キット（SDK）のコレクションです。このデータにより、ソフトウェアのパフォーマンスと動作の詳細な分析が可能になります。
+OpenTelemetry コミュニティは急速に成長しており、Splunk、Google、Microsoft、Amazon などの主要企業によってサポートされています。現在、Cloud Native Computing Foundation 内で Kubernetes に次いで2番目に多くのコントリビューターを持っています。
 
-OpenTelemetry コミュニティは急速に成長しており、Splunk、Google、Microsoft、Amazon などの大手企業からのサポートを受けています。現在、Cloud Native Computing Foundation において、Kubernetes に次いで 2 番目に多くのコントリビューターを抱えています。
-
-![Full Stack](images/splunk-full-stack.png)
+![Full Stack](images/featured.png)
