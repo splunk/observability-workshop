@@ -1,6 +1,6 @@
 ---
-title: 4. APM Tag Spotlight
-weight: 4
+title: 3. APM Tag Spotlight
+weight: 3
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -21,6 +21,7 @@ weight: 4
 {{% /tab %}}
 {{< /tabs >}}
 
-* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. To return to the Service Map, you can hit the back button in your Browser.
-
+* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error.
+* Click the **APM** link above **paymentservice** to return to the **APM Overview**.
+* In **APM Overview**, click on **Service Map** in the right hand pane.
 {{% /notice %}}

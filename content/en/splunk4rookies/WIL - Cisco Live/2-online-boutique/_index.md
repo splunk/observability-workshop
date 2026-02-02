@@ -19,6 +19,7 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 * Please visit the famous Online Boutique shop by going to **[https://labobs-1037.splunko11y.com/](https://labobs-1037.splunko11y.com/?target=_blank)**
 * Once you have access to the Online Boutique, have a browse through a few items, add them to your cart and then, finally, do a checkout.
 * Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore.
+* We recommend you do at least 3-5 complete shopping sessions in order to catch the performance issues we have deliberately introduced into the application.
 
 ---
 

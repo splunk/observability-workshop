@@ -1,6 +1,6 @@
 ---
-title: 8. APM to Logs
-weight: 8
+title: 7. APM to Logs
+weight: 7
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}

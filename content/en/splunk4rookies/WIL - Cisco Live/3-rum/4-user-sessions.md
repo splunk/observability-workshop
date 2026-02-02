@@ -9,7 +9,7 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 20 seconds or longer). This will take you to the RUM Session view.
+* In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 15 seconds or longer). This will take you to the RUM Session view.
 * Note the length of the span—this is the time it took to complete the order. Not good!
 * Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript, etc.).
 * Keep scrolling down the page until you come to a blue **APM** link (the one with `/cart/checkout` at the end of the URL) and hover over it.

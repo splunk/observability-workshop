@@ -1,6 +1,6 @@
 ---
-title: 7. APM Waterfall
-weight: 7
+title: 6. APM Waterfall
+weight: 6
 ---
 
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
