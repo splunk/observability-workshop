@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: llm-app
-          image: "derekmitchell399/llm-app:1.0"
+          image: "ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0"
           imagePullPolicy: Always
           ports:
             - name: http

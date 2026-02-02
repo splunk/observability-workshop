@@ -3,5 +3,7 @@ langchain_community==0.3.22
 langchain-nvidia-ai-endpoints==0.3.7
 langchain-weaviate==0.0.5
 weaviate-client==4.17.0
-splunk-opentelemetry==2.7.0
+splunk-opentelemetry==2.9.0
 openlit==1.35.4
+splunk-otel-util-genai==0.1.9
+splunk-otel-util-genai-translator-openlit==0.1.1

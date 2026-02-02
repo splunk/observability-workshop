@@ -94,7 +94,7 @@ This required adding the following package to the `requirements.txt` file (which
 installed with `pip install`): 
 
 ````
-splunk-opentelemetry==2.7.0
+splunk-opentelemetry==2.9.0
 ````
 
 We also added the following to the `Dockerfile` used to build the 
@@ -114,10 +114,15 @@ ENTRYPOINT ["opentelemetry-instrument", "flask", "run", "-p", "8080", "--host", 
 ```
 
 Finally, to enhance the traces and metrics collected with OpenTelemetry, we added a 
-package named [OpenLIT](https://openlit.io/) to the `requirements.txt` file: 
+package named [OpenLIT](https://openlit.io/) to the `requirements.txt` file.  We also added the 
+`splunk-otel-util-genai` and `splunk-otel-util-genai-translator-openlit` packages 
+to translate the attributes from OpenLIT into the format required by Splunk 
+Observability Cloud: 
 
 ````
 openlit==1.35.4
+splunk-otel-util-genai==0.1.9
+splunk-otel-util-genai-translator-openlit==0.1.1
 ````
 
 OpenLIT supports LangChain, and adds additional context to traces at instrumentation time, 
@@ -143,8 +148,8 @@ oc apply -f ./llm-app/k8s-manifest.yaml
 > Note: to build a Docker image for this Python application, we executed the following commands:
 > ``` bash
 > cd workshop/cisco-ai-pods/llm-app
-> docker build --platform linux/amd64 -t derekmitchell399/llm-app:1.0 .
-> docker push derekmitchell399/llm-app:1.0
+> docker build --platform linux/amd64 -t ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0 .
+> docker push ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0
 > ```
 
 ## Test the LLM Application
