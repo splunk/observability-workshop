@@ -94,7 +94,7 @@ splunk-otel-collector-agent-8dndr                             1/1     Running   
 ````
 
 Confirm that you can see the cluster in Splunk Observability Cloud by navigating to 
-Infrastructure Monitoring -> Kubernetes -> Kubernetes Pods and then filtering on your 
+Infrastructure Monitoring -> Kubernetes -> Kubernetes Clusters and then filtering on your 
 cluster name: 
 
 ![Kubernetes Pods](../../images/KubernetesPods.png)
