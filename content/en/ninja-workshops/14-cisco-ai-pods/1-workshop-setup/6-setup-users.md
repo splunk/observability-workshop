@@ -90,6 +90,9 @@ oc run curl --rm -it --image=curlimages/curl:latest \
       "containers": [{
         "name": "curl",
         "image": "curlimages/curl:latest",
+        "stdin": true,
+        "tty": true,
+        "command": ["sh"],
         "resources": {
           "limits": {
             "cpu": "50m",
@@ -102,7 +105,7 @@ oc run curl --rm -it --image=curlimages/curl:latest \
         }
       }]
     }
-  }' -- sh
+  }'
 ```
 
 Then run the following command to send a prompt to the LLM:

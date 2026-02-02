@@ -1,9 +1,11 @@
 Flask==3.0.3
-langchain_community==0.3.22
-langchain-nvidia-ai-endpoints==0.3.7
+langchain==0.3.21
+langchain-core==0.3.80
+langchain-nvidia-ai-endpoints==0.3.19
+langchain-openai==0.3.35
+langchain-community==0.3.20
 langchain-weaviate==0.0.5
 weaviate-client==4.17.0
-splunk-opentelemetry==2.9.0
-openlit==1.35.4
-splunk-otel-util-genai==0.1.9
-splunk-otel-util-genai-translator-openlit==0.1.1
+splunk-opentelemetry==2.8.0
+splunk-otel-instrumentation-langchain==0.1.4
+splunk-otel-util-genai==0.1.4

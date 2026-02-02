@@ -1,6 +1,5 @@
 import os
 import weaviate
-import openlit
 import logging
 
 from flask import Flask, request
@@ -10,13 +9,14 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_weaviate import WeaviateVectorStore
+from opentelemetry.instrumentation.langchain import LangChainInstrumentor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+LangChainInstrumentor().instrument()
 
-openlit.init(environment="llm-app")
+app = Flask(__name__)
 
 # Read environment variables
 INSTRUCT_MODEL_URL = os.getenv('INSTRUCT_MODEL_URL') # i.e. http://localhost:8000/v1

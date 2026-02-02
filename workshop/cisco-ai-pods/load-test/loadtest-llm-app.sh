@@ -63,6 +63,9 @@ install_for_user () {
   echo "[$user] waiting for app readiness..."
   KUBECONFIG="$kubeconfig" oc rollout status deploy/llm-app --timeout=5m
 
+  # wait for the llm-app to startup
+  sleep 120
+
   echo "[$user] Running curl test inside the cluster..."
 
   # 1. Create the Pod using a Heredoc
@@ -79,10 +82,16 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
       - |
-        curl -s -X POST 'http://llm-app:8080/askquestion' \
-        -H 'Accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{"question": "How much memory does the NVIDIA H200 have?"}'
+        set -e
+        echo "DNS:"; nslookup llm-app || true
+        echo "Waiting for service..."
+        curl --fail --show-error --silent \
+          --connect-timeout 2 \
+          --retry 30 --retry-delay 2 --retry-all-errors \
+          -X POST "http://llm-app:8080/askquestion" \
+          -H "Accept: application/json" \
+          -H "Content-Type: application/json" \
+          -d '{"question":"How much memory does the NVIDIA H200 have?"}'
     resources:
       limits:
         cpu: "50m"

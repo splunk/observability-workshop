@@ -94,7 +94,7 @@ This required adding the following package to the `requirements.txt` file (which
 installed with `pip install`): 
 
 ````
-splunk-opentelemetry==2.9.0
+splunk-opentelemetry==2.8.0
 ````
 
 We also added the following to the `Dockerfile` used to build the 
@@ -113,29 +113,13 @@ when running the application:
 ENTRYPOINT ["opentelemetry-instrument", "flask", "run", "-p", "8080", "--host", "0.0.0.0"]
 ```
 
-Finally, to enhance the traces and metrics collected with OpenTelemetry, we added a 
-package named [OpenLIT](https://openlit.io/) to the `requirements.txt` file.  We also added the 
-`splunk-otel-util-genai` and `splunk-otel-util-genai-translator-openlit` packages 
-to translate the attributes from OpenLIT into the format required by Splunk 
-Observability Cloud: 
+Finally, to enhance the traces and metrics collected with OpenTelemetry from this 
+LangChain application, we added additional Splunk instrumentation packages: 
 
 ````
-openlit==1.35.4
-splunk-otel-util-genai==0.1.9
-splunk-otel-util-genai-translator-openlit==0.1.1
+splunk-otel-instrumentation-langchain==0.1.4
+splunk-otel-util-genai==0.1.4
 ````
-
-OpenLIT supports LangChain, and adds additional context to traces at instrumentation time, 
-such as the number of tokens used to process the request, and what the prompt and 
-response were. 
-
-To initialize OpenLIT, we added the following to the application code: 
-
-``` python
-import openlit
-...
-openlit.init(environment="llm-app")
-```
 
 ## Deploy the LLM Application
 

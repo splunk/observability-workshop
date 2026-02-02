@@ -58,6 +58,9 @@ install_for_user () {
   echo "[$user] oc delete -f ../llm-app/k8s-manifest.yaml"
   KUBECONFIG="$kubeconfig" oc delete -f ../llm-app/k8s-manifest.yaml
 
+  echo "[$user] oc delete curl-test-pod"
+  KUBECONFIG="$kubeconfig" oc delete curl-test-pod
+
   echo "[$user] done"
 }
 
