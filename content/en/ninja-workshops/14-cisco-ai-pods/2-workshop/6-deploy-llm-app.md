@@ -206,9 +206,7 @@ The trace shows all the interactions that our application executed to return an 
 to the users question (i.e. "How much memory does the NVIDIA H200 have?")
 
 For example, we can see where our application performed a similarity search to look 
-for documents related to the question at hand in the Weaviate vector database: 
-
-![Document Retrieval](../../images/DocumentRetrieval.png)
+for documents related to the question at hand in the Weaviate vector database. 
 
 We can also see how the application created a prompt to send to the LLM, including the 
 context that was retrieved from the vector database: 

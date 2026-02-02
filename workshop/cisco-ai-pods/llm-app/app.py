@@ -9,12 +9,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_weaviate import WeaviateVectorStore
-from opentelemetry.instrumentation.langchain import LangChainInstrumentor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-LangChainInstrumentor().instrument()
 
 app = Flask(__name__)
 

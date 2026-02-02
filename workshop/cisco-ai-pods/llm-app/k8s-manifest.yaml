@@ -50,6 +50,10 @@ spec:
               value: "true"
             - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
               value: "SPAN_AND_EVENT"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
+              value: "span_metric_event,splunk"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION
+              value: "replace-category:SplunkEvaluationResults"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
             - name: INSTRUCT_MODEL_URL
