@@ -22,5 +22,5 @@ weight: 3
 
 * Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error.
 * Click the **APM** link above **paymentservice** to return to the **APM Overview**.
-* In **APM Overview**, click on **Service Map** in the right hand pane.
+* In **APM Overview**, click on **Service Map** in the right-hand pane.
 {{% /notice %}}

@@ -22,7 +22,7 @@ This makes Trace Analyzer ideal for investigating unknown issues, researching sp
 
 * Find a trace with:
   * an error in the **checkoutservice** and the **paymentservice** (**1**)
-  * and an **Intiating Operation** of`frontend: POST /cart/checkout`
+  * and an **Initiating Operation** of `frontend: POST /cart/checkout`
   * then select the blue Trace ID (**2**) to continue
 * This will open the **Trace Waterfall** for that specific trace.
 
