@@ -26,6 +26,10 @@ spec:
                 # Flask Server URL - using k8s service
                 - name: SERVER_URL
                   value: "http://travel-planner-langchain-service.travel-agent.svc.cluster.local:8080"
+                - name: TRAVEL_POISON_TYPES
+                  value: "hallucination,irrelevance"
+                - name: TRAVEL_POISON_MAX
+                  value: "1"
               command:
                 - python
                 - client.py
