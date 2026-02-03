@@ -5,7 +5,6 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight** in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).
 * Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
 
 ![APM Tag Spotlight](../images/apm-tag-spotlight.png)
