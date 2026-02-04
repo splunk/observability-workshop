@@ -23,9 +23,10 @@ splunkObservability:
   profilingEnabled: true
 clusterReceiver:
   enabled: false
+# disable log collection to avoid duplicate logs
 logsCollection:
   containers:
-    useSplunkIncludeAnnotation: true
+    enabled: false
 agent:
   # Ensure hostNetwork is false
   hostNetwork: false
