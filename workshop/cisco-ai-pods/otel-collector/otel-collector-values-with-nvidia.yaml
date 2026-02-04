@@ -130,9 +130,6 @@ agent:
               - request_prompt_tokens
               - request_generation_tokens
     receivers:
-      filelog:
-        # disable storage to avoid conflicts when running multiple collectors
-        storage: null
       kubeletstats:
         insecure_skip_verify: true
       receiver_creator/nvidia:

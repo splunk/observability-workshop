@@ -146,9 +146,6 @@ agent:
             from_attribute: service.instance.id
             action: insert
     receivers:
-      filelog:
-        # disable storage to avoid conflicts when running multiple collectors
-        storage: null
       kubeletstats:
         insecure_skip_verify: true
       receiver_creator/nvidia:
