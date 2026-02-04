@@ -3,9 +3,11 @@ title: 6. APM Waterfall
 weight: 6
 ---
 
+The **Trace Waterfall** view displays all spans within a trace as a hierarchical timeline. Each span appears as a horizontal bar, with the bar's length representing its duration and its position showing when it occurred relative to other spans.
+
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
 
-Each span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.
+A span represents a single unit of work within a trace, capturing information about a specific operation such as an API call, database query, or service request. Each span includes metadata like the operation name, start time, duration, and associated tags or attributes that provide context about the work being performed.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

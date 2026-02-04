@@ -13,7 +13,7 @@ weight: 1
 
 * Select the test **WIL - Cisco Live - LABOBS-1037 Online Boutique**.
 * Click on **Go to all run results**.
-* Change **All** to **Failure** (**1**).
+* Change **All** to **Failure** **(1)**.
 
   ![Transaction Filter](../images/failed-run-results.png)
 

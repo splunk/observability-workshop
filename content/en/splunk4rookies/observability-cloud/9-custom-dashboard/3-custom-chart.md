@@ -18,7 +18,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 * From the drop-down choose the **Mean** option, then pick `mean:aggregation` and click outside the dialog box. Notice how the chart changes to a single color as the metrics are now aggregated.
 * The x-axis does not currently represent time to change this click on the settings {{% icon icon="cog" %}} icon at the end of the plot line. The following following dialog will open:
   ![signal setup](../images/signal-setup.png)
-* Change the **Display units** (**2**) in the drop-down box from **None** to **Time (autoscaling)/Milliseconds(ms)**. The drop-down changes to **Millisecond** and the x-axis of the chart now represents the test duration time.
+* Change the **Display units** **(2)** in the drop-down box from **None** to **Time (autoscaling)/Milliseconds(ms)**. The drop-down changes to **Millisecond** and the x-axis of the chart now represents the test duration time.
 * Close the dialog, either by clicking on the settings {{% icon icon="cog" %}} icon or the {{% button style="gray" %}}close{{% /button %}} button.
 * Add our detector by clicking the {{% button style="blue" %}}Link Detector{{% /button %}} button and start typing the name of the detector you created earlier.
 * Click on the detector name to select it.

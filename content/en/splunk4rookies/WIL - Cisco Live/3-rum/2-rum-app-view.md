@@ -37,7 +37,7 @@ weight: 2
 
 * Make sure you are on the **Custom Events** tab.
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Event Latency P75** chart.
-* In the **Custom Event Latency** chart click on the **see all** (**1**) link under the chart title.
+* In the **Custom Event Latency** chart click on the **see all** **(1)** link under the chart title.
 
 ![RUM See All](../images/rum-see-all.png)
 

@@ -21,9 +21,9 @@ This makes Trace Analyzer ideal for investigating unknown issues, researching sp
 ![APM Trace Analyzer](../images/apm-trace-analyzer.png)
 
 * Find a trace with:
-  * an error in the **checkoutservice** and the **paymentservice** (**1**)
+  * an error in the **checkoutservice** and the **paymentservice** **(1)**
   * and an **Initiating Operation** of `frontend: POST /cart/checkout`
-  * then select the blue Trace ID (**2**) to continue
+  * then select the blue **Trace ID** **(2)** to continue
 * This will open the **Trace Waterfall** for that specific trace.
 
 {{% /notice %}}

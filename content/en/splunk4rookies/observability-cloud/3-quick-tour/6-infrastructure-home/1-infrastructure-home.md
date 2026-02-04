@@ -18,7 +18,7 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Under the **Containers** section in the Integrations Pane (**3**), select **Kubernetes** as the technology you wish to examine.
+* Under the **Containers** section in the Integrations Pane **(3)**, select **Kubernetes** as the technology you wish to examine.
 * This should show you two tiles, **K8s Nodes** and **K8s Workloads**.
 * The bottom part of each tile will have a history graph and the top part will show notifications for alerts that fired. Across all tiles, this additional information on each of the tiles will give you a good overview of the health of your infrastructure.
 * Click on the **K8s Nodes** tile.
@@ -28,8 +28,8 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
   ![cluster](../images/k8s-cluster.png)
 
-* The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state (**1**). The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
-* Note the tiles to the side, under **Nodes dependencies** (**2**), specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
+* The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state **(1)**. The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
+* Note the tiles to the side, under **Nodes dependencies** **(2)**, specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
 
 {{% /notice %}}
 
@@ -54,7 +54,7 @@ The UI will show services that are running on the node you have selected if they
 {{< /tabs >}}
 
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
-* To return to the Cluster level, simply click on the link **Cluster** (**1**) at the top of the screen.
+* To return to the Cluster level, simply click on the link **Cluster** **(1)** at the top of the screen.
 
 ![node](../images/node-link.png)
 

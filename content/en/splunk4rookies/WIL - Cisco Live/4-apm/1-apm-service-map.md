@@ -11,21 +11,20 @@ You can see the services involved in the workflow in the **Service Map**. In the
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on the **paymentservice** in the Service Map.
+* Click on the **paymentservice** in the Service Map to select it.
 
 ![APM Explore](../images/apm-business-workflow.png)
 
-Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
-
 {{< tabs >}}
 {{% tab title="Question" %}}
-**With the `paymentservice` selected, what can you conclude from the Service Requests & Errors chart in the side pane?** (**1**)
+**With the `paymentservice` selected, what can you conclude from the Service Requests & Errors chart in the side pane?** **(1)**
 {{% /tab %}}
 {{% tab title="Answer" %}}
 **The Errors percentage is very high.**
 {{% /tab %}}
 {{< /tabs >}}
 
-* In the right-hand pane, click on **paymentservice** in blue (**2**).
+* Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
+* In the right-hand pane, click on **paymentservice** in blue **(2)**.
 
 {{% /notice %}}
