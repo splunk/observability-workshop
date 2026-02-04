@@ -16,5 +16,38 @@ clusterReceiver:
     limits:
       cpu: 200m
       memory: 2000Mi
+logsCollection:
+  containers:
+    useSplunkIncludeAnnotation: true
 agent:
-  enabled: false
+  # Ensure hostNetwork is false
+  hostNetwork: false
+  # To explicitly remove hostPort from the OTLP receiver:
+  ports:
+    otlp:
+      hostPort: null  # Setting this to null removes the hostPort binding
+    otlp-http:
+      hostPort: null
+    zipkin:
+      hostPort: null
+    jaeger-thrift:
+      hostPort: null
+    jaeger-grpc:
+      hostPort: null
+
+  discovery:
+    enabled: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 500Mi
+  config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
+    receivers:
+      filelog:
+        # disable storage to avoid conflicts when running multiple collectors
+        storage: null
+      kubeletstats:
+        insecure_skip_verify: true

@@ -23,9 +23,10 @@ splunkObservability:
   profilingEnabled: true
 clusterReceiver:
   enabled: false
+# disable log collection to avoid duplicate logs
 logsCollection:
   containers:
-    useSplunkIncludeAnnotation: true
+    enabled: false
 agent:
   # Ensure hostNetwork is false
   hostNetwork: false
@@ -53,8 +54,5 @@ agent:
       signalfx:
         send_otlp_histograms: true
     receivers:
-      filelog:
-        # disable storage to avoid conflicts when running multiple collectors
-        storage: null
       kubeletstats:
         insecure_skip_verify: true
