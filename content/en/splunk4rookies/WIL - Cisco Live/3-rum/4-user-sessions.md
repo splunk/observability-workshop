@@ -10,13 +10,16 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 15 seconds or longer). This will take you to the RUM Session view.
-* Note the length of the span—this is the time it took to complete the order. Not good!
-* Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript, etc.).
-* Keep scrolling down the page until you come to a blue **APM** link (the one with `/cart/checkout` at the end of the URL) and hover over it.
+* Note the length of the span **PlaceOrder**, this is the time it took to complete the order. Not good!
+
+![RUM Session](../images/rum-waterfall-place-order.png)
+
+* Look for the **Fetch** (**1**) which will be either above or below the **PlaceOrder** span.
+  * It will look something like `POST https://labob...y.com/cart/checkout`.
+* Hover over the blue **APM** (**2**), after a few seconds a popup will appear.
+* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
+* Under **Workflow Name** click on `front-end:/cart/checkout` (**3**), this will bring up the **APM Service Map**. Here we will investigate the backend services and their dependencies to identify the root cause of the issue.
 
 ![RUM Session](../images/rum-waterfall.png)
-
-* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
-* Under **Workflow Name** click on `front-end:/cart/checkout`, this will bring up the **APM Service Map**.
 
 {{% /notice %}}

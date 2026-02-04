@@ -9,17 +9,14 @@ weight: 2
 
 ![RUM Dashboard](../images/rum-metric-map-charts.png)
 
-The tabs available on this page include:
-
-| Tab | Description |
-| --- | ----------- |
-| **UX Metrics** | Page Views, Page Load and Web Vitals metrics |
-| **Front-end Health** | Breakdown of JavaScript Errors and Long Task duration and count |
-| **Back-end Health** | Network Errors and Requests and Time to First Byte |
-| **Custom Events** | RED metrics (Rate, Error & Duration) for custom events |
-| **Network Requests** | Network URL grouping and key metrics |
-| **Pages** | URL grouping and key metrics and web vitals |
-| **Map View** | Geographical requests by location |
+* The tabs available on this page include:
+  * **UX Metrics** Page Views, Page Load and Web Vitals metrics
+  * **Front-end Health** Breakdown of JavaScript Errors and Long Task duration and count
+  * **Back-end Health** Network Errors and Requests and Time to First Byte
+  * **Custom Events** RED metrics (Rate, Error & Duration) for custom events
+  * **Network Requests** Network URL grouping and key metrics
+  * **Pages** URL grouping and key metrics and web vitals
+  * **Map View** Geographical requests by location
 
 * Click through each of the tabs and examine the data.
 
@@ -37,5 +34,11 @@ The tabs available on this page include:
 
 {{% /tab %}}
 {{< /tabs >}}
+
+* Make sure you are on the **Custom Events** tab.
+* To identify problematic user sessions, we will use the latency spikes in the **Custom Event Latency P75** chart.
+* In the **Custom Event Latency** chart click on the **see all** (**1**) link under the chart title.
+
+![RUM See All](../images/rum-see-all.png)
 
 {{% /notice %}}
