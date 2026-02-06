@@ -2,7 +2,7 @@
 title: Monitor the Vector Database
 linkTitle: 5. Monitor the Vector Database
 weight: 5
-time: 10 minutes
+time: 5 minutes
 ---
 
 In this step, we'll configure the Prometheus receiver to monitor the Weaviate vector database. 

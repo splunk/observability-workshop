@@ -2,7 +2,7 @@
 title: Monitor Storage
 linkTitle: 6. Monitor Storage
 weight: 6
-time: 10 minutes
+time: 5 minutes
 ---
 
 In this step, we'll configure the Prometheus receiver to monitor the storage. 

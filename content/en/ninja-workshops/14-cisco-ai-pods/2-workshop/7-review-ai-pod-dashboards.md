@@ -1,9 +1,13 @@
 ---
 title: Review AI POD Dashboards
-linkTitle: 6. Review AI POD Dashboards
-weight: 6
+linkTitle: 7. Review AI POD Dashboards
+weight: 7
 time: 10 minutes
 ---
+
+In this section, we'll review the AI POD dashboards in Splunk Observability Cloud 
+to confirm that the data from NVIDIA, Pure Storage, and Weaviate is captured 
+as expected. 
 
 ## Update the OpenTelemetry Collector Config
 
