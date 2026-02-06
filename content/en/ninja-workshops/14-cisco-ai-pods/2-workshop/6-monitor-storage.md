@@ -1,7 +1,7 @@
 ---
 title: Monitor Storage
-linkTitle: 5. Monitor Storage
-weight: 5
+linkTitle: 6. Monitor Storage
+weight: 6
 time: 10 minutes
 ---
 
@@ -88,36 +88,11 @@ We'll need to add a new metrics pipeline for Portworx metrics as well:
             - receiver_creator/storage
 ```
 
-Before applying the configuration changes to the collector, take a moment to compare the
+Take a moment to compare the
 contents of your modified `otel-collector-values.yaml` file with the
 `otel-collector-values-with-portworx.yaml` file.
 Update your file as needed to ensure the contents match.  Remember that indentation is important
 for `yaml` files, and needs to be precise.
 
-Now we can update the OpenTelemetry collector configuration by running the
-following Helm command:
-
-``` bash
-helm upgrade splunk-otel-collector \
-  --set="clusterName=$CLUSTER_NAME" \
-  --set="environment=$ENVIRONMENT_NAME" \
-  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-  --set="splunkObservability.realm=$REALM" \
-  --set="splunkPlatform.endpoint=$HEC_URL" \
-  --set="splunkPlatform.token=$HEC_TOKEN" \
-  --set="splunkPlatform.index=$SPLUNK_INDEX" \
-  -f ./otel-collector-values.yaml \
-  -n $USER_NAME \
-  splunk-otel-collector-chart/splunk-otel-collector
-```
-
-## Confirm Metrics are Sent to Splunk
-
-Navigate to `Dashboards` in Splunk Observability Cloud, then search for the
-`Cisco AI PODs Dashboard`, which is included in the `Built-in dashboard groups`.
-Navigate to the `PURE STORAGE` tab and ensure the dashboard is filtered 
-on your OpenShift cluster name. The charts should be populated as in the 
-following example:
-
-![Pure Storage Dashboard](../../images/PureStorage.png)
-
+Because restarting the collector in an OpenShift environment takes about 3 minutes,
+we'll wait until we've completed all configuration changes before initiating a restart.

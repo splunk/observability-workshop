@@ -1,7 +1,7 @@
 ---
 title: Monitor the Vector Database
-linkTitle: 4. Monitor the Vector Database
-weight: 4
+linkTitle: 5. Monitor the Vector Database
+weight: 5
 time: 10 minutes
 ---
 
@@ -114,32 +114,11 @@ metric to be added to non-Weaviate metrics):
             - receiver_creator/weaviate
 ```
 
-Before applying the configuration changes to the collector, take a moment to compare the
+Take a moment to compare the
 contents of your modified `otel-collector-values.yaml` file with the 
 `otel-collector-values-with-weaviate.yaml` file.
 Update your file as needed to ensure the contents match.  Remember that indentation is important
 for `yaml` files, and needs to be precise.
 
-Now we can update the OpenTelemetry collector configuration by running the
-following Helm command:
-
-``` bash
-helm upgrade splunk-otel-collector \
-  --set="clusterName=$CLUSTER_NAME" \
-  --set="environment=$ENVIRONMENT_NAME" \
-  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-  --set="splunkObservability.realm=$REALM" \
-  --set="splunkPlatform.endpoint=$HEC_URL" \
-  --set="splunkPlatform.token=$HEC_TOKEN" \
-  --set="splunkPlatform.index=$SPLUNK_INDEX" \
-  -f ./otel-collector-values.yaml \
-  -n $USER_NAME \
-  splunk-otel-collector-chart/splunk-otel-collector
-```
-
-In Splunk Observability Cloud, navigate to `Infrastructure` -> `AI Frameworks` -> `Weaviate`. 
-Filter on the `k8s.cluster.name` of interest, and ensure the navigator is populated as in the 
-following example: 
-
-![Kubernetes Pods](../../images/WeaviateNavigator.png)
-
+Because restarting the collector in an OpenShift environment takes about 3 minutes,
+we'll wait until we've completed all configuration changes before initiating a restart.

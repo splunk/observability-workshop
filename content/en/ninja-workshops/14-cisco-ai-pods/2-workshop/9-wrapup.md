@@ -1,7 +1,7 @@
 ---
 title: Wrap-Up
-linkTitle: 7. Wrap-Up
-weight: 7
+linkTitle: 9. Wrap-Up
+weight: 9
 time: 5 minutes
 ---
 

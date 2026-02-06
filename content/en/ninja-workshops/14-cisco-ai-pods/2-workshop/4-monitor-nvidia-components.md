@@ -1,23 +1,22 @@
 ---
 title: Monitor NVIDIA Components
-linkTitle: 3. Monitor NVIDIA Components
-weight: 3
+linkTitle: 4. Monitor NVIDIA Components
+weight: 4
 time: 10 minutes
 ---
 
 In this section, we'll use the Prometheus receiver with the OpenTelemetry collector 
-to monitor the NVIDIA components running in the OpenShift cluster. 
-
-## Capture the NVIDIA DCGM Exporter metrics 
-
-The NVIDIA DCGM exporter is running in our OpenShift cluster. It 
-exposes GPU metrics that we can send to Splunk. 
-
-Start by navigating to the following directory: 
+to monitor the NVIDIA components running in the OpenShift cluster. We'll start by 
+navigating to the directory where the collector configuration file is stored:
 
 ``` bash
 cd otel-collector
 ```
+
+## Capture the NVIDIA DCGM Exporter metrics 
+
+The [NVIDIA DCGM exporter](https://github.com/NVIDIA/dcgm-exporter) is running 
+in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.
 
 To do this, let's customize the configuration of the collector by editing the 
 `otel-collector-values.yaml` file that we used earlier when deploying the collector. 
@@ -42,10 +41,16 @@ Add the following content, just below the `kubeletstats` receiver:
 ```
 
 This tells the collector to look for pods with a label of `app=nvidia-dcgm-exporter`. 
-And when it finds a pod with this label, scrape the `/v1/metrics` endpoint using port 9400. 
+And when it finds a pod with this label, it will connect to port 9400 of the pod and scrape 
+the default metrics endpoint (`/v1/metrics`). 
 
-To ensure the receiver is used, we'll need to add a new pipeline to the `otel-collector-values.yaml` file
-as well.  
+> Why are we using the **receiver_creator** receiver instead of just the **Prometheus** receiver?
+> * The **Prometheus** receiver uses a static configuration that scrapes metrics from predefined endpoints.
+> * The **receiver_creator** receiver enables dynamic creation of receivers (including Prometheus receivers) based on runtime information, allowing for scalable and flexible scraping setups.
+> * Using **receiver_creator** can simplify configurations in dynamic environments by automating the management of multiple Prometheus scraping targets.
+
+To ensure this new receiver is used, we'll need to add a new pipeline to the 
+`otel-collector-values.yaml` file as well.  
 
 Add the following code to the bottom of the file: 
 
@@ -64,14 +69,15 @@ Add the following code to the bottom of the file:
             - receiver_creator/nvidia
 ```
 
-Before applying the changes, let's add one more Prometheus receiver in the next section. 
+We'll add one more Prometheus receiver related to NVIDIA in the next section. 
 
 ## Capture the NVIDIA NIM metrics
 
-The `meta-llama-3-2-1b-instruct` LLM that we just deployed with NVIDIA NIM also 
-includes a Prometheus endpoint that we can scrape with the collector.  Let's add the 
-following to the `otel-collector-values.yaml` file, just below the 
-`prometheus/dcgm` receiver we added earlier: 
+The `meta-llama-3-2-1b-instruct` large language model was deployed to the 
+OpenShift cluster using NVIDIA NIM. It includes a Prometheus endpoint 
+that we can scrape with the collector.  Let's add the following to the 
+`otel-collector-values.yaml` file, just below the `prometheus/dcgm` receiver 
+we added earlier: 
 
 ``` yaml
           prometheus/nim-llm:
@@ -88,17 +94,19 @@ following to the `otel-collector-values.yaml` file, just below the
 ```
 
 This tells the collector to look for pods with a label of `app=meta-llama-3-2-1b-instruct`.
-And when it finds a pod with this label, scrape the `/v1/metrics` endpoint using port 8000.
+And when it finds a pod with this label, it will connect to port 8000 of the pod and scrape
+the `/v1/metrics` metrics endpoint. 
 
 There's no need to make changes to the pipeline, as this receiver will already be picked up 
 as part of the `receiver_creator/nvidia` receiver. 
 
 ## Add a Filter Processor 
 
-Prometheus endpoints can expose a large number of metrics, sometimes with high cardinality. 
+Scraping Prometheus endpoints can result in a large number of metrics, sometimes 
+with high cardinality. 
 
 Let's add a filter processor that defines exactly what metrics we want to send to Splunk. 
-Specifically, we'll send only the metrics that are utilized by a dashboard chart or an 
+Specifically, we'll send **only** the metrics that are utilized by a dashboard chart or an 
 alert detector. 
 
 Add the following code to the `otel-collector-values.yaml` file, after the exporters section 
@@ -183,8 +191,8 @@ but before the receivers section:
               - request_generation_tokens
 ```
 
-Ensure this processor is included in the pipeline we added earlier to the 
-bottom of the file: 
+Ensure the `filter/metrics_to_be_included` processor is included in the 
+`metrics/nvidia-metrics` pipeline we added earlier: 
 
 ``` bash
     service:
@@ -204,35 +212,10 @@ bottom of the file:
 
 ## Verify Changes 
 
-Before applying the configuration changes to the collector, take a moment to compare the 
-contents of your modified `otel-collector-values.yaml` file with the `otel-collector-values-with-nvidia.yaml` file. 
-Update your file as needed to ensure the contents match.  Remember that indentation is important 
+Take a moment to compare the contents of your modified `otel-collector-values.yaml` 
+file with the `otel-collector-values-with-nvidia.yaml` file. 
+Update your file if needed to ensure the contents match.  Remember that indentation is important 
 for `yaml` files, and needs to be precise. 
 
-## Update the OpenTelemetry Collector Config 
-
-Now we can update the OpenTelemetry collector configuration by running the 
-following Helm command: 
-
-``` bash
-helm upgrade splunk-otel-collector \
-  --set="clusterName=$CLUSTER_NAME" \
-  --set="environment=$ENVIRONMENT_NAME" \
-  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-  --set="splunkObservability.realm=$REALM" \
-  --set="splunkPlatform.endpoint=$HEC_URL" \
-  --set="splunkPlatform.token=$HEC_TOKEN" \
-  --set="splunkPlatform.index=$SPLUNK_INDEX" \
-  -f ./otel-collector-values.yaml \
-  -n $USER_NAME \
-  splunk-otel-collector-chart/splunk-otel-collector
-```
-
-## Confirm Metrics are Sent to Splunk 
-
-Navigate to `Dashboards` in Splunk Observability Cloud, then search for the
-`Cisco AI PODs Dashboard`, which is included in the `Built-in dashboard groups`. 
-Ensure the dashboard is filtered on your OpenShift cluster name. 
-The charts should be populated as in the following example: 
-
-![Kubernetes Pods](../../images/Cisco-AI-Pod-dashboard.png)
+Because restarting the collector in an OpenShift environment takes about 3 minutes, 
+we'll wait until we've completed all configuration changes before initiating a restart.

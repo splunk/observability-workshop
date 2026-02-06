@@ -1,7 +1,7 @@
 ---
-title: Connect to EC2 Instance
-linkTitle: 1. Connect to EC2 Instance
-weight: 1
+title: Connect to the OpenShift Cluster
+linkTitle: 2. Connect to the OpenShift Cluster
+weight: 2
 time: 5 minutes
 ---
 
@@ -18,6 +18,16 @@ using one of the methods below:
     * Use the OpenSSH client
 * Earlier versions of Windows
     * Use Putty 
+
+## Set the Workshop Participant Number
+
+The instructor will provide each participant with a number from 1 to 30. 
+Store this in an environment variable, and remember what it is, as
+it will be used throughout the workshop: 
+
+``` bash
+export PARTICIPANT_NUMBER=<your participant number>
+```
 
 ## Install the OpenShift CLI
 
@@ -51,21 +61,28 @@ Ensure the Kube config file is modifiable by the splunk user:
 chmod 600 /home/splunk/.kube/config
 ```
 
-Use the cluster API, participant username, and password provided by the workshop 
+Use the cluster API URL and password provided by the workshop 
 organizer to log in to the OpenShift cluster: 
 
 ``` bash
-oc login https://api.<cluster-domain>:443 -u <username> -p '<password>'
+oc login https://api.<cluster-domain>:443 -u participant$PARTICIPANT_NUMBER -p '<password>'
 ```
 
 Ensure you're connected to the OpenShift cluster: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
-oc whoami --show-server  
+oc whoami --show-server 
 ```
 
-It should return something like the following: 
+{{% /tab %}}
+{{% tab title="Example Output" %}}
 
-````
+``` bash
 https://api.***.openshiftapps.com:443
-````
+```
+
+{{% /tab %}}
+{{< /tabs >}}
