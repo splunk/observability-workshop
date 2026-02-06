@@ -2,7 +2,7 @@ baseURL: https://splunk.github.io/
 relativeURLs: false
 #canonifyURLs: true
 noChmod: true
-contentDir: content/en
+#contentDir: content/en
 title: Splunk Observability Cloud Workshops
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: true
@@ -16,11 +16,13 @@ languages:
   en:
     title: "Splunk Observability Cloud Workshops"
     languageName: English
+    languageCode: en
     contentDir: content/en
     weight: 1
   ja:
     title: "Splunk Observability Cloud Workshops"
     contentDir: content/ja
+    languageCode: ja
     languageName: 日本語
     weight: 2
 markup:
@@ -35,10 +37,10 @@ markup:
 outputs:
   home:
     - HTML
-    - PRINT
+    #- PRINT
   section:
     - HTML
-    - PRINT
+    #- PRINT
 #  page:
 #    - HTML
 #    - PRINT
