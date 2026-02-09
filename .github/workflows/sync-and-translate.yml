@@ -1,9 +1,9 @@
 name: Sync Upstream and Translate on New Release
 
 on:
-  schedule:
-    # Run every Monday at 9:00 AM JST (00:00 UTC)
-    - cron: '0 0 * * 1'
+  # schedule:
+  #   # Run every Monday at 9:00 AM JST (00:00 UTC)
+  #   - cron: '0 0 * * 1'
   workflow_dispatch:
     inputs:
       force_translate:
@@ -104,6 +104,8 @@ jobs:
       translation_branch: ${{ steps.translate-branch.outputs.branch_name }}
       translated_count: ${{ steps.translate.outputs.translated_count }}
       failed_count: ${{ steps.translate.outputs.failed_count }}
+      has_new_workshops: ${{ steps.detect-new-workshops.outputs.has_new_workshops }}
+      new_workshops: ${{ steps.detect-new-workshops.outputs.new_workshops }}
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v4
@@ -193,6 +195,68 @@ jobs:
 
           echo "Files to translate (${FILE_COUNT} files):"
           cat /tmp/files_to_translate.txt
+
+      - name: Detect new workshops
+        id: detect-new-workshops
+        if: steps.detect.outputs.has_files == 'true'
+        run: |
+          LAST_TAG="${{ needs.check-new-release.outputs.last_tag }}"
+
+          # If no previous tag (first run), skip detection - no baseline to compare
+          if [ -z "$LAST_TAG" ]; then
+            echo "No previous tag - skipping new workshop detection"
+            echo "has_new_workshops=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          COMPARE_BASE="${LAST_TAG}"
+
+          # Extract workshop-level directories from translation targets
+          # Pattern: content/en/{category}/{workshop-name}/...
+          # Workshop level = first 4 path components (depth 4)
+          NEW_WORKSHOPS=""
+          CHECKED_DIRS=""
+
+          while IFS= read -r file; do
+            # Extract workshop-level directory (first 4 path components)
+            # Files with fewer than 5 components (e.g. category _index.md) are skipped
+            WORKSHOP_DIR=$(echo "$file" | awk -F'/' 'NF>=5{print $1"/"$2"/"$3"/"$4}')
+
+            if [ -z "$WORKSHOP_DIR" ]; then
+              continue
+            fi
+
+            # Skip images/img directories
+            DIRNAME=$(basename "$WORKSHOP_DIR")
+            if [ "$DIRNAME" = "images" ] || [ "$DIRNAME" = "img" ]; then
+              continue
+            fi
+
+            # Skip if already checked
+            if echo "$CHECKED_DIRS" | grep -qF "$WORKSHOP_DIR"; then
+              continue
+            fi
+            CHECKED_DIRS="${CHECKED_DIRS}${WORKSHOP_DIR}"$'\n'
+
+            # Check if this workshop directory existed in the previous tag
+            if ! git rev-parse --verify "${COMPARE_BASE}:${WORKSHOP_DIR}" >/dev/null 2>&1; then
+              echo "New workshop detected: ${WORKSHOP_DIR}"
+              NEW_WORKSHOPS="${NEW_WORKSHOPS}${WORKSHOP_DIR}"$'\n'
+            fi
+          done < /tmp/files_to_translate.txt
+
+          if [ -n "$NEW_WORKSHOPS" ]; then
+            echo "has_new_workshops=true" >> $GITHUB_OUTPUT
+            echo "new_workshops<<EOF" >> $GITHUB_OUTPUT
+            echo "$NEW_WORKSHOPS" | grep -v '^$' >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+
+            WORKSHOP_COUNT=$(echo "$NEW_WORKSHOPS" | grep -v '^$' | wc -l)
+            echo "Detected ${WORKSHOP_COUNT} new workshop(s)"
+          else
+            echo "has_new_workshops=false" >> $GITHUB_OUTPUT
+            echo "No new workshops detected"
+          fi
 
       - name: Upload file list
         if: steps.detect.outputs.has_files == 'true'
@@ -400,6 +464,8 @@ jobs:
     needs: [check-new-release, sync-and-translate]
     if: needs.sync-and-translate.outputs.translation_branch != ''
     runs-on: ubuntu-24.04
+    outputs:
+      pr_number: ${{ steps.create-pr.outputs.pr_number }}
     steps:
       - name: Checkout translation branch
         uses: actions/checkout@v4
@@ -408,47 +474,86 @@ jobs:
           fetch-depth: 0
 
       - name: Create Pull Request to upstream
+        id: create-pr
         env:
           GH_TOKEN: ${{ secrets.UPSTREAM_PAT }}
         run: |
           NEW_TAG="${{ needs.check-new-release.outputs.new_tag }}"
           TRANSLATED_COUNT="${{ needs.sync-and-translate.outputs.translated_count }}"
           FAILED_COUNT="${{ needs.sync-and-translate.outputs.failed_count }}"
+          HAS_NEW_WORKSHOPS="${{ needs.sync-and-translate.outputs.has_new_workshops }}"
+          NEW_WORKSHOPS="${{ needs.sync-and-translate.outputs.new_workshops }}"
 
-          printf '%s\n' \
-            "## Summary" \
-            "" \
-            "Japanese translations for release ${NEW_TAG}." \
-            "" \
-            "- **Translated files**: ${TRANSLATED_COUNT}" \
-            "- **Failed files**: ${FAILED_COUNT}" \
-            "" \
-            "This PR adds Japanese translations for the workshop content." \
-            "" \
-            "## Review Checklist" \
-            "" \
-            "- [ ] Markdown renders correctly" \
-            "- [ ] All links work" \
-            "- [ ] Code blocks unchanged" \
-            "- [ ] Terminology is consistent" \
-            "" \
-            "## Test Plan" \
-            "" \
-            "- [ ] Run \`hugo serve\` locally and verify Japanese pages render correctly" \
-            "- [ ] Check that images are displayed" \
-            "- [ ] Verify navigation works" \
-            "" \
-            "---" \
-            "Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow." \
-            > /tmp/pr_body.md
+          # Build PR body
+          {
+            printf '%s\n' \
+              "## Summary" \
+              "" \
+              "Japanese translations for release ${NEW_TAG}." \
+              "" \
+              "- **Translated files**: ${TRANSLATED_COUNT}" \
+              "- **Failed files**: ${FAILED_COUNT}"
+
+            # Add new workshops section if detected
+            if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
+              printf '\n%s\n' \
+                "## :warning: New Workshops Detected" \
+                "" \
+                "The following new workshops were detected and require careful review:" \
+                ""
+              echo "$NEW_WORKSHOPS" | while IFS= read -r workshop; do
+                if [ -n "$workshop" ]; then
+                  WORKSHOP_NAME=$(basename "$workshop")
+                  printf '%s\n' "- \`${workshop}\` (**${WORKSHOP_NAME}**)"
+                fi
+              done
+              printf '\n%s\n' \
+                "> This PR was created as a **draft** because new workshops were detected." \
+                "> Please review the new workshop translations carefully before marking as ready."
+            fi
+
+            printf '\n%s\n' \
+              "" \
+              "This PR adds Japanese translations for the workshop content." \
+              "" \
+              "## Review Checklist" \
+              "" \
+              "- [ ] Markdown renders correctly" \
+              "- [ ] All links work" \
+              "- [ ] Code blocks unchanged" \
+              "- [ ] Terminology is consistent" \
+              "" \
+              "## Test Plan" \
+              "" \
+              "- [ ] Run \`hugo serve\` locally and verify Japanese pages render correctly" \
+              "- [ ] Check that images are displayed" \
+              "- [ ] Verify navigation works" \
+              "" \
+              "---" \
+              "Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow."
+          } > /tmp/pr_body.md
+
+          # Conditionally create draft PR when new workshops are detected
+          DRAFT_FLAG=""
+          if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
+            DRAFT_FLAG="--draft"
+            echo "Creating DRAFT PR (new workshops detected)"
+          else
+            echo "Creating regular PR"
+          fi
 
           # Create PR to upstream repository
-          gh pr create \
+          PR_URL=$(gh pr create \
             --repo "${{ env.UPSTREAM_REPO }}" \
             --title "日本語翻訳: ${NEW_TAG}" \
             --body-file /tmp/pr_body.md \
             --base main \
-            --head "${{ github.repository_owner }}:${{ needs.sync-and-translate.outputs.translation_branch }}"
+            --head "${{ github.repository_owner }}:${{ needs.sync-and-translate.outputs.translation_branch }}" \
+            $DRAFT_FLAG)
+
+          echo "Created PR: ${PR_URL}"
+          PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]*$')
+          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
 
   update-tag-tracking:
     name: Update last translated tag
@@ -471,3 +576,38 @@ jobs:
           git add "${{ env.LAST_TAG_FILE }}"
           git commit -m "Update last translated tag to ${NEW_TAG}"
           git push
+
+  notify-slack:
+    name: Notify Slack
+    needs: [check-new-release, sync-and-translate, create-pr, update-tag-tracking]
+    if: always() && needs.check-new-release.outputs.has_new_release == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Determine workflow status
+        id: status
+        run: |
+          if [ "${{ needs.check-new-release.result }}" = "failure" ] || \
+             [ "${{ needs.sync-and-translate.result }}" = "failure" ] || \
+             [ "${{ needs.create-pr.result }}" = "failure" ] || \
+             [ "${{ needs.update-tag-tracking.result }}" = "failure" ]; then
+            echo "result=failure" >> $GITHUB_OUTPUT
+          else
+            echo "result=success" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Slack notification
+        run: |
+          JSON_PAYLOAD=$(cat <<EOF
+          {
+            "hasNewWorkshopTranslation": "${{ needs.sync-and-translate.outputs.has_new_workshops }}",
+            "translatedMarkdownFileCount": "${{ needs.sync-and-translate.outputs.translated_count }}",
+            "failedFileCount": "${{ needs.sync-and-translate.outputs.failed_count }}",
+            "pullRequestNumber": "${{ needs.create-pr.outputs.pr_number }}",
+            "status": "${{ steps.status.outputs.result }}"
+          }
+          EOF
+          )
+
+          curl -s -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "${JSON_PAYLOAD}"
