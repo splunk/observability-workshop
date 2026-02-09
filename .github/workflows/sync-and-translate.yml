@@ -580,7 +580,11 @@ jobs:
   notify-slack:
     name: Notify Slack
     needs: [check-new-release, sync-and-translate, create-pr, update-tag-tracking]
-    if: always() && needs.check-new-release.outputs.has_new_release == 'true'
+    if: >-
+      always()
+      && needs.check-new-release.outputs.has_new_release == 'true'
+      && needs.sync-and-translate.outputs.translated_count != ''
+      && needs.sync-and-translate.outputs.translated_count != '0'
     runs-on: ubuntu-24.04
     steps:
       - name: Determine workflow status
