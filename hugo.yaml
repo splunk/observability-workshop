@@ -10,6 +10,11 @@ enableMissingTranslationPlaceholders: false
 enableRobotsTXT: true
 enableGitInfo: true
 module:
+  hugoVersion:
+    extended: true
+    min: 0.155.3
+    max: 0.155.3
+
   imports:
     - path: github.com/McShelby/hugo-theme-relearn
 languages:
