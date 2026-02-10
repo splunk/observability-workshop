@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: travel-planner-langchain
-          image: docker.io/derekmitchell399/travel-planner-langchain-server:1.1
+          image: docker.io/derekmitchell399/travel-planner-langchain-server:1.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -83,6 +83,10 @@ spec:
             # specify a subset of evaluators to avoid hitting Circuit API token limits
             - name: OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS
               value: "deepeval(AgentInvocation(relevance,hallucination))"
+            - name: TRAVEL_POISON_TYPES
+              value: "hallucination,irrelevance"
+            - name: TRAVEL_POISON_MAX
+              value: "1"
           resources:
             requests:
               memory: "512Mi"

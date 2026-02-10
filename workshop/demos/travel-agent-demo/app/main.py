@@ -245,9 +245,8 @@ logging.basicConfig(level=logging.INFO)
 
 # Configure tracing/metrics/logging once per process so exported data goes to OTLP.
 trace.set_tracer_provider(TracerProvider())
-trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
-
-demo_tracer = trace.get_tracer("instrumentation.langchain.demo")
+tracer_provider = trace.get_tracer_provider()
+tracer_provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
 
 metric_reader = PeriodicExportingMetricReader(OTLPMetricExporter())
 metrics.set_meter_provider(MeterProvider(metric_readers=[metric_reader]))
@@ -637,17 +636,6 @@ def pretty_print_messages(update, last_message=False):
 
         print("", file=sys.stderr, flush=True)
 
-
-def _configure_otlp_tracing() -> None:
-    """Initialise a tracer provider that exports to the configured OTLP endpoint."""
-    if isinstance(trace.get_tracer_provider(), TracerProvider):
-        return
-    provider = TracerProvider()
-    processor = BatchSpanProcessor(OTLPSpanExporter())
-    provider.add_span_processor(processor)
-    trace.set_tracer_provider(provider)
-
-
 def _http_root_attributes(state: PlannerState) -> Dict[str, str]:
     """Attributes for the synthetic HTTP request root span."""
     service_name = os.getenv(
@@ -930,7 +918,6 @@ def build_workflow(
 # ---------------------------------------------------------------------------
 
 # Initialize OpenTelemetry on server startup
-_configure_otlp_tracing()
 LangchainInstrumentor().instrument()
 
 # Initialize Flask app
@@ -1033,9 +1020,8 @@ def plan_travel_internal(
         )
         root_span.set_attribute("http.response.status_code", 200)
 
-    provider = trace.get_tracer_provider()
-    if hasattr(provider, "force_flush"):
-        provider.force_flush()
+    if hasattr(tracer_provider, "force_flush"):
+        tracer_provider.force_flush()
 
     return {
         "session_id": session_id,

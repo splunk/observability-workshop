@@ -4,7 +4,7 @@ metadata:
   name: travel-planner-langchain-loadgen
   namespace: travel-agent
 spec:
-  schedule: "0,30 16-23,0-2 * * 1-5"  # Every 30 min, 8am-6pm PST Mon-Fri (16:00-02:00 UTC)
+  schedule: "*/30 * * * *"  # Every 30 min
   concurrencyPolicy: Forbid  # Prevent overlapping runs
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
@@ -33,7 +33,7 @@ spec:
               command:
                 - python
                 - client.py
-                - --no-poison
+                #- --no-poison
               resources:
                 requests:
                   memory: "256Mi"
