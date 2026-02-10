@@ -37,10 +37,10 @@ markup:
 outputs:
   home:
     - HTML
-    #- PRINT
+    - PRINT
   section:
     - HTML
-    #- PRINT
+    - PRINT
 #  page:
 #    - HTML
 #    - PRINT
