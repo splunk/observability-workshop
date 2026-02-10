@@ -29,163 +29,6 @@ week-long city break itinerary.
     └──────────┼──────────┼──────────┼──────────┘
                |          |          |
           (OTEL Spans/Metrics)
-
-
-
-Below is a sample of telemetry produced by running this app with LangChain instrumentation
-Trace ID: f1d34b2cb227acbc19e5da0a3220f918
-└── Span ID: f3a3e0925fad8651 (Parent: none) - Name: POST /travel/plan (Type: span)
-    └── Span ID: 5aa2668c4849b7c3 (Parent: f3a3e0925fad8651) - Name: gen_ai.workflow LangGraph (Type: span)
-        ├── Metric: gen_ai.workflow.duration (Type: metric)
-        ├── Span ID: d11f7da6fcb2de10 (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step __start__ (Type: span)
-        │   └── Span ID: a07099710d602a07 (Parent: d11f7da6fcb2de10) - Name: gen_ai.step should_continue (Type: span)
-        ├── Span ID: 8fc40405bf54317b (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step coordinator (Type: span)
-        │   ├── Span ID: e52114886351ebb2 (Parent: 8fc40405bf54317b) - Name: invoke_agent coordinator [op:invoke_agent] (Type: span)
-        │   │   ├── Log: gen_ai.client.agent.operation.details (Type: log)
-        │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   ├── Metric: gen_ai.agent.duration [op:invoke_agent] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │   └── Span ID: c04e1101b33486b3 (Parent: e52114886351ebb2) - Name: gen_ai.step model (Type: span)
-        │   │       └── Span ID: 844ad794646fee29 (Parent: c04e1101b33486b3) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │           ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │           ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │           ├── Metric: gen_ai.client.operation.duration [op:chat] (Type: metric)
-        │   │           ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │           ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │           ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │           ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │           ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │           ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │           └── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   └── Span ID: e5b90f3d5b7eb0f7 (Parent: 8fc40405bf54317b) - Name: gen_ai.step should_continue (Type: span)
-        ├── Span ID: b4839fa3deff9ac2 (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step flight_specialist (Type: span)
-        │   ├── Span ID: fc31b6561ef63f63 (Parent: b4839fa3deff9ac2) - Name: invoke_agent flight_specialist [op:invoke_agent] (Type: span)
-        │   │   ├── Log: gen_ai.client.agent.operation.details [op:invoke_agent] (Type: log)
-        │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   ├── Metric: gen_ai.agent.duration [op:invoke_agent] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │   ├── Span ID: 29b7d0300541bd68 (Parent: fc31b6561ef63f63) - Name: gen_ai.step model (Type: span)
-        │   │   │   ├── Span ID: a06777a06033e5bc (Parent: 29b7d0300541bd68) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │   │   │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │   │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   │   │   └── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   │   └── Span ID: 9c71b8c4ca1bd428 (Parent: 29b7d0300541bd68) - Name: gen_ai.step model_to_tools (Type: span)
-        │   │   ├── Span ID: fbe064db82335672 (Parent: fc31b6561ef63f63) - Name: gen_ai.step tools (Type: span)
-        │   │   │   ├── Span ID: e6ad104468515a7f (Parent: fbe064db82335672) - Name: tool mock_search_flights [op:execute_tool] (Type: span)
-        │   │   │   │   └── Metric: gen_ai.client.operation.duration [op:execute_tool] (Type: metric)
-        │   │   │   └── Span ID: 0a93af6cba5a3e24 (Parent: fbe064db82335672) - Name: gen_ai.step tools_to_model (Type: span)
-        │   │   └── Span ID: 09683ac4d477f30b (Parent: fc31b6561ef63f63) - Name: gen_ai.step model (Type: span)
-        │   │       ├── Span ID: fe7362569246cab1 (Parent: 09683ac4d477f30b) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │       │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │       │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │       │   ├── Metric: gen_ai.client.operation.duration [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │       │   └── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │       └── Span ID: 8eb6db6447db85c4 (Parent: 09683ac4d477f30b) - Name: gen_ai.step model_to_tools (Type: span)
-        │   └── Span ID: a2cc673460c0cc52 (Parent: b4839fa3deff9ac2) - Name: gen_ai.step should_continue (Type: span)
-        ├── Span ID: fc8da26047610879 (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step hotel_specialist (Type: span)
-        │   ├── Span ID: 4220fc3ae5570334 (Parent: fc8da26047610879) - Name: invoke_agent hotel_specialist [op:invoke_agent] (Type: span)
-        │   │   ├── Log: gen_ai.client.agent.operation.details (Type: log)
-        │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   ├── Metric: gen_ai.agent.duration [op:invoke_agent] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │   ├── Span ID: 64df5b5bbaebce2c (Parent: 4220fc3ae5570334) - Name: gen_ai.step model (Type: span)
-        │   │   │   ├── Span ID: cafd1fc9ec9df451 (Parent: 64df5b5bbaebce2c) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │   │   │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │   │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   │   │   └── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   │   └── Span ID: 8e522e28e7598f74 (Parent: 64df5b5bbaebce2c) - Name: gen_ai.step model_to_tools (Type: span)
-        │   │   ├── Span ID: 4c95c491704bb7f6 (Parent: 4220fc3ae5570334) - Name: gen_ai.step tools (Type: span)
-        │   │   │   ├── Span ID: 977317c56a07a0fe (Parent: 4c95c491704bb7f6) - Name: tool mock_search_hotels [op:execute_tool] (Type: span)
-        │   │   │   │   └── Metric: gen_ai.client.operation.duration [op:execute_tool] (Type: metric)
-        │   │   │   └── Span ID: b9789de4ffc99edb (Parent: 4c95c491704bb7f6) - Name: gen_ai.step tools_to_model (Type: span)
-        │   │   └── Span ID: b8547bad26c0bad0 (Parent: 4220fc3ae5570334) - Name: gen_ai.step model (Type: span)
-        │   │       ├── Span ID: f62ea3a84ba86dfe (Parent: b8547bad26c0bad0) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │       │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │       │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │       │   ├── Metric: gen_ai.client.operation.duration [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │       │   └── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │       └── Span ID: dc4b36aae85206db (Parent: b8547bad26c0bad0) - Name: gen_ai.step model_to_tools (Type: span)
-        │   └── Span ID: 8514726a735a4af7 (Parent: fc8da26047610879) - Name: gen_ai.step should_continue (Type: span)
-        ├── Span ID: 8ed13d6187dc4594 (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step activity_specialist (Type: span)
-        │   ├── Span ID: 82f41b6c2cc66679 (Parent: 8ed13d6187dc4594) - Name: invoke_agent activity_specialist [op:invoke_agent] (Type: span)
-        │   │   ├── Log: gen_ai.client.agent.operation.details (Type: log)
-        │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   ├── Metric: gen_ai.agent.duration [op:invoke_agent] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   ├── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │   ├── Span ID: b5c4c317f63b7c15 (Parent: 82f41b6c2cc66679) - Name: gen_ai.step model (Type: span)
-        │   │   │   ├── Span ID: 0de74f1cee338c41 (Parent: b5c4c317f63b7c15) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │   │   │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │   │   │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │   │   │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │   │   │   └── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │   │   └── Span ID: 13e1b37c596bd8ac (Parent: b5c4c317f63b7c15) - Name: gen_ai.step model_to_tools (Type: span)
-        │   │   ├── Span ID: f37d91d6729b9468 (Parent: 82f41b6c2cc66679) - Name: gen_ai.step tools (Type: span)
-        │   │   │   ├── Span ID: b721b2d16d0cf4e2 (Parent: f37d91d6729b9468) - Name: tool mock_search_activities [op:execute_tool] (Type: span)
-        │   │   │   │   └── Metric: gen_ai.client.operation.duration [op:execute_tool] (Type: metric)
-        │   │   │   └── Span ID: 98a3561d2d74f8bb (Parent: f37d91d6729b9468) - Name: gen_ai.step tools_to_model (Type: span)
-        │   │   └── Span ID: 4415b4fec3b41958 (Parent: 82f41b6c2cc66679) - Name: gen_ai.step model (Type: span)
-        │   │       ├── Span ID: 58bf6a5275fd003e (Parent: 4415b4fec3b41958) - Name: chat ChatOpenAI [op:chat] (Type: span)
-        │   │       │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-        │   │       │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-        │   │       │   ├── Metric: gen_ai.client.operation.duration [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-        │   │       │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-        │   │       │   └── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-        │   │       └── Span ID: 19c40de6d52f2ae5 (Parent: 4415b4fec3b41958) - Name: gen_ai.step model_to_tools (Type: span)
-        │   └── Span ID: ae61ceb8c1487bf0 (Parent: 8ed13d6187dc4594) - Name: gen_ai.step should_continue (Type: span)
-        └── Span ID: c11d3fcb34435f9b (Parent: 5aa2668c4849b7c3) - Name: gen_ai.step plan_synthesizer (Type: span)
-            ├── Span ID: 54cdd32f3561261a (Parent: c11d3fcb34435f9b) - Name: chat ChatOpenAI [op:chat] (Type: span)
-            │   ├── Log: gen_ai.client.inference.operation.details [op:chat] (Type: log)
-            │   ├── Log: gen_ai.evaluation.results [op:data_evaluation_results] (Type: log)
-            │   ├── Metric: gen_ai.client.operation.duration [op:chat] (Type: metric)
-            │   ├── Metric: gen_ai.client.token.usage (input) [op:chat] (Type: metric)
-            │   ├── Metric: gen_ai.client.token.usage (output) [op:chat] (Type: metric)
-            │   ├── Metric: gen_ai.evaluation.bias [op:evaluation] (Type: metric)
-            │   ├── Metric: gen_ai.evaluation.hallucination [op:evaluation] (Type: metric)
-            │   ├── Metric: gen_ai.evaluation.relevance [op:evaluation] (Type: metric)
-            │   ├── Metric: gen_ai.evaluation.sentiment [op:evaluation] (Type: metric)
-            │   └── Metric: gen_ai.evaluation.toxicity [op:evaluation] (Type: metric)
-            └── Span ID: abb9838ba0eb836a (Parent: c11d3fcb34435f9b) - Name: gen_ai.step should_continue (Type: span)
 """
 
 from __future__ import annotations
@@ -479,11 +322,7 @@ def _poison_config(
         )
         max_snippets = int(custom_config.get("max", 2))
         seed = custom_config.get("seed")
-        if seed:
-            try:
-                random.seed(int(seed))
-            except ValueError:
-                random.seed(seed)
+        rng = random.Random(int(seed)) if seed is not None else random.Random()
     else:
         prob = float(os.getenv("TRAVEL_POISON_PROB", "0.8"))
         types_raw = os.getenv(
@@ -504,15 +343,12 @@ def _poison_config(
             ]
         max_snippets = int(os.getenv("TRAVEL_POISON_MAX", "2"))
         seed = os.getenv("TRAVEL_POISON_SEED")
-        if seed:
-            try:
-                random.seed(int(seed))
-            except ValueError:
-                random.seed(seed)
+        rng = random.Random(int(seed)) if seed is not None else random.Random()
     return {
         "prob": max(0.0, min(prob, 1.0)),
         "types": types,
         "max": max_snippets,
+         "rng": rng,
     }
 
 
@@ -564,12 +400,14 @@ def maybe_add_quality_noise(
         return base_prompt
 
     cfg = _poison_config(custom_poison_config)
+    rng = cfg["rng"]
+
     if random.random() > cfg["prob"]:
         return base_prompt
     # choose subset
-    available = cfg["types"]
-    random.shuffle(available)
-    count = random.randint(1, min(cfg["max"], len(available)))
+    available = cfg["types"][:]
+    rng.shuffle(available)
+    count = rng.randint(1, min(cfg["max"], len(available)))
     chosen = available[:count]
     snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
     # Record events
