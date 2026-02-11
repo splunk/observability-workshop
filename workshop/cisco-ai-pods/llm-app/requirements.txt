@@ -3,7 +3,7 @@ langchain==0.3.21
 langchain-core==0.3.80
 langchain-nvidia-ai-endpoints==0.3.19
 langchain-openai==0.3.35
-langchain-community==0.3.20
+langchain-community==0.3.27
 langchain-weaviate==0.0.5
 weaviate-client==4.17.0
 splunk-opentelemetry==2.8.0
