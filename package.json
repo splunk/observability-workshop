@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "markdownlint-cli": "^0.44",
     "textlint": "^14",
     "textlint-rule-preset-ja-spacing": "^2"
   }

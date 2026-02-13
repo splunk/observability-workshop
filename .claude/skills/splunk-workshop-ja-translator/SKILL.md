@@ -10,6 +10,11 @@ hooks:
           command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$"; then npx markdownlint-cli --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
         - type: command
           command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$" && [ -f "$CLAUDE_PROJECT_DIR/.textlintrc" ]; then npx textlint -c "$CLAUDE_PROJECT_DIR/.textlintrc" --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
+  Stop:
+    - hooks:
+        - type: command
+          command: '"$CLAUDE_PROJECT_DIR"/.claude/hooks/check-translation-coverage.sh'
+          timeout: 30
 ---
 
 # Splunk Workshop 日本語翻訳スキル
@@ -89,6 +94,7 @@ GitHub Actions からの自動実行時:
 - [ ] 太字マークアップが正しく表示される
 - [ ] Markdownlint, Prettier などのフォーマッターを実行した
 - [ ] textlint (ja-spacing) を実行した
+- [ ] `/content/ja/` の全ファイルが翻訳済み（日本語テキストを含む）
 
 ## よくある翻訳パターン
 
