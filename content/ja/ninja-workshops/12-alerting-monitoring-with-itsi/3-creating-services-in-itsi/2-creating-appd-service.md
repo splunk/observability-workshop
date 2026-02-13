@@ -6,7 +6,7 @@ weight: 3
 
 # AppDynamics ベースのサービスから始める
 
-1. **Services にアクセス:** ITSI で **Configuration** をクリックし、**Services** をクリックします。
+1. **Services にアクセス:** ITSIで **Configuration** をクリックし、**Services** をクリックします。
 
 2. **サービスを作成: AD-Ecommerce2:** **Create Service -> Create Service** をクリックします。
 
@@ -17,7 +17,7 @@ weight: 3
 4. **テンプレートを選択:** **Link service to a service template** を選択し、テンプレートのドロップダウンから "AppDynamics App Performance Monitoring" を検索します。**Create** をクリックして新しいサービスを保存します。
 
 5. **エンティティの割り当て:**
-    * ページが読み込まれ、新しいサービスが表示され、Entities ページが表示されます。このデモでは、デフォルトで *AD-Ecommerce:18112:demo1.saas.appdynamics.com* エンティティが選択されます。実際の状況では、entity_name をエンティティ名に手動でマッチさせる必要があります。
+    * ページが読み込まれ、新しいサービスが表示され、Entitiesページが表示されます。このデモでは、デフォルトで *AD-Ecommerce:18112:demo1.saas.appdynamics.com* エンティティが選択されます。実際の状況では、entity_nameをエンティティ名に手動でマッチさせる必要があります。
     * **Direct Entity Selection (利用可能な場合):** `entity_name="AD-Ecommerce:18112:demo1.saas.appdynamics.com"` を使用してエンティティを検索し、選択します。
 
 6. **Settings:** **Settings** タブをクリックし、*Backfill* を有効にして標準の7日間を維持します。サービスを有効にし、**Save** をクリックします。
@@ -34,7 +34,7 @@ weight: 3
 
 5. **依存関係を追加:** 依存サービスを追加するオプションがあるはずです。"AD-Ecommerce2" を検索します。
 
-6. **KPI を選択:** AD-Ecommerce2 の ServiceHealthScore の横にあるチェックボックスをオンにします。
+6. **KPI を選択:** AD-Ecommerce2のServiceHealthScoreの横にあるチェックボックスをオンにします。
 
 7. **変更を保存:** "AD.Ecommerce" サービスへの変更を保存します。
 

@@ -6,7 +6,7 @@ weight: 1
 
 # Splunk ITSI での基本的なアラートの設定
 
-このセクションでは、Splunk IT Service Intelligence (ITSI) で基本的なアラートを設定する方法を説明します。以前作成したサービスが KPI のしきい値を超えたときにトリガーされるアラートを設定します。
+このセクションでは、Splunk IT Service Intelligence (ITSI) で基本的なアラートを設定する方法を説明します。以前作成したサービスがKPIのしきい値を超えたときにトリガーされるアラートを設定します。
 
 **作成したサービスに応じて、このアラートに使用する KPI が変わります。以下の手順では、Service Name と KPI を適切に置き換えてください**
 
@@ -16,7 +16,7 @@ weight: 1
 **手順:**
 
 1. **KPI に移動:**
-   * ITSI で **Configuration** -> **Correlation Searches** に移動します
+   * ITSIで **Configuration** -> **Correlation Searches** に移動します
    * **Create New Search** をクリックします
 
 2. **新しい検索を設定:**
@@ -39,7 +39,7 @@ weight: 1
 **アラート作成後:**
 
 * アラートが実行されるまで5〜10分待つ必要があります
-* アラートは ITSI の **Alerts and Episodes** ペインにリストされます。
+* アラートはITSIの **Alerts and Episodes** ペインにリストされます。
 
 ![show-entry](../images/alerts.png?classes=inline)
 

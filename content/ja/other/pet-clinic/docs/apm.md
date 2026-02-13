@@ -20,7 +20,7 @@ git clone https://github.com/spring-projects/spring-petclinic
 cd spring-petclinic
 ```
 
-PetClinic が使用する MySQL データベースを起動します:
+PetClinicが使用するMySQLデータベースを起動します:
 
 ```bash
 docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/biarms/mysql:5.7
@@ -64,7 +64,7 @@ java -javaagent:./splunk-otel-javaagent.jar \
 * `-Dotel.service.name=$(hostname).service` では、アプリケーションの名前を定義しています。サービスマップ上のアプリケーションの名前等に反映されます。
 * `-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.314` では、Environmentと、versionを定義しています。
     - `deployment.environment=$(hostname)` は、Splunk APM UIの上部「Environment」に反映されます。
-    - `version=0.314` はここでは、アプリケーションのバージョンを示しています。トレースをドリルダウンしたり、サービスマップの Breakdown の機能で分析したり、Tag Spotlightを開くと `version` 毎のパフォーマンス分析が使えます。
+    - `version=0.314` はここでは、アプリケーションのバージョンを示しています。トレースをドリルダウンしたり、サービスマップのBreakdownの機能で分析したり、Tag Spotlightを開くと `version` 毎のパフォーマンス分析が使えます。
 * `-Dsplunk.profiler.enabled=true` および `splunk.profiler.memory.enabled=true` では、CPUとメモリのプロファイリングを有効にしています。Splunk APM UIから、AlwaysOn Profilingを開いてみてください。
 * `-Dsplunk.metrics.enabled=true` では、メモリやスレッドなどJVMメトリクスの送信を有効にしています。Dashboardsから、APM java servicesを開いてみてください。
 

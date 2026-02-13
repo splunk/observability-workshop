@@ -9,7 +9,7 @@ hidden: false
 
 {{< button >}}+ Add Request{{< /button >}} をクリックして次のステップを追加します。ステップ名を **Search for Tracks named "Up around the bend"** とします。
 
-**Request** セクションを展開し、リクエストメソッドを **GET** に変更して、以下の URL を入力します:
+**Request** セクションを展開し、リクエストメソッドを **GET** に変更して、以下のURLを入力します:
 
 ``` text
 https://api.spotify.com/v1/search?q=Up%20around%20the%20bend&type=track&offset=0&limit=5
@@ -28,4 +28,4 @@ https://api.spotify.com/v1/search?q=Up%20around%20the%20bend&type=track&offset=0
 
 ![Add search payload](../../img/add-search-payload.png)
 
-{{< button style="blue" >}}< Return to test{{< /button >}} をクリックしてテスト設定ページに戻ります。次に {{< button style="blue" >}}Save{{< /button >}} をクリックして API テストを保存します。
+{{< button style="blue" >}}< Return to test{{< /button >}} をクリックしてテスト設定ページに戻ります。次に {{< button style="blue" >}}Save{{< /button >}} をクリックしてAPIテストを保存します。

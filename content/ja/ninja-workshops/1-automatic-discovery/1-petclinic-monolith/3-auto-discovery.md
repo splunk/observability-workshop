@@ -4,7 +4,7 @@ linkTitle: 3. 自動ディスカバリー
 weight: 3
 ---
 
-以下のコマンドでアプリケーションを起動できます。`mysql` プロファイルをアプリケーションに渡していることに注目してください。これにより、先ほど起動した MySQL データベースを使用するようアプリケーションに指示します。また、`otel.service.name` と `otel.resource.attributes` をインスタンス名を使用した論理名に設定しています。これらは UI でのフィルタリングにも使用されます：
+以下のコマンドでアプリケーションを起動できます。`mysql` プロファイルをアプリケーションに渡していることに注目してください。これにより、先ほど起動したMySQLデータベースを使用するようアプリケーションに指示します。また、`otel.service.name` と `otel.resource.attributes` をインスタンス名を使用した論理名に設定しています。これらはUIでのフィルタリングにも使用されます：
 
 ```bash
 java \
@@ -14,11 +14,11 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-`http://<IP_ADDRESS>:8083`（`<IP_ADDRESS>` を先ほど取得した IP アドレスに置き換えてください）にアクセスして、アプリケーションが実行されていることを確認できます。
+`http://<IP_ADDRESS>:8083`（`<IP_ADDRESS>` を先ほど取得したIPアドレスに置き換えてください）にアクセスして、アプリケーションが実行されていることを確認できます。
 
-Collector をインストールした際、**AlwaysOn Profiling** と **Metrics** を有効にするように設定しました。これにより、Collector はアプリケーションの CPU およびメモリプロファイルを自動的に生成し、Splunk Observability Cloud に送信します。
+Collectorをインストールした際、**AlwaysOn Profiling** と **Metrics** を有効にするように設定しました。これにより、CollectorはアプリケーションのCPUおよびメモリプロファイルを自動的に生成し、Splunk Observability Cloudに送信します。
 
-PetClinic アプリケーションを起動すると、Collector がアプリケーションを自動的に検出し、トレースとプロファイリングのために計装するのが確認できます。
+PetClinicアプリケーションを起動すると、Collectorがアプリケーションを自動的に検出し、トレースとプロファイリングのために計装するのが確認できます。
 
 {{% tab title="出力例" %}}
 
@@ -45,13 +45,13 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 
-Splunk APM UI にアクセスして、アプリケーションコンポーネント、トレース、プロファイリング、DB Query パフォーマンス、メトリクスを確認できます。左側のメニューから **APM** をクリックし、**Environment** ドロップダウンをクリックして、ご自身の環境（例：`<INSTANCE>-petclinic`、`<INSTANCE>` は先ほどメモした値に置き換えてください）を選択します。
+Splunk APM UIにアクセスして、アプリケーションコンポーネント、トレース、プロファイリング、DB Queryパフォーマンス、メトリクスを確認できます。左側のメニューから **APM** をクリックし、**Environment** ドロップダウンをクリックして、ご自身の環境（例：`<INSTANCE>-petclinic`、`<INSTANCE>` は先ほどメモした値に置き換えてください）を選択します。
 
 検証が完了したら、`Ctrl-c` を押してアプリケーションを停止できます。
 
 リソース属性は、報告されるすべてのスパンに追加できます。例えば `version=0.314` のように指定します。カンマ区切りのリソース属性リストも定義できます（例：`key1=val1,key2=val2`）。
 
-新しいリソース属性を使用して PetClinic を再度起動しましょう。実行コマンドにリソース属性を追加すると、Collector のインストール時に定義された内容が上書きされることに注意してください。新しいリソース属性 `version=0.314` を追加しましょう：
+新しいリソース属性を使用してPetClinicを再度起動しましょう。実行コマンドにリソース属性を追加すると、Collectorのインストール時に定義された内容が上書きされることに注意してください。新しいリソース属性 `version=0.314` を追加しましょう：
 
 ```bash
 java \
@@ -61,4 +61,4 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Splunk APM UI に戻り、最近のトレースをドリルダウンすると、スパン内に新しい `version` 属性が表示されます。
+Splunk APM UIに戻り、最近のトレースをドリルダウンすると、スパン内に新しい `version` 属性が表示されます。

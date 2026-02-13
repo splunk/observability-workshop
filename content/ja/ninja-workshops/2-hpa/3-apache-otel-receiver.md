@@ -6,13 +6,13 @@ weight: 3
 
 ## 1. PHP/Apache 用の OTel Receiver の確認
 
-YAML ファイル `~/workshop/k3s/otel-apache.yaml` を確認し、以下のコマンドで内容を検証します:
+YAMLファイル `~/workshop/k3s/otel-apache.yaml` を確認し、以下のコマンドで内容を検証します:
 
 ``` bash
 cat ~/workshop/k3s/otel-apache.yaml
 ```
 
-このファイルには、PHP/Apache デプロイメントを監視するための OpenTelemetry エージェントの設定が含まれています。
+このファイルには、PHP/Apacheデプロイメントを監視するためのOpenTelemetryエージェントの設定が含まれています。
 
 ```yaml
 agent:
@@ -28,13 +28,13 @@ agent:
 
 ## 2. OpenTelemetry 設定における観測ルール
 
-上記のファイルには、OTel `receiver_creator` を使用した Apache の観測ルールが含まれています。この Receiver は、観測されたエンドポイントが設定されたルールに一致するかどうかに基づいて、実行時に他の Receiver をインスタンス化できます。
+上記のファイルには、OTel `receiver_creator` を使用したApacheの観測ルールが含まれています。このReceiverは、観測されたエンドポイントが設定されたルールに一致するかどうかに基づいて、実行時に他のReceiverをインスタンス化できます。
 
-設定されたルールは、検出された各エンドポイントに対して評価されます。ルールが true と評価された場合、そのルールの Receiver は、一致したエンドポイントに対して設定どおりに開始されます。
+設定されたルールは、検出された各エンドポイントに対して評価されます。ルールがtrueと評価された場合、そのルールのReceiverは、一致したエンドポイントに対して設定どおりに開始されます。
 
-上記のファイルでは、OpenTelemetry エージェントに対して、名前が `apache` に一致し、ポート `80` が開いている Pod を探すように指示しています。見つかると、エージェントは設定された URL から Apache メトリクスを読み取る Apache Receiver を設定します。上記の YAML 内のサービス用の K8s DNS ベースの URL に注目してください。
+上記のファイルでは、OpenTelemetryエージェントに対して、名前が `apache` に一致し、ポート `80` が開いているPodを探すように指示しています。見つかると、エージェントは設定されたURLからApacheメトリクスを読み取るApache Receiverを設定します。上記のYAML内のサービス用のK8s DNSベースのURLに注目してください。
 
-Apache 設定を使用するには、以下のコマンドで既存の Splunk OpenTelemetry Collector Helm チャートをアップグレードして `otel-apache.yaml` ファイルを使用します:
+Apache設定を使用するには、以下のコマンドで既存のSplunk OpenTelemetry Collector Helmチャートをアップグレードして `otel-apache.yaml` ファイルを使用します:
 
 {{< tabs >}}
 {{% tab title="Helm Upgrade" %}}
@@ -76,30 +76,30 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 ## 3. Kubernetes ConfigMaps
 
-ConfigMap は、アプリケーションに注入できるキーと値のペアで構成される Kubernetes のオブジェクトです。ConfigMap を使用すると、設定を Pod から分離できます。
+ConfigMapは、アプリケーションに注入できるキーと値のペアで構成されるKubernetesのオブジェクトです。ConfigMapを使用すると、設定をPodから分離できます。
 
-ConfigMap を使用すると、設定データのハードコーディングを防ぐことができます。ConfigMap は、機密性のない暗号化されていない設定情報を保存および共有するのに便利です。
+ConfigMapを使用すると、設定データのハードコーディングを防ぐことができます。ConfigMapは、機密性のない暗号化されていない設定情報を保存および共有するのに便利です。
 
-OpenTelemetry Collector/エージェントは、ConfigMap を使用してエージェントと K8s Cluster Receiver の設定を保存します。変更後にエージェントの現在の設定を確認するには、以下のコマンドを実行します:
+OpenTelemetry Collector/エージェントは、ConfigMapを使用してエージェントとK8s Cluster Receiverの設定を保存します。変更後にエージェントの現在の設定を確認するには、以下のコマンドを実行します:
 
 ``` bash
 kubectl get cm
 ```
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-Collector で使用されている ConfigMap はいくつありますか？
+Collectorで使用されているConfigMapはいくつありますか？
 {{% /notice %}}
 
-Namespace から ConfigMap のリストを取得したら、`otel-agent` 用のものを選択し、以下のコマンドで表示します:
+NamespaceからConfigMapのリストを取得したら、`otel-agent` 用のものを選択し、以下のコマンドで表示します:
 
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -o yaml
 ```
 
 {{% notice title="注意" style="info" %}}
-オプション `-o yaml` は、ConfigMap の内容を読みやすい YAML 形式で出力します。
+オプション `-o yaml` は、ConfigMapの内容を読みやすいYAML形式で出力します。
 {{% /notice %}}
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-`otel-apache.yaml` の設定は、Collector エージェントの ConfigMap に表示されていますか？
+`otel-apache.yaml` の設定は、CollectorエージェントのConfigMapに表示されていますか？
 {{% /notice %}}

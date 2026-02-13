@@ -9,10 +9,10 @@ time: 15 minutes
 
 ワークショップのこの時点で、以下を正常に完了しました：
 
-- Linux ホストに Splunk distribution of OpenTelemetry コレクターをデプロイ
-- Splunk Observability Cloud にトレースとメトリクスを送信するよう設定
-- .NET アプリケーションをデプロイし、OpenTelemetry で計装
-- .NET アプリケーションを Docker 化し、o11y cloud にトレースが流れることを確認
+- LinuxホストにSplunk distribution of OpenTelemetryコレクターをデプロイ
+- Splunk Observability Cloudにトレースとメトリクスを送信するよう設定
+- .NETアプリケーションをデプロイし、OpenTelemetryで計装
+- .NETアプリケーションをDocker化し、o11y cloudにトレースが流れることを確認
 
 上記のステップを**完了していない**場合は、ワークショップの残りの部分に進む前に以下のコマンドを実行してください：
 
@@ -27,8 +27,8 @@ cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/works
 
 ## ワークショップパート 2 の紹介
 
-ワークショップの次の部分では、Kubernetes でアプリケーションを実行したいと思います。
-そのため、Kubernetes クラスターに Splunk distribution of OpenTelemetry コレクターを
+ワークショップの次の部分では、Kubernetesでアプリケーションを実行したいと思います。
+そのため、KubernetesクラスターにSplunk distribution of OpenTelemetryコレクターを
 デプロイする必要があります。
 
 まず、いくつかの重要な用語を定義しましょう。
@@ -41,38 +41,38 @@ _「Kubernetes は、宣言的な設定と自動化の両方を促進する、�
 
 Source: <https://kubernetes.io/docs/concepts/overview/>
 
-Dockerfile に小さな修正を加えた後、アプリケーション用に以前ビルドした Docker イメージを
-Kubernetes クラスターにデプロイします。
+Dockerfileに小さな修正を加えた後、アプリケーション用に以前ビルドしたDockerイメージを
+Kubernetesクラスターにデプロイします。
 
 #### Helm とは何ですか？
 
-Helm は Kubernetes 用のパッケージマネージャーです。
+HelmはKubernetes用のパッケージマネージャーです。
 
 _「最も複雑な Kubernetes アプリケーションだとしても、定義、インストール、アップグレード役立ちます」_
 
 #### Helm を使用したコレクターのインストール
 
 プロダクト内ウィザードではなくコマンドラインを使用して、コレクターをインストールするための独自の
-`helm`コマンドを作成しましょう。
+`helm` コマンドを作成しましょう。
 
-まず、helm リポジトリを追加する必要があります：ます。」
+まず、helmリポジトリを追加する必要があります：ます。」
 
 Source: <https://helm.sh/>
 
-Helm を使用して K8s クラスターに OpenTelemetry コレクターをデプロイします。
+Helmを使用してK8sクラスターにOpenTelemetryコレクターをデプロイします。
 
 #### Helm の利点
 
 - 複雑性の管理
-  - 数十のマニフェストファイルではなく、単一の values.yaml ファイルを扱う
+  - 数十のマニフェストファイルではなく、単一のvalues.yamlファイルを扱う
 - 簡単な更新
   - インプレースアップグレード
 - ロールバックサポート
-  - helm rollback を使用してリリースの古いバージョンにロールバック
+  - helm rollbackを使用してリリースの古いバージョンにロールバック
 
 ## ホストコレクターのアンインストール
 
-先に進む前に、Linux ホストに先ほどインストールしたコレクターを削除しましょう：
+先に進む前に、Linuxホストに先ほどインストールしたコレクターを削除しましょう：
 \
 
 ```bash
@@ -82,9 +82,9 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 
 ## Helm を利用して Collector をインストールする
 
-ウィザードの代わりに、コマンドラインを利用して collector をインストールします。
+ウィザードの代わりに、コマンドラインを利用してcollectorをインストールします。
 
-まず初めに、Helm リポジトリに登録する必要があります
+まず初めに、Helmリポジトリに登録する必要があります
 
 ```bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -96,7 +96,7 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 helm repo update
 ```
 
-helm チャートのデプロイメントを設定するために、`/home/splunk`ディレクトリに`values.yaml`という名前の新しいファイルを作成しましょう：
+helmチャートのデプロイメントを設定するために、`/home/splunk` ディレクトリに `values.yaml` という名前の新しいファイルを作成しましょう：
 
 ```bash
 # swith to the /home/splunk dir
@@ -138,7 +138,7 @@ agent:
           processes: null
 ```
 
-> vi での変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
+> vi での変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
 次のコマンドを使用してコレクターをインストールできます：
 
@@ -200,7 +200,7 @@ splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0
 
 ## O11y Cloud で K8s クラスターを確認
 
-Splunk Observability Cloud で、**Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**にナビゲートし、
+Splunk Observability Cloudで、**Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**にナビゲートし、
 クラスター名（`$INSTANCE-cluster`）を検索します：
 
 ![Kubernetes node](../images/k8snode.png)

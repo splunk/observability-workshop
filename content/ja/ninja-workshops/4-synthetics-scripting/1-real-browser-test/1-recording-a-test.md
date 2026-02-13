@@ -5,10 +5,10 @@ weight: 1
 
 ## 開始 URL を開く
 
-ワークショップの開始 URL を Chrome で開きます。以下の適切なリンクをクリックして、新しいタブでサイトを開きます。
+ワークショップの開始URLをChromeで開きます。以下の適切なリンクをクリックして、新しいタブでサイトを開きます。
 
 {{% notice note %}}
-ワークショップの開始 URL は **EMEA** と **AMER/APAC** で異なります。お住まいの地域に応じて正しい URL を使用してください。
+ワークショップの開始URLは **EMEA** と **AMER/APAC** で異なります。お住まいの地域に応じて正しいURLを使用してください。
 
 {{% tabs %}}
 {{% tab title="EMEA Workshop URL" %}}
@@ -26,17 +26,17 @@ weight: 1
 
 ## Chrome DevTools Recorder を開く
 
-次に、（上記で開いた新しいタブで）Developer Tools を開きます。Windows では `Ctrl + Shift + I`、Mac では `Cmd + Option + I` を押し、トップレベルメニューまたは **More tools** フライアウトメニューから **Recorder** を選択します。
+次に、（上記で開いた新しいタブで）Developer Toolsを開きます。Windowsでは `Ctrl + Shift + I`、Macでは `Cmd + Option + I` を押し、トップレベルメニューまたは **More tools** フライアウトメニューから **Recorder** を選択します。
 
 ![Open Recorder](../../img/open-recorder.png)
 
 {{% notice title="注意" style="info" %}}
-サイトの要素はビューポートの幅によって変わる場合があります。記録する前に、作成するテストの種類（デスクトップ、タブレット、モバイル）に応じてブラウザウィンドウを適切な幅に設定してください。必要に応じて、DevTools の「dock side」を別ウィンドウとしてポップアウトさせると便利です。
+サイトの要素はビューポートの幅によって変わる場合があります。記録する前に、作成するテストの種類（デスクトップ、タブレット、モバイル）に応じてブラウザウィンドウを適切な幅に設定してください。必要に応じて、DevToolsの「dock side」を別ウィンドウとしてポップアウトさせると便利です。
 {{% /notice %}}
 
 ## 新しい記録を作成
 
-DevTools ウィンドウで Recorder パネルを開いた状態で、{{% button style="blue" %}}Create a new recording{{% /button %}} ボタンをクリックして開始します。
+DevToolsウィンドウでRecorderパネルを開いた状態で、{{% button style="blue" %}}Create a new recording{{% /button %}} ボタンをクリックして開始します。
 
 ![Recorder](../../img/recorder.png)
 
@@ -49,7 +49,7 @@ DevTools ウィンドウで Recorder パネルを開いた状態で、{{% button
 - **Vintage Camera Lens** をクリック
 - **Add to Cart** をクリック
 - **Place Order** をクリック
-- Recorder パネルの **End recording** をクリック
+- Recorderパネルの **End recording** をクリック
 
 ![End Recording](../../img/end-recording.png)
 
@@ -65,11 +65,11 @@ DevTools ウィンドウで Recorder パネルを開いた状態で、{{% button
 
 ![Save JSON](../../img/save-json.png)
 
-**おめでとうございます！** Chrome DevTools Recorder を使用した記録の作成に成功しました。次に、この記録を使用して Splunk Synthetic Monitoring で Real Browser Test を作成します。
+**おめでとうございます！** Chrome DevTools Recorderを使用した記録の作成に成功しました。次に、この記録を使用してSplunk Synthetic MonitoringでReal Browser Testを作成します。
 
 ---
 
-{{% expand "JSON ファイルを表示するにはここをクリック" %}}
+{{% expand "JSONファイルを表示するにはここをクリック" %}}
 
 ```json
 {

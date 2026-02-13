@@ -19,7 +19,7 @@ Dependency mapで推論されたデータベースサービス `mysql:petclinic`
 ![DB-query full](../../images/db-query-full.png)
 
 {{% notice title="Database Query Normalization" style="info" %}}
-デフォルトでは、Splunk APMインストルメンテーションはデータベースクエリをサニタイズして、`db.statements`からシークレットや個人を特定できる情報（PII）などの機密データを削除またはマスクします。データベースクエリの正規化をオフにする方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/monitor-database-query-performance/troubleshoot-database-query-performance#turn-off-database-query-normalization)で確認できます。
+デフォルトでは、Splunk APMインストルメンテーションはデータベースクエリをサニタイズして、`db.statements` からシークレットや個人を特定できる情報（PII）などの機密データを削除またはマスクします。データベースクエリの正規化をオフにする方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/monitor-database-query-performance/troubleshoot-database-query-performance#turn-off-database-query-normalization)で確認できます。
 {{% /notice %}}
 
 この画面には、Splunk Observability Cloudに送信されたTraces & Spansに基づいて、アプリケーションからデータベースに対して実行されたすべてのDatabase queries **(1)**が表示されます。時間ブロック間で比較したり、Total Time、P90 Latency & Requests **(2)**でソートしたりできることに注意してください。

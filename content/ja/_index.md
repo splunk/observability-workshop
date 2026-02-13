@@ -9,7 +9,7 @@ isCJKLanguage: true
 
 ## Splunk Observabilityワークショップへようこそ
 
-Splunk Observability Cloud の監視、分析、対応ツールを使用して、アプリケーションとインフラストラクチャをリアルタイムで把握することができます。
+Splunk Observability Cloudの監視、分析、対応ツールを使用して、アプリケーションとインフラストラクチャをリアルタイムで把握することができます。
 
 このワークショップでは、メトリクス、トレース、ログを取り込み、監視し、可視化し、分析するためのクラス最高のオブザーバビリティ（可観測性）プラットフォームについて説明します。
 
@@ -20,7 +20,7 @@ Splunk Observability Cloud の監視、分析、対応ツールを使用して�
 {{% /notice %}}
 
 {{% notice title="GitHub" color="#4078c0" icon="fab fa-github" %}}
-このドキュメントには、issue や pull request で [貢献](https://github.com/splunk/observability-workshop) することができます。より良いワークショップにするために、是非ご協力ください。
+このドキュメントには、issueやpull requestで [貢献](https://github.com/splunk/observability-workshop) することができます。より良いワークショップにするために、是非ご協力ください。
 {{% /notice %}}
 
 {{% notice title="Twitter" color="#1DA1F2" icon="fab fa-twitter" %}}

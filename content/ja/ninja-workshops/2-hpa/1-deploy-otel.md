@@ -6,7 +6,7 @@ weight: 1
 
 ## 1. EC2 インスタンスへの接続
 
-Mac、Linux、または Windows デバイスから SSH を使用してワークショップインスタンスに接続できます。インストラクターから提供されたシートへのリンクを開いてください。このシートには、ワークショップインスタンスの IP アドレスとパスワードが記載されています。
+Mac、Linux、またはWindowsデバイスからSSHを使用してワークショップインスタンスに接続できます。インストラクターから提供されたシートへのリンクを開いてください。このシートには、ワークショップインスタンスのIPアドレスとパスワードが記載されています。
 
 {{% notice style="info" %}}
 ワークショップインスタンスには、このワークショップ用の正しい **Access Token** と **Realm** が事前設定されています。これらを設定する必要はありません。
@@ -14,7 +14,7 @@ Mac、Linux、または Windows デバイスから SSH を使用してワーク�
 
 ## 2. Helm を使用した Splunk OTel のインストール
 
-Splunk Helm チャートを使用して OpenTelemetry Collector をインストールします。まず、Splunk Helm チャートリポジトリを追加して更新します:
+Splunk Helmチャートを使用してOpenTelemetry Collectorをインストールします。まず、Splunk Helmチャートリポジトリを追加して更新します:
 
 {{< tabs >}}
 {{% tab title="helm repo add" %}}
@@ -40,7 +40,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-以下のコマンドで OpenTelemetry Collector Helm をインストールします。**編集しないでください**:
+以下のコマンドでOpenTelemetry Collector Helmをインストールします。**編集しないでください**:
 
 {{< tabs >}}
 {{% tab title="helm install" %}}
@@ -62,7 +62,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## 3. デプロイの確認
 
-`kubectl get pods` を実行してデプロイの進行状況を監視できます。通常、約30秒後に新しい Pod が起動して実行中であることが報告されます。
+`kubectl get pods` を実行してデプロイの進行状況を監視できます。通常、約30秒後に新しいPodが起動して実行中であることが報告されます。
 
 続行する前に、ステータスが **Running** と報告されていることを確認してください。
 
@@ -99,12 +99,12 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-または、インストール済みの `k9s` ターミナル UI を使用します。
+または、インストール済みの `k9s` ターミナルUIを使用します。
 
 ![k9s](../images/k9s.png)
 
 {{% notice title="失敗したインストールの削除" style="warning" %}}
-Splunk OpenTelemetry Collector のインストールでエラーが発生した場合は、以下のコマンドを使用してインストールを削除し、やり直すことができます:
+Splunk OpenTelemetry Collectorのインストールでエラーが発生した場合は、以下のコマンドを使用してインストールを削除し、やり直すことができます:
 
 ``` sh
 helm delete splunk-otel-collector

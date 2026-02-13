@@ -6,11 +6,11 @@ time: 10 minutes
 archetype: chapter
 ---
 
-アプリケーションに Real User Monitoring (RUM) インストルメンテーションを有効にするには、コードベースに Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) スニペットを追加する必要があります。
+アプリケーションにReal User Monitoring (RUM) インストルメンテーションを有効にするには、コードベースにOpen Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) スニペットを追加する必要があります。
 
-Spring PetClinic アプリケーションは、アプリケーションのすべてのビューで再利用される単一の [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTML ページを使用しています。これは、Splunk RUM インストルメンテーションライブラリを挿入するのに最適な場所です。すべてのページで自動的に読み込まれるためです。
+Spring PetClinicアプリケーションは、アプリケーションのすべてのビューで再利用される単一の [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTMLページを使用しています。これは、Splunk RUMインストルメンテーションライブラリを挿入するのに最適な場所です。すべてのページで自動的に読み込まれるためです。
 
-`api-gateway` サービスはすでにインストルメンテーションを実行しており、RUM トレースを Splunk Observability Cloud に送信しています。次のセクションでデータを確認します。
+`api-gateway` サービスはすでにインストルメンテーションを実行しており、RUMトレースをSplunk Observability Cloudに送信しています。次のセクションでデータを確認します。
 
 スニペットを確認したい場合は、ブラウザでページを右クリックして **View Page Source** を選択することで、ページソースを表示できます。
 

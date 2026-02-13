@@ -12,7 +12,7 @@ hidden: false
 
 このワークショップでは、以下の内容をハンズオン形式で体験します：
 
-* **OpenTelemetry Collector** をデプロイし、Collector の設定をカスタマイズする
+* **OpenTelemetry Collector** をデプロイし、Collectorの設定をカスタマイズする
 * アプリケーションをデプロイし、**OpenTelemetry** で計装する
 * **OpenTelemetry SDK** を使用してタグがどのようにキャプチャされるかを確認する
 * **Troubleshooting MetricSet** を作成する

@@ -6,7 +6,7 @@ weight: 2
 
 # Observability Cloud ベースのサービスから始める
 
-1. **Services にアクセス:** ITSI で **Configuration** をクリックし、**Services** をクリックします。
+1. **Services にアクセス:** ITSIで **Configuration** をクリックし、**Services** をクリックします。
 
 2. **新しいサービスを作成: PaymentService2:** **Create New Service** をクリックします。
 
@@ -17,7 +17,7 @@ weight: 2
 4. **テンプレートを選択:** **Link service to a service template** を選択し、テンプレートのドロップダウンから "Splunk APM Business Workflow KPIs" を検索します。**Create** をクリックして新しいサービスを保存します。
 
 5. **エンティティの割り当て:**
-    * ページが読み込まれ、新しいサービスが表示され、Entities ページが表示されます。このデモでは、デフォルトで *paymentservice:grpc.hipstershop.PaymentService/Charge* エンティティが選択されます。実際の状況では、ワークフローをエンティティ名に手動でマッチさせる必要があります。
+    * ページが読み込まれ、新しいサービスが表示され、Entitiesページが表示されます。このデモでは、デフォルトで *paymentservice:grpc.hipstershop.PaymentService/Charge* エンティティが選択されます。実際の状況では、ワークフローをエンティティ名に手動でマッチさせる必要があります。
     * **Direct Entity Selection (利用可能な場合):** `sf_workflow="paymentservice:grpc.hipstershop.PaymentService/Charge"` を使用してエンティティを検索し、選択します。
 
 6. **サービスを保存 (PaymentService2):** **Save** をクリックして "PaymentService2" を作成します。
@@ -34,7 +34,7 @@ weight: 2
 
 4. **依存関係を追加:** 依存サービスを追加するオプションがあるはずです。"PaymentService2" を検索します。
 
-5. **KPI を選択:** PaymentService2 の ServiceHealthScore の横にあるチェックボックスをオンにします。
+5. **KPI を選択:** PaymentService2のServiceHealthScoreの横にあるチェックボックスをオンにします。
 
 6. **変更を保存:** "Online-Boutique-US" サービスへの変更を保存します。
 

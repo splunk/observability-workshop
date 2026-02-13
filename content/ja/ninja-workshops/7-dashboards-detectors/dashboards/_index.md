@@ -17,12 +17,12 @@ time: 10 minutes
 
 ## 2. ダッシュボードへのアクセス
 
-まず、Splunk Observability Suite でダッシュボードを見つけましょう。
+まず、Splunk Observability Suiteでダッシュボードを見つけましょう。
 
 左側のナビゲーションメニューで **Dashboards (1)** ボタンをクリックします。メニューが折りたたまれている場合は、画面左上のハンバーガーアイコンをクリックして展開できます。
 
-これにより、メインのダッシュボードビューに移動し、Splunk Observability によって提供される事前構築されたダッシュボードを含むすべての利用可能なダッシュボードが表示されます。
+これにより、メインのダッシュボードビューに移動し、Splunk Observabilityによって提供される事前構築されたダッシュボードを含むすべての利用可能なダッシュボードが表示されます。
 
-組織が Cloud API 統合または Splunk OpenTelemetry Agent を通じてすでにデータを取り込んでいる場合は、それらのサービスに関連する追加のダッシュボードも表示されることがあります。
+組織がCloud API統合またはSplunk OpenTelemetry Agentを通じてすでにデータを取り込んでいる場合は、それらのサービスに関連する追加のダッシュボードも表示されることがあります。
 
 ![Sample Data](../images/sample-data.png)
