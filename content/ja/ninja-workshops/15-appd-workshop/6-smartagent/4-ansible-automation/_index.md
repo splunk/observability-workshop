@@ -40,7 +40,7 @@ graph TD
 
 ## 前提条件
 
-開始する前に、以下を確認してください：
+開始する前に、以下を確認してください
 
 * SSH経由でターゲットホストにアクセスできること。
 * ターゲットホストでsudo権限を持っていること。
@@ -51,19 +51,19 @@ graph TD
 
 まず、コントロールノードにAnsibleをインストールします。
 
-1. **Homebrew をインストール** します（未インストールの場合）：
+1. **Homebrew をインストール** します（未インストールの場合）
 
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-2. **Ansible をインストール** します：
+2. **Ansible をインストール** します
 
     ```bash
     brew install ansible
     ```
 
-3. **インストールを確認** します：
+3. **インストールを確認** します
 
     ```bash
     ansible --version

@@ -7,13 +7,13 @@ Smart Agentのリモートインストールには、2つの主要な構成フ�
 
 ## 構成ファイルの概要
 
-両方の構成ファイルは、Smart Agentのインストールディレクトリに配置する必要があります：
+両方の構成ファイルは、Smart Agentのインストールディレクトリに配置する必要があります
 
 ```bash
 cd /home/ubuntu/appdsm
 ```
 
-構成する2つのファイル：
+構成する2つのファイル
 
 - `config.ini` - すべてのリモートホストにデプロイされるSmart Agent構成
 - `remote.yaml` - リモートホストとSSH接続設定
@@ -26,7 +26,7 @@ cd /home/ubuntu/appdsm
 
 ### Controller 構成
 
-AppDynamics Controller接続を構成します：
+AppDynamics Controller接続を構成します
 
 ```ini
 ControllerURL    = fso-tme.saas.appdynamics.com
@@ -48,7 +48,7 @@ EnableSSL        = true
 
 ### Common Configuration
 
-エージェントのIDとポーリング動作を定義します：
+エージェントのIDとポーリング動作を定義します
 
 ```ini
 [CommonConfig]
@@ -67,7 +67,7 @@ ServiceName          = my-application
 
 ### Telemetry 設定
 
-ログとプロファイリングを構成します：
+ログとプロファイリングを構成します
 
 ```ini
 [Telemetry]
@@ -84,7 +84,7 @@ Profiling = false
 
 ### TLS クライアント設定
 
-プロキシとTLS設定を構成します：
+プロキシとTLS設定を構成します
 
 ```ini
 [TLSClientSetting]
@@ -103,7 +103,7 @@ AgentNoProxy    =
 
 ### Auto Discovery
 
-自動アプリケーション検出を構成します：
+自動アプリケーション検出を構成します
 
 ```ini
 [AutoDiscovery]
@@ -126,7 +126,7 @@ AutoInstall               = false
 
 ### Task Configuration
 
-ネイティブ計装を構成します：
+ネイティブ計装を構成します
 
 ```ini
 [TaskConfig]
@@ -228,7 +228,7 @@ hosts:
 
 ### ホスト定義
 
-各ホストエントリには以下が必要です：
+各ホストエントリには以下が必要です
 
 **host：** リモートマシンのIPアドレスまたはホスト名
 
@@ -251,7 +251,7 @@ hosts:
 
 ### ホストの追加
 
-追加のリモートホストを追加するには、`hosts` リストに追加します：
+追加のリモートホストを追加するには、`hosts` リストに追加します
 
 ```yaml
 hosts:
@@ -271,7 +271,7 @@ hosts:
 
 ## 構成の確認
 
-インストールを進める前に、構成ファイルを確認してください：
+インストールを進める前に、構成ファイルを確認してください
 
 ### remote.yaml の確認
 
@@ -279,7 +279,7 @@ hosts:
 cat /home/ubuntu/appdsm/remote.yaml
 ```
 
-以下を確認します：
+以下を確認します
 
 - すべてのホストIPアドレスが正しいこと
 - SSHキーパスが有効であること
@@ -291,7 +291,7 @@ cat /home/ubuntu/appdsm/remote.yaml
 cat /home/ubuntu/appdsm/config.ini
 ```
 
-以下を確認します：
+以下を確認します
 
 - Controller URLとアカウント情報が正しいこと
 - ログファイルパスが有効であること
@@ -299,7 +299,7 @@ cat /home/ubuntu/appdsm/config.ini
 
 ### YAML 構文の検証
 
-YAMLファイルが正しくフォーマットされていることを確認します：
+YAMLファイルが正しくフォーマットされていることを確認します
 
 ```bash
 python3 -c "import yaml; yaml.safe_load(open('/home/ubuntu/appdsm/remote.yaml'))"

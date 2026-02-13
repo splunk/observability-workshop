@@ -6,7 +6,7 @@ time: 10 minutes
 
 ## ステップ2: ファイルとディレクトリ構成を準備する
 
-Ansibleデプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります：
+Ansibleデプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります
 
 ```text
 .
@@ -76,7 +76,7 @@ smart_agent_package_redhat: 'appdsmartagent_64_linux_24.6.0.2143.rpm'  # or the 
 
 ### 3. プレイブック（`smartagent.yaml`）
 
-このプレイブックは、Cisco AppDynamics Distribution of OpenTelemetry Collectorのデプロイをオーケストレーションします。タスクの概要は以下のとおりです：
+このプレイブックは、Cisco AppDynamics Distribution of OpenTelemetry Collectorのデプロイをオーケストレーションします。タスクの概要は以下のとおりです
 
 1. **前提パッケージ**: 必要なパッケージをインストールします（RedHatの場合は `yum-utils`、Debianの場合は `curl`/`apt-transport-https`）。
 2. **ディレクトリのセットアップ**: `/opt/appdynamics/appdsmartagent` ディレクトリが存在することを確認します。

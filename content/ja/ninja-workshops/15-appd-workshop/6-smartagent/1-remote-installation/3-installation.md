@@ -7,7 +7,7 @@ weight: 3
 
 ## インストールプロセスの概要
 
-インストールプロセスは以下の手順で構成されます:
+インストールプロセスは以下の手順で構成されます
 
 1. **接続**: 定義されたすべてのホストへのSSH接続を確立します
 2. **転送**: Smart Agentのバイナリと設定をリモートホストにコピーします
@@ -17,7 +17,7 @@ weight: 3
 
 ## ステップ1: インストールディレクトリに移動
 
-Smart Agentのインストールディレクトリに移動します:
+Smart Agentのインストールディレクトリに移動します
 
 ```bash
 cd /home/ubuntu/appdsm
@@ -25,7 +25,7 @@ cd /home/ubuntu/appdsm
 
 ## ステップ2: 設定ファイルの確認
 
-インストールを開始する前に、設定ファイルが正しく設定されていることを確認します:
+インストールを開始する前に、設定ファイルが正しく設定されていることを確認します
 
 ### リモートホスト設定の確認
 
@@ -45,7 +45,7 @@ cat config.ini
 
 ## ステップ3: リモートホストで Smart Agent を起動
 
-以下のコマンドを実行して、`remote.yaml` で定義されたすべてのリモートホストでSmart Agentを起動します:
+以下のコマンドを実行して、`remote.yaml` で定義されたすべてのリモートホストでSmart Agentを起動します
 
 ```bash
 sudo ./smartagentctl start --remote --verbose
@@ -65,7 +65,7 @@ sudo ./smartagentctl start --remote --verbose
 
 ## ステップ4: インストールの監視
 
-`--verbose` フラグにより、以下の詳細な出力が提供されます:
+`--verbose` フラグにより、以下の詳細な出力が提供されます
 
 - SSH接続ステータス
 - ファイル転送の進捗
@@ -75,7 +75,7 @@ sudo ./smartagentctl start --remote --verbose
 
 ### 期待される出力
 
-以下のような出力が表示されます:
+以下のような出力が表示されます
 
 ```text
 Starting Smart Agent deployment to remote hosts...
@@ -96,7 +96,7 @@ Connecting to 172.31.1.48:22...
 
 ### リモートでのステータス確認
 
-statusコマンドを使用してすべてのリモートホストを確認します:
+statusコマンドを使用してすべてのリモートホストを確認します
 
 ```bash
 sudo ./smartagentctl status --remote --verbose
@@ -106,7 +106,7 @@ sudo ./smartagentctl status --remote --verbose
 
 ### コントロールノードのログ確認
 
-コントロールノードのログを確認します:
+コントロールノードのログを確認します
 
 ```bash
 tail -f /home/ubuntu/appdsm/log.log
@@ -114,7 +114,7 @@ tail -f /home/ubuntu/appdsm/log.log
 
 ### リモートホストにSSHで接続して確認
 
-リモートホストにSSHで接続して直接確認することもできます:
+リモートホストにSSHで接続して直接確認することもできます
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -126,7 +126,7 @@ ps aux | grep smartagent
 
 ### 起動せずにインストールのみ実行
 
-Smart Agentを起動せずにインストールのみ行います:
+Smart Agentを起動せずにインストールのみ行います
 
 ```bash
 sudo ./smartagentctl install --remote --verbose
@@ -136,7 +136,7 @@ sudo ./smartagentctl install --remote --verbose
 
 ### Smart Agent の停止
 
-すべてのリモートホストでSmart Agentを停止します:
+すべてのリモートホストでSmart Agentを停止します
 
 ```bash
 sudo ./smartagentctl stop --remote --verbose
@@ -144,13 +144,13 @@ sudo ./smartagentctl stop --remote --verbose
 
 ### システムサービスとしてインストール
 
-Smart Agentをsystemdサービスとしてインストールします（本番環境で推奨）:
+Smart Agentをsystemdサービスとしてインストールします（本番環境で推奨）
 
 ```bash
 sudo ./smartagentctl start --remote --verbose --service
 ```
 
-サービスとしてインストールした場合:
+サービスとしてインストールした場合
 
 - システム起動時にSmart Agentが自動的に起動します
 - `systemctl` コマンドで管理できます
@@ -158,7 +158,7 @@ sudo ./smartagentctl start --remote --verbose --service
 
 ### Smart Agent のアンインストール
 
-リモートホストからSmart Agentを完全に削除します:
+リモートホストからSmart Agentを完全に削除します
 
 ```bash
 sudo ./smartagentctl uninstall --remote --verbose
@@ -170,7 +170,7 @@ uninstallコマンドはリモートホストからすべてのSmart Agentファ
 
 ## AppDynamics Controller での確認
 
-リモートホストでSmart Agentを起動した後:
+リモートホストでSmart Agentを起動した後
 
 1. **AppDynamics Controller にログイン**: コントローラーURLに移動します
 2. **Servers に移動**: Controller UIのServersセクションを確認します
@@ -185,7 +185,7 @@ uninstallコマンドはリモートホストからすべてのSmart Agentファ
 
 ## ログファイルの場所
 
-ログはコントロールノードとリモートホストの両方に書き込まれます:
+ログはコントロールノードとリモートホストの両方に書き込まれます
 
 | 場所                   | パス                                          | 説明                           |
 |------------------------|-----------------------------------------------|--------------------------------|
@@ -194,13 +194,13 @@ uninstallコマンドはリモートホストからすべてのSmart Agentファ
 
 ## 同時実行数について
 
-`remote.yaml` の `max_concurrency` 設定は並列実行を制御します:
+`remote.yaml` の `max_concurrency` 設定は並列実行を制御します
 
 - **低い値（1-2）**: 逐次処理、低速だが安全
 - **デフォルト（4）**: ほとんどの環境に適したバランス
 - **高い値（8以上）**: 多数のホストへの高速デプロイ、より多くのリソースが必要
 
-例: 12台のホストで `max_concurrency: 4` の場合:
+例: 12台のホストで `max_concurrency: 4` の場合
 
 - 第1バッチ: ホスト1-4を同時に処理
 - 第2バッチ: ホスト5-8を同時に処理
@@ -208,7 +208,7 @@ uninstallコマンドはリモートホストからすべてのSmart Agentファ
 
 ## 各リモートホストでの処理内容
 
-startコマンドを実行すると、各リモートホストで以下の処理が行われます:
+startコマンドを実行すると、各リモートホストで以下の処理が行われます
 
 1. **ディレクトリの作成**: `/opt/appdynamics/appdsmartagent/` を作成します
 2. **ファイル転送**: `smartagent` バイナリ、`config.ini`、ライブラリをコピーします
@@ -218,7 +218,7 @@ startコマンドを実行すると、各リモートホストで以下の処理
 
 ## 次のステップ
 
-Smart Agentのインストールと起動が正常に完了した後:
+Smart Agentのインストールと起動が正常に完了した後
 
 1. AppDynamics Controller UIにエージェントが表示されることを確認します
 2. Metricが収集されていることを確認します

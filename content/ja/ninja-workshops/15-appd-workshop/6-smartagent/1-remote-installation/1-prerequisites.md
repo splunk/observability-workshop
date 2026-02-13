@@ -3,7 +3,7 @@ title: 1. 前提条件
 weight: 1
 ---
 
-リモートホストにSmart Agentをインストールする前に、以下の前提条件が満たされていることを確認してください：
+リモートホストにSmart Agentをインストールする前に、以下の前提条件が満たされていることを確認してください
 
 ## 必要なアクセス
 
@@ -14,13 +14,13 @@ weight: 1
 
 ## ディレクトリ構造
 
-Smart Agentのインストールディレクトリは、Control Nodeに設定されている必要があります：
+Smart Agentのインストールディレクトリは、Control Nodeに設定されている必要があります
 
 ```bash
 cd /home/ubuntu/appdsm
 ```
 
-ディレクトリには以下が含まれます：
+ディレクトリには以下が含まれます
 
 - `smartagentctl` - SmartAgentを管理するためのコマンドラインユーティリティ
 - `smartagent` - SmartAgentバイナリ
@@ -31,7 +31,7 @@ cd /home/ubuntu/appdsm
 
 ## AppDynamics アカウント情報
 
-AppDynamicsアカウントから以下の情報が必要です：
+AppDynamicsアカウントから以下の情報が必要です
 
 - **Controller URL**：AppDynamics SaaSコントローラーエンドポイント（例：`fso-tme.saas.appdynamics.com`）
 - **Account Name**：AppDynamicsアカウント名
@@ -40,7 +40,7 @@ AppDynamicsアカウントから以下の情報が必要です：
 
 ## ターゲットホストの要件
 
-リモートホストは以下の要件を満たす必要があります：
+リモートホストは以下の要件を満たす必要があります
 
 - **オペレーティングシステム**：Ubuntu/Linuxベースのシステム
 - **SSH サーバー**：SSHデーモンが実行中で接続を受け入れている状態
@@ -50,7 +50,7 @@ AppDynamicsアカウントから以下の情報が必要です：
 
 ## セキュリティに関する考慮事項
 
-続行する前に、以下のセキュリティベストプラクティスを確認してください：
+続行する前に、以下のセキュリティベストプラクティスを確認してください
 
 1. **SSH キー**：強力なSSHキーを使用（RSA 4096ビットまたはED25519）
 2. **アクセスキー**：AccountAccessKeyを安全に保管
@@ -62,7 +62,7 @@ AppDynamicsアカウントから以下の情報が必要です：
 
 ### SSH 接続の確認
 
-リモートホストへのSSH接続をテストします：
+リモートホストへのSSH接続をテストします
 
 ```bash
 ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@<remote-host-ip>
@@ -70,7 +70,7 @@ ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@<remote-host-ip>
 
 ### SSH キーのパーミッションの確認
 
-SSHキーに適切なパーミッションがあることを確認します：
+SSHキーに適切なパーミッションがあることを確認します
 
 ```bash
 chmod 600 /home/ubuntu/.ssh/id_rsa
@@ -78,7 +78,7 @@ chmod 600 /home/ubuntu/.ssh/id_rsa
 
 ### ネットワーク接続の確認
 
-リモートホストが相互に、およびインターネットに到達できることを確認します：
+リモートホストが相互に、およびインターネットに到達できることを確認します
 
 ```bash
 ping <remote-host-ip>
@@ -86,7 +86,7 @@ ping <remote-host-ip>
 
 ### Sudo アクセスの確認
 
-sudo権限があることを確認します：
+sudo権限があることを確認します
 
 ```bash
 sudo -v
