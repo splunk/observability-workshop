@@ -8,6 +8,8 @@ hooks:
       hooks:
         - type: command
           command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$"; then npx markdownlint-cli --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
+        - type: command
+          command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$" && [ -f "$CLAUDE_PROJECT_DIR/.textlintrc" ]; then npx textlint -c "$CLAUDE_PROJECT_DIR/.textlintrc" --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
 ---
 
 # Splunk Workshop 日本語翻訳スキル
@@ -86,6 +88,7 @@ GitHub Actions からの自動実行時:
 - [ ] 用語が一貫している
 - [ ] 太字マークアップが正しく表示される
 - [ ] Markdownlint, Prettier などのフォーマッターを実行した
+- [ ] textlint (ja-spacing) を実行した
 
 ## よくある翻訳パターン
 

@@ -2,7 +2,9 @@
   "skills": {
     "project": [
       ".claude/skills/splunk-workshop-ja-translator",
-      "Bash(npx markdownlint-cli:*)"
+      "Bash(npx markdownlint-cli:*)",
+      "Bash(npx textlint:*)",
+      "Bash(npm install:*)"
     ]
   },
   "hooks": {

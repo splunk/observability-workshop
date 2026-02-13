@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "textlint": "^14",
+    "textlint-rule-preset-ja-spacing": "^2"
+  }
+}
