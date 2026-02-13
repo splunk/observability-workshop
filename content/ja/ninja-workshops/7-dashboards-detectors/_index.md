@@ -7,11 +7,11 @@ authors: ["Pieter Hagen"]
 time: 45 minutes
 draft: false
 ---
-Splunk Observability Cloud の **Dashboards** に関するワークショップへようこそ。このセッションでは、洞察に満ちた可視化を構築するためのハンズオン体験を提供します。
+Splunk Observability Cloudの **Dashboards** に関するワークショップへようこそ。このセッションでは、洞察に満ちた可視化を構築するためのハンズオン体験を提供します。
 
 <!-- Splunk Observability Cloud の **Dashboards and Detectors** に関するワークショップへようこそ。このセッションでは、洞察に満ちた可視化を構築し、組み込み機能を使用したプロアクティブな監視を設定するためのハンズオン体験を提供します。 -->
 
-Splunk Observability Suite で利用可能な既存のデモデータを使用して作業します。アクセス可能な **trial** または **production** の Splunk Observability 組織を使用してフォローできます。
+Splunk Observability Suiteで利用可能な既存のデモデータを使用して作業します。アクセス可能な **trial** または **production** のSplunk Observability組織を使用してフォローできます。
 
 ### 学習内容
 
@@ -24,7 +24,7 @@ Splunk Observability Suite で利用可能な既存のデモデータを使用�
 * フィルターの適用と分析関数の使用
 * 数式の構築とカスタマイズ
 * 再利用のためのダッシュボードへのチャートの保存
-* 高度なチャート作成のための SignalFlow 入門
+* 高度なチャート作成のためのSignalFlow入門
 <!--
 ### Detector
 

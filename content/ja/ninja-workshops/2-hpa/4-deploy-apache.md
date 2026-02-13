@@ -6,15 +6,15 @@ weight: 4
 
 ## 1. PHP/Apache デプロイメント YAML の確認
 
-YAML ファイル `~/workshop/k3s/php-apache.yaml` を確認し、以下のコマンドで内容を検証します:
+YAMLファイル `~/workshop/k3s/php-apache.yaml` を確認し、以下のコマンドで内容を検証します:
 
 ``` bash
 cat ~/workshop/k3s/php-apache.yaml
 ```
 
-このファイルには、PHP/Apache デプロイメントの設定が含まれており、PHP/Apache イメージの単一レプリカを持つ新しい StatefulSet を作成します。
+このファイルには、PHP/Apacheデプロイメントの設定が含まれており、PHP/Apacheイメージの単一レプリカを持つ新しいStatefulSetを作成します。
 
-ステートレスアプリケーションは、どのネットワークを使用しているかを気にせず、永続ストレージを必要としません。ステートレスアプリの例としては、Apache、Nginx、Tomcat などの Web サーバーがあります。
+ステートレスアプリケーションは、どのネットワークを使用しているかを気にせず、永続ストレージを必要としません。ステートレスアプリの例としては、Apache、Nginx、TomcatなどのWebサーバーがあります。
 
 ```yaml
 apiVersion: apps/v1
@@ -63,15 +63,15 @@ spec:
 
 ## 2. PHP/Apache のデプロイ
 
-`apache` Namespace を作成し、PHP/Apache アプリケーションをクラスターにデプロイします。
+`apache` Namespaceを作成し、PHP/Apacheアプリケーションをクラスターにデプロイします。
 
-`apache` Namespace を作成します:
+`apache` Namespaceを作成します:
 
 ``` bash
 kubectl create namespace apache
 ```
 
-PHP/Apache アプリケーションをデプロイします:
+PHP/Apacheアプリケーションをデプロイします:
 
 ``` bash
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
@@ -84,11 +84,11 @@ kubectl get statefulset -n apache
 ```
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-**Apache web servers (OTel) Navigator** で、Apache インスタンスのどのメトリクスが報告されていますか？
+**Apache web servers (OTel) Navigator** で、Apacheインスタンスのどのメトリクスが報告されていますか？
 {{% /notice %}}
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-Log Observer を使用して、PHP/Apache デプロイメントの問題は何ですか？
+Log Observerを使用して、PHP/Apacheデプロイメントの問題は何ですか？
 
 **ヒント:** フィルターを調整して、`k8s.namespace.name = apache` および `k8s.cluster.name = <your_cluster>` を使用してください。
 {{% /notice %}}

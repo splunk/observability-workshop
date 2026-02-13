@@ -7,14 +7,14 @@ time: 5 minutes
 
 ## EC2 インスタンスに接続する
 
-各参加者用に AWS/EC2 で Ubuntu Linux インスタンスを準備しています。インストラクターから提供された IP アドレスとパスワードを使用して、以下のいずれかの方法で EC2 インスタンスに接続してください：
+各参加者用にAWS/EC2でUbuntu Linuxインスタンスを準備しています。インストラクターから提供されたIPアドレスとパスワードを使用して、以下のいずれかの方法でEC2インスタンスに接続してください：
 
 * macOS / Linux
   * `ssh splunk@IP address`
 * Windows 10+
-  * OpenSSH クライアントを使用
-* Windows の以前のバージョン
-  * Putty を使用
+  * OpenSSHクライアントを使用
+* Windowsの以前のバージョン
+  * Puttyを使用
 
 ## ファイルの編集
 

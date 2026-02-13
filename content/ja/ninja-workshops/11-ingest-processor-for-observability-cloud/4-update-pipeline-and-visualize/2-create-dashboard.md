@@ -4,9 +4,9 @@ linkTitle: 4.2 Kubernetes Audit イベントメトリクスの可視化
 weight: 3
 ---
 
-メトリクスにディメンションが追加されたので、イベントの `verb` ディメンションを使用して、さまざまな Kubernetes アクションの健全性を示すチャートを作成します。
+メトリクスにディメンションが追加されたので、イベントの `verb` ディメンションを使用して、さまざまなKubernetesアクションの健全性を示すチャートを作成します。
 
-{{% notice title="演習: Kubernetes Audit イベントメトリクスの可視化" style="green" icon="running" %}}
+{{% notice title="演習: Kubernetes Auditイベントメトリクスの可視化" style="green" icon="running" %}}
 
 **1.** 前のセクションで作成したチャートを閉じた場合は、右上隅の **+** アイコン → **Chart** をクリックして、新しいチャートを作成します。
 
@@ -20,11 +20,11 @@ weight: 3
 
 ![Metric Timeseries](../../images/metric_timeseries.png?width=40vw)
 
-まず、**response_status** フィールドで利用可能な HTTP レスポンスコードを使用して、成功しなかった Kubernetes イベントのみにフィルタリングします。レスポンスコードが **409**（競合を示す、たとえばすでに存在するリソースを作成しようとした場合）または **503**（リクエストに対して API が応答しなかった場合）のイベントのみが必要です。
+まず、**response_status** フィールドで利用可能なHTTPレスポンスコードを使用して、成功しなかったKubernetesイベントのみにフィルタリングします。レスポンスコードが **409**（競合を示す、たとえばすでに存在するリソースを作成しようとした場合）または **503**（リクエストに対してAPIが応答しなかった場合）のイベントのみが必要です。
 
 **4.** チャートのプロットエディタで **Add filter** をクリックし、フィールドに **response_status** を使用し、値として **409.0** と **503.0** を選択します。
 
-次に、**resource**、**action**、および **response status** でグループ化されたイベントの総数を計算する関数をチャートに追加します。これにより、どのアクションと関連するリソースにエラーがあったかを正確に確認できます。これで、成功しなかった Kubernetes イベントのみを見ています。
+次に、**resource**、**action**、および **response status** でグループ化されたイベントの総数を計算する関数をチャートに追加します。これにより、どのアクションと関連するリソースにエラーがあったかを正確に確認できます。これで、成功しなかったKubernetesイベントのみを見ています。
 
 **5.** **Add analytics** → **Sum** → **Sum:Aggregation** をクリックし、**Group by** フィールドに **resource**、**action**、および **response_status** を追加します。
 
@@ -50,7 +50,7 @@ weight: 3
 
 ![Save New Dashboard](../../images/save_new_dashboard.png)
 
-これで、作成したチャートを含む新しい Kubernetes Audit Events ダッシュボードに移動するはずです。Kubernetes クラスターで実行されているアプリケーションからのアプリケーションエラーとレスポンスタイム、または pod phase、pod メモリ使用率などの他の Kubernetes メトリクスなど、環境内の他のメトリクスから新しいチャートを追加できます。これにより、クラスターイベントからアプリケーションの健全性まで、Kubernetes 環境の相関ビューが得られます。
+これで、作成したチャートを含む新しいKubernetes Audit Eventsダッシュボードに移動するはずです。Kubernetesクラスターで実行されているアプリケーションからのアプリケーションエラーとレスポンスタイム、またはpod phase、podメモリ使用率などの他のKubernetesメトリクスなど、環境内の他のメトリクスから新しいチャートを追加できます。これにより、クラスターイベントからアプリケーションの健全性まで、Kubernetes環境の相関ビューが得られます。
 
 ![Audit Dashboard](../../images/audit_dashboard.png?width=40vw)
 
@@ -58,7 +58,7 @@ weight: 3
 
 ![Copy chart button](../../images/copy_chart_button.png?width=40vw)
 
-UI の右上にある `+` アイコンを使用して、作業中の同じダッシュボードに貼り付けます。
+UIの右上にある `+` アイコンを使用して、作業中の同じダッシュボードに貼り付けます。
 
 ![Paste chart into dashboard](../../images/paste_chart_into_dashboard.png?width=40vw)
 
@@ -66,11 +66,11 @@ UI の右上にある `+` アイコンを使用して、作業中の同じダッ
 
 ![Change to column chart visualization](../../images/change_to_column_chart_visualization.png?width=40vw)
 
-SUM を `resource`、`namespace` のみに変更します（フィルターは問題のあるコードのみにフィルタリングします）。
+SUMを `resource`、`namespace` のみに変更します（フィルターは問題のあるコードのみにフィルタリングします）。
 
 ![Group chart by resource and namespace](../../images/group_chart_by_resource_and_namespace.png?width=40vw)
 
-Chart options でタイトルを `Kubernetes Audit Logs - Conflicts by Namespace` に変更します。
+Chart optionsでタイトルを `Kubernetes Audit Logs - Conflicts by Namespace` に変更します。
 
 ![Change chart title](../../images/change_chart_title.png?width=40vw)
 
@@ -80,9 +80,9 @@ Chart options でタイトルを `Kubernetes Audit Logs - Conflicts by Namespace
 
 {{% /notice %}}
 
-{{% notice title="演習: Kubernetes Audit ログに基づくディテクターの作成" style="green" icon="running" %}}
+{{% notice title="演習: Kubernetes Auditログに基づくディテクターの作成" style="green" icon="running" %}}
 
-Conflicts by Namespace チャートで、小さなベルアイコンをクリックし、New detector from chart を選択します。
+Conflicts by Namespaceチャートで、小さなベルアイコンをクリックし、New detector from chartを選択します。
 
 ![Bell icon to create detector](../../images/bell_icon_create_detector.png?width=40vw)
 
@@ -90,7 +90,7 @@ Conflicts by Namespace チャートで、小さなベルアイコンをクリッ
 
 ![Enter name for alert rule](../../images/enter_name_alert_rule.png?width=40vw)
 
-Alert condition で **Static Threshold** をクリックし、Proceed to **Alert Settings** をクリックします。
+Alert conditionで **Static Threshold** をクリックし、Proceed to **Alert Settings** をクリックします。
 
 ![Select static threshold condition](../../images/select_static_threshold_condition.png?width=40vw)
 
@@ -112,20 +112,20 @@ Alert condition で **Static Threshold** をクリックし、Proceed to **Alert
 
 {{% /notice %}}
 
-{{% notice title="演習: Splunk Cloud - Dashboard Studio で時系列データを可視化する" style="green" icon="running" %}}
+{{% notice title="演習: Splunk Cloud - Dashboard Studioで時系列データを可視化する" style="green" icon="running" %}}
 
-時系列メトリクスが Splunk Observability Cloud データストアに取り込まれたので、Splunk Cloud でこれらの時系列メトリクスを簡単に可視化できます！
+時系列メトリクスがSplunk Observability Cloudデータストアに取り込まれたので、Splunk Cloudでこれらの時系列メトリクスを簡単に可視化できます！
 
-Splunk Cloud インスタンスで **Dashboards** に移動し、**Create New Dashboard** を選択します。
+Splunk Cloudインスタンスで **Dashboards** に移動し、**Create New Dashboard** を選択します。
 
 ![Create new dashboard in Splunk Cloud](../../images/create_new_dashboard_splunk_cloud.png)
 
-ダッシュボードのタイトル、権限、**Dashboard Studio** を選択し、任意の Layout Mode を選択します。
+ダッシュボードのタイトル、権限、**Dashboard Studio** を選択し、任意のLayout Modeを選択します。
 **Create** をクリックします。
 
 ![Dashboard title and layout options](../../images/dashboard_title_layout_options.png)
 
-Dashboard Studio でチャートアイコンをクリックし、**Column** を選択します。
+Dashboard Studioでチャートアイコンをクリックし、**Column** を選択します。
 
 ![Select column chart in Dashboard Studio](../../images/select_column_chart_dashboard_studio.png)
 
@@ -135,7 +135,7 @@ Dashboard Studio でチャートアイコンをクリックし、**Column** を�
 
 新しいデータソースの名前を選択し、**Search for metric or metadata** の下にある **Content Import** リンクをクリックします。
 
-チャートの URL をコピーして **Content URL** フィールドに貼り付けます。
+チャートのURLをコピーして **Content URL** フィールドに貼り付けます。
 
 ![Paste chart URL and import](../../images/paste_chart_url_and_import.png?width=40vw)
 
@@ -153,11 +153,11 @@ Dashboard Studio でチャートアイコンをクリックし、**Column** を�
 
 ![Expand interactions and add interaction](../../images/expand_interactions_add_interaction.png)
 
-Splunk Observability のダッシュボードから URL をコピーします。
+Splunk ObservabilityのダッシュボードからURLをコピーします。
 
 ![Apply interaction settings](../../images/apply_interaction_settings.png?width=40vw)
 
-**On click** で **Link to custom URL** を選択し、ソースデータに簡単に戻れるように Splunk Observability Cloud のダッシュボードの URL を追加します。
+**On click** で **Link to custom URL** を選択し、ソースデータに簡単に戻れるようにSplunk Observability CloudのダッシュボードのURLを追加します。
 また、使いやすいナビゲーションのために **Open in new tab** を選択します。
 
 ![Interaction added](../../images/interaction_added.png)
@@ -166,14 +166,14 @@ Splunk Observability のダッシュボードから URL をコピーします。
 
 ![Save dashboard in Splunk Cloud](../../images/save_dashboard_splunk_cloud.png)
 
-チャートの Column または名前をハイライトしてクリックします。
+チャートのColumnまたは名前をハイライトしてクリックします。
 
 ![Click column or name in chart](../../images/click_column_or_name_in_chart.png)
 
-Splunk Observability に戻ることが通知されます。**Continue** をクリックします。
+Splunk Observabilityに戻ることが通知されます。**Continue** をクリックします。
 
 ![Continue navigation to Splunk Observability](../../images/continue_navigation_splunk_observability.png)
 
-これで、Splunk Cloud から対応する Splunk Observability ダッシュボードに戻りました。
+これで、Splunk Cloudから対応するSplunk Observabilityダッシュボードに戻りました。
 
 {{% /notice %}}

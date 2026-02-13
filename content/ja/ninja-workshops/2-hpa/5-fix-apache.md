@@ -5,9 +5,9 @@ weight: 5
 ---
 ## 1. Kubernetes リソース
 
-特に本番環境の Kubernetes クラスターでは、CPU とメモリは貴重なリソースと見なされています。クラスター運用者は通常、デプロイメントで Pod またはサービスが必要とする CPU とメモリの量を指定するよう求めます。これにより、クラスターがソリューションを配置するノードを自動的に管理できます。
+特に本番環境のKubernetesクラスターでは、CPUとメモリは貴重なリソースと見なされています。クラスター運用者は通常、デプロイメントでPodまたはサービスが必要とするCPUとメモリの量を指定するよう求めます。これにより、クラスターがソリューションを配置するノードを自動的に管理できます。
 
-これは、アプリケーション/Pod のデプロイメントにリソースセクションを配置することで行います。
+これは、アプリケーション/Podのデプロイメントにリソースセクションを配置することで行います。
 
 **例:**
 
@@ -23,27 +23,27 @@ resources:
 
 詳細については、こちらを参照してください: [**Resource Management for Pods and Containers**](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
-アプリケーションまたは Pod がデプロイメントで設定された制限を超えると、Kubernetes はクラスター上の他のアプリケーションを保護するために Pod を強制終了して再起動します。
+アプリケーションまたはPodがデプロイメントで設定された制限を超えると、Kubernetesはクラスター上の他のアプリケーションを保護するためにPodを強制終了して再起動します。
 
-もう1つのシナリオは、ノードに十分なメモリまたは CPU がない場合です。その場合、クラスターはより多くのスペースがある別のノードに Pod を再スケジュールしようとします。
+もう1つのシナリオは、ノードに十分なメモリまたはCPUがない場合です。その場合、クラスターはより多くのスペースがある別のノードにPodを再スケジュールしようとします。
 
-それが失敗した場合、またはアプリケーションをデプロイするときに十分なスペースがない場合、クラスターはワークロード/デプロイメントをスケジュールモードにして、利用可能なノードのいずれかに制限に従って Pod をデプロイするのに十分なスペースができるまで待機します。
+それが失敗した場合、またはアプリケーションをデプロイするときに十分なスペースがない場合、クラスターはワークロード/デプロイメントをスケジュールモードにして、利用可能なノードのいずれかに制限に従ってPodをデプロイするのに十分なスペースができるまで待機します。
 
 ## 2. PHP/Apache デプロイメントの修正
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-開始する前に、PHP/Apache デプロイメントの現在の状態を確認しましょう。**Alerts & Detectors** で、どのディテクターが発火しましたか？この情報は他にどこで見つけることができますか？
+開始する前に、PHP/Apacheデプロイメントの現在の状態を確認しましょう。**Alerts & Detectors** で、どのディテクターが発火しましたか？この情報は他にどこで見つけることができますか？
 
 {{% /notice %}}
 
-PHP/Apache StatefulSet を修正するには、以下のコマンドを使用して `~/workshop/k3s/php-apache.yaml` を編集し、CPU リソースを削減します:
+PHP/Apache StatefulSetを修正するには、以下のコマンドを使用して `~/workshop/k3s/php-apache.yaml` を編集し、CPUリソースを削減します:
 
 ``` bash
 vim ~/workshop/k3s/php-apache.yaml
 ```
 
-リソースセクションを見つけて、CPU limits を **1** に、CPU requests を **0.5** に削減します:
+リソースセクションを見つけて、CPU limitsを **1** に、CPU requestsを **0.5** に削減します:
 
 ``` yaml
 resources:
@@ -57,7 +57,7 @@ resources:
 
 変更を保存します（ヒント: `Esc` を押してから `:wq!` を入力して変更を保存します）。
 
-次に、既存の StatefulSet を削除して再作成する必要があります。StatefulSet は不変（イミュータブル）であるため、既存のものを削除して新しい変更で再作成する必要があります。
+次に、既存のStatefulSetを削除して再作成する必要があります。StatefulSetは不変（イミュータブル）であるため、既存のものを削除して新しい変更で再作成する必要があります。
 
 ``` bash
 kubectl delete statefulset php-apache -n apache
@@ -77,7 +77,7 @@ kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 kubectl describe statefulset php-apache -n apache
 ```
 
-Pod が Splunk Observability Cloud で実行中であることを確認します。
+PodがSplunk Observability Cloudで実行中であることを確認します。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 **Apache Web Servers** ダッシュボードにデータが表示されていますか？
@@ -85,7 +85,7 @@ Pod が Splunk Observability Cloud で実行中であることを確認します
 **ヒント:** フィルターと時間枠を使用してデータを絞り込むことを忘れないでください。
 {{% /notice %}}
 
-数分間、Apache web servers Navigator ダッシュボードを監視してください。
+数分間、Apache web servers Navigatorダッシュボードを監視してください。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
@@ -95,7 +95,7 @@ Pod が Splunk Observability Cloud で実行中であることを確認します
 
 ## 4. メモリの問題の修正
 
-Apache ダッシュボードに戻ると、メトリクスが送信されなくなっていることに気付くでしょう。別のリソースの問題があり、今回はメモリ不足です。StatefulSet を編集して、以下に示す値にメモリを増やしましょう:
+Apacheダッシュボードに戻ると、メトリクスが送信されなくなっていることに気付くでしょう。別のリソースの問題があり、今回はメモリ不足です。StatefulSetを編集して、以下に示す値にメモリを増やしましょう:
 
 ``` bash
 kubectl edit statefulset php-apache -n apache
@@ -117,7 +117,7 @@ resources:
 `kubectl edit` は内容を `vi` エディターで開きます。`Esc` を押してから `:wq!` を入力して変更を保存します。
 {{% /notice %}}
 
-StatefulSet は不変（イミュータブル）であるため、既存の Pod を削除して、StatefulSet が新しい変更で再作成できるようにする必要があります。
+StatefulSetは不変（イミュータブル）であるため、既存のPodを削除して、StatefulSetが新しい変更で再作成できるようにする必要があります。
 
 ``` bash
 kubectl delete pod php-apache-0 -n apache

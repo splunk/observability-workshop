@@ -6,7 +6,7 @@ weight: 1
 
 # Splunk ITSI での Aggregation Policy の作成
 
-このセクションでは、先ほど設定したアラートに一致する Splunk ITSI での Aggregation Policy を作成する手順について説明します。このポリシーは関連するアラートをグループ化し、ノイズを減らしてインシデント管理を改善します。
+このセクションでは、先ほど設定したアラートに一致するSplunk ITSIでのAggregation Policyを作成する手順について説明します。このポリシーは関連するアラートをグループ化し、ノイズを減らしてインシデント管理を改善します。
 
 **作成したアラートに応じて、このアラートに使用するタイトルが変わります。以下の手順では、AlertName を使用した Service Name に置き換えてください**
 
@@ -15,7 +15,7 @@ weight: 1
 
 ## 手順
 
-1. **Notable Event Aggregation Policies に移動:** Splunk で **Configuration** -> **Notable Event Aggregation Policies** に移動します。
+1. **Notable Event Aggregation Policies に移動:** Splunkで **Configuration** -> **Notable Event Aggregation Policies** に移動します。
 
 2. **新しいポリシーを作成:** 右上隅にある緑色の **Create Notable Event Aggregation Policy** ボタンをクリックします。
 
@@ -27,11 +27,11 @@ weight: 1
 
 4. **イベントの分割:** デフォルトで提供されている "hosts" フィールドを削除し、"service" フィールドを使用するように更新します。これにより、見つかった各サービスごとに新しいエピソードが生成されます。この例では、1つだけになるはずです。
 
-5. **終了条件:** エピソードがどのように終了するかを設定します。デフォルトの *"If an event occurs for which severity = Normal"* のままにします。右側の Preview をクリックして、アラートが正しく検出されていることを確認します
+5. **終了条件:** エピソードがどのように終了するかを設定します。デフォルトの *"If an event occurs for which severity = Normal"* のままにします。右側のPreviewをクリックして、アラートが正しく検出されていることを確認します
 
 6. **Next をクリック**
 
-7. **アクション（オプション）:** 集約されたアラートに対して実行するアクションを定義します。例えば、ServiceNow でチケットを自動作成したり、メール通知を送信したりできます。この部分はスキップします。
+7. **アクション（オプション）:** 集約されたアラートに対して実行するアクションを定義します。例えば、ServiceNowでチケットを自動作成したり、メール通知を送信したりできます。この部分はスキップします。
 
 8. **Next をクリック**
 
@@ -39,11 +39,11 @@ weight: 1
     * **Policy Title:** *Service Name* Alert Grouping
     * **Description:** Grouping *Service Name* alerts together.
 
-10. **ポリシーを保存:** **Next** ボタンをクリックして Aggregation Policy を作成します。
+10. **ポリシーを保存:** **Next** ボタンをクリックしてAggregation Policyを作成します。
 
 ## 確認
 
-ポリシーを保存した後、**Go to Episode Review** ページに移動し、過去15分間のアラートをフィルタリングし、status=New のフィルターを追加して、検索ボックスで Service Name を検索します。
+ポリシーを保存した後、**Go to Episode Review** ページに移動し、過去15分間のアラートをフィルタリングし、status=Newのフィルターを追加して、検索ボックスでService Nameを検索します。
 
 特定のアラートの名前が付いたエピソードがすでに存在する場合は、それを閉じて、新しいタイトルで新しいエピソードが生成されるのを待ちます。
 

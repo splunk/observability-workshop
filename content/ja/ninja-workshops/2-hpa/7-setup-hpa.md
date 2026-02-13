@@ -4,11 +4,11 @@ linkTitle: 7. HPA のセットアップ
 weight: 7
 ---
 
-Kubernetes では、HorizontalPodAutoscaler がワークロードリソース（Deployment や StatefulSet など）を自動的に更新し、需要に合わせてワークロードを自動的にスケーリングします。
+Kubernetesでは、HorizontalPodAutoscalerがワークロードリソース（DeploymentやStatefulSetなど）を自動的に更新し、需要に合わせてワークロードを自動的にスケーリングします。
 
-水平スケーリングとは、負荷の増加に対応してより多くの Pod をデプロイすることを意味します。これは垂直スケーリングとは異なります。Kubernetes における垂直スケーリングは、ワークロードですでに実行されている Pod により多くのリソース（メモリや CPU など）を割り当てることを意味します。
+水平スケーリングとは、負荷の増加に対応してより多くのPodをデプロイすることを意味します。これは垂直スケーリングとは異なります。Kubernetesにおける垂直スケーリングは、ワークロードですでに実行されているPodにより多くのリソース（メモリやCPUなど）を割り当てることを意味します。
 
-負荷が減少し、Pod の数が設定された最小値を超えている場合、HorizontalPodAutoscaler はワークロードリソース（Deployment、StatefulSet、またはその他の類似リソース）にスケールダウンするよう指示します。
+負荷が減少し、Podの数が設定された最小値を超えている場合、HorizontalPodAutoscalerはワークロードリソース（Deployment、StatefulSet、またはその他の類似リソース）にスケールダウンするよう指示します。
 
 ## 1. HPA のセットアップ
 
@@ -18,7 +18,7 @@ Kubernetes では、HorizontalPodAutoscaler がワークロードリソース（
 cat ~/workshop/k3s/hpa.yaml
 ```
 
-このファイルには、Horizontal Pod Autoscaler の設定が含まれており、`php-apache` デプロイメント用の新しい HPA を作成します。
+このファイルには、Horizontal Pod Autoscalerの設定が含まれており、`php-apache` デプロイメント用の新しいHPAを作成します。
 
 ``` yaml
 apiVersion: autoscaling/v2
@@ -48,7 +48,7 @@ spec:
     name: php-apache
 ```
 
-デプロイされると、`php-apache` は平均 CPU 使用率が 50% を超えるか、デプロイメントの平均メモリ使用率が 75% を超えると自動スケールします。最小 1 Pod、最大 4 Pod です。
+デプロイされると、`php-apache` は平均CPU使用率が50% を超えるか、デプロイメントの平均メモリ使用率が75% を超えると自動スケールします。最小1 Pod、最大4 Podです。
 
 ``` text
 kubectl apply -f ~/workshop/k3s/hpa.yaml
@@ -60,18 +60,18 @@ kubectl apply -f ~/workshop/k3s/hpa.yaml
 kubectl get hpa -n apache
 ```
 
-Kubernetes の **Workloads** または **Node Detail** タブに移動し、HPA デプロイメントを確認します。
+Kubernetesの **Workloads** または **Node Detail** タブに移動し、HPAデプロイメントを確認します。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-1. 追加で作成された `php-apache-x` Pod はいくつありますか？
+1. 追加で作成された `php-apache-x` Podはいくつありますか？
 2. **Apache web servers (OTel) Navigator** でどのメトリクスが再び大幅に増加しましたか？
 
 {{% /notice %}}
 
 ## 3. HPA レプリカ数の増加
 
-`maxReplicas` を 8 に増やします
+`maxReplicas` を8に増やします
 
 ``` bash
 kubectl edit hpa php-apache -n apache
@@ -81,9 +81,9 @@ kubectl edit hpa php-apache -n apache
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-1. 現在実行中の Pod はいくつありますか？
+1. 現在実行中のPodはいくつありますか？
 
-2. 保留中の Pod はいくつありますか？
+2. 保留中のPodはいくつありますか？
 
 3. なぜ保留中なのですか？
 

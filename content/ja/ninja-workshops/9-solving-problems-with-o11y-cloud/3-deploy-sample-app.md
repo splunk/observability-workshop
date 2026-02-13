@@ -5,19 +5,19 @@ weight: 3
 time: 15 minutes
 ---
 
-この時点で、K8s クラスターに OpenTelemetry Collector をデプロイし、
+この時点で、K8sクラスターにOpenTelemetry Collectorをデプロイし、
 インフラストラクチャメトリクスの収集に成功しています。
 
 次のステップは、サンプルアプリケーションをデプロイし、
-OpenTelemetry で計装してトレースをキャプチャすることです。
+OpenTelemetryで計装してトレースをキャプチャすることです。
 
-Python で書かれたマイクロサービスベースのアプリケーションを使用します。ワークショップをシンプルに保つため、
-credit check service と credit processor service の2つのサービスに焦点を当てます。
+Pythonで書かれたマイクロサービスベースのアプリケーションを使用します。ワークショップをシンプルに保つため、
+credit check serviceとcredit processor serviceの2つのサービスに焦点を当てます。
 
 ## アプリケーションのデプロイ
 
-時間を節約するため、両方のサービスの Docker イメージを既に構築して Docker Hub で公開しています。
-以下のコマンドで、K8s クラスターに credit check service をデプロイできます：
+時間を節約するため、両方のサービスのDockerイメージを既に構築してDocker Hubで公開しています。
+以下のコマンドで、K8sクラスターにcredit check serviceをデプロイできます：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -37,7 +37,7 @@ service/creditcheckservice created
 {{% /tab %}}
 {{< /tabs >}}
 
-次に、credit processor service をデプロイしましょう：
+次に、credit processor serviceをデプロイしましょう：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -83,8 +83,8 @@ deployment.apps/loadgenerator created
 
 ### OpenTelemetry による計装
 
-credit check service と credit processor service のビルドに使用される Dockerfile を見ると、
-OpenTelemetry で既に計装されていることがわかります。例として、
+credit check serviceとcredit processor serviceのビルドに使用されるDockerfileを見ると、
+OpenTelemetryで既に計装されていることがわかります。例として、
 `/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/Dockerfile` を見てみましょう：
 
 ``` dockerfile
@@ -114,15 +114,15 @@ CMD ["splunk-py-trace", "python3", "main.py"]
 ```
 
 `splunk-py-trace-bootstrap` が含まれていることがわかります。これは、アプリケーションで使用される
-サポートされているパッケージに OpenTelemetry の計装をインストールします。また、`splunk-py-trace` が
+サポートされているパッケージにOpenTelemetryの計装をインストールします。また、`splunk-py-trace` が
 アプリケーションを起動するコマンドの一部として使用されていることもわかります。
 
 `/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/requirements.txt` ファイルを確認すると、
 パッケージのリストに `splunk-opentelemetry[all]` が含まれていることがわかります。
 
-最後に、このサービスのデプロイに使用した Kubernetes マニフェスト（`/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/creditcheckservice-dockerhub.yaml`）を確認すると、
-コンテナに環境変数が設定されており、OTLP データのエクスポート先を
-OpenTelemetry に伝えていることがわかります：
+最後に、このサービスのデプロイに使用したKubernetesマニフェスト（`/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/creditcheckservice-dockerhub.yaml`）を確認すると、
+コンテナに環境変数が設定されており、OTLPデータのエクスポート先を
+OpenTelemetryに伝えていることがわかります：
 
 ``` yaml
   env:
@@ -140,7 +140,7 @@ OpenTelemetry に伝えていることがわかります：
       value: "tracecontext,baggage"
 ```
 
-これだけで、サービスを OpenTelemetry で計装できます！
+これだけで、サービスをOpenTelemetryで計装できます！
 
 ### アプリケーションの詳細を確認する
 
@@ -154,11 +154,11 @@ OpenTelemetry に伝えていることがわかります：
 例えば、決済処理アプリケーションでは以下を追跡できると便利です：
 
 * 使用された決済方法（クレジットカード、ギフトカードなど）
-* 決済をリクエストした顧客の ID
+* 決済をリクエストした顧客のID
 
 これにより、決済処理中にエラーやパフォーマンスの問題が発生した場合、トラブルシューティングに必要なコンテキストを得ることができます。
 
-一部のタグは OpenTelemetry Collector で追加できますが、このワークショップで扱うタグはより詳細なもので、アプリケーション開発者が OpenTelemetry SDK を使用して追加します。
+一部のタグはOpenTelemetry Collectorで追加できますが、このワークショップで扱うタグはより詳細なもので、アプリケーション開発者がOpenTelemetry SDKを使用して追加します。
 
 ### なぜタグはそれほど重要なのか？
 
@@ -173,8 +173,8 @@ OpenTelemetry に伝えていることがわかります：
 
 ### タグはどのようにキャプチャされるのか？
 
-Python アプリケーションでタグをキャプチャするには、まず `/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/main.py` ファイルの先頭に
-import 文を追加して trace モジュールをインポートします：
+Pythonアプリケーションでタグをキャプチャするには、まず `/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/main.py` ファイルの先頭に
+import文を追加してtraceモジュールをインポートします：
 
 ```` python
 import requests
@@ -194,7 +194,7 @@ def credit_check():
 ...
 ````
 
-とても簡単ですよね？credit check service で合計4つのタグをキャプチャしており、最終的な結果は以下のようになります：
+とても簡単ですよね？credit check serviceで合計4つのタグをキャプチャしており、最終的な結果は以下のようになります：
 
 ```` python
 def credit_check():
@@ -222,16 +222,16 @@ def credit_check():
 
 ## トレースデータを確認する
 
-Splunk Observability Cloud でトレースデータを確認する前に、
-以下のコマンドでエージェント Collector のログを tail して、debug exporter がキャプチャした内容を確認しましょう：
+Splunk Observability Cloudでトレースデータを確認する前に、
+以下のコマンドでエージェントCollectorのログをtailして、debug exporterがキャプチャした内容を確認しましょう：
 
 ``` bash
 kubectl logs -l component=otel-collector-agent -f
 ```
 
-ヒント：`CTRL+C` を使用してログの tail を停止します。
+ヒント：`CTRL+C` を使用してログのtailを停止します。
 
-エージェント Collector のログに以下のようなトレースが書き込まれているはずです：
+エージェントCollectorのログに以下のようなトレースが書き込まれているはずです：
 
 ````
 InstrumentationScope opentelemetry.instrumentation.flask 0.44b0
@@ -266,4 +266,4 @@ Attributes:
 
 トレースに、コードでキャプチャした `credit.score` や `credit.score.category` などの
 タグ（属性とも呼ばれる）が含まれていることに注目してください。次のセクションで、
-Splunk Observability Cloud でトレースを分析してパフォーマンス問題の根本原因を見つける際に、これらを使用します。
+Splunk Observability Cloudでトレースを分析してパフォーマンス問題の根本原因を見つける際に、これらを使用します。

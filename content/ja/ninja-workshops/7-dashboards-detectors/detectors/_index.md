@@ -6,7 +6,7 @@ time: 10 minutes
 hidden: true
 ---
 
-* チャートから Detector を作成する
+* チャートからDetectorを作成する
 * アラート条件の設定
 * プリフライトチェックの実行
 * ミュートルールの操作
@@ -15,9 +15,9 @@ hidden: true
 
 ## 1. はじめに
 
-Splunk Observability Cloud は、特定の条件が満たされたときに通知するために、Detector、イベント、アラート、および通知を使用します。たとえば、CPU 使用率が 95% に達したとき、または同時ユーザー数が追加の AWS インスタンスを起動する必要があるかもしれない制限に近づいているときに、Slack チャンネルまたは Ops チームのメールアドレスにメッセージを送信したい場合があります。
+Splunk Observability Cloudは、特定の条件が満たされたときに通知するために、Detector、イベント、アラート、および通知を使用します。たとえば、CPU使用率が95% に達したとき、または同時ユーザー数が追加のAWSインスタンスを起動する必要があるかもしれない制限に近づいているときに、SlackチャンネルまたはOpsチームのメールアドレスにメッセージを送信したい場合があります。
 
-これらの条件は、ルール内の条件が満たされたときにアラートをトリガーする1つ以上のルールとして表現されます。Detector 内の個々のルールは、重要度に応じてラベル付けされます：Info、Warning、Minor、Major、および Critical。
+これらの条件は、ルール内の条件が満たされたときにアラートをトリガーする1つ以上のルールとして表現されます。Detector内の個々のルールは、重要度に応じてラベル付けされます：Info、Warning、Minor、Major、およびCritical。
 
 ## 2. Detector の作成
 
@@ -25,14 +25,14 @@ Splunk Observability Cloud は、特定の条件が満たされたときに通�
 
 ![Custom Dashboard Group](../images/custom-dashboard-group.png)
 
-このダッシュボードのチャートから新しい Detector を作成します。**Latency vs Load** チャートのベルアイコンをクリックし、次に **New Detector From Chart** をクリックします。
+このダッシュボードのチャートから新しいDetectorを作成します。**Latency vs Load** チャートのベルアイコンをクリックし、次に **New Detector From Chart** をクリックします。
 
 ![New Detector](../images/new-detector.png)
 
-**Detector Name** の横にあるテキストフィールドで、提案された Detector 名の前に **イニシャルを追加** してください。
+**Detector Name** の横にあるテキストフィールドで、提案されたDetector名の前に **イニシャルを追加** してください。
 
 {{% notice title="Naming the detector" style="info" %}}
-提案された Detector 名の前にイニシャルを追加することが重要です。
+提案されたDetector名の前にイニシャルを追加することが重要です。
 
 次のようになるはずです：**XYZ's Latency Chart Detector**。
 {{% /notice %}}
@@ -41,7 +41,7 @@ Splunk Observability Cloud は、特定の条件が満たされたときに通�
 
 ![Create Alert Rule](../images/create-alert-rule.png)
 
-Detector ウィンドウの **Alert signal** 内で、アラートを発するシグナルは **Alert on** 列に（青い）ベルでマークされています。ベルは、アラートの生成に使用されているシグナルを示しています。
+Detectorウィンドウの **Alert signal** 内で、アラートを発するシグナルは **Alert on** 列に（青い）ベルでマークされています。ベルは、アラートの生成に使用されているシグナルを示しています。
 
 {{% button style="blue" %}}Proceed to Alert Condition{{% /button %}} をクリックします。
 
@@ -64,11 +64,11 @@ Detector ウィンドウの **Alert signal** 内で、アラートを発する�
 ![Alert Threshold](../images/alert-threshold.png)
 
 {{% notice title="About pre-flight checks" style="info" %}}
-アラート条件を設定すると、UI は現在の設定と、右上隅に設定された時間枠（この場合は過去1日）に基づいて、受信する可能性のあるアラート数を推定します。
+アラート条件を設定すると、UIは現在の設定と、右上隅に設定された時間枠（この場合は過去1日）に基づいて、受信する可能性のあるアラート数を推定します。
 
-すぐに、プラットフォームは現在の設定でシグナルの分析を開始し、プリフライトチェックと呼ばれるものを実行します。これにより、プラットフォーム内の履歴データを使用してアラート条件をテストでき、設定が論理的であり、意図せずアラートストームを生成しないことを確認できます。これは、Splunk Observability Cloud でのみ利用可能な、シンプルでありながら非常に強力な方法でアラートの設定から当て推量を取り除きます。
+すぐに、プラットフォームは現在の設定でシグナルの分析を開始し、プリフライトチェックと呼ばれるものを実行します。これにより、プラットフォーム内の履歴データを使用してアラート条件をテストでき、設定が論理的であり、意図せずアラートストームを生成しないことを確認できます。これは、Splunk Observability Cloudでのみ利用可能な、シンプルでありながら非常に強力な方法でアラートの設定から当て推量を取り除きます。
 
-Detector のプレビューについて詳しくは、このリンクを参照してください
+Detectorのプレビューについて詳しくは、このリンクを参照してください
 [Preview detector alerts.](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
 {{% /notice %}}
 
@@ -108,8 +108,8 @@ Detector のプレビューについて詳しくは、このリンクを参照�
 
 **Time** を **-1h** に変更すると、過去1時間のメトリクスに基づいて、選択したしきい値でいくつのアラートを受け取る可能性があるかを確認できます。
 
-ナビゲーションバーの ![alerts and detectors button](../images/alerts-and-detectors.png?classes=inline&height=25px) をクリックし、次に **Detectors** をクリックします。オプションでイニシャルでフィルターできます。ここに Detector がリストされているはずです。表示されない場合は、ブラウザを更新してください。
+ナビゲーションバーの ![alerts and detectors button](../images/alerts-and-detectors.png?classes=inline&height=25px) をクリックし、次に **Detectors** をクリックします。オプションでイニシャルでフィルターできます。ここにDetectorがリストされているはずです。表示されない場合は、ブラウザを更新してください。
 
 ![Detector List](../images/detectors.png)
 
-**おめでとうございます**！最初の Detector を作成し、有効化しました！
+**おめでとうございます**！最初のDetectorを作成し、有効化しました！

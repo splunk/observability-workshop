@@ -7,7 +7,7 @@ hidden: true
 
 ## 1. クラスタービューとワークロードビュー
 
-Kubernetes Navigator は、Kubernetes データを表示するための2つの異なるユースケースを提供します。
+Kubernetes Navigatorは、Kubernetesデータを表示するための2つの異なるユースケースを提供します。
 
 * **K8s workloads** は、ワークロード（*デプロイメント*）に関する情報の提供に焦点を当てています。
 * **K8s nodes** は、クラスター、ノード、Pod、コンテナのパフォーマンスに関する洞察を提供することに焦点を当てています。
@@ -26,9 +26,9 @@ echo $INSTANCE-k3s-cluster
 
 ## 2. ワークロードとワークロード詳細ペイン
 
-Observability UI の **Infrastructure** ページに移動し、**Kubernetes** を選択します。これにより、一連の Kubernetes サービスが表示され、その1つが **Kubernetes workloads** ペインです。このペインには、すべてのワークロードで処理されている負荷の概要を示す小さなグラフが表示されます。**Kubernetes workloads** ペインをクリックすると、ワークロードビューに移動します。
+Observability UIの **Infrastructure** ページに移動し、**Kubernetes** を選択します。これにより、一連のKubernetesサービスが表示され、その1つが **Kubernetes workloads** ペインです。このペインには、すべてのワークロードで処理されている負荷の概要を示す小さなグラフが表示されます。**Kubernetes workloads** ペインをクリックすると、ワークロードビューに移動します。
 
-最初は、Observability Cloud 組織に報告されているすべてのクラスターのすべてのワークロードが表示されます。いずれかのワークロードでアラートが発火した場合、以下の画像の右上にハイライト表示されます。
+最初は、Observability Cloud組織に報告されているすべてのクラスターのすべてのワークロードが表示されます。いずれかのワークロードでアラートが発火した場合、以下の画像の右上にハイライト表示されます。
 
 ![workloads](../images/k8s-workloads-screen.png)
 
@@ -45,12 +45,12 @@ Observability UI の **Infrastructure** ページに移動し、**Kubernetes** �
 これで、自分のクラスターのデータのみが表示されます。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-クラスターで実行されているワークロードの数と Namespace の数はいくつですか？
+クラスターで実行されているワークロードの数とNamespaceの数はいくつですか？
 {{% /notice %}}
 
 ### 2.1 Navigator 選択チャートの使用
 
-デフォルトでは、**Kubernetes Workloads** テーブルは `k8s.namespace.name` でグループ化された `# Pods Failed` でフィルタリングされます。`default` Namespace を展開して、Namespace 内のワークロードを確認してください。
+デフォルトでは、**Kubernetes Workloads** テーブルは `k8s.namespace.name` でグループ化された `# Pods Failed` でフィルタリングされます。`default` Namespaceを展開して、Namespace内のワークロードを確認してください。
 
 ![k8s-workload-selection](../images/workload-selection.png)
 
@@ -66,21 +66,21 @@ Observability UI の **Infrastructure** ページに移動し、**Kubernetes** �
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
-**Find Outliers** ビューは、ワークロード（または使用する Navigator に応じて任意のサービス）の選択を表示し、何かが変更されたかどうかをすばやく把握する必要がある場合に非常に便利です。
+**Find Outliers** ビューは、ワークロード（または使用するNavigatorに応じて任意のサービス）の選択を表示し、何かが変更されたかどうかをすばやく把握する必要がある場合に非常に便利です。
 
 これにより、パフォーマンスが異なる（増加または減少）項目（この場合はワークロード）に関する迅速な洞察が得られ、問題を見つけやすくなります。
 
 ### 2.2 デプロイメント概要ペイン
 
-デプロイメント概要ペインでは、デプロイメントのステータスをすばやく把握できます。デプロイメントの Pod が Pending、Running、Succeeded、Failed、または Unknown 状態にあるかどうかを一目で確認できます。
+デプロイメント概要ペインでは、デプロイメントのステータスをすばやく把握できます。デプロイメントのPodがPending、Running、Succeeded、Failed、またはUnknown状態にあるかどうかを一目で確認できます。
 
 ![k8s-workload-overview](../images/k8s-deployment-overview.png)
 
-* *Running:* Pod がデプロイされ、実行中の状態
+* *Running:* Podがデプロイされ、実行中の状態
 * *Pending:* デプロイ待ち
-* *Succeeded:* Pod がデプロイされ、ジョブを完了して終了
-* *Failed:* Pod 内のコンテナが実行され、何らかのエラーを返した
-* *Unknown:* Kubernetes が既知のステータスのいずれも報告していない（例えば、Pod の起動中または停止中の場合など）
+* *Succeeded:* Podがデプロイされ、ジョブを完了して終了
+* *Failed:* Pod内のコンテナが実行され、何らかのエラーを返した
+* *Unknown:* Kubernetesが既知のステータスのいずれも報告していない（例えば、Podの起動中または停止中の場合など）
 
 名前がチャートの許容範囲より長い場合は、マウスをワークロード名の上に置くと展開できます。
 
@@ -88,33 +88,33 @@ Observability UI の **Infrastructure** ページに移動し、**Kubernetes** �
 
 ![workload-add-filter](../images/workload-add-filter.png)
 
-これにより、選択したワークロードがフィルターに追加されます。その後、**default** Namespace 内の単一のワークロードが表示されます:
+これにより、選択したワークロードがフィルターに追加されます。その後、**default** Namespace内の単一のワークロードが表示されます:
 
 ![workload-add-filter](../images/heatmap-filter-down.png)
 
-上記のヒートマップから、**default** Namespace 内の **splunk-otel-collector-k8s-cluster-receiver** を見つけて、四角形をクリックしてワークロードの詳細情報を確認します:
+上記のヒートマップから、**default** Namespace内の **splunk-otel-collector-k8s-cluster-receiver** を見つけて、四角形をクリックしてワークロードの詳細情報を確認します:
 
 ![workload-add-filter](../images/k8s-workload-detail.png)
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
-otel-collector の CPU request と CPU limit の単位は何ですか？
+otel-collectorのCPU requestとCPU limitの単位は何ですか？
 {{% /notice %}}
 
-この時点で、Pod の情報にドリルダウンできますが、それはこのワークショップの範囲外です。
+この時点で、Podの情報にドリルダウンできますが、それはこのワークショップの範囲外です。
 
 ## 3. Navigator サイドバー
 
-ワークショップの後半で、クラスターに Apache サーバーをデプロイします。これにより、**Navigator Sidebar** にアイコンが表示されます。
+ワークショップの後半で、クラスターにApacheサーバーをデプロイします。これにより、**Navigator Sidebar** にアイコンが表示されます。
 
-Kubernetes の Navigator では、Navigator サイドバーで依存するサービスとコンテナを追跡できます。Navigator サイドバーを最大限に活用するには、`service.name` という追加ディメンションを設定して、追跡するサービスを構成します。このワークショップでは、Apache を監視するための `extraDimensions` を Collector 設定で既に構成しています。例:
+KubernetesのNavigatorでは、Navigatorサイドバーで依存するサービスとコンテナを追跡できます。Navigatorサイドバーを最大限に活用するには、`service.name` という追加ディメンションを設定して、追跡するサービスを構成します。このワークショップでは、Apacheを監視するための `extraDimensions` をCollector設定で既に構成しています。例:
 
 ```yaml
 extraDimensions:
   service.name: php-apache
 ```
 
-Navigator サイドバーが展開し、以下の画像のように検出されたサービスへのリンクが追加されます:
+Navigatorサイドバーが展開し、以下の画像のように検出されたサービスへのリンクが追加されます:
 
 ![Pivotbar](../images/pivotbar.png)
 
-これにより、Navigator 間を簡単に切り替えることができます。Apache サーバーインスタンスにも同様に Navigator サイドバーがあり、Kubernetes Navigator にすばやく戻ることができます。
+これにより、Navigator間を簡単に切り替えることができます。Apacheサーバーインスタンスにも同様にNavigatorサイドバーがあり、Kubernetes Navigatorにすばやく戻ることができます。
