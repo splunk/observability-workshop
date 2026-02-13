@@ -10,7 +10,7 @@ weight: 5
 
 新しいディレクトリにいるので、ここでもう一度Terraformを初期化する必要があります。
 
-- `manual` ディレクトリにいることを確認します：
+- `manual` ディレクトリにいることを確認します
 
   ```bash
   pwd
@@ -18,13 +18,13 @@ weight: 5
 
   - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- `manual` ディレクトリにいない場合は、次のコマンドを実行します：
+- `manual` ディレクトリにいない場合は、次のコマンドを実行します
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- 次のコマンドを実行して、このディレクトリでTerraformを初期化します：
+- 次のコマンドを実行して、このディレクトリでTerraformを初期化します
 
   ```bash
   terraform init
@@ -40,7 +40,7 @@ weight: 5
   terraform plan
   ```
 
-- 続いて、**terraform apply** コマンドを使用して **main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします：
+- 続いて、**terraform apply** コマンドを使用して **main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします
 
   ```bash
   terraform apply
@@ -48,7 +48,7 @@ weight: 5
 
   - _**Enter a value:** プロンプトが表示されたら **yes** と応答します_
 
-  - これにより、以下のような出力が得られます：
+  - これにより、以下のような出力が得られます
 
     ```bash
     Outputs:
@@ -70,7 +70,7 @@ weight: 5
 
 もう一度、`name` と `superpower` をメッセージとしてエンドポイントに送信します。これはトレースコンテキストとともに、Kinesisストリーム内のレコードに追加されます。
 
-- `manual` ディレクトリにいることを確認します：
+- `manual` ディレクトリにいることを確認します
 
   ```bash
   pwd
@@ -78,31 +78,31 @@ weight: 5
 
   - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- `manual` ディレクトリにいない場合は、次のコマンドを実行します：
+- `manual` ディレクトリにいない場合は、次のコマンドを実行します
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- `send_message.py` スクリプトをバックグラウンドプロセスとして実行します：
+- `send_message.py` スクリプトをバックグラウンドプロセスとして実行します
 
   ```bash
   nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
   ```
 
-- 次に、response.logsファイルの内容を確認して、**producer-lambda**エンドポイントへの呼び出しが成功しているか確認します：
+- 次に、response.logsファイルの内容を確認して、**producer-lambda**エンドポイントへの呼び出しが成功しているか確認します
 
   ```bash
   cat response.logs
   ```
 
-  - メッセージが成功していれば、画面に表示される行の中に次の出力が表示されるはずです：
+  - メッセージが成功していれば、画面に表示される行の中に次の出力が表示されるはずです
 
     ```bash
     {"message": "Message placed in the Event Stream: hostname-eventStream"}
     ```
 
-  - 失敗した場合は、次のように表示されます：
+  - 失敗した場合は、次のように表示されます
 
     ```bash
     {"message": "Internal server error"}
@@ -115,13 +115,13 @@ weight: 5
 
 ログがどのようになっているか見てみましょう。
 
-- **producer.logs** ファイルを確認します：
+- **producer.logs** ファイルを確認します
 
   ```bash
   cat producer.logs
   ```
 
-- そして **consumer.logs** ファイルを確認します：
+- そして **consumer.logs** ファイルを確認します
 
   ```bash
   cat consumer.logs
@@ -137,7 +137,7 @@ weight: 5
 
 今回は、consumer-lambdaのロググループが、我々が伝播した `tracecontext` とともに、メッセージを `record` としてログに記録しているのが確認できます。
 
-トレースIDをコピーするには：
+トレースIDをコピーするには
 
 - `Kinesis Message` ログの1つを見てみましょう。その中には `data` ディクショナリがあります
 - ネストされた `tracecontext` ディクショナリを見るために、`data` をより詳しく見てください

@@ -31,7 +31,7 @@ Splunk Observability Cloudは、アプリケーション監視データを探索
 
 ![APMトレースアナライザーヒートマップ](../images/apm-trace-analyzer-heat-map.png)
 
-**Trace Duration**ビューは、期間ごとのトレースのヒートマップを表示します。ヒートマップは3次元のデータを表しています：
+**Trace Duration**ビューは、期間ごとのトレースのヒートマップを表示します。ヒートマップは3次元のデータを表しています
 
 - x軸の時間
 - y軸のトレース期間

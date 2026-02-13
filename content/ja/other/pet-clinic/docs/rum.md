@@ -8,14 +8,14 @@ weight: 4
 
 Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) スニペットをページ内に追加します。再度ウィザードを使用します **Data Management → Add Integrationボタン → Monitor user experience（画面上部タブ） → Browser Instrumentation**を開きます。
 
-ドロップダウンから設定済みの **RUM ACCESS TOKEN** を選択し、**Next** をクリックします。以下の構文で **App name** と**Environment** を入力します：
+ドロップダウンから設定済みの **RUM ACCESS TOKEN** を選択し、**Next** をクリックします。以下の構文で **App name** と**Environment** を入力します
 
 次に、ワークショップのRUMトークンを選択し、 App nameとEnvironmentを定義します。ウィザードでは、ページ上部の `<head>` セクションに配置する必要のあるHTMLコードの断片が表示されます。この例では、次のように記述していますが、ウィザードでは先程入力した値が反映されてるはずです。
 
 - Application Name: `<hostname>-petclinic-service`
 - Environment: `<hostname>-petclinic-env`
 
-ウィザードで編集済みコードスニペットをコピーするか、以下のスニペットをコピーして適宜編集してください。ただし：
+ウィザードで編集済みコードスニペットをコピーするか、以下のスニペットをコピーして適宜編集してください。ただし
 
 - `[hostname]-petclinic-service` - `[hostname]` をお使いのホスト名に書き換えてください
 - `[hostname]-petclinic-env` - `[hostname]` をお使いのホスト名に書き換えてください
@@ -34,7 +34,7 @@ Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https:
 
 Spring PetClinicアプリケーションでは、1つのHTMLページを「レイアウト」ページとして使用し、アプリケーションのすべてのページで再利用しています。これは、Splunk RUM計装ライブラリを挿入するのに最適な場所であり、すべてのページで自動的に読み込まれます。
 
-では、レイアウトページを編集してみましょう：
+では、レイアウトページを編集してみましょう
 
 ```bash
 nano src/main/resources/templates/fragments/layout.html
@@ -45,7 +45,7 @@ nano src/main/resources/templates/fragments/layout.html
 
 ## 2. PetClinicを再ビルドする
 
-mavenコマンドを実行して、PetClinicをコンパイル/ビルド/パッケージ化します：
+mavenコマンドを実行して、PetClinicをコンパイル/ビルド/パッケージ化します
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true

@@ -7,13 +7,13 @@ time: 15 minutes
 
 ## Dockerfile の更新
 
-Kubernetesでは、環境変数は通常、Dockerイメージに組み込むのではなく `.yaml` マニフェストファイルで管理されます。そこで、Dockerfileから以下の2つの環境変数を削除しましょう：
+Kubernetesでは、環境変数は通常、Dockerイメージに組み込むのではなく `.yaml` マニフェストファイルで管理されます。そこで、Dockerfileから以下の2つの環境変数を削除しましょう
 
 ```bash
 vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
 
-次に、以下の2つの環境変数を削除します：
+次に、以下の2つの環境変数を削除します
 
 ```dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
@@ -24,7 +24,7 @@ ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 
 ## 新しい Docker イメージのビルド
 
-環境変数を除外した新しいDockerイメージをビルドしましょう：
+環境変数を除外した新しいDockerイメージをビルドしましょう
 
 ```bash
 cd /home/splunk/workshop/docker-k8s-otel/helloworld
@@ -73,13 +73,13 @@ sudo k3d image import helloworld:1.2 --cluster $INSTANCE-cluster
 
 > ヒント：vi で編集モードに入るには「i」キーを押します。変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-.NETアプリケーションをK8sにデプロイするために、`/home/splunk` に `deployment.yaml` という名前のファイルを作成しましょう：
+.NETアプリケーションをK8sにデプロイするために、`/home/splunk` に `deployment.yaml` という名前のファイルを作成しましょう
 
 ```bash
 vi /home/splunk/deployment.yaml
 ```
 
-そして以下を貼り付けます：
+そして以下を貼り付けます
 
 ```yaml
 apiVersion: apps/v1
@@ -110,13 +110,13 @@ spec:
 > [!tip]- Kubernetes における Deployment とは？
 > deployment.yaml ファイルは、deployment リソースを定義するために使用される kubernetes 設定ファイルです。このファイルは Kubernetes でアプリケーションを管理するための基盤となります！deployment 設定は deployment の **_望ましい状態_** を定義し、Kubernetes が **_実際の状態_** がそれと一致するよう保証します。これにより、アプリケーション pod の自己修復が可能になり、アプリケーションの簡単な更新やロールバックも可能になります。
 
-次に、同じディレクトリに `service.yaml` という名前の2つ目のファイルを作成します：
+次に、同じディレクトリに `service.yaml` という名前の2つ目のファイルを作成します
 
 ```bash
 vi /home/splunk/service.yaml
 ```
 
-そして以下を貼り付けます：
+そして以下を貼り付けます
 
 ```yaml
 apiVersion: v1
@@ -137,7 +137,7 @@ spec:
 > [!tip]- Kubernetes における Service とは？
 > Kubernetes の Service は抽象化レイヤーであり、仲介者のような役割を果たします。Pod にアクセスするための固定 IP アドレスや DNS 名を提供し、時間の経過とともに Pod が追加、削除、または交換されても同じままです。
 
-これらのマニフェストファイルを使用してアプリケーションをデプロイできます：
+これらのマニフェストファイルを使用してアプリケーションをデプロイできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -163,7 +163,7 @@ service/helloworld created
 
 ## アプリケーションのテスト
 
-アプリケーションにアクセスするには、まずIPアドレスを取得する必要があります：
+アプリケーションにアクセスするには、まずIPアドレスを取得する必要があります
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -182,7 +182,8 @@ IP:                10.43.102.103
 {{% /tab %}}
 {{< /tabs >}}
 
-その後、前のコマンドから返されたCluster IPを使用してアプリケーションにアクセスできます。
+その後、前のコマンドから返されたCluster IPを使用してアプリケーションにアクセスできます。  
+
 例：
 
 ```bash
@@ -193,7 +194,7 @@ curl http://10.43.102.103:8080/hello/Kubernetes
 
 .NET OpenTelemetry計装はすでにDockerイメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
 
-先ほど作成した `deployment.yaml` ファイルに以下を追加します：
+先ほど作成した `deployment.yaml` ファイルに以下を追加します
 
 > **重要** 以下の YAML の `$INSTANCE` をあなたのインスタンス名に置き換えてください。
 > インスタンス名は `echo $INSTANCE` を実行することで確認できます。
@@ -214,7 +215,7 @@ env:
     value: "deployment.environment=otel-$INSTANCE"
 ```
 
-完全な `deployment.yaml` ファイルは以下のようになります（`$INSTANCE` ではなく**あなたの**インスタンス名を使用してください）：
+完全な `deployment.yaml` ファイルは以下のようになります（`$INSTANCE` ではなく**あなたの**インスタンス名を使用してください）
 
 ```yaml
 apiVersion: apps/v1
@@ -252,7 +253,7 @@ spec:
               value: "deployment.environment=otel-$INSTANCE"
 ```
 
-以下のコマンドで変更を適用します：
+以下のコマンドで変更を適用します
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -284,14 +285,14 @@ deployment.apps/helloworld configured
 
 セクション4「.NET ApplicationをOpenTelemetryで計装する」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER` 環境変数を使ってtraceをconsoleに書き込むトリックをお見せしました。この変数をdeployment.yamlに追加し、アプリケーションを再deployして、helloworldアプリからlogをtailすることで、trace idを取得してSplunk Observability Cloudでtraceを見つけることができます。（ワークショップの次のセクションでは、debug exporterの使用についても説明します。これはK8s環境でアプリケーションをdebugする際の典型的な方法です。）
 
-まず、viでdeployment.yamlファイルを開きます：
+まず、viでdeployment.yamlファイルを開きます
 
 ```bash
 vi deployment.yaml
 
 ```
 
-次に、`OTEL_TRACES_EXPORTER` 環境変数を追加します：
+次に、`OTEL_TRACES_EXPORTER` 環境変数を追加します
 
 ```yaml
 env:
@@ -312,7 +313,7 @@ env:
     value: "otlp,console"
 ```
 
-変更を保存してからアプリケーションを再deployします：
+変更を保存してからアプリケーションを再deployします
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -331,7 +332,7 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-helloworldのlogをtailします：
+helloworldのlogをtailします
 
 {{< tabs >}}
 {{% tab title="Script" %}}

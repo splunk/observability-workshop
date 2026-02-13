@@ -9,7 +9,7 @@ description: このラボでは、AppDynamics Database Visibility Monitoring に
 
 このラボでは、AppDynamics Database Visibility Monitoringについて学びます。
 
-このラボを完了すると、以下のことができるようになります：
+このラボを完了すると、以下のことができるようになります
 
 - AppDynamics Database Visibility Agentのダウンロード
 - AppDynamics Database Visibility Agentのインストール
@@ -19,7 +19,7 @@ description: このラボでは、AppDynamics Database Visibility Monitoring に
 
 ## ワークショップ環境
 
-ラボ環境には2つのホストがあります：
+ラボ環境には2つのホストがあります
 
 - 1つ目のホストはAppDynamics Controllerを実行しており、以降はControllerと呼びます。
 - 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。このホストにAppDynamicsエージェントをインストールし、以降はApplication VMと呼びます。

@@ -14,6 +14,6 @@ weight: 1
 
 依存関係マップで**customers-service**をクリックし、**Services**ドロップダウンボックス**(1)**で `customers-service` が選択されていることを確認します。次に、サービス名に隣接するOperationsドロップダウン**(2)**から `GET /owners` を選択します。
 
-これにより、以下に示すように `GET /owners` でフィルタリングされたワークフローが表示されます：
+これにより、以下に示すように `GET /owners` でフィルタリングされたワークフローが表示されます
 
 ![select a trace](../../images/select-workflow.png)

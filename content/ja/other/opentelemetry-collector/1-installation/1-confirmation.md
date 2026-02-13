@@ -77,7 +77,7 @@ sudo systemctl restart otelcol-contrib
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Open Telemetry Collector Builder (ocb) を使って、独自のコレクターを作る {{% /badge %}}" %}}
 
-このパートでは、お使いのシステムに以下のものがインストールされている必要があります：
+このパートでは、お使いのシステムに以下のものがインストールされている必要があります
 
 - Go (latest version)
 

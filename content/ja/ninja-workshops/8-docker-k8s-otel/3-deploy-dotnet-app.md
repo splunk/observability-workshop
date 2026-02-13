@@ -51,14 +51,14 @@ etc.
 
 ## .NET アプリケーションの確認
 
-ターミナルで、アプリケーションディレクトリに移動します：
+ターミナルで、アプリケーションディレクトリに移動します
 
 ```bash
 cd ~/workshop/docker-k8s-otel/helloworld
 ```
 
 このワークショップでは、シンプルな「Hello World」.NETアプリケーションを使用します。主要なロジックは
-HelloWorldController.csファイルにあります：
+HelloWorldController.csファイルにあります
 
 ```cs
 public class HelloWorldController : ControllerBase
@@ -89,7 +89,7 @@ public class HelloWorldController : ControllerBase
 
 ## .NET アプリケーションのビルドと実行
 
-以下のコマンドを使用してアプリケーションをビルドできます：
+以下のコマンドを使用してアプリケーションをビルドできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -117,7 +117,7 @@ Time Elapsed 00:00:02.04
 {{% /tab %}}
 {{< /tabs >}}
 
-ビルドが成功したら、次のように実行できます：
+ビルドが成功したら、次のように実行できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -144,7 +144,7 @@ info: Microsoft.Hosting.Lifetime[0]
 {{% /tab %}}
 {{< /tabs >}}
 
-実行したら、UbuntuインスタンスへのSSH接続を2つ目のターミナルで開き、curlを使用してアプリケーションにアクセスします：
+実行したら、UbuntuインスタンスへのSSH接続を2つ目のターミナルで開き、curlを使用してアプリケーションにアクセスします
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -163,7 +163,7 @@ Hello, World!
 {{% /tab %}}
 {{< /tabs >}}
 
-名前を渡すこともできます：
+名前を渡すこともできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}

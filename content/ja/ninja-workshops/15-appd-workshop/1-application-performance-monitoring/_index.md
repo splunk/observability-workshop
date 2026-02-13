@@ -9,7 +9,7 @@ description: このラボでは、Splunk AppDynamics を使用してアプリケ
 
 このラボでは、AppDynamicsを使用してアプリケーションサービスの健全性を監視する方法を学びます。このワークショップの他のラボを開始する前に、まずこのラボを完了する必要があります。
 
-このラボを完了すると、以下のことができるようになります：
+このラボを完了すると、以下のことができるようになります
 
 - AppDynamics Java APM Agentをダウンロードする
 - AppDynamics Java APM Agentをインストールする
@@ -22,7 +22,7 @@ description: このラボでは、Splunk AppDynamics を使用してアプリケ
 
 ## ワークショップ環境
 
-ワークショップ環境には2つのホストがあります：
+ワークショップ環境には2つのホストがあります
 
 - 1つ目のホストはAppDynamics Controllerを実行しており、以降はControllerと呼びます。
 - 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。ここにAppDynamicsエージェントをインストールするホストであり、以降はApplication VMと呼びます。

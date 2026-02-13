@@ -5,7 +5,7 @@ weight: 1
 description: この演習では、Controller にアクセスしてアプリケーションの負荷を確認します。
 ---
 
-この演習では、以下のタスクを完了します：
+この演習では、以下のタスクを完了します
 
 * WebブラウザからAppDynamics Controllerにアクセスする
 * アプリケーションへのトランザクション負荷を確認する
@@ -17,7 +17,7 @@ Ciscoの認証情報を使用して [AppDynamics SE Lab Controller](https://se-l
 
 ## アプリケーションへのトランザクション負荷の確認
 
-アプリケーションフローマップを確認します：
+アプリケーションフローマップを確認します
 
 1. **last 1 hour** の時間枠を選択します。
 2. フローマップに5つの異なるティアが表示されていることを確認します。
@@ -25,7 +25,7 @@ Ciscoの認証情報を使用して [AppDynamics SE Lab Controller](https://se-l
 
 ![Verify Load 1](images/01-prereque-appload.png)
 
-ビジネストランザクションのリストを確認します：
+ビジネストランザクションのリストを確認します
 
 1. 左メニューの **Business Transactions** オプションをクリックします。
 2. 以下に示す11個のビジネストランザクションが表示されていることを確認します。
@@ -35,7 +35,7 @@ Ciscoの認証情報を使用して [AppDynamics SE Lab Controller](https://se-l
 
 ![Verify Business transactions](images/01-prereq-bts.png)
 
-ノードのエージェントステータスを確認します：
+ノードのエージェントステータスを確認します
 
 1. 左メニューの **Tiers & Nodes** オプションをクリックします。
 2. **Grid View** をクリックします。
@@ -90,7 +90,7 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 ./stop_load.sh
 ```
 
-Tomcatサーバーを再起動します：
+Tomcatサーバーを再起動します
 
 ``` bash
 cd /usr/local/apache/apache-tomcat-9/bin

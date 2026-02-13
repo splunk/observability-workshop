@@ -23,7 +23,7 @@ Last login: Mon Feb  5 11:04:54 2024 from [Redacted]
 splunk@show-no-config-i-0d1b29d967cb2e6ff ~ $
 ```
 
-インスタンスが正しく設定されていることを確認するために、このワークショップに必要な環境変数が正しく設定されているか確認する必要があります。ターミナルで以下のスクリプトを実行し、環境変数が存在し、実際の有効な値が設定されていることを確認してください：
+インスタンスが正しく設定されていることを確認するために、このワークショップに必要な環境変数が正しく設定されているか確認する必要があります。ターミナルで以下のスクリプトを実行し、環境変数が存在し、実際の有効な値が設定されていることを確認してください
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -54,7 +54,7 @@ INSTANCE = <instance_name>
 > [!SPLUNK] 既存の OpenTelemetry Collector の削除
 >この EC2 インスタンスを使用して以前に Splunk Observability ワークショップを完了している場合は、
 >既存の Splunk OpenTelemetry Collector のインストールが削除されていることを確認する必要があります。
->これは以下のコマンドを実行することで行えます：
+>これは以下のコマンドを実行することで行えます
 >
 >``` bash
 >helm delete splunk-otel-collector

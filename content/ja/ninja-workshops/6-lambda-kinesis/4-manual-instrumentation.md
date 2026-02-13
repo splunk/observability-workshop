@@ -12,13 +12,13 @@ weight: 4
 
 #### `manual` ディレクトリ
 
-- 以下のコマンドを実行して `o11y-lambda-workshop/manual` ディレクトリに移動します：
+- 以下のコマンドを実行して `o11y-lambda-workshop/manual` ディレクトリに移動します
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- `ls` コマンドでこのディレクトリの内容を確認します：
+- `ls` コマンドでこのディレクトリの内容を確認します
 
   ```bash
   ls
@@ -39,7 +39,7 @@ weight: 4
 
 見た目が同じように見えるこれらのファイルが実際に同じかどうか確認しましょう。
 
-- `auto` と `manual` ディレクトリの `main.tf` ファイルを比較します：
+- `auto` と `manual` ディレクトリの `main.tf` ファイルを比較します
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/main.tf ~/o11y-lambda-workshop/manual/main.tf
@@ -47,7 +47,7 @@ weight: 4
 
   - 違いはありません！_(違いがあるはずはありません。もし違いがあれば、ワークショップ進行役に支援を求めてください)_
 
-- 次に、`producer.mjs` ファイルを比較してみましょう：
+- 次に、`producer.mjs` ファイルを比較してみましょう
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/handler/producer.mjs ~/o11y-lambda-workshop/manual/handler/producer.mjs
@@ -55,7 +55,7 @@ weight: 4
 
   - ここにはかなりの違いがあります！
 
-- ファイル全体を表示してその内容を調べたい場合は以下を実行します：
+- ファイル全体を表示してその内容を調べたい場合は以下を実行します
 
   ```bash
   cat ~/o11y-lambda-workshop/handler/producer.mjs
@@ -67,24 +67,24 @@ weight: 4
   import { context, propagation, trace } from "@opentelemetry/api";
   ```
 
-  - プロデューサー関数でコンテキストを伝播するために、[@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) から次のオブジェクトをインポートしています：
+  - プロデューサー関数でコンテキストを伝播するために、[@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) から次のオブジェクトをインポートしています
     - context
     - propagation
     - trace
 
-- 最後に、`consumer.mjs` ファイルを比較します：
+- 最後に、`consumer.mjs` ファイルを比較します
 
   ```bash
   diff ~/o11y-lambda-workshop/auto/handler/consumer.mjs ~/o11y-lambda-workshop/manual/handler/consumer.mjs
   ```
 
-  - ここにもいくつかの注目すべき違いがあります。より詳しく見てみましょう：
+  - ここにもいくつかの注目すべき違いがあります。より詳しく見てみましょう
 
     ```bash
     cat handler/consumer.mjs
     ```
 
-    - このファイルでは、次の [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) オブジェクトをインポートしています：
+    - このファイルでは、次の [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) オブジェクトをインポートしています
       - propagation
       - trace
       - ROOT_CONTEXT
@@ -93,7 +93,7 @@ weight: 4
 
 #### プロデューサー関数からのトレースコンテキスト伝播
 
-以下のコードはプロデューサー関数内で次のステップを実行します：
+以下のコードはプロデューサー関数内で次のステップを実行します
 
 1. このトレース用のトレーサーを取得する
 2. コンテキストキャリアオブジェクトを初期化する
@@ -131,7 +131,7 @@ const tracer = trace.getTracer('lambda-app');
 
 #### コンシューマー関数でのトレースコンテキスト抽出
 
-以下のコードはコンシューマー関数内で次のステップを実行します：
+以下のコードはコンシューマー関数内で次のステップを実行します
 
 1. `producer-lambda` から取得したコンテキストをキャリアオブジェクトに抽出する
 2. 現在のコンテキストからトレーサーを抽出する

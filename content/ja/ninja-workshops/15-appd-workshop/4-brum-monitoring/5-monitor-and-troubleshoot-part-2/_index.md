@@ -5,7 +5,7 @@ weight: 5
 description: この演習では、ダッシュボードをレビューし、Browser Snapshotをトラブルシューティングします。
 ---
 
-この演習では、以下のタスクを完了します：
+この演習では、以下のタスクを完了します
 
 * 作成したBrowser Sessionをレビューする。
 * Pages & AJAX Requestsダッシュボードをレビューする。

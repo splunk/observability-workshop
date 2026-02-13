@@ -67,7 +67,7 @@ Application Dashboardの3つのエリアでノードの問題のインジケー�
 
     ![Health Rule Violation](images/health-rule-violations.png)
 
-    **Health Rule Violation** 詳細ビューアには以下が表示されます：
+    **Health Rule Violation** 詳細ビューアには以下が表示されます
 
 9. 違反の現在の状態。
 10. 違反が発生していた時間のタイムライン。

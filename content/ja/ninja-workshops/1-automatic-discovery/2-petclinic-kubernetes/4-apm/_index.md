@@ -21,7 +21,7 @@ Javaアプリケーションの場合、OpenTelemetry Collectorは `instrumentat
 
 {{% notice title="deployment.yamlの使用" style="info" %}}
 
-Podが自動的にトレースを送信するようにしたい場合は、以下に示すように `deployment.yaml` にアノテーションを追加できます。これにより、初期デプロイメント時に計装ライブラリが追加されます。時間を節約するために、以下のPodに対してこれを実施済みです：
+Podが自動的にトレースを送信するようにしたい場合は、以下に示すように `deployment.yaml` にアノテーションを追加できます。これにより、初期デプロイメント時に計装ライブラリが追加されます。時間を節約するために、以下のPodに対してこれを実施済みです
 
 - **admin-server**
 - **config-server**

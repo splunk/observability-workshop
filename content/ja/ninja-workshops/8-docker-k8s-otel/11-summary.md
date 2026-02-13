@@ -5,7 +5,7 @@ weight: 11
 time: 2 minutes
 ---
 
-このワークショップでは、以下の概念についてハンズオンで体験しました：
+このワークショップでは、以下の概念についてハンズオンで体験しました
 
 - Linuxホストに**Splunk Distribution of the OpenTelemetry Collector**をデプロイする方法。
 - **Splunk Distribution of OpenTelemetry .NET**で.NETアプリケーションを計装する方法。

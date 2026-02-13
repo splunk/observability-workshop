@@ -4,7 +4,7 @@ linkTitle: 4.1 Log Observerホームページ
 weight: 2
 ---
 
-メインメニューの**Log Observer**をクリックすると、Log Observerホームページが表示されます。Log Observerホームページは4つの明確なセクションで構成されています：
+メインメニューの**Log Observer**をクリックすると、Log Observerホームページが表示されます。Log Observerホームページは4つの明確なセクションで構成されています
 
 ![LOページ](../images/log-observer-main.png)
 
@@ -25,7 +25,7 @@ weight: 2
 
 {{% /notice %}}
 
-簡単な検索演習を行いましょう：
+簡単な検索演習を行いましょう
 
 {{% notice title="演習" style="green" icon="running" %}}
 

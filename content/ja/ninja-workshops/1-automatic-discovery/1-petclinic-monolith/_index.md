@@ -7,7 +7,7 @@ authors: ["Robert Castley"]
 time: 30 minutes
 ---
 
-このワークショップの目的は、**Splunk Observability Cloud** プラットフォームの以下のコンポーネントを設定するための基本的な手順を説明することです：
+このワークショップの目的は、**Splunk Observability Cloud** プラットフォームの以下のコンポーネントを設定するための基本的な手順を説明することです
 
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Automatic Discovery for Java (APM)

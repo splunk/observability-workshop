@@ -9,7 +9,7 @@ description: このラーニングラボでは、AppDynamicsを使用してブ�
 
 このラーニングラボでは、AppDynamicsを使用してブラウザベースのアプリケーションの正常性を監視する方法を学習します。
 
-このラボを完了すると、以下のことができるようになります：
+このラボを完了すると、以下のことができるようになります
 
 - Controllerでブラウザアプリケーションを作成する
 - Browser Real User Monitoring (BRUM) エージェントを設定してWebアプリケーションの正常性を監視する
@@ -17,7 +17,7 @@ description: このラーニングラボでは、AppDynamicsを使用してブ�
 
 ## ワークショップ環境
 
-ワークショップ環境には2つのホストがあります：
+ワークショップ環境には2つのホストがあります
 
 - 1つ目のホストはAppDynamics Controllerを実行しており、以降Controllerと呼びます。
 - 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。このホストにAppDynamicsエージェントをインストールし、以降Application VMと呼びます。

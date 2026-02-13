@@ -7,7 +7,7 @@ weight: 1
 
 オブザーバビリティシグナル（**メトリクス、トレース**、**ログ**）を **Splunk Observability Cloud** に送信するには、KubernetesクラスターにSplunk OpenTelemetry Collectorをデプロイする必要があります。
 
-このワークショップでは、Splunk OpenTelemetry Collector Helm Chartを使用します。まず、Helm chartリポジトリをHelmに追加し、`helm repo update` を実行して最新バージョンを確認します：
+このワークショップでは、Splunk OpenTelemetry Collector Helm Chartを使用します。まず、Helm chartリポジトリをHelmに追加し、`helm repo update` を実行して最新バージョンを確認します
 
 {{< tabs >}}
 {{% tab title="Install Helm Chart" %}}
@@ -38,7 +38,7 @@ Update Complete. ⎈Happy Helming!⎈
 * `--set="operator.enabled=true"` - 自動ディスカバリーおよび設定を処理するためのOpenTelemetryオペレーターをインストールします。
 * `--set="splunkObservability.profilingEnabled=true"` - オペレーター経由でコードプロファイリングを有効にします。
 
-Collectorをインストールするには、以下のコマンドを実行してください。これを編集**しないでください**：
+Collectorをインストールするには、以下のコマンドを実行してください。これを編集**しないでください**
 
 {{< tabs >}}
 {{% tab title="Helm Install" %}}
@@ -131,7 +131,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 
 >[!INFO] 失敗したインストールの削除
 >OpenTelemetry Collector のインストールでエラーが発生した場合は、
->以下のコマンドでインストールを削除してやり直すことができます：
+>以下のコマンドでインストールを削除してやり直すことができます
 >
 >``` bash
 >helm delete splunk-otel-collector

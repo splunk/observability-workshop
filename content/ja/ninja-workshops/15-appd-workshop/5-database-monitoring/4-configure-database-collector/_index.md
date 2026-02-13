@@ -9,7 +9,7 @@ description: この演習では、Controller にアクセスし、Database Colle
 
 Database Agent Collectorは、Database Agent内で実行され、データベースインスタンスとデータベースサーバーのパフォーマンスメトリクスを収集するプロセスです。1つのコレクターは1つのデータベースインスタンスのメトリクスを収集します。1つのDatabase Agentで複数のコレクターを実行できます。Database AgentがControllerに接続されると、Controllerで1つ以上のコレクターを構成できます。
 
-この演習では、以下のタスクを実行します：
+この演習では、以下のタスクを実行します
 
 - WebブラウザからAppDynamics Controllerにアクセスする
 - ControllerでDatabase Collectorを構成する

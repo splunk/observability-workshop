@@ -12,14 +12,14 @@ Splunkが主催するワークショップの場合、Workshop Orgに招待す�
 
 進めるには、**Join Now**（参加する）ボタンをクリックするか、メールに記載されているリンクをクリックしてください。
 
-登録プロセスをすでに完了している場合は、残りの手順をスキップして直接Splunk Observability Cloudにログインできます：
+登録プロセスをすでに完了している場合は、残りの手順をスキップして直接Splunk Observability Cloudにログインできます
 
 - [**https://app.eu0.signalfx.com (EMEA)**](https://app.eu0.signalfx.com)
 - [**https://app.us1.signalfx.com (APAC/AMER)**](https://app.us1.signalfx.com)
 
 ![メール](images/invite-email.png?width=25vw)
 
-Splunk Observability Cloudを初めて使用する場合は、登録フォームが表示されます。フルネームと希望するパスワードを入力してください。パスワードの要件は次のとおりです：
+Splunk Observability Cloudを初めて使用する場合は、登録フォームが表示されます。フルネームと希望するパスワードを入力してください。パスワードの要件は次のとおりです
 
 - 8文字から32文字の間である
 - 少なくとも1つの大文字を含む

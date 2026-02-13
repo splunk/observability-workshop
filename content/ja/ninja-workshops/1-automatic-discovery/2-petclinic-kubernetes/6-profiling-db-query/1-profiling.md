@@ -6,9 +6,9 @@ weight: 1
 
 先ほどHelmチャートを使用してSplunk Distribution of the OpenTelemetry Collectorをインストールした際、**AlwaysOn Profiling**と**Metrics**を有効にするように設定しました。これにより、OpenTelemetry JavaはアプリケーションのCPUとメモリのプロファイリングを自動的に生成し、Splunk Observability Cloudに送信します。
 
-PetClinicアプリケーションをデプロイしてアノテーションを設定すると、collectorは自動的にアプリケーションを検出し、トレースとプロファイリングのためにインストルメントします。これを確認するために、次のスクリプトを実行して、インストルメントしているJavaコンテナの1つの起動ログを調べることができます：
+PetClinicアプリケーションをデプロイしてアノテーションを設定すると、collectorは自動的にアプリケーションを検出し、トレースとプロファイリングのためにインストルメントします。これを確認するために、次のスクリプトを実行して、インストルメントしているJavaコンテナの1つの起動ログを調べることができます
 
-ログには、Javaの自動検出と設定によって取得されたフラグが表示されます：
+ログには、Javaの自動検出と設定によって取得されたフラグが表示されます
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}

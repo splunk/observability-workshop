@@ -7,14 +7,14 @@ time: 15 minutes
 
 ## ワークショップパート 1 の振り返り
 
-ワークショップのこの時点で、以下を正常に完了しました：
+ワークショップのこの時点で、以下を正常に完了しました
 
 - LinuxホストにSplunk distribution of OpenTelemetryコレクターをデプロイ
 - Splunk Observability Cloudにトレースとメトリクスを送信するよう設定
 - .NETアプリケーションをデプロイし、OpenTelemetryで計装
 - .NETアプリケーションをDocker化し、o11y cloudにトレースが流れることを確認
 
-上記のステップを**完了していない**場合は、ワークショップの残りの部分に進む前に以下のコマンドを実行してください：
+上記のステップを**完了していない**場合は、ワークショップの残りの部分に進む前に以下のコマンドを実行してください
 
 ```bash
 cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop/docker-k8s-otel/helloworld/
@@ -72,7 +72,7 @@ Helmを使用してK8sクラスターにOpenTelemetryコレクターをデプロ
 
 ## ホストコレクターのアンインストール
 
-先に進む前に、Linuxホストに先ほどインストールしたコレクターを削除しましょう：
+先に進む前に、Linuxホストに先ほどインストールしたコレクターを削除しましょう
 \
 
 ```bash
@@ -90,13 +90,13 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 ```
 
-リポジトリが最新であることを確認します：
+リポジトリが最新であることを確認します
 
 ```bash
 helm repo update
 ```
 
-helmチャートのデプロイメントを設定するために、`/home/splunk` ディレクトリに `values.yaml` という名前の新しいファイルを作成しましょう：
+helmチャートのデプロイメントを設定するために、`/home/splunk` ディレクトリに `values.yaml` という名前の新しいファイルを作成しましょう
 
 ```bash
 # swith to the /home/splunk dir
@@ -140,7 +140,7 @@ agent:
 
 > vi での変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-次のコマンドを使用してコレクターをインストールできます：
+次のコマンドを使用してコレクターをインストールできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -177,7 +177,7 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 ## コレクターが実行中であることを確認
 
-以下のコマンドでコレクターが実行されているかどうかを確認できます：
+以下のコマンドでコレクターが実行されているかどうかを確認できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -201,6 +201,6 @@ splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0
 ## O11y Cloud で K8s クラスターを確認
 
 Splunk Observability Cloudで、**Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**にナビゲートし、
-クラスター名（`$INSTANCE-cluster`）を検索します：
+クラスター名（`$INSTANCE-cluster`）を検索します
 
 ![Kubernetes node](../images/k8snode.png)

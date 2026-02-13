@@ -14,13 +14,13 @@ time: 20 minutes
 ## コレクター設定を確認する
 
 `values.yaml` ファイルを通じてコレクター設定が変更された場合は、
-config mapを確認してコレクターに実際に適用された設定を確認することが役立ちます：
+config mapを確認してコレクターに実際に適用された設定を確認することが役立ちます
 
 ```bash
 kubectl describe cm splunk-otel-collector-otel-agent
 ```
 
-エージェントコレクター設定のログとトレースのパイプラインを確認しましょう。次のようになっているはずです：
+エージェントコレクター設定のログとトレースのパイプラインを確認しましょう。次のようになっているはずです
 
 ```yaml
   pipelines:
@@ -71,7 +71,7 @@ kubectl describe cm splunk-otel-collector-otel-agent
 
 ## これらのエクスポーターはどのように削除されたのか？
 
-`values.yaml` ファイルに追加したカスタマイズを確認しましょう：
+`values.yaml` ファイルに追加したカスタマイズを確認しましょう
 
 ```yaml
 logsEngine: otel
@@ -102,7 +102,7 @@ agent:
 ## 問題を修正しましょう
 
 既存のパイプラインをカスタマイズする場合、設定のその部分を完全に再定義する必要があります。
-したがって、`values.yaml` ファイルを次のように更新する必要があります：
+したがって、`values.yaml` ファイルを次のように更新する必要があります
 
 ```yaml
 logsEngine: otel
@@ -127,7 +127,7 @@ agent:
             - debug
 ```
 
-変更を適用しましょう：
+変更を適用しましょう
 
 ```bash
 helm upgrade splunk-otel-collector \
@@ -142,13 +142,13 @@ helm upgrade splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector
 ```
 
-それからエージェントconfig mapを確認します：
+それからエージェントconfig mapを確認します
 
 ```bash
 kubectl describe cm splunk-otel-collector-otel-agent
 ```
 
-今度は、ログとトレースの両方について完全に定義されたエクスポーターパイプラインが表示されるはずです：
+今度は、ログとトレースの両方について完全に定義されたエクスポーターパイプラインが表示されるはずです
 
 ```bash
   pipelines:
@@ -176,14 +176,14 @@ kubectl describe cm splunk-otel-collector-otel-agent
 OpenTelemetry CollectorのローカルインスタンスにOTLP形式でエクスポートされます。
 
 debugエクスポーターによってキャプチャされたログを詳しく見て、それが発生しているかを確認しましょう。
-コレクターログをtailするには、次のコマンドを使用できます：
+コレクターログをtailするには、次のコマンドを使用できます
 
 ```bash
 kubectl logs -l component=otel-collector-agent -f
 ```
 
 ログをtailしたら、curlを使ってさらにトラフィックを生成できます。そうすると
-次のようなものが表示されるはずです：
+次のようなものが表示されるはずです
 
 ```
 2024-12-20T21:56:30.858Z info Logs {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
@@ -238,7 +238,7 @@ Splunk Observability Cloudでログとトレースを関連付けることがで
 コンテナーログを自動的にキャプチャすることを覚えておいてください。
 
 これにより、アプリケーションの重複ログがキャプチャされることになります。例えば、次のスクリーンショットでは
-サービスへの各リクエストに対して2つのログエントリーが表示されています：
+サービスへの各リクエストに対して2つのログエントリーが表示されています
 
 ![Duplicate Log Entries](../images/duplicate_logs.png)
 
@@ -248,7 +248,7 @@ Splunk Observability Cloudでログとトレースを関連付けることがで
 
 重複ログをキャプチャしないようにするには、`OTEL_LOGS_EXPORTER` 環境変数を `none` に設定して、
 Splunk Distribution of OpenTelemetry .NETがOTLPを使用してコレクターにログをエクスポートしないようにできます。
-これは、`deployment.yaml` ファイルに `OTEL_LOGS_EXPORTER` 環境変数を追加することで実行できます：
+これは、`deployment.yaml` ファイルに `OTEL_LOGS_EXPORTER` 環境変数を追加することで実行できます
 
 ```yaml
 env:
@@ -268,7 +268,7 @@ env:
     value: "none"
 ```
 
-それから次を実行します：
+それから次を実行します
 
 ```bash
 # update the deployment
@@ -282,7 +282,7 @@ Span IDはアプリケーションによって生成されたstdoutログに書�
 これを解決するには、
 `/home/splunk/workshop/docker-k8s-otel/helloworld/SplunkTelemetryConfigurator.cs` で定義されている例のような、カスタムロガーを定義する必要があります。
 
-次のように `Program.cs` ファイルを更新することで、これをアプリケーションに含めることができます：
+次のように `Program.cs` ファイルを更新することで、これをアプリケーションに含めることができます
 
 ```cs
 using SplunkTelemetry;
@@ -301,7 +301,7 @@ app.MapControllers();
 app.Run();
 ```
 
-その後、カスタムログ設定を含む新しいDockerイメージをビルドします：
+その後、カスタムログ設定を含む新しいDockerイメージをビルドします
 
 ```bash
 cd /home/splunk/workshop/docker-k8s-otel/helloworld
@@ -309,7 +309,7 @@ cd /home/splunk/workshop/docker-k8s-otel/helloworld
 docker build -t helloworld:1.3 .
 ```
 
-それから更新されたイメージをKubernetesにインポートします：
+それから更新されたイメージをKubernetesにインポートします
 
 ```bash
 cd /home/splunk
@@ -318,7 +318,7 @@ cd /home/splunk
 sudo k3d image import helloworld:1.3 --cluster $INSTANCE-cluster
 ```
 
-最後に、`deployment.yaml` ファイルを更新してコンテナーイメージの1.3バージョンを使用する必要があります：
+最後に、`deployment.yaml` ファイルを更新してコンテナーイメージの1.3バージョンを使用する必要があります
 
 ```yaml
 spec:
@@ -327,7 +327,7 @@ spec:
       image: docker.io/library/helloworld:1.3
 ```
 
-それから変更を適用します：
+それから変更を適用します
 
 ```bash
 # update the deployment
@@ -335,6 +335,6 @@ kubectl apply -f deployment.yaml
 ```
 
 これで重複したログエントリーが排除されたことがわかります。そして
-残りのログエントリーはJSONとしてフォーマットされ、spanとtrace IDが含まれています：
+残りのログエントリーはJSONとしてフォーマットされ、spanとtrace IDが含まれています
 
 ![JSON Format Logs](../images/logs_json_format.png)

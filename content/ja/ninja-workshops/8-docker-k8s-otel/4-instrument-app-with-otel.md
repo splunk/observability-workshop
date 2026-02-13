@@ -11,7 +11,7 @@ time: 20 minutes
 手動でインストールします。
 
 最新の `splunk-otel-dotnet-install.sh` ファイルをダウンロードすることから始めます。
-これを使用して.NETアプリケーションを計装します：
+これを使用して.NETアプリケーションを計装します
 
 ```bash
 cd ~/workshop/docker-k8s-otel/helloworld
@@ -43,7 +43,7 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 {{% /tab %}}
 {{< /tabs >}}
 
-> 注意：上記のコマンドを実行する際には、ARCHITECTURE 環境変数を含める必要がある場合があります：
+> 注意：上記のコマンドを実行する際には、ARCHITECTURE 環境変数を含める必要がある場合があります
 >
 > ```bash
 > ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
@@ -51,7 +51,7 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 
 ## 計装の有効化
 
-次に、OpenTelemetry計装を有効化できます：
+次に、OpenTelemetry計装を有効化できます
 
 ```bash
 . $HOME/.splunk-otel-dotnet/instrument.sh
@@ -60,7 +60,7 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 ## デプロイメント環境の設定
 
 デプロイメント環境を設定して、データがSplunk Observability Cloud内の独自の
-環境に流れるようにしましょう：
+環境に流れるようにしましょう
 
 ```bash
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
@@ -68,7 +68,7 @@ export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 
 ## 計装を使用したアプリケーションの実行
 
-以下のようにアプリケーションを実行できます：
+以下のようにアプリケーションを実行できます
 
 ```bash
 dotnet run
@@ -81,7 +81,7 @@ LinuxインスタンスからC#アプリケーションによってエクスポ�
 <details>
   <summary><b>答えを見るにはここをクリック</b></summary>
 
-これを行う方法は2つあります：
+これを行う方法は2つあります
 
 1. `dotnet run` コマンドの開始時に `OTEL_TRACES_EXPORTER=otlp,console` を追加することで、トレースがOTLP経由でコレクターに書き込まれるとともに、コンソールにも書き込まれるようになります。
 
@@ -110,7 +110,7 @@ service:
 
 ## アプリケーションへのアクセス
 
-アプリケーションが実行中になったら、2つ目のSSHターミナルを使用してcurlでアクセスします：
+アプリケーションが実行中になったら、2つ目のSSHターミナルを使用してcurlでアクセスします
 
 ```bash
 curl http://localhost:8080/hello
@@ -118,7 +118,7 @@ curl http://localhost:8080/hello
 
 以前と同様に、`Hello, World!` が返されるはずです。
 
-トレースログを有効にした場合は、以下のようなトレースがコンソールまたはコレクターログに書き込まれているのを確認できるはずです：
+トレースログを有効にした場合は、以下のようなトレースがコンソールまたはコレクターログに書き込まれているのを確認できるはずです
 
 ```bash
 info: Program[0]
@@ -171,7 +171,7 @@ Resource associated with Activity:
 
 APMにナビゲートし、Environmentドロップダウンを使用してあなたの環境（つまり `otel-instancename`）を選択します。
 
-すべてが正しくデプロイされている場合、サービスのリストに `helloworld` が表示されるはずです：
+すべてが正しくデプロイされている場合、サービスのリストに `helloworld` が表示されるはずです
 
 ![APM Overview](../images/apm_overview.png)
 
@@ -183,7 +183,7 @@ APMにナビゲートし、Environmentドロップダウンを使用してあな
 
 ![Traces](../images/traces.png)
 
-個別のトレースは以下のように表示されるはずです：
+個別のトレースは以下のように表示されるはずです
 
 ![Traces](../images/trace.png)
 

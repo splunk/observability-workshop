@@ -13,7 +13,7 @@ description: このラボでは、AppDynamics Server Visibility Monitoring と S
 
 このラボでは、AppDynamics Server Visibility MonitoringとService Availability Monitoringについて学びます。
 
-このラボを完了すると、以下のことができるようになります：
+このラボを完了すると、以下のことができるようになります
 
 - AppDynamics Server Visibility Agentをダウンロードする
 - AppDynamics Server Visibility Agentをインストールする
@@ -23,7 +23,7 @@ description: このラボでは、AppDynamics Server Visibility Monitoring と S
 
 ## ワークショップ環境
 
-ラボ環境には2つのホストがあります：
+ラボ環境には2つのホストがあります
 
 - 1つ目のホストはAppDynamics Controllerを実行しており、以降はControllerと呼びます。
 - 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。このホストにAppDynamicsエージェントをインストールし、以降はApplication VMと呼びます。

@@ -8,7 +8,7 @@ weight: 2
 
 **Prometheus** のレシーバーも、もちろんあります。[Prometheus](https://prometheus.io/docs/introduction/overview/) はOpenTelemetry Collectorで使われているオープンソースのツールキットです。このレシーバーは、OpenTelemetry Collector自身からメトリクスをスクレイピングするためにも使われます。これらのメトリクスは、コレクタの健全性をモニタリングするために使用できる。
 
-ここでは、**prometheus** レシーバーを変更して、コレクター自身からメトリクスを収集できるようにしてみます。レシーバーの名前を **prometheus** から **prometheus/internal** に変更して、レシーバーが何をしているのかをより明確しましょう。設定ファイルを以下のように更新します：
+ここでは、**prometheus** レシーバーを変更して、コレクター自身からメトリクスを収集できるようにしてみます。レシーバーの名前を **prometheus** から **prometheus/internal** に変更して、レシーバーが何をしているのかをより明確しましょう。設定ファイルを以下のように更新します
 
 {{% tab title="Prometheus Receiver Configuration" %}}
 

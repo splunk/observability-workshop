@@ -5,7 +5,7 @@ weight: 2
 description: この演習では、Controllerでアプリケーションを作成および設定します。
 ---
 
-この演習では、以下のタスクを完了します：
+この演習では、以下のタスクを完了します
 
 * WebブラウザからAppDynamics Controllerにアクセスする。
 * ControllerでBrowser Applicationを作成する。

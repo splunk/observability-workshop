@@ -4,7 +4,7 @@ weight: 4
 description: このセクションでは、Splunk AppDynamics APM 機能の基本概念について学びます
 ---
 
-このセクションでは、Splunk AppDynamics APM機能の基本概念について学びます。このセクションを終了すると、以下の概念を理解できるようになります：
+このセクションでは、Splunk AppDynamics APM機能の基本概念について学びます。このセクションを終了すると、以下の概念を理解できるようになります
 
 - Application Flow Maps
 - Business Transactions (BTs)
@@ -30,7 +30,7 @@ Flow Mapsの詳細については[こちら](https://help.splunk.com/en/appdynam
 
 ## Business Transactions
 
-AppDynamicsモデルでは、Business Transactionはリクエスト（通常はユーザーリクエスト）のデータ処理フローを表します。現実世界では、アプリケーション内の多くの異なるコンポーネントが相互作用して、以下のようなタイプのリクエストを処理するサービスを提供します：
+AppDynamicsモデルでは、Business Transactionはリクエスト（通常はユーザーリクエスト）のデータ処理フローを表します。現実世界では、アプリケーション内の多くの異なるコンポーネントが相互作用して、以下のようなタイプのリクエストを処理するサービスを提供します
 
 - eコマースアプリケーションでは、ユーザーのログイン、商品の検索、カートへの商品追加
 - コンテンツポータルでは、スポーツ、ビジネス、エンターテインメントニュースなどのコンテンツのリクエスト

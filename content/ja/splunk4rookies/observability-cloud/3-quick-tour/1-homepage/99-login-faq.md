@@ -18,7 +18,7 @@ hidden: true
 
 ### 2. パスワードが受け付けられない
 
-Splunk Observability Cloudでのパスワードの要件は以下の通りです：
+Splunk Observability Cloudでのパスワードの要件は以下の通りです
 
 - 8文字から32文字の間**でなければなりません**
 - 少なくとも1つの大文字を**含まなければなりません**

@@ -10,7 +10,7 @@ weight: 6
 
 もう一度APMで環境のサービスマップを確認してみましょう。
 
-Splunk Observability Cloudで：
+Splunk Observability Cloudで
 
 - メインメニューの `APM` ボタンをクリックします。
 
@@ -39,7 +39,7 @@ Splunk Observability Cloudで：
 > [!NOTE]
 > トレース ID は、私たちが伝播したトレースコンテキストの一部でした。
 
-最も一般的な2つの伝播規格について読むことができます：
+最も一般的な2つの伝播規格について読むことができます
 
 1. [W3C](https:///www.w3.org/TR/trace-context/#traceparent-header)
 2. [B3](https://github.com/openzipkin/b3-propagation#overall-process)
@@ -71,7 +71,7 @@ Splunk Observability Cloudで：
 
 #### `send_message` の停止
 
-- `send_message.py` スクリプトがまだ実行中の場合は、次のコマンドで停止します：
+- `send_message.py` スクリプトがまだ実行中の場合は、次のコマンドで停止します
 
   ```bash
   fg
@@ -84,9 +84,9 @@ Splunk Observability Cloudで：
 
 Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
-以下の手順に従ってリソースを破棄してください：
+以下の手順に従ってリソースを破棄してください
 
-- `manual` ディレクトリにいることを確認します：
+- `manual` ディレクトリにいることを確認します
 
   ```bash
   pwd
@@ -94,13 +94,13 @@ Terraformは個々のリソースの状態をデプロイメントとして管�
 
   - _予想される出力は **~/o11y-lambda-workshop/manual** です_
 
-- `manual` ディレクトリにいない場合は、次のコマンドを実行します：
+- `manual` ディレクトリにいない場合は、次のコマンドを実行します
 
   ```bash
   cd ~/o11y-lambda-workshop/manual
   ```
 
-- 以前にデプロイしたLambda関数とその他のAWSリソースを破棄します：
+- 以前にデプロイしたLambda関数とその他のAWSリソースを破棄します
 
   ```bash
   terraform destroy

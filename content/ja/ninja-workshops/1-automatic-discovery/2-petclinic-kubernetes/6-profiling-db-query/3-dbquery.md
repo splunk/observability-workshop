@@ -14,7 +14,7 @@ Dependency mapで推論されたデータベースサービス `mysql:petclinic`
 
 マップで選択したサービスが実際に（推論された）データベースサーバーである場合、このペインには期間に基づく上位90%（P90）のデータベースコールが表示されます。db-queryパフォーマンス機能をさらに詳しく調べるには、ペインの上部にある**Database Query Performance**という単語のどこかをクリックします。
 
-これにより、DB-query Performanceの概要画面が表示されます：
+これにより、DB-query Performanceの概要画面が表示されます
 
 ![DB-query full](../../images/db-query-full.png)
 
@@ -28,7 +28,7 @@ Dependency mapで推論されたデータベースサービス `mysql:petclinic`
 
 右側のペイン **(5)**の2つのチャートを使用して、Database Callsを含むトレースを選択できます。Tag Spotlightペイン **(6)**を使用して、エンドポイントやタグに基づいて、データベースコールに関連するタグを確認します。
 
-クエリの詳細ビューを表示する必要がある場合：
+クエリの詳細ビューを表示する必要がある場合
 
 ![details](../../images/query-details.png)
 

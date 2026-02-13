@@ -10,7 +10,7 @@ Lambda関数は相当量のトレースデータを生成しているはずで�
 
 まず、Splunk APMが受信しているトレースデータから `Environment` を認識していることを確認しましょう。これは `main.tf` のLambda関数定義で設定した `OTEL_RESOURCE_ATTRIBUTES` 変数の一部として設定した `deployment.name` です。これは先ほど実行した `terraform apply` コマンドの出力の1つでもありました。
 
-Splunk Observability Cloudで：
+Splunk Observability Cloudで
 
 - 左側のメインメニューから `APM` ボタンをクリックします。これによりSplunk APM概要に移動します。
 
@@ -66,7 +66,7 @@ Environmentドロップダウンから環境名を選択したら、Lambda関数
 
 #### `send_message` の停止
 
-- `send_message.py` スクリプトがまだ実行中の場合は、次のコマンドで停止します：
+- `send_message.py` スクリプトがまだ実行中の場合は、次のコマンドで停止します
 
   ```bash
   fg
@@ -79,9 +79,9 @@ Environmentドロップダウンから環境名を選択したら、Lambda関数
 
 Terraformは個々のリソースの状態をデプロイメントとして管理するのに優れています。定義に変更があっても、デプロイされたリソースを更新することもできます。しかし、一からやり直すために、リソースを破棄し、このワークショップの手動計装部分の一部として再デプロイします。
 
-以下の手順に従ってリソースを破棄してください：
+以下の手順に従ってリソースを破棄してください
 
-- `auto` ディレクトリにいることを確認します：
+- `auto` ディレクトリにいることを確認します
 
   ```bash
   pwd
@@ -89,13 +89,13 @@ Terraformは個々のリソースの状態をデプロイメントとして管�
 
   - _期待される出力は **~/o11y-lambda-workshop/auto** です_
 
-- `auto` ディレクトリにいない場合は、以下のコマンドを実行します：
+- `auto` ディレクトリにいない場合は、以下のコマンドを実行します
 
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- 先ほどデプロイしたLambda関数とその他のAWSリソースを破棄します：
+- 先ほどデプロイしたLambda関数とその他のAWSリソースを破棄します
 
   ```bash
   terraform destroy

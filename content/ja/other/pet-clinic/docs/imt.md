@@ -6,7 +6,7 @@ weight: 1
 
 ## 1. はじめに
 
-OpenTelemetry Collectorは、インフラストラクチャーとアプリケーションを計装するためのコアコンポーネントです。 その役割は収集と送信です：
+OpenTelemetry Collectorは、インフラストラクチャーとアプリケーションを計装するためのコアコンポーネントです。 その役割は収集と送信です
 
 - インフラストラクチャーのメトリクス（ディスク、CPU、メモリなど）
 - Application Performance Monitoring（APM）のトレース情報
@@ -42,7 +42,7 @@ export REALM="<replace_with_REALM>"
 {{< /tabs >}}
 
 {{% notice title="既存のOpenTelemetryコレクターをすべて削除する" style="warning" %}}
-同じVMインスタンスにSplunk IMワークショップのセットアップをしている場合、Otel Collectorをインストールする前にKubernetesで実行中のCollectorを削除していることを確認してください。これは、以下のコマンドを実行することで行うことができます：
+同じVMインスタンスにSplunk IMワークショップのセットアップをしている場合、Otel Collectorをインストールする前にKubernetesで実行中のCollectorを削除していることを確認してください。これは、以下のコマンドを実行することで行うことができます
 
 ```bash
 helm delete splunk-otel-collector
@@ -60,13 +60,13 @@ sudo sh /tmp/splunk-otel-collector.sh --deployment-environment $(hostname)-petcl
 ```
 
 {{% notice style="info" title="AWS/EC2インスタンスの場合" %}}。
-AWS/EC2インスタンス上でこのワークショップを行う場合、インスタンスのホスト名を公開するためにコレクターにパッチを適用する必要があります：
+AWS/EC2インスタンス上でこのワークショップを行う場合、インスタンスのホスト名を公開するためにコレクターにパッチを適用する必要があります
 
 ```bash
 sudo sed -i 's/gcp, ecs, ec2, azure, system/system, gcp, ecs, ec2, azure/g' /etc/otel/collector/agent_config.yaml
 ```
 
-`agent_config.yaml` にパッチを適用したあと、Collectorを再起動してください：
+`agent_config.yaml` にパッチを適用したあと、Collectorを再起動してください
 
 ```bash
 sudo systemctl restart splunk-otel-collector

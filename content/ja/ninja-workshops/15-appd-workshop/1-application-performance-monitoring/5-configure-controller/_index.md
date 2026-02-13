@@ -5,7 +5,7 @@ description: このセクションでは、Controller 内のさまざまな APM 
 ---
 
 
-この演習では、以下のタスクを完了します：
+この演習では、以下のタスクを完了します
 
 - Business Transaction設定を調整する
 - Call Graph設定を調整する
@@ -24,7 +24,7 @@ AppDynamics UIに時間枠セレクターが表示されている場合、表示
 
 ![List of Business Transactions](images/business-transactions-list.png)
 
-以下の手順に従ってトランザクション検出を最適化します：
+以下の手順に従ってトランザクション検出を最適化します
 
 1. 左下のメニューで **Configuration** オプションをクリックします。
 2. **Instrumentation** リンクをクリックします。

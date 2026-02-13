@@ -4,9 +4,9 @@ linkTitle: 3. APM Spans
 weight: 3
 ---
 
-スパンを調べる際、トレーシングの上で**自動検出と設定**を使用すると、**コード変更なし**で得られるいくつかの標準機能を見てみましょう：
+スパンを調べる際、トレーシングの上で**自動検出と設定**を使用すると、**コード変更なし**で得られるいくつかの標準機能を見てみましょう
 
-まず、Waterfall Paneで、以下のスクリーンショットに示すように `customers-service:SELECT petclinic` または類似のスパンが選択されていることを確認してください：
+まず、Waterfall Paneで、以下のスクリーンショットに示すように `customers-service:SELECT petclinic` または類似のスパンが選択されていることを確認してください
 
 ![DB-query](../../images/db-query.png)
 

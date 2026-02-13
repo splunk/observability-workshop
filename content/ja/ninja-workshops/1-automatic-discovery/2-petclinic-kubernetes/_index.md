@@ -20,7 +20,7 @@ time: 90 minutes
 > * ポート **81** へのアウトバウンド HTTP アクセス
 > * Linux コマンドラインの基本的な知識
 
-このワークショップでは、以下のコンポーネントをカバーします：
+このワークショップでは、以下のコンポーネントをカバーします
 
 * Splunk Infrastructure Monitoring (**IM**)
 * Splunk automatic discovery and configuration for Java (**APM**)

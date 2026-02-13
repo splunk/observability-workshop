@@ -9,7 +9,7 @@ description: このラーニングラボでは、AppDynamics Business iQにつ�
 
 このラーニングラボでは、AppDynamics Business iQについて学習します。
 
-このラボを完了すると、以下のことができるようになります：
+このラボを完了すると、以下のことができるようになります
 
 * 新しいエージェントレスAnalytics Java Agent（v 4.5.15以降）でAnalyticsを有効化する。
 * HTTPデータコレクターを設定する。
@@ -19,7 +19,7 @@ description: このラーニングラボでは、AppDynamics Business iQにつ�
 
 ## ワークショップ環境
 
-ラボ環境には2つのホストがあります：
+ラボ環境には2つのホストがあります
 
 * 1つ目のホストはAppDynamics Controllerを実行しており、以降Controllerと呼びます。
 * 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。このホストにAppDynamicsエージェントをインストールし、以降Application VMと呼びます。

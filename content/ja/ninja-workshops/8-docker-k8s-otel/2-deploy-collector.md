@@ -8,7 +8,7 @@ time: 10 minutes
 ## OpenTelemetry コレクターのアンインストール
 
 EC2インスタンスには、すでにSplunk DistributionのOpenTelemetryコレクターの古いバージョンが
-インストールされている可能性があります。先に進む前に、次のコマンドを使用してアンインストールしましょう：
+インストールされている可能性があります。先に進む前に、次のコマンドを使用してアンインストールしましょう
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -134,7 +134,7 @@ sudo systemctl status splunk-otel-collector
 
 ## コレクターログの確認方法
 
-`journalctl` を使用してコレクターログを表示できます：
+`journalctl` を使用してコレクターログを表示できます
 
 > ログの監視を終了するには、Ctrl + C を押します。
 

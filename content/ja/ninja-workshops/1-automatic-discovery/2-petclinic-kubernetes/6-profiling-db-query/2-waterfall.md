@@ -4,7 +4,7 @@ linkTitle: 2. Trace Waterfall
 weight: 2
 ---
 
-APM WaterfallビューでオリジナルのTrace & Span **(1)**（または類似のもの）を選択し、右側のペインから**Memory Stack Traces (2)**を選択してください：
+APM WaterfallビューでオリジナルのTrace & Span **(1)**（または類似のもの）を選択し、右側のペインから**Memory Stack Traces (2)**を選択してください
 
 ![profiling from span](../../images/flamechart-in-waterfall.png)
 
@@ -12,7 +12,7 @@ APM WaterfallビューでオリジナルのTrace & Span **(1)**（または類�
 
 AlwaysOn Profilingは、アプリケーションのコードのスナップショット、つまりスタックトレースを常に取得しています。何千ものスタックトレースを読まなければならないことを想像してみてください！それは現実的ではありません。これを支援するために、AlwaysOn Profilingはプロファイリングデータを集約して要約し、**Flame Graph**と呼ばれるビューでCall Stacksを探索する便利な方法を提供します。これは、アプリケーションからキャプチャされたすべてのスタックトレースの要約を表します。Flame Graphを使用して、パフォーマンスの問題を引き起こしている可能性のあるコードの行を発見し、コードに加えた変更が意図した効果を持っているかどうかを確認できます。
 
-Always-on Profilingをさらに詳しく調べるには、**Memory Stack Traces**の下のProfiling Paneで上の画像で参照されているSpan **(3)**を選択してください。これにより、Always-on Profilingのメイン画面が開き、Memoryビューがあらかじめ選択されています：
+Always-on Profilingをさらに詳しく調べるには、**Memory Stack Traces**の下のProfiling Paneで上の画像で参照されているSpan **(3)**を選択してください。これにより、Always-on Profilingのメイン画面が開き、Memoryビューがあらかじめ選択されています
 
 ![Profiling main](../../images/profiling-memory.png)
 

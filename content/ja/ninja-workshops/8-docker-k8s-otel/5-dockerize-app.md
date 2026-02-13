@@ -44,13 +44,13 @@ time: 15 minutes
 cd /home/splunk/workshop/docker-k8s-otel/helloworld
 ```
 
-ファイルの作成にはviまたはnanoを使用できます。viを使用した例を示します：
+ファイルの作成にはviまたはnanoを使用できます。viを使用した例を示します
 
 ```bash
 vi Dockerfile
 ```
 
-新しく開いたファイルに以下の内容をコピー＆ペーストします：
+新しく開いたファイルに以下の内容をコピー＆ペーストします
 
 > 以下のテキストを貼り付ける前に、vi で「i」を押して挿入モードに入ってください。
 
@@ -86,7 +86,7 @@ ENTRYPOINT ["dotnet", "helloworld.dll"]
 
 ## Dockerfile の詳細解説
 
-この例では、マルチステージDockerfileを使用しており、Dockerイメージ作成プロセスを以下のステージに分けています：
+この例では、マルチステージDockerfileを使用しており、Dockerイメージ作成プロセスを以下のステージに分けています
 
 - Base（ベース）
 - Build（ビルド）
@@ -101,7 +101,7 @@ ENTRYPOINT ["dotnet", "helloworld.dll"]
 
 ベースステージでは、アプリを実行するユーザー、作業ディレクトリを定義し、
 アプリにアクセスするために使用されるポートを公開します。
-これはMicrosoftの `mcr.microsoft.com/dotnet/aspnet:8.0` イメージをベースにしています：
+これはMicrosoftの `mcr.microsoft.com/dotnet/aspnet:8.0` イメージをベースにしています
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
@@ -126,7 +126,7 @@ runtimeだけでなく完全な[.NET SDK](https://github.com/dotnet/dotnet-docke
 
 次に、アプリケーションコードをbuildイメージにコピーし、
 `dotnet build` を使用してプロジェクトとその依存関係を
-`.dll` バイナリのセットにビルドします：
+`.dll` バイナリのセットにビルドします
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -142,7 +142,7 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 ### Publish ステージ
 
 3番目のステージはpublishで、これはMicrosoftイメージではなくbuildステージイメージをベースにしています。このステージでは、`dotnet publish` を使用して
-アプリケーションとその依存関係をdeployment用にパッケージ化します：
+アプリケーションとその依存関係をdeployment用にパッケージ化します
 
 ```dockerfile
 FROM build AS publish
@@ -154,7 +154,7 @@ RUN dotnet publish "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 
 4番目のステージは最終ステージで、これはbase
 ステージイメージをベースにしています（buildとpublishステージよりも軽量）。publishステージイメージからの出力をコピーし、
-アプリケーションのentry pointを定義します：
+アプリケーションのentry pointを定義します
 
 ```dockerfile
 FROM base AS final
@@ -167,7 +167,7 @@ ENTRYPOINT ["dotnet", "helloworld.dll"]
 ## Docker イメージのビルド
 
 `Dockerfile` ができたので、これを使用してアプリケーションを含むDockerイメージを
-ビルドできます：
+ビルドできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -205,7 +205,7 @@ etc,
 
 これは、現在のディレクトリの `Dockerfile` を使用して `helloworld:1.0` のタグでイメージをビルドするようDockerに指示します。
 
-以下のコマンドで正常に作成されたことを確認できます：
+以下のコマンドで正常に作成されたことを確認できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -229,7 +229,7 @@ helloworld   1.0       db19077b9445   20 seconds ago   217MB
 
 > 続行する前に、以前に開始したアプリケーションがインスタンス上で実行されていないことを確認してください。
 
-Dockerイメージを使用して以下のようにアプリケーションを実行できます：
+Dockerイメージを使用して以下のようにアプリケーションを実行できます
 
 ```bash
 docker run --name helloworld \
@@ -243,7 +243,7 @@ helloworld:1.0
 > インスタンス上のリソースにアクセスできるようにしています。これは後でアプリケーションが
 > localhost 上で実行されているコレクターにデータを送信する必要がある場合に重要です。
 
-Dockerコンテナが実行されていることを確認しましょう：
+Dockerコンテナが実行されていることを確認しましょう
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -264,7 +264,7 @@ CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS   
 {{% /tab %}}
 {{< /tabs >}}
 
-以前と同様にアプリケーションにアクセスできます：
+以前と同様にアプリケーションにアクセスできます
 
 {{< tabs >}}
 {{% tab title="Script" %}}

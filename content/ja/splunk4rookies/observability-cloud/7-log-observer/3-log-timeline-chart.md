@@ -9,7 +9,7 @@ Log Observerで特定のビューを持った後、そのビューをダッシ�
 
 {{% notice title="情報" style="green" title="演習" icon="running" %}}
 
-まず、関心のある列のみに情報量を減らします：
+まず、関心のある列のみに情報量を減らします
 
 - **ログテーブル**の上にあるテーブル設定{{% icon icon="cog" %}}アイコンをクリックして**Table Setting**を開き、`_raw` のチェックを外し、次のフィールドが選択されていることを確認します：`k8s.pod.name`、`message`、`version`。
   ![ログテーブル設定](../images/log-observer-table.png)

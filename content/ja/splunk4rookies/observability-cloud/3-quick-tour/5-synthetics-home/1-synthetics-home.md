@@ -20,7 +20,7 @@ weight: 2
 
 {{% notice title="演習" style="green" icon="running" %}}
 
-- テストペインで、ワークショップの名前を含む行をクリックします。結果は次のようになります：
+- テストペインで、ワークショップの名前を含む行をクリックします。結果は次のようになります
 
 ![Synthetics概要](../images/synthetics-test-overview.png)
 

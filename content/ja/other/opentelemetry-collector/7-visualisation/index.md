@@ -15,11 +15,11 @@ sudo apt install stress
 while true; do stress -c 2 -t 40; stress -d 5 -t 40; stress -m 20 -t 40; done
 ```
 
-Splunk Observability Cloudにログインしたら、左側のナビゲーションを使用して **Dashboards** に移動します：
+Splunk Observability Cloudにログインしたら、左側のナビゲーションを使用して **Dashboards** に移動します
 
 ![menu-dashboards](../images/menu-dashboards.png)
 
-検索ボックスで **OTel Contrib** を検索します：
+検索ボックスで **OTel Contrib** を検索します
 
 ![search-dashboards](../images/search-dashboards.png)
 
@@ -27,15 +27,15 @@ Splunk Observability Cloudにログインしたら、左側のナビゲーショ
 ダッシュボードが存在しない場合は、講師が迅速に追加します。このワークショップのSplunk主催版に参加していない場合、インポートするダッシュボードグループはこのページの下部にあります。
 {{% /notice %}}
 
-**OTel Contrib Dashboard** ダッシュボードをクリックして開きます：
+**OTel Contrib Dashboard** ダッシュボードをクリックして開きます
 
 ![otel-dashboard](../images/otel-dashboard.png)
 
-ダッシュボードの上部にある **Filter** 欄に「participant」の途中まで入力し、候補に出る **participant.name** を選択します：
+ダッシュボードの上部にある **Filter** 欄に「participant」の途中まで入力し、候補に出る **participant.name** を選択します
 
 ![search-filter](../images/search-filter.png)
 
-`participant.name` で、`config.yaml` 内で設定したあなたの名前を入力するか、リストから選択することができます：
+`participant.name` で、`config.yaml` 内で設定したあなたの名前を入力するか、リストから選択することができます
 
 ![select-conf-attendee-name](../images/select-participant-name.png)
 

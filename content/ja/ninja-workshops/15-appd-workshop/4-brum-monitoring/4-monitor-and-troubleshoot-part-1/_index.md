@@ -5,7 +5,7 @@ weight: 4
 description: この演習では、ダッシュボードをレビューし、デモアプリをナビゲートします。
 ---
 
-この演習では、以下のタスクを完了します：
+この演習では、以下のタスクを完了します
 
 * Browser Application Overviewダッシュボードをレビューする
 * Browser Application Geoダッシュボードをレビューする
@@ -22,7 +22,7 @@ User Experienceダッシュボードに移動し、以下の手順に従って�
 
 ![BRUM Dash 1](images/04-brum-app.png)
 
-Overviewダッシュボードには、設定可能なウィジェットのセットが表示されます。デフォルトのウィジェットには、アプリケーションパフォーマンスの一般的な高レベル指標を含む複数のグラフとリストが含まれています：
+Overviewダッシュボードには、設定可能なウィジェットのセットが表示されます。デフォルトのウィジェットには、アプリケーションパフォーマンスの一般的な高レベル指標を含む複数のグラフとリストが含まれています
 
 * End User Response Time Distribution
 * End User Response Time Trend
@@ -69,7 +69,7 @@ Browser Application Geoダッシュボードについて詳しくは、[**こち
 
 **Usage Stats** ダッシュボードは、ユーザーのブラウザタイプとデバイス/プラットフォームに基づいて集約されたページロード使用データを表示します。
 
-Browser Application Usage Statsダッシュボードは、以下のことを発見するのに役立ちます：
+Browser Application Usage Statsダッシュボードは、以下のことを発見するのに役立ちます
 
 * 合計エンドユーザー応答時間の面で最も遅いブラウザ。
 * 応答ページをレンダリングするのに最も遅いブラウザ。

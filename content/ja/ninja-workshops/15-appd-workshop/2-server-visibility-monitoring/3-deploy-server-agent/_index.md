@@ -5,7 +5,7 @@ weight: 3
 description: Server Agent を手動でインストールします。
 ---
 
-この演習では、以下のアクションを実行します：
+この演習では、以下のアクションを実行します
 
 1. Machine Agentをインストールするスクリプトを実行する
 2. Machine Agentを設定する

@@ -33,7 +33,7 @@ Splunk Observability Cloudに属性付きのトレースが取り込まれると
 
 `service.name` はサービスの論理名を定義する必須の属性です。OpenTelemetry SDKによって自動的に追加されますが、カスタマイズすることができます。これはシンプルに保つことが最善です（例えば、`inventoryservice` は `inventoryservice-prod-hostxyz` よりも良いでしょう。他の属性を使用してサービスの他の側面を捉えることができます）。
 
-以下のサービス属性が推奨されます：
+以下のサービス属性が推奨されます
 
 - `service.namespace` はサービスを所有するチームを識別するために使用されます
 - `service.instance.id` はサービスのユニークなインスタンスを識別するために使用されます
@@ -41,7 +41,7 @@ Splunk Observability Cloudに属性付きのトレースが取り込まれると
 
 ### テレメトリSDK
 
-これらの属性はSDKによって自動的に設定され、使用されている計測ライブラリに関する情報を記録します：
+これらの属性はSDKによって自動的に設定され、使用されている計測ライブラリに関する情報を記録します
 
 - `telemetry.sdk.name` は通常 `opentelemetry` に設定されます。
 - `telemetry.sdk.language` はSDKの言語で、例えば `java` です。
@@ -89,7 +89,7 @@ OpenTelemetryコミュニティでは、属性の命名に従うべきガイド�
 
 [Recommendations for Application Developers](https://opentelemetry.io/docs/specs/otel/common/attribute-naming/#recommendations-for-application-developers)は、私たちの議論に最も関連しています。
 
-そこでは、以下を推奨しています：
+そこでは、以下を推奨しています
 
 * `com.acme.shopname` のように、会社のドメイン名で属性名を接頭辞として付けること（属性が社内だけでなく外部で使用される可能性がある場合）
 * 属性が特定のアプリケーションに固有であり、組織内でのみ使用される場合は、アプリケーション名で属性名に接頭辞を付けること

@@ -5,12 +5,12 @@ weight: 3
 
 Real User Monitoring (RUM) の計装では、ページにOpenTelemetry Javascriptスニペット [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) を追加します。ウィザードを使用して **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation** の順に進みます。
 
-インストラクターがドロップダウンから使用するトークンを指示します。**Next** をクリックしてください。以下の形式で **App name** と **Environment** を入力します：
+インストラクターがドロップダウンから使用するトークンを指示します。**Next** をクリックしてください。以下の形式で **App name** と **Environment** を入力します
 
 - `<INSTANCE>-petclinic-service` - `<INSTANCE>` を先ほどメモした値に置き換えてください。
 - `<INSTANCE>-petclinic-env` - `<INSTANCE>` を先ほどメモした値に置き換えてください。
 
-ウィザードは、ページの `<head>` セクションの先頭に配置する必要があるHTMLコードスニペットを表示します。以下は例です（このスニペットは使用せず、ウィザードが生成したものを使用してください）：
+ウィザードは、ページの `<head>` セクションの先頭に配置する必要があるHTMLコードスニペットを表示します。以下は例です（このスニペットは使用せず、ウィザードが生成したものを使用してください）
 
 ``` html
 /*
@@ -32,13 +32,13 @@ version from https://github.com/signalfx/splunk-otel-js-web/releases
 
 Spring PetClinicアプリケーションは、アプリケーションのすべてのページで再利用される単一のHTMLページを「レイアウト」ページとして使用しています。Splunk RUM計装ライブラリを挿入するには、すべてのページで自動的に読み込まれるため、この場所が最適です。
 
-それでは、レイアウトページを編集しましょう：
+それでは、レイアウトページを編集しましょう
 
 ```bash
 vi src/main/resources/templates/fragments/layout.html
 ```
 
-次に、上記で生成したスニペットをページの `<head>` セクションに挿入します。コメントは含めず、ソースURLの `<version>` を `latest` に置き換えてください：
+次に、上記で生成したスニペットをページの `<head>` セクションに挿入します。コメントは含めず、ソースURLの `<version>` を `latest` に置き換えてください
 
 ```html
 <!doctype html>
@@ -57,7 +57,7 @@ vi src/main/resources/templates/fragments/layout.html
 ...
 ```
 
-コード変更が完了したら、アプリケーションを再ビルドして再度実行する必要があります。`maven` コマンドを実行してPetClinicをコンパイル/ビルド/パッケージ化します：
+コード変更が完了したら、アプリケーションを再ビルドして再度実行する必要があります。`maven` コマンドを実行してPetClinicをコンパイル/ビルド/パッケージ化します
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true

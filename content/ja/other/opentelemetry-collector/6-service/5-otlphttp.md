@@ -8,7 +8,7 @@ weight: 5
 
 ワークショップのエクスポーターセクションでは、`otlphttp` エクスポーターを設定して、メトリクスをSplunk Observability Cloudに送信するようにしました。これをメトリクスパイプライン下で有効にする必要があります。
 
-`metrics` パイプラインの下の `exporters` セクションを更新して、`otlphttp/splunk` を追加します：
+`metrics` パイプラインの下の `exporters` セクションを更新して、`otlphttp/splunk` を追加します
 
 ```yaml {hl_lines="13"}
 service:
@@ -42,7 +42,7 @@ service:
 
 ## Ninja ゾーン
 
-コレクターの内部オブザーバビリティを公開するためには、いくつかの設定を追加することがあります：
+コレクターの内部オブザーバビリティを公開するためには、いくつかの設定を追加することがあります
 
 {{< tabs >}}
 {{% tab title="telemetry schema" %}}
@@ -204,7 +204,7 @@ service:
 ---
 
 {{% notice style="tip" %}}
-コレクターを再起動する前に、設定ファイルを検証することをお勧めします。これは、組み込みの `validate` コマンドを使用して行うことができます：
+コレクターを再起動する前に、設定ファイルを検証することをお勧めします。これは、組み込みの `validate` コマンドを使用して行うことができます
 
 {{< tabs >}}
 {{% tab title="Command" %}}

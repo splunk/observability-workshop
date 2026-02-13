@@ -12,13 +12,13 @@ weight: 2
 
 #### `auto` ディレクトリ
 
-- 以下のコマンドを実行して **o11y-lambda-workshop/auto** ディレクトリに移動します：
+- 以下のコマンドを実行して **o11y-lambda-workshop/auto** ディレクトリに移動します
 
   ```bash
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- このディレクトリの内容を確認します：
+- このディレクトリの内容を確認します
 
   ```bash
   ls
@@ -40,7 +40,7 @@ weight: 2
 
 #### `main.tf` ファイル
 
-- `main.tf` ファイルをより詳しく見てみましょう：
+- `main.tf` ファイルをより詳しく見てみましょう
 
   ```bash
   cat main.tf
@@ -69,7 +69,7 @@ environment {
 }
 ```
 
-これらの環境変数を使用することで、いくつかの方法で自動計装を構成しています：
+これらの環境変数を使用することで、いくつかの方法で自動計装を構成しています
 
 - 環境変数を設定して、データのエクスポート先となるSplunk Observability Cloud組織をOpenTelemetry collectorに伝えています。
 
@@ -112,9 +112,9 @@ layers = var.otel_lambda_layer
 
 #### `producer.mjs` ファイル
 
-次に、`producer-lambda` 関数のコードを見てみましょう：
+次に、`producer-lambda` 関数のコードを見てみましょう
 
-- 以下のコマンドを実行して `producer.mjs` ファイルの内容を表示します：
+- 以下のコマンドを実行して `producer.mjs` ファイルの内容を表示します
 
   ```bash
   cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
@@ -139,7 +139,7 @@ layers = var.otel_lambda_layer
 
   - _予想される出力は **~/o11y-lambda-workshop/auto** です_
 
-- `auto` ディレクトリにいない場合は、次のコマンドを実行します：
+- `auto` ディレクトリにいない場合は、次のコマンドを実行します
 
   ```bash
   cd ~/o11y-lambda-workshop/auto
@@ -151,7 +151,7 @@ layers = var.otel_lambda_layer
   terraform init
   ```
 
-  - このコマンドは同じフォルダにいくつかの要素を作成します：
+  - このコマンドは同じフォルダにいくつかの要素を作成します
     - `.terraform.lock.hcl` ファイル：リソースを提供するために使用するプロバイダーを記録します
     - `.terraform` ディレクトリ：プロバイダーの構成を保存します
   - 上記のファイルに加えて、`apply` サブコマンドを使用してterraformを実行すると、デプロイされたリソースの状態を追跡するために `terraform.tfstate` ファイルが作成されます。
@@ -170,7 +170,7 @@ layers = var.otel_lambda_layer
   - _これにより、リソースをデプロイするプランといくつかのデータが出力され、意図したとおりに動作することを確認できます。_
   - _プランに表示される値の一部は、作成後に判明するか、セキュリティ上の理由でマスクされていることに注意してください。_
 
-- 次に、**terraform apply** コマンドを実行して、**main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします：
+- 次に、**terraform apply** コマンドを実行して、**main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします
 
   ```bash
   terraform apply
@@ -178,7 +178,7 @@ layers = var.otel_lambda_layer
 
   - _**Enter a value:** プロンプトが表示されたら **yes** と応答します_
 
-  - これにより、以下のような出力が得られます：
+  - これにより、以下のような出力が得られます
 
     ```bash
     Outputs:
@@ -201,7 +201,7 @@ layers = var.otel_lambda_layer
 
 デプロイしたLambda関数からトレースを取得し始めるには、トラフィックを生成する必要があります。`producer-lambda` 関数のエンドポイントにメッセージを送信し、それをKinesisストリームにレコードとして配置し、その後 `consumer-lambda` 関数によってストリームから取得されるようにします。
 
-- `auto` ディレクトリにいることを確認します：
+- `auto` ディレクトリにいることを確認します
 
   ```bash
   pwd
@@ -238,19 +238,19 @@ layers = var.otel_lambda_layer
     - _`nohup` コマンドはスクリプトがバックグラウンドに送られた時に切断されないようにします。また、コマンドからの curl 出力を、現在いるフォルダと同じフォルダにある nohup.out ファイルにキャプチャします。_
     - _`&` はシェルプロセスにこのプロセスをバックグラウンドで実行するよう指示し、シェルが他のコマンドを実行できるようにします。_
 
-- 次に、`response.logs` ファイルの内容を確認して、`producer-lambda` エンドポイントへのリクエストが成功したことを確認します：
+- 次に、`response.logs` ファイルの内容を確認して、`producer-lambda` エンドポイントへのリクエストが成功したことを確認します
 
   ```bash
   cat response.logs
   ```
 
-  - メッセージが成功していれば、画面に印刷された行の中に次の出力が表示されるはずです：
+  - メッセージが成功していれば、画面に印刷された行の中に次の出力が表示されるはずです
 
   ```bash
   {"message": "Message placed in the Event Stream: {prefix}-lambda_stream"}
   ```
 
-  - 失敗した場合は、次のように表示されます：
+  - 失敗した場合は、次のように表示されます
 
   ```bash
   {"message": "Internal server error"}
@@ -263,13 +263,13 @@ layers = var.otel_lambda_layer
 
 次に、Lambda関数のログを確認しましょう。
 
-- **producer-lambda** ログを表示するには、**producer.logs** ファイルを確認します：
+- **producer-lambda** ログを表示するには、**producer.logs** ファイルを確認します
 
   ```bash
   cat producer.logs
   ```
 
-- **consumer-lambda** ログを表示するには、**consumer.logs** ファイルを確認します：
+- **consumer-lambda** ログを表示するには、**consumer.logs** ファイルを確認します
 
   ```bash
   cat consumer.logs
