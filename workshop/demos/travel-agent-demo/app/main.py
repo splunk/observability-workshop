@@ -426,14 +426,14 @@ def pretty_print_message(message, indent=False):
     try:
         pretty_message = message.pretty_repr(html=False)
         if not indent:
-            print(pretty_message, file=sys.stderr, flush=True)
+            logging.info(pretty_message)
             return
 
         indented = "\n".join("\t" + c for c in pretty_message.split("\n"))
-        print(indented, file=sys.stderr, flush=True)
+        logging.info(indented)
     except Exception:
         # Fallback if pretty_repr fails
-        print(f"Message: {message}", file=sys.stderr, flush=True)
+        logging.error(f"Message: {message}")
 
 
 def pretty_print_messages(update, last_message=False):
@@ -446,7 +446,7 @@ def pretty_print_messages(update, last_message=False):
             return
 
         graph_id = ns[-1].split(":")[0]
-        print(f"\n🔹 Update from subgraph {graph_id}:", file=sys.stderr, flush=True)
+        logging.info(f"\n🔹 Update from subgraph {graph_id}:")
         is_subgraph = True
 
     for node_name, node_update in update.items():
@@ -454,7 +454,7 @@ def pretty_print_messages(update, last_message=False):
         if is_subgraph:
             update_label = "\t" + update_label
 
-        print(f"\n{update_label}", file=sys.stderr, flush=True)
+        logging.info(f"\n{update_label}")
 
         # Check if node_update has messages
         if "messages" in node_update:
@@ -466,13 +466,9 @@ def pretty_print_messages(update, last_message=False):
                 for m in messages:
                     pretty_print_message(m, indent=is_subgraph)
             except Exception as e:
-                print(
-                    f"  (Could not pretty print messages: {e})",
-                    file=sys.stderr,
-                    flush=True,
+                logging.error(
+                    f"  (Could not pretty print messages: {e})"
                 )
-
-        print("", file=sys.stderr, flush=True)
 
 def _http_root_attributes(state: PlannerState) -> Dict[str, str]:
     """Attributes for the synthetic HTTP request root span."""
@@ -813,6 +809,13 @@ def plan_travel_internal(
         kind=SpanKind.SERVER,
         attributes=attributes,
     ) as root_span:
+        ctx = root_span.get_span_context()
+        logging.info(
+            "POST /travel/plan root span trace_id=%s span_id=%s",
+            format(ctx.trace_id, "032x"),
+            format(ctx.span_id, "016x"),
+        )
+
         root_span.set_attribute("gen_ai.input.messages", json.dumps(root_input))
 
         config = {
@@ -883,6 +886,15 @@ def plan_travel_internal(
 def plan():
     """Handle travel planning requests via HTTP POST."""
     try:
+        span = trace.get_current_span()
+        span_context = span.get_span_context()
+
+        if span_context.is_valid:
+            trace_id = format(span_context.trace_id, "032x")
+            logging.info("In plan(), incoming request trace_id=%s", trace_id)
+        else:
+            logging.info("In plan(), incoming request has no active trace context")
+
         data = request.get_json()
 
         origin = data.get("origin", "Seattle")
@@ -899,10 +911,8 @@ def plan():
         if "poison_config" in data:
             poison_config = data["poison_config"]
 
-        print(
-            f"[SERVER] Processing travel plan: {origin} -> {destination}",
-            file=sys.stderr,
-            flush=True,
+        logging.info(
+            f"[SERVER] Processing travel plan: {origin} -> {destination}"
         )
 
         result = plan_travel_internal(
@@ -913,19 +923,17 @@ def plan():
             poison_config=poison_config,
         )
 
-        print(
-            "[SERVER] Travel plan completed successfully", file=sys.stderr, flush=True
+        logging.info(
+            "[SERVER] Travel plan completed successfully"
         )
-        print("\n" + "=" * 80, file=sys.stderr)
-        print("TRAVEL PLAN RESULT:", file=sys.stderr)
-        pprint(result, stream=sys.stderr)
-        print("=" * 80 + "\n", file=sys.stderr, flush=True)
+        logging.info("TRAVEL PLAN RESULT:")
+        logging.info(result)
 
         return jsonify(result), 200
 
     except Exception as e:
-        print(
-            f"[SERVER] Error processing travel plan: {e}", file=sys.stderr, flush=True
+        logging.error(
+            f"[SERVER] Error processing travel plan: {e}"
         )
         import traceback
 
@@ -940,9 +948,7 @@ def health():
 
 
 if __name__ == "__main__":
-    print(
-        "[INFO] Starting Flask server on http://0.0.0.0:8080",
-        file=sys.stderr,
-        flush=True,
+    logging.info(
+        "[INFO] Starting Flask server on http://0.0.0.0:8080"
     )
     app.run(host="0.0.0.0", port=8080, debug=False)

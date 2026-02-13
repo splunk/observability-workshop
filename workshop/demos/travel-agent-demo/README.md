@@ -25,7 +25,7 @@ cd proxy
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn service:app --host 0.0.0.0 --port 8000
+.venv/bin/uvicorn service:app --host 0.0.0.0 --port 8000
 ```
 
 Test the proxy service using curl: 
@@ -142,8 +142,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.2 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.2
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.3 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.3
 ```
 
 ### Load Generator
