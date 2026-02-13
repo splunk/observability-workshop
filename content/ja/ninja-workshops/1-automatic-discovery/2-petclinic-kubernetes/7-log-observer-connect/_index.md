@@ -6,11 +6,11 @@ archetype: chapter
 time: 10 minutes
 ---
 
-この時点まで、**コード変更は一切なく**、トレーシング、プロファイリング、データベースクエリパフォーマンスのデータが Splunk Observability Cloud に送信されています。
+この時点まで、**コード変更は一切なく**、トレーシング、プロファイリング、データベースクエリパフォーマンスのデータがSplunk Observability Cloudに送信されています。
 
-次に、**Splunk Log Observer** を使用して Spring PetClinic アプリケーションからログデータを取得します。
+次に、**Splunk Log Observer** を使用してSpring PetClinicアプリケーションからログデータを取得します。
 
-**Splunk OpenTelemetry Collector** は、Spring PetClinic アプリケーションからログを自動的に収集し、OTLP エクスポーターを使用して Splunk Observability Cloud に送信します。その際、ログイベントには `trace_id`、`span_id`、トレースフラグが付与されます。
+**Splunk OpenTelemetry Collector** は、Spring PetClinicアプリケーションからログを自動的に収集し、OTLPエクスポーターを使用してSplunk Observability Cloudに送信します。その際、ログイベントには `trace_id`、`span_id`、トレースフラグが付与されます。
 
 **Splunk Log Observer** を使用してログを表示し、ログ情報をサービスやトレースと自動的に関連付けます。
 

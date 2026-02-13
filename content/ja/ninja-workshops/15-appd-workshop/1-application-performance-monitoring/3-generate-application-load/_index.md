@@ -7,22 +7,22 @@ description: このセクションでは、サンプルアプリケーション�
 
 * サンプルアプリが実行されていることを確認する
 * サンプルアプリケーションの負荷生成を開始する
-* Controller でトランザクション負荷を確認する
+* Controllerでトランザクション負荷を確認する
 
 ## サンプルアプリケーションが実行されていることの確認
 
-サンプルアプリケーションのホームページには、以下の形式の URL を使用して Web ブラウザからアクセスできます。EC2 インスタンスの IP アドレスに置き換えて、ブラウザのナビゲーションバーに URL を入力してください。
+サンプルアプリケーションのホームページには、以下の形式のURLを使用してWebブラウザからアクセスできます。EC2インスタンスのIPアドレスに置き換えて、ブラウザのナビゲーションバーにURLを入力してください。
 
 ```bash
 http://[ec2-ip-address]:8080/Supercar-Trader/home.do
 ```
 
-Supercar Trader アプリケーションのホームページが表示されるはずです。
+Supercar Traderアプリケーションのホームページが表示されるはずです。
 ![Supercar Trade Home Page](images/SuperCarHomePage-rz.png)
 
 ## 負荷生成の開始
 
-EC2 インスタンスに SSH 接続し、負荷生成を開始します。すべてのスクリプトが実行されるまで数分かかる場合があります。
+EC2インスタンスにSSH接続し、負荷生成を開始します。すべてのスクリプトが実行されるまで数分かかる場合があります。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -79,15 +79,15 @@ Finished starting load generator scripts                                        
 
 ## Controller でのトランザクション負荷の確認
 
-Web ブラウザで Getting Started Wizard がまだ開いている場合、エージェントが接続され、Controller がデータを受信していることが確認できるはずです。
+WebブラウザでGetting Started Wizardがまだ開いている場合、エージェントが接続され、Controllerがデータを受信していることが確認できるはずです。
 
 ![Agent Connected](images/agent_connected.png)
 
-**Continue** をクリックすると、**Application Flow Map** に移動します（以下の Flow Map の画像にジャンプできます）。
+**Continue** をクリックすると、**Application Flow Map** に移動します（以下のFlow Mapの画像にジャンプできます）。
 
-Controller のブラウザウィンドウを以前に閉じた場合は、Controller に再度ログインしてください。
+Controllerのブラウザウィンドウを以前に閉じた場合は、Controllerに再度ログインしてください。
 
-1. Overview ページ（ランディングページ）から、左側のナビゲーションパネルの **Applications** タブをクリックします。
+1. Overviewページ（ランディングページ）から、左側のナビゲーションパネルの **Applications** タブをクリックします。
 
     ![Controller Overview Page](images/ControllerOverviewPage.png)
 
@@ -101,16 +101,16 @@ Controller のブラウザウィンドウを以前に閉じた場合は、Contro
 
 ![FlowMap](images/SuperCarTrader_FlowMap-rz.png)
 
-エージェントのダウンロード手順で、Tomcat サーバーの Tier 名と Node 名を割り当てました。
+エージェントのダウンロード手順で、TomcatサーバーのTier名とNode名を割り当てました。
 
 ``` bash
 <tier-name>Web-Portal</tier-name>
 <node-name>Web-Portal_Node-01</node-name>
 ```
 
-他の4つのサービスの Tier 名と Node 名がどのように割り当てられたか疑問に思うかもしれません。サンプルアプリケーションは、最初の Tomcat JVM から4つの追加 JVM を動的に作成し、4つのサービスそれぞれの JVM 起動コマンドに -D プロパティとしてこれらのプロパティを渡すことで Tier 名と Node 名を割り当てます。JVM 起動コマンドラインに含まれる -D プロパティは、Java エージェントの ```controller-info.xml``` ファイルで定義されたプロパティよりも優先されます。
+他の4つのサービスのTier名とNode名がどのように割り当てられたか疑問に思うかもしれません。サンプルアプリケーションは、最初のTomcat JVMから4つの追加JVMを動的に作成し、4つのサービスそれぞれのJVM起動コマンドに -Dプロパティとしてこれらのプロパティを渡すことでTier名とNode名を割り当てます。JVM起動コマンドラインに含まれる -Dプロパティは、Javaエージェントの ```controller-info.xml``` ファイルで定義されたプロパティよりも優先されます。
 
-動的に起動された4つのサービスそれぞれに使用される JVM 起動パラメータを確認するには、EC2 インスタンスのターミナルウィンドウで以下のコマンドを実行します。  
+動的に起動された4つのサービスそれぞれに使用されるJVM起動パラメータを確認するには、EC2インスタンスのターミナルウィンドウで以下のコマンドを実行します。  
   
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -133,15 +133,15 @@ splunk    144789   46722  0 20:09 pts/1    00:00:00 grep --color=auto appdynamic
 {{% /tab %}}
 {{< /tabs >}}
   
-フローマップにすべてのコンポーネントが表示されると、Insurance-Services Tier によって呼び出される3つの HTTP バックエンドを表す HTTP クラウドアイコンが表示されるはずです。
+フローマップにすべてのコンポーネントが表示されると、Insurance-Services Tierによって呼び出される3つのHTTPバックエンドを表すHTTPクラウドアイコンが表示されるはずです。
 
-以下の手順に従って、3つの HTTP バックエンドのグループ化を解除します。
+以下の手順に従って、3つのHTTPバックエンドのグループ化を解除します。
 
-1. 3 HTTP backends とラベル付けされた HTTP クラウドアイコンを右クリックします
+1. 3 HTTP backendsとラベル付けされたHTTPクラウドアイコンを右クリックします
 2. ドロップダウンメニューから **Ungroup Backends** を選択します
 
 ![Ungroup Http](images/ungroup-http-rz.png)
 
-HTTP バックエンドのグループ化が解除されると、以下の画像のように3つすべての HTTP バックエンドが表示されます。
+HTTPバックエンドのグループ化が解除されると、以下の画像のように3つすべてのHTTPバックエンドが表示されます。
 
 ![Ungroup flow](images/ungrouped_flow-rz.png)

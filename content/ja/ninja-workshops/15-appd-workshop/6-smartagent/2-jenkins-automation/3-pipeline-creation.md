@@ -6,18 +6,18 @@ time: 10 minutes
 
 ## 概要
 
-GitHub リポジトリには、Smart Agent のライフサイクル管理のための4つのメインパイプラインが含まれています:
+GitHubリポジトリには、Smart Agentのライフサイクル管理のための4つのメインパイプラインが含まれています:
 
-1. **Deploy Smart Agent** - Smart Agent サービスのインストールと起動
-2. **Install Machine Agent** - smartagentctl による Machine Agent のインストール
-3. **Install Database Agent** - smartagentctl による Database Agent のインストール
-4. **Cleanup All Agents** - /opt/appdynamics ディレクトリの削除
+1. **Deploy Smart Agent** - Smart Agentサービスのインストールと起動
+2. **Install Machine Agent** - smartagentctlによるMachine Agentのインストール
+3. **Install Database Agent** - smartagentctlによるDatabase Agentのインストール
+4. **Cleanup All Agents** - /opt/appdynamicsディレクトリの削除
 
 すべてのパイプラインコードは [sm-jenkins GitHub リポジトリ](https://github.com/chambear2809/sm-jenkins) で公開されています。
 
 ## パイプラインファイル
 
-リポジトリには以下の Jenkinsfile パイプライン定義が含まれています:
+リポジトリには以下のJenkinsfileパイプライン定義が含まれています:
 
 ```text
 sm-jenkins/
@@ -30,7 +30,7 @@ sm-jenkins/
 
 ## Jenkins でのパイプライン作成
 
-使用したい各 Jenkinsfile に対して、以下の手順で Jenkins にパイプラインを作成します。
+使用したい各Jenkinsfileに対して、以下の手順でJenkinsにパイプラインを作成します。
 
 ### 方法1: SCM からのパイプライン（推奨）
 
@@ -38,7 +38,7 @@ sm-jenkins/
 
 #### ステップ1: リポジトリのフォークまたはクローン
 
-まず、リポジトリを自分の GitHub アカウントまたは組織にフォークするか、元のリポジトリを直接使用します。
+まず、リポジトリを自分のGitHubアカウントまたは組織にフォークするか、元のリポジトリを直接使用します。
 
 **リポジトリ URL**: `https://github.com/chambear2809/sm-jenkins`
 
@@ -62,7 +62,7 @@ sm-jenkins/
 **Build Triggers:**
 
 - 手動実行のみの場合はチェックしないままにします
-- 必要に応じて Webhook やポーリングを設定します
+- 必要に応じてWebhookやポーリングを設定します
 
 **Pipeline セクション:**
 
@@ -90,12 +90,12 @@ sm-jenkins/
 
 ### 方法2: パイプラインスクリプトの直接入力
 
-または、Jenkinsfile の内容を Jenkins に直接コピーすることもできます。
+または、Jenkinsfileの内容をJenkinsに直接コピーすることもできます。
 
 1. **New Item を作成** します（方法1と同様）
 2. **Pipeline** セクションで:
    - **Definition**: `Pipeline script` を選択します
-   - **Script**: GitHub から Jenkinsfile の内容全体をコピー/ペーストします
+   - **Script**: GitHubからJenkinsfileの内容全体をコピー/ペーストします
 3. **Save** をクリックします
 
 {{% notice style="tip" %}}
@@ -127,7 +127,7 @@ sm-jenkins/
 | `CONFIRM_CLEANUP` | `false` | クリーンアップを実行するにはチェックが必要 |
 
 {{% notice style="warning" %}}
-Cleanup パイプラインには、誤って削除することを防ぐための確認パラメータがあります。クリーンアップを実行するには `CONFIRM_CLEANUP` にチェックを入れる必要があります。
+Cleanupパイプラインには、誤って削除することを防ぐための確認パラメータがあります。クリーンアップを実行するには `CONFIRM_CLEANUP` にチェックを入れる必要があります。
 {{% /notice %}}
 
 ## パイプライン構造の理解
@@ -140,7 +140,7 @@ Cleanup パイプラインには、誤って削除することを防ぐための
 agent { label 'linux' }
 ```
 
-これにより、パイプラインが `linux` ラベルを持つ Jenkins エージェントで実行されることが保証されます。
+これにより、パイプラインが `linux` ラベルを持つJenkinsエージェントで実行されることが保証されます。
 
 ### 2. パラメータブロック
 
@@ -159,10 +159,10 @@ parameters {
 デプロイパイプラインには以下のステージがあります:
 
 1. **Preparation** - 認証情報からターゲットホストを読み込み
-2. **Extract Smart Agent** - ZIP ファイルをステージングディレクトリに展開
-3. **Configure Smart Agent** - config.ini テンプレートを作成
-4. **Deploy to Remote Hosts** - 各ホストにファイルをコピーし Smart Agent を起動
-5. **Verify Installation** - すべてのホストで Smart Agent の状態を確認
+2. **Extract Smart Agent** - ZIPファイルをステージングディレクトリに展開
+3. **Configure Smart Agent** - config.iniテンプレートを作成
+4. **Deploy to Remote Hosts** - 各ホストにファイルをコピーしSmart Agentを起動
+5. **Verify Installation** - すべてのホストでSmart Agentの状態を確認
 
 ### 4. 認証情報バインディング
 
@@ -202,11 +202,11 @@ post {
 04-Cleanup-All-Agents
 ```
 
-数字のプレフィックスにより、Jenkins ダッシュボードで論理的な順序を維持できます。
+数字のプレフィックスにより、Jenkinsダッシュボードで論理的な順序を維持できます。
 
 ## フォルダーによるパイプラインの整理
 
-より良い整理のために、Jenkins フォルダーを使用できます:
+より良い整理のために、Jenkinsフォルダーを使用できます:
 
 1. **フォルダーを作成**:
    - **New Item** をクリックします
@@ -233,7 +233,7 @@ AppDynamics Smart Agent/
 
 ## パイプラインコードの表示
 
-完全なパイプラインコードは GitHub リポジトリで確認できます:
+完全なパイプラインコードはGitHubリポジトリで確認できます:
 
 **メインデプロイパイプライン:**
 [https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy)
@@ -250,14 +250,14 @@ AppDynamics Smart Agent/
 
 ### 1. 単一ホストでのドライラン
 
-1. IP が1つだけのテスト認証情報 `deployment-hosts-test` を作成します
+1. IPが1つだけのテスト認証情報 `deployment-hosts-test` を作成します
 2. パイプラインをこの認証情報を使用するよう一時的に変更します
 3. パイプラインを実行し、単一ホストで動作することを確認します
 4. 確認後、完全なホストリストに更新します
 
 ### 2. 構文チェック
 
-Jenkins には組み込みの構文バリデーターがあります:
+Jenkinsには組み込みの構文バリデーターがあります:
 
 1. パイプラインに移動します
 2. **Pipeline Syntax** リンクをクリックします
@@ -265,4 +265,4 @@ Jenkins には組み込みの構文バリデーターがあります:
 
 ## 次のステップ
 
-パイプラインが作成できたら、最初の Smart Agent デプロイを実行する準備が整いました。
+パイプラインが作成できたら、最初のSmart Agentデプロイを実行する準備が整いました。

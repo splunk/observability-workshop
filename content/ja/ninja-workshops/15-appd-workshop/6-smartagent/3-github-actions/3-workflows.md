@@ -6,7 +6,7 @@ time: 10 minutes
 
 ## 利用可能なワークフロー
 
-GitHub Actions ラボには、Smart Agent の完全なライフサイクル管理のための **11のワークフロー** が含まれています。すべてのワークフローファイルはリポジトリの `.github/workflows/` で利用できます。
+GitHub Actionsラボには、Smart Agentの完全なライフサイクル管理のための **11のワークフロー** が含まれています。すべてのワークフローファイルはリポジトリの `.github/workflows/` で利用できます。
 
 **リポジトリ**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
 
@@ -17,7 +17,7 @@ GitHub Actions ラボには、Smart Agent の完全なライフサイクル管�
 #### Deploy Smart Agent（バッチ処理）
 
 - **ファイル**: `deploy-agent-batched.yml`
-- **目的**: Smart Agent のインストールとサービスの起動
+- **目的**: Smart Agentのインストールとサービスの起動
 - **機能**:
   - 自動バッチ処理（デフォルト: バッチあたり256ホスト）
   - 設定可能なバッチサイズ
@@ -91,16 +91,16 @@ GitHub Actions ラボには、Smart Agent の完全なライフサイクル管�
 - **コマンド**:
   - `smartagentctl stop`
   - `smartagentctl clean`
-- **目的**: Smart Agent サービスの停止とすべてのデータのパージ
+- **目的**: Smart Agentサービスの停止とすべてのデータのパージ
 - **バッチ処理**: あり（設定可能）
 
 #### Cleanup All Agents（バッチ処理）
 
 - **ファイル**: `cleanup-appdynamics.yml`
 - **コマンド**: `sudo rm -rf /opt/appdynamics`
-- **目的**: /opt/appdynamics ディレクトリの完全な削除
+- **目的**: /opt/appdynamicsディレクトリの完全な削除
 - **バッチ処理**: あり（設定可能）
-- **警告**: すべての AppDynamics コンポーネントが完全に削除されます
+- **警告**: すべてのAppDynamicsコンポーネントが完全に削除されます
 
 {{% notice style="danger" %}}
 「Cleanup All Agents」ワークフローは `/opt/appdynamics` を完全に削除します。この操作は元に戻せません。注意して使用してください。
@@ -125,7 +125,7 @@ prepare:
         # Output as JSON array
 ```
 
-**目的**: GitHub Variables からターゲットホストを読み込み、バッチマトリックスを作成
+**目的**: GitHub Variablesからターゲットホストを読み込み、バッチマトリックスを作成
 
 ### ジョブ 2: Deploy/Install/Uninstall
 
@@ -189,11 +189,11 @@ Actions → Select workflow → Run workflow → Set batch_size
 ### 完全な削除シーケンス
 
 1. **Stop and Clean Smart Agent** - サービスの停止
-2. **Cleanup All Agents** - /opt/appdynamics ディレクトリの削除
+2. **Cleanup All Agents** - /opt/appdynamicsディレクトリの削除
 
 ## ワークフローコードの確認
 
-リポジトリで完全なワークフロー YAML ファイルを確認できます:
+リポジトリで完全なワークフロー YAMLファイルを確認できます:
 
 **メインデプロイワークフロー:**
 [https://github.com/chambear2809/github-actions-lab/blob/main/.github/workflows/deploy-agent-batched.yml](https://github.com/chambear2809/github-actions-lab/blob/main/.github/workflows/deploy-agent-batched.yml)
@@ -213,13 +213,13 @@ Actions → Select workflow → Run workflow → Set batch_size
 ### 並列実行
 
 - バッチ内のすべてのホストが同時にデプロイ
-- SSH バックグラウンドプロセス（`&`）を使用
-- wait コマンドですべての完了を保証
+- SSHバックグラウンドプロセス（`&`）を使用
+- waitコマンドですべての完了を保証
 - リソース制限内での最大並列処理
 
 ### セキュリティ
 
-- SSH キーはログに公開されない
+- SSHキーはログに公開されない
 - 認証情報は環境変数としてバインド
 - 自動化のために厳密なホストキーチェックを無効化
 - ワークフロー完了後にキーを削除

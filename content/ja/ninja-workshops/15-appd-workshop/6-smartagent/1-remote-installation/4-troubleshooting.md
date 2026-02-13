@@ -3,7 +3,7 @@ title: 4. トラブルシューティング
 weight: 4
 ---
 
-このセクションでは、Smart Agent をリモートホストにデプロイする際に発生する一般的な問題とその解決方法について説明します。
+このセクションでは、Smart Agentをリモートホストにデプロイする際に発生する一般的な問題とその解決方法について説明します。
 
 ## SSH接続の問題
 
@@ -35,7 +35,7 @@ chmod 700 /home/ubuntu/.ssh
 ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@172.31.1.243
 ```
 
-これが失敗する場合、問題は smartagentctl ではなくSSH設定にあります。
+これが失敗する場合、問題はsmartagentctlではなくSSH設定にあります。
 
 #### 3. リモートホストの到達性を確認
 
@@ -58,7 +58,7 @@ protocol:
 
 #### 5. Known Hosts の確認
 
-ホストキー検証が有効な場合、ホストが known_hosts に登録されていることを確認します:
+ホストキー検証が有効な場合、ホストがknown_hostsに登録されていることを確認します:
 
 ```bash
 ssh-keyscan 172.31.1.243 >> /home/ubuntu/.ssh/known_hosts
@@ -184,7 +184,7 @@ cat /opt/appdynamics/appdsmartagent/config.ini
 
 #### 4. コントローラーへの接続テスト
 
-リモートホストから AppDynamics Controller への接続を確認します:
+リモートホストからAppDynamics Controllerへの接続を確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -243,7 +243,7 @@ cat /home/ubuntu/appdsm/config.ini
 
 #### 3. コントローラー認証情報の検証
 
-AppDynamics の認証情報が正しいことを確認します:
+AppDynamicsの認証情報が正しいことを確認します:
 
 - **ControllerURL**: `https://` や `/controller` を含めないこと
 - **AccountAccessKey**: 完全なアクセスキーであること
@@ -265,13 +265,13 @@ AccountName      = fso-tme
 
 - リモートホストでエージェントプロセスが実行中
 - エージェントログにエラーなし
-- Controller UI にエージェントが表示されない
+- Controller UIにエージェントが表示されない
 
 **解決方法:**
 
 #### 1. 初期登録を待つ
 
-エージェントが起動してから Controller に表示されるまで1～5分かかる場合があります。
+エージェントが起動してからControllerに表示されるまで1～5分かかる場合があります。
 
 #### 2. コントローラー設定の確認
 
@@ -302,14 +302,14 @@ EnableSSL = true
 
 #### 5. ファイアウォールルールの確認
 
-リモートホストから Controller へのアウトバウンドHTTPS（ポート443）が許可されていることを確認します。
+リモートホストからControllerへのアウトバウンドHTTPS（ポート443）が許可されていることを確認します。
 
 #### 6. アカウント認証情報の確認
 
-Controller UI で AccountAccessKey と AccountName が正しいことを再確認します:
+Controller UIでAccountAccessKeyとAccountNameが正しいことを再確認します:
 
-- AppDynamics Controller にログインします
-- Settings > License に移動します
+- AppDynamics Controllerにログインします
+- Settings > Licenseに移動します
 - アカウント名とアクセスキーを確認します
 
 ## パフォーマンスとスケーリングの問題
@@ -418,14 +418,14 @@ LogLevel = DEBUG
 
 問題が解決しない場合:
 
-1. **ドキュメントの確認**: smartagentctl のヘルプを確認します:
+1. **ドキュメントの確認**: smartagentctlのヘルプを確認します:
 
    ```bash
    ./smartagentctl --help
    ./smartagentctl start --help
    ```
 
-2. **AppDynamics ドキュメントの確認**: AppDynamics ドキュメントポータルを参照します
+2. **AppDynamics ドキュメントの確認**: AppDynamicsドキュメントポータルを参照します
 
 3. **ログファイルの確認**: コントロールノードとリモートホストの両方のログを必ず確認します
 

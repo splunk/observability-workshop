@@ -7,13 +7,13 @@ description: この演習では、Controller にアクセスしてアプリケ�
 
 この演習では、以下のタスクを完了します：
 
-* Web ブラウザから AppDynamics Controller にアクセスする
+* WebブラウザからAppDynamics Controllerにアクセスする
 * アプリケーションへのトランザクション負荷を確認する
 * 必要に応じてアプリケーションとトランザクション負荷を再起動する
 
 ## Controller へのログイン
 
-Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインします。
+Ciscoの認証情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインします。
 
 ## アプリケーションへのトランザクション負荷の確認
 
@@ -45,9 +45,9 @@ Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-
 
 ## 必要に応じてアプリケーションと負荷生成を再起動
 
-前のステップで行った確認のいずれかが検証できなかった場合は、**Application VM** に SSH 接続し、以下の手順に従ってアプリケーションとトランザクション負荷を再起動します。
+前のステップで行った確認のいずれかが検証できなかった場合は、**Application VM** にSSH接続し、以下の手順に従ってアプリケーションとトランザクション負荷を再起動します。
 
-以下のコマンドを使用して、実行中の Apache Tomcat インスタンスを停止します。
+以下のコマンドを使用して、実行中のApache Tomcatインスタンスを停止します。
 {{< tabs >}}
 {{% tab title="Command" %}}
 
@@ -59,7 +59,7 @@ cd /usr/local/apache/apache-tomcat-9/bin
 {{% /tab %}}
 {{< /tabs >}}
 
-以下のコマンドを使用して、まだ実行中のアプリケーション JVM がないか確認します。
+以下のコマンドを使用して、まだ実行中のアプリケーションJVMがないか確認します。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -71,7 +71,7 @@ ps -ef | grep Supercar-Trader
 {{% /tab %}}
 {{< /tabs >}}
 
-まだ実行中のアプリケーション JVM がある場合は、以下のコマンドを使用して残りの JVM を停止します。
+まだ実行中のアプリケーションJVMがある場合は、以下のコマンドを使用して残りのJVMを停止します。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -90,20 +90,20 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 ./stop_load.sh
 ```
 
-Tomcat サーバーを再起動します：
+Tomcatサーバーを再起動します：
 
 ``` bash
 cd /usr/local/apache/apache-tomcat-9/bin
 ./startup.sh
 ```
 
-2分間待ってから、以下のコマンドを使用して Apache Tomcat がポート8080で実行されていることを確認します。
+2分間待ってから、以下のコマンドを使用してApache Tomcatがポート8080で実行されていることを確認します。
 
 ``` bash
 sudo netstat -tulpn | grep LISTEN
 ```
 
-以下の画像のような出力が表示され、ポート8080が Apache Tomcat によって使用されていることが確認できます。
+以下の画像のような出力が表示され、ポート8080がApache Tomcatによって使用されていることが確認できます。
 
 ![Restart App 1](images/restart-app-and-load-01.png)
 

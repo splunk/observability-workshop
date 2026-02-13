@@ -6,7 +6,7 @@ weight: 13
 
 ## ビジネスロジックを作る
 
-この時点では、何も行っていないカスタムコンポーネントが作成されています。ここから、Jenkins からデータを取得するための必要なロジックを追加していきましょう。
+この時点では、何も行っていないカスタムコンポーネントが作成されています。ここから、Jenkinsからデータを取得するための必要なロジックを追加していきましょう。
 
 ここからのステップは以下の通りです：
 
@@ -18,7 +18,7 @@ weight: 13
 変更を `scraper.go` に加えていきます。
 
 {{% tabs %}}
-{{% tab title="1. Jenkins クライアントを追加する" %}}
+{{% tab title="1. Jenkinsクライアントを追加する" %}}
 
 Jenkinsサーバーに接続するために、パッケージ ["github.com/yosida95/golang-jenkins"](https://pkg.go.dev/github.com/yosida95/golang-jenkins) を使用します。これには、Jenkinsサーバーからデータを読み取るために必要な機能が提供されています。
 
@@ -80,7 +80,7 @@ func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
 
 ここから先は、実装が必要な `scrape` メソッドに焦点を当てます。このメソッドは、設定された間隔（デフォルトでは1分）ごとに実行されます。
 
-Jenkins サーバーの負荷状況や、どの程度のプロジェクトが実行されているかを測定するために、Jenkins で設定されているジョブの数をキャプチャしたいと考えています。これを行うために、Jenkins クライアントを呼び出してすべてのジョブをリスト化し、エラーが報告された場合はメトリクスなしでそれを返し、そうでなければメトリクスビルダーからのデータを発行します。
+Jenkinsサーバーの負荷状況や、どの程度のプロジェクトが実行されているかを測定するために、Jenkinsで設定されているジョブの数をキャプチャしたいと考えています。これを行うために、Jenkinsクライアントを呼び出してすべてのジョブをリスト化し、エラーが報告された場合はメトリクスなしでそれを返し、そうでなければメトリクスビルダーからのデータを発行します。
 
 ```go
 func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
@@ -211,7 +211,7 @@ func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
 {{% /tab%}}
 {{% /tabs %}}
 
-これらのステップがすべて完了すると、Jenkins CI レシーバーが完成します！
+これらのステップがすべて完了すると、Jenkins CIレシーバーが完成します！
 
 ## 次は何をするの？
 

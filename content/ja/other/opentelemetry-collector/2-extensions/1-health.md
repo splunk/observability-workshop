@@ -36,7 +36,7 @@ sudo systemctl restart otelcol-contrib
 
 {{% /tab %}}
 
-このエクステンションは HTTP の URL を公開し、OpenTelemetry Collector の稼働状況をチェックするプローブを提供します。このエクステンションは Kubernetes 環境での Liveness/Readiness プローブとしても使われています。 `curl` コマンドの使い方は、[curl man page](https://curl.se/docs/manpage.html) を参照してください。
+このエクステンションはHTTPのURLを公開し、OpenTelemetry Collectorの稼働状況をチェックするプローブを提供します。このエクステンションはKubernetes環境でのLiveness/Readinessプローブとしても使われています。 `curl` コマンドの使い方は、[curl man page](https://curl.se/docs/manpage.html) を参照してください。
 
 次のコマンドを実行します:
 

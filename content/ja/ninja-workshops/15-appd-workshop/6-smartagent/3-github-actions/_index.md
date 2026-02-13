@@ -7,7 +7,7 @@ description: セルフホストランナーを使用した GitHub Actions によ
 
 ## はじめに
 
-このワークショップでは、セルフホストランナーを使用した **GitHub Actions** で、複数の EC2 インスタンスにわたる **AppDynamics Smart Agent** のデプロイとライフサイクル管理を自動化する方法を紹介します。10台のホストでも10,000台のホストでも、このガイドではスケーラブルで安全かつ再現可能な Smart Agent 運用のために GitHub Actions ワークフローを活用する方法を説明します。
+このワークショップでは、セルフホストランナーを使用した **GitHub Actions** で、複数のEC2インスタンスにわたる **AppDynamics Smart Agent** のデプロイとライフサイクル管理を自動化する方法を紹介します。10台のホストでも10,000台のホストでも、このガイドではスケーラブルで安全かつ再現可能なSmart Agent運用のためにGitHub Actionsワークフローを活用する方法を説明します。
 
 ![GitHub Actions and AppDynamics](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat&logo=github-actions&logoColor=white) ![AppDynamics](https://img.shields.io/badge/AppDynamics-0078D4?style=flat)
 
@@ -15,9 +15,9 @@ description: セルフホストランナーを使用した GitHub Actions によ
 
 このワークショップでは、以下の内容を学びます:
 
-- GitHub Actions ワークフローを使用して複数のホストに **Smart Agent をデプロイ** する
+- GitHub Actionsワークフローを使用して複数のホストに **Smart Agent をデプロイ** する
 - 安全な認証情報管理のために **GitHub Secrets と Variables を設定** する
-- AWS VPC 内に **セルフホストランナーをセットアップ** する
+- AWS VPC内に **セルフホストランナーをセットアップ** する
 - 数千台のホストにスケールするための **自動バッチ処理を実装** する
 - インストール、アンインストール、停止、クリーンアップなど **エージェントの完全なライフサイクルを管理** する
 - **ワークフローの実行を監視** し、問題をトラブルシューティングする
@@ -26,10 +26,10 @@ description: セルフホストランナーを使用した GitHub Actions によ
 
 - **並列デプロイ** - 複数のホストに同時にデプロイ
 - **完全なライフサイクル管理** - エージェントのすべての操作をカバーする11のワークフロー
-- **Infrastructure as Code** - すべてのワークフローを GitHub でバージョン管理
-- **セキュア** - SSH鍵は GitHub Secrets に保存、プライベート VPC ネットワーキング
+- **Infrastructure as Code** - すべてのワークフローをGitHubでバージョン管理
+- **セキュア** - SSH鍵はGitHub Secretsに保存、プライベートVPCネットワーキング
 - **大規模スケーラブル** - 自動バッチ処理で数千台のホストにデプロイ
-- **セルフホストランナー** - AWS VPC 内で実行
+- **セルフホストランナー** - AWS VPC内で実行
 
 ## アーキテクチャ概要
 
@@ -53,14 +53,14 @@ description: セルフホストランナーを使用した GitHub Actions によ
 
 このワークショップは以下の内容で構成されています:
 
-1. **アーキテクチャと設計** - GitHub Actions ワークフローアーキテクチャの理解
+1. **アーキテクチャと設計** - GitHub Actionsワークフローアーキテクチャの理解
 2. **GitHub のセットアップ** - Secrets、Variables、セルフホストランナーの設定
 3. **ワークフローの作成** - 11の利用可能なワークフローの理解と使用
 4. **デプロイの実行** - ワークフローの実行とインストールの検証
 
 ## 利用可能なワークフロー
 
-このソリューションには、Smart Agent の完全なライフサイクル管理のための **11のワークフロー** が含まれています:
+このソリューションには、Smart Agentの完全なライフサイクル管理のための **11のワークフロー** が含まれています:
 
 | カテゴリ | ワークフロー数 | 説明 |
 | --- | --- | --- |
@@ -73,21 +73,21 @@ description: セルフホストランナーを使用した GitHub Actions によ
 
 ## 前提条件
 
-- リポジトリアクセス権を持つ GitHub アカウント
-- Ubuntu EC2 インスタンスを持つ AWS VPC
-- 同じ VPC 内のセルフホスト GitHub Actions ランナー
-- 認証用の SSH キーペア
-- AppDynamics Smart Agent パッケージ
+- リポジトリアクセス権を持つGitHubアカウント
+- Ubuntu EC2インスタンスを持つAWS VPC
+- 同じVPC内のセルフホストGitHub Actionsランナー
+- 認証用のSSHキーペア
+- AppDynamics Smart Agentパッケージ
 
 ## GitHub リポジトリ
 
-すべてのワークフローコードと設定ファイルは GitHub リポジトリで利用できます:
+すべてのワークフローコードと設定ファイルはGitHubリポジトリで利用できます:
 
 **[https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)**
 
 リポジトリには以下が含まれています:
 
-- 11の完全なワークフロー YAML ファイル
+- 11の完全なワークフロー YAMLファイル
 - 詳細なセットアップドキュメント
 - アーキテクチャ図
 - トラブルシューティングガイド
@@ -95,6 +95,6 @@ description: セルフホストランナーを使用した GitHub Actions によ
 {{% notice title="ヒント" style="primary" icon="lightbulb" %}}
 このワークショップを最も簡単にナビゲートするには、以下を使用します:
 
-- このページの右上にある左右の矢印（ **<** | **>** ）
+- このページの右上にある左右の矢印（**<** | **>**）
 - キーボードの左（◀️）および右（▶️）カーソルキー
 {{% /notice %}}

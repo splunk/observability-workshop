@@ -8,15 +8,15 @@ time: 10 minutes
 
 開始する前に、以下を確認します:
 
-- リポジトリアクセス権を持つ GitHub アカウント
-- Ubuntu EC2 インスタンスを持つ AWS VPC
-- ターゲットホストへの認証用 SSH キーペア（PEM ファイル）
-- AppDynamics Smart Agent パッケージ
-- SSH アクセス可能なターゲット Ubuntu EC2 インスタンス
+- リポジトリアクセス権を持つGitHubアカウント
+- Ubuntu EC2インスタンスを持つAWS VPC
+- ターゲットホストへの認証用SSHキーペア（PEMファイル）
+- AppDynamics Smart Agentパッケージ
+- SSHアクセス可能なターゲットUbuntu EC2インスタンス
 
 ## リポジトリのフォークまたはクローン
 
-まず、GitHub Actions ラボリポジトリへのアクセスを取得します。
+まず、GitHub Actionsラボリポジトリへのアクセスを取得します。
 
 **リポジトリ URL**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
 
@@ -32,11 +32,11 @@ cd github-actions-lab
 
 ## セルフホストランナーの設定
 
-セルフホストランナーは、ターゲット EC2 インスタンスと同じ AWS VPC にデプロイする必要があります。
+セルフホストランナーは、ターゲットEC2インスタンスと同じAWS VPCにデプロイする必要があります。
 
 ### EC2 インスタンスへのランナーのインストール
 
-1. VPC 内で **EC2 インスタンスを起動** します（Ubuntu または Amazon Linux 2）
+1. VPC内で **EC2 インスタンスを起動** します（UbuntuまたはAmazon Linux 2）
 
 2. フォークしたリポジトリの **ランナー設定に移動** します:
 
@@ -85,11 +85,11 @@ Settings → Actions → Runners
 
 ### SSH 秘密鍵の Secret
 
-この Secret には、ターゲットホストにアクセスするための SSH 秘密鍵が含まれます。
+このSecretには、ターゲットホストにアクセスするためのSSH秘密鍵が含まれます。
 
 1. **"New repository secret"** をクリックします
 2. **Name**: `SSH_PRIVATE_KEY`
-3. **Value**: PEM ファイルの内容を貼り付けます
+3. **Value**: PEMファイルの内容を貼り付けます
 
 ```bash
 # View your PEM file
@@ -108,7 +108,7 @@ MIIEpAIBAAKCAQEA...
 1. **"Add secret"** をクリックします
 
 {{% notice style="important" %}}
-SSH キーをリポジトリにコミットしないでください。機密性の高い認証情報には必ず GitHub Secrets を使用します。
+SSHキーをリポジトリにコミットしないでください。機密性の高い認証情報には必ずGitHub Secretsを使用します。
 {{% /notice %}}
 
 ## GitHub Variables の設定
@@ -117,11 +117,11 @@ SSH キーをリポジトリにコミットしないでください。機密性�
 
 ### デプロイホスト Variable（必須）
 
-この Variable には、Smart Agent をデプロイするすべてのターゲットホストのリストが含まれます。
+このVariableには、Smart Agentをデプロイするすべてのターゲットホストのリストが含まれます。
 
 1. **"New repository variable"** をクリックします
 2. **Name**: `DEPLOYMENT_HOSTS`
-3. **Value**: ターゲットホストの IP を入力します（1行に1つ）
+3. **Value**: ターゲットホストのIPを入力します（1行に1つ）
 
 ```text
 172.31.1.243
@@ -133,17 +133,17 @@ SSH キーをリポジトリにコミットしないでください。機密性�
 
 **フォーマット要件:**
 
-- 1行に1つの IP
+- 1行に1つのIP
 - カンマなし
 - スペースなし
 - 余分な文字なし
-- Unix 改行コード（LF、CRLF ではなく）を使用
+- Unix改行コード（LF、CRLFではなく）を使用
 
 1. **"Add variable"** をクリックします
 
 ### オプションの Variables
 
-これらの Variable はオプションで、Smart Agent サービスのユーザー/グループ設定に使用されます:
+これらのVariableはオプションで、Smart Agentサービスのユーザー/グループ設定に使用されます:
 
 #### SMARTAGENT_USER
 
@@ -161,26 +161,26 @@ SSH キーをリポジトリにコミットしないでください。機密性�
 
 ## ネットワーク設定
 
-同じ VPC およびセキュリティグループ内のすべての EC2 インスタンスを使用するラボセットアップの場合:
+同じVPCおよびセキュリティグループ内のすべてのEC2インスタンスを使用するラボセットアップの場合:
 
 ### セキュリティグループルール
 
 **インバウンドルール:**
 
-- 同じセキュリティグループからの SSH（ポート22）（ソース: 同じ SG）
+- 同じセキュリティグループからのSSH（ポート22）（ソース: 同じSG）
 
 **アウトバウンドルール:**
 
-- 0.0.0.0/0 への HTTPS（ポート443）（GitHub API アクセス用）
-- 同じセキュリティグループへの SSH（ポート22）（ターゲットアクセス用）
+- 0.0.0.0/0へのHTTPS（ポート443）（GitHub APIアクセス用）
+- 同じセキュリティグループへのSSH（ポート22）（ターゲットアクセス用）
 
 ### ネットワークのベストプラクティス
 
-- `DEPLOYMENT_HOSTS` にはプライベート IP アドレス（172.31.x.x）を使用
+- `DEPLOYMENT_HOSTS` にはプライベートIPアドレス（172.31.x.x）を使用
 - ランナーとターゲットを同じセキュリティグループに配置
-- ターゲットホストにパブリック IP は不要
+- ターゲットホストにパブリックIPは不要
 - ランナーはプライベートネットワーク経由で通信
-- GitHub ポーリング用のアウトバウンド HTTPS が必要
+- GitHubポーリング用のアウトバウンドHTTPSが必要
 
 ## 設定の確認
 
@@ -194,7 +194,7 @@ SSH キーをリポジトリにコミットしないでください。機密性�
 
 ### 2. SSH 接続のテスト
 
-ランナーインスタンスからターゲットホストに SSH 接続します:
+ランナーインスタンスからターゲットホストにSSH接続します:
 
 ```bash
 # On runner instance
@@ -206,8 +206,8 @@ ssh -i ~/.ssh/your-key.pem ubuntu@172.31.1.243
 ### 3. Secrets と Variables の確認
 
 1. **Settings → Secrets and variables → Actions** に移動します
-2. Secrets タブに `SSH_PRIVATE_KEY` が表示されていることを確認します
-3. Variables タブに `DEPLOYMENT_HOSTS` が表示されていることを確認します
+2. Secretsタブに `SSH_PRIVATE_KEY` が表示されていることを確認します
+3. Variablesタブに `DEPLOYMENT_HOSTS` が表示されていることを確認します
 
 ### 4. リポジトリアクセスの確認
 
@@ -231,7 +231,7 @@ cd ~/actions-runner
 
 - ランナーステータスを確認します: `sudo systemctl status actions.runner.*`
 - ランナーを再起動します: `sudo ./svc.sh restart`
-- GitHub へのアウトバウンド HTTPS（443）接続を確認します
+- GitHubへのアウトバウンドHTTPS（443）接続を確認します
 
 ### SSH 接続の失敗
 
@@ -253,10 +253,10 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 
 **解決策**:
 
-- `DEPLOYMENT_HOSTS` Variable を編集します
+- `DEPLOYMENT_HOSTS` Variableを編集します
 - 末尾にスペースがないことを確認します
-- Unix 改行コード（LF、CRLF ではなく）を使用します
-- 1行に1つの IP、余分な文字なし
+- Unix改行コード（LF、CRLFではなく）を使用します
+- 1行に1つのIP、余分な文字なし
 
 ### Secrets が見つからない
 
@@ -264,17 +264,17 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 
 **解決策**:
 
-- Secret 名が正確に一致していることを確認します: `SSH_PRIVATE_KEY`
-- Secret がリポジトリ Secrets（環境 Secrets ではなく）にあることを確認します
+- Secret名が正確に一致していることを確認します: `SSH_PRIVATE_KEY`
+- SecretがリポジトリSecrets（環境Secretsではなく）にあることを確認します
 - リポジトリの管理者アクセス権があることを確認します
 
 ## セキュリティのベストプラクティス
 
 安全な運用のために、以下のベストプラクティスに従います:
 
-- すべての秘密鍵に GitHub Secrets を使用
-- SSH キーを定期的にローテーション
-- ランナーをプライベート VPC サブネットに配置
+- すべての秘密鍵にGitHub Secretsを使用
+- SSHキーを定期的にローテーション
+- ランナーをプライベートVPCサブネットに配置
 - ランナーのセキュリティグループを最小限のアクセスに制限
 - ランナーソフトウェアを定期的にアップデート
 - ブランチ保護ルールを有効化
@@ -283,4 +283,4 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 
 ## 次のステップ
 
-GitHub の設定とランナーのセットアップが完了したら、利用可能なワークフローを確認し、最初のデプロイを実行しましょう。
+GitHubの設定とランナーのセットアップが完了したら、利用可能なワークフローを確認し、最初のデプロイを実行しましょう。

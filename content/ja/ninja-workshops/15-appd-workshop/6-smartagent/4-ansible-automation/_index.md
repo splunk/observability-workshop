@@ -8,11 +8,11 @@ description: Ansible を使用した AppDynamics Smart Agent デプロイの自�
 
 ## はじめに
 
-このガイドでは、Ansible を使用して Cisco AppDynamics Smart Agent を複数のホストにデプロイする方法を説明します。自動化を活用することで、モニタリングインフラストラクチャの一貫性、堅牢性、スケーラビリティを確保できます。
+このガイドでは、Ansibleを使用してCisco AppDynamics Smart Agentを複数のホストにデプロイする方法を説明します。自動化を活用することで、モニタリングインフラストラクチャの一貫性、堅牢性、スケーラビリティを確保できます。
 
 ## アーキテクチャの概要
 
-デプロイアーキテクチャは、Ansible コントロールノードを活用して、ターゲットホストへの Smart Agent のインストールと設定をオーケストレーションします。
+デプロイアーキテクチャは、Ansibleコントロールノードを活用して、ターゲットホストへのSmart Agentのインストールと設定をオーケストレーションします。
 
 ```mermaid
 graph TD
@@ -34,22 +34,22 @@ graph TD
 ### 主要コンポーネント
 
 * **Ansible Control Node**: プレイブックを実行するマシン（例: ラップトップやジャンプホスト）です。
-* **Target Hosts**: Smart Agent がインストールされるサーバーです。
+* **Target Hosts**: Smart Agentがインストールされるサーバーです。
 * **Inventory**: ターゲットホストとその接続情報の一覧です。
-* **Playbook**: デプロイタスクを定義する YAML ファイルです。
+* **Playbook**: デプロイタスクを定義するYAMLファイルです。
 
 ## 前提条件
 
 開始する前に、以下を確認してください：
 
-* SSH 経由でターゲットホストにアクセスできること。
-* ターゲットホストで sudo 権限を持っていること。
-* Smart Agent インストールパッケージ（`.deb` または `.rpm`）をダウンロード済みであること。
-* AppDynamics Controller のアカウント情報（Access Key、Account Name、URL）を用意していること。
+* SSH経由でターゲットホストにアクセスできること。
+* ターゲットホストでsudo権限を持っていること。
+* Smart Agentインストールパッケージ（`.deb` または `.rpm`）をダウンロード済みであること。
+* AppDynamics Controllerのアカウント情報（Access Key、Account Name、URL）を用意していること。
 
 ## ステップ1: macOS に Ansible をインストールする
 
-まず、コントロールノードに Ansible をインストールします。
+まず、コントロールノードにAnsibleをインストールします。
 
 1. **Homebrew をインストール** します（未インストールの場合）：
 
@@ -69,4 +69,4 @@ graph TD
     ansible --version
     ```
 
-    Ansible のインストール済みバージョンを示す出力が表示されます。
+    Ansibleのインストール済みバージョンを示す出力が表示されます。

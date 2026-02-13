@@ -3,21 +3,21 @@ title: 3. インストールと起動
 weight: 3
 ---
 
-設定ファイルの準備ができたら、`smartagentctl` コマンドラインツールを使用してリモートホストに Smart Agent をインストールし、起動できます。
+設定ファイルの準備ができたら、`smartagentctl` コマンドラインツールを使用してリモートホストにSmart Agentをインストールし、起動できます。
 
 ## インストールプロセスの概要
 
 インストールプロセスは以下の手順で構成されます:
 
 1. **接続**: 定義されたすべてのホストへのSSH接続を確立します
-2. **転送**: Smart Agent のバイナリと設定をリモートホストにコピーします
-3. **インストール**: 各ホストの `/opt/appdynamics/appdsmartagent/` に Smart Agent をインストールします
-4. **起動**: 各リモートホストで Smart Agent プロセスを起動します
+2. **転送**: Smart Agentのバイナリと設定をリモートホストにコピーします
+3. **インストール**: 各ホストの `/opt/appdynamics/appdsmartagent/` にSmart Agentをインストールします
+4. **起動**: 各リモートホストでSmart Agentプロセスを起動します
 5. **ログ出力**: コンソールとログファイルに詳細な進捗を出力します
 
 ## ステップ1: インストールディレクトリに移動
 
-Smart Agent のインストールディレクトリに移動します:
+Smart Agentのインストールディレクトリに移動します:
 
 ```bash
 cd /home/ubuntu/appdsm
@@ -45,7 +45,7 @@ cat config.ini
 
 ## ステップ3: リモートホストで Smart Agent を起動
 
-以下のコマンドを実行して、`remote.yaml` で定義されたすべてのリモートホストで Smart Agent を起動します:
+以下のコマンドを実行して、`remote.yaml` で定義されたすべてのリモートホストでSmart Agentを起動します:
 
 ```bash
 sudo ./smartagentctl start --remote --verbose
@@ -55,7 +55,7 @@ sudo ./smartagentctl start --remote --verbose
 
 - `sudo`: 特権操作に必要です
 - `./smartagentctl`: 制御ユーティリティ
-- `start`: Smart Agent を起動するコマンド
+- `start`: Smart Agentを起動するコマンド
 - `--remote`: リモートホストにデプロイ（`remote.yaml` から読み取り）
 - `--verbose`: 詳細なデバッグログを有効化
 
@@ -92,17 +92,17 @@ Connecting to 172.31.1.48:22...
 
 ## ステップ5: インストールの確認
 
-インストールが完了したら、リモートホストで Smart Agent が実行されていることを確認します。
+インストールが完了したら、リモートホストでSmart Agentが実行されていることを確認します。
 
 ### リモートでのステータス確認
 
-status コマンドを使用してすべてのリモートホストを確認します:
+statusコマンドを使用してすべてのリモートホストを確認します:
 
 ```bash
 sudo ./smartagentctl status --remote --verbose
 ```
 
-各ホストに問い合わせて、Smart Agent が実行中かどうかを報告します。
+各ホストに問い合わせて、Smart Agentが実行中かどうかを報告します。
 
 ### コントロールノードのログ確認
 
@@ -126,7 +126,7 @@ ps aux | grep smartagent
 
 ### 起動せずにインストールのみ実行
 
-Smart Agent を起動せずにインストールのみ行います:
+Smart Agentを起動せずにインストールのみ行います:
 
 ```bash
 sudo ./smartagentctl install --remote --verbose
@@ -136,7 +136,7 @@ sudo ./smartagentctl install --remote --verbose
 
 ### Smart Agent の停止
 
-すべてのリモートホストで Smart Agent を停止します:
+すべてのリモートホストでSmart Agentを停止します:
 
 ```bash
 sudo ./smartagentctl stop --remote --verbose
@@ -144,7 +144,7 @@ sudo ./smartagentctl stop --remote --verbose
 
 ### システムサービスとしてインストール
 
-Smart Agent を systemd サービスとしてインストールします（本番環境で推奨）:
+Smart Agentをsystemdサービスとしてインストールします（本番環境で推奨）:
 
 ```bash
 sudo ./smartagentctl start --remote --verbose --service
@@ -152,35 +152,35 @@ sudo ./smartagentctl start --remote --verbose --service
 
 サービスとしてインストールした場合:
 
-- システム起動時に Smart Agent が自動的に起動します
+- システム起動時にSmart Agentが自動的に起動します
 - `systemctl` コマンドで管理できます
 - システムログとの統合が向上します
 
 ### Smart Agent のアンインストール
 
-リモートホストから Smart Agent を完全に削除します:
+リモートホストからSmart Agentを完全に削除します:
 
 ```bash
 sudo ./smartagentctl uninstall --remote --verbose
 ```
 
 {{% notice title="警告" style="danger" icon="exclamation-triangle" %}}
-uninstall コマンドはリモートホストからすべての Smart Agent ファイルを削除します。重要な設定ファイルやログファイルのバックアップがあることを確認してください。
+uninstallコマンドはリモートホストからすべてのSmart Agentファイルを削除します。重要な設定ファイルやログファイルのバックアップがあることを確認してください。
 {{% /notice %}}
 
 ## AppDynamics Controller での確認
 
-リモートホストで Smart Agent を起動した後:
+リモートホストでSmart Agentを起動した後:
 
 1. **AppDynamics Controller にログイン**: コントローラーURLに移動します
-2. **Servers に移動**: Controller UI の Servers セクションを確認します
-3. **エージェントの確認**: Smart Agent がリストに表示されます
-4. **Metric の確認**: 各ホストから Metric が収集されていることを確認します
+2. **Servers に移動**: Controller UIのServersセクションを確認します
+3. **エージェントの確認**: Smart Agentがリストに表示されます
+4. **Metric の確認**: 各ホストからMetricが収集されていることを確認します
 
 ### 期待されるタイムライン
 
-- **エージェントの登録**: エージェントは通常、起動後1～2分以内に Controller に表示されます
-- **初期 Metric**: 最初の Metric は通常5分以内に到着します
+- **エージェントの登録**: エージェントは通常、起動後1～2分以内にControllerに表示されます
+- **初期 Metric**: 最初のMetricは通常5分以内に到着します
 - **完全なデータ**: 最初のポーリング間隔後に完全なデータ収集が開始されます（`config.ini` で設定）
 
 ## ログファイルの場所
@@ -208,22 +208,22 @@ uninstall コマンドはリモートホストからすべての Smart Agent フ
 
 ## 各リモートホストでの処理内容
 
-start コマンドを実行すると、各リモートホストで以下の処理が行われます:
+startコマンドを実行すると、各リモートホストで以下の処理が行われます:
 
 1. **ディレクトリの作成**: `/opt/appdynamics/appdsmartagent/` を作成します
 2. **ファイル転送**: `smartagent` バイナリ、`config.ini`、ライブラリをコピーします
 3. **権限の設定**: 適切なファイル権限を設定します
-4. **プロセスの起動**: Smart Agent プロセスを起動します
+4. **プロセスの起動**: Smart Agentプロセスを起動します
 5. **確認**: プロセスが実行中であることを確認します
 
 ## 次のステップ
 
-Smart Agent のインストールと起動が正常に完了した後:
+Smart Agentのインストールと起動が正常に完了した後:
 
-1. AppDynamics Controller UI にエージェントが表示されることを確認します
-2. Metric が収集されていることを確認します
+1. AppDynamics Controller UIにエージェントが表示されることを確認します
+2. Metricが収集されていることを確認します
 3. 必要に応じてアプリケーションモニタリングを設定します
-4. アラートと Dashboard を設定します
+4. アラートとDashboardを設定します
 5. エージェントの正常性とパフォーマンスを監視します
 
 問題が発生した場合は、トラブルシューティングセクションに進みます。

@@ -3,11 +3,11 @@ title: 1. Java Agent のダウンロード
 weight: 1
 description: この演習では、Web ブラウザから AppDynamics Controller にアクセスし、Java APM エージェントをダウンロードします。
 ---
-この演習では、Web ブラウザから AppDynamics Controller にアクセスし、Java APM エージェントをダウンロードします。
+この演習では、WebブラウザからAppDynamics Controllerにアクセスし、Java APMエージェントをダウンロードします。
 
 ## Controller へのログイン
 
-Cisco の資格情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインします。
+Ciscoの資格情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインします。
 
 ## アプリケーションの設定
 
@@ -17,18 +17,18 @@ Cisco の資格情報を使用して [AppDynamics SE Lab Controller](https://se-
 
 ![Getting Started Wizard](images/agent-wizard-rz.png)
 
-Java アプリケーションタイプを選択します
+Javaアプリケーションタイプを選択します
 
 ![Java Application](images/select-java-rz.png)
 
 ## Java Agent のダウンロード
 
-1. JVM タイプとして **Sun/JRockit - Legacy** を選択します
-2. Controller 接続のデフォルト設定を受け入れます
+1. JVMタイプとして **Sun/JRockit - Legacy** を選択します
+2. Controller接続のデフォルト設定を受け入れます
 3. **Set Application and Tier** で **Create a new Application:** を選択します
 4. アプリケーション名として **Supercar-Trader-YOURINITIALS** を入力します
-5. 新しい Tier として **Web Portal** を入力します
-6. Node Name として **Web-Portal_Node-01** を入力します
+5. 新しいTierとして **Web Portal** を入力します
+6. Node Nameとして **Web-Portal_Node-01** を入力します
 7. **Continue** をクリックします
 8. **Click Here to Download** をクリックします
 

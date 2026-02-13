@@ -3,11 +3,11 @@ title: 2. 構成
 weight: 2
 ---
 
-Smart Agent のリモートインストールには、2つの主要な構成ファイルが必要です：Smart Agent 設定用の `config.ini` と、リモートホストと接続パラメータを定義する `remote.yaml` です。
+Smart Agentのリモートインストールには、2つの主要な構成ファイルが必要です：Smart Agent設定用の `config.ini` と、リモートホストと接続パラメータを定義する `remote.yaml` です。
 
 ## 構成ファイルの概要
 
-両方の構成ファイルは、Smart Agent のインストールディレクトリに配置する必要があります：
+両方の構成ファイルは、Smart Agentのインストールディレクトリに配置する必要があります：
 
 ```bash
 cd /home/ubuntu/appdsm
@@ -15,18 +15,18 @@ cd /home/ubuntu/appdsm
 
 構成する2つのファイル：
 
-- `config.ini` - すべてのリモートホストにデプロイされる Smart Agent 構成
-- `remote.yaml` - リモートホストと SSH 接続設定
+- `config.ini` - すべてのリモートホストにデプロイされるSmart Agent構成
+- `remote.yaml` - リモートホストとSSH接続設定
 
 ## config.ini - Smart Agent 構成
 
-`config.ini` ファイルには、すべてのリモートホストにデプロイされるメインの Smart Agent 構成が含まれています。
+`config.ini` ファイルには、すべてのリモートホストにデプロイされるメインのSmart Agent構成が含まれています。
 
 **場所：** `/home/ubuntu/appdsm/config.ini`
 
 ### Controller 構成
 
-AppDynamics Controller 接続を構成します：
+AppDynamics Controller接続を構成します：
 
 ```ini
 ControllerURL    = fso-tme.saas.appdynamics.com
@@ -39,16 +39,16 @@ EnableSSL        = true
 
 **主要パラメータ：**
 
-- `ControllerURL`：AppDynamics SaaS コントローラーエンドポイント
-- `ControllerPort`：コントローラーの HTTPS ポート（デフォルト：443）
-- `FMServicePort`：Flow Monitoring サービスポート
-- `AccountAccessKey`：AppDynamics アカウントアクセスキー
-- `AccountName`：AppDynamics アカウント名
-- `EnableSSL`：SSL/TLS 暗号化を有効にする（本番環境では `true` にする必要があります）
+- `ControllerURL`：AppDynamics SaaSコントローラーエンドポイント
+- `ControllerPort`：コントローラーのHTTPSポート（デフォルト：443）
+- `FMServicePort`：Flow Monitoringサービスポート
+- `AccountAccessKey`：AppDynamicsアカウントアクセスキー
+- `AccountName`：AppDynamicsアカウント名
+- `EnableSSL`：SSL/TLS暗号化を有効にする（本番環境では `true` にする必要があります）
 
 ### Common Configuration
 
-エージェントの ID とポーリング動作を定義します：
+エージェントのIDとポーリング動作を定義します：
 
 ```ini
 [CommonConfig]
@@ -84,7 +84,7 @@ Profiling = false
 
 ### TLS クライアント設定
 
-プロキシと TLS 設定を構成します：
+プロキシとTLS設定を構成します：
 
 ```ini
 [TLSClientSetting]
@@ -96,9 +96,9 @@ AgentNoProxy    =
 
 **パラメータ：**
 
-- `Insecure`：TLS 証明書の検証をスキップ（本番環境では推奨されません）
-- `AgentHTTPProxy`：HTTP プロキシサーバー URL（必要な場合）
-- `AgentHTTPSProxy`：HTTPS プロキシサーバー URL（必要な場合）
+- `Insecure`：TLS証明書の検証をスキップ（本番環境では推奨されません）
+- `AgentHTTPProxy`：HTTPプロキシサーバー URL（必要な場合）
+- `AgentHTTPSProxy`：HTTPSプロキシサーバー URL（必要な場合）
 - `AgentNoProxy`：プロキシをバイパスするホストのカンマ区切りリスト
 
 ### Auto Discovery
@@ -140,11 +140,11 @@ AutoUpdateLdPreload = true
 **パラメータ：**
 
 - `NativeEnable`：ネイティブ計装を有効にする
-- `AutoUpdateLdPreload`：LD_PRELOAD 設定を自動的に更新
+- `AutoUpdateLdPreload`：LD_PRELOAD設定を自動的に更新
 
 ## remote.yaml - リモートホスト構成
 
-`remote.yaml` ファイルは、Smart Agent がインストールされるリモートホストと接続パラメータを定義します。
+`remote.yaml` ファイルは、Smart Agentがインストールされるリモートホストと接続パラメータを定義します。
 
 **場所：** `/home/ubuntu/appdsm/remote.yaml`
 
@@ -200,28 +200,28 @@ hosts:
 
 - 値：`ssh`
 
-**auth.username：** 認証用の SSH ユーザー名
+**auth.username：** 認証用のSSHユーザー名
 
 - 例：`ubuntu`、`ec2-user`、`centos`
 - リモートホストで構成されているユーザーと一致する必要があります
 
-**auth.private_key_path：** SSH 秘密鍵へのパス
+**auth.private_key_path：** SSH秘密鍵へのパス
 
 - 絶対パスである必要があります
 - キーはアクセス可能で適切なパーミッション（600）を持っている必要があります
 
 **auth.privileged：** 昇格した権限でエージェントを実行
 
-- `true`：root/systemd サービスとしてインストール
+- `true`：root/systemdサービスとしてインストール
 - `false`：ユーザープロセスとしてインストール
 - 推奨：本番デプロイでは `true`
 
-**auth.ignore_host_key_validation：** SSH ホストキー検証をスキップ
+**auth.ignore_host_key_validation：** SSHホストキー検証をスキップ
 
 - `true`：検証をスキップ（テストに便利）
 - `false`：ホストキーを検証（本番環境で推奨）
 
-**auth.known_hosts_path：** SSH known_hosts ファイルへのパス
+**auth.known_hosts_path：** SSH known_hostsファイルへのパス
 
 - デフォルト：`/home/ubuntu/.ssh/known_hosts`
 - ホストキー検証が有効な場合に使用
@@ -230,22 +230,22 @@ hosts:
 
 各ホストエントリには以下が必要です：
 
-**host：** リモートマシンの IP アドレスまたはホスト名
+**host：** リモートマシンのIPアドレスまたはホスト名
 
 - IPv4、IPv6、またはホスト名が使用可能
-- Control Node から到達可能である必要があります
+- Control Nodeから到達可能である必要があります
 
-**port：** SSH ポート
+**port：** SSHポート
 
 - デフォルト：`22`
-- SSH が非標準ポートで実行されている場合は変更
+- SSHが非標準ポートで実行されている場合は変更
 
-**user：** Smart Agent プロセスを所有するユーザーアカウント
+**user：** Smart Agentプロセスを所有するユーザーアカウント
 
 - システム全体のインストールでは通常 `root`
 - ユーザー固有のインストールでは通常のユーザーも可能
 
-**group：** Smart Agent プロセスを所有するグループ
+**group：** Smart Agentプロセスを所有するグループ
 
 - 通常はユーザーと一致（例：`root`）
 
@@ -281,8 +281,8 @@ cat /home/ubuntu/appdsm/remote.yaml
 
 以下を確認します：
 
-- すべてのホスト IP アドレスが正しいこと
-- SSH キーパスが有効であること
+- すべてのホストIPアドレスが正しいこと
+- SSHキーパスが有効であること
 - リモートディレクトリパスが適切であること
 
 ### config.ini の確認
@@ -293,18 +293,18 @@ cat /home/ubuntu/appdsm/config.ini
 
 以下を確認します：
 
-- Controller URL とアカウント情報が正しいこと
+- Controller URLとアカウント情報が正しいこと
 - ログファイルパスが有効であること
 - 設定が環境要件に一致していること
 
 ### YAML 構文の検証
 
-YAML ファイルが正しくフォーマットされていることを確認します：
+YAMLファイルが正しくフォーマットされていることを確認します：
 
 ```bash
 python3 -c "import yaml; yaml.safe_load(open('/home/ubuntu/appdsm/remote.yaml'))"
 ```
 
-コマンドがエラーなしで完了すれば、YAML 構文は有効です。
+コマンドがエラーなしで完了すれば、YAML構文は有効です。
 
 構成ファイルの準備ができたら、インストールを進めることができます。

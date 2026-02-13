@@ -15,7 +15,7 @@ time: 15 minutes
 
 ### ステップ 1: Actions タブに移動
 
-1. GitHub 上のフォークしたリポジトリに移動します
+1. GitHub上のフォークしたリポジトリに移動します
 2. 上部の **Actions** タブをクリックします
 
 ### ステップ 2: ワークフローを選択
@@ -127,8 +127,8 @@ gh run view RUN_ID --log-failed --repo YOUR_USERNAME/github-actions-lab
 ワークフローを実行する前に、以下を確認します:
 
 - セルフホストランナーが「Idle」（緑色）と表示されている
-- `SSH_PRIVATE_KEY` Secret が設定されている
-- `DEPLOYMENT_HOSTS` Variable にターゲット IP が含まれている
+- `SSH_PRIVATE_KEY` Secretが設定されている
+- `DEPLOYMENT_HOSTS` VariableにターゲットIPが含まれている
 - ネットワーク接続が確認済み
 
 ### ステップ 2: Smart Agent のデプロイ
@@ -138,7 +138,7 @@ gh run view RUN_ID --log-failed --repo YOUR_USERNAME/github-actions-lab
 1. **Actions** タブに移動します
 2. **"Deploy Smart Agent"** を選択します
 3. **"Run workflow"** をクリックします
-4. デフォルトの batch_size（256）を受け入れます
+4. デフォルトのbatch_size（256）を受け入れます
 5. **"Run workflow"** をクリックします
 
 **GitHub CLI 経由:**
@@ -152,13 +152,13 @@ gh workflow run "Deploy Smart Agent" --repo YOUR_USERNAME/github-actions-lab
 ワークフローは以下を表示します:
 
 1. **Prepare** ジョブ - バッチマトリックスの作成
-2. **Deploy** ジョブ（バッチごとに1つ） - ホストへのデプロイ
+2. **Deploy** ジョブ（バッチごとに1つ）- ホストへのデプロイ
 
 各ジョブをクリックして詳細なログを確認します。
 
 ### ステップ 4: インストールの確認
 
-ターゲットホストに SSH 接続して確認します:
+ターゲットホストにSSH接続して確認します:
 
 ```bash
 # SSH to target
@@ -302,7 +302,7 @@ gh workflow run "Cleanup All Agents"
 
 ### SSH 接続の失敗
 
-**症状**: 「Permission denied」または「Connection refused」エラー
+**症状**:「Permission denied」または「Connection refused」エラー
 
 **解決策**:
 
@@ -315,12 +315,12 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 
 **セキュリティグループを確認:**
 
-- ランナーからの SSH（22）が許可されていることを確認
+- ランナーからのSSH（22）が許可されていることを確認
 - ランナーとターゲットが同じセキュリティグループにあることを確認
 
 **SSH キーを確認:**
 
-- `SSH_PRIVATE_KEY` Secret が実際のキーと一致していることを確認
+- `SSH_PRIVATE_KEY` Secretが実際のキーと一致していることを確認
 - ターゲットホストに公開鍵があることを確認
 
 ### 部分的なバッチの失敗
@@ -330,19 +330,19 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 **解決策**:
 
 1. ワークフローログで失敗したホストを特定
-2. 失敗したホストに SSH 接続して調査
+2. 失敗したホストにSSH接続して調査
 3. ワークフローを再実行（冪等性 - 成功したホストはスキップ）
 
 ### バッチジョブエラー
 
-**症状**: 「Error splitting hosts into batches」
+**症状**:「Error splitting hosts into batches」
 
 **解決策**:
 
-- `DEPLOYMENT_HOSTS` Variable のフォーマットを確認
-- 1行に1つの IP であることを確認
+- `DEPLOYMENT_HOSTS` Variableのフォーマットを確認
+- 1行に1つのIPであることを確認
 - 末尾のスペースや特殊文字がないことを確認
-- Unix 改行コード（LF、CRLF ではなく）を使用
+- Unix改行コード（LF、CRLFではなく）を使用
 
 ## パフォーマンスチューニング
 
@@ -372,7 +372,7 @@ gh workflow run "Deploy Smart Agent" -f batch_size=256
 ## ベストプラクティス
 
 1. **まず単一ホストでテスト**
-   - 1つの IP でテスト変数を作成
+   - 1つのIPでテスト変数を作成
    - ワークフローを実行して確認
    - その後フルリストにデプロイ
 
@@ -398,4 +398,4 @@ gh workflow run "Deploy Smart Agent" -f batch_size=256
 
 ## 次のステップ
 
-おめでとうございます。GitHub Actions を使用した AppDynamics Smart Agent デプロイの自動化方法を学びました。詳細については、[完全なリポジトリ](https://github.com/chambear2809/github-actions-lab)を参照してください。
+おめでとうございます。GitHub Actionsを使用したAppDynamics Smart Agentデプロイの自動化方法を学びました。詳細については、[完全なリポジトリ](https://github.com/chambear2809/github-actions-lab)を参照してください。

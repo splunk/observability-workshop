@@ -16,7 +16,7 @@ dockerコンテナ、kubernetesポッド、sshセッションのような短時�
 
 ## 何が必要なの？
 
-receiver creator とそれに関連する observer エクステンションの使用を開始するには、collector build manifest に追加する必要があります。
+receiver creatorとそれに関連するobserverエクステンションの使用を開始するには、collector build manifestに追加する必要があります。
 
 詳細は [installation](../1-installation/) を参照してください。
 
@@ -28,9 +28,9 @@ receiver creator とそれに関連する observer エクステンションの�
 
 ## Ninja ゾーン
 
-この Ninja ゾーンに必要なものは2つだけです:
+このNinjaゾーンに必要なものは2つだけです:
 
-1. builder manifestに、 receiver creator レシーバーと observer エクステンションを追加する
+1. builder manifestに、 receiver creatorレシーバーとobserverエクステンションを追加する
 2. 検出されたエンドポイントを検出するように、設定を作成する
 
 次のようにすると、設定をテンプレート化できます:
@@ -147,8 +147,8 @@ service:
 
 ---
 
-これで、レシーバーを通して OpenTelemetry Collector にデータがどのように取り込まれるかを確認しました。次に、コレクターが受信したデータをどのように処理するかを見てみましょう。
+これで、レシーバーを通してOpenTelemetry Collectorにデータがどのように取り込まれるかを確認しました。次に、コレクターが受信したデータをどのように処理するかを見てみましょう。
 
 {{% notice style="warning" %}}
-**ここではコレクターを再起動しないでください**！  `/etc/otelcol-contrib/config.yaml` の変更はまだ完了していません。
+**ここではコレクターを再起動しないでください**！　 `/etc/otelcol-contrib/config.yaml` の変更はまだ完了していません。
 {{% /notice %}}

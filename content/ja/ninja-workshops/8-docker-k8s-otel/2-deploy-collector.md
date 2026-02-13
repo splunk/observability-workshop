@@ -7,7 +7,7 @@ time: 10 minutes
 
 ## OpenTelemetry コレクターのアンインストール
 
-EC2 インスタンスには、すでに Splunk Distribution の OpenTelemetry コレクターの古いバージョンが
+EC2インスタンスには、すでにSplunk DistributionのOpenTelemetryコレクターの古いバージョンが
 インストールされている可能性があります。先に進む前に、次のコマンドを使用してアンインストールしましょう：
 
 {{< tabs >}}
@@ -58,10 +58,10 @@ Successfully removed the splunk-otel-collector package
 
 ## OpenTelemetry collector のデプロイ
 
-Linux EC2 インスタンスに、Splunk Distribution の OpenTelemetry コレクターの最新バージョンをデプロイしましょう。
+Linux EC2インスタンスに、Splunk DistributionのOpenTelemetryコレクターの最新バージョンをデプロイしましょう。
 
-これは`curl`を使用してコレクターバイナリをダウンロードし、特定の引数を指定して実行することで可能です。
-これらの引数は、データを送信する realm、使用するアクセストークン、
+これは `curl` を使用してコレクターバイナリをダウンロードし、特定の引数を指定して実行することで可能です。
+これらの引数は、データを送信するrealm、使用するアクセストークン、
 およびデータを送信するデプロイメント環境をコレクターに指示します。
 
 > Splunk Observability Cloud におけるデプロイメント環境とは、システムまたはアプリケーションの個別のデプロイメントであり、同じアプリケーションの他のデプロイメントの設定と重複しない設定を行うことができます。
@@ -134,7 +134,7 @@ sudo systemctl status splunk-otel-collector
 
 ## コレクターログの確認方法
 
-`journalctl`を使用してコレクターログを表示できます：
+`journalctl` を使用してコレクターログを表示できます：
 
 > ログの監視を終了するには、Ctrl + C を押します。
 
@@ -165,5 +165,5 @@ etc.
 
 このコレクターが使用している設定はどこで見つけられるでしょうか？
 
-その設定は`/etc/otel/collector`ディレクトリにあります。コレクターを`agent`モードで
-インストールしたため、コレクター設定は`agent_config.yaml`ファイルにあります。
+その設定は `/etc/otel/collector` ディレクトリにあります。コレクターを `agent` モードで
+インストールしたため、コレクター設定は `agent_config.yaml` ファイルにあります。

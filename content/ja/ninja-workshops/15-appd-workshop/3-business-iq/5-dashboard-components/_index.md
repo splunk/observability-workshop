@@ -64,7 +64,7 @@ User ExperienceフィルターをNORMAL、SLOW、VERY SLOWのみに変更する�
 
 1. **+ Add Widget**、**Analytics**、**Custom Widger Builder** をクリックして新しいウィジェットを作成します。
 2. **Column** チャートタイプを選択します。
-3. 以下のフィルターを追加します：Application = **Supercar-Trader-YOURINITIALS** および Business Transaction = **/Supercar-Trader/sell.do**。
+3. 以下のフィルターを追加します：Application = **Supercar-Trader-YOURINITIALS** およびBusiness Transaction = **/Supercar-Trader/sell.do**。
 4. X軸に **CarModel\_MIDC** と **User Experience** を追加します。
 5. **Save** をクリックします。
 
@@ -76,11 +76,11 @@ User ExperienceフィルターをNORMAL、SLOW、VERY SLOWのみに変更する�
 
 ### 円グラフ
 
-次に、`sellCar`トランザクションによって報告されたすべての車種とモデルごとの価格の合計を表示する円グラフを作成します。これにより、アプリケーションで最も需要の高いモデルが表示されます。
+次に、`sellCar` トランザクションによって報告されたすべての車種とモデルごとの価格の合計を表示する円グラフを作成します。これにより、アプリケーションで最も需要の高いモデルが表示されます。
 
 1. 新しいウィジェットを作成します。
 2. **Pie** チャートタイプを選択します。
-3. 以下のフィルターを追加します：Application = **Supercar-Trader-YOURINITIALS** および Business Transaction = **/Supercar-Trader/sell.do**。
+3. 以下のフィルターを追加します：Application = **Supercar-Trader-YOURINITIALS** およびBusiness Transaction = **/Supercar-Trader/sell.do**。
 4. X軸に **CarModel\_MIDC** を追加します。
 5. Y軸に **CarPrice\_MIDC** を追加します。**SUM** がモデルごとの合計価格をキャプチャするために使用される集計であることに注意してください。
 6. タイトルに **Sold by Car Model** を追加します。

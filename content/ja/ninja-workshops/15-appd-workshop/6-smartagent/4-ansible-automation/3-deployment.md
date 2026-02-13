@@ -6,7 +6,7 @@ time: 5 minutes
 
 ## ステップ4: プレイブックを実行する
 
-Smart Agent をデプロイするには、プロジェクトディレクトリから以下のコマンドを実行します：
+Smart Agentをデプロイするには、プロジェクトディレクトリから以下のコマンドを実行します：
 
 ```bash
 ansible-playbook -i inventory-cloud.yaml smartagent.yaml
@@ -22,4 +22,4 @@ ansible-playbook -i inventory-cloud.yaml smartagent.yaml
 systemctl status smartagent
 ```
 
-サービスが active (running) と表示されます。
+サービスがactive (running) と表示されます。

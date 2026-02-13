@@ -8,7 +8,7 @@ description: おめでとうございます。OpenTelemetry の自動検出と�
 
 おめでとうございます。**Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry** ワークショップを完了しました。
 
-今日、既存の Kubernetes 上の Java アプリケーションにトレース、コードプロファイリング、データベースクエリパフォーマンスを追加することがいかに簡単かを学びました。
+今日、既存のKubernetes上のJavaアプリケーションにトレース、コードプロファイリング、データベースクエリパフォーマンスを追加することがいかに簡単かを学びました。
 
 **Automatic Discovery and Configuration** を使用して、コードや設定に一切触れることなく、アプリケーションとインフラストラクチャの可観測性を即座に向上させました。
 

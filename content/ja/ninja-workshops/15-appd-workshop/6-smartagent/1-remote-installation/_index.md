@@ -7,7 +7,7 @@ description: smartagentctl を使用して、複数のリモートホストに A
 
 ## はじめに
 
-このワークショップでは、**smartagentctl** コマンドラインツールを使用して、複数のリモートホストに同時に **AppDynamics Smart Agent** をインストールおよび管理する方法を紹介します。このアプローチは、Jenkins や GitHub Actions などの追加の自動化ツールを必要とせずに、SSH ベースのリモート実行を使用してサーバーフリートに Smart Agent を迅速にデプロイするのに最適です。
+このワークショップでは、**smartagentctl** コマンドラインツールを使用して、複数のリモートホストに同時に **AppDynamics Smart Agent** をインストールおよび管理する方法を紹介します。このアプローチは、JenkinsやGitHub Actionsなどの追加の自動化ツールを必要とせずに、SSHベースのリモート実行を使用してサーバーフリートにSmart Agentを迅速にデプロイするのに最適です。
 
 ![AppDynamics](https://img.shields.io/badge/AppDynamics-0078D4?style=flat)
 
@@ -17,7 +17,7 @@ description: smartagentctl を使用して、複数のリモートホストに A
 
 - `remote.yaml` ファイルを使用した **リモートホストの構成**
 - `config.ini` を使用した **Smart Agent 設定の構成**
-- SSH 経由で複数のホストに同時に **Smart Agent をデプロイ**
+- SSH経由で複数のホストに同時に **Smart Agent をデプロイ**
 - インフラストラクチャ全体でリモートから **エージェントの開始と停止**
 - すべてのリモートホストでの **エージェントステータスの確認**
 - 一般的なインストールと接続の問題の **トラブルシューティング**
@@ -26,10 +26,10 @@ description: smartagentctl を使用して、複数のリモートホストに A
 
 - 🚀 **SSH による直接デプロイ** - 追加の自動化プラットフォームが不要
 - 🔄 **完全なライフサイクル管理** - エージェントのインストール、開始、停止、アンインストール
-- 🏗️ **Configuration as Code** - YAML および INI ベースの構成ファイル
-- 🔐 **セキュア** - SSH キーベースの認証
+- 🏗️ **Configuration as Code** - YAMLおよびINIベースの構成ファイル
+- 🔐 **セキュア** - SSHキーベースの認証
 - 📈 **同時実行** - 並列デプロイのための構成可能な同時実行性
-- 🎛️ **シンプルな CLI** - 使いやすい smartagentctl コマンドラインインターフェース
+- 🎛️ **シンプルな CLI** - 使いやすいsmartagentctlコマンドラインインターフェース
 
 ## アーキテクチャ概要
 
@@ -55,28 +55,28 @@ description: smartagentctl を使用して、複数のリモートホストに A
 
 1. **前提条件** - 必要なアクセス、ツール、権限
 2. **構成** - `config.ini` と `remote.yaml` のセットアップ
-3. **インストールと起動** - リモートホストへの Smart Agent のデプロイと起動
+3. **インストールと起動** - リモートホストへのSmart Agentのデプロイと起動
 4. **トラブルシューティング** - 一般的な問題と解決策
 
 ## 前提条件
 
-- smartagentctl がインストールされた Control Node
-- すべてのリモートホストへの SSH アクセス
-- 認証用に構成された SSH 秘密鍵
-- Control Node での sudo 権限
-- SSH が有効になっているリモートホスト
-- AppDynamics アカウントの認証情報
+- smartagentctlがインストールされたControl Node
+- すべてのリモートホストへのSSHアクセス
+- 認証用に構成されたSSH秘密鍵
+- Control Nodeでのsudo権限
+- SSHが有効になっているリモートホスト
+- AppDynamicsアカウントの認証情報
 
 ## 利用可能なコマンド
 
 `smartagentctl` ツールは、以下のリモート操作をサポートしています：
 
-- `start --remote` - リモートホストに Smart Agent をインストールして起動
-- `stop --remote` - リモートホストの Smart Agent を停止
-- `status --remote` - リモートホストの Smart Agent ステータスを確認
-- `install --remote` - 起動せずに Smart Agent をインストール
-- `uninstall --remote` - リモートホストから Smart Agent を削除
-- `--service` フラグ - systemd サービスとしてインストール
+- `start --remote` - リモートホストにSmart Agentをインストールして起動
+- `stop --remote` - リモートホストのSmart Agentを停止
+- `status --remote` - リモートホストのSmart Agentステータスを確認
+- `install --remote` - 起動せずにSmart Agentをインストール
+- `uninstall --remote` - リモートホストからSmart Agentを削除
+- `--service` フラグ - systemdサービスとしてインストール
 
 すべてのコマンドは、詳細なログのための `--verbose` フラグをサポートしています。
 

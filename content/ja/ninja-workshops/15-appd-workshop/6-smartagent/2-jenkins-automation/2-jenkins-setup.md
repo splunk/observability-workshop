@@ -8,11 +8,11 @@ time: 10 minutes
 
 開始する前に、以下を準備してください:
 
-- Jenkins サーバー（バージョン2.300以降）
-- ターゲット EC2 インスタンスと同じ AWS VPC 内の Jenkins エージェント
-- ターゲットホストへの認証用 SSH キーペア
-- AppDynamics Smart Agent パッケージ
-- SSH アクセス可能なターゲット Ubuntu EC2 インスタンス
+- Jenkinsサーバー（バージョン2.300以降）
+- ターゲットEC2インスタンスと同じAWS VPC内のJenkinsエージェント
+- ターゲットホストへの認証用SSHキーペア
+- AppDynamics Smart Agentパッケージ
+- SSHアクセス可能なターゲットUbuntu EC2インスタンス
 
 ## 必要な Jenkins プラグイン
 
@@ -21,7 +21,7 @@ time: 10 minutes
 1. **Pipeline**（コアプラグイン、通常はプリインストール済み）
 2. **SSH Agent Plugin**
 3. **Credentials Plugin**（通常はプリインストール済み）
-4. **Git Plugin**（SCM を使用する場合）
+4. **Git Plugin**（SCMを使用する場合）
 
 インストール手順:
 
@@ -32,13 +32,13 @@ time: 10 minutes
 
 ## Jenkins Agent の設定
 
-Jenkins エージェントはプライベート IP 経由でターゲット EC2 インスタンスに到達できる必要があります。主に2つの方法があります:
+JenkinsエージェントはプライベートIP経由でターゲットEC2インスタンスに到達できる必要があります。主に2つの方法があります:
 
 ### オプション A: EC2 インスタンスをエージェントとして使用
 
 1. ターゲットホストと **同じ VPC に EC2 インスタンスを起動** します
 
-2. **Java をインストール** します（Jenkins に必要）:
+2. **Java をインストール** します（Jenkinsに必要）:
 
    ```bash
    sudo apt-get update
@@ -53,14 +53,14 @@ Jenkins エージェントはプライベート IP 経由でターゲット EC2 
      - **Remote root directory**: `/home/ubuntu/jenkins`
      - **Labels**: `linux`（パイプラインのエージェントラベルと一致させる必要があります）
      - **Launch method**: Launch agent via SSH
-     - **Host**: EC2 のプライベート IP
-     - **Credentials**: エージェント用の SSH 認証情報を追加
+     - **Host**: EC2のプライベートIP
+     - **Credentials**: エージェント用のSSH認証情報を追加
 
 ### オプション B: 既存の Linux エージェントを使用
 
 - エージェントに `linux` ラベルが設定されていることを確認します
 - ターゲットホストへのネットワーク接続を確認します
-- SSH クライアントがインストールされていることを確認します
+- SSHクライアントがインストールされていることを確認します
 
 ### エージェントラベルの設定
 
@@ -84,16 +84,16 @@ Jenkins エージェントはプライベート IP 経由でターゲット EC2 
 
 ### 1. ターゲットホスト用 SSH 秘密鍵
 
-この認証情報により、Jenkins がターゲット EC2 インスタンスに SSH 接続できるようになります。
+この認証情報により、JenkinsがターゲットEC2インスタンスにSSH接続できるようになります。
 
 **Type**: SSH Username with private key
 
 - **ID**: `ssh-private-key`（正確に一致させる必要があります）
 - **Description**: `SSH key for EC2 target hosts`
-- **Username**: `ubuntu`（または使用する SSH ユーザー）
+- **Username**: `ubuntu`（または使用するSSHユーザー）
 - **Private Key**: 以下のいずれかを選択:
-  - **Enter directly**: PEM ファイルの内容を貼り付け
-  - **From file**: PEM ファイルをアップロード
+  - **Enter directly**: PEMファイルの内容を貼り付け
+  - **From file**: PEMファイルをアップロード
   - **From Jenkins master**: パスを指定
 
 **フォーマット例**:
@@ -107,13 +107,13 @@ MIIEpAIBAAKCAQEA...
 
 ### 2. デプロイ対象ホストリスト
 
-この認証情報には、Smart Agent をデプロイするすべてのターゲットホストのリストが含まれます。
+この認証情報には、Smart Agentをデプロイするすべてのターゲットホストのリストが含まれます。
 
 **Type**: Secret text
 
 - **ID**: `deployment-hosts`（正確に一致させる必要があります）
 - **Description**: `List of target EC2 host IPs`
-- **Secret**: 改行区切りの IP アドレスを入力
+- **Secret**: 改行区切りのIPアドレスを入力
 
 **例**:
 
@@ -128,43 +128,43 @@ MIIEpAIBAAKCAQEA...
 {{% notice style="important" %}}
 **フォーマット要件:**
 
-- 1行に1つの IP アドレス
+- 1行に1つのIPアドレス
 - カンマなし
 - スペースなし
 - 余分な文字なし
-- Unix 改行コード（LF、CRLF ではない）を使用
+- Unix改行コード（LF、CRLFではない）を使用
 {{% /notice %}}
 
 ### 3. AppDynamics アカウントアクセスキー
 
-この認証情報には、Smart Agent の認証に使用する AppDynamics アカウントアクセスキーが含まれます。
+この認証情報には、Smart Agentの認証に使用するAppDynamicsアカウントアクセスキーが含まれます。
 
 **Type**: Secret text
 
 - **ID**: `account-access-key`（正確に一致させる必要があります）
 - **Description**: `AppDynamics account access key`
-- **Secret**: AppDynamics のアクセスキー
+- **Secret**: AppDynamicsのアクセスキー
 
 **例**: `abcd1234-ef56-7890-gh12-ijklmnopqrst`
 
 {{% notice style="tip" %}}
-AppDynamics のアクセスキーは、Controller の **Settings → License → Account** で確認できます。
+AppDynamicsのアクセスキーは、Controllerの **Settings → License → Account** で確認できます。
 {{% /notice %}}
 
 ## 認証情報のセキュリティベストプラクティス
 
 認証情報管理のベストプラクティスに従ってください:
 
-- Jenkins の認証情報暗号化を使用する（組み込み機能）
-- Jenkins のロールベース認可でアクセスを制限する
-- SSH 鍵を定期的にローテーションする
-- EC2 インスタンスに最小権限の IAM ロールを使用する
+- Jenkinsの認証情報暗号化を使用する（組み込み機能）
+- Jenkinsのロールベース認可でアクセスを制限する
+- SSH鍵を定期的にローテーションする
+- EC2インスタンスに最小権限のIAMロールを使用する
 - 認証情報アクセスの監査ログを有効にする
 - 認証情報をバージョン管理にコミットしない
 
 ## Smart Agent パッケージのセットアップ
 
-Smart Agent の ZIP ファイルは、Jenkins からアクセス可能な場所に配置する必要があります。推奨される方法は、Jenkins のホームディレクトリに保存することです。
+Smart AgentのZIPファイルは、Jenkinsからアクセス可能な場所に配置する必要があります。推奨される方法は、Jenkinsのホームディレクトリに保存することです。
 
 ### Smart Agent のダウンロード
 
@@ -179,12 +179,12 @@ ls -lh appdsmartagent_64_linux.zip
 
 ### 保存場所
 
-パイプラインは Smart Agent ZIP を `/var/jenkins_home/smartagent/appdsmartagent.zip` で参照します。
+パイプラインはSmart Agent ZIPを `/var/jenkins_home/smartagent/appdsmartagent.zip` で参照します。
 
 以下のいずれかの方法で対応できます:
 
-1. この場所に ZIP ファイルを正確に配置する
-2. パイプラインパラメータ `SMARTAGENT_ZIP_PATH` を ZIP ファイルの場所に変更する
+1. この場所にZIPファイルを正確に配置する
+2. パイプラインパラメータ `SMARTAGENT_ZIP_PATH` をZIPファイルの場所に変更する
 
 ## 設定の確認
 
@@ -198,7 +198,7 @@ ls -lh appdsmartagent_64_linux.zip
 
 ### 2. SSH 接続のテスト
 
-SSH が動作することを確認するための簡単なテストパイプラインを作成します:
+SSHが動作することを確認するための簡単なテストパイプラインを作成します:
 
 ```groovy
 pipeline {
@@ -252,7 +252,7 @@ pipeline {
 
 ### SSH 接続の失敗
 
-**症状**: SSH 経由でターゲットホストに接続できない
+**症状**: SSH経由でターゲットホストに接続できない
 
 **解決策**:
 
@@ -266,11 +266,11 @@ ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
 
 ### 認証情報が見つからない
 
-**症状**: 「Credential not found」エラーが発生する
+**症状**:「Credential not found」エラーが発生する
 
 **解決策**:
 
-- 認証情報の ID が正確に一致していることを確認します:
+- 認証情報のIDが正確に一致していることを確認します:
   - `ssh-private-key`
   - `deployment-hosts`
   - `account-access-key`
@@ -278,7 +278,7 @@ ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
 
 ### ターゲットホストでの権限拒否
 
-**症状**: SSH は成功するがコマンドが権限拒否で失敗する
+**症状**: SSHは成功するがコマンドが権限拒否で失敗する
 
 **解決策**:
 
@@ -291,4 +291,4 @@ ubuntu ALL=(ALL) NOPASSWD: ALL
 
 ## 次のステップ
 
-Jenkins の認証情報とエージェントの設定が完了したら、デプロイパイプラインの作成に進みます。
+Jenkinsの認証情報とエージェントの設定が完了したら、デプロイパイプラインの作成に進みます。

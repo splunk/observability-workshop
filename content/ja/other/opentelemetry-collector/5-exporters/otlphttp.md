@@ -6,9 +6,9 @@ weight: 1
 
 ## OTLP HTTP エクスポーター
 
-Splunk Observability Cloud へ HTTP 経由でメトリックスを送信するためには、**otlphttp** エクスポーターを設定する必要があります。
+Splunk Observability CloudへHTTP経由でメトリックスを送信するためには、**otlphttp** エクスポーターを設定する必要があります。
 
-`/etc/otelcol-contrib/config.yaml` ファイルを編集し、**otlphttp** エクスポーターを設定しましょう。以下の YAML を **exporters** セクションの下に挿入し、例えば2スペースでインデントしてください。
+`/etc/otelcol-contrib/config.yaml` ファイルを編集し、**otlphttp** エクスポーターを設定しましょう。以下のYAMLを **exporters** セクションの下に挿入し、例えば2スペースでインデントしてください。
 
 また、ディスクの容量不足を防ぐために、ロギングエクスポーターの詳細度を変更します。デフォルトの `detailed` は非常に詳細です。
 
@@ -22,7 +22,7 @@ exporters:
 次に、`metrics_endpoint` を定義して、ターゲットURLを設定していきます。
 
 {{% notice style="note" %}}
-Splunk 主催のワークショップの参加者である場合、使用しているインスタンスにはすでに Realm 環境変数が設定されています。その環境変数を設定ファイルで参照します。それ以外の場合は、新しい環境変数を作成して Realm を設定する必要があります。例えば：
+Splunk主催のワークショップの参加者である場合、使用しているインスタンスにはすでにRealm環境変数が設定されています。その環境変数を設定ファイルで参照します。それ以外の場合は、新しい環境変数を作成してRealmを設定する必要があります。例えば：
 
 ``` bash
 export REALM="us1"
@@ -30,7 +30,7 @@ export REALM="us1"
 
 {{% /notice %}}
 
-使用するURLは `https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp` です。（Splunkは、データの居住地に応じて世界中の主要地域に Realm を持っています）。
+使用するURLは `https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp` です。（Splunkは、データの居住地に応じて世界中の主要地域にRealmを持っています）。
 
 **otlphttp** エクスポーターは、`traces_endpoint` と `logs_endpoint` それぞれのターゲットURLを定義することにより、トレースとログを送信するようにも設定できますが、そのような設定はこのワークショップの範囲外とします。
 
@@ -44,10 +44,10 @@ exporters:
 
 デフォルトでは、すべてのエンドポイントで `gzip` 圧縮が有効になっています。エクスポーターの設定で `compression: none` を設定することにより、圧縮を無効にすることができます。このワークショップでは圧縮を有効にしたままにし、データを送信する最も効率的な方法としてデフォルト設定を使っていきます。
 
-Splunk Observability Cloud にメトリクスを送信するためには、アクセストークンを使用する必要があります。これは、Splunk Observability Cloud UI で新しいトークンを作成することにより行うことができます。トークンの作成方法についての詳細は、[Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html) を参照してください。トークンは **INGEST** タイプである必要があります。
+Splunk Observability Cloudにメトリクスを送信するためには、アクセストークンを使用する必要があります。これは、Splunk Observability Cloud UIで新しいトークンを作成することにより行うことができます。トークンの作成方法についての詳細は、[Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html) を参照してください。トークンは **INGEST** タイプである必要があります。
 
 {{% notice style="note" %}}
-Splunk　主催のワークショップの参加者である場合、使用しているインスタンスにはすでにアクセストークンが設定されています（環境変数として設定されています）ので、その環境変数を設定ファイルで参照します。それ以外の場合は、新しいトークンを作成し、それを環境変数として設定する必要があります。例えば：
+Splunk主催のワークショップの参加者である場合、使用しているインスタンスにはすでにアクセストークンが設定されています（環境変数として設定されています）ので、その環境変数を設定ファイルで参照します。それ以外の場合は、新しいトークンを作成し、それを環境変数として設定する必要があります。例えば：
 
 ``` bash
 export ACCESS_TOKEN=<replace-with-your-token>

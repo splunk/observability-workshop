@@ -7,13 +7,13 @@ description: このラボでは、AppDynamics Database Visibility Monitoring に
 
 ## 目標
 
-このラボでは、AppDynamics Database Visibility Monitoring について学びます。
+このラボでは、AppDynamics Database Visibility Monitoringについて学びます。
 
 このラボを完了すると、以下のことができるようになります：
 
-- AppDynamics Database Visibility Agent のダウンロード
-- AppDynamics Database Visibility Agent のインストール
-- Controller での Database Collector の構成
+- AppDynamics Database Visibility Agentのダウンロード
+- AppDynamics Database Visibility Agentのインストール
+- ControllerでのDatabase Collectorの構成
 - データベースの健全性監視
 - データベースパフォーマンス問題のトラブルシューティング
 
@@ -21,8 +21,8 @@ description: このラボでは、AppDynamics Database Visibility Monitoring に
 
 ラボ環境には2つのホストがあります：
 
-- 1つ目のホストは AppDynamics Controller を実行しており、以降は Controller と呼びます。
-- 2つ目のホストはラボで使用する Supercar Trader アプリケーションを実行しています。このホストに AppDynamics エージェントをインストールし、以降は Application VM と呼びます。
+- 1つ目のホストはAppDynamics Controllerを実行しており、以降はControllerと呼びます。
+- 2つ目のホストはラボで使用するSupercar Traderアプリケーションを実行しています。このホストにAppDynamicsエージェントをインストールし、以降はApplication VMと呼びます。
 
 ## Controller VM
 
@@ -32,8 +32,8 @@ description: このラボでは、AppDynamics Database Visibility Monitoring に
 
 ## Application VM
 
-Supercar Trader は Java ベースの Web アプリケーションです。
+Supercar TraderはJavaベースのWebアプリケーションです。
 
-Supercar-Trader コレクションの目的は、AppDynamics Controller 向けに動的なトラフィック（ビジネストランザクション）を生成することです。
+Supercar-Traderコレクションの目的は、AppDynamics Controller向けに動的なトラフィック（ビジネストランザクション）を生成することです。
 
 ![Application](images/application-vm.png)

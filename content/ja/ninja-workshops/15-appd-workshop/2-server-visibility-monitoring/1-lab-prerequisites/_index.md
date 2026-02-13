@@ -8,14 +8,14 @@ draft: true
 
 ## Controller へのログイン
 
-Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインしてください。
+Ciscoの認証情報を使用して [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) にログインしてください。
 
 ## アプリケーションへのトランザクション負荷の確認
 
 アプリケーションフローマップを確認します：
 
 1. 過去1時間の時間枠を選択します。
-2. フローマップに5つの異なる Tier が表示されていることを確認します。
+2. フローマップに5つの異なるTierが表示されていることを確認します。
 3. 過去1時間にわたって一貫した負荷があったことを確認します。
 
 ![Verify App Load](images/verify-app-load-01.png)
@@ -30,17 +30,17 @@ Cisco の認証情報を使用して [AppDynamics SE Lab Controller](https://se-
 
 ![Verify App Load](images/verify-app-load-02.png)
 
-Node のエージェントステータスを確認します：
+Nodeのエージェントステータスを確認します：
 
 1. 左側のメニューで **Tiers & Nodes** オプションをクリックします。
 2. **Grid View** をクリックします。
-3. 各 Node の App Agent Status が過去1時間で90%以上であることを確認します。
+3. 各NodeのApp Agent Statusが過去1時間で90%以上であることを確認します。
 
 ![Verify App Load](images/verify-app-load-03.png)
 
 ## 必要に応じてアプリケーションとトランザクション負荷を再起動する
 
-前のステップで実行した確認のいずれかが確認できなかった場合は、Application VM に SSH 接続し、以下のステップに従ってアプリケーションとトランザクション負荷を再起動してください。EC2 インスタンスの IP アドレス、SSH 接続に必要なユーザー名とパスワードを用意してください。ローカルマシンでターミナルを開き、以下を入力します：
+前のステップで実行した確認のいずれかが確認できなかった場合は、Application VMにSSH接続し、以下のステップに従ってアプリケーションとトランザクション負荷を再起動してください。EC2インスタンスのIPアドレス、SSH接続に必要なユーザー名とパスワードを用意してください。ローカルマシンでターミナルを開き、以下を入力します：
 
 ``` bash
 ssh -P 2222 [username]@http://[ec2-ip-address]
@@ -48,20 +48,20 @@ ssh -P 2222 [username]@http://[ec2-ip-address]
 
 パスワードの入力を求められます。
 
-以下のコマンドを使用して、実行中の Apache Tomcat インスタンスを停止します。
+以下のコマンドを使用して、実行中のApache Tomcatインスタンスを停止します。
 
 ```bash
 cd /usr/local/apache/apache-tomcat-9/bin
 ./shutdown.sh
 ```
 
-以下のコマンドを使用して、まだ実行中のアプリケーション JVM が残っていないか確認します。
+以下のコマンドを使用して、まだ実行中のアプリケーションJVMが残っていないか確認します。
 
 ```bash
 ps -ef | grep Supercar-Trader
 ```
 
-まだ実行中のアプリケーション JVM が見つかった場合は、以下のコマンドを使用して残りの JVM を終了します。
+まだ実行中のアプリケーションJVMが見つかった場合は、以下のコマンドを使用して残りのJVMを終了します。
 
 ```bash
 sudo pkill -f Supercar-Trader
@@ -78,20 +78,20 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 
 ![Restart App And Load](images/restart-app-and-load-02.png)
 
-次に、以下のコマンドを使用して Apache Tomcat を起動します。
+次に、以下のコマンドを使用してApache Tomcatを起動します。
 
 ```bash
 cd /usr/local/apache/apache-tomcat-9/bin
 ./startup.sh
 ```
 
-2分待ってから、以下のコマンドを使用して Apache Tomcat がポート8080で実行されていることを確認します。
+2分待ってから、以下のコマンドを使用してApache Tomcatがポート8080で実行されていることを確認します。
 
 ```bash
 sudo netstat -tulpn | grep LISTEN
 ```
 
-Apache Tomcat がポート8080を使用していることを示す、以下の画像のような出力が表示されるはずです。
+Apache Tomcatがポート8080を使用していることを示す、以下の画像のような出力が表示されるはずです。
 
 ![Restart App](images/restart-app-and-load-01.png)
 

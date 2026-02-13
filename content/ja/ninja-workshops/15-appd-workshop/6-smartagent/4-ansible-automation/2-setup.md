@@ -6,7 +6,7 @@ time: 10 minutes
 
 ## ステップ2: ファイルとディレクトリ構成を準備する
 
-Ansible デプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります：
+Ansibleデプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります：
 
 ```text
 .
@@ -17,13 +17,13 @@ Ansible デプロイ用のプロジェクトディレクトリを作成します
 └── variables.yaml                           # Variables file
 ```
 
-ターゲット環境に適した Smart Agent パッケージをダウンロード済みであることを確認してください。
+ターゲット環境に適したSmart Agentパッケージをダウンロード済みであることを確認してください。
 
 ## ステップ3: ファイルの内容を理解する
 
 ### 1. インベントリファイル（`inventory-cloud.yaml`）
 
-インベントリファイルには、Smart Agent をデプロイするホストの一覧を記載します。ホストと認証情報をここで定義します。
+インベントリファイルには、Smart Agentをデプロイするホストの一覧を記載します。ホストと認証情報をここで定義します。
 
 ```yaml
 all:
@@ -54,11 +54,11 @@ all:
       ansible_become_password: ins3965!
 ```
 
-**Action**: `ansible_host` の IP アドレスと認証情報を、実際のラボ環境の情報に更新します。
+**Action**: `ansible_host` のIPアドレスと認証情報を、実際のラボ環境の情報に更新します。
 
 ### 2. 変数ファイル（`variables.yaml`）
 
-このファイルには、Smart Agent の設定情報が含まれています。
+このファイルには、Smart Agentの設定情報が含まれています。
 
 ```yaml
 smart_agent:
@@ -72,24 +72,24 @@ smart_agent_package_debian: 'appdsmartagent_64_linux_24.6.0.2143.deb'  # or the 
 smart_agent_package_redhat: 'appdsmartagent_64_linux_24.6.0.2143.rpm'  # or the appropriate package name
 ```
 
-**Action**: `smart_agent` セクションを、使用する Controller URL、アカウント名、アクセスキーに更新します。
+**Action**: `smart_agent` セクションを、使用するController URL、アカウント名、アクセスキーに更新します。
 
 ### 3. プレイブック（`smartagent.yaml`）
 
-このプレイブックは、Cisco AppDynamics Distribution of OpenTelemetry Collector のデプロイをオーケストレーションします。タスクの概要は以下のとおりです：
+このプレイブックは、Cisco AppDynamics Distribution of OpenTelemetry Collectorのデプロイをオーケストレーションします。タスクの概要は以下のとおりです：
 
-1. **前提パッケージ**: 必要なパッケージをインストールします（RedHat の場合は `yum-utils`、Debian の場合は `curl`/`apt-transport-https`）。
+1. **前提パッケージ**: 必要なパッケージをインストールします（RedHatの場合は `yum-utils`、Debianの場合は `curl`/`apt-transport-https`）。
 2. **ディレクトリのセットアップ**: `/opt/appdynamics/appdsmartagent` ディレクトリが存在することを確認します。
 3. **設定**:
     * `config.ini` が存在するかチェックします。
     * 存在しない場合、`variables.yaml` の値を使用してデフォルトの `config.ini` を作成します。
-    * `lineinfile` を使用して設定キー（AccountAccessKey、ControllerURL など）を更新し、設定が正しいことを確認します。
+    * `lineinfile` を使用して設定キー（AccountAccessKey、ControllerURLなど）を更新し、設定が正しいことを確認します。
 4. **パッケージ管理**:
-    * OS ファミリー（Debian/RedHat）に基づいて適切なパッケージパスを決定します。
+    * OSファミリー（Debian/RedHat）に基づいて適切なパッケージパスを決定します。
     * パッケージがローカルに存在しない場合は失敗します。
     * パッケージをターゲットホストの `/tmp` ディレクトリにコピーします。
     * `dpkg` または `yum` を使用してパッケージをインストールします。
 5. **サービス管理**: `smartagent` サービスを再起動します。
 6. **クリーンアップ**: 一時パッケージファイルを削除します。
 
-このプレイブックは、`when: ansible_os_family == ...` の条件分岐を使用して、同じワークフロー内で RedHat と Debian の両方のシステムに対応しています。
+このプレイブックは、`when: ansible_os_family == ...` の条件分岐を使用して、同じワークフロー内でRedHatとDebianの両方のシステムに対応しています。
