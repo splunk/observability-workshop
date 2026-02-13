@@ -1,12 +1,12 @@
 ---
-title: Setup & Configuration
+title: セットアップと設定
 weight: 2
 time: 10 minutes
 ---
 
-## Step 2: Prepare Your Files and Directory Structure
+## ステップ2: ファイルとディレクトリ構成を準備する
 
-Create a project directory for your Ansible deployment. It should contain the following files:
+Ansible デプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります：
 
 ```text
 .
@@ -17,13 +17,13 @@ Create a project directory for your Ansible deployment. It should contain the fo
 └── variables.yaml                           # Variables file
 ```
 
-Ensure you have downloaded the correct Smart Agent packages for your target environments.
+ターゲット環境に適した Smart Agent パッケージをダウンロード済みであることを確認してください。
 
-## Step 3: Understanding the Files
+## ステップ3: ファイルの内容を理解する
 
-### 1. Inventory Files (`inventory-cloud.yaml`)
+### 1. インベントリファイル（`inventory-cloud.yaml`）
 
-The inventory file lists the hosts where the Smart Agent will be deployed. Define your hosts and authentication details here.
+インベントリファイルには、Smart Agent をデプロイするホストの一覧を記載します。ホストと認証情報をここで定義します。
 
 ```yaml
 all:
@@ -54,11 +54,11 @@ all:
       ansible_become_password: ins3965!
 ```
 
-**Action**: Update the `ansible_host` IPs and credentials with your actual lab environment details.
+**Action**: `ansible_host` の IP アドレスと認証情報を、実際のラボ環境の情報に更新します。
 
-### 2. Variables File (`variables.yaml`)
+### 2. 変数ファイル（`variables.yaml`）
 
-This file contains the configuration details for the Smart Agent.
+このファイルには、Smart Agent の設定情報が含まれています。
 
 ```yaml
 smart_agent:
@@ -72,24 +72,24 @@ smart_agent_package_debian: 'appdsmartagent_64_linux_24.6.0.2143.deb'  # or the 
 smart_agent_package_redhat: 'appdsmartagent_64_linux_24.6.0.2143.rpm'  # or the appropriate package name
 ```
 
-**Action**: Update the `smart_agent` section with your specific controller URL, account name, and access key.
+**Action**: `smart_agent` セクションを、使用する Controller URL、アカウント名、アクセスキーに更新します。
 
-### 3. Playbook (`smartagent.yaml`)
+### 3. プレイブック（`smartagent.yaml`）
 
-The playbook orchestrates the deployment of the Cisco AppDynamics Distribution of OpenTelemetry Collector. Here is a concise summary of its tasks:
+このプレイブックは、Cisco AppDynamics Distribution of OpenTelemetry Collector のデプロイをオーケストレーションします。タスクの概要は以下のとおりです：
 
-1. **Prerequisites**: Installs necessary packages (`yum-utils` for RedHat, `curl`/`apt-transport-https` for Debian).
-2. **Directory Setup**: Ensures the `/opt/appdynamics/appdsmartagent` directory exists.
-3. **Configuration**:
-    * Checks if `config.ini` exists.
-    * Creates a default `config.ini` using values from `variables.yaml` if missing.
-    * Updates configuration keys (AccountAccessKey, ControllerURL, etc.) using `lineinfile` to ensure settings are correct.
-4. **Package Management**:
-    * Determines the correct package path based on OS family (Debian/RedHat).
-    * Fails if the package is missing locally.
-    * Copies the package to the target host's `/tmp` directory.
-    * Installs the package using `dpkg` or `yum`.
-5. **Service Management**: Restarts the `smartagent` service.
-6. **Cleanup**: Removes the temporary package file.
+1. **前提パッケージ**: 必要なパッケージをインストールします（RedHat の場合は `yum-utils`、Debian の場合は `curl`/`apt-transport-https`）。
+2. **ディレクトリのセットアップ**: `/opt/appdynamics/appdsmartagent` ディレクトリが存在することを確認します。
+3. **設定**:
+    * `config.ini` が存在するかチェックします。
+    * 存在しない場合、`variables.yaml` の値を使用してデフォルトの `config.ini` を作成します。
+    * `lineinfile` を使用して設定キー（AccountAccessKey、ControllerURL など）を更新し、設定が正しいことを確認します。
+4. **パッケージ管理**:
+    * OS ファミリー（Debian/RedHat）に基づいて適切なパッケージパスを決定します。
+    * パッケージがローカルに存在しない場合は失敗します。
+    * パッケージをターゲットホストの `/tmp` ディレクトリにコピーします。
+    * `dpkg` または `yum` を使用してパッケージをインストールします。
+5. **サービス管理**: `smartagent` サービスを再起動します。
+6. **クリーンアップ**: 一時パッケージファイルを削除します。
 
-The playbook uses `when: ansible_os_family == ...` conditionals to handle both RedHat and Debian systems within the same workflow.
+このプレイブックは、`when: ansible_os_family == ...` の条件分岐を使用して、同じワークフロー内で RedHat と Debian の両方のシステムに対応しています。

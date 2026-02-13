@@ -1,14 +1,14 @@
 ---
-title: Architecture & Design
+title: アーキテクチャと設計
 weight: 1
 time: 5 minutes
 ---
 
-## System Architecture
+## システムアーキテクチャ
 
-The Jenkins-based Smart Agent deployment system uses a hub-and-spoke architecture where a Jenkins agent in your AWS VPC orchestrates deployments to multiple target hosts via SSH.
+Jenkins ベースの Smart Agent デプロイシステムは、ハブ・アンド・スポーク型のアーキテクチャを採用しています。AWS VPC 内の Jenkins エージェントが SSH 経由で複数のターゲットホストへのデプロイを調整します。
 
-### High-Level Architecture
+### 全体アーキテクチャ
 
 ```mermaid
 graph TB
@@ -16,7 +16,7 @@ graph TB
         JM[Jenkins Master<br/>Web UI + Orchestration]
         JA[Jenkins Agent<br/>EC2 in VPC<br/>Label: linux]
     end
-    
+
     subgraph "AWS VPC - Private Network"
         subgraph "Target EC2 Instances"
             H1[Host 1<br/>172.31.1.243]
@@ -25,22 +25,22 @@ graph TB
             HN[Host N<br/>172.31.x.x]
         end
     end
-    
+
     DEV[Developer/Operator]
     APPD[AppDynamics<br/>Controller]
-    
+
     DEV -->|1. Triggers Pipeline| JM
     JM -->|2. Assigns Job| JA
     JA -->|3. SSH Deploy<br/>Private IPs| H1
     JA -->|3. SSH Deploy<br/>Private IPs| H2
     JA -->|3. SSH Deploy<br/>Private IPs| H3
     JA -->|3. SSH Deploy<br/>Private IPs| HN
-    
+
     H1 -.->|Metrics| APPD
     H2 -.->|Metrics| APPD
     H3 -.->|Metrics| APPD
     HN -.->|Metrics| APPD
-    
+
     style JM fill:#d4e6f1
     style JA fill:#a9cce3
     style H1 fill:#aed6f1
@@ -49,13 +49,13 @@ graph TB
     style HN fill:#aed6f1
 ```
 
-## Network Architecture
+## ネットワークアーキテクチャ
 
-All infrastructure runs in a single AWS VPC with a shared security group. The Jenkins agent communicates with target hosts via private IPs, eliminating the need for public IP addresses on target hosts.
+すべてのインフラストラクチャは、共有セキュリティグループを持つ単一の AWS VPC 内で稼働します。Jenkins エージェントはプライベート IP 経由でターゲットホストと通信するため、ターゲットホストにパブリック IP アドレスは不要です。
 
-### VPC Layout
+### VPC レイアウト
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                        AWS VPC (10.0.0.0/16)                    │
 │  ┌───────────────────────────────────────────────────────────┐  │
@@ -87,9 +87,9 @@ All infrastructure runs in a single AWS VPC with a shared security group. The Je
                     └──────────────────┘
 ```
 
-## Deployment Flow
+## デプロイフロー
 
-### Complete Deployment Sequence
+### 完全なデプロイシーケンス
 
 ```mermaid
 sequenceDiagram
@@ -98,79 +98,79 @@ sequenceDiagram
     participant JA as Jenkins Agent<br/>(VPC)
     participant TH as Target Hosts<br/>(VPC)
     participant AppD as AppDynamics<br/>Controller
-    
+
     Dev->>JM: 1. Trigger Pipeline
     JM->>JM: 2. Load Credentials
     JM->>JA: 3. Schedule Job
     JA->>JA: 4. Prepare Batches
-    
+
     loop For Each Batch
         JA->>TH: 5. SSH Copy Files (SCP)
         JA->>TH: 6. SSH Execute Commands
         TH->>TH: 7. Install/Config Agent
         TH-->>JA: 8. Return Status
     end
-    
+
     JA->>JM: 9. Report Results
     JM->>Dev: 10. Show Build Status
-    
+
     TH->>AppD: 11. Send Metrics (Post-Install)
     AppD-->>Dev: 12. View Monitoring Data
 ```
 
-## Component Details
+## コンポーネントの詳細
 
 ### Jenkins Master
 
-**Responsibilities:**
+**役割:**
 
-- Web UI for users
-- Pipeline orchestration
-- Credential management
-- Build history & logs
-- Job scheduling
+- ユーザー向け Web UI
+- パイプラインのオーケストレーション
+- 認証情報の管理
+- ビルド履歴とログ
+- ジョブのスケジューリング
 
-**Requirements:**
+**要件:**
 
-- Jenkins 2.300+
-- Plugins: Pipeline, SSH Agent, Credentials, Git
-- Network access to agent
+- Jenkins 2.300以降
+- プラグイン: Pipeline、SSH Agent、Credentials、Git
+- エージェントへのネットワークアクセス
 
 ### Jenkins Agent
 
-**Location:**
+**配置場所:**
 
-- AWS VPC (same as targets)
-- Private network access
+- AWS VPC（ターゲットと同一）
+- プライベートネットワークアクセス
 
-**Responsibilities:**
+**役割:**
 
-- Execute pipeline stages
-- SSH to target hosts
-- File transfers (SCP)
-- Batching logic
-- Error collection
+- パイプラインステージの実行
+- ターゲットホストへの SSH 接続
+- ファイル転送（SCP）
+- バッチ処理ロジック
+- エラー収集
 
-**Requirements:**
+**要件:**
 
-- Label: `linux`
-- Java 11+
-- SSH client
-- Network: SSH to all targets
-- Disk: ~20GB for artifacts
+- ラベル: `linux`
+- Java 11以降
+- SSH クライアント
+- ネットワーク: すべてのターゲットへの SSH 接続
+- ディスク: アーティファクト用に約20GB
 
-### Target Hosts
+### ターゲットホスト
 
-**Pre-requisites:**
+**前提条件:**
 
-- Ubuntu 20.04+
-- SSH server running
-- User with sudo access
-- Authorized SSH key
+- Ubuntu 20.04以降
+- SSH サーバーが稼働していること
+- sudo アクセス権を持つユーザー
+- SSH 鍵が認証済みであること
 
-**Post-deployment:**
+**デプロイ後:**
 
-```
+```text
 /opt/appdynamics/
 └── appdsmartagent/
     ├── smartagentctl
@@ -182,39 +182,39 @@ sequenceDiagram
         └── db/
 ```
 
-## Security Architecture
+## セキュリティアーキテクチャ
 
-### Security Layers
+### セキュリティレイヤー
 
-1. **AWS VPC Isolation**
-   - Private subnet for agents
-   - No direct internet access required
-   - VPC flow logs enabled
+1. **AWS VPC 分離**
+   - エージェント用のプライベートサブネット
+   - 直接のインターネットアクセスは不要
+   - VPC フローログの有効化
 
-2. **Security Groups**
-   - Whitelist Jenkins Agent IP
-   - Port 22 (SSH) only
-   - Stateful firewall rules
+2. **セキュリティグループ**
+   - Jenkins Agent の IP をホワイトリスト登録
+   - ポート 22（SSH）のみ
+   - ステートフルファイアウォールルール
 
-3. **SSH Key Authentication**
-   - No password authentication
-   - Keys stored in Jenkins credentials
-   - Temporary key files (600 perms)
-   - Keys removed after each build
+3. **SSH 鍵認証**
+   - パスワード認証なし
+   - Jenkins 認証情報に鍵を保存
+   - 一時鍵ファイル（600パーミッション）
+   - 各ビルド後に鍵を削除
 
 4. **Jenkins RBAC**
-   - Role-based access control
-   - Pipeline-level permissions
-   - Credential access restrictions
-   - Audit logging enabled
+   - ロールベースのアクセス制御
+   - パイプラインレベルの権限
+   - 認証情報のアクセス制限
+   - 監査ログの有効化
 
-5. **Secrets Management**
-   - No secrets in code/logs
-   - Credentials binding only
-   - Environment variable masking
-   - Automatic secret rotation (optional)
+5. **シークレット管理**
+   - コードやログにシークレットを含めない
+   - 認証情報のバインディングのみ
+   - 環境変数のマスキング
+   - 自動シークレットローテーション（オプション）
 
-### Credential Flow
+### 認証情報のフロー
 
 ```mermaid
 flowchart LR
@@ -222,34 +222,34 @@ flowchart LR
         CS[Credentials Store<br/>Encrypted at Rest]
         JM[Jenkins Master]
     end
-    
+
     subgraph "Jenkins Agent"
         WS[Workspace<br/>Temp Files]
         KEY[SSH Key File<br/>600 permissions]
     end
-    
+
     subgraph "Target Hosts"
         TH[EC2 Instances<br/>Authorized Keys]
     end
-    
+
     CS -->|Binding| JM
     JM -->|Secure Copy| KEY
     KEY -->|SSH Auth| TH
     WS -.->|Cleanup| X[Deleted]
     KEY -.->|Cleanup| X
-    
+
     style CS fill:#fdeaa8
     style KEY fill:#fadbd8
     style X fill:#e8e8e8
 ```
 
-## Batch Processing
+## バッチ処理
 
-The system uses automatic batching to support deployments at any scale. By default, hosts are processed in batches of 256, with all hosts within a batch deploying in parallel.
+システムは自動バッチ処理を使用して、あらゆるスケールのデプロイに対応します。デフォルトでは、ホストは256台ずつのバッチで処理され、バッチ内のすべてのホストは並列でデプロイされます。
 
-### How Batching Works
+### バッチ処理の仕組み
 
-```
+```text
 HOST LIST (1000 hosts)              BATCH_SIZE = 256
 
 Host 001: 172.31.1.1                ┌──────────────────┐
@@ -284,23 +284,23 @@ WITHIN EACH BATCH:
 └────────────────────────────────────────┘
 ```
 
-### Scaling Characteristics
+### スケーリング特性
 
-**Deployment Speed (default BATCH_SIZE=256):**
+**デプロイ速度（デフォルト BATCH_SIZE=256）:**
 
-- 10 hosts → 1 batch → ~2 minutes
-- 100 hosts → 1 batch → ~3 minutes
-- 500 hosts → 2 batches → ~6 minutes
-- 1,000 hosts → 4 batches → ~12 minutes
-- 5,000 hosts → 20 batches → ~60 minutes
+- 10台 → 1バッチ → 約2分
+- 100台 → 1バッチ → 約3分
+- 500台 → 2バッチ → 約6分
+- 1,000台 → 4バッチ → 約12分
+- 5,000台 → 20バッチ → 約60分
 
-**Factors affecting speed:**
+**速度に影響する要因:**
 
-- Network bandwidth (19MB package per host)
-- SSH connection overhead (~1s per host)
-- Target host CPU/disk speed
-- Jenkins agent resources
+- ネットワーク帯域幅（ホストあたり19MBのパッケージ）
+- SSH 接続のオーバーヘッド（ホストあたり約1秒）
+- ターゲットホストの CPU/ディスク速度
+- Jenkins エージェントのリソース
 
-## Next Steps
+## 次のステップ
 
-Now that you understand the architecture, let's move on to setting up Jenkins and configuring credentials.
+アーキテクチャを理解したところで、Jenkins のセットアップと認証情報の設定に進みます。

@@ -1,50 +1,50 @@
 ---
-title: Deployment Workflow
+title: デプロイワークフロー
 weight: 4
 time: 15 minutes
 ---
 
-## First Deployment
+## 初回デプロイ
 
-Now that your pipelines are configured, let's walk through executing your first Smart Agent deployment.
+パイプラインの設定が完了したので、最初の Smart Agent デプロイを実行してみましょう。
 
-### Step 1: Navigate to Pipeline
+### ステップ1: パイプラインに移動
 
-1. Go to **Jenkins Dashboard**
-2. Click on your **Deploy-Smart-Agent** pipeline
+1. **Jenkins Dashboard** に移動します
+2. **Deploy-Smart-Agent** パイプラインをクリックします
 
-### Step 2: Build with Parameters
+### ステップ2: パラメータを指定してビルド
 
-1. Click **Build with Parameters** in the left sidebar
-2. Review the default parameters:
-   - **SMARTAGENT_ZIP_PATH**: Verify path is correct
+1. 左サイドバーの **Build with Parameters** をクリックします
+2. デフォルトパラメータを確認します:
+   - **SMARTAGENT_ZIP_PATH**: パスが正しいことを確認します
    - **REMOTE_INSTALL_DIR**: `/opt/appdynamics/appdsmartagent`
-   - **APPD_USER**: `ubuntu` (or your SSH user)
+   - **APPD_USER**: `ubuntu`（または使用する SSH ユーザー）
    - **APPD_GROUP**: `ubuntu`
    - **SSH_PORT**: `22`
    - **AGENT_NAME**: `smartagent`
    - **LOG_LEVEL**: `DEBUG`
 
-3. Adjust parameters if needed
-4. Click **Build**
+3. 必要に応じてパラメータを調整します
+4. **Build** をクリックします
 
 {{% notice style="tip" %}}
-For your first deployment, consider testing on a single host by creating a separate credential with just one IP address.
+初回デプロイでは、IP アドレスが1つだけの別の認証情報を作成して、単一ホストでテストすることを検討してください。
 {{% /notice %}}
 
-### Step 3: Monitor Pipeline Execution
+### ステップ3: パイプラインの実行を監視
 
-After clicking **Build**, you'll see:
+**Build** をクリックすると、以下が表示されます:
 
-1. **Build added to queue** - Build number appears in Build History
-2. **Click build number** (e.g., #1) to view details
-3. **Click Console Output** to view real-time logs
+1. **Build added to queue** - Build History にビルド番号が表示されます
+2. **ビルド番号をクリック** します（例: #1）
+3. **Console Output** をクリックしてリアルタイムのログを表示します
 
-### Step 4: Understanding Console Output
+### ステップ4: コンソール出力の理解
 
-The console output shows each stage of the deployment:
+コンソール出力にはデプロイの各ステージが表示されます:
 
-```
+```text
 Started by user admin
 Running in Durability level: MAX_SURVIVABILITY
 [Pipeline] Start of Pipeline
@@ -59,308 +59,308 @@ Preparing Smart Agent deployment to 3 hosts: 172.31.1.243, 172.31.1.48, 172.31.1
 ...
 ```
 
-Key stages you'll see:
+表示される主要なステージ:
 
-1. ✅ **Preparation** - Loads and validates host list
-2. ✅ **Extract Smart Agent** - Extracts ZIP file
-3. ✅ **Configure Smart Agent** - Creates config.ini
-4. ✅ **Deploy to Remote Hosts** - Deploys to each host
-5. ✅ **Verify Installation** - Checks Smart Agent status
+1. **Preparation** - ホストリストの読み込みと検証
+2. **Extract Smart Agent** - ZIP ファイルの展開
+3. **Configure Smart Agent** - config.ini の作成
+4. **Deploy to Remote Hosts** - 各ホストへのデプロイ
+5. **Verify Installation** - Smart Agent の状態確認
 
-### Step 5: Review Results
+### ステップ5: 結果の確認
 
-After completion, you'll see:
+完了後、以下のいずれかが表示されます:
 
-**Success:**
+**成功:**
 
-```
+```text
 Smart Agent successfully deployed to all hosts
 Finished: SUCCESS
 ```
 
-**Partial Success:**
+**部分的な成功:**
 
-```
+```text
 Deployment completed with some failures
 Failed hosts: 172.31.1.48
 Finished: UNSTABLE
 ```
 
-**Failure:**
+**失敗:**
 
-```
+```text
 Smart Agent deployment failed. Check logs for details.
 Finished: FAILURE
 ```
 
-## Verifying Installation
+## インストールの検証
 
-After a successful deployment, verify Smart Agent is running on target hosts.
+デプロイが成功したら、ターゲットホストで Smart Agent が稼働していることを確認します。
 
-### Check Smart Agent Status
+### Smart Agent の状態確認
 
-SSH into a target host and check the status:
+ターゲットホストに SSH 接続して状態を確認します:
 
 ```bash
-# SSH to target host
+# ターゲットホストに SSH 接続
 ssh ubuntu@172.31.1.243
 
-# Navigate to installation directory
+# インストールディレクトリに移動
 cd /opt/appdynamics/appdsmartagent
 
-# Check Smart Agent status
+# Smart Agent の状態を確認
 sudo ./smartagentctl status
 ```
 
-**Expected output:**
+**期待される出力:**
 
-```
+```text
 Smart Agent is running (PID: 12345)
 Service: appdsmartagent.service
 Status: active (running)
 ```
 
-### List Installed Agents
+### インストール済みエージェントの一覧表示
 
 ```bash
 cd /opt/appdynamics/appdsmartagent
 sudo ./smartagentctl list
 ```
 
-**Expected output:**
+**期待される出力:**
 
-```
+```text
 No agents currently installed
 (Use install-machine-agent or install-db-agent pipelines to add agents)
 ```
 
-### Check Logs
+### ログの確認
 
 ```bash
 cd /opt/appdynamics/appdsmartagent
 tail -f log.log
 ```
 
-Look for successful connection messages to the AppDynamics controller.
+AppDynamics Controller への接続成功メッセージを確認します。
 
-### Verify in AppDynamics Controller
+### AppDynamics Controller での確認
 
-1. Log into your AppDynamics Controller
-2. Navigate to **Servers → Servers**
-3. Look for your newly deployed hosts
-4. Verify Smart Agent is reporting metrics
+1. AppDynamics Controller にログインします
+2. **Servers → Servers** に移動します
+3. 新しくデプロイされたホストを探します
+4. Smart Agent が Metric をレポートしていることを確認します
 
-## Installing Additional Agents
+## 追加エージェントのインストール
 
-Once Smart Agent is deployed, you can install specific agent types using the other pipelines.
+Smart Agent がデプロイされたら、他のパイプラインを使用して特定のエージェントタイプをインストールできます。
 
-### Install Machine Agent
+### Machine Agent のインストール
 
-1. Go to **Install-Machine-Agent** pipeline
-2. Click **Build with Parameters**
-3. Review parameters:
+1. **Install-Machine-Agent** パイプラインに移動します
+2. **Build with Parameters** をクリックします
+3. パラメータを確認します:
    - **AGENT_NAME**: `machine-agent`
    - **SSH_PORT**: `22`
-4. Click **Build**
+4. **Build** をクリックします
 
-The pipeline will SSH to each host and execute:
+パイプラインは各ホストに SSH 接続して以下を実行します:
 
 ```bash
 cd /opt/appdynamics/appdsmartagent
 sudo ./smartagentctl install --component machine
 ```
 
-### Install Database Agent
+### Database Agent のインストール
 
-1. Go to **Install-Database-Agent** pipeline
-2. Click **Build with Parameters**
-3. Configure database connection parameters
-4. Click **Build**
+1. **Install-Database-Agent** パイプラインに移動します
+2. **Build with Parameters** をクリックします
+3. データベース接続パラメータを設定します
+4. **Build** をクリックします
 
-The pipeline will install and configure the Database Agent on all hosts.
+パイプラインはすべてのホストに Database Agent をインストールして設定します。
 
-### Verify Agent Installation
+### エージェントインストールの確認
 
-After installing agents, verify they appear:
+エージェントのインストール後、表示されることを確認します:
 
 ```bash
 cd /opt/appdynamics/appdsmartagent
 sudo ./smartagentctl list
 ```
 
-**Expected output:**
+**期待される出力:**
 
-```
+```text
 Installed agents:
 - machine-agent (running)
 - db-agent (running)
 ```
 
-## Common Deployment Scenarios
+## 一般的なデプロイシナリオ
 
-### Scenario 1: Initial Deployment
+### シナリオ1: 初回デプロイ
 
-**Workflow:**
+**ワークフロー:**
 
-1. Run **Deploy-Smart-Agent** pipeline
-2. Wait for completion and verify
-3. Run **Install-Machine-Agent** if needed
-4. Run **Install-Database-Agent** if needed
+1. **Deploy-Smart-Agent** パイプラインを実行します
+2. 完了を待って検証します
+3. 必要に応じて **Install-Machine-Agent** を実行します
+4. 必要に応じて **Install-Database-Agent** を実行します
 
-### Scenario 2: Update Smart Agent
+### シナリオ2: Smart Agent のアップデート
 
-To update Smart Agent to a new version:
+Smart Agent を新しいバージョンにアップデートするには:
 
-1. Download new Smart Agent ZIP
-2. Place it in Jenkins at configured path
-3. Run **Deploy-Smart-Agent** pipeline again
+1. 新しい Smart Agent ZIP をダウンロードします
+2. 設定済みのパスに Jenkins に配置します
+3. **Deploy-Smart-Agent** パイプラインを再度実行します
 
-The pipeline automatically:
+パイプラインは自動的に以下を行います:
 
-- Stops existing Smart Agent
-- Removes old files
-- Installs new version
-- Restarts Smart Agent
+- 既存の Smart Agent を停止
+- 古いファイルを削除
+- 新しいバージョンをインストール
+- Smart Agent を再起動
 
-### Scenario 3: Add New Hosts
+### シナリオ3: 新しいホストの追加
 
-To add Smart Agent to new hosts:
+Smart Agent を新しいホストに追加するには:
 
-1. Update the `deployment-hosts` credential in Jenkins
-2. Add new IP addresses (one per line)
-3. Run **Deploy-Smart-Agent** pipeline
+1. Jenkins の `deployment-hosts` 認証情報を更新します
+2. 新しい IP アドレスを追加します（1行に1つ）
+3. **Deploy-Smart-Agent** パイプラインを実行します
 
-The pipeline will:
+パイプラインは以下を行います:
 
-- Skip already-configured hosts (if idempotent)
-- Deploy to new hosts only
+- 設定済みのホストをスキップします（冪等性がある場合）
+- 新しいホストにのみデプロイします
 
-### Scenario 4: Complete Removal
+### シナリオ4: 完全な削除
 
-To completely remove Smart Agent from all hosts:
+すべてのホストから Smart Agent を完全に削除するには:
 
-1. Go to **Cleanup-All-Agents** pipeline
-2. Click **Build with Parameters**
-3. **Check** the `CONFIRM_CLEANUP` checkbox
-4. Click **Build**
+1. **Cleanup-All-Agents** パイプラインに移動します
+2. **Build with Parameters** をクリックします
+3. `CONFIRM_CLEANUP` チェックボックスに **チェックを入れます**
+4. **Build** をクリックします
 
 {{% notice style="danger" %}}
-This will permanently delete `/opt/appdynamics/appdsmartagent` directory from all hosts. This action cannot be undone.
+これにより、すべてのホストから `/opt/appdynamics/appdsmartagent` ディレクトリが完全に削除されます。この操作は元に戻せません。
 {{% /notice %}}
 
-## Troubleshooting Deployments
+## デプロイのトラブルシューティング
 
-### Build Fails at Preparation Stage
+### Preparation ステージでビルドが失敗する
 
-**Symptom**: Pipeline fails when loading host list
+**症状**: ホストリストの読み込み時にパイプラインが失敗する
 
-**Cause**: Missing or incorrect `deployment-hosts` credential
+**原因**: `deployment-hosts` 認証情報が見つからないか、正しくない
 
-**Solution**:
+**解決策**:
 
-1. Go to **Manage Jenkins → Credentials**
-2. Verify `deployment-hosts` credential exists
-3. Check format (one IP per line, no commas)
-4. Ensure no trailing spaces
+1. **Manage Jenkins → Credentials** に移動します
+2. `deployment-hosts` 認証情報が存在することを確認します
+3. フォーマットを確認します（1行に1つの IP、カンマなし）
+4. 末尾にスペースがないことを確認します
 
-### SSH Connection Failures
+### SSH 接続の失敗
 
-**Symptom**: "Permission denied" or "Connection refused" errors
+**症状**: 「Permission denied」または「Connection refused」エラーが発生する
 
-**Solutions**:
+**解決策:**
 
-**Check security group:**
+**セキュリティグループの確認:**
 
 ```bash
-# Verify Jenkins agent can reach target
+# Jenkins エージェントからターゲットに到達できることを確認
 ping 172.31.1.243
 telnet 172.31.1.243 22
 ```
 
-**Test SSH manually:**
+**SSH の手動テスト:**
 
 ```bash
-# From Jenkins agent machine
+# Jenkins エージェントマシンから
 ssh -i /path/to/key ubuntu@172.31.1.243
 ```
 
-**Verify SSH key:**
+**SSH 鍵の確認:**
 
-1. Ensure `ssh-private-key` credential is correct
-2. Verify public key is in `~/.ssh/authorized_keys` on target hosts
+1. `ssh-private-key` 認証情報が正しいことを確認します
+2. ターゲットホストの `~/.ssh/authorized_keys` に公開鍵があることを確認します
 
-### Smart Agent Fails to Start
+### Smart Agent が起動しない
 
-**Symptom**: Deployment completes but Smart Agent not running
+**症状**: デプロイは完了するが Smart Agent が稼働していない
 
-**Solution**:
+**解決策:**
 
-**Check logs on target host:**
+**ターゲットホストのログを確認:**
 
 ```bash
 cd /opt/appdynamics/appdsmartagent
 cat log.log
 ```
 
-**Common issues:**
+**よくある問題:**
 
-- **Invalid access key**: Check `account-access-key` credential
-- **Network connectivity**: Verify outbound HTTPS to Controller
-- **Permission issues**: Ensure APPD_USER has correct permissions
+- **無効なアクセスキー**: `account-access-key` 認証情報を確認します
+- **ネットワーク接続**: Controller への送信 HTTPS 接続を確認します
+- **権限の問題**: APPD_USER に正しい権限があることを確認します
 
-### Partial Deployment Success
+### デプロイの部分的な成功
 
-**Symptom**: Some hosts succeed, others fail
+**症状**: 一部のホストは成功するが、他のホストは失敗する
 
-**Solution**:
+**解決策**:
 
-1. **Check Console Output** - Identifies which hosts failed
-2. **Investigate failed hosts** - SSH and test manually
-3. **Re-run pipeline** - Jenkins tracks which hosts need retry
+1. **Console Output を確認** します - どのホストが失敗したかを特定します
+2. **失敗したホストを調査** します - SSH で接続して手動でテストします
+3. **パイプラインを再実行** します - Jenkins がリトライが必要なホストを追跡します
 
-## Pipeline Best Practices
+## パイプラインのベストプラクティス
 
-### 1. Test on Single Host First
+### 1. まず単一ホストでテスト
 
-Always test new configurations on a single host before deploying to production:
+本番環境にデプロイする前に、必ず単一ホストで新しい設定をテストします:
 
+```text
+1. deployment-hosts-test 認証情報を作成（IP 1つ）
+2. この認証情報を使用するテストパイプラインを作成
+3. 成功を確認
+4. 完全なホストリストにデプロイ
 ```
-1. Create deployment-hosts-test credential (1 IP)
-2. Create test pipeline pointing to this credential
-3. Verify success
-4. Deploy to full host list
-```
 
-### 2. Use Descriptive Build Descriptions
+### 2. 説明的なビルド説明を使用
 
-After triggering a build, add a description:
+ビルドをトリガーした後、説明を追加します:
 
-1. Go to build page
-2. Click **Edit Build Information**
-3. Add description: "Production deployment - Q4 2024"
+1. ビルドページに移動します
+2. **Edit Build Information** をクリックします
+3. 説明を追加します: 「本番環境デプロイ - 2024年第4四半期」
 
-### 3. Monitor Build History
+### 3. ビルド履歴の監視
 
-Regularly check build history for patterns:
+ビルド履歴を定期的にチェックしてパターンを確認します:
 
-- Failed builds
-- Duration trends
-- Error messages
+- 失敗したビルド
+- 所要時間の傾向
+- エラーメッセージ
 
-### 4. Schedule Deployments During Maintenance Windows
+### 4. メンテナンスウィンドウ中にデプロイをスケジュール
 
-For production systems:
+本番システムの場合:
 
-- Use Jenkins scheduled builds
-- Deploy during low-traffic periods
-- Have rollback plan ready
+- Jenkins のスケジュールビルドを使用します
+- トラフィックの少ない時間帯にデプロイします
+- ロールバック計画を準備しておきます
 
-### 5. Keep Credentials Updated
+### 5. 認証情報を最新に保つ
 
-- Rotate SSH keys quarterly
-- Update host lists as infrastructure changes
-- Verify AppDynamics access key validity
+- SSH 鍵を四半期ごとにローテーションします
+- インフラストラクチャの変更に合わせてホストリストを更新します
+- AppDynamics アクセスキーの有効性を確認します
 
-## Next Steps
+## 次のステップ
 
-Now let's explore scaling and operational considerations for large deployments.
+大規模デプロイのスケーリングと運用上の考慮事項について見ていきましょう。

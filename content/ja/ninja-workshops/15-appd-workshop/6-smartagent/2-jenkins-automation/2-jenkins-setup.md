@@ -1,123 +1,123 @@
 ---
-title: Jenkins Setup
+title: Jenkins セットアップ
 weight: 2
 time: 10 minutes
 ---
 
-## Prerequisites
+## 前提条件
 
-Before you begin, ensure you have:
+開始する前に、以下を準備してください:
 
-- Jenkins server (version 2.300 or later)
-- A Jenkins agent in the same AWS VPC as your target EC2 instances
-- SSH key pair for authentication to target hosts
-- AppDynamics Smart Agent package
-- Target Ubuntu EC2 instances with SSH access
+- Jenkins サーバー（バージョン2.300以降）
+- ターゲット EC2 インスタンスと同じ AWS VPC 内の Jenkins エージェント
+- ターゲットホストへの認証用 SSH キーペア
+- AppDynamics Smart Agent パッケージ
+- SSH アクセス可能なターゲット Ubuntu EC2 インスタンス
 
-## Required Jenkins Plugins
+## 必要な Jenkins プラグイン
 
-Install these plugins via **Manage Jenkins → Plugins → Available Plugins**:
+**Manage Jenkins → Plugins → Available Plugins** から以下のプラグインをインストールします:
 
-1. **Pipeline** (core plugin, usually pre-installed)
+1. **Pipeline**（コアプラグイン、通常はプリインストール済み）
 2. **SSH Agent Plugin**
-3. **Credentials Plugin** (usually pre-installed)
-4. **Git Plugin** (if using SCM)
+3. **Credentials Plugin**（通常はプリインストール済み）
+4. **Git Plugin**（SCM を使用する場合）
 
-To install:
+インストール手順:
 
-1. Navigate to **Manage Jenkins → Plugins**
-2. Click **Available** tab
-3. Search for each plugin
-4. Select and click **Install**
+1. **Manage Jenkins → Plugins** に移動します
+2. **Available** タブをクリックします
+3. 各プラグインを検索します
+4. 選択して **Install** をクリックします
 
-## Configure Jenkins Agent
+## Jenkins Agent の設定
 
-Your Jenkins agent must be able to reach target EC2 instances via private IPs. There are two main options:
+Jenkins エージェントはプライベート IP 経由でターゲット EC2 インスタンスに到達できる必要があります。主に2つの方法があります:
 
-### Option A: EC2 Instance as Agent
+### オプション A: EC2 インスタンスをエージェントとして使用
 
-1. **Launch EC2 instance in same VPC** as your target hosts
+1. ターゲットホストと **同じ VPC に EC2 インスタンスを起動** します
 
-2. **Install Java** (required by Jenkins):
+2. **Java をインストール** します（Jenkins に必要）:
 
    ```bash
    sudo apt-get update
    sudo apt-get install -y openjdk-11-jdk
    ```
 
-3. **Add agent in Jenkins**:
-   - Go to **Manage Jenkins → Nodes → New Node**
-   - Name: `aws-vpc-agent` (or your preferred name)
-   - Type: **Permanent Agent**
-   - Configure:
+3. **Jenkins にエージェントを追加** します:
+   - **Manage Jenkins → Nodes → New Node** に移動します
+   - 名前: `aws-vpc-agent`（または任意の名前）
+   - タイプ: **Permanent Agent**
+   - 設定:
      - **Remote root directory**: `/home/ubuntu/jenkins`
-     - **Labels**: `linux` (must match pipeline agent label)
+     - **Labels**: `linux`（パイプラインのエージェントラベルと一致させる必要があります）
      - **Launch method**: Launch agent via SSH
-     - **Host**: EC2 private IP
-     - **Credentials**: Add SSH credentials for agent
+     - **Host**: EC2 のプライベート IP
+     - **Credentials**: エージェント用の SSH 認証情報を追加
 
-### Option B: Use Existing Linux Agent
+### オプション B: 既存の Linux エージェントを使用
 
-- Ensure agent has label `linux`
-- Verify network connectivity to target hosts
-- Confirm SSH client is installed
+- エージェントに `linux` ラベルが設定されていることを確認します
+- ターゲットホストへのネットワーク接続を確認します
+- SSH クライアントがインストールされていることを確認します
 
-### Configure Agent Labels
+### エージェントラベルの設定
 
 {{% notice style="warning" %}}
-All pipelines in this workshop use the `linux` label. Make sure your agent is configured with this label.
+このワークショップのすべてのパイプラインは `linux` ラベルを使用します。エージェントにこのラベルが設定されていることを確認してください。
 {{% /notice %}}
 
-To set or modify labels:
+ラベルを設定または変更するには:
 
-1. Go to **Manage Jenkins → Nodes**
-2. Click on your agent
-3. Click **Configure**
-4. Set **Labels** to `linux`
-5. Click **Save**
+1. **Manage Jenkins → Nodes** に移動します
+2. エージェントをクリックします
+3. **Configure** をクリックします
+4. **Labels** を `linux` に設定します
+5. **Save** をクリックします
 
-## Credentials Setup
+## 認証情報のセットアップ
 
-Navigate to: **Manage Jenkins → Credentials → System → Global credentials (unrestricted)**
+**Manage Jenkins → Credentials → System → Global credentials (unrestricted)** に移動します。
 
-You'll need to create three credentials for the pipelines to work.
+パイプラインを動作させるために、3つの認証情報を作成する必要があります。
 
-### 1. SSH Private Key for Target Hosts
+### 1. ターゲットホスト用 SSH 秘密鍵
 
-This credential allows Jenkins to SSH into your target EC2 instances.
+この認証情報により、Jenkins がターゲット EC2 インスタンスに SSH 接続できるようになります。
 
 **Type**: SSH Username with private key
 
-- **ID**: `ssh-private-key` (must match exactly)
+- **ID**: `ssh-private-key`（正確に一致させる必要があります）
 - **Description**: `SSH key for EC2 target hosts`
-- **Username**: `ubuntu` (or your SSH user)
-- **Private Key**: Choose one:
-  - **Enter directly**: Paste your PEM file content
-  - **From file**: Upload PEM file
-  - **From Jenkins master**: Specify path
+- **Username**: `ubuntu`（または使用する SSH ユーザー）
+- **Private Key**: 以下のいずれかを選択:
+  - **Enter directly**: PEM ファイルの内容を貼り付け
+  - **From file**: PEM ファイルをアップロード
+  - **From Jenkins master**: パスを指定
 
-**Example format**:
+**フォーマット例**:
 
-```
+```text
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA...
 ...
 -----END RSA PRIVATE KEY-----
 ```
 
-### 2. Deployment Hosts List
+### 2. デプロイ対象ホストリスト
 
-This credential contains the list of all target hosts where Smart Agent should be deployed.
+この認証情報には、Smart Agent をデプロイするすべてのターゲットホストのリストが含まれます。
 
 **Type**: Secret text
 
-- **ID**: `deployment-hosts` (must match exactly)
+- **ID**: `deployment-hosts`（正確に一致させる必要があります）
 - **Description**: `List of target EC2 host IPs`
-- **Secret**: Enter newline-separated IPs
+- **Secret**: 改行区切りの IP アドレスを入力
 
-**Example**:
+**例**:
 
-```
+```text
 172.31.1.243
 172.31.1.48
 172.31.1.5
@@ -126,79 +126,79 @@ This credential contains the list of all target hosts where Smart Agent should b
 ```
 
 {{% notice style="important" %}}
-**Format Requirements:**
+**フォーマット要件:**
 
-- One IP per line
-- No commas
-- No spaces
-- No extra characters
-- Use Unix line endings (LF, not CRLF)
+- 1行に1つの IP アドレス
+- カンマなし
+- スペースなし
+- 余分な文字なし
+- Unix 改行コード（LF、CRLF ではない）を使用
 {{% /notice %}}
 
-### 3. AppDynamics Account Access Key
+### 3. AppDynamics アカウントアクセスキー
 
-This credential contains your AppDynamics account access key for Smart Agent authentication.
+この認証情報には、Smart Agent の認証に使用する AppDynamics アカウントアクセスキーが含まれます。
 
 **Type**: Secret text
 
-- **ID**: `account-access-key` (must match exactly)
+- **ID**: `account-access-key`（正確に一致させる必要があります）
 - **Description**: `AppDynamics account access key`
-- **Secret**: Your AppDynamics access key
+- **Secret**: AppDynamics のアクセスキー
 
-**Example**: `abcd1234-ef56-7890-gh12-ijklmnopqrst`
+**例**: `abcd1234-ef56-7890-gh12-ijklmnopqrst`
 
 {{% notice style="tip" %}}
-You can find your AppDynamics access key in the Controller under **Settings → License → Account**.
+AppDynamics のアクセスキーは、Controller の **Settings → License → Account** で確認できます。
 {{% /notice %}}
 
-## Credential Security Best Practices
+## 認証情報のセキュリティベストプラクティス
 
-Follow these best practices for credential management:
+認証情報管理のベストプラクティスに従ってください:
 
-- ✅ Use Jenkins credential encryption (built-in)
-- ✅ Restrict access via Jenkins role-based authorization
-- ✅ Rotate SSH keys periodically
-- ✅ Use least-privilege IAM roles for EC2 instances
-- ✅ Enable audit logging for credential access
-- ✅ Never commit credentials to version control
+- Jenkins の認証情報暗号化を使用する（組み込み機能）
+- Jenkins のロールベース認可でアクセスを制限する
+- SSH 鍵を定期的にローテーションする
+- EC2 インスタンスに最小権限の IAM ロールを使用する
+- 認証情報アクセスの監査ログを有効にする
+- 認証情報をバージョン管理にコミットしない
 
-## Smart Agent Package Setup
+## Smart Agent パッケージのセットアップ
 
-The Smart Agent ZIP file should be placed in a location accessible to Jenkins. The recommended approach is to store it in the Jenkins home directory.
+Smart Agent の ZIP ファイルは、Jenkins からアクセス可能な場所に配置する必要があります。推奨される方法は、Jenkins のホームディレクトリに保存することです。
 
-### Download Smart Agent
+### Smart Agent のダウンロード
 
 ```bash
-# Download from AppDynamics
+# AppDynamics からダウンロード
 curl -o appdsmartagent_64_linux.zip \
   "https://download.appdynamics.com/download/prox/download-file/smart-agent/latest/appdsmartagent_64_linux.zip"
 
-# Verify the download
+# ダウンロードを確認
 ls -lh appdsmartagent_64_linux.zip
 ```
 
-### Storage Location
+### 保存場所
 
-The pipelines reference the Smart Agent ZIP at: `/var/jenkins_home/smartagent/appdsmartagent.zip`
+パイプラインは Smart Agent ZIP を `/var/jenkins_home/smartagent/appdsmartagent.zip` で参照します。
 
-You can either:
+以下のいずれかの方法で対応できます:
 
-1. Place the ZIP at this exact location
-2. Modify the `SMARTAGENT_ZIP_PATH` pipeline parameter to point to your ZIP location
+1. この場所に ZIP ファイルを正確に配置する
+2. パイプラインパラメータ `SMARTAGENT_ZIP_PATH` を ZIP ファイルの場所に変更する
 
-## Verify Configuration
+## 設定の確認
 
-Before proceeding to pipeline creation, verify your setup:
+パイプライン作成に進む前に、セットアップを確認します:
 
-### 1. Check Agent Status
+### 1. エージェントの状態確認
 
-1. Go to **Manage Jenkins → Nodes**
-2. Verify your agent shows as "online"
-3. Confirm label is set to `linux`
+1. **Manage Jenkins → Nodes** に移動します
+2. エージェントが「online」と表示されていることを確認します
+3. ラベルが `linux` に設定されていることを確認します
 
-### 2. Test SSH Connectivity
+### 2. SSH 接続のテスト
 
-Create a simple test pipeline to verify SSH works:
+SSH が動作することを確認するための簡単なテストパイプラインを作成します:
 
 ```groovy
 pipeline {
@@ -207,8 +207,8 @@ pipeline {
         stage('Test SSH') {
             steps {
                 withCredentials([
-                    sshUserPrivateKey(credentialsId: 'ssh-private-key', 
-                                     keyFileVariable: 'SSH_KEY', 
+                    sshUserPrivateKey(credentialsId: 'ssh-private-key',
+                                     keyFileVariable: 'SSH_KEY',
                                      usernameVariable: 'SSH_USER'),
                     string(credentialsId: 'deployment-hosts', variable: 'HOSTS')
                 ]) {
@@ -229,66 +229,66 @@ pipeline {
 }
 ```
 
-### 3. Verify Credentials Exist
+### 3. 認証情報の存在確認
 
-1. Go to **Manage Jenkins → Credentials**
-2. Confirm all three credentials are listed:
+1. **Manage Jenkins → Credentials** に移動します
+2. 以下の3つの認証情報がリストに表示されていることを確認します:
    - `ssh-private-key`
    - `deployment-hosts`
    - `account-access-key`
 
-## Troubleshooting Common Issues
+## よくある問題のトラブルシューティング
 
-### Agent Not Available
+### エージェントが利用できない
 
-**Symptom**: "No agent available" error when running pipelines
+**症状**: パイプライン実行時に「No agent available」エラーが発生する
 
-**Solution**:
+**解決策**:
 
-- Check: **Manage Jenkins → Nodes**
-- Ensure agent is online
-- Verify agent has `linux` label
-- Test agent connectivity
+- **Manage Jenkins → Nodes** を確認します
+- エージェントがオンラインであることを確認します
+- エージェントに `linux` ラベルがあることを確認します
+- エージェントの接続をテストします
 
-### SSH Connection Failures
+### SSH 接続の失敗
 
-**Symptom**: Cannot connect to target hosts via SSH
+**症状**: SSH 経由でターゲットホストに接続できない
 
-**Solution**:
+**解決策**:
 
 ```bash
-# Test from Jenkins agent machine
+# Jenkins エージェントマシンからテスト
 ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
 
-# Check security group allows SSH from agent
-# Verify private key matches public key on target
+# セキュリティグループがエージェントからの SSH を許可していることを確認
+# 秘密鍵がターゲットの公開鍵と一致していることを確認
 ```
 
-### Credential Not Found
+### 認証情報が見つからない
 
-**Symptom**: "Credential not found" error
+**症状**: 「Credential not found」エラーが発生する
 
-**Solution**:
+**解決策**:
 
-- Verify credential IDs exactly match:
+- 認証情報の ID が正確に一致していることを確認します:
   - `ssh-private-key`
   - `deployment-hosts`
   - `account-access-key`
-- Check credential scope is set to **Global**
+- 認証情報のスコープが **Global** に設定されていることを確認します
 
-### Permission Denied on Target Hosts
+### ターゲットホストでの権限拒否
 
-**Symptom**: SSH succeeds but commands fail with permission denied
+**症状**: SSH は成功するがコマンドが権限拒否で失敗する
 
-**Solution**:
+**解決策**:
 
 ```bash
-# On target host, verify user is in sudoers
+# ターゲットホストで、ユーザーが sudoers に含まれていることを確認
 sudo visudo
-# Add line:
+# 以下の行を追加:
 ubuntu ALL=(ALL) NOPASSWD: ALL
 ```
 
-## Next Steps
+## 次のステップ
 
-Now that Jenkins is configured with credentials and agents, you're ready to create the deployment pipelines!
+Jenkins の認証情報とエージェントの設定が完了したら、デプロイパイプラインの作成に進みます。

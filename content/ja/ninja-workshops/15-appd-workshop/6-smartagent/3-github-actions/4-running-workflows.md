@@ -1,26 +1,26 @@
 ---
-title: Running Workflows
+title: ワークフローの実行
 weight: 4
 time: 15 minutes
 ---
 
-## Triggering Workflows
+## ワークフローのトリガー
 
-All workflows are configured with `workflow_dispatch`, meaning they must be triggered manually. There are two main ways to run workflows:
+すべてのワークフローは `workflow_dispatch` で設定されており、手動でトリガーする必要があります。ワークフローを実行する主な方法は2つあります:
 
-1. **GitHub UI** - Visual interface, easiest for most users
-2. **GitHub CLI** - Command-line interface, great for automation
+1. **GitHub UI** - ビジュアルインターフェース、ほとんどのユーザーにとって最も簡単
+2. **GitHub CLI** - コマンドラインインターフェース、自動化に最適
 
-## Method 1: GitHub UI
+## 方法 1: GitHub UI
 
-### Step 1: Navigate to Actions Tab
+### ステップ 1: Actions タブに移動
 
-1. Go to your forked repository on GitHub
-2. Click the **Actions** tab at the top
+1. GitHub 上のフォークしたリポジトリに移動します
+2. 上部の **Actions** タブをクリックします
 
-### Step 2: Select Workflow
+### ステップ 2: ワークフローを選択
 
-On the left sidebar, you'll see all available workflows:
+左側のサイドバーに、利用可能なすべてのワークフローが表示されます:
 
 - Deploy Smart Agent
 - Install Node Agent (Batched)
@@ -34,25 +34,25 @@ On the left sidebar, you'll see all available workflows:
 - Stop and Clean Smart Agent (Batched)
 - Cleanup All Agents
 
-Click on the workflow you want to run.
+実行するワークフローをクリックします。
 
-### Step 3: Run Workflow
+### ステップ 3: ワークフローを実行
 
-1. Click **"Run workflow"** button (top right)
-2. Select branch: **main**
-3. (Optional) Adjust **batch_size** if desired
-4. Click **"Run workflow"** button
+1. **"Run workflow"** ボタン（右上）をクリックします
+2. ブランチ **main** を選択します
+3. （オプション）必要に応じて **batch_size** を調整します
+4. **"Run workflow"** ボタンをクリックします
 
-### Step 4: Monitor Execution
+### ステップ 4: 実行を監視
 
-1. The workflow will appear in the list below
-2. Click on the workflow run to view details
-3. Watch progress in real-time
-4. Click on job names to see detailed logs
+1. ワークフローが下のリストに表示されます
+2. ワークフローの実行をクリックして詳細を確認します
+3. リアルタイムで進捗を監視します
+4. ジョブ名をクリックして詳細なログを確認します
 
-## Method 2: GitHub CLI
+## 方法 2: GitHub CLI
 
-### Install GitHub CLI
+### GitHub CLI のインストール
 
 ```bash
 # macOS
@@ -65,13 +65,13 @@ sudo apt update
 sudo apt install gh
 ```
 
-### Authenticate
+### 認証
 
 ```bash
 gh auth login
 ```
 
-### Run Workflows
+### ワークフローの実行
 
 ```bash
 # Deploy Smart Agent (default batch size)
@@ -102,7 +102,7 @@ gh workflow run "Cleanup All Agents" \
   --repo YOUR_USERNAME/github-actions-lab
 ```
 
-### Monitor Workflows
+### ワークフローの監視
 
 ```bash
 # List recent workflow runs
@@ -118,47 +118,47 @@ gh run watch RUN_ID --repo YOUR_USERNAME/github-actions-lab
 gh run view RUN_ID --log-failed --repo YOUR_USERNAME/github-actions-lab
 ```
 
-## First Deployment Walkthrough
+## 初回デプロイのウォークスルー
 
-Let's walk through a complete first-time deployment:
+完全な初回デプロイの手順を説明します:
 
-### Step 1: Verify Setup
+### ステップ 1: セットアップの確認
 
-Before running any workflows, ensure:
+ワークフローを実行する前に、以下を確認します:
 
-- ✅ Self-hosted runner shows "Idle" (green)
-- ✅ `SSH_PRIVATE_KEY` secret is configured
-- ✅ `DEPLOYMENT_HOSTS` variable contains your target IPs
-- ✅ Network connectivity verified
+- セルフホストランナーが「Idle」（緑色）と表示されている
+- `SSH_PRIVATE_KEY` Secret が設定されている
+- `DEPLOYMENT_HOSTS` Variable にターゲット IP が含まれている
+- ネットワーク接続が確認済み
 
-### Step 2: Deploy Smart Agent
+### ステップ 2: Smart Agent のデプロイ
 
-**Via GitHub UI:**
+**GitHub UI 経由:**
 
-1. Go to **Actions** tab
-2. Select **"Deploy Smart Agent"**
-3. Click **"Run workflow"**
-4. Accept default batch_size (256)
-5. Click **"Run workflow"**
+1. **Actions** タブに移動します
+2. **"Deploy Smart Agent"** を選択します
+3. **"Run workflow"** をクリックします
+4. デフォルトの batch_size（256）を受け入れます
+5. **"Run workflow"** をクリックします
 
-**Via GitHub CLI:**
+**GitHub CLI 経由:**
 
 ```bash
 gh workflow run "Deploy Smart Agent" --repo YOUR_USERNAME/github-actions-lab
 ```
 
-### Step 3: Monitor Execution
+### ステップ 3: 実行の監視
 
-The workflow will show:
+ワークフローは以下を表示します:
 
-1. **Prepare** job - Creating batch matrix
-2. **Deploy** job (one per batch) - Deploying to hosts
+1. **Prepare** ジョブ - バッチマトリックスの作成
+2. **Deploy** ジョブ（バッチごとに1つ） - ホストへのデプロイ
 
-Click on each job to view detailed logs.
+各ジョブをクリックして詳細なログを確認します。
 
-### Step 4: Verify Installation
+### ステップ 4: インストールの確認
 
-SSH into a target host and check:
+ターゲットホストに SSH 接続して確認します:
 
 ```bash
 # SSH to target
@@ -169,17 +169,17 @@ cd /opt/appdynamics/appdsmartagent
 sudo ./smartagentctl status
 ```
 
-**Expected output:**
+**期待される出力:**
 
-```
+```text
 Smart Agent is running (PID: 12345)
 Service: appdsmartagent.service
 Status: active (running)
 ```
 
-### Step 5: Install Additional Agents (Optional)
+### ステップ 5: 追加エージェントのインストール（オプション）
 
-If needed, install specific agent types:
+必要に応じて、特定のエージェントタイプをインストールします:
 
 ```bash
 # Install Machine Agent
@@ -191,11 +191,11 @@ gh workflow run "Install DB Agent (Batched for Large Scale)" \
   --repo YOUR_USERNAME/github-actions-lab
 ```
 
-## Understanding Workflow Output
+## ワークフロー出力の理解
 
-### Prepare Job Output
+### Prepare ジョブの出力
 
-```
+```text
 Loading deployment hosts...
 Total hosts: 1000
 Batch size: 256
@@ -206,9 +206,9 @@ Batch 3: Hosts 513-768
 Batch 4: Hosts 769-1000
 ```
 
-### Deploy Job Output (per batch)
+### Deploy ジョブの出力（バッチごと）
 
-```
+```text
 Processing batch 1 of 4
 Deploying to 256 hosts in parallel...
 Host 172.31.1.1: SUCCESS
@@ -218,9 +218,9 @@ Host 172.31.1.3: SUCCESS
 Batch 1 complete: 256/256 succeeded
 ```
 
-### Completion Summary
+### 完了サマリー
 
-```
+```text
 Deployment Summary:
 Total hosts: 1000
 Successful: 998
@@ -230,9 +230,9 @@ Failed hosts:
   - 172.31.1.125
 ```
 
-## Common Deployment Scenarios
+## よくあるデプロイシナリオ
 
-### Scenario 1: Initial Deployment
+### シナリオ 1: 初期デプロイ
 
 ```bash
 # 1. Deploy Smart Agent
@@ -246,7 +246,7 @@ gh workflow run "Install Machine Agent (Batched for Large Scale)"
 gh workflow run "Install DB Agent (Batched for Large Scale)"
 ```
 
-### Scenario 2: Update Smart Agent
+### シナリオ 2: Smart Agent のアップデート
 
 ```bash
 # 1. Stop and clean current installation
@@ -262,7 +262,7 @@ gh workflow run "Deploy Smart Agent"
 gh workflow run "Install Machine Agent (Batched for Large Scale)"
 ```
 
-### Scenario 3: Add New Hosts
+### シナリオ 3: 新しいホストの追加
 
 ```bash
 # 1. Update DEPLOYMENT_HOSTS variable in GitHub
@@ -272,7 +272,7 @@ gh workflow run "Install Machine Agent (Batched for Large Scale)"
 gh workflow run "Deploy Smart Agent"
 ```
 
-### Scenario 4: Complete Removal
+### シナリオ 4: 完全な削除
 
 ```bash
 # 1. Stop and clean
@@ -283,119 +283,119 @@ gh workflow run "Cleanup All Agents"
 ```
 
 {{% notice style="danger" %}}
-"Cleanup All Agents" permanently deletes `/opt/appdynamics`. This cannot be undone!
+「Cleanup All Agents」は `/opt/appdynamics` を完全に削除します。この操作は元に戻せません。
 {{% /notice %}}
 
-## Troubleshooting Workflow Failures
+## ワークフロー失敗のトラブルシューティング
 
-### Workflow Stays in "Queued"
+### ワークフローが「Queued」のまま
 
-**Symptom**: Workflow doesn't start
+**症状**: ワークフローが開始されない
 
-**Cause**: Runner not available or offline
+**原因**: ランナーが利用できないかオフライン
 
-**Solution**:
+**解決策**:
 
-1. Check runner status: Settings → Actions → Runners
-2. Verify runner shows "Idle" (green)
-3. Restart runner if needed: `sudo ./svc.sh restart`
+1. ランナーステータスを確認します: Settings → Actions → Runners
+2. ランナーが「Idle」（緑色）と表示されていることを確認します
+3. 必要に応じてランナーを再起動します: `sudo ./svc.sh restart`
 
-### SSH Connection Failures
+### SSH 接続の失敗
 
-**Symptom**: "Permission denied" or "Connection refused" errors
+**症状**: 「Permission denied」または「Connection refused」エラー
 
-**Solutions**:
+**解決策**:
 
-**Test SSH manually:**
+**SSH を手動でテスト:**
 
 ```bash
 # From runner instance
 ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 ```
 
-**Check security groups:**
+**セキュリティグループを確認:**
 
-- Verify SSH (22) allowed from runner
-- Confirm runner and targets in same security group
+- ランナーからの SSH（22）が許可されていることを確認
+- ランナーとターゲットが同じセキュリティグループにあることを確認
 
-**Verify SSH key:**
+**SSH キーを確認:**
 
-- Ensure `SSH_PRIVATE_KEY` secret matches actual key
-- Verify public key is on target hosts
+- `SSH_PRIVATE_KEY` Secret が実際のキーと一致していることを確認
+- ターゲットホストに公開鍵があることを確認
 
-### Partial Batch Failures
+### 部分的なバッチの失敗
 
-**Symptom**: Some hosts succeed, others fail
+**症状**: 一部のホストが成功し、他が失敗
 
-**Solution**:
+**解決策**:
 
-1. View workflow logs to identify failed hosts
-2. SSH to failed hosts to investigate
-3. Re-run workflow (idempotent - skips successful hosts)
+1. ワークフローログで失敗したホストを特定
+2. 失敗したホストに SSH 接続して調査
+3. ワークフローを再実行（冪等性 - 成功したホストはスキップ）
 
-### Batch Job Errors
+### バッチジョブエラー
 
-**Symptom**: "Error splitting hosts into batches"
+**症状**: 「Error splitting hosts into batches」
 
-**Solution**:
+**解決策**:
 
-- Check `DEPLOYMENT_HOSTS` variable format
-- Ensure one IP per line
-- No trailing spaces or special characters
-- Use Unix line endings (LF, not CRLF)
+- `DEPLOYMENT_HOSTS` Variable のフォーマットを確認
+- 1行に1つの IP であることを確認
+- 末尾のスペースや特殊文字がないことを確認
+- Unix 改行コード（LF、CRLF ではなく）を使用
 
-## Performance Tuning
+## パフォーマンスチューニング
 
-### Adjusting Batch Size
+### バッチサイズの調整
 
-**Smaller batches** (fewer resources, slower):
+**小さなバッチ**（リソース使用量が少ない、速度は低下）:
 
 ```bash
 gh workflow run "Deploy Smart Agent" -f batch_size=128
 ```
 
-**Larger batches** (more resources, faster):
+**大きなバッチ**（リソース使用量が多い、速度は向上）:
 
 ```bash
 gh workflow run "Deploy Smart Agent" -f batch_size=256
 ```
 
-### Runner Resource Recommendations
+### ランナーリソースの推奨事項
 
-| Hosts | CPU | Memory | Batch Size |
-|-------|-----|--------|------------|
-| 1-100 | 2 cores | 4 GB | 256 |
-| 100-500 | 4 cores | 8 GB | 256 |
-| 500-2000 | 8 cores | 16 GB | 256 |
-| 2000+ | 16 cores | 32 GB | 256 |
+| ホスト数  | CPU    | メモリ | バッチサイズ |
+|-----------|--------|--------|--------------|
+| 1-100     | 2コア  | 4 GB   | 256          |
+| 100-500   | 4コア  | 8 GB   | 256          |
+| 500-2000  | 8コア  | 16 GB  | 256          |
+| 2000+     | 16コア | 32 GB  | 256          |
 
-## Best Practices
+## ベストプラクティス
 
-1. **Test on single host first**
-   - Create a test variable with 1 IP
-   - Run workflow to verify
-   - Then deploy to full list
+1. **まず単一ホストでテスト**
+   - 1つの IP でテスト変数を作成
+   - ワークフローを実行して確認
+   - その後フルリストにデプロイ
 
-2. **Monitor workflow execution**
-   - Watch logs in real-time
-   - Check for errors immediately
-   - Verify on sample hosts
+2. **ワークフロー実行の監視**
+   - リアルタイムでログを監視
+   - エラーを即座に確認
+   - サンプルホストで検証
 
-3. **Use appropriate batch sizes**
-   - Default (256) works for most cases
-   - Reduce if runner struggles
-   - Monitor runner resource usage
+3. **適切なバッチサイズの使用**
+   - デフォルト（256）はほとんどの場合に適用
+   - ランナーに負荷がかかる場合は削減
+   - ランナーのリソース使用量を監視
 
-4. **Keep workflows up to date**
-   - Pull latest changes from repository
-   - Test updates on non-production first
-   - Document any customizations
+4. **ワークフローを最新の状態に維持**
+   - リポジトリから最新の変更をプル
+   - 本番環境以外で先にアップデートをテスト
+   - カスタマイズ内容をドキュメント化
 
-5. **Maintain runner health**
-   - Keep runner online and idle
-   - Update runner software regularly
-   - Monitor disk space and resources
+5. **ランナーの正常性を維持**
+   - ランナーをオンラインかつアイドル状態に維持
+   - ランナーソフトウェアを定期的にアップデート
+   - ディスク容量とリソースを監視
 
-## Next Steps
+## 次のステップ
 
-Congratulations! You've successfully learned how to automate AppDynamics Smart Agent deployment using GitHub Actions. For more information, visit the [complete repository](https://github.com/chambear2809/github-actions-lab).
+おめでとうございます。GitHub Actions を使用した AppDynamics Smart Agent デプロイの自動化方法を学びました。詳細については、[完全なリポジトリ](https://github.com/chambear2809/github-actions-lab)を参照してください。

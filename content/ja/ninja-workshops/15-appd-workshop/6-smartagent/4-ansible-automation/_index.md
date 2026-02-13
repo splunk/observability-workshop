@@ -1,72 +1,72 @@
 ---
-title: Monitoring as Code with Smart Agent and Ansible
-linkTitle: Ansible Automation
+title: Smart Agent と Ansible によるモニタリングのコード化
+linkTitle: Ansible 自動化
 weight: 4
 time: 10 minutes
-description: Learn how to automate AppDynamics Smart Agent deployment using Ansible.
+description: Ansible を使用した AppDynamics Smart Agent デプロイの自動化について学びます。
 ---
 
-## Introduction
+## はじめに
 
-This guide details how to deploy the Cisco AppDynamics Smart Agent across multiple hosts using Ansible. By leveraging automation, you can ensure your monitoring infrastructure is consistent, robust, and easily scalable.
+このガイドでは、Ansible を使用して Cisco AppDynamics Smart Agent を複数のホストにデプロイする方法を説明します。自動化を活用することで、モニタリングインフラストラクチャの一貫性、堅牢性、スケーラビリティを確保できます。
 
-## Architecture Overview
+## アーキテクチャの概要
 
-The deployment architecture leverages an Ansible Control Node to orchestrate the installation and configuration of the Smart Agent on target hosts.
+デプロイアーキテクチャは、Ansible コントロールノードを活用して、ターゲットホストへの Smart Agent のインストールと設定をオーケストレーションします。
 
 ```mermaid
 graph TD
     CN[Ansible Control Node<br/>(macOS/Linux)] -->|SSH| H1[Target Host 1<br/>(Debian/RedHat)]
     CN -->|SSH| H2[Target Host 2<br/>(Debian/RedHat)]
     CN -->|SSH| H3[Target Host N<br/>(Debian/RedHat)]
-    
+
     subgraph "Target Host Configuration"
         SA[Smart Agent Service]
         Config[config.ini]
         Package[Installer .deb/.rpm]
     end
-    
+
     H1 --> SA
     H2 --> SA
     H3 --> SA
 ```
 
-### Key Components
+### 主要コンポーネント
 
-* **Ansible Control Node**: The machine where you run the playbooks (e.g., your laptop or a jump host).
-* **Target Hosts**: The servers where the Smart Agent will be installed.
-* **Inventory**: A list of target hosts and their connection details.
-* **Playbook**: The YAML file defining the deployment tasks.
+* **Ansible Control Node**: プレイブックを実行するマシン（例: ラップトップやジャンプホスト）です。
+* **Target Hosts**: Smart Agent がインストールされるサーバーです。
+* **Inventory**: ターゲットホストとその接続情報の一覧です。
+* **Playbook**: デプロイタスクを定義する YAML ファイルです。
 
-## Prerequisites
+## 前提条件
 
-Before beginning, ensure you have:
+開始する前に、以下を確認してください：
 
-* Access to the target hosts via SSH.
-* Sudo privileges on the target hosts.
-* The Smart Agent installation packages (`.deb` or `.rpm`) downloaded.
-* Account details for your AppDynamics Controller (Access Key, Account Name, URL).
+* SSH 経由でターゲットホストにアクセスできること。
+* ターゲットホストで sudo 権限を持っていること。
+* Smart Agent インストールパッケージ（`.deb` または `.rpm`）をダウンロード済みであること。
+* AppDynamics Controller のアカウント情報（Access Key、Account Name、URL）を用意していること。
 
-## Step 1: Install Ansible on macOS
+## ステップ1: macOS に Ansible をインストールする
 
-To start, we need to install Ansible on your control node.
+まず、コントロールノードに Ansible をインストールします。
 
-1. **Install Homebrew** (if not already installed):
+1. **Homebrew をインストール** します（未インストールの場合）：
 
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-2. **Install Ansible**:
+2. **Ansible をインストール** します：
 
     ```bash
     brew install ansible
     ```
 
-3. **Verify the Installation**:
+3. **インストールを確認** します：
 
     ```bash
     ansible --version
     ```
 
-    You should see output indicating the installed version of Ansible.
+    Ansible のインストール済みバージョンを示す出力が表示されます。

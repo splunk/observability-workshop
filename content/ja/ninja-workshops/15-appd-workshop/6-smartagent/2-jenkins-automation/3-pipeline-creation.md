@@ -1,25 +1,25 @@
 ---
-title: Pipeline Creation
+title: パイプライン作成
 weight: 3
 time: 10 minutes
 ---
 
-## Overview
+## 概要
 
-The GitHub repository contains four main pipelines for managing the Smart Agent lifecycle:
+GitHub リポジトリには、Smart Agent のライフサイクル管理のための4つのメインパイプラインが含まれています:
 
-1. **Deploy Smart Agent** - Installs and starts Smart Agent service
-2. **Install Machine Agent** - Installs Machine Agent via smartagentctl
-3. **Install Database Agent** - Installs Database Agent via smartagentctl  
-4. **Cleanup All Agents** - Removes /opt/appdynamics directory
+1. **Deploy Smart Agent** - Smart Agent サービスのインストールと起動
+2. **Install Machine Agent** - smartagentctl による Machine Agent のインストール
+3. **Install Database Agent** - smartagentctl による Database Agent のインストール
+4. **Cleanup All Agents** - /opt/appdynamics ディレクトリの削除
 
-All pipeline code is available in the [sm-jenkins GitHub repository](https://github.com/chambear2809/sm-jenkins).
+すべてのパイプラインコードは [sm-jenkins GitHub リポジトリ](https://github.com/chambear2809/sm-jenkins) で公開されています。
 
-## Pipeline Files
+## パイプラインファイル
 
-The repository contains these Jenkinsfile pipeline definitions:
+リポジトリには以下の Jenkinsfile パイプライン定義が含まれています:
 
-```
+```text
 sm-jenkins/
 └── pipelines/
     ├── Jenkinsfile.deploy                  # Deploy Smart Agent
@@ -28,156 +28,156 @@ sm-jenkins/
     └── Jenkinsfile.cleanup                # Cleanup All Agents
 ```
 
-## Creating Pipelines in Jenkins
+## Jenkins でのパイプライン作成
 
-For each Jenkinsfile you want to use, follow these steps to create a pipeline in Jenkins.
+使用したい各 Jenkinsfile に対して、以下の手順で Jenkins にパイプラインを作成します。
 
-### Method 1: Pipeline from SCM (Recommended)
+### 方法1: SCM からのパイプライン（推奨）
 
-This method keeps your pipeline code in version control and automatically syncs changes.
+この方法では、パイプラインコードをバージョン管理に保持し、変更を自動的に同期します。
 
-#### Step 1: Fork or Clone the Repository
+#### ステップ1: リポジトリのフォークまたはクローン
 
-First, fork the repository to your own GitHub account or organization, or use the original repository directly.
+まず、リポジトリを自分の GitHub アカウントまたは組織にフォークするか、元のリポジトリを直接使用します。
 
-**Repository URL**: `https://github.com/chambear2809/sm-jenkins`
+**リポジトリ URL**: `https://github.com/chambear2809/sm-jenkins`
 
-#### Step 2: Create Pipeline in Jenkins
+#### ステップ2: Jenkins でパイプラインを作成
 
-1. Go to **Jenkins Dashboard**
-2. Click **New Item**
-3. Enter item name (e.g., `Deploy-Smart-Agent`)
-4. Select **Pipeline**
-5. Click **OK**
+1. **Jenkins Dashboard** に移動します
+2. **New Item** をクリックします
+3. アイテム名を入力します（例: `Deploy-Smart-Agent`）
+4. **Pipeline** を選択します
+5. **OK** をクリックします
 
-#### Step 3: Configure Pipeline
+#### ステップ3: パイプラインの設定
 
-In the pipeline configuration page:
+パイプライン設定ページで以下を設定します:
 
-**General Section:**
+**General セクション:**
 
 - **Description**: `Deploys AppDynamics Smart Agent to multiple hosts`
-- Leave **Discard old builds** unchecked (or configure as desired)
+- **Discard old builds** はチェックしないままにします（または必要に応じて設定）
 
 **Build Triggers:**
 
-- Leave unchecked for manual-only execution
-- Or configure webhook/polling if desired
+- 手動実行のみの場合はチェックしないままにします
+- 必要に応じて Webhook やポーリングを設定します
 
-**Pipeline Section:**
+**Pipeline セクション:**
 
-- **Definition**: Select `Pipeline script from SCM`
-- **SCM**: Select `Git`
+- **Definition**: `Pipeline script from SCM` を選択します
+- **SCM**: `Git` を選択します
 - **Repository URL**: `https://github.com/chambear2809/sm-jenkins`
-- **Credentials**: Add if using a private repository
-- **Branch Specifier**: `*/main` (or `*/master`)
+- **Credentials**: プライベートリポジトリの場合は追加します
+- **Branch Specifier**: `*/main`（または `*/master`）
 - **Script Path**: `pipelines/Jenkinsfile.deploy`
 
-#### Step 4: Save
+#### ステップ4: 保存
 
-Click **Save** to create the pipeline.
+**Save** をクリックしてパイプラインを作成します。
 
-#### Step 5: Repeat for Other Pipelines
+#### ステップ5: 他のパイプラインでも繰り返す
 
-Repeat steps 2-4 for each pipeline you want to create, using the appropriate script path:
+作成したい各パイプラインに対して、適切なスクリプトパスを使用してステップ2-4を繰り返します:
 
-| Pipeline Name | Script Path |
-|---------------|-------------|
+| パイプライン名 | スクリプトパス |
+| --- | --- |
 | Deploy-Smart-Agent | `pipelines/Jenkinsfile.deploy` |
 | Install-Machine-Agent | `pipelines/Jenkinsfile.install-machine-agent` |
 | Install-Database-Agent | `pipelines/Jenkinsfile.install-db-agent` |
 | Cleanup-All-Agents | `pipelines/Jenkinsfile.cleanup` |
 
-### Method 2: Direct Pipeline Script
+### 方法2: パイプラインスクリプトの直接入力
 
-Alternatively, you can copy the Jenkinsfile content directly into Jenkins.
+または、Jenkinsfile の内容を Jenkins に直接コピーすることもできます。
 
-1. **Create New Item** (same as Method 1)
-2. In **Pipeline** section:
-   - **Definition**: Select `Pipeline script`
-   - **Script**: Copy/paste the entire Jenkinsfile content from GitHub
-3. **Save**
+1. **New Item を作成** します（方法1と同様）
+2. **Pipeline** セクションで:
+   - **Definition**: `Pipeline script` を選択します
+   - **Script**: GitHub から Jenkinsfile の内容全体をコピー/ペーストします
+3. **Save** をクリックします
 
 {{% notice style="tip" %}}
-Method 1 (SCM) is recommended because it keeps your pipelines in version control and makes updates easier.
+方法1（SCM）を推奨します。パイプラインをバージョン管理に保持でき、更新が容易になります。
 {{% /notice %}}
 
-## Pipeline Parameters
+## パイプラインパラメータ
 
-Each pipeline accepts configurable parameters. Here are the key parameters for the main deployment pipeline:
+各パイプラインは設定可能なパラメータを受け付けます。メインデプロイパイプラインの主要なパラメータを以下に示します:
 
-### Deploy Smart Agent Pipeline Parameters
+### Deploy Smart Agent パイプラインのパラメータ
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `SMARTAGENT_ZIP_PATH` | `/var/jenkins_home/smartagent/appdsmartagent.zip` | Path to Smart Agent ZIP on Jenkins server |
-| `REMOTE_INSTALL_DIR` | `/opt/appdynamics/appdsmartagent` | Installation directory on target hosts |
-| `APPD_USER` | `ubuntu` | User to run Smart Agent process |
-| `APPD_GROUP` | `ubuntu` | Group to run Smart Agent process |
-| `SSH_PORT` | `22` | SSH port for remote hosts |
-| `AGENT_NAME` | `smartagent` | Smart Agent name |
-| `LOG_LEVEL` | `DEBUG` | Log level (DEBUG, INFO, WARN, ERROR) |
+| パラメータ | デフォルト値 | 説明 |
+| --- | --- | --- |
+| `SMARTAGENT_ZIP_PATH` | `/var/jenkins_home/smartagent/appdsmartagent.zip` | Jenkins サーバー上の Smart Agent ZIP のパス |
+| `REMOTE_INSTALL_DIR` | `/opt/appdynamics/appdsmartagent` | ターゲットホストのインストールディレクトリ |
+| `APPD_USER` | `ubuntu` | Smart Agent プロセスを実行するユーザー |
+| `APPD_GROUP` | `ubuntu` | Smart Agent プロセスを実行するグループ |
+| `SSH_PORT` | `22` | リモートホストの SSH ポート |
+| `AGENT_NAME` | `smartagent` | Smart Agent 名 |
+| `LOG_LEVEL` | `DEBUG` | ログレベル（DEBUG、INFO、WARN、ERROR） |
 
-### Cleanup Pipeline Parameters
+### Cleanup パイプラインのパラメータ
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `REMOTE_INSTALL_DIR` | `/opt/appdynamics/appdsmartagent` | Directory to remove |
-| `SSH_PORT` | `22` | SSH port for remote hosts |
-| `CONFIRM_CLEANUP` | `false` | Must be checked to proceed with cleanup |
+| パラメータ | デフォルト値 | 説明 |
+| --- | --- | --- |
+| `REMOTE_INSTALL_DIR` | `/opt/appdynamics/appdsmartagent` | 削除するディレクトリ |
+| `SSH_PORT` | `22` | リモートホストの SSH ポート |
+| `CONFIRM_CLEANUP` | `false` | クリーンアップを実行するにはチェックが必要 |
 
 {{% notice style="warning" %}}
-The cleanup pipeline includes a confirmation parameter to prevent accidental deletion. You must check `CONFIRM_CLEANUP` to execute the cleanup.
+Cleanup パイプラインには、誤って削除することを防ぐための確認パラメータがあります。クリーンアップを実行するには `CONFIRM_CLEANUP` にチェックを入れる必要があります。
 {{% /notice %}}
 
-## Understanding Pipeline Structure
+## パイプライン構造の理解
 
-Let's examine the key components of the deployment pipeline:
+デプロイパイプラインの主要なコンポーネントを見ていきます:
 
-### 1. Agent Declaration
+### 1. エージェント宣言
 
 ```groovy
 agent { label 'linux' }
 ```
 
-This ensures the pipeline runs on a Jenkins agent with the `linux` label.
+これにより、パイプラインが `linux` ラベルを持つ Jenkins エージェントで実行されることが保証されます。
 
-### 2. Parameters Block
+### 2. パラメータブロック
 
 ```groovy
 parameters {
     string(name: 'SMARTAGENT_ZIP_PATH', ...)
     string(name: 'REMOTE_INSTALL_DIR', ...)
-    // ... more parameters
+    // ... その他のパラメータ
 }
 ```
 
-Defines configurable parameters that can be set when triggering the build.
+ビルドをトリガーする際に設定できるパラメータを定義します。
 
-### 3. Stages
+### 3. ステージ
 
-The deployment pipeline has these stages:
+デプロイパイプラインには以下のステージがあります:
 
-1. **Preparation** - Loads target hosts from credentials
-2. **Extract Smart Agent** - Extracts ZIP file to staging directory
-3. **Configure Smart Agent** - Creates config.ini template
-4. **Deploy to Remote Hosts** - Copies files and starts Smart Agent on each host
-5. **Verify Installation** - Checks Smart Agent status on all hosts
+1. **Preparation** - 認証情報からターゲットホストを読み込み
+2. **Extract Smart Agent** - ZIP ファイルをステージングディレクトリに展開
+3. **Configure Smart Agent** - config.ini テンプレートを作成
+4. **Deploy to Remote Hosts** - 各ホストにファイルをコピーし Smart Agent を起動
+5. **Verify Installation** - すべてのホストで Smart Agent の状態を確認
 
-### 4. Credentials Binding
+### 4. 認証情報バインディング
 
 ```groovy
 withCredentials([
     sshUserPrivateKey(credentialsId: 'ssh-private-key', ...),
     string(credentialsId: 'account-access-key', ...)
 ]) {
-    // Pipeline code with access to credentials
+    // 認証情報にアクセスできるパイプラインコード
 }
 ```
 
-Securely loads credentials without exposing them in logs.
+ログに公開することなく、安全に認証情報を読み込みます。
 
-### 5. Post Actions
+### 5. Post アクション
 
 ```groovy
 post {
@@ -187,40 +187,40 @@ post {
 }
 ```
 
-Defines actions to run after pipeline completion, regardless of success or failure.
+パイプライン完了後に、成功・失敗に関わらず実行するアクションを定義します。
 
-## Pipeline Naming Convention
+## パイプラインの命名規則
 
-For clarity and organization, use a consistent naming convention:
+明確さと整理のために、一貫した命名規則を使用します:
 
-**Recommended names:**
+**推奨名称:**
 
-```
+```text
 01-Deploy-Smart-Agent
 02-Install-Machine-Agent
 03-Install-Database-Agent
 04-Cleanup-All-Agents
 ```
 
-The numeric prefix helps maintain logical ordering in the Jenkins dashboard.
+数字のプレフィックスにより、Jenkins ダッシュボードで論理的な順序を維持できます。
 
-## Organizing Pipelines with Folders
+## フォルダーによるパイプラインの整理
 
-For better organization, you can use Jenkins folders:
+より良い整理のために、Jenkins フォルダーを使用できます:
 
-1. **Create Folder**:
-   - Click **New Item**
-   - Enter name: `AppDynamics Smart Agent`
-   - Select **Folder**
-   - Click **OK**
+1. **フォルダーを作成**:
+   - **New Item** をクリックします
+   - 名前を入力します: `AppDynamics Smart Agent`
+   - **Folder** を選択します
+   - **OK** をクリックします
 
-2. **Create Pipelines in Folder**:
-   - Enter the folder
-   - Create pipelines as described above
+2. **フォルダー内にパイプラインを作成**:
+   - フォルダーに入ります
+   - 上記の手順でパイプラインを作成します
 
-**Example structure:**
+**構成例:**
 
-```
+```text
 AppDynamics Smart Agent/
 ├── Deployment/
 │   └── 01-Deploy-Smart-Agent
@@ -231,38 +231,38 @@ AppDynamics Smart Agent/
     └── 04-Cleanup-All-Agents
 ```
 
-## Viewing Pipeline Code
+## パイプラインコードの表示
 
-You can view the complete pipeline code in the GitHub repository:
+完全なパイプラインコードは GitHub リポジトリで確認できます:
 
-**Main deployment pipeline:**
+**メインデプロイパイプライン:**
 [https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy)
 
-**Other pipelines:**
+**その他のパイプライン:**
 
 - [Jenkinsfile.install-machine-agent](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.install-machine-agent)
 - [Jenkinsfile.install-db-agent](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.install-db-agent)
 - [Jenkinsfile.cleanup](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.cleanup)
 
-## Testing Pipeline Configuration
+## パイプライン設定のテスト
 
-Before running a full deployment, test your pipeline configuration:
+本番デプロイを実行する前に、パイプライン設定をテストします:
 
-### 1. Dry Run with Single Host
+### 1. 単一ホストでのドライラン
 
-1. Create a test credential `deployment-hosts-test` with only one IP
-2. Temporarily modify your pipeline to use this credential
-3. Run the pipeline and verify it works on a single host
-4. Once verified, update to use the full host list
+1. IP が1つだけのテスト認証情報 `deployment-hosts-test` を作成します
+2. パイプラインをこの認証情報を使用するよう一時的に変更します
+3. パイプラインを実行し、単一ホストで動作することを確認します
+4. 確認後、完全なホストリストに更新します
 
-### 2. Check Syntax
+### 2. 構文チェック
 
-Jenkins provides a built-in syntax validator:
+Jenkins には組み込みの構文バリデーターがあります:
 
-1. Go to your pipeline
-2. Click **Pipeline Syntax** link
-3. Use the **Declarative Directive Generator** to validate syntax
+1. パイプラインに移動します
+2. **Pipeline Syntax** リンクをクリックします
+3. **Declarative Directive Generator** を使用して構文を検証します
 
-## Next Steps
+## 次のステップ
 
-With pipelines created, you're ready to execute your first Smart Agent deployment!
+パイプラインが作成できたら、最初の Smart Agent デプロイを実行する準備が整いました。

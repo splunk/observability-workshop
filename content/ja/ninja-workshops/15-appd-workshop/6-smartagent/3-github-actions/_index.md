@@ -1,39 +1,39 @@
 ---
-title: GitHub Actions Automation
+title: GitHub Actions による自動化
 weight: 3
 time: 2 minutes
-description: Learn how to automate AppDynamics Smart Agent deployment using GitHub Actions with self-hosted runners.
+description: セルフホストランナーを使用した GitHub Actions による AppDynamics Smart Agent デプロイの自動化方法を学びます。
 ---
 
-## Introduction
+## はじめに
 
-This workshop demonstrates how to use **GitHub Actions** with a self-hosted runner to automate the deployment and lifecycle management of **AppDynamics Smart Agent** across multiple EC2 instances. Whether you're managing 10 hosts or 10,000, this guide shows you how to leverage GitHub Actions workflows for scalable, secure, and repeatable Smart Agent operations.
+このワークショップでは、セルフホストランナーを使用した **GitHub Actions** で、複数の EC2 インスタンスにわたる **AppDynamics Smart Agent** のデプロイとライフサイクル管理を自動化する方法を紹介します。10台のホストでも10,000台のホストでも、このガイドではスケーラブルで安全かつ再現可能な Smart Agent 運用のために GitHub Actions ワークフローを活用する方法を説明します。
 
 ![GitHub Actions and AppDynamics](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat&logo=github-actions&logoColor=white) ![AppDynamics](https://img.shields.io/badge/AppDynamics-0078D4?style=flat)
 
-## What You'll Learn
+## 学習内容
 
-In this workshop, you'll learn how to:
+このワークショップでは、以下の内容を学びます:
 
-- **Deploy Smart Agent** to multiple hosts using GitHub Actions workflows
-- **Configure GitHub secrets and variables** for secure credentials management
-- **Set up a self-hosted runner** in your AWS VPC
-- **Implement automatic batching** to scale to thousands of hosts
-- **Manage the complete agent lifecycle** - install, uninstall, stop, and cleanup
-- **Monitor workflow execution** and troubleshoot issues
+- GitHub Actions ワークフローを使用して複数のホストに **Smart Agent をデプロイ** する
+- 安全な認証情報管理のために **GitHub Secrets と Variables を設定** する
+- AWS VPC 内に **セルフホストランナーをセットアップ** する
+- 数千台のホストにスケールするための **自動バッチ処理を実装** する
+- インストール、アンインストール、停止、クリーンアップなど **エージェントの完全なライフサイクルを管理** する
+- **ワークフローの実行を監視** し、問題をトラブルシューティングする
 
-## Key Features
+## 主な機能
 
-- 🚀 **Parallel Deployment** - Deploy to multiple hosts simultaneously
-- 🔄 **Complete Lifecycle Management** - 11 workflows covering all agent operations
-- 🏗️ **Infrastructure as Code** - All workflows version-controlled in GitHub
-- 🔐 **Secure** - SSH keys stored as GitHub secrets, private VPC networking
-- 📈 **Massively Scalable** - Deploy to thousands of hosts with automatic batching
-- 🎛️ **Self-hosted Runner** - Executes within your AWS VPC
+- **並列デプロイ** - 複数のホストに同時にデプロイ
+- **完全なライフサイクル管理** - エージェントのすべての操作をカバーする11のワークフロー
+- **Infrastructure as Code** - すべてのワークフローを GitHub でバージョン管理
+- **セキュア** - SSH鍵は GitHub Secrets に保存、プライベート VPC ネットワーキング
+- **大規模スケーラブル** - 自動バッチ処理で数千台のホストにデプロイ
+- **セルフホストランナー** - AWS VPC 内で実行
 
-## Architecture Overview
+## アーキテクチャ概要
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  GitHub Actions-based Deployment                 │
 ├─────────────────────────────────────────────────────────────────┤
@@ -49,52 +49,52 @@ In this workshop, you'll learn how to:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Workshop Components
+## ワークショップの構成
 
-This workshop includes:
+このワークショップは以下の内容で構成されています:
 
-1. **Architecture & Design** - Understanding the GitHub Actions workflow architecture
-2. **GitHub Setup** - Configuring secrets, variables, and self-hosted runners
-3. **Workflow Creation** - Understanding and using the 11 available workflows
-4. **Deployment Execution** - Running workflows and verifying installations
+1. **アーキテクチャと設計** - GitHub Actions ワークフローアーキテクチャの理解
+2. **GitHub のセットアップ** - Secrets、Variables、セルフホストランナーの設定
+3. **ワークフローの作成** - 11の利用可能なワークフローの理解と使用
+4. **デプロイの実行** - ワークフローの実行とインストールの検証
 
-## Available Workflows
+## 利用可能なワークフロー
 
-This solution includes **11 workflows** for complete Smart Agent lifecycle management:
+このソリューションには、Smart Agent の完全なライフサイクル管理のための **11のワークフロー** が含まれています:
 
-| Category | Workflows | Description |
-|----------|-----------|-------------|
-| **Deployment** | 1 | Deploy and start Smart Agent |
-| **Agent Installation** | 4 | Install Node, Machine, DB, and Java agents |
-| **Agent Uninstallation** | 4 | Uninstall specific agent types |
-| **Agent Management** | 2 | Stop/clean and complete cleanup |
+| カテゴリ | ワークフロー数 | 説明 |
+| --- | --- | --- |
+| **デプロイ** | 1 | Smart Agent のデプロイと起動 |
+| **エージェントのインストール** | 4 | Node、Machine、DB、Java エージェントのインストール |
+| **エージェントのアンインストール** | 4 | 特定のエージェントタイプのアンインストール |
+| **エージェント管理** | 2 | 停止/クリーンおよび完全なクリーンアップ |
 
-All workflows support automatic batching for scalability!
+すべてのワークフローはスケーラビリティのための自動バッチ処理をサポートしています。
 
-## Prerequisites
+## 前提条件
 
-- GitHub account with repository access
-- AWS VPC with Ubuntu EC2 instances
-- Self-hosted GitHub Actions runner in the same VPC
-- SSH key pair for authentication
-- AppDynamics Smart Agent package
+- リポジトリアクセス権を持つ GitHub アカウント
+- Ubuntu EC2 インスタンスを持つ AWS VPC
+- 同じ VPC 内のセルフホスト GitHub Actions ランナー
+- 認証用の SSH キーペア
+- AppDynamics Smart Agent パッケージ
 
-## GitHub Repository
+## GitHub リポジトリ
 
-All workflow code and configuration files are available in the GitHub repository:
+すべてのワークフローコードと設定ファイルは GitHub リポジトリで利用できます:
 
 **[https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)**
 
-The repository includes:
+リポジトリには以下が含まれています:
 
-- 11 complete workflow YAML files
-- Detailed setup documentation
-- Architecture diagrams
-- Troubleshooting guides
+- 11の完全なワークフロー YAML ファイル
+- 詳細なセットアップドキュメント
+- アーキテクチャ図
+- トラブルシューティングガイド
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
+{{% notice title="ヒント" style="primary" icon="lightbulb" %}}
+このワークショップを最も簡単にナビゲートするには、以下を使用します:
 
-- the left/right arrows (**<** | **>**) on the top right of this page
-- the left (◀️) and right (▶️) cursor keys on your keyboard
+- このページの右上にある左右の矢印（ **<** | **>** ）
+- キーボードの左（◀️）および右（▶️）カーソルキー
 {{% /notice %}}

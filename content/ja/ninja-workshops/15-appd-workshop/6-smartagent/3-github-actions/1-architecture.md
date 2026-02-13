@@ -1,14 +1,14 @@
 ---
-title: Architecture & Design
+title: アーキテクチャと設計
 weight: 1
 time: 5 minutes
 ---
 
-## System Architecture
+## システムアーキテクチャ
 
-The GitHub Actions-based Smart Agent deployment system uses a self-hosted runner within your AWS VPC to orchestrate deployments to multiple target hosts via SSH.
+GitHub Actions ベースの Smart Agent デプロイシステムは、AWS VPC 内のセルフホストランナーを使用して、SSH 経由で複数のターゲットホストへのデプロイを調整します。
 
-### High-Level Architecture
+### ハイレベルアーキテクチャ
 
 ```mermaid
 graph TB
@@ -20,7 +20,7 @@ graph TB
     subgraph AWS["AWS VPC (172.31.0.0/16)"]
         subgraph SG["Security Group: smartagent-lab"]
             Runner[Self-hosted Runner<br/>EC2 Instance<br/>172.31.1.x]
-            
+
             subgraph Targets["Target Hosts"]
                 T1[Target Host 1<br/>Ubuntu EC2<br/>172.31.1.243]
                 T2[Target Host 2<br/>Ubuntu EC2<br/>172.31.1.48]
@@ -43,13 +43,13 @@ graph TB
     style T3 fill:#ffd33d,color:#000
 ```
 
-## Network Architecture
+## ネットワークアーキテクチャ
 
-All infrastructure runs in a single AWS VPC with a shared security group. The self-hosted runner communicates with target hosts via private IPs.
+すべてのインフラストラクチャは、共有セキュリティグループを持つ単一の AWS VPC 内で動作します。セルフホストランナーはプライベート IP 経由でターゲットホストと通信します。
 
-### VPC Layout
+### VPC レイアウト
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                        AWS VPC (172.31.0.0/16)                  │
 │  ┌───────────────────────────────────────────────────────────┐  │
@@ -81,9 +81,9 @@ All infrastructure runs in a single AWS VPC with a shared security group. The se
                     └──────────────────┘
 ```
 
-## Workflow Execution Flow
+## ワークフロー実行フロー
 
-### Complete Deployment Sequence
+### 完全なデプロイシーケンス
 
 ```mermaid
 sequenceDiagram
@@ -97,79 +97,79 @@ sequenceDiagram
     Runner->>GH: 3. Poll for jobs (HTTPS:443)
     GH->>Runner: 4. Assign job to runner
     Runner->>Runner: 5. Execute prepare job<br/>(load host matrix)
-    
+
     par Parallel Execution
         Runner->>Target: 6a. SSH to Host 1<br/>(port 22)
         Runner->>Target: 6b. SSH to Host 2<br/>(port 22)
         Runner->>Target: 6c. SSH to Host 3<br/>(port 22)
     end
-    
+
     Target->>Target: 7. Execute commands<br/>(install/uninstall/stop/clean)
     Target-->>Runner: 8. Return results
     Runner-->>GH: 9. Report job status
     GH-->>Dev: 10. Notify completion
 ```
 
-## Component Details
+## コンポーネントの詳細
 
-### GitHub Repository
+### GitHub リポジトリ
 
-**Stores:**
+**格納内容:**
 
-- 11 workflow YAML files
-- Smart Agent installation package
-- Configuration file (config.ini)
+- 11のワークフロー YAML ファイル
+- Smart Agent インストールパッケージ
+- 設定ファイル（config.ini）
 
 **Secrets:**
 
-- SSH private key
+- SSH 秘密鍵
 
 **Variables:**
 
-- Host list (DEPLOYMENT_HOSTS)
-- User/group settings (optional)
+- ホストリスト（DEPLOYMENT_HOSTS）
+- ユーザー/グループ設定（オプション）
 
-### Self-hosted Runner
+### セルフホストランナー
 
-**Location:**
+**配置場所:**
 
-- AWS VPC (same as targets)
-- Private network access
+- AWS VPC（ターゲットと同じ）
+- プライベートネットワークアクセス
 
-**Responsibilities:**
+**責務:**
 
-- Poll GitHub for workflow jobs
-- Execute workflow steps
-- SSH to target hosts
-- File transfers (SCP)
-- Parallel execution
-- Error collection
+- GitHub からワークフロージョブをポーリング
+- ワークフローステップの実行
+- ターゲットホストへの SSH 接続
+- ファイル転送（SCP）
+- 並列実行
+- エラー収集
 
-**Requirements:**
+**要件:**
 
 - Ubuntu/Amazon Linux 2
-- Outbound HTTPS (443) to GitHub
-- Outbound SSH (22) to target hosts
-- SSH key authentication
+- GitHub への送信 HTTPS（443）
+- ターゲットホストへの送信 SSH（22）
+- SSH キー認証
 
-**Access:**
+**アクセス:**
 
-- Outbound HTTPS (443) to GitHub
-- Outbound SSH (22) to target hosts
-- Uses SSH key authentication
+- GitHub への送信 HTTPS（443）
+- ターゲットホストへの送信 SSH（22）
+- SSH キー認証を使用
 
-### Target Hosts
+### ターゲットホスト
 
-**Pre-requisites:**
+**前提条件:**
 
 - Ubuntu 20.04+
-- SSH server running
-- User with sudo access
-- Authorized SSH key
+- SSH サーバーが稼働中
+- sudo アクセス権を持つユーザー
+- 認証済み SSH キー
 
-**Post-deployment:**
+**デプロイ後:**
 
-```
+```text
 /opt/appdynamics/
 └── appdsmartagent/
     ├── smartagentctl
@@ -181,42 +181,42 @@ sequenceDiagram
         └── db/
 ```
 
-## Security Architecture
+## セキュリティアーキテクチャ
 
-### Security Layers
+### セキュリティレイヤー
 
-1. **AWS VPC Isolation**
-   - Private subnet for hosts
-   - No direct internet access required
-   - VPC flow logs enabled
+1. **AWS VPC の分離**
+   - ホスト用のプライベートサブネット
+   - 直接のインターネットアクセスは不要
+   - VPC フローログを有効化
 
-2. **Security Groups**
-   - SSH (22) within same security group only
-   - HTTPS (443) outbound for GitHub access
-   - Stateful firewall rules
+2. **セキュリティグループ**
+   - 同じセキュリティグループ内のみ SSH（22）
+   - GitHub アクセス用の送信 HTTPS（443）
+   - ステートフルファイアウォールルール
 
-3. **SSH Key Authentication**
-   - No password authentication
-   - Keys stored in GitHub Secrets
-   - Temporary key files on runner
-   - Keys removed after workflow
+3. **SSH キー認証**
+   - パスワード認証なし
+   - キーは GitHub Secrets に保存
+   - ランナー上の一時キーファイル
+   - ワークフロー完了後にキーを削除
 
-4. **GitHub Security**
-   - Repository access controls
-   - Branch protection rules
-   - Secrets never exposed in logs
-   - Environment variable masking
+4. **GitHub セキュリティ**
+   - リポジトリアクセス制御
+   - ブランチ保護ルール
+   - Secrets はログに公開されない
+   - 環境変数のマスキング
 
-5. **Network Security**
-   - Private IP communication only
-   - No public IPs required
-   - Runner in same VPC as targets
+5. **ネットワークセキュリティ**
+   - プライベート IP 通信のみ
+   - パブリック IP は不要
+   - ランナーはターゲットと同じ VPC 内
 
-## Workflow Categories
+## ワークフローカテゴリ
 
-The system includes 11 workflows organized into 4 categories:
+システムには4つのカテゴリに分類された11のワークフローが含まれています:
 
-```
+```text
 GitHub Actions Workflows (11 Total)
 ├── Deployment (1 workflow)
 │   └── Deploy Smart Agent (Batched)
@@ -235,13 +235,13 @@ GitHub Actions Workflows (11 Total)
     └── Cleanup All Agents (Batched)
 ```
 
-## Batching Strategy
+## バッチ処理戦略
 
-All workflows use automatic batching to support deployments at any scale.
+すべてのワークフローは、あらゆるスケールのデプロイをサポートするために自動バッチ処理を使用します。
 
-### How Batching Works
+### バッチ処理の仕組み
 
-```
+```text
 HOST LIST (1000 hosts)              BATCH_SIZE = 256
 
 Host 001: 172.31.1.1                ┌──────────────────┐
@@ -276,37 +276,37 @@ WITHIN EACH BATCH:
 └────────────────────────────────────────┘
 ```
 
-### Why Sequential Batches?
+### シーケンシャルバッチの理由
 
-**Resource Management:**
+**リソース管理:**
 
-- Prevents overwhelming the self-hosted runner
-- Each batch opens 256 parallel SSH connections
-- Sequential processing ensures stable performance
+- セルフホストランナーの過負荷を防止
+- 各バッチは256の並列 SSH 接続を開く
+- シーケンシャル処理により安定したパフォーマンスを確保
 
-**Configurable:**
+**設定変更可能:**
 
-- Default batch size: 256 (GitHub Actions matrix limit)
-- Adjustable via workflow input for smaller batches
-- Balance between speed and resource usage
+- デフォルトバッチサイズ: 256（GitHub Actions のマトリックス制限）
+- ワークフロー入力でより小さなバッチに調整可能
+- 速度とリソース使用量のバランスを調整
 
-### Scaling Characteristics
+### スケーリング特性
 
-**Deployment Speed (default BATCH_SIZE=256):**
+**デプロイ速度（デフォルト BATCH_SIZE=256）:**
 
-- 10 hosts → 1 batch → ~2 minutes
-- 100 hosts → 1 batch → ~3 minutes
-- 500 hosts → 2 batches → ~6 minutes
-- 1,000 hosts → 4 batches → ~12 minutes
-- 5,000 hosts → 20 batches → ~60 minutes
+- 10台のホスト → 1バッチ → 約2分
+- 100台のホスト → 1バッチ → 約3分
+- 500台のホスト → 2バッチ → 約6分
+- 1,000台のホスト → 4バッチ → 約12分
+- 5,000台のホスト → 20バッチ → 約60分
 
-**Factors affecting speed:**
+**速度に影響する要因:**
 
-- Network bandwidth (19MB package per host)
-- SSH connection overhead (~1s per host)
-- Target host CPU/disk speed
-- Runner resources (CPU/memory)
+- ネットワーク帯域幅（ホストあたり19MBのパッケージ）
+- SSH 接続のオーバーヘッド（ホストあたり約1秒）
+- ターゲットホストの CPU/ディスク速度
+- ランナーのリソース（CPU/メモリ）
 
-## Next Steps
+## 次のステップ
 
-Now that you understand the architecture, let's move on to setting up GitHub and configuring the self-hosted runner.
+アーキテクチャを理解したところで、GitHub のセットアップとセルフホストランナーの設定に進みましょう。

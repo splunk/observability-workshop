@@ -1,39 +1,39 @@
 ---
-title: Jenkins Automation
+title: Jenkins 自動化
 weight: 2
 time: 2 minutes
-description: Learn how to automate AppDynamics Smart Agent deployment and lifecycle management across multiple hosts using Jenkins pipelines.
+description: Jenkins パイプラインを使用して、複数のホストにわたる AppDynamics Smart Agent のデプロイとライフサイクル管理を自動化する方法を学びます。
 ---
 
-## Introduction
+## はじめに
 
-This workshop demonstrates how to use **Jenkins** to automate the deployment and lifecycle management of **AppDynamics Smart Agent** across multiple EC2 instances. Whether you're managing 10 hosts or 10,000, this guide shows you how to leverage Jenkins pipelines for scalable, secure, and repeatable Smart Agent operations.
+このワークショップでは、**Jenkins** を使用して複数の EC2 インスタンスにわたる **AppDynamics Smart Agent** のデプロイとライフサイクル管理を自動化する方法を紹介します。10台のホストでも10,000台のホストでも、Jenkins パイプラインを活用したスケーラブルで安全かつ再現性のある Smart Agent 運用方法を説明します。
 
 ![Jenkins and AppDynamics](https://img.shields.io/badge/Jenkins-D24939?style=flat&logo=jenkins&logoColor=white) ![AppDynamics](https://img.shields.io/badge/AppDynamics-0078D4?style=flat)
 
-## What You'll Learn
+## 学習内容
 
-In this workshop, you'll learn how to:
+このワークショップでは、以下の内容を学びます:
 
-- **Deploy Smart Agent** to multiple hosts simultaneously using Jenkins
-- **Configure Jenkins credentials** for secure SSH and AppDynamics access
-- **Create parameterized pipelines** for flexible deployment scenarios
-- **Implement batch processing** to scale to thousands of hosts
-- **Manage the complete agent lifecycle** - install, configure, stop, and cleanup
-- **Handle failures gracefully** with automatic error tracking and reporting
+- Jenkins を使用して複数のホストに同時に **Smart Agent をデプロイ** する
+- 安全な SSH および AppDynamics アクセスのために **Jenkins 認証情報を設定** する
+- 柔軟なデプロイシナリオのために **パラメータ化されたパイプラインを作成** する
+- 数千台のホストに対応するために **バッチ処理を実装** する
+- インストール、設定、停止、クリーンアップを含む **エージェントの完全なライフサイクルを管理** する
+- 自動エラー追跡とレポートにより **障害を適切に処理** する
 
-## Key Features
+## 主な機能
 
-- 🚀 **Parallel Deployment** - Deploy to multiple hosts simultaneously
-- 🔄 **Complete Lifecycle Management** - Install, uninstall, stop, and clean agents
-- 🏗️ **Infrastructure as Code** - All pipelines version-controlled
-- 🔐 **Secure** - SSH key-based authentication via Jenkins credentials
-- 📈 **Massively Scalable** - Deploy to thousands of hosts with automatic batching
-- 🎛️ **Jenkins Agent** - Executes within your AWS VPC
+- **並列デプロイ** - 複数のホストに同時にデプロイ
+- **完全なライフサイクル管理** - エージェントのインストール、アンインストール、停止、クリーンアップ
+- **Infrastructure as Code** - すべてのパイプラインをバージョン管理
+- **セキュア** - Jenkins 認証情報による SSH 鍵ベースの認証
+- **大規模スケーラブル** - 自動バッチ処理により数千台のホストにデプロイ
+- **Jenkins Agent** - AWS VPC 内で実行
 
-## Architecture Overview
+## アーキテクチャ概要
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Jenkins-based Deployment                      │
 ├─────────────────────────────────────────────────────────────────┤
@@ -49,39 +49,39 @@ In this workshop, you'll learn how to:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Workshop Components
+## ワークショップの構成
 
-This workshop includes:
+このワークショップには以下の内容が含まれます:
 
-1. **Architecture & Design** - Understanding the system design and network topology
-2. **Jenkins Setup** - Configuring Jenkins, credentials, and agents
-3. **Pipeline Creation** - Creating and configuring deployment pipelines
-4. **Deployment Workflow** - Executing deployments and verifying installations
+1. **アーキテクチャと設計** - システム設計とネットワークトポロジーの理解
+2. **Jenkins セットアップ** - Jenkins、認証情報、エージェントの設定
+3. **パイプライン作成** - デプロイパイプラインの作成と設定
+4. **デプロイワークフロー** - デプロイの実行とインストールの検証
 
-## Prerequisites
+## 前提条件
 
-- Jenkins server (2.300+) with Pipeline plugin
-- Jenkins agent in the same VPC as target EC2 instances
-- SSH key pair for authentication
-- AppDynamics Smart Agent package
-- Target Ubuntu EC2 instances with SSH access
+- Jenkins サーバー（2.300以降）と Pipeline プラグイン
+- ターゲット EC2 インスタンスと同じ VPC 内の Jenkins エージェント
+- 認証用の SSH キーペア
+- AppDynamics Smart Agent パッケージ
+- SSH アクセス可能なターゲット Ubuntu EC2 インスタンス
 
-## GitHub Repository
+## GitHub リポジトリ
 
-All pipeline code and configuration files are available in the GitHub repository:
+すべてのパイプラインコードと設定ファイルは GitHub リポジトリで公開されています:
 
 **[https://github.com/chambear2809/sm-jenkins](https://github.com/chambear2809/sm-jenkins)**
 
-The repository includes:
+リポジトリには以下が含まれます:
 
-- Complete Jenkinsfile pipeline definitions
-- Detailed setup documentation
-- Configuration examples
-- Troubleshooting guides
+- 完全な Jenkinsfile パイプライン定義
+- 詳細なセットアップドキュメント
+- 設定例
+- トラブルシューティングガイド
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
+{{% notice title="ヒント" style="primary" icon="lightbulb" %}}
+このワークショップを最も簡単にナビゲートするには、以下を使用します:
 
-- the left/right arrows (**<** | **>**) on the top right of this page
-- the left (◀️) and right (▶️) cursor keys on your keyboard
+- このページの右上にある左右の矢印（ **<** | **>** ）
+- キーボードの左（◀️）および右（▶️）カーソルキー
 {{% /notice %}}

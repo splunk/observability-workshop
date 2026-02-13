@@ -1,116 +1,116 @@
 ---
-title: Understanding Workflows
+title: ワークフローの理解
 weight: 3
 time: 10 minutes
 ---
 
-## Available Workflows
+## 利用可能なワークフロー
 
-The GitHub Actions lab includes **11 workflows** for complete Smart Agent lifecycle management. All workflow files are available in the repository at `.github/workflows/`.
+GitHub Actions ラボには、Smart Agent の完全なライフサイクル管理のための **11のワークフロー** が含まれています。すべてのワークフローファイルはリポジトリの `.github/workflows/` で利用できます。
 
-**Repository**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
+**リポジトリ**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
 
-## Workflow Categories
+## ワークフローカテゴリ
 
-### 1. Deployment (1 workflow)
+### 1. デプロイ（1ワークフロー）
 
-#### Deploy Smart Agent (Batched)
+#### Deploy Smart Agent（バッチ処理）
 
-- **File**: `deploy-agent-batched.yml`
-- **Purpose**: Installs Smart Agent and starts the service
-- **Features**:
-  - Automatic batching (default: 256 hosts per batch)
-  - Configurable batch size
-  - Parallel deployment within each batch
-  - Sequential batch processing
-- **Inputs**:
-  - `batch_size`: Number of hosts per batch (default: 256)
-- **Trigger**: Manual only (`workflow_dispatch`)
+- **ファイル**: `deploy-agent-batched.yml`
+- **目的**: Smart Agent のインストールとサービスの起動
+- **機能**:
+  - 自動バッチ処理（デフォルト: バッチあたり256ホスト）
+  - 設定可能なバッチサイズ
+  - 各バッチ内での並列デプロイ
+  - シーケンシャルバッチ処理
+- **入力**:
+  - `batch_size`: バッチあたりのホスト数（デフォルト: 256）
+- **トリガー**: 手動のみ（`workflow_dispatch`）
 
-### 2. Agent Installation (4 workflows)
+### 2. エージェントのインストール（4ワークフロー）
 
-All installation workflows use `smartagentctl` to install specific agent types:
+すべてのインストールワークフローは、特定のエージェントタイプをインストールするために `smartagentctl` を使用します:
 
-#### Install Node Agent (Batched)
+#### Install Node Agent（バッチ処理）
 
-- **File**: `install-node-batched.yml`
-- **Command**: `smartagentctl install node`
-- **Batched**: Yes (configurable)
+- **ファイル**: `install-node-batched.yml`
+- **コマンド**: `smartagentctl install node`
+- **バッチ処理**: あり（設定可能）
 
-#### Install Machine Agent (Batched)
+#### Install Machine Agent（バッチ処理）
 
-- **File**: `install-machine-batched.yml`
-- **Command**: `smartagentctl install machine`
-- **Batched**: Yes (configurable)
+- **ファイル**: `install-machine-batched.yml`
+- **コマンド**: `smartagentctl install machine`
+- **バッチ処理**: あり（設定可能）
 
-#### Install DB Agent (Batched)
+#### Install DB Agent（バッチ処理）
 
-- **File**: `install-db-batched.yml`
-- **Command**: `smartagentctl install db`
-- **Batched**: Yes (configurable)
+- **ファイル**: `install-db-batched.yml`
+- **コマンド**: `smartagentctl install db`
+- **バッチ処理**: あり（設定可能）
 
-#### Install Java Agent (Batched)
+#### Install Java Agent（バッチ処理）
 
-- **File**: `install-java-batched.yml`
-- **Command**: `smartagentctl install java`
-- **Batched**: Yes (configurable)
+- **ファイル**: `install-java-batched.yml`
+- **コマンド**: `smartagentctl install java`
+- **バッチ処理**: あり（設定可能）
 
-### 3. Agent Uninstallation (4 workflows)
+### 3. エージェントのアンインストール（4ワークフロー）
 
-All uninstallation workflows use `smartagentctl` to remove specific agent types:
+すべてのアンインストールワークフローは、特定のエージェントタイプを削除するために `smartagentctl` を使用します:
 
-#### Uninstall Node Agent (Batched)
+#### Uninstall Node Agent（バッチ処理）
 
-- **File**: `uninstall-node-batched.yml`
-- **Command**: `smartagentctl uninstall node`
-- **Batched**: Yes (configurable)
+- **ファイル**: `uninstall-node-batched.yml`
+- **コマンド**: `smartagentctl uninstall node`
+- **バッチ処理**: あり（設定可能）
 
-#### Uninstall Machine Agent (Batched)
+#### Uninstall Machine Agent（バッチ処理）
 
-- **File**: `uninstall-machine-batched.yml`
-- **Command**: `smartagentctl uninstall machine`
-- **Batched**: Yes (configurable)
+- **ファイル**: `uninstall-machine-batched.yml`
+- **コマンド**: `smartagentctl uninstall machine`
+- **バッチ処理**: あり（設定可能）
 
-#### Uninstall DB Agent (Batched)
+#### Uninstall DB Agent（バッチ処理）
 
-- **File**: `uninstall-db-batched.yml`
-- **Command**: `smartagentctl uninstall db`
-- **Batched**: Yes (configurable)
+- **ファイル**: `uninstall-db-batched.yml`
+- **コマンド**: `smartagentctl uninstall db`
+- **バッチ処理**: あり（設定可能）
 
-#### Uninstall Java Agent (Batched)
+#### Uninstall Java Agent（バッチ処理）
 
-- **File**: `uninstall-java-batched.yml`
-- **Command**: `smartagentctl uninstall java`
-- **Batched**: Yes (configurable)
+- **ファイル**: `uninstall-java-batched.yml`
+- **コマンド**: `smartagentctl uninstall java`
+- **バッチ処理**: あり（設定可能）
 
-### 4. Smart Agent Management (2 workflows)
+### 4. Smart Agent 管理（2ワークフロー）
 
-#### Stop and Clean Smart Agent (Batched)
+#### Stop and Clean Smart Agent（バッチ処理）
 
-- **File**: `stop-clean-smartagent-batched.yml`
-- **Commands**:
+- **ファイル**: `stop-clean-smartagent-batched.yml`
+- **コマンド**:
   - `smartagentctl stop`
   - `smartagentctl clean`
-- **Purpose**: Stops the Smart Agent service and purges all data
-- **Batched**: Yes (configurable)
+- **目的**: Smart Agent サービスの停止とすべてのデータのパージ
+- **バッチ処理**: あり（設定可能）
 
-#### Cleanup All Agents (Batched)
+#### Cleanup All Agents（バッチ処理）
 
-- **File**: `cleanup-appdynamics.yml`
-- **Command**: `sudo rm -rf /opt/appdynamics`
-- **Purpose**: Completely removes the /opt/appdynamics directory
-- **Batched**: Yes (configurable)
-- **Warning**: This permanently deletes all AppDynamics components
+- **ファイル**: `cleanup-appdynamics.yml`
+- **コマンド**: `sudo rm -rf /opt/appdynamics`
+- **目的**: /opt/appdynamics ディレクトリの完全な削除
+- **バッチ処理**: あり（設定可能）
+- **警告**: すべての AppDynamics コンポーネントが完全に削除されます
 
 {{% notice style="danger" %}}
-The "Cleanup All Agents" workflow permanently deletes `/opt/appdynamics`. This action cannot be undone. Use with caution!
+「Cleanup All Agents」ワークフローは `/opt/appdynamics` を完全に削除します。この操作は元に戻せません。注意して使用してください。
 {{% /notice %}}
 
-## Workflow Structure
+## ワークフローの構造
 
-All batched workflows follow a consistent two-job structure:
+すべてのバッチ処理ワークフローは、一貫した2ジョブ構成に従います:
 
-### Job 1: Prepare
+### ジョブ 1: Prepare
 
 ```yaml
 prepare:
@@ -125,9 +125,9 @@ prepare:
         # Output as JSON array
 ```
 
-**Purpose**: Loads target hosts from GitHub variables and creates batch matrix
+**目的**: GitHub Variables からターゲットホストを読み込み、バッチマトリックスを作成
 
-### Job 2: Deploy/Install/Uninstall
+### ジョブ 2: Deploy/Install/Uninstall
 
 ```yaml
 deploy:
@@ -141,20 +141,20 @@ deploy:
     - name: Execute operation on all hosts in batch (parallel)
 ```
 
-**Purpose**: Runs in parallel for each batch, executing the specific operation on all hosts within the batch
+**目的**: 各バッチに対して並列に実行し、バッチ内のすべてのホストで特定の操作を実行
 
-## Batching Behavior
+## バッチ処理の動作
 
-### How It Works
+### 仕組み
 
-1. **Prepare Job** loads `DEPLOYMENT_HOSTS` and splits into batches
-2. **Deploy Job** creates one matrix entry per batch
-3. **Batches process sequentially** to avoid overwhelming the runner
-4. **Within each batch**, all hosts deploy in parallel using background processes
+1. **Prepare ジョブ** が `DEPLOYMENT_HOSTS` を読み込み、バッチに分割
+2. **Deploy ジョブ** がバッチごとに1つのマトリックスエントリを作成
+3. **バッチはシーケンシャルに処理** され、ランナーの過負荷を防止
+4. **各バッチ内** では、バックグラウンドプロセスを使用してすべてのホストが並列にデプロイ
 
-### Configurable Batch Size
+### 設定可能なバッチサイズ
 
-All workflows accept a `batch_size` input (default: 256):
+すべてのワークフローは `batch_size` 入力を受け付けます（デフォルト: 256）:
 
 ```bash
 # Via GitHub CLI
@@ -164,66 +164,66 @@ gh workflow run "Deploy Smart Agent" -f batch_size=128
 Actions → Select workflow → Run workflow → Set batch_size
 ```
 
-### Examples
+### 例
 
-- **100 hosts, batch_size=256**: 1 batch, ~3 minutes
-- **500 hosts, batch_size=256**: 2 batches, ~6 minutes  
-- **1,000 hosts, batch_size=128**: 8 batches, ~16 minutes
-- **5,000 hosts, batch_size=256**: 20 batches, ~60 minutes
+- **100台のホスト、batch_size=256**: 1バッチ、約3分
+- **500台のホスト、batch_size=256**: 2バッチ、約6分
+- **1,000台のホスト、batch_size=128**: 8バッチ、約16分
+- **5,000台のホスト、batch_size=256**: 20バッチ、約60分
 
-## Workflow Execution Order
+## ワークフローの実行順序
 
-### Typical Deployment Sequence
+### 典型的なデプロイシーケンス
 
-1. **Deploy Smart Agent** - Initial deployment
-2. **Install Machine Agent** - Install specific agents as needed
-3. **Install DB Agent** - Install database monitoring
-4. (Use other install workflows as needed)
+1. **Deploy Smart Agent** - 初期デプロイ
+2. **Install Machine Agent** - 必要に応じて特定のエージェントをインストール
+3. **Install DB Agent** - データベースモニタリングのインストール
+4. （必要に応じて他のインストールワークフローを使用）
 
-### Maintenance/Update Sequence
+### メンテナンス/アップデートシーケンス
 
-1. **Stop and Clean Smart Agent** - Stop services and clean data
-2. **Deploy Smart Agent** - Redeploy with updated version
-3. **Install agents again** - Reinstall required agents
+1. **Stop and Clean Smart Agent** - サービスの停止とデータのクリーン
+2. **Deploy Smart Agent** - 更新バージョンの再デプロイ
+3. **エージェントの再インストール** - 必要なエージェントの再インストール
 
-### Complete Removal Sequence
+### 完全な削除シーケンス
 
-1. **Stop and Clean Smart Agent** - Stop services
-2. **Cleanup All Agents** - Remove /opt/appdynamics directory
+1. **Stop and Clean Smart Agent** - サービスの停止
+2. **Cleanup All Agents** - /opt/appdynamics ディレクトリの削除
 
-## Viewing Workflow Code
+## ワークフローコードの確認
 
-You can view the complete workflow YAML files in the repository:
+リポジトリで完全なワークフロー YAML ファイルを確認できます:
 
-**Main deployment workflow:**
+**メインデプロイワークフロー:**
 [https://github.com/chambear2809/github-actions-lab/blob/main/.github/workflows/deploy-agent-batched.yml](https://github.com/chambear2809/github-actions-lab/blob/main/.github/workflows/deploy-agent-batched.yml)
 
-**All workflows:**
+**すべてのワークフロー:**
 [https://github.com/chambear2809/github-actions-lab/tree/main/.github/workflows](https://github.com/chambear2809/github-actions-lab/tree/main/.github/workflows)
 
-## Workflow Features
+## ワークフローの機能
 
-### Built-in Error Handling
+### 組み込みエラーハンドリング
 
-- Per-host error tracking
-- Failed host reporting  
-- Batch-level failure handling
-- Always-executed summary
+- ホストごとのエラー追跡
+- 失敗したホストのレポート
+- バッチレベルの障害処理
+- 常に実行されるサマリー
 
-### Parallel Execution
+### 並列実行
 
-- All hosts within a batch deploy simultaneously
-- Uses SSH background processes (`&`)
-- Wait command ensures all complete
-- Maximum parallelism within resource limits
+- バッチ内のすべてのホストが同時にデプロイ
+- SSH バックグラウンドプロセス（`&`）を使用
+- wait コマンドですべての完了を保証
+- リソース制限内での最大並列処理
 
-### Security
+### セキュリティ
 
-- SSH keys never exposed in logs
-- Credentials bound as environment variables
-- Strict host key checking disabled for automation
-- Keys removed after workflow completion
+- SSH キーはログに公開されない
+- 認証情報は環境変数としてバインド
+- 自動化のために厳密なホストキーチェックを無効化
+- ワークフロー完了後にキーを削除
 
-## Next Steps
+## 次のステップ
 
-Now that you understand the available workflows, let's execute your first deployment!
+利用可能なワークフローを理解したところで、最初のデプロイを実行しましょう。

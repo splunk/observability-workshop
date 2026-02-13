@@ -1,24 +1,24 @@
 ---
-title: GitHub Setup
+title: GitHub のセットアップ
 weight: 2
 time: 10 minutes
 ---
 
-## Prerequisites
+## 前提条件
 
-Before you begin, ensure you have:
+開始する前に、以下を確認します:
 
-- GitHub account with repository access
-- AWS VPC with Ubuntu EC2 instances
-- SSH key pair (PEM file) for authentication to target hosts
-- AppDynamics Smart Agent package
-- Target Ubuntu EC2 instances with SSH access
+- リポジトリアクセス権を持つ GitHub アカウント
+- Ubuntu EC2 インスタンスを持つ AWS VPC
+- ターゲットホストへの認証用 SSH キーペア（PEM ファイル）
+- AppDynamics Smart Agent パッケージ
+- SSH アクセス可能なターゲット Ubuntu EC2 インスタンス
 
-## Fork or Clone the Repository
+## リポジトリのフォークまたはクローン
 
-First, get access to the GitHub Actions lab repository:
+まず、GitHub Actions ラボリポジトリへのアクセスを取得します。
 
-**Repository URL**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
+**リポジトリ URL**: [https://github.com/chambear2809/github-actions-lab](https://github.com/chambear2809/github-actions-lab)
 
 ```bash
 # Option 1: Fork the repository via GitHub UI
@@ -30,21 +30,21 @@ git clone https://github.com/chambear2809/github-actions-lab.git
 cd github-actions-lab
 ```
 
-## Configure Self-hosted Runner
+## セルフホストランナーの設定
 
-Your self-hosted runner must be deployed in the same AWS VPC as your target EC2 instances.
+セルフホストランナーは、ターゲット EC2 インスタンスと同じ AWS VPC にデプロイする必要があります。
 
-### Install Runner on EC2 Instance
+### EC2 インスタンスへのランナーのインストール
 
-1. **Launch EC2 instance** in your VPC (Ubuntu or Amazon Linux 2)
+1. VPC 内で **EC2 インスタンスを起動** します（Ubuntu または Amazon Linux 2）
 
-2. **Navigate to runner settings** in your forked repository:
+2. フォークしたリポジトリの **ランナー設定に移動** します:
 
-   ```
+   ```text
    Settings → Actions → Runners → New self-hosted runner
    ```
 
-3. **SSH into the runner instance** and execute installation commands:
+3. **ランナーインスタンスに SSH 接続** し、インストールコマンドを実行します:
 
 ```bash
 # Create runner directory
@@ -67,63 +67,63 @@ sudo ./svc.sh install
 sudo ./svc.sh start
 ```
 
-### Verify Runner Status
+### ランナーステータスの確認
 
-Check that the runner appears as **"Idle"** (green) in:
+ランナーが以下の場所で **"Idle"**（緑色）と表示されていることを確認します:
 
-```
+```text
 Settings → Actions → Runners
 ```
 
 {{% notice style="tip" %}}
-The runner must remain online and idle to pick up workflow jobs. If it shows offline, check the service status: `sudo ./svc.sh status`
+ランナーはワークフロージョブを受け取るためにオンラインかつアイドル状態を維持する必要があります。オフラインと表示される場合は、サービスステータスを確認します: `sudo ./svc.sh status`
 {{% /notice %}}
 
-## Configure GitHub Secrets
+## GitHub Secrets の設定
 
-Navigate to: **Settings → Secrets and variables → Actions → Secrets**
+**Settings → Secrets and variables → Actions → Secrets** に移動します。
 
-### SSH Private Key Secret
+### SSH 秘密鍵の Secret
 
-This secret contains your SSH private key for accessing target hosts.
+この Secret には、ターゲットホストにアクセスするための SSH 秘密鍵が含まれます。
 
-1. Click **"New repository secret"**
+1. **"New repository secret"** をクリックします
 2. **Name**: `SSH_PRIVATE_KEY`
-3. **Value**: Paste the contents of your PEM file
+3. **Value**: PEM ファイルの内容を貼り付けます
 
 ```bash
 # View your PEM file
 cat /path/to/your-key.pem
 ```
 
-Example format:
+フォーマット例:
 
-```
+```text
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA...
 ...
 -----END RSA PRIVATE KEY-----
 ```
 
-1. Click **"Add secret"**
+1. **"Add secret"** をクリックします
 
 {{% notice style="important" %}}
-Never commit SSH keys to your repository! Always use GitHub Secrets for sensitive credentials.
+SSH キーをリポジトリにコミットしないでください。機密性の高い認証情報には必ず GitHub Secrets を使用します。
 {{% /notice %}}
 
-## Configure GitHub Variables
+## GitHub Variables の設定
 
-Navigate to: **Settings → Secrets and variables → Actions → Variables**
+**Settings → Secrets and variables → Actions → Variables** に移動します。
 
-### Deployment Hosts Variable (Required)
+### デプロイホスト Variable（必須）
 
-This variable contains the list of all target hosts where Smart Agent should be deployed.
+この Variable には、Smart Agent をデプロイするすべてのターゲットホストのリストが含まれます。
 
-1. Click **"New repository variable"**
+1. **"New repository variable"** をクリックします
 2. **Name**: `DEPLOYMENT_HOSTS`
-3. **Value**: Enter your target host IPs (one per line)
+3. **Value**: ターゲットホストの IP を入力します（1行に1つ）
 
-```
+```text
 172.31.1.243
 172.31.1.48
 172.31.1.5
@@ -131,87 +131,87 @@ This variable contains the list of all target hosts where Smart Agent should be 
 172.31.10.21
 ```
 
-**Format Requirements:**
+**フォーマット要件:**
 
-- One IP per line
-- No commas
-- No spaces
-- No extra characters
-- Use Unix line endings (LF, not CRLF)
+- 1行に1つの IP
+- カンマなし
+- スペースなし
+- 余分な文字なし
+- Unix 改行コード（LF、CRLF ではなく）を使用
 
-1. Click **"Add variable"**
+1. **"Add variable"** をクリックします
 
-### Optional Variables
+### オプションの Variables
 
-These variables are optional and used for Smart Agent service user/group configuration:
+これらの Variable はオプションで、Smart Agent サービスのユーザー/グループ設定に使用されます:
 
 #### SMARTAGENT_USER
 
-1. Click **"New repository variable"**
+1. **"New repository variable"** をクリックします
 2. **Name**: `SMARTAGENT_USER`
-3. **Value**: e.g., `appdynamics`
-4. Click **"Add variable"**
+3. **Value**: 例: `appdynamics`
+4. **"Add variable"** をクリックします
 
 #### SMARTAGENT_GROUP
 
-1. Click **"New repository variable"**
+1. **"New repository variable"** をクリックします
 2. **Name**: `SMARTAGENT_GROUP`
-3. **Value**: e.g., `appdynamics`
-4. Click **"Add variable"**
+3. **Value**: 例: `appdynamics`
+4. **"Add variable"** をクリックします
 
-## Network Configuration
+## ネットワーク設定
 
-For the lab setup with all EC2 instances in the same VPC and security group:
+同じ VPC およびセキュリティグループ内のすべての EC2 インスタンスを使用するラボセットアップの場合:
 
-### Security Group Rules
+### セキュリティグループルール
 
-**Inbound Rules:**
+**インバウンドルール:**
 
-- SSH (port 22) from same security group (source: same SG)
+- 同じセキュリティグループからの SSH（ポート22）（ソース: 同じ SG）
 
-**Outbound Rules:**
+**アウトバウンドルール:**
 
-- HTTPS (port 443) to 0.0.0.0/0 (for GitHub API access)
-- SSH (port 22) to same security group (for target access)
+- 0.0.0.0/0 への HTTPS（ポート443）（GitHub API アクセス用）
+- 同じセキュリティグループへの SSH（ポート22）（ターゲットアクセス用）
 
-### Network Best Practices
+### ネットワークのベストプラクティス
 
-- ✅ Use private IP addresses (172.31.x.x) for `DEPLOYMENT_HOSTS`
-- ✅ Runner and targets in same security group
-- ✅ No public IPs needed on target hosts
-- ✅ Runner communicates via private network
-- ✅ Outbound HTTPS required for GitHub polling
+- `DEPLOYMENT_HOSTS` にはプライベート IP アドレス（172.31.x.x）を使用
+- ランナーとターゲットを同じセキュリティグループに配置
+- ターゲットホストにパブリック IP は不要
+- ランナーはプライベートネットワーク経由で通信
+- GitHub ポーリング用のアウトバウンド HTTPS が必要
 
-## Verify Configuration
+## 設定の確認
 
-Before running workflows, verify your setup:
+ワークフローを実行する前に、セットアップを確認します:
 
-### 1. Check Runner Status
+### 1. ランナーステータスの確認
 
-1. Go to **Settings → Actions → Runners**
-2. Verify runner shows as "Idle" (green)
-3. Check "Last seen" timestamp is recent
+1. **Settings → Actions → Runners** に移動します
+2. ランナーが「Idle」（緑色）と表示されていることを確認します
+3. 「Last seen」のタイムスタンプが最近であることを確認します
 
-### 2. Test SSH Connectivity
+### 2. SSH 接続のテスト
 
-SSH from your runner instance to a target host:
+ランナーインスタンスからターゲットホストに SSH 接続します:
 
 ```bash
 # On runner instance
 ssh -i ~/.ssh/your-key.pem ubuntu@172.31.1.243
 ```
 
-If successful, you should get a shell prompt on the target host.
+成功すると、ターゲットホストのシェルプロンプトが表示されます。
 
-### 3. Verify Secrets and Variables
+### 3. Secrets と Variables の確認
 
-1. Go to **Settings → Secrets and variables → Actions**
-2. Confirm secrets tab shows: `SSH_PRIVATE_KEY`
-3. Confirm variables tab shows: `DEPLOYMENT_HOSTS`
+1. **Settings → Secrets and variables → Actions** に移動します
+2. Secrets タブに `SSH_PRIVATE_KEY` が表示されていることを確認します
+3. Variables タブに `DEPLOYMENT_HOSTS` が表示されていることを確認します
 
-### 4. Check Repository Access
+### 4. リポジトリアクセスの確認
 
-Ensure the runner can access the repository:
+ランナーがリポジトリにアクセスできることを確認します:
 
 ```bash
 # On runner instance, as the runner user
@@ -219,25 +219,25 @@ cd ~/actions-runner
 ./run.sh  # Test run (Ctrl+C to stop)
 ```
 
-You should see: "Listening for Jobs"
+「Listening for Jobs」と表示されます。
 
-## Troubleshooting Common Issues
+## よくある問題のトラブルシューティング
 
-### Runner Not Picking Up Jobs
+### ランナーがジョブを取得しない
 
-**Symptom**: Workflows stay in "queued" state
+**症状**: ワークフローが「queued」状態のまま
 
-**Solution**:
+**解決策**:
 
-- Check runner status: `sudo systemctl status actions.runner.*`
-- Restart runner: `sudo ./svc.sh restart`
-- Verify outbound HTTPS (443) connectivity to GitHub
+- ランナーステータスを確認します: `sudo systemctl status actions.runner.*`
+- ランナーを再起動します: `sudo ./svc.sh restart`
+- GitHub へのアウトバウンド HTTPS（443）接続を確認します
 
-### SSH Connection Failures
+### SSH 接続の失敗
 
-**Symptom**: Workflows fail with "Permission denied" or "Connection refused"
+**症状**: ワークフローが「Permission denied」または「Connection refused」で失敗
 
-**Solution**:
+**解決策**:
 
 ```bash
 # Test from runner
@@ -247,40 +247,40 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 # Verify private key matches public key on targets
 ```
 
-### Invalid Characters in Hostname
+### ホスト名に無効な文字
 
-**Symptom**: Error: "hostname contains invalid characters"
+**症状**: エラー「hostname contains invalid characters」
 
-**Solution**:
+**解決策**:
 
-- Edit `DEPLOYMENT_HOSTS` variable
-- Ensure no trailing spaces
-- Use Unix line endings (LF, not CRLF)
-- One IP per line, no extra characters
+- `DEPLOYMENT_HOSTS` Variable を編集します
+- 末尾にスペースがないことを確認します
+- Unix 改行コード（LF、CRLF ではなく）を使用します
+- 1行に1つの IP、余分な文字なし
 
-### Secrets Not Found
+### Secrets が見つからない
 
-**Symptom**: Error: "Secret SSH_PRIVATE_KEY not found"
+**症状**: エラー「Secret SSH_PRIVATE_KEY not found」
 
-**Solution**:
+**解決策**:
 
-- Verify secret name exactly matches: `SSH_PRIVATE_KEY`
-- Check secret is in repository secrets (not environment secrets)
-- Ensure you have repository admin access
+- Secret 名が正確に一致していることを確認します: `SSH_PRIVATE_KEY`
+- Secret がリポジトリ Secrets（環境 Secrets ではなく）にあることを確認します
+- リポジトリの管理者アクセス権があることを確認します
 
-## Security Best Practices
+## セキュリティのベストプラクティス
 
-Follow these best practices for secure operations:
+安全な運用のために、以下のベストプラクティスに従います:
 
-- ✅ Use GitHub Secrets for all private keys
-- ✅ Rotate SSH keys regularly
-- ✅ Keep runner in private VPC subnet
-- ✅ Restrict runner security group to minimal access
-- ✅ Update runner software regularly
-- ✅ Enable branch protection rules
-- ✅ Use separate keys for different environments
-- ✅ Enable audit logging for repository access
+- すべての秘密鍵に GitHub Secrets を使用
+- SSH キーを定期的にローテーション
+- ランナーをプライベート VPC サブネットに配置
+- ランナーのセキュリティグループを最小限のアクセスに制限
+- ランナーソフトウェアを定期的にアップデート
+- ブランチ保護ルールを有効化
+- 環境ごとに別のキーを使用
+- リポジトリアクセスの監査ログを有効化
 
-## Next Steps
+## 次のステップ
 
-With GitHub configured and the runner set up, you're ready to explore the available workflows and execute your first deployment!
+GitHub の設定とランナーのセットアップが完了したら、利用可能なワークフローを確認し、最初のデプロイを実行しましょう。

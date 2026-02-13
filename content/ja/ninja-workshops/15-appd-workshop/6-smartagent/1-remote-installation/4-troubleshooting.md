@@ -1,25 +1,25 @@
 ---
-title: 4. Troubleshooting
+title: 4. トラブルシューティング
 weight: 4
 ---
 
-This section covers common issues you may encounter when deploying Smart Agent to remote hosts and how to resolve them.
+このセクションでは、Smart Agent をリモートホストにデプロイする際に発生する一般的な問題とその解決方法について説明します。
 
-## SSH Connection Issues
+## SSH接続の問題
 
-### Problem: Cannot Connect to Remote Hosts
+### 問題: リモートホストに接続できない
 
-**Symptoms:**
+**症状:**
 
-- Connection timeout errors
-- "Permission denied" messages
-- Host key verification failures
+- 接続タイムアウトエラー
+- "Permission denied" メッセージ
+- ホストキー検証の失敗
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Verify SSH Key Permissions
+#### 1. SSHキーの権限を確認
 
-SSH keys must have the correct permissions:
+SSHキーには正しい権限が必要です:
 
 ```bash
 chmod 600 /home/ubuntu/.ssh/id_rsa
@@ -27,28 +27,28 @@ chmod 644 /home/ubuntu/.ssh/id_rsa.pub
 chmod 700 /home/ubuntu/.ssh
 ```
 
-#### 2. Test SSH Connectivity Manually
+#### 2. SSH接続を手動でテスト
 
-Test connection to each remote host:
+各リモートホストへの接続をテストします:
 
 ```bash
 ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@172.31.1.243
 ```
 
-If this fails, the issue is with SSH configuration, not smartagentctl.
+これが失敗する場合、問題は smartagentctl ではなくSSH設定にあります。
 
-#### 3. Check Remote Host Reachability
+#### 3. リモートホストの到達性を確認
 
-Verify network connectivity:
+ネットワーク接続性を確認します:
 
 ```bash
 ping 172.31.1.243
 telnet 172.31.1.243 22
 ```
 
-#### 4. Verify SSH User
+#### 4. SSHユーザーの確認
 
-Ensure the username in `remote.yaml` matches the SSH user:
+`remote.yaml` のユーザー名がSSHユーザーと一致していることを確認します:
 
 ```yaml
 protocol:
@@ -56,15 +56,15 @@ protocol:
     username: ubuntu  # Must match your SSH user
 ```
 
-#### 5. Check Known Hosts
+#### 5. Known Hosts の確認
 
-If host key validation is enabled, ensure hosts are in known_hosts:
+ホストキー検証が有効な場合、ホストが known_hosts に登録されていることを確認します:
 
 ```bash
 ssh-keyscan 172.31.1.243 >> /home/ubuntu/.ssh/known_hosts
 ```
 
-Or temporarily disable host key validation in `remote.yaml`:
+または、`remote.yaml` でホストキー検証を一時的に無効化します:
 
 ```yaml
 protocol:
@@ -72,31 +72,31 @@ protocol:
     ignore_host_key_validation: true
 ```
 
-{{% notice title="Warning" style="danger" icon="exclamation-triangle" %}}
-Disabling host key validation should only be used for testing. Always enable it in production environments.
+{{% notice title="警告" style="danger" icon="exclamation-triangle" %}}
+ホストキー検証の無効化はテスト目的でのみ使用してください。本番環境では必ず有効にしてください。
 {{% /notice %}}
 
-## Permission Issues
+## 権限の問題
 
-### Problem: Permission Denied During Installation
+### 問題: インストール中に権限が拒否される
 
-**Symptoms:**
+**症状:**
 
-- "Permission denied" when creating directories
-- Cannot write to `/opt/appdynamics/`
-- Insufficient privileges errors
+- ディレクトリ作成時の "Permission denied"
+- `/opt/appdynamics/` への書き込み不可
+- 権限不足エラー
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Verify Sudo Access on Control Node
+#### 1. コントロールノードでのSudoアクセスを確認
 
 ```bash
 sudo -v
 ```
 
-#### 2. Check Privileged Setting
+#### 2. Privileged 設定を確認
 
-Ensure `privileged: true` is set in `remote.yaml`:
+`remote.yaml` で `privileged: true` が設定されていることを確認します:
 
 ```yaml
 protocol:
@@ -104,9 +104,9 @@ protocol:
     privileged: true
 ```
 
-#### 3. Verify Remote User Permissions
+#### 3. リモートユーザーの権限を確認
 
-The remote user must have sudo privileges or be root. Test on remote host:
+リモートユーザーにはsudo権限またはroot権限が必要です。リモートホストでテストします:
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -114,52 +114,52 @@ sudo mkdir -p /opt/appdynamics/test
 sudo rm -rf /opt/appdynamics/test
 ```
 
-#### 4. Check Remote Directory Permissions
+#### 4. リモートディレクトリの権限を確認
 
-If using a custom installation directory, ensure it's writable:
+カスタムインストールディレクトリを使用している場合、書き込み可能であることを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 ls -la /opt/appdynamics/
 ```
 
-## Agent Not Starting
+## エージェントが起動しない
 
-### Problem: Agent Installation Succeeds But Agent Doesn't Start
+### 問題: エージェントのインストールは成功するが起動しない
 
-**Symptoms:**
+**症状:**
 
-- Installation completes without errors
-- Agent process not running on remote hosts
-- No errors in control node logs
+- インストールはエラーなく完了
+- リモートホストでエージェントプロセスが実行されていない
+- コントロールノードのログにエラーなし
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Check Remote Host Logs
+#### 1. リモートホストのログを確認
 
-SSH to the remote host and check the agent logs:
+リモートホストにSSHで接続してエージェントのログを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 tail -100 /opt/appdynamics/appdsmartagent/log.log
 ```
 
-Look for error messages indicating:
+以下を示すエラーメッセージを探します:
 
-- Configuration errors
-- Network connectivity issues
-- Missing dependencies
+- 設定エラー
+- ネットワーク接続の問題
+- 依存関係の不足
 
-#### 2. Verify Agent Process
+#### 2. エージェントプロセスの確認
 
-Check if the agent process is running:
+エージェントプロセスが実行中かどうかを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 ps aux | grep smartagent
 ```
 
-If not running, try starting manually:
+実行されていない場合、手動で起動を試みます:
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -167,33 +167,33 @@ cd /opt/appdynamics/appdsmartagent
 sudo ./smartagent
 ```
 
-#### 3. Check Configuration Files
+#### 3. 設定ファイルの確認
 
-Verify that `config.ini` was properly transferred:
+`config.ini` が正しく転送されたことを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 cat /opt/appdynamics/appdsmartagent/config.ini
 ```
 
-Ensure:
+以下を確認します:
 
-- Controller URL is correct
-- Account credentials are valid
-- All required fields are populated
+- コントローラーURLが正しいこと
+- アカウント認証情報が有効であること
+- 必須フィールドがすべて入力されていること
 
-#### 4. Test Controller Connectivity
+#### 4. コントローラーへの接続テスト
 
-From the remote host, verify connectivity to the AppDynamics Controller:
+リモートホストから AppDynamics Controller への接続を確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 curl -I https://fso-tme.saas.appdynamics.com
 ```
 
-#### 5. Check System Resources
+#### 5. システムリソースの確認
 
-Ensure the remote host has adequate resources:
+リモートホストに十分なリソースがあることを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -201,55 +201,55 @@ df -h  # Check disk space
 free -m  # Check memory
 ```
 
-## Configuration Errors
+## 設定エラー
 
-### Problem: Invalid Configuration
+### 問題: 無効な設定
 
-**Symptoms:**
+**症状:**
 
-- YAML parsing errors
-- Invalid configuration parameter errors
-- Agent fails to start with config errors
+- YAML解析エラー
+- 無効な設定パラメーターエラー
+- 設定エラーでエージェントが起動に失敗
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Validate YAML Syntax
+#### 1. YAML構文の検証
 
-Check for YAML syntax errors in `remote.yaml`:
+`remote.yaml` のYAML構文エラーを確認します:
 
 ```bash
 python3 -c "import yaml; yaml.safe_load(open('/home/ubuntu/appdsm/remote.yaml'))"
 ```
 
-Common YAML issues:
+一般的なYAMLの問題:
 
-- Incorrect indentation (use spaces, not tabs)
-- Missing colons
-- Unquoted special characters
+- インデントの誤り（タブではなくスペースを使用）
+- コロンの欠落
+- 引用符で囲まれていない特殊文字
 
-#### 2. Verify INI File Format
+#### 2. INIファイル形式の確認
 
-Check `config.ini` for syntax errors:
+`config.ini` の構文エラーを確認します:
 
 ```bash
 cat /home/ubuntu/appdsm/config.ini
 ```
 
-Common INI issues:
+一般的なINIの問題:
 
-- Missing section headers (e.g., `[CommonConfig]`)
-- Invalid parameter names
-- Missing equals signs
+- セクションヘッダーの欠落（例: `[CommonConfig]`）
+- 無効なパラメーター名
+- 等号の欠落
 
-#### 3. Validate Controller Credentials
+#### 3. コントローラー認証情報の検証
 
-Ensure your AppDynamics credentials are correct:
+AppDynamics の認証情報が正しいことを確認します:
 
-- **ControllerURL**: Should not include `https://` or `/controller`
-- **AccountAccessKey**: Should be the full access key
-- **AccountName**: Should match your account name exactly
+- **ControllerURL**: `https://` や `/controller` を含めないこと
+- **AccountAccessKey**: 完全なアクセスキーであること
+- **AccountName**: アカウント名と正確に一致すること
 
-Example correct format:
+正しい形式の例:
 
 ```ini
 ControllerURL    = fso-tme.saas.appdynamics.com
@@ -257,25 +257,25 @@ AccountAccessKey = abc123xyz789
 AccountName      = fso-tme
 ```
 
-## Agent Not Appearing in Controller
+## エージェントが Controller に表示されない
 
-### Problem: Agent Starts But Doesn't Appear in Controller UI
+### 問題: エージェントが起動するが Controller UI に表示されない
 
-**Symptoms:**
+**症状:**
 
-- Agent process is running on remote hosts
-- No errors in agent logs
-- Agent doesn't appear in Controller UI
+- リモートホストでエージェントプロセスが実行中
+- エージェントログにエラーなし
+- Controller UI にエージェントが表示されない
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Wait for Initial Registration
+#### 1. 初期登録を待つ
 
-Agents may take 1-5 minutes to appear in the Controller after starting.
+エージェントが起動してから Controller に表示されるまで1～5分かかる場合があります。
 
-#### 2. Verify Controller Configuration
+#### 2. コントローラー設定の確認
 
-Check that the agent can reach the controller:
+エージェントがコントローラーに到達できることを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
@@ -283,64 +283,64 @@ ping fso-tme.saas.appdynamics.com
 curl -I https://fso-tme.saas.appdynamics.com
 ```
 
-#### 3. Check Agent Logs for Connection Errors
+#### 3. エージェントログで接続エラーを確認
 
-Look for controller connection errors:
+コントローラー接続エラーを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 grep -i "error\|fail\|controller" /opt/appdynamics/appdsmartagent/log.log
 ```
 
-#### 4. Verify SSL/TLS Settings
+#### 4. SSL/TLS設定の確認
 
-Ensure SSL is enabled in `config.ini`:
+`config.ini` でSSLが有効になっていることを確認します:
 
 ```ini
 EnableSSL = true
 ```
 
-#### 5. Check Firewall Rules
+#### 5. ファイアウォールルールの確認
 
-Verify that outbound HTTPS (port 443) is allowed from remote hosts to the Controller.
+リモートホストから Controller へのアウトバウンドHTTPS（ポート443）が許可されていることを確認します。
 
-#### 6. Verify Account Credentials
+#### 6. アカウント認証情報の確認
 
-Double-check that your AccountAccessKey and AccountName are correct in the Controller UI:
+Controller UI で AccountAccessKey と AccountName が正しいことを再確認します:
 
-- Log into AppDynamics Controller
-- Go to Settings → License
-- Verify your account name and access key
+- AppDynamics Controller にログインします
+- Settings > License に移動します
+- アカウント名とアクセスキーを確認します
 
-## Performance and Scaling Issues
+## パフォーマンスとスケーリングの問題
 
-### Problem: Slow Deployment or Timeouts
+### 問題: デプロイが遅い、またはタイムアウトする
 
-**Symptoms:**
+**症状:**
 
-- Deployment takes too long
-- Timeout errors when deploying to many hosts
-- System resource exhaustion
+- デプロイに時間がかかりすぎる
+- 多数のホストへのデプロイ時にタイムアウトエラー
+- システムリソースの枯渇
 
-**Solutions:**
+**解決方法:**
 
-#### 1. Adjust Concurrency
+#### 1. 同時実行数の調整
 
-Reduce `max_concurrency` in `remote.yaml` if experiencing issues:
+問題が発生している場合、`remote.yaml` の `max_concurrency` を減らします:
 
 ```yaml
 max_concurrency: 2  # Lower value for slower, more stable deployment
 ```
 
-Or increase for faster deployment if resources allow:
+リソースに余裕がある場合、より高速なデプロイのために増やします:
 
 ```yaml
 max_concurrency: 8  # Higher value for faster deployment
 ```
 
-#### 2. Deploy in Batches
+#### 2. バッチに分けてデプロイ
 
-For very large deployments, split hosts into multiple groups:
+非常に大規模なデプロイの場合、ホストを複数のグループに分割します:
 
 **remote-batch1.yaml:**
 
@@ -360,106 +360,106 @@ hosts:
   - host: "172.31.1.6"
 ```
 
-Then deploy each batch separately.
+その後、各バッチを個別にデプロイします。
 
-#### 3. Check Network Bandwidth
+#### 3. ネットワーク帯域幅の確認
 
-Monitor network usage during deployment:
+デプロイ中のネットワーク使用量を監視します:
 
 ```bash
 iftop
 ```
 
-If bandwidth is saturated, reduce concurrency or deploy during off-peak hours.
+帯域幅が飽和している場合、同時実行数を減らすか、ピーク外の時間帯にデプロイします。
 
-## Log Analysis
+## ログ分析
 
-### Checking Control Node Logs
+### コントロールノードのログ確認
 
-View detailed deployment logs:
+詳細なデプロイログを確認します:
 
 ```bash
 tail -f /home/ubuntu/appdsm/log.log
 ```
 
-Look for:
+以下を確認します:
 
-- SSH connection failures
-- File transfer errors
-- Permission denied errors
-- Timeout messages
+- SSH接続の失敗
+- ファイル転送エラー
+- 権限拒否エラー
+- タイムアウトメッセージ
 
-### Checking Remote Host Logs
+### リモートホストのログ確認
 
-View agent runtime logs on remote hosts:
+リモートホストのエージェントランタイムログを確認します:
 
 ```bash
 ssh ubuntu@172.31.1.243
 tail -f /opt/appdynamics/appdsmartagent/log.log
 ```
 
-Look for:
+以下を確認します:
 
-- Controller connection errors
-- Configuration errors
-- Agent startup failures
-- Network issues
+- コントローラー接続エラー
+- 設定エラー
+- エージェント起動の失敗
+- ネットワークの問題
 
-### Increasing Log Verbosity
+### ログの詳細度を上げる
 
-For more detailed logging, set `LogLevel` to `DEBUG` in `config.ini`:
+より詳細なログが必要な場合、`config.ini` で `LogLevel` を `DEBUG` に設定します:
 
 ```ini
 [Telemetry]
 LogLevel = DEBUG
 ```
 
-## Getting Help
+## ヘルプの取得
 
-If you're still experiencing issues:
+問題が解決しない場合:
 
-1. **Check Documentation**: Review the smartagentctl help:
+1. **ドキュメントの確認**: smartagentctl のヘルプを確認します:
 
    ```bash
    ./smartagentctl --help
    ./smartagentctl start --help
    ```
 
-2. **Review AppDynamics Documentation**: Visit the AppDynamics documentation portal
+2. **AppDynamics ドキュメントの確認**: AppDynamics ドキュメントポータルを参照します
 
-3. **Check Log Files**: Always review both control node and remote host logs
+3. **ログファイルの確認**: コントロールノードとリモートホストの両方のログを必ず確認します
 
-4. **Test Components Individually**:
-   - Test SSH connectivity separately
-   - Test agent startup on a single host manually
-   - Verify controller connectivity independently
+4. **コンポーネントを個別にテスト**:
+   - SSH接続性を個別にテストします
+   - 単一のホストでエージェントの起動を手動でテストします
+   - コントローラーへの接続性を個別に確認します
 
-5. **Collect Diagnostic Information**:
-   - Control node logs
-   - Remote host logs
-   - Configuration files (with sensitive data redacted)
-   - Error messages and stack traces
+5. **診断情報の収集**:
+   - コントロールノードのログ
+   - リモートホストのログ
+   - 設定ファイル（機密データは削除）
+   - エラーメッセージとスタックトレース
 
-## Common Error Messages
+## 一般的なエラーメッセージ
 
-| Error Message | Cause | Solution |
-|--------------|-------|----------|
-| "Permission denied (publickey)" | SSH key authentication failure | Verify SSH key path and permissions |
-| "Connection refused" | SSH port not accessible | Check firewall rules and SSH daemon |
-| "No such file or directory" | Missing configuration file | Verify config files exist and paths are correct |
-| "YAML parse error" | Invalid YAML syntax | Validate YAML syntax with parser |
-| "Controller unreachable" | Network connectivity issue | Test controller connectivity from remote host |
-| "Invalid credentials" | Wrong account key or name | Verify AppDynamics credentials |
+| エラーメッセージ | 原因 | 解決方法 |
+| --- | --- | --- |
+| "Permission denied (publickey)" | SSHキー認証の失敗 | SSHキーのパスと権限を確認 |
+| "Connection refused" | SSHポートにアクセスできない | ファイアウォールルールとSSHデーモンを確認 |
+| "No such file or directory" | 設定ファイルが見つからない | 設定ファイルの存在とパスが正しいことを確認 |
+| "YAML parse error" | 無効なYAML構文 | YAMLパーサーで構文を検証 |
+| "Controller unreachable" | ネットワーク接続の問題 | リモートホストからコントローラーへの接続性をテスト |
+| "Invalid credentials" | アカウントキーまたは名前が不正 | AppDynamics の認証情報を確認 |
 
-## Best Practices for Troubleshooting
+## トラブルシューティングのベストプラクティス
 
-1. **Always use --verbose flag**: Provides detailed output for debugging
-2. **Test with a single host first**: Deploy to one host before scaling
-3. **Check logs immediately**: Review logs right after deployment
-4. **Verify prerequisites**: Ensure all requirements are met before deploying
-5. **Test connectivity separately**: Verify SSH and network connectivity independently
-6. **Use manual commands**: Test manual SSH and agent startup to isolate issues
+1. **常に --verbose フラグを使用**: デバッグのための詳細な出力を提供します
+2. **最初に単一のホストでテスト**: スケールアウトする前に1台のホストにデプロイします
+3. **すぐにログを確認**: デプロイ直後にログを確認します
+4. **前提条件の確認**: デプロイ前にすべての要件が満たされていることを確認します
+5. **接続性を個別にテスト**: SSHとネットワーク接続性を個別に確認します
+6. **手動コマンドを使用**: 手動でのSSHとエージェント起動をテストして問題を切り分けます
 
-{{% notice title="Tip" style="info" icon="lightbulb" %}}
-When troubleshooting, start with the simplest tests first (e.g., ping, SSH connectivity) before moving to more complex issues.
+{{% notice title="ヒント" style="info" icon="lightbulb" %}}
+トラブルシューティングでは、より複雑な問題に移る前に、最も簡単なテスト（例: ping、SSH接続性）から始めてください。
 {{% /notice %}}

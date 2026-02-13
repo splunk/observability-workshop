@@ -1,25 +1,25 @@
 ---
-title: Deployment
+title: デプロイ
 weight: 3
 time: 5 minutes
 ---
 
-## Step 4: Execute the Playbook
+## ステップ4: プレイブックを実行する
 
-To deploy the Smart Agent, run the following command from your project directory:
+Smart Agent をデプロイするには、プロジェクトディレクトリから以下のコマンドを実行します：
 
 ```bash
 ansible-playbook -i inventory-cloud.yaml smartagent.yaml
 ```
 
-Replace `inventory-cloud.yaml` with the appropriate inventory file for your setup if you named it differently.
+インベントリファイルに別の名前を付けた場合は、`inventory-cloud.yaml` を適切なファイル名に置き換えます。
 
-### Verification
+### 確認
 
-After the playbook completes successfully, you can verify the deployment by logging into one of the target hosts and checking the service status:
+プレイブックが正常に完了したら、ターゲットホストの1つにログインしてサービスの状態を確認することで、デプロイを検証できます：
 
 ```bash
 systemctl status smartagent
 ```
 
-You should see the service is active (running).
+サービスが active (running) と表示されます。
