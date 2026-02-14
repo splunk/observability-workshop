@@ -209,9 +209,12 @@ def _compute_dates() -> tuple[str, str]:
 @tool
 def mock_search_flights(origin: str, destination: str, departure: str) -> str:
     """Return mock flight options for a given origin/destination pair."""
-    random.seed(hash((origin, destination, departure)) % (2**32))
-    airline = random.choice(["SkyLine", "AeroJet", "CloudNine"])
-    fare = random.randint(700, 1250)
+    # create a local random.Random instance
+    seed = hash((origin, destination, departure)) % (2**32)
+    rng = random.Random(seed)
+    airline = rng.choice(["SkyLine", "AeroJet", "CloudNine"])
+    fare = rng.randint(700, 1250)
+
     return (
         f"Top choice: {airline} non-stop service {origin}->{destination}, "
         f"depart {departure} 09:15, arrive {departure} 17:05. "
@@ -222,9 +225,11 @@ def mock_search_flights(origin: str, destination: str, departure: str) -> str:
 @tool
 def mock_search_hotels(destination: str, check_in: str, check_out: str) -> str:
     """Return mock hotel recommendation for the stay."""
-    random.seed(hash((destination, check_in, check_out)) % (2**32))
-    name = random.choice(["Grand Meridian", "Hotel Lumière", "The Atlas"])
-    rate = random.randint(240, 410)
+    seed = hash((destination, check_in, check_out)) % (2**32)
+    rng = random.Random(seed)
+    name = rng.choice(["Grand Meridian", "Hotel Lumière", "The Atlas"])
+    rate = rng.randint(240, 410)
+
     return (
         f"{name} near the historic centre. Boutique suites, rooftop bar, "
         f"average nightly rate ${rate} including breakfast."

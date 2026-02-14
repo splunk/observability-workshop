@@ -97,6 +97,25 @@ curl http://localhost:8080/travel/plan \
   }'
 ```
 
+Send a request including poison config: 
+
+``` bash
+  curl http://localhost:8080/travel/plan \
+    -H "Content-Type: application/json" \
+    -d '{
+      "origin": "New York",
+      "destination": "London",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences.",
+      "travelers": 2,
+      "poison_config": {
+          "prob": "1.0",
+          "types": ["hallucination","irrelevance"],
+          "max": "1",
+          "seed": "9999"
+      }
+    }'
+```
+
 ## Build Docker Images
 
 The following commands were used to build Docker images for each of the application components. 
@@ -142,8 +161,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.3 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.3
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.4 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.4
 ```
 
 ### Load Generator
