@@ -3,7 +3,7 @@ title: 1. RUMダッシュボード
 weight: 1
 ---
 
-Splunk Observability Cloud のメインメニューから、**RUM**をクリックします。RUM ホームページに到着します。このビューについては、先ほどの短い紹介ですでに説明しました。
+Splunk Observability Cloudのメインメニューから、**RUM**をクリックします。RUMホームページに到着します。このビューについては、先ほどの短い紹介ですでに説明しました。
 
 ![複数のアプリ](../images/rum-dashboard.png)
 
@@ -15,16 +15,16 @@ Splunk Observability Cloud のメインメニューから、**RUM**をクリッ�
   - 選択されている**App**は **[ワークショップ名]-store** であること。
   - **Source**は**All**に設定されていること。
 - 次に、**Page Views / JavaScript Errors**チャートの上にある **[ワークショップ名]-store** をクリックします。
-- これにより、**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events**ごとにメトリクスを分類し、過去のメトリクス（デフォルトでは 1 時間）と比較する新しいダッシュボードビューが表示されます。
+- これにより、**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events**ごとにメトリクスを分類し、過去のメトリクス（デフォルトでは1時間）と比較する新しいダッシュボードビューが表示されます。
 
 {{% /notice %}}
 
 ![RUMダッシュボード](../images/rum-metrics-dashboard.png)
 
-- **UX Metrics:** ページビュー、ページロード、Web バイタルメトリクス。
-- **Front-end Health:** JavaScript エラーとロングタスクの期間と数の内訳。
+- **UX Metrics:** ページビュー、ページロード、Webバイタルメトリクス。
+- **Front-end Health:** JavaScriptエラーとロングタスクの期間と数の内訳。
 - **Back-end Health:** ネットワークエラー、リクエスト、最初のバイトまでの時間。
-- **Custom Events:** Custom Events の RED メトリクス（レート、エラー、期間）。
+- **Custom Events:** Custom EventsのREDメトリクス（レート、エラー、期間）。
 
 {{% notice title="演習" style="green" icon="running" %}}
 

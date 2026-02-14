@@ -4,11 +4,11 @@ linkTitle: 2. 自動計装
 weight: 2
 ---
 
-ワークショップの最初の部分では、OpenTelemetry による自動計装がどのようにして OpenTelemetry Collector に関数がどの言語で書かれているかを自動検出させ、それらの関数のトレースの取得を開始させるかを示します。
+ワークショップの最初の部分では、OpenTelemetryによる自動計装がどのようにしてOpenTelemetry Collectorに関数がどの言語で書かれているかを自動検出させ、それらの関数のトレースの取得を開始させるかを示します。
 
 ### 自動計装ワークショップディレクトリとコンテンツ
 
-まず、`o11y-lambda-workshop/auto`ディレクトリとそのファイルの一部を見てみましょう。ここにはワークショップの自動計装部分のすべてのコンテンツがあります。
+まず、`o11y-lambda-workshop/auto` ディレクトリとそのファイルの一部を見てみましょう。ここにはワークショップの自動計装部分のすべてのコンテンツがあります。
 
 #### `auto` ディレクトリ
 
@@ -48,13 +48,13 @@ weight: 2
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-- このテンプレートによってどの AWS リソースが作成されているか特定できますか？
-- OpenTelemetry 計装がどこでセットアップされているか特定できますか？
+- このテンプレートによってどのAWSリソースが作成されているか特定できますか？
+- OpenTelemetry計装がどこでセットアップされているか特定できますか？
   - _ヒント: Lambda 関数の定義を調べてください_
 - 以前に設定した環境変数によってどの計装情報が提供されているか判断できますか？
   {{% /notice %}}
 
-各 Lambda 関数の環境変数が設定されているセクションが見つかるはずです。
+各Lambda関数の環境変数が設定されているセクションが見つかるはずです。
 
 ```bash
 environment {
@@ -71,65 +71,65 @@ environment {
 
 これらの環境変数を使用することで、いくつかの方法で自動計装を構成しています：
 
-- 環境変数を設定して、データのエクスポート先となる Splunk Observability Cloud 組織を OpenTelemetry collector に伝えています。
+- 環境変数を設定して、データのエクスポート先となるSplunk Observability Cloud組織をOpenTelemetry collectorに伝えています。
 
   ```bash
   SPLUNK_ACCESS_TOKEN = var.o11y_access_token
   SPLUNK_ACCESS_TOKEN = var.o11y_realm
   ```
 
-- また、OpenTelemetry が関数/サービスを識別し、それが属する環境/アプリケーションを認識するのに役立つ変数も設定しています。
+- また、OpenTelemetryが関数/サービスを識別し、それが属する環境/アプリケーションを認識するのに役立つ変数も設定しています。
 
   ```bash
   OTEL_SERVICE_NAME = "producer-lambda" # consumer関数の場合はconsumer-lambda
   OTEL_RESOURCE_ATTRIBUTES = "deployment.environment=${var.prefix}-lambda-shop"
   ```
 
-- コード言語に基づいて、関数のハンドラーに自動的にトレースデータを取得するために適用する必要があるラッパーを OpenTelemetry に知らせる環境変数を設定しています。
+- コード言語に基づいて、関数のハンドラーに自動的にトレースデータを取得するために適用する必要があるラッパーをOpenTelemetryに知らせる環境変数を設定しています。
 
   ```bash
   AWS_LAMBDA_EXEC_WRAPPER - "/opt/nodejs-otel-handler"
   ```
 
-- `producer-lambda`関数の場合、レコードを配置する Kinesis ストリームを関数に知らせるための環境変数を設定しています。
+- `producer-lambda` 関数の場合、レコードを配置するKinesisストリームを関数に知らせるための環境変数を設定しています。
 
   ```bash
   KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
   ```
 
-- これらの値は、「前提条件」セクションで設定した環境変数、および、この Terraform 構成ファイルの一部としてデプロイされるリソースから取得されます。
+- これらの値は、「前提条件」セクションで設定した環境変数、および、このTerraform構成ファイルの一部としてデプロイされるリソースから取得されます。
 
-また、各関数に Splunk OpenTelemetry Lambda layer を設定する引数も確認できるはずです
+また、各関数にSplunk OpenTelemetry Lambda layerを設定する引数も確認できるはずです
 
 ```bash
 layers = var.otel_lambda_layer
 ```
 
-- OpenTelemetry Lambda layer は、Lambda 関数の呼び出し時に計測データを収集、処理、およびエクスポートするために必要なライブラリと依存関係を含むパッケージです。
+- OpenTelemetry Lambda layerは、Lambda関数の呼び出し時に計測データを収集、処理、およびエクスポートするために必要なライブラリと依存関係を含むパッケージです。
 
-- すべての OpenTelemetry サポート言語のライブラリと依存関係を持つ一般的な OTel Lambda layer がありますが、関数をさらに軽量化するための言語固有の Lambda layer も存在します。
+- すべてのOpenTelemetryサポート言語のライブラリと依存関係を持つ一般的なOTel Lambda layerがありますが、関数をさらに軽量化するための言語固有のLambda layerも存在します。
   - _各 AWS リージョンの関連する Splunk OpenTelemetry Lambda layer ARN（Amazon Resource Name）と最新バージョンは[こちら](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)で確認できます_
 
 #### `producer.mjs` ファイル
 
-次に、`producer-lambda`関数のコードを見てみましょう：
+次に、`producer-lambda` 関数のコードを見てみましょう：
 
-- 以下のコマンドを実行して`producer.mjs`ファイルの内容を表示します：
+- 以下のコマンドを実行して `producer.mjs` ファイルの内容を表示します：
 
   ```bash
   cat ~/o11y-lambda-workshop/auto/handler/producer.mjs
   ```
 
-  - この NodeJS モジュールにはプロデューサー関数のコードが含まれています。
-  - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象の Kinesis ストリームにレコードとして配置します
+  - このNodeJSモジュールにはプロデューサー関数のコードが含まれています。
+  - 基本的に、この関数はメッセージを受け取り、そのメッセージを対象のKinesisストリームにレコードとして配置します
 
 ### Lambda 関数のデプロイとトレースデータの生成
 
-`auto`ディレクトリの内容に慣れたところで、ワークショップ用のリソースをデプロイし、Lambda 関数からトレースデータを生成していきます。
+`auto` ディレクトリの内容に慣れたところで、ワークショップ用のリソースをデプロイし、Lambda関数からトレースデータを生成していきます。
 
-#### `auto`ディレクトリで Terraform を初期化する
+#### `auto` ディレクトリで Terraform を初期化する
 
-`main.tf`ファイルで定義されたリソースをデプロイするには、まず Terraform がそのファイルと同じフォルダで初期化されていることを確認する必要があります。
+`main.tf` ファイルで定義されたリソースをデプロイするには、まずTerraformがそのファイルと同じフォルダで初期化されていることを確認する必要があります。
 
 - `auto` ディレクトリにいることを確認します:
 
@@ -145,7 +145,7 @@ layers = var.otel_lambda_layer
   cd ~/o11y-lambda-workshop/auto
   ```
 
-- 次のコマンドを実行して、このディレクトリで Terraform を初期化します
+- 次のコマンドを実行して、このディレクトリでTerraformを初期化します
 
   ```bash
   terraform init
@@ -154,14 +154,14 @@ layers = var.otel_lambda_layer
   - このコマンドは同じフォルダにいくつかの要素を作成します：
     - `.terraform.lock.hcl` ファイル：リソースを提供するために使用するプロバイダーを記録します
     - `.terraform` ディレクトリ：プロバイダーの構成を保存します
-  - 上記のファイルに加えて、`apply` サブコマンドを使用して terraform を実行すると、デプロイされたリソースの状態を追跡するために `terraform.tfstate` ファイルが作成されます。
-  - これらにより、Terraform は `auto` ディレクトリの `main.tf` ファイル内で定義されたとおりに、リソースの作成、状態、破棄を管理できます
+  - 上記のファイルに加えて、`apply` サブコマンドを使用してterraformを実行すると、デプロイされたリソースの状態を追跡するために `terraform.tfstate` ファイルが作成されます。
+  - これらにより、Terraformは `auto` ディレクトリの `main.tf` ファイル内で定義されたとおりに、リソースの作成、状態、破棄を管理できます
 
 #### Lambda 関数とその他の AWS リソースをデプロイする
 
-このディレクトリで Terraform を初期化したら、リソースのデプロイに進むことができます。
+このディレクトリでTerraformを初期化したら、リソースのデプロイに進むことができます。
 
-- まず、**terraform plan** コマンドを実行して、Terraform が問題なくリソースを作成できることを確認します。
+- まず、**terraform plan** コマンドを実行して、Terraformが問題なくリソースを作成できることを確認します。
 
   ```bash
   terraform plan
@@ -170,7 +170,7 @@ layers = var.otel_lambda_layer
   - _これにより、リソースをデプロイするプランといくつかのデータが出力され、意図したとおりに動作することを確認できます。_
   - _プランに表示される値の一部は、作成後に判明するか、セキュリティ上の理由でマスクされていることに注意してください。_
 
-- 次に、**terraform apply** コマンドを実行して、**main.tf** ファイルから Lambda 関数とその他のサポートリソースをデプロイします：
+- 次に、**terraform apply** コマンドを実行して、**main.tf** ファイルからLambda関数とその他のサポートリソースをデプロイします：
 
   ```bash
   terraform apply
@@ -199,7 +199,7 @@ layers = var.otel_lambda_layer
 
 #### `producer-lambda` URL (`base_url`) にトラフィックを送信する
 
-デプロイした Lambda 関数からトレースを取得し始めるには、トラフィックを生成する必要があります。`producer-lambda`関数のエンドポイントにメッセージを送信し、それを Kinesis ストリームにレコードとして配置し、その後`consumer-lambda`関数によってストリームから取得されるようにします。
+デプロイしたLambda関数からトレースを取得し始めるには、トラフィックを生成する必要があります。`producer-lambda` 関数のエンドポイントにメッセージを送信し、それをKinesisストリームにレコードとして配置し、その後 `consumer-lambda` 関数によってストリームから取得されるようにします。
 
 - `auto` ディレクトリにいることを確認します：
 
@@ -215,7 +215,7 @@ layers = var.otel_lambda_layer
   cd ~/o11y-lambda-workshop/auto
   ```
 
-`send_message.py` スクリプトは、コマンドラインで入力を受け取り、JSON ディクショナリに追加し、while ループの一部として `producer-lambda` 関数のエンドポイントに繰り返し送信する Python スクリプトです。
+`send_message.py` スクリプトは、コマンドラインで入力を受け取り、JSONディクショナリに追加し、whileループの一部として `producer-lambda` 関数のエンドポイントに繰り返し送信するPythonスクリプトです。
 
 - Run the `send_message.py` script as a background process
 
@@ -261,7 +261,7 @@ layers = var.otel_lambda_layer
 
 #### Lambda 関数のログを表示する
 
-次に、Lambda 関数のログを確認しましょう。
+次に、Lambda関数のログを確認しましょう。
 
 - **producer-lambda** ログを表示するには、**producer.logs** ファイルを確認します：
 
@@ -279,7 +279,7 @@ layers = var.otel_lambda_layer
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-- OpenTelemetry が読み込まれているのが見えますか？`splunk-extension-wrapper`のある行に注目してください
-  - - _**splunk-extension-wrapper**が読み込まれているのを見るために`head -n 50 producer.logs`または`head -n 50 consumer.logs`の実行を検討してください。_
+- OpenTelemetryが読み込まれているのが見えますか？`splunk-extension-wrapper` のある行に注目してください
+  - - _**splunk-extension-wrapper**が読み込まれているのを見るために `head -n 50 producer.logs` または `head -n 50 consumer.logs` の実行を検討してください。_
 
 {{% /notice %}}

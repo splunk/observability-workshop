@@ -10,7 +10,7 @@ Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https:
 
 ドロップダウンから設定済みの **RUM ACCESS TOKEN** を選択し、**Next** をクリックします。以下の構文で **App name** と**Environment** を入力します：
 
-次に、ワークショップのRUMトークンを選択し、 App nameとEnvironmentを定義します。ウィザードでは、ページ上部の `<head>` セクションに配置する必要のある HTML コードの断片が表示されます。この例では、次のように記述していますが、ウィザードでは先程入力した値が反映されてるはずです。
+次に、ワークショップのRUMトークンを選択し、 App nameとEnvironmentを定義します。ウィザードでは、ページ上部の `<head>` セクションに配置する必要のあるHTMLコードの断片が表示されます。この例では、次のように記述していますが、ウィザードでは先程入力した値が反映されてるはずです。
 
 - Application Name: `<hostname>-petclinic-service`
 - Environment: `<hostname>-petclinic-env`

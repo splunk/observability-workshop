@@ -10,7 +10,7 @@ weight: 4
 {{% notice title="情報" style="green" title="演習" icon="running" %}}
 
 - 前回の演習後、まだ**Log Observer**にいることを確認してください。
-- フィルターは前回の演習と同じで、時間選択が**過去 15 分**に設定され、severity=error、`sf_service=paymentservice`、`sf_environment=[WORKSHOPNAME]`でフィルタリングされている必要があります。
+- フィルターは前回の演習と同じで、時間選択が**過去 15 分**に設定され、severity=error、`sf_service=paymentservice`、`sf_environment=[WORKSHOPNAME]` でフィルタリングされている必要があります。
 - 必要なフィールドのみを含むヘッダーがあることを確認してください。
 - 再度**Save**をクリックし、**Save to Dashvoard**をクリックします。
 - これによりチャート作成ダイアログが再度表示されます。
@@ -32,4 +32,4 @@ weight: 4
 
 {{% /notice %}}
 
-次のセッションでは、Splunk Synthetics を見て、Web ベースのアプリケーションのテストを自動化する方法を確認します。
+次のセッションでは、Splunk Syntheticsを見て、Webベースのアプリケーションのテストを自動化する方法を確認します。

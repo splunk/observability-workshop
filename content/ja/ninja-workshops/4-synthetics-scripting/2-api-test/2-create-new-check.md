@@ -6,6 +6,6 @@ weight: 2
 
 ## 新しい API テストを作成
 
-{{< button style="blue" >}}Add new test{{< /button >}} ボタンをクリックし、ドロップダウンから **API test** を選択して新しい API テストを作成します。テスト名には **イニシャル** に続けて **Spotify API** と入力します（例: **RWC - Spotify API**）。
+{{< button style="blue" >}}Add new test{{< /button >}} ボタンをクリックし、ドロップダウンから **API test** を選択して新しいAPIテストを作成します。テスト名には **イニシャル** に続けて **Spotify API** と入力します（例: **RWC - Spotify API**）。
 
 ![placeholder](../../img/new-api-check.png)

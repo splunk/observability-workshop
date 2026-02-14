@@ -6,7 +6,7 @@ weight: 1
 
 ## OpenTelemetry Collector の Contrib ディストリビューションをダウンロードする
 
-OpenTelemetry Collector のインストールのために、まずはダウンロードするのが最初のステップです。このラボでは、 `wget` コマンドを使って OpenTelemetry の GitHub リポジトリから `.deb` パッケージをダウンロードしていきます。
+OpenTelemetry Collectorのインストールのために、まずはダウンロードするのが最初のステップです。このラボでは、 `wget` コマンドを使ってOpenTelemetryのGitHubリポジトリから `.deb` パッケージをダウンロードしていきます。
 
 [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
 から、ご利用のプラットフォーム用の `.deb` パッケージを入手してください。

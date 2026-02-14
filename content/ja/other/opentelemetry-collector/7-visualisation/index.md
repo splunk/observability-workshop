@@ -6,7 +6,7 @@ weight: 7
 
 ## Splunk Observability Cloud
 
-OpenTelemetry Collector を設定して Splunk Observability Cloud にメトリクスを送信するようにしたので、Splunk Observability Cloud でデータを見てみましょう。Splunk Observability Cloud　への招待を受け取っていない場合は、講師がログイン資格情報を提供します。
+OpenTelemetry Collectorを設定してSplunk Observability Cloudにメトリクスを送信するようにしたので、Splunk Observability Cloudでデータを見てみましょう。Splunk Observability Cloudへの招待を受け取っていない場合は、講師がログイン資格情報を提供します。
 
 その前に、もう少し興味深くするために、インスタンスでストレステストを実行しましょう。これにより、ダッシュボードが活性化されます。
 
@@ -24,7 +24,7 @@ Splunk Observability Cloudにログインしたら、左側のナビゲーショ
 ![search-dashboards](../images/search-dashboards.png)
 
 {{% notice style="info" %}}
-ダッシュボードが存在しない場合は、講師が迅速に追加します。このワークショップの Splunk 主催版に参加していない場合、インポートするダッシュボードグループはこのページの下部にあります。
+ダッシュボードが存在しない場合は、講師が迅速に追加します。このワークショップのSplunk主催版に参加していない場合、インポートするダッシュボードグループはこのページの下部にあります。
 {{% /notice %}}
 
 **OTel Contrib Dashboard** ダッシュボードをクリックして開きます：
@@ -39,6 +39,6 @@ Splunk Observability Cloudにログインしたら、左側のナビゲーショ
 
 ![select-conf-attendee-name](../images/select-participant-name.png)
 
-これで、OpenTelemetry Collector を設定したホストの、ホストメトリクスを確認することができます。
+これで、OpenTelemetry Collectorを設定したホストの、ホストメトリクスを確認することができます。
 
 {{% resources sort="asc" style="info" title="ダッシュボードJSONのダウンロード方法" /%}}

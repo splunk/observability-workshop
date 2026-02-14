@@ -6,7 +6,7 @@ weight: 12
 
 ### メトリクスを設計する
 
-レシーバーによってキャプチャされるメトリクスを定義し、エクスポートするために、コレクターのために開発された [mdatagen](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen) を使って、yaml で定義したメトリクスをコードに変換していきます。
+レシーバーによってキャプチャされるメトリクスを定義し、エクスポートするために、コレクターのために開発された [mdatagen](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen) を使って、yamlで定義したメトリクスをコードに変換していきます。
 
 {{% tabs %}}
 {{% tab title="metadata.yaml"%}}
@@ -86,7 +86,7 @@ package jenkinscireceiver
 
 ## Factory の構築
 
-Factory はソフトウェアデザインパターンの一種で、提供された Configuration を使って、動的にオブジェクト（この場合は `jenkinscireceiver`）を作成するものです。現実的な例では、携帯電話店に行って、あなたの正確な説明に合った携帯電話を求め、それを提供されるようなものです。
+Factoryはソフトウェアデザインパターンの一種で、提供されたConfigurationを使って、動的にオブジェクト（この場合は `jenkinscireceiver`）を作成するものです。現実的な例では、携帯電話店に行って、あなたの正確な説明に合った携帯電話を求め、それを提供されるようなものです。
 
 コマンド `go generate -x ./...` を実行すると、定義されたメトリクスをエクスポートするために必要なすべてのコードを含む新しいフォルダ `jenkinscireceiver/internal/metadata` が作成されます。生成されるコードは以下の通りです：
 

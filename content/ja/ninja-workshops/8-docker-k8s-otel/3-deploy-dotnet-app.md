@@ -7,7 +7,7 @@ time: 10 minutes
 
 ## 前提条件
 
-アプリケーションをデプロイする前に、インスタンスに.NET 8 SDK をインストールする必要があります。
+アプリケーションをデプロイする前に、インスタンスに.NET 8 SDKをインストールする必要があります。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -57,8 +57,8 @@ etc.
 cd ~/workshop/docker-k8s-otel/helloworld
 ```
 
-このワークショップでは、シンプルな「Hello World」.NET アプリケーションを使用します。主要なロジックは
-HelloWorldController.cs ファイルにあります：
+このワークショップでは、シンプルな「Hello World」.NETアプリケーションを使用します。主要なロジックは
+HelloWorldController.csファイルにあります：
 
 ```cs
 public class HelloWorldController : ControllerBase
@@ -144,7 +144,7 @@ info: Microsoft.Hosting.Lifetime[0]
 {{% /tab %}}
 {{< /tabs >}}
 
-実行したら、Ubuntu インスタンスへの SSH 接続を 2 つ目のターミナルで開き、curl を使用してアプリケーションにアクセスします：
+実行したら、UbuntuインスタンスへのSSH接続を2つ目のターミナルで開き、curlを使用してアプリケーションにアクセスします：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -186,7 +186,7 @@ Hello, Tom!
 
 ## 次のステップ
 
-アプリケーションを OpenTelemetry で計装するために使用できる 3 つの方法は何でしょうか？
+アプリケーションをOpenTelemetryで計装するために使用できる3つの方法は何でしょうか？
 
 ![Traces](../images/NetInstrumentation.png)
 

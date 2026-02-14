@@ -5,22 +5,22 @@ weight: 6
 time: 10 minutes
 ---
 
-アプリケーションを正常に Docker 化したので、次に OpenTelemetry による計装 を追加しましょう。
+アプリケーションを正常にDocker化したので、次にOpenTelemetryによる計装を追加しましょう。
 
-これは、Linux で実行しているアプリケーションを計装した際の手順と似ていますが、
+これは、Linuxで実行しているアプリケーションを計装した際の手順と似ていますが、
 注意すべきいくつかの重要な違いがあります。
 
 ## Dockerfile の更新
 
-`/home/splunk/workshop/docker-k8s-otel/helloworld`ディレクトリの`Dockerfile`を更新しましょう。
+`/home/splunk/workshop/docker-k8s-otel/helloworld` ディレクトリの `Dockerfile` を更新しましょう。
 
-Dockerfile で.NET アプリケーションがビルドされた後、以下の操作を行いたいと思います：
+Dockerfileで.NETアプリケーションがビルドされた後、以下の操作を行いたいと思います：
 
-- `splunk-otel-dotnet-install.sh`をダウンロードして実行するために必要な依存関係を追加する
-- Splunk OTel .NET インストーラーをダウンロードする
+- `splunk-otel-dotnet-install.sh` をダウンロードして実行するために必要な依存関係を追加する
+- Splunk OTel .NETインストーラーをダウンロードする
 - ディストリビューションをインストールする
 
-Dockerfile のビルドステージに以下を追加できます。vi で Dockerfile を開きましょう：
+Dockerfileのビルドステージに以下を追加できます。viでDockerfileを開きましょう：
 
 ```bash
 vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
@@ -51,17 +51,17 @@ RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/do
 RUN sh ./splunk-otel-dotnet-install.sh
 ```
 
-次に、以下の変更で Dockerfile の最終ステージを更新します：
+次に、以下の変更でDockerfileの最終ステージを更新します：
 
 - ビルドイメージから最終イメージに/root/.splunk-otel-dotnet/をコピーする
-- entrypoint.sh ファイルもコピーする
-- `OTEL_SERVICE_NAME`と`OTEL_RESOURCE_ATTRIBUTES`環境変数を設定する
-- `ENTRYPOINT`を`entrypoint.sh`に設定する
+- entrypoint.shファイルもコピーする
+- `OTEL_SERVICE_NAME` と `OTEL_RESOURCE_ATTRIBUTES` 環境変数を設定する
+- `ENTRYPOINT` を `entrypoint.sh` に設定する
 
 最も簡単な方法は、最終ステージ全体を以下の内容で置き換えることです：
 
-> **重要** Dockerfile の`$INSTANCE`をあなたのインスタンス名に置き換えてください。
-> インスタンス名は`echo $INSTANCE`を実行することで確認できます。
+> **重要** Dockerfile の `$INSTANCE` をあなたのインスタンス名に置き換えてください。
+> インスタンス名は `echo $INSTANCE` を実行することで確認できます。
 
 ```dockerfile
 # CODE ALREADY IN YOUR DOCKERFILE
@@ -87,13 +87,13 @@ ENTRYPOINT ["sh", "entrypoint.sh"]
 CMD ["dotnet", "helloworld.dll"]
 ```
 
-> vi での変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
+> vi での変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-これらすべての変更の後、Dockerfile は以下のようになるはずです：
+これらすべての変更の後、Dockerfileは以下のようになるはずです：
 
 > **重要** このコンテンツを自分の Dockerfile にコピー＆ペーストする場合は、
-> Dockerfile の`$INSTANCE`をあなたのインスタンス名に置き換えてください。
-> インスタンス名は`echo $INSTANCE`を実行することで確認できます。
+> Dockerfile の `$INSTANCE` をあなたのインスタンス名に置き換えてください。
+> インスタンス名は `echo $INSTANCE` を実行することで確認できます。
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
@@ -147,7 +147,7 @@ CMD ["dotnet", "helloworld.dll"]
 
 ## entrypoint.sh ファイルの作成
 
-また、`/home/splunk/workshop/docker-k8s-otel/helloworld`フォルダに`entrypoint.sh`という名前のファイルを
+また、`/home/splunk/workshop/docker-k8s-otel/helloworld` フォルダに `entrypoint.sh` という名前のファイルを
 以下の内容で作成する必要があります：
 
 ```bash
@@ -165,9 +165,9 @@ vi /home/splunk/workshop/docker-k8s-otel/helloworld/entrypoint.sh
 exec "$@"
 ```
 
-> vi での変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
+> vi での変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-`entrypoint.sh`スクリプトは、計装に含まれる instrument.sh スクリプトが環境変数を**コンテナ起動時に**取得するために必要です。これにより、各プラットフォームに対して環境変数が正しく設定されることが保証されます。
+`entrypoint.sh` スクリプトは、計装に含まれるinstrument.shスクリプトが環境変数を**コンテナ起動時に**取得するために必要です。これにより、各プラットフォームに対して環境変数が正しく設定されることが保証されます。
 
 > 「なぜ Linux ホスト上で OpenTelemetry .NET instrumentation を有効化したときのように、
 > Dockerfile に以下のコマンドを含めるだけではだめなのか？」と疑問に思うかもしれません。
@@ -183,7 +183,7 @@ exec "$@"
 
 ## Docker イメージのビルド
 
-OpenTelemetry .NET instrumentation を含む新しい Docker イメージをビルドしましょう：
+OpenTelemetry .NET instrumentationを含む新しいDockerイメージをビルドしましょう：
 
 ```bash
 docker build -t helloworld:1.1 .
@@ -216,7 +216,7 @@ docker build -t helloworld:1.1 .
 
 ## アプリケーションの実行
 
-新しい Docker イメージを実行しましょう：
+新しいDockerイメージを実行しましょう：
 
 ```bash
 docker run --name helloworld \
@@ -234,13 +234,13 @@ curl http://localhost:8080/hello
 
 トラフィックを生成するために上記のコマンドを数回実行しましょう。
 
-1 分ほど経過したら、Splunk Observability Cloud に新しいトレースが表示されることを確認します。
+1分ほど経過したら、Splunk Observability Cloudに新しいトレースが表示されることを確認します。
 
 > あなたの特定の環境でトレースを探すことを忘れないでください。
 
 ## トラブルシューティング
 
-Splunk Observability Cloud にトレースが表示されない場合は、以下のようにトラブルシューティングを行うことができます。
+Splunk Observability Cloudにトレースが表示されない場合は、以下のようにトラブルシューティングを行うことができます。
 
 まず、コレクター設定ファイルを編集用に開きます：
 
@@ -271,7 +271,7 @@ service:
 sudo systemctl restart splunk-otel-collector
 ```
 
-`journalctl`を使用してコレクターログを表示できます：
+`journalctl` を使用してコレクターログを表示できます：
 
 > ログの追跡を終了するには、Ctrl + C を押します。
 

@@ -7,24 +7,24 @@ time: 15 minutes
 
 ## Dockerfile の更新
 
-Kubernetes では、環境変数は通常、Docker イメージに組み込むのではなく`.yaml`マニフェストファイルで管理されます。そこで、Dockerfile から以下の 2 つの環境変数を削除しましょう：
+Kubernetesでは、環境変数は通常、Dockerイメージに組み込むのではなく `.yaml` マニフェストファイルで管理されます。そこで、Dockerfileから以下の2つの環境変数を削除しましょう：
 
 ```bash
 vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
 
-次に、以下の 2 つの環境変数を削除します：
+次に、以下の2つの環境変数を削除します：
 
 ```dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 ```
 
-> vi での変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
+> vi での変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
 ## 新しい Docker イメージのビルド
 
-環境変数を除外した新しい Docker イメージをビルドしましょう：
+環境変数を除外した新しいDockerイメージをビルドしましょう：
 
 ```bash
 cd /home/splunk/workshop/docker-k8s-otel/helloworld
@@ -59,8 +59,8 @@ docker build -t helloworld:1.2 .
 
 ## Docker イメージを Kubernetes にインポート
 
-通常であれば、Docker イメージを Docker Hub などのリポジトリにプッシュします。
-しかし、今回のセッションでは、k3s に直接インポートする回避策を使用します。
+通常であれば、DockerイメージをDocker Hubなどのリポジトリにプッシュします。
+しかし、今回のセッションでは、k3sに直接インポートする回避策を使用します。
 
 ```bash
 cd /home/splunk
@@ -71,9 +71,9 @@ sudo k3d image import helloworld:1.2 --cluster $INSTANCE-cluster
 
 ## .NET アプリケーションのデプロイ
 
-> ヒント：vi で編集モードに入るには「i」キーを押します。変更を保存するには、`esc`キーを押してコマンドモードに入り、`:wq!`と入力してから`enter/return`キーを押します。
+> ヒント：vi で編集モードに入るには「i」キーを押します。変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-.NET アプリケーションを K8s にデプロイするために、`/home/splunk`に`deployment.yaml`という名前のファイルを作成しましょう：
+.NETアプリケーションをK8sにデプロイするために、`/home/splunk` に `deployment.yaml` という名前のファイルを作成しましょう：
 
 ```bash
 vi /home/splunk/deployment.yaml
@@ -110,7 +110,7 @@ spec:
 > [!tip]- Kubernetes における Deployment とは？
 > deployment.yaml ファイルは、deployment リソースを定義するために使用される kubernetes 設定ファイルです。このファイルは Kubernetes でアプリケーションを管理するための基盤となります！deployment 設定は deployment の **_望ましい状態_** を定義し、Kubernetes が **_実際の状態_** がそれと一致するよう保証します。これにより、アプリケーション pod の自己修復が可能になり、アプリケーションの簡単な更新やロールバックも可能になります。
 
-次に、同じディレクトリに`service.yaml`という名前の 2 つ目のファイルを作成します：
+次に、同じディレクトリに `service.yaml` という名前の2つ目のファイルを作成します：
 
 ```bash
 vi /home/splunk/service.yaml
@@ -163,7 +163,7 @@ service/helloworld created
 
 ## アプリケーションのテスト
 
-アプリケーションにアクセスするには、まず IP アドレスを取得する必要があります：
+アプリケーションにアクセスするには、まずIPアドレスを取得する必要があります：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -182,7 +182,7 @@ IP:                10.43.102.103
 {{% /tab %}}
 {{< /tabs >}}
 
-その後、前のコマンドから返された Cluster IP を使用してアプリケーションにアクセスできます。
+その後、前のコマンドから返されたCluster IPを使用してアプリケーションにアクセスできます。
 例：
 
 ```bash
@@ -191,12 +191,12 @@ curl http://10.43.102.103:8080/hello/Kubernetes
 
 ## OpenTelemetry の設定
 
-.NET OpenTelemetry 計装はすでに Docker イメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
+.NET OpenTelemetry計装はすでにDockerイメージに組み込まれています。しかし、データの送信先を指定するためにいくつかの環境変数を設定する必要があります。
 
-先ほど作成した`deployment.yaml`ファイルに以下を追加します：
+先ほど作成した `deployment.yaml` ファイルに以下を追加します：
 
-> **重要** 以下の YAML の`$INSTANCE`をあなたのインスタンス名に置き換えてください。
-> インスタンス名は`echo $INSTANCE`を実行することで確認できます。
+> **重要** 以下の YAML の `$INSTANCE` をあなたのインスタンス名に置き換えてください。
+> インスタンス名は `echo $INSTANCE` を実行することで確認できます。
 
 ```yaml
 env:
@@ -214,7 +214,7 @@ env:
     value: "deployment.environment=otel-$INSTANCE"
 ```
 
-完全な`deployment.yaml`ファイルは以下のようになります（`$INSTANCE`ではなく**あなたの**インスタンス名を使用してください）：
+完全な `deployment.yaml` ファイルは以下のようになります（`$INSTANCE` ではなく**あなたの**インスタンス名を使用してください）：
 
 ```yaml
 apiVersion: apps/v1
@@ -271,27 +271,27 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-その後、`curl`を使用してトラフィックを生成します。
+その後、`curl` を使用してトラフィックを生成します。
 
-1 分ほど経過すると、o11y cloud でトレースが流れているのが確認できるはずです。ただし、より早くトレースを確認したい場合は、以下の方法があります...
+1分ほど経過すると、o11y cloudでトレースが流れているのが確認できるはずです。ただし、より早くトレースを確認したい場合は、以下の方法があります...
 
 ## チャレンジ
 
-開発者として、トレース ID を素早く取得するか、コンソールフィードバックを見たい場合、deployment.yaml ファイルにどのような環境変数を追加できるでしょうか？
+開発者として、トレースIDを素早く取得するか、コンソールフィードバックを見たい場合、deployment.yamlファイルにどのような環境変数を追加できるでしょうか？
 
 <details>
   <summary><b>答えを見るにはここをクリック</b></summary>
 
-セクション 4「.NET Application を OpenTelemetry で計装する」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER`環境変数を使って trace を console に書き込むトリックをお見せしました。この変数を deployment.yaml に追加し、アプリケーションを再 deploy して、helloworld アプリから log を tail することで、trace id を取得して Splunk Observability Cloud で trace を見つけることができます。（ワークショップの次のセクションでは、debug exporter の使用についても説明します。これは K8s 環境でアプリケーションを debug する際の典型的な方法です。）
+セクション4「.NET ApplicationをOpenTelemetryで計装する」のチャレンジで思い出していただければ、`OTEL_TRACES_EXPORTER` 環境変数を使ってtraceをconsoleに書き込むトリックをお見せしました。この変数をdeployment.yamlに追加し、アプリケーションを再deployして、helloworldアプリからlogをtailすることで、trace idを取得してSplunk Observability Cloudでtraceを見つけることができます。（ワークショップの次のセクションでは、debug exporterの使用についても説明します。これはK8s環境でアプリケーションをdebugする際の典型的な方法です。）
 
-まず、vi で deployment.yaml ファイルを開きます：
+まず、viでdeployment.yamlファイルを開きます：
 
 ```bash
 vi deployment.yaml
 
 ```
 
-次に、`OTEL_TRACES_EXPORTER`環境変数を追加します：
+次に、`OTEL_TRACES_EXPORTER` 環境変数を追加します：
 
 ```yaml
 env:
@@ -312,7 +312,7 @@ env:
     value: "otlp,console"
 ```
 
-変更を保存してからアプリケーションを再 deploy します：
+変更を保存してからアプリケーションを再deployします：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -331,7 +331,7 @@ deployment.apps/helloworld configured
 {{% /tab %}}
 {{< /tabs >}}
 
-helloworld の log を tail します：
+helloworldのlogをtailします：
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -391,6 +391,6 @@ Resource associated with Activity:
 {{% /tab %}}
 {{< /tabs >}}
 
-次に、別の terminal window で curl コマンドを使って trace を生成します。log を tail している console で trace id が表示されるはずです。`Activity.TraceId:`の値をコピーして、APM の Trace 検索フィールドに貼り付けてください。
+次に、別のterminal windowでcurlコマンドを使ってtraceを生成します。logをtailしているconsoleでtrace idが表示されるはずです。`Activity.TraceId:` の値をコピーして、APMのTrace検索フィールドに貼り付けてください。
 
 </details>

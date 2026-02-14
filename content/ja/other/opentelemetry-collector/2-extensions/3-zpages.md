@@ -6,12 +6,12 @@ weight: 3
 
 ## zPages エクステンション
 
-[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) は、外部エクスポータに代わるプロセス内部の機能です。有効化すると、バックグラウンドでトレースとメトリクス情報を収集し、集計し、どのようなデータを扱ったかの Web ページを公開します。zpages は、コレクターが期待どおりに動作していることを確認するための非常に便利な診断機能です。
+[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) は、外部エクスポータに代わるプロセス内部の機能です。有効化すると、バックグラウンドでトレースとメトリクス情報を収集し、集計し、どのようなデータを扱ったかのWebページを公開します。zpagesは、コレクターが期待どおりに動作していることを確認するための非常に便利な診断機能です。
 
 {{< tabs >}}
 {{% tab title="ServiceZ" %}}
 
-**ServiceZ** は、コレクターサービスの概要と、pipelinez、extensionz、featurez zPages へのクイックアクセスを提供します。このページでは、ビルドとランタイムの情報も提供します。
+**ServiceZ** は、コレクターサービスの概要と、pipelinez、extensionz、featurez zPagesへのクイックアクセスを提供します。このページでは、ビルドとランタイムの情報も提供します。
 
 URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (`localhost` は、適切なホスト名に切り替えてください)
 
@@ -40,7 +40,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storage エクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storageエクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}
 
 これをこなうには、ディストリビューションに `file_storage` エクステンションモジュールがインストールされていることを確認する必要があります。確認するには、`otelcol-contrib components` コマンドを実行します: 
 
@@ -237,7 +237,7 @@ extensions:
 
 このエクステンションは、エクスポーターが設定されたエンドポイントにデータを送信できない事象が発生したときに、データをディスクにキューイングする機能をエクスポーターに提供します。
 
-このエクステンションを設定するには、以下の情報を含むように設定を更新する必要があります。まず、 /tmp/otel-data ディレクトリを作成し、読み取り/書き込み権限を与えてください：
+このエクステンションを設定するには、以下の情報を含むように設定を更新する必要があります。まず、 /tmp/otel-dataディレクトリを作成し、読み取り/書き込み権限を与えてください：
 
 ```yaml
 extensions:
@@ -352,4 +352,4 @@ service:
 
 さて、エクステンションについて復習したところで、ワークショップのデータパイプラインの部分に飛び込んでみましょう。パイプラインとは、コレクター内でデータがたどる経路を定義するもので、レシーバーから始まり、追加の処理や変更をし、最終的にエクスポーターを経由してコレクターを出ます。
 
-OpenTelemetry Collector のデータパイプラインは、レシーバー、プロセッサー、エクスポーターで構成されています。まずは、レシーバーから見ていきましょう。
+OpenTelemetry Collectorのデータパイプラインは、レシーバー、プロセッサー、エクスポーターで構成されています。まずは、レシーバーから見ていきましょう。
