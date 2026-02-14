@@ -8,7 +8,7 @@ weight: 3
 
 また、コレクターがインスタンスのホスト名やAWS/EC2のメタデータを取得できるように、`resourcedetection/system` および `resourcedetection/ec2` プロセッサーを追加しました。これらのプロセッサーをメトリクスパイプライン下で有効にする必要があります。
 
-`metrics` パイプラインの下の `processors` セクションを更新して、`resourcedetection/system` および `resourcedetection/ec2` を追加します：
+`metrics` パイプラインの下の `processors` セクションを更新して、`resourcedetection/system` および `resourcedetection/ec2` を追加します
 
 ```yaml {hl_lines="12"}
 service:

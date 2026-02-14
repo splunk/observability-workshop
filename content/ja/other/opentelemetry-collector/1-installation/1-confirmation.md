@@ -6,7 +6,7 @@ weight: 1
 
 ## Collector が動作していることを確認する
 
-これで、Collector が動いているはずです。root権限で `systemctl` コマンドを使って、それを確かめてみましょう。
+これで、Collectorが動いているはずです。root権限で `systemctl` コマンドを使って、それを確かめてみましょう。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -45,7 +45,7 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{< /tabs >}}
 
 
-{{% notice title="Tips: status 表示を中止するには" style="info" %}}
+{{% notice title="Tips: status表示を中止するには" style="info" %}}
 `systemctl status` コマンドの表示を中止するときは `q` キーを押してください。
 {{% /notice %}}
 
@@ -77,7 +77,7 @@ sudo systemctl restart otelcol-contrib
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Open Telemetry Collector Builder (ocb) を使って、独自のコレクターを作る {{% /badge %}}" %}}
 
-このパートでは、お使いのシステムに以下のものがインストールされている必要があります：
+このパートでは、お使いのシステムに以下のものがインストールされている必要があります
 
 - Go (latest version)
 
@@ -101,14 +101,14 @@ sudo systemctl restart otelcol-contrib
   source ~/.profile
   ```
 
-  Go のバージョンを確認します:
+  Goのバージョンを確認します:
   
   ``` bash
   go version
   ```  
 
-- ocb のインストール
-  - ocb バイナリーを [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)
+- ocbのインストール
+  - ocbバイナリーを [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)
     からダウンロードして、次のコマンドを実行します:
     
     ```bash
@@ -116,7 +116,7 @@ sudo systemctl restart otelcol-contrib
     chmod 755 /usr/bin/ocb
     ```
 
-    別のアプローチとして、Go のツールチェーンを使ってバイナリをローカルにビルドする方法もあります:
+    別のアプローチとして、Goのツールチェーンを使ってバイナリをローカルにビルドする方法もあります:
 
     ```bash
     go install go.opentelemetry.io/collector/cmd/builder@v0.80.0
@@ -127,9 +127,9 @@ sudo systemctl restart otelcol-contrib
 
 ## なぜ独自のコレクターをビルドするの？
 
-コレクターのデフォルトのディストリビューション（core および contrib）は、含まれれるコンポーネントが少なすぎたり、もしくは多すぎたりします。
+コレクターのデフォルトのディストリビューション（coreおよびcontrib）は、含まれれるコンポーネントが少なすぎたり、もしくは多すぎたりします。
 
-本番環境で contrib コレクターを実行することはできますが、インストールされているコンポーネントの量が多く、デプロイに必要ではないものも含まれるため、一般的には推奨されません。
+本番環境でcontribコレクターを実行することはできますが、インストールされているコンポーネントの量が多く、デプロイに必要ではないものも含まれるため、一般的には推奨されません。
 
 ## 独自のコレクターをビルドする利点は？
 
@@ -138,18 +138,18 @@ sudo systemctl restart otelcol-contrib
 メリットは次のとおりです:
 
 1. バイナリーのサイズが小さい
-2. 一般的な Go の脆弱性スキャナーを利用できる
+2. 一般的なGoの脆弱性スキャナーを利用できる
 3. 組織独自のコンポーネントを組み込むことができる
 
 ## カスタムコレクターをビルドするときの注意事項は？
 
-さて、これは Ninja ゾーンの人たちにあえて言うことではないかもしれませんが:
+さて、これはNinjaゾーンの人たちにあえて言うことではないかもしれませんが:
 
-1. Go の開発経験を、必須ではないが、推奨される
-1. Splunk の **サポートがない**
+1. Goの開発経験を、必須ではないが、推奨される
+1. Splunkの **サポートがない**
 1. ディストリビューションのライフサイクルを管理しなければならない
 
-プロジェクトは安定性に向けて進んでいますが、行われた変更がワークフローを壊す可能性があることに注意してください。Splunk チームは、より高い安定性とサポートを提供し、デプロイメントニーズに対応するためのキュレーションされた経験を提供しています。
+プロジェクトは安定性に向けて進んでいますが、行われた変更がワークフローを壊す可能性があることに注意してください。Splunkチームは、より高い安定性とサポートを提供し、デプロイメントニーズに対応するためのキュレーションされた経験を提供しています。
 
 ## Ninja ゾーン
 
@@ -234,7 +234,7 @@ ocb --config=otelcol-builder.yaml
 
 ## デフォルト設定
 
-OpenTelemetry Collector は YAML ファイルを使って設定をしていきます。これらのファイルには、必要に応じて変更できるデフォルト設定が含まれています。提供されているデフォルト設定を見てみましょう:
+OpenTelemetry CollectorはYAMLファイルを使って設定をしていきます。これらのファイルには、必要に応じて変更できるデフォルト設定が含まれています。提供されているデフォルト設定を見てみましょう:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -307,16 +307,16 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-おめでとうございます！OpenTelemetry Collector のダウンロードとインストールに成功しました。あなたは OTel Ninja になる準備ができました。しかしまずは、設定ファイルと OpenTelemetry Collector の異なるディストリビューションについて見ていきましょう。
+おめでとうございます！OpenTelemetry Collectorのダウンロードとインストールに成功しました。あなたはOTel Ninjaになる準備ができました。しかしまずは、設定ファイルとOpenTelemetry Collectorの異なるディストリビューションについて見ていきましょう。
 
 {{% notice style="note" %}}
 
-Splunk は、自社で完全にサポートされた OpenTelemetry Collector のディストリビューションを提供しています。このディストリビューションは、[Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector) からインストールするか、Splunk Observability Cloud のウィザードを使用して、簡単なインストールスクリプトを作成し、コピー＆ペーストすることで利用できます。このディストリビューションには、OpenTelemetry Collector Contrib ディストリビューションにはない追加機能や強化が含まれています。
+Splunkは、自社で完全にサポートされたOpenTelemetry Collectorのディストリビューションを提供しています。このディストリビューションは、[Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector) からインストールするか、Splunk Observability Cloudのウィザードを使用して、簡単なインストールスクリプトを作成し、コピー＆ペーストすることで利用できます。このディストリビューションには、OpenTelemetry Collector Contribディストリビューションにはない追加機能や強化が含まれています。
 
-- Splunk の OpenTelemetry Collector ディストリビューションは本番環境でテスト済みであり、多くの顧客が本番環境で使用しています。
-- このディストリビューションを使用する顧客は、公式の Splunk サポートから、SLA の範囲内で直接支援を受けることができます。
-- メトリクスとトレース収集のコア構成体験に将来的な破壊的変更がないことを心配せずに、Splunk の OpenTelemetry Collector ディストリビューションを使用または移行することができます（OpenTelemetry ログ収集の設定はベータ版です）。Collector 自身のメトリクスに破壊的変更がある可能性はあります。
+- SplunkのOpenTelemetry Collectorディストリビューションは本番環境でテスト済みであり、多くの顧客が本番環境で使用しています。
+- このディストリビューションを使用する顧客は、公式のSplunkサポートから、SLAの範囲内で直接支援を受けることができます。
+- メトリクスとトレース収集のコア構成体験に将来的な破壊的変更がないことを心配せずに、SplunkのOpenTelemetry Collectorディストリビューションを使用または移行することができます（OpenTelemetryログ収集の設定はベータ版です）。Collector自身のメトリクスに破壊的変更がある可能性はあります。
 
 {{% /notice %}}
 
-このセクションでは、ホストメトリクスを Splunk Observability Cloud に送信するために、設定ファイルの各セクションを詳しく見ていき、変更する方法について説明します。
+このセクションでは、ホストメトリクスをSplunk Observability Cloudに送信するために、設定ファイルの各セクションを詳しく見ていき、変更する方法について説明します。

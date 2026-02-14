@@ -8,11 +8,11 @@ description: Kubernetes で実行される Java ベースのアプリケーシ�
 time: 90 minutes
 ---
 
-このワークショップの目的は、Java 向けの Splunk **自動ディスカバリーおよび設定**機能を紹介することです。
+このワークショップの目的は、Java向けのSplunk **自動ディスカバリーおよび設定**機能を紹介することです。
 
-ワークショップのシナリオは、Kubernetes にシンプルな（**計装されていない**）Java マイクロサービスアプリケーションをインストールすることで作成されます。
+ワークショップのシナリオは、Kubernetesにシンプルな（**計装されていない**）Javaマイクロサービスアプリケーションをインストールすることで作成されます。
 
-既存の Java ベースのデプロイメント向けに自動ディスカバリー機能付きの Splunk OpenTelemetry Collector をインストールする簡単な手順に従うことで、メトリクス、トレース、ログを **Splunk Observability Cloud** に送信することがいかに簡単かを確認できます。
+既存のJavaベースのデプロイメント向けに自動ディスカバリー機能付きのSplunk OpenTelemetry Collectorをインストールする簡単な手順に従うことで、メトリクス、トレース、ログを **Splunk Observability Cloud** に送信することがいかに簡単かを確認できます。
 
 > [!SPLUNK]前提条件
 >
@@ -20,7 +20,7 @@ time: 90 minutes
 > * ポート **81** へのアウトバウンド HTTP アクセス
 > * Linux コマンドラインの基本的な知識
 
-このワークショップでは、以下のコンポーネントをカバーします：
+このワークショップでは、以下のコンポーネントをカバーします
 
 * Splunk Infrastructure Monitoring (**IM**)
 * Splunk automatic discovery and configuration for Java (**APM**)

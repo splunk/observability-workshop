@@ -14,12 +14,12 @@ weight: 9
 
 {{% /notice %}}
 
-新しい _Jenkins CI_ レシーバーの開発を始めるため、まずは Go プロジェクトのセットアップから始めていきます。
-新しい Go プロジェクトを作成する手順は以下の通りです：
+新しい _Jenkins CI_ レシーバーの開発を始めるため、まずはGoプロジェクトのセットアップから始めていきます。
+新しいGoプロジェクトを作成する手順は以下の通りです
 
 1. `${HOME}/go/src/jenkinscireceiver` という名前の新しいディレクトリを作成し、そのディレクトリに移動します。
     1. 実際のディレクトリ名や場所は厳密ではありません。自分の開発ディレクトリを自由に選ぶことができます。
-1. `go mod init splunk.conf/workshop/example/jenkinscireceiver` を実行して、Go のモジュールを初期化します。
+1. `go mod init splunk.conf/workshop/example/jenkinscireceiver` を実行して、Goのモジュールを初期化します。
     1. 依存関係を追跡するために使用される `go.mod` というファイルが作成されます。
     1. インポートされている依存関係のチェックサム値が `go.sum` として保存されます。
 

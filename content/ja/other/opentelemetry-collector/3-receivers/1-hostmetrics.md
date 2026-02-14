@@ -8,7 +8,7 @@ weight: 1
 
 [**Host Metrics レシーバー**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md) は、さまざまなソースからスクレイピングされたホストシステムに関するメトリクスを生成します。これは、コレクターがエージェントとしてデプロイされるときに使用さます。
 
-`etc/otel-contrib/config.yaml` ファイルを更新して、**hostmetrics** レシーバーを設定してみましょう。以下の YAML を **receivers** セクションの下に挿入します。
+`etc/otel-contrib/config.yaml` ファイルを更新して、**hostmetrics** レシーバーを設定してみましょう。以下のYAMLを **receivers** セクションの下に挿入します。
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml

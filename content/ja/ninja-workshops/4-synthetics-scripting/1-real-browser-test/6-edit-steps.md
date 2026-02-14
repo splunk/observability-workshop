@@ -22,4 +22,4 @@ weight: 6
 
 ![Scatterplot](../../img/scatterplot.png)
 
-**おめでとうございます！** Splunk Synthetic Monitoring で Real Browser Test の作成に成功しました。次に、テスト結果をより詳しく見ていきます。
+**おめでとうございます！** Splunk Synthetic MonitoringでReal Browser Testの作成に成功しました。次に、テスト結果をより詳しく見ていきます。
