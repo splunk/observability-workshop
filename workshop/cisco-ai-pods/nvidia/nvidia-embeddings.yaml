@@ -6,7 +6,7 @@ metadata:
 spec:
   image:
     repository: nvcr.io/nim/nvidia/llama-3.2-nv-embedqa-1b-v2
-    tag: latest
+    tag: "1.10"
     pullPolicy: IfNotPresent
     pullSecrets:
       - ngc-secret
