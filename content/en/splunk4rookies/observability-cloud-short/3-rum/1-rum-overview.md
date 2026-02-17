@@ -15,10 +15,10 @@ weight: 1
 
 * To ensure we are looking at the right data, please check the following settings **(2)**:
   * The **Time frame** is set to **-15m**.
-  * The **Environment** selected is **labobs-1037**.
-  * The **App** selected is **labobs-1037-store**.
+  * The **Environment** selected is **[NAME OF WORKSHOP]-workshop**.
+  * The **App** selected is **[NAME OF WORKSHOP]-store**.
   * The **Source** is set to **Browser**.
-* Next, click on the **labobs-1037-store** **(3)** above the **Page Views / JavaScript Errors** chart.
+* Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart.
 
 ![main page](../images/rum-dashboard.png)
 

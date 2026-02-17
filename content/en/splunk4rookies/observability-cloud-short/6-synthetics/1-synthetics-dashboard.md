@@ -11,7 +11,8 @@ weight: 1
 
 ---
 
-* Select the test **WIL - Cisco Live - LABOBS-1037 Online Boutique**.
+* In the **Search** box, enter **[NAME OF WORKSHOP]** to filter the tests for this workshop.
+* Select the test.
 * Click on **Go to all run results**.
 * Change **All** to **Failure** **(1)**.
 

@@ -6,7 +6,8 @@ weight: 5
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Go to **Digital Experience → Synthetics tests** from the main menu.
-* Select the workshop test **WIL - Cisco Live - LABOBS-1037 Online Boutique**.
+* Select the workshop test **[NAME OF WORKSHOP]**.
+* Click on the test.
 * Click {{% button %}}**Create Detector**{{% /button %}} button at the top of the page:
 * Change the alert criteria so that the metric is **Run Duration** **(1)** (instead of Uptime) and the condition is **Static Threshold**.
 * Set the **Trigger threshold** **(2)** to be around `50000` ms.
