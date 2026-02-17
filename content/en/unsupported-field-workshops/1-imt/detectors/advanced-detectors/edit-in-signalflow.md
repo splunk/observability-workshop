@@ -86,17 +86,23 @@ Documentation:
 https://github.com/signalfx/signalflow-library/tree/master/library/signalfx/detectors/against_periods
 
 ---
+## Step 2 – Rename the Signal Stream
 
-## Step 2 – Replace the Helper Function
+Rename the signal from `A` to `CPU` (this improves readability and becomes the stream input to thresholds):
 
-Rename the signal from `A` to `CPU` (optional but recommended for readability):
+Replace:
 
 ```python
-CPU = data(
-  'system.cpu.utilization',
-  filter=filter('deployment.environment', 'astronomy-shop')
-).publish(label='CPU')
+A = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='A')
 ```
+
+With:
+
+```python
+CPU = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='CPU')
+```
+
+## Step 3 – Replace the Helper Function
 
 Refactor the Wizard-Generated Helper Call (Preserve the Tuned Parameters)
 
@@ -116,25 +122,7 @@ The goal is **not** to retype these values. The goal is to keep them and convert
 
 ---
 
-## Step 3 – Rename the Signal Stream
-
-Rename the signal from `A` to `CPU` (this improves readability and becomes the stream input to thresholds):
-
-Replace:
-
-```python
-A = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='A')
-```
-
-With:
-
-```python
-CPU = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='CPU')
-```
-
----
-
-## Step 4 – Convert the Helper Call into Threshold Streams
+## Convert the Helper Call into Threshold Streams
 
 In the existing code, locate this line:
 
@@ -164,7 +152,7 @@ CPU,
 
 ---
 
-## Step 5 – Remove Helper-Only Alert Parameters
+## Remove Helper-Only Alert Parameters
 
 `streams.mean_std_thresholds()` generates threshold streams.  
 It does **not** implement detector behaviors such as orientation or auto-resolve.
@@ -178,7 +166,7 @@ auto_resolve_after='1h'
 
 ---
 
-## Step 6 – Remove the Helper Publish
+## Remove the Helper Publish
 
 The helper call publishes a detector directly:
 
@@ -191,7 +179,7 @@ The helper call publishes a detector directly:
 
 ---
 
-## Step 7 – Add Multi-Condition Detect Logic
+## Step 4 – Add Multi-Condition Detect Logic
 
 Now that you have a reusable anomaly threshold stream (`fire_top`), define your detector logic explicitly:
 
@@ -206,7 +194,7 @@ This expresses two conditions:
 
 ---
 
-## Step 8 – (Optional) Publish the Threshold Stream
+## Step 5 – (Optional) Publish the Threshold Stream
 
 To visualize and/or reference the computed anomaly threshold:
 
