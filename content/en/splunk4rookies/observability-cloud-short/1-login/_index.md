@@ -11,13 +11,11 @@ We are going to examine the real user data that has been provided by the telemet
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* If you have not already logged into **Splunk Observability Cloud**, open the following URL in a new browser window: **[https://app.eu0.signalfx.com/](https://app.eu0.signalfx.com/?target=_blank)**.
-
-* Use the following login credentials, then click the **SIGN IN** button:
-
-| E-mail | Password |
-| ----- | -------- |
-| `workshop@splunk.com` | `Cisco_Live_2026` |
+* You should have received an e-mail from Splunk inviting you to the Workshop Org. If you cannot find it, please check your Spam/Junk folders or inform your Instructor.
+* To proceed click the Join Now button or click on the link provided in the e-mail.
+* If you have already completed the registration process you can skip the rest and proceed directly to Splunk Observability Cloud and log in:
+  * **[https://app.eu0.signalfx.com](https://app.eu0.signalfx.com (EMEA))**
+  * **[https://app.us1.signalfx.com](https://app.us1.signalfx.com (APAC/AMER))**
 
 ![login](images/login-password.png)
 

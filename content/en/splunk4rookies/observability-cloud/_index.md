@@ -1,5 +1,5 @@
 ---
-title: Observability Cloud
+title: Observability Cloud (Original 3h)
 weight: 1
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 2 minutes

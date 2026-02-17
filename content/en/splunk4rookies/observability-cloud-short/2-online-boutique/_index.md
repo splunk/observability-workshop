@@ -16,9 +16,9 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 {{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
 
-* Please visit the famous Online Boutique shop by going to **[https://labobs-1037.splunko11y.com/](https://labobs-1037.splunko11y.com/?target=_blank)**
-* Once you are on the Online Boutique web shop, have a browse through a few items, add them to your cart and then, finally, do a checkout/place order.
-* We recommend you do at least 3-5 complete shopping sessions in order to catch the performance issues we have deliberately introduced into the application.
+* The application is pre-deployed — your instructor will provide a link to the Online Boutique website (e.g. `http://<s4r-workshop-i-xxx.splunk>.show:81/`). Ports 80 and 443 are also available if port 81 is unreachable.
+* Browse the Online Boutique, add a few items to your cart, and complete a checkout.
+* Repeat this at least 3–5 times to surface the performance issues deliberately built into the application.
 
 ---
 

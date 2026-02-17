@@ -1,6 +1,6 @@
 ---
 title: Financial Services Observability Cloud
-weight: 2
+weight: 3
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
 time: 30 minutes
 aliases:
