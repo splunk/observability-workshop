@@ -29,6 +29,11 @@ context that was retrieved from the vector database:
 
 ![Prompt Template](../../images/PromptTemplate.png)
 
+> Note: if you don't see the `chat` and `invoke_workflow` AI interactions 
+> in the trace waterfall view, or you don't see the `AI details` tab on the 
+> right-hand side, ask your instructor about the superpowers which need to 
+> be enabled. 
+
 Finally, we can see the response from the LLM, the time it took, and the number of
 input and output tokens utilized:
 

@@ -10,6 +10,7 @@ time: 10 minutes
 Use the following command to deploy this application to the OpenShift cluster:
 
 ``` bash
+cd ~/workshop/cisco-ai-pods
 oc apply -f ./llm-app/k8s-manifest.yaml
 ```
 

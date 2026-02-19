@@ -68,6 +68,25 @@ export ENVIRONMENT_NAME=ai-pod-$USER_NAME
 export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
+Confirm that the environment name is set: 
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+echo $ENVIRONMENT_NAME
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+ai-pod-workshop-participant-1
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ### Deploy the Collector
 
 Navigate to the workshop directory: 
@@ -79,7 +98,11 @@ cd ~/workshop/cisco-ai-pods
 Then install the collector in your namespace using the following command:
 
 ```bash
-helm install splunk-otel-collector \
+{ [ -z "$CLUSTER_NAME" ] || \
+  [ -z "$ENVIRONMENT_NAME" ] || \
+  [ -z "$USER_NAME" ]; } && \
+  echo "Error: Missing variables" || \
+  helm upgrade --install splunk-otel-collector \
   --set="clusterName=$CLUSTER_NAME" \
   --set="environment=$ENVIRONMENT_NAME" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -92,14 +115,21 @@ helm install splunk-otel-collector \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
 
-> Note that we're referencing a configuration file named 
-> `otel-collector-values.yaml` when installing the collector, 
-> which includes custom configuration. 
+> Note: if you get an error that says `Missing variables`, you'll need to
+> define your environment variables again. Add your participant number
+> before running the following commands:
+> ``` bash
+> export PARTICIPANT_NUMBER=<your participant number>
+> export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
+> export CLUSTER_NAME=ai-pod-$USER_NAME
+> export ENVIRONMENT_NAME=ai-pod-$USER_NAME
+> export SPLUNK_INDEX=splunk4rookies-workshop
+> ```
 
 Run the following command to confirm that the collector pods are running: 
 
 ````
-oc get pods
+watch -n 1 oc get pods
 
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-58rwm                             1/1     Running   0          6m40s

@@ -33,8 +33,9 @@ The pattern is as follows:
 Let's modify the OpenTelemetry collector configuration to scrape Weaviate's Prometheus 
 metrics. 
 
-To do so, let's add an additional Prometheus receiver creator section 
-to the `otel-collector-values.yaml` file: 
+To do so, let's add an additional Prometheus **receiver** creator section 
+to the `otel-collector-values.yaml` file.  Add it after the `receiver_creator/nvidia` 
+section but before the `pipelines` section: 
 
 ``` yaml
       receiver_creator/weaviate:
@@ -79,7 +80,11 @@ processor configuration as well:
               - batch_delete_durations_ms_count
 ```
 
-We also want to add a Resource processor to the configuration file, with the following configuration: 
+> Note: add just the new metrics starting with `object_count`
+
+We also want to add a Resource **processor** to the configuration file with 
+the following configuration. Add it after the `filter/metrics_to_be_included` **processor** 
+but before the `receivers` section: 
 
 ``` yaml
       resource/weaviate:
@@ -89,15 +94,15 @@ We also want to add a Resource processor to the configuration file, with the fol
             action: insert
 ```
 
-This processor takes the `service.instance.id` property on the Weaviate metrics 
+This **processor** takes the `service.instance.id` property on the Weaviate metrics 
 and copies it into a new property called `weaviate.instance.id`. This is done so
 that we can more easily distinguish Weaviate metrics from other metrics that use 
 `service.instance.id`, which is a standard OpenTelemetry property used in 
 Splunk Observability Cloud. 
 
-We'll need to add a new metrics pipeline for Weaviate metrics as well (we 
-need to use a separate pipeline since we don't want the `weaviate.instance.id` 
-metric to be added to non-Weaviate metrics):  
+We'll need to add a new metrics **pipeline** for Weaviate metrics as well (we 
+need to use a separate **pipeline** since we don't want the `weaviate.instance.id` 
+metric to be added to non-Weaviate metrics). Add the following to the bottom of the file: 
 
 ``` yaml
         metrics/weaviate:
@@ -116,9 +121,19 @@ metric to be added to non-Weaviate metrics):
 
 Take a moment to compare the
 contents of your modified `otel-collector-values.yaml` file with the 
-`otel-collector-values-with-weaviate.yaml` file.
-Update your file as needed to ensure the contents match.  Remember that indentation is important
-for `yaml` files, and needs to be precise.
+`otel-collector-values-with-weaviate.yaml` file. Remember that indentation
+is important for `yaml` files, and needs to be precise:
 
-Because restarting the collector in an OpenShift environment takes about 3 minutes,
+``` bash
+diff otel-collector-values.yaml otel-collector-values-with-weaviate.yaml
+```
+
+Update your file if needed to ensure the contents match.
+
+
+{{% notice title="Don't restart the collector yet" style="warning" %}}
+
+Because restarting the collector in an OpenShift environment takes 3 minutes per node,
 we'll wait until we've completed all configuration changes before initiating a restart.
+
+{{% /notice %}}

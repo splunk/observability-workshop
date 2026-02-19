@@ -14,7 +14,11 @@ as expected.
 We can apply the collector configuration changes by running the following Helm command:
 
 ``` bash
-helm upgrade splunk-otel-collector \
+{ [ -z "$CLUSTER_NAME" ] || \
+  [ -z "$ENVIRONMENT_NAME" ] || \
+  [ -z "$USER_NAME" ]; } && \
+  echo "Error: Missing variables" || \
+  helm upgrade splunk-otel-collector \
   --set="clusterName=$CLUSTER_NAME" \
   --set="environment=$ENVIRONMENT_NAME" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -26,6 +30,17 @@ helm upgrade splunk-otel-collector \
   -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
+
+> Note: if you get an error that says `Missing variables`, you'll need to 
+> define your environment variables again. Add your participant number 
+> before running the following commands: 
+> ``` bash
+> export PARTICIPANT_NUMBER=<your participant number>
+> export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
+> export CLUSTER_NAME=ai-pod-$USER_NAME
+> export ENVIRONMENT_NAME=ai-pod-$USER_NAME
+> export SPLUNK_INDEX=splunk4rookies-workshop
+> ```
 
 ## Review the AI POD Overview Dashboard Tab
 

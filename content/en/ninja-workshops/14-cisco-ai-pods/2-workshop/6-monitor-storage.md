@@ -24,10 +24,11 @@ Portworx includes a metrics endpoint that we can scrape using the Prometheus rec
 ## Capture Storage Metrics with Prometheus
 
 Let's modify the OpenTelemetry collector configuration to scrape Portworx metrics 
-with the Prometheus receiver. 
+with the Prometheus **receiver**. 
 
-To do so, let's add an additional Prometheus receiver creator section
-to the `otel-collector-values.yaml` file:
+To do so, let's add an additional Prometheus **receiver creator** section
+to the `otel-collector-values.yaml` file. Add it after the `receiver_creator/weaviate`
+section but before the `pipelines` section:
 
 ``` yaml
       receiver_creator/storage:
@@ -72,7 +73,10 @@ processor configuration as well:
               - px_volume_writethroughput
 ```
 
-We'll need to add a new metrics pipeline for Portworx metrics as well:
+> Note: add just the new metrics starting with `px_cluster_cpu_percent`
+
+We'll need to add a new metrics **pipeline** for Portworx metrics as well. 
+Add the following to the bottom of the file: 
 
 ``` yaml
         metrics/storage:
@@ -90,9 +94,18 @@ We'll need to add a new metrics pipeline for Portworx metrics as well:
 
 Take a moment to compare the
 contents of your modified `otel-collector-values.yaml` file with the
-`otel-collector-values-with-portworx.yaml` file.
-Update your file as needed to ensure the contents match.  Remember that indentation is important
-for `yaml` files, and needs to be precise.
+`otel-collector-values-with-portworx.yaml` file.Remember that indentation
+is important for `yaml` files, and needs to be precise:
 
-Because restarting the collector in an OpenShift environment takes about 3 minutes,
+``` bash
+diff otel-collector-values.yaml otel-collector-values-with-portworx.yaml
+```
+
+Update your file if needed to ensure the contents match.
+
+{{% notice title="Don't restart the collector yet" style="warning" %}}
+
+Because restarting the collector in an OpenShift environment takes 3 minutes per node,
 we'll wait until we've completed all configuration changes before initiating a restart.
+
+{{% /notice %}}

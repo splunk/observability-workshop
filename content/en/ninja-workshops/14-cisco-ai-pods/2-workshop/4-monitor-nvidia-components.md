@@ -5,7 +5,7 @@ weight: 4
 time: 10 minutes
 ---
 
-In this section, we'll use the Prometheus receiver with the OpenTelemetry collector 
+In this section, we'll use the Prometheus **receiver** with the OpenTelemetry collector 
 to monitor the NVIDIA components running in the OpenShift cluster. We'll start by 
 navigating to the directory where the collector configuration file is stored:
 
@@ -21,7 +21,7 @@ in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.
 To do this, let's customize the configuration of the collector by editing the 
 `otel-collector-values.yaml` file that we used earlier when deploying the collector. 
 
-Add the following content, just below the `kubeletstats` receiver: 
+Add the following content, just below the `kubeletstats` **receiver**: 
 
 ``` yaml
       receiver_creator/nvidia:
@@ -49,7 +49,7 @@ the default metrics endpoint (`/v1/metrics`).
 > * The **receiver_creator** receiver enables dynamic creation of receivers (including Prometheus receivers) based on runtime information, allowing for scalable and flexible scraping setups.
 > * Using **receiver_creator** can simplify configurations in dynamic environments by automating the management of multiple Prometheus scraping targets.
 
-To ensure this new receiver is used, we'll need to add a new pipeline to the 
+To ensure this new **receiver** is used, we'll need to add a new **pipeline** to the 
 `otel-collector-values.yaml` file as well.  
 
 Add the following code to the bottom of the file: 
@@ -69,14 +69,14 @@ Add the following code to the bottom of the file:
             - receiver_creator/nvidia
 ```
 
-We'll add one more Prometheus receiver related to NVIDIA in the next section. 
+We'll add one more Prometheus **receiver** related to NVIDIA in the next section. 
 
 ## Capture the NVIDIA NIM metrics
 
 The `meta-llama-3-2-1b-instruct` large language model was deployed to the 
 OpenShift cluster using NVIDIA NIM. It includes a Prometheus endpoint 
 that we can scrape with the collector.  Let's add the following to the 
-`otel-collector-values.yaml` file, just below the `prometheus/dcgm` receiver 
+`otel-collector-values.yaml` file, just below the `prometheus/dcgm` **receiver** 
 we added earlier: 
 
 ``` yaml
@@ -97,7 +97,7 @@ This tells the collector to look for pods with a label of `app=meta-llama-3-2-1b
 And when it finds a pod with this label, it will connect to port 8000 of the pod and scrape
 the `/v1/metrics` metrics endpoint. 
 
-There's no need to make changes to the pipeline, as this receiver will already be picked up 
+There's no need to make changes to the **pipeline**, as this **receiver** will already be picked up 
 as part of the `receiver_creator/nvidia` receiver. 
 
 ## Add a Filter Processor 
@@ -105,12 +105,12 @@ as part of the `receiver_creator/nvidia` receiver.
 Scraping Prometheus endpoints can result in a large number of metrics, sometimes 
 with high cardinality. 
 
-Let's add a filter processor that defines exactly what metrics we want to send to Splunk. 
+Let's add a filter **processor** that defines exactly what metrics we want to send to Splunk. 
 Specifically, we'll send **only** the metrics that are utilized by a dashboard chart or an 
 alert detector. 
 
-Add the following code to the `otel-collector-values.yaml` file, after the exporters section 
-but before the receivers section:
+Add the following code to the `otel-collector-values.yaml` file, after the **exporters** section 
+but before the **receivers** section:
 
 ``` yaml
     processors:
@@ -191,8 +191,8 @@ but before the receivers section:
               - request_generation_tokens
 ```
 
-Ensure the `filter/metrics_to_be_included` processor is included in the 
-`metrics/nvidia-metrics` pipeline we added earlier: 
+Ensure the `filter/metrics_to_be_included` **processor** is included in the 
+`metrics/nvidia-metrics` **pipeline** we added earlier: 
 
 ``` bash
     service:
@@ -213,9 +213,19 @@ Ensure the `filter/metrics_to_be_included` processor is included in the
 ## Verify Changes 
 
 Take a moment to compare the contents of your modified `otel-collector-values.yaml` 
-file with the `otel-collector-values-with-nvidia.yaml` file. 
-Update your file if needed to ensure the contents match.  Remember that indentation is important 
-for `yaml` files, and needs to be precise. 
+file with the `otel-collector-values-with-nvidia.yaml` file. Remember that indentation 
+is important for `yaml` files, and needs to be precise: 
 
-Because restarting the collector in an OpenShift environment takes about 3 minutes, 
+``` bash
+diff otel-collector-values.yaml otel-collector-values-with-nvidia.yaml
+```
+
+Update your file if needed to ensure the contents match.
+
+{{% notice title="Don't restart the collector yet" style="warning" %}}
+
+Because restarting the collector in an OpenShift environment takes 3 minutes per node,
 we'll wait until we've completed all configuration changes before initiating a restart.
+
+{{% /notice %}}
+
