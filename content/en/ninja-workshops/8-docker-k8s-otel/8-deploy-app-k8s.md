@@ -160,6 +160,10 @@ spec:
                   number: 8080
 ```
 
+> [!tip]- What is an Ingress in Kubernetes?
+> An Ingress in Kubernetes is a Kubernetes API object that manages external access to services within a cluster, typically HTTP and HTTPS traffic. It acts as a set of rules for routing incoming connections to the correct internal services and pods, handling functions like load balancing, SSL/TLS termination, and name-based virtual hosting
+
+
 We can then use these manifest files to deploy our application: 
 
 {{< tabs >}}
