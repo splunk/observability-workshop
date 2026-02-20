@@ -1,6 +1,6 @@
 ---
 title: Historical Anomaly Detector
-linkTitle: 4.2.1 Wizard Baseline
+linkTitle: 4.2.1 Historical Anomaly with Detector Wizard
 weight: 3
 ---
 
@@ -14,7 +14,7 @@ Create a historical baseline anomaly detector using the detector wizard and exam
 
 Navigate to:
 
-**Alerts & Detectors → Create Detector → Custom Detector**
+**Alerts & Detectors → {{% button style="blue" %}}Create Detector{{% /button %}} → Custom Detector**
 
 **ADD YOUR INITIALS** before the proposed detector name.
 
@@ -29,7 +29,7 @@ Configure the following in the alert signal:
 - **Metric:** `system.cpu.utilization`
 - **Filter:** `deployment.environment = astronomy-shop`
 
-**Proceed to Alert Condition**, choose Historical Anomaly and **Proceed to Alert Settings:** 
+{{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}, choose Historical Anomaly and {{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
 - **Cycle length:** `1d`
 - **Alert when:** `Too high`
 - **Trigger Sensitivity:** `High`
@@ -37,7 +37,7 @@ Configure the following in the alert signal:
 
 Show advanced settings and review
 
-**Proceed to Alert Message**.
+{{% button style="blue" %}}Proceed to Alert Message{{% /button %}}.
 
 ---
 
@@ -111,8 +111,8 @@ The following variables are automatically available:
 Any stream that is published in SignalFlow becomes available as:
 `{{inputs.<stream_name>.value}}`
 
-**Proceed to Alert Recipients** and do not select anything
+{{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}} and do not select anything, we don't actually want to send notifications for this scenario
 
-**Proceed to Alert Activation**
+{{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 
-**Activate Alert**
+{{% button style="blue" %}}Activate Alert{{% /button %}}
