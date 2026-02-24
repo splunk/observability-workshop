@@ -100,11 +100,13 @@ These variables are available because both streams were published in SignalFlow.
 
 Click {{% button style="blue" %}}Done Editing{{% /button %}} to save the custom message.
 
-Click {{% button style="blue" %}}Done{{% /button %}} to skip Alert Recipients.
+Click {{% button style="blue" %}}ProceedAlert Recipients.{{% /button %}}.
 
 ---
 
 ## Step 3 – Update the Alert Rule Description 
+
+{{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 
 In the **Activate...** step, update the **Description** to:
 

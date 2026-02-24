@@ -24,16 +24,21 @@ It's important that you add your initials in front of the proposed detector name
 It should be something like this: **XYZ's Advanced Detector**.
 {{% /notice %}}
 
+{{% button style="blue" %}}Create Alert Rule{{% /button %}}
+
 Configure the following in the alert signal:
 
-- **Metric:** `system.cpu.utilization`
-- **Filter:** `deployment.environment = astronomy-shop`
+- **Signal (A):** `system.cpu.utilization`
 
-{{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}, choose Historical Anomaly and {{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
+{{% button style="blue" %}}Add Filter{{% /button %}}
+- **Filter:** `deployment.environment : astronomy-shop`
+
+{{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}, choose Historical Anomaly and then
+
+{{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
 - **Cycle length:** `1d`
 - **Alert when:** `Too high`
 - **Trigger Sensitivity:** `High`
-- **Auto-Clear alerts:** `uncheck`
 
 Show advanced settings and review
 
@@ -111,8 +116,12 @@ The following variables are automatically available:
 Any stream that is published in SignalFlow becomes available as:
 `{{inputs.<stream_name>.value}}`
 
+Click {{% button style="blue" %}}Done Editing{{% /button %}} to close the custom message. 
+
 {{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}} and do not select anything, we don't actually want to send notifications for this scenario
 
 {{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 
-{{% button style="blue" %}}Activate Alert{{% /button %}}
+{{% button style="blue" %}}Activate Alert Rule{{% /button %}}
+
+When prompted about Missing Alert Notification Policy, choose {{% button style="blue" %}}Save{{% /button %}}

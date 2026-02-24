@@ -17,17 +17,24 @@ Refactor the wizard-generated detector to:
 
 ## Edit in SignalFlow
 
+From the detector action menu in the upper right hand corner **(⋯)**, select **Edit in SignalFlow**
+
+You should still be in the Detector UI for the detector you just saved, if not: 
+
 Navigate to:
 
 **Alerts & Detectors → Detectors**
 
-Locate your detector and open it.
-
-From the detector action menu in the upper right hand corner **(⋯)**, select **Edit in SignalFlow**
+Locate your detector and open it, then **Edit in SignalFlow.**
 
 ---
 
 ## Generated SignalFlow
+Choose the **SignalFlow** tab and review the generated SignalFlow for the historical anomaly detector. 
+
+{{% notice title="Notice on Format" style="info" %}}
+Note that the format of ```against_periods.detector_mean_std``` function is on a single line. You an either add line returns after each parameter or copy and paste the same formatted SignalFlow below for readability.
+{{% /notice %}}
 
 ```python
 from signalfx.detectors.against_periods import against_periods
@@ -90,6 +97,7 @@ from signalfx.detectors.against_periods import against_periods
 Replace with:
 
 ```python
+#import from SignalFx Library
 from signalfx.detectors.against_periods import streams
 from signalfx.detectors.against_periods import conditions
 ```
@@ -112,6 +120,7 @@ A = data('system.cpu.utilization', filter=filter('deployment.environment', 'astr
 With:
 
 ```python
+#Calculate/filter CPU
 CPU = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='CPU')
 ```
 
@@ -139,6 +148,7 @@ against_periods.detector_mean_std(
 Replace only the function name with:
 
 ```python
+#Use the streams.mean_std_thresholds function to establish the built in min/max fire and clear threshold conditions
 fire_bot, clear_bot, clear_top, fire_top = streams.mean_std_thresholds(
 ```
 
@@ -190,9 +200,10 @@ The helper call publishes a detector directly:
 
 Now that threshold generation and alert logic are separated, you must explicitly define the detection criteria.
 
-First, define the static guardrail as its own stream:
+First, define the static guardrail as its own stream by appending:
 
 ```python
+#Define static threshold for CPU as a variable
 static_threshold = threshold(90)
 ```
 
@@ -202,6 +213,7 @@ By defining it as a stream (instead of embedding `threshold(90)` directly inside
 Next, define the multi-condition detection logic:
 
 ```python
+#detect when CPU has exceeded the fire_top thresholds established AND CPU exceeds static threshold (90%) for 15 minutes; publish detector
 detect(
   CPU > fire_top and when(CPU > static_threshold, lasting='15m')
 ).publish('custom_CPU_detector')
@@ -234,6 +246,7 @@ This introduces:
 To surface both thresholds for detector preview and alert messaging:
 
 ```python
+#publish the fire_top threshold and static_threshold for data visualization
 fire_top.publish('CPU_top_threshold')
 static_threshold.publish('CPU_static_threshold')
 ```
@@ -241,6 +254,8 @@ static_threshold.publish('CPU_static_threshold')
 ---
 
 ## Result
+{{< tabs >}}
+{{% tab title="Results" %}}
 
 You have transformed a wizard convenience helper into:
 
@@ -251,6 +266,41 @@ You have transformed a wizard convenience helper into:
 - Reusable anomaly and static threshold streams  
 
 This structure provides greater precision, flexibility, and clarity in detector behavior.
+{{% /tab %}}
+{{% tab title="Final SignalFlow" %}}
+```python
+#import from SignalFx Library
+from signalfx.detectors.against_periods import streams
+from signalfx.detectors.against_periods import conditions
+
+#Calculate/filter CPU
+CPU = data('system.cpu.utilization', filter=filter('deployment.environment', 'astronomy-shop')).publish(label='CPU')
+
+#Use the streams.mean_std_thresholds function to establish the built in min/max fire and clear threshold conditions
+fire_bot, clear_bot, clear_top, fire_top = streams.mean_std_thresholds(
+  CPU,
+  window_to_compare='10m',
+  space_between_windows='1d',
+  num_windows=4,
+  fire_num_stddev=2.5,
+  clear_num_stddev=2,
+  discard_historical_outliers=True,
+)
+
+#Define static threshold for CPU as a variable
+static_threshold = threshold(90)
+
+#detect when CPU has exceeded the fire_top thresholds established AND CPU exceeds static threshold (90%) for 15 minutes; publish detector
+detect(
+  CPU > fire_top and when(CPU > static_threshold, lasting='15m')
+).publish('custom_CPU_detector')
+
+#publish the fire_top threshold and static_threshold for data visualization
+fire_top.publish('CPU_top_threshold')
+static_threshold.publish('CPU_static_threshold')
+```
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% notice title="Static Threshold in Alert Messages" style="info" %}}
 Because the static guardrail is defined and published:
@@ -267,4 +317,3 @@ it is now available in the custom alert message as:
 
 Any published stream in SignalFlow becomes accessible as `inputs.<stream_name>.value` in alert messaging.
 {{% /notice %}}
-```
