@@ -50,7 +50,7 @@ Navigate to the Pages & AJAX Requests dashboard, review the options there, and o
 
 1. Click the **Pages & AJAX Requests** tab on the left menu.
 2. Explore the options on the toolbar.
-3. Click the **localhost:8080/supercar-trader/car.do** page.
+3. Click the **localhost:8443/supercar-trader/car.do** page.
 4. Click **Details** to open the Base Page dashboard.
 
 ![BRUM Dash 3](images/05-brum-ajax-list.png)
@@ -62,7 +62,7 @@ At the top of the Base Page dashboard you will see key performance indicators, E
 
 In the Timing Breakdown section you will see a waterfall graph that displays the average times needed for each aspect of the page load process. For more information on what each of the metrics measures, hover over its name on the left. A popup appears with a definition. For more detailed information, see [**Browser RUM Metrics**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/browser-rum-metrics).
 
-Review the details for the **localhost:8080/supercar-trader/car.do** Base Page by following these steps.
+Review the details for the **localhost:8443/supercar-trader/car.do** Base Page by following these steps.
 
 1. Change the timeframe dropdown to **last 2 hours**.
 2. Explore the key performance indicators.

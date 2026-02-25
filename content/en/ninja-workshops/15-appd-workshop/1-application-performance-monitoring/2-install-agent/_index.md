@@ -101,24 +101,22 @@ Validate that the Tomcat server is running, this can take a few minutes
 {{% tab title="Command" %}}
 
 ``` bash
-curl localhost:8080
+curl localhost:8443/Supercar-Trader/home.do
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` bash
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <title>Apache Tomcat/9.0.50</title>
-        <link href="favicon.ico" rel="icon" type="image/x-icon" />
-        <link href="tomcat.css" rel="stylesheet" type="text/css" />
+        <title>Supercar Trader</title>
+        <link rel = "icon" href="favicon.png" type = "image/x-icon"> 
+        <meta name="google" content="notranslate">
     </head>
-
-    <body>
-        <div id="wrapper"
+<body background="images/blk-mesh.jpg">
+<!--   >body style="background-color:#222a2d" -->
+<link rel="stylesheet" type="text/css" href="trader.css" />
 ....
 ```
 

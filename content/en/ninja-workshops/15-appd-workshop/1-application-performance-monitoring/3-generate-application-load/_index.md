@@ -14,7 +14,7 @@ In this exercise you will perform the following actions:
 The sample application home page is accessible through your web browser with a URL in the format seen below. Enter that URL in your browser’s navigation bar, substituting the IP Address of your EC2 instance.
 
 ```bash
-http://[ec2-ip-address]:8080/Supercar-Trader/home.do
+http://[ec2-ip-address]:8443/Supercar-Trader/home.do
 ```
 
 You should be able to see the home page of the Supercar Trader application.

@@ -18,7 +18,7 @@ Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com
 1. ** Select the **Analytics** tab at the top left of the screen.
 2. ** Select the **Configuration** Left tab.
 3. ** Select the **Transaction Analytics - Configuration** tab.
-4. ** **Mark the Checkbox** next to Your Application **Supercat-Trader-YOURINITIALS**
+4. ** **Mark the Checkbox** next to Your Application **Supercar-Trader-YOURINITIALS**
 5. ** Click the **Save** button
 
 ![Enable Analytics](images/05-biq-transaction-analytics.png)

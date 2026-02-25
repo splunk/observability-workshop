@@ -96,14 +96,15 @@ cd /usr/local/apache/apache-tomcat-9/bin
 ./startup.sh
 ```
 
-Wait for two minutes and use the following command to ensure Apache Tomcat is running on port 8080.
+Wait for two minutes and use the following command to ensure Apache Tomcat is running on port 8443.
 
 ``` bash
 sudo netstat -tulpn | grep LISTEN
 ```
 
-You should see output similar to the following image showing that port 8080 is in use by Apache Tomcat.
+You should see output similar to the following image showing that port 8443 is in use by Apache Tomcat.
 
+NOTE: Image shows 8080, but in this case it should be running on **8443**.
 ![Restart App 1](images/restart-app-and-load-01.png)
 
 Use the following commands to start the load generation for the application.
