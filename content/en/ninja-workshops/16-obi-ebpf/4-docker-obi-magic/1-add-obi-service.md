@@ -11,7 +11,8 @@ Open `docker-compose.yaml` in your editor:
 
 ``` bash
 cd ~/workshop/obi/02-obi-docker
-vi docker-compose.yaml
+docker-compose down
+vim docker-compose.yaml #or editor of choise
 ```
 
 Scroll to the very bottom of the file -- you'll see a comment block that says `PHASE 2`. Paste the following block **directly below that comment**, keeping the **2-space indentation** so it lines up with the other services (like `frontend:`, `load-generator:`, etc.):
@@ -57,7 +58,7 @@ Docker Compose will detect that only the `obi` service is new and start it. Your
 {{% tab title="Script" %}}
 
 ``` bash
-docker compose up -d
+docker-compose up -d
 ```
 
 {{% /tab %}}

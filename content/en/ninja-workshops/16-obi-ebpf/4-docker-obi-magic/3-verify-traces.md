@@ -11,16 +11,16 @@ First, confirm everything is healthy:
 {{% tab title="Script" %}}
 
 ``` bash
-docker compose ps
+docker-compose ps
 curl -s localhost:3000/create-order | python3 -m json.tool
-docker compose logs obi | head -30
+docker-compose logs obi | head -30
 ```
 
 {{% /tab %}}
 {{% tab title="Expected" %}}
 
 ``` text
-# docker compose ps - all 6 containers running
+# docker-compose ps - all 6 containers running
 # curl - returns JSON order confirmation
 # obi logs - shows "instrumenting process" for each service
 ```
@@ -65,5 +65,5 @@ Compare it against your `docker-compose.yaml` to spot any differences.
 Before moving to the Kubernetes phase, bring down the Docker stack:
 
 ``` bash
-docker compose down
+docker-compose down
 ```

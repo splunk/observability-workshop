@@ -7,9 +7,7 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Open [http://localhost:3000](http://localhost:3000) in your browser and click **"Create Order"** a few times.
-
-If you're on a headless instance, use curl:
+Use curl to generate traffic:
 
 ``` bash
 curl -s http://localhost:3000/create-order | python3 -m json.tool
