@@ -203,8 +203,8 @@ Now that threshold generation and alert logic are separated, you must explicitly
 First, define the static guardrail as its own stream by appending:
 
 ```python
-#Define static threshold for CPU as a variable
-static_threshold = threshold(90)
+#Define static threshold for CPU as a variable 
+static_threshold = threshold(.90)
 ```
 
 This creates a constant threshold stream at 90%.  
@@ -288,7 +288,7 @@ fire_bot, clear_bot, clear_top, fire_top = streams.mean_std_thresholds(
 )
 
 #Define static threshold for CPU as a variable
-static_threshold = threshold(90)
+static_threshold = threshold(.90)
 
 #detect when CPU has exceeded the fire_top thresholds established AND CPU exceeds static threshold (90%) for 15 minutes; publish detector
 detect(
