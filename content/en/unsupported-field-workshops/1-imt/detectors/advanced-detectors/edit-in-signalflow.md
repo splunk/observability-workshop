@@ -1,6 +1,6 @@
 ---
-title: Edit in SignalFlow
-linkTitle: 4.2.2 SignalFlow Refactor with Multiple Conditions
+title: SignalFlow Refactor with Multiple Conditions
+linkTitle: 4.2.2 Edit in SignalFlow
 weight: 3
 ---
 
@@ -208,7 +208,7 @@ static_threshold = threshold(.90)
 ```
 
 This creates a constant threshold stream at 90%.  
-By defining it as a stream (instead of embedding `threshold(90)` directly inside `detect()`), it can be published, visualized, and referenced in alert messages.
+By defining it as a stream (instead of embedding `threshold(.90)` directly inside `detect()`), it can be published, visualized, and referenced in alert messages.
 
 Next, define the multi-condition detection logic:
 

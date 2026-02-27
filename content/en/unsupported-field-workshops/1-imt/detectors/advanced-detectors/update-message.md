@@ -10,7 +10,7 @@ Customize the alert message to accurately reflect the multi-condition detection 
 
 - Explaining why the wizard-generated message is removed
 - Referencing published threshold streams
-- Explicitly communicating both the historical anomaly and static guardrail conditions
+- Explicitly communicating both the historical anomaly and static guardrail conditions in the alert description.
 
 ---
 
@@ -46,7 +46,7 @@ Because the detection logic now uses custom streams and a manually composed `det
 - Which threshold is authoritative  
 - How to describe the detection logic  
 
-When you take ownership of detection logic, you must also take ownership of the alert message.
+**When you take ownership of detection logic, you must also take ownership of the alert message.**
 
 {{% /notice %}}
 

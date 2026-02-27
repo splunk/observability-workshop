@@ -1,11 +1,11 @@
 ---
-title: Advanced Detectors
-linkTitle: 4.2 Multi-Condition Detectors
+title: Multi-Condition Detector
+linkTitle: 4.2 Advanced Detectors
 weight: 3
 authors: ["Charity Anderson"]
 ---
 
-## Lab Objective
+## Overall Objective
 
 Build a **multi-condition detector** that alerts only when:
 

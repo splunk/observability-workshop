@@ -1,6 +1,6 @@
 ---
-title: Historical Anomaly Detector
-linkTitle: 4.2.1 Historical Anomaly with Detector Wizard
+title: Historical Anomaly with Detector Wizard
+linkTitle: 4.2.1 Historical Anomaly Detector
 weight: 3
 ---
 
