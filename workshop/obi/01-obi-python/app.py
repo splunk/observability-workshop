@@ -6,29 +6,29 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-SPLUNK_INGEST_TOKEN = os.environ.get("SPLUNK_INGEST_TOKEN", " ")
-SPLUNK_REALM = os.environ.get("SPLUNK_REALM", " ")
-WORKSHOP_HOST_NAME = os.environ.get("WORKSHOP_HOST_NAME", " ")
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN", " ")
+REALM = os.environ.get("REALM", " ")
+INSTANCE = os.environ.get("INSTANCE", " ")
 
 
 @app.route("/hello")
 def hello():
     return jsonify({
         "message": "Hello from the OBI Workshop warm-up!",
-        "host": WORKSHOP_HOST_NAME,
+        "host": INSTANCE,
     })
 
 
 def send_heartbeat():
     """Send a single app.heartbeat gauge to the Splunk Ingest API."""
-    url = f"https://ingest.{SPLUNK_REALM}.signalfx.com/v2/datapoint"
+    url = f"https://ingest.{REALM}.signalfx.com/v2/datapoint"
     payload = json.dumps({
         "gauge": [{
             "metric": "app.heartbeat",
             "value": 1,
             "dimensions": {
-                "service.name": f"bare-app-{WORKSHOP_HOST_NAME}",
-                "host.name": WORKSHOP_HOST_NAME,
+                "service.name": f"bare-app-{INSTANCE}",
+                "host.name": INSTANCE,
                 "deployment.environment": "ebpf-bare-app",
             },
         }],
@@ -39,7 +39,7 @@ def send_heartbeat():
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "X-SF-Token": SPLUNK_INGEST_TOKEN,
+            "X-SF-Token": ACCESS_TOKEN,
         },
         method="POST",
     )

@@ -26,9 +26,17 @@ ls -la ./obi
 
 ``` text
 main: Pulling from otel/ebpf-instrument
-...
+0f5fbf7fdc05: Pull complete
+c9d0c8eb6b20: Pull complete
+05db807c0ef0: Pull complete
+9414859de0f9: Pull complete
+04083a69ab27: Pull complete
+Digest: sha256:f1b61af237c7ec02ea83afb7108ec8d65f3e308f9501818a15b67983f243cf97
 Status: Downloaded newer image for otel/ebpf-instrument:main
--rwxr-xr-x 1 root root 47234560 ... ./obi
+docker.io/otel/ebpf-instrument:main
+Successfully copied 108MB to /home/splunk/workshop/obi/01-obi-python/obi
+baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
+-rwxr-xr-x 1 root root 107922836 Feb 27 14:47 ./obi
 ```
 
 {{% /tab %}}
@@ -40,14 +48,32 @@ Status: Downloaded newer image for otel/ebpf-instrument:main
 
 In a **separate terminal**, run OBI with `sudo`. Replace the three placeholders with your realm, token, and hostname from the previous step:
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
-sudo OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://ingest.<YOUR_REALM>.signalfx.com/v2/trace/otlp" \
-     OTEL_EXPORTER_OTLP_HEADERS="X-SF-Token=<YOUR_TOKEN>" \
-     OTEL_SERVICE_NAME="warmup-app" \
-     OTEL_RESOURCE_ATTRIBUTES="deployment.environment=ebpf-bare-app,host.name=<YOUR_NAME>" \
-     OTEL_EBPF_OPEN_PORT=5150 \
-     ./obi
+sudo env \
+  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://ingest.${REALM}.signalfx.com:443" \
+  OTEL_EXPORTER_OTLP_TRACES_PROTOCOL="grpc" \
+  OTEL_EXPORTER_OTLP_HEADERS="X-SF-Token=${ACCESS_TOKEN}" \
+  OTEL_SERVICE_NAME="warmup-app" \
+  OTEL_RESOURCE_ATTRIBUTES="deployment.environment=ebpf-bare-app,host.name=${INSTANCE}" \
+  OTEL_EBPF_OPEN_PORT=5150 \
+  ./obi
 ```
+
+{{% /tab %}}
+{{% tab title="Look for this in your Output" %}}
+
+``` text
+...
+time=2026-02-27T19:29:56.296Z level=INFO msg="instrumenting process" component=discover.traceAttacher cmd=/usr/bin/python3.10 pid=245031 ino=7094 type=python service=warmup-app logenricher=false
+...
+time=2026-02-27T19:29:58.278Z level=INFO msg="Launching p.Tracer" component=generic.Tracer
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% /notice %}}
 

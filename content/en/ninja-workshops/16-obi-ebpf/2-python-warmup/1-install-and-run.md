@@ -34,18 +34,15 @@ Successfully installed flask-3.x.x ...
 Export your credentials as environment variables. Replace each placeholder with your actual values:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+Your environment should have values for `ACCESS_TOKEN`, `REALM`, and `INSTANCE` when you type `env`
+
+If they **do not** exist export them as follows
 
 ``` bash
-export SPLUNK_INGEST_TOKEN="<YOUR_TOKEN>"
-export SPLUNK_REALM="<YOUR_REALM>"
-export WORKSHOP_HOST_NAME="<YOUR_NAME>"
+export ACCESS_TOKEN="<YOUR_TOKEN>"
+export REALM="<YOUR_REALM>"
+export INSTANCE="<YOUR_IDENTIFIER>"
 ```
-
-Replace:
-
-* `<YOUR_TOKEN>` with your Splunk ingest token
-* `<YOUR_REALM>` with your realm (e.g. `us0`, `us1`, `eu0`)
-* `<YOUR_NAME>` with a unique identifier (e.g. `jsmith-laptop`)
 
 {{% /notice %}}
 
@@ -54,7 +51,7 @@ Replace:
 Start the Flask app in the background:
 
 ``` bash
-nohup python3 app.py &
+python3 app.py &
 ```
 
 On startup the app sends a single `app.heartbeat` metric directly to the Splunk Ingest API. You should see:
@@ -74,14 +71,14 @@ You should get back:
 
 ``` json
 {
-  "host": "<YOUR_NAME>",
+  "host": "<YOUR_INSTANCE>",
   "message": "Hello from the OBI Workshop warm-up!"
 }
 ```
 
 ## Verify in Splunk
 
-1. Open [Metric Finder](https://app.signalfx.com/#/metrics) and search for `app.heartbeat`.
+1. Open [Metric Finder](https://app.signalfx.com/#/metrics) and search for `app.heartbeat`
 2. You should see the metric with `host.name` matching the value you set.
 
 {{% notice title="Note" style="info" %}}
