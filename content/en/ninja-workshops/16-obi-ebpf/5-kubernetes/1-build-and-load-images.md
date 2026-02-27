@@ -5,7 +5,7 @@ weight: 1
 
 ## Verify Your Cluster
 
-Your workshop instance has K3s pre-installed. Confirm it's running:
+Your workshop instance has K3d pre-installed. Confirm it's running:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -18,8 +18,10 @@ kubectl get nodes
 {{% tab title="Example Output" %}}
 
 ``` text
-NAME            STATUS   ROLES                  AGE   VERSION
-ip-10-0-1-100   Ready    control-plane,master   12h   v1.31.x+k3s1
+NAME                            STATUS   ROLES                  AGE    VERSION
+k3d-shw-ece9-cluster-agent-0    Ready    <none>                 4h6m   v1.33.4+k3s1
+k3d-shw-ece9-cluster-agent-1    Ready    <none>                 4h6m   v1.33.4+k3s1
+k3d-shw-ece9-cluster-server-0   Ready    control-plane,master   4h6m   v1.33.4+k3s1
 ```
 
 {{% /tab %}}
@@ -54,42 +56,67 @@ docker build -t obi-workshop-payment-service:latest ../02-obi-docker/payment-ser
 {{% /tab %}}
 {{< /tabs >}}
 
-## Import Images into K3s
+## Import Images into K3d
 
-K3s uses containerd, not Docker, so images must be exported from Docker and imported:
+K3d uses containerd, not Docker, so images must be imported into the cluster. First, find your cluster name:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ``` bash
-docker save obi-workshop-frontend:latest | sudo k3s ctr images import -
-docker save obi-workshop-order-processor:latest | sudo k3s ctr images import -
-docker save obi-workshop-payment-service:latest | sudo k3s ctr images import -
+k3d cluster list
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` text
-unpacking docker.io/library/obi-workshop-frontend:latest (sha256:...)...done
-unpacking docker.io/library/obi-workshop-order-processor:latest (sha256:...)...done
-unpacking docker.io/library/obi-workshop-payment-service:latest (sha256:...)...done
+NAME               SERVERS   AGENTS   LOADBALANCER
+shw-ece9-cluster   1/1       2/2      true
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Now import the images, replacing `<YOUR_CLUSTER>` with the name from the output above:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+CLUSTER_NAME=$(k3d cluster list -o json | jq -r '.[0].name')
+k3d image import -c $CLUSTER_NAME \
+  obi-workshop-frontend:latest \
+  obi-workshop-order-processor:latest \
+  obi-workshop-payment-service:latest
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` text
+INFO[0000] Importing image(s) into cluster 'shw-ece9-cluster'
+INFO[0000] Starting new tools node...
+INFO[0000] Starting node 'k3d-shw-ece9-cluster-tools'
+INFO[0000] Saving 3 image(s) from runtime...
+INFO[0003] Importing images into nodes...
+INFO[0003] Importing images from tarball '/k3d/images/k3d-shw-ece9-cluster-images-20260227211818.tar' into node 'k3d-shw-ece9-cluster-server-0'...
+INFO[0003] Importing images from tarball '/k3d/images/k3d-shw-ece9-cluster-images-20260227211818.tar' into node 'k3d-shw-ece9-cluster-agent-1'...
+INFO[0003] Importing images from tarball '/k3d/images/k3d-shw-ece9-cluster-images-20260227211818.tar' into node 'k3d-shw-ece9-cluster-agent-0'...
+INFO[0015] Removing the tarball(s) from image volume...
+INFO[0016] Removing k3d-tools node...
+INFO[0020] Successfully imported image(s)
+INFO[0020] Successfully imported 3 image(s) into 1 cluster(s)
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you're using **k3d** instead of k3s:
+The script above automatically detects your cluster name. If you have multiple k3d clusters, you can specify it explicitly:
 
 ``` bash
-k3d image import obi-workshop-frontend:latest obi-workshop-order-processor:latest obi-workshop-payment-service:latest
-```
-
-For **kind**:
-
-``` bash
-kind load docker-image obi-workshop-frontend:latest obi-workshop-order-processor:latest obi-workshop-payment-service:latest
+k3d image import -c shw-ece9-cluster obi-workshop-frontend:latest obi-workshop-order-processor:latest obi-workshop-payment-service:latest
 ```
 
 {{% /notice %}}

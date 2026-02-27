@@ -13,7 +13,7 @@ In Phase 0 you ran a binary. In Phase 2 (Docker), you added one container. In Ph
 | Docker Compose | One container | Add a service to `docker-compose.yaml` |
 | Kubernetes | One DaemonSet | `kubectl apply` a DaemonSet manifest |
 
-For production, you would also consider the [OpenTelemetry Operator](https://opentelemetry.io/docs/kubernetes/operator/) which can inject OBI as a sidecar automatically using annotations -- no DaemonSet needed.
+For production, you would also consider the [OpenTelemetry Operator](https://opentelemetry.io/docs/kubernetes/operator/) which can inject OBI as a sidecar automatically using annotations 
 
 ## The Value Proposition
 

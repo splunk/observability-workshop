@@ -29,7 +29,7 @@ kubectl delete namespace obi-workshop
 
 ``` bash
 cd ~/workshop/obi/02-obi-docker
-docker compose down
+docker-compose down
 ```
 
 ### Phase 0 (Python)
@@ -69,5 +69,5 @@ When extending:
 - Do **not** add OpenTelemetry SDKs -- the whole point is zero-code instrumentation
 - Keep services on the Docker network; avoid `localhost` for inter-service calls
 - Update `obi-config.yaml` when adding new ports
-- Rebuild after code changes: `docker compose up --build -d`
+- Rebuild after code changes: `docker-compose up --build -d`
 {{% /notice %}}

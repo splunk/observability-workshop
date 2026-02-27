@@ -10,20 +10,21 @@ weight: 2
 Open `collector.yaml` and replace the four placeholder values in the `env` section:
 
 ``` bash
-vi ~/workshop/obi/03-obi-k8s/collector.yaml
+vim ~/workshop/obi/03-obi-k8s/collector.yaml
 ```
 
 ``` yaml
           env:
             - name: SPLUNK_INGEST_TOKEN
-              value: "YOUR_TOKEN_HERE"
+              value: "<YOUR_TOKEN>"             # <-- Your Splunk ingest token
             - name: SPLUNK_REALM
-              value: "us0"
+              value: "<YOUR REALM>"                      # <-- Your realm (us0, us1, eu0, etc.)
             - name: WORKSHOP_HOST_NAME
-              value: "jsmith-k8s"
+              value: "<example: shw-ece9>"                 # <-- the value from INSTANCE when you use `env` on terminal
             - name: WORKSHOP_ENVIRONMENT
-              value: "jsmith-k8s-workshop"
+              value: "<example: shw-ece9-ebpf>"            # <-- The hostname value above suffixed with `-ebpf`
 ```
+
 
 Save the file.
 
@@ -94,6 +95,12 @@ splunk-otel-collector-6a7b8c9d0-v8w9x   1/1     Running   0          30s
 Access the frontend via the NodePort:
 
 ``` bash
+kubectl port-forward -n obi-workshop svc/frontend 30000:3000 &; sleep 5 
+```
+
+Once the port if forwarded you can curl and hit the page
+
+``` bash
 curl -s http://localhost:30000/create-order | python3 -m json.tool
 ```
 
@@ -101,6 +108,6 @@ curl -s http://localhost:30000/create-order | python3 -m json.tool
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Check Splunk APM, filtering by your K8s environment. It should be **empty** -- no traces, no services. Same as Phase 1.
+Check Splunk APM, filtering by your workshop's environment you set above. It should not show any current traces being ingested (old traces may exist from previous phases).
 
 {{% /notice %}}

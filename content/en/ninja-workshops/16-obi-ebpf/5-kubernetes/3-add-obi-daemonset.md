@@ -44,19 +44,28 @@ kubectl logs -n obi-workshop -l app=obi --tail=20
 ```
 
 {{% /tab %}}
-{{% tab title="Example Output" %}}
+{{% tab title="Example Output to look for" %}}
 
 ``` text
 NAME        READY   STATUS    RESTARTS   AGE
 obi-abc12   1/1     Running   0          45s
 
+...
 level=INFO msg="instrumenting process" service=payment-service
+...
 level=INFO msg="instrumenting process" service=order-processor
+...
 level=INFO msg="instrumenting process" service=frontend
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
+
+Curl the endpoint a couple of times to generate more data
+
+``` bash
+curl -s http://localhost:30000/create-order | python3 -m json.tool
+```
 
 ## Check Splunk APM
 
