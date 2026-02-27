@@ -1,0 +1,97 @@
+###############################################################################
+# OBI (OpenTelemetry eBPF Instrumentation) DaemonSet
+#
+# Apply this AFTER the apps and collector are running.
+# This is the Phase 3 equivalent of adding the OBI container in Phase 2.
+###############################################################################
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: obi-config
+  namespace: obi-workshop
+data:
+  obi-config.yaml: |
+    discovery:
+      instrument:
+        - name: "frontend"
+          open_ports: 3000
+        - name: "order-processor"
+          open_ports: 8080
+        - name: "payment-service"
+          open_ports: 8081
+
+    ebpf:
+      context_propagation: all
+
+    otel_traces_export:
+      endpoint: http://splunk-otel-collector.obi-workshop:4318
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: obi
+  namespace: obi-workshop
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: obi
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "nodes"]
+    verbs: ["list", "watch", "get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: obi
+subjects:
+  - kind: ServiceAccount
+    name: obi
+    namespace: obi-workshop
+roleRef:
+  kind: ClusterRole
+  name: obi
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: obi
+  namespace: obi-workshop
+spec:
+  selector:
+    matchLabels:
+      app: obi
+  template:
+    metadata:
+      labels:
+        app: obi
+    spec:
+      serviceAccountName: obi
+      hostPID: true
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: obi
+          image: otel/ebpf-instrument:main
+          securityContext:
+            privileged: true
+          env:
+            - name: OTEL_EBPF_CONFIG_PATH
+              value: /config/obi-config.yaml
+          volumeMounts:
+            - name: obi-config
+              mountPath: /config/obi-config.yaml
+              subPath: obi-config.yaml
+            - name: cgroup
+              mountPath: /sys/fs/cgroup
+              readOnly: true
+      volumes:
+        - name: obi-config
+          configMap:
+            name: obi-config
+        - name: cgroup
+          hostPath:
+            path: /sys/fs/cgroup

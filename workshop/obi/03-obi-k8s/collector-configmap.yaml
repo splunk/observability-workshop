@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: collector-config
+  namespace: obi-workshop
+data:
+  config.yaml: |
+    extensions:
+      health_check:
+        endpoint: 0.0.0.0:13133
+
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+
+      hostmetrics:
+        collection_interval: 10s
+        scrapers:
+          cpu:
+          memory:
+          disk:
+          filesystem:
+          network:
+          load:
+
+    processors:
+      batch:
+        timeout: 5s
+        send_batch_size: 256
+
+      resourcedetection:
+        detectors: [system]
+        override: false
+
+      resource/workshop:
+        attributes:
+          - key: host.name
+            value: "${WORKSHOP_HOST_NAME}"
+            action: upsert
+          - key: deployment.environment
+            value: "${WORKSHOP_ENVIRONMENT}"
+            action: upsert
+
+    exporters:
+      otlp_http/splunk:
+        traces_endpoint: "https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp"
+        headers:
+          X-SF-Token: "${SPLUNK_INGEST_TOKEN}"
+
+      signalfx:
+        access_token: "${SPLUNK_INGEST_TOKEN}"
+        realm: "${SPLUNK_REALM}"
+
+      debug:
+        verbosity: detailed
+
+    service:
+      extensions: [health_check]
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [resource/workshop, batch, resourcedetection]
+          exporters: [otlp_http/splunk, debug]
+        metrics:
+          receivers: [hostmetrics, otlp]
+          processors: [resource/workshop, batch, resourcedetection]
+          exporters: [signalfx]
