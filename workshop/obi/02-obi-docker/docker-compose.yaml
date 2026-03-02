@@ -37,8 +37,8 @@ services:
     environment:
       SPLUNK_INGEST_TOKEN: " "            # <-- PHASE 1: Paste your Splunk ingest token here
       SPLUNK_REALM: " "                   # <-- PHASE 1: Paste your realm here (e.g. us0, us1, eu0)
-      WORKSHOP_HOST_NAME: " "             # <-- PHASE 1: Your name or initials (e.g. "jsmith-laptop")
-      WORKSHOP_ENVIRONMENT: " "           # <-- PHASE 1: A unique label (e.g. "jsmith-workshop")
+      WORKSHOP_HOST_NAME: " "             # <-- PHASE 1: A unique label look for `INSTANCE` in your environment (e.g. "shw-3edr")
+      WORKSHOP_ENVIRONMENT: " "           # <-- PHASE 1: The hostname value above suffixed with `-ebpf`
       SPLUNK_CONFIG: /etc/otel/config.yaml
 
   load-generator:

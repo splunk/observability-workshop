@@ -36,8 +36,8 @@ services:
     environment:
       SPLUNK_INGEST_TOKEN: "YOUR_TOKEN_HERE"
       SPLUNK_REALM: "us0"
-      WORKSHOP_HOST_NAME: "jsmith-laptop"
-      WORKSHOP_ENVIRONMENT: "jsmith-workshop"
+      WORKSHOP_HOST_NAME: "shw-3edr"
+      WORKSHOP_ENVIRONMENT: "shw-3edr-ebpf"
       SPLUNK_CONFIG: /etc/otel/config.yaml
 
   load-generator:

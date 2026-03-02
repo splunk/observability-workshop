@@ -33,9 +33,9 @@ spec:
             - name: SPLUNK_REALM
               value: " "                  # <-- Your realm (us0, us1, eu0)
             - name: WORKSHOP_HOST_NAME
-              value: " "                  # <-- Your name/initials (e.g. jsmith-k8s)
+              value: " "                  # <-- A unique label look for `INSTANCE` in your environment (e.g. "shw-3edr")
             - name: WORKSHOP_ENVIRONMENT
-              value: " "                  # <-- Unique label (e.g. jsmith-k8s-workshop)
+              value: " "                  # <-- The hostname value above suffixed with `-ebpf`
             - name: SPLUNK_CONFIG
               value: /etc/otel/config.yaml
           volumeMounts:

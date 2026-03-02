@@ -83,7 +83,7 @@ app.get("/healthz", (_req, res) => res.send("ok"));
 app.get("/metrics", (_req, res) => {
   res.set("Content-Type", "text/plain; charset=utf-8");
   res.send(
-    "# HELP workshop.heartbeat App is alive\n# TYPE workshop.heartbeat gauge\nworkshop.heartbeat 1\n"
+    "# HELP workshop_heartbeat App is alive\n# TYPE workshop_heartbeat gauge\nworkshop_heartbeat 1\n"
   );
 });
 

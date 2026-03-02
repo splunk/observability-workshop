@@ -11,7 +11,7 @@ Navigate to the Phase 1/2 directory and open `docker-compose.yaml` in your edito
 
 ``` bash
 cd ~/workshop/obi/02-obi-docker
-vim docker-compose.yaml #or editor of choise
+vim docker-compose.yaml #or editor of choice
 ```
 
 Find the `splunk-otel-collector` service and replace the four placeholder values with your real credentials:  

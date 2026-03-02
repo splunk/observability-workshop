@@ -36,7 +36,7 @@ Export your credentials as environment variables. Replace each placeholder with 
 {{% notice title="Exercise" style="green" icon="running" %}}
 Your environment should have values for `ACCESS_TOKEN`, `REALM`, and `INSTANCE` when you type `env`
 
-If they **do not** exist export them as follows
+**If they do not exist export them as follows**
 
 ``` bash
 export ACCESS_TOKEN="<YOUR_TOKEN>"
@@ -80,6 +80,8 @@ You should get back:
 
 1. Open [Metric Finder](https://app.signalfx.com/#/metrics) and search for `app.heartbeat`
 2. You should see the metric with `host.name` matching the value you set.
+
+![app.heartbeat](./images/heartbeat.png)
 
 {{% notice title="Note" style="info" %}}
 At this point you have a running app and proof that Splunk can receive your data. But there are **zero traces** -- APM is empty. The app has no instrumentation code whatsoever.

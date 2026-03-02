@@ -52,6 +52,8 @@ In a **separate terminal**, run OBI with `sudo`. Replace the three placeholders 
 {{% tab title="Script" %}}
 
 ``` bash
+cd ~/workshop/obi/01-obi-python
+
 sudo env \
   OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://ingest.${REALM}.signalfx.com:443" \
   OTEL_EXPORTER_OTLP_TRACES_PROTOCOL="grpc" \
@@ -64,7 +66,7 @@ sudo env \
 
 {{% /tab %}}
 {{% tab title="Look for this in your Output" %}}
-
+Generate traffic and look for this output
 ``` text
 ...
 time=2026-02-27T19:29:56.296Z level=INFO msg="instrumenting process" component=discover.traceAttacher cmd=/usr/bin/python3.10 pid=245031 ino=7094 type=python service=warmup-app logenricher=false

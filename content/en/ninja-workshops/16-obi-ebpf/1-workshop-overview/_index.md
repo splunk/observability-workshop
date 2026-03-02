@@ -35,9 +35,9 @@ You will also need:
 | Requirement | How to Get It |
 |---|---|
 | Splunk Observability Cloud account | Provided by your instructor |
-| **Splunk Access Token** (Ingest) | [Org Settings > Access Tokens](https://app.signalfx.com/#/organization/tokens) |
-| **Splunk Realm** (e.g. `us0`, `us1`, `eu0`) | [Shown in your Splunk Observability URL](https://docs.splunk.com/observability/en/admin/references/organizations.html) |
-| A **unique name** (e.g. `jsmith-laptop`) | Used as `host.name` so you can find your own telemetry |
+| **Splunk Access Token** (Ingest) | type `env` in your instance look for `ACCESS_TOKEN` |
+| **Splunk Realm** (e.g. `us0`, `us1`, `eu0`) |  type `env` in your instance look for `REALM` |
+| A **unique name** (e.g. `shw-2c74`) | `env` and look for `INSTANCE` Used as `host.name` |
 
 ## Architecture
 

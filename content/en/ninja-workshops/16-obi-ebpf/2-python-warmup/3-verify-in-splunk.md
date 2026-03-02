@@ -10,6 +10,7 @@ weight: 3
 1. Navigate to **APM** in Splunk Observability Cloud.
 2. Filter by service name `warmup-app`.
 3. You should see traces for the `/hello` endpoint.
+**NOTE: This may take a number of minutes to ingest the first traces**
 
 {{% /notice %}}
 
