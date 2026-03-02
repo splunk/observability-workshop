@@ -37,7 +37,6 @@ spec:
                 secretKeyRef:
                   name: azure-openai-api
                   key: azure-openai-api-key
-            - name:
             # OpenAI Model
             - name: OPENAI_MODEL
               value: "gpt-4.1-mini"
