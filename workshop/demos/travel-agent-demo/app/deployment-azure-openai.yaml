@@ -104,10 +104,13 @@ spec:
               value: "2"
             - name: DEEPEVAL_FILE_SYSTEM
               value: "READ_ONLY"
+            # specify a subset of evaluators to avoid hitting Circuit API token limits
+            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS
+              value: "deepeval(AgentInvocation(relevance,hallucination,bias,toxicity))"
             - name: TRAVEL_POISON_TYPES
               value: "hallucination,bias,irrelevance,negative_sentiment,toxicity"
             - name: TRAVEL_POISON_MAX
-              value: "2"
+              value: "1"
           resources:
             requests:
               memory: "512Mi"
