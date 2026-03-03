@@ -3,6 +3,37 @@ title: 2. Deploy the Baseline
 weight: 2
 ---
 
+## Deploy the Workshop Applications
+
+The applications go into their own namespace:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+cd ~/workshop/obi/03-obi-k8s
+kubectl apply -f namespace.yaml
+kubectl apply -f apps.yaml
+kubectl apply -f load-generator.yaml
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` text
+namespace/obi-workshop created
+deployment.apps/frontend created
+service/frontend created
+deployment.apps/order-processor created
+service/order-processor created
+deployment.apps/payment-service created
+service/payment-service created
+deployment.apps/load-generator created
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Install the Splunk OTel Collector
 
 The [Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart) is the production way to deploy the collector to Kubernetes. It handles the collector deployment, service, and configuration automatically.
@@ -64,37 +95,6 @@ REVISION: 1
 {{% /tab %}}
 {{< /tabs >}}
 
-## Deploy the Workshop Applications
-
-The applications go into their own namespace:
-
-{{< tabs >}}
-{{% tab title="Script" %}}
-
-``` bash
-cd ~/workshop/obi/03-obi-k8s
-kubectl apply -f namespace.yaml
-kubectl apply -f apps.yaml
-kubectl apply -f load-generator.yaml
-```
-
-{{% /tab %}}
-{{% tab title="Example Output" %}}
-
-``` text
-namespace/obi-workshop created
-deployment.apps/frontend created
-service/frontend created
-deployment.apps/order-processor created
-service/order-processor created
-deployment.apps/payment-service created
-service/payment-service created
-deployment.apps/load-generator created
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
 ## Verify Everything is Running
 
 {{< tabs >}}
@@ -102,7 +102,6 @@ deployment.apps/load-generator created
 
 ``` bash
 kubectl get pods -n obi-workshop
-kubectl get pods  -n obi-workshop -l app.kubernetes.io/name=splunk-otel-collector
 ```
 
 {{% /tab %}}
