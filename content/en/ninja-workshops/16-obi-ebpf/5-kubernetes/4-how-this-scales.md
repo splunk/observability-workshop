@@ -15,7 +15,7 @@ In Phase 0 you ran a binary. In Phase 2 (Docker), you added one container. In Ph
 
 The [Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/zero-code-ebpf-instrumentation.md) is the production way to deploy both the collector and OBI. For even more automation, the [OpenTelemetry Operator](https://opentelemetry.io/docs/kubernetes/operator/) can inject OBI as a sidecar automatically using annotations.
 
-## The Value Proposition
+## The Value Proposition (Recap)
 
 Many organizations have applications they **cannot** or **will not** instrument with OpenTelemetry SDKs:
 
