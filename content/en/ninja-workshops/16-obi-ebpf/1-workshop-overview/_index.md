@@ -14,7 +14,7 @@ By the end of this workshop, you will:
 - Understand how eBPF enables zero-code instrumentation at the Linux kernel level
 - Instrument a running application with the OBI binary on a bare host
 - Deploy a polyglot microservices stack with Docker Compose and add distributed tracing with one container
-- Deploy the same stack to Kubernetes and add tracing with one DaemonSet
+- Deploy the same stack to Kubernetes using the Splunk OTel Collector Helm chart and enable OBI with one flag
 - Navigate Splunk APM to view distributed traces, service maps, and request flows
 
 ## Prerequisites
@@ -28,6 +28,7 @@ Your workshop instance comes pre-configured with everything you need:
 | Docker & Docker Compose | Pre-installed |
 | K3s (Kubernetes) | Pre-installed |
 | kubectl | Pre-installed |
+| Helm 3 | Pre-installed |
 | Workshop assets | Pre-deployed at `~/workshop/obi/` |
 
 You will also need:

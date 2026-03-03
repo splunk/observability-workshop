@@ -78,13 +78,12 @@ shw-ece9-cluster   1/1       2/2      true
 {{% /tab %}}
 {{< /tabs >}}
 
-Now import the images, replacing `<YOUR_CLUSTER>` with the name from the output above:
+Now import the images. `CLUSTER_NAME` should be available in your `env`
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ``` bash
-CLUSTER_NAME=$(k3d cluster list -o json | jq -r '.[0].name')
 k3d image import -c $CLUSTER_NAME \
   obi-workshop-frontend:latest \
   obi-workshop-order-processor:latest \

@@ -1,29 +1,36 @@
 ---
-title: 3. Add the OBI DaemonSet
+title: 3. Enable OBI via Helm
 weight: 3
 ---
 
-Now add tracing to the entire cluster without changing any application code.
+Now add tracing to the entire cluster without changing any application code -- just one Helm upgrade.
 
-## Apply the OBI DaemonSet
+## Upgrade the Collector with OBI Enabled
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 ``` bash
-kubectl apply -f ~/workshop/obi/03-obi-k8s/obi-daemonset.yaml
+helm -n obi-workshop  upgrade splunk-otel-collector \
+  splunk-otel-collector-chart/splunk-otel-collector \
+  --set="splunkObservability.realm=${REALM}" \
+  --set="splunkObservability.accessToken=${ACCESS_TOKEN}" \
+  --set="clusterName=${INSTANCE}-k8s" \
+  --set="environment=${INSTANCE}-ebpf" \
+  --set="obi.enabled=true"
 ```
 
 {{% /notice %}}
 
-This creates:
+That single `--set="obi.enabled=true"` is the only change. The Helm chart handles everything else:
 
-1. A **ConfigMap** with the OBI service discovery config (same concept as `obi-config.yaml` from Phase 2)
-2. A **ServiceAccount**, **ClusterRole**, and **ClusterRoleBinding** for OBI's RBAC permissions
-3. A **DaemonSet** that runs one OBI pod on every node in your cluster
+- Deploys the **OBI DaemonSet** (one pod per node)
+- Configures RBAC (ServiceAccount, ClusterRole, ClusterRoleBinding)
+- Points OBI at the collector automatically
+- Grants the required Linux capabilities for eBPF
 
-### What Does the DaemonSet Do?
+### What Does OBI Need?
 
-The DaemonSet spec includes three critical settings:
+The OBI pods run with elevated privileges because eBPF operates at the kernel level:
 
 ``` yaml
 hostPID: true        # See all processes on the node, including other pods
@@ -31,7 +38,7 @@ hostNetwork: true    # Observe and inject trace context into network traffic
 privileged: true     # Attach eBPF probes to the kernel
 ```
 
-OBI discovers your services by port (3000, 8080, 8081), instruments them via eBPF, generates traces, and sends them to the collector at `splunk-otel-collector.obi-workshop:4318`.
+See the [OBI Security Documentation](https://opentelemetry.io/docs/zero-code/obi/security/) for details on reducing permissions if your cluster policies require it.
 
 ## Verify OBI is Running
 
@@ -39,8 +46,8 @@ OBI discovers your services by port (3000, 8080, 8081), instruments them via eBP
 {{% tab title="Script" %}}
 
 ``` bash
-kubectl get pods -n obi-workshop -l app=obi
-kubectl logs -n obi-workshop -l app=obi --tail=20
+kubectl get pods  -n obi-workshop -l app.kubernetes.io/name=obi
+kubectl logs  -n obi-workshop -l app.kubernetes.io/name=obi --tail=20
 ```
 
 {{% /tab %}}
@@ -61,7 +68,7 @@ level=INFO msg="instrumenting process" service=frontend
 {{% /tab %}}
 {{< /tabs >}}
 
-Curl the endpoint a couple of times to generate more data
+Generate some traffic:
 
 ``` bash
 curl -s http://localhost:30000/create-order | python3 -m json.tool
@@ -75,6 +82,6 @@ Wait 30-60 seconds for traces to flow.
 
 1. **Service Map**: You should now see three services: `frontend` -> `order-processor` -> `payment-service`.
 2. **Traces**: Click into any trace. You'll see the full distributed trace spanning all three services with timing for each hop.
-3. **Same story as Phase 2**: Zero code changes, one DaemonSet addition.
+3. **Same story as Phase 2**: Zero code changes. One `helm upgrade` with a single flag.
 
 {{% /notice %}}

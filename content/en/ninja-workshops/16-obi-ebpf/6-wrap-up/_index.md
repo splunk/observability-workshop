@@ -22,6 +22,7 @@ description: Key takeaways, cleanup instructions, and ideas for extending the wo
 ### Kubernetes
 
 ``` bash
+helm uninstall splunk-otel-collector
 kubectl delete namespace obi-workshop
 ```
 
