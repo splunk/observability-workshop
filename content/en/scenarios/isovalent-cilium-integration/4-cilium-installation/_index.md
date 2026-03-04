@@ -239,7 +239,9 @@ tetragon:
       cpu: 100m
       memory: 256Mi
 
-# Enable TracingPolicy CRDs via the operator (required for custom policies below)
+# Enable the Tetragon Operator and TracingPolicy support.
+# With tracingPolicy.enabled: true, the operator manages and deploys
+# TracingPolicies (TCP connection tracking, HTTP visibility, etc.) automatically.
 tetragonOperator:
   enabled: true
   tracingPolicy:
@@ -264,87 +266,9 @@ kubectl get pods -n tetragon
 
 {{% notice title="What Enhanced Network Observability adds" style="info" %}}
 With `layer3.tcp.rtt.enabled: true`, Tetragon hooks into the kernel's TCP socket state and records per-connection metrics including round-trip time, retransmit counts, bytes sent/received, and segment counts. These feed the `tetragon_socket_stats_*` metrics that power latency and throughput views in Splunk's Network Explorer. Without this, you only get event counts — with it, you get connection quality data.
+
+TracingPolicies (TCP connection tracking, HTTP visibility, etc.) are managed automatically by the Tetragon Operator when `tetragonOperator.tracingPolicy.enabled: true` is set in the Helm values above.
 {{% /notice %}}
-
-## Step 5b: Apply Tetragon TracingPolicies
-
-Tetragon uses `TracingPolicy` CRDs to define exactly what kernel events to capture. Apply these two policies to enable TCP connection tracking and HTTP visibility.
-
-**Network Monitoring Policy** — tracks TCP connect/close/send events using kprobes, filtering out localhost noise:
-
-```yaml
-apiVersion: cilium.io/v1alpha1
-kind: TracingPolicy
-metadata:
-  name: network-monitoring
-spec:
-  kprobes:
-  - call: "tcp_connect"
-    syscall: false
-    args:
-    - index: 0
-      type: "sock"
-    selectors:
-    - matchArgs:
-      - index: 0
-        operator: "NotDAddr"
-        values:
-        - "127.0.0.1"      # Skip localhost connections
-    returnArg:
-      index: 0
-      type: "sock"
-    returnArgAction: "TrackSock"   # Start tracking this socket for stats
-  - call: "tcp_close"
-    syscall: false
-    args:
-    - index: 0
-      type: "sock"
-    selectors:
-    - matchArgs:
-      - index: 0
-        operator: "NotDAddr"
-        values:
-        - "127.0.0.1"
-  - call: "tcp_sendmsg"
-    syscall: false
-    args:
-    - index: 0
-      type: "sock"
-    - index: 2
-      type: "size_t"
-    selectors:
-    - matchArgs:
-      - index: 0
-        operator: "NotDAddr"
-        values:
-        - "127.0.0.1"
-```
-
-**HTTP Visibility Policy** — enables L7 HTTP parsing on ports 80 and 8080:
-
-```yaml
-apiVersion: cilium.io/v1alpha1
-kind: TracingPolicy
-metadata:
-  name: http-visibility
-spec:
-  parser:
-    tcp:
-      enable: true
-    http:
-      enable: true
-      selectors:
-      - matchPorts:
-        - 8080
-        - 80
-```
-
-Apply both policies:
-
-```bash
-kubectl apply -f network-monitoring-policy.yaml -n tetragon
-kubectl apply -f http-visibility-policy.yaml -n tetragon
-```
 
 ## Step 6: Install Cilium DNS Proxy HA
 
