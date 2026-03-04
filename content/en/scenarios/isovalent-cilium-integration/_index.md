@@ -4,8 +4,8 @@ linkTitle: Isovalent Splunk Observability Integration
 weight: 6
 archetype: chapter
 authors: ["Alec Chamberlain"]
-time: 90 minutes
-description: Deploy Isovalent Enterprise Platform (Cilium, Hubble, and Tetragon) on Amazon EKS and integrate with Splunk Observability Cloud for comprehensive eBPF-based monitoring and observability.
+time: 105 minutes
+description: Deploy Isovalent Enterprise Platform (Cilium, Hubble, and Tetragon) on Amazon EKS and integrate with Splunk Observability Cloud for comprehensive eBPF-based monitoring and observability. Includes an end-to-end demo investigating a DNS issue using Hubble dashboards.
 ---
 
 This workshop demonstrates integrating **Isovalent Enterprise Platform with Splunk Observability Cloud** to provide comprehensive visibility into Kubernetes networking, security, and runtime behavior using eBPF technology.
@@ -29,6 +29,7 @@ By the end of this workshop, you will:
 - [Cilium Installation](./4-cilium-installation/_index.md) - Deploy Cilium, Hubble, and Tetragon
 - [Splunk Integration](./5-splunk-integration/_index.md) - Connect metrics to Splunk Observability Cloud
 - [Verification](./6-verification/_index.md) - Validate the integration
+- [Demo Script](./7-demo/_index.md) - Walk through an end-to-end DNS investigation scenario
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 This integration leverages eBPF (Extended Berkeley Packet Filter) for high-performance, low-overhead observability directly in the Linux kernel.
