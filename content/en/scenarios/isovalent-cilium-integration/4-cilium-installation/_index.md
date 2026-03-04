@@ -5,9 +5,14 @@ weight: 4
 
 ## Step 1: Configure Cilium Enterprise
 
-Create a file named `cilium-enterprise-values.yaml`. Replace `<YOUR-EKS-API-SERVER-ENDPOINT>` with the endpoint from the previous step (without `https://` prefix):
+Create a file named `cilium-enterprise-values.yaml`. Replace `<YOUR-EKS-API-SERVER-ENDPOINT>` with the endpoint from the previous step (without the `https://` prefix).
 
 ```yaml
+# Enable/disable debug logging
+debug:
+  enabled: false
+  verbose: ~
+
 # Configure unique cluster name & ID
 cluster:
   name: isovalent-demo
@@ -16,52 +21,64 @@ cluster:
 # Configure ENI specifics
 eni:
   enabled: true
-  updateEC2AdapterLimitViaAPI: true
-  awsEnablePrefixDelegation: true
+  updateEC2AdapterLimitViaAPI: true   # Dynamically fetch ENI limits from EC2 API
+  awsEnablePrefixDelegation: true     # Assign /28 CIDR blocks per ENI (16 IPs) instead of individual IPs
 
-enableIPv4Masquerade: false
+enableIPv4Masquerade: false           # Pods use their real VPC IPs — no SNAT needed in ENI mode
 loadBalancer:
-  serviceTopology: true
+  serviceTopology: true               # Prefer backends in the same AZ to reduce cross-AZ traffic costs
 
 ipam:
   mode: eni
 
-routingMode: native
+routingMode: native                   # No overlay tunnels — traffic routes natively through VPC
 
 # BPF / KubeProxyReplacement
+# Cilium replaces kube-proxy entirely with eBPF programs in the kernel.
+# This requires a direct path to the API server, hence k8sServiceHost.
 kubeProxyReplacement: "true"
 k8sServiceHost: <YOUR-EKS-API-SERVER-ENDPOINT>
 k8sServicePort: 443
 
-# Configure TLS configuration
+# TLS for internal Cilium communication
 tls:
   ca:
-    certValidityDuration: 3650 # 10 years
+    certValidityDuration: 3650        # 10 years for the CA cert
 
-# Enable Cilium Hubble for visibility
+# Hubble: network observability built on top of Cilium's eBPF datapath
 hubble:
   enabled: true
   metrics:
-    enableOpenMetrics: true
+    enableOpenMetrics: true           # Use OpenMetrics format for better Prometheus compatibility
     enabled:
+      # DNS: query/response tracking with namespace-level label context
       - dns:labelsContext=source_namespace,destination_namespace
+      # Drop: packet drop reasons (policy deny, invalid, etc.) per namespace
       - drop:labelsContext=source_namespace,destination_namespace
+      # TCP: connection state tracking (SYN, FIN, RST) per namespace
       - tcp:labelsContext=source_namespace,destination_namespace
+      # Port distribution: which destination ports are being used
       - port-distribution:labelsContext=source_namespace,destination_namespace
-      - icmp:labelsContext=source_namespace,destination_namespace
-      - flow:sourceContext=workload-name|reserved-identity
-      - "httpV2:exemplars=true;labelsContext=source_namespace,destination_namespace"
-      - "policy:labelsContext=source_namespace,destination_namespace"
+      # ICMP: ping/traceroute visibility with workload identity context
+      - icmp:labelsContext=source_namespace,destination_namespace;sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity
+      # Flow: per-workload flow counters (forwarded, dropped, redirected)
+      - flow:sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity
+      # HTTP L7: request/response metrics with full workload context and exemplars for trace correlation
+      - "httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_namespace,destination_workload,traffic_direction;sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity"
+      # Policy: network policy verdict tracking (allowed/denied) per workload
+      - "policy:sourceContext=app|workload-name|pod|reserved-identity;destinationContext=app|workload-name|pod|dns|reserved-identity;labelsContext=source_namespace,destination_namespace"
+      # Flow export: enables Hubble to export flow records to Timescape for historical storage
+      - flow_export
     serviceMonitor:
-      enabled: true
+      enabled: true                   # Creates a Prometheus ServiceMonitor for auto-discovery
   tls:
     enabled: true
     auto:
       enabled: true
-      method: cronJob
-      certValidityDuration: 1095 # 3 years
+      method: cronJob                 # Automatically rotate Hubble TLS certs on a schedule
+      certValidityDuration: 1095      # 3 years per cert rotation
   relay:
-    enabled: true
+    enabled: true                     # Hubble Relay aggregates flows from all nodes cluster-wide
     tls:
       server:
         enabled: true
@@ -70,44 +87,43 @@ hubble:
       serviceMonitor:
         enabled: true
   timescape:
-    enabled: true
+    enabled: true                     # Stores historical flow data for time-travel debugging
 
-# Enable Cilium Operator metrics
+# Cilium Operator: cluster-wide identity and endpoint management
 operator:
   prometheus:
     enabled: true
     serviceMonitor:
       enabled: true
 
-# Enable Cilium Agent metrics
+# Cilium Agent: per-node eBPF datapath metrics
 prometheus:
   enabled: true
   serviceMonitor:
     enabled: true
 
-# Configure Cilium Envoy
+# Cilium Envoy: L7 proxy metrics (HTTP, gRPC)
 envoy:
   prometheus:
     enabled: true
     serviceMonitor:
       enabled: true
 
-# Enable DNS Proxy HA support
+# Enable the Cilium agent to hand off DNS proxy responsibilities to the
+# external DNS Proxy HA deployment, so policies keep working during upgrades
 extraConfig:
   external-dns-proxy: "true"
 
+# Enterprise feature gates — these must be explicitly approved
 enterprise:
   featureGate:
     approved:
-      - DNSProxyHA
-      - HubbleTimescape
+      - DNSProxyHA          # High-availability DNS proxy (installed separately)
+      - HubbleTimescape     # Historical flow storage via Timescape
 ```
 
-{{% notice title="Configuration Highlights" style="info" %}}
-- **ENI Mode**: Pods get native VPC IP addresses
-- **Kube-Proxy Replacement**: eBPF-based service load balancing
-- **Hubble**: Network observability with L7 visibility
-- **Timescape**: Historical network flow storage
+{{% notice title="Why label contexts matter" style="info" %}}
+The `labelsContext` and `sourceContext`/`destinationContext` parameters on each Hubble metric control what dimensions the metric is broken down by. Setting `labelsContext=source_namespace,destination_namespace` means every metric will have those two labels attached, letting you filter by namespace in Splunk without cardinality explosion. The `workload-name|reserved-identity` fallback chain means Cilium will use the workload name if available, falling back to the security identity if not.
 {{% /notice %}}
 
 ## Step 2: Install Cilium Enterprise
@@ -167,13 +183,75 @@ kubectl get pods -n kube-system | grep -E "(cilium|hubble)"
 - Hubble relay and timescape running
 - Cilium operator running
 
-## Step 5: Install Tetragon
+## Step 5: Install Tetragon with Enhanced Network Observability
 
-Install Tetragon for runtime security:
+Tetragon out of the box provides runtime security and process-level visibility. For the Splunk integration — especially the Network Explorer dashboards — you also want to enable its enhanced network observability mode, which tracks TCP/UDP socket statistics, RTT, connection events, and DNS at the kernel level.
+
+Create a file named `tetragon-network-values.yaml`:
+
+```yaml
+# Tetragon configuration with Enhanced Network Observability enabled
+# Required for Splunk Observability Cloud Network Explorer integration
+
+tetragon:
+  # Enable network events — this activates eBPF-based socket tracking
+  enableEvents:
+    network: true
+
+  # Layer3 settings: track TCP, UDP, and ICMP with RTT and latency
+  # These enable the socket stats metrics (srtt, retransmits, bytes, etc.)
+  layer3:
+    tcp:
+      enabled: true
+      rtt:
+        enabled: true     # Round-trip time per TCP flow
+    udp:
+      enabled: true
+    icmp:
+      enabled: true
+    latency:
+      enabled: true       # Per-connection latency tracking
+
+  # DNS tracking at the kernel level (complements Hubble DNS metrics)
+  dns:
+    enabled: true
+
+  # Expose Tetragon metrics via Prometheus
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+  # Filter out noise from internal system namespaces — we only care about
+  # application workloads, not the observability stack itself
+  exportDenyList: |-
+    {"health_check":true}
+    {"namespace":["", "cilium", "tetragon", "kube-system", "otel-splunk"]}
+
+  # Only include labels that are meaningful for the Network Explorer
+  metricsLabelFilter: "namespace,workload,binary"
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+# Enable TracingPolicy CRDs via the operator (required for custom policies below)
+tetragonOperator:
+  enabled: true
+  tracingPolicy:
+    enabled: true
+```
+
+Install Tetragon with these values:
 
 ```bash
 helm install tetragon isovalent/tetragon --version 1.18.0 \
-  --namespace tetragon --create-namespace
+  --namespace tetragon --create-namespace \
+  -f tetragon-network-values.yaml
 ```
 
 Verify installation:
@@ -183,6 +261,90 @@ kubectl get pods -n tetragon
 ```
 
 **What you'll see:** Tetragon runs as a DaemonSet (one pod per node) plus an operator.
+
+{{% notice title="What Enhanced Network Observability adds" style="info" %}}
+With `layer3.tcp.rtt.enabled: true`, Tetragon hooks into the kernel's TCP socket state and records per-connection metrics including round-trip time, retransmit counts, bytes sent/received, and segment counts. These feed the `tetragon_socket_stats_*` metrics that power latency and throughput views in Splunk's Network Explorer. Without this, you only get event counts — with it, you get connection quality data.
+{{% /notice %}}
+
+## Step 5b: Apply Tetragon TracingPolicies
+
+Tetragon uses `TracingPolicy` CRDs to define exactly what kernel events to capture. Apply these two policies to enable TCP connection tracking and HTTP visibility.
+
+**Network Monitoring Policy** — tracks TCP connect/close/send events using kprobes, filtering out localhost noise:
+
+```yaml
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: network-monitoring
+spec:
+  kprobes:
+  - call: "tcp_connect"
+    syscall: false
+    args:
+    - index: 0
+      type: "sock"
+    selectors:
+    - matchArgs:
+      - index: 0
+        operator: "NotDAddr"
+        values:
+        - "127.0.0.1"      # Skip localhost connections
+    returnArg:
+      index: 0
+      type: "sock"
+    returnArgAction: "TrackSock"   # Start tracking this socket for stats
+  - call: "tcp_close"
+    syscall: false
+    args:
+    - index: 0
+      type: "sock"
+    selectors:
+    - matchArgs:
+      - index: 0
+        operator: "NotDAddr"
+        values:
+        - "127.0.0.1"
+  - call: "tcp_sendmsg"
+    syscall: false
+    args:
+    - index: 0
+      type: "sock"
+    - index: 2
+      type: "size_t"
+    selectors:
+    - matchArgs:
+      - index: 0
+        operator: "NotDAddr"
+        values:
+        - "127.0.0.1"
+```
+
+**HTTP Visibility Policy** — enables L7 HTTP parsing on ports 80 and 8080:
+
+```yaml
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: http-visibility
+spec:
+  parser:
+    tcp:
+      enable: true
+    http:
+      enable: true
+      selectors:
+      - matchPorts:
+        - 8080
+        - 80
+```
+
+Apply both policies:
+
+```bash
+kubectl apply -f network-monitoring-policy.yaml -n tetragon
+kubectl apply -f http-visibility-policy.yaml -n tetragon
+```
 
 ## Step 6: Install Cilium DNS Proxy HA
 
