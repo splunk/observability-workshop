@@ -148,13 +148,15 @@ This is the heart of the demo. Take your time here.
 
 ### DNS Queries Are Out of Control
 
-**Point to the DNS Queries chart.**
+**Point to the DNS Queries chart, then navigate to the DNS Overview tab.**
 
 > *"There it is. Look at the DNS query volume — it spiked sharply about 15 minutes ago. That timestamp lines up exactly with when the ticket was opened.*
 >
 > *What you're looking at is `hubble_dns_queries_total`, broken down by source namespace. The spike is entirely coming from `tenant-jobs` — our application namespace. Something in the application started generating a massive amount of DNS traffic, and the DNS proxy started struggling to keep up.*
 >
-> *The important thing here is that every application in the cluster shares the same DNS infrastructure. CoreDNS serves the whole cluster. When one workload saturates it, everything else that needs name resolution starts getting slow or failing. That's the ripple effect showing up as 500 errors for our users."*
+> *But look at the bottom right — the Missing DNS Responses chart. This is the one with the alert firing. The value is going deeply negative, which means DNS queries are being sent out but responses are never coming back. The DNS proxy is overwhelmed and connections are just timing out in silence. That's the ripple effect showing up as 500 errors for our users."*
+
+![Hubble DNS Overview showing Missing DNS Responses alert firing as values go deeply negative](images/Missing%20DNS%20Response.png)
 
 ### Top DNS Queries Reveal the Culprit
 
@@ -176,9 +178,21 @@ This is the heart of the demo. Take your time here.
 
 ### Network Flow Volume Confirms the Pattern
 
-**Point to the Network Flows chart.**
+**Navigate to the Metrics & Monitoring tab.**
 
-> *"And looking at the overall network flow volume, the total traffic in the namespace has spiked in lockstep with the DNS queries. The crawler workload is generating a disproportionate amount of traffic relative to its normal baseline. This confirms we're not looking at a gradual drift — something changed at a specific moment in time."*
+> *"And if you look at the Metrics & Monitoring tab, the full picture becomes even clearer. Flows processed per node has gone vertical — that's raw network traffic volume. The Forwarded vs Dropped chart is showing a meaningful proportion of those flows being dropped rather than forwarded. And the Drop Reason breakdown tells us it's a mix of TTL_EXCEEDED and DROP_REASON_UNKNOWN — exactly what you'd expect when DNS timeouts start cascading. Something changed at a specific moment in time, and everything after that point looks different from the baseline."*
+
+![Hubble Metrics & Monitoring showing flow spike, forwarded vs dropped, and drop reasons](images/Increase%20of%20Flows.png)
+
+### L7 HTTP Traffic Tells an Interesting Story
+
+**Navigate to the L7 HTTP Metrics tab.**
+
+> *"Here's something worth pointing out on the L7 HTTP Metrics tab, because it actually reinforces why APM wasn't helpful. The incoming request volume is non-zero — traffic is still flowing. The success rate chart looks mostly green. If you were only looking at HTTP-level visibility, you might conclude the app is fine.*
+>
+> *But look at the Incoming Requests by Source chart. The crawler is generating a disproportionate share of traffic — you can see it separating out from the other services. It's making HTTP calls successfully, which is why APM doesn't flag it. The problem is happening one layer down, in DNS, before the HTTP connections even establish."*
+
+![Hubble L7 HTTP Metrics showing crawler traffic spike with high request volume](images/Increase%20in%20Requests.png)
 
 ---
 
@@ -199,7 +213,13 @@ kubectl get deploy crawler -n tenant-jobs \
   -o jsonpath='{.spec.template.spec.containers[0].env}' | jq .
 ```
 
-> *"There it is. Five replicas, crawling every 0.2 to 0.3 seconds. This wasn't a code bug, an infrastructure failure, or a security incident. Someone changed a Helm value — intentionally or accidentally — and the effect was completely invisible to everything except the network layer.*
+**Optionally, switch over to the Cilium by Isovalent dashboard → Policy: L7 Proxy tab.**
+
+> *"If you want to see this from the Cilium side rather than the Hubble side, switch to the Cilium by Isovalent dashboard and look at the Policy: L7 Proxy tab. The L7 Request Processing Rate for FQDN — that's DNS — is sitting at over 21,000 requests. That's not per minute. The DNS proxy has been processing an extraordinary volume of FQDN lookups, all of them being received and forwarded, which is why it started backing up. This view also shows the DNS Proxy Upstream Reply latency, which confirms the proxy is under pressure."*
+
+![Cilium Policy: L7 Proxy showing FQDN request processing rate spiking to 21k+](images/L7%20Procesing%20Rate%20Increase.png)
+
+> *"There it is. Five replicas, crawling every 0.2 to 0.3 seconds.
 >
 > *APM can't see this because it instruments code, not DNS. Infrastructure monitoring can't see this because the pods are healthy — they're doing exactly what they were configured to do. The only tool that could catch this is something operating at the eBPF level, watching every packet, every DNS request, every connection attempt in real time. That's Hubble. And because we've wired it into Splunk, we caught it in the same dashboard we use for everything else."*
 
