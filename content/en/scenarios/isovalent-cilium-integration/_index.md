@@ -53,4 +53,11 @@ By connecting Isovalent Enterprise Platform to Splunk Observability Cloud, you g
 - 📊 **Unified dashboards**: Cilium, Hubble, and Tetragon metrics alongside infrastructure and APM data
 - ⚡ **Efficient networking**: Kube-proxy replacement and native VPC networking with ENI mode
 
+## Source Repositories
+
+All configuration files, Helm values, and dashboard JSON files referenced in this workshop are available in the following repositories:
+
+- **[isovalent_splunk_o11y](https://github.com/chambear2809/isovalent_splunk_o11y/)** — Helm values, OTel Collector configuration, Splunk dashboard JSON files, and the complete integration guide
+- **[isovalent-demo-jobs-app](https://github.com/chambear2809/isovalent-demo-jobs-app)** — The jobs-app Helm chart used in the demo scenario, including the error injection and remediation scripts
+
 {{% children depth="1" type="card" description="true" %}}
