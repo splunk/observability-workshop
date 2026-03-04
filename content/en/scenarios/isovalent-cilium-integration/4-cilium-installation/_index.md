@@ -128,6 +128,12 @@ The `labelsContext` and `sourceContext`/`destinationContext` parameters on each 
 
 ## Step 2: Install Cilium Enterprise
 
+When a new node joins an EKS cluster, the kubelet on that node immediately starts looking for a CNI plugin to set up networking. It reads whatever CNI configuration is present in `/etc/cni/net.d/` and uses that to initialize the node. **If we create the node group first, the AWS VPC CNI is what gets there first** — and once a node has initialized with one CNI, switching to another requires draining and re-initializing the node.
+
+By installing Cilium before any nodes exist, we ensure that Cilium's CNI configuration is already present in `kube-system` and ready to be picked up the moment a node starts. When the EC2 instances boot, Cilium's DaemonSet pod is scheduled immediately, its eBPF programs are loaded, and the node comes up `Ready` under Cilium's control from the very first second.
+
+This is also why the cluster was created with `disableDefaultAddons: true` in Step 3 of the EKS setup — without that, the AWS VPC CNI would be installed automatically and would race against Cilium.
+
 Install Cilium using Helm:
 
 ```bash
@@ -135,8 +141,8 @@ helm install cilium isovalent/cilium --version 1.18.4 \
   --namespace kube-system -f cilium-enterprise-values.yaml
 ```
 
-{{% notice title="Note" style="warning" %}}
-The installation may initially show pending jobs. This is expected - proceed to create nodes.
+{{% notice title="Pending jobs are expected" style="warning" %}}
+After installation you'll see some jobs in a pending state — this is normal. Cilium's Helm chart includes a job that generates TLS certificates for Hubble, and that job needs a node to run on. It will complete automatically once nodes are available in the next step.
 {{% /notice %}}
 
 ## Step 3: Create Node Group
