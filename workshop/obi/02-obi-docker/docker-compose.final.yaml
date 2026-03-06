@@ -1,0 +1,67 @@
+###############################################################################
+# OBI Workshop - ANSWER KEY (docker-compose.final.yaml)
+#
+# This is the complete final state after Phase 2.
+# If you get stuck, compare your docker-compose.yaml against this file.
+###############################################################################
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - order-processor
+
+  order-processor:
+    build: ./order-processor
+    ports:
+      - "8080:8080"
+    depends_on:
+      - payment-service
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "8081:8081"
+
+  splunk-otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:latest
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "13133:13133"
+    volumes:
+      - ./collector-config.yaml:/etc/otel/config.yaml
+    environment:
+      SPLUNK_INGEST_TOKEN: "YOUR_TOKEN_HERE"
+      SPLUNK_REALM: "us0"
+      WORKSHOP_HOST_NAME: "shw-3edr"
+      WORKSHOP_ENVIRONMENT: "shw-3edr-ebpf"
+      SPLUNK_CONFIG: /etc/otel/config.yaml
+
+  load-generator:
+    image: curlimages/curl:latest
+    depends_on:
+      - frontend
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Waiting for frontend to start..."
+        sleep 10
+        echo "Starting load generation..."
+        while true; do
+          curl -s http://frontend:3000/create-order
+          sleep 2
+        done
+
+  obi:
+    image: otel/ebpf-instrument:main
+    pid: host
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./obi-config.yaml:/config/obi-config.yaml
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    environment:
+      OTEL_EBPF_CONFIG_PATH: /config/obi-config.yaml
