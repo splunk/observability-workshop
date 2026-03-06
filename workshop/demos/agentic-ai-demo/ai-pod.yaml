@@ -243,7 +243,7 @@ spec:
           image: ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
           ports:
             - containerPort: 8089 # Replace with your APP_PORT.
-          environment:
+          env:
             - name: APP_ADDR
               value: "agentic-ai-demo-app.agentic-ai-demo-app.svc.cluster.local:8080"
           resources:
