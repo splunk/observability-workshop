@@ -12,7 +12,11 @@ time: 10 minutes
 以下の Helm コマンドを実行して、Collector の設定変更を適用できます：
 
 ``` bash
-helm upgrade splunk-otel-collector \
+{ [ -z "$CLUSTER_NAME" ] || \
+  [ -z "$ENVIRONMENT_NAME" ] || \
+  [ -z "$USER_NAME" ]; } && \
+  echo "Error: Missing variables" || \
+  helm upgrade splunk-otel-collector \
   --set="clusterName=$CLUSTER_NAME" \
   --set="environment=$ENVIRONMENT_NAME" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -24,6 +28,15 @@ helm upgrade splunk-otel-collector \
   -n $USER_NAME \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
+
+> 注意: `Missing variables` というエラーが表示された場合は、環境変数を再度定義する必要があります。以下のコマンドを実行する前に、参加者番号を追加してください：
+> ``` bash
+> export PARTICIPANT_NUMBER=<your participant number>
+> export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
+> export CLUSTER_NAME=ai-pod-$USER_NAME
+> export ENVIRONMENT_NAME=ai-pod-$USER_NAME
+> export SPLUNK_INDEX=splunk4rookies-workshop
+> ```
 
 ## AI POD 概要ダッシュボードタブの確認
 

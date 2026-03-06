@@ -66,6 +66,25 @@ export ENVIRONMENT_NAME=ai-pod-$USER_NAME
 export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
+環境名が設定されていることを確認します：
+
+{{< tabs >}}
+{{% tab title="スクリプト" %}}
+
+``` bash
+echo $ENVIRONMENT_NAME
+```
+
+{{% /tab %}}
+{{% tab title="出力例" %}}
+
+``` bash
+ai-pod-workshop-participant-1
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ### Collector のデプロイ
 
 ワークショップディレクトリに移動します。
@@ -77,7 +96,11 @@ cd ~/workshop/cisco-ai-pods
 以下のコマンドを使用して、自分の Namespace に Collector をインストールします。
 
 ```bash
-helm install splunk-otel-collector \
+{ [ -z "$CLUSTER_NAME" ] || \
+  [ -z "$ENVIRONMENT_NAME" ] || \
+  [ -z "$USER_NAME" ]; } && \
+  echo "Error: Missing variables" || \
+  helm upgrade --install splunk-otel-collector \
   --set="clusterName=$CLUSTER_NAME" \
   --set="environment=$ENVIRONMENT_NAME" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -90,12 +113,19 @@ helm install splunk-otel-collector \
   splunk-otel-collector-chart/splunk-otel-collector
 ```
 
-> Collector のインストール時に `otel-collector-values.yaml` という設定ファイルを参照していることに注意してください。このファイルにはカスタム設定が含まれています。
+> 注意: `Missing variables` というエラーが表示された場合は、環境変数を再度定義する必要があります。以下のコマンドを実行する前に、参加者番号を追加してください:
+> ``` bash
+> export PARTICIPANT_NUMBER=<your participant number>
+> export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
+> export CLUSTER_NAME=ai-pod-$USER_NAME
+> export ENVIRONMENT_NAME=ai-pod-$USER_NAME
+> export SPLUNK_INDEX=splunk4rookies-workshop
+> ```
 
 以下のコマンドを実行して、Collector の Pod が実行中であることを確認します。
 
 ````
-oc get pods
+watch -n 1 oc get pods
 
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-58rwm                             1/1     Running   0          6m40s

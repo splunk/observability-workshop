@@ -10,6 +10,7 @@ time: 10 minutes
 以下のコマンドを使用して、このアプリケーションを OpenShift クラスターにデプロイします:
 
 ``` bash
+cd ~/workshop/cisco-ai-pods
 oc apply -f ./llm-app/k8s-manifest.yaml
 ```
 
