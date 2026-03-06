@@ -15,21 +15,17 @@ gentksb/observability-workshop
 └── translate/*             ← 翻訳PRブランチ
 ```
 
-### 重要: ブランチの役割
-
 | ブランチ | 内容 | 用途 |
-|---------|------|------|
+| ------- | ---- | ---- |
 | `main` | upstreamの完全コピー | 翻訳のベースブランチ |
 | `ja-translation-system` | 翻訳システムのみ | **現在のブランチ** |
 | `translate/v*` | 翻訳結果 | upstream へのPR |
 
-**注意**: `ja-translation-system` にはコンテンツファイル（content/, assets/等）がありません。翻訳作業は `main` ブランチをベースに `translate/*` ブランチで行います。
+**注意**: `ja-translation-system` にはコンテンツファイル（`content/`、`assets/` 等）がありません。翻訳作業は `main` ブランチをベースに `translate/*` ブランチで行います。
 
 ### コミット保護
 
-`translate/*` ブランチでは `.claude` ディレクトリへの変更をコミットできません。Claude Code の PreToolUse hook により、コミット時に自動検証されます。
-
-翻訳システムの設定変更は `ja-translation-system` ブランチで行ってください。
+`translate/*` ブランチでは `.claude` ディレクトリへの変更をコミットできません。Claude CodeのPreToolUse hookにより、コミット時に自動検証されます。翻訳システムの設定変更は `ja-translation-system` ブランチで行ってください。
 
 ## 翻訳スキル
 
@@ -39,7 +35,7 @@ gentksb/observability-workshop
 
 ### 翻訳ルール概要
 
-- **翻訳しないもの**: コードブロック、CLIコマンド、URL、製品名（Splunk, Kubernetes等）
+- **翻訳しないもの**: コードブロック、CLIコマンド、URL、製品名（Splunk、Kubernetes等）
 - **文体**: です/ます調（丁寧語）
 - **太字**: 機能名・UI要素は英語を維持、文章は翻訳
 
@@ -49,33 +45,31 @@ gentksb/observability-workshop
 
 ```text
 .claude/
-├── settings.json                           # プロジェクト設定
+├── settings.json
 ├── hooks/
-│   └── validate-commit.sh                  # コミット検証フック
+│   └── validate-commit.sh
 └── skills/splunk-workshop-ja-translator/
-    ├── SKILL.md                            # 翻訳スキル定義
-    └── references/translation-guide.md     # 翻訳ガイドライン
+    ├── SKILL.md
+    └── references/translation-guide.md
 
 .github/workflows/
-├── sync-and-translate.yml                  # 翻訳ワークフロー
-├── CLAUDE.md                               # ワークフロー詳細ドキュメント
-└── README.md                               # ワークフロー説明
+├── sync-and-translate.yml
+├── CLAUDE.md
+└── README.md
 
 .gitignore
-.last-translated-tag                        # 最後に翻訳したタグ
-.markdownlint.json                          # Markdownlint設定
-CLAUDE.md                                   # このファイル
-README.md                                   # プロジェクト概要
+.last-translated-tag
+.markdownlint.json
+CLAUDE.md
+README.md
 ```
 
-## ワークフロー
-
-自動翻訳ワークフローの詳細は `.github/workflows/CLAUDE.md` を参照してください。
-
-### 手動翻訳時の手順
+## 手動翻訳手順
 
 1. `main` ブランチをチェックアウト
 2. 翻訳対象ファイルを `content/en/` から `content/ja/` にコピー
 3. `/splunk-workshop-ja-translator` スキルで翻訳を実行
 4. `hugo serve` でプレビュー確認
-5. PR を作成
+5. PRを作成
+
+自動翻訳ワークフローの詳細は `.github/workflows/CLAUDE.md` を参照。
