@@ -1,9 +1,9 @@
 name: Sync Upstream and Translate on New Release
 
 on:
-  # schedule:
-  #   # Run every Monday at 9:00 AM JST (00:00 UTC)
-  #   - cron: '0 0 * * 1'
+  schedule:
+    # Run every Monday at 9:00 AM JST (00:00 UTC)
+    - cron: '0 0 * * 1'
   workflow_dispatch:
     inputs:
       force_translate:
@@ -17,10 +17,7 @@ on:
         type: boolean
         default: false
 
-permissions:
-  id-token: write
-  contents: write
-  pull-requests: write
+permissions: {}
 
 env:
   AWS_REGION: us-west-2
@@ -34,13 +31,15 @@ jobs:
   check-new-release:
     name: Check for new upstream release
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     outputs:
       has_new_release: ${{ steps.check.outputs.has_new_release }}
       new_tag: ${{ steps.check.outputs.new_tag }}
       last_tag: ${{ steps.check.outputs.last_tag }}
     steps:
       - name: Checkout translation system branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
@@ -52,6 +51,8 @@ jobs:
 
       - name: Check for new release tags
         id: check
+        env:
+          FORCE_TRANSLATE: ${{ inputs.force_translate }}
         run: |
           # Get the latest release tag from upstream (semantic versioning)
           LATEST_TAG=$(git tag -l 'v*' --sort=-version:refname | head -1)
@@ -74,7 +75,7 @@ jobs:
           fi
 
           # Check if force translate is enabled
-          if [ "${{ inputs.force_translate }}" = "true" ]; then
+          if [ "$FORCE_TRANSLATE" = "true" ]; then
             echo "Force translate enabled"
             echo "has_new_release=true" >> $GITHUB_OUTPUT
             echo "new_tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
@@ -100,6 +101,9 @@ jobs:
     if: needs.check-new-release.outputs.has_new_release == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    permissions:
+      id-token: write
+      contents: write
     outputs:
       translation_branch: ${{ steps.translate-branch.outputs.branch_name }}
       translated_count: ${{ steps.translate.outputs.translated_count }}
@@ -108,7 +112,7 @@ jobs:
       new_workshops: ${{ steps.detect-new-workshops.outputs.new_workshops }}
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: main
           fetch-depth: 0
@@ -116,8 +120,7 @@ jobs:
       - name: Setup upstream remote
         run: |
           git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git || true
-          git fetch upstream --tags
-          git fetch upstream ${{ env.UPSTREAM_BRANCH }}
+          git fetch upstream --tags ${{ env.UPSTREAM_BRANCH }}
 
       - name: Sync main with upstream
         id: sync
@@ -133,10 +136,10 @@ jobs:
           # Push synced main
           git push origin main --force
 
-          echo "main_synced=true" >> $GITHUB_OUTPUT
-
       - name: Detect files to translate
         id: detect
+        env:
+          TRANSLATE_ALL: ${{ inputs.translate_all_untranslated }}
         run: |
           NEW_TAG="${{ needs.check-new-release.outputs.new_tag }}"
           LAST_TAG="${{ needs.check-new-release.outputs.last_tag }}"
@@ -152,7 +155,7 @@ jobs:
           echo "Comparing ${COMPARE_BASE}..${NEW_TAG}"
 
           # Get changed English markdown files
-          CHANGED_FILES=$(git diff --name-only "${COMPARE_BASE}..${NEW_TAG}" -- 'content/en/**/*.md' 2>/dev/null | sort || true)
+          CHANGED_FILES=$(git diff --name-only "${COMPARE_BASE}..${NEW_TAG}" -- ':(glob)content/en/**/*.md' 2>/dev/null | sort || true)
 
           # Filter files that need translation
           TRANSLATION_TARGETS=""
@@ -165,7 +168,7 @@ jobs:
 
           # Find all untranslated files if requested
           UNTRANSLATED_FILES=""
-          if [ "${{ inputs.translate_all_untranslated }}" = "true" ]; then
+          if [ "$TRANSLATE_ALL" = "true" ]; then
             echo "Scanning for all untranslated files..."
 
             for en_file in $(find content/en -name "*.md" -type f 2>/dev/null | sort); do
@@ -258,17 +261,9 @@ jobs:
             echo "No new workshops detected"
           fi
 
-      - name: Upload file list
-        if: steps.detect.outputs.has_files == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: translation-file-list
-          path: /tmp/files_to_translate.txt
-          retention-days: 1
-
       - name: Configure AWS credentials via OIDC
         if: steps.detect.outputs.has_files == 'true'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@ff717079ee2060e4bcee96c4779b553acc87447c
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
@@ -276,13 +271,13 @@ jobs:
 
       - name: Setup Node.js
         if: steps.detect.outputs.has_files == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
 
       - name: Install Claude Code CLI
         if: steps.detect.outputs.has_files == 'true'
-        run: npm install -g @anthropic-ai/claude-code
+        run: npm install -g @anthropic-ai/claude-code@2
 
       - name: Setup translation tools
         if: steps.detect.outputs.has_files == 'true'
@@ -291,7 +286,7 @@ jobs:
           git show origin/ja-translation-system:package.json > package.json
           git show origin/ja-translation-system:.textlintrc > .textlintrc
           git show origin/ja-translation-system:.markdownlint.json > .markdownlint.json
-          npm install
+          npm ci
 
       - name: Create translation branch
         id: translate-branch
@@ -302,13 +297,6 @@ jobs:
 
           git checkout -b "${BRANCH_NAME}"
           echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-
-      - name: Download file list
-        if: steps.detect.outputs.has_files == 'true'
-        uses: actions/download-artifact@v4
-        with:
-          name: translation-file-list
-          path: /tmp
 
       - name: Translate files
         id: translate
@@ -440,19 +428,18 @@ jobs:
         run: |
           UNTRANSLATED_COUNT=0
 
-          while IFS= read -r -d '' file; do
+          while IFS= read -r EN_FILE; do
+            if [ -z "$EN_FILE" ]; then continue; fi
+            file="${EN_FILE/content\/en/content\/ja}"
+            if [ ! -f "$file" ]; then continue; fi
             LINE_COUNT=$(wc -l < "$file")
-            if [ "$LINE_COUNT" -lt 5 ]; then
-              continue
-            fi
+            if [ "$LINE_COUNT" -lt 5 ]; then continue; fi
             if ! grep -Pq '[\x{3040}-\x{309F}\x{30A0}-\x{30FF}]' "$file"; then
-              REL_PATH="${file#content/ja/}"
-              EN_FILE="content/en/${REL_PATH}"
               echo "$EN_FILE" >> /tmp/untranslated_files.txt
               UNTRANSLATED_COUNT=$((UNTRANSLATED_COUNT + 1))
-              echo "Untranslated: ${REL_PATH}"
+              echo "Untranslated: ${file#content/ja/}"
             fi
-          done < <(find content/ja -name "*.md" -type f -print0 2>/dev/null)
+          done < /tmp/files_to_translate.txt
 
           echo "untranslated_count=${UNTRANSLATED_COUNT}" >> $GITHUB_OUTPUT
 
@@ -516,11 +503,14 @@ jobs:
         run: |
           LINT_COUNT=0
 
-          while IFS= read -r -d '' file; do
+          while IFS= read -r EN_FILE; do
+            if [ -z "$EN_FILE" ]; then continue; fi
+            file="${EN_FILE/content\/en/content\/ja}"
+            if [ ! -f "$file" ]; then continue; fi
             npx markdownlint-cli --fix "$file" 2>/dev/null || true
             npx textlint -c .textlintrc --fix "$file" 2>/dev/null || true
             LINT_COUNT=$((LINT_COUNT + 1))
-          done < <(find content/ja -name "*.md" -type f -print0 2>/dev/null)
+          done < /tmp/files_to_translate.txt
 
           echo "Linted ${LINT_COUNT} files"
 
@@ -563,14 +553,17 @@ jobs:
     needs: [check-new-release, sync-and-translate]
     if: needs.sync-and-translate.outputs.translation_branch != ''
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: write
     outputs:
       pr_number: ${{ steps.create-pr.outputs.pr_number }}
     steps:
       - name: Checkout translation branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ needs.sync-and-translate.outputs.translation_branch }}
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Create Pull Request to upstream
         id: create-pr
@@ -632,23 +625,22 @@ jobs:
               "Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow."
           } > /tmp/pr_body.md
 
-          # Conditionally create draft PR when new workshops are detected
-          DRAFT_FLAG=""
+          # Create PR to upstream repository
+          DRAFT_ARGS=()
           if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
-            DRAFT_FLAG="--draft"
+            DRAFT_ARGS=(--draft)
             echo "Creating DRAFT PR (new workshops detected)"
           else
             echo "Creating regular PR"
           fi
 
-          # Create PR to upstream repository
           PR_URL=$(gh pr create \
             --repo "${{ env.UPSTREAM_REPO }}" \
             --title "Japanese Translation: ${NEW_TAG}" \
             --body-file /tmp/pr_body.md \
             --base main \
             --head "${{ github.repository_owner }}:${{ needs.sync-and-translate.outputs.translation_branch }}" \
-            $DRAFT_FLAG)
+            "${DRAFT_ARGS[@]}")
 
           echo "Created PR: ${PR_URL}"
           PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]*$')
@@ -657,10 +649,13 @@ jobs:
   update-tag-tracking:
     name: Update last translated tag
     needs: [check-new-release, create-pr]
+    if: needs.create-pr.result == 'success'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - name: Checkout translation system branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ github.ref }}
 
@@ -678,7 +673,7 @@ jobs:
 
   notify-slack:
     name: Notify Slack
-    needs: [check-new-release, sync-and-translate, create-pr, update-tag-tracking]
+    needs: [check-new-release, sync-and-translate, create-pr]
     if: >-
       always()
       && needs.check-new-release.outputs.has_new_release == 'true'
@@ -691,8 +686,7 @@ jobs:
         run: |
           if [ "${{ needs.check-new-release.result }}" = "failure" ] || \
              [ "${{ needs.sync-and-translate.result }}" = "failure" ] || \
-             [ "${{ needs.create-pr.result }}" = "failure" ] || \
-             [ "${{ needs.update-tag-tracking.result }}" = "failure" ]; then
+             [ "${{ needs.create-pr.result }}" = "failure" ]; then
             echo "result=failure" >> $GITHUB_OUTPUT
           else
             echo "result=success" >> $GITHUB_OUTPUT
