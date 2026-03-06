@@ -89,7 +89,7 @@ PodがSplunk Observability Cloudで実行中であることを確認します。
 
 {{% notice title="ワークショップの質問" style="tip" icon="question" %}}
 
-# Hosts reporting チャートでは何が起きていますか？
+**Hosts reporting チャートでは何が起きていますか？**
 
 {{% /notice %}}
 

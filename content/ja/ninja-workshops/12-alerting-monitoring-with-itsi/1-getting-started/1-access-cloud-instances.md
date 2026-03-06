@@ -10,7 +10,7 @@ weight: 2
 
 ワークショップのタイトルは **"Tech Summit 2025: OBS-122"** です。または [Splunk Show](https://show.splunk.com/template/646/) のエントリに直接アクセスすることもできます。起動には約15分かかりますが、データの生成と取り込みには最大30分かかります。
 
-![show-entry](../images/show_entry.png?classes=inline)
+![show-entry](../images/show_entry.png)
 
 # Splunk Observability Cloud へのアクセス
 
