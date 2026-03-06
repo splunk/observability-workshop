@@ -23,7 +23,7 @@ sudo nano /etc/otel/collector/fluentd/conf.d/petclinic.conf
 ```
 
 
-ファイル `/tmp/spring-petclinic.log`を読み取るよう設定を記述します。
+ファイル `/tmp/spring-petclinic.log` を読み取るよう設定を記述します。
 
 ```
 <source>

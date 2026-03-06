@@ -7,19 +7,19 @@ weight: 3
 
 ## はじめに
 
-大規模な組織で OpenTelemetry を展開する際には、タグ付けのための標準化された命名規則を定義し、その規則が遵守されるようにガバナンスプロセスを設定することが非常に重要です。
+大規模な組織でOpenTelemetryを展開する際には、タグ付けのための標準化された命名規則を定義し、その規則が遵守されるようにガバナンスプロセスを設定することが非常に重要です。
 
-これにより、OpenTelemetry を通じて収集される MELT データ（メトリクス、イベント、ログ、トレース）を、アラート、ダッシュボード作成、トラブルシューティングの目的で効率的に活用することが可能になります。また、Splunk Observability Cloud のユーザーが探しているデータを迅速に見つけることができます。
+これにより、OpenTelemetryを通じて収集されるMELTデータ（メトリクス、イベント、ログ、トレース）を、アラート、ダッシュボード作成、トラブルシューティングの目的で効率的に活用することが可能になります。また、Splunk Observability Cloudのユーザーが探しているデータを迅速に見つけることができます。
 
 命名規則はまた、データを効果的に集約するためにも重要です。例えば、環境ごとのユニークなホストの数を数えたい場合、ホスト名と環境名を捉えるための標準化された規則を使用する必要があります。
 
 ## 属性 vs タグ
 
-先に進む前に、用語についての注意をしておきましょう。OpenTelemetry の「タグ」は「属性（attribute）」と呼ばれます。属性は、手動または自動の計装を通じて、メトリクス、ログ、トレースに添付することができます。
+先に進む前に、用語についての注意をしておきましょう。OpenTelemetryの「タグ」は「属性（attribute）」と呼ばれます。属性は、手動または自動の計装を通じて、メトリクス、ログ、トレースに添付することができます。
 
-属性はまた、[Resource Detection processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourcedetectionprocessor)などのさまざまなプロセッサを使用して、OpenTelemetry コレクターレベルでメトリクス、ログ、トレースに添付することもできます。
+属性はまた、[Resource Detection processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourcedetectionprocessor)などのさまざまなプロセッサを使用して、OpenTelemetryコレクターレベルでメトリクス、ログ、トレースに添付することもできます。
 
-Splunk Observability Cloud に属性付きのトレースが取り込まれると、それらは「タグ」として利用可能になります。オプションとして、トレースの一部として収集された属性は、[Troubleshooting Metric Sets](https://docs.splunk.com/Observability/apm/span-tags/metricsets.html#troubleshooting-metricsets)の作成に使用され、[Tag Spotlight](https://docs.splunk.com/Observability/apm/span-tags/tag-spotlight.html)などのさまざまな機能と共に使用することができます。
+Splunk Observability Cloudに属性付きのトレースが取り込まれると、それらは「タグ」として利用可能になります。オプションとして、トレースの一部として収集された属性は、[Troubleshooting Metric Sets](https://docs.splunk.com/Observability/apm/span-tags/metricsets.html#troubleshooting-metricsets)の作成に使用され、[Tag Spotlight](https://docs.splunk.com/Observability/apm/span-tags/tag-spotlight.html)などのさまざまな機能と共に使用することができます。
 
 また、属性は[Monitoring Metric Sets](https://docs.splunk.com/Observability/apm/span-tags/metricsets.html#monitoring-metricsets)の作成に使用され、アラートのトリガーとして使用することもできます。
 
@@ -31,9 +31,9 @@ Splunk Observability Cloud に属性付きのトレースが取り込まれる�
 
 監視されるサービスを記述するために多くの属性が使用されます。
 
-`service.name` はサービスの論理名を定義する必須の属性です。OpenTelemetry SDK によって自動的に追加されますが、カスタマイズすることができます。これはシンプルに保つことが最善です（例えば、`inventoryservice` は `inventoryservice-prod-hostxyz` よりも良いでしょう。他の属性を使用してサービスの他の側面を捉えることができます）。
+`service.name` はサービスの論理名を定義する必須の属性です。OpenTelemetry SDKによって自動的に追加されますが、カスタマイズすることができます。これはシンプルに保つことが最善です（例えば、`inventoryservice` は `inventoryservice-prod-hostxyz` よりも良いでしょう。他の属性を使用してサービスの他の側面を捉えることができます）。
 
-以下のサービス属性が推奨されます：
+以下のサービス属性が推奨されます
 
 - `service.namespace` はサービスを所有するチームを識別するために使用されます
 - `service.instance.id` はサービスのユニークなインスタンスを識別するために使用されます
@@ -41,11 +41,11 @@ Splunk Observability Cloud に属性付きのトレースが取り込まれる�
 
 ### テレメトリSDK
 
-これらの属性はSDKによって自動的に設定され、使用されている計測ライブラリに関する情報を記録します：
+これらの属性はSDKによって自動的に設定され、使用されている計測ライブラリに関する情報を記録します
 
 - `telemetry.sdk.name` は通常 `opentelemetry` に設定されます。
-- `telemetry.sdk.language` は SDK の言語で、例えば `java` です。
-- `telemetry.sdk.version` は使用されている SDK のバージョンを識別します。
+- `telemetry.sdk.language` はSDKの言語で、例えば `java` です。
+- `telemetry.sdk.version` は使用されているSDKのバージョンを識別します。
 
 ### コンテナ
 
@@ -58,13 +58,13 @@ Splunk Observability Cloud に属性付きのトレースが取り込まれる�
 
 ### デプロイ環境
 
-`deployment.environment` 属性は、サービスがデプロイされている環境（ **staging** や **production** など）を識別するために使用されます。
+`deployment.environment` 属性は、サービスがデプロイされている環境（**staging** や **production** など）を識別するために使用されます。
 
-Splunk Observability Cloud は、この属性を使用して関連コンテンツを有効する（詳細は[こちら](https://docs.splunk.com/observability/metrics-and-metadata/enablerelatedcontent.html)）ため、この属性を含めることが重要です。
+Splunk Observability Cloudは、この属性を使用して関連コンテンツを有効する（詳細は[こちら](https://docs.splunk.com/observability/metrics-and-metadata/enablerelatedcontent.html)）ため、この属性を含めることが重要です。
 
 ### クラウド
 
-AWS などのパブリッククラウド環境で実行されるサービスに関する情報を捉えるための属性もあります。これには、`cloud.provider`、`cloud.account.id`、`cloud.region` が含まれます。
+AWSなどのパブリッククラウド環境で実行されるサービスに関する情報を捉えるための属性もあります。これには、`cloud.provider`、`cloud.account.id`、`cloud.region` が含まれます。
 
 属性の完全なリストは[こちら](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/cloud.md)で確認できます。
 
@@ -73,7 +73,7 @@ AWS などのパブリッククラウド環境で実行されるサービスに�
 ### Kubernetes
 
 
-Kubernetesで実行されるアプリケーションにも、いくつかの標準化された属性があります。これらの多くは、Splunk の OpenTelemetry コレクター配布によって自動的に追加されます（詳細は[こちら](https://docs.splunk.com/observability/metrics-and-metadata/enablerelatedcontent.html#splunk-infrastructure-monitoring)）。
+Kubernetesで実行されるアプリケーションにも、いくつかの標準化された属性があります。これらの多くは、SplunkのOpenTelemetryコレクター配布によって自動的に追加されます（詳細は[こちら](https://docs.splunk.com/observability/metrics-and-metadata/enablerelatedcontent.html#splunk-infrastructure-monitoring)）。
 
 属性は、例えば `k8s.cluster.name`、`k8s.node.name`、`k8s.pod.name`、`k8s.namespace.name`、`kubernetes.workload.name` などがあります。
 
@@ -89,13 +89,13 @@ OpenTelemetryコミュニティでは、属性の命名に従うべきガイド�
 
 [Recommendations for Application Developers](https://opentelemetry.io/docs/specs/otel/common/attribute-naming/#recommendations-for-application-developers)は、私たちの議論に最も関連しています。
 
-そこでは、以下を推奨しています：
+そこでは、以下を推奨しています
 
 * `com.acme.shopname` のように、会社のドメイン名で属性名を接頭辞として付けること（属性が社内だけでなく外部で使用される可能性がある場合）
 * 属性が特定のアプリケーションに固有であり、組織内でのみ使用される場合は、アプリケーション名で属性名に接頭辞を付けること
-* 既存の OpenTelemetry セマンティック規約の名前を属性名の接頭辞として使用しないこと
-* 異なる組織や業界全体で一般的なニーズがある場合は、あなたの属性名を OpenTelemetry 仕様に追加する提案を検討すること
-* `otel.*` で始まる属性名は避けること。これは OpenTelemetry 仕様の使用に予約されています
+* 既存のOpenTelemetryセマンティック規約の名前を属性名の接頭辞として使用しないこと
+* 異なる組織や業界全体で一般的なニーズがある場合は、あなたの属性名をOpenTelemetry仕様に追加する提案を検討すること
+* `otel.*` で始まる属性名は避けること。これはOpenTelemetry仕様の使用に予約されています
 
 ## カーディナリティに関する考慮事項
 
@@ -107,14 +107,14 @@ OpenTelemetryコミュニティでは、属性の命名に従うべきガイド�
 
 例えば、あなたのアプリケーションが `custom.metric` という名前のメトリクスのデータを送信するとします。属性がない場合、`custom.metric` は単一のメトリクス時系列（MTS）を生成します。
 
-一方で、`custom.metric`が `customer.id` という属性を含み、数千の顧客ID値がある場合、これは数千のメトリクス時系列を生成し、コストやクエリ性能に影響を与える可能性があります。
+一方で、`custom.metric` が `customer.id` という属性を含み、数千の顧客ID値がある場合、これは数千のメトリクス時系列を生成し、コストやクエリ性能に影響を与える可能性があります。
 
-Splunk Observability Cloud は、メトリクスの使用量を管理するための[レポート](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html)を提供しています。そして、望ましくないディメンションを削除する[ルール](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html)を作成することができます。しかし、最初の防衛線は、属性名と値の組み合わせがどのようにメトリクスのカーディナリティを増加させるかを理解することです。
+Splunk Observability Cloudは、メトリクスの使用量を管理するための[レポート](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html)を提供しています。そして、望ましくないディメンションを削除する[ルール](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html)を作成することができます。しかし、最初の防衛線は、属性名と値の組み合わせがどのようにメトリクスのカーディナリティを増加させるかを理解することです。
 
 ## まとめ
 
-このドキュメントでは、大規模な OpenTelemetry 計装の展開を開始する前に、OpenTelemetry タグの命名規則を定義することの重要性を強調しました。
+このドキュメントでは、大規模なOpenTelemetry計装の展開を開始する前に、OpenTelemetryタグの命名規則を定義することの重要性を強調しました。
 
-OpenTelemetry のリソースセマンティック規約がいくつかの属性の命名規則を定義し、多くの属性が OpenTelemetry SDKや OpenTelemetry コレクター内で動作するプロセッサーを通じて自動的に収集される方法について説明しました。
+OpenTelemetryのリソースセマンティック規約がいくつかの属性の命名規則を定義し、多くの属性がOpenTelemetry SDKやOpenTelemetryコレクター内で動作するプロセッサーを通じて自動的に収集される方法について説明しました。
 
 最後に、リソースセマンティック規約が組織のニーズに十分でない場合に、属性名を作成するためのベストプラクティスを共有しました。

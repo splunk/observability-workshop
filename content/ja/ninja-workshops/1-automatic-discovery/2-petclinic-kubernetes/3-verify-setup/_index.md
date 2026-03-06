@@ -5,7 +5,7 @@ weight: 4
 time: 10 minutes
 ---
 
-インストールが完了したら、**Splunk Observability Cloud** にログインして、Kubernetes クラスターからメトリクスが流れてきていることを確認できます。
+インストールが完了したら、**Splunk Observability Cloud** にログインして、Kubernetesクラスターからメトリクスが流れてきていることを確認できます。
 
 左側のメニューから **Infrastructure** をクリックし、**Kubernetes** を選択してから、**Kubernetes nodes** タイルを選択します。
 

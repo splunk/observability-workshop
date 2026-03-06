@@ -8,7 +8,7 @@ weight: 2
 
 ワークショップの前半で、`prometheus` レシーバーの名前を変更し、コレクター内部のメトリクスを収集していることを反映して、`prometheus/internal` という名前にしました。
 
-現在、メトリクスパイプラインの下で `prometheus/internal` レシーバーを有効にする必要があります。`metrics` パイプラインの下の `receivers` セクションを更新して、`prometheus/internal` を含めます：
+現在、メトリクスパイプラインの下で `prometheus/internal` レシーバーを有効にする必要があります。`metrics` パイプラインの下の `receivers` セクションを更新して、`prometheus/internal` を含めます
 
 ```yaml {hl_lines="11"}
 service:

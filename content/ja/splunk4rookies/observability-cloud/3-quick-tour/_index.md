@@ -6,7 +6,7 @@ archetype: chapter
 description: Splunk Observability Cloud UIのクイックツアー
 ---
 
-Splunk Observability Cloud の様々なコンポーネントについて簡単な説明から始めます。これは UI に慣れてもらうことを目的としています。
+Splunk Observability Cloudの様々なコンポーネントについて簡単な説明から始めます。これはUIに慣れてもらうことを目的としています。
 
 1. **Splunk Observability Cloud へのサインイン**
 2. **Real User Monitoring (RUM)**

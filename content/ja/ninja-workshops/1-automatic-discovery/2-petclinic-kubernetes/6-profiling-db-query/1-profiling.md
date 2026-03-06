@@ -6,9 +6,9 @@ weight: 1
 
 先ほどHelmチャートを使用してSplunk Distribution of the OpenTelemetry Collectorをインストールした際、**AlwaysOn Profiling**と**Metrics**を有効にするように設定しました。これにより、OpenTelemetry JavaはアプリケーションのCPUとメモリのプロファイリングを自動的に生成し、Splunk Observability Cloudに送信します。
 
-PetClinicアプリケーションをデプロイしてアノテーションを設定すると、collectorは自動的にアプリケーションを検出し、トレースとプロファイリングのためにインストルメントします。これを確認するために、次のスクリプトを実行して、インストルメントしているJavaコンテナの1つの起動ログを調べることができます：
+PetClinicアプリケーションをデプロイしてアノテーションを設定すると、collectorは自動的にアプリケーションを検出し、トレースとプロファイリングのためにインストルメントします。これを確認するために、次のスクリプトを実行して、インストルメントしているJavaコンテナの1つの起動ログを調べることができます
 
-ログには、Javaの自動検出と設定によって取得されたフラグが表示されます：
+ログには、Javaの自動検出と設定によって取得されたフラグが表示されます
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}
@@ -49,13 +49,13 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 {{< /tabs >}}
-私たちが注目しているのは、`com.splunk.opentelemetry.profiler.ConfigurationLogger`によって書き込まれたセクション、つまり**Profiling Configuration**です。
+私たちが注目しているのは、`com.splunk.opentelemetry.profiler.ConfigurationLogger` によって書き込まれたセクション、つまり**Profiling Configuration**です。
 
-`splunk.profiler.directory`など、制御できるさまざまな設定を確認できます。これは、エージェントがSplunkに送信する前にコールスタックを書き込む場所です。（これは、コンテナの設定方法によって異なる場合があります。）
+`splunk.profiler.directory` など、制御できるさまざまな設定を確認できます。これは、エージェントがSplunkに送信する前にコールスタックを書き込む場所です。（これは、コンテナの設定方法によって異なる場合があります。）
 
-変更したいもう1つのパラメータは`splunk.profiler.call.stack.interval`です。これは、システムがCPU Stack traceをキャプチャする頻度です。Pet Clinicアプリケーションのような短いスパンがある場合は、このインターバル設定を短くすることをお勧めします。デモアプリケーションでは、デフォルトのインターバル値を変更しなかったため、スパンに常にCPU Call Stackが関連付けられているとは限りません。
+変更したいもう1つのパラメータは `splunk.profiler.call.stack.interval` です。これは、システムがCPU Stack traceをキャプチャする頻度です。Pet Clinicアプリケーションのような短いスパンがある場合は、このインターバル設定を短くすることをお勧めします。デモアプリケーションでは、デフォルトのインターバル値を変更しなかったため、スパンに常にCPU Call Stackが関連付けられているとは限りません。
 
-これらのパラメータを設定する方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java)で確認できます。以下の例では、`deployment.yaml`でコールスタックのより高い収集レートを設定する方法を示しています。これは、JAVA_OPTIONS configセクションでこの値を設定することで行います。
+これらのパラメータを設定する方法は[こちら](https://help.splunk.com/en/splunk-observability-cloud/manage-data/available-data-sources/supported-integrations-in-splunk-observability-cloud/apm-instrumentation/instrument-a-java-application/configure-the-java-agent#profiling-configuration-java)で確認できます。以下の例では、`deployment.yaml` でコールスタックのより高い収集レートを設定する方法を示しています。これは、JAVA_OPTIONS configセクションでこの値を設定することで行います。
 
 ``` yaml
 env:

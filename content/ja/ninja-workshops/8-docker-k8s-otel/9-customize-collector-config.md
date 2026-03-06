@@ -5,7 +5,7 @@ weight: 9
 time: 20 minutes
 ---
 
-デフォルト設定を使用して K8s クラスターに Splunk Distribution of OpenTelemetry コレクターを
+デフォルト設定を使用してK8sクラスターにSplunk Distribution of OpenTelemetryコレクターを
 デプロイしました。このセクションでは、コレクター設定をカスタマイズする方法をいくつかの例で
 説明します。
 
@@ -14,9 +14,9 @@ time: 20 minutes
 コレクター設定をカスタマイズする前に、現在の設定がどのようになっているかを
 どのように確認するのでしょうか？
 
-Kubernetes 環境では、コレクター設定は Config Map を使用して保存されます。
+Kubernetes環境では、コレクター設定はConfig Mapを使用して保存されます。
 
-以下のコマンドで、クラスターに存在する config map を確認できます：
+以下のコマンドで、クラスターに存在するconfig mapを確認できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -39,7 +39,7 @@ splunk-otel-collector-otel-agent                  1      3h37m
 
 > なぜ 2 つの config map があるのでしょうか？
 
-次に、以下のようにコレクターエージェントの config map を表示できます：
+次に、以下のようにコレクターエージェントのconfig mapを表示できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -84,29 +84,29 @@ exporters:
 
 ## K8s でコレクター設定を更新する方法
 
-Linux インスタンスでコレクターを実行した以前の例では、コレクター設定は
-`/etc/otel/collector/agent_config.yaml`ファイルで利用可能でした。その場合にコレクター設定を
+Linuxインスタンスでコレクターを実行した以前の例では、コレクター設定は
+`/etc/otel/collector/agent_config.yaml` ファイルで利用可能でした。その場合にコレクター設定を
 変更する必要があれば、単純にこのファイルを編集し、変更を保存してから
 コレクターを再起動すればよかったのです。
 
-K8s では、少し異なる動作をします。`agent_config.yaml`を直接変更する代わりに、
-helm チャートをデプロイするために使用される`values.yaml`ファイルを変更することで
+K8sでは、少し異なる動作をします。`agent_config.yaml` を直接変更する代わりに、
+helmチャートをデプロイするために使用される `values.yaml` ファイルを変更することで
 コレクター設定をカスタマイズします。
 
-[GitHub](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml)の values.yaml ファイルには、
+[GitHub](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml)のvalues.yamlファイルには、
 利用可能なカスタマイズオプションが記載されています。
 
 例を見てみましょう。
 
 ## Infrastructure Events Monitoring の追加
 
-最初の例として、K8s クラスターの infrastructure events monitoring を有効にしましょう。
+最初の例として、K8sクラスターのinfrastructure events monitoringを有効にしましょう。
 
 > これにより、charts の Events Feed セクションの一部として Kubernetes イベントを確認できるようになります。
 > cluster receiver は、kubernetes-events
 > monitor を使用して Smart Agent receiver で設定され、custom イベントを送信します。詳細については[Collect Kubernetes events](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-kubernetes/kubernetes-config-logs.html#collect-kubernetes-events)を参照してください。
 
-これは`values.yaml`ファイルに以下の行を追加することで実行されます：
+これは `values.yaml` ファイルに以下の行を追加することで実行されます
 
 > ヒント：vi での開き方と保存方法は前のステップにあります。
 
@@ -117,7 +117,7 @@ splunkObservability:
 agent:
 ```
 
-ファイルが保存されたら、以下のコマンドで変更を適用できます：
+ファイルが保存されたら、以下のコマンドで変更を適用できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -153,7 +153,7 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-その後、config map を表示して変更が適用されたことを確認できます：
+その後、config mapを表示して変更が適用されたことを確認できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -165,7 +165,7 @@ kubectl describe cm splunk-otel-collector-otel-k8s-cluster-receiver
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-`smartagent/kubernetes-events`が agent config に含まれていることを確認してください：
+`smartagent/kubernetes-events` がagent configに含まれていることを確認してください
 
 ```bash
   smartagent/kubernetes-events:
@@ -190,11 +190,11 @@ kubectl describe cm splunk-otel-collector-otel-k8s-cluster-receiver
 
 ## Debug Exporter の追加
 
-collector に送信される trace と log を確認して、
-Splunk に送信する前に検査したいとします。この目的のために debug exporter を使用できます。これは
-OpenTelemetry 関連の問題のトラブルシューティングに役立ちます。
+collectorに送信されるtraceとlogを確認して、
+Splunkに送信する前に検査したいとします。この目的のためにdebug exporterを使用できます。これは
+OpenTelemetry関連の問題のトラブルシューティングに役立ちます。
 
-values.yaml ファイルの下部に以下のように debug exporter を追加しましょう：
+values.yamlファイルの下部に以下のようにdebug exporterを追加しましょう
 
 ```yaml
 logsEngine: otel
@@ -216,7 +216,7 @@ agent:
             - debug
 ```
 
-ファイルが保存されたら、以下のコマンドで変更を適用できます：
+ファイルが保存されたら、以下のコマンドで変更を適用できます
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -252,13 +252,13 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-curl を使用してアプリケーションを数回実行してから、以下のコマンドで agent collector の log を tail します：
+curlを使用してアプリケーションを数回実行してから、以下のコマンドでagent collectorのlogをtailします
 
 ```bash
 kubectl logs -l component=otel-collector-agent -f
 ```
 
-以下のような trace が agent collector の log に書き込まれているのが確認できるはずです：
+以下のようなtraceがagent collectorのlogに書き込まれているのが確認できるはずです
 
 ```
 2024-12-20T01:43:52.929Z info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 2}
@@ -294,7 +294,7 @@ Resource attributes:
      -> k8s.cluster.name: Str(derek-1-cluster)
 ```
 
-そして以下のような log エントリも確認できます：
+そして以下のようなlogエントリも確認できます
 
 ```
 2024-12-20T01:43:53.215Z info Logs {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 2}
@@ -325,7 +325,7 @@ Resource attributes:
      -> k8s.cluster.name: Str(derek-1-cluster)
 ```
 
-ただし、Splunk Observability Cloud に戻ると、アプリケーションから trace と log が
+ただし、Splunk Observability Cloudに戻ると、アプリケーションからtraceとlogが
 もはやそこに送信されていないことに気づくでしょう。
 
 なぜそうなったと思いますか？次のセクションで詳しく説明します。

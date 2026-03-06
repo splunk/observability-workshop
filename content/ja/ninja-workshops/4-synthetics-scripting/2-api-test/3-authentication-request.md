@@ -10,7 +10,7 @@ weight: 3
 
 ![placeholder](../../img/add-request.png)
 
-Request セクションを展開し、ドロップダウンからリクエストメソッドを **POST** に変更して、以下の URL を入力します:
+Requestセクションを展開し、ドロップダウンからリクエストメソッドを **POST** に変更して、以下のURLを入力します:
 
 ``` text
 https://accounts.spotify.com/api/token
@@ -31,6 +31,6 @@ grant_type=client_credentials
 
 - **Extract** from **Response body** **JSON** **$.access_token** **as** **access_token**
 
-これにより、Spotify API から受信した JSON ペイロードを解析し、アクセストークンを抽出してカスタム変数として保存します。
+これにより、Spotify APIから受信したJSONペイロードを解析し、アクセストークンを抽出してカスタム変数として保存します。
 
 ![Add payload token](../../img/add-payload-token.png)
