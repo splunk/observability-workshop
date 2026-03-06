@@ -43,6 +43,6 @@ time: 5 minutes
 
 このワークショップでは **Prometheus Exporter** を活用します。これは、コンポーネントの内部ヘルスを標準化されたメトリクスエンドポイント（例: http://localhost:9100/metrics）に変換する小さなユーティリティです。
 
-フル構成の Prometheus サーバーを使用してこのデータを収集する代わりに、**OpenTelemetry Collector** を使用します。**Prometheus レシーバー** を使用することで、Collector はこれらのエンドポイントを **スクレイプ** でき、広くサポートされている業界フォーマットを使用してリッチなテレメトリデータを収集できます。
+フル構成の Prometheus サーバーを使用してこのデータを収集する代わりに、**OpenTelemetry Collector** を使用します。**Prometheus receiver** を使用することで、Collector はこれらのエンドポイントを **スクレイプ** でき、広くサポートされている業界フォーマットを使用してリッチなテレメトリデータを収集できます。
 
 

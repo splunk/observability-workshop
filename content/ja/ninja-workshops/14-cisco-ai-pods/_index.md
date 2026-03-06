@@ -21,7 +21,7 @@ Cisco AI POD 環境向けに Splunk Observability Cloud を構成する手順は
 このワークショップでは、実際の Cisco AI POD にアクセスすることなく、Splunk Observability Cloud で Cisco AI PODs をモニタリングするために使用されるいくつかの技術をデプロイし、操作するハンズオン体験を提供します。以下の内容が含まれます：
 
 * Red Hat OpenShift クラスターへの **OpenTelemetry Collector** のデプロイを練習します。
-* インフラストラクチャメトリクスを取り込むために、コレクターに **Prometheus** レシーバーを追加する練習をします。
+* インフラストラクチャメトリクスを取り込むために、コレクターに **Prometheus** receiverを追加する練習をします。
 * クラスターへの **Weaviate** ベクトルデータベースのデプロイを練習します。
 * 大規模言語モデル（LLM）と連携する Python サービスを **OpenTelemetry** でインストルメントする練習をします。
 * LLM と連携するアプリケーションのトレースで OpenTelemetry がキャプチャする詳細情報を理解します。

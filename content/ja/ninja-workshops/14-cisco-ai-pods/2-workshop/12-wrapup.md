@@ -13,7 +13,7 @@ time: 5 minutes
 * NVIDIA NIM Operator および NVIDIA GPU Operator での作業。
 * NVIDIA NIM を使用してクラスターにデプロイされた Large Language Models (LLMs) での作業。
 * Red Hat OpenShift クラスターへの OpenTelemetry Collector のデプロイ。
-* インフラストラクチャメトリクスを取り込むための Prometheus レシーバーの Collector への追加。
+* インフラストラクチャメトリクスを取り込むための Prometheus receiverの Collector への追加。
 * クラスター内の Weaviate ベクトルデータベースのモニタリング。
 * Prometheus を使用した Pure Storage メトリクスのモニタリング設定。
 * Large Language Models (LLMs) と対話する Python サービスの OpenTelemetry による計装。

@@ -20,7 +20,7 @@ helm repo update
 
 `weaviate/weaviate-values.yaml` ファイルには、Weaviate ベクターデータベースのデプロイに使用する設定が含まれています。
 
-Weaviate が Prometheus レシーバーでスクレイピングできるメトリクスを公開するように、以下の環境変数を `TRUE` に設定しています。
+Weaviate が Prometheus receiverでスクレイピングできるメトリクスを公開するように、以下の環境変数を `TRUE` に設定しています。
 
 ````
   PROMETHEUS_MONITORING_ENABLED: true
