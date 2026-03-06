@@ -15,6 +15,13 @@ spec:
       labels:
         app: postgresql
     spec:
+      initContainers:
+        - name: fix-permissions
+          image: busybox:latest
+          command: ["sh", "-c", "chown -R 999:999 /var/lib/postgresql/data && chmod 700 /var/lib/postgresql/data"]
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
       containers:
         - name: postgresql
           image: ghcr.io/splunk/agentic-ai-demo-db:1.0 # Your custom image
@@ -191,7 +198,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: localhost:9999/agentic-ai-demo-payment:1.0
+          image: ghcr.io/splunk/agentic-ai-demo-payment:1.0
           ports:
             - containerPort: 5000 # Replace with your APP_PORT.
           resources:
@@ -231,7 +238,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: localhost:9999/agentic-ai-demo-loadgen:1.0
+          image: ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
           ports:
             - containerPort: 8089 # Replace with your APP_PORT.
           environment:
