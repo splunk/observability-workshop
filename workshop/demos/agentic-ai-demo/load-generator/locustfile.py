@@ -73,7 +73,7 @@ def build_order_request():
 def build_insecure_order_request():
     # take a regular order request and make it insecure by adding a credit card number
     secure_order_request = build_order_request()
-    return f" My credit card number is 5555555555554444."
+    return secure_order_request + " My credit card number is 5555555555554444."
 
 def build_previous_order_question():
     return "What products were included in my most recent order?"
