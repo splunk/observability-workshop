@@ -8,7 +8,7 @@ weight: 2
 
 **resourcedetection** プロセッサーは、ホストからリソース情報を検出して、テレメトリーデータ内のリソース値をこの情報で追加または上書きすることができます。
 
-デフォルトでは、可能であればホスト名を FQDN に設定し、そうでなければ OS が提供するホスト名になります。このロジックは `hostname_sources` オプションを使って変更できます。FQDN を取得せず、OSが提供するホスト名を使用するには、`hostname_sources`を`os`に設定します。
+デフォルトでは、可能であればホスト名をFQDNに設定し、そうでなければOSが提供するホスト名になります。このロジックは `hostname_sources` オプションを使って変更できます。FQDNを取得せず、OSが提供するホスト名を使用するには、`hostname_sources` を `os` に設定します。
 
 {{% tab title="System Resource Detection Processor Configuration" %}}
 
@@ -24,7 +24,7 @@ processors:
 {{% /tab %}}
 
 If the workshop instance is running on an AWS/EC2 instance we can gather the following tags from the EC2 metadata API (this is not available on other platforms).
-ワークショップのインスタンスが AWS/EC2 インスタンスで実行されている場合、EC2 のメタデータ API から以下のタグを収集します（これは他のプラットフォームでは利用できないものもあります）。
+ワークショップのインスタンスがAWS/EC2インスタンスで実行されている場合、EC2のメタデータAPIから以下のタグを収集します（これは他のプラットフォームでは利用できないものもあります）。
 
 - `cloud.provider ("aws")`
 - `cloud.platform ("aws_ec2")`

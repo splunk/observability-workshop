@@ -8,7 +8,7 @@ weight: 3
 
 レシーバーはデータをCollectorに取り込む方法で、プッシュベースとプルベースのものがあります。レシーバーは1つ以上のデータソースをサポートします。一般的に、レシーバーは指定されたフォーマットでデータを受け入れ、内部フォーマットに変換し、該当するパイプラインで定義されたプロセッサやエクスポータにデータを渡します。
 
-プッシュまたはプルベースのレシーバは、データをCollectorに取り込む方法です。レシーバは 1 つまたは複数のデータソースをサポートします。通常、レシーバは指定されたフォーマットでデータを受け入れ、内部フォーマットに変換し、該当するパイプラインで定義されたプロセッサーや エクスポーターにデータを渡します。
+プッシュまたはプルベースのレシーバは、データをCollectorに取り込む方法です。レシーバは1つまたは複数のデータソースをサポートします。通常、レシーバは指定されたフォーマットでデータを受け入れ、内部フォーマットに変換し、該当するパイプラインで定義されたプロセッサーやエクスポーターにデータを渡します。
 
 {{< mermaid >}}
 %%{
@@ -25,9 +25,9 @@ weight: 3
 flowchart LR;
     style M fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     subgraph Receivers
-    A[OTLP] --> M(Receivers)
-    B[JAEGER] --> M(Receivers)
-    C[Prometheus] --> M(Receivers)
+    A[OTLP]--> M(Receivers)
+    B[JAEGER]--> M(Receivers)
+    C[Prometheus]--> M(Receivers)
     end
     subgraph Processors
     M(Receivers) --> H(Filters, Attributes, etc)

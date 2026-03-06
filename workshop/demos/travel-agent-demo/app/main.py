@@ -42,6 +42,7 @@ from datetime import datetime, timedelta
 from typing import Annotated, Dict, List, Optional, TypedDict
 from uuid import uuid4
 from pprint import pprint
+from typing import Union
 
 from flask import Flask, request, jsonify
 from langchain_core.messages import (
@@ -52,7 +53,7 @@ from langchain_core.messages import (
 )
 from langchain_core.tools import tool
 from langchain_core.runnables import RunnableLambda
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, AzureChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 
@@ -272,8 +273,8 @@ def _model_name() -> str:
     return os.getenv("OPENAI_MODEL", "gpt-5-nano")
 
 
-def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> ChatOpenAI:
-    """Create an LLM instance decorated with tags/metadata for tracing."""
+def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Union[ChatOpenAI, AzureChatOpenAI]:
+    """Create an AzureChatOpenAI or ChatOpenAI instance decorated with tags/metadata for tracing."""
     model = _model_name()
     tags = [f"agent:{agent_name}", "travel-planner"]
     metadata = {
@@ -285,16 +286,44 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Chat
         "ls_temperature": temperature,
     }
 
-    base = ChatOpenAI(
-        model=model,
-        temperature=temperature,
-        tags=tags,
-        metadata=metadata,
-        http_client=client,
-    )
+    # Check for Azure-specific environment variables
+    azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    azure_deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+    azure_openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION")
 
-    return base
+    if azure_openai_api_key and azure_endpoint and azure_deployment_name and azure_openai_api_version:
 
+        # Logic to check if we should send temperature
+        # Reasoning models (gpt-5, o1, o3) require temperature to be 1 or omitted
+        is_reasoning = any(x in azure_deployment_name.lower() for x in ["gpt-5", "o1-", "o3-", "gpt-5-mini", "gpt-5-nano"])
+
+        # Construct arguments
+        kwargs = {
+            "azure_deployment": azure_deployment_name,
+            "openai_api_version": azure_openai_api_version,
+            "tags": [f"agent:{agent_name}"],
+        }
+
+        # Only add temperature if it's NOT a reasoning model
+        if not is_reasoning:
+            kwargs["temperature"] = temperature
+        else:
+            # For gpt-5-mini, we can explicitly set to 1.0 or just omit it
+            kwargs["temperature"] = 1.0
+
+        # Azure OpenAI Configuration
+        return AzureChatOpenAI(**kwargs)
+    else:
+        # Standard OpenAI Configuration
+        return ChatOpenAI(
+            model=model,
+            temperature=temperature,
+            tags=tags,
+            metadata=metadata,
+            http_client=client,
+            # The class will automatically pick up OPENAI_API_KEY from env
+        )
 
 # ---------------------------------------------------------------------------
 # Prompt poisoning helpers (to trigger instrumentation-side evaluations)

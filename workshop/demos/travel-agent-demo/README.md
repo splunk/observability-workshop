@@ -1,16 +1,20 @@
 # Travel Agent Demo Application
 
-## Prerequisites
+## Run the Application Locally
+
+### Deploy the OpenTelemetry Collector
 
 To run the application locally, ensure an instance of the Splunk distribution of the OpenTelemetry 
 collector is running and configured to report data to Splunk Observability Cloud and Splunk core. 
 
-## Run the Proxy
+### Option 1: Run the Application with a Proxy
 
-This application uses a proxy service to proxy requests to Cisco's Circuit API 
-using an OpenAI API compatible format. 
+#### Run the Proxy
 
-To test the proxy locally, we need to first configure the following environment variables: 
+This application has the option of using a proxy service to proxy requests to 
+Cisco's Circuit API using an OpenAI API compatible format. 
+
+To run the proxy locally, we need to first configure the following environment variables: 
 
 ``` bash
 export CISCO_CLIENT_ID=your_cisco_client_id
@@ -41,7 +45,7 @@ curl http://localhost:8000/v1/chat/completions \
   }'
 ````
 
-## Run the Travel Agent with Proxy 
+#### Run the Travel Agent with Proxy 
 
 Ensure the proxy is running by following the steps above. 
 
@@ -116,6 +120,98 @@ Send a request including poison config:
     }'
 ```
 
+### Option 2: Run the Application with Azure OpenAI
+
+As an alternative to using the Cisco Circuit proxy, you can also run the application 
+using an OpenAI model hosted in Azure directly. This example uses the `gpt-5-mini` 
+model running in Azure OpenAI. 
+
+In the command terminal, configure the following environment variables:
+
+``` bash
+export AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini
+export AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
+export AZURE_OPENAI_API_VERSION=2025-01-01-preview
+export AZURE_OPENAI_API_KEY=your_azure_openai_api_key
+export OPENAI_MODEL=gpt-4.1-mini
+# export TEMPERATURE=1 # gpt-5 models don't support temperature=0.0. Only temperature=1 is supported.
+export DEEPEVAL_LLM_BASE_URL="https://your-resource.openai.azure.com/"
+export DEEPEVAL_LLM_MODEL="gpt-4.1-mini"
+export DEEPEVAL_LLM_PROVIDER="azure"
+export DEEPEVAL_LLM_API_KEY="your-api-key"
+export DEEPEVAL_LLM_EXTRA_HEADERS='{"api_version":"2025-01-01-preview"}'
+export OTEL_SERVICE_NAME=travel-planner
+export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=travel-planner-demo
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
+export HOME="/tmp"
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE="DELTA"
+export OTEL_LOGS_EXPORTER="otlp"
+export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED="true"
+export OTEL_PYTHON_EXCLUDED_URLS="^(https?://)?[^/]+(/health)?$"
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT="true"
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE="SPAN_AND_EVENT"
+export OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION="true"
+export OTEL_INSTRUMENTATION_GENAI_EMITTERS="span_metric_event,splunk"
+export OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION="replace-category:SplunkEvaluationResults"
+export OTEL_GENAI_EVAL_DEBUG_SKIPS="true"
+export OTEL_GENAI_EVAL_DEBUG_EACH="false"
+export OTEL_INSTRUMENTATION_GENAI_DEBUG="false"
+export SPLUNK_PROFILER_ENABLED="true"
+export DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE="300"
+export DEEPEVAL_RETRY_MAX_ATTEMPTS="2"
+export DEEPEVAL_FILE_SYSTEM="READ_ONLY"
+```
+
+Note: to incorporate an AI Defense Gateway, set the endpoints using the Gateway URL: 
+
+``` bash
+export AZURE_OPENAI_ENDPOINT=your_AI_defense_gateway_URL
+export DEEPEVAL_LLM_BASE_URL=your_AI_defense_gateway_URL
+```
+
+Then run the travel agent as follows:
+
+``` bash
+cd app
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python main.py
+```
+
+Test the proxy service using curl:
+
+``` bash
+curl http://localhost:8080/travel/plan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origin": "Seattle",
+    "destination": "Tokyo",
+    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
+    "travelers": 2
+  }'
+```
+
+Send a request including poison config and a (fake) credit card number:
+
+``` bash
+  curl http://localhost:8080/travel/plan \
+    -H "Content-Type: application/json" \
+    -d '{
+      "origin": "New York",
+      "destination": "London",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences. My credit card number is 4111 1111 1111 1111",
+      "travelers": 2,
+      "poison_config": {
+          "prob": "1.0",
+          "types": ["hallucination","irrelevance"],
+          "max": "1",
+          "seed": "9999"
+      }
+    }'
+```
+
 ## Build Docker Images
 
 The following commands were used to build Docker images for each of the application components. 
@@ -161,8 +257,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.4 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.4
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.5 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.5
 ```
 
 ### Load Generator

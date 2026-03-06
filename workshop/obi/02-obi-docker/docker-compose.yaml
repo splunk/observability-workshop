@@ -1,0 +1,62 @@
+###############################################################################
+# OBI Workshop - docker-compose.yaml
+#
+# BEFORE YOU RUN: Replace the four values below with your
+# Splunk Observability Cloud credentials and identity. See the workshop
+# instructions for details.
+###############################################################################
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - order-processor
+
+  order-processor:
+    build: ./order-processor
+    ports:
+      - "8080:8080"
+    depends_on:
+      - payment-service
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "8081:8081"
+
+  splunk-otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:latest
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "13133:13133"
+    volumes:
+      - ./collector-config.yaml:/etc/otel/config.yaml
+    environment:
+      SPLUNK_INGEST_TOKEN: " "            # <-- PHASE 1: Paste your Splunk ingest token here
+      SPLUNK_REALM: " "                   # <-- PHASE 1: Paste your realm here (e.g. us0, us1, eu0)
+      WORKSHOP_HOST_NAME: " "             # <-- PHASE 1: A unique label look for `INSTANCE` in your environment (e.g. "shw-3edr")
+      WORKSHOP_ENVIRONMENT: " "           # <-- PHASE 1: The hostname value above suffixed with `-ebpf`
+      SPLUNK_CONFIG: /etc/otel/config.yaml
+
+  load-generator:
+    image: curlimages/curl:latest
+    depends_on:
+      - frontend
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Waiting for frontend to start..."
+        sleep 10
+        echo "Starting load generation..."
+        while true; do
+          curl -s http://frontend:3000/create-order
+          sleep 2
+        done
+
+  # ============================================================
+  # PHASE 2: Add the OBI agent below this line.
+  # See the workshop instructions for the block to paste here.
+  # ============================================================
