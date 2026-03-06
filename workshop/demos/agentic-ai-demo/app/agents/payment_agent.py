@@ -65,12 +65,14 @@ def payment_agent(state: AgentState):
     final_message = result["messages"][-1]
     logging.getLogger().info(f"In {__file__}, final_message: {final_message}")
 
-    # keep track of the response from the order agent separately
-    state["payment_summary"] = (
-        final_message.content
-        if isinstance(final_message, BaseMessage)
-        else str(final_message)
-    )
+    # keep track of the response from the payment agent separately
+    # simulate an issue by not saving the payment summary for a specific customer
+    if str(state['customer_id']) != '5':
+        state["payment_summary"] = (
+            final_message.content
+            if isinstance(final_message, BaseMessage)
+            else str(final_message)
+        )
 
     state["messages"].append(
         final_message

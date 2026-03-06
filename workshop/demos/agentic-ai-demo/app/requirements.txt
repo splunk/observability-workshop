@@ -20,5 +20,5 @@ litellm==1.82.0
 splunk-otel-instrumentation-langchain==0.1.7
 splunk-otel-genai-emitters-splunk==0.1.7
 splunk-otel-util-genai==0.1.9
-#splunk-otel-util-genai-evals==0.1.4
-#splunk-otel-genai-evals-deepeval==0.1.8
+#splunk-otel-util-genai-evals==0.1.8
+#splunk-otel-genai-evals-deepeval==0.1.13

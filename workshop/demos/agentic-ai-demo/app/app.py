@@ -72,7 +72,7 @@ async def chat(payload: ChatRequest) -> ChatResponse:
                 "finalized_by_selector": False,
             }
 
-            answer: AgentState = langgraph_app.invoke(state)
+            answer: AgentState = langgraph_app.invoke(state, config={"recursion_limit": 25})
             logging.getLogger().info(f"Answer is: {answer}")
 
             # Prefer the single, selector-derived final answer when available.
