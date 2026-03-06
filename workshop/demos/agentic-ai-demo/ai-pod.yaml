@@ -83,6 +83,8 @@ spec:
     metadata:
       labels:
         app: agentic-ai-demo-app
+      annotations:
+        splunk.com/include: "true"
     spec:
       containers:
         - name: app
@@ -160,7 +162,7 @@ spec:
                   name: agentic-ai-secret
                   key: cisco_app_key
             - name: PAYMENT_SERVICE_URL
-              value: "http://payment.agentic-ai-demo-app.svc.cluster.local:5000"
+              value: "http://agentic-ai-demo-payment.agentic-ai-demo-app.svc.cluster.local:5000"
           resources:
             limits:
               memory: "500Mi"
@@ -242,8 +244,8 @@ spec:
           ports:
             - containerPort: 8089 # Replace with your APP_PORT.
           environment:
-            - name: APP_URL
-              value: "http://app:8080"
+            - name: APP_ADDR
+              value: "agentic-ai-demo-app.agentic-ai-demo-app.svc.cluster.local:8080"
           resources:
             limits:
               memory: "500Mi"
