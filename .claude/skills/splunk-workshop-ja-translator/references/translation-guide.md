@@ -28,6 +28,9 @@
 | Trace                      | トレーシング用語                   |
 | Metric                     | メトリクス                         |
 | Dashboard                  | ダッシュボード（カタカナ可）       |
+| Receiver                   | OpenTelemetry コンポーネント名     |
+| Processor                  | OpenTelemetry コンポーネント名     |
+| Exporter                   | OpenTelemetry コンポーネント名     |
 
 その他、Splunk Observabitlity Cloudにおける機能名を差す単語
 
