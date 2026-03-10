@@ -6,6 +6,7 @@
     - name: Set the required variables
       set_fact:
         ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
+        api_token: "{{ lookup('env','API_TOKEN') }}"
         rum_token: "{{ lookup('env','RUM_TOKEN') }}"
         realm: "{{ lookup('env','REALM') }}"
         instance: "{{ lookup('env','INSTANCE') }}"
@@ -67,6 +68,7 @@
               env: {{ instance}}
               deployment: "deployment.environment={{ instance }}"
               access_token: {{ ingest_token }}
+              api_token: {{ api_token }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
