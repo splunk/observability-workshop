@@ -13,6 +13,8 @@ Your organization runs AppDynamics for APM today. As part of a data visibility a
 
 Rather than re-instrumenting every service with a separate OpenTelemetry SDK, the AppDynamics Java Agent supports **dual signal mode**: a single agent produces both AppDynamics APM data and OpenTelemetry traces simultaneously. This lets you maintain full AppDynamics functionality while streaming the same telemetry to Splunk Observability Cloud through an OpenTelemetry Collector.
 
+This is especially helpful for your current L1 and L2 teams who currently know and rely on AppDynamics. Dual ingest helps maintain context as the applications and services they are responsible become more connected to new services hosted in SaaS platforms in the cloud.
+
 ## What You'll Learn
 
 By the end of this workshop, you will:
@@ -49,7 +51,9 @@ The OpenTelemetry Collector runs on the same EC2 instance, receives OTLP from th
 
 ## Hybrid Mode vs Dual Signal Mode
 
-The AppDynamics Java Agent supports two modes for emitting OpenTelemetry data. Understanding the difference matters.
+The AppDynamics Java Agent supports two modes for emitting OpenTelemetry data.  
+
+Understanding the difference matters!
 
 ### Hybrid Mode (GA, Java Agent 22.3+)
 
@@ -63,7 +67,7 @@ The AppDynamics Java Agent supports two modes for emitting OpenTelemetry data. U
 
 - The full [OpenTelemetry Java auto-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation/) runs **alongside** the AppD agent
 - Two independent instrumentation engines operate in parallel
-- **Broader framework coverage** -- anything the OTel Java agent supports
+- **Broader framework coverage** anything the OTel Java agent supports
 - Higher CPU and memory consumption
 - Enable with: `-Dagent.deployment.mode=dual` or env var `AGENT_DEPLOYMENT_MODE=dual`
 
@@ -78,7 +82,7 @@ Dual signal mode adds **correlation attributes** to root spans that hybrid mode 
 | `appd.bt.name` | The AppDynamics business transaction name |
 | `appd.request.guid` | The AppDynamics request GUID |
 
-These attributes enable **global data links** -- clickable links on Splunk Observability Cloud traces that navigate directly to the corresponding AppDynamics view. Additionally, AppDynamics snapshots captured in dual mode include the OTel `TraceId` in the Data Collectors tab, enabling navigation in both directions.
+These attributes enable **global data links** clickable links on Splunk Observability Cloud traces that navigate directly to the corresponding AppDynamics view. Additionally, AppDynamics snapshots captured in dual mode include the OTel `TraceId` in the Data Collectors tab, enabling navigation in both directions.
 
 ## Prerequisites
 
