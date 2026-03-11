@@ -676,9 +676,7 @@ jobs:
     needs: [check-new-release, sync-and-translate, create-pr]
     if: >-
       always()
-      && needs.check-new-release.outputs.has_new_release == 'true'
-      && needs.sync-and-translate.outputs.translated_count != ''
-      && needs.sync-and-translate.outputs.translated_count != '0'
+      && needs.check-new-release.result == 'success'
     runs-on: ubuntu-24.04
     steps:
       - name: Determine workflow status
@@ -692,6 +690,20 @@ jobs:
             echo "result=success" >> $GITHUB_OUTPUT
           fi
 
+      - name: Determine notification reason
+        id: reason
+        run: |
+          HAS_NEW_RELEASE="${{ needs.check-new-release.outputs.has_new_release }}"
+          TRANSLATED_COUNT="${{ needs.sync-and-translate.outputs.translated_count }}"
+
+          if [ "$HAS_NEW_RELEASE" != "true" ]; then
+            echo "result=no_new_release" >> $GITHUB_OUTPUT
+          elif [ -z "$TRANSLATED_COUNT" ] || [ "$TRANSLATED_COUNT" = "0" ]; then
+            echo "result=no_translation_targets" >> $GITHUB_OUTPUT
+          else
+            echo "result=translated" >> $GITHUB_OUTPUT
+          fi
+
       - name: Send Slack notification
         run: |
           JSON_PAYLOAD=$(cat <<EOF
@@ -700,7 +712,8 @@ jobs:
             "translatedMarkdownFileCount": "${{ needs.sync-and-translate.outputs.translated_count }}",
             "failedFileCount": "${{ needs.sync-and-translate.outputs.failed_count }}",
             "pullRequestNumber": "${{ needs.create-pr.outputs.pr_number }}",
-            "status": "${{ steps.status.outputs.result }}"
+            "status": "${{ steps.status.outputs.result }}",
+            "reason": "${{ steps.reason.outputs.result }}"
           }
           EOF
           )

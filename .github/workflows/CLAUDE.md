@@ -28,6 +28,7 @@ upstreamリポジトリの新しいリリースを検出し、日本語に自動
 4. **翻訳**: 変更されたファイルをClaude Code (Bedrock)で翻訳
 5. **PR作成**: upstreamリポジトリにPRを作成（新ワークショップがある場合はドラフトPR）
 6. **タグ記録**: 翻訳したタグを `.last-translated-tag` に記録
+7. **Slack通知**: ワークフロー実行結果を Slack に通知（新リリースなし・翻訳対象なしの場合も含む）
 
 ### 新ワークショップ検出とドラフトPR
 
@@ -40,6 +41,33 @@ upstreamリポジトリの新しいリリースを検出し、日本語に自動
 - 新ワークショップ検出時: `--draft` フラグ付きでPRを作成、PR本文に検出されたワークショップ一覧を記載
 - 新ワークショップなし: 通常のPRを作成
 - 初回実行（前回タグなし）: 検出をスキップし、通常のPRを作成
+
+### Slack通知
+
+`notify-slack` ジョブは `check-new-release` ジョブが成功した場合に常に実行され、ワークフローの実行結果を Slack Webhook に送信します。
+
+**発火条件**: `check-new-release` ジョブが成功した場合（新リリースの有無に関わらず）
+
+**ペイロード**:
+
+| フィールド | 型 | 内容 |
+| --------- | -- | ---- |
+| `reason` | string | 実行結果の理由（下記参照） |
+| `status` | string | `success` または `failure` |
+| `hasNewWorkshopTranslation` | string | 新規ワークショップが含まれるか（`true`/`false`） |
+| `translatedMarkdownFileCount` | string | 翻訳成功ファイル数 |
+| `failedFileCount` | string | 翻訳失敗ファイル数 |
+| `pullRequestNumber` | string | 作成されたPR番号 |
+
+**`reason` フィールドの値**:
+
+| 値 | 意味 |
+| -- | ---- |
+| `translated` | 新バージョンあり・翻訳ファイルあり（通常フロー） |
+| `no_translation_targets` | 新バージョンはあったが翻訳対象ファイルが0件 |
+| `no_new_release` | スケジュール実行されたが新バージョンのリリースがなかった |
+
+**必要なシークレット**: `SLACK_WEBHOOK_URL`
 
 ### 必要なシークレット
 
