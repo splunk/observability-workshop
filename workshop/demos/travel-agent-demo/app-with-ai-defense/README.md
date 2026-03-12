@@ -30,6 +30,12 @@ export AZURE_OPENAI_API_KEY=your_api_key
 export AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini 
 export AZURE_OPENAI_API_VERSION=2025-01-01-preview 
 export OPENAI_MODEL=gpt-4.1-mini 
+
+export OTEL_SERVICE_NAME=travel-planner
+export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=travel-planner-demo
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
 ```
 
 ### Running the Example
