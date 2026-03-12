@@ -1,0 +1,31 @@
+flask>=3.0.0
+
+# OpenTelemetry core
+opentelemetry-api>=1.38.0
+opentelemetry-sdk>=1.38.0
+opentelemetry-instrumentation>=0.59b0
+opentelemetry-semantic-conventions>=0.59b0
+opentelemetry-exporter-otlp-proto-grpc>=1.38.0
+
+# Splunk GenAI packages
+splunk-otel-util-genai>=0.1.4
+
+# AI Defense instrumentation (Gateway Mode support in v0.2.0+)
+splunk-otel-instrumentation-aidefense>=0.2.0
+
+# LangChain instrumentation
+splunk-otel-instrumentation-langchain>=0.1.0
+
+# LangChain / LangGraph
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langgraph>=0.2.0
+
+# OpenAI SDK (required for Gateway Mode - uses httpx internally)
+openai>=1.0.0
+
+# HTTP client (httpx is required for Gateway Mode to work)
+httpx>=0.24.0
+
+# HTTP client (for OAuth2 token manager)
+requests>=2.31.0
