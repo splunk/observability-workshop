@@ -35,7 +35,16 @@ export OTEL_SERVICE_NAME=travel-planner
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=travel-planner-demo
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
+
+# Emitters (span_metric for full telemetry, splunk for Splunk-specific features)
+export OTEL_INSTRUMENTATION_GENAI_EMITTERS=span_metric,splunk
+
+# Content Capture
 export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE=SPAN
+
+# Metrics
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
 ```
 
 ### Running the Example

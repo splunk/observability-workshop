@@ -13,6 +13,8 @@ splunk-otel-util-genai>=0.1.4
 # AI Defense instrumentation (Gateway Mode support in v0.2.0+)
 splunk-otel-instrumentation-aidefense>=0.2.0
 
+splunk-otel-genai-emitters-splunk>=0.1.7
+
 # LangChain instrumentation
 splunk-otel-instrumentation-langchain>=0.1.0
 
