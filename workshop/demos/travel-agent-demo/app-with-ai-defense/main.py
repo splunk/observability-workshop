@@ -74,6 +74,7 @@ from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import (
     OTLPSpanExporter,
 )
 from opentelemetry.instrumentation.langchain import LangchainInstrumentor
+from opentelemetry.instrumentation.aidefense import AIDefenseInstrumentor
 from opentelemetry.sdk._events import EventLoggerProvider
 from opentelemetry.sdk._logs import LoggerProvider
 from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
@@ -101,8 +102,9 @@ _logs.get_logger_provider().add_log_record_processor(
 )
 _events.set_event_logger_provider(EventLoggerProvider())
 
-instrumentor = LangchainInstrumentor()
-instrumentor.instrument()
+# Instrument (LangChain first, then AI Defense)
+LangchainInstrumentor().instrument()
+AIDefenseInstrumentor().instrument()
 
 # ---------------------------------------------------------------------------
 # Sample data utilities
@@ -784,9 +786,6 @@ def build_workflow(
 # ---------------------------------------------------------------------------
 # FastMCP Server Implementation
 # ---------------------------------------------------------------------------
-
-# Initialize OpenTelemetry on server startup
-LangchainInstrumentor().instrument()
 
 # Initialize Flask app
 app = Flask(__name__)

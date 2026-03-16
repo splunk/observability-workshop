@@ -58,6 +58,25 @@ pip install -r requirements.txt
 python main.py
 ```
 
+Send a request including poison config and a (fake) credit card number:
+
+``` bash
+  curl http://localhost:8080/travel/plan \
+    -H "Content-Type: application/json" \
+    -d '{
+      "origin": "New York",
+      "destination": "London",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences. My credit card number is 4111 1111 1111 1111",
+      "travelers": 2,
+      "poison_config": {
+          "prob": "1.0",
+          "types": ["hallucination","irrelevance"],
+          "max": "1",
+          "seed": "9999"
+      }
+    }'
+```
+
 ## Telemetry
 
 In Gateway Mode, the `gen_ai.security.event_id` is added to the **existing LangChain spans**, not separate AI Defense spans:
