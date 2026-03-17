@@ -305,6 +305,8 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Unio
             "azure_deployment": azure_deployment_name,
             "openai_api_version": azure_openai_api_version,
             "tags": [f"agent:{agent_name}"],
+            "metadata": metadata,
+            "model_name": model,
         }
 
         # Only add temperature if it's NOT a reasoning model
