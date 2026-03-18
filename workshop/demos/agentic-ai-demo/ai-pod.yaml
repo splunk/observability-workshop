@@ -241,6 +241,7 @@ spec:
       containers:
         - name: app
           image: ghcr.io/splunk/agentic-ai-demo-loadgen:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8089 # Replace with your APP_PORT.
           env:

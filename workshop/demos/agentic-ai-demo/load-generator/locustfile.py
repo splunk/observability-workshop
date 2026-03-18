@@ -111,7 +111,9 @@ class ChatUser(HttpUser):
     @task
     def chat(self):
         customer_id = random.choice(CUSTOMER_IDS)
-        kind, request_text = choose_request_text()
+        # just create orders, don't execute the other request types
+        kind, request_text = ("order", build_order_request())
+        #kind, request_text = choose_request_text()
 
         payload = {
             "customer_id": customer_id,
