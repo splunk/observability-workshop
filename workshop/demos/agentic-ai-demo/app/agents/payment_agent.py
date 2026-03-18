@@ -1,9 +1,10 @@
+import json
 from typing import Dict, Any
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import BaseTool
-from langchain_core.messages import BaseMessage, SystemMessage, AIMessage
+from langchain_core.messages import BaseMessage, SystemMessage, AIMessage, ToolMessage
 from models.schemas import AgentState
 from tools.payment_tool import process_order_payment
 from shared.create_llm import _create_llm
@@ -38,6 +39,12 @@ SYSTEM_INSTRUCTIONS = (
 
 TOOLS_BY_NAME: Dict[str, BaseTool] = {t.name: t for t in [process_order_payment]}
 
+def _get_payment_result(messages):
+    for msg in reversed(messages):
+        if isinstance(msg, ToolMessage) and getattr(msg, "name", None) == "process_order_payment":
+            return json.loads(msg.content) if isinstance(msg.content, str) else msg.content
+    return None
+
 def payment_agent(state: AgentState):
     """Handle order-related requests"""
 
@@ -62,12 +69,15 @@ def payment_agent(state: AgentState):
     result = agent.invoke({"messages": initial_messages})
     logging.getLogger().info(f"In {__file__}, LLM returned: {result}")
 
+    result_messages = result["messages"]
     final_message = result["messages"][-1]
     logging.getLogger().info(f"In {__file__}, final_message: {final_message}")
 
-    # keep track of the response from the payment agent separately
-    # simulate an issue by not saving the payment summary for a specific customer
-    if str(state['customer_id']) != '5':
+    # extract the payment tool result
+    payment_result = _get_payment_result(result_messages)
+
+    if payment_result and payment_result.get("ok") is True:
+        # save the payment summary
         state["payment_summary"] = (
             final_message.content
             if isinstance(final_message, BaseMessage)
