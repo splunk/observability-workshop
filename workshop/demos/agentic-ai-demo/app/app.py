@@ -11,6 +11,8 @@ from opentelemetry.instrumentation.langchain import LangchainInstrumentor
 
 from fastapi import FastAPI, HTTPException
 
+from splunk_otel import init_splunk_otel
+
 # local
 from config import Settings
 from graph import build_graph
@@ -21,6 +23,8 @@ from tools.order_tool import archive_orders
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+init_splunk_otel()
 
 instrumentor = LangchainInstrumentor()
 instrumentor.instrument()
