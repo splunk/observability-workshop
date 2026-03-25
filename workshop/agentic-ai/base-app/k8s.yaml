@@ -79,18 +79,15 @@ spec:
   selector:
     app: travel-planner-langchain
   ports:
-    - name: http
-      port: 80
-      targetPort: 8080
-    - name: sse
-      port: 8080
-      targetPort: 8080
+    - port: 8080
+      protocol: TCP
   type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: helloworld-ingress
+  name: travel-agent-ingress
+  namespace: travel-agent
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:

@@ -46,15 +46,33 @@ CMD ["opentelemetry-instrument", "python", "main.py"]
 Build an updated Docker image with a new tag: 
 
 ``` bash
-docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation .
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
+
+### Create Secret for DeepEval
+
+Create a separate Kubernetes secret to store the DeepEval configuration. Substitute the 
+Azure OpenAI endpoint before running the following command. Note that DeepEval requests 
+will be routed directly to the Azure OpenAI endpoint:
+
+```bash
+kubectl create secret generic deepeval-secret -n travel-agent --from-literal=deepeval-llm-base-url=your_deepeval_llm_base_url
+````
 
 ### Update the Kubernetes Manifest 
 
 OpenTelemetry instrumentation, and AI Agent Monitoring in particular, require a number of environment 
 variables to be set that define how instrumentation data is collected, processed, and 
 exported. 
+
+Before updating the Kubernetes manifest file, let's create a config map that uses the 
+`INSTANCE` environment variable on our EC2 instance to populate the `OTEL_RESOURCE_ATTRIBUTES` 
+environment variable in the Kubernetes manifest: 
+
+```bash
+kubectl create configmap instance-config --from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE -n travel-agent
+```
 
 Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and 
 add the following environment variables: 
@@ -81,7 +99,10 @@ add the following environment variables:
               value: "travel-planner"
             # Additional OTEL configuration
             - name: OTEL_RESOURCE_ATTRIBUTES
-              value: "deployment.environment=travel-planner-demo"
+              valueFrom:
+                configMapKeyRef:
+                  name: instance-config
+                  key: OTEL_RESOURCE_ATTRIBUTES 
             - name: SPLUNK_OTEL_AGENT
               valueFrom:
                 fieldRef:
@@ -138,7 +159,7 @@ instrumentation:
 We can deploy the updated application using the manifest file as follows:
 
 ``` bash
-kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
+kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
 ### Test the Application in Kubernetes
@@ -146,7 +167,7 @@ kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
 Run the following command to test the application:
 
 ``` bash
-curl http://travel-planner:8080/travel/plan \
+curl http://travel-planner.localhost/travel/plan \
   -H "Content-Type: application/json" \
   -d '{
     "origin": "Seattle",

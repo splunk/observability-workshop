@@ -29,7 +29,7 @@ run the application:
 
 ``` bash
 cd ~/workshop/agentic-ai/base-app
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 Then we can run the application with the following command:
 
 ``` bash
-python main.py
+python3 main.py
 ```
 
 ### Test the Application
@@ -82,6 +82,7 @@ CMD ["python", "main.py"]
 ### Build the Docker Image 
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:base-app .
 docker push localhost:9999/agentic-ai-app:base-app
 ```
@@ -93,6 +94,8 @@ We'll use a Kubernetes secret to store the Azure OpenAI endpoint and key:
 > Note: the workshop instructor will provide the values for `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`.
 
 ``` bash
+kubectl create ns travel-agent
+
 kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-endpoint=your_azure_openai_api_endpoint --from-literal=azure-openai-api-key=your_azure_openai_api_key
 ```
 
@@ -104,7 +107,7 @@ A pre-built Kubernetes manifest can be found in the file named
 We can deploy the application using the manifest file as follows: 
 
 ``` bash
-kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
+kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
 ### Test the Application in Kubernetes 
@@ -112,7 +115,7 @@ kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
 Run the following command to test the application:
 
 ``` bash
-curl http://travel-planner:8080/travel/plan \
+curl http://travel-planner.localhost/travel/plan \
   -H "Content-Type: application/json" \
   -d '{
     "origin": "Seattle",

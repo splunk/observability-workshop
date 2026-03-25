@@ -61,7 +61,10 @@ spec:
               value: "travel-planner"
             # Additional OTEL configuration
             - name: OTEL_RESOURCE_ATTRIBUTES
-              value: "deployment.environment=travel-planner-demo"
+              valueFrom:
+                configMapKeyRef:
+                  name: instance-config
+                  key: OTEL_RESOURCE_ATTRIBUTES
             - name: SPLUNK_OTEL_AGENT
               valueFrom:
                 fieldRef:
@@ -143,18 +146,15 @@ spec:
   selector:
     app: travel-planner-langchain
   ports:
-    - name: http
-      port: 80
-      targetPort: 8080
-    - name: sse
-      port: 8080
-      targetPort: 8080
+    - port: 8080
+      protocol: TCP
   type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: helloworld-ingress
+  name: travel-agent-ingress
+  namespace: travel-agent
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:

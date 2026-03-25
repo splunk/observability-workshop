@@ -276,7 +276,7 @@ agents and tools:
 We can deploy the updated application using the manifest file as follows:
 
 ``` bash
-kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
+kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
 ### Test the Application in Kubernetes
@@ -284,7 +284,7 @@ kubectl deploy -f ~/workshop/agentic-ai/base-app/k8s.yaml
 Run the following command to test the application:
 
 ``` bash
-curl http://travel-planner:8080/travel/plan \
+curl http://travel-planner.localhost/travel/plan \
   -H "Content-Type: application/json" \
   -d '{
     "origin": "Seattle",

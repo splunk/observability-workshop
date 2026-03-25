@@ -51,11 +51,11 @@ Now we can use the following command to install the collector:
 {{% tab title="Script" %}}
 
 ``` bash
-  helm install splunk-otel-collector --version {{< otel-version >}} \
+  helm upgrade --install splunk-otel-collector --version {{< otel-version >}} \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-cluster" \
-  --set="environment=otel-$INSTANCE" \
+  --set="environment=agentic-ai-$INSTANCE" \
   --set="splunkPlatform.token=$HEC_TOKEN" \
   --set="splunkPlatform.endpoint=$HEC_URL" \
   --set="splunkPlatform.index=splunk4rookies-workshop" \
