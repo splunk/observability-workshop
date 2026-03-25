@@ -1,6 +1,6 @@
 ---
 title: Add Quality Issue
-linkTitle: 8. Add Quality Issue
-weight: 8
+linkTitle: 9. Add Quality Issue
+weight: 9
 time: 20 minutes
 ---
