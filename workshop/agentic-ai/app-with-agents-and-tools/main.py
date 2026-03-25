@@ -37,11 +37,15 @@ from langchain_core.messages import (
     HumanMessage,
     SystemMessage,
 )
+from langchain_core.tools import tool
 from langchain_openai import AzureChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 
 from langchain_core.messages import convert_to_messages
+from langchain.agents import (
+    create_agent as _create_react_agent,  # type: ignore[attr-defined]
+)
 
 import logging
 
@@ -85,6 +89,48 @@ def _compute_dates() -> tuple[str, str]:
     start = datetime.now() + timedelta(days=30)
     end = start + timedelta(days=7)
     return start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d")
+
+# ---------------------------------------------------------------------------
+# Tools exposed to agents
+# ---------------------------------------------------------------------------
+
+
+@tool
+def mock_search_flights(origin: str, destination: str, departure: str) -> str:
+    """Return mock flight options for a given origin/destination pair."""
+    # create a local random.Random instance
+    seed = hash((origin, destination, departure)) % (2**32)
+    rng = random.Random(seed)
+    airline = rng.choice(["SkyLine", "AeroJet", "CloudNine"])
+    fare = rng.randint(700, 1250)
+
+    return (
+        f"Top choice: {airline} non-stop service {origin}->{destination}, "
+        f"depart {departure} 09:15, arrive {departure} 17:05. "
+        f"Premium economy fare ${fare} return."
+    )
+
+
+@tool
+def mock_search_hotels(destination: str, check_in: str, check_out: str) -> str:
+    """Return mock hotel recommendation for the stay."""
+    seed = hash((destination, check_in, check_out)) % (2**32)
+    rng = random.Random(seed)
+    name = rng.choice(["Grand Meridian", "Hotel Lumière", "The Atlas"])
+    rate = rng.randint(240, 410)
+
+    return (
+        f"{name} near the historic centre. Boutique suites, rooftop bar, "
+        f"average nightly rate ${rate} including breakfast."
+    )
+
+
+@tool
+def mock_search_activities(destination: str) -> str:
+    """Return a short list of signature activities for the destination."""
+    data = DESTINATIONS.get(destination.lower(), DESTINATIONS["paris"])
+    bullets = "\n".join(f"- {item}" for item in data["highlights"])
+    return f"Signature experiences in {destination.title()}:\n{bullets}"
 
 # ---------------------------------------------------------------------------
 # LangGraph state & helpers
@@ -181,19 +227,33 @@ def pretty_print_messages(update, last_message=False):
 # LangGraph nodes
 # ---------------------------------------------------------------------------
 
-
-def coordinator_node(state: PlannerState) -> PlannerState:
+def coordinator_node(
+    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+) -> PlannerState:
     llm = _create_llm("coordinator", temperature=0.2, session_id=state["session_id"])
-
+    agent = _create_react_agent(llm, tools=[]).with_config(
+        {
+            "run_name": "coordinator",
+            "tags": ["agent", "agent:coordinator"],
+            "metadata": {
+                "agent_name": "coordinator",
+                "session_id": state["session_id"],
+            },
+        }
+    )
     system_message = SystemMessage(
         content=(
             "You are the lead travel coordinator. Extract the key details from the "
             "traveller's request and describe the plan for the specialist agents."
         )
     )
-
-    result = llm.invoke([system_message] + list(state["messages"]))
-    final_message = result
+    # Potentially poison the system directive to degrade quality of downstream plan.
+    poisoned_system = maybe_add_quality_noise(
+        "coordinator", system_message.content, state, custom_poison_config
+    )
+    system_message = SystemMessage(content=poisoned_system)
+    result = agent.invoke({"messages": [system_message] + list(state["messages"])})
+    final_message = result["messages"][-1]
     state["messages"].append(
         final_message
         if isinstance(final_message, BaseMessage)
@@ -203,14 +263,28 @@ def coordinator_node(state: PlannerState) -> PlannerState:
     return state
 
 
-def flight_specialist_node(state: PlannerState) -> PlannerState:
+def flight_specialist_node(
+    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+) -> PlannerState:
     llm = _create_llm(
         "flight_specialist", temperature=0.4, session_id=state["session_id"]
     )
-
+    agent = _create_react_agent(llm, tools=[mock_search_flights]).with_config(
+        {
+            "run_name": "flight_specialist",
+            "tags": ["agent", "agent:flight_specialist"],
+            "metadata": {
+                "agent_name": "flight_specialist",
+                "session_id": state["session_id"],
+            },
+        }
+    )
     step = (
         f"Find an appealing flight from {state['origin']} to {state['destination']} "
         f"departing {state['departure']} for {state['travellers']} travellers."
+    )
+    step = maybe_add_quality_noise(
+        "flight_specialist", step, state, custom_poison_config
     )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
@@ -219,22 +293,36 @@ def flight_specialist_node(state: PlannerState) -> PlannerState:
         HumanMessage(content=step),
     ]
 
-    result = llm.invoke(messages)
-    final_message = result
+    result = agent.invoke({"messages": messages})
+    final_message = result["messages"][-1]
     state["flight_summary"] = final_message.content if isinstance(final_message, BaseMessage) else str(final_message)
     state["messages"].append(final_message if isinstance(final_message, BaseMessage) else AIMessage(content=str(final_message)))
     state["current_agent"] = "hotel_specialist"
     return state
 
 
-def hotel_specialist_node(state: PlannerState) -> PlannerState:
+def hotel_specialist_node(
+    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+) -> PlannerState:
     llm = _create_llm(
         "hotel_specialist", temperature=0.5, session_id=state["session_id"]
     )
-
+    agent = _create_react_agent(llm, tools=[mock_search_hotels]).with_config(
+        {
+            "run_name": "hotel_specialist",
+            "tags": ["agent", "agent:hotel_specialist"],
+            "metadata": {
+                "agent_name": "hotel_specialist",
+                "session_id": state["session_id"],
+            },
+        }
+    )
     step = (
         f"Recommend a boutique hotel in {state['destination']} between {state['departure']} "
         f"and {state['return_date']} for {state['travellers']} travellers."
+    )
+    step = maybe_add_quality_noise(
+        "hotel_specialist", step, state, custom_poison_config
     )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
@@ -243,9 +331,9 @@ def hotel_specialist_node(state: PlannerState) -> PlannerState:
         HumanMessage(content=step),
     ]
 
-    result = llm.invoke(messages)
+    result = agent.invoke({"messages": messages})
 
-    final_message = result
+    final_message = result["messages"][-1]
     state["hotel_summary"] = (
         final_message.content
         if isinstance(final_message, BaseMessage)
@@ -260,12 +348,26 @@ def hotel_specialist_node(state: PlannerState) -> PlannerState:
     return state
 
 
-def activity_specialist_node(state: PlannerState) -> PlannerState:
+def activity_specialist_node(
+    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+) -> PlannerState:
     llm = _create_llm(
         "activity_specialist", temperature=0.6, session_id=state["session_id"]
     )
-
+    agent = _create_react_agent(llm, tools=[mock_search_activities]).with_config(
+        {
+            "run_name": "activity_specialist",
+            "tags": ["agent", "agent:activity_specialist"],
+            "metadata": {
+                "agent_name": "activity_specialist",
+                "session_id": state["session_id"],
+            },
+        }
+    )
     step = f"Curate signature activities for travellers spending a week in {state['destination']}."
+    step = maybe_add_quality_noise(
+        "activity_specialist", step, state, custom_poison_config
+    )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
     messages = [
@@ -273,9 +375,9 @@ def activity_specialist_node(state: PlannerState) -> PlannerState:
         HumanMessage(content=step),
     ]
 
-    result = llm.invoke(messages)
+    result = agent.invoke({"messages": messages})
 
-    final_message = result
+    final_message = result["messages"][-1]
     state["activities_summary"] = (
         final_message.content
         if isinstance(final_message, BaseMessage)
@@ -289,10 +391,20 @@ def activity_specialist_node(state: PlannerState) -> PlannerState:
     state["current_agent"] = "plan_synthesizer"
     return state
 
-
 def plan_synthesizer_node(state: PlannerState) -> PlannerState:
     llm = _create_llm(
         "plan_synthesizer", temperature=0.3, session_id=state["session_id"]
+    )
+
+    agent = _create_react_agent(llm, tools=[]).with_config(
+        {
+            "run_name": "plan_synthesizer",
+            "tags": ["agent", "agent:plan_synthesizer"],
+            "metadata": {
+                "agent_name": "plan_synthesizer",
+                "session_id": state["session_id"],
+            },
+        }
     )
 
     system_content = (
@@ -309,7 +421,7 @@ def plan_synthesizer_node(state: PlannerState) -> PlannerState:
         },
         indent=2,
     )
-    response = llm.invoke(
+    response = agent.invoke(
         [
             system_prompt,
             HumanMessage(

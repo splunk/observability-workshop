@@ -8,69 +8,11 @@ time: 20 minutes
 There are a few steps required to instrument our Agentic AI application 
 with OpenTelemetry and deploy it to Kubernetes: 
 
-1. Configure the LangChain/LangGraph application for AI agent monitoring
-2. Add the instrumentation packages to the `requirements.txt` file 
-3. Update the Dockerfile that invokes the application using `opentelemetry-instrument`
-4. Build a new Docker image with the instrumentation packages 
-5. Update the Kubernetes manifest with environment variables 
-6. Deploy the Kubernetes manifest
-
-## Configure the Application for AI Agent Monitoring 
-
-[Configure zero-code instrumentation for Python AI applications](https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-agent-monitoring/set-up-ai-agent-monitoring/zero-code-instrumentation#ariaid-title1)
-explains how to configure zero-code instrumentation for Python AI applications that utilize 
-various frameworks. 
-
-The first thing we'll need to do is configure our application for AI Agent Monitoring. 
-
-Currently, our application creates an LLM and invokes it as follows: 
-
-```python
-def flight_specialist_node(state: PlannerState) -> PlannerState:
-    llm = _create_llm(
-    "flight_specialist", temperature=0.4, session_id=state["session_id"]
-    )
-    ...
-    result = llm.invoke(messages)
-    ...
-```
-
-For AI Agent Monitoring, we need to instead create an agent that includes metadata 
-with the agent name, and then invoke the agent rather than the LLM: 
-
-```python
-def flight_specialist_node(state: PlannerState) -> PlannerState:
-    llm = _create_llm(
-    "flight_specialist", temperature=0.4, session_id=state["session_id"]
-    )
-    
-    ### NEW CODE
-    agent = _create_react_agent(llm, tools=[]).with_config(
-        {
-            "run_name": "flight_specialist",
-            "tags": ["agent", "agent:flight_specialist"],
-            "metadata": {
-                "agent_name": "flight_specialist",
-                "session_id": state["session_id"],
-            },
-        }
-    )
-    ### NEW CODE 
-    ...
-    result = agent.invoke(messages)
-    ...
-```
-
-Repeat the above changes for the `coordinator`, `hotel_specialist`, `activity_specialist`, 
-and `plan_synthesizer` nodes. 
-
-We also need to add the following import near the top of the `main.py` file: 
-
-```python
-from langchain.agents import (
-create_agent as _create_react_agent,  # type: ignore[attr-defined]
-)
-```
+1. Add the instrumentation packages to the `requirements.txt` file 
+2. Update the Dockerfile that invokes the application using `opentelemetry-instrument`
+3. Build a new Docker image with the instrumentation packages 
+4. Update the Kubernetes manifest with environment variables 
+5. Deploy the Kubernetes manifest
 
 ## Add Instrumentation Packages
 
@@ -104,7 +46,7 @@ CMD ["opentelemetry-instrument", "python", "main.py"]
 Build an updated Docker image with a new tag: 
 
 ``` bash
-docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation.
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
