@@ -312,6 +312,10 @@ We'll address these instrumentation issues in the next section.
 Navigate to `APM -> Trace Analyzer`. 
 
 Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
-Select one of the newer traces. It should look like the following:
+Select one of the newer traces. We see all of our agents represented in the Agent flow now! 
 
-![Trace](../images/UpdatedTrace.png)
+![Trace](../images/Trace-v2.png)
+
+We can also see the tool calls: 
+
+![Trace](../images/TraceWithToolCalls.png)
