@@ -4,3 +4,32 @@ linkTitle: 7. Review Agent Trace Data
 weight: 7
 time: 15 minutes
 ---
+
+## View Trace Data in Splunk Observability Cloud
+
+In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`.
+Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
+You should see a service map that looks like the following:
+
+![Service Map](../images/ServiceMap.png)
+
+Click on `Traces` on the right-hand side menu.  Then select one of the slower running
+traces. It should look like the following example:
+
+![Trace](../images/Trace.png)
+
+Notice that we don't see our agent names in the **Agent flow** section (i.e. coordinator,
+flight-specialist, etc.). 
+
+Scrolling down, let's click on one of the AI interactions
+in the trace. Here, we can see that the prompt and response has been captured. 
+We can also see the results of the semantic quality evaluations for this trace: 
+
+![Trace Details](../images/TraceDetails.png)
+
+Next, navigate to `APM` and then select `Agents`. Ensure your environment name 
+is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page is empty! 
+
+![Agents](../images/Agents.png)
+
+We'll address these instrumentation issues in the next section. 

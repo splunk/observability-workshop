@@ -5,6 +5,18 @@ weight: 8
 time: 10 minutes
 ---
 
+In the previous section, we discovered that our agents aren't appearing on the new 
+**Agents** page, nor in the **Agent flow** at the top of the trace. 
+
+The reason is that our application isn't currently using agents, but is instead invoking 
+the LLM directly. 
+
+We're going to address that in this section, by first adding some tools that our agents can 
+use, and then updating the code for each of the nodes to create and utilize agents rather 
+than the LLM directly. 
+
+We'll configure each agent to use a tool as well. 
+
 ## Add Tools
 
 First, add the following import statement near the top of the `main.py` file: 
@@ -84,7 +96,7 @@ and `activity_specialist_node` functions with the following:
 
 ```python
 def coordinator_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm("coordinator", temperature=0.2, session_id=state["session_id"])
     agent = _create_react_agent(llm, tools=[]).with_config(
@@ -103,11 +115,7 @@ def coordinator_node(
             "traveller's request and describe the plan for the specialist agents."
         )
     )
-    # Potentially poison the system directive to degrade quality of downstream plan.
-    poisoned_system = maybe_add_quality_noise(
-        "coordinator", system_message.content, state, custom_poison_config
-    )
-    system_message = SystemMessage(content=poisoned_system)
+
     result = agent.invoke({"messages": [system_message] + list(state["messages"])})
     final_message = result["messages"][-1]
     state["messages"].append(
@@ -120,7 +128,7 @@ def coordinator_node(
 
 
 def flight_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "flight_specialist", temperature=0.4, session_id=state["session_id"]
@@ -139,9 +147,6 @@ def flight_specialist_node(
         f"Find an appealing flight from {state['origin']} to {state['destination']} "
         f"departing {state['departure']} for {state['travellers']} travellers."
     )
-    step = maybe_add_quality_noise(
-        "flight_specialist", step, state, custom_poison_config
-    )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
     messages = [
@@ -158,7 +163,7 @@ def flight_specialist_node(
 
 
 def hotel_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "hotel_specialist", temperature=0.5, session_id=state["session_id"]
@@ -176,9 +181,6 @@ def hotel_specialist_node(
     step = (
         f"Recommend a boutique hotel in {state['destination']} between {state['departure']} "
         f"and {state['return_date']} for {state['travellers']} travellers."
-    )
-    step = maybe_add_quality_noise(
-        "hotel_specialist", step, state, custom_poison_config
     )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
@@ -205,7 +207,7 @@ def hotel_specialist_node(
 
 
 def activity_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "activity_specialist", temperature=0.6, session_id=state["session_id"]
@@ -221,9 +223,6 @@ def activity_specialist_node(
         }
     )
     step = f"Curate signature activities for travellers spending a week in {state['destination']}."
-    step = maybe_add_quality_noise(
-        "activity_specialist", step, state, custom_poison_config
-    )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
     messages = [
@@ -248,12 +247,16 @@ def activity_specialist_node(
     return state
 ```
 
+> Notice how we passed a tool when creating the flight, hotel, and activity specialist agents. 
+> When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill 
+> the request. 
+
 ## Build an Updated Docker Image
 
 Build an updated Docker image with a new tag:
 
 ``` bash
-docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-agents-and-tools
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-agents-and-tools .
 docker push localhost:9999/agentic-ai-app:app-with-agents-and-tools
 ```
 
@@ -293,3 +296,22 @@ curl http://travel-planner.localhost/travel/plan \
     "travelers": 2
   }'
 ```
+
+## View Data in Splunk Observability Cloud
+
+Let's return to Splunk Observability Cloud to see how the trace looks now. 
+
+Navigate to `APM` and then select `Agents`. Ensure your environment name
+is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page 
+populated now! 
+
+![Agents](../images/Agents-v2.png)
+
+We'll address these instrumentation issues in the next section.
+
+Navigate to `APM -> Trace Analyzer`. 
+
+Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
+Select one of the newer traces. It should look like the following:
+
+![Trace](../images/UpdatedTrace.png)

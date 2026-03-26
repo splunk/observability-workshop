@@ -165,6 +165,7 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Azur
         azure_deployment = azure_deployment_name,
         openai_api_version = azure_openai_api_version,
         temperature = temperature,
+        model_name = azure_deployment_name,
         # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
     )
 
@@ -228,7 +229,7 @@ def pretty_print_messages(update, last_message=False):
 # ---------------------------------------------------------------------------
 
 def coordinator_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm("coordinator", temperature=0.2, session_id=state["session_id"])
     agent = _create_react_agent(llm, tools=[]).with_config(
@@ -247,11 +248,7 @@ def coordinator_node(
             "traveller's request and describe the plan for the specialist agents."
         )
     )
-    # Potentially poison the system directive to degrade quality of downstream plan.
-    poisoned_system = maybe_add_quality_noise(
-        "coordinator", system_message.content, state, custom_poison_config
-    )
-    system_message = SystemMessage(content=poisoned_system)
+
     result = agent.invoke({"messages": [system_message] + list(state["messages"])})
     final_message = result["messages"][-1]
     state["messages"].append(
@@ -264,7 +261,7 @@ def coordinator_node(
 
 
 def flight_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "flight_specialist", temperature=0.4, session_id=state["session_id"]
@@ -283,9 +280,6 @@ def flight_specialist_node(
         f"Find an appealing flight from {state['origin']} to {state['destination']} "
         f"departing {state['departure']} for {state['travellers']} travellers."
     )
-    step = maybe_add_quality_noise(
-        "flight_specialist", step, state, custom_poison_config
-    )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
     messages = [
@@ -302,7 +296,7 @@ def flight_specialist_node(
 
 
 def hotel_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "hotel_specialist", temperature=0.5, session_id=state["session_id"]
@@ -320,9 +314,6 @@ def hotel_specialist_node(
     step = (
         f"Recommend a boutique hotel in {state['destination']} between {state['departure']} "
         f"and {state['return_date']} for {state['travellers']} travellers."
-    )
-    step = maybe_add_quality_noise(
-        "hotel_specialist", step, state, custom_poison_config
     )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
@@ -349,7 +340,7 @@ def hotel_specialist_node(
 
 
 def activity_specialist_node(
-    state: PlannerState, custom_poison_config: Optional[Dict[str, object]] = None
+    state: PlannerState
 ) -> PlannerState:
     llm = _create_llm(
         "activity_specialist", temperature=0.6, session_id=state["session_id"]
@@ -365,9 +356,6 @@ def activity_specialist_node(
         }
     )
     step = f"Curate signature activities for travellers spending a week in {state['destination']}."
-    step = maybe_add_quality_noise(
-        "activity_specialist", step, state, custom_poison_config
-    )
 
     # IMPORTANT: pass a proper list of messages (not stringified)
     messages = [

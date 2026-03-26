@@ -119,6 +119,7 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Azur
         azure_deployment = azure_deployment_name,
         openai_api_version = azure_openai_api_version,
         temperature = temperature,
+        model_name = azure_deployment_name,
         # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
     )
 
