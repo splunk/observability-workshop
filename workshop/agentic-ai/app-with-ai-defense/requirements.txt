@@ -1,0 +1,17 @@
+langchain>=1.0.0
+langchain-openai>=1.0.0
+langgraph>=1.0.0
+python-dotenv>=1.0.0
+flask>=3.0.0
+requests>=2.31.0
+splunk-opentelemetry==2.8.0
+splunk-otel-instrumentation-langchain==0.1.7
+splunk-otel-genai-emitters-splunk==0.1.7
+splunk-otel-util-genai==0.1.9
+opentelemetry-instrumentation-flask==0.59b0
+# AI Defense instrumentation (Gateway Mode support in v0.2.0+)
+splunk-otel-instrumentation-aidefense>=0.2.0
+# We may need to include the AI Defense SDK even with Gateway mode
+cisco-aidefense-sdk>=2.0.0
+# HTTP client (httpx is required for Gateway Mode to work)
+httpx>=0.24.0

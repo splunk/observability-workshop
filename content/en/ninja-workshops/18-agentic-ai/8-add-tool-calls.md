@@ -307,8 +307,6 @@ populated now!
 
 ![Agents](../images/Agents-v2.png)
 
-We'll address these instrumentation issues in the next section.
-
 Navigate to `APM -> Trace Analyzer`. 
 
 Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
