@@ -111,22 +111,25 @@ users:
 ssh_pwauth: True
 
 packages:
-  - bash
   - ansible
   - ca-certificates
+  - cron
   - curl
+  - git
   - gnupg
   - jq
   - maven
   - net-tools
   - openjdk-17-jdk
-  - python3-venv
   - python3-pip
-  - unzip
-  - zsh
-  - git
-  - wget
+  - python3-venv
   - qemu-guest-agent
+  - unzip
+  - vim
+  - wget
+  - whiptail
+  - zsh
+
 write_files:
   - path: /etc/sysctl.conf
     append: true
@@ -135,9 +138,18 @@ write_files:
       fs.inotify.max_user_watches=524288
       fs.inotify.max_user_instances=8192
 
-  - path: /etc/environment
+  - path: /etc/skel/.profile
     append: true
     content: |
+      if [ ! -f "/home/splunk/.cloud-init-complete" ]; then
+        echo "Waiting for cloud-init status..."
+        if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
+          echo "Instance setup did not complete after 3 minutes. Please try again.";
+        else
+          echo "Your instance is ready!";
+        fi
+      fi
+
       # Splunk environment variables
       export TERM=xterm-256color
       export RUM_TOKEN="$RUM_TOKEN"
@@ -181,26 +193,38 @@ runcmd:
   - systemctl start qemu-guest-agent
   - systemctl enable qemu-guest-agent
 
+  - chsh -s \$(which zsh) splunk
+  # Install Starship prompt
+  - curl -sS https://starship.rs/install.sh | sh -s -- -y
+  - |
+    cat <<'EOF' > /home/splunk/.zshrc
+    autoload -U +X compinit && compinit
+    export TERM=xterm-256color
+    source /etc/skel/.profile
+    source <(kubectl completion zsh)
+    source <(helm completion zsh)
+    source <(docker completion zsh)
+    eval "\$(starship init zsh)"
+    EOF
+
   # Install Docker from official repository
   - export DEBIAN_FRONTEND=noninteractive
   - install -m 0755 -d /etc/apt/keyrings
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   - chmod a+r /etc/apt/keyrings/docker.gpg
   - |
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu noble stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
   - apt-get update -qq
   - apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   - usermod -aG docker splunk
 
-  #- chsh -s $(which zsh) splunk
-  #- echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
-
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-  # Install K9s (Kubernetes UI) - Version: ${LATEST_K9S_VERSION}
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/${LATEST_K9S_VERSION}/k9s_Linux_amd64.tar.gz
-  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+  # Install K9s
+  - curl -fsSL -o /tmp/k9s_Linux_amd64.tar.gz https://github.com/derailed/k9s/releases/download/${LATEST_K9S_VERSION}/k9s_Linux_amd64.tar.gz
+  - tar xfz /tmp/k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+  - rm -f /tmp/k9s_Linux_amd64.tar.gz
 
   # Download Workshop
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/main.zip
@@ -223,20 +247,36 @@ runcmd:
   - unzip -qq content-contrib.zip -d /home/splunk/
   - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
 
-  # Install Terraform (latest) - Version: ${LATEST_TERRAFORM_VERSION}
-  - curl -S -OL https://releases.hashicorp.com/terraform/${LATEST_TERRAFORM_VERSION}/terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip
-  - unzip -qq terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
+  # Install Terraform
+  - curl -fsSL -o /tmp/terraform_linux_amd64.zip https://releases.hashicorp.com/terraform/${LATEST_TERRAFORM_VERSION}/terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip
+  - unzip -qq /tmp/terraform_linux_amd64.zip -d /usr/local/bin
+  - rm -f /tmp/terraform_linux_amd64.zip
 
   # Install kubectl
-  # - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-  - curl -LO https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl
-  - install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-   
+  - curl -Lo /tmp/kubectl "https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl"
+  - install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+  - rm -f /tmp/kubectl
+
   # Install k3d
   - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
   # Create 3 node k3d cluster
-  - k3d cluster create ${HOSTNAME}-cluster --agents 2 --agents-memory 6G --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@server:0" --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@agent:*" --image rancher/k3s:v1.33.4-k3s1 --port "80:80@loadbalancer" --port "81:80@loadbalancer" --port "82:82@loadbalancer" --port "9999:9999@loadbalancer" -v /home/splunk:/home/splunk -v /var/log/syslog:/var/log/syslog -v /var/log/auth.log:/var/log/auth.log
+  - >-
+    k3d cluster create ${HOSTNAME}-cluster
+    --agents 2
+    --servers-memory 8G
+    --agents-memory 8G
+    --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@server:0"
+    --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@agent:*"
+    --image rancher/k3s:v1.33.4-k3s1
+    --port "80:80@loadbalancer"
+    --port "81:80@loadbalancer"
+    --port "82:82@loadbalancer"
+    --port "9999:9999@loadbalancer"
+    --port "443:443@loadbalancer"
+    -v "/home/splunk:/home/splunk@server:*;agent:*"
+    -v "/var/log/syslog:/var/log/syslog@server:*;agent:*"
+    -v "/var/log/auth.log:/var/log/auth.log@server:*;agent:*"
 
   # Create k3d kube config and set correct permissions on splunk user home directory
   - mkdir /home/splunk/.kube && k3d kubeconfig get ${HOSTNAME}-cluster > /home/splunk/.kube/config
@@ -256,6 +296,8 @@ runcmd:
   - sysctl -w fs.inotify.max_user_watches=524288
   - sysctl -w fs.inotify.max_user_instances=8192
 
+  # Signal cloud-init complete (skips wait block on future logins)
+  - touch /home/splunk/.cloud-init-complete
 EOF
 
 #qm destroy $VMID >/dev/null
