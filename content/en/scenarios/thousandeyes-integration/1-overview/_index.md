@@ -82,7 +82,9 @@ graph LR
         dashboards --> alerts
     end
     
-    te_cloud -->|"OTel/HTTP"| otel
+    te_cloud -->|"OTel/HTTP metrics"| otel
+    te_cloud -->|"Trace lookup"| apm
+    apm -->|"Deep links to test"| te_cloud
     
     user["DevOps/SRE<br/>Team"]
     user -.-> te_cloud
@@ -166,12 +168,17 @@ Metrics collected include:
 
 ### 5. Splunk Observability Cloud Integration
 
-- **OpenTelemetry Collector**: 
+- **OpenTelemetry Metrics Stream**:
   - Endpoint: `https://ingest.{realm}.signalfx.com/v2/datapoint/otlp`
   - Protocol: HTTP or gRPC
   - Format: Protobuf
   - Authentication: `X-SF-Token` header
   - Signal type: Metrics (OpenTelemetry v2)
+- **Distributed Tracing Integration**:
+  - ThousandEyes test type: **HTTP Server** or **API** with distributed tracing enabled
+  - ThousandEyes connector target: `https://api.{realm}.signalfx.com`
+  - Authentication: Splunk **API** token in the `X-SF-Token` header
+  - Outcome: ThousandEyes can open related Splunk APM traces, and Splunk APM traces can link back to the originating ThousandEyes test
 - **Observability Features**:
   - **Metrics**: Real-time visualization of ThousandEyes data
   - **Dashboards**: Pre-built ThousandEyes dashboard with unified views
@@ -184,8 +191,10 @@ Metrics collected include:
 2. Agent runs scheduled tests against internal and external targets
 3. Test results sent to ThousandEyes Cloud
 4. ThousandEyes streams metrics to Splunk via OpenTelemetry protocol
-5. Splunk ingests, processes, and visualizes data in dashboards
-6. DevOps/SRE teams monitor dashboards and respond to alerts
+5. For HTTP Server and API tests with distributed tracing enabled, ThousandEyes injects `b3`, `traceparent`, and `tracestate` headers into the request
+6. The instrumented application sends the resulting trace to Splunk APM
+7. ThousandEyes can open the related Splunk trace, and Splunk APM can link back to the original ThousandEyes test
+8. DevOps, network, and application teams collaborate across both views during an investigation
 
 ## Testing Capabilities
 
@@ -194,7 +203,7 @@ With this deployment, you can:
 - ✅ **Test internal services**: Monitor Kubernetes services, APIs, and microservices from within the cluster
 - ✅ **Test external dependencies**: Validate connectivity to payment gateways, third-party APIs, and SaaS platforms
 - ✅ **Measure performance**: Capture latency, availability, and performance metrics from your cluster's perspective
-- ✅ **Troubleshoot issues**: Identify whether problems originate from your infrastructure or external dependencies
+- ✅ **Troubleshoot issues**: Identify whether problems originate from your infrastructure, network path, or instrumented application services
 
 {{% notice title="Note" style="info" %}}
 This is **not an officially supported** ThousandEyes agent deployment configuration. However, it has been tested and works very well in production-like environments.

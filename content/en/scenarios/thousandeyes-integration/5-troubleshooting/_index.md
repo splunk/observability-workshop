@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
-linkTitle: 5. Troubleshooting
-weight: 5
+linkTitle: 6. Troubleshooting
+weight: 6
 ---
 
 This section covers common issues you may encounter when deploying and using the ThousandEyes Enterprise Agent in Kubernetes.
@@ -153,6 +153,61 @@ curl -v https://api.thousandeyes.com/v7/stream \
 - Invalid or expired Splunk access token
 - Tests not assigned to the OpenTelemetry integration
 - Integration not enabled or saved properly
+
+## Distributed Tracing Not Appearing in ThousandEyes
+
+If your metric stream is working but the ThousandEyes **Service Map** is empty or no trace is found:
+
+**Verify the monitored endpoint:**
+
+- It accepts HTTP headers
+- It is instrumented with OpenTelemetry
+- It propagates trace context downstream
+- It sends traces to Splunk APM
+
+**Common causes:**
+
+- The endpoint is a page URL rather than an HTTP Server or API target
+- The service is not instrumented, so ThousandEyes can inject headers but no trace is emitted
+- The endpoint only returns a local health response and does not exercise downstream services
+
+**Recommended fixes:**
+
+1. Switch the ThousandEyes test to an instrumented backend API route
+2. Confirm traces for that route already exist in Splunk APM
+3. Re-run the test after enabling ThousandEyes distributed tracing
+
+## Missing ThousandEyes Link in Splunk APM
+
+If the trace opens in Splunk APM but you do not see the ThousandEyes backlink or metadata:
+
+**Common cause:**
+
+The `b3` propagator can override `trace_state` and clear the value that ThousandEyes expects to preserve for the reverse link.
+
+**Fix:**
+
+Set the propagators explicitly on the instrumented service:
+
+```bash
+OTEL_PROPAGATORS=baggage,b3,tracecontext
+```
+
+After changing the environment variable, restart the instrumented workload and generate new traffic.
+
+## Splunk APM Connector Authentication Errors
+
+If the **Generic Connector** in ThousandEyes cannot query Splunk APM:
+
+**Check the following:**
+
+1. The connector target is `https://api.<REALM>.signalfx.com`
+2. The token used in the connector has the **API** scope
+3. The user creating the token has the required role in Splunk Observability Cloud
+
+{{% notice title="Token Reminder" style="info" %}}
+The OpenTelemetry metrics stream uses a Splunk **Ingest** token. The ThousandEyes **Generic Connector** for APM uses a Splunk **API** token. Mixing them up is one of the most common causes of partial integration.
+{{% /notice %}}
 
 ## High Memory Usage
 

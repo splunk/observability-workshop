@@ -1,7 +1,7 @@
 ---
-title: Kubernetes Service Testing
-linkTitle: 4. Kubernetes Testing
-weight: 4
+title: Kubernetes Service Testing and Correlation
+linkTitle: 5. Kubernetes Testing
+weight: 5
 ---
 
 ## Replicating AppDynamics Test Recommendations
@@ -14,7 +14,7 @@ Since the ThousandEyes Enterprise Agent runs **inside the cluster**, it can dire
 
 1. **Service Discovery**: Use `kubectl get svc` to enumerate services in your cluster
 2. **Hostname Construction**: Build test URLs using Kubernetes DNS naming convention: `<service-name>.<namespace>.svc.cluster.local`
-3. **Test Creation**: Configure ThousandEyes HTTP Server tests targeting these internal services
+3. **Test Creation**: Create both availability tests and trace-enabled transaction tests for internal services
 4. **Correlation in Splunk**: View synthetic test results alongside APM traces and infrastructure metrics
 
 ## Benefits of In-Cluster Testing
@@ -72,19 +72,30 @@ If testing services in the same namespace as the ThousandEyes agent, you can use
 
 ### 3. Create ThousandEyes Tests for Internal Services
 
-For each service endpoint, create an HTTP Server test in ThousandEyes:
+For the best learning outcome, create **two kinds of tests**:
+
+- **Availability tests** against `/health` or `/readiness` endpoints to validate reachability and response time
+- **Trace-enabled transaction tests** against business endpoints that traverse multiple services
+
+The first test teaches synthetic monitoring. The second teaches cross-tool troubleshooting with Splunk APM.
 
 #### Via ThousandEyes UI
 
 1. Navigate to **Cloud & Enterprise Agents > Test Settings**
 2. Click **Add New Test** → **HTTP Server**
-3. Configure the test:
+3. Configure an availability test:
    - **Test Name**: `[K8s] API Gateway Health`
    - **URL**: `http://api-gateway.production.svc.cluster.local:8080/health`
-   - **Interval**: 2 minutes (or desired frequency)
+   - **Interval**: 2 minutes
    - **Agents**: Select your Kubernetes-deployed Enterprise Agent
-   - **HTTP Response Code**: `200` (expected)
-4. Click **Create Test**
+   - **HTTP Response Code**: `200`
+4. Configure a trace-enabled transaction test:
+   - **Test Name**: `[Trace] API Gateway Orders`
+   - **URL**: `http://api-gateway.production.svc.cluster.local:8080/api/v1/orders`
+   - **Interval**: 2 minutes
+   - **Agents**: Select your Kubernetes-deployed Enterprise Agent
+   - **Advanced Settings > Distributed Tracing**: Enabled
+5. Click **Create Test**
 
 #### Via ThousandEyes API
 
@@ -105,6 +116,12 @@ curl -X POST https://api.thousandeyes.com/v6/tests/http-server/new \
   }'
 ```
 
+For the trace-enabled version, switch the `url` to a business transaction endpoint and enable distributed tracing in the ThousandEyes test configuration.
+
+{{% notice title="Best Practice" style="success" icon="check" %}}
+If your goal is to teach distributed tracing, avoid using `/health` as the only example. Health checks are useful for uptime monitoring, but they rarely produce the multi-service traces that make the ThousandEyes and Splunk APM integration compelling.
+{{% /notice %}}
+
 ### 4. Configure Alerting Rules
 
 Set up alerts for common failure scenarios:
@@ -119,10 +136,15 @@ Once tests are running and integrated with Splunk:
 
 1. **Navigate to the ThousandEyes Dashboard** in Splunk Observability Cloud
 2. **Filter by test name** (e.g., `[K8s]` prefix) to see all Kubernetes internal tests
-3. **Correlate with APM data**:
+3. **For trace-enabled tests, start in ThousandEyes first**:
+   - Open the **Service Map**
+   - Inspect service-level latency and downstream errors
+   - Follow the link into **Splunk APM**
+4. **Correlate with APM data**:
    - View synthetic test failures alongside APM error rates
    - Identify if issues are network-related (ThousandEyes) or application-related (APM)
-4. **Create custom dashboards** combining:
+   - Use the Splunk trace metadata to jump back to the originating ThousandEyes test
+5. **Create custom dashboards** combining:
    - ThousandEyes HTTP availability metrics
    - APM service latency and error rates
    - Kubernetes infrastructure metrics (CPU, memory, pod restarts)
@@ -141,7 +163,7 @@ http://inventory-service.production.svc.cluster.local:8080/actuator/health
 
 ### Use Case 2: API Gateway Endpoint Testing
 
-Test API gateway routes:
+Test API gateway routes that are more likely to generate a useful trace:
 
 ```bash
 http://api-gateway.production.svc.cluster.local:8080/api/v1/users
@@ -237,7 +259,9 @@ Use the `[External]` prefix in test names to easily distinguish between internal
    - Service type (API, database, cache)
    - Team ownership
 5. **Monitor Test Agent Health**: Ensure the ThousandEyes agent pod is healthy and has sufficient resources
-6. **Correlate with APM**: Create Splunk dashboards that show both synthetic and real user metrics side-by-side
+6. **Use Both Test Types**: Pair a simple availability test with a trace-enabled business transaction test for each critical service path
+7. **Correlate with APM**: Create Splunk dashboards that show both synthetic and APM data side-by-side
+8. **Use Instrumented Backends for Trace Labs**: Distributed tracing works best when the ThousandEyes target is an HTTP Server or API endpoint backed by OpenTelemetry-instrumented services
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 By testing internal services before they're exposed externally, you can catch issues early and ensure your infrastructure is healthy before user traffic reaches it.

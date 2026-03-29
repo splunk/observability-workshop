@@ -8,9 +8,13 @@ weight: 3
 
 Splunk Observability Cloud is a real-time observability platform purpose-built for monitoring metrics, traces, and logs at scale. It ingests OpenTelemetry data and provides advanced dashboards and analytics to help teams detect and resolve performance issues quickly. This section explains how to integrate ThousandEyes data with Splunk Observability Cloud using OpenTelemetry.
 
+{{% notice title="Scope Of This Section" style="info" %}}
+This section covers the **metrics streaming** path from ThousandEyes into Splunk Observability Cloud. The next section adds the separate **distributed tracing** workflow that creates bi-directional links between ThousandEyes and Splunk APM.
+{{% /notice %}}
+
 ## Step 1: Create a Splunk Observability Cloud Access Token
 
-To send data to Splunk Observability Cloud, you need an access token. Follow these steps:
+To send ThousandEyes metrics to Splunk Observability Cloud, you need an access token with the **Ingest** scope. Follow these steps:
 
 1. In the Splunk Observability Cloud platform, go to **Settings > Access Token**
 2. Click **Create Token**
@@ -22,6 +26,8 @@ To send data to Splunk Observability Cloud, you need an access token. Follow the
 You need the access token to send telemetry data to Splunk Observability Cloud.
 
 ## Step 2: Create an Integration
+
+This integration is the one-way telemetry stream that gets ThousandEyes metrics into Splunk Observability Cloud dashboards and detectors.
 
 ### Using the ThousandEyes UI
 
@@ -102,6 +108,10 @@ Replace `streamEndpointUrl` and `X-SF-Token` values with the correct values for 
 Make sure to replace `{REALM}` with your Splunk environment realm (e.g., `us1`, `us2`, `eu0`) and `{TOKEN}` with your actual Splunk access token.
 {{% /notice %}}
 
+{{% notice title="What Comes Next" style="primary" icon="lightbulb" %}}
+After you finish the metrics integration, continue to **Distributed Tracing** to add the reverse investigation path from ThousandEyes into Splunk APM and back again.
+{{% /notice %}}
+
 ## Step 3: ThousandEyes Dashboard in Splunk Observability Cloud
 
 Once the integration is set up, you can view real-time monitoring data in the ThousandEyes Network Monitoring Dashboard within Splunk Observability Cloud. The dashboard includes:
@@ -117,5 +127,5 @@ Once the integration is set up, you can view real-time monitoring data in the Th
 You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://drive.google.com/file/d/1xpdjr5CRBC-JBM9tGsNFcVYp3C-tJC8s/view?usp=sharing).
 
 {{% notice title="Success" style="success" icon="check" %}}
-Your ThousandEyes data is now streaming to Splunk Observability Cloud! You can now correlate synthetic test results with APM traces and infrastructure metrics for comprehensive observability.
+Your ThousandEyes data is now streaming to Splunk Observability Cloud. Next, add the distributed tracing connector so you can pivot between ThousandEyes and Splunk APM during troubleshooting.
 {{% /notice %}}
