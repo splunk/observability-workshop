@@ -23,11 +23,20 @@ By the end of this workshop, you will:
 
 ## Sections
 
+### Core path
+
 - [Overview](./1-overview/_index.md) - Understand ThousandEyes agent types and architecture
 - [Deployment](./2-deployment/_index.md) - Deploy the Enterprise Agent in Kubernetes
 - [Splunk Integration](./3-splunk-integration/_index.md) - Stream ThousandEyes metrics into Splunk Observability Cloud
 - [Distributed Tracing](./4-distributed-tracing/_index.md) - Enable supported bi-directional drilldowns between ThousandEyes and Splunk APM
+
+### Scenario extensions
+
 - [Kubernetes Testing](./4-kubernetes-testing/_index.md) - Create internal tests that are useful for both synthetic monitoring and trace correlation
+- [RUM](./6-rum-thousandeyes/_index.md) - Correlate ThousandEyes network signals with Splunk RUM for end-user investigations
+
+### Support
+
 - [Troubleshooting](./5-troubleshooting/_index.md) - Common issues and solutions
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}

@@ -1,7 +1,9 @@
 ---
 title: Troubleshooting
-linkTitle: 6. Troubleshooting
-weight: 6
+linkTitle: 7. Troubleshooting
+weight: 7
+time: 15 minutes
+description: Diagnose common deployment, connectivity, metrics-streaming, and trace-correlation issues in the ThousandEyes scenario.
 ---
 
 This section covers common issues you may encounter when deploying and using the ThousandEyes Enterprise Agent in Kubernetes.

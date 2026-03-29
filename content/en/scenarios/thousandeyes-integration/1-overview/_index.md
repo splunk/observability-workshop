@@ -2,6 +2,8 @@
 title: Overview
 linkTitle: 1. Overview
 weight: 1
+time: 10 minutes
+description: Understand the ThousandEyes agent model and the workshop architecture across Kubernetes, ThousandEyes, and Splunk Observability Cloud.
 ---
 
 ## ThousandEyes Agent Types

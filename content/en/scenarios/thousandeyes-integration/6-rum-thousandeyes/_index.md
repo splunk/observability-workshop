@@ -2,6 +2,8 @@
 title: ThousandEyes and Splunk RUM
 linkTitle: 6. RUM
 weight: 6
+time: 10 minutes
+description: Correlate ThousandEyes network metrics with Splunk RUM so end-user experience and network issues can be investigated together.
 ---
 Integrate ThousandEyes with Splunk RUM to understand if network issues correlate to end user issues.
 

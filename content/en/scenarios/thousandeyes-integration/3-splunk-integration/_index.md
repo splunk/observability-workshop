@@ -2,6 +2,8 @@
 title: Splunk Integration
 linkTitle: 3. Splunk Integration
 weight: 3
+time: 15 minutes
+description: Configure the OpenTelemetry-based metrics stream from ThousandEyes into Splunk Observability Cloud.
 ---
 
 ## About Splunk Observability Cloud
