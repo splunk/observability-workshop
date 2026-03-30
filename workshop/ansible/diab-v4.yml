@@ -60,13 +60,15 @@
             After=network.target
             StartLimitIntervalSec=0
             [Service]
-            Type=simple
+            Type=forking
             Restart=always
             RestartSec=1
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
             WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}v4
             ExecStart=/bin/bash diab.sh start
+            ExecStop=/bin/bash diab.sh stop
+            PIDFile=/home/splunk/{{ diab_dir_name.files[0] }}v4/.diab.pid
             [Install]
             WantedBy=multi-user.target
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
@@ -78,13 +80,8 @@
         become: true
         when: not wh_result.stat.exists
 
-      - name: Wait for diab.service to start
-        pause:
-          seconds: 20
-        when: not wh_result.stat.exists
-
       - name: Enable Chaos Mesh dashboard
-        command: kubectl apply -f /home/splunk/{{ diab_dir_name.files[0] }}v4/chaos-mesh/chaos-mesh-dashboard-lb.yaml
+        command: kubectl apply -f /home/splunk/{{ diab_dir_name.files[0] }}v4/chaos-manifests/chaos-mesh-dashboard-lb.yaml
         when: not wh_result.stat.exists
 
       - name: Save Demo-in-a-Box configuration
