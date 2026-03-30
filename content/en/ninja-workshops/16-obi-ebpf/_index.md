@@ -1,5 +1,6 @@
 ---
-draft: true
+draft: false
+hidden: true
 title: Zero-Code APM with OBI and eBPF
 linkTitle: Zero-Code APM with OBI
 weight: 16
