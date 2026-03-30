@@ -8,23 +8,23 @@ opentelemetry-semantic-conventions>=0.59b0
 opentelemetry-exporter-otlp-proto-grpc>=1.38.0
 
 # Splunk GenAI packages
-splunk-otel-util-genai>=0.1.4
+splunk-otel-util-genai==0.1.9
 
 # AI Defense instrumentation (Gateway Mode support in v0.2.0+)
-splunk-otel-instrumentation-aidefense>=0.2.0
+splunk-otel-instrumentation-aidefense==0.2.0
 
-splunk-otel-genai-emitters-splunk>=0.1.7
+splunk-otel-genai-emitters-splunk==0.1.7
 
 # LangChain instrumentation
-splunk-otel-instrumentation-langchain>=0.1.0
+splunk-otel-instrumentation-langchain==0.1.7
 
 # Cisco AI Defense SDK
 cisco-aidefense-sdk>=2.0.0
 
 # LangChain / LangGraph
-langchain>=0.3.0
-langchain-openai>=0.2.0
-langgraph>=0.2.0
+langchain>=1.0.0
+langchain-openai>=1.0.0
+langgraph>=1.0.0
 
 # OpenAI SDK (required for Gateway Mode - uses httpx internally)
 openai>=1.0.0
