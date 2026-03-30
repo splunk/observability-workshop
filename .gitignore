@@ -23,7 +23,6 @@ override.tf.json
 /public/
 /site/
 /node_modules/
-package-lock.json
 # Temporary lock file while building
 .hugo_build.lock
 /resources
