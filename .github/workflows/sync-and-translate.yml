@@ -39,7 +39,7 @@ jobs:
       last_tag: ${{ steps.check.outputs.last_tag }}
     steps:
       - name: Checkout translation system branch
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
@@ -112,7 +112,7 @@ jobs:
       new_workshops: ${{ steps.detect-new-workshops.outputs.new_workshops }}
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           ref: main
           fetch-depth: 0
@@ -263,7 +263,7 @@ jobs:
 
       - name: Configure AWS credentials via OIDC
         if: steps.detect.outputs.has_files == 'true'
-        uses: aws-actions/configure-aws-credentials@ff717079ee2060e4bcee96c4779b553acc87447c
+        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
@@ -271,7 +271,7 @@ jobs:
 
       - name: Setup Node.js
         if: steps.detect.outputs.has_files == 'true'
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: '24'
 
@@ -284,6 +284,7 @@ jobs:
         run: |
           git fetch origin ja-translation-system
           git show origin/ja-translation-system:package.json > package.json
+          git show origin/ja-translation-system:package-lock.json > package-lock.json
           git show origin/ja-translation-system:.textlintrc > .textlintrc
           git show origin/ja-translation-system:.markdownlint.json > .markdownlint.json
           npm ci
@@ -560,7 +561,7 @@ jobs:
       pr_number: ${{ steps.create-pr.outputs.pr_number }}
     steps:
       - name: Checkout translation branch
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           ref: ${{ needs.sync-and-translate.outputs.translation_branch }}
           fetch-depth: 1
@@ -655,7 +656,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout translation system branch
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           ref: ${{ github.ref }}
 
