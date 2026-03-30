@@ -231,7 +231,7 @@ runcmd:
   - unzip -qq main.zip -d /home/splunk/
   - mkdir /home/splunk/workshop
   - mv /home/splunk/observability-workshop-main/workshop/* /home/splunk/workshop
-  - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/diab-*.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-main
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
 
