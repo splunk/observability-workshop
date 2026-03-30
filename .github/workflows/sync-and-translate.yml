@@ -635,13 +635,35 @@ jobs:
             echo "Creating regular PR"
           fi
 
+          TRANSLATION_BRANCH="${{ needs.sync-and-translate.outputs.translation_branch }}"
+          FORK_REPO="${{ github.repository }}"
+          FORK_OWNER="${{ github.repository_owner }}"
+
           PR_URL=$(gh pr create \
             --repo "${{ env.UPSTREAM_REPO }}" \
             --title "Japanese Translation: ${NEW_TAG}" \
             --body-file /tmp/pr_body.md \
             --base main \
-            --head "${{ github.repository_owner }}:${{ needs.sync-and-translate.outputs.translation_branch }}" \
-            "${DRAFT_ARGS[@]}")
+            --head "${FORK_OWNER}:${TRANSLATION_BRANCH}" \
+            "${DRAFT_ARGS[@]}") || {
+            echo "::error::upstream PR creation failed. Manual steps to create PR:"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "1. Ensure UPSTREAM_PAT secret is valid (expiry <= 90 days for Splunk enterprise)"
+            echo "   Regenerate at: https://github.com/settings/tokens"
+            echo "   Required permission: splunk/observability-workshop > Pull requests: Read and write"
+            echo ""
+            echo "2. Once PAT is updated, create the PR manually:"
+            echo "   gh pr create \\"
+            echo "     --repo ${{ env.UPSTREAM_REPO }} \\"
+            echo "     --title \"Japanese Translation: ${NEW_TAG}\" \\"
+            echo "     --base main \\"
+            echo "     --head ${FORK_OWNER}:${TRANSLATION_BRANCH}"
+            echo ""
+            echo "   Or via GitHub web UI:"
+            echo "   https://github.com/${FORK_REPO}/tree/${TRANSLATION_BRANCH}"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          }
 
           echo "Created PR: ${PR_URL}"
           PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]*$')
