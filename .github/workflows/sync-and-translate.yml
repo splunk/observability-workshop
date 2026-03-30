@@ -17,6 +17,10 @@ on:
         type: boolean
         default: false
 
+concurrency:
+  group: sync-and-translate
+  cancel-in-progress: false
+
 permissions: {}
 
 env:
@@ -296,7 +300,8 @@ jobs:
           NEW_TAG="${{ needs.check-new-release.outputs.new_tag }}"
           BRANCH_NAME="translate/${NEW_TAG}"
 
-          git checkout -b "${BRANCH_NAME}"
+          # -B = 既存ブランチがあれば現在コミットにリセット、なければ新規作成（冪等）
+          git checkout -B "${BRANCH_NAME}"
           echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
 
       - name: Translate files
@@ -626,47 +631,61 @@ jobs:
               "Generated with [Claude Code](https://claude.ai/claude-code) via automated translation workflow."
           } > /tmp/pr_body.md
 
-          # Create PR to upstream repository
-          DRAFT_ARGS=()
-          if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
-            DRAFT_ARGS=(--draft)
-            echo "Creating DRAFT PR (new workshops detected)"
-          else
-            echo "Creating regular PR"
-          fi
-
           TRANSLATION_BRANCH="${{ needs.sync-and-translate.outputs.translation_branch }}"
           FORK_REPO="${{ github.repository }}"
           FORK_OWNER="${{ github.repository_owner }}"
 
-          PR_URL=$(gh pr create \
+          # 同一ブランチの既存 PR を確認（再実行時の冪等性）
+          EXISTING_PR=$(gh pr list \
             --repo "${{ env.UPSTREAM_REPO }}" \
-            --title "Japanese Translation: ${NEW_TAG}" \
-            --body-file /tmp/pr_body.md \
-            --base main \
             --head "${FORK_OWNER}:${TRANSLATION_BRANCH}" \
-            "${DRAFT_ARGS[@]}") || {
-            echo "::error::upstream PR creation failed. Manual steps to create PR:"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "1. Ensure UPSTREAM_PAT secret is valid (expiry <= 90 days for Splunk enterprise)"
-            echo "   Regenerate at: https://github.com/settings/tokens"
-            echo "   Required permission: splunk/observability-workshop > Pull requests: Read and write"
-            echo ""
-            echo "2. Once PAT is updated, create the PR manually:"
-            echo "   gh pr create \\"
-            echo "     --repo ${{ env.UPSTREAM_REPO }} \\"
-            echo "     --title \"Japanese Translation: ${NEW_TAG}\" \\"
-            echo "     --base main \\"
-            echo "     --head ${FORK_OWNER}:${TRANSLATION_BRANCH}"
-            echo ""
-            echo "   Or via GitHub web UI:"
-            echo "   https://github.com/${FORK_REPO}/tree/${TRANSLATION_BRANCH}"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            exit 1
-          }
+            --state open \
+            --json number,url \
+            --jq '.[0]' 2>/dev/null || echo "")
 
-          echo "Created PR: ${PR_URL}"
-          PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]*$')
+          if [ -n "$EXISTING_PR" ] && [ "$EXISTING_PR" != "null" ]; then
+            PR_NUMBER=$(echo "$EXISTING_PR" | jq -r '.number')
+            PR_URL=$(echo "$EXISTING_PR" | jq -r '.url')
+            echo "PR already exists: ${PR_URL} (skipping creation)"
+          else
+            # Create PR to upstream repository
+            DRAFT_ARGS=()
+            if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
+              DRAFT_ARGS=(--draft)
+              echo "Creating DRAFT PR (new workshops detected)"
+            else
+              echo "Creating regular PR"
+            fi
+
+            PR_URL=$(gh pr create \
+              --repo "${{ env.UPSTREAM_REPO }}" \
+              --title "Japanese Translation: ${NEW_TAG}" \
+              --body-file /tmp/pr_body.md \
+              --base main \
+              --head "${FORK_OWNER}:${TRANSLATION_BRANCH}" \
+              "${DRAFT_ARGS[@]}") || {
+              echo "::error::upstream PR creation failed. Manual steps to create PR:"
+              echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+              echo "1. Ensure UPSTREAM_PAT secret is valid (expiry <= 90 days for Splunk enterprise)"
+              echo "   Regenerate at: https://github.com/settings/tokens"
+              echo "   Required permission: splunk/observability-workshop > Pull requests: Read and write"
+              echo ""
+              echo "2. Once PAT is updated, create the PR manually:"
+              echo "   gh pr create \\"
+              echo "     --repo ${{ env.UPSTREAM_REPO }} \\"
+              echo "     --title \"Japanese Translation: ${NEW_TAG}\" \\"
+              echo "     --base main \\"
+              echo "     --head ${FORK_OWNER}:${TRANSLATION_BRANCH}"
+              echo ""
+              echo "   Or via GitHub web UI:"
+              echo "   https://github.com/${FORK_REPO}/tree/${TRANSLATION_BRANCH}"
+              echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+              exit 1
+            }
+
+            echo "Created PR: ${PR_URL}"
+            PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]*$')
+          fi
           echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
 
   update-tag-tracking:
@@ -729,12 +748,16 @@ jobs:
 
       - name: Send Slack notification
         run: |
+          HAS_NEW_WORKSHOP="${{ needs.sync-and-translate.outputs.has_new_workshops }}"
+          TRANSLATED_COUNT="${{ needs.sync-and-translate.outputs.translated_count }}"
+          FAILED_COUNT="${{ needs.sync-and-translate.outputs.failed_count }}"
+          PR_NUMBER="${{ needs.create-pr.outputs.pr_number }}"
           JSON_PAYLOAD=$(cat <<EOF
           {
-            "hasNewWorkshopTranslation": "${{ needs.sync-and-translate.outputs.has_new_workshops }}",
-            "translatedMarkdownFileCount": "${{ needs.sync-and-translate.outputs.translated_count }}",
-            "failedFileCount": "${{ needs.sync-and-translate.outputs.failed_count }}",
-            "pullRequestNumber": "${{ needs.create-pr.outputs.pr_number }}",
+            "hasNewWorkshopTranslation": "${HAS_NEW_WORKSHOP:-false}",
+            "translatedMarkdownFileCount": "${TRANSLATED_COUNT:-0}",
+            "failedFileCount": "${FAILED_COUNT:-0}",
+            "pullRequestNumber": "${PR_NUMBER:-}",
             "status": "${{ steps.status.outputs.result }}",
             "reason": "${{ steps.reason.outputs.result }}"
           }
