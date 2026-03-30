@@ -14,7 +14,7 @@ We will also change the verbosity of the logging exporter to prevent the disk fr
 
 ```yaml {hl_lines="3-4"}
 exporters:
-  logging:
+  debug:
     verbosity: normal
   otlphttp/splunk:
 ```
@@ -36,7 +36,7 @@ The **otlphttp** exporter can also be configured to send traces and logs by defi
 
 ```yaml {hl_lines="5"}
 exporters:
-  logging:
+  debug:
     verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
@@ -59,7 +59,7 @@ The token is defined in the configuration file by inserting `X-SF-TOKEN: ${env:A
 
 ```yaml {hl_lines="6-8"}
 exporters:
-  logging:
+  debug:
     verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
