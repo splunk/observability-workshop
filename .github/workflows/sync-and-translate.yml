@@ -212,7 +212,9 @@ jobs:
           # If no previous tag (first run), skip detection - no baseline to compare
           if [ -z "$LAST_TAG" ]; then
             echo "No previous tag - skipping new workshop detection"
-            echo "has_new_workshops=false" >> $GITHUB_OUTPUT
+            # NOTE: "yes"/"no" instead of "true"/"false" is a workaround for a Slack Workflow Builder bug
+            # where string literals "true"/"false" cause branch condition evaluation errors.
+            echo "has_new_workshops=no" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -253,7 +255,7 @@ jobs:
           done < /tmp/files_to_translate.txt
 
           if [ -n "$NEW_WORKSHOPS" ]; then
-            echo "has_new_workshops=true" >> $GITHUB_OUTPUT
+            echo "has_new_workshops=yes" >> $GITHUB_OUTPUT
             echo "new_workshops<<EOF" >> $GITHUB_OUTPUT
             echo "$NEW_WORKSHOPS" | grep -v '^$' >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
@@ -261,7 +263,7 @@ jobs:
             WORKSHOP_COUNT=$(echo "$NEW_WORKSHOPS" | grep -v '^$' | wc -l)
             echo "Detected ${WORKSHOP_COUNT} new workshop(s)"
           else
-            echo "has_new_workshops=false" >> $GITHUB_OUTPUT
+            echo "has_new_workshops=no" >> $GITHUB_OUTPUT
             echo "No new workshops detected"
           fi
 
@@ -593,7 +595,7 @@ jobs:
               "- **Failed files**: ${FAILED_COUNT}"
 
             # Add new workshops section if detected
-            if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
+            if [ "$HAS_NEW_WORKSHOPS" = "yes" ]; then
               printf '\n%s\n' \
                 "## :warning: New Workshops Detected" \
                 "" \
@@ -650,7 +652,7 @@ jobs:
           else
             # Create PR to upstream repository
             DRAFT_ARGS=()
-            if [ "$HAS_NEW_WORKSHOPS" = "true" ]; then
+            if [ "$HAS_NEW_WORKSHOPS" = "yes" ]; then
               DRAFT_ARGS=(--draft)
               echo "Creating DRAFT PR (new workshops detected)"
             else
@@ -748,13 +750,17 @@ jobs:
 
       - name: Send Slack notification
         run: |
+          # NOTE: hasNewWorkshopTranslation uses "yes"/"no" instead of "true"/"false".
+          # Slack Workflow Builder has a bug where the string "true" causes branch condition
+          # evaluation errors even when the field type is text. Verified 2026-03-30.
           HAS_NEW_WORKSHOP="${{ needs.sync-and-translate.outputs.has_new_workshops }}"
+          HAS_NEW_WORKSHOP="${HAS_NEW_WORKSHOP:-no}"
           TRANSLATED_COUNT="${{ needs.sync-and-translate.outputs.translated_count }}"
           FAILED_COUNT="${{ needs.sync-and-translate.outputs.failed_count }}"
           PR_NUMBER="${{ needs.create-pr.outputs.pr_number }}"
           JSON_PAYLOAD=$(cat <<EOF
           {
-            "hasNewWorkshopTranslation": "${HAS_NEW_WORKSHOP:-false}",
+            "hasNewWorkshopTranslation": "${HAS_NEW_WORKSHOP}",
             "translatedMarkdownFileCount": "${TRANSLATED_COUNT:-0}",
             "failedFileCount": "${FAILED_COUNT:-0}",
             "pullRequestNumber": "${PR_NUMBER:-}",
