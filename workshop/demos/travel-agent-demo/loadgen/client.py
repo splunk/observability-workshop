@@ -41,6 +41,7 @@ POISON_TYPES = [
     "irrelevance",
     "negative_sentiment",
     "toxicity",
+    "pci_violation"
 ]
 
 

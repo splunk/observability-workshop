@@ -340,7 +340,7 @@ def _poison_config(
     """Read environment variables or custom config controlling prompt poisoning.
 
     TRAVEL_POISON_PROB: Base probability (0-1) that a given agent step is poisoned.
-    TRAVEL_POISON_TYPES: Comma separated subset of: hallucination,bias,irrelevance,negative_sentiment,toxicity
+    TRAVEL_POISON_TYPES: Comma separated subset of: hallucination,bias,irrelevance,negative_sentiment,toxicity,pci_violation
     TRAVEL_POISON_MAX: Max number of poison snippets to inject per step.
     TRAVEL_POISON_SEED: Optional deterministic seed for reproducibility.
 
@@ -356,6 +356,7 @@ def _poison_config(
                 "irrelevance",
                 "negative_sentiment",
                 "toxicity",
+                "pci_violation",
             ],
         )
         max_snippets = int(custom_config.get("max", 2))
@@ -365,7 +366,7 @@ def _poison_config(
         prob = float(os.getenv("TRAVEL_POISON_PROB", "0.8"))
         types_raw = os.getenv(
             "TRAVEL_POISON_TYPES",
-            "hallucination,bias,irrelevance,negative_sentiment,toxicity",
+            "hallucination,bias,irrelevance,negative_sentiment,toxicity,pci_violation",
         )
         # Proper comma split
         types = (
@@ -378,6 +379,7 @@ def _poison_config(
                 "irrelevance",
                 "negative_sentiment",
                 "toxicity",
+                "pci_violation"
             ]
         max_snippets = int(os.getenv("TRAVEL_POISON_MAX", "2"))
         seed = os.getenv("TRAVEL_POISON_SEED")
@@ -418,6 +420,8 @@ def _generate_poison_snippet(kind: str, agent_name: str) -> str:
         )
     if kind == "toxicity":
         return "Remark: The coordination process feels messy and slightly chaotic."  # mild critical tone
+    if kind == "pci_violation":
+        return "My credit card number is 4111 1111 1111 1111."
     return f"(poison:{kind})"
 
 
