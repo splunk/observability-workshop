@@ -153,7 +153,7 @@ write_files:
       # Splunk environment variables
       export TERM=xterm-256color
       export RUM_TOKEN="$RUM_TOKEN"
-      export ACCESS_TOKEN="$INGEST_TOKEN"
+      export INGEST_TOKEN="$INGEST_TOKEN"
       export API_TOKEN="$API_TOKEN"
       export HEC_TOKEN="$HEC_TOKEN"
       export HEC_URL="$HEC_URL"
@@ -182,7 +182,7 @@ write_files:
         env: $HOSTNAME-workshop
         deployment: "deployment.environment=$HOSTNAME-workshop"
         realm: $REALM
-        access_token: $INGEST_TOKEN
+        ingest_token: $INGEST_TOKEN
         api_token: $API_TOKEN
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
