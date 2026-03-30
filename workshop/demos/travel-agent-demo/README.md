@@ -38,7 +38,7 @@ Test the proxy service using curl:
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-4o-mini",
+    "model": "gpt-5-nano",
     "messages": [
       { "role": "user", "content": "Hello, can you hear me?" }
     ]
@@ -53,7 +53,7 @@ Then, in a separate command terminal, configure the following environment variab
 
 ``` bash
 export OPENAI_API_KEY=dummy
-export OPENAI_MODEL=gpt-4o-mini
+export OPENAI_MODEL=gpt-5-nano
 export OPENAI_BASE_URL=http://localhost:8000/v1
 export OTEL_SERVICE_NAME=travel-planner
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=travel-planner-demo
@@ -69,6 +69,7 @@ export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE="SPAN_AND_EVENT"
 export OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION="true"
 export OTEL_INSTRUMENTATION_GENAI_EMITTERS="span_metric_event,splunk"
 export OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION="replace-category:SplunkEvaluationResults"
+export OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS="deepeval(AgentInvocation(bias,toxicity,hallucination,relevance))"
 export OTEL_GENAI_EVAL_DEBUG_SKIPS="true"
 export OTEL_GENAI_EVAL_DEBUG_EACH="false"
 export OTEL_INSTRUMENTATION_GENAI_DEBUG="false"
@@ -76,6 +77,7 @@ export SPLUNK_PROFILER_ENABLED="true"
 export DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE="300"
 export DEEPEVAL_RETRY_MAX_ATTEMPTS="2"
 export DEEPEVAL_FILE_SYSTEM="READ_ONLY"
+export TRAVEL_POISON_TYPES="hallucination,bias,negative_sentiment,toxicity,irrelevance"
 ```
 
 Then run the travel agent as follows:
@@ -113,7 +115,7 @@ Send a request including poison config:
       "travelers": 2,
       "poison_config": {
           "prob": "1.0",
-          "types": ["hallucination","irrelevance"],
+          "types": ["hallucination","bias","irrelevance","negative_sentiment","toxicity"],
           "max": "1",
           "seed": "9999"
       }

@@ -28,7 +28,7 @@ spec:
               value: "dummy"
             # OpenAI Model
             - name: OPENAI_MODEL
-              value: "gpt-4o-mini"
+              value: "gpt-5-nano"
             # Point the OpenAI Base URL to the Cisco Circuit proxy
             - name: OPENAI_BASE_URL
               value: "http://cisco-circuit-proxy.travel-agent.svc.cluster.local:8000/v1"
@@ -82,9 +82,9 @@ spec:
               value: "READ_ONLY"
             # specify a subset of evaluators to avoid hitting Circuit API token limits
             - name: OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS
-              value: "deepeval(AgentInvocation(relevance,hallucination))"
+              value: "deepeval(AgentInvocation(bias,toxicity,hallucination,relevance))"
             - name: TRAVEL_POISON_TYPES
-              value: "hallucination,irrelevance"
+              value: "hallucination,bias,negative_sentiment,toxicity,irrelevance"
             - name: TRAVEL_POISON_MAX
               value: "1"
           resources:
