@@ -182,7 +182,7 @@ docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 
 Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
 update the image to ensure we're using the one with the
-agents and tools:
+quality issue:
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-quality-issue
