@@ -1,6 +1,6 @@
 ---
 title: Detect Security Risks
-linkTitle: 12. Detect Security Risks
-weight: 12
+linkTitle: 11. Detect Security Risks
+weight: 11
 time: 15 minutes
 ---

@@ -166,7 +166,9 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Run the following command to test the application:
+Ensure the new application pod has started successfully and the old pod is no longer present.
+
+Then, run the following command to test the application:
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \

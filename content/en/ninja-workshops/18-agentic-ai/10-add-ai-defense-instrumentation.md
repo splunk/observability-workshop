@@ -1,7 +1,7 @@
 ---
 title: Add AI Defense Instrumentation
-linkTitle: 11. Add AI Defense Instrumentation
-weight: 11
+linkTitle: 10. Add AI Defense Instrumentation
+weight: 10
 time: 20 minutes
 ---
 

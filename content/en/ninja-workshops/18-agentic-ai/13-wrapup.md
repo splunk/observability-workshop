@@ -1,6 +1,6 @@
 ---
 title: Wrap-up
-linkTitle: 14. Wrap-up
-weight: 14
+linkTitle: 13. Wrap-up
+weight: 13
 time: 5 minutes
 ---
