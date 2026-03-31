@@ -7,7 +7,7 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Open [Metric Finder](https://app.signalfx.com/#/metrics) and search for `workshop_heartbeat`
+1. Open [Metric Finder](https://app.us1.signalfx.com/#/metrics) (or [make a chart](https://app.us1.signalfx.com/#/chart/new?template=default&filters=sf_metric%3Aworkshop_heartbeat)) and search for `workshop_heartbeat`
 2. You should see the metric with `host.name` matching your `WORKSHOP_HOST_NAME` value.
 3. Search for that `host.name` to see what other metrics the collector is sending (CPU, memory, disk, etc.).
 

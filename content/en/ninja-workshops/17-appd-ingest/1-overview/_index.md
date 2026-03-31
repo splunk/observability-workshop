@@ -9,7 +9,7 @@ description: Use case, architecture, prerequisites, and the differences between 
 
 ## The Use Case
 
-Your organization runs AppDynamics for APM today. As part of a data visibility and governance initiative, leadership wants application performance data flowing into **Splunk Observability Cloud** as well -- giving teams a unified view alongside infrastructure metrics, logs, and other signals already in Splunk.
+Your organization runs AppDynamics for APM today. As part of a data visibility and governance initiative, leadership wants application performance data flowing into **Splunk Observability Cloud** as well giving teams a unified view alongside infrastructure metrics, logs, and other signals already in Splunk.
 
 Rather than re-instrumenting every service with a separate OpenTelemetry SDK, the AppDynamics Java Agent supports **dual signal mode**: a single agent produces both AppDynamics APM data and OpenTelemetry traces simultaneously. This lets you maintain full AppDynamics functionality while streaming the same telemetry to Splunk Observability Cloud through an OpenTelemetry Collector.
 
@@ -29,13 +29,13 @@ By the end of this workshop, you will:
 
 In this workshop you will run a Spring Boot Java application directly on your EC2 instance. The AppDynamics Java Agent attaches to the JVM process.
 
-**Phase 1 -- Normal AppD instrumentation:**
+**Phase 1: Normal AppD instrumentation:**
 
 ```text
 Java App + AppD Agent  ──▶  AppD Controller
 ```
 
-**Phase 2 -- Dual signal mode enabled:**
+**Phase 2: Dual signal mode enabled:**
 
 ```text
 Java App + AppD Agent  ──▶  AppD Controller        (AppD protocol, unchanged)
@@ -55,15 +55,14 @@ The AppDynamics Java Agent supports two modes for emitting OpenTelemetry data.
 
 Understanding the difference matters!
 
-### Hybrid Mode (GA, Java Agent 22.3+)
+### Hybrid Mode - Old and Dusty (GA, Java Agent 22.3+)
 
 - AppDynamics' **own instrumentation rules** generate OTel-format spans
 - The agent reuses its existing instrumentation to produce OTel data (outdated semantic version)
-- **Lower overhead** (CPU and memory)
 - Framework coverage limited to what AppDynamics instruments
 - Enable with: `-Dagent.deployment.mode=hybrid`
 
-### Dual Signal Mode (Beta, Java Agent 25.6+)
+### Dual Signal Mode - New Hotness (Beta, Java Agent 25.6+)
 
 - The full [OpenTelemetry Java auto-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation/) runs **alongside** the AppD agent
 - Two independent instrumentation engines operate in parallel
@@ -103,4 +102,4 @@ You will also need:
 | **Splunk Access Token** (Ingest) | `echo $ACCESS_TOKEN` on your instance |
 | **Splunk Realm** (e.g. `us0`, `us1`, `eu0`) | `echo $REALM` on your instance |
 | **Instance name** | `echo $INSTANCE` on your instance |
-| AppDynamics Controller access | [SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) -- log in with your Cisco credentials |
+| AppDynamics Controller access | [SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) log in with your Cisco credentials |

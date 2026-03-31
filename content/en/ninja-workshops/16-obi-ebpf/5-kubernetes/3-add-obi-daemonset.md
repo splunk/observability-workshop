@@ -3,7 +3,7 @@ title: 3. Enable OBI via Helm
 weight: 3
 ---
 
-Now add tracing to the entire cluster without changing any application code -- just one Helm upgrade.
+Now add tracing to the entire cluster without changing any application code just one Helm upgrade.
 
 ## Upgrade the Collector with OBI Enabled
 

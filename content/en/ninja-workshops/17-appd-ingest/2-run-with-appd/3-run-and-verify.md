@@ -11,7 +11,13 @@ Replace `<YOUR-ACCESS-KEY>`, and `<<YourInitials>>` with the values from the pre
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+Export your environment variables
+```bash
+export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
+export APPD_APP_NAME=Dual-Ingest-<YourInitials>
+```
 
+Then we can start java with the agent:
 ```bash
 cd ~/workshop/appd
 
@@ -19,11 +25,11 @@ java -javaagent:agent/javaagent.jar \
   -Dappdynamics.controller.hostName=se-lab.saas.appdynamics.com \
   -Dappdynamics.controller.port=443 \
   -Dappdynamics.controller.ssl.enabled=true \
-  -Dappdynamics.agent.applicationName=Dual-Ingest-<YourInitials> \
+  -Dappdynamics.agent.applicationName=${APPD_APP_NAME} \
   -Dappdynamics.agent.tierName=OrderService \
   -Dappdynamics.agent.nodeName=OrderService-Node \
   -Dappdynamics.agent.accountName=se-lab \
-  -Dappdynamics.agent.accountAccessKey=<YOUR-ACCESS-KEY> \
+  -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY} \
   -jar app/target/ingest-workshop-1.0.0.jar & 
 ```
 

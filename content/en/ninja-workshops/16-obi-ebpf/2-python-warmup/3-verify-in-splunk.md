@@ -16,7 +16,7 @@ weight: 3
 
 ## What Just Happened?
 
-1. The Flask app is "naked" -- it has zero observability code. It only knows how to say hello and send a heartbeat metric.
+1. The Flask app is "naked" it has zero observability code. It only knows how to say hello and send a heartbeat metric.
 2. OBI attached eBPF probes to the kernel's networking stack and observed HTTP traffic flowing through your app's process.
 3. OBI generated OpenTelemetry-compatible trace spans and sent them directly to Splunk.
 

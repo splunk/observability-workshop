@@ -32,7 +32,7 @@ otel_traces_export:
 
 **`discovery.instrument`** tells OBI how to find your services and what to name them. It matches processes by the ports they listen on, then assigns the `name` as the `service.name` attribute in the generated traces. Without this, OBI would use the executable path as the service name (e.g. `/usr/local/bin/order-processor`).
 
-**`context_propagation: all`** is the key to distributed tracing. OBI injects `Traceparent` headers into outgoing HTTP requests at the kernel level. This is how a trace started in `frontend` connects through `order-processor` to `payment-service` -- even though none of these services know anything about tracing.
+**`context_propagation: all`** is the key to distributed tracing. OBI injects `Traceparent` headers into outgoing HTTP requests at the kernel level. This is how a trace started in `frontend` connects through `order-processor` to `payment-service` even though none of these services know anything about tracing.
 
 **`otel_traces_export.endpoint`** tells OBI where to send traces. Because OBI uses `network_mode: host`, `localhost:4318` reaches the collector's port that is mapped to the host in the compose file.
 

@@ -7,11 +7,11 @@ time: 10 minutes
 description: Create a global data link in Splunk Observability Cloud that navigates directly to the corresponding AppDynamics tier view using the appd.* span attributes.
 ---
 
-The `appd.*` attributes on your traces are more than metadata -- they can power **global data links** that let anyone viewing a trace in Splunk Observability Cloud jump straight into the corresponding AppDynamics view with a single click.
+The `appd.*` attributes on your traces are more than metadata they can power **global data links** that let anyone viewing a trace in Splunk Observability Cloud jump straight into the corresponding AppDynamics view with a single click.
 
 ## What are Global Data Links?
 
-Global data links are a Splunk Observability Cloud feature that creates clickable links on span attributes, tag values, or metric dimensions. When a user clicks a linked value, they are taken to an external URL you define -- with the actual attribute value substituted into the URL template.
+Global data links are a Splunk Observability Cloud feature that creates clickable links on span attributes, tag values, or metric dimensions. When a user clicks a linked value, they are taken to an external URL you define with the actual attribute value substituted into the URL template.
 
 ### Pre-requisite for our Data Link
 Copy the URL to your application in AppDynamics. The important part of the URL that identifies your application is a query parameter on the url (E.G. `&application=99999`)
@@ -49,7 +49,7 @@ The double curly braces `{{ end_time }}` and `{{ start_time }}` are template var
 
 1. Navigate back to **APM** and open a trace for your **OrderService** service.
 2. Click on the root span to view its attributes.
-3. Find `appd.app.name` in the attributes list -- it should now be a clickable link labeled **Open in AppDynamics**.
+3. Find `appd.app.name` in the attributes list it should now be a clickable link labeled **Open in AppDynamics**.
 4. Click the link. A new browser tab should open, taking you directly to the **OrderService** application view in the AppDynamics Controller.
 ![Global Datalink Config](../_images/datalink.png?width=20vw)
 

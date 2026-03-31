@@ -78,11 +78,11 @@ You should get back:
 
 ## Verify in Splunk
 
-1. Open [Metric Finder](https://app.signalfx.com/#/metrics) and search for `app.heartbeat`
-2. You should see the metric with `host.name` matching the value you set.
+1. Open [Splunk Observability Cloud UI](http://app.us1.signalfx.com) (url depends on your workshop location) and search for `app.heartbeat` in Metric Finder (or [make a chart](https://app.us1.signalfx.com/#/chart/new?template=default&filters=sf_metric%3Aapp.heartbeat))
+2. You should see the metric with a `host.name` attribute matching the value you set.
 
 ![app.heartbeat](./images/heartbeat.png)
 
 {{% notice title="Note" style="info" %}}
-At this point you have a running app and proof that Splunk can receive your data. But there are **zero traces** -- APM is empty. The app has no instrumentation code whatsoever.
+At this point you have a running app and proof that Splunk can receive your data. But there are **zero traces** APM is empty. The app has no instrumentation code whatsoever.
 {{% /notice %}}
