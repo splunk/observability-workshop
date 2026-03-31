@@ -116,8 +116,8 @@ Send a request including poison config:
       "poison_config": {
           "prob": "1.0",
           "types": ["hallucination","bias","irrelevance","negative_sentiment","toxicity"],
-          "max": "1",
-          "seed": "9999"
+          "max": "2",
+          "seed": "1000"
       }
     }'
 ```
@@ -259,8 +259,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.5 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.5
+docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.6 .
+docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.6
 ```
 
 ### Load Generator
