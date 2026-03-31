@@ -13,7 +13,7 @@ Go back to the [AppDynamics Controller](https://se-lab.saas.appdynamics.com/cont
 - Business transactions for `/order` and `/inventory` are still recording
 - No errors or degradation from adding dual mode
 
-Dual mode should not impact AppDynamics data collection -- both streams operate independently.
+Dual mode should not impact AppDynamics data collection both streams operate independently.
 
 ## Verify Splunk Observability Cloud
 

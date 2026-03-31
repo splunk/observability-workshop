@@ -12,10 +12,10 @@ Open `docker-compose.yaml` in your editor:
 ``` bash
 cd ~/workshop/obi/02-obi-docker
 docker-compose down
-vim docker-compose.yaml #or editor of choise
+vim docker-compose.yaml #or editor of choice
 ```
 
-Scroll to the very bottom of the file -- you'll see a comment block that says `PHASE 2`. Paste the following block **directly below that comment**, keeping the **2-space indentation** so it lines up with the other services (like `frontend:`, `load-generator:`, etc.):
+Scroll to the very bottom of the file you'll see a comment block that says `PHASE 2`. Paste the following block **directly below that comment**, keeping the **2-space indentation** so it lines up with the other services (like `frontend:`, `load-generator:`, etc.):
 
 ``` yaml
   obi:
@@ -29,6 +29,7 @@ Scroll to the very bottom of the file -- you'll see a comment block that says `P
     environment:
       OTEL_EBPF_CONFIG_PATH: /config/obi-config.yaml
 ```
+**Note:** When pasting with vim using `:set paste` before pasting helps maintain formatting
 
 Save the file.
 

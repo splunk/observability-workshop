@@ -12,7 +12,7 @@ OBI doesn't have a standalone download yet, so we extract the binary from the Do
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 IMAGE=otel/ebpf-instrument:main
 sudo docker pull $IMAGE
 ID=$(sudo docker create $IMAGE)
@@ -24,7 +24,7 @@ ls -la ./obi
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-``` text
+```text
 main: Pulling from otel/ebpf-instrument
 0f5fbf7fdc05: Pull complete
 c9d0c8eb6b20: Pull complete
@@ -46,12 +46,12 @@ baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-In a **separate terminal**, run OBI with `sudo`. Replace the three placeholders with your realm, token, and hostname from the previous step:
+In a **separate terminal**, run OBI with `sudo`. Replace the three placeholders with your realm, token, and hostname from the previous step (this may take a minute or two to complete):
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-``` bash
+```bash
 cd ~/workshop/obi/01-obi-python
 
 sudo env \
@@ -67,7 +67,8 @@ sudo env \
 {{% /tab %}}
 {{% tab title="Look for this in your Output" %}}
 Generate traffic and look for this output
-``` text
+
+```text
 ...
 time=2026-02-27T19:29:56.296Z level=INFO msg="instrumenting process" component=discover.traceAttacher cmd=/usr/bin/python3.10 pid=245031 ino=7094 type=python service=warmup-app logenricher=false
 ...
@@ -84,20 +85,21 @@ time=2026-02-27T19:29:58.278Z level=INFO msg="Launching p.Tracer" component=gene
 | Variable | Purpose |
 |---|---|
 | `sudo` | eBPF probes require root/kernel access |
-| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Full URL for Splunk's OTLP trace ingest. The per-signal env var sends to this URL exactly -- the base `OTEL_EXPORTER_OTLP_ENDPOINT` would append `/v1/traces` which doesn't match Splunk's path |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Full URL for Splunk's OTLP trace ingest. The per-signal env var sends to this URL exactly the base `OTEL_EXPORTER_OTLP_ENDPOINT` would append `/v1/traces` which doesn't match Splunk's path |
 | `OTEL_EXPORTER_OTLP_HEADERS` | Auth header for Splunk |
 | `OTEL_SERVICE_NAME` | The service name that appears in Splunk APM |
 | `OTEL_RESOURCE_ATTRIBUTES` | Sets `deployment.environment` and `host.name` on every trace so you can filter to your data |
 | `OTEL_EBPF_OPEN_PORT` | Tells OBI to instrument the process listening on port 5150 |
 
 {{% notice title="Note" style="info" %}}
-You may see warnings like `failed to upload metrics: 404 Not Found` in the OBI logs. This is expected -- Splunk's direct ingest doesn't have a standard OTLP metrics endpoint. The traces still export correctly. In Phase 2, a collector handles both traces and metrics properly.
+You may see warnings like `failed to upload metrics: 404 Not Found` in the OBI logs. This is expected Splunk's direct ingest doesn't have a standard OTLP metrics endpoint. The traces still export correctly. In Phase 2, a collector handles both traces and metrics properly.
 {{% /notice %}}
 
 ## Generate Traffic
 
 Go back to your first terminal and generate some requests:
 
-``` bash
+```bash
 for i in $(seq 1 20); do curl -s http://localhost:5150/hello; sleep 1; done
 ```
+

@@ -9,7 +9,7 @@ In Phase 0 you ran a binary. In Phase 2 (Docker), you added one container. In Ph
 
 | Environment | OBI Deployment | What Changes |
 |---|---|---|
-| Bare host | Binary via `sudo` | Nothing -- OBI watches processes from the kernel |
+| Bare host | Binary via `sudo` | Nothing: OBI watches processes from the kernel |
 | Docker Compose | One container | Add a service to `docker-compose.yaml` |
 | Kubernetes | Helm chart flag | `helm upgrade` with `--set="obi.enabled=true"` |
 
@@ -26,7 +26,7 @@ Many organizations have applications they **cannot** or **will not** instrument 
 
 OBI gives you **full distributed tracing without any code changes**:
 
-- **Zero SDK integration** -- no imports, no dependencies, no compile-time changes
-- **Zero application restarts** -- OBI attaches to already-running processes via eBPF
-- **Language agnostic** -- works with Go, Node.js, Python, Java, Rust, C++ -- anything that speaks HTTP or gRPC
-- **One container or one Helm flag** -- add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done
+- **Zero SDK integration**: no imports, no dependencies, no compile-time changes
+- **Zero application restarts**: OBI attaches to already-running processes via eBPF
+- **Language agnostic**: works with Go, Node.js, Python, Java, Rust, C++ anything that speaks HTTP or gRPC
+- **One container or one Helm flag**: add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done

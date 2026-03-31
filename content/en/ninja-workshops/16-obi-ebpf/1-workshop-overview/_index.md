@@ -13,7 +13,7 @@ By the end of this workshop, you will:
 
 - Understand how eBPF enables zero-code instrumentation at the Linux kernel level
 - Instrument a running application with the OBI binary on a bare host
-- Deploy a polyglot microservices stack with Docker Compose and add distributed tracing with one container
+- Deploy a polyglot (that means many languages) microservices stack with Docker Compose and add distributed tracing with one container
 - Deploy the same stack to Kubernetes using the Splunk OTel Collector Helm chart and enable OBI with one flag
 - Navigate Splunk APM to view distributed traces, service maps, and request flows
 
@@ -48,11 +48,11 @@ The workshop uses three simple microservices that form a request chain:
 Frontend (Node.js :3000)  →  Order-Processor (Go :8080)  →  Payment-Service (Go :8081)
 ```
 
-These services have **zero observability code** -- no OpenTelemetry SDKs, no tracing headers, no instrumentation of any kind. OBI instruments them from the kernel using eBPF probes, generates OpenTelemetry-compatible traces, and sends them to a Splunk OTel Collector which forwards to Splunk Observability Cloud.
+These services have **zero observability code**  no OpenTelemetry SDKs, no tracing headers, no instrumentation of any kind. OBI instruments them from the kernel using eBPF probes, generates OpenTelemetry-compatible traces, and sends them to a Splunk OTel Collector which forwards to Splunk Observability Cloud.
 
 ## What is OBI?
 
-[OBI (OpenTelemetry eBPF Instrumentation)](https://opentelemetry.io/docs/zero-code/obi/) is a standalone agent that uses Linux kernel eBPF probes to observe HTTP/gRPC traffic flowing through applications. It attaches to processes **from the kernel** -- no SDK, no code changes, no recompilation. It sees the requests, generates OpenTelemetry-compatible trace spans, and sends them to a collector.
+[OBI (OpenTelemetry eBPF Instrumentation)](https://opentelemetry.io/docs/zero-code/obi/) is a standalone agent that uses Linux kernel eBPF probes to observe HTTP/gRPC traffic flowing through applications. It attaches to processes **from the kernel** no SDK, no code changes, no recompilation. It sees the requests, generates OpenTelemetry-compatible trace spans, and sends them to a collector.
 
 This is valuable for organizations that **cannot** or **will not** instrument with SDKs:
 
@@ -72,7 +72,7 @@ Many organizations have applications they **cannot** or **will not** instrument 
 
 OBI gives you **full distributed tracing without any code changes**:
 
-- **Zero SDK integration** -- no imports, no dependencies, no compile-time changes
-- **Zero application restarts** -- OBI attaches to already-running processes via eBPF
-- **Language agnostic** -- works with Go, Node.js, Python, Java, Rust, C++ -- anything that speaks HTTP or gRPC
-- **One container or one Helm flag** -- add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done
+- **Zero SDK integration**: no imports, no dependencies, no compile-time changes
+- **Zero application restarts**: OBI attaches to already-running processes via eBPF
+- **Language agnostic**: works with Go, Node.js, Python, Java, Rust, C++ or anything that speaks HTTP or gRPC
+- **One container or one Helm flag**: add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done

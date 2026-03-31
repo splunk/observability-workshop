@@ -12,7 +12,7 @@ weight: 1
 ``` bash
 cd ~/workshop/obi/02-obi-docker
 docker-compose down
-vim docker-compose.yaml #or editor of choise
+vim docker-compose.yaml #or editor of choice
 ```
 
 ファイルの一番下までスクロールすると、`PHASE 2` というコメントブロックがあります。以下のブロックを**そのコメントの直下に**貼り付け、**2スペースのインデント**を維持して、他のサービス（`frontend:`、`load-generator:` など）と同じレベルに揃えてください：

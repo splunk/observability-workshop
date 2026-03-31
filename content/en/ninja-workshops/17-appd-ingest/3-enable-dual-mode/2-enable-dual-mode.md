@@ -20,7 +20,7 @@ If `kill %1` doesn't work, find the PID with `ps aux | grep ingest-workshop` and
 
 ## Restart with Dual Mode
 
-Run the app again with the same AppD flags, plus the dual mode and OTel exporter flags. Replace `<YOUR-ACCESS-KEY>` and `<YourInitials>` with the same values you used in Phase 1:
+Run the app again with the same AppD flags, plus the dual mode and OTel exporter flags. We will leverage the variables we set for `${APPD_ACCESS_KEY}` and `${APPD_APP_NAME}` with the same values you used in Phase 1:
 
 We are adding 4 lines just before we invoke the application `-jar app/target/ingest-workshop-1.0.0.jar &`
 
@@ -31,11 +31,11 @@ java -javaagent:agent/javaagent.jar \
   -Dappdynamics.controller.hostName=se-lab.saas.appdynamics.com \
   -Dappdynamics.controller.port=443 \
   -Dappdynamics.controller.ssl.enabled=true \
-  -Dappdynamics.agent.applicationName=Dual-Ingest-<YourInitials> \
+  -Dappdynamics.agent.applicationName=${APPD_APP_NAME} \
   -Dappdynamics.agent.tierName=OrderService \
   -Dappdynamics.agent.nodeName=OrderService-Node \
   -Dappdynamics.agent.accountName=se-lab \
-  -Dappdynamics.agent.accountAccessKey=<YOUR-ACCESS-KEY> \
+  -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY} \
   -Dagent.deployment.mode=dual \
   -Dotel.traces.exporter=otlp \
   -Dotel.exporter.otlp.endpoint=http://localhost:4318 \
@@ -49,7 +49,7 @@ Wait for the Spring Boot startup banner to appear.
 
 | Flag | Purpose |
 |---|---|
-| `-Dagent.deployment.mode=dual` | Enables dual signal mode -- the full OTel Java auto-instrumentation runs alongside the AppD agent |
+| `-Dagent.deployment.mode=dual` | Enables dual signal mode the full OTel Java auto-instrumentation runs alongside the AppD agent |
 | `-Dotel.traces.exporter=otlp` | Tells the OTel instrumentation to export spans via OTLP |
 | `-Dotel.exporter.otlp.endpoint` | Points to the local OTel Collector on port 4318 (HTTP/protobuf) |
 | `-Dotel.resource.attributes` | Sets OTel resource attributes: `service.name` maps to the AppD tier, `service.namespace` maps to the AppD application, `deployment.environment` tags data for your workshop instance |

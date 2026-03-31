@@ -140,6 +140,6 @@ curl -s http://localhost:30000/create-order | python3 -m json.tool
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Check Splunk APM, filtering by environment `<INSTANCE>-ebpf`. You should see infrastructure metrics from the collector, but **no application traces** yet. The services are running but uninstrumented.
+Check Splunk APM, filtering by environment `<INSTANCE>-ebpf`. You should see infrastructure metrics from the collector, but **no NEW application traces** yet. The services are running but uninstrumented.
 
 {{% /notice %}}

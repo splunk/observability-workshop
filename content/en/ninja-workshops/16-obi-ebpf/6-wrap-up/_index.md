@@ -11,11 +11,11 @@ description: Key takeaways, cleanup instructions, and ideas for extending the wo
 
 1. **OBI instruments from the kernel.** No SDKs, no code changes, no recompilation. eBPF probes observe HTTP/gRPC traffic at the network level.
 
-2. **Context propagation happens at the network level.** OBI injects `Traceparent` headers into outgoing HTTP requests, linking traces across services -- even when those services have zero knowledge of tracing.
+2. **Context propagation happens at the network level.** OBI injects `Traceparent` headers into outgoing HTTP requests, linking traces across services even when those services have zero knowledge of tracing.
 
 3. **The deployment pattern is consistent.** Whether you're on bare metal, Docker, or Kubernetes, the approach is the same: run OBI alongside your apps and point it at a collector.
 
-4. **This solves real enterprise problems.** Legacy apps, compiled binaries, regulatory constraints, developer resistance -- OBI gives you observability without requiring anyone to change their code.
+4. **This solves real enterprise problems.** Legacy apps, compiled binaries, regulatory constraints, developer resistance OBI gives you observability without requiring anyone to change their code.
 
 ## Cleanup
 
@@ -46,7 +46,7 @@ Once you've completed all phases, here are ideas for using an LLM (Cursor, Copil
 
 ### Add a New Endpoint
 
-Ask the LLM to add a `GET /order-status/:id` endpoint to `order-processor`. OBI will trace it automatically -- no config changes needed (it already watches port 8080).
+Ask the LLM to add a `GET /order-status/:id` endpoint to `order-processor`. OBI will trace it automatically no config changes needed (it already watches port 8080).
 
 ### Add a New Service
 
@@ -67,7 +67,7 @@ Ask the LLM to add random 100-500ms latency in `payment-service`. Watch the late
 {{% notice title="Note" style="info" %}}
 When extending:
 
-- Do **not** add OpenTelemetry SDKs -- the whole point is zero-code instrumentation
+- Do **not** add OpenTelemetry SDKs: the whole point is zero-code instrumentation
 - Keep services on the Docker network; avoid `localhost` for inter-service calls
 - Update `obi-config.yaml` when adding new ports
 - Rebuild after code changes: `docker-compose up --build -d`
