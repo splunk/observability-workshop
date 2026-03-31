@@ -69,7 +69,7 @@ Send a request including poison config that forces a PCI violation:
       "travelers": 2,
       "poison_config": {
           "prob": "1.0",
-          "types": ["pci_violation",,
+          "types": ["pci_violation"],
           "max": "1",
           "seed": "9999"
       }
