@@ -197,6 +197,8 @@ runcmd:
   - chsh -s \$(which zsh) splunk
   # Install Starship prompt
   - curl -sS https://starship.rs/install.sh | sh -s -- -y
+  - mkdir -p /home/splunk/.config
+  - starship preset pastel-powerline -o /home/splunk/.config/starship.toml
   - |
     cat <<'EOF' > /home/splunk/.zshrc
     autoload -U +X compinit && compinit
