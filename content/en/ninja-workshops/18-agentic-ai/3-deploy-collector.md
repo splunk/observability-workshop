@@ -31,9 +31,10 @@ cd /home/splunk
 # create a values.yaml file in vi
 vi values.yaml
 ```
-> Press ‘i’ to enter into insert mode in vi before pasting the text below.
 
 Then paste the following contents:
+
+> Type `:set paste` before pasting the contents, to prevent `vi` from auto-indenting the pasted code. 
 
 ``` yaml
 agent:
