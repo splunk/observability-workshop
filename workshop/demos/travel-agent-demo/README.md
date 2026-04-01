@@ -224,8 +224,8 @@ To build the proxy image:
 
 ``` bash
 cd proxy
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/cisco-circuit-proxy:1.0 .
-docker push docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+docker build --platform linux/amd64 -t ghcr.io/splunk/cisco-circuit-proxy:1.0 .
+docker push ghcr.io/splunk/cisco-circuit-proxy:1.0
 ```
 
 To test the image: 
@@ -259,8 +259,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-langchain-server:1.6 .
-docker push docker.io/derekmitchell399/travel-planner-langchain-server:1.6
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-langchain-server:1.6 .
+docker push ghcr.io/splunk/travel-planner-langchain-server:1.6
 ```
 
 ### Load Generator
@@ -269,6 +269,6 @@ To build the travel agent load generator image:
 
 ``` bash
 cd loadgen
-docker build --platform linux/amd64 -t docker.io/derekmitchell399/travel-planner-loadgen:1.0 .
-docker push docker.io/derekmitchell399/travel-planner-loadgen:1.0
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-loadgen:1.0 .
+docker push ghcr.io/splunk/travel-planner-loadgen:1.0
 ```

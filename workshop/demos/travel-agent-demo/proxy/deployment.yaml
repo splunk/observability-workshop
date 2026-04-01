@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: cisco-circuit-proxy
-          image: docker.io/derekmitchell399/cisco-circuit-proxy:1.0
+          image: ghcr.io/splunk/cisco-circuit-proxy:1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
