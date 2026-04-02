@@ -40,22 +40,6 @@ spec:
             # OpenAI Model
             - name: OPENAI_MODEL
               value: "gpt-4.1-mini"
-            - name: DEEPEVAL_LLM_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: deepeval-secret
-                  key: deepeval-llm-base-url
-            - name: DEEPEVAL_LLM_MODEL
-              value: "gpt-4.1-mini"
-            - name: DEEPEVAL_LLM_PROVIDER
-              value: "azure"
-            - name: DEEPEVAL_LLM_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-key
-            - name: DEEPEVAL_LLM_EXTRA_HEADERS
-              value: '{"api_version":"2024-01-01-preview"}'
             # Service Name
             - name: OTEL_SERVICE_NAME
               value: "travel-planner"
@@ -73,40 +57,18 @@ spec:
               value: "http://$(SPLUNK_OTEL_AGENT):4317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "grpc"
-            - name: HOME
-              value: "/tmp"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: "DELTA"
-            - name: OTEL_LOGS_EXPORTER
-              value: "otlp"
-            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-              value: "true"
             - name: OTEL_PYTHON_EXCLUDED_URLS
               value: "^(https?://)?[^/]+(/health)?$"
             - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
               value: "true"
             - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
-              value: "SPAN_AND_EVENT"
-            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION
-              value: "true"
+              value: "SPAN"
             - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
-              value: "span_metric_event,splunk"
-            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION
-              value: "replace-category:SplunkEvaluationResults"
-            - name: OTEL_GENAI_EVAL_DEBUG_SKIPS
-              value: "true"
-            - name: OTEL_GENAI_EVAL_DEBUG_EACH
-              value: "false"
-            - name: OTEL_INSTRUMENTATION_GENAI_DEBUG
-              value: "false"
+              value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
-            - name: DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE
-              value: "300"
-            - name: DEEPEVAL_RETRY_MAX_ATTEMPTS
-              value: "2"
-            - name: DEEPEVAL_FILE_SYSTEM
-              value: "READ_ONLY"
           resources:
             requests:
               memory: "512Mi"
