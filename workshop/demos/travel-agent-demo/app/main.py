@@ -266,6 +266,29 @@ class PoisonedChatWrapper(BaseChatModel):
         return super().bind_tools(tools, **kwargs)
 
     @property
+    def model_name(self) -> str:
+        """
+        Proxies the model name from the inner LLM so OTel can capture it.
+        Different providers use different attribute names (model_name, model, etc.)
+        """
+        return (
+            getattr(self.inner_llm, "model_name", None) or
+            getattr(self.inner_llm, "model", None) or
+            getattr(self.inner_llm, "model_id", "unknown_model")
+        )
+
+    @property
+    def _identifying_params(self) -> Dict[str, Any]:
+        """
+        Returns the identifying parameters of the inner LLM.
+        OTel uses this to populate span attributes.
+        """
+        return {
+            **self.inner_llm._identifying_params,
+            "wrapper_type": "PoisonedChatWrapper"
+        }
+
+    @property
     def _llm_type(self) -> str:
         return f"poisoned_{self.inner_llm._llm_type}"
 

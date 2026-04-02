@@ -37,7 +37,7 @@ export SPLUNK_PROFILER_ENABLED="true"
 Then run the travel agent as follows:
 
 ``` bash
-cd app
+cd app-with-ai-defense
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
