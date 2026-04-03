@@ -34,7 +34,12 @@ upstreamリポジトリの新しいリリースを検出し、日本語に自動
 
 翻訳対象ファイルに新しいワークショップが含まれる場合、PRをドラフト状態で作成し、人間のレビューを促します。
 
-**新ワークショップの判定基準**: `content/en/{category}/{workshop-name}/` レベルのディレクトリが前回翻訳タグ時点で存在しなかった場合、`git rev-parse --verify` で確認します。
+**新ワークショップの判定基準**: 以下の2つのケースで「リリース済み新規ワークショップ」を検出します。
+
+- **ケース1（新規ディレクトリ）**: `content/en/{category}/{workshop-name}/` レベルのディレクトリが前回翻訳タグ時点で存在せず、かつ `_index.md` の frontmatter に `draft: true` / `hidden: true` がない場合
+- **ケース2（draft解除）**: 前回翻訳タグ時点で `draft: true` / `hidden: true` だったが、現在は解除または `false` に変更された場合
+
+WorkshopはHugoの `draft: true` で開発を開始し、リリース時に削除または `false` に変更するフローのため、ディレクトリ作成だけでなくdraftステータスの変化もリリース検出の基準としています。
 
 **動作**:
 
@@ -54,7 +59,7 @@ upstreamリポジトリの新しいリリースを検出し、日本語に自動
 | --------- | -- | ---- |
 | `reason` | string | 実行結果の理由（下記参照） |
 | `status` | string | `success` または `failure` |
-| `hasNewWorkshopTranslation` | string | 新規ワークショップが含まれるか（`true`/`false`） |
+| `hasNewWorkshopTranslation` | string | 新規ワークショップが含まれるか（`yes`/`no`） |
 | `translatedMarkdownFileCount` | string | 翻訳成功ファイル数 |
 | `failedFileCount` | string | 翻訳失敗ファイル数 |
 | `pullRequestNumber` | string | 作成されたPR番号 |

@@ -10,6 +10,7 @@
       },
       "ja-no-space-around-parentheses": true,
       "ja-no-space-between-full-width": true
-    }
+    },
+    "no-ja-trailing-colon": true
   }
 }

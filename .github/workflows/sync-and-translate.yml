@@ -249,10 +249,44 @@ jobs:
 
             # Check if this workshop directory existed in the previous tag
             if ! git rev-parse --verify "${COMPARE_BASE}:${WORKSHOP_DIR}" >/dev/null 2>&1; then
-              echo "New workshop detected: ${WORKSHOP_DIR}"
-              NEW_WORKSHOPS="${NEW_WORKSHOPS}${WORKSHOP_DIR}"$'\n'
+              # New directory: check if _index.md has draft: true or hidden: true
+              # Workshop development starts with draft: true and is released when draft is removed/set to false
+              INDEX_FILE="${WORKSHOP_DIR}/_index.md"
+              IS_DRAFT=""
+              if [ -f "$INDEX_FILE" ]; then
+                IS_DRAFT=$(awk '/^---/{c++; if(c==2) exit} c==1 && /^(draft|hidden):[[:space:]]*true/' "$INDEX_FILE")
+              fi
+              if [ -n "$IS_DRAFT" ]; then
+                echo "Skipping draft/hidden workshop: ${WORKSHOP_DIR}"
+              else
+                echo "New released workshop detected: ${WORKSHOP_DIR}"
+                NEW_WORKSHOPS="${NEW_WORKSHOPS}${WORKSHOP_DIR}"$'\n'
+              fi
             fi
           done < /tmp/files_to_translate.txt
+
+          # Detect workshops that changed from draft: true to released (draft removed or set to false)
+          # This covers the case where a workshop existed before but was in draft state
+          while IFS= read -r index_file; do
+            if [ -z "$index_file" ]; then continue; fi
+            WORKSHOP_DIR=$(echo "$index_file" | awk -F'/' 'NF==5{print $1"/"$2"/"$3"/"$4}')
+            if [ -z "$WORKSHOP_DIR" ]; then continue; fi
+            # Skip if already recorded
+            if echo "$CHECKED_DIRS" | grep -qF "$WORKSHOP_DIR"; then continue; fi
+            # Skip if this is a new directory (handled above as case 1)
+            if ! git rev-parse --verify "${COMPARE_BASE}:${index_file}" >/dev/null 2>&1; then continue; fi
+            # Check if draft: true or hidden: true existed in previous tag
+            OLD_CONTENT=$(git show "${COMPARE_BASE}:${index_file}" 2>/dev/null || echo "")
+            WAS_DRAFT=$(echo "$OLD_CONTENT" | awk '/^---/{c++; if(c==2) exit} c==1 && /^(draft|hidden):[[:space:]]*true/')
+            if [ -z "$WAS_DRAFT" ]; then continue; fi
+            # Check if it is still in draft state now
+            IS_DRAFT=$(awk '/^---/{c++; if(c==2) exit} c==1 && /^(draft|hidden):[[:space:]]*true/' "$index_file" 2>/dev/null || echo "")
+            if [ -z "$IS_DRAFT" ]; then
+              echo "Newly released workshop (draft removed): ${WORKSHOP_DIR}"
+              NEW_WORKSHOPS="${NEW_WORKSHOPS}${WORKSHOP_DIR}"$'\n'
+              CHECKED_DIRS="${CHECKED_DIRS}${WORKSHOP_DIR}"$'\n'
+            fi
+          done < <(git diff "${COMPARE_BASE}..HEAD" --name-only -- "content/en/*/*/_index.md" 2>/dev/null || true)
 
           if [ -n "$NEW_WORKSHOPS" ]; then
             echo "has_new_workshops=yes" >> $GITHUB_OUTPUT
@@ -293,6 +327,9 @@ jobs:
           git show origin/ja-translation-system:package-lock.json > package-lock.json
           git show origin/ja-translation-system:.textlintrc > .textlintrc
           git show origin/ja-translation-system:.markdownlint.json > .markdownlint.json
+          mkdir -p .claude/skills/splunk-workshop-ja-translator/textlint-rules
+          git show origin/ja-translation-system:.claude/skills/splunk-workshop-ja-translator/textlint-rules/no-ja-trailing-colon.js \
+            > .claude/skills/splunk-workshop-ja-translator/textlint-rules/no-ja-trailing-colon.js
           npm ci
 
       - name: Create translation branch
@@ -516,7 +553,9 @@ jobs:
             file="${EN_FILE/content\/en/content\/ja}"
             if [ ! -f "$file" ]; then continue; fi
             npx markdownlint-cli --fix "$file" 2>/dev/null || true
-            npx textlint -c .textlintrc --fix "$file" 2>/dev/null || true
+            npx textlint -c .textlintrc \
+              --rulesdir .claude/skills/splunk-workshop-ja-translator/textlint-rules \
+              --fix "$file" 2>/dev/null || true
             LINT_COUNT=$((LINT_COUNT + 1))
           done < /tmp/files_to_translate.txt
 

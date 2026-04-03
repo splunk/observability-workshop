@@ -9,7 +9,7 @@ hooks:
         - type: command
           command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$"; then npx markdownlint-cli --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
         - type: command
-          command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$" && [ -f "$CLAUDE_PROJECT_DIR/.textlintrc" ]; then npx textlint -c "$CLAUDE_PROJECT_DIR/.textlintrc" --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
+          command: 'if echo "$CLAUDE_FILE_PATH" | grep -qE "\.md$" && [ -f "$CLAUDE_PROJECT_DIR/.textlintrc" ]; then npx textlint -c "$CLAUDE_PROJECT_DIR/.textlintrc" --rulesdir "$CLAUDE_PROJECT_DIR/.claude/skills/splunk-workshop-ja-translator/textlint-rules" --fix "$CLAUDE_FILE_PATH" 2>/dev/null || true; fi'
   Stop:
     - hooks:
         - type: command
