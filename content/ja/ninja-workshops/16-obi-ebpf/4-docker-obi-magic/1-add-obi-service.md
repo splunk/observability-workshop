@@ -7,7 +7,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-エディターで `docker-compose.yaml` を開きます：
+エディターで `docker-compose.yaml` を開きます
 
 ``` bash
 cd ~/workshop/obi/02-obi-docker
@@ -15,7 +15,7 @@ docker-compose down
 vim docker-compose.yaml #or editor of choice
 ```
 
-ファイルの一番下までスクロールすると、`PHASE 2` というコメントブロックがあります。以下のブロックを**そのコメントの直下に**貼り付け、**2スペースのインデント**を維持して、他のサービス（`frontend:`、`load-generator:` など）と同じレベルに揃えてください：
+ファイルの一番下までスクロールすると、`PHASE 2` と書かれたコメントブロックがあります。以下のブロックを**そのコメントの直下に**貼り付けてください。**2スペースのインデント**を維持して、他のサービス（`frontend:`、`load-generator:` など）と揃うようにします
 
 ``` yaml
   obi:
@@ -30,29 +30,31 @@ vim docker-compose.yaml #or editor of choice
       OTEL_EBPF_CONFIG_PATH: /config/obi-config.yaml
 ```
 
+**注意:** vim で貼り付ける場合は、貼り付け前に `:set paste` を使用するとフォーマットが維持されます
+
 ファイルを保存します。
 
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-`obi:` が2スペースでインデントされていることを確認してください（`frontend:`、`load-generator:` などと同じレベル）。インデントなしで左端に配置すると、Docker Composeは `Additional property obi is not allowed` というエラーで拒否します。**`services:` ブロックの内側**に配置する必要があります。
+`obi:` が2スペースでインデントされていることを確認してください（`frontend:`、`load-generator:` などと同じレベル）。インデントなしで左端に配置すると、Docker Compose は `Additional property obi is not allowed` というエラーで拒否します。`services:` ブロックの**内部に**配置する必要があります。
 {{% /notice %}}
 
 ### 各行の説明
 
 | 行 | 機能 | 重要な理由 |
 |---|---|---|
-| `image: otel/ebpf-instrument:main` | [OBI コンテナイメージ](https://hub.docker.com/r/otel/ebpf-instrument) | スタックに追加する唯一のものです |
-| `pid: host` | ホストの PID 名前空間を共有します | OBI は**他の**コンテナで実行されているプロセスを参照する必要があります |
+| `image: otel/ebpf-instrument:main` | [OBI コンテナイメージ](https://hub.docker.com/r/otel/ebpf-instrument) | スタックに追加するのはこれだけです |
+| `pid: host` | ホストの PID 名前空間を共有します | OBI は**他の**コンテナで実行されているプロセスを確認する必要があります |
 | `privileged: true` | カーネルレベルのアクセスを許可します | eBPF プログラムはカーネル関数にプローブをアタッチする必要があります |
 | `network_mode: host` | ホストのネットワークスタックを共有します | コンテキスト伝播に必要です -- OBI はネットワークレベルでトレースコンテキストを注入します |
-| `volumes: ./obi-config.yaml:...` | サービスディスカバリ設定をマウントします | OBI にどのプロセスを計装するか、それらの名前を指定します |
+| `volumes: ./obi-config.yaml:...` | サービスディスカバリー設定をマウントします | どのプロセスを計装し、どのような名前を付けるかを OBI に伝えます |
 | `volumes: /sys/fs/cgroup:...` | cgroup ファイルシステムをマウントします | OBI はこれを使用してコンテナ内で実行されているプロセスを検出します |
 | `OTEL_EBPF_CONFIG_PATH` | コンテナ内の設定ファイルを指定します | 設定用の標準 OBI 環境変数です |
 
 ## OBI の起動
 
-Docker Composeは `obi` サービスのみが新しいことを検出し、それを起動します。既存のサービスは実行を継続します。
+Docker Compose は `obi` サービスのみが新規であることを検出し、それを起動します。既存のサービスは引き続き実行されます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}

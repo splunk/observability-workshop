@@ -7,19 +7,20 @@ weight: 1
 
 {{% notice title="演習" style="green" icon="running" %}}
 
-Phase 1/2ディレクトリに移動し、エディタで `docker-compose.yaml` を開きます：
+**注:** 環境で `env` コマンドを使用して `ACCESS_TOKEN`、`REALM`、`INSTANCE` を取得してください。これらを設定ファイルに貼り付ける必要があります。
+
+Phase 1/2 ディレクトリに移動し、エディタで `docker-compose.yaml` を開きます:
 
 ``` bash
 cd ~/workshop/obi/02-obi-docker
 vim docker-compose.yaml #or editor of choice
 ```
 
-`splunk-otel-collector` サービスを見つけ、4つのプレースホルダー値を実際の認証情報に置き換えます：
-**注意:** 必要に応じて、ターミナルで `env` を使用して `ACCESS_TOKEN`、`REALM`、`INSTANCE` を確認できます
+`splunk-otel-collector` サービスを見つけ、4つのプレースホルダー値を実際の認証情報に置き換えます:
 
 ``` yaml
     environment:
-      SPLUNK_INGEST_TOKEN: "YOUR_TOKEN_HERE"              # <-- Your Splunk ingest token
+      SPLUNK_INGEST_TOKEN: "YOUR_ACCESS_TOKEN_HERE"       # <-- Your Splunk ingest token
       SPLUNK_REALM: "YOUR_REALM"                          # <-- Your realm (us0, us1, eu0, etc.)
       WORKSHOP_HOST_NAME: "<example: shw-ece9>"           # <-- the value from INSTANCE when you use `env` on terminal
       WORKSHOP_ENVIRONMENT: "<example: shw-ece9-ebpf>"    # <-- The hostname value above suffixed with `-ebpf`
@@ -30,7 +31,7 @@ vim docker-compose.yaml #or editor of choice
 {{% /notice %}}
 
 {{% notice title="ヒント" style="primary" icon="lightbulb" %}}
-**なぜ `WORKSHOP_HOST_NAME` と `WORKSHOP_ENVIRONMENT` が必要なのでしょうか？** ワークショップの参加者全員が同じSplunk組織にテレメトリを送信します。これらの値はすべてのメトリクスとトレースの `host.name` と `deployment.environment` 属性になるため、Splunkで**自分の**データをフィルタリングできます。
+**なぜ `WORKSHOP_HOST_NAME` と `WORKSHOP_ENVIRONMENT` が必要なのか？** ワークショップの参加者全員が同じ Splunk 組織にテレメトリを送信します。これらの値はすべてのメトリクスとトレースの `host.name` および `deployment.environment` 属性になるため、Splunk で**自分の**データをフィルタリングできます。
 {{% /notice %}}
 
 ## スタックの起動
@@ -58,10 +59,10 @@ docker-compose up --build -d
 {{% /tab %}}
 {{< /tabs >}}
 
-これにより、ソースから3つのアプリケーションイメージがビルドされ、以下が起動します：
+これにより、ソースから3つのアプリケーションイメージがビルドされ、以下が起動します:
 
-- **frontend** - [http://localhost:3000](http://localhost:3000) で稼働
-- **order-processor** - ポート8080で稼働
-- **payment-service** - ポート8081で稼働
-- **splunk-otel-collector** - ポート4317/4318でテレメトリを受信
-- **load-generator** - 2秒ごとに `/create-order` を自動的に呼び出し
+- **frontend**: [http://localhost:3000](http://localhost:3000)
+- **order-processor**: ポート 8080
+- **payment-service**: ポート 8081
+- **splunk-otel-collector**: ポート 4317/4318 でテレメトリを受信
+- **load-generator**: 2秒ごとに `/create-order` に自動リクエスト

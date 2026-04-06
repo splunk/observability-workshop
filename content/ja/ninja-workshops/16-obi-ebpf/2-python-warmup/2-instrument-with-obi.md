@@ -1,18 +1,18 @@
 ---
-title: 2. OBI による計装
+title: 2. OBI によるインストルメンテーション
 weight: 2
 ---
 
-実行中のアプリにAPMトレースを追加します。**コードを一行も変更する必要はありません**。
+次に、**コードを一行も変更せずに**、実行中のアプリに APM トレーシングを追加します。
 
 ## OBI バイナリの抽出
 
-OBIにはまだスタンドアロンのダウンロードがないため、Dockerイメージからバイナリを抽出します：
+OBI にはまだスタンドアロンのダウンロードがないため、Docker イメージからバイナリを抽出します
 
 {{< tabs >}}
-{{% tab title="スクリプト" %}}
+{{% tab title="Script" %}}
 
-``` bash
+```bash
 IMAGE=otel/ebpf-instrument:main
 sudo docker pull $IMAGE
 ID=$(sudo docker create $IMAGE)
@@ -22,9 +22,9 @@ ls -la ./obi
 ```
 
 {{% /tab %}}
-{{% tab title="出力例" %}}
+{{% tab title="Example Output" %}}
 
-``` text
+```text
 main: Pulling from otel/ebpf-instrument
 0f5fbf7fdc05: Pull complete
 c9d0c8eb6b20: Pull complete
@@ -44,14 +44,14 @@ baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
 
 ## OBI の実行
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-**別のターミナル**で、`sudo` を使用してOBIを実行します。3つのプレースホルダーを前のステップで取得したrealm、token、hostnameに置き換えてください：
+**別のターミナル**で、`sudo` を使用して OBI を実行します。3つのプレースホルダーを前のステップで確認した realm、token、hostname に置き換えてください（完了まで1〜2分かかる場合があります）
 
 {{< tabs >}}
-{{% tab title="スクリプト" %}}
+{{% tab title="Script" %}}
 
-``` bash
+```bash
 cd ~/workshop/obi/01-obi-python
 
 sudo env \
@@ -65,10 +65,10 @@ sudo env \
 ```
 
 {{% /tab %}}
-{{% tab title="出力で確認する内容" %}}
+{{% tab title="Look for this in your Output" %}}
 トラフィックを生成し、以下の出力を確認してください
 
-``` text
+```text
 ...
 time=2026-02-27T19:29:56.296Z level=INFO msg="instrumenting process" component=discover.traceAttacher cmd=/usr/bin/python3.10 pid=245031 ino=7094 type=python service=warmup-app logenricher=false
 ...
@@ -80,25 +80,25 @@ time=2026-02-27T19:29:58.278Z level=INFO msg="Launching p.Tracer" component=gene
 
 {{% /notice %}}
 
-### これらの変数の役割
+### これらの変数は何をするのか？
 
 | 変数 | 目的 |
 |---|---|
 | `sudo` | eBPF プローブには root/カーネルアクセスが必要です |
-| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Splunk の OTLP トレース取り込み用の完全な URL です。シグナル別の環境変数はこの URL に正確に送信します。ベースの `OTEL_EXPORTER_OTLP_ENDPOINT` は `/v1/traces` を追加しますが、これは Splunk のパスと一致しません |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Splunk の OTLP トレースインジェスト用の完全な URL です。シグナルごとの環境変数はこの URL に正確に送信します。ベースの `OTEL_EXPORTER_OTLP_ENDPOINT` は `/v1/traces` を追加しますが、これは Splunk のパスと一致しません |
 | `OTEL_EXPORTER_OTLP_HEADERS` | Splunk 用の認証ヘッダーです |
 | `OTEL_SERVICE_NAME` | Splunk APM に表示されるサービス名です |
-| `OTEL_RESOURCE_ATTRIBUTES` | すべてのトレースに `deployment.environment` と `host.name` を設定し、データをフィルタリングできるようにします |
-| `OTEL_EBPF_OPEN_PORT` | OBI にポート 5150 でリッスンしているプロセスを計装するよう指示します |
+| `OTEL_RESOURCE_ATTRIBUTES` | すべてのトレースに `deployment.environment` と `host.name` を設定し、自分のデータをフィルタリングできるようにします |
+| `OTEL_EBPF_OPEN_PORT` | ポート 5150 でリッスンしているプロセスをインストルメントするよう OBI に指示します |
 
-{{% notice title="注意" style="info" %}}
-OBIのログで `failed to upload metrics: 404 Not Found` のような警告が表示されることがあります。これは想定内の動作です。Splunkの直接取り込みには標準的なOTLPメトリクスエンドポイントがありません。トレースは正しくエクスポートされます。フェーズ2では、コレクターがトレースとメトリクスの両方を適切に処理します。
+{{% notice title="Note" style="info" %}}
+OBI のログに `failed to upload metrics: 404 Not Found` のような警告が表示される場合があります。これは想定内の動作です。Splunk のダイレクトインジェストには標準の OTLP メトリクスエンドポイントがありません。トレースは正常にエクスポートされます。フェーズ 2 では、コレクターがトレースとメトリクスの両方を適切に処理します。
 {{% /notice %}}
 
 ## トラフィックの生成
 
-最初のターミナルに戻り、いくつかのリクエストを生成します：
+最初のターミナルに戻り、いくつかのリクエストを生成します
 
-``` bash
+```bash
 for i in $(seq 1 20); do curl -s http://localhost:5150/hello; sleep 1; done
 ```
