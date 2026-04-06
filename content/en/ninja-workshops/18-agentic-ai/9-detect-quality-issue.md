@@ -2,7 +2,7 @@
 title: Detect Quality Issue
 linkTitle: 9. Detect Quality Issue
 weight: 9
-time: 20 minutes
+time: 15 minutes
 ---
 
 In the previous sections, we instrumented our application with OpenTelemetry, and configured 

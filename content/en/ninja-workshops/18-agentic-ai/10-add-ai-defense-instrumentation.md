@@ -2,7 +2,7 @@
 title: Add AI Defense Instrumentation
 linkTitle: 10. Add AI Defense Instrumentation
 weight: 10
-time: 20 minutes
+time: 15 minutes
 ---
 
 Splunk AI Security Monitoring integrates Splunk Observability for 

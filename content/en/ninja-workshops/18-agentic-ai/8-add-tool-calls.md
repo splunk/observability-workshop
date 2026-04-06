@@ -2,7 +2,7 @@
 title: Add Tool Calls
 linkTitle: 8. Add Tool Calls
 weight: 8
-time: 10 minutes
+time: 15 minutes
 ---
 
 In the previous section, we discovered that our agents aren't appearing on the new 

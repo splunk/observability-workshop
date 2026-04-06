@@ -2,7 +2,7 @@
 title: Agentic AI Application Architecture
 linkTitle: 4. Agentic AI Application Architecture
 weight: 4
-time: 20 minutes
+time: 15 minutes
 ---
 
 ## Application Overview

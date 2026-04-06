@@ -2,7 +2,7 @@
 title: Instrument the Agentic AI Application
 linkTitle: 6. Instrument the Agentic AI Application
 weight: 6
-time: 20 minutes
+time: 15 minutes
 ---
 
 There are a few steps required to instrument our Agentic AI application 

@@ -2,7 +2,7 @@
 title: Review Agent Trace Data
 linkTitle: 7. Review Agent Trace Data
 weight: 7
-time: 15 minutes
+time: 10 minutes
 ---
 
 ## View Trace Data in Splunk Observability Cloud
