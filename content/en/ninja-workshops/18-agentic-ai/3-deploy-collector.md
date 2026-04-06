@@ -5,10 +5,13 @@ weight: 3
 time: 10 minutes
 ---
 
-## Install the Collector using Helm
+We'll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
+logs from an Agentic AI application runnign in Kubernetes. In this section, we'll 
+install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be 
+used to capture metrics, traces, and logs from our environment and send them to 
+Splunk. 
 
-Let’s use the command line rather than the in-product wizard to create our own
-`helm` command to install the collector.
+## Install the Collector using Helm
 
 We first need to add the helm repo:
 
@@ -45,6 +48,11 @@ agent:
 ```
 
 > To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
+
+This custom configuration ensures that any histogram metrics received by the exporter 
+will be sent to Splunk Observability backend in OTLP format without conversion 
+to SignalFx format. This setting is critical to ensure that histogram metrics used
+by AI Agent Monitoring such as `gen_ai.evaluation.score` are processed as expected.
 
 Now we can use the following command to install the collector:
 
@@ -109,7 +117,8 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 ## Confirm your K8s Cluster is in O11y Cloud
 
 In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
-and then search for your cluster name (which is `$INSTANCE-cluster`):
+and then search for your cluster name (which is `<your instance name>-cluster`):
 
-![Kubernetes node](../images/k8snode.png)
+![Kubernetes cluster](../images/k8scluster.png)
 
+> Tip: use the `echo $INSTANCE` command if you've forgotten your instance name

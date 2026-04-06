@@ -92,7 +92,7 @@ create_agent as _create_react_agent,  # type: ignore[attr-defined]
 ```
 
 Then, replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
-and `activity_specialist_node` functions with the following: 
+`activity_specialist_node`, and `plan_synthesizer_node` functions with the following: 
 
 ```python
 def coordinator_node(
@@ -244,6 +244,61 @@ def activity_specialist_node(
         else AIMessage(content=str(final_message))
     )
     state["current_agent"] = "plan_synthesizer"
+    return state
+    
+def plan_synthesizer_node(state: PlannerState) -> PlannerState:
+    llm = _create_llm(
+        "plan_synthesizer", temperature=0.3, session_id=state["session_id"]
+    )
+
+    agent = _create_react_agent(llm, tools=[]).with_config(
+        {
+            "run_name": "plan_synthesizer",
+            "tags": ["agent", "agent:plan_synthesizer"],
+            "metadata": {
+                "agent_name": "plan_synthesizer",
+                "session_id": state["session_id"],
+            },
+        }
+    )
+
+    system_content = (
+        "You are the travel plan synthesiser. Combine the specialist insights into a "
+        "concise, structured itinerary covering flights, accommodation and activities."
+    )
+
+    content = json.dumps(
+        {
+            "flight": state["flight_summary"],
+            "hotel": state["hotel_summary"],
+            "activities": state["activities_summary"],
+        },
+        indent=2,
+    )
+
+    out = agent.invoke(
+        {
+            "messages": [
+                SystemMessage(content=system_content),
+                HumanMessage(
+                    content=(
+                        f"Traveller request: {state['user_request']}\n\n"
+                        f"Origin: {state['origin']} | Destination: {state['destination']}\n"
+                        f"Dates: {state['departure']} to {state['return_date']}\n\n"
+                        f"Specialist summaries:\n{content}"
+                    )
+                ),
+            ]
+        }
+    )
+    # 1) Extract the assistant’s final text
+    final_msg = next(m for m in reversed(out["messages"]) if isinstance(m, AIMessage))
+    state["final_itinerary"] = final_msg.content
+
+    # 2) Append the new messages to your ongoing conversation
+    state["messages"].extend(out["messages"])  # or append just final_msg
+
+    state["current_agent"] = "completed"
     return state
 ```
 

@@ -11,7 +11,8 @@ We'll start by running the application directly on our Linux EC2 instance.
 
 ### Set Environment Variables
 
-In the command terminal, configure the following environment variables:
+In the command terminal, configure the following environment variables which 
+tell the application how to connect to an OpenAI model hosted in Azure:  
 
 > Note: the workshop instructor will provide the values for `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`.
 

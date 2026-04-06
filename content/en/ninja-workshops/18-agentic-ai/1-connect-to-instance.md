@@ -19,3 +19,14 @@ using one of the methods below:
 * Earlier versions of Windows
     * Use Putty 
 
+## Retrieve your Instance Name 
+
+Once you've logged into your EC2 instance via ssh, use the following command to 
+get your instance name: 
+
+```bash
+echo $INSTANCE
+```
+
+Make a note of this, as your instance name is unique to you and will be 
+used later in the workshop to find your data in Splunk Observability Cloud. 
