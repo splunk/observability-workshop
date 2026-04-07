@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-planner-langchain
+  namespace: travel-agent
+  labels:
+    app: travel-planner-langchain
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: travel-planner-langchain
+  template:
+    metadata:
+      labels:
+        app: travel-planner-langchain
+    spec:
+      containers:
+        - name: travel-planner-langchain
+          image: localhost:9999/agentic-ai-app:crewai
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: AZURE_OPENAI_DEPLOYMENT_NAME
+              value: "gpt-4.1-mini"
+            - name: AZURE_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: azure-openai-api
+                  key: azure-openai-api-endpoint
+            - name: AZURE_OPENAI_API_VERSION
+              value: "2024-12-01-preview"
+            - name: AZURE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: azure-openai-api
+                  key: azure-openai-api-key
+            # OpenAI Model
+            - name: OPENAI_MODEL
+              value: "gpt-4.1-mini"
+            # Service Name
+            - name: OTEL_SERVICE_NAME
+              value: "travel-planner-crewai"
+            # Additional OTEL configuration
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              valueFrom:
+                configMapKeyRef:
+                  name: instance-config
+                  key: OTEL_RESOURCE_ATTRIBUTES
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: "DELTA"
+            - name: OTEL_PYTHON_EXCLUDED_URLS
+              value: "^(https?://)?[^/]+(/health)?$"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
+              value: "SPAN"
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
+              value: "span_metric,splunk"
+            - name: SPLUNK_PROFILER_ENABLED
+              value: "true"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: travel-planner-langchain-service
+  namespace: travel-agent
+spec:
+  selector:
+    app: travel-planner-langchain
+  ports:
+    - port: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: travel-agent-ingress
+  namespace: travel-agent
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: travel-planner.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: travel-planner-langchain-service
+                port:
+                  number: 8080

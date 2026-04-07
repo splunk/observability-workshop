@@ -1,0 +1,57 @@
+coordinate_trip:
+  description: >
+  Read the user request and extract key trip details:
+    origin, destination, travel style, and constraints.
+    Provide a short execution brief for specialists.
+  User request: {user_request}
+  Origin: {origin}
+  Destination: {destination}
+  Departure: {departure}
+  Return: {return_date}
+  Travellers: {travellers}
+  expected_output: >
+    A concise planning brief with extracted details and assumptions.
+  agent: coordinator
+
+
+find_flights:
+  description: >
+    Find one strong round-trip flight recommendation from {origin} to {destination},
+    departing {departure}, for {travellers} travellers.
+    Use the provided flight tool and return concise rationale.
+  expected_output: >
+    A concise flight recommendation including airline, route, schedule, and fare summary.
+  agent: flight_specialist
+
+
+find_hotel:
+  description: >
+    Recommend one boutique hotel in {destination} from {departure} to {return_date}
+    for {travellers} travellers.
+    Use the provided hotel tool and return concise rationale.
+  expected_output: >
+    A concise hotel recommendation including name, location fit, and nightly rate summary.
+  agent: hotel_specialist
+
+
+find_activities:
+  description: >
+    Curate signature activities for a one-week trip in {destination}.
+    Use the provided activities tool and prioritize variety and destination highlights.
+  expected_output: >
+    A concise list of destination-specific activities suitable for a week-long stay.
+  agent: activity_specialist
+
+
+synthesize_itinerary:
+  description: >
+    Combine outputs from coordinator, flight, hotel, and activities tasks into one
+  structured itinerary with sections:
+    - Trip Summary
+    - Flight
+    - Hotel
+    - Activities
+    - Notes/Assumptions
+  expected_output: >
+    A clean, concise, final itinerary that can be returned directly to API clients.
+  agent: plan_synthesizer

@@ -92,3 +92,119 @@ For step-by-step instructions, see:
 | Unsupported framework                | Third-party instrumentation library     |
 | Existing third-party instrumentation | Third-party + OpenTelemetry translation |
 
+## CrewAI Example
+
+Let's walkthrough an example using CrewAI. The travel planner application we've 
+been using during the workshop has been re-written using CrewAI. You can find 
+the source code in the `~/workshop/agentic-ai/crewai` folder. 
+
+Note that CrewAI uses a declarative approach to define agents and tasks. For example, 
+the `~/workshop/agentic-ai/crewai/config/agents.yaml` file defines agents such as the 
+following: 
+
+```yaml
+coordinator:
+  role: Travel Coordinator
+  goal: Extract traveler intent and define a clear execution plan for specialists.
+  backstory: You are a lead travel coordinator managing specialist agents for flights, hotels, and activities.
+  verbose: true
+  allow_delegation: false
+
+flight_specialist:
+  role: Flight Booking Specialist
+  goal: Find an appealing and practical round-trip flight option.
+  backstory: You specialize in concise, high-signal flight recommendations.
+  verbose: true
+  allow_delegation: false
+```
+
+And the `~/workshop/agentic-ai/crewai/config/tasks.yaml` file defines tasks such as the
+following: 
+
+```yaml
+coordinate_trip:
+  description: >
+  Read the user request and extract key trip details:
+    origin, destination, travel style, and constraints.
+    Provide a short execution brief for specialists.
+  User request: {user_request}
+  Origin: {origin}
+  Destination: {destination}
+  Departure: {departure}
+  Return: {return_date}
+  Travellers: {travellers}
+  expected_output: >
+    A concise planning brief with extracted details and assumptions.
+  agent: coordinator
+```
+
+Notice that the following packages were added to the `requirements.txt` file 
+to instrument the CrewAI application: 
+
+````
+splunk-opentelemetry==2.8.0
+splunk-otel-instrumentation-crewai==0.1.3
+splunk-otel-instrumentation-openai==0.1.0
+splunk-otel-genai-emitters-splunk==0.1.7
+splunk-otel-util-genai==0.1.9
+opentelemetry-instrumentation-flask==0.59b0
+````
+
+### Deploy the CrewAI Example
+
+Let's deploy the CrewAI example by first building new Docker images: 
+
+``` bash
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:crewai .
+docker push localhost:9999/agentic-ai-app:crewai
+```
+
+Let's use a different environment name for this version of the application: 
+
+```bash
+kubectl create configmap instance-config \
+--from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-crewai-$INSTANCE \
+-n travel-agent
+```
+
+We can then deploy the CrewAI application using the manifest file as follows:
+
+``` bash
+kubectl apply -f ~/workshop/agentic-ai/crewai/k8s.yaml
+```
+### Test the Application in Kubernetes
+
+Ensure the new application pod has started successfully and the old pod is no longer present.
+
+Then, run the following command to test the application:
+
+``` bash
+curl http://travel-planner.localhost/travel/plan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origin": "Seattle",
+    "destination": "Tokyo",
+    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
+    "travelers": 2
+  }'
+```
+
+### View Data in Splunk Observability Cloud
+
+Let's return to Splunk Observability Cloud to view traces for the CrewAI application. 
+
+Navigate to `APM` and then select `AI agents`. Ensure your environment name
+is selected (e.g. `agentic-ai-crewai-$INSTANCE`). You'll notice that the agent 
+names are slightly different: 
+
+![CrewAI Agents](../images/CrewAiAgents.png)
+
+Navigate to `APM -> AI trace data` and load the most recent trace.
+
+In the trace, we should see similar details that we captured with the 
+LangChain/LangGraph version of the application: 
+
+![CrewAI Trace Details](../images/CrewAiTraceDetails.png)
+
+Do you notice anything different about the CrewAI traces compared 
+to LangChain/LangGraph traces? 
