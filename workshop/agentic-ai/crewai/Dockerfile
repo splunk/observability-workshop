@@ -30,7 +30,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy application code
 COPY *.py /app/
-COPY *.yaml /app/
+COPY config/ /app/config/
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && \

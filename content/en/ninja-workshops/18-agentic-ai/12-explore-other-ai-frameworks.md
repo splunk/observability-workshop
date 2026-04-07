@@ -162,7 +162,7 @@ docker push localhost:9999/agentic-ai-app:crewai
 Let's use a different environment name for this version of the application: 
 
 ```bash
-kubectl create configmap instance-config \
+kubectl create configmap instance-config-crewai \
 --from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-crewai-$INSTANCE \
 -n travel-agent
 ```

@@ -47,7 +47,7 @@ spec:
             - name: OTEL_RESOURCE_ATTRIBUTES
               valueFrom:
                 configMapKeyRef:
-                  name: instance-config
+                  name: instance-config-crewai
                   key: OTEL_RESOURCE_ATTRIBUTES
             - name: SPLUNK_OTEL_AGENT
               valueFrom:
