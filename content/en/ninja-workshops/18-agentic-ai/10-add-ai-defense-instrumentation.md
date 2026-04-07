@@ -5,12 +5,12 @@ weight: 10
 time: 15 minutes
 ---
 
-Splunk AI Security Monitoring integrates Splunk Observability for 
-[AI with Cisco AI Defense](https://www.cisco.com/site/us/en/products/security/ai-defense/index.html). 
-It provides a consolidated view of [security and privacy risks](https://securitydocs.cisco.com/docs/ai-def/user/105473.dita) 
+Splunk Observability Cloud integrates with 
+[Cisco AI Defense](https://www.cisco.com/site/us/en/products/security/ai-defense/index.html)
+to provide a consolidated view of [security and privacy risks](https://securitydocs.cisco.com/docs/ai-def/user/105473.dita) 
 detected at runtime for your AI agents, allowing you to monitor performance and risks in one place.
 
-Splunk AI Security Monitoring helps you to:
+This is referred to as **Splunk AI Security Monitoring**, which helps you to:
 
 * Identify which agents, interactions, and services involve detected or blocked security and privacy risks, such as prompt injection and PII leakage
 * Track risk trends alongside latency, errors, and other performance metrics over time
@@ -156,8 +156,9 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Run the following command to test the application, including a (fake) credit card 
-number to trigger AI Defense's PII detection:
+Ensure the new application pod has started successfully and the old pod is no longer present.
+
+Then, run the following command to test the application:
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \
@@ -165,38 +166,10 @@ curl http://travel-planner.localhost/travel/plan \
   -d '{
     "origin": "Seattle",
     "destination": "Tokyo",
-    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences. My credit card number is 4111 1111 1111 1111.",
+    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
     "travelers": 2
   }'
 ```
 
-## View Events in Cisco AI Defense
-
-If we login to the AI Defense application directly, we can see that an event was logged for 
-our request, and that AI Defense has automatically redacted the credit card number 
-we included in the prompt: 
-
-![AI Defense Events](../images/AIDefenseEvents.png)
-
-Note that policies can be configured AI Defense to specify whether we want to monitor 
-or block specific types of security issues. In this case, we've chosen to just monitor 
-PCI-related issues. 
-
-## View Data in Splunk Observability Cloud
-
-Let's return to Splunk Observability Cloud to see how the trace looks now.
-
-Navigate to `APM` and then select `Agents`. Ensure your environment name
-is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page
-includes security risks now! 
-
-![Agents with Security Risks](../images/AgentsWithSecurityRisks.png)
-
-Navigate to `APM -> Trace Analyzer`.
-
-Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
-Select one of the newer traces. We see that the trace includes security risks now!
-Specifically, we can see that a **Privacy - PCI risk ** has been detected for our 
-application (but not blocked): 
-
-![Trace with Security Risks](../images/TraceWithSecurityRisks.png)
+For now, just ensure that the application is still working. In the next section, 
+we'll add a security risk and then show how it can be detected. 

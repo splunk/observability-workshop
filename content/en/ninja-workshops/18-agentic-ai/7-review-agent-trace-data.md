@@ -27,7 +27,7 @@ We can also see the results of the semantic quality evaluations for this trace:
 
 ![Trace Details](../images/TraceDetails.png)
 
-Next, navigate to `APM` and then select `Agents`. Ensure your environment name 
+Next, navigate to `APM` and then select `AI agents`. Ensure your environment name 
 is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page is empty! 
 
 ![Agents](../images/Agents.png)

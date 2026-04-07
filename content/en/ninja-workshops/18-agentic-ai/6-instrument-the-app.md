@@ -18,7 +18,7 @@ with OpenTelemetry and deploy it to Kubernetes:
 
 Next, we need to install several instrumentation packages. We can achieve this by 
 opening the `~/workshop/agentic-ai/base-app/requirements.txt` for editing and adding 
-the following packages: 
+the following packages to the bottom of the file: 
 
 ````
 splunk-opentelemetry==2.8.0
@@ -28,10 +28,19 @@ splunk-otel-util-genai==0.1.9
 opentelemetry-instrumentation-flask==0.59b0
 ````
 
+These packages can be described as follows: 
+
+* `splunk-opentelemetry`: this is the Splunk distribution of OpenTelemetry Python, which instruments a Python application to capture and report distributed traces to Splunk APM. 
+* `splunk-otel-instrumentation-langchain`: this package provides OpenTelemetry instrumentation for LangChain LLM/chat workflows.
+* `splunk-otel-genai-emitters-splunk`: this package provides emitters for Splunk schema for Evaluation Results logs to optimize storage and filtering in Splunk Platform.
+* `splunk-otel-util-genai`: this package includes utility functions to provide APIs and data types to ease instrumentation of Generative AI workloads using OpenTelemetry semantic conventions.
+* `opentelemetry-instrumentation-flask`: this library builds on the OpenTelemetry WSGI middleware to track web requests in Flask applications.
+
+
 ## Update the Dockerfile 
 
-Then, we need to update the Dockerfile to ensure the container image is started 
-with `opentelemetry-instrument`. Open the `~/workshop/agentic-ai/base-app/Dockerfile` 
+Then, we need to enable OpenTelemetry instrumentation. This is done by updating the Dockerfile to 
+ensure the application is started with `opentelemetry-instrument`. Open the `~/workshop/agentic-ai/base-app/Dockerfile` 
 file for editing and update the last line as follows: 
 
 ```dockerfile
@@ -48,19 +57,41 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-in
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
+### Define the Config Map
+
+When we deploy our application to Kubernetes, we want telemetry (metrics, traces, and logs) 
+to be sent to Splunk Observability Cloud with a clear and unique environment identifier. 
+This makes it easier to filter, compare, and troubleshoot data across different deployments.
+
+To do this, we’ll set the OpenTelemetry resource attribute named `deployment.environment`. Rather 
+than hard-coding the value, we’ll derive it from the `INSTANCE` environment variable that 
+already exists on our EC2 instance. This ensures each deployment is automatically tagged 
+with the correct environment name.
+
+We’ll store this configuration in a Kubernetes ConfigMap, which can later be injected into 
+our application pods as an environment variable.
+
+Create the ConfigMap with the following command:
+
+```bash
+kubectl create configmap instance-config \
+--from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE \
+-n travel-agent
+```
+
+What this does:
+
+* Defines the `OTEL_RESOURCE_ATTRIBUTES` environment variable expected by OpenTelemetry.
+* Sets `deployment.environment` to a value like `agentic-ai-shw-1c43`, depending on the value of `$INSTANCE`.
+* Creates the ConfigMap in the `travel-agent` namespace.
+
+We’ll reference this ConfigMap in the next step when we configure our Kubernetes deployment.
+
 ### Update the Kubernetes Manifest 
 
 OpenTelemetry instrumentation, and AI Agent Monitoring in particular, require a number of environment 
 variables to be set that define how instrumentation data is collected, processed, and 
-exported. 
-
-Before updating the Kubernetes manifest file, let's create a config map that uses the 
-`INSTANCE` environment variable on our EC2 instance to populate the `OTEL_RESOURCE_ATTRIBUTES` 
-environment variable in the Kubernetes manifest: 
-
-```bash
-kubectl create configmap instance-config --from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE -n travel-agent
-```
+exported.
 
 Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and 
 add the following environment variables: 
@@ -95,7 +126,6 @@ add the following environment variables:
               value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
-
 ```
 
 In the same file, update the image to ensure we're using the one with the 
@@ -104,6 +134,14 @@ instrumentation:
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
+
+The following environment variables are specific to Agentic AI monitoring 
+and can be described as follows: 
+
+* `OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE`: this determines if the OTLP metric exporter reports cumulative totals, deltas, or low-memory-friendly temporality for emitted metrics. Setting this to `DELTA` is recommended for Agentic AI monitoring. 
+* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`: this is used to enable/disable message capture from Agentic AI applications. We've set it to `true` for this workshop. 
+* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE`: this defines how messages should be captured. We've set it to `SPAN` for this workshop, which ensures messages are captured using the span event store. 
+* `OTEL_INSTRUMENTATION_GENAI_EMITTERS`: we've set this to `span_metric,splunk` for the workshop, which ensures that both span and metric data are captured, as well as Splunk-specific features. 
 
 ### Deploy the Updated Application 
 
@@ -115,7 +153,25 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present: 
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

@@ -13,8 +13,8 @@ how Splunk Observability Cloud is able to detect such issues.
 
 ## About the Poisoned Chat Wrapper
 
-In this section, we'll use a class named `PoisonedChatWrapper` which wraps the existing 
-ChatModel to intercept and 'poison' the output. We've taken this approach so that we 
+In this section, we'll use a custom class named `PoisonedChatWrapper` which wraps the existing 
+`ChatModel` to intercept and 'poison' the output. We've taken this approach so that we 
 can intercept the output before it's captured with OpenTelemetry instrumentation. 
 
 If you're curious to understand this is done, please review the `poison_chat_wrapper.py` file. 
@@ -84,14 +84,6 @@ def hotel_specialist_node(
 
 ## Build an Updated Docker Image
 
-Modify the `Dockerfile` to copy the `poison_chat_wrapper.py` file as follows: 
-
-```dockerfile
-# Copy application code
-COPY main.py /app/
-COPY poison_chat_wrapper.py /app/
-```
-
 Build an updated Docker image with a new tag:
 
 ``` bash
@@ -139,7 +131,12 @@ curl http://travel-planner.localhost/travel/plan \
 Let's return to Splunk Observability Cloud to see how the trace looks now. 
 
 Looking at the `invoke_agent` span for the `hotel_specialist` agent, we can see that the 
-sentiment is classified as negative, since agent recommended a hotel and then called it 
+agent has several quality issues, as it recommended a hotel and then called it 
 `pretty terrible`: 
 
 ![Trace With Quality Issue](../images/TraceWithQualityIssue.png)
+
+> Note: not all agent invocations are evaluated, as the workshop org is set to 
+> evaluate only 20% of the time. This is configurable at the org level. If you don't see 
+> an evaluation on the `invoke_agent` span for the `hotel_specialist` agent, trying sending 
+> another request. 

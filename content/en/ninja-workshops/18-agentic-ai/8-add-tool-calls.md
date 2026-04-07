@@ -11,11 +11,36 @@ In the previous section, we discovered that our agents aren't appearing on the n
 The reason is that our application isn't currently using agents, but is instead invoking 
 the LLM directly. 
 
-We're going to address that in this section, by first adding some tools that our agents can 
-use, and then updating the code for each of the nodes to create and utilize agents rather 
-than the LLM directly. 
+In other words, right now, our app is like a scripted play. Every line and every action is written 
+in the code. When we call the LLM, we are just asking it to read a specific line. 
+Because the LLM isn't making choices, the Observability for AI instrumentation doesn't 
+recognize it as an autonomous agent.
 
-We'll configure each agent to use a tool as well. 
+In this next section, we are going to give the LLM **tools** and the authority
+to decide how to use them. By moving to an agentic model, the LLM will start 
+generating **Tool Calls**. Our OpenTelemetry instrumentation will capture these
+interactions, allowing us to see the LLM's thought process and 
+tool usage, and each of our agents will be represented in Splunk Observability Cloud. 
+
+## Direct Invocation vs. Agentic Traces
+
+Before making these changes, let's dive deeper into how traces are captured 
+when the LLM is invoked directly vs. via an agent. 
+
+**Direct Invocation Traces:**
+
+When you call `llm.invoke()`, the instrumentation sees a standard "Chat" or "Completion" span. 
+It records the prompt and the response. Because there is no "loop" or "tool-calling" logic 
+managed by the agent framework, Splunk Observability Cloud doesn't see the metadata required 
+to categorize the span as an "Agent."
+
+**Agentic Traces:**
+
+When you use an agent (e.g., `create_react_agent`), 
+the framework wraps the execution in specific "Agent" and "Tool" spans. These 
+spans contain metadata that tells OpenTelemetry: "This isn't 
+just a chat; this is a reasoning loop with specific tools." This is what 
+populates the Agents Page and the Agent Flow diagrams in the trace visualization.
 
 ## Add Tools
 
@@ -93,6 +118,10 @@ create_agent as _create_react_agent,  # type: ignore[attr-defined]
 
 Then, replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
 `activity_specialist_node`, and `plan_synthesizer_node` functions with the following: 
+
+> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
+> Line` mode, then use the down arrow to select all the lines you want to delete, then press `d` 
+> to delete the selected lines. 
 
 ```python
 def coordinator_node(
@@ -358,13 +387,17 @@ curl http://travel-planner.localhost/travel/plan \
 
 Let's return to Splunk Observability Cloud to see how the trace looks now. 
 
-Navigate to `APM` and then select `Agents`. Ensure your environment name
+Navigate to `APM` and then select `AI agents`. Ensure your environment name
 is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page 
 populated now! 
 
 ![Agents](../images/Agents-v2.png)
 
-Navigate to `APM -> Trace Analyzer`. 
+Navigate to `APM -> AI trace data`. This is a new page that lets us search 
+for traces that include AI-related content: 
+
+![Agents](../images/AI-trace-data.png)
+
 
 Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
 Select one of the newer traces. We see all of our agents represented in the Agent flow now! 

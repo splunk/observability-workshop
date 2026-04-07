@@ -46,7 +46,11 @@ python3 main.py
 ### Test the Application
 
 Open a second terminal session connected to your EC2 instance, and run the following
-command to test the application:
+command to test the application. It should return the suggested travel plans in json 
+format: 
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ``` bash
 curl http://localhost:8080/travel/plan \
@@ -58,6 +62,16 @@ curl http://localhost:8080/travel/plan \
     "travelers": 2
   }'
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```json
+{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya\u2014cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku\u2019s Takeshita Street and Meiji Shrine, followed by Omotesando\u2019s stylish cafes.\n5. Day 5: Discover Akihabara\u2019s electronics and anime culture, with a visit to a themed caf\u00e9.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Deploy the Agentic AI Application (Kubernetes)
 
@@ -111,9 +125,35 @@ We can deploy the application using the manifest file as follows:
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
+### Ensure the Application is Running
+
+Use the following command to ensure the application pod has a 
+status of `Running`:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ### Test the Application in Kubernetes 
 
 Run the following command to test the application:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \
@@ -125,3 +165,13 @@ curl http://travel-planner.localhost/travel/plan \
     "travelers": 2
   }'
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```json
+{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya\u2014cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku\u2019s Takeshita Street and Meiji Shrine, followed by Omotesando\u2019s stylish cafes.\n5. Day 5: Discover Akihabara\u2019s electronics and anime culture, with a visit to a themed caf\u00e9.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}

@@ -18,7 +18,9 @@ Let's modify the activity specialist agent to use this wrapper and modify
 the LLM output. 
 
 Modify the `activity_specialist_node` function to use the wrapper
-as follows:
+as follows. This effectively simulates a scenario where the LLM has 
+included the user's credit card number as part of the response, which is 
+a clear security risk and PCI violation. 
 
 ```python
 def activity_specialist_node(
@@ -111,12 +113,52 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
+## View Events in Cisco AI Defense
+
+If we login to the AI Defense application directly, we can see that an event was logged for
+our request, and that AI Defense has automatically redacted the credit card number
+we included in the prompt:
+
+![AI Defense Events](../images/AIDefenseEvents.png)
+
+Note that policies can be configured AI Defense to specify whether we want to monitor
+or block specific types of security issues. In this case, we've chosen to just monitor
+PCI-related issues.
+
 ## View Data in Splunk Observability Cloud
 
 Let's return to Splunk Observability Cloud to see how the trace looks now.
 
-Looking at the `invoke_agent` span for the `activity_specialist` agent, we can see that PCI 
-security risk was detected and blocked, due to the LLM disclosing the customer's credit 
-card number in the response in plain text: 
+Navigate to `APM` and then select `AI agents`. Ensure your environment name
+is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page
+includes security risks now!
+
+![Agents with Security Risks](../images/AgentsWithSecurityRisks.png)
+
+> You should also see the security risks on the `AI overview` page, as well as the 
+> `AI agent` page for the `plan_synthesizer` agent. 
+
+Navigate to `APM -> AI trace data` and load the most recent trace.
+
+In the agent flow, we can see that a security risk was detected: 
+
+![Agent Flow With Security Risk](../images/AgentFlowWithSecurityRisk.png)
+
+Looking at the `invoke_agent` span for the `activity_specialist` agent, we can see that PCI
+security risk was detected and blocked, due to the LLM disclosing the customer's credit
+card number in the response in plain text:
 
 ![Trace With Security Risk](../images/TraceWithSecurityRisk.png)
+
+Clicking on the security risk provides additional details, along with a link 
+to view the event in Cisco AI Defense: 
+
+![Security Risk Details](../images/SecurityRiskDetails.png)
+
+And if we view the `Span details` for this span, we can see that the 
+`gen_ai.security.event_id` attribute is included with this span: 
+
+![Security Event Span Attribute](../images/SecurityEventSpanAttribute.png)
+
+This attribute allows us to correlate the span in Splunk Observability Cloud 
+with the corresponding event in Cisco AI Defense. 
