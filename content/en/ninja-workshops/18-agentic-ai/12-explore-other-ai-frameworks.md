@@ -208,3 +208,14 @@ LangChain/LangGraph version of the application:
 
 Do you notice anything different about the CrewAI traces compared 
 to LangChain/LangGraph traces? 
+
+<details>
+  <summary><b>Click here to see the answer</b></summary>
+
+There are a few differences: 
+
+* The agent names are different (`Hotel Booking Specialist` vs. `hotel_specialist`)
+* The coordinator and plan synthesizer agents aren't listed for the CrewAI version 
+* The spans for the `crewai` inferred service include the agent instructions as part of the waterfall view 
+
+</details>
