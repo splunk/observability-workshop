@@ -6,7 +6,7 @@ time: 10 minutes
 ---
 
 We'll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
-logs from an Agentic AI application runnign in Kubernetes. In this section, we'll 
+logs from an Agentic AI application running in Kubernetes. In this section, we'll 
 install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be 
 used to capture metrics, traces, and logs from our environment and send them to 
 Splunk. 
