@@ -32,6 +32,10 @@ This workshop focuses on **Enterprise Agent** deployment only.
 ## Architecture
 
 ```mermaid
+---
+config:
+  theme: 'base'
+---
 graph LR
     subgraph k8s["Kubernetes Cluster"]
         secret["Secret<br/>te-creds"]
