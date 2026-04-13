@@ -100,6 +100,6 @@ You may see warnings like `failed to upload metrics: 404 Not Found` in the OBI l
 Go back to your first terminal and generate some requests:
 
 ```bash
-for i in $(seq 1 20); do curl -s http://localhost:5150/hello; sleep 1; done
+for i in $(seq 1 20); do curl -s "http://localhost:5150/hello"; sleep 1; done
 ```
 

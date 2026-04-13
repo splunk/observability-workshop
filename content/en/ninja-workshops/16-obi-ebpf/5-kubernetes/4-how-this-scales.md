@@ -30,3 +30,45 @@ OBI gives you **full distributed tracing without any code changes**:
 - **Zero application restarts**: OBI attaches to already-running processes via eBPF
 - **Language agnostic**: works with Go, Node.js, Python, Java, Rust, C++ anything that speaks HTTP or gRPC
 - **One container or one Helm flag**: add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done
+
+## Environments may still require some customization to your obi/eBPF config
+In some cases such as OpenShift you may need to add some additional information to your obi configs.
+Thanks to Leandro de Oliveira e Ferreira for this example!
+```
+# obi-scc.yaml
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: splunk-otel-obi-scc
+allowPrivilegedContainer: true
+allowHostPID: true
+allowHostDirVolumePlugin: true
+allowHostNetwork: true
+allowHostPorts: true
+allowPrivilegeEscalation: true
+readOnlyRootFilesystem: false
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+fsGroup:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - emptyDir
+  - hostPath
+  - secret
+  - projected
+allowedCapabilities:
+  - BPF
+  - PERFMON
+  - SYS_PTRACE
+  - DAC_READ_SEARCH
+  - NET_ADMIN
+  - NET_RAW
+  - CHECKPOINT_RESTORE
+  - SYS_ADMIN
+users: []
+```
