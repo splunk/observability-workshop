@@ -2,36 +2,40 @@
 title: Agentic AI アプリケーションの計装
 linkTitle: 6. Agentic AI アプリケーションの計装
 weight: 6
-time: 20 minutes
+time: 15 minutes
 ---
 
-Agentic AIアプリケーションをOpenTelemetryで計装し、Kubernetesにデプロイするには、いくつかの手順が必要です：
+Agentic AI アプリケーションを OpenTelemetry で計装し、Kubernetes にデプロイするにはいくつかの手順が必要です
 
 1. `requirements.txt` ファイルに計装パッケージを追加する
-2. `opentelemetry-instrument` を使用してアプリケーションを起動するようにDockerfileを更新する
-3. 計装パッケージを含む新しいDockerイメージをビルドする
-4. 環境変数を含むようにKubernetesマニフェストを更新する
-5. Kubernetesマニフェストをデプロイする
+2. `opentelemetry-instrument` を使用してアプリケーションを起動するように Dockerfile を更新する
+3. 計装パッケージを含む新しい Docker イメージをビルドする
+4. 環境変数を使用して Kubernetes マニフェストを更新する
+5. Kubernetes マニフェストをデプロイする
 
 ## 計装パッケージの追加
 
-次に、いくつかの計装パッケージをインストールする必要があります。`~/workshop/agentic-ai/base-app/requirements.txt` を編集用に開き、以下のパッケージを追加します：
+次に、いくつかの計装パッケージをインストールする必要があります。`~/workshop/agentic-ai/base-app/requirements.txt` を開いて編集し、ファイルの末尾に以下のパッケージを追加します
 
 ````
-deepeval
-litellm==1.82.0
 splunk-opentelemetry==2.8.0
 splunk-otel-instrumentation-langchain==0.1.7
 splunk-otel-genai-emitters-splunk==0.1.7
 splunk-otel-util-genai==0.1.9
-splunk-otel-util-genai-evals==0.1.8
-splunk-otel-genai-evals-deepeval==0.1.13
 opentelemetry-instrumentation-flask==0.59b0
 ````
 
+これらのパッケージは以下のように説明できます
+
+* `splunk-opentelemetry`: これは Splunk Distribution of OpenTelemetry Python であり、Python アプリケーションを計装して分散トレースをキャプチャし、Splunk APM に報告します。
+* `splunk-otel-instrumentation-langchain`: このパッケージは LangChain LLM/チャットワークフローの OpenTelemetry 計装を提供します。
+* `splunk-otel-genai-emitters-splunk`: このパッケージは Splunk Platform でのストレージとフィルタリングを最適化するために、Evaluation Results ログの Splunk スキーマ用エミッターを提供します。
+* `splunk-otel-util-genai`: このパッケージには、OpenTelemetry セマンティック規約を使用して生成 AI ワークロードの計装を容易にするための API とデータ型を提供するユーティリティ関数が含まれています。
+* `opentelemetry-instrumentation-flask`: このライブラリは OpenTelemetry WSGI ミドルウェアを基盤として、Flask アプリケーションの Web リクエストを追跡します。
+
 ## Dockerfile の更新
 
-次に、コンテナイメージが `opentelemetry-instrument` で起動されるようにDockerfileを更新する必要があります。`~/workshop/agentic-ai/base-app/Dockerfile` ファイルを編集用に開き、最後の行を以下のように更新します：
+次に、OpenTelemetry 計装を有効にする必要があります。これは Dockerfile を更新して、アプリケーションが `opentelemetry-instrument` で起動されるようにすることで行います。`~/workshop/agentic-ai/base-app/Dockerfile` ファイルを開いて編集し、最後の行を以下のように更新します
 
 ```dockerfile
 # Run the server with instrumentation
@@ -40,50 +44,44 @@ CMD ["opentelemetry-instrument", "python", "main.py"]
 
 ### 更新された Docker イメージのビルド
 
-新しいタグを付けて更新されたDockerイメージをビルドします：
+新しいタグで更新された Docker イメージをビルドします
 
 ``` bash
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation .
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
-### DeepEval 用の Secret の作成
+### ConfigMap の定義
 
-DeepEvalの設定を保存するためのKubernetes Secretを作成します。以下のコマンドを実行する前に、Azure OpenAIエンドポイントを置き換えてください。DeepEvalのリクエストはAzure OpenAIエンドポイントに直接ルーティングされます：
+アプリケーションを Kubernetes にデプロイする際、テレメトリ（メトリクス、トレース、ログ）を明確で一意の環境識別子とともに Splunk Observability Cloud に送信したいと考えています。これにより、異なるデプロイメント間でデータをフィルタリング、比較、トラブルシューティングすることが容易になります。
+
+これを行うために、`deployment.environment` という名前の OpenTelemetry リソース属性を設定します。値をハードコーディングするのではなく、EC2 インスタンスにすでに存在する `INSTANCE` 環境変数から値を導出します。これにより、各デプロイメントが正しい環境名で自動的にタグ付けされます。
+
+この設定を Kubernetes ConfigMap に保存し、後でアプリケーション Pod に環境変数として注入できるようにします。
+
+以下のコマンドで ConfigMap を作成します
 
 ```bash
-kubectl create secret generic deepeval-secret -n travel-agent --from-literal=deepeval-llm-base-url=your_deepeval_llm_base_url
-````
+kubectl create configmap instance-config \
+--from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE \
+-n travel-agent
+```
+
+このコマンドが行うこと
+
+* OpenTelemetry が期待する `OTEL_RESOURCE_ATTRIBUTES` 環境変数を定義します。
+* `$INSTANCE` の値に応じて、`deployment.environment` を `agentic-ai-shw-1c43` のような値に設定します。
+* `travel-agent` namespace に ConfigMap を作成します。
+
+次のステップで Kubernetes デプロイメントを設定する際に、この ConfigMap を参照します。
 
 ### Kubernetes マニフェストの更新
 
-OpenTelemetryの計装、特にAI Agent Monitoringでは、計装データの収集、処理、エクスポート方法を定義するために、多くの環境変数を設定する必要があります。
+OpenTelemetry 計装、特に AI Agent Monitoring には、計装データの収集、処理、およびエクスポート方法を定義するいくつかの環境変数を設定する必要があります。
 
-Kubernetesマニフェストファイルを更新する前に、EC2インスタンスの `INSTANCE` 環境変数を使用して、Kubernetesマニフェストの `OTEL_RESOURCE_ATTRIBUTES` 環境変数を設定するConfigMapを作成しましょう：
-
-```bash
-kubectl create configmap instance-config --from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE -n travel-agent
-```
-
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを編集用に開き、以下の環境変数を追加します：
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、以下の環境変数を追加します
 
 ```yaml
-            - name: DEEPEVAL_LLM_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: deepeval-secret
-                  key: deepeval-llm-base-url
-            - name: DEEPEVAL_LLM_MODEL
-              value: "gpt-4.1-mini"
-            - name: DEEPEVAL_LLM_PROVIDER
-              value: "azure"
-            - name: DEEPEVAL_LLM_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-key
-            - name: DEEPEVAL_LLM_EXTRA_HEADERS
-              value: '{"api_version":"2024-01-01-preview"}'
             # Service Name
             - name: OTEL_SERVICE_NAME
               value: "travel-planner"
@@ -101,51 +99,36 @@ kubectl create configmap instance-config --from-literal=OTEL_RESOURCE_ATTRIBUTES
               value: "http://$(SPLUNK_OTEL_AGENT):4317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "grpc"
-            - name: HOME
-              value: "/tmp"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: "DELTA"
-            - name: OTEL_LOGS_EXPORTER
-              value: "otlp"
-            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-              value: "true"
             - name: OTEL_PYTHON_EXCLUDED_URLS
               value: "^(https?://)?[^/]+(/health)?$"
             - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
               value: "true"
             - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
-              value: "SPAN_AND_EVENT"
-            - name: OTEL_INSTRUMENTATION_GENAI_EVALS_RESULTS_AGGREGATION
-              value: "true"
+              value: "SPAN"
             - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
-              value: "span_metric_event,splunk"
-            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS_EVALUATION
-              value: "replace-category:SplunkEvaluationResults"
-            - name: OTEL_GENAI_EVAL_DEBUG_SKIPS
-              value: "true"
-            - name: OTEL_GENAI_EVAL_DEBUG_EACH
-              value: "false"
-            - name: OTEL_INSTRUMENTATION_GENAI_DEBUG
-              value: "false"
+              value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
-            - name: DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE
-              value: "300"
-            - name: DEEPEVAL_RETRY_MAX_ATTEMPTS
-              value: "2"
-            - name: DEEPEVAL_FILE_SYSTEM
-              value: "READ_ONLY"
 ```
 
-同じファイル内で、計装を含むイメージを使用するようにイメージを更新します：
+同じファイルで、計装を含むイメージを使用するようにイメージを更新します
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
+以下の環境変数は Agentic AI モニタリングに固有のものであり、次のように説明できます
+
+* `OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE`: これは OTLP メトリクスエクスポーターが、出力されるメトリクスに対して累積合計、デルタ、またはメモリ効率の良い時間性のいずれを報告するかを決定します。Agentic AI モニタリングには `DELTA` に設定することが推奨されます。
+* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`: これは Agentic AI アプリケーションからのメッセージキャプチャを有効/無効にするために使用されます。このワークショップでは `true` に設定しています。
+* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE`: これはメッセージのキャプチャ方法を定義します。このワークショップでは `SPAN` に設定しており、メッセージがスパンイベントストアを使用してキャプチャされるようにしています。
+* `OTEL_INSTRUMENTATION_GENAI_EMITTERS`: このワークショップでは `span_metric,splunk` に設定しており、スパンとメトリクスの両方のデータ、および Splunk 固有の機能がキャプチャされるようにしています。
+
 ### 更新されたアプリケーションのデプロイ
 
-マニフェストファイルを使用して、更新されたアプリケーションをデプロイします：
+マニフェストファイルを使用して、更新されたアプリケーションを以下のようにデプロイできます
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
@@ -153,7 +136,27 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Kubernetes でのアプリケーションのテスト
 
-以下のコマンドを実行してアプリケーションをテストします：
+新しいアプリケーション Pod が正常に起動し、古い Pod が存在しないことを確認します
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+次に、以下のコマンドを実行してアプリケーションをテストします
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \

@@ -1,27 +1,39 @@
 ---
-title: ツール呼び出しの追加
-linkTitle: 8. ツール呼び出しの追加
+title: Tool Call の追加
+linkTitle: 8. Tool Call の追加
 weight: 8
-time: 10 minutes
+time: 15 minutes
 ---
 
 前のセクションでは、エージェントが新しい **Agents** ページやトレース上部の **Agent flow** に表示されていないことを確認しました。
 
-その理由は、現在のアプリケーションがエージェントを使用しておらず、代わりにLLMを直接呼び出しているからです。
+その理由は、現在のアプリケーションがエージェントを使用しておらず、代わりに LLM を直接呼び出しているためです。
 
-このセクションでは、まずエージェントが使用できるツールを追加し、その後、各ノードのコードを更新してLLMを直接使用するのではなくエージェントを作成して利用するようにします。
+言い換えると、現在のアプリは台本のある演劇のようなものです。すべてのセリフとすべてのアクションがコードに書かれています。LLM を呼び出すとき、特定のセリフを読むよう依頼しているだけです。LLM が選択を行わないため、Observability for AI の計装は自律エージェントとして認識しません。
 
-また、各エージェントがツールを使用するように設定します。
+次のセクションでは、LLM に **ツール** とそれらを使用する判断権限を与えます。エージェントモデルに移行することで、LLM は **Tool Call** を生成し始めます。OpenTelemetry の計装はこれらのインタラクションをキャプチャし、LLM の思考プロセスとツールの使用状況を確認でき、各エージェントが Splunk Observability Cloud に表示されるようになります。
+
+## 直接呼び出しとエージェントトレースの比較
+
+これらの変更を行う前に、LLM を直接呼び出した場合とエージェント経由で呼び出した場合のトレースのキャプチャ方法をより深く理解しましょう。
+
+**直接呼び出しのトレース:**
+
+`llm.invoke()` を呼び出すと、計装は標準的な "Chat" または "Completion" スパンを認識します。プロンプトとレスポンスを記録します。エージェントフレームワークによって管理される "ループ" や "ツール呼び出し" ロジックがないため、Splunk Observability Cloud はスパンを "Agent" として分類するために必要なメタデータを認識しません。
+
+**エージェントトレース:**
+
+エージェント（例: `create_react_agent`）を使用すると、フレームワークは実行を特定の "Agent" と "Tool" スパンでラップします。これらのスパンには、OpenTelemetry に対して「これは単なるチャットではなく、特定のツールを持つ推論ループです」と伝えるメタデータが含まれています。これが、トレース可視化において Agents ページと Agent Flow ダイアグラムにデータを表示する仕組みです。
 
 ## ツールの追加
 
-まず、`main.py` ファイルの先頭付近に以下のimport文を追加します：
+まず、`main.py` ファイルの先頭付近に以下の import 文を追加します:
 
 ```python
 from langchain_core.tools import tool
 ```
 
-次に、ツールの定義を追加します：
+次に、ツール定義を追加します:
 
 ```python
 @tool
@@ -62,9 +74,9 @@ def mock_search_activities(destination: str) -> str:
     return f"Signature experiences in {destination.title()}:\n{bullets}"
 ```
 
-## AI Agent Monitoring 用のアプリケーション設定
+## AI Agent Monitoring 用にアプリケーションを設定する
 
-現在、アプリケーションは以下のようにLLMを作成して呼び出しています：
+現在、アプリケーションは以下のように LLM を作成して呼び出しています:
 
 ```python
 def flight_specialist_node(state: PlannerState) -> PlannerState:
@@ -76,9 +88,9 @@ def flight_specialist_node(state: PlannerState) -> PlannerState:
     ...
 ```
 
-AI Agent Monitoringのためには、代わりにエージェント名を含むメタデータを持つエージェントを作成し、LLMではなくエージェントを呼び出す必要があります。
+AI Agent Monitoring のためには、エージェント名を含むメタデータを持つエージェントを作成し、LLM ではなくエージェントを呼び出す必要があります。
 
-まず、`main.py` ファイルの先頭付近に以下のimportを追加します：
+まず、`main.py` ファイルの先頭付近に以下の import を追加します:
 
 ```python
 from langchain.agents import (
@@ -86,7 +98,9 @@ create_agent as _create_react_agent,  # type: ignore[attr-defined]
 )
 ```
 
-次に、`coordinator_node`、`flight_specialist_node`、`hotel_specialist_node`、`activity_specialist_node` 関数の定義を以下のように置き換えます：
+次に、`coordinator_node`、`flight_specialist_node`、`hotel_specialist_node`、`activity_specialist_node`、`plan_synthesizer_node` 関数の定義を以下のように置き換えます:
+
+> ヒント: `vi` エディタで大量の行を一括削除するには、`Shift` + `v` を押して `Visual Line` モードにし、下矢印キーで削除したい行をすべて選択し、`d` を押して選択した行を削除します。
 
 ```python
 def coordinator_node(
@@ -239,13 +253,68 @@ def activity_specialist_node(
     )
     state["current_agent"] = "plan_synthesizer"
     return state
+    
+def plan_synthesizer_node(state: PlannerState) -> PlannerState:
+    llm = _create_llm(
+        "plan_synthesizer", temperature=0.3, session_id=state["session_id"]
+    )
+
+    agent = _create_react_agent(llm, tools=[]).with_config(
+        {
+            "run_name": "plan_synthesizer",
+            "tags": ["agent", "agent:plan_synthesizer"],
+            "metadata": {
+                "agent_name": "plan_synthesizer",
+                "session_id": state["session_id"],
+            },
+        }
+    )
+
+    system_content = (
+        "You are the travel plan synthesiser. Combine the specialist insights into a "
+        "concise, structured itinerary covering flights, accommodation and activities."
+    )
+
+    content = json.dumps(
+        {
+            "flight": state["flight_summary"],
+            "hotel": state["hotel_summary"],
+            "activities": state["activities_summary"],
+        },
+        indent=2,
+    )
+
+    out = agent.invoke(
+        {
+            "messages": [
+                SystemMessage(content=system_content),
+                HumanMessage(
+                    content=(
+                        f"Traveller request: {state['user_request']}\n\n"
+                        f"Origin: {state['origin']} | Destination: {state['destination']}\n"
+                        f"Dates: {state['departure']} to {state['return_date']}\n\n"
+                        f"Specialist summaries:\n{content}"
+                    )
+                ),
+            ]
+        }
+    )
+    # 1) Extract the assistant's final text
+    final_msg = next(m for m in reversed(out["messages"]) if isinstance(m, AIMessage))
+    state["final_itinerary"] = final_msg.content
+
+    # 2) Append the new messages to your ongoing conversation
+    state["messages"].extend(out["messages"])  # or append just final_msg
+
+    state["current_agent"] = "completed"
+    return state
 ```
 
-> フライト、ホテル、アクティビティの各スペシャリストエージェントを作成する際にツールを渡していることに注目してください。エージェントが呼び出されると、LLM はリクエストを実行するためにツールを呼び出すべきかどうかを判断します。
+> フライト、ホテル、アクティビティのスペシャリストエージェントを作成する際にツールを渡していることに注目してください。エージェントが呼び出されると、LLM がリクエストを満たすためにツールを呼び出すべきかどうかを判断します。
 
 ## 更新された Docker イメージのビルド
 
-新しいタグで更新されたDockerイメージをビルドします：
+新しいタグで更新された Docker イメージをビルドします:
 
 ``` bash
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-agents-and-tools .
@@ -254,9 +323,9 @@ docker push localhost:9999/agentic-ai-app:app-with-agents-and-tools
 
 ### Kubernetes マニフェストの更新
 
-OpenTelemetryのインストルメンテーション、特にAI Agent Monitoringでは、インストルメンテーションデータの収集、処理、エクスポート方法を定義するいくつかの環境変数を設定する必要があります。
+OpenTelemetry の計装、特に AI Agent Monitoring では、計装データの収集、処理、エクスポート方法を定義する多数の環境変数を設定する必要があります。
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、エージェントとツールを含むイメージを使用するようにイメージを更新します：
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを編集用に開き、エージェントとツールを含むイメージを使用するようにイメージを更新します:
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-agents-and-tools
@@ -264,7 +333,7 @@ OpenTelemetryのインストルメンテーション、特にAI Agent Monitoring
 
 ### 更新されたアプリケーションのデプロイ
 
-以下のようにマニフェストファイルを使用して更新されたアプリケーションをデプロイできます：
+マニフェストファイルを使用して、以下のように更新されたアプリケーションをデプロイできます:
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
@@ -272,7 +341,9 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Kubernetes でのアプリケーションのテスト
 
-以下のコマンドを実行してアプリケーションをテストします：
+新しいアプリケーション Pod が正常に起動し、古い Pod がなくなっていることを確認します。
+
+次に、以下のコマンドを実行してアプリケーションをテストします:
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \
@@ -285,20 +356,22 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
-## Splunk Observability Cloud でのデータ確認
+## Splunk Observability Cloud でデータを確認する
 
-Splunk Observability Cloudに戻って、トレースがどのように表示されるか確認しましょう。
+Splunk Observability Cloud に戻って、トレースがどのように表示されるか確認しましょう。
 
-`APM` に移動し、`Agents` を選択します。環境名が選択されていることを確認してください（例：`agentic-ai-$INSTANCE`）。ページにデータが表示されるようになりました！
+`APM` に移動し、`AI agents` を選択します。環境名（例: `agentic-ai-$INSTANCE`）が選択されていることを確認します。ページにデータが表示されるようになりました！
 
 ![Agents](../images/Agents-v2.png)
 
-`APM -> Trace Analyzer` に移動します。
+`APM -> AI trace data` に移動します。これは AI 関連のコンテンツを含むトレースを検索できる新しいページです:
 
-環境名が選択されていることを確認してください（例：`agentic-ai-$INSTANCE`）。新しいトレースの1つを選択します。すべてのエージェントがAgent flowに表示されるようになりました！
+![Agents](../images/AI-trace-data.png)
+
+環境名（例: `agentic-ai-$INSTANCE`）が選択されていることを確認します。新しいトレースの 1 つを選択します。すべてのエージェントが Agent flow に表示されるようになりました！
 
 ![Trace](../images/Trace-v2.png)
 
-ツール呼び出しも確認できます：
+Tool Call も確認できます:
 
 ![Trace](../images/TraceWithToolCalls.png)
