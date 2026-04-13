@@ -60,5 +60,3 @@ By connecting ThousandEyes to Splunk Observability Cloud, you gain:
 - 🚨 **Centralized alerting**: Configure alerts based on ThousandEyes test results within Splunk
 - 🔍 **Root cause analysis**: Quickly identify if issues are network-related (ThousandEyes) or application-related (APM)
 - 📈 **Comprehensive analytics**: Analyze synthetic monitoring trends with Splunk's powerful analytics engine
-
-{{% children depth="1" type="card" description="true" %}}

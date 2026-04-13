@@ -59,5 +59,3 @@ All configuration files, Helm values, and dashboard JSON files referenced in thi
 
 - **[isovalent_splunk_o11y](https://github.com/chambear2809/isovalent_splunk_o11y/)** — Helm values, OTel Collector configuration, Splunk dashboard JSON files, and the complete integration guide
 - **[isovalent-demo-jobs-app](https://github.com/chambear2809/isovalent-demo-jobs-app)** — The jobs-app Helm chart used in the demo scenario, including the error injection and remediation scripts
-
-{{% children depth="1" type="card" description="true" %}}
