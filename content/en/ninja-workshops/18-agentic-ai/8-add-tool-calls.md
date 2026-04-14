@@ -47,12 +47,21 @@ spans contain metadata that tells OpenTelemetry: "This isn't
 just a chat; this is a reasoning loop with specific tools." This is what 
 populates the Agents Page and the Agent Flow diagrams in the trace visualization.
 
-## Add Tools
+## Make a Backup 
 
-Open the `~/workshop/agentic-ai/main.py` file for editing. 
+Before making changes to the Python code, make a backup of the `main.py` file 
+using the following command: 
 
-Add the following import statements between the lines that 
-say `Begin: Add Import Statements` and `End: Add Import Statements`: 
+```bash
+cp ~/workshop/agentic-ai/main.py ~/workshop/agentic-ai/main.py.bak
+```
+
+## Add Import Statements
+
+Open the `~/workshop/agentic-ai/main.py` file for editing.
+
+Add the following import statements between the lines that
+say `Begin: Add Import Statements` and `End: Add Import Statements`:
 
 ```python
 # Begin: Add Import Statements
@@ -65,7 +74,9 @@ create_agent as _create_react_agent,  # type: ignore[attr-defined]
 # End: Add Import Statements
 ```
 
-Then, add the tool definitions between the lines that
+## Add Tools
+
+In the same `main.py` file, add the tool definitions between the lines that
 say `Begin: Tool Definitions` and `End: Tool Definitions`:
 
 ```python 
@@ -343,9 +354,14 @@ def plan_synthesizer_node(state: PlannerState) -> PlannerState:
     return state
 ```
 
-> Notice how we passed a tool when creating the flight, hotel, and activity specialist agents. 
-> When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill 
-> the request. 
+Notice how we passed a tool when creating the flight, hotel, and activity specialist agents. 
+When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill 
+the request. 
+
+> Hint: run the following command to compare your changes with the model solution:
+>
+> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-agents-and-tools/main.py`
+
 
 ## Build an Updated Docker Image
 
@@ -357,10 +373,6 @@ docker push localhost:9999/agentic-ai-app:app-with-agents-and-tools
 ```
 
 ### Update the Kubernetes Manifest
-
-OpenTelemetry instrumentation, and AI Agent Monitoring in particular, require a number of environment
-variables to be set that define how instrumentation data is collected, processed, and
-exported.
 
 Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
 update the image to ensure we're using the one with the

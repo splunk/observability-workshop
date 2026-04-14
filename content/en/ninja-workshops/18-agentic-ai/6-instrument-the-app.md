@@ -41,6 +41,9 @@ These packages can be described as follows:
 * `splunk-otel-util-genai`: this package includes utility functions to provide APIs and data types to ease instrumentation of Generative AI workloads using OpenTelemetry semantic conventions.
 * `opentelemetry-instrumentation-flask`: this library builds on the OpenTelemetry WSGI middleware to track web requests in Flask applications.
 
+> Hint: run the following command to compare your changes with the model solution:
+> 
+> `diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-instrumentation/requirements.txt`
 
 ## Update the Dockerfile 
 
@@ -52,6 +55,10 @@ file for editing and update the last line as follows:
 # Run the server with instrumentation
 CMD ["opentelemetry-instrument", "python", "main.py"]
 ```
+
+> Hint: run the following command to compare your changes with the model solution:
+> 
+> `diff ~/workshop/agentic-ai/base-app/Dockerfile ~/workshop/agentic-ai/app-with-instrumentation/Dockerfile`
 
 ### Build an Updated Docker Image
 
@@ -108,6 +115,8 @@ tag** to ensure we're using the image with the instrumentation:
 In the same file, add the following **environment variables** between the comments that say 
 `Begin: Add Environment Variables` and `End: Add Environment Variables`: 
 
+> Hint: Type `:set paste` before pasting the contents, to prevent `vi` from auto-indenting the pasted code.
+
 ```yaml
             # Begin: Add Environment Variables
             # Service Name
@@ -147,8 +156,7 @@ In the same file, add the following **environment variables** between the commen
 > ensure you've copied all of the text.
 
 > Note: indentation is critical with yaml; ensure the new environment variables 
-> align with the existing environment variables. 
-
+> align with the existing environment variables.
 
 The following environment variables are specific to Agentic AI monitoring 
 and can be described as follows: 
@@ -157,6 +165,10 @@ and can be described as follows:
 * `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`: this is used to enable/disable message capture from Agentic AI applications. We've set it to `true` for this workshop. 
 * `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE`: this defines how messages should be captured. We've set it to `SPAN` for this workshop, which ensures messages are captured using the span event store. 
 * `OTEL_INSTRUMENTATION_GENAI_EMITTERS`: we've set this to `span_metric,splunk` for the workshop, which ensures that both span and metric data are captured, as well as Splunk-specific features. 
+
+> Hint: run the following command to compare your changes with the model solution:
+> 
+> `diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-instrumentation/k8s.yaml`
 
 ### Deploy the Updated Application 
 

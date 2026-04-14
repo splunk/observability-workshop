@@ -75,6 +75,10 @@ def activity_specialist_node(
     return state
 ```
 
+> Hint: run the following command to compare your changes with the model solution:
+>
+> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-security-risk/main.py`
+
 ## Build an Updated Docker Image
 
 Build an updated Docker image with a new tag:

@@ -71,6 +71,10 @@ cisco-aidefense-sdk>=2.0.0
 httpx>=0.24.0
 ````
 
+> Hint: run the following command to compare your changes with the model solution:
+>
+> `diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-ai-defense/requirements.txt`
+
 ### Build an Updated Docker Image
 
 Build an updated Docker image with a new tag:
@@ -112,6 +116,11 @@ instrumentation:
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-ai-defense
 ```
+
+> Hint: run the following command to compare your changes with the model solution:
+>
+> `diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-ai-defense/k8s.yaml`
+
 
 ### Deploy the Updated Application
 
