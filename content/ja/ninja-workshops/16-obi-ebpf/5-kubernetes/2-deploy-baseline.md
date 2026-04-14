@@ -5,7 +5,7 @@ weight: 2
 
 ## ワークショップアプリケーションのデプロイ
 
-アプリケーションは専用のnamespaceにデプロイされます:
+アプリケーションは専用の namespace にデプロイされます:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -36,7 +36,7 @@ deployment.apps/load-generator created
 
 ## Splunk OTel Collector のインストール
 
-[Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart) は、Kubernetesにcollectorをデプロイする本番環境向けの方法です。collectorのデプロイ、サービス、および設定を自動的に処理します。
+[Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart) は、Kubernetes に Collector をデプロイするための本番環境向けの方法です。Collector のデプロイ、サービス、および設定を自動的に処理します。
 
 ### Helm リポジトリの追加
 
@@ -63,10 +63,10 @@ Update Complete. ⎈Happy Helming!⎈
 
 ### Collector のインストール
 
-これはOBI **なし**でSplunk OTel Collectorをインストールします。次のステップでOBIを有効にして、有効化前後の違いを確認します。
+これにより、OBI **なし**で Splunk OTel Collector がインストールされます。次のステップで OBI を有効にして、有効化前後の違いを確認します。
 
 {{% notice title="Note" style="info" %}}
-環境変数 `ACCESS_TOKEN`、`REALM`、および `INSTANCE` は、ワークショップインスタンスで事前に設定されています。`env` を実行して、これらが存在することを確認してください。
+環境変数 `ACCESS_TOKEN`、`REALM`、`INSTANCE` はワークショップインスタンスに事前設定されています。`env` を実行して存在を確認してください。
 {{% /notice %}}
 
 {{< tabs >}}
@@ -124,13 +124,13 @@ splunk-otel-collector-cluster-receiver-xyz34           1/1     Running   0      
 
 ## アプリケーションのテスト
 
-NodePort経由でfrontendにアクセスします:
+NodePort 経由でフロントエンドにアクセスします:
 
 ``` bash
 kubectl port-forward -n obi-workshop svc/frontend 30000:3000 &; sleep 5
 ```
 
-ポートがフォワードされたら、curlでページにアクセスできます:
+ポートフォワーディングが完了したら、curl でページにアクセスできます:
 
 ``` bash
 curl -s http://localhost:30000/create-order | python3 -m json.tool
@@ -140,6 +140,6 @@ curl -s http://localhost:30000/create-order | python3 -m json.tool
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Splunk APMを確認し、environment `<INSTANCE>-ebpf` でフィルタリングしてください。collectorからのインフラストラクチャメトリクスは表示されますが、**アプリケーショントレースはまだ表示されません**。サービスは実行中ですが、計装されていません。
+Splunk APM で環境 `<INSTANCE>-ebpf` でフィルタリングして確認してください。Collector からのインフラストラクチャメトリクスは表示されますが、**新しいアプリケーショントレースはまだ表示されません**。サービスは実行中ですが、まだ計装されていません。
 
 {{% /notice %}}
