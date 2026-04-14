@@ -35,6 +35,9 @@ A number of metrics are captured for Azure OpenAI:
 Navigate to **Metrics** -> **Metric finder**, and then search for the 
 `ProcessedPromptTokens` metric and click **View in chart**: 
 
+> Note: you can also use [this link](https://app.us1.signalfx.com/#/chart/v2/new?template=default&filters=sf_metric:ProcessedPromptTokens)
+to view this metric with the **Metric finder**.
+
 ![Processed Prompt Tokens Metric](../images/ProcessedPromptTokensMetric.png)
 
 ## Azure OpenAI Navigator 

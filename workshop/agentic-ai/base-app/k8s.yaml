@@ -40,6 +40,9 @@ spec:
             # OpenAI Model
             - name: OPENAI_MODEL
               value: "gpt-4.1-mini"
+            # Begin: Add Environment Variables
+
+            # End: Add Environment Variables
           resources:
             requests:
               memory: "512Mi"

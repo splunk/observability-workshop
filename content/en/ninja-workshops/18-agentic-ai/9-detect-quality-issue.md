@@ -5,6 +5,11 @@ weight: 9
 time: 15 minutes
 ---
 
+> Note: this section of the workshop requires changes to multiple files.
+> If you're not sure where to make the changes, or your application is no
+> longer working, please refer to the model solution for this section
+> which is in the `~/workshop/agentic-ai/app-with-quality-issue` folder.
+
 In the previous sections, we instrumented our application with OpenTelemetry, and configured 
 it to evaluate the semantic quality of agent responses. 
 
@@ -22,7 +27,8 @@ If you're curious to understand this is done, please review the `poison_chat_wra
 ## Poison the Hotel Specialist Output
 
 Next, let's modify the hotel specialist agent to use this wrapper and modify 
-the LLM output. First, modify the `main.py` file to import the wrapper class: 
+the LLM output. First, modify the `main.py` file to add the following import statement
+between the lines that say `Begin: Add Import Statements` and `End: Add Import Statements`:
 
 ```python
 from poison_chat_wrapper import PoisonedChatWrapper
@@ -111,7 +117,25 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

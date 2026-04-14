@@ -5,6 +5,11 @@ weight: 10
 time: 15 minutes
 ---
 
+> Note: this section of the workshop requires changes to multiple files.
+> If you're not sure where to make the changes, or your application is no
+> longer working, please refer to the model solution for this section
+> which is in the `~/workshop/agentic-ai/app-with-ai-defense` folder.
+
 Splunk Observability Cloud integrates with 
 [Cisco AI Defense](https://www.cisco.com/site/us/en/products/security/ai-defense/index.html)
 to provide a consolidated view of [security and privacy risks](https://securitydocs.cisco.com/docs/ai-def/user/105473.dita) 
@@ -47,6 +52,8 @@ The first step is to [Set up an integration with Cisco AI Defense](https://help.
 If you navigate to **Data Management -> Deployed integrations** and search for `AI Defense`, 
 you'll see that this integration has already been configured: 
 
+> Note: the `aiDefenseIntegration` feature flag must be enabled to see this integration
+
 ![AI Defense Config](../images/AIDefenseConfig.png)
 
 ## Add Instrumentation Packages
@@ -73,10 +80,9 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-ai
 docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 ```
 
-### Update the Kubernetes Manifest
+### Create a Secret for the AI Defense Gateway
 
-Before updating the Kubernetes manifest file, let's create a secret to store the 
-AI Defense Gateway URL: 
+Let's create a secret to store the AI Defense Gateway URL:
 
 > Note: your instructor will provide the actual AI Defense URL to be used while creating the secret
 
@@ -84,59 +90,20 @@ AI Defense Gateway URL:
 kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=ai-defense-gateway-url='https://us.gateway.aidefense.security.cisco.com/{tenant}/connections/{conn}'
 ```
 
-Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
-ensure that only the following environment variables are included:
 
-> Note that `AZURE_OPENAI_ENDPOINT` is now configured to use the AI Defense Gateway URL, to ensure any 
-> requests destined for Azure OpenAI are instead sent through the gateway 
+### Update the Kubernetes Manifest
+
+Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
+replace the definition of the `AZURE_OPENAI_ENDPOINT` environment variable as 
+follows, which ensures that any requests destined for Azure OpenAI are 
+instead sent through the AI Defense gateway: 
 
 ```yaml
-            - name: AZURE_OPENAI_DEPLOYMENT_NAME
-              value: "gpt-4.1-mini"
             - name: AZURE_OPENAI_ENDPOINT
               valueFrom:
                 secretKeyRef:
                   name: ai-defense-secret
                   key: ai-defense-gateway-url
-            - name: AZURE_OPENAI_API_VERSION
-              value: "2024-12-01-preview"
-            - name: AZURE_OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-key
-            # OpenAI Model
-            - name: OPENAI_MODEL
-              value: "gpt-4.1-mini"
-            # Service Name
-            - name: OTEL_SERVICE_NAME
-              value: "travel-planner"
-            # Additional OTEL configuration
-            - name: OTEL_RESOURCE_ATTRIBUTES
-              valueFrom:
-                configMapKeyRef:
-                  name: instance-config
-                  key: OTEL_RESOURCE_ATTRIBUTES
-            - name: SPLUNK_OTEL_AGENT
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://$(SPLUNK_OTEL_AGENT):4317"
-            - name: OTEL_EXPORTER_OTLP_PROTOCOL
-              value: "grpc"
-            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-              value: "DELTA"
-            - name: OTEL_PYTHON_EXCLUDED_URLS
-              value: "^(https?://)?[^/]+(/health)?$"
-            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
-              value: "true"
-            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE
-              value: "SPAN"
-            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
-              value: "span_metric,splunk"
-            - name: SPLUNK_PROFILER_ENABLED
-              value: "true"
 ```
 
 In the same file, update the image to ensure we're using the one with the
@@ -156,7 +123,25 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

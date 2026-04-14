@@ -106,12 +106,10 @@ docker push localhost:9999/agentic-ai-app:base-app
 
 We'll use a Kubernetes secret to store the Azure OpenAI endpoint and key:
 
-> Note: the workshop instructor will provide the values for `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`.
-
 ``` bash
 kubectl create ns travel-agent
 
-kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-endpoint=your_azure_openai_api_endpoint --from-literal=azure-openai-api-key=your_azure_openai_api_key
+kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
 ```
 
 ### Deploy the Application Using the Kubernetes Manifest File
@@ -175,3 +173,11 @@ curl http://travel-planner.localhost/travel/plan \
 
 {{% /tab %}}
 {{< /tabs >}}
+
+## Troubleshooting
+
+If you need to troubleshoot, use the following command to view the application logs:
+
+```bash
+kubectl logs -l app=travel-planner-langchain -n travel-agent -f
+```

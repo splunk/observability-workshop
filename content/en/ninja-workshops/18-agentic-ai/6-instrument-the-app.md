@@ -5,6 +5,11 @@ weight: 6
 time: 15 minutes
 ---
 
+> Note: this section of the workshop requires changes to multiple files. 
+> If you're not sure where to make the changes, or your application is no 
+> longer working, please refer to the model solution for this section 
+> which is in the `~/workshop/agentic-ai/app-with-instrumentation` folder.
+
 There are a few steps required to instrument our Agentic AI application 
 with OpenTelemetry and deploy it to Kubernetes: 
 
@@ -93,10 +98,18 @@ OpenTelemetry instrumentation, and AI Agent Monitoring in particular, require a 
 variables to be set that define how instrumentation data is collected, processed, and 
 exported.
 
-Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and 
-add the following environment variables: 
+Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing. Update the **image 
+tag** to ensure we're using the image with the instrumentation:
 
 ```yaml
+          image: localhost:9999/agentic-ai-app:app-with-instrumentation
+```
+
+In the same file, add the following **environment variables** between the comments that say 
+`Begin: Add Environment Variables` and `End: Add Environment Variables`: 
+
+```yaml
+            # Begin: Add Environment Variables
             # Service Name
             - name: OTEL_SERVICE_NAME
               value: "travel-planner"
@@ -126,14 +139,16 @@ add the following environment variables:
               value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
+            # End: Add Environment Variables
 ```
 
-In the same file, update the image to ensure we're using the one with the 
-instrumentation: 
+> Note: some of the text may not be visible without scrolling. 
+> Use the `Copy text to clipboard` button on the top right-hand corner to 
+> ensure you've copied all of the text.
 
-```yaml
-          image: localhost:9999/agentic-ai-app:app-with-instrumentation
-```
+> Note: indentation is critical with yaml; ensure the new environment variables 
+> align with the existing environment variables. 
+
 
 The following environment variables are specific to Agentic AI monitoring 
 and can be described as follows: 
@@ -184,4 +199,12 @@ curl http://travel-planner.localhost/travel/plan \
     "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
     "travelers": 2
   }'
+```
+
+## Troubleshooting 
+
+If you need to troubleshoot, use the following command to view the application logs: 
+
+```bash
+kubectl logs -l app=travel-planner-langchain -n travel-agent -f
 ```

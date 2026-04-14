@@ -40,6 +40,7 @@ spec:
             # OpenAI Model
             - name: OPENAI_MODEL
               value: "gpt-4.1-mini"
+            # Begin: Add Environment Variables
             # Service Name
             - name: OTEL_SERVICE_NAME
               value: "travel-planner"
@@ -69,6 +70,7 @@ spec:
               value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
+            # End: Add Environment Variables
           resources:
             requests:
               memory: "512Mi"

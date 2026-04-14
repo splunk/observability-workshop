@@ -5,6 +5,11 @@ weight: 8
 time: 15 minutes
 ---
 
+> Note: this section of the workshop requires changes to multiple files.
+> If you're not sure where to make the changes, or your application is no
+> longer working, please refer to the model solution for this section
+> which is in the `~/workshop/agentic-ai/app-with-agents-and-tools` folder.
+
 In the previous section, we discovered that our agents aren't appearing on the new 
 **Agents** page, nor in the **Agent flow** at the top of the trace. 
 
@@ -44,15 +49,28 @@ populates the Agents Page and the Agent Flow diagrams in the trace visualization
 
 ## Add Tools
 
-First, add the following import statement near the top of the `main.py` file: 
+Open the `~/workshop/agentic-ai/main.py` file for editing. 
+
+Add the following import statements between the lines that 
+say `Begin: Add Import Statements` and `End: Add Import Statements`: 
 
 ```python
+# Begin: Add Import Statements
+
 from langchain_core.tools import tool
+from langchain.agents import (
+create_agent as _create_react_agent,  # type: ignore[attr-defined]
+)
+
+# End: Add Import Statements
 ```
 
-Then, add the tool definitions: 
+Then, add the tool definitions between the lines that
+say `Begin: Tool Definitions` and `End: Tool Definitions`:
 
 ```python 
+# Begin: Tool Definitions
+
 @tool
 def mock_search_flights(origin: str, destination: str, departure: str) -> str:
     """Return mock flight options for a given origin/destination pair."""
@@ -89,6 +107,8 @@ def mock_search_activities(destination: str) -> str:
     data = DESTINATIONS.get(destination.lower(), DESTINATIONS["paris"])
     bullets = "\n".join(f"- {item}" for item in data["highlights"])
     return f"Signature experiences in {destination.title()}:\n{bullets}"
+    
+# End: Tool Definitions
 ```
 
 ## Configure the Application for AI Agent Monitoring
@@ -106,17 +126,9 @@ def flight_specialist_node(state: PlannerState) -> PlannerState:
 ```
 
 For AI Agent Monitoring, we need to instead create an agent that includes metadata
-with the agent name, and then invoke the agent rather than the LLM. 
+with the agent name, and then invoke the agent rather than the LLM.
 
-Start by adding the following import near the top of the `main.py` file:
-
-```python
-from langchain.agents import (
-create_agent as _create_react_agent,  # type: ignore[attr-defined]
-)
-```
-
-Then, replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
+Replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
 `activity_specialist_node`, and `plan_synthesizer_node` functions with the following: 
 
 > Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
@@ -368,7 +380,25 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

@@ -155,6 +155,7 @@ opentelemetry-instrumentation-flask==0.59b0
 Let's deploy the CrewAI example by first building new Docker images: 
 
 ``` bash
+cd ~/workshop/agentic-ai/crewai
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:crewai .
 docker push localhost:9999/agentic-ai-app:crewai
 ```
@@ -174,7 +175,25 @@ kubectl apply -f ~/workshop/agentic-ai/crewai/k8s.yaml
 ```
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

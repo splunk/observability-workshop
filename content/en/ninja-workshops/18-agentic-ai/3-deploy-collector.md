@@ -116,9 +116,29 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
+### Using the New Kubernetes Experience
+
+If you're configured to use the new Kubernetes experience in O11y Cloud, follow the steps in 
+this section. Otherwise, refer to the **Using the Traditional Kubernetes Experience** section 
+instead. 
+
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes overview**, 
+then add your cluster name (which is `<your instance name>-cluster`): 
+
+> Tip: use the `echo $INSTANCE` command if you've forgotten your instance name
+
+![Kubernetes overview filter](../images/k8sOverviewFilter.png)
+
+After clicking **Apply Filters** you should see an overview for your cluster 
+similar to the following: 
+
+![Kubernetes overview new experience](../images/k8sOverviewNewExperience.png)
+
+### Using the Traditional Kubernetes Experience
+
 In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
 and then search for your cluster name (which is `<your instance name>-cluster`):
 
-![Kubernetes cluster](../images/k8scluster.png)
-
 > Tip: use the `echo $INSTANCE` command if you've forgotten your instance name
+
+![Kubernetes cluster](../images/k8scluster.png)

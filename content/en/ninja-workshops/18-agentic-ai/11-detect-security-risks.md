@@ -5,6 +5,11 @@ weight: 11
 time: 15 minutes
 ---
 
+> Note: this section of the workshop requires changes to multiple files.
+> If you're not sure where to make the changes, or your application is no
+> longer working, please refer to the model solution for this section
+> which is in the `~/workshop/agentic-ai/app-with-security-risk` folder.
+
 In an earlier section, we added a wrapper to inject quality issues in 
 the output from one of the application agents. 
 
@@ -98,7 +103,25 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Test the Application in Kubernetes
 
-Ensure the new application pod has started successfully and the old pod is no longer present.
+Ensure the new application pod has started successfully and the old pod is no longer present:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Then, run the following command to test the application:
 

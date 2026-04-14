@@ -37,15 +37,20 @@ from langchain_core.messages import (
     HumanMessage,
     SystemMessage,
 )
-from langchain_core.tools import tool
 from langchain_openai import AzureChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 
 from langchain_core.messages import convert_to_messages
+
+# Begin: Add Import Statements
+
+from langchain_core.tools import tool
 from langchain.agents import (
     create_agent as _create_react_agent,  # type: ignore[attr-defined]
 )
+
+# End: Add Import Statements
 
 import logging
 
@@ -90,10 +95,7 @@ def _compute_dates() -> tuple[str, str]:
     end = start + timedelta(days=7)
     return start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d")
 
-# ---------------------------------------------------------------------------
-# Tools exposed to agents
-# ---------------------------------------------------------------------------
-
+# Begin: Tool Definitions
 
 @tool
 def mock_search_flights(origin: str, destination: str, departure: str) -> str:
@@ -131,6 +133,8 @@ def mock_search_activities(destination: str) -> str:
     data = DESTINATIONS.get(destination.lower(), DESTINATIONS["paris"])
     bullets = "\n".join(f"- {item}" for item in data["highlights"])
     return f"Signature experiences in {destination.title()}:\n{bullets}"
+
+# End: Tool Definitions
 
 # ---------------------------------------------------------------------------
 # LangGraph state & helpers
