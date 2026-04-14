@@ -2,27 +2,29 @@
 title: Agentic AI アプリケーションアーキテクチャ
 linkTitle: 4. Agentic AI アプリケーションアーキテクチャ
 weight: 4
-time: 20 minutes
+time: 15 minutes
 ---
 
 ## アプリケーション概要
 
 このワークショップでは、旅行予約用の **Agentic AI** アプリケーションを使用します。
-**OpenTelemetry** でアプリケーションを計装する前に、アプリケーションがどのように動作するかを理解しておくと役立ちます。
+**OpenTelemetry** でアプリケーションを計装する前に、アプリケーションの仕組みを理解しておくと役立ちます。
 
-このアプリケーションは、旅行計画リクエストを受け付け、LangChainを活用した複数のLLMノードで構成される **LangGraph** ワークフローを通じて処理する **Flask API** です。各ノードは特定の役割を果たし、共有状態を更新して、次のステップに引き継ぎます。
+![Application Architecture](../images/travel-planner-app-architecture.png)
 
-このパートでは、以下の内容を確認します：
+このアプリケーションは、旅行計画リクエストを受け付け、LangChain を活用した複数の LLM ノードで構成される **LangGraph** ワークフローを通じて処理する **Flask API** です。各ノードは特定の役割を持ち、共有状態を更新し、次のステップに引き継ぎます。
+
+このパートでは、以下の内容を確認します:
 
 * リクエストのライフサイクル
 * 共有状態モデル
-* LangGraphノードの動作方法
-* コードで使用されているLangChainの抽象化
+* LangGraph ノードの動作
+* コードで使用される LangChain の抽象化
 * 後でオブザーバビリティが重要になる箇所
 
 ### アプリケーションの機能
 
-大まかに言うと、このアプリケーションはリクエストを受け取り、マルチステップワークフローに変換します：
+大まかに言うと、このアプリケーションはリクエストを受け取り、マルチステップのワークフローに変換します:
 
 * coordinator
 * flight specialist
@@ -30,7 +32,7 @@ time: 20 minutes
 * activity specialist
 * synthesizer
 
-メインフローは次のようになります：
+メインのフローは次のようになっています:
 
 ```python
 @app.route("/travel/plan", methods=["POST"])
@@ -56,17 +58,17 @@ def plan():
     return jsonify(result), 200
 ```
 
-これを分かりやすく説明すると：
+これを分かりやすく説明すると:
 
-1. Flaskがリクエストを受信します
-2. `plan_travel_internal()` がワークフローの状態を構築します
-3. LangGraphがノードを実行します
-4. 各ノードが状態を更新します
-5. 最終的な旅程がJSONとして返されます
+1. Flask がリクエストを受け取る
+2. `plan_travel_internal()` がワークフロー状態を構築する
+3. LangGraph がノードを実行する
+4. 各ノードが状態を更新する
+5. 最終的な旅程が JSON として返される
 
-### LangGraph の共有状態
+### LangGraph における共有状態
 
-このアプリで最も重要なLangGraphの概念は、共有状態オブジェクトです：
+このアプリケーションで最も重要な LangGraph の概念は、共有状態オブジェクトです:
 
 ```python
 class PlannerState(TypedDict):
@@ -87,26 +89,26 @@ class PlannerState(TypedDict):
 
 この状態はグラフ内をノードからノードへと移動します。
 
-各ノードは：
+各ノードは:
 
-* 状態から値を読み取ります
-* 何らかの処理を行います
-* 新しい値を状態に書き戻します
-* 次に何が起こるかを制御するためにcurrent_agentを設定します
+* 状態から値を読み取る
+* 何らかの処理を行う
+* 新しい値を状態に書き戻す
+* current_agent を設定して次の動作を制御する
 
-これがLangGraphの重要なメンタルモデルです：**ステートフルなワークフローオーケストレーション**。
+これが LangGraph の重要なメンタルモデルです: **ステートフルなワークフローオーケストレーション**。
 
-また、このフィールドにも注目する価値があります：
+また、このフィールドも注目に値します:
 
 ```python
 messages: Annotated[List[AnyMessage], add_messages]
 ```
 
-これはLangGraphに対して、リストを上書きするのではなく、新しいメッセージを追加するよう指示します。これにより、アプリケーションはステップ間で会話履歴を保持します。
+これは LangGraph に対して、リストを上書きするのではなく新しいメッセージを追加するよう指示します。これにより、アプリケーションはステップ間で会話履歴を保持します。
 
 ### 実行の開始位置
 
-メインのオーケストレーションは `plan_travel_internal()` で行われます：
+メインのオーケストレーションは `plan_travel_internal()` で行われます:
 
 ```python
 def plan_travel_internal(
@@ -142,16 +144,16 @@ def plan_travel_internal(
         final_state = node_state
 ```
 
-この関数は次のアプリケーションライフサイクルを実装しています：
+この関数は以下のアプリケーションライフサイクルを実装しています:
 
-* 初期状態を構築
-* グラフを構築
-* コンパイル
-* ステップごとにストリーム実行
+* 初期状態を構築する
+* グラフを構築する
+* コンパイルする
+* ステップごとにストリーム実行する
 
 ### グラフの定義方法
 
-グラフは `build_workflow()` で明示的に構築されます：
+グラフは `build_workflow()` で明示的に構築されます:
 
 ```python
 def build_workflow() -> StateGraph:
@@ -170,7 +172,7 @@ def build_workflow() -> StateGraph:
     return graph
 ```
 
-ルーティングロジックはここにあります：
+ルーティングロジックはここにあります:
 
 ```python
 def should_continue(state: PlannerState) -> str:
@@ -184,7 +186,7 @@ def should_continue(state: PlannerState) -> str:
     return mapping.get(state["current_agent"], END)
 ```
 
-条件付きエッジを使用していますが、ワークフローは実質的に線形です：
+条件付きエッジを使用していますが、ワークフローは実質的に線形です:
 
 * start
 * coordinator
@@ -194,11 +196,11 @@ def should_continue(state: PlannerState) -> str:
 * synthesizer
 * end
 
-### ノードの動作方法
+### ノードの動作
 
-このアプリのLangGraphノードは、状態を受け取り、更新された状態を返す単なるPython関数です。
+このアプリケーションの LangGraph ノードは、状態を受け取り、更新された状態を返す単純な Python 関数です。
 
-たとえば、flight specialist：
+例えば、flight specialist の場合:
 
 ```python
 def flight_specialist_node(state: PlannerState) -> PlannerState:
@@ -223,19 +225,19 @@ def flight_specialist_node(state: PlannerState) -> PlannerState:
     return state
 ```
 
-これは一般的なノードパターンを示しています：
+これは一般的なノードパターンを示しています:
 
-1. LLMを作成またはアクセスします
-2. 構造化された状態からプロンプトを構築します
-3. モデルを呼び出します
-4. 結果を状態に保存します
-5. 次のノードを設定します
+1. LLM を作成またはアクセスする
+2. 構造化された状態からプロンプトを構築する
+3. モデルを呼び出す
+4. 結果を状態に保存する
+5. 次のノードを設定する
 
-hotelノードとactivityノードも同じ構造に従っているため、ワークフローの説明が容易です。
+hotel ノードと activity ノードも同じ構造に従っており、ワークフローを説明しやすくしています。
 
-### ノードで使用されている LangChain の概念
+### ノードで使用される LangChain の概念
 
-アプリケーションは、1つの長いプロンプト文字列ではなく、LangChainのメッセージ抽象化を使用しています。
+このアプリケーションは、1つの長いプロンプト文字列ではなく、LangChain のメッセージ抽象化を使用しています。
 
 ``` python
 from langchain_core.messages import (
@@ -246,13 +248,13 @@ from langchain_core.messages import (
 )
 ```
 
-これが重要なのは、各ノードで以下を分離できるためです：
+これが重要なのは、各ノードで以下を分離できるからです:
 
 * システムロール
 * ユーザータスク
 * モデルの応答
 
-たとえば：
+例えば:
 
 ```python
 messages = [
@@ -262,7 +264,7 @@ messages = [
 result = llm.invoke(messages)
 ```
 
-LLM自体はここで作成されます：
+LLM 自体はここで作成されます:
 
 ```python
 def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> AzureChatOpenAI:
@@ -273,15 +275,17 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Azur
         azure_deployment=azure_deployment_name,
         openai_api_version=azure_openai_api_version,
         temperature=temperature,
+        model_name = azure_deployment_name,
+        # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
     )
 ```
 
-このアプローチにより、モデル構成とワークフローロジックが分離されます。
-ノードごとに、どの程度決定論的または創造的であるべきかに応じて、異なるtemperatureを使用できます。
+このアプローチにより、モデル設定とワークフローロジックが分離されます。
+各ノードは、どの程度決定的または創造的であるべきかに応じて、異なる temperature を使用できます。
 
-### synthesizer が示す分解パターン
+### synthesizer は分解パターンを示す
 
-最後のノードは、specialistの出力を1つの回答にまとめます。
+最後のノードは、specialist の出力を1つの回答に統合します。
 
 ```python
 def plan_synthesizer_node(state: PlannerState) -> PlannerState:
@@ -319,9 +323,9 @@ def plan_synthesizer_node(state: PlannerState) -> PlannerState:
     return state
 ```
 
-これはagenticアプリの典型的なパターンです：
+これは agentic アプリケーションの典型的なパターンです:
 
-* 作業をspecialistに分解する
+* 作業を specialist に分解する
 * 中間出力を収集する
 * 最終的な応答に統合する
 

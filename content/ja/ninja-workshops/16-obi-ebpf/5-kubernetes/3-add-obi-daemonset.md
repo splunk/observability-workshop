@@ -1,9 +1,9 @@
 ---
-title: 3. Enable OBI via Helm
+title: 3. Helm で OBI を有効化
 weight: 3
 ---
 
-アプリケーションコードを一切変更せずに、クラスター全体にトレースを追加します。必要なのはHelmのアップグレード1回だけです。
+アプリケーションコードを一切変更せずに、Helm のアップグレード1回だけでクラスター全体にトレーシングを追加します。
 
 ## OBI を有効にして Collector をアップグレード
 
@@ -21,24 +21,24 @@ helm -n obi-workshop  upgrade splunk-otel-collector \
 
 {{% /notice %}}
 
-`--set="obi.enabled=true"` の追加が唯一の変更点です。Helmチャートが他のすべてを処理します：
+変更点は `--set="obi.enabled=true"` という1つのオプションだけです。Helm チャートが残りのすべてを処理します
 
-- **OBI DaemonSet** をデプロイ（各ノードに1つのPod）
-- RBACを設定（ServiceAccount、ClusterRole、ClusterRoleBinding）
-- OBIを自動的にCollectorに接続
-- eBPFに必要なLinux権限を付与
+- **OBI DaemonSet** をデプロイ（ノードごとに1つの Pod）
+- RBAC を設定（ServiceAccount、ClusterRole、ClusterRoleBinding）
+- OBI を自動的に Collector に接続
+- eBPF に必要な Linux ケーパビリティを付与
 
 ### OBI に必要なものは？
 
-OBI Podは昇格された権限で実行されます。これはeBPFがカーネルレベルで動作するためです：
+OBI Pod は、eBPF がカーネルレベルで動作するため、昇格した権限で実行されます
 
 ``` yaml
-hostPID: true        # ノード上のすべてのプロセスを確認（他の Pod を含む）
-hostNetwork: true    # ネットワークトラフィックを監視し、トレースコンテキストを注入
-privileged: true     # カーネルに eBPF プローブをアタッチ
+hostPID: true        # See all processes on the node, including other pods
+hostNetwork: true    # Observe and inject trace context into network traffic
+privileged: true     # Attach eBPF probes to the kernel
 ```
 
-クラスターポリシーで必要な場合、権限を削減する方法の詳細については [OBI Security Documentation](https://opentelemetry.io/docs/zero-code/obi/security/) を参照してください。
+クラスターポリシーで必要な場合に権限を削減する方法については、[OBI Security Documentation](https://opentelemetry.io/docs/zero-code/obi/security/) を参照してください。
 
 ## OBI が実行されていることを確認
 
@@ -68,20 +68,20 @@ level=INFO msg="instrumenting process" service=frontend
 {{% /tab %}}
 {{< /tabs >}}
 
-トラフィックを生成します：
+トラフィックを生成します
 
 ``` bash
 curl -s http://localhost:30000/create-order | python3 -m json.tool
 ```
 
-## Splunk APM で確認
+## Splunk APM を確認
 
 トレースが流れるまで30〜60秒待ちます。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. **Service Map**: 3つのサービスが表示されるはずです：`frontend` -> `order-processor` -> `payment-service`
-2. **Traces**: 任意のトレースをクリックしてください。3つのサービスすべてにまたがる完全な分散トレースと、各ホップのタイミングが表示されます。
-3. **Phase 2 と同様**: コード変更ゼロ。1つのフラグを指定した `helm upgrade` のみ。
+1. **Service Map**: `frontend` -> `order-processor` -> `payment-service` の3つのサービスが表示されるはずです。
+2. **Traces**: 任意のトレースをクリックします。3つのサービスすべてにまたがる完全な分散トレースと、各ホップのタイミングが表示されます。
+3. **フェーズ2と同じストーリー**: コード変更ゼロ。1つのフラグを付けた `helm upgrade` 1回だけです。
 
 {{% /notice %}}

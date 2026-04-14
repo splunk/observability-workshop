@@ -2,29 +2,29 @@
 title: エージェントトレースデータの確認
 linkTitle: 7. エージェントトレースデータの確認
 weight: 7
-time: 15 minutes
+time: 10分
 ---
 
-## Splunk Observability Cloud でトレースデータを表示する
+## Splunk Observability Cloud でトレースデータを確認する
 
-Splunk Observability Cloudで `APM` に移動し、`Service Map` を選択します。
-環境名が選択されていることを確認してください（例：`agentic-ai-$INSTANCE`）。
-以下のようなサービスマップが表示されるはずです：
+Splunk Observability Cloud で、`APM` に移動し、`Service Map` を選択します。
+環境名が選択されていることを確認してください（例`agentic-ai-$INSTANCE`）。
+以下のようなサービスマップが表示されるはずです
 
 ![Service Map](../images/ServiceMap.png)
 
-右側のメニューで `Traces` をクリックします。次に、実行時間の長いトレースの1つを選択します。以下の例のように表示されるはずです：
+右側のメニューで `Traces` をクリックします。次に、実行時間が長いトレースの1つを選択します。以下の例のように表示されるはずです
 
 ![Trace](../images/Trace.png)
 
-**Agent flow** セクションにエージェント名（coordinator、flight-specialistなど）が表示されていないことに注目してください。
+**Agent flow** セクションにエージェント名（coordinator、flight-specialist など）が表示されていないことに注目してください。
 
-下にスクロールして、トレース内のAIインタラクションの1つをクリックしてみましょう。ここでは、プロンプトとレスポンスがキャプチャされていることが確認できます。また、このトレースに対するセマンティック品質評価の結果も確認できます：
+下にスクロールして、トレース内の AI インタラクションの1つをクリックしましょう。ここでは、プロンプトとレスポンスがキャプチャされていることが確認できます。また、このトレースのセマンティック品質評価の結果も確認できます
 
 ![Trace Details](../images/TraceDetails.png)
 
-次に、`APM` に移動し、`Agents` を選択します。環境名が選択されていることを確認してください（例：`agentic-ai-$INSTANCE`）。ページが空であることに気付くでしょう！
+次に、`APM` に移動し、`AI agents` を選択します。環境名が選択されていることを確認してください（例`agentic-ai-$INSTANCE`）。ページが空であることに気づくでしょう！
 
 ![Agents](../images/Agents.png)
 
-次のセクションでこれらの計装の問題に対処します。
+これらの計装の問題については、次のセクションで対処します。
