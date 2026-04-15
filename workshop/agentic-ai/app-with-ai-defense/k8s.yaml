@@ -28,8 +28,8 @@ spec:
             - name: AZURE_OPENAI_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-endpoint
+                  name: ai-defense-secret
+                  key: ai-defense-gateway-url
             - name: AZURE_OPENAI_API_VERSION
               value: "2024-12-01-preview"
             - name: AZURE_OPENAI_API_KEY

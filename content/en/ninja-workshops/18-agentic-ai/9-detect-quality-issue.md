@@ -27,8 +27,9 @@ If you're curious to understand this is done, please review the `poison_chat_wra
 ## Poison the Hotel Specialist Output
 
 Next, let's modify the hotel specialist agent to use this wrapper and modify 
-the LLM output. First, modify the `main.py` file to add the following import statement
-between the lines that say `Begin: Add Import Statements` and `End: Add Import Statements`:
+the LLM output. First, modify the `~/workshop/agentic-ai/base-app/main.py` file 
+to add the following import statement between the lines that say 
+`Begin: Add Import Statements` and `End: Add Import Statements`:
 
 ```python
 from poison_chat_wrapper import PoisonedChatWrapper

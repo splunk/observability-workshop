@@ -98,8 +98,8 @@ kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=a
 ### Update the Kubernetes Manifest
 
 Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
-replace the definition of the `AZURE_OPENAI_ENDPOINT` environment variable as 
-follows, which ensures that any requests destined for Azure OpenAI are 
+replace the definition of the `AZURE_OPENAI_ENDPOINT`environment variable 
+as follows, which ensures that any requests destined for Azure OpenAI are 
 instead sent through the AI Defense gateway: 
 
 ```yaml

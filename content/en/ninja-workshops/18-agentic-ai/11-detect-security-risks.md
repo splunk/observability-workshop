@@ -22,6 +22,8 @@ Then we'll showcase how these risks can be surfaced in Splunk Observability Clou
 Let's modify the activity specialist agent to use this wrapper and modify
 the LLM output. 
 
+Open the `~/workshop/agentic-ai/base-app/main.py` file for editing.
+
 Modify the `activity_specialist_node` function to use the wrapper
 as follows. This effectively simulates a scenario where the LLM has 
 included the user's credit card number as part of the response, which is 

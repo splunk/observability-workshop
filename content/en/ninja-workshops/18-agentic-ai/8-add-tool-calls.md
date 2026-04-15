@@ -53,12 +53,12 @@ Before making changes to the Python code, make a backup of the `main.py` file
 using the following command: 
 
 ```bash
-cp ~/workshop/agentic-ai/main.py ~/workshop/agentic-ai/main.py.bak
+cp ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/base-app/main.py.bak
 ```
 
 ## Add Import Statements
 
-Open the `~/workshop/agentic-ai/main.py` file for editing.
+Open the `~/workshop/agentic-ai/base-app/main.py` file for editing.
 
 Add the following import statements between the lines that
 say `Begin: Add Import Statements` and `End: Add Import Statements`:
@@ -68,7 +68,7 @@ say `Begin: Add Import Statements` and `End: Add Import Statements`:
 
 from langchain_core.tools import tool
 from langchain.agents import (
-create_agent as _create_react_agent,  # type: ignore[attr-defined]
+    create_agent as _create_react_agent,  # type: ignore[attr-defined]
 )
 
 # End: Add Import Statements
