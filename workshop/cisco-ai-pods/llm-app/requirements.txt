@@ -2,7 +2,7 @@ Flask==3.0.3
 langchain==1.2.10
 langchain-core==1.2.22
 langchain-nvidia-ai-endpoints==1.0.3
-langchain-openai==1.1.9
+langchain-openai==1.1.14
 langchain-community==0.4.1
 langchain-weaviate==0.0.6
 weaviate-client==4.19.2
