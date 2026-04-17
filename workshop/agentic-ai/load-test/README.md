@@ -24,32 +24,50 @@ Load test the collector installation:
   --insecure-hostkey
 ```
 
+Build the application: 
+
+``` bash
+./loadtest-build-app.sh \
+  --csv "<path to workshop csv file>" \
+  --max-parallel 10 \
+  --insecure-hostkey
+```
+
+Install the LLM application:
+
+``` bash
+./loadtest-install-app.sh \
+  --csv "<path to workshop csv file>" \
+  --azure-openai-key "$AZURE_OPENAI_KEY" \
+  --ai-defense-url "$AI_DEFENSE_URL" \
+  --max-parallel 10 \
+  --insecure-hostkey
+```
+
 Load test the LLM application:
 
 ``` bash
 ./loadtest-llm-app.sh \
   --csv "<path to workshop csv file>" \
-  --azure-openai-key "$AZURE_OPENAI_KEY" \
-  --ai-defense-url $"AI_DEFENSE_URL" \
   --max-parallel 10 \
   --insecure-hostkey
 ```
 
 ## Cleanup
 
-Uninstall the collector: 
+Uninstall the application:
 
 ``` bash
-./loadtest-uninstall-collector.sh \
+./loadtest-uninstall-llm-app.sh \
   --csv "<path to workshop csv file>" \
   --max-parallel 10 \
   --insecure-hostkey
 ```
 
-Uninstall the application:
+Uninstall the collector: 
 
 ``` bash
-./loadtest-uninstall-llm-app.sh \
+./loadtest-uninstall-collector.sh \
   --csv "<path to workshop csv file>" \
   --max-parallel 10 \
   --insecure-hostkey

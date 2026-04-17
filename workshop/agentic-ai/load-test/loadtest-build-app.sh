@@ -5,7 +5,7 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  ./loadtest-llm-app.sh --csv FILE URL [options]
+  ./loadtest-build-app.sh --csv FILE [options]
 
 Required:
   --csv FILE
@@ -80,18 +80,14 @@ set -euo pipefail
 
 echo "INSTANCE=${INSTANCE:-<unset>}"
 
-echo "Sending test request on ${INSTANCE}"
+echo "Building app on ${INSTANCE}"
 
-curl http://travel-planner.localhost/travel/plan \
-  -H "Content-Type: application/json" \
-  -d '{
-    "origin": "Seattle",
-    "destination": "Tokyo",
-    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
-    "travelers": 2
-  }'
+cd /home/splunk/workshop/agentic-ai/app-with-security-risk
 
-echo "Install complete on ${INSTANCE}"
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-security-risk .
+docker push localhost:9999/agentic-ai-app:app-with-security-risk
+
+echo "App build complete on ${INSTANCE}"
 REMOTE_EOF
 
   echo "[row $rownum] done"
@@ -128,8 +124,8 @@ for pid in "${pids[@]:-}"; do
 done
 
 if (( fail )); then
-  echo "One or more remote load tests FAILED."
+  echo "One or more remote app builds FAILED."
   exit 1
 fi
 
-echo "All remote load tests completed successfully."
+echo "All remote app builds completed successfully."

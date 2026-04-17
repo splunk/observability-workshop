@@ -5,10 +5,12 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  ./loadtest-llm-app.sh --csv FILE URL [options]
+  ./loadtest-install-app.sh --csv FILE --azure-openai-key KEY --ai-defense-url URL [options]
 
 Required:
   --csv FILE
+  --azure-openai-key TOKEN
+  --ai-defense-url URL
 
 Options:
   --max-parallel N              (default: 10)
@@ -19,6 +21,8 @@ EOF
 
 # Defaults
 CSV_FILE=""
+AZURE_OPENAI_KEY=""
+AI_DEFENSE_URL=""
 MAX_PARALLEL=10
 SSH_TIMEOUT=30
 INSECURE_HOSTKEY="false"
@@ -26,6 +30,8 @@ INSECURE_HOSTKEY="false"
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --csv) CSV_FILE="$2"; shift 2 ;;
+    --azure-openai-key) AZURE_OPENAI_KEY="$2"; shift 2 ;;
+    --ai-defense-url) AI_DEFENSE_URL="$2"; shift 2 ;;
     --max-parallel) MAX_PARALLEL="$2"; shift 2 ;;
     --ssh-timeout) SSH_TIMEOUT="$2"; shift 2 ;;
     --insecure-hostkey) INSECURE_HOSTKEY="true"; shift 1 ;;
@@ -34,7 +40,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ -z "$CSV_FILE" ]]; then
+if [[ -z "$CSV_FILE" || -z "$AZURE_OPENAI_KEY" || -z "$AI_DEFENSE_URL" ]]; then
   echo "Missing required arguments." >&2
   usage
   exit 2
@@ -74,22 +80,33 @@ run_for_row() {
 
   sshpass -p "$sshPassword" \
     ssh "${SSH_OPTS[@]}" -p "$ssh_port" "${ssh_user}@${ssh_host}" \
+    AZURE_OPENAI_KEY="$AZURE_OPENAI_KEY" \
+    AI_DEFENSE_URL="$AI_DEFENSE_URL" \
     'bash -s' <<'REMOTE_EOF'
 set -x
 set -euo pipefail
 
 echo "INSTANCE=${INSTANCE:-<unset>}"
 
-echo "Sending test request on ${INSTANCE}"
+kubectl create ns travel-agent
 
-curl http://travel-planner.localhost/travel/plan \
-  -H "Content-Type: application/json" \
-  -d '{
-    "origin": "Seattle",
-    "destination": "Tokyo",
-    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
-    "travelers": 2
-  }'
+kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-key=$AZURE_OPENAI_KEY
+kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=ai-defense-gateway-url=$AI_DEFENSE_URL
+
+kubectl create configmap instance-config \
+--from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE \
+-n travel-agent
+
+cd /home/splunk/workshop/agentic-ai/app-with-security-risk
+
+kubectl apply -f /home/splunk/workshop/agentic-ai/app-with-security-risk/k8s.yaml
+
+echo "Waiting for application pods to be ready on $(hostname)"
+
+kubectl -n travel-agent wait --for=condition=Ready pod --all --timeout=10m
+
+echo "Application pods are ready on ${INSTANCE}"
+echo "Sending test request on ${INSTANCE}"
 
 echo "Install complete on ${INSTANCE}"
 REMOTE_EOF
@@ -128,8 +145,8 @@ for pid in "${pids[@]:-}"; do
 done
 
 if (( fail )); then
-  echo "One or more remote load tests FAILED."
+  echo "One or more remote app installs FAILED."
   exit 1
 fi
 
-echo "All remote load tests completed successfully."
+echo "All remote app installs completed successfully."
