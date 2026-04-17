@@ -5,7 +5,7 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  ./loadtest-install-collector-k3d.sh --csv FILE --access-token TOKEN --hec-url URL --hec-token TOKEN [options]
+  ./loadtest-install-collector.sh --csv FILE --access-token TOKEN --hec-url URL --hec-token TOKEN [options]
 
 Required:
   --csv FILE

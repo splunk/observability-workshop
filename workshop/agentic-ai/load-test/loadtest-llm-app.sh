@@ -1,127 +1,167 @@
 #!/usr/bin/env bash
 set -euo pipefail
-#set -x   # prints each command as it runs
+# set -x
 
 usage() {
   cat <<'EOF'
 Usage:
-  ./loadtest-llm-app.sh --cluster-api URL --password PASS [options]
+  ./loadtest-llm-app.sh --csv FILE --azure-openai-key KEY --ai-defense-url URL [options]
 
 Required:
-  --cluster-api URL
-  --password PASS
+  --csv FILE
+  --azure-openai-key TOKEN
+  --ai-defense-url URL
 
 Options:
-  --users N                     (default: 30)
   --max-parallel N              (default: 10)
+  --ssh-timeout SECONDS         (default: 30)
+  --insecure-hostkey            (disable strict host key checking)
 EOF
 }
 
 # Defaults
-USERS=30
+CSV_FILE=""
+AZURE_OPENAI_KEY=""
+AI_DEFENSE_URL=""
 MAX_PARALLEL=10
+NAMESPACE="default"
+SSH_TIMEOUT=30
+INSECURE_HOSTKEY="false"
 
-PASSWORD=""
-CLUSTER_API=""
-
-# Parse args
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --password) PASSWORD="$2"; shift 2 ;;
-    --cluster-api) CLUSTER_API="$2"; shift 2 ;;
-    --users) USERS="$2"; shift 2 ;;
+    --csv) CSV_FILE="$2"; shift 2 ;;
+    --azure-openai-key) AZURE_OPENAI_KEY="$2"; shift 2 ;;
+    --ai-defense-url) AI_DEFENSE_URL="$2"; shift 2 ;;
     --max-parallel) MAX_PARALLEL="$2"; shift 2 ;;
+    --ssh-timeout) SSH_TIMEOUT="$2"; shift 2 ;;
+    --insecure-hostkey) INSECURE_HOSTKEY="true"; shift 1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage; exit 2 ;;
   esac
 done
 
-# Validate required args
-if [[ -z "$PASSWORD" || -z "$CLUSTER_API" ]]; then
+if [[ -z "$CSV_FILE" || -z "$AZURE_OPENAI_KEY" || -z "$AI_DEFENSE_URL" ]]; then
   echo "Missing required arguments." >&2
   usage
   exit 2
 fi
 
-install_for_user () {
-  local i="$1"
-  local user="participant${i}"
-  local namespace="workshop-participant-${i}" # Adjust if your naming convention differs
-  local password="$PASSWORD"
-  local cluster_api="$CLUSTER_API"
+if ! command -v sshpass >/dev/null 2>&1; then
+  echo "ERROR: sshpass is required for password-based SSH." >&2
+  exit 1
+fi
 
-  local kubeconfig
-  kubeconfig="$(mktemp)"
-  trap 'rm -f "$kubeconfig"' RETURN
+if [[ ! -f "$CSV_FILE" ]]; then
+  echo "ERROR: CSV file not found: $CSV_FILE" >&2
+  exit 1
+fi
 
-  echo "[$user] login..."
-  KUBECONFIG="$kubeconfig" oc login "$cluster_api" -u "$user" -p "$password" --request-timeout=30s
+SSH_OPTS=(-o ConnectTimeout="$SSH_TIMEOUT")
+if [[ "$INSECURE_HOSTKEY" == "true" ]]; then
+  SSH_OPTS+=(-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null)
+fi
 
-  echo "[$user] applying application manifest..."
-  KUBECONFIG="$kubeconfig" oc apply -f ../llm-app/k8s-manifest.yaml
+run_for_row() {
+  local rownum="$1"
+  local sshPassword="$2"
+  local sshCmd="$3"
 
-  echo "[$user] waiting for app readiness..."
-  KUBECONFIG="$kubeconfig" oc rollout status deploy/llm-app --timeout=5m
+  local ssh_user ssh_host ssh_port
+  ssh_port=2222
+  ssh_user="splunk"
 
-  # wait for the llm-app to startup
-  sleep 120
+  # Extract ssh host from ssh -p 2222 splunk@<ip address>
+  ssh_host="$(awk '{print $NF}' <<< "$sshCmd")"   # last token
+  ssh_host="${ssh_host#*@}"                       # remove user@
 
-  echo "[$user] Running curl test inside the cluster..."
+  echo "[row $rownum] Connecting to ${ssh_user}@${ssh_host}:${ssh_port}"
 
-  # 1. Create the Pod using a Heredoc
-  cat <<EOF | KUBECONFIG="$kubeconfig" oc apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: curl-test-pod
-  namespace: ${namespace}
-spec:
-  containers:
-  - name: curl-container
-    image: curlimages/curl:latest
-    command: ["/bin/sh", "-c"]
-    args:
-      - |
-        set -e
-        echo "DNS:"; nslookup llm-app || true
-        echo "Waiting for service..."
-        curl --fail --show-error --silent \
-          --connect-timeout 2 \
-          --retry 30 --retry-delay 2 --retry-all-errors \
-          -X POST "http://llm-app:8080/askquestion" \
-          -H "Accept: application/json" \
-          -H "Content-Type: application/json" \
-          -d '{"question":"How much memory does the NVIDIA H200 have?"}'
-    resources:
-      limits:
-        cpu: "50m"
-        memory: "100Mi"
-      requests:
-        cpu: "50m"
-        memory: "100Mi"
-  restartPolicy: Never
-EOF
+  set -x
 
-  # 2. Wait for the pod to actually start running
-  KUBECONFIG="$kubeconfig" oc wait --for=condition=Ready pod/curl-test-pod --timeout=60s > /dev/null 2>&1
+  sshpass -p "$sshPassword" \
+    ssh "${SSH_OPTS[@]}" -p "$ssh_port" "${ssh_user}@${ssh_host}" \
+    AZURE_OPENAI_API_KEY="$AZURE_OPENAI_API_KEY" \
+    AI_DEFENSE_URL="$AI_DEFENSE_URL" \
+    'bash -s' <<'REMOTE_EOF'
+set -x
+set -euo pipefail
 
-  # 3. Stream the logs (this shows the actual API response)
-  echo "[$user] Response from LLM App:"
-  KUBECONFIG="$kubeconfig" oc logs -f curl-test-pod
+echo "INSTANCE=${INSTANCE:-<unset>}"
 
-  # 4. Cleanup the test pod
-  KUBECONFIG="$kubeconfig" oc delete pod curl-test-pod --wait=false > /dev/null 2>&1
+echo "Remote host: $(hostname)"
 
-  echo "[$user] done"
+kubectl create ns travel-agent
+
+kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
+kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=ai-defense-gateway-url=$AI_DEFENSE_URL
+
+kubectl create configmap instance-config \
+--from-literal=OTEL_RESOURCE_ATTRIBUTES=deployment.environment=agentic-ai-$INSTANCE \
+-n travel-agent
+
+cd /home/splunk/workshop/agentic-ai/app-with-security-risk
+
+docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-security-risk .
+docker push localhost:9999/agentic-ai-app:app-with-security-risk
+
+kubectl apply -f /home/splunk/workshop/agentic-ai/app-with-security-risk/k8s.yaml
+
+echo "Waiting for application pods to be ready on $(hostname)"
+
+kubectl -n travel-agent wait --for=condition=Ready pod --all --timeout=10m
+
+echo "Application pods are ready on $(hostname)"
+echo "Sending test request on $(hostname)"
+
+curl http://travel-planner.localhost/travel/plan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origin": "Seattle",
+    "destination": "Tokyo",
+    "user_request": "We are planning a week-long trip to Seattle from Tokyo. Looking for boutique hotel, business-class flights and unique experiences.",
+    "travelers": 2
+  }'
+
+echo "Install complete on $(hostname)"
+REMOTE_EOF
+
+  echo "[row $rownum] done"
 }
 
-# Throttle parallelism
-for i in $(seq 1 "$USERS"); do
-  install_for_user "$i" &
+declare -a pids=()
+fail=0
+
+# Read CSV (skip header), expected columns:
+# adminUsername,sshPass,sshUrl,sshPassword,ssh,o11yCloudID,url,adminPassword
+rownum=0
+while IFS=, read -r adminUsername sshPass sshUrl sshPassword sshCmd o11yCloudID url adminPassword; do
+  rownum=$((rownum + 1))
+
+  # Basic validation / skip incomplete rows
+  if [[ -z "${sshCmd:-}" || -z "${sshPassword:-}" ]]; then
+    echo "[row $rownum] skipping: missing sshCmd or sshPassword"
+    continue
+  fi
+
+  run_for_row "$rownum" "$sshPassword" "$sshCmd" &
+  pids+=("$!")
+
   while (( $(jobs -pr | wc -l) >= MAX_PARALLEL )); do
     sleep 0.5
   done
+done < <(tail -n +2 "$CSV_FILE")
+
+for pid in "${pids[@]:-}"; do
+  [[ -n "$pid" ]] || continue
+  if ! wait "$pid"; then
+    fail=1
+  fi
 done
 
-wait
-echo "Applications are installed and curl test was completed."
+if (( fail )); then
+  echo "One or more remote load tests FAILED."
+  exit 1
+fi
+
+echo "All remote load tests completed successfully."

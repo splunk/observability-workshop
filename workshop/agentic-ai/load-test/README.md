@@ -1,10 +1,14 @@
 # Agentic AI Workshop Load Test
 
+## Prerequisites
+
 Ensure `sshpass` is installed on the host where the test will be run: 
 
 ``` bash
 brew install sshpass
 ```
+
+## Run the Load Test
 
 Load test the collector installation:
 
@@ -24,8 +28,29 @@ Load test the LLM application:
 
 ``` bash
 ./loadtest-llm-app.sh \
-  --cluster-api "https://api.<cluster>:443" \
-  --password '<password>' \
-  --users 30 \
-  --max-parallel 10
+  --csv "<path to workshop csv file>" \
+  --azure-openai-key "$AZURE_OPENAI_KEY" \
+  --ai-defense-url $"AI_DEFENSE_URL" \
+  --max-parallel 10 \
+  --insecure-hostkey
+```
+
+## Cleanup
+
+Uninstall the collector: 
+
+``` bash
+./loadtest-uninstall-collector.sh \
+  --csv "<path to workshop csv file>" \
+  --max-parallel 10 \
+  --insecure-hostkey
+```
+
+Uninstall the application:
+
+``` bash
+./loadtest-uninstall-llm-app.sh \
+  --csv "<path to workshop csv file>" \
+  --max-parallel 10 \
+  --insecure-hostkey
 ```

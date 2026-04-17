@@ -1,98 +1,140 @@
 #!/usr/bin/env bash
 set -euo pipefail
-#set -x   # prints each command as it runs
+# set -x
 
 usage() {
   cat <<'EOF'
 Usage:
-  ./loadtest-uninstall-collector.sh --access-token TOKEN --hec-url URL --hec-token TOKEN --cluster-api URL --password PASS [options]
+  ./loadtest-uninstall-collector.sh --csv FILE [options]
 
 Required:
-  --access-token TOKEN
-  --hec-url URL
-  --hec-token TOKEN
-  --cluster-api URL
-  --password PASS
+  --csv FILE
 
 Options:
-  --realm REALM                 (default: us1)
-  --splunk-index INDEX          (default: splunk4rookies-workshop)
-  --users N                     (default: 30)
   --max-parallel N              (default: 10)
-  --values FILE                 (default: ../otel-collector/otel-collector-values-with-portworx.yaml)
-  --chart PATH                  (default: splunk-otel-collector-chart/splunk-otel-collector)
+  --chart REF                   (default: splunk-otel-collector/splunk-otel-collector)
+  --namespace NS                (default: default)
+  --release NAME                (default: splunk-otel-collector)
+  --ssh-timeout SECONDS         (default: 30)
+  --insecure-hostkey            (disable strict host key checking)
 EOF
 }
 
 # Defaults
-SPLUNK_INDEX="splunk4rookies-workshop"
-REALM="us1"
-USERS=30
+CSV_FILE=""
 MAX_PARALLEL=10
-VALUES_FILE="../otel-collector/otel-collector-values-with-portworx.yaml"
 CHART="splunk-otel-collector-chart/splunk-otel-collector"
+NAMESPACE="default"
+RELEASE="splunk-otel-collector"
+SSH_TIMEOUT=30
+INSECURE_HOSTKEY="false"
 
-ACCESS_TOKEN=""
-HEC_URL=""
-HEC_TOKEN=""
-PASSWORD=""
-CLUSTER_API=""
-
-# Parse args
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --splunk-index) SPLUNK_INDEX="$2"; shift 2 ;;
-    --access-token) ACCESS_TOKEN="$2"; shift 2 ;;
-    --realm) REALM="$2"; shift 2 ;;
-    --hec-url) HEC_URL="$2"; shift 2 ;;
-    --hec-token) HEC_TOKEN="$2"; shift 2 ;;
-    --password) PASSWORD="$2"; shift 2 ;;
-    --cluster-api) CLUSTER_API="$2"; shift 2 ;;
-    --users) USERS="$2"; shift 2 ;;
+    --csv) CSV_FILE="$2"; shift 2 ;;
     --max-parallel) MAX_PARALLEL="$2"; shift 2 ;;
-    --values) VALUES_FILE="$2"; shift 2 ;;
     --chart) CHART="$2"; shift 2 ;;
+    --namespace) NAMESPACE="$2"; shift 2 ;;
+    --release) RELEASE="$2"; shift 2 ;;
+    --ssh-timeout) SSH_TIMEOUT="$2"; shift 2 ;;
+    --insecure-hostkey) INSECURE_HOSTKEY="true"; shift 1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage; exit 2 ;;
   esac
 done
 
-# Validate required args
-if [[ -z "$ACCESS_TOKEN" || -z "$HEC_URL" || -z "$HEC_TOKEN" || -z "$PASSWORD" || -z "$CLUSTER_API" ]]; then
+if [[ -z "$CSV_FILE" ]]; then
   echo "Missing required arguments." >&2
   usage
   exit 2
 fi
 
-install_for_user () {
-  local i="$1"
-  local user="participant${i}"
-  local namespace="workshop-participant-${i}"
-  local cluster_name="ai-pod-${namespace}"
-  local environment_name="ai-pod-${namespace}"
-  local release="splunk-otel-collector"
+if ! command -v sshpass >/dev/null 2>&1; then
+  echo "ERROR: sshpass is required for password-based SSH." >&2
+  exit 1
+fi
 
-  local kubeconfig
-  kubeconfig="$(mktemp)"
-  trap 'rm -f "$kubeconfig"' RETURN
+if [[ ! -f "$CSV_FILE" ]]; then
+  echo "ERROR: CSV file not found: $CSV_FILE" >&2
+  exit 1
+fi
 
-  echo "[$user] login..."
-  KUBECONFIG="$kubeconfig" oc login "$CLUSTER_API" -u "$user" -p "$PASSWORD" --request-timeout=30s
-  echo "[$user] logged in as: $(KUBECONFIG="$kubeconfig" oc whoami)"
+SSH_OPTS=(-o ConnectTimeout="$SSH_TIMEOUT")
+if [[ "$INSECURE_HOSTKEY" == "true" ]]; then
+  SSH_OPTS+=(-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null)
+fi
 
-  echo "[$user] helm uninstall..."
-  KUBECONFIG="$kubeconfig" helm uninstall "$release"
+run_for_row() {
+  local rownum="$1"
+  local sshPassword="$2"
+  local sshCmd="$3"
 
-  echo "[$user] done"
+  local ssh_user ssh_host ssh_port
+  ssh_port=2222
+  ssh_user="splunk"
+
+  # Extract ssh host from ssh -p 2222 splunk@<ip address>
+  ssh_host="$(awk '{print $NF}' <<< "$sshCmd")"   # last token
+  ssh_host="${ssh_host#*@}"                       # remove user@
+
+  echo "[row $rownum] Connecting to ${ssh_user}@${ssh_host}:${ssh_port}"
+
+  set -x
+
+  sshpass -p "$sshPassword" \
+    ssh "${SSH_OPTS[@]}" -p "$ssh_port" "${ssh_user}@${ssh_host}" \
+    CHART="$CHART" \
+    NAMESPACE="$NAMESPACE" \
+    RELEASE="$RELEASE" \
+    'bash -s' <<'REMOTE_EOF'
+set -x
+set -euo pipefail
+
+echo "INSTANCE=${INSTANCE:-<unset>}"
+
+echo "Remote host: $(hostname)"
+
+helm uninstall "$RELEASE"
+
+echo "Uninstall complete on $(hostname)"
+REMOTE_EOF
+
+  echo "[row $rownum] done"
 }
 
-# Throttle parallelism
-for i in $(seq 1 "$USERS"); do
-  install_for_user "$i" &
+declare -a pids=()
+fail=0
+
+# Read CSV (skip header), expected columns:
+# adminUsername,sshPass,sshUrl,sshPassword,ssh,o11yCloudID,url,adminPassword
+rownum=0
+while IFS=, read -r adminUsername sshPass sshUrl sshPassword sshCmd o11yCloudID url adminPassword; do
+  rownum=$((rownum + 1))
+
+  # Basic validation / skip incomplete rows
+  if [[ -z "${sshCmd:-}" || -z "${sshPassword:-}" ]]; then
+    echo "[row $rownum] skipping: missing sshCmd or sshPassword"
+    continue
+  fi
+
+  run_for_row "$rownum" "$sshPassword" "$sshCmd" &
+  pids+=("$!")
+
   while (( $(jobs -pr | wc -l) >= MAX_PARALLEL )); do
     sleep 0.5
   done
+done < <(tail -n +2 "$CSV_FILE")
+
+for pid in "${pids[@]:-}"; do
+  [[ -n "$pid" ]] || continue
+  if ! wait "$pid"; then
+    fail=1
+  fi
 done
 
-wait
-echo "All installs completed and pods are Ready."
+if (( fail )); then
+  echo "One or more remote uninstalls FAILED."
+  exit 1
+fi
+
+echo "All remote uninstalls completed successfully."
