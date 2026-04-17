@@ -5,19 +5,20 @@ weight: 2
 
 Now add APM tracing to this running app **without touching a single line of code**.
 
-## Extract the OBI Binary
+## Download OBI
 
-OBI doesn't have a standalone download yet, so we extract the binary from the Docker image:
+Download the pre-built OBI binary from the [GitHub releases page](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases):
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
-IMAGE=otel/ebpf-instrument:main
-sudo docker pull $IMAGE
-ID=$(sudo docker create $IMAGE)
-sudo docker cp "$ID:/obi" ./obi
-sudo docker rm -v $ID
+VERSION=0.6.0
+ARCH=amd64
+wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/obi-v$VERSION-linux-$ARCH.tar.gz"
+wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/SHA256SUMS"
+sha256sum -c SHA256SUMS --ignore-missing
+tar -xzf "obi-v$VERSION-linux-$ARCH.tar.gz"
 ls -la ./obi
 ```
 
@@ -25,18 +26,8 @@ ls -la ./obi
 {{% tab title="Example Output" %}}
 
 ```text
-main: Pulling from otel/ebpf-instrument
-0f5fbf7fdc05: Pull complete
-c9d0c8eb6b20: Pull complete
-05db807c0ef0: Pull complete
-9414859de0f9: Pull complete
-04083a69ab27: Pull complete
-Digest: sha256:f1b61af237c7ec02ea83afb7108ec8d65f3e308f9501818a15b67983f243cf97
-Status: Downloaded newer image for otel/ebpf-instrument:main
-docker.io/otel/ebpf-instrument:main
-Successfully copied 108MB to /home/splunk/workshop/obi/01-obi-python/obi
-baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
--rwxr-xr-x 1 root root 107922836 Feb 27 14:47 ./obi
+obi-v0.6.0-linux-amd64.tar.gz: OK
+-rwxr-xr-x 1 splunk splunk 112345678 Feb 27 14:47 ./obi
 ```
 
 {{% /tab %}}
@@ -102,4 +93,5 @@ Go back to your first terminal and generate some requests:
 ```bash
 for i in $(seq 1 20); do curl -s "http://localhost:5150/hello"; sleep 1; done
 ```
+***NOTE:*** If you get a 404 error double check that there is no `\` appended to the url you are curling. In some termings the `;` will attempt to escape and cause an invalid url
 
