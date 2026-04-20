@@ -5,7 +5,7 @@ weight: 1
 
 ## クラスターの確認
 
-ワークショップインスタンスにはK3dがプリインストールされています。実行中であることを確認します:
+ワークショップインスタンスには K3d がプリインストールされています。動作していることを確認します
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -29,7 +29,7 @@ k3d-shw-ece9-cluster-server-0   Ready    control-plane,master   4h6m   v1.33.4+k
 
 ## アプリケーションイメージのビルド
 
-K8sマニフェストはローカルでビルドされたイメージを参照します。`02-obi-docker/` ソースからビルドします:
+K8s マニフェストはローカルでビルドされたイメージを参照します。`02-obi-docker/` ソースからビルドします
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -58,7 +58,7 @@ docker build -t obi-workshop-payment-service:latest ../02-obi-docker/payment-ser
 
 ## K3d へのイメージのインポート
 
-K3dはDockerではなくcontainerdを使用するため、イメージをクラスターにインポートする必要があります。まず、クラスター名を確認します:
+K3d は Docker ではなく containerd を使用するため、イメージをクラスターにインポートする必要があります。まず、クラスター名を確認します
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -78,7 +78,11 @@ shw-ece9-cluster   1/1       2/2      true
 {{% /tab %}}
 {{< /tabs >}}
 
-次にイメージをインポートします。`CLUSTER_NAME` は `env` で利用可能です。
+次にイメージをインポートします。`CLUSTER_NAME` は `env` で利用可能なはずですが、設定されていない場合は以下を試してください
+
+```
+export CLUSTER_NAME=$(k3d cluster list -o json |  jq -r '.[].name')
+```
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -112,7 +116,7 @@ INFO[0020] Successfully imported 3 image(s) into 1 cluster(s)
 {{< /tabs >}}
 
 {{% notice title="ヒント" style="primary" icon="lightbulb" %}}
-上記のスクリプトは自動的にクラスター名を検出します。複数のk3dクラスターがある場合は、明示的に指定できます:
+上記のスクリプトはクラスター名を自動的に検出します。複数の K3d クラスターがある場合は、明示的に指定できます
 
 ``` bash
 k3d image import -c shw-ece9-cluster obi-workshop-frontend:latest obi-workshop-order-processor:latest obi-workshop-payment-service:latest

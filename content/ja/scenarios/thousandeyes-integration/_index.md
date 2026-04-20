@@ -5,60 +5,58 @@ weight: 5
 archetype: chapter
 authors: ["Alec Chamberlain"]
 time: 120 minutes
-description: Kubernetes に ThousandEyes Enterprise Agent をデプロイし、シンセティックデータを Splunk Observability Cloud にストリーミングし、ThousandEyes と Splunk APM 間の双方向ドリルダウンを有効にします。
+description: ThousandEyes Enterprise Agent を Kubernetes にデプロイし、シンセティックデータを Splunk Observability Cloud にストリーミングし、ThousandEyes と Splunk APM 間の双方向ドリルダウンを有効にします。
 ---
 
-このワークショップでは、**ThousandEyes と Splunk Observability Cloud** を統合して、シンセティック監視とオブザーバビリティデータ全体にわたる統一された可視性を提供する方法を説明します。
+このワークショップでは、**ThousandEyes と Splunk Observability Cloud** を統合し、シンセティックモニタリングとオブザーバビリティデータ全体にわたる統合的な可視性を提供する方法を紹介します。
 
 ## 学習内容
 
-このワークショップを終了すると、以下のことができるようになります：
+このワークショップを完了すると、以下のことができるようになります
 
-- Kubernetesにコンテナ化されたワークロードとしてThousandEyes Enterprise Agentをデプロイする
-- OpenTelemetryを使用してThousandEyesメトリクスをSplunk Observability Cloudと統合する
-- ThousandEyesとSplunk APMが同じリクエストにリンクできるように分散トレーシングを構成する
-- 内部Kubernetesサービスと外部依存関係のシンセティックテストを作成する
-- Splunk Observability Cloudダッシュボードでテスト結果を監視する
-- ThousandEyesからSplunk APMトレースに移動し、元のThousandEyesテストに戻る
+- ThousandEyes Enterprise Agent を Kubernetes のコンテナ化されたワークロードとしてデプロイする
+- OpenTelemetry を使用して ThousandEyes メトリクスを Splunk Observability Cloud に統合する
+- ThousandEyes と Splunk APM が同じリクエストにリンクできるよう分散トレーシングを設定する
+- 内部の Kubernetes サービスおよび外部依存関係に対するシンセティックテストを作成する
+- Splunk Observability Cloud ダッシュボードでテスト結果を監視する
+- ThousandEyes から Splunk APM トレースに移動し、元の ThousandEyes テストに戻る
 
 ## セクション
 
 ### コアパス
 
-- [概要](./1-overview/_index.md) - ThousandEyesエージェントの種類とアーキテクチャを理解する
-- [デプロイメント](./2-deployment/_index.md) - KubernetesにEnterprise Agentをデプロイする
-- [Splunk 統合](./3-splunk-integration/_index.md) - ThousandEyesメトリクスをSplunk Observability Cloudにストリーミングする
-- [分散トレーシング](./4-distributed-tracing/_index.md) - ThousandEyesとSplunk APM間のサポートされた双方向ドリルダウンを有効にする
+- [概要](./1-overview/_index.md) - ThousandEyes のエージェントタイプとアーキテクチャを理解する
+- [デプロイ](./2-deployment/_index.md) - Kubernetes に Enterprise Agent をデプロイする
+- [Splunk 統合](./3-splunk-integration/_index.md) - ThousandEyes メトリクスを Splunk Observability Cloud にストリーミングする
+- [分散トレーシング](./4-distributed-tracing/_index.md) - ThousandEyes と Splunk APM 間のサポートされた双方向ドリルダウンを有効にする
 
 ### シナリオ拡張
 
-- [Kubernetes テスト](./4-kubernetes-testing/_index.md) - シンセティック監視とトレース相関の両方に役立つ内部テストを作成する
-- [RUM](./6-rum-thousandeyes/_index.md) - エンドユーザー調査のためにThousandEyesネットワークシグナルとSplunk RUMを相関させる
+- [Kubernetes テスト](./4-kubernetes-testing/_index.md) - シンセティックモニタリングとトレース相関の両方に有用な内部テストを作成する
+- [RUM](./6-rum-thousandeyes/_index.md) - ThousandEyes のネットワークシグナルと Splunk RUM を関連付けてエンドユーザー調査に活用する
 
 ### サポート
 
-- [トラブルシューティング](./5-troubleshooting/_index.md) - よくある問題と解決策
+- [トラブルシューティング](./5-troubleshooting/_index.md) - よくある問題と解決方法
 
 {{% notice title="ヒント" style="primary" icon="lightbulb" %}}
-このシナリオは2つの接続された統合と考えてください：OpenTelemetryストリームはThousandEyesメトリクスをSplunkに取り込み、分散トレーシングはSplunk APMからThousandEyesに戻る逆方向のパスを提供します。
+このシナリオは2つの連携した統合として考えてください：OpenTelemetry ストリームが ThousandEyes メトリクスを Splunk に取り込み、分散トレーシングが Splunk APM から ThousandEyes への逆方向のパスを提供します。
 {{% /notice %}}
 
 ## 前提条件
 
-- Kubernetesクラスター（v1.16以上）
-- 選択したnamespaceにリソースをデプロイするためのRBAC権限
-- Enterprise AgentトークンにアクセスできるThousandEyesアカウント
-- インジェストトークンへのアクセスとAPMルックアップ用のAPIトークンを作成する権限を持つSplunk Observability Cloudアカウント
+- Kubernetes クラスター（v1.16以上）
+- 選択した namespace にリソースをデプロイするための RBAC 権限
+- Enterprise Agent トークンにアクセスできる ThousandEyes アカウント
+- インジェストトークンへのアクセスと APM ルックアップ用の API トークンを作成する権限を持つ Splunk Observability Cloud アカウント
 
 ## 統合のメリット
 
-ThousandEyesをSplunk Observability Cloudに接続することで、以下のメリットが得られます：
+ThousandEyes を Splunk Observability Cloud に接続することで、以下のメリットが得られます
 
-- 🔗 **統一された可視性**: シンセティックテスト結果をRUM、APMトレース、インフラストラクチャメトリクスと相関させる
-- 📊 **強化されたダッシュボード**: ThousandEyesデータを既存のSplunkオブザーバビリティメトリクスと並べて可視化する
-- 🔄 **双方向ドリルダウン**: ThousandEyes Service MapからSplunkトレースに移動し、Splunk APMからリクエストを生成したThousandEyesテストに戻る
-- 🚨 **一元化されたアラート**: Splunk内でThousandEyesテスト結果に基づいてアラートを構成する
+- 🔗 **統合的な可視性**: シンセティックテスト結果を RUM、APM トレース、およびインフラストラクチャメトリクスと相関付ける
+- 📊 **強化されたダッシュボード**: 既存の Splunk オブザーバビリティメトリクスと並べて ThousandEyes データを可視化する
+- 🔄 **双方向ドリルダウン**: ThousandEyes Service Map から Splunk トレースへ、また Splunk APM からリクエストを生成した ThousandEyes テストへ移動する
+- 🚨 **一元化されたアラート**: Splunk 内で ThousandEyes テスト結果に基づくアラートを設定する
 - 🔍 **根本原因分析**: 問題がネットワーク関連（ThousandEyes）かアプリケーション関連（APM）かを迅速に特定する
-- 📈 **包括的な分析**: Splunkの強力な分析エンジンでシンセティック監視のトレンドを分析する
-
-{{% children depth="1" type="card" description="true" %}}
+- 📈 **包括的な分析**: Splunk の強力な分析エンジンでシンセティックモニタリングのトレンドを分析する

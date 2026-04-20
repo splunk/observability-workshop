@@ -5,23 +5,23 @@ weight: 3
 time: 10 minutes
 ---
 
-このワークショップでは、Kubernetes で実行されている Agentic AI アプリケーションからメトリクス、トレース、ログをキャプチャするために OpenTelemetry を使用します。このセクションでは、Helm を使用して Kubernetes クラスターに OpenTelemetry Collector をインストールします。これにより、環境からメトリクス、トレース、ログをキャプチャして Splunk に送信します。
+このワークショップでは、Kubernetes 上で動作する Agentic AI アプリケーションからメトリクス、トレース、ログをキャプチャするために OpenTelemetry を使用します。このセクションでは、Helm を使用して Kubernetes クラスターに OpenTelemetry Collector をインストールします。これにより、環境からメトリクス、トレース、ログをキャプチャし、Splunk に送信できるようになります。
 
 ## Helm を使用して Collector をインストールする
 
-まず、helm リポジトリを追加する必要があります
+まず、Helm リポジトリを追加する必要があります:
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 ```
 
-次に、リポジトリが最新であることを確認します
+次に、リポジトリが最新であることを確認します:
 
 ``` bash
 helm repo update
 ```
 
-helm chart のデプロイを設定するために、`/home/splunk` ディレクトリに `values.yaml` という名前の新しいファイルを作成します
+Helm チャートのデプロイメントを設定するために、`/home/splunk` ディレクトリに `values.yaml` という名前の新しいファイルを作成します:
 
 ``` bash
 # swith to the /home/splunk dir
@@ -30,9 +30,9 @@ cd /home/splunk
 vi values.yaml
 ```
 
-次に、以下の内容を貼り付けます
+次に、以下の内容を貼り付けます:
 
-> 貼り付ける前に `:set paste` と入力して、`vi` がコードを自動インデントしないようにしてください。
+> 貼り付ける前に `:set paste` と入力してください。これにより、`vi` が貼り付けたコードを自動インデントするのを防ぐことができます。
 
 ``` yaml
 agent:
@@ -42,11 +42,11 @@ agent:
         send_otlp_histograms: true
 ```
 
-> vi で変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押してください。
+> vi で変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから `enter/return` キーを押します。
 
-このカスタム設定により、エクスポーターが受信したヒストグラムメトリクスは、SignalFx 形式に変換されることなく、OTLP 形式で Splunk Observability バックエンドに送信されます。この設定は、`gen_ai.evaluation.score` などの AI Agent Monitoring で使用されるヒストグラムメトリクスが期待通りに処理されることを確実にするために重要です。
+このカスタム設定により、エクスポーターが受信したヒストグラムメトリクスは、SignalFx 形式に変換されることなく OTLP 形式で Splunk Observability バックエンドに送信されます。この設定は、`gen_ai.evaluation.score` などの AI Agent Monitoring で使用されるヒストグラムメトリクスが期待通りに処理されるようにするために重要です。
 
-これで、以下のコマンドを使用して Collector をインストールできます
+次のコマンドを使用して Collector をインストールできます:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -81,9 +81,9 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-## Collector が実行されていることを確認する
+## Collector が動作していることを確認する
 
-以下のコマンドで Collector が実行されているかどうかを確認できます
+次のコマンドで Collector が動作しているかどうかを確認できます:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -108,8 +108,24 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 
 ## K8s クラスターが O11y Cloud に表示されていることを確認する
 
-Splunk Observability Cloud で、**Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters** に移動し、クラスター名（`<あなたのインスタンス名>-cluster`）を検索します
+### 新しい Kubernetes エクスペリエンスを使用する場合
+
+O11y Cloud で新しい Kubernetes エクスペリエンスを使用するように設定されている場合は、このセクションの手順に従ってください。そうでない場合は、代わりに **従来の Kubernetes エクスペリエンスを使用する場合** のセクションを参照してください。
+
+Splunk Observability Cloud で、**Infrastructure** -> **Kubernetes overview** に移動し、クラスター名（`<your instance name>-cluster`）を追加します:
+
+> ヒント: インスタンス名を忘れた場合は、`echo $INSTANCE` コマンドを使用してください
+
+![Kubernetes overview filter](../images/k8sOverviewFilter.png)
+
+**Apply Filters** をクリックすると、以下のようなクラスターの概要が表示されます:
+
+![Kubernetes overview new experience](../images/k8sOverviewNewExperience.png)
+
+### 従来の Kubernetes エクスペリエンスを使用する場合
+
+Splunk Observability Cloud で、**Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters** に移動し、クラスター名（`<your instance name>-cluster`）を検索します:
+
+> ヒント: インスタンス名を忘れた場合は、`echo $INSTANCE` コマンドを使用してください
 
 ![Kubernetes cluster](../images/k8scluster.png)
-
-> ヒント：インスタンス名を忘れた場合は、`echo $INSTANCE` コマンドを使用してください
