@@ -2,28 +2,40 @@
 title: 品質問題の検出
 linkTitle: 9. 品質問題の検出
 weight: 9
-time: 15分
+time: 15 minutes
 ---
 
-前のセクションでは、アプリケーションにOpenTelemetryを実装し、エージェントの応答の意味的な品質を評価するように設定しました。
+> 注意: このセクションでは複数のファイルを変更する必要があります。
+> どこを変更すればよいかわからない場合や、アプリケーションが動作しなくなった場合は、
+> `~/workshop/agentic-ai/app-with-quality-issue` フォルダーにあるこのセクションの
+> モデルソリューションを参照してください。
 
-このセクションでは、アプリケーションに意図的に品質問題を追加し、Splunk Observability Cloudがそのような問題を検出できることを確認します。
+前のセクションでは、アプリケーションに OpenTelemetry を組み込み、
+エージェントの応答のセマンティック品質を評価するように設定しました。
+
+このセクションでは、アプリケーションにいくつかの品質問題を追加し、
+Splunk Observability Cloud がそのような問題をどのように検出できるかを確認します。
 
 ## Poisoned Chat Wrapper について
 
-このセクションでは、`PoisonedChatWrapper` というカスタムクラスを使用します。このクラスは既存の `ChatModel` をラップして、出力をインターセプトし「汚染」します。このアプローチを採用したのは、OpenTelemetryの計装でキャプチャされる前に出力をインターセプトできるようにするためです。
+このセクションでは、既存の `ChatModel` をラップして出力をインターセプトし「汚染」する
+`PoisonedChatWrapper` というカスタムクラスを使用します。このアプローチを採用した理由は、
+OpenTelemetry のインストルメンテーションでキャプチャされる前に出力をインターセプトできるようにするためです。
 
 この仕組みに興味がある場合は、`poison_chat_wrapper.py` ファイルを確認してください。
 
 ## Hotel Specialist の出力を汚染する
 
-次に、hotel specialistエージェントを修正してこのラッパーを使用し、LLMの出力を変更します。まず、`main.py` ファイルを修正してラッパークラスをインポートします
+次に、hotel specialist エージェントがこのラッパーを使用して LLM の出力を変更するように修正します。
+まず、`~/workshop/agentic-ai/base-app/main.py` ファイルを修正して、
+`Begin: Add Import Statements` と `End: Add Import Statements` の間に
+以下の import 文を追加します
 
 ```python
 from poison_chat_wrapper import PoisonedChatWrapper
 ```
 
-次に、`hotel_specialist_node` 関数を以下のように修正してラッパーを使用します
+次に、`hotel_specialist_node` 関数を以下のようにラッパーを使用するように修正します
 
 ```python
 def hotel_specialist_node(
@@ -76,34 +88,57 @@ def hotel_specialist_node(
     return state
 ```
 
-## 更新されたDockerイメージをビルドする
+> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます
+>
+> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quality-issue/main.py`
 
-新しいタグで更新されたDockerイメージをビルドします
+## 更新された Docker イメージのビルド
+
+新しいタグを付けて更新された Docker イメージをビルドします
 
 ``` bash
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-quality-issue .
 docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 ```
 
-### Kubernetesマニフェストを更新する
+### Kubernetes マニフェストの更新
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを編集用に開き、品質問題を含むイメージを使用するようにイメージを更新します
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、
+品質問題のあるイメージを使用するようにイメージを更新します
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-quality-issue
 ```
 
-### 更新されたアプリケーションをデプロイする
+### 更新されたアプリケーションのデプロイ
 
-以下のようにマニフェストファイルを使用して更新されたアプリケーションをデプロイします
+以下のようにマニフェストファイルを使用して、更新されたアプリケーションをデプロイできます
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
-### Kubernetesでアプリケーションをテストする
+### Kubernetes でのアプリケーションのテスト
 
-新しいアプリケーションPodが正常に起動し、古いPodがなくなっていることを確認します。
+新しいアプリケーション Pod が正常に起動し、古い Pod が存在しないことを確認します
+
+{{< tabs >}}
+{{% tab title="スクリプト" %}}
+
+``` bash
+kubectl get pods -n travel-agent
+```
+
+{{% /tab %}}
+{{% tab title="出力例" %}}
+
+````
+NAME                                        READY   STATUS    RESTARTS   AGE
+travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 次に、以下のコマンドを実行してアプリケーションをテストします
 
@@ -118,12 +153,17 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
-## Splunk Observability Cloudでデータを確認する
+## Splunk Observability Cloud でデータを確認する
 
-Splunk Observability Cloudに戻って、トレースがどのように表示されるか確認しましょう。
+Splunk Observability Cloud に戻って、トレースがどのように表示されるかを確認しましょう。
 
-`hotel_specialist` エージェントの `invoke_agent` スパンを見ると、エージェントがホテルを推奨した後に `pretty terrible` と呼んでいるため、いくつかの品質問題があることがわかります
+`hotel_specialist` エージェントの `invoke_agent` スパンを見ると、
+エージェントがホテルを推薦した後にそれを `pretty terrible` と呼んでいるため、
+いくつかの品質問題があることがわかります
 
 ![Trace With Quality Issue](../images/TraceWithQualityIssue.png)
 
-> 注：ワークショップの組織は20%の確率でのみ評価するように設定されているため、すべてのエージェント呼び出しが評価されるわけではありません。これは組織レベルで設定可能です。`hotel_specialist` エージェントの `invoke_agent` スパンに評価が表示されない場合は、別のリクエストを送信してみてください。
+> 注意: ワークショップの組織では評価が20%の確率でのみ実行されるように設定されているため、
+> すべてのエージェント呼び出しが評価されるわけではありません。これは組織レベルで設定可能です。
+> `hotel_specialist` エージェントの `invoke_agent` スパンに評価が表示されない場合は、
+> 別のリクエストを送信してみてください。
