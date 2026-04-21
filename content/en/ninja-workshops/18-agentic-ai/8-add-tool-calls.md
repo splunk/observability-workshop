@@ -139,6 +139,35 @@ def flight_specialist_node(state: PlannerState) -> PlannerState:
 For AI Agent Monitoring, we need to instead create an agent that includes metadata
 with the agent name, and then invoke the agent rather than the LLM.
 
+{{% notice title="LangChain Agents" style="green" icon="running" %}}
+
+In the next step, we’ll add **agents** to our application. But what exactly is an 
+agent in the context of LangChain?
+
+According to the [LangChain documentation](https://docs.langchain.com/oss/python/langchain/agents): 
+
+"Agents combine language models with tools to create systems that 
+can reason about tasks, decide which tools to use, and iteratively 
+work towards solutions."
+
+In practice, this means the model is no longer limited to generating text. Instead, 
+it can choose from a set of available **tools** (such as APIs, databases, or code execution) 
+to help complete a task.
+
+This style of agent is often called a **LangChain ReAct agent**.
+
+ReAct stands for **Reasoning + Acting**. The agent works through a loop where it:
+
+* briefly reasons about the task,
+* selects and calls a relevant tool,
+* observes the result, and
+* uses that new information to decide the next step.
+
+This process repeats until the agent has gathered enough information to produce a final answer.
+
+{{% /notice %}}
+
+
 Replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
 `activity_specialist_node`, and `plan_synthesizer_node` functions with the following: 
 

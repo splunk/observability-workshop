@@ -33,6 +33,22 @@ rate and the rate limit can be adjusted depending on customer needs. Higher
 sampling rates provide more evaluation data, but they also increase 
 token usage and associated costs.
 
+## Review AI Agent Monitoring Configuration
+
+Splunk Observability Cloud also includes a page that allows you to configure 
+which data source is used for storing details related to AI Agent Monitoring. 
+The choices include: 
+
+* Data source – Splunk Observability Cloud
+* Data source – Splunk logs
+
+You can see these settings by navigating to **Settings -> AI Agent Monitoring**:
+
+![AI Agent Monitoring Configuration](../images/AIAgentMonitoringConfiguration.png)
+
+Splunk recommends utilizing Splunk Observability Cloud for storing 
+AI Agent Monitoring related details. This is the setting we've used for this workshop. 
+
 ## View Trace Data in Splunk Observability Cloud
 
 In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`.
