@@ -3,11 +3,12 @@ from fastapi.responses import JSONResponse, StreamingResponse
 import httpx
 import os
 import json
+import logging
 
 from token_manager import TokenManager
 
 # Configuration
-CISCO_BASE_URL = "https://chat-ai.cisco.com/openai/deployments/gpt-4o-mini"
+CISCO_BASE_URL = os.getenv("CISCO_BASE_URL", "https://chat-ai.cisco.com/openai/deployments/gpt-5-nano")
 CISCO_CLIENT_ID = os.getenv("CISCO_CLIENT_ID", "")
 CISCO_CLIENT_SECRET = os.getenv("CISCO_CLIENT_SECRET", "")
 CISCO_APP_KEY = os.getenv("CISCO_APP_KEY", "")

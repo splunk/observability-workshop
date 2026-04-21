@@ -23,6 +23,8 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            - name: CISCO_BASE_URL
+              value: "https://chat-ai.cisco.com/openai/deployments/gpt-5-nano"
             # Load Cisco keys from secret
             - name: CISCO_CLIENT_ID
               valueFrom:
