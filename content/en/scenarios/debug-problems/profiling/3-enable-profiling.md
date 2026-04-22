@@ -31,7 +31,7 @@ Since our application is deployed in Kubernetes, we can update the Kubernetes ma
 Next, let's redeploy the Door Game application by running the following command:
 
 ``` bash
-cd workshop/profiling
+cd ~/workshop/profiling
 kubectl apply -f doorgame/doorgame.yaml
 ```
 
@@ -57,9 +57,9 @@ This confirms that the profiler is enabled and sending data to the OpenTelemetry
 
 Visit `http://<your IP address>:81` and play a few more rounds of The Door Game.
 
-Then head back to Splunk Observability Cloud, click on APM, and click on the `doorgame` service at the bottom of the screen.
+Then head back to Splunk Observability Cloud, click on **APM** -> **Trace analyzer**. 
 
-Click on "Traces" on the right-hand side to load traces for this service.  Filter on traces involving the `doorgame` service and the `GET new-game` operation (since we're troubleshooting the game startup sequence):
+Filter on traces involving the `doorgame` service and the `GET new-game` operation (since we're troubleshooting the game startup sequence):
 
 ![New Game Traces](../images/new_game_traces.png)
 

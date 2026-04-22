@@ -11,13 +11,13 @@ Let's use **Splunk Observability Cloud** to determine why the game started so sl
 
 Note: when the application is deployed for the first time, it may take a few minutes for the data to appear.
 
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. `profiling-workshop-name`).
+Navigate to **APM** -> **Overview**, then use the **Environment** dropdown to select your environment (i.e. `profiling-workshop-name`).
 
 If everything was deployed correctly, you should see `doorgame` displayed in the list of services:
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on **Explore** on the right-hand side to view the service map.  We should the `doorgame` application on the service map:
+Click on **Service Map** on the right-hand side to view the service map.  We should the `doorgame` application on the service map:
 
 ![Service Map](../images/service_map.png)
 

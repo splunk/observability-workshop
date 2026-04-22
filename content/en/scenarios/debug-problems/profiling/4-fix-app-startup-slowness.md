@@ -9,7 +9,7 @@ In this section, we'll use what we learned from the profiling data in **Splunk O
 
 ### Examining the Source Code
 
-Open the corresponding source file once again (`./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`) and focus on the following code:
+Open the corresponding source file once again (`~/workshop/profiling/doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`) and focus on the following code:
 
 ````
 public class UserData {
@@ -81,7 +81,7 @@ Now the method should perform much more quickly, and less memory should be used,
 Let's test our changes by using the following commands to re-build and re-deploy the Door Game application: 
 
 ``` bash
-cd workshop/profiling
+cd ~/workshop/profiling
 ./5-redeploy-doorgame.sh
 ```
 
