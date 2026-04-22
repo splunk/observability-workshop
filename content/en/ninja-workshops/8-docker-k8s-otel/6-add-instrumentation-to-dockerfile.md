@@ -245,6 +245,16 @@ Next, add the debug exporter to the traces pipeline, which ensures the traces ar
 
 ``` yaml
 service:
+  telemetry:
+    logs:
+      level: ${env:SPLUNK_COLLECTOR_LOG_LEVEL:-info}
+    metrics:
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: '127.0.0.1'
+                port: 8888
   extensions: [headers_setter, health_check, http_forwarder, zpages, smartagent]
   pipelines:
     traces:
@@ -255,7 +265,7 @@ service:
       - resourcedetection
       #- resource/add_environment
       # NEW CODE: add the debug exporter here
-      exporters: [otlphttp, signalfx, debug]
+      exporters: [otlp_http, signalfx, debug]
 ```
 
 Then, restart the collector to apply the configuration changes: 

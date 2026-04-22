@@ -30,7 +30,7 @@ like this:
       - debug
       processors:
       - memory_limiter
-      - k8sattributes
+      - k8s_attributes
       - filter/logs
       - batch
       - resourcedetection
@@ -46,7 +46,7 @@ like this:
       - debug
       processors:
       - memory_limiter
-      - k8sattributes
+      - k8s_attributes
       - batch
       - resourcedetection
       - resource
@@ -58,7 +58,7 @@ like this:
 ```
 
 Do you see the problem?  Only the debug exporter is included in the traces and logs pipelines. 
-The `otlphttp` and `signalfx` exporters that were present in the traces pipeline configuration previously are gone.
+The `otlp_http` and `signalfx` exporters that were present in the traces pipeline configuration previously are gone.
 This is why we no longer see traces in o11y cloud.  And for the logs pipeline, the `splunk_hec/platform_logs` 
 exporter has been removed. 
 
@@ -119,7 +119,7 @@ agent:
       pipelines:
         traces:
           exporters:
-            - otlphttp
+            - otlp_http
             - signalfx
             - debug
         logs:
@@ -161,7 +161,7 @@ This time, we should see a fully defined exporters pipeline for both logs and tr
       ...
     traces:
       exporters:
-      - otlphttp
+      - otlp_http
       - signalfx
       - debug
       processors:
