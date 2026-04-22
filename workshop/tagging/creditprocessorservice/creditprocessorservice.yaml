@@ -16,8 +16,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: creditprocessorservice
-        image: docker.io/library/credit-processor-service:latest
-        imagePullPolicy: Never
+        image: localhost:9999/credit-processor-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8899
         env:

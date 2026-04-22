@@ -69,8 +69,8 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: loadgenerator
-        imagePullPolicy: Never
+        image: localhost:9999/loadgenerator:latest
+        imagePullPolicy: Always
         env:
         - name: CREDITCHECK_ADDR
           value: "creditcheckservice:8888"

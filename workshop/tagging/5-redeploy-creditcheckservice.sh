@@ -2,17 +2,17 @@
 
 # This setup script will:
 # (1) Build the credit-check-service app
-# (2) Import it into k3d
+# (2) Push it to the local repository
 #     (This is so we don't need to use a public registry)
 # (3) Deploy the service in kubernetes
 # (4) Find and delete the pod (so it is redeployed)
 #
 # (1) Build the credit-check-service app
 IMPL=${1:-py}
-docker build -t credit-check-service:latest "creditcheckservice-${IMPL}"
+docker build -t localhost:9999/credit-check-service:latest "creditcheckservice-${IMPL}"
 
-# (2) Import it into k3d
-sudo k3d image import credit-check-service:latest --cluster $INSTANCE-cluster
+# (2) Push it to the local repository
+docker push localhost:9999/credit-check-service:latest
 
 # (3) Deploy the service in kubernetes
 kubectl apply -f "creditcheckservice-${IMPL}/creditcheckservice.yaml"
