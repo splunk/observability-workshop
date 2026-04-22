@@ -14,7 +14,7 @@ agent:
         traces:
           processors:
           - memory_limiter
-          - k8sattributes
+          - k8s_attributes
           - batch
           - resourcedetection
           - resource
@@ -22,7 +22,7 @@ agent:
         logs:
           processors:
           - memory_limiter
-          - k8sattributes
+          - k8s_attributes
           - filter/logs
           - batch
           - resourcedetection

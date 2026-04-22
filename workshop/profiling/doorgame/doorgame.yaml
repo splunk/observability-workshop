@@ -34,8 +34,8 @@ spec:
           command: [ 'sh', '-c', 'echo -e "Populating the application data"; mysql --host=mysql.default.svc.cluster.local --password=''$(MYSQL_ROOT_PASSWORD)'' --local-infile=1 < /tmp/populate_db.txt' ]
       containers:
         - name: doorgame
-          image: docker.io/library/doorgame:latest
-          imagePullPolicy: Never
+          image: localhost:9999/doorgame:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 9090
           env:

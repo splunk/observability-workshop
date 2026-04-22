@@ -32,7 +32,7 @@ cp $OTEL_VALUES_PATH $MY_OTEL_VALUES_PATH
 sed -i "s/{{environment}}/$ENVIRONMENT/" $MY_OTEL_VALUES_PATH
 
 # Install the otel collector
-helm install --set cloudProvider=" " --set distribution=" " \
+helm install --version 0.149.0 --set cloudProvider=" " --set distribution=" " \
 --set splunkObservability.accessToken="$ACCESS_TOKEN" \
 --set clusterName="$ENVIRONMENT" \
 --set splunkObservability.realm="$REALM" \
