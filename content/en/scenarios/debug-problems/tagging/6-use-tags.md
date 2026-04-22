@@ -9,7 +9,7 @@ time: 5 minutes
 
 Now that we've indexed the `credit.score.category` tag, we can use it with **Tag Spotlight** to troubleshoot our application.
 
-Navigate to **APM** then click on **Tag Spotlight** on the right-hand side. Ensure the `creditcheckservice` service is selected from the **Service** drop-down (if not already selected).
+Navigate to **APM** -> **Tag Spotlight**. Click on the `creditcheckservice` service.
 
 With **Tag Spotlight**, we can see 100% of credit score requests that result in a score of `impossible` have an error, yet requests for all other credit score types have no errors at all!
 
@@ -29,7 +29,7 @@ We can also see that some requests with an `exceptional` credit score request ar
 
 Now that we know the credit score category associated with the request can impact performance and error rates, let's explore another feature that utilizes indexed tags: **Dynamic Service Maps**.
 
-With Dynamic Service Maps, we can breakdown a particular service by a tag. For example, let's click on **APM**, then click **Explore** to view the service map.
+With Dynamic Service Maps, we can breakdown a particular service by a tag. For example, let's click on **APM** -> **Service map** to view the service map.
 
 Click on `creditcheckservice`. Then, on the right-hand menu, click on the drop-down that says **Breakdown**, and select the `credit.score.category` tag.
 

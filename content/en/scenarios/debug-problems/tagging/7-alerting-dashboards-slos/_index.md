@@ -18,7 +18,7 @@ In this section of the workshop, we'll explore a related concept:  **Monitoring 
 
 (**note**: *your workshop instructor will do the following for you, but observe the steps*)
 
-Let's navigate to **Settings** -> **APM MetricSets**, and click the edit button (i.e. the little pencil) beside the MetricSet for `credit.score.category`.
+Let's navigate to **Settings** -> **APM & RUM MetricSets**, and click the edit button (i.e. the little pencil) beside the MetricSet for `credit.score.category`.
 
 ![edit APM MetricSet](../images/edit_apm_metricset.png)
 

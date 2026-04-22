@@ -47,7 +47,7 @@ If everything was deployed correctly, you should see `creditprocessorservice` an
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on **Explore** on the right-hand side to view the service map.  We can see that the `creditcheckservice` makes calls to the `creditprocessorservice`, with an average response time of at least 3 seconds:
+Click on **Service Map** on the right-hand side to view the service map.  We can see that the `creditcheckservice` makes calls to the `creditprocessorservice`, with an average response time of at least 3 seconds:
 
 ![Service Map](../images/service_map.png)
 

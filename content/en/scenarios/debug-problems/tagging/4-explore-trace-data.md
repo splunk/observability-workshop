@@ -9,7 +9,7 @@ Now that we've captured several tags from our application, let's explore some of
 
 ## Use Trace Analyzer
 
-Navigate to **APM**, then select **Traces**.  This takes us to the **Trace Analyzer**, where we can add filters to search for traces of interest. For example, we can filter on traces where the credit score starts with `7`:
+Navigate to **APM -> Trace Analyzer**.  With **Trace Analyzer** we can add filters to search for traces of interest. For example, we can filter on traces where the credit score starts with `7`:
 
 ![Credit Check Starts with Seven](../images/credit_score_starts_with_seven.png)
 
