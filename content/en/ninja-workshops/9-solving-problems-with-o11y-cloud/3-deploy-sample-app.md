@@ -107,14 +107,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 
 # Bootstrap OTel
-RUN splunk-py-trace-bootstrap
+RUN opentelemetry-bootstrap -a install
 
 # Set the entrypoint command to run the application
-CMD ["splunk-py-trace", "python3", "main.py"]
+CMD ["opentelemetry-instrument", "python3", "main.py"]
 ```
 
-We can see that `splunk-py-trace-bootstrap` was included, which installs OpenTelemetry instrumentation
-for supported packages used by our applications.  We can also see that `splunk-py-trace` is used as part
+We can see that `opentelemetry-bootstrap` was included, which installs OpenTelemetry instrumentation
+for supported packages used by our applications.  We can also see that `opentelemetry-instrument` is used as part
 of the command to start the application. 
 
 And if we review the `/home/splunk/workshop/tagging/creditcheckservice-py-with-tags/requirements.txt` file, 

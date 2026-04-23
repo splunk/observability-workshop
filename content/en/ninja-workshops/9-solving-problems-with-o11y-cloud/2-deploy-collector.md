@@ -73,7 +73,7 @@ It then installed the `splunk-otel-collector-chart` Helm chart and ensured it's 
 And finally, it used `helm install` to install the collector:
 
 ``` bash
-  helm install splunk-otel-collector --version {{< otel-version >}} \
+  helm install splunk-otel-collector --version 0.149.0 \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -222,7 +222,7 @@ Add the debug exporter by copying and pasting the following text to the bottom o
       pipelines:
         traces:
           exporters:
-            - otlphttp
+            - otlp_http
             - signalfx
             - debug
 ```
@@ -268,7 +268,7 @@ agent:
       pipelines:
         traces:
           exporters:
-            - otlphttp
+            - otlp_http
             - signalfx
             - debug
 ```
@@ -322,7 +322,7 @@ We can see that the debug exporter was added to the traces pipeline, as desired:
 ``` yaml
   traces:
     exporters:
-    - otlphttp
+    - otlp_http
     - signalfx
     - debug
 ```
