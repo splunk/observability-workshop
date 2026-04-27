@@ -7,14 +7,14 @@ Now run the application with the AppDynamics agent attached. This is the "normal
 
 ## Run with the AppDynamics Agent
 
-Replace `<YOUR-ACCESS-KEY>`, and `<<YourInitials>>` with the values from the previous step:
+Replace `<YOUR-ACCESS-KEY>` with the AppDynamics token from the previous step:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
 Export your environment variables
 ```bash
 export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
-export APPD_APP_NAME=Dual-Ingest-<YourInitials>
+export APPD_APP_NAME=Dual-Ingest-${INSTANCE}
 ```
 
 Then we can start java with the agent:
@@ -41,7 +41,7 @@ java -javaagent:agent/javaagent.jar \
   -Dappdynamics.controller.hostName=se-lab.saas.appdynamics.com \
   -Dappdynamics.controller.port=443 \
   -Dappdynamics.controller.ssl.enabled=true \
-  -Dappdynamics.agent.applicationName=Dual-Ingest-JRH \
+  -Dappdynamics.agent.applicationName=Dual-Ingest-shw-4267 \
   -Dappdynamics.agent.tierName=OrderService \
   -Dappdynamics.agent.nodeName=OrderService-Node \
   -Dappdynamics.agent.accountName=se-lab \
@@ -70,7 +70,7 @@ done &
 ## Verify in the AppDynamics Controller
 
 1. Open the [AppDynamics Controller](https://se-lab.saas.appdynamics.com/controller/)
-2. Navigate to **Applications** and find your application (e.g. `Dual-Ingest-YOURINITIALS`)
+2. Navigate to **Applications** and find your application (e.g. `Dual-Ingest-<your_INSTANCE_var>`)
 3. Click into the application to view the **Flow Map**
 
 {{% notice title="Patience" style="info" icon="info-circle" %}}
