@@ -88,7 +88,9 @@ look for this section under `processors:`:
 
 These processors make sure we correctly reference our variables for the `host.name` and `deployment.enviroment`/`deployment.environment.name`(preferred) attributes.
 
-The `transform/drop_dims_high_cardinality` processor uses (OpenTelemetry Transformation Language (OTTL))[https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md] to check our metrics for any that have more than 36 attributes. Currently we will drop metrics that have too many attributes in the backend. So here we are checking if a metric is over that number and if so we delete some attributes that may be of lesser value. We are also doing a lazy check for available space afterwards to add a dimension for `cardinality.trimmed` so we can easily identify metrics that had dropped attributes.
+The `transform/drop_dims_high_cardinality` processor uses [OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) to check our metrics for any that have more than 36 attributes.    
+**Currently we will drop metrics that have too many attributes (>36) in the backend.** This can happen with AppDynamics telemetry due to additional attributes.    
+In our `transform` config we are checking if a metric is over that number and if so we delete some attributes that may be of lesser value. We are also doing a lazy check for available space afterwards to add a dimension for `cardinality.trimmed` so we can easily identify metrics that had dropped attributes.
 
 Each of these processors is included at the end of the `pipeline:` for metrics in our configuration.
 
