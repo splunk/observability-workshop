@@ -35,8 +35,11 @@ to add the following import statement between the lines that say
 from poison_chat_wrapper import PoisonedChatWrapper
 ```
 
-Then, modify the `hotel_specialist_node` function to use the wrapper 
-as follows: 
+Then, replace the definition of the `hotel_specialist_node` function with the following: 
+
+> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
+> Line` mode, then use the down arrow to select all the lines you want to delete, then press `d`
+> to delete the selected lines.
 
 ```python
 def hotel_specialist_node(
@@ -98,6 +101,7 @@ def hotel_specialist_node(
 Build an updated Docker image with a new tag:
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-quality-issue .
 docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 ```

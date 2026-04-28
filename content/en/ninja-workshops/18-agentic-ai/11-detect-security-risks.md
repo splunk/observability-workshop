@@ -24,10 +24,14 @@ the LLM output.
 
 Open the `~/workshop/agentic-ai/base-app/main.py` file for editing.
 
-Modify the `activity_specialist_node` function to use the wrapper
-as follows. This effectively simulates a scenario where the LLM has 
+Replace the definition of the `activity_specialist_node` function with the version included below. 
+This effectively simulates a scenario where the LLM has 
 included the user's credit card number as part of the response, which is 
 a clear security risk and PCI violation. 
+
+> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
+> Line` mode, then use the down arrow to select all the lines you want to delete, then press `d`
+> to delete the selected lines.
 
 ```python
 def activity_specialist_node(
@@ -86,6 +90,7 @@ def activity_specialist_node(
 Build an updated Docker image with a new tag:
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-security-risk .
 docker push localhost:9999/agentic-ai-app:app-with-security-risk
 ```

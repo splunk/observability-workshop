@@ -65,6 +65,7 @@ CMD ["opentelemetry-instrument", "python", "main.py"]
 Build an updated Docker image with a new tag: 
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-instrumentation .
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
