@@ -156,24 +156,31 @@ processors:
         action: upsert
 
   transform/drop_dims_high_cardinality:
-    error_mode: ignore
-    metric_statements:
-      - context: metric
-        conditions:
-          - Len(metric.data_points) > 36
-        statements:
-          # Step 1: Delete known noisy attributes
-          - delete_key(resource.attributes, "process.command_args")
-          - delete_key(resource.attributes, "process.executable.path")
-          - delete_key(resource.attributes, "process.runtime.description")
-          - delete_key(resource.attributes, "process.runtime.name")
-          - delete_key(resource.attributes, "process.runtime.version")
-          - delete_key(resource.attributes, "os.description")
-          - delete_key(resource.attributes, "host.image.id")
-          - delete_key(resource.attributes, "telemetry.distro.name")
-          
-          # Step 2: Add marker ONLY if we have room
-          - set(resource.attributes["cardinality.trimmed"], true) where Len(resource.attributes) <= 35
+      error_mode: ignore
+      metric_statements:
+        - context: resource
+          conditions:
+            - Len(resource.attributes) + Len(attributes) > 34
+          statements:
+            # Delete from datapoint attributes (where the Java agent puts them)
+            - delete_key(attributes, "process.command_args") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.executable.path") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.description") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.pid") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "os.description") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "os.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "host.arch") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "host.image.id") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.distro.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.distro.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.language") where Len(resource.attributes) + Len(attributes) >= 34
+
+            # Add marker
+            - set(resource.attributes["cardinality.trimmed"], "true")
 
 exporters:
   # Traces

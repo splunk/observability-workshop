@@ -50,6 +50,7 @@ vim ~/workshop/appd/collector-config.yaml
 look for this section under `processors:`:
 {{< tabs >}}
 {{% tab title="collector-config.yaml" %}}
+
 ```yaml
   resource/workshop:
     attributes:
@@ -64,33 +65,44 @@ look for this section under `processors:`:
         action: upsert
 
   transform/drop_dims_high_cardinality:
-    error_mode: ignore
-    metric_statements:
-      - context: metric
-        conditions:
-          - Len(metric.data_points) > 36
-        statements:
-          # Step 1: Delete known noisy attributes
-          - delete_key(resource.attributes, "process.command_args")
-          - delete_key(resource.attributes, "process.executable.path")
-          - delete_key(resource.attributes, "process.runtime.description")
-          - delete_key(resource.attributes, "process.runtime.name")
-          - delete_key(resource.attributes, "process.runtime.version")
-          - delete_key(resource.attributes, "os.description")
-          - delete_key(resource.attributes, "host.image.id")
-          - delete_key(resource.attributes, "telemetry.distro.name")
-          
-          # Step 2: Add marker ONLY if we have room
-          - set(resource.attributes["cardinality.trimmed"], true) where Len(resource.attributes) <= 35
-```          
+      error_mode: ignore
+      metric_statements:
+        - context: resource
+          conditions:
+            - Len(resource.attributes) + Len(attributes) > 34
+          statements:
+            # Delete from datapoint attributes (where the Java agent puts them)
+            - delete_key(attributes, "process.command_args") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.executable.path") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.description") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.runtime.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "process.pid") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "os.description") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "os.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "host.arch") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "host.image.id") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.distro.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.distro.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.version") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.name") where Len(resource.attributes) + Len(attributes) >= 34
+            - delete_key(attributes, "telemetry.sdk.language") where Len(resource.attributes) + Len(attributes) >= 34
+
+            # Add marker
+            - set(resource.attributes["cardinality.trimmed"], "true")
+```
+
 {{% /tab %}}
 {{% /tabs %}}
 
 These processors make sure we correctly reference our variables for the `host.name` and `deployment.enviroment`/`deployment.environment.name`(preferred) attributes.
 
-The `transform/drop_dims_high_cardinality` processor uses [OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) to check our metrics for any that have more than 36 attributes.    
-**Currently we will drop metrics that have too many attributes (>36) in the backend.** This can happen with AppDynamics telemetry due to additional attributes.    
-In our `transform` config we are checking if a metric is over that number and if so we delete some attributes that may be of lesser value. We are also doing a lazy check for available space afterwards to add a dimension for `cardinality.trimmed` so we can easily identify metrics that had dropped attributes.
+The `transform/drop_dims_high_cardinality` processor uses [OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) to check our metrics for any that have more than 34 attributes (the actual value attached to the metric counts as a point also).
+
+- **IMPORTANT: Currently we will drop metrics that have too many attributes (>36) in the backend.** This can happen with AppDynamics telemetry due to additional attributes.
+
+In our `transform` config we are checking if a metric is over 34 combined attributes and if so we progressively delete some attributes that may be of lesser value.  
+Finally we do a check for available space afterwards to add a dimension for `cardinality.trimmed` so we can easily identify metrics that had dropped attributes.
 
 Each of these processors is included at the end of the `pipeline:` for metrics in our configuration.
 
@@ -112,6 +124,8 @@ SPLUNK_CONFIG=/etc/otel/collector/agent_config.yaml
 SPLUNK_ACCESS_TOKEN=${ACCESS_TOKEN}
 SPLUNK_REALM=${REALM}
 SPLUNK_API_URL=https://api.${REALM}.signalfx.com
+SPLUNK_HEC_TOKEN=${HEC_TOKEN}
+SPLUNK_HEC_URL=${HEC_URL}
 SPLUNK_MEMORY_TOTAL_MIB=512
 SPLUNK_BUNDLE_DIR=/usr/lib/splunk-otel-collector/agent-bundle
 SPLUNK_COLLECTD_DIR=/usr/lib/splunk-otel-collector/agent-bundle/run/collectd
