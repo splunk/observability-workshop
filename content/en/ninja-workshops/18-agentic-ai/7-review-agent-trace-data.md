@@ -49,6 +49,13 @@ You can see these settings by navigating to **Settings -> AI Agent Monitoring**:
 Splunk recommends utilizing Splunk Observability Cloud for storing 
 AI Agent Monitoring related details. This is the setting we've used for this workshop. 
 
+## Review AI Monitoring Permissions 
+
+Due to the potentially sensitive nature of LLM conversation data, a new role called `ai_monitoring`
+has been added to Splunk Observability Cloud to control who can access and view this information:
+
+![AI Monitoring Role](../images/AIMonitoringRole.png)
+
 ## View Trace Data in Splunk Observability Cloud
 
 In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`.
