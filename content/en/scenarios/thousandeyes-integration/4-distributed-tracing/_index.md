@@ -226,6 +226,7 @@ helm install splunk-otel-collector splunk-otel-collector-chart/splunk-otel-colle
   --set splunkObservability.realm=$REALM \
   --set splunkObservability.accessToken=$ACCESS_TOKEN \
   --set clusterName=$CLUSTER_NAME \
+  --set environment="thousandeyes-$INSTANCE" \
   --set operator.enabled=true \
   --set operatorcrds.install=true
 ```
