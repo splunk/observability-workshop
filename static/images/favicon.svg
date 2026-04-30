@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Splunk-magenta favicon placeholder. A solid square with a white "S".
+  Replace with the official Splunk "S" mark SVG when available — drop the
+  real file at this same path (static/images/favicon.svg) and nothing else
+  changes. The legacy static/images/favicon.ico stays as a fallback for
+  browsers that don't accept SVG favicons.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="10" ry="10" fill="#ce0070"/>
+  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+        font-family="-apple-system, 'Segoe UI', system-ui, sans-serif"
+        font-size="46" font-weight="700" fill="#ffffff">S</text>
+</svg>

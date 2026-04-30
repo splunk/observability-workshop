@@ -1,0 +1,11 @@
+{{/*
+  Custom favicon partial.
+
+  Prefers static/images/favicon.svg (crisp on hi-DPI, scales cleanly).
+  Falls back to the legacy favicon.ico for browsers that don't accept SVG.
+
+  To upgrade to the official Splunk favicon: replace static/images/favicon.svg
+  with the brand-supplied file. No other changes needed here.
+*/}}
+<link rel="icon" type="image/svg+xml" href="{{ "/images/favicon.svg" | relURL }}">
+<link rel="alternate icon" type="image/x-icon" href="{{ "/images/favicon.ico" | relURL }}">

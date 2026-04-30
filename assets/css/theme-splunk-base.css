@@ -1,0 +1,93 @@
+/*
+ * Splunk theme — shared base
+ * Imported by both theme-splunk-light.css and theme-splunk-dark.css.
+ * Holds the rules that are identical across both variants: brand palette,
+ * menu styling (always dark — Splunk-style sidebar regardless of mode),
+ * and content accents.
+ */
+
+:root {
+    /* ----- Splunk extended palette -----
+     * Single source of truth for brand hexes. Other CSS variables and
+     * variant-specific overrides reference these. The shields.io badge
+     * in layouts/partials/menu-footer.html duplicates --SPLUNK-magenta
+     * as a URL param — keep them in sync.
+     */
+    --SPLUNK-magenta:        #ce0070;  /* primary brand */
+    --SPLUNK-magenta-deep:   #a30058;  /* hover/pressed states */
+    --SPLUNK-magenta-tint:   #ff5fa5;  /* subtle accents, code-block borders */
+    --SPLUNK-orange:         #ff664e;  /* search highlight, secondary accent */
+    --SPLUNK-green:          #65a637;  /* success, "pro tip" callouts */
+    --SPLUNK-purple:         #6b3fa0;  /* signal/insight */
+    --SPLUNK-charcoal:       #14181b;  /* deep dark for headers */
+
+    /* ----- Brand mappings into Relearn's color slots ----- */
+    --PRIMARY-color:               var(--SPLUNK-magenta);
+    --SECONDARY-color:             var(--SPLUNK-magenta);
+    --ACCENT-color:                var(--SPLUNK-orange);
+    --MAIN-LINK-HOVER-color:       var(--SPLUNK-magenta);
+
+    /* Mermaid runs the same regardless of variant; both light/dark sites
+     * use the dark Mermaid palette to match the dark sidebar. */
+    --MERMAID-theme: dark;
+
+    /* ----- Menu (sidebar) — always dark across variants ----- */
+    --MENU-HEADER-BORDER-color:           rgba(  0,  0,  0, 1);
+    --MENU-VISITED-color:                 var(--SPLUNK-magenta);
+
+    --MENU-HOME-LINK-color:               rgba(255,255,255, 1);
+    --MENU-HOME-LINK-HOVER-color:         var(--SPLUNK-magenta);
+    --MENU-HOME-TOP-SEPARATOR-color:      rgba( 16, 16, 16, 1);
+
+    --MENU-SEARCH-color:                  rgba(224,224,224, 1);
+    --MENU-SEARCH-BG-color:               rgba( 50, 50, 50, 1);
+    --MENU-SEARCH-BORDER-color:           rgba(224,224,224, 1);
+
+    --MENU-SECTIONS-BG-color:             rgba( 43, 43, 43, 1);
+    --MENU-SECTIONS-ACTIVE-BG-color:      rgba( 50, 50, 50, 1);
+    --MENU-SECTIONS-LINK-color:           rgba(186,186,186, 1);
+    --MENU-SECTIONS-LINK-HOVER-color:     rgba(255,255,255, 1);
+    --MENU-SECTION-SEPARATOR-color:       rgba( 96, 96, 96, 1);
+
+    /* Box (admonition) caption text — white on the colored title bar */
+    --BOX-CAPTION-color: rgba(255,255,255, 1);
+}
+
+/* ----- Logo sizing -----
+ * The inline Splunk SVG has a viewBox of 0 0 250 99 (no intrinsic px size),
+ * so without a CSS width it would default to ~300px and overflow the
+ * sidebar header. Cap it to a reasonable percentage of the sidebar width
+ * with a max so it doesn't get absurd on wide screens.
+ */
+#logo svg {
+    display: block;
+    width: 100%;
+    max-width: 19rem;
+    height: auto;
+    margin: 0 auto;            /* center horizontally in the sidebar header */
+}
+
+/* ----- Page accents -----
+ * Subtle Splunk-styled flourishes inside the rendered content area only —
+ * `main` excludes the sidebar/menu so these don't bleed into navigation.
+ * If your local Relearn build wraps content in something other than <main>
+ * (e.g., #body-inner), update the selectors below.
+ */
+
+main h2 {
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--SPLUNK-magenta);
+}
+
+/* Plain blockquotes (not the [!splunk] / [!pro-tip] admonition variants,
+ * which Relearn renders as styled boxes, not as <blockquote>). */
+main > article blockquote,
+main > .content blockquote {
+    border-left: 4px solid var(--SPLUNK-magenta);
+    padding-left: 1rem;
+}
+
+/* Tinted left-border on code blocks for a subtle brand touch */
+main pre {
+    border-left: 3px solid var(--SPLUNK-magenta-tint);
+}

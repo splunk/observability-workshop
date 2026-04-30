@@ -20,6 +20,8 @@ SplunkSessionRecorder.init({
 });
 </script>
 </script>
+{{ $fonts := resources.Get "css/fonts.css" | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}">
 <style>
     :root {
         --MAIN-WIDTH-MAX: 130rem;
