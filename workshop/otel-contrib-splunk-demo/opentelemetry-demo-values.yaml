@@ -17,10 +17,10 @@ default:
     - name: OTEL_RESOURCE_ATTRIBUTES
       value: 'service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version={{ .Chart.AppVersion }},deployment.environment=$(DEPLOYMENT_ENVIRONMENT)'
 components:
-  frontendProxy:
+  frontend-proxy:
     service:
       type: LoadBalancer
-  loadgenerator:
+  load-generator:
     enabled: true
     useDefault:
       env: true
@@ -34,7 +34,7 @@ components:
       - name: LOCUST_SPAWN_RATE
         value: "1"
       - name: LOCUST_HOST
-        value: 'http://{{ include "otel-demo.name" . }}-frontendproxy:8080'
+        value: http://frontend-proxy:8080
       - name: LOCUST_HEADLESS
         value: "false"
       - name: LOCUST_AUTOSTART
@@ -44,7 +44,7 @@ components:
       - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
         value: python
       - name: FLAGD_HOST
-        value: '{{ include "otel-demo.name" . }}-flagd'
+        value: flagd
       - name: FLAGD_PORT
         value: "8013"
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
