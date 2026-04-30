@@ -1,0 +1,26 @@
+{
+  "skill_name": "workshop-content",
+  "evals": [
+    {
+      "id": 0,
+      "name": "scaffold-new-short-workshop",
+      "prompt": "I need to create a new 45-minute walk-in lab workshop called 'Splunk OnCall Essentials' for the splunk4rookies category. It should have these chapters: (1) Login (5 min), (2) Incident Triage walkthrough (15 min) where the persona is an on-call engineer investigating a paging incident, (3) Routing & Escalation Policies (15 min) where the persona is a team lead configuring schedules, (4) Wrap-up. Scaffold the directory tree under content/en/splunk4rookies/ with all the _index.md files and topic page stubs filled out with the right frontmatter and persona blocks. Add 2-3 topic pages under chapter 2 (covering: identifying the alerting service, viewing the incident timeline, acknowledging and resolving) and 2 topic pages under chapter 3 (creating an on-call schedule, setting up an escalation policy). I'll add screenshots myself, just stub the image references with TODO comments.",
+      "expected_output": "A complete directory tree under content/en/splunk4rookies/splunk-oncall-essentials/ with: top _index.md (45 min, description, weight, params.images), chapter folders 1-login through 4-wrap-up each with their own _index.md (correct frontmatter including archetype: chapter and linkTitle), the requested topic pages with weight ordering, persona blocks in chapters 2 and 3 with appropriate role framing, image references using ../images/ pattern with TODO comments above each, empty images/ folders at chapter and workshop level. Should match the style of observability-cloud-short.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "add-chapter-to-existing",
+      "prompt": "Add a new chapter 'Log Alerting' to the existing observability-cloud-short workshop at content/en/splunk4rookies/observability-cloud-short/. It should slot in between the existing logs chapter (5-logs) and synthetics chapter (6-synthetics). The persona is a back-end developer who wants to set up alerts on log patterns so they're notified about errors without having to keep checking the dashboard. Include 3 topic pages: (1) introduction to log-based alerting, (2) creating a saved search from the existing error logs view, (3) creating a detector from the saved search. Estimate 10 minutes total. Match the existing workshop's conventions exactly. Don't actually renumber existing folders — just create the new chapter and use a non-conflicting weight.",
+      "expected_output": "A new chapter folder under observability-cloud-short/ with a sensible numeric prefix and weight that places it between logs and synthetics (likely something like '5a-' or weights 5.5/55, but the user wanted a non-conflicting integer — ideally model picks weight 6 and either renames synthetics or notes the conflict). Chapter _index.md with appropriate persona block, 3 topic pages with proper frontmatter, exercise notices, at least one Q&A tabs reveal, image stubs with TODOs. Should clearly match observability-cloud-short conventions.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "draft-topic-page-from-outline",
+      "prompt": "I'm writing a topic page for our APM chapter. The page is about using the 'Service Endpoints' tab to find slow endpoints. The user should: open the APM service view for the 'frontend' service, switch to the Endpoints tab, sort by P90 latency descending, identify the /cart/checkout endpoint as the slowest, then click into it to see its detail page. Include a question asking them what the P90 latency is for /cart/checkout (answer: ~2.5 seconds). Write just the topic page markdown — file name, frontmatter, intro prose, exercise block. Place this as the 4th topic page in an APM chapter, so weight: 4.",
+      "expected_output": "A single .md file with: numbered title (4. Something), weight: 4, 1-2 paragraphs of intro prose explaining what Service Endpoints is and why endpoint-level latency matters, an exercise notice with click-through steps using bold UI labels (Endpoints, P90 latency) and backticks for identifiers (frontend, /cart/checkout), screenshot stub(s) with TODO comments and ../images/ paths, a tabs block with the question and answer.",
+      "files": []
+    }
+  ]
+}
