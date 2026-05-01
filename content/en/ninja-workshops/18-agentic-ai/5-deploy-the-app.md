@@ -73,6 +73,11 @@ curl http://localhost:8080/travel/plan \
 {{% /tab %}}
 {{< /tabs >}}
 
+### Stop the Application
+
+Once you've confirmed that the application is working successfully, return to your 
+first terminal and stop the application. 
+
 ## Deploy the Agentic AI Application (Kubernetes)
 
 Now that the application is working successfully, let's deploy it to Kubernetes. 
@@ -105,6 +110,10 @@ docker push localhost:9999/agentic-ai-app:base-app
 ### Create Secret with Azure Credentials
 
 We'll use a Kubernetes secret to store the Azure OpenAI endpoint and key:
+
+> Caution: ensure you run this command in the terminal where you set 
+> the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment 
+> variables earlier. 
 
 ``` bash
 kubectl create ns travel-agent
