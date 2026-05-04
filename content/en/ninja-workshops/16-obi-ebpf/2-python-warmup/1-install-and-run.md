@@ -10,7 +10,7 @@ Navigate to the Phase 0 directory and create a virtual environment:
 {{< tabs >}}
 {{% tab title="Script" %}}
 
-```bash
+``` bash
 cd ~/workshop/obi/01-obi-python
 python3 -m venv .venv
 source .venv/bin/activate
@@ -20,7 +20,7 @@ pip3 install -r requirements.txt
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-```text
+``` text
 Collecting flask>=3.0,<4.0
   Downloading ...
 Successfully installed flask-3.x.x ...
@@ -38,7 +38,7 @@ Your environment should have values for `ACCESS_TOKEN`, `REALM`, and `INSTANCE` 
 
 **If they do not exist export them as follows**
 
-```bash
+``` bash
 export ACCESS_TOKEN="<YOUR_TOKEN>"
 export REALM="<YOUR_REALM>"
 export INSTANCE="<YOUR_IDENTIFIER>"
@@ -50,13 +50,13 @@ export INSTANCE="<YOUR_IDENTIFIER>"
 
 Start the Flask app in the background:
 
-```bash
+``` bash
 python3 app.py &
 ```
 
 On startup the app sends a single `app.heartbeat` metric directly to the Splunk Ingest API. You should see:
 
-```text
+``` text
 Heartbeat sent to Splunk (200)
  * Running on http://0.0.0.0:5150
 ```
@@ -64,17 +64,17 @@ Heartbeat sent to Splunk (200)
 First hit return to get back to your prompt.
 Now hit the endpoint to confirm it's working:
 
-```bash
+``` bash
 curl -s http://localhost:5150/hello | jq
 ```
 
 You should get back:
 
-```json
+``` json
 127.0.0.1 - - [04/May/2026 13:10:16] "GET /hello HTTP/1.1" 200 -
 {
-	"host": "<YOUR_INSTANCE>",
-	"message": "Hello from the OBI Workshop warm-up!"
+  "host": "<YOUR_INSTANCE>",
+  "message": "Hello from the OBI Workshop warm-up!"
 }
 ```
 

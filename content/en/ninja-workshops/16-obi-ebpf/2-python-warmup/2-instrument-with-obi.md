@@ -73,14 +73,14 @@ time=2026-02-27T19:29:58.278Z level=INFO msg="Launching p.Tracer" component=gene
 
 ### What Do These Variables Do?
 
-| Variable                             | Purpose                                                                                                                                                                                      |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sudo`                               | eBPF probes require root/kernel access                                                                                                                                                       |
+| Variable | Purpose |
+|---|---|
+| `sudo` | eBPF probes require root/kernel access |
 | `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Full URL for Splunk's OTLP trace ingest. The per-signal env var sends to this URL exactly the base `OTEL_EXPORTER_OTLP_ENDPOINT` would append `/v1/traces` which doesn't match Splunk's path |
-| `OTEL_EXPORTER_OTLP_HEADERS`         | Auth header for Splunk                                                                                                                                                                       |
-| `OTEL_SERVICE_NAME`                  | The service name that appears in Splunk APM                                                                                                                                                  |
-| `OTEL_RESOURCE_ATTRIBUTES`           | Sets `deployment.environment` and `host.name` on every trace so you can filter to your data                                                                                                  |
-| `OTEL_EBPF_OPEN_PORT`                | Tells OBI to instrument the process listening on port 5150                                                                                                                                   |
+| `OTEL_EXPORTER_OTLP_HEADERS` | Auth header for Splunk |
+| `OTEL_SERVICE_NAME` | The service name that appears in Splunk APM |
+| `OTEL_RESOURCE_ATTRIBUTES` | Sets `deployment.environment` and `host.name` on every trace so you can filter to your data |
+| `OTEL_EBPF_OPEN_PORT` | Tells OBI to instrument the process listening on port 5150 |
 
 {{% notice title="Note" style="info" %}}
 You may see warnings like `failed to upload metrics: 404 Not Found` in the OBI logs. This is expected Splunk's direct ingest doesn't have a standard OTLP metrics endpoint. The traces still export correctly. In Phase 2, a collector handles both traces and metrics properly.
@@ -94,4 +94,4 @@ Go back to your first terminal and generate some requests:
 for i in $(seq 1 20); do curl -s "http://localhost:5150/hello"; sleep 1; done
 ```
 
-**_NOTE:_** If you get a 404 error double check that there is no `\` appended to the url you are curling. In some termings the `;` will attempt to escape and cause an invalid url
+***NOTE:*** If you get a 404 error double check that there is no `\` appended to the url you are curling. In some termings the `;` will attempt to escape and cause an invalid url
