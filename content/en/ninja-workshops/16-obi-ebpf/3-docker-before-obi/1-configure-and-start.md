@@ -7,7 +7,11 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Note:** obtain your `ACCESS_TOKEN`, `REALM`, and `INSTANCE` using `env` in your environment. You will need to paste them into configs
+**Note:** obtain your `ACCESS_TOKEN`, `REALM`, and `INSTANCE` in your environment. You will need to paste them into configs.
+
+``` bash
+echo $ACCESS_TOKEN; echo $REALM; echo $INSTANCE
+```
 
 Navigate to the Phase 1/2 directory and open `docker-compose.yaml` in your editor:
 
@@ -16,7 +20,7 @@ cd ~/workshop/obi/02-obi-docker
 vim docker-compose.yaml #or editor of choice
 ```
 
-Find the `splunk-otel-collector` service and replace the four placeholder values with your real credentials:  
+Find the `splunk-otel-collector` service and replace the four placeholder values with your real credentials:
 
 ``` yaml
     environment:
@@ -59,7 +63,7 @@ docker-compose up --build -d
 {{% /tab %}}
 {{< /tabs >}}
 
-This builds the three application images from source and starts:
+This command will take several minutes to finish. This builds the three application images from source and starts:
 
 - **frontend** on [http://localhost:3000](http://localhost:3000)
 - **order-processor** on port 8080

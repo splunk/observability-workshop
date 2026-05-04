@@ -12,7 +12,7 @@ First, confirm everything is healthy:
 
 ``` bash
 docker-compose ps
-curl -s localhost:3000/create-order | python3 -m json.tool
+curl -s localhost:3000/create-order | jq
 docker-compose logs obi | head -30
 ```
 

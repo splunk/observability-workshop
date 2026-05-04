@@ -61,15 +61,17 @@ Heartbeat sent to Splunk (200)
  * Running on http://0.0.0.0:5150
 ```
 
-Hit the endpoint to confirm it's working:
+First hit return to get back to your prompt.
+Now hit the endpoint to confirm it's working:
 
 ``` bash
-curl http://localhost:5150/hello
+curl -s http://localhost:5150/hello | jq
 ```
 
 You should get back:
 
 ``` json
+127.0.0.1 - - [04/May/2026 13:10:16] "GET /hello HTTP/1.1" 200 -
 {
   "host": "<YOUR_INSTANCE>",
   "message": "Hello from the OBI Workshop warm-up!"

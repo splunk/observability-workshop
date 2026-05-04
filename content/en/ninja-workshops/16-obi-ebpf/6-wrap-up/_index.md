@@ -22,7 +22,8 @@ description: Key takeaways, cleanup instructions, and ideas for extending the wo
 ### Kubernetes
 
 ``` bash
-helm uninstall splunk-otel-collector
+kill %1 2>/dev/null; # kill port forward
+helm -n obi-workshop uninstall splunk-otel-collector
 kubectl delete namespace obi-workshop
 ```
 

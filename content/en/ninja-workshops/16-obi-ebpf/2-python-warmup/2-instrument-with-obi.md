@@ -13,7 +13,7 @@ Download the pre-built OBI binary from the [GitHub releases page](https://github
 {{% tab title="Script" %}}
 
 ```bash
-VERSION=0.6.0
+VERSION=0.8.0
 ARCH=amd64
 wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/obi-v$VERSION-linux-$ARCH.tar.gz"
 wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/SHA256SUMS"
@@ -93,5 +93,5 @@ Go back to your first terminal and generate some requests:
 ```bash
 for i in $(seq 1 20); do curl -s "http://localhost:5150/hello"; sleep 1; done
 ```
-***NOTE:*** If you get a 404 error double check that there is no `\` appended to the url you are curling. In some termings the `;` will attempt to escape and cause an invalid url
 
+***NOTE:*** If you get a 404 error double check that there is no `\` appended to the url you are curling. In some termings the `;` will attempt to escape and cause an invalid url

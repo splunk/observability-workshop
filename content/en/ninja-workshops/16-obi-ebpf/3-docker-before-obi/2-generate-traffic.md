@@ -10,7 +10,7 @@ weight: 2
 Use curl to generate traffic:
 
 ``` bash
-curl -s http://localhost:3000/create-order | python3 -m json.tool
+curl -s http://localhost:3000/create-order | jq
 ```
 
 {{% /notice %}}
