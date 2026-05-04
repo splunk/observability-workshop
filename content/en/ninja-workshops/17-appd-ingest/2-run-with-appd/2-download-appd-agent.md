@@ -22,9 +22,10 @@ You should now have the agent JAR at `~/workshop/appd/agent/javaagent.jar`.
 
 You'll need the [**Account Access Key**](https://se-lab.saas.appdynamics.com/controller/#/licensing/license-management-account?timeRange=last_15_minutes.BEFORE_NOW.-1.-1.15) when running the app. You can find it in the AppDynamics Controller:
 
-1. Go to **Settings** (gear icon) → **License** 
-2. Click the left side bar for **Account***
-2. Under **Account**, note the **Name** (`se-lab`) and **Access Key**
+1. Click on your name in the top right corner of the screen
+2. Go to **Admin** → **License**
+3. Click the left side bar for **Account***
+4. Under **Account**, note the **Name** (`se-lab`) and **Access Key**
 
 {{% notice title="Keep it handy" style="primary" icon="lightbulb" %}}
 You'll use the Account Name and Access Key in the next step as JVM properties. They authenticate the agent to the controller.

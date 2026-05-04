@@ -173,15 +173,19 @@ Verify the health endpoint:
 {{% tab title="Command" %}}
 
 ```bash
-curl -s http://localhost:13133/
+curl -s http://localhost:13133/ | jq
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```text
-splunk@ip-172-31-77-108 ~/workshop/appd $ curl -s http://localhost:13133/
-{"status":"Server available","upSince":"2026-03-09T21:25:53.277371609Z","uptime":"22.684480311s"}%
+splunk@ip-172-31-47-33 ~/workshop/appd $ curl -s http://localhost:13133/ | jq
+{
+  "status": "Server available",
+  "upSince": "2026-05-04T16:02:29.509202038Z",
+  "uptime": "30.174963775s"
+}
 ```
 
 {{% /tab %}}

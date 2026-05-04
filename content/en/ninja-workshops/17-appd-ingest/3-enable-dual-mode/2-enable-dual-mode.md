@@ -44,6 +44,7 @@ java -javaagent:agent/javaagent.jar \
 ```
 
 Wait for the Spring Boot startup banner to appear.
+Press return to go back to your prompt.
 
 ### What the new flags do
 
