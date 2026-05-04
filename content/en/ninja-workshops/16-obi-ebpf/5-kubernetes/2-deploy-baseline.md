@@ -133,7 +133,7 @@ kubectl port-forward -n obi-workshop svc/frontend 30000:3000 &; sleep 5
 Once the port is forwarded you can curl and hit the page:
 
 ``` bash
-curl -s http://localhost:30000/create-order | python3 -m json.tool
+curl -s http://localhost:30000/create-order | jq
 ```
 
 ## Confirm APM is Empty

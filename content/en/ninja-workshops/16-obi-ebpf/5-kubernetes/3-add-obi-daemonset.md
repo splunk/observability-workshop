@@ -71,7 +71,7 @@ level=INFO msg="instrumenting process" service=frontend
 Generate some traffic:
 
 ``` bash
-curl -s http://localhost:30000/create-order | python3 -m json.tool
+curl -s http://localhost:30000/create-order | jq
 ```
 
 ## Check Splunk APM
