@@ -61,7 +61,7 @@ Run the app briefly to confirm it starts:
 java -jar target/ingest-workshop-1.0.0.jar &
 ```
 
-Wait a few seconds, then test:
+Wait a few seconds, press return to go back to your prompt, then test:
 
 {{< tabs >}}
 {{% tab title="Command" %}}

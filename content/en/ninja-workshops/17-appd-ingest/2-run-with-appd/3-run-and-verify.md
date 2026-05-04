@@ -52,8 +52,8 @@ java -javaagent:agent/javaagent.jar \
 {{% /tab %}}
 {{< /tabs >}}
 
-
 Wait for the Spring Boot startup banner to appear (about 10-15 seconds).
+Press return to go back to your prompt.
 
 ## Generate Load
 
