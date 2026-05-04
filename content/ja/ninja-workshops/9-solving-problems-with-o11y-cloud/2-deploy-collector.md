@@ -5,24 +5,24 @@ weight: 2
 time: 15 minutes
 ---
 
-「データを取り込む」ための最初のステップは、OpenTelemetry Collectorをデプロイすることです。Collectorは環境内のテレメトリデータを受信して処理し、Splunk Observability Cloudにエクスポートします。
+「データを取り込む」ための最初のステップは、OpenTelemetry Collector をデプロイすることです。Collector は環境内のテレメトリデータを受信・処理し、Splunk Observability Cloud にエクスポートします。
 
-このワークショップではKubernetesを使用し、Helmを使用してK8sクラスターにCollectorをデプロイします。
+このワークショップでは Kubernetes を使用し、Helm を使って K8s クラスターに Collector をデプロイします。
 
-## Helm とは？
+## Helm とは
 
-HelmはKubernetes用のパッケージマネージャーで、以下のような利点があります：
+Helm は Kubernetes 用のパッケージマネージャーで、以下のメリットがあります
 
 * 複雑さの管理
-  * 多数のマニフェストファイルではなく、単一のvalues.yamlファイルで対応
+  * 数十のマニフェストファイルの代わりに、1つの values.yaml ファイルで管理できます
 * 簡単なアップデート
-  * インプレースアップグレード
+  * インプレースアップグレードが可能です
 * ロールバックのサポート
-  * helm rollbackを使用するだけで、リリースの古いバージョンにロールバック可能
+  * helm rollback を使用するだけで、リリースの古いバージョンにロールバックできます
 
-## Helm を使用して Collector をインストールする
+## Helm を使用した Collector のインストール
 
-正しいディレクトリに移動し、スクリプトを実行してCollectorをインストールしましょう：
+正しいディレクトリに移動し、スクリプトを実行して Collector をインストールします。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -52,28 +52,28 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-> スクリプトの実行には1分程度かかる場合があります。
+> スクリプトの実行には1分ほどかかる場合があります。
 
-このスクリプトはどのようにしてCollectorをインストールしたのでしょうか？まず、`~./profile` ファイルに設定された環境変数が読み込まれていることを確認しました：
+このスクリプトはどのように Collector をインストールしたのでしょうか？まず、`~./profile` ファイルに設定された環境変数が読み込まれていることを確認します。
 
-> 重要：以下のコマンドは `1-deploy-otel-collector.sh` スクリプトによって既に実行されているため、
-> 実行する必要はありません。
+> 重要：以下のコマンドは `1-deploy-otel-collector.sh` スクリプトによってすでに実行されているため、
+> 手動で実行する必要はありません。
 
 ``` bash
 source ~/.profile
 ```
 
-次に、`splunk-otel-collector-chart` Helmチャートをインストールし、最新の状態であることを確認しました：
+次に、`splunk-otel-collector-chart` Helm チャートをインストールし、最新の状態に更新します。
 
 ``` bash
   helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
   helm repo update
 ```
 
-最後に、`helm install` を使用してCollectorをインストールしました：
+最後に、`helm install` を使用して Collector をインストールします。
 
 ``` bash
-  helm install splunk-otel-collector --version {{< otel-version >}} \
+  helm install splunk-otel-collector --version 0.149.0 \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -82,12 +82,12 @@ source ~/.profile
   -f otel/values.yaml
 ```
 
-> `helm install` コマンドは `values.yaml` ファイルを参照していることに注意してください。
-> このファイルは Collector の設定をカスタマイズするために使用されます。詳細は後述します。
+> `helm install` コマンドは `values.yaml` ファイルを参照しており、このファイルは Collector の設定を
+> カスタマイズするために使用されます。詳細については以下で説明します。
 
 ## Collector が実行中であることを確認する
 
-以下のコマンドでCollectorが実行中かどうかを確認できます：
+以下のコマンドで Collector が実行中かどうかを確認できます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -112,21 +112,19 @@ splunk-otel-collector-operator-6fd9f9d569-wd5mn                 2/2     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-## K8s クラスターが O11y Cloud に存在することを確認する
+## K8s クラスターが O11y Cloud に表示されていることを確認する
 
-Splunk Observability Cloudで、**Infrastructure** → **Kubernetes** → **Kubernetes Clusters** に移動し、
-クラスター名（`$INSTANCE-k3s-cluster`）を検索します：
+Splunk Observability Cloud で、**Infrastructure** → **Kubernetes** → **Kubernetes Clusters** に移動し、クラスター名（`$INSTANCE-k3s-cluster`）を検索します。
 
 ![Kubernetes node](../images/k8snode.png)
 
 ## Collector の設定を取得する
 
-Collectorの設定をカスタマイズする前に、現在の設定がどのようになっているかを
-確認するにはどうすればよいでしょうか？
+Collector の設定をカスタマイズする前に、現在の設定がどのようになっているかを確認しましょう。
 
-Kubernetes環境では、Collectorの設定はConfig Mapを使用して保存されています。
+Kubernetes 環境では、Collector の設定は Config Map を使用して保存されています。
 
-以下のコマンドで、クラスター内に存在するconfig mapを確認できます：
+以下のコマンドで、クラスター内に存在する Config Map を確認できます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -147,7 +145,7 @@ splunk-otel-collector-otel-agent                  1      3h37m
 {{% /tab %}}
 {{< /tabs >}}
 
-次に、以下のようにしてCollectorエージェントのconfig mapを表示できます：
+次に、Collector エージェントの Config Map を以下のように表示できます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -192,24 +190,24 @@ exporters:
 
 ## K8s で Collector の設定を更新する方法
 
-K8sでは `values.yaml` ファイルを使用してCollectorの設定をカスタマイズできます。
+`values.yaml` ファイルを使用して、K8s の Collector 設定をカスタマイズできます。
 
 > `values.yaml` ファイルで利用可能なカスタマイズオプションの包括的なリストについては、
 > [このファイル](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml)を参照してください。
 
 例を見てみましょう。
 
-### Debug Exporter を追加する
+### Debug Exporter の追加
 
-Collectorに送信されるトレースを確認したいとします。この目的にはdebug exporterを使用できます。これはOpenTelemetry関連の問題のトラブルシューティングに役立ちます。
+Collector に送信されるトレースを確認したい場合、debug exporter を使用できます。これは OpenTelemetry 関連の問題のトラブルシューティングに役立ちます。
 
-`vi` または `nano` を使用して `values.yaml` ファイルを編集できます。ここではviを使用した例を示します：
+`vi` または `nano` を使用して `values.yaml` ファイルを編集できます。ここでは vi を使用した例を示します。
 
 ``` bash
 vi /home/splunk/workshop/tagging/otel/values.yaml
 ```
 
-以下のテキストをコピーして `values.yaml` ファイルの末尾に貼り付けて、debug exporterを追加します：
+以下のテキストをコピーして `values.yaml` ファイルの末尾に貼り付け、debug exporter を追加します。
 
 > 以下のテキストを追加する前に、vi で 'i' を押してインサートモードに入ってください。
 
@@ -222,12 +220,12 @@ vi /home/splunk/workshop/tagging/otel/values.yaml
       pipelines:
         traces:
           exporters:
-            - otlphttp
+            - otlp_http
             - signalfx
             - debug
 ```
 
-これらの変更後、`values.yaml` ファイルは以下の内容を含むはずです：
+これらの変更後、`values.yaml` ファイルの内容は以下のようになります。
 
 ``` yaml
 splunkObservability:
@@ -268,7 +266,7 @@ agent:
       pipelines:
         traces:
           exporters:
-            - otlphttp
+            - otlp_http
             - signalfx
             - debug
 ```
@@ -276,7 +274,7 @@ agent:
 > vi で変更を保存するには、`esc` キーを押してコマンドモードに入り、`:wq!` と入力してから
 > `enter/return` キーを押します。
 
-ファイルを保存したら、以下のコマンドで変更を適用できます：
+ファイルを保存したら、以下のコマンドで変更を適用できます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -310,22 +308,20 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-`values.yaml` ファイルを通じてCollectorの設定を変更した場合は、
-config mapを確認して、Collectorに適用された実際の設定を確認することが有用です：
+`values.yaml` ファイルを通じて Collector の設定を変更した場合は、Config Map を確認して、Collector に適用された実際の設定をレビューすることをお勧めします。
 
 ``` bash
 kubectl describe cm splunk-otel-collector-otel-agent
 ```
 
-期待通り、debug exporterがtracesパイプラインに追加されたことが確認できます：
+期待どおり、debug exporter がトレースパイプラインに追加されていることが確認できます。
 
 ``` yaml
   traces:
     exporters:
-    - otlphttp
+    - otlp_http
     - signalfx
     - debug
 ```
 
-debug exporterの出力については、クラスターにアプリケーションをデプロイして
-トレースのキャプチャを開始した後に確認します。
+アプリケーションをクラスターにデプロイしてトレースのキャプチャを開始したら、debug exporter の出力を確認します。

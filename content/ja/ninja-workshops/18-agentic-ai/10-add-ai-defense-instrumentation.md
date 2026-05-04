@@ -12,42 +12,38 @@ time: 15 minutes
 
 Splunk Observability Cloud は
 [Cisco AI Defense](https://www.cisco.com/site/us/en/products/security/ai-defense/index.html)
-と統合し、AI エージェントの実行時に検出された[セキュリティおよびプライバシーリスク](https://securitydocs.cisco.com/docs/ai-def/user/105473.dita)の統合ビューを提供します。これにより、パフォーマンスとリスクを一箇所で監視できます。
+と統合し、AI エージェントの実行時に検出された[セキュリティおよびプライバシーリスク](https://securitydocs.cisco.com/docs/ai-def/user/105473.dita)の統合ビューを提供します。これにより、パフォーマンスとリスクを一か所で監視できます。
 
 これは **Splunk AI Security Monitoring** と呼ばれ、以下のことが可能になります:
 
-* プロンプトインジェクションや PII 漏洩などの、検出またはブロックされたセキュリティおよびプライバシーリスクに関与しているエージェント、インタラクション、サービスを特定する
-* リスクの傾向をレイテンシー、エラー、その他のパフォーマンスメトリクスとともに時系列で追跡する
-* トレースコンテキスト内でリスクのあるインタラクションを、特定のプロンプトとレスポンスまで掘り下げて調査する
+* プロンプトインジェクションや PII 漏洩など、検出またはブロックされたセキュリティおよびプライバシーリスクに関与するエージェント、インタラクション、サービスを特定する
+* リスクの傾向をレイテンシー、エラー、その他のパフォーマンスメトリクスとともに経時的に追跡する
+* トレースコンテキストでリスクのあるインタラクションを、特定のプロンプトとレスポンスのレベルまで調査する
 
-このセクションでは、Agentic AI アプリケーションに AI Defense 統合を追加し、
-Splunk Observability Cloud で結果データを確認します。
+このセクションでは、Agentic AI アプリケーションに AI Defense インテグレーションを追加し、Splunk Observability Cloud で得られたデータを確認します。
 
 ## 仕組み
 
-Splunk AI Security Monitoring は、計装ライブラリ
+Splunk AI Security Monitoring は、Python ベースの AI エージェントのセキュリティおよびプライバシーリスクのトレーシングを自動化する計装ライブラリ
 [opentelemetry-instrumentation-aidefense](https://github.com/signalfx/splunk-otel-python-contrib/tree/main/instrumentation-genai/opentelemetry-instrumentation-aidefense)
-を提供し、Python ベースの AI エージェントのセキュリティおよびプライバシーリスクのトレーシングを自動化します。
-このライブラリは、AI エージェントが LLM（OpenAI など）やオーケストレーションフレームワーク（LangChain など）に対して行う呼び出しにセキュリティテレメトリーをキャプチャして付加します。これにより、すべてのプロンプトとレスポンスをセキュリティガードレールに対して監査し、統一された OpenTelemetry トレース内に記録できます。これは、LLM またはワークフロースパンに
-`gen_ai.security.event_id attribute` を追加することで実現されます。
+を提供しています。このライブラリは、AI エージェントが LLM（OpenAI など）やオーケストレーションフレームワーク（LangChain など）に対して行う呼び出しにセキュリティテレメトリーをキャプチャして付与し、すべてのプロンプトとレスポンスがセキュリティガードレールに対して監査され、統合された OpenTelemetry トレース内に記録されるようにします。これは、LLM またはワークフロースパンに `gen_ai.security.event_id attribute` を追加することで実現されます。
 
-## SDK モード vs. Gateway モード
+## SDK モードと Gateway モード
 
 `opentelemetry-instrumentation-aidefense` ライブラリは、SDK モードまたは Gateway モードのいずれかで動作できます:
 
-* SDK モードでは、開発者が `inspect_prompt()` を使用して明示的なセキュリティチェックを追加します。このオプションは、セキュリティチェックの実装方法や問題への対処方法を完全に制御したい開発者に最適です。
+* SDK モードでは、開発者が `inspect_prompt()` を使用して明示的なセキュリティチェックを追加します。このオプションは、セキュリティチェックの実装方法と問題への対処方法を完全に制御したい開発者に最適です。
 * Gateway モードでは、LLM 呼び出しが Cisco AI Defense Gateway を経由してプロキシされるため、アプリケーションコードの変更は不要です。このモードは、OpenAI、Anthropic などの一般的な商用 LLM でサポートされています。
 
 このワークショップでは、Azure OpenAI を使用した Gateway モードを利用します。
 
-## Cisco AI Defense 統合のセットアップ
+## Cisco AI Defense インテグレーションのセットアップ
 
-最初のステップは、[Cisco AI Defense との統合をセットアップ](https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-agent-security-monitoring/set-up-an-integration-with-cisco-ai-defense)することです。
+最初のステップは、[Cisco AI Defense とのインテグレーションのセットアップ](https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-agent-security-monitoring/set-up-an-integration-with-cisco-ai-defense)です。
 
-**Data Management -> Deployed integrations** に移動して `AI Defense` を検索すると、
-この統合が既に設定されていることがわかります:
+**Data Management -> Deployed integrations** に移動し、`AI Defense` を検索すると、このインテグレーションが既に設定されていることが確認できます:
 
-> 注意: この統合を表示するには `aiDefenseIntegration` フィーチャーフラグを有効にする必要があります
+> 注意: このインテグレーションを表示するには、`aiDefenseIntegration` フィーチャーフラグが有効になっている必要があります
 
 ![AI Defense Config](../images/AIDefenseConfig.png)
 
@@ -73,13 +69,14 @@ httpx>=0.24.0
 新しいタグで更新された Docker イメージをビルドします:
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-ai-defense .
 docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 ```
 
 ### AI Defense Gateway 用の Secret の作成
 
-AI Defense Gateway の URL を保存する Secret を作成します:
+AI Defense Gateway の URL を保存するための Secret を作成します:
 
 > 注意: Secret の作成時に使用する実際の AI Defense URL はワークショップの講師から提供されます
 
@@ -89,9 +86,7 @@ kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=a
 
 ### Kubernetes マニフェストの更新
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、
-`AZURE_OPENAI_ENDPOINT` 環境変数の定義を以下のように置き換えます。
-これにより、Azure OpenAI 宛てのリクエストが AI Defense Gateway を経由して送信されるようになります:
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、`AZURE_OPENAI_ENDPOINT` 環境変数の定義を以下のように置き換えます。これにより、Azure OpenAI 宛てのリクエストが代わりに AI Defense Gateway を経由して送信されるようになります:
 
 ```yaml
             - name: AZURE_OPENAI_ENDPOINT
@@ -119,19 +114,19 @@ kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=a
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
-### Kubernetes でのアプリケーションテスト
+### Kubernetes でのアプリケーションのテスト
 
 新しいアプリケーション Pod が正常に起動し、古い Pod がなくなっていることを確認します:
 
 {{< tabs >}}
-{{% tab title="スクリプト" %}}
+{{% tab title="Script" %}}
 
 ``` bash
 kubectl get pods -n travel-agent
 ```
 
 {{% /tab %}}
-{{% tab title="出力例" %}}
+{{% tab title="Example Output" %}}
 
 ````
 NAME                                        READY   STATUS    RESTARTS   AGE
@@ -154,5 +149,4 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
-現時点では、アプリケーションがまだ正常に動作していることを確認するだけで構いません。次のセクションでは、
-セキュリティリスクを追加し、それがどのように検出されるかを確認します。
+現時点では、アプリケーションが引き続き動作していることを確認してください。次のセクションでは、セキュリティリスクを追加し、それがどのように検出されるかを確認します。
