@@ -46,3 +46,34 @@ echo $INSTANCE
 
 Make a note of this, as your instance name is unique to you and will be 
 used later in the workshop to find your data in Splunk Observability Cloud. 
+
+## Connect Visual Studio Code (Optional)
+
+We'll be editing several files throughout the workshop. The workshop instructions 
+include tip for doing this using a `vi` editor, and workshop participants can 
+use the `nano` editor as well. 
+
+If you prefer a full-fledged IDE, you can connect Visual Studio Code running 
+on your laptop to edit remote files on the EC2 instance. 
+
+The high-level steps to do this are as follows: 
+
+1. Download and install VS code on your machine using [this link](https://code.visualstudio.com/download). 
+2. In VS Code, navigate to **Settings** and then **Extensions**. 
+3. Search for the **Remote – SSH extension** (by Microsoft) and install it. 
+
+![Install Remote SSH Extension](../images/InstallRemoteSSH.png)
+
+4. Press F1 (or Ctrl+Shift+P on Windows / Cmd+Shift+P on Mac OS). 
+5. Run **Remote-SSH: Connect to Host**.
+6. Copy your SSH command from Splunk Show: `ssh -p 2222 splunk@EC2_PUBLIC_IP`. 
+7. Choose the default SSH config file when prompted. 
+8. Press F1 (or Ctrl+Shift+P on Windows / Cmd+Shift+P on Mac OS) again.
+9. Run **Remote-SSH: Connect to Host**.
+10. Select the host you just added. VS Code will open a new window and start the connection.
+11. A prompt will appear at the top of VS Code asking for the **SSH password**. Copy the password from Splunk Show and enter it here. 
+12. Click **Open Folder** then input `/home/splunk/workshop/agentic-ai` as the folder name: 
+
+![Open Remote Folder](../images/OpenRemoteFolder.png)
+
+You can now files remotely with VS Code! 
