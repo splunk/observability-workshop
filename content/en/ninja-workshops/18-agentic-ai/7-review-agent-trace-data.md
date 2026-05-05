@@ -60,6 +60,9 @@ has been added to Splunk Observability Cloud to control who can access and view 
 
 In Splunk Observability Cloud, navigate to `APM` and then select `Service Map`.
 Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
+
+> Tip: use the `echo $INSTANCE` command if you've forgotten your instance name
+
 You should see a service map that looks like the following:
 
 ![Service Map](../images/ServiceMap.png)

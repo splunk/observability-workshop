@@ -29,7 +29,7 @@ To configure the helm chart deployment, let's create a new file named `values.ya
 the `/home/splunk` directory:
 
 ``` bash
-# swith to the /home/splunk dir
+# switch to the /home/splunk dir
 cd /home/splunk
 # create a values.yaml file in vi
 vi values.yaml
