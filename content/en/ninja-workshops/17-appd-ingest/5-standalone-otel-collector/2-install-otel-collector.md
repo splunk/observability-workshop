@@ -1,9 +1,9 @@
 ---
-title: 1. Install the OTel Collector
-weight: 1
+title: 2. Install the Splunk OTel Collector
+weight: 2
 ---
 
-The AppDynamics agent in dual mode emits OpenTelemetry data over OTLP. You need a collector on the same host to receive that data and forward it to Splunk Observability Cloud.
+The Java app from Phase 3 is still emitting OpenTelemetry traces over OTLP to `localhost:4318`. This step puts a real collector behind that endpoint, on its own `systemd` service, and applies the same workshop `collector-config.yaml` you used in Phase 3.
 
 ## Verify Environment Variables
 
@@ -19,7 +19,7 @@ All three should have values. If any are empty, check with your instructor.
 
 ## Install the Splunk OpenTelemetry Collector
 
-Run the Splunk OTel Collector install script. This installs the collector as a `systemd` service:
+Run the Splunk OTel Collector install script. This installs the collector as a `systemd` service and ships the Smart Agent monitor bundle that was missing in Phase 3:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -41,13 +41,7 @@ Splunk OpenTelemetry Collector has been successfully installed.
 
 ## Apply the Workshop Collector Configuration
 
-The default collector config is general-purpose. We will replace it with the workshop-specific config that receives OTLP from the AppDynamics agent and exports to Splunk Observability Cloud. But first lets take a look at what we're adding:
-
-```bash
-vim ~/workshop/appd/collector-config.yaml
-```
-
-look for this section under `processors:`:
+The default collector config the install script writes is general-purpose. Replace it with the same `~/workshop/appd/collector-config.yaml` you used in Phase 3. The processors below are why the workshop ships its own config in the first place:
 {{< tabs >}}
 {{% tab title="collector-config.yaml" %}}
 
@@ -114,7 +108,7 @@ sudo cp ~/workshop/appd/collector-config.yaml /etc/otel/collector/agent_config.y
 
 ## Set the Collector Environment Variables
 
-The collector service reads environment variables from a config file. The Splunk OTel Collector binary requires `SPLUNK_REALM` and `SPLUNK_ACCESS_TOKEN` (with the `SPLUNK_` prefix). Your instance has `REALM` and `ACCESS_TOKEN`, so we map them:
+In Phase 3 you exported these variables in your shell every time you started the machine agent. The standalone install reads them from `/etc/otel/collector/splunk-otel-collector.conf` instead. Write them once and `systemd` carries them across reboots and restarts:
 
 ```bash
 sudo bash -c "cat > /etc/otel/collector/splunk-otel-collector.conf << EOF
