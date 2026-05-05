@@ -7,10 +7,19 @@ time: 5 minutes
 
 ## Connect to your EC2 Instance
 
-We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.
+We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee: 
 
-Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below:
+* Access the **Splunk Show** event by clicking on the link for your region
+* Click **Enroll** on the top-right corner
+* Then look near the bottom of the page for your EC2 instance details
+
+You should see connection information such as the following: 
+
+![Connection Information](../images/ConnectionInformation.png)
+
+Using the IP address (which is part of the **SSH Command**) 
+and **SSH Password** provided as part of the **Connection Information**, 
+connect to your EC2 instance using one of the methods below:
 
 * Mac OS / Linux
     * ssh splunk@IP address
@@ -18,6 +27,13 @@ using one of the methods below:
     * Use the OpenSSH client
 * Earlier versions of Windows
     * Use Putty 
+
+{{% notice title="VPN Connection" style="green" icon="running" %}}
+
+If you're working from an office and having trouble connecting, try connecting 
+to your corporate VPN first. 
+
+{{% /notice %}}
 
 ## Retrieve your Instance Name 
 

@@ -149,9 +149,10 @@ curl http://travel-planner.localhost/travel/plan \
 
 ## View Events in Cisco AI Defense
 
-If we login to the AI Defense application directly, we can see that an event was logged for
-our request, and that AI Defense has automatically redacted the credit card number
-we included in the prompt:
+Workshop attendees won’t be able to log in to the AI Defense application directly. 
+However, if we were able to view the AI Defense dashboard, we would see that an 
+event was logged for this request and that the credit card number included in the 
+prompt was automatically redacted.
 
 ![AI Defense Events](../images/AIDefenseEvents.png)
 

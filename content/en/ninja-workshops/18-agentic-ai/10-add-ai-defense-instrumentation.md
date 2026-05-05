@@ -7,7 +7,7 @@ time: 15 minutes
 
 > Note: this section of the workshop requires changes to multiple files.
 > If you're not sure where to make the changes, or your application is no
-> longer working, please refer to the model solution for this section
+> longer working, please refer to the expected solution for this section
 > which is in the `~/workshop/agentic-ai/app-with-ai-defense` folder.
 
 Splunk Observability Cloud integrates with 
@@ -71,7 +71,7 @@ cisco-aidefense-sdk>=2.0.0
 httpx>=0.24.0
 ````
 
-> Hint: run the following command to compare your changes with the model solution:
+> Hint: run the following command to compare your changes with the expected solution:
 >
 > `diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-ai-defense/requirements.txt`
 
@@ -87,14 +87,11 @@ docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 
 ### Create a Secret for the AI Defense Gateway
 
-Let's create a secret to store the AI Defense Gateway URL:
+The document provided by the workshop instructor contains a `kubectl create secret` 
+command to create a secret to store the AI Defense Gateway URL. 
 
-> Note: your instructor will provide the actual AI Defense URL to be used while creating the secret
-
-```bash
-kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=ai-defense-gateway-url='https://us.gateway.aidefense.security.cisco.com/{tenant}/connections/{conn}'
-```
-
+Copy and paste this `kubectl create secret` command from the document 
+and run it in your ssh terminal.
 
 ### Update the Kubernetes Manifest
 
@@ -118,7 +115,7 @@ instrumentation:
           image: localhost:9999/agentic-ai-app:app-with-ai-defense
 ```
 
-> Hint: run the following command to compare your changes with the model solution:
+> Hint: run the following command to compare your changes with the expected solution:
 >
 > `diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-ai-defense/k8s.yaml`
 

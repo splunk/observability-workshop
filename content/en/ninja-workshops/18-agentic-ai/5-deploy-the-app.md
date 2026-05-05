@@ -11,17 +11,18 @@ We'll start by running the application directly on our Linux EC2 instance.
 
 ### Set Environment Variables
 
-In the command terminal, configure the following environment variables which 
-tell the application how to connect to an OpenAI model hosted in Azure:  
+The document provided by the workshop instructor contains `export` commands to set the following 
+environment variables: 
 
-> Note: the workshop instructor will provide the values for `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`.
+* `AZURE_OPENAI_DEPLOYMENT_NAME`
+* `AZURE_OPENAI_API_VERSION`
+* `AZURE_OPENAI_ENDPOINT`
+* `AZURE_OPENAI_API_KEY`
 
-``` bash
-export AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini
-export AZURE_OPENAI_API_VERSION=2024-12-01-preview
-export AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
-export AZURE_OPENAI_API_KEY=your_azure_openai_api_key
-```
+These environment variables tell the application how to connect to an 
+OpenAI model hosted in Azure. 
+
+Copy and paste these `export` commands from the document and run them in your ssh terminal.
 
 ### Create Virtual Environment
 
@@ -82,29 +83,23 @@ first terminal and stop the application.
 
 Now that the application is working successfully, let's deploy it to Kubernetes. 
 
-### Create a Dockerfile
-
-A pre-built the Dockerfile can be found in the file named
-`~/workshop/agentic-ai/base-app/Dockerfile`. We can see that all the 
-packages in the `requirements.txt` file are installed as part of building 
-the Docker image: 
-
-````
-RUN pip install --no-cache-dir -r requirements.txt
-````
-
-The container is started with the following command: 
-
-````
-CMD ["python", "main.py"]
-````
-
 ### Build the Docker Image 
+
+In this section, we'll use the Dockerfile located at `~/workshop/agentic-ai/base-app/Dockerfile`
+to build a Docker image for the application. Run the following commands to build the image: 
 
 ``` bash
 cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:base-app .
 docker push localhost:9999/agentic-ai-app:base-app
+```
+
+### Create Application Namespace
+
+Let's create a new namespace to host our application: 
+
+``` bash
+kubectl create ns travel-agent
 ```
 
 ### Create Secret with Azure Credentials
@@ -116,10 +111,18 @@ We'll use a Kubernetes secret to store the Azure OpenAI endpoint and key:
 > variables earlier. 
 
 ``` bash
-kubectl create ns travel-agent
-
-kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
+{ [ -z "$AZURE_OPENAI_ENDPOINT" ] || \
+  [ -z "$AZURE_OPENAI_API_KEY" ]; } && \
+  echo "Error: Missing variables" || \
+  kubectl create secret generic azure-openai-api \
+  -n travel-agent \
+  --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT \
+  --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
 ```
+
+> Note: if you get an error that says Missing variables, you’ll need to 
+> define your environment variables again using the `export` commands 
+> provided in the document from your instructor. 
 
 ### Deploy the Application Using the Kubernetes Manifest File
 
