@@ -5,18 +5,6 @@ weight: 2
 
 The Java app from Phase 3 is still emitting OpenTelemetry traces over OTLP to `localhost:4318`. This step puts a real collector behind that endpoint, on its own `systemd` service, and applies the same workshop `collector-config.yaml` you used in Phase 3.
 
-## Verify Environment Variables
-
-Your instance should have these variables pre-set. Confirm they are available with `env` or:
-
-```bash
-echo "REALM=$REALM"
-echo "ACCESS_TOKEN=$ACCESS_TOKEN"
-echo "INSTANCE=$INSTANCE"
-```
-
-All three should have values. If any are empty, check with your instructor.
-
 ## Install the Splunk OpenTelemetry Collector
 
 Run the Splunk OTel Collector install script. This installs the collector as a `systemd` service and ships the Smart Agent monitor bundle that was missing in Phase 3:
@@ -42,6 +30,15 @@ Splunk OpenTelemetry Collector has been successfully installed.
 ## Apply the Workshop Collector Configuration
 
 The default collector config the install script writes is general-purpose. Replace it with the same `~/workshop/appd/collector-config.yaml` you used in Phase 3. The processors below are why the workshop ships its own config in the first place:
+
+We will copy the custom config we used previously in the workshop over the `agent_config.yaml` to verify we are comparing apples to apples with our previous agent:
+
+```bash
+sudo cp ~/workshop/appd/collector-config.yaml /etc/otel/collector/agent_config.yaml
+```
+
+Lets check out an important element in the custom config we used in both phases of our workshop. The processors below help us maintain telemetry cleanliness when ingesting into the backend:
+
 {{< tabs >}}
 {{% tab title="collector-config.yaml" %}}
 
@@ -99,12 +96,6 @@ In our `transform` config we are checking if a metric is over 34 combined attrib
 Finally we do a check for available space afterwards to add a dimension for `cardinality.trimmed` so we can easily identify metrics that had dropped attributes.
 
 Each of these processors is included at the end of the `pipeline:` for metrics in our configuration.
-
-We will then copy that custom config over the `agent_config.yaml`:
-
-```bash
-sudo cp ~/workshop/appd/collector-config.yaml /etc/otel/collector/agent_config.yaml
-```
 
 ## Set the Collector Environment Variables
 

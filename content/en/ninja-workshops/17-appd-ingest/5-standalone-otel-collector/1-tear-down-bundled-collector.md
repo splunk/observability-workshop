@@ -19,6 +19,8 @@ rm -f machine-agent.pid otel-collector.pid
 
 If either pidfile is missing or stale, fall back to `pkill -f machineagent.jar` and `pkill -f otelcol_linux_amd64`.
 
+**NOTE: IGNORE AN OTEL ERRORS THAT MAY HAPPEN IN THE BACKROUND WHILE CHANGING OUT AGENTS**
+
 ## Confirm the OTLP Ports Are Free
 
 ```bash
@@ -57,5 +59,7 @@ You should now have:
 {{% notice title="Why not stop the Java app too" style="info" icon="info-circle" %}}
 The Java app from Phase 3 is already in dual signal mode and configured to export OTLP to `localhost:4318`. As soon as the standalone collector starts listening on those ports in the next step, the Java app's traces resume without restart. Killing it here would just create more work.
 {{% /notice %}}
+
+You should be seeing errors coming from your Java app running in the background trying to send opentelemetry data. We address that next.
 
 Move on to install the standalone Splunk OTel Collector.

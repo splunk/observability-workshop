@@ -93,7 +93,7 @@ The collector is its own service. Restart it, reload its config, or upgrade it w
 
 You walked the workshop from AppDynamics-only, through infrastructure dual signal, through "yes you can run the workshop config inside AppD's bundled collector if you accept the friction", and finally to the standalone install we recommend for production.
 
-The next step on this path is OTel-native: drop the AppDynamics agent on a service, instrument it with the OpenTelemetry Java SDK or auto-instrumentation directly, and let the standalone Splunk OTel Collector you just installed pick the data up unchanged. The `appd.*` correlation attributes go away on those services because there is no AppD agent to add them, but everything else in the pipeline (resource processors, high-cardinality trim, host metrics, profiling, log forwarding) keeps working with no changes.
+The next step on this path is OTel-native: drop the AppDynamics agent on a service, instrument it with, eBPF (OBI), or the OpenTelemetry Java  auto-instrumentation directly, and let the standalone Splunk OTel Collector you just installed pick the data up unchanged. The `appd.*` correlation attributes go away on those services because there is no AppD agent to add them, but everything else in the pipeline (resource processors, high-cardinality trim, host metrics, profiling, log forwarding) keeps working with no changes.
 
 For services where AppDynamics still earns its place (SIM, the L1/L2 mental model, business transaction analytics), dual mode and the standalone collector are how you keep both teams happy while the migration runs.
 

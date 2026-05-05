@@ -41,6 +41,25 @@ cd ~/workshop/appd/machine-agent
 cp conf/otel/agent_config.yaml conf/otel/agent_config.yaml.appd-default
 ```
 
+## See How Much You're About to Add
+
+Before you swap the file, compare what AppD ships against what you are about to drop in. The bundled config is intentionally narrow per the [Combined Agent docs](https://help.splunk.com/en/appdynamics-on-premises/infrastructure-visibility/26.4.0/machine-agent/combined-agent-for-infrastructure-visibility): a `hostmetrics` receiver feeding the `signalfx` exporter, plus the minimal extensions and processors AppD wires up to make that work. The workshop config adds additional receivers for OTLP data, custom resource, correlation, and high-cardinality protection processors. But most importantly they include the `splunk_hec` and `otlp_http` exporters along with the trace, log, and profiling pipelines those exporters need.
+
+Count the line delta first:
+
+```bash
+wc -l conf/otel/agent_config.yaml.appd-default ~/workshop/appd/collector-config.yaml
+```
+
+Then look at the diff. The full output is several hundred lines, so pipe through `less`:
+
+```bash
+diff -u conf/otel/agent_config.yaml.appd-default ~/workshop/appd/collector-config.yaml | less
+```
+
+
+Everything that diff shows is something the AppD bundle does not configure for you. That is the work the standalone install takes care of all of this.
+
 ## Drop the Workshop Config Into the AppD Install
 
 ```bash
@@ -105,14 +124,7 @@ cd ~/workshop/appd/machine-agent
   -Dappdynamics.sim.enabled=true
 ```
 
-You should see the launcher pick up the workshop config:
-
-```text
-Starting OTel Collector: /home/splunk/workshop/appd/machine-agent/otel-collector/bin/otelcol_linux_amd64
-OTel config: /home/splunk/workshop/appd/machine-agent/conf/otel/agent_config.yaml
-OTel Collector started (PID=...)
-Started APPDYNAMICS Machine Agent Successfully.
-```
+You should see the launcher pick up the workshop config
 
 ## Verify the Bundled Collector Started With the Workshop Config
 

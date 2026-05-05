@@ -50,10 +50,10 @@ cd ~/workshop/appd/machine-agent
 {{% tab title="Example Output" %}}
 
 ```text
+Using java executable at /home/splunk/workshop/appd/machine-agent/jre/bin/java
 Starting OTel Collector: /home/splunk/workshop/appd/machine-agent/otel-collector/bin/otelcol_linux_amd64
 OTel config: /home/splunk/workshop/appd/machine-agent/conf/otel/agent_config.yaml
-OTel Collector started (PID=181812)
-Started APPDYNAMICS Machine Agent Successfully.
+OTel Collector started (PID=151396)
 ```
 
 {{% /tab %}}

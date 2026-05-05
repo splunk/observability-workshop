@@ -19,13 +19,13 @@ This is especially helpful for your current L1 and L2 teams who currently know a
 
 By the end of this workshop, you will:
 
-- Build and run a simple Java service with the AppDynamics Java Agent
-- Add infrastructure dual signal with the **AppDynamics Combined Machine Agent**, the lowest-effort step to get hosts into both AppDynamics and Splunk Observability Cloud
-- Understand the difference between **hybrid mode** and **dual signal mode** on the Java agent
-- Customize the bundled OTel collector inside the AppDynamics machine agent with the workshop config and feel the friction of doing it that way
-- Replace the bundled collector with the **standalone Splunk OpenTelemetry Collector** (the configuration we recommend for production observability) and watch that friction disappear
-- Verify traces and metrics in both platforms
-- Create a **global data link** in Splunk Observability Cloud for one-click navigation to AppDynamics
+1. Build and run a simple Java service with the AppDynamics Java Agent
+2. Add infrastructure dual signal with the **AppDynamics Combined Machine Agent**, the lowest-effort step to get hosts into both AppDynamics and Splunk Observability Cloud
+      - Understand the difference between **hybrid mode** and **dual signal mode** on the Java agent
+3. Customize the bundled OTel collector inside the AppDynamics machine agent with the workshop config and see how much additional configuration is required
+4. Replace the bundled collector with the **standalone Splunk OpenTelemetry Collector** (the configuration we recommend for production observability) and watch that friction disappear
+      - Verify traces and metrics in both platforms
+5. Create a **global data link** in Splunk Observability Cloud for one-click navigation to AppDynamics
 
 ## Architecture
 
@@ -64,23 +64,18 @@ Machine Agent (combined)                  │
 
 Same Splunk Distribution binary as Phase 4, just running inside the AppDynamics install. You manually export every `SPLUNK_*` env var the workshop config needs, and the Smart Agent monitor bundle is missing because AppD does not ship it. The path works for APM and host metrics, the friction is the lesson.
 
-**Phase 4: Standalone Splunk OTel Collector (recommended end-state):**
+**Phase 4: Standalone Splunk OTel Collector (Migration Phase):**
 
 ```text
-Java App + AppD Agent (dual)  ──▶  AppD Controller        (APM, unchanged)
-                              ──▶  localhost:4318 (OTLP)
-                                          │
-Machine Agent (AppD-only)                 │
-  └─▶  AppD Controller (Server Visibility) │
-                                          ▼
-              Splunk OTel Collector (systemd-managed)
-                (config: /etc/otel/collector/agent_config.yaml = workshop config)
-                (env vars: /etc/otel/collector/splunk-otel-collector.conf, written by install script)
-                (Smart Agent bundle: /usr/lib/splunk-otel-collector/agent-bundle, shipped by package)
-                ──▶  Splunk Observability Cloud  (APM + Hosts + Logs + Profiling + Process List)
+Java App + AppD Agent (dual)  
+  ──▶  AppD Controller        (APM, unchanged)
+  ──▶  localhost:4318 (OTLP)
+            |
+            └─▶ Splunk OTel Collector (systemd-managed)
+              ──▶  Splunk Observability Cloud  (APM + Hosts + Logs + Profiling + Process List)
 ```
 
-Same workshop config as Phase 3, run by a `systemd`-managed standalone install. Every `SPLUNK_*` env var lives in `/etc/otel/collector/splunk-otel-collector.conf`, the Smart Agent monitor bundle is on disk so `smartagent/processlist` actually works, and the collector lifecycle is independent of the AppD machine agent. This is the configuration we recommend for production observability and the natural step toward an OTel-native footprint.
+Same workshop config as Phase 3, run by a `systemd`-managed standalone install. Every `SPLUNK_*` env var lives in `/etc/otel/collector/splunk-otel-collector.conf, and the collector lifecycle is independent of the AppD machine agent. This is the configuration we recommend for production observability and the natural step toward an OTel-native footprint.
 
 **Note:** It is possible to send data directly from the Java agent to our [OTLP ingest endpoint](https://dev.splunk.com/observability/docs/datamodel/ingest/#Send-data-points) without a collector, but you lose the resource processors, high-cardinality trim, and other pipeline configuration the workshop config provides.
 
