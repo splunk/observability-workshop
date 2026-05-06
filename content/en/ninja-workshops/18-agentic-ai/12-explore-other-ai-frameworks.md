@@ -160,6 +160,11 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:crewai .
 docker push localhost:9999/agentic-ai-app:crewai
 ```
 
+> Tip: if the image is taking too long to build, consider using the pre-built
+> image instead. To do so, update the image name in
+> the `~/workshop/agentic-ai/crewai/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:crewai`
+> instead of `localhost:9999/agentic-ai-app:crewai`.
+
 Let's use a different environment name for this version of the application: 
 
 ```bash

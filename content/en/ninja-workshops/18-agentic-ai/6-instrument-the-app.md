@@ -70,6 +70,11 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-in
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
+> Tip: if the image is taking too long to build, consider using the pre-built
+> image instead. To do so, update the image name in
+> the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:app-with-instrumentation`
+> instead of `localhost:9999/agentic-ai-app:app-with-instrumentation`.
+
 ### Define the Config Map
 
 When we deploy our application to Kubernetes, we want telemetry (metrics, traces, and logs) 
