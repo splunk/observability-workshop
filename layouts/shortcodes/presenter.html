@@ -1,0 +1,24 @@
+{{- /*
+  presenter — block of guidance shown only when the page is viewed
+  in presenter mode (toggle in the bottom-right of every page, or
+  append ?presenter=1 to the URL). Hidden from attendees by default
+  via CSS, but the markup is still in the page source — use this
+  for delivery cues, timing, and "kick this off in the background"
+  prompts, not for hidden answers.
+
+  Usage:
+    {{< presenter >}}
+    Start the EC2 instance now — boot takes ~3 minutes.
+    {{< /presenter >}}
+
+    {{< presenter title="Timing" >}}
+    Allow 10 minutes for attendees to finish this section.
+    {{< /presenter >}}
+*/ -}}
+{{- $title := .Get "title" | default "Presenter note" -}}
+<aside class="presenter-only" aria-label="{{ $title }}">
+  <div class="presenter-only__label">{{ $title }}</div>
+  <div class="presenter-only__body">
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</aside>

@@ -37,4 +37,110 @@ SplunkSessionRecorder.init({
     pre:not(.mermaid) {
         margin: 0;
     }
+
+    /* ----- Presenter mode -----
+     * Notes authored with the "presenter" shortcode are hidden from
+     * attendees by default and revealed when body.presenter-mode is set
+     * (toggle button bottom-right, or ?presenter=1 in the URL). The notes
+     * are still present in the HTML — use for delivery cues, not secrets. */
+    .presenter-only { display: none; }
+    body.presenter-mode .presenter-only {
+        display: block;
+        margin: 1rem 0;
+        padding: 0.75rem 1rem 0.75rem 1rem;
+        border-left: 4px solid var(--SPLUNK-magenta, #ce0070);
+        background: rgba(206, 0, 112, 0.06);
+        border-radius: 4px;
+    }
+    .presenter-only__label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--SPLUNK-magenta, #ce0070);
+        margin-bottom: 0.25rem;
+    }
+    .presenter-only__body > :first-child { margin-top: 0; }
+    .presenter-only__body > :last-child  { margin-bottom: 0; }
+
+    /* Toggle pill is hidden by default — only presenters who arrive with
+     * ?presenter=1 see it (in the "on" state, magenta), and clicking it
+     * exits presenter mode. Attendees never see the control. */
+    .presenter-toggle { display: none; }
+    body.presenter-mode .presenter-toggle {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.75rem;
+        font: 600 0.75rem/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--SPLUNK-magenta, #ce0070);
+        border: 0;
+        border-radius: 999px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        transition: background 0.15s ease;
+    }
+    body.presenter-mode .presenter-toggle:hover {
+        background: var(--SPLUNK-magenta-deep, #a30058);
+    }
+    .presenter-toggle__dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    @media print {
+        .presenter-only,
+        .presenter-toggle { display: none !important; }
+    }
 </style>
+<script>
+    (function () {
+        var KEY = 'presenter-mode';
+        var params = new URLSearchParams(window.location.search);
+        if (params.has('presenter')) {
+            var v = params.get('presenter');
+            if (v === '0' || v === 'false') {
+                localStorage.removeItem(KEY);
+            } else {
+                localStorage.setItem(KEY, '1');
+            }
+        }
+        function apply() {
+            document.body.classList.toggle(
+                'presenter-mode',
+                localStorage.getItem(KEY) === '1'
+            );
+        }
+        function inject() {
+            if (document.getElementById('presenter-toggle')) return;
+            var btn = document.createElement('button');
+            btn.id = 'presenter-toggle';
+            btn.type = 'button';
+            btn.className = 'presenter-toggle';
+            btn.title = 'Exit presenter mode';
+            btn.innerHTML =
+                '<span class="presenter-toggle__dot"></span>' +
+                '<span class="presenter-toggle__text">Presenter on</span>';
+            btn.addEventListener('click', function () {
+                localStorage.removeItem(KEY);
+                apply();
+            });
+            document.body.appendChild(btn);
+            apply();
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inject);
+        } else {
+            inject();
+        }
+    })();
+</script>

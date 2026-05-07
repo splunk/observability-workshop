@@ -6,6 +6,10 @@ time: 5 minutes
 description: Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.
 ---
 
+{{< presenter title="Timing" >}}
+Allow ~10 minutes for attendees to finish this section.
+{{< /presenter >}}
+
 {{% notice icon="user" style="orange" title="Persona" %}}
 
 You are a **hip urban professional**, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.
