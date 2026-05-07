@@ -5,7 +5,7 @@ weight: 12
 archetype: chapter
 authors: ["Doug Erkkila"]
 description: シナリオの説明
-hidden: true
+hidden: false
 ---
 
 # ワークショップ: Splunk IT Service Intelligence による監視とアラート

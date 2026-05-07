@@ -1,24 +1,24 @@
 ---
-title: 3. AppD での実行と確認
+title: 3. AppD で実行と確認
 weight: 3
 ---
 
-AppDynamics エージェントをアタッチしてアプリケーションを実行します。これは「通常の」単一送信先へのインストルメンテーションです。
+ここで、AppDynamics エージェントをアタッチした状態でアプリケーションを実行します。これは「通常の」単一送信先のインストルメンテーションです。
 
-## AppDynamics エージェントで実行する
+## AppDynamics エージェントを使った実行
 
-`<YOUR-ACCESS-KEY>` と `<<YourInitials>>` を前のステップで取得した値に置き換えてください
+`<YOUR-ACCESS-KEY>` を、前のステップで取得した AppDynamics トークンに置き換えます。
 
 {{< tabs >}}
-{{% tab title="Command" %}}
-環境変数をエクスポートします
+{{% tab title="コマンド" %}}
+環境変数をエクスポートします。
 
 ```bash
 export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
-export APPD_APP_NAME=Dual-Ingest-<YourInitials>
+export APPD_APP_NAME=Dual-Ingest-${INSTANCE}
 ```
 
-次に、エージェントを指定して java を起動します
+その後、エージェント付きで Java を起動できます。
 
 ```bash
 cd ~/workshop/appd
@@ -32,18 +32,18 @@ java -javaagent:agent/javaagent.jar \
   -Dappdynamics.agent.nodeName=OrderService-Node \
   -Dappdynamics.agent.accountName=se-lab \
   -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY} \
-  -jar app/target/ingest-workshop-1.0.0.jar & 
+  -jar app/target/ingest-workshop-1.0.0.jar &
 ```
 
 {{% /tab %}}
-{{% tab title="Example" %}}
+{{% tab title="例" %}}
 
 ```text
 java -javaagent:agent/javaagent.jar \
   -Dappdynamics.controller.hostName=se-lab.saas.appdynamics.com \
   -Dappdynamics.controller.port=443 \
   -Dappdynamics.controller.ssl.enabled=true \
-  -Dappdynamics.agent.applicationName=Dual-Ingest-JRH \
+  -Dappdynamics.agent.applicationName=Dual-Ingest-shw-4267 \
   -Dappdynamics.agent.tierName=OrderService \
   -Dappdynamics.agent.nodeName=OrderService-Node \
   -Dappdynamics.agent.accountName=se-lab \
@@ -54,11 +54,11 @@ java -javaagent:agent/javaagent.jar \
 {{% /tab %}}
 {{< /tabs >}}
 
-Spring Boot の起動バナーが表示されるまで待ちます（約10〜15秒）。
+Spring Boot の起動バナーが表示されるまで待ちます（10〜15秒程度）。
 
 ## 負荷を生成する
 
-シンプルな負荷生成ツールをバックグラウンドで起動します
+バックグラウンドでシンプルなロードジェネレーターを開始します。
 
 ```bash
 while true; do
@@ -71,22 +71,22 @@ done &
 ## AppDynamics Controller で確認する
 
 1. [AppDynamics Controller](https://se-lab.saas.appdynamics.com/controller/) を開きます
-2. **Applications** に移動し、自分のアプリケーションを見つけます（例`Dual-Ingest-YOURINITIALS`）
+2. **Applications** に移動し、自分のアプリケーション（例: `Dual-Ingest-<your_INSTANCE_var>`）を見つけます
 3. アプリケーションをクリックして **Flow Map** を表示します
 
-{{% notice title="お待ちください" style="info" icon="info-circle" %}}
-アプリケーションが登録され、ビジネストランザクションがフローマップに表示されるまで2〜5分かかる場合があります。必要に応じてページを更新してください。
+{{% notice title="少しお待ちください" style="info" icon="info-circle" %}}
+アプリケーションが登録され、ビジネストランザクションが flow map に表示されるまで、2〜5分かかる場合があります。必要に応じてページを更新してください。
 {{% /notice %}}
 
-以下が表示されるはずです
+次の内容が表示されるはずです。
 
-- フローマップに **OrderService** ティアが表示される
-- `/order` と `/inventory` エンドポイントのビジネストランザクション
-- コントローラーに流入するメトリクスデータ
+- flow map に表示される **OrderService** tier
+- `/order` および `/inventory` エンドポイントのビジネストランザクション
+- コントローラーに流れているメトリクスデータ
 
-この時点では、データは **AppDynamics にのみ** 送信されています。アプリケーションは Splunk Observability Cloud には接続されていません。次のフェーズでは、デュアルシグナルモードを有効にしてこれを変更します。
+この時点では、データは **AppDynamics のみ**に流れています。アプリケーションは Splunk Observability Cloud には接続されていません。次のフェーズで、デュアルシグナルモードを有効にしてこれを変更します。
 ![AppDynamics Application](../../_images/appd-service.png?width=30vw)
 
-{{% notice title="実行したままにしてください" style="warning" icon="exclamation-triangle" %}}
-アプリケーションと負荷生成ツールは実行したままにしてください。次のセクションでデュアルモードのフラグを追加するために停止します。
+{{% notice title="実行したままにしておいてください" style="warning" icon="exclamation-triangle" %}}
+アプリケーションとロードジェネレーターは実行したままにしておきます。次のセクションで、デュアルモードのフラグを追加するために停止します。
 {{% /notice %}}

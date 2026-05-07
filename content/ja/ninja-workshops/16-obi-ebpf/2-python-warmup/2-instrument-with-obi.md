@@ -1,23 +1,24 @@
 ---
-title: 2. OBI によるインストルメンテーション
+title: 2. OBI でインストルメントする
 weight: 2
 ---
 
-実行中のアプリに **コードを一行も変更せずに** APM トレーシングを追加します。
+実行中のアプリに**コードを一行も変更せずに** APM トレーシングを追加します。
 
-## OBI バイナリの取得
+## OBI のダウンロード
 
-OBI にはまだスタンドアロンのダウンロードがないため、Docker イメージからバイナリを取得します
+[GitHub リリースページ](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases)からビルド済みの OBI バイナリをダウンロードします。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
-IMAGE=otel/ebpf-instrument:main
-sudo docker pull $IMAGE
-ID=$(sudo docker create $IMAGE)
-sudo docker cp "$ID:/obi" ./obi
-sudo docker rm -v $ID
+VERSION=0.6.0
+ARCH=amd64
+wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/obi-v$VERSION-linux-$ARCH.tar.gz"
+wget "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v$VERSION/SHA256SUMS"
+sha256sum -c SHA256SUMS --ignore-missing
+tar -xzf "obi-v$VERSION-linux-$ARCH.tar.gz"
 ls -la ./obi
 ```
 
@@ -25,18 +26,8 @@ ls -la ./obi
 {{% tab title="Example Output" %}}
 
 ```text
-main: Pulling from otel/ebpf-instrument
-0f5fbf7fdc05: Pull complete
-c9d0c8eb6b20: Pull complete
-05db807c0ef0: Pull complete
-9414859de0f9: Pull complete
-04083a69ab27: Pull complete
-Digest: sha256:f1b61af237c7ec02ea83afb7108ec8d65f3e308f9501818a15b67983f243cf97
-Status: Downloaded newer image for otel/ebpf-instrument:main
-docker.io/otel/ebpf-instrument:main
-Successfully copied 108MB to /home/splunk/workshop/obi/01-obi-python/obi
-baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
--rwxr-xr-x 1 root root 107922836 Feb 27 14:47 ./obi
+obi-v0.6.0-linux-amd64.tar.gz: OK
+-rwxr-xr-x 1 splunk splunk 112345678 Feb 27 14:47 ./obi
 ```
 
 {{% /tab %}}
@@ -46,7 +37,7 @@ baa799720f42deaeeeb7690a39b91a5ae16f71ec33833d8a963808f14109ea0f
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**別のターミナル**で、`sudo` を使用して OBI を実行します。前のステップで取得した realm、token、hostname の3つのプレースホルダーを置き換えてください（完了まで1〜2分かかる場合があります）
+**別のターミナル**で、`sudo` を使って OBI を実行します。3つのプレースホルダーを前のステップで確認した realm、token、hostname に置き換えてください（完了まで1〜2分かかる場合があります）。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -80,25 +71,27 @@ time=2026-02-27T19:29:58.278Z level=INFO msg="Launching p.Tracer" component=gene
 
 {{% /notice %}}
 
-### これらの変数の役割
+### 各変数の説明
 
 | 変数 | 目的 |
 |---|---|
 | `sudo` | eBPF プローブには root/カーネルアクセスが必要です |
-| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Splunk の OTLP トレースインジェストの完全な URL です。シグナルごとの環境変数はこの URL にそのまま送信します。ベースの `OTEL_EXPORTER_OTLP_ENDPOINT` は `/v1/traces` を追加しますが、これは Splunk のパスと一致しません |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | Splunk の OTLP トレース取り込み用の完全な URL です。シグナルごとの環境変数はこの URL にそのまま送信します。ベースの `OTEL_EXPORTER_OTLP_ENDPOINT` は `/v1/traces` を付加しますが、Splunk のパスとは一致しません |
 | `OTEL_EXPORTER_OTLP_HEADERS` | Splunk の認証ヘッダーです |
 | `OTEL_SERVICE_NAME` | Splunk APM に表示されるサービス名です |
 | `OTEL_RESOURCE_ATTRIBUTES` | すべてのトレースに `deployment.environment` と `host.name` を設定し、自分のデータでフィルタリングできるようにします |
 | `OTEL_EBPF_OPEN_PORT` | ポート 5150 でリッスンしているプロセスをインストルメントするよう OBI に指示します |
 
 {{% notice title="Note" style="info" %}}
-OBI のログに `failed to upload metrics: 404 Not Found` のような警告が表示されることがあります。これは想定どおりの動作です。Splunk の直接インジェストには標準的な OTLP メトリクスエンドポイントがありません。トレースは正常にエクスポートされます。フェーズ 2 では、Collector がトレースとメトリクスの両方を適切に処理します。
+OBI のログに `failed to upload metrics: 404 Not Found` のような警告が表示される場合があります。これは想定どおりです。Splunk の直接取り込みには標準的な OTLP メトリクスエンドポイントがありません。トレースは正常にエクスポートされます。Phase 2 では、Collector がトレースとメトリクスの両方を適切に処理します。
 {{% /notice %}}
 
 ## トラフィックの生成
 
-最初のターミナルに戻り、いくつかのリクエストを生成します
+最初のターミナルに戻り、いくつかのリクエストを生成します。
 
 ```bash
 for i in $(seq 1 20); do curl -s "http://localhost:5150/hello"; sleep 1; done
 ```
+
+***注意:*** 404 エラーが発生した場合は、curl している URL の末尾に `\` が付加されていないか確認してください。一部のターミナルでは `;` がエスケープされ、無効な URL になることがあります

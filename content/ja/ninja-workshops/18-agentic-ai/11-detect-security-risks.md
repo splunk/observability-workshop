@@ -2,27 +2,31 @@
 title: セキュリティリスクの検出
 linkTitle: 11. セキュリティリスクの検出
 weight: 11
-time: 15分
+time: 15 minutes
 ---
 
-> 注：このセクションのワークショップでは、複数のファイルを変更する必要があります。
+> 注意: このセクションでは複数のファイルを変更する必要があります。
 > 変更箇所がわからない場合やアプリケーションが動作しなくなった場合は、
-> `~/workshop/agentic-ai/app-with-security-risk` フォルダにあるこのセクションの
+> `~/workshop/agentic-ai/app-with-security-risk` フォルダにある
 > モデルソリューションを参照してください。
 
 前のセクションでは、アプリケーションエージェントの1つの出力に品質問題を注入するラッパーを追加しました。
 
 このセクションでは、同様の手順でセキュリティリスクを作成します。
 
-そして、これらのリスクがSplunk Observability Cloudでどのように表示されるかを紹介します。
+その後、これらのリスクが Splunk Observability Cloud でどのように表示されるかを紹介します。
 
 ## Activity Specialist の出力を汚染する
 
-activity specialistエージェントを修正してこのラッパーを使用し、LLMの出力を変更しましょう。
+Activity Specialist エージェントがこのラッパーを使用して LLM の出力を変更するように修正しましょう。
 
-`~/workshop/agentic-ai/base-app/main.py` ファイルを編集用に開きます。
+`~/workshop/agentic-ai/base-app/main.py` ファイルを開いて編集します。
 
-`activity_specialist_node` 関数を以下のようにラッパーを使用するように修正します。これは、LLMがレスポンスの一部としてユーザーのクレジットカード番号を含めるシナリオを効果的にシミュレートするもので、明確なセキュリティリスクおよびPCI違反です。
+`activity_specialist_node` 関数の定義を以下のバージョンに置き換えます。これは、LLM がレスポンスの一部としてユーザーのクレジットカード番号を含めるシナリオを効果的にシミュレートしており、明らかなセキュリティリスクおよび PCI 違反です。
+
+> ヒント: `vi` エディタで大量の行を一括削除するには、`Shift` + `v` を押して `Visual
+> Line` モードにし、下矢印キーで削除したい行をすべて選択してから、`d`
+> を押して選択した行を削除します。
 
 ```python
 def activity_specialist_node(
@@ -72,38 +76,39 @@ def activity_specialist_node(
     return state
 ```
 
-> ヒント：以下のコマンドを実行して、変更内容をモデルソリューションと比較できます
+> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます:
 >
 > `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-security-risk/main.py`
 
-## 更新されたDockerイメージをビルドする
+## 更新された Docker イメージのビルド
 
-新しいタグで更新されたDockerイメージをビルドします
+新しいタグで更新された Docker イメージをビルドします:
 
 ``` bash
+cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-security-risk .
 docker push localhost:9999/agentic-ai-app:app-with-security-risk
 ```
 
-### Kubernetesマニフェストを更新する
+### Kubernetes マニフェストの更新
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを編集用に開き、セキュリティリスクを含むイメージを使用するようにイメージを更新します
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、セキュリティリスクを含むイメージを使用するようにイメージを更新します:
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-security-risk
 ```
 
-### 更新されたアプリケーションをデプロイする
+### 更新されたアプリケーションのデプロイ
 
-以下のようにマニフェストファイルを使用して更新されたアプリケーションをデプロイできます
+以下のようにマニフェストファイルを使用して、更新されたアプリケーションをデプロイできます:
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
-### Kubernetesでアプリケーションをテストする
+### Kubernetes でのアプリケーションのテスト
 
-新しいアプリケーションPodが正常に起動し、古いPodがなくなっていることを確認します
+新しいアプリケーション Pod が正常に起動し、古い Pod がなくなっていることを確認します:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -123,7 +128,7 @@ travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
 {{% /tab %}}
 {{< /tabs >}}
 
-次に、以下のコマンドを実行してアプリケーションをテストします
+次に、以下のコマンドを実行してアプリケーションをテストします:
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \
@@ -136,40 +141,40 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
-## Cisco AI Defenseでイベントを確認する
+## Cisco AI Defense でのイベントの確認
 
-AI Defenseアプリケーションに直接ログインすると、リクエストに対してイベントが記録され、AI Defenseがプロンプトに含まれたクレジットカード番号を自動的にマスキングしたことが確認できます
+AI Defense アプリケーションに直接ログインすると、リクエストに対してイベントが記録されており、AI Defense がプロンプトに含まれていたクレジットカード番号を自動的にリダクトしたことが確認できます:
 
 ![AI Defense Events](../images/AIDefenseEvents.png)
 
-AI Defenseではポリシーを設定して、特定の種類のセキュリティ問題を監視するかブロックするかを指定できます。この場合、PCI関連の問題を監視するのみに設定しています。
+AI Defense ではポリシーを設定して、特定の種類のセキュリティ問題を監視するかブロックするかを指定できます。今回のケースでは、PCI 関連の問題を監視のみに設定しています。
 
-## Splunk Observability Cloudでデータを確認する
+## Splunk Observability Cloud でのデータの確認
 
-Splunk Observability Cloudに戻って、トレースがどのように表示されるか確認しましょう。
+Splunk Observability Cloud に戻り、トレースがどのように表示されるか確認しましょう。
 
-`APM` に移動し、`AI agents` を選択します。環境名が選択されていることを確認してください（例`agentic-ai-$INSTANCE`）。ページにセキュリティリスクが表示されるようになっていることがわかります。
+`APM` に移動し、`AI agents` を選択します。環境名が選択されていることを確認します（例: `agentic-ai-$INSTANCE`）。ページにセキュリティリスクが表示されるようになっていることがわかります。
 
 ![Agents with Security Risks](../images/AgentsWithSecurityRisks.png)
 
-> `AI overview` ページや `plan_synthesizer` エージェントの `AI agent` ページでもセキュリティリスクが表示されるはずです。
+> `AI overview` ページや `plan_synthesizer` エージェントの `AI agent` ページにもセキュリティリスクが表示されます。
 
 `APM -> AI trace data` に移動し、最新のトレースを読み込みます。
 
-エージェントフローで、セキュリティリスクが検出されたことが確認できます
+エージェントフローで、セキュリティリスクが検出されたことが確認できます:
 
 ![Agent Flow With Security Risk](../images/AgentFlowWithSecurityRisk.png)
 
-`activity_specialist` エージェントの `invoke_agent` スパンを見ると、LLMがレスポンスにお客様のクレジットカード番号を平文で含めたため、PCIセキュリティリスクが検出されブロックされたことがわかります
+`activity_specialist` エージェントの `invoke_agent` スパンを見ると、LLM がレスポンス内で顧客のクレジットカード番号を平文で開示したため、PCI セキュリティリスクが検出されブロックされたことがわかります:
 
 ![Trace With Security Risk](../images/TraceWithSecurityRisk.png)
 
-セキュリティリスクをクリックすると、追加の詳細情報と、Cisco AI Defenseでイベントを表示するためのリンクが表示されます
+セキュリティリスクをクリックすると、追加の詳細情報と、Cisco AI Defense でイベントを表示するためのリンクが表示されます:
 
 ![Security Risk Details](../images/SecurityRiskDetails.png)
 
-また、このスパンの `Span details` を表示すると、`gen_ai.security.event_id` 属性がこのスパンに含まれていることが確認できます
+このスパンの `Span details` を表示すると、`gen_ai.security.event_id` 属性がこのスパンに含まれていることが確認できます:
 
 ![Security Event Span Attribute](../images/SecurityEventSpanAttribute.png)
 
-この属性により、Splunk Observability Cloudのスパンと、Cisco AI Defenseの対応するイベントを関連付けることができます。
+この属性により、Splunk Observability Cloud のスパンと Cisco AI Defense の対応するイベントを関連付けることができます。
