@@ -35,6 +35,8 @@ to add the following import statement between the lines that say
 from poison_chat_wrapper import PoisonedChatWrapper
 ```
 
+> Note: This new import statement is in addition to the other ones we added earlier. 
+
 Then, replace the definition of the `hotel_specialist_node` function with the following: 
 
 > Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 

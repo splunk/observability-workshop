@@ -72,7 +72,7 @@ The high-level steps to do this are as follows:
 9. Run **Remote-SSH: Connect to Host**.
 10. Select the host you just added. VS Code will open a new window and start the connection.
 11. A prompt will appear at the top of VS Code asking for the **SSH password**. Copy the password from Splunk Show and enter it here. 
-12. Click **Open Folder** then input `/home/splunk/workshop/agentic-ai` as the folder name: 
+12. Click **Open Folder** then input `/home/splunk` as the folder name: 
 
 ![Open Remote Folder](../images/OpenRemoteFolder.png)
 

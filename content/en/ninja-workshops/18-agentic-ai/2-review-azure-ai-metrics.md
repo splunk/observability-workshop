@@ -46,7 +46,10 @@ Splunk Observability Cloud collects OpenTelemetry generative AI client and model
 to track the token usage and Open AI large-language model (LLM) services running in Azure.
 
 You can view these metrics using the Azure OpenAI navigator.  Navigate to **Infrastructure** -> 
-**Overview** -> **AI Frameworks** and then click on **Azure OpenAI**: 
+**Overview** -> **AI Frameworks** and then click on **Azure OpenAI**. 
+
+Ensure the **Table** tab is selected, the click on the `gpt-4.1-mini` model in the table. You should 
+see a navigator that looks like the following: 
 
 ![Azure OpenAI Navigator](../images/AzureOpenAINavigator.png)
 
