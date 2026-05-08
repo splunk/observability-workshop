@@ -28,4 +28,22 @@
 
     --BOX-BG-color:                 rgba( 20,  20,  20, 1);
     --BOX-TEXT-color:               rgba(224, 224, 224, 1);
+
+    /* ----- Presenter notes — dark variant -----
+     * Slate card lifted slightly above the page bg, lighter indigo
+     * accent for dark-mode legibility, luminous indigo halo replaces
+     * the drop shadow (dark-on-dark elevation shadows die in dark mode). */
+    --PRESENTER-bg:           linear-gradient(180deg, #1f1f29 0%, #15151c 100%);
+    --PRESENTER-text:         #e2e8f0;
+    --PRESENTER-strong:       #c7d2fe;
+    --PRESENTER-accent:       #818cf8;
+    --PRESENTER-accent-soft:  rgba(129, 140, 248, 0.45);
+    --PRESENTER-border:       rgba(255, 255, 255, 0.06);
+    --PRESENTER-pill-bg:      #6366f1;
+    --PRESENTER-pill-text:    #ffffff;
+    --PRESENTER-code-bg:      rgba(129, 140, 248, 0.13);
+    --PRESENTER-shadow:
+        0 0 0 1px rgba(129, 140, 248, 0.10),
+        0 0 28px rgba(129, 140, 248, 0.18),
+        0 0 60px rgba(129, 140, 248, 0.10);
 }

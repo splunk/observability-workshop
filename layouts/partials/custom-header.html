@@ -1,5 +1,5 @@
-<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
-<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
+<script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v2/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v2/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
 <script>
 SplunkRum.init({
     realm: "us1",
@@ -19,7 +19,6 @@ SplunkSessionRecorder.init({
     }
 });
 </script>
-</script>
 {{ $fonts := resources.Get "css/fonts.css" | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}">
 <style>
@@ -30,7 +29,11 @@ SplunkSessionRecorder.init({
     p {
         margin: 0.75rem 0;
     }
-    .highlight {
+    /* Cap Hugo's syntax-highlighted code blocks (which it wraps in
+     * div.highlight). Use the tag-qualified selector so we don't
+     * accidentally match Relearn's search-result <mark class="highlight">
+     * inside headings, which would give them spurious scrollbars. */
+    div.highlight {
         max-height: 500px;
         overflow-y: auto;
     }
@@ -38,30 +41,23 @@ SplunkSessionRecorder.init({
         margin: 0;
     }
 
-    /* ----- Presenter mode -----
-     * Notes authored with the "presenter" shortcode are hidden from
-     * attendees by default and revealed when body.presenter-mode is set
-     * (toggle button bottom-right, or ?presenter=1 in the URL). The notes
-     * are still present in the HTML — use for delivery cues, not secrets. */
-    .presenter-only { display: none; }
-    body.presenter-mode .presenter-only {
-        display: block;
-        margin: 1rem 0;
-        padding: 0.75rem 1rem 0.75rem 1rem;
-        border-left: 4px solid var(--SPLUNK-magenta, #ce0070);
-        background: rgba(206, 0, 112, 0.06);
-        border-radius: 4px;
+    /* Presenter-mode visuals (the .presenter-only callout itself) live in
+     * theme-splunk-base.css with per-variant palettes in theme-splunk-light
+     * /-dark.css so the cue card adapts to the active Relearn variant. The
+     * toggle pill below is fixed-position UI and stays here. */
+
+    /* @keyframes for the presenter card live HERE, not in the variant CSS,
+     * because Hugo's Relearn variant system wraps theme-splunk-*.css inside
+     * a :root[data-r-theme-variant=...] selector. Per the CSS spec, an
+     * @keyframes rule nested inside a selector rule is invalid and Chrome
+     * silently drops it — which is why the animation never ran. This inline
+     * <style> block is rendered directly into <head> at top level, so the
+     * keyframes survive parsing. */
+    @keyframes presenter-ping {
+        0%   { transform: scale(1);   opacity: 1; }
+        50%  { transform: scale(1.5); opacity: 0.5; }
+        100% { transform: scale(2.5); opacity: 0; }
     }
-    .presenter-only__label {
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--SPLUNK-magenta, #ce0070);
-        margin-bottom: 0.25rem;
-    }
-    .presenter-only__body > :first-child { margin-top: 0; }
-    .presenter-only__body > :last-child  { margin-bottom: 0; }
 
     /* Toggle pill is hidden by default — only presenters who arrive with
      * ?presenter=1 see it (in the "on" state, magenta), and clicking it

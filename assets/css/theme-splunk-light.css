@@ -27,4 +27,23 @@
 
     --BOX-BG-color:                 rgba(255, 255, 255, 0.833);
     --BOX-TEXT-color:               rgba( 16,  16,  16, 1);
+
+    /* ----- Presenter notes — light variant -----
+     * Dark indigo card on white. A pale card on white blends into the
+     * page; flipping to dark gives instant visual presence without
+     * resorting to neon. Layered drop shadow + soft indigo halo for
+     * real elevation. */
+    --PRESENTER-bg:           linear-gradient(180deg, #1e1b3a 0%, #15132c 100%);
+    --PRESENTER-text:         #e4e4f4;
+    --PRESENTER-strong:       #c7d2fe;
+    --PRESENTER-accent:       #a5b4fc;
+    --PRESENTER-accent-soft:  rgba(165, 180, 252, 0.45);
+    --PRESENTER-border:       rgba(255, 255, 255, 0.06);
+    --PRESENTER-pill-bg:      #6366f1;
+    --PRESENTER-pill-text:    #ffffff;
+    --PRESENTER-code-bg:      rgba(165, 180, 252, 0.13);
+    --PRESENTER-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.18),
+        0 12px 36px rgba(99, 102, 241, 0.20),
+        0 0 0 1px rgba(99, 102, 241, 0.15);
 }

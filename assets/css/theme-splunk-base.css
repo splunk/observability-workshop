@@ -79,6 +79,15 @@ main h2 {
     border-bottom: 2px solid var(--SPLUNK-magenta);
 }
 
+/* Relearn sets overflow-x: hidden on all headings; per the CSS spec that
+ * implicitly turns overflow-y into auto, so headings show a vertical
+ * scrollbar whenever inline content (anchor buttons, glyph descenders)
+ * overflows by even a pixel. `overflow: clip` clips identically without
+ * establishing a scroll container, so no scrollbar appears. */
+main :is(h1, h2, h3, h4, h5, h6) {
+    overflow: clip;
+}
+
 /* Plain blockquotes (not the [!splunk] / [!pro-tip] admonition variants,
  * which Relearn renders as styled boxes, not as <blockquote>). */
 main > article blockquote,
@@ -90,4 +99,104 @@ main > .content blockquote {
 /* Tinted left-border on code blocks for a subtle brand touch */
 main pre {
     border-left: 3px solid var(--SPLUNK-magenta-tint);
+}
+
+/* Presenter mode — cue card revealed when body.presenter-mode is set
+ * (toggled via ?presenter=1 or the bottom-right pill). Per-variant
+ * palette tokens live in theme-splunk-{light,dark}.css. */
+.presenter-only { display: none; }
+
+body.presenter-mode .presenter-only {
+    display: block;
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem 1.4rem 1.5rem;
+
+    color: var(--PRESENTER-text);
+    background: var(--PRESENTER-bg);
+
+    border: 1px solid var(--PRESENTER-border);
+    border-left: 5px solid var(--PRESENTER-accent);
+    border-radius: 10px;
+
+    box-shadow: var(--PRESENTER-shadow);
+}
+
+/* Live-status indicator: ::before is the static dot, ::after pulses on top. */
+body.presenter-mode .presenter-only::before {
+    content: "";
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--PRESENTER-accent);
+}
+body.presenter-mode .presenter-only::after {
+    content: "";
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--PRESENTER-accent);
+    animation: presenter-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+/* @keyframes presenter-ping lives in custom-header.html, NOT here:
+ * Relearn wraps this file in :root[data-r-theme-variant=...] {…}, and
+ * @keyframes nested inside a style rule is invalid CSS — Chrome drops it. */
+
+.presenter-only__label {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 0.7rem 0;
+    padding: 0.32rem 0.65rem 0.3rem;
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI',
+                 system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    color: var(--PRESENTER-pill-text, #ffffff);
+    background: var(--PRESENTER-pill-bg, #6366f1);
+    border-radius: 4px;
+}
+.presenter-only__label::before {
+    content: "Presenter ·";
+    margin-right: 0.5rem;
+    font-weight: 500;
+    opacity: 0.78;
+}
+
+.presenter-only__body {
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: var(--PRESENTER-text);
+}
+.presenter-only__body > :first-child { margin-top: 0; }
+.presenter-only__body > :last-child  { margin-bottom: 0; }
+.presenter-only__body strong {
+    color: var(--PRESENTER-strong);
+    font-weight: 600;
+}
+.presenter-only__body a {
+    color: var(--PRESENTER-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--PRESENTER-accent-soft);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+}
+.presenter-only__body a:hover { text-decoration-color: var(--PRESENTER-accent); }
+.presenter-only__body code {
+    font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, monospace;
+    font-size: 0.88em;
+    padding: 0.12rem 0.4rem;
+    background: var(--PRESENTER-code-bg);
+    color: var(--PRESENTER-accent);
+    border-radius: 4px;
 }
