@@ -99,6 +99,82 @@ http://api-gateway.default.svc.cluster.local:82/api/visit/owners/1/pets/1/visits
 The ThousandEyes Enterprise Agent can run in `te-demo` while PetClinic runs in `default`. Use the full Kubernetes DNS name, such as `api-gateway.default.svc.cluster.local`, when the agent and target application are in different namespaces.
 {{% /notice %}}
 
+## Configure ThousandEyes Tests for PetClinic
+
+Create at least two PetClinic tests: one simple availability test for the frontend and one trace-enabled API test for APM correlation. Use the same Kubernetes Enterprise Agent for both tests so the measurements come from inside the cluster.
+
+Set a shell variable for the target URL while you validate the endpoints:
+
+```bash
+PETCLINIC_NAMESPACE=default
+PETCLINIC_BASE_URL="http://api-gateway.$PETCLINIC_NAMESPACE.svc.cluster.local:82"
+
+kubectl run te-petclinic-curl \
+  -n te-demo \
+  --rm -it \
+  --restart=Never \
+  --image=curlimages/curl \
+  --command -- curl -sS "$PETCLINIC_BASE_URL/api/customer/owners"
+```
+
+### Test 1: PetClinic Frontend Availability
+
+Use this test to prove the application frontend is reachable from the ThousandEyes Enterprise Agent.
+
+1. In ThousandEyes, go to **Cloud & Enterprise Agents > Test Settings**.
+2. Click **Add New Test** and choose **HTTP Server**.
+3. Configure the test:
+   - **Test Name**: `[PetClinic] Frontend Availability`
+   - **URL**: `http://api-gateway.default.svc.cluster.local:82/`
+   - **Interval**: `2 minutes`
+   - **Agents**: Select the Kubernetes Enterprise Agent deployed earlier in this guide
+   - **HTTP Response Code**: `200`
+   - **Verify Content**: Optional, use `PetClinic` if you want to validate the returned page content
+4. Save the test.
+
+### Test 2: PetClinic Owners API With Distributed Tracing
+
+Use this test for the ThousandEyes and Splunk APM drilldown workflow. It targets the API gateway and routes to `customers-service`, which gives you a more useful trace than a shallow health check.
+
+1. In ThousandEyes, go to **Cloud & Enterprise Agents > Test Settings**.
+2. Click **Add New Test** and choose **HTTP Server** or **API**.
+3. Configure the test:
+   - **Test Name**: `[Trace] PetClinic Owners API`
+   - **URL**: `http://api-gateway.default.svc.cluster.local:82/api/customer/owners`
+   - **Method**: `GET`
+   - **Interval**: `2 minutes`
+   - **Agents**: Select the same Kubernetes Enterprise Agent
+   - **HTTP Response Code**: `200`
+   - **Advanced Settings > Distributed Tracing**: Enabled
+4. Save the test and let it run for a few intervals.
+
+{{% notice title="Trace Test Requirement" style="warning" %}}
+Use an **HTTP Server** or **API** test for the distributed tracing exercise. Browser-style page load and transaction tests are useful for end-user monitoring, but they are not the right test type for injecting the trace headers required by the ThousandEyes and Splunk APM workflow.
+{{% /notice %}}
+
+### Optional PetClinic API Tests
+
+After the first two tests are working, add more API tests to cover other PetClinic services:
+
+```text
+[Trace] PetClinic Vets API
+http://api-gateway.default.svc.cluster.local:82/api/vet/vets
+
+[Trace] PetClinic Owner Visits API
+http://api-gateway.default.svc.cluster.local:82/api/visit/owners/1/pets/1/visits
+```
+
+Use the same baseline settings:
+
+- **Test Type**: HTTP Server or API
+- **Method**: `GET`
+- **Interval**: `2 minutes`
+- **Agent**: Kubernetes Enterprise Agent
+- **Expected Response Code**: `200`
+- **Distributed Tracing**: Enabled when you want Splunk APM correlation
+
+If you deployed PetClinic outside the `default` namespace, replace `default` in each URL with your PetClinic namespace.
+
 ## Step-by-Step Guide
 
 ### 1. Discover Kubernetes Services
