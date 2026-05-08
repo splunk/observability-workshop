@@ -15,6 +15,7 @@ This workshop demonstrates integrating **ThousandEyes with Splunk Observability 
 By the end of this workshop, you will:
 
 - Deploy a ThousandEyes Enterprise Agent as a containerized workload in Kubernetes
+- Deploy the included Spring PetClinic application as an internal Kubernetes test target
 - Integrate ThousandEyes metrics with Splunk Observability Cloud using OpenTelemetry
 - Configure distributed tracing so ThousandEyes and Splunk APM can link to the same requests
 - Create synthetic tests for internal Kubernetes services and external dependencies

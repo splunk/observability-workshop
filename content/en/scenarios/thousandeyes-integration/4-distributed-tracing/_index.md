@@ -16,6 +16,7 @@ This is the piece that gives you **bi-directional access** between the two envir
 
 By the end of this section, you will be able to:
 
+- Deploy and use the included Spring PetClinic Kubernetes application as a trace target
 - Instrument an internal service so it sends traces to Splunk APM
 - Enable distributed tracing on a ThousandEyes **HTTP Server** or **API** test
 - Configure the ThousandEyes **Generic Connector** for Splunk APM
@@ -228,8 +229,101 @@ helm install splunk-otel-collector splunk-otel-collector-chart/splunk-otel-colle
   --set clusterName=$CLUSTER_NAME \
   --set environment="thousandeyes-$INSTANCE" \
   --set operator.enabled=true \
-  --set operatorcrds.install=true
+  --set operatorcrds.install=true \
+  --set agent.service.enabled=true
 ```
+
+### Deploy Spring PetClinic as the Workshop Trace Target
+
+This project already contains a Kubernetes deployment for the Spring PetClinic microservices application at `workshop/petclinic/deployment.yaml`. In the workshop VM, use the copy at `~/workshop/petclinic/deployment.yaml`.
+
+The PetClinic manifest expects a `workshop-secret` for RUM and load-generation settings. It also includes Java auto-instrumentation annotations on a few services, so create the PetClinic namespace and instrumentation resource before applying the application manifest.
+
+```bash
+PETCLINIC_NAMESPACE=default
+OTEL_COLLECTOR_NAMESPACE=otel-splunk
+OTEL_INSTRUMENTATION=splunk-otel-collector
+
+kubectl create namespace $PETCLINIC_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+```
+
+Create or update an `Instrumentation` resource in the PetClinic namespace. The injected Java agent uses this resource to send spans to the Splunk OTel collector and to accept the trace headers ThousandEyes sends:
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: $OTEL_INSTRUMENTATION
+  namespace: $PETCLINIC_NAMESPACE
+spec:
+  exporter:
+    endpoint: http://splunk-otel-collector-agent.$OTEL_COLLECTOR_NAMESPACE.svc:4317
+  propagators:
+    - baggage
+    - b3
+    - tracecontext
+  sampler:
+    type: parentbased_always_on
+  env:
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: deployment.environment=${INSTANCE:-thousandeyes}-petclinic
+EOF
+```
+
+Create or update the `workshop-secret`, then deploy PetClinic:
+
+```bash
+kubectl create secret generic workshop-secret \
+  -n $PETCLINIC_NAMESPACE \
+  --from-literal=app=${INSTANCE:-thousandeyes}-petclinic-service \
+  --from-literal=env=${INSTANCE:-thousandeyes}-petclinic \
+  --from-literal=realm=${REALM:-us1} \
+  --from-literal=rum_token=${RUM_TOKEN:-not-used} \
+  --from-literal=url=http://api-gateway:82 \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl apply -n $PETCLINIC_NAMESPACE -f ~/workshop/petclinic/deployment.yaml
+```
+
+Patch every PetClinic Java deployment to use the PetClinic namespace's instrumentation resource:
+
+```bash
+kubectl get deployments \
+  -n $PETCLINIC_NAMESPACE \
+  -l app.kubernetes.io/part-of=spring-petclinic \
+  -o name | \
+  xargs -I % kubectl patch -n $PETCLINIC_NAMESPACE % \
+    -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"$PETCLINIC_NAMESPACE/$OTEL_INSTRUMENTATION\"}}}}}"
+```
+
+Wait for the key services to roll out:
+
+```bash
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/api-gateway
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/customers-service
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/vets-service
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/visits-service
+```
+
+Validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs:
+
+```bash
+kubectl run te-petclinic-curl \
+  -n te-demo \
+  --rm -it \
+  --restart=Never \
+  --image=curlimages/curl \
+  --command -- curl -sS http://api-gateway.$PETCLINIC_NAMESPACE.svc.cluster.local:82/api/customer/owners
+```
+
+Use this URL for the trace-enabled ThousandEyes **HTTP Server** or **API** test:
+
+```text
+http://api-gateway.default.svc.cluster.local:82/api/customer/owners
+```
+
+If you changed `PETCLINIC_NAMESPACE`, replace `default` with that namespace in the ThousandEyes test URL.
 
 ### Annotate the Deployment for Auto-Instrumentation
 
@@ -247,6 +341,8 @@ For other runtimes, use the annotation that matches the language:
 
 If the collector is installed in the same namespace as the application, the official Splunk documentation also supports using `"true"` as the annotation value.
 
+If you are using the PetClinic deployment from this repository, use the PetClinic patch command above instead of this single-deployment example.
+
 If you want to follow the **live cluster pattern** from this workshop environment, the annotation value is namespace-qualified and points at the `teastore/default` Instrumentation object:
 
 ```bash
@@ -258,16 +354,16 @@ kubectl patch deployment teastore-webui-v1 -n teastore -p '{"spec":{"template":{
 1. Wait for the deployment rollout to finish:
 
    ```bash
-   kubectl rollout status deployment/api-gateway -n production
+   kubectl rollout status deployment/api-gateway -n default
    ```
 
-2. Generate a few requests against a backend endpoint that crosses more than one service, for example:
+2. Generate a few requests against the PetClinic API gateway:
 
    ```text
-   http://api-gateway.production.svc.cluster.local:8080/api/v1/orders
+   http://api-gateway.default.svc.cluster.local:82/api/customer/owners
    ```
 
-   In the current workshop cluster, a service such as `http://teastore-webui.teastore.svc.cluster.local:8080/` is the right kind of target because it fronts several downstream application services and produces a more useful end-to-end trace than a simple health check.
+   This request enters through the PetClinic API gateway, routes to `customers-service`, and queries the PetClinic database. It produces a more useful trace than a simple health check.
 
 3. Confirm that traces are arriving in **Splunk APM** before you continue.
 

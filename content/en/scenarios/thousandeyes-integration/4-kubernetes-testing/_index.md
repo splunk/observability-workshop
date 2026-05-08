@@ -28,6 +28,77 @@ Since the ThousandEyes Enterprise Agent runs **inside the cluster**, it can dire
 - **Latency Baseline**: Measure cluster-internal network performance
 - **Pre-Production Testing**: Test services before exposing them via Ingress/LoadBalancer
 
+## Workshop Target: Spring PetClinic
+
+This repository already includes a Spring PetClinic microservices application that is useful as a known Kubernetes target for this ThousandEyes guide. The deployment manifest lives at `workshop/petclinic/deployment.yaml`; in the workshop VM it is available at `~/workshop/petclinic/deployment.yaml`.
+
+The manifest deploys the PetClinic frontend/API gateway, backend services, MySQL database, and load generator. It also creates:
+
+- `api-gateway` as a `ClusterIP` service on port `82`
+- `api-gateway-external` as a `LoadBalancer` service on port `81`
+- `customers-service`, `vets-service`, and `visits-service` as internal backend services
+
+{{% notice title="Tracing Setup" style="info" %}}
+If you already installed the Splunk OpenTelemetry Operator and plan to use PetClinic for trace correlation, complete the PetClinic instrumentation setup in the Distributed Tracing section before applying this manifest. The PetClinic manifest includes Java injection annotations on some services, and those annotations need a matching `Instrumentation` resource when the operator webhook is active.
+{{% /notice %}}
+
+Deploy PetClinic into the selected namespace:
+
+```bash
+PETCLINIC_NAMESPACE=default
+
+kubectl create namespace $PETCLINIC_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl create secret generic workshop-secret \
+  -n $PETCLINIC_NAMESPACE \
+  --from-literal=app=${INSTANCE:-thousandeyes}-petclinic-service \
+  --from-literal=env=${INSTANCE:-thousandeyes}-petclinic \
+  --from-literal=realm=${REALM:-us1} \
+  --from-literal=rum_token=${RUM_TOKEN:-not-used} \
+  --from-literal=url=http://api-gateway:82 \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl apply -n $PETCLINIC_NAMESPACE -f ~/workshop/petclinic/deployment.yaml
+```
+
+The examples below assume PetClinic is deployed in the `default` namespace. If you deploy it into another namespace, replace `default` in the service DNS names with your namespace.
+
+Verify the application resources:
+
+```bash
+kubectl get pods -n $PETCLINIC_NAMESPACE
+kubectl get svc -n $PETCLINIC_NAMESPACE api-gateway api-gateway-external customers-service vets-service visits-service
+```
+
+Validate cluster-internal reachability from the same namespace where the ThousandEyes agent runs:
+
+```bash
+kubectl run te-petclinic-curl \
+  -n te-demo \
+  --rm -it \
+  --restart=Never \
+  --image=curlimages/curl \
+  --command -- curl -sS http://api-gateway.$PETCLINIC_NAMESPACE.svc.cluster.local:82/api/customer/owners
+```
+
+Use these PetClinic URLs for ThousandEyes tests:
+
+```text
+Availability test:
+http://api-gateway.default.svc.cluster.local:82/
+
+Trace-enabled API test:
+http://api-gateway.default.svc.cluster.local:82/api/customer/owners
+
+Additional API test targets:
+http://api-gateway.default.svc.cluster.local:82/api/vet/vets
+http://api-gateway.default.svc.cluster.local:82/api/visit/owners/1/pets/1/visits
+```
+
+{{% notice title="Namespace Reminder" style="info" %}}
+The ThousandEyes Enterprise Agent can run in `te-demo` while PetClinic runs in `default`. Use the full Kubernetes DNS name, such as `api-gateway.default.svc.cluster.local`, when the agent and target application are in different namespaces.
+{{% /notice %}}
+
 ## Step-by-Step Guide
 
 ### 1. Discover Kubernetes Services
