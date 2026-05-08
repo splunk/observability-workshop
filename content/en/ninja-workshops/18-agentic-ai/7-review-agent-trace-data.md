@@ -16,7 +16,9 @@ This integration has already been configured in the workshop organization.
 
 
 To view the configuration, navigate to **Data Management → Deployed Integrations**, 
-search for **LLM Providers**, and select it. You should see the following provider:
+then set the **Categories** filter to `LLMs`. 
+
+Search for **LLM Providers**, and select it. You should see the following provider:
 
 ![LLM Providers](../images/LLMProviders.png)
 

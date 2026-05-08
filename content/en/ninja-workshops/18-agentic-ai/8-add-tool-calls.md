@@ -484,4 +484,7 @@ Select one of the newer traces. We see all of our agents represented in the Agen
 
 We can also see the tool calls: 
 
+>Note: switch from the `AI details` to `Span details` on the right-hand side of the screen
+> to see the tool call details. 
+
 ![Trace](../images/TraceWithToolCalls.png)
