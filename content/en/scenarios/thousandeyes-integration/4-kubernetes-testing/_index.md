@@ -146,6 +146,15 @@ Use this test for the ThousandEyes and Splunk APM drilldown workflow. It targets
    - **Agents**: Select the same Kubernetes Enterprise Agent
    - **HTTP Response Code**: `200`
    - **Advanced Settings > Distributed Tracing**: Enabled
+
+The highlighted fields in **Basic Settings** should match the PetClinic API target and the in-cluster Enterprise Agent:
+
+![PetClinic ThousandEyes HTTP Server basic settings](../images/te-petclinic-basic-settings.png)
+
+In **HTTP Communication and Performance**, enable distributed tracing and keep the API request as a `GET` with the default `2xx` or `3xx` response validation:
+
+![PetClinic ThousandEyes HTTP Server tracing settings](../images/te-petclinic-http-settings.png)
+
 4. Save the test and let it run for a few intervals.
 
 {{% notice title="Trace Test Requirement" style="warning" %}}
