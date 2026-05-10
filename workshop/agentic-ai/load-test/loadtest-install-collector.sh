@@ -129,6 +129,15 @@ agent:
     exporters:
       signalfx:
         send_otlp_histograms: true
+      debug:
+        verbosity: detailed
+    service:
+      pipelines:
+        traces:
+          exporters:
+            - otlp_http
+            - signalfx
+            - debug
 EOF
 
 helm upgrade --install "$RELEASE" \
