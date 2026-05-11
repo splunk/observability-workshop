@@ -104,21 +104,23 @@ Map Catalyst Center severity values to the ITSI severity scale so episodes displ
 {{% / notice %}}
 </div>
 
-**13.** Update the **subcomponent** to `itsi_site`
+**13.** Change the **Title** field to `IssueSpecificSummary`
 
-**14.** * Change **Run every** to **1 minute**
+**14.** Update the **subcomponent** to `itsi_site`
 
-**15.** Add `NY HQ`, `Store-SJC10`, and `Store-SJC12` to the **Service Association** section
+**15.** Change **Run every** to **1 minute**
 
-**16.** Use `SiteNameHierarchy` for the **Entity Lookup Field**
+**16.** Add `NY HQ`, `Store-SJC10`, and `Store-SJC12` to the **Service Association** section
+
+**17.** Use `SiteNameHierarchy` for the **Entity Lookup Field**
  
-**17.** Turn on the **Enable throttling** toggle
+**18.** Turn on the **Enable throttling** toggle
 
-**18.** Set the **Suppress period** to every **5 minutes**
+**19.** Set the **Suppress period** to every **5 minutes**
 
-**19.** Click **Preview Results** in the upper right (**Note:** You may not get results in the preview. We will review the events during the **Create a custom NEAP** section)
+**20.** Click **Preview Results** in the upper right (**Note:** You may not get results in the preview. We will review the events during the **Create a custom NEAP** section)
 
-**20.** Click **Save and Activate**
+**21.** Click **Save and Activate**
 
 <div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
