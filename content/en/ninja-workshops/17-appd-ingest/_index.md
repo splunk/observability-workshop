@@ -1,6 +1,6 @@
 ---
 draft: false
-hidden: true
+hidden: false
 title: AppDynamics Dual Ingest to Splunk Observability
 linkTitle: AppD Dual Ingest
 weight: 17
