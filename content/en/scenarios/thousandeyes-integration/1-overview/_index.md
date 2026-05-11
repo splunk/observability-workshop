@@ -43,24 +43,28 @@ graph LR
         
         subgraph apps["Application Pods"]
             api["API Gateway<br/>Pod"]
-            payment["Payment Service<br/>Pod"]
-            auth["Auth Service<br/>Pod"]
+            customers["Customers Service<br/>Pod"]
+            vets["Vets Service<br/>Pod"]
+            visits["Visits Service<br/>Pod"]
         end
         
         subgraph svcs["Services"]
             api_svc["api-gateway<br/>Service"]
-            payment_svc["payment-svc<br/>Service"]
-            auth_svc["auth-service<br/>Service"]
+            customers_svc["customers-service<br/>Service"]
+            vets_svc["vets-service<br/>Service"]
+            visits_svc["visits-service<br/>Service"]
         end
         
         api_svc --> api
-        payment_svc --> payment
-        auth_svc --> auth
+        customers_svc --> customers
+        vets_svc --> vets
+        visits_svc --> visits
         
         secret -.-> agent
         agent -->|"HTTP Tests"| api_svc
-        agent -->|"HTTP Tests"| payment_svc
-        agent -->|"HTTP Tests"| auth_svc
+        agent -->|"HTTP Tests"| customers_svc
+        agent -->|"HTTP Tests"| vets_svc
+        agent -->|"HTTP Tests"| visits_svc
     end
     
     external["External<br/>Services"]
@@ -103,11 +107,13 @@ graph LR
     style agent fill:#ffeb3b,stroke:#f57c00,stroke-width:2px
     style secret fill:#ffcdd2,stroke:#c62828,stroke-width:2px
     style api fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
-    style payment fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
-    style auth fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
+    style customers fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
+    style vets fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
+    style visits fill:#e1bee7,stroke:#7b1fa2,stroke-width:1px
     style api_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
-    style payment_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
-    style auth_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
+    style customers_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
+    style vets_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
+    style visits_svc fill:#ce93d8,stroke:#7b1fa2,stroke-width:1px
     style external fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
     style te fill:#fff9c4,stroke:#f57f17,stroke-width:2px
     style te_cloud fill:#ffecb3,stroke:#f57f17,stroke-width:2px

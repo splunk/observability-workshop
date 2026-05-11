@@ -14,7 +14,7 @@ description: ThousandEyes シナリオにおけるデプロイメント、接続
 
 ```bash
 # Verify DNS resolution from within the pod
-kubectl exec -n te-demo -it <pod-name> -- nslookup api-gateway.production.svc.cluster.local
+kubectl exec -n te-demo -it <pod-name> -- nslookup api-gateway.default.svc.cluster.local
 
 # Check CoreDNS logs
 kubectl logs -n kube-system -l k8s-app=kube-dns
@@ -32,13 +32,13 @@ kubectl logs -n kube-system -l k8s-app=kube-dns
 
 ```bash
 # Verify service endpoints exist
-kubectl get endpoints -n production api-gateway
+kubectl get endpoints -n default api-gateway
 
 # Check if pods are ready
-kubectl get pods -n production -l app=api-gateway
+kubectl get pods -n default -l app=api-gateway
 
 # Test connectivity from agent pod
-kubectl exec -n te-demo -it <pod-name> -- curl -v http://api-gateway.production.svc.cluster.local:8080/health
+kubectl exec -n te-demo -it <pod-name> -- curl -v http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 ```
 
 **一般的な原因：**
@@ -54,10 +54,10 @@ Network PolicyがThousandEyesエージェントからのトラフィックをブ
 
 ```bash
 # List network policies
-kubectl get networkpolicies -n production
+kubectl get networkpolicies -n default
 
 # Describe network policy
-kubectl describe networkpolicy <policy-name> -n production
+kubectl describe networkpolicy <policy-name> -n default
 ```
 
 **解決策：**
@@ -68,7 +68,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: allow-thousandeyes-agent
-  namespace: production
+  namespace: default
 spec:
   podSelector:
     matchLabels:

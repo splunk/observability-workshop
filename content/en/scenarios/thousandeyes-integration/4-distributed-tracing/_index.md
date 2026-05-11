@@ -65,40 +65,39 @@ The collector is only one part of this setup. A correct ThousandEyes tracing dep
 
 The most common mistake is to focus only on the collector. The collector never sees raw `b3`, `traceparent`, or `tracestate` request headers directly. Your application or auto-instrumentation library must extract those headers first, continue the span context, and then emit spans over OTLP to the collector.
 
-## Real-World Configuration From The Current Cluster
+## PetClinic Configuration Pattern
 
-The examples below are trimmed from the live cluster currently running this workshop. They show the pattern that is actually working in Kubernetes today.
+The examples below use the Spring PetClinic application included with this workshop. They show the Kubernetes annotation, `Instrumentation` resource, and pod-level settings that ThousandEyes needs for trace correlation.
 
 ### 1. Deployment Annotation
 
-In the live cluster, the `teastore` applications point at the `teastore/default` Instrumentation resource:
+In this guide, the PetClinic Java deployments point at the `default/splunk-otel-collector` Instrumentation resource:
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: teastore-webui-v1
-  namespace: teastore
+  name: api-gateway
+  namespace: default
 spec:
   template:
     metadata:
       annotations:
-        instrumentation.opentelemetry.io/container-names: teastore-webui-v1
-        instrumentation.opentelemetry.io/inject-java: teastore/default
+        instrumentation.opentelemetry.io/inject-java: default/splunk-otel-collector
 ```
 
 This is the first place to verify when ThousandEyes requests are not turning into traces.
 
 ### 2. Instrumentation Resource
 
-This is the live `Instrumentation` object from `teastore`, trimmed to the fields that matter for ThousandEyes:
+This is the PetClinic `Instrumentation` object, trimmed to the fields that matter for ThousandEyes:
 
 ```yaml
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
-  name: default
-  namespace: teastore
+  name: splunk-otel-collector
+  namespace: default
 spec:
   exporter:
     endpoint: http://splunk-otel-collector-agent.otel-splunk.svc:4317
@@ -110,7 +109,7 @@ spec:
     type: parentbased_always_on
   env:
     - name: OTEL_RESOURCE_ATTRIBUTES
-      value: deployment.environment=teastore
+      value: deployment.environment=thousandeyes-petclinic
 ```
 
 This is the critical part for the ThousandEyes scenario:
@@ -122,19 +121,24 @@ This is the critical part for the ThousandEyes scenario:
 
 ### 3. What The Injected Pod Actually Gets
 
-On the running `teastore-webui-v1` pod, the operator injected the following environment variables:
+On the running PetClinic `api-gateway` pod, validate that the operator injected the expected OpenTelemetry settings:
+
+```bash
+kubectl exec -n default deploy/api-gateway -- printenv | \
+  grep -E 'OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
+```
+
+You should see values like these:
 
 ```yaml
-- name: JAVA_TOOL_OPTIONS
-  value: " -javaagent:/otel-auto-instrumentation-java-teastore-webui-v1/javaagent.jar"
-- name: OTEL_SERVICE_NAME
-  value: teastore-webui-v1
 - name: OTEL_EXPORTER_OTLP_ENDPOINT
   value: http://splunk-otel-collector-agent.otel-splunk.svc:4317
 - name: OTEL_PROPAGATORS
   value: baggage,b3,tracecontext
 - name: OTEL_TRACES_SAMPLER
   value: parentbased_always_on
+- name: OTEL_RESOURCE_ATTRIBUTES
+  value: deployment.environment=thousandeyes-petclinic
 ```
 
 This is a useful validation checkpoint because it proves the propagators are being applied to the workload, not just declared in an abstract config object.
@@ -203,8 +207,8 @@ service:
 
 This is the part that gets the spans to Splunk APM. If this pipeline is broken, ThousandEyes can still inject headers into the request, but no correlated trace will ever appear in Splunk.
 
-{{% notice title="Current Cluster Takeaway" style="info" %}}
-In the live cluster, the `teastore/default` Instrumentation resource is the pattern to follow for ThousandEyes because it explicitly includes `b3` together with `tracecontext`. That is the configuration you want to replicate for this scenario.
+{{% notice title="PetClinic Takeaway" style="info" %}}
+The PetClinic `Instrumentation` resource is the pattern to follow for ThousandEyes because it explicitly includes `b3` together with `tracecontext`. That is the configuration you want for this scenario.
 {{% /notice %}}
 
 {{% notice title="Important" style="warning" %}}
@@ -343,10 +347,11 @@ If the collector is installed in the same namespace as the application, the offi
 
 If you are using the PetClinic deployment from this repository, use the PetClinic patch command above instead of this single-deployment example.
 
-If you want to follow the **live cluster pattern** from this workshop environment, the annotation value is namespace-qualified and points at the `teastore/default` Instrumentation object:
+For PetClinic, the workshop patch command above already applies a namespace-qualified annotation to every Java deployment. If you need to patch only the API gateway, use the same PetClinic namespace and instrumentation variables:
 
 ```bash
-kubectl patch deployment teastore-webui-v1 -n teastore -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/container-names":"teastore-webui-v1","instrumentation.opentelemetry.io/inject-java":"teastore/default"}}}}}'
+kubectl patch deployment api-gateway -n $PETCLINIC_NAMESPACE \
+  -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"$PETCLINIC_NAMESPACE/$OTEL_INSTRUMENTATION\"}}}}}"
 ```
 
 ### Validate That Traces Exist
