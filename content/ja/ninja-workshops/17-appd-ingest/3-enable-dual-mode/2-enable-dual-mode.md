@@ -1,28 +1,28 @@
 ---
-title: 2. Dual Mode の有効化
+title: 2. デュアルモードの有効化
 weight: 2
 ---
 
-JVM コマンドラインに Dual Signal Mode フラグを追加して、アプリケーションを再起動します。
+JVM コマンドラインにデュアルシグナルモードのフラグを追加して、アプリケーションを再起動します。
 
-## 実行中のアプリケーションの停止
+## 実行中のアプリケーションを停止する
 
-Phase 1 のアプリとロードジェネレーターを停止します。
+フェーズ 1 で起動したアプリケーションとロードジェネレーターを停止します:
 
 ```bash
 kill %2 2>/dev/null   # stop load generator
 kill %1 2>/dev/null   # stop the java app
 ```
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+{{% notice title="ヒント" style="primary" icon="lightbulb" %}}
 `kill %1` が動作しない場合は、`ps aux | grep ingest-workshop` で PID を確認し、直接 kill してください。
 {{% /notice %}}
 
-## Dual Mode での再起動
+## デュアルモードで再起動する
 
-同じ AppD フラグに加えて、Dual Mode と OTel エクスポーターのフラグを追加してアプリを再度実行します。Phase 1 で設定した `${APPD_ACCESS_KEY}` と `${APPD_APP_NAME}` の変数を同じ値で使用します。
+同じ AppD フラグに加えて、デュアルモードと OTel エクスポーターのフラグを追加してアプリケーションを再度実行します。フェーズ 1 で設定した `${APPD_ACCESS_KEY}` と `${APPD_APP_NAME}` の変数を同じ値で使用します:
 
-アプリケーションを起動する `-jar app/target/ingest-workshop-1.0.0.jar &` の直前に4行を追加しています。
+アプリケーションを起動する `-jar app/target/ingest-workshop-1.0.0.jar &` の直前に 4 行を追加しています。
 
 ```bash
 cd ~/workshop/appd
@@ -44,17 +44,18 @@ java -javaagent:agent/javaagent.jar \
 ```
 
 Spring Boot の起動バナーが表示されるまで待ちます。
+Enter キーを押してプロンプトに戻ります。
 
 ### 新しいフラグの説明
 
 | フラグ | 目的 |
 |---|---|
-| `-Dagent.deployment.mode=dual` | Dual Signal Mode を有効にします。完全な OTel Java 自動インストルメンテーションが AppD エージェントと並行して動作します |
-| `-Dotel.traces.exporter=otlp` | OTel インストルメンテーションに OTLP 経由でスパンをエクスポートするよう指示します |
-| `-Dotel.exporter.otlp.endpoint` | ローカルの OTel Collector のポート 4318（HTTP/protobuf）を指定します |
-| `-Dotel.resource.attributes` | OTel リソース属性を設定します。`service.name` は AppD ティアに、`service.namespace` は AppD アプリケーションに、`deployment.environment` はワークショップインスタンスのデータにタグ付けされます |
+| `-Dagent.deployment.mode=dual` | デュアルシグナルモードを有効にします。完全な OTel Java 自動計装が AppD エージェントと並行して動作します |
+| `-Dotel.traces.exporter=otlp` | OTel 計装に OTLP 経由でスパンをエクスポートするよう指示します |
+| `-Dotel.exporter.otlp.endpoint` | ポート 4318 (HTTP/protobuf) のローカル OTel Collector を指定します |
+| `-Dotel.resource.attributes` | OTel リソース属性を設定します: `service.name` は AppD ティアに、`service.namespace` は AppD アプリケーションに、`deployment.environment` はワークショップインスタンスのデータにタグ付けされます |
 
-## ロードジェネレーターの再起動
+## ロードジェネレーターを再起動する
 
 ```bash
 while true; do
@@ -64,19 +65,19 @@ while true; do
 done &
 ```
 
-## Dual Mode が有効であることの確認
+## デュアルモードが有効であることを確認する
 
-アプリケーションログで Dual Mode が開始されたことを確認します。
+アプリケーションログでデュアルモードが開始されたことを確認します:
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="コマンド" %}}
 
 ```bash
 ps aux | grep "deployment.mode=dual" | grep -v grep
 ```
 
 {{% /tab %}}
-{{% tab title="Example Output" %}}
+{{% tab title="出力例" %}}
 
 ```text
 splunk@ip-172-31-77-108 ~/workshop/appd $ ps aux | grep "deployment.mode=dual" | grep -v grep
@@ -88,8 +89,8 @@ splunk    181598  172  2.1 14402900 717736 pts/0 SNl  21:31   1:02 java -javaage
 
 `deployment.mode=dual` フラグが付いた Java プロセスが表示されるはずです。
 
-AppDynamics エージェントは以下のデータを送信しています。
+AppDynamics エージェントは以下のデータを送信しています:
 
-- **AppD APM データ** を AppDynamics Controller に送信（変更なし）
-- **OTLP トレース** をローカルの OTel Collector（`localhost:4318`）に送信し、Splunk Observability Cloud に転送します
+- **AppD APM データ** を AppDynamics Controller へ（変更なし）
+- **OTLP トレース** をローカルの OTel Collector (`localhost:4318`) へ。そこから Splunk Observability Cloud に転送されます
   - インスタンスで `env` を実行すると、環境 `deployment.environment=${INSTANCE}-appd-dual` に使用される `{INSTANCE}` の値を確認できます

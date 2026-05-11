@@ -5,17 +5,16 @@ weight: 6
 time: 15 minutes
 ---
 
-> 注意: このセクションでは複数のファイルを変更する必要があります。
-> 変更箇所がわからない場合やアプリケーションが動作しなくなった場合は、
-> `~/workshop/agentic-ai/app-with-instrumentation` フォルダにある
-> モデルソリューションを参照してください。
+> 注意: このワークショップのセクションでは、複数のファイルを変更する必要があります。
+> どこを変更すればよいかわからない場合や、アプリケーションが動作しなくなった場合は、
+> `~/workshop/agentic-ai/app-with-instrumentation` フォルダにあるこのセクションの期待される解答を参照してください。
 
 Agentic AI アプリケーションを OpenTelemetry で計装し、Kubernetes にデプロイするには、いくつかの手順が必要です:
 
 1. `requirements.txt` ファイルに計装パッケージを追加する
 2. `opentelemetry-instrument` を使用してアプリケーションを起動するように Dockerfile を更新する
 3. 計装パッケージを含む新しい Docker イメージをビルドする
-4. 環境変数を含むように Kubernetes マニフェストを更新する
+4. 環境変数を使用して Kubernetes マニフェストを更新する
 5. Kubernetes マニフェストをデプロイする
 
 ## 計装パッケージの追加
@@ -32,26 +31,26 @@ opentelemetry-instrumentation-flask==0.59b0
 
 各パッケージの説明は以下のとおりです:
 
-* `splunk-opentelemetry`: Splunk Distribution of OpenTelemetry Python です。Python アプリケーションを計装し、分散トレースをキャプチャして Splunk APM にレポートします。
-* `splunk-otel-instrumentation-langchain`: LangChain の LLM/チャットワークフロー向けの OpenTelemetry 計装を提供するパッケージです。
-* `splunk-otel-genai-emitters-splunk`: Splunk Platform でのストレージとフィルタリングを最適化するために、Evaluation Results ログの Splunk スキーマ用エミッターを提供するパッケージです。
+* `splunk-opentelemetry`: Splunk ディストリビューションの OpenTelemetry Python です。Python アプリケーションを計装し、分散トレースをキャプチャして Splunk APM に送信します。
+* `splunk-otel-instrumentation-langchain`: LangChain の LLM/チャットワークフローに対する OpenTelemetry 計装を提供するパッケージです。
+* `splunk-otel-genai-emitters-splunk`: Splunk Platform でのストレージとフィルタリングを最適化するために、Splunk スキーマの Evaluation Results ログ用エミッターを提供するパッケージです。
 * `splunk-otel-util-genai`: OpenTelemetry セマンティック規約を使用した生成 AI ワークロードの計装を容易にする API とデータ型を提供するユーティリティ関数を含むパッケージです。
 * `opentelemetry-instrumentation-flask`: OpenTelemetry WSGI ミドルウェアを基盤として、Flask アプリケーションの Web リクエストを追跡するライブラリです。
 
-> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます:
+> ヒント: 以下のコマンドを実行して、変更内容を期待される解答と比較できます:
 >
 > `diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-instrumentation/requirements.txt`
 
 ## Dockerfile の更新
 
-次に、OpenTelemetry 計装を有効にする必要があります。これは、`opentelemetry-instrument` を使用してアプリケーションが起動されるように Dockerfile を更新することで行います。`~/workshop/agentic-ai/base-app/Dockerfile` ファイルを開いて編集し、最後の行を以下のように更新します:
+次に、OpenTelemetry 計装を有効にする必要があります。これは、`opentelemetry-instrument` でアプリケーションが起動されるように Dockerfile を更新することで行います。`~/workshop/agentic-ai/base-app/Dockerfile` ファイルを開いて編集し、最後の行を以下のように更新します:
 
 ```dockerfile
 # Run the server with instrumentation
 CMD ["opentelemetry-instrument", "python", "main.py"]
 ```
 
-> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます:
+> ヒント: 以下のコマンドを実行して、変更内容を期待される解答と比較できます:
 >
 > `diff ~/workshop/agentic-ai/base-app/Dockerfile ~/workshop/agentic-ai/app-with-instrumentation/Dockerfile`
 
@@ -65,13 +64,17 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-in
 docker push localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
+> ヒント: イメージのビルドに時間がかかりすぎる場合は、ビルド済みのイメージを使用することを検討してください。
+> その場合は、`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルのイメージ名を
+> `localhost:9999/agentic-ai-app:app-with-instrumentation` の代わりに `ghcr.io/splunk/agentic-ai-app:app-with-instrumentation` に更新してください。
+
 ### ConfigMap の定義
 
-アプリケーションを Kubernetes にデプロイする際、テレメトリー（メトリクス、トレース、ログ）を明確でユニークな環境識別子とともに Splunk Observability Cloud に送信したいと考えます。これにより、異なるデプロイメント間でのフィルタリング、比較、トラブルシューティングが容易になります。
+アプリケーションを Kubernetes にデプロイする際、テレメトリ(メトリクス、トレース、ログ)を明確でユニークな環境識別子とともに Splunk Observability Cloud に送信したいと考えます。これにより、異なるデプロイメント間でデータのフィルタリング、比較、トラブルシューティングが容易になります。
 
 これを実現するために、`deployment.environment` という名前の OpenTelemetry リソース属性を設定します。値をハードコーディングする代わりに、EC2 インスタンスに既に存在する `INSTANCE` 環境変数から値を導出します。これにより、各デプロイメントに正しい環境名が自動的にタグ付けされます。
 
-この設定は Kubernetes ConfigMap に保存し、後でアプリケーション Pod に環境変数として注入できるようにします。
+この設定を Kubernetes の ConfigMap に保存し、後でアプリケーション Pod に環境変数として注入できるようにします。
 
 以下のコマンドで ConfigMap を作成します:
 
@@ -81,27 +84,27 @@ kubectl create configmap instance-config \
 -n travel-agent
 ```
 
-このコマンドが行うこと:
+このコマンドの動作内容:
 
 * OpenTelemetry が期待する `OTEL_RESOURCE_ATTRIBUTES` 環境変数を定義します。
 * `$INSTANCE` の値に応じて、`deployment.environment` を `agentic-ai-shw-1c43` のような値に設定します。
-* `travel-agent` namespace に ConfigMap を作成します。
+* `travel-agent` 名前空間に ConfigMap を作成します。
 
 次のステップで Kubernetes デプロイメントを設定する際に、この ConfigMap を参照します。
 
 ### Kubernetes マニフェストの更新
 
-OpenTelemetry 計装、特に AI Agent Monitoring には、計装データの収集、処理、エクスポートの方法を定義する多数の環境変数の設定が必要です。
+OpenTelemetry の計装、特に AI Agent Monitoring では、計装データの収集、処理、エクスポート方法を定義するために多数の環境変数を設定する必要があります。
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集します。計装を含むイメージを使用するように**イメージタグ**を更新します:
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集します。計装を含むイメージを使用するように **image タグ** を更新します:
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-instrumentation
 ```
 
-同じファイルで、`Begin: Add Environment Variables` と `End: Add Environment Variables` のコメントの間に以下の**環境変数**を追加します:
+同じファイルで、`Begin: Add Environment Variables` と `End: Add Environment Variables` のコメントの間に、以下の**環境変数**を追加します:
 
-> ヒント: 貼り付ける前に `:set paste` と入力すると、`vi` がコードを自動インデントするのを防げます。
+> ヒント: 貼り付ける前に `:set paste` と入力して、`vi` が貼り付けたコードを自動インデントしないようにしてください。
 
 ```yaml
             # Begin: Add Environment Variables
@@ -137,31 +140,31 @@ OpenTelemetry 計装、特に AI Agent Monitoring には、計装データの収
             # End: Add Environment Variables
 ```
 
-> 注意: スクロールしないとテキストの一部が表示されない場合があります。
+> 注意: スクロールしないと一部のテキストが表示されない場合があります。
 > 右上の `Copy text to clipboard` ボタンを使用して、すべてのテキストをコピーしてください。
 
-> 注意: YAML ではインデントが重要です。新しい環境変数が既存の環境変数と揃っていることを確認してください。
+> 注意: yaml ではインデントが重要です。新しい環境変数が既存の環境変数と揃っていることを確認してください。
 
-以下の環境変数は Agentic AI モニタリングに固有のもので、説明は以下のとおりです:
+以下の環境変数は Agentic AI モニタリングに固有のもので、それぞれの説明は以下のとおりです:
 
-* `OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE`: OTLP メトリクスエクスポーターが、出力するメトリクスについて累積合計、デルタ、またはメモリ効率の良いテンポラリティのどれをレポートするかを決定します。Agentic AI モニタリングでは `DELTA` に設定することが推奨されます。
+* `OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE`: OTLP メトリクスエクスポーターが、出力されるメトリクスに対して累積合計、デルタ、またはメモリ効率の良いテンポラリティのいずれでレポートするかを決定します。Agentic AI モニタリングでは `DELTA` に設定することが推奨されます。
 * `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`: Agentic AI アプリケーションからのメッセージキャプチャを有効/無効にするために使用します。このワークショップでは `true` に設定しています。
-* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE`: メッセージのキャプチャ方法を定義します。このワークショップでは `SPAN` に設定しており、span イベントストアを使用してメッセージがキャプチャされるようにしています。
-* `OTEL_INSTRUMENTATION_GENAI_EMITTERS`: このワークショップでは `span_metric,splunk` に設定しており、span とメトリクスの両方のデータ、および Splunk 固有の機能がキャプチャされるようにしています。
+* `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE`: メッセージのキャプチャ方法を定義します。このワークショップでは `SPAN` に設定しており、スパンイベントストアを使用してメッセージがキャプチャされます。
+* `OTEL_INSTRUMENTATION_GENAI_EMITTERS`: このワークショップでは `span_metric,splunk` に設定しており、スパンとメトリクスの両方のデータ、および Splunk 固有の機能がキャプチャされます。
 
-> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます:
+> ヒント: 以下のコマンドを実行して、変更内容を期待される解答と比較できます:
 >
 > `diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-instrumentation/k8s.yaml`
 
 ### 更新されたアプリケーションのデプロイ
 
-以下のようにマニフェストファイルを使用して、更新されたアプリケーションをデプロイできます:
+マニフェストファイルを使用して、更新されたアプリケーションを以下のようにデプロイできます:
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 ```
 
-### Kubernetes でのアプリケーションのテスト
+### Kubernetes でのアプリケーションテスト
 
 新しいアプリケーション Pod が正常に起動し、古い Pod がなくなっていることを確認します:
 

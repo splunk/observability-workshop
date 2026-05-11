@@ -3,11 +3,11 @@ title: 1. アプリのビルド
 weight: 1
 ---
 
-このワークショップには、いくつかのRESTエンドポイントを持つシンプルなSpring Bootアプリケーションが含まれています。ビルドしましょう。
+このワークショップには、いくつかの REST エンドポイントを持つシンプルな Spring Boot アプリケーションが含まれています。それをビルドしましょう。
 
 ## Java と Maven の確認
 
-インスタンスにはOpenJDK 17とMavenがプリインストールされています。確認してください：
+インスタンスには OpenJDK 17 と Maven がプリインストールされています。以下のコマンドで確認します:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -29,7 +29,7 @@ Apache Maven 3.x.x ...
 
 ## アプリケーションのビルド
 
-ワークショップのアプリディレクトリに移動し、fat JARをビルドします：
+ワークショップのアプリディレクトリに移動し、fat JAR をビルドします:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -50,18 +50,18 @@ mvn package -DskipTests
 {{< /tabs >}}
 
 {{% notice title="初回ビルド" style="info" icon="info-circle" %}}
-最初の `mvn package` はSpring Bootの依存関係をダウンロードします。30〜60秒かかります。2回目以降のビルドはずっと速くなります。
+初回の `mvn package` では Spring Boot の依存関係をダウンロードします。これには 30〜60 秒かかります。2 回目以降のビルドはより高速です。
 {{% /notice %}}
 
 ## アプリケーションのテスト（AppD なし）
 
-アプリを短時間実行して、起動を確認します：
+アプリが起動することを確認するため、一時的に実行します:
 
 ```bash
 java -jar target/ingest-workshop-1.0.0.jar &
 ```
 
-数秒待ってからテストします：
+数秒待ってから Enter キーを押してプロンプトに戻り、テストを実行します:
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -82,10 +82,10 @@ curl -s localhost:8080/health | jq .
 {{% /tab %}}
 {{< /tabs >}}
 
-次に進む前にアプリを停止します：
+次に進む前にアプリを停止します:
 
 ```bash
 kill %1
 ```
 
-アプリケーションは正常に動作しています。次に、AppDynamics Java Agentをダウンロードして、このプロセスにアタッチします。
+アプリケーションは正常に動作しています。次のステップでは、AppDynamics Java Agent をダウンロードして、このプロセスにアタッチします。

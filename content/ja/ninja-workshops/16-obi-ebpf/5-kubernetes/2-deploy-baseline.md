@@ -5,7 +5,7 @@ weight: 2
 
 ## ワークショップアプリケーションのデプロイ
 
-アプリケーションは専用の namespace にデプロイされます:
+アプリケーションは専用の namespace にデプロイします
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -36,7 +36,7 @@ deployment.apps/load-generator created
 
 ## Splunk OTel Collector のインストール
 
-[Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart) は、Kubernetes に Collector をデプロイするための本番環境向けの方法です。Collector のデプロイ、サービス、および設定を自動的に処理します。
+[Splunk OTel Collector Helm chart](https://github.com/signalfx/splunk-otel-collector-chart) は、Kubernetes に Collector をデプロイするための本番環境向けの方法です。Collector のデプロイメント、サービス、および設定を自動的に処理します。
 
 ### Helm リポジトリの追加
 
@@ -63,10 +63,10 @@ Update Complete. ⎈Happy Helming!⎈
 
 ### Collector のインストール
 
-これにより、OBI **なし**で Splunk OTel Collector がインストールされます。次のステップで OBI を有効にして、有効化前後の違いを確認します。
+ここでは OBI を**有効にせずに** Splunk OTel Collector をインストールします。次のステップで OBI を有効にして、ビフォー・アフターを確認します。
 
 {{% notice title="Note" style="info" %}}
-環境変数 `ACCESS_TOKEN`、`REALM`、`INSTANCE` はワークショップインスタンスに事前設定されています。`env` を実行して存在を確認してください。
+環境変数 `ACCESS_TOKEN`、`REALM`、`INSTANCE` はワークショップインスタンスに事前設定されています。`env` を実行して、これらが存在することを確認してください。
 {{% /notice %}}
 
 {{< tabs >}}
@@ -124,22 +124,22 @@ splunk-otel-collector-cluster-receiver-xyz34           1/1     Running   0      
 
 ## アプリケーションのテスト
 
-NodePort 経由でフロントエンドにアクセスします:
+NodePort を経由してフロントエンドにアクセスします
 
 ``` bash
 kubectl port-forward -n obi-workshop svc/frontend 30000:3000 &; sleep 5
 ```
 
-ポートフォワーディングが完了したら、curl でページにアクセスできます:
+ポートフォワードが完了したら、curl でページにアクセスできます
 
 ``` bash
-curl -s http://localhost:30000/create-order | python3 -m json.tool
+curl -s http://localhost:30000/create-order | jq
 ```
 
 ## APM が空であることを確認
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Splunk APM で環境 `<INSTANCE>-ebpf` でフィルタリングして確認してください。Collector からのインフラストラクチャメトリクスは表示されますが、**新しいアプリケーショントレースはまだ表示されません**。サービスは実行中ですが、まだ計装されていません。
+Splunk APM で環境 `<INSTANCE>-ebpf` をフィルタリングして確認してください。Collector からのインフラストラクチャメトリクスは表示されますが、**新しいアプリケーショントレースはまだ表示されない**はずです。サービスは実行中ですが、まだ計装されていません。
 
 {{% /notice %}}

@@ -5,14 +5,14 @@ weight: 3
 
 ## クイック検証
 
-まず、すべてが正常に動作していることを確認します：
+まず、すべてが正常に動作していることを確認します:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ``` bash
 docker-compose ps
-curl -s localhost:3000/create-order | python3 -m json.tool
+curl -s localhost:3000/create-order | jq
 docker-compose logs obi | head -30
 ```
 
@@ -28,7 +28,7 @@ docker-compose logs obi | head -30
 {{% /tab %}}
 {{< /tabs >}}
 
-OBIのログで、次のような行を探してください：
+OBI のログで、以下のような行を探してください:
 
 ``` text
 level=INFO msg="instrumenting process" cmd=/usr/local/bin/payment-service service=payment-service
@@ -36,33 +36,33 @@ level=INFO msg="instrumenting process" cmd=/usr/local/bin/order-processor servic
 level=INFO msg="instrumenting process" cmd=node service=frontend
 ```
 
-## Splunk APM を確認する
+## Splunk APM の確認
 
-トレースが流れるまで30〜60秒待ってから、Splunk APMを確認します。
+トレースが流れるまで 30〜60 秒待ってから、Splunk APM を確認します。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. **Service Map**: APMに移動し、ご自身の環境でフィルタリングします。3つのサービスが表示されるはずです: `frontend` -> `order-processor` -> `payment-service`。
-2. **Traces**: 任意のトレースをクリックします。3つのサービスすべてにまたがる完全な分散トレースと、各ホップのタイミングが表示されます。
-3. **フェーズ 1 との比較**: 数分前は完全に空だったAPMダッシュボードに、完全なサービストポロジーが表示されるようになりました。
+1. **Service Map**: APM に移動し、ご自身の環境でフィルタリングします。`frontend` -> `order-processor` -> `payment-service` の3つのサービスが表示されるはずです。
+2. **Traces**: 任意のトレースをクリックします。3つのサービスすべてにまたがる分散トレースが、各ホップのタイミングとともに表示されます。
+3. **Phase 1 との比較**: 数分前には完全に空だった APM ダッシュボードに、完全なサービストポロジーが表示されるようになりました。
 
 {{% /notice %}}
 
-**compose ファイルにコンテナを 1 つ追加しただけです。アプリケーションコードは 1 行も変更していません。これで完全な分散トレーシングが実現しました。**
+**compose ファイルにコンテナを1つ追加しただけです。アプリケーションコードの変更はゼロ行です。これで完全な分散トレーシングが実現しました。**
 
-## 解答
+## 解答例
 
-途中で詰まった場合は、すべての変更が適用された最終的な `docker-compose.yaml` を以下で確認できます：
+途中で行き詰まった場合、すべての変更が適用された最終版の `docker-compose.yaml` は以下で確認できます:
 
 ``` bash
 cat ~/workshop/obi/02-obi-docker/docker-compose.final.yaml
 ```
 
-ご自身の `docker-compose.yaml` と比較して、違いを確認してください。
+ご自身の `docker-compose.yaml` と比較して、差分を確認してください。
 
 ## Docker のクリーンアップ
 
-Kubernetesフェーズに進む前に、Dockerスタックを停止します：
+Kubernetes フェーズに進む前に、Docker スタックを停止します:
 
 ``` bash
 docker-compose down

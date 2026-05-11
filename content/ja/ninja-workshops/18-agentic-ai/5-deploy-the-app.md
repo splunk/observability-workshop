@@ -11,16 +11,16 @@ time: 15 minutes
 
 ### 環境変数の設定
 
-コマンドターミナルで、以下の環境変数を設定します。これらはアプリケーションが Azure でホストされている OpenAI モデルに接続するために使用されます:
+ワークショップのインストラクターから提供されたドキュメントには、以下の環境変数を設定するための `export` コマンドが記載されています:
 
-> 注: `AZURE_OPENAI_ENDPOINT` と `AZURE_OPENAI_API_KEY` の値はワークショップの講師から提供されます。
+* `AZURE_OPENAI_DEPLOYMENT_NAME`
+* `AZURE_OPENAI_API_VERSION`
+* `AZURE_OPENAI_ENDPOINT`
+* `AZURE_OPENAI_API_KEY`
 
-``` bash
-export AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini
-export AZURE_OPENAI_API_VERSION=2024-12-01-preview
-export AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
-export AZURE_OPENAI_API_KEY=your_azure_openai_api_key
-```
+これらの環境変数は、Azure でホストされている OpenAI モデルへの接続方法をアプリケーションに伝えます。
+
+ドキュメントからこれらの `export` コマンドをコピーして、SSH ターミナルに貼り付けて実行してください。
 
 ### 仮想環境の作成
 
@@ -43,7 +43,7 @@ python3 main.py
 
 ### アプリケーションのテスト
 
-EC2 インスタンスに接続した2つ目のターミナルセッションを開き、以下のコマンドを実行してアプリケーションをテストします。提案された旅行プランが JSON 形式で返されます:
+EC2 インスタンスに接続された2つ目のターミナルセッションを開き、以下のコマンドを実行してアプリケーションをテストします。提案された旅行プランが JSON 形式で返されるはずです:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -63,31 +63,23 @@ curl http://localhost:8080/travel/plan \
 {{% tab title="Example Output" %}}
 
 ```json
-{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya\u2014cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku\u2019s Takeshita Street and Meiji Shrine, followed by Omotesando\u2019s stylish cafes.\n5. Day 5: Discover Akihabara\u2019s electronics and anime culture, with a visit to a themed caf\u00e9.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
+{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya—cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku’s Takeshita Street and Meiji Shrine, followed by Omotesando’s stylish cafes.\n5. Day 5: Discover Akihabara’s electronics and anime culture, with a visit to a themed café.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
+### アプリケーションの停止
+
+アプリケーションが正常に動作していることを確認したら、最初のターミナルに戻ってアプリケーションを停止してください。
+
 ## Agentic AI アプリケーションのデプロイ (Kubernetes)
 
 アプリケーションが正常に動作することを確認できたので、Kubernetes にデプロイしましょう。
 
-### Dockerfile の作成
-
-ビルド済みの Dockerfile が `~/workshop/agentic-ai/base-app/Dockerfile` にあります。`requirements.txt` ファイルのすべてのパッケージが Docker イメージのビルド時にインストールされることが確認できます:
-
-````
-RUN pip install --no-cache-dir -r requirements.txt
-````
-
-コンテナは以下のコマンドで起動されます:
-
-````
-CMD ["python", "main.py"]
-````
-
 ### Docker イメージのビルド
+
+このセクションでは、`~/workshop/agentic-ai/base-app/Dockerfile` にある Dockerfile を使用して、アプリケーションの Docker イメージをビルドします。以下のコマンドを実行してイメージをビルドしてください:
 
 ``` bash
 cd ~/workshop/agentic-ai/base-app
@@ -95,21 +87,39 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:base-app .
 docker push localhost:9999/agentic-ai-app:base-app
 ```
 
-### Azure 認証情報を含む Secret の作成
+> ヒント: イメージのビルドに時間がかかりすぎる場合は、ビルド済みのイメージを使用することを検討してください。その場合は、`~/workshop/agentic-ai/base-app/k8s.yaml` ファイル内のイメージ名を `localhost:9999/agentic-ai-app:base-app` から `ghcr.io/splunk/agentic-ai-app:base-app` に変更してください。
 
-Kubernetes の Secret を使用して Azure OpenAI のエンドポイントとキーを保存します:
+### アプリケーション用 Namespace の作成
+
+アプリケーションをホストするための新しい Namespace を作成しましょう:
 
 ``` bash
 kubectl create ns travel-agent
-
-kubectl create secret generic azure-openai-api -n travel-agent --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
 ```
+
+### Azure 資格情報を含む Secret の作成
+
+Kubernetes Secret を使用して、Azure OpenAI のエンドポイントとキーを保存します:
+
+> 注意: このコマンドは、先ほど `AZURE_OPENAI_ENDPOINT` と `AZURE_OPENAI_API_KEY` の環境変数を設定したターミナルで実行してください。
+
+``` bash
+{ [ -z "$AZURE_OPENAI_ENDPOINT" ] || \
+  [ -z "$AZURE_OPENAI_API_KEY" ]; } && \
+  echo "Error: Missing variables" || \
+  kubectl create secret generic azure-openai-api \
+  -n travel-agent \
+  --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT \
+  --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
+```
+
+> 補足: Missing variables というエラーが表示された場合は、インストラクターから提供されたドキュメントの `export` コマンドを使用して、環境変数を再度設定する必要があります。
 
 ### Kubernetes マニフェストファイルを使用したアプリケーションのデプロイ
 
-ビルド済みの Kubernetes マニフェストが `~/workshop/agentic-ai/base-app/k8s.yaml` にあります。
+ビルド済みの Kubernetes マニフェストは、`~/workshop/agentic-ai/base-app/k8s.yaml` というファイルにあります。
 
-以下のようにマニフェストファイルを使用してアプリケーションをデプロイします:
+以下のようにマニフェストファイルを使用してアプリケーションをデプロイできます:
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
@@ -117,7 +127,7 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### アプリケーションの実行確認
 
-以下のコマンドを使用して、アプリケーション Pod のステータスが `Running` であることを確認します:
+以下のコマンドを使用して、アプリケーションの Pod のステータスが `Running` であることを確認してください:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -159,7 +169,7 @@ curl http://travel-planner.localhost/travel/plan \
 {{% tab title="Example Output" %}}
 
 ```json
-{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya\u2014cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku\u2019s Takeshita Street and Meiji Shrine, followed by Omotesando\u2019s stylish cafes.\n5. Day 5: Discover Akihabara\u2019s electronics and anime culture, with a visit to a themed caf\u00e9.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
+{"activities_summary":"Sure! Here are signature activities for a week in Tokyo:\n\n1. Day 1: Explore Asakusa and Senso-ji Temple, then stroll Nakamise Shopping Street.\n2. Day 2: Visit Tsukiji Outer Market for fresh sushi breakfast, then tour Ginza for upscale shopping.\n3. Day 3: Spend the day in Shibuya—cross the famous scramble, visit Hachiko statue, and shop in trendy boutiques.\n4. Day 4: Explore Harajuku’s Takeshita Street and Meiji Shrine, followed by Omotesando’s stylish cafes.\n5. Day 5: Discover Akihabara’s electronics and anime culture, with a visit to a themed café.\n6. Day 6: Take a day trip to Odaiba for teamLab Borderless digital art museum and waterfront views.\n7. Day 7: Relax in Ueno Park, visit museums, and shop at Ameya-Yokocho market.\n\nWould you like hotel or dining recommendations as well?","agent_steps":[{"agent":"coordinator","status":"completed"},{"agent":"flight_specialist","status":"completed"},{"agent":"hotel_specialist","status":"completed"}
 ```
 
 {{% /tab %}}
@@ -167,7 +177,7 @@ curl http://travel-planner.localhost/travel/plan \
 
 ## トラブルシューティング
 
-トラブルシューティングが必要な場合は、以下のコマンドを使用してアプリケーションのログを確認します:
+トラブルシューティングが必要な場合は、以下のコマンドを使用してアプリケーションのログを確認してください:
 
 ```bash
 kubectl logs -l app=travel-planner-langchain -n travel-agent -f

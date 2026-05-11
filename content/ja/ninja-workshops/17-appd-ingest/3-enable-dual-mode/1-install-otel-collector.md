@@ -3,7 +3,7 @@ title: 1. OTel Collector のインストール
 weight: 1
 ---
 
-デュアルモードの AppDynamics エージェントは OTLP 経由で OpenTelemetry データを送信します。そのデータを受信して Splunk Observability Cloud に転送するために、同じホスト上に Collector が必要です。
+デュアルモードの AppDynamics エージェントは、OTLP 経由で OpenTelemetry データを送信します。そのデータを受信して Splunk Observability Cloud に転送するために、同じホスト上にコレクターが必要です。
 
 ## 環境変数の確認
 
@@ -15,11 +15,11 @@ echo "ACCESS_TOKEN=$ACCESS_TOKEN"
 echo "INSTANCE=$INSTANCE"
 ```
 
-3つすべてに値が設定されている必要があります。空のものがある場合は、インストラクターに確認してください。
+3つすべてに値が設定されている必要があります。いずれかが空の場合は、インストラクターに確認してください。
 
 ## Splunk OpenTelemetry Collector のインストール
 
-Splunk OTel Collector のインストールスクリプトを実行します。これにより、Collector が `systemd` サービスとしてインストールされます
+Splunk OTel Collector のインストールスクリプトを実行します。これにより、コレクターが `systemd` サービスとしてインストールされます
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -39,9 +39,9 @@ Splunk OpenTelemetry Collector has been successfully installed.
 {{% /tab %}}
 {{< /tabs >}}
 
-## ワークショップ用 Collector 設定の適用
+## ワークショップ用コレクター設定の適用
 
-デフォルトの Collector 設定は汎用的なものです。これを、AppDynamics エージェントから OTLP を受信し Splunk Observability Cloud にエクスポートするワークショップ専用の設定に置き換えます。まず、追加する内容を確認しましょう
+デフォルトのコレクター設定は汎用的なものです。これを、AppDynamics エージェントからの OTLP を受信して Splunk Observability Cloud にエクスポートするワークショップ固有の設定に置き換えます。まず、追加する内容を確認しましょう
 
 ```bash
 vim ~/workshop/appd/collector-config.yaml
@@ -95,26 +95,26 @@ vim ~/workshop/appd/collector-config.yaml
 {{% /tab %}}
 {{% /tabs %}}
 
-これらのプロセッサーは、`host.name` と `deployment.enviroment`/`deployment.environment.name`（推奨）属性の変数を正しく参照するようにします。
+これらのプロセッサーは、`host.name` と `deployment.enviroment`/`deployment.environment.name`（推奨）属性に対して変数を正しく参照するようにします。
 
-`transform/drop_dims_high_cardinality` プロセッサーは [OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) を使用して、34を超える属性を持つメトリクスをチェックします（メトリクスに付与される実際の値もポイントとしてカウントされます）。
+`transform/drop_dims_high_cardinality` プロセッサーは、[OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) を使用して、メトリクスの属性が34を超えていないかチェックします（メトリクスに付加される実際の値もポイントとしてカウントされます）。
 
-- **重要: 現在、属性が多すぎる（36を超える）メトリクスはバックエンドでドロップされます。** AppDynamics テレメトリでは追加の属性により、この問題が発生する可能性があります。
+- **重要: 現在、バックエンドでは属性が多すぎるメトリクス（>36）はドロップされます。** これは、AppDynamics テレメトリーの追加属性により発生する可能性があります。
 
-`transform` 設定では、メトリクスの属性の合計が34を超えているかどうかを確認し、超えている場合は価値が低い可能性のある属性を段階的に削除します。  
-最後に、空きスペースを確認した後 `cardinality.trimmed` ディメンションを追加し、属性が削除されたメトリクスを簡単に識別できるようにします。
+`transform` の設定では、メトリクスの結合属性数が34を超えているかどうかをチェックし、超えている場合は重要度の低い属性を段階的に削除します。
+最後に、空きスペースを確認した上で `cardinality.trimmed` ディメンションを追加し、属性が削除されたメトリクスを簡単に識別できるようにします。
 
-これらの各プロセッサーは、設定内のメトリクス用 `pipeline:` の末尾に含まれています。
+これらのプロセッサーはそれぞれ、設定内のメトリクス用 `pipeline:` の末尾に含まれています。
 
-次に、カスタム設定を `agent_config.yaml` に上書きコピーします
+次に、そのカスタム設定を `agent_config.yaml` にコピーします
 
 ```bash
 sudo cp ~/workshop/appd/collector-config.yaml /etc/otel/collector/agent_config.yaml
 ```
 
-## Collector 環境変数の設定
+## コレクターの環境変数の設定
 
-Collector サービスは設定ファイルから環境変数を読み取ります。Splunk OTel Collector バイナリには `SPLUNK_REALM` と `SPLUNK_ACCESS_TOKEN`（`SPLUNK_` プレフィックス付き）が必要です。インスタンスには `REALM` と `ACCESS_TOKEN` があるため、それらをマッピングします
+コレクターサービスは設定ファイルから環境変数を読み取ります。Splunk OTel Collector バイナリは `SPLUNK_REALM` と `SPLUNK_ACCESS_TOKEN`（`SPLUNK_` プレフィックス付き）を必要とします。インスタンスには `REALM` と `ACCESS_TOKEN` があるため、それらをマッピングします
 
 ```bash
 sudo bash -c "cat > /etc/otel/collector/splunk-otel-collector.conf << EOF
@@ -132,9 +132,9 @@ SPLUNK_COLLECTD_DIR=/usr/lib/splunk-otel-collector/agent-bundle/run/collectd
 EOF"
 ```
 
-## Collector の再起動
+## コレクターの再起動
 
-新しい設定を反映するために再起動します
+新しい設定を適用するために再起動します
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -146,7 +146,7 @@ sudo systemctl restart splunk-otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-## Collector の動作確認
+## コレクターの動作確認
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -173,18 +173,22 @@ sudo systemctl status splunk-otel-collector --no-pager
 {{% tab title="Command" %}}
 
 ```bash
-curl -s http://localhost:13133/
+curl -s http://localhost:13133/ | jq
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```text
-splunk@ip-172-31-77-108 ~/workshop/appd $ curl -s http://localhost:13133/
-{"status":"Server available","upSince":"2026-03-09T21:25:53.277371609Z","uptime":"22.684480311s"}%
+splunk@ip-172-31-47-33 ~/workshop/appd $ curl -s http://localhost:13133/ | jq
+{
+  "status": "Server available",
+  "upSince": "2026-05-04T16:02:29.509202038Z",
+  "uptime": "30.174963775s"
+}
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Collector はポート **4317**（gRPC）と **4318**（HTTP）で OTLP をリッスンしています。
+コレクターは現在、ポート **4317**（gRPC）と **4318**（HTTP）で OTLP をリッスンしています。

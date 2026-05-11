@@ -3,74 +3,75 @@ title: 分散トレーシングと双方向ドリルダウン
 linkTitle: 4. Distributed Tracing
 weight: 4
 time: 25 minutes
-description: ThousandEyes と Splunk APM の間でサポートされているトレース相関を有効にし、調査時にチームが2つの製品間を行き来できるようにします。
+description: ThousandEyes と Splunk APM 間のトレース相関を有効にし、調査中にチームが両製品間をシームレスに移動できるようにします。
 ---
 
-このセクションでは、ThousandEyes と Splunk の統合を真の調査ワークフローに変えていきます。前のセクションでは、ThousandEyes が合成メトリクスを Splunk Observability Cloud にストリームしました。このセクションでは、サポートされている **ThousandEyes <-> Splunk APM の分散トレーシング統合**を有効にして、ネットワーク、プラットフォーム、アプリケーションの各チームが同じリクエストを見ながら両方のツール間をピボットできるようにします。
+このセクションでは、ThousandEyes と Splunk の統合を本格的な調査ワークフローに変えます。前のセクションでは、ThousandEyes がシンセティックメトリクスを Splunk Observability Cloud にストリーミングしました。このセクションでは、サポートされている **ThousandEyes <-> Splunk APM 分散トレーシング統合** を有効にし、ネットワーク、プラットフォーム、アプリケーションの各チームが同じリクエストを見ながら両ツール間を行き来できるようにします。
 
-{{% notice title="なぜ重要か" style="primary" icon="lightbulb" %}}
-これが2つの環境間で**双方向アクセス**を可能にする要素です。ThousandEyes は関連するトレースを Splunk APM で開けるようになり、Splunk APM は元の ThousandEyes テストに戻れるようになります。
+{{% notice title="Why This Matters" style="primary" icon="lightbulb" %}}
+これは、2つの環境間の **双方向アクセス** を実現するための重要な要素です。ThousandEyes から Splunk APM の関連トレースを開くことができ、Splunk APM から元の ThousandEyes テストに戻ることもできます。
 {{% /notice %}}
 
-## 学べる内容
+## 学習内容
 
-このセクションを終えると、次のことができるようになります。
+このセクションを完了すると、以下のことができるようになります
 
-- 内部サービスを計装して、Splunk APM にトレースを送信できる
-- ThousandEyes の **HTTP Server** または **API** テストで分散トレーシングを有効にできる
-- ThousandEyes の **Generic Connector** を Splunk APM 用に設定できる
-- ThousandEyes の **Service Map** を開き、対応する Splunk のトレースに直接ジャンプできる
-- Splunk APM の ThousandEyes メタデータを使用して、元の ThousandEyes テストに戻れる
+- 付属の Spring PetClinic Kubernetes アプリケーションをトレースターゲットとしてデプロイおよび使用する
+- 内部サービスを計装して Splunk APM にトレースを送信する
+- ThousandEyes の **HTTP Server** または **API** テストで分散トレーシングを有効にする
+- ThousandEyes の **Generic Connector** を Splunk APM 用に設定する
+- ThousandEyes の **Service Map** を開き、対応する Splunk トレースに直接ジャンプする
+- Splunk APM 内の ThousandEyes メタデータを使用して元の ThousandEyes テストに戻る
 
-## サポートされているワークフロー
+## サポートされるワークフロー
 
-この学習シナリオは、ThousandEyes と Splunk によってドキュメント化されているサポート対象のワークフローに従います。
+この学習シナリオは、ThousandEyes と Splunk がドキュメント化しているサポート対象のワークフローに従います
 
-- 分散トレーシングが有効な場合、ThousandEyes は **HTTP Server** および **API** テストに `b3`、`traceparent`、`tracestate` ヘッダーを自動的に挿入します。
+- ThousandEyes は、分散トレーシングが有効になっている場合、**HTTP Server** および **API** テストに `b3`、`traceparent`、`tracestate` ヘッダーを自動的にインジェクトします。
 - 監視対象のエンドポイントは、ヘッダーを受け入れ、OpenTelemetry で計装され、トレースコンテキストを伝播し、オブザーバビリティバックエンドにトレースを送信する必要があります。
-- Splunk APM の場合、ThousandEyes は `https://api.<REALM>.signalfx.com` を指す **Generic Connector** を使用し、**API スコープ**の Splunk トークンで認証します。
-- Splunk APM は、`thousandeyes.test.id` や `thousandeyes.permalink` などの ThousandEyes 属性で一致するトレースをエンリッチし、ThousandEyes に戻る逆方向のジャンプを可能にします。
+- Splunk APM の場合、ThousandEyes は `https://api.<REALM>.signalfx.com` を指す **Generic Connector** を使用し、**API スコープ** の Splunk トークンで認証します。
+- Splunk APM は、一致するトレースに `thousandeyes.test.id` や `thousandeyes.permalink` などの ThousandEyes 属性を付与し、ThousandEyes への逆方向ジャンプを可能にします。
 
-## これらのヘッダーが実際に意味するもの
+## ヘッダーの意味
 
-この部分は読み流しがちですが、重要です。トレースの相関は、サービスが ThousandEyes が挿入するヘッダーを理解し、トレースを正しく継続する場合にのみ機能します。
+この部分は読み飛ばしがちですが、そうすべきではありません。トレース相関は、サービスが ThousandEyes がインジェクトするヘッダーを理解し、トレースを正しく継続する場合にのみ機能します。
 
 - `traceparent` と `tracestate` は W3C Trace Context ヘッダーです。
 - `b3` は Zipkin B3 シングルヘッダー形式です。
-- ThousandEyes が両方を挿入するのは、実際の環境にはプロキシ、メッシュ、ゲートウェイ、アプリランタイムが混在しており、それらすべてが同じ伝播形式を好むわけではないためです。
+- ThousandEyes が両方をインジェクトするのは、実際の環境にはプロキシ、メッシュ、ゲートウェイ、アプリケーションランタイムが混在しており、すべてが同じ伝播形式を優先するわけではないためです。
 
-OpenTelemetry の用語では、重要な設定は propagator のリストです。
+OpenTelemetry の用語では、重要な設定はプロパゲーターリストです
 
 ```text
 OTEL_PROPAGATORS=baggage,b3,tracecontext
 ```
 
-これにより、次の2つが実現されます。
+これにより2つのことが実現されます
 
-1. サービスが、受信した ThousandEyes リクエストから **B3** または **W3C** のコンテキストを抽出できるようになります。
-2. `tracecontext` を有効にしておくことで、W3C `tracestate` が保持されます。
+1. サービスが受信した ThousandEyes リクエストから **B3** または **W3C** コンテキストのいずれかを抽出できるようになります。
+2. `tracecontext` を有効にしたままにすることで、W3C `tracestate` が保持されます。
 
-{{% notice title="重要な詳細" style="warning" %}}
-`tracestate` を別の OpenTelemetry propagator として追加する必要は**ありません**。`tracecontext` propagator が `traceparent` と `tracestate` の両方を処理します。
+{{% notice title="Important Detail" style="warning" %}}
+`tracestate` を個別の OpenTelemetry プロパゲーターとして追加する必要は **ありません**。`tracecontext` プロパゲーターが `traceparent` と `tracestate` の両方を処理します。
 {{% /notice %}}
 
-## 「適切に行われた」状態とは
+## 「正しい構成」とは
 
-Collector はこのセットアップの一部に過ぎません。Kubernetes における正しい ThousandEyes トレーシングのデプロイには、**3つのレイヤー**があります。
+コレクターはこのセットアップの一部に過ぎません。Kubernetes における正しい ThousandEyes トレーシングデプロイメントには **3つのレイヤー** があります
 
-1. **デプロイメントのアノテーション** OpenTelemetry Operator がランタイム固有のインストルメンテーションを注入できるようにします。
-2. **Instrumentation リソース** 注入された SDK が、トレースの送信先と使用する propagator を認識できるようにします。
-3. **Collector のトレースパイプライン** OTLP トレースが実際に受信され、Splunk APM にエクスポートされるようにします。
+1. **Deployment アノテーション** - OpenTelemetry Operator がランタイム固有の計装をインジェクトするため。
+2. **Instrumentation リソース** - インジェクトされた SDK がトレースの送信先と使用するプロパゲーターを把握するため。
+3. **Collector トレースパイプライン** - OTLP トレースが実際に受信され、Splunk APM にエクスポートされるため。
 
-最も多い間違いは、collector のみに焦点を当ててしまうことです。Collector は、生の `b3`、`traceparent`、`tracestate` リクエストヘッダーを直接見ることはありません。アプリケーションまたは自動計装ライブラリが最初にそれらのヘッダーを抽出し、span コンテキストを継続し、その後 OTLP 経由で collector に span を送信する必要があります。
+最もよくある間違いは、コレクターだけに注目することです。コレクターは生の `b3`、`traceparent`、`tracestate` リクエストヘッダーを直接見ることはありません。アプリケーションまたは自動計装ライブラリがまずそれらのヘッダーを抽出し、スパンコンテキストを継続してから、OTLP 経由でコレクターにスパンを送信する必要があります。
 
-## 現在のクラスターからの実環境設定
+## 現在のクラスターの実際の構成
 
-以下の例は、このワークショップを現在実行しているライブクラスターから抜粋したものです。Kubernetes で実際に動作しているパターンを示しています。
+以下の例は、このワークショップを実行しているライブクラスターからの抜粋です。現在 Kubernetes で実際に動作しているパターンを示しています。
 
-### 1. デプロイメントのアノテーション
+### 1. Deployment アノテーション
 
-ライブクラスターでは、`teastore` アプリケーションが `teastore/default` Instrumentation リソースを指しています。
+ライブクラスターでは、`teastore` アプリケーションが `teastore/default` Instrumentation リソースを指しています
 
 ```yaml
 apiVersion: apps/v1
@@ -86,11 +87,11 @@ spec:
         instrumentation.opentelemetry.io/inject-java: teastore/default
 ```
 
-ThousandEyes のリクエストがトレースに変換されない場合、まずここを確認します。
+ThousandEyes のリクエストがトレースに変換されない場合、最初に確認すべき箇所です。
 
 ### 2. Instrumentation リソース
 
-これは `teastore` のライブの `Instrumentation` オブジェクトで、ThousandEyes に関係するフィールドのみに絞り込んだものです。
+これは `teastore` のライブ `Instrumentation` オブジェクトで、ThousandEyes に関連するフィールドのみを抜粋しています
 
 ```yaml
 apiVersion: opentelemetry.io/v1alpha1
@@ -112,16 +113,16 @@ spec:
       value: deployment.environment=teastore
 ```
 
-これが ThousandEyes シナリオにおいて重要な部分です。
+ThousandEyes シナリオにおける重要なポイントは以下のとおりです
 
-- `endpoint` は、クラスター内ローカルの OTel エージェントサービスに span を送信します。
-- `b3` により、ThousandEyes の B3 ヘッダーを抽出できます。
-- `tracecontext` により、`traceparent` と `tracestate` が保持されます。
-- `parentbased_always_on` により、ThousandEyes がリクエストを開始した時点でトレースが継続されます。
+- `endpoint` はクラスターローカルの OTel エージェントサービスにスパンを送信します。
+- `b3` は ThousandEyes の B3 ヘッダーの抽出を可能にします。
+- `tracecontext` は `traceparent` と `tracestate` を保持します。
+- `parentbased_always_on` は ThousandEyes がリクエストを開始した後もトレースが継続されることを保証します。
 
-### 3. 注入されたPodが実際に取得するもの
+### 3. インジェクトされた Pod が実際に受け取る内容
 
-実行中の `teastore-webui-v1` Pod では、Operator が次の環境変数を注入しています。
+実行中の `teastore-webui-v1` Pod では、Operator が以下の環境変数をインジェクトしました
 
 ```yaml
 - name: JAVA_TOOL_OPTIONS
@@ -136,11 +137,11 @@ spec:
   value: parentbased_always_on
 ```
 
-これは、抽象的な設定オブジェクトで宣言されているだけでなく、propagator が実際にワークロードに適用されていることを証明する有用な検証ポイントです。
+これは、プロパゲーターが抽象的な設定オブジェクトで宣言されているだけでなく、実際にワークロードに適用されていることを証明する有用な検証チェックポイントです。
 
-### 4. エージェント Collector のトレースパイプライン
+### 4. Agent Collector トレースパイプライン
 
-`otel-splunk` のライブのエージェント collector は、OTLP、Jaeger、Zipkin のトラフィックを受信し、トレースを上流に転送しています。これは実行中の ConfigMap からの抜粋です。
+`otel-splunk` のライブ Agent Collector は OTLP、Jaeger、Zipkin トラフィックを受信し、上流にトレースを転送しています。以下は実行中の ConfigMap からの抜粋です
 
 ```yaml
 receivers:
@@ -168,11 +169,11 @@ service:
       exporters: [otlp, signalfx]
 ```
 
-ThousandEyes にとって重要なのは、collector の特殊な B3 オプションではありません。重要なのは、collector が `4317` と `4318` で OTLP を公開しており、サービスがそこに span をエクスポートしているという点です。
+ThousandEyes にとって重要なのは、コレクターに特別な B3 オプションを設定することではありません。重要なのは、コレクターが `4317` と `4318` で OTLP を公開しており、サービスがそこにスパンをエクスポートしていることです。
 
-### 5. ゲートウェイ Collector の Splunk APM へのエクスポート
+### 5. Gateway Collector から Splunk APM へのエクスポート
 
-その後、ライブのゲートウェイ collector がトレースを Splunk Observability Cloud に転送します。これは、実行中のゲートウェイ ConfigMap の関連部分です。
+ライブの Gateway Collector はトレースを Splunk Observability Cloud に転送します。以下は実行中の Gateway ConfigMap の関連部分です
 
 ```yaml
 exporters:
@@ -200,21 +201,21 @@ service:
       exporters: [otlphttp, signalfx]
 ```
 
-これは、span を Splunk APM に届ける部分です。このパイプラインが壊れていると、ThousandEyes はリクエストにヘッダーを挿入することはできても、相関したトレースは Splunk に表示されません。
+これは、スパンを Splunk APM に到達させるための部分です。このパイプラインが壊れている場合、ThousandEyes はリクエストにヘッダーをインジェクトできますが、相関するトレースが Splunk に表示されることはありません。
 
-{{% notice title="現在のクラスターからの教訓" style="info" %}}
-ライブクラスターでは、`teastore/default` Instrumentation リソースが、`b3` と `tracecontext` を明示的に組み合わせているため、ThousandEyes に従うべきパターンとなっています。これは、このシナリオで複製したい設定です。
+{{% notice title="Current Cluster Takeaway" style="info" %}}
+ライブクラスターでは、`teastore/default` Instrumentation リソースが ThousandEyes 用のパターンとして適しています。`b3` と `tracecontext` を明示的に含んでいるためです。これがこのシナリオで再現したい構成です。
 {{% /notice %}}
 
-{{% notice title="重要" style="warning" %}}
-このセクションでは、ブラウザのページ URL は使用**しないでください**。ThousandEyes は、ブラウザがこのワークフローに必要なカスタムトレースヘッダーを受け入れないことをドキュメント化しています。代わりに、**HTTP Server** または **API** テストの背後にある計装済みのバックエンドエンドポイントを使用してください。
+{{% notice title="Important" style="warning" %}}
+このセクションではブラウザのページ URL を使用 **しないでください**。ThousandEyes のドキュメントによると、ブラウザはこのワークフローに必要なカスタムトレースヘッダーを受け入れません。代わりに、**HTTP Server** または **API** テストの背後にある計装済みバックエンドエンドポイントを使用してください。
 {{% /notice %}}
 
 ## ステップ 1: ワークロードが Splunk APM にトレースを送信していることを確認する
 
-アプリケーションが既に計装され、Splunk APM でトレースが表示されている場合は、ステップ 2 にスキップできます。そうでない場合、Kubernetes における最速の学習パスは、Operator を有効にした Splunk OpenTelemetry Collector を使用してゼロコード計装を行うことです。
+アプリケーションがすでに計装されており、Splunk APM でトレースが表示されている場合は、ステップ 2 に進んでください。そうでない場合、Kubernetes で最も速い学習パスは、ゼロコード計装用の Operator を有効にした Splunk OpenTelemetry Collector を使用することです。
 
-### Operator を有効にした Splunk OpenTelemetry Collector のインストール
+### Operator 付き Splunk OpenTelemetry Collector のインストール
 
 ```bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -228,133 +229,228 @@ helm install splunk-otel-collector splunk-otel-collector-chart/splunk-otel-colle
   --set clusterName=$CLUSTER_NAME \
   --set environment="thousandeyes-$INSTANCE" \
   --set operator.enabled=true \
-  --set operatorcrds.install=true
+  --set operatorcrds.install=true \
+  --set agent.service.enabled=true
 ```
 
-### 自動計装のためのデプロイメントのアノテーション
+### ワークショップのトレースターゲットとして Spring PetClinic をデプロイする
 
-Java ワークロードの一般的な例は次のとおりです。
+このプロジェクトには、`workshop/petclinic/deployment.yaml` に Spring PetClinic マイクロサービスアプリケーションの Kubernetes デプロイメントが含まれています。ワークショップ VM では、`~/workshop/petclinic/deployment.yaml` のコピーを使用してください。
+
+PetClinic マニフェストは、RUM およびロードジェネレーション設定用の `workshop-secret` を必要とします。また、いくつかのサービスに Java 自動計装アノテーションが含まれているため、アプリケーションマニフェストを適用する前に PetClinic の namespace と Instrumentation リソースを作成してください。
+
+```bash
+PETCLINIC_NAMESPACE=default
+OTEL_COLLECTOR_NAMESPACE=otel-splunk
+OTEL_INSTRUMENTATION=splunk-otel-collector
+
+kubectl create namespace $PETCLINIC_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+```
+
+PetClinic namespace に `Instrumentation` リソースを作成または更新します。インジェクトされた Java エージェントはこのリソースを使用して、Splunk OTel Collector にスパンを送信し、ThousandEyes が送信するトレースヘッダーを受け入れます
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: $OTEL_INSTRUMENTATION
+  namespace: $PETCLINIC_NAMESPACE
+spec:
+  exporter:
+    endpoint: http://splunk-otel-collector-agent.$OTEL_COLLECTOR_NAMESPACE.svc:4317
+  propagators:
+    - baggage
+    - b3
+    - tracecontext
+  sampler:
+    type: parentbased_always_on
+  env:
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: deployment.environment=${INSTANCE:-thousandeyes}-petclinic
+EOF
+```
+
+`workshop-secret` を作成または更新してから、PetClinic をデプロイします
+
+```bash
+kubectl create secret generic workshop-secret \
+  -n $PETCLINIC_NAMESPACE \
+  --from-literal=app=${INSTANCE:-thousandeyes}-petclinic-service \
+  --from-literal=env=${INSTANCE:-thousandeyes}-petclinic \
+  --from-literal=realm=${REALM:-us1} \
+  --from-literal=rum_token=${RUM_TOKEN:-not-used} \
+  --from-literal=url=http://api-gateway:82 \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl apply -n $PETCLINIC_NAMESPACE -f ~/workshop/petclinic/deployment.yaml
+```
+
+すべての PetClinic Java デプロイメントにパッチを適用して、PetClinic namespace の Instrumentation リソースを使用するようにします
+
+```bash
+kubectl get deployments \
+  -n $PETCLINIC_NAMESPACE \
+  -l app.kubernetes.io/part-of=spring-petclinic \
+  -o name | \
+  xargs -I % kubectl patch -n $PETCLINIC_NAMESPACE % \
+    -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"$PETCLINIC_NAMESPACE/$OTEL_INSTRUMENTATION\"}}}}}"
+```
+
+主要なサービスのロールアウトが完了するのを待ちます
+
+```bash
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/api-gateway
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/customers-service
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/vets-service
+kubectl rollout status -n $PETCLINIC_NAMESPACE deployment/visits-service
+```
+
+ThousandEyes Enterprise Agent が実行されている namespace からクラスター内 API パスを検証します
+
+```bash
+kubectl run te-petclinic-curl \
+  -n te-demo \
+  --rm -it \
+  --restart=Never \
+  --image=curlimages/curl \
+  --command -- curl -sS http://api-gateway.$PETCLINIC_NAMESPACE.svc.cluster.local:82/api/customer/owners
+```
+
+トレース対応の ThousandEyes **HTTP Server** または **API** テストには、この URL を使用します
+
+```text
+http://api-gateway.default.svc.cluster.local:82/api/customer/owners
+```
+
+`PETCLINIC_NAMESPACE` を変更した場合は、ThousandEyes テスト URL の `default` をその namespace に置き換えてください。
+
+### 自動計装用の Deployment アノテーション
+
+Java ワークロードの場合、一般的な例は以下のようになります
 
 ```bash
 kubectl patch deployment api-gateway -n production -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"otel-splunk/splunk-otel-collector"}}}}}'
 ```
 
-他のランタイムの場合は、言語に対応するアノテーションを使用します。
+他のランタイムの場合は、言語に対応するアノテーションを使用します
 
 - `instrumentation.opentelemetry.io/inject-nodejs`
 - `instrumentation.opentelemetry.io/inject-python`
 - `instrumentation.opentelemetry.io/inject-dotnet`
 
-Collector がアプリケーションと同じ namespace にインストールされている場合は、Splunk の公式ドキュメントでも `"true"` をアノテーション値として使用することがサポートされています。
+コレクターがアプリケーションと同じ namespace にインストールされている場合、Splunk の公式ドキュメントではアノテーション値として `"true"` を使用することもサポートされています。
 
-このワークショップ環境の**ライブクラスターのパターン**に従いたい場合、アノテーション値は namespace 修飾され、`teastore/default` Instrumentation オブジェクトを指します。
+このリポジトリの PetClinic デプロイメントを使用している場合は、この単一デプロイメントの例ではなく、上記の PetClinic パッチコマンドを使用してください。
+
+このワークショップ環境の **ライブクラスターパターン** に従う場合、アノテーション値は namespace 修飾されており、`teastore/default` Instrumentation オブジェクトを指しています
 
 ```bash
 kubectl patch deployment teastore-webui-v1 -n teastore -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/container-names":"teastore-webui-v1","instrumentation.opentelemetry.io/inject-java":"teastore/default"}}}}}'
 ```
 
-### トレースが存在することを検証する
+### トレースの存在を確認する
 
-1. デプロイメントのロールアウトが完了するのを待ちます。
+1. デプロイメントのロールアウトが完了するのを待ちます
 
    ```bash
-   kubectl rollout status deployment/api-gateway -n production
+   kubectl rollout status deployment/api-gateway -n default
    ```
 
-2. 複数のサービスにまたがるバックエンドエンドポイントに対して、いくつかのリクエストを生成します。たとえば次のように。
+2. PetClinic API Gateway に対していくつかのリクエストを生成します
 
    ```text
-   http://api-gateway.production.svc.cluster.local:8080/api/v1/orders
+   http://api-gateway.default.svc.cluster.local:82/api/customer/owners
    ```
 
-   現在のワークショップクラスターでは、`http://teastore-webui.teastore.svc.cluster.local:8080/` のようなサービスが適切なターゲットです。これは複数の下流アプリケーションサービスに繋がっており、シンプルなヘルスチェックよりも有用なエンドツーエンドのトレースを生成するためです。
+   このリクエストは PetClinic API Gateway を通じて入り、`customers-service` にルーティングされ、PetClinic データベースにクエリを実行します。単純なヘルスチェックよりも有用なトレースが生成されます。
 
-3. 続行する前に、トレースが **Splunk APM** に届いていることを確認します。
+3. 続行する前に、**Splunk APM** にトレースが到着していることを確認してください。
 
-{{% notice title="学習のヒント" style="info" %}}
-トレーシング演習では、純粋な `/health` エンドポイントではなく、ビジネストランザクションを使用してください。マルチサービスのリクエストの方が、ThousandEyes でははるかに優れた Service Map が得られ、Splunk APM ではより有用なトレースが得られます。
+{{% notice title="Learning Tip" style="info" %}}
+トレーシング演習には、純粋な `/health` エンドポイントではなく、ビジネストランザクションを使用してください。複数サービスにまたがるリクエストは、ThousandEyes でより充実した Service Map を、Splunk APM でより有用なトレースを提供します。
 {{% /notice %}}
 
 ## ステップ 2: ThousandEyes テストで分散トレーシングを有効にする
 
-ステップ 1 の計装済みバックエンドエンドポイントを対象とする **HTTP Server** または **API** テストを作成または編集します。
+ステップ 1 の計装済みバックエンドエンドポイントをターゲットにした **HTTP Server** または **API** テストを作成または編集します。
 
 1. ThousandEyes で **HTTP Server** または **API** テストを作成します。
 2. **Advanced Settings** を開きます。
 3. **Distributed Tracing** を有効にします。
-4. テストを保存し、すでに Splunk APM にトレースを送信している同じエンドポイントに対して実行します。
+4. テストを保存し、すでに Splunk APM にトレースを送信しているのと同じエンドポイントに対して実行します。
 
-![Enable Distributed Tracing in ThousandEyes](../images/distributed-tracing-enable.png)
+![ThousandEyes での Distributed Tracing の有効化](../images/distributed-tracing-enable.png)
 
-テスト実行後、ThousandEyes はトレースヘッダーを挿入し、そのリクエストのトレースコンテキストをキャプチャします。
+テストが実行されると、ThousandEyes はトレースヘッダーをインジェクトし、そのリクエストのトレースコンテキストをキャプチャします。
 
 ## ステップ 3: ThousandEyes で Splunk APM Connector を作成する
 
-前のセクションのメトリクスストリーミング統合では、**Ingest** トークンを使用しました。このステップは異なります。ThousandEyes は Splunk APM をクエリしてトレースリンクを構築する必要があるため、Splunk の **API** トークンを使用します。
+前のセクションのメトリクスストリーミング統合は **Ingest** トークンを使用しました。このステップは異なります。ThousandEyes は Splunk APM にクエリを実行してトレースリンクを構築する必要があるため、代わりに Splunk **API** トークンを使用します。
 
-1. Splunk Observability Cloud で、**API** スコープを持つアクセストークンを作成します。
-2. ThousandEyes で **Manage > Integrations > Integrations 2.0** に移動します。
-3. **Generic Connector** を作成し、次のように設定します。
-   - **Target URL** `https://api.<REALM>.signalfx.com`
-   - **Header** `X-SF-Token: <your-api-scope-token>`
+1. Splunk Observability Cloud で、**API** スコープのアクセストークンを作成します。
+2. ThousandEyes で、**Manage > Integrations > Integrations 2.0** に移動します。
+3. 以下の設定で **Generic Connector** を作成します
+   - **Target URL**: `https://api.<REALM>.signalfx.com`
+   - **Header**: `X-SF-Token: <your-api-scope-token>`
 4. 新しい **Operation** を作成し、**Splunk Observability APM** を選択します。
-5. オペレーションを有効にし、統合を保存します。
+5. Operation を有効にして統合を保存します。
 
-![Splunk APM Generic Connector in ThousandEyes](../images/splunk-apm-generic-connector.png)
+![ThousandEyes での Splunk APM Generic Connector](../images/splunk-apm-generic-connector.png)
 
-![Splunk APM Operation in ThousandEyes](../images/splunk-apm-operation.png)
+![ThousandEyes での Splunk APM Operation](../images/splunk-apm-operation.png)
 
-## ステップ 4: 双方向の調査ループを検証する
+## ステップ 4: 双方向調査ループを検証する
 
-テストが実行され、コネクタが有効になったら、両方向のワークフローを検証します。
+テストが実行中でコネクターが有効になったら、両方向のワークフローを検証します。
 
 ### ThousandEyes から開始する
 
 1. ThousandEyes でテストを開きます。
 2. **Service Map** タブに移動します。
-3. トレースパス、サービスのレイテンシー、下流のエラーを確認できることを確認します。
-4. ThousandEyes のリンクから **Splunk APM** に入り、完全なトレースを調査します。
+3. トレースパス、サービスレイテンシー、ダウンストリームエラーが表示されることを確認します。
+4. ThousandEyes から **Splunk APM** へのリンクを使用して、完全なトレースを検査します。
 
-![ThousandEyes Service Map with Splunk APM correlation](../images/thousandeyes-service-map.png)
+![Splunk APM 相関が表示された ThousandEyes Service Map](../images/thousandeyes-service-map.png)
 
 ### Splunk APM で続行する
 
-Splunk APM 内で、トレースに次のような ThousandEyes メタデータが含まれていることを確認します。
+Splunk APM 内で、トレースに以下のような ThousandEyes メタデータが含まれていることを確認します
 
 - `thousandeyes.account.id`
 - `thousandeyes.test.id`
 - `thousandeyes.permalink`
 - `thousandeyes.source.agent.id`
 
-`thousandeyes.permalink` フィールド、または trace waterfall ビュー内の **Go to ThousandEyes test** ボタンを使用して、元の ThousandEyes テストに戻ります。
+`thousandeyes.permalink` フィールドまたはトレースウォーターフォールビューの **Go to ThousandEyes test** ボタンを使用して、元の ThousandEyes テストに戻ります。
 
-![Splunk APM trace linked back to ThousandEyes](../images/splunk-apm-trace.png)
+![ThousandEyes にリンクされた Splunk APM トレース](../images/splunk-apm-trace.png)
 
 ## 推奨される学習シナリオ
 
-ワークショップ中は次のフローを使用します。
+ワークショップでは以下のフローを使用してください
 
 1. 複数のサービスを呼び出す内部 API ルートに対して ThousandEyes テストを作成します。
-2. ThousandEyes に問題を最初に表面化させ、ネットワークおよび合成監視の観点からクラスを開始します。
-3. ThousandEyes で **Service Map** を開き、レイテンシーやエラーが発生し始める場所を特定します。
-4. **Splunk APM** にジャンプして span レベルの分析を行います。
-5. **ThousandEyes** に戻って、テスト、エージェント、ネットワークパスを再確認します。
+2. まず ThousandEyes で問題を表面化させ、クラスがネットワークとシンセティックモニタリングの観点から開始できるようにします。
+3. ThousandEyes で **Service Map** を開き、レイテンシーやエラーの発生箇所を特定します。
+4. **Splunk APM** にジャンプしてスパンレベルの分析を行います。
+5. **ThousandEyes** に戻り、テスト、エージェント、ネットワークパスを再度検査します。
 
-これは、各チームが実際にどのように作業するかを反映しているため、強力な指導ループとなります。
+これは、異なるチームが実際にどのように作業するかを反映しているため、優れた学習ループとなります
 
-- ネットワークおよびエッジチームは ThousandEyes から開始することが多い
-- SRE およびプラットフォームチームは Splunk のダッシュボードまたはアラートから開始することが多い
-- アプリケーションチームは通常、Splunk APM のトレースを必要とする
+- ネットワークおよびエッジチームは多くの場合 ThousandEyes から開始します。
+- SRE およびプラットフォームチームは多くの場合 Splunk のダッシュボードやアラートから開始します。
+- アプリケーションチームは通常 Splunk APM のトレースを求めます。
 
-この統合があれば、誰もがコンテキストを失うことなく移動できます。
+この統合により、全員がコンテキストを失うことなく切り替えることができます。
 
 ## よくある落とし穴
 
-- テストが Splunk のダッシュボードに表示されているのに、トレース相関がない場合があります。これは通常、**メトリクス**ストリームのみが設定されており、**Splunk APM Generic Connector** が設定されていないことを意味します。
-- トレースが Splunk APM に存在していても、監視対象のエンドポイントが下流にトレースヘッダーを伝播していない場合、ThousandEyes には表示されません。
-- `/health` のような浅いエンドポイントでは、設定が正しくてもトレースの価値が限定的なことがよくあります。
+- テストが Splunk ダッシュボードに表示されているにもかかわらず、トレース相関がない場合があります。これは通常、**メトリクス** ストリームのみが設定されており、**Splunk APM Generic Connector** が設定されていないことを意味します。
+- 監視対象のエンドポイントがトレースヘッダーをダウンストリームに伝播しない場合、Splunk APM にトレースが存在していても ThousandEyes に表示されないことがあります。
+- `/health` のような浅いエンドポイントは、構成が正しくても限られたトレース価値しか生成しないことが多いです。
 
-## 参考資料
+## リファレンス
 
 - [ThousandEyes Distributed Tracing](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing)
 - [ThousandEyes Distributed Tracing with Splunk Observability APM](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm)

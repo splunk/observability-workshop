@@ -3,19 +3,19 @@ title: 2. トラフィックの生成
 weight: 2
 ---
 
-## フロントエンドへのアクセス
+## フロントエンドにアクセスする
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-curlを使用してトラフィックを生成します:
+curl を使用してトラフィックを生成します:
 
 ``` bash
-curl -s http://localhost:3000/create-order | python3 -m json.tool
+curl -s http://localhost:3000/create-order | jq
 ```
 
 {{% /notice %}}
 
-以下のようなJSONレスポンスが表示されます:
+次のような JSON レスポンスが表示されるはずです:
 
 ``` json
 {
@@ -28,13 +28,13 @@ curl -s http://localhost:3000/create-order | python3 -m json.tool
 }
 ```
 
-リクエストは3つのサービスすべてを通過しました。しかし、現時点では誰も監視していません。
+リクエストは3つのサービスすべてを通過しました。しかし現時点では、誰も監視していません。
 
-## コードの確認
+## コードを確認する
 
-ソースコードを確認し、計装がまったく行われていないことを確認してください:
+ソースコードを確認して、計装がまったく存在しないことを確認しましょう:
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 ``` bash
 grep -r "opentelemetry\|otel\|tracing\|instrument" ~/workshop/obi/02-obi-docker/frontend/
@@ -44,4 +44,4 @@ grep -r "opentelemetry\|otel\|tracing\|instrument" ~/workshop/obi/02-obi-docker/
 
 {{% /notice %}}
 
-3つのコマンドはすべて何も返しません。アプリケーションコードには**トレースヘッダー、SDK、計装が一切ありません**。
+3つのコマンドはすべて何も返しません。アプリケーションコードのどこにも **トレーシングヘッダー、SDK、計装は一切ありません**。
