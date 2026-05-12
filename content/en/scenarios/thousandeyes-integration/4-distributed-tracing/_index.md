@@ -228,6 +228,13 @@ You can check that your app is deployed, along with all the other pods:
 kubectl get pods
 ```
 
+Let's run this command to see if the pod is instrumented; we'll compare it with the output in a later step:
+
+```bash
+kubectl exec -n default deploy/api-gateway -- printenv | \
+  grep -E 'Image:|OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
+```
+
 We are going to patch every PetClinic Java deployment to two things:
 * The Java injection (which instruments the service)
 * The OTEL Propagators (to ensure all 3 are set)
@@ -272,15 +279,10 @@ For other runtimes, use the annotation that matches the language:
 We can check that our instrumentation deployed with:
 ```bash
 kubectl exec -n default deploy/api-gateway -- printenv | \
-  grep -E 'OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
+  grep -E 'Image:|OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
 ```
 
-You can see that this pod now has the Java instrumentation enabled. In fact you can also see that the propagators are already including `baggage`, `b3` and `tracecontext`.
-
-If they weren't we could patch with that environment variable, like:
-```bash
-kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % --type=json -p '[{"op":"add","path":"/spec/template/spec/containers/0/env/-","value":{"name":"OTEL_PROPAGATORS","value":"baggage, b3, tracecontext"}}]'
-```
+You can see that this pod now has the Java instrumentation enabled, and the propagators are including `baggage`, `b3` and `tracecontext`.
 
 Validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs:
 
@@ -395,7 +397,7 @@ Use either the `thousandeyes.permalink` field or the **Go to ThousandEyes test**
 
 ## Suggested Learning Scenario
 
-Try now creating a web test, using a cloud agent and your url (for example `http://i-0cedf3429f9192aaa.splunk.show:81/#!/owners/details/1`, replace with your own instance).
+Try now creating a web test, using a cloud agent and your url (for example `http://i-0cedf3429f9192aaa.splunk.show:81/#!/owners`, replace with your own instance).
 
 
 ## Need to recheck this section
