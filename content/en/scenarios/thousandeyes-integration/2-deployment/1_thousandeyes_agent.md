@@ -23,9 +23,19 @@ This section guides you through deploying the ThousandEyes Enterprise Agent in y
 
 4. Base64 encode the token:
 
-   ```bash
-   echo -n 'your-token-here' | base64
-   ```
+{{< tabs >}}
+{{% tab title="Script" %}}
+```bash
+echo -n 'your-token-here' | base64
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```text
+dXabsfuenBabjeTZ3anVvxgyYds0cas=
+```
+{{% /tab %}}
+{{< /tabs >}}
+
 
 5. Save the base64-encoded output for the next step
 
@@ -47,9 +57,20 @@ data:
 
 Apply the secret:
 
+{{< tabs >}}
+{{% tab title="Script" %}}
 ```bash
 kubectl apply -f credentialsSecret.yaml
 ```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```text
+secret/te-creds created
+```
+{{% /tab %}}
+{{< /tabs >}}
+
 
 ### Step 3: Create the Deployment
 
@@ -110,23 +131,37 @@ spec:
 
 Apply the deployment:
 
+{{< tabs >}}
+{{% tab title="Script" %}}
 ```bash
 kubectl apply -f thousandEyesDeploy.yaml
 ```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```text
+deployment.apps/thousandeyes created
+```
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Step 5: Verify the Deployment
 
 Verify the agent is running:
 
+{{< tabs >}}
+{{% tab title="Script" %}}
 ```bash
 kubectl get pods
 ```
-
+{{% /tab %}}
+{{% tab title="Example Output" %}}
 Expected output, it may take a few tries to come up:
-```
+```text
 NAME                            READY   STATUS    RESTARTS   AGE
 thousandeyes-xxxxxxxxxx-xxxxx   1/1     Running   0          2m
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% notice title="Tip" style="info" %}}
 You can use:
@@ -138,9 +173,28 @@ to monitor until the pod is running. Use this tip any time we're waiting for som
 
 Check the logs to ensure the agent is connecting:
 
+{{< tabs >}}
+{{% tab title="Script" %}}
 ```bash
 kubectl logs -l app=thousandeyes
 ```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```text
+INFO: execution time 20 seconds.
+INFO: rootfs setup successfully
+********************************* setup_rootfs.sh end *******************************
+Starting browserbot in installation mode
+Getting image source signatures
+Copying blob sha256:dee215ffc666313e1381d3e6e4299a4455503735b8df31c3fa161d2df50860a8
+Copying config sha256:ed210e3e4a5bae1237f1bb44d72a05a2f1e5c6bfe7a7e73da179e2534269c459
+Writing manifest to image destination
+time="2026-05-12T22:08:37Z" level=warning msg="specgen \"cni_networks\" option is deprecated use the \"networks\" map instead"
+Starting browserbot in daemon mode
+```
+{{% /tab %}}
+{{< /tabs >}}
+
 
 ### Step 6: Verify in ThousandEyes Dashboard
 

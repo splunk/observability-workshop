@@ -22,79 +22,7 @@ By the end of this section, you will be able to:
 - Open the ThousandEyes **Service Map** and jump directly into the corresponding Splunk trace
 - Use the ThousandEyes metadata in Splunk APM to jump back to the original ThousandEyes test
 
-### Summary of the changes we need to make
 
-The [ThousandEyes documentation](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing), and specifically [the page for Splunk Observability APM](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm), shows what is needed for distributed tracing:
-
-For Propagators:
-- `baggage` for 
-- `b3` allows extraction of ThousandEyes B3 headers.
-- `tracecontext` preserves `traceparent` and `tracestate`
-
-In addition setting the sampler to `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request. However this is not needed with Splunk, since Splunk samples 100% of traces.
-
-We will make the following changes:
-* Step 1: Modify the OTel Collector
-  * Ensure all 3 propagators are set
-* Step 2: Patch the Application
-  * Patch the services to inject java instrumentation
-
-### Step 1: Enable Instrumentation and make ThousandEyes changes
-
-Let's check the configuration of the instrumentation:
-
-```bash
-kubectl describe instrumentation splunk-otel-collector 
-```
-
-You will see that the propagators are already set. So we don't need to make that change.
-
-### Step 2: Patch the application
-
-First, let's check which container images are deployed:
-
-```bash
-kubectl describe pods api-gateway | grep Image:
-```
-
-We can see there is only one container for the gateway.
-
-Then let's inject the java instrumentation:
-```bash
-kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
-```
-
-{{% notice title="For other runtimes" style="info" %}}
-For other runtimes, use the annotation that matches the language; for example:
-- `instrumentation.opentelemetry.io/inject-nodejs`
-- `instrumentation.opentelemetry.io/inject-python`
-- `instrumentation.opentelemetry.io/inject-dotnet`
-{{% /notice %}}
-
-There will be no change for the `config-server`, `discovery-server` and `admin-server` as these have already been patched.
-
-We can check that our instrumentation deployed with:
-```bash
-kubectl describe pods api-gateway | grep Image:
-```
-
-You can also see that this pod has the Java instrumentation enabled, and the propagators are including `baggage`, `b3` and `tracecontext`:
-
-```bash
-kubectl describe pods api-gateway
-```
-
-Now we can validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs by running:
-
-```bash
-kubectl run te-petclinic-curl \
-  --rm -it \
-  --restart=Never \
-  --image=curlimages/curl \
-  --command -- curl -sS http://api-gateway.default.svc.cluster.local:82/api/customer/owners
-```
-
-You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`):
 
 
 We are going to use this URL for the trace-enabled ThousandEyes **HTTP Server** or **API** tests from the TE agent:
@@ -125,32 +53,7 @@ http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 Use a business transaction, not a pure `/health` endpoint, for the tracing exercise. A multi-service request gives you a far better Service Map in ThousandEyes and a more useful trace in Splunk APM.
 {{% /notice %}}
 
-### Step 2: Create the Splunk APM Connector in ThousandEyes
 
-{{% notice title="Only need 1 integration" style="warning" %}}
-Rather than having each workshop attendee set this up, watch your instructor perform the following steps.
-
-You will continue on Step 3 (Configure Distributed Tracing on the ThousandEyes Test).
-{{% /notice %}}
-
-The metric streaming integration from the previous section uses an **Ingest** token. This step is different: ThousandEyes needs to query Splunk APM and build trace links, so it uses a Splunk **API** token instead.
-
-1. In Splunk Observability Cloud, create an access token with the **API** scope.
-2. In ThousandEyes, go to **Manage > Integrations > Integrations 2.0**, and change to the **Connectors** tab.
-3. Create a **Generic Connector**. You can select the Preset as **Splunk Observability APM**:
-  - **Name**: `Splunk APM`
-  - **Target URL**: `https://api.<REALM>.signalfx.com`
-  - **Header**: `X-SF-Token: <your-api-scope-token>`
-4. **Save and Assign Operation**
-
-![Splunk APM Generic Connector in ThousandEyes](../images/splunk-apm-generic-connector.png)
-
-5. Create a **New Operation** and select **Splunk Observability APM**.
-6. Name it `Splunk APM`.
-7. **Save & Assign Connector** to enable the operation and save the integration.
-8. Select the connector and click **Save**.
-
-![Splunk APM Operation in ThousandEyes](../images/splunk-apm-operation.png)
 
 ### Step 3: Configure Distributed Tracing on the ThousandEyes Test
 
