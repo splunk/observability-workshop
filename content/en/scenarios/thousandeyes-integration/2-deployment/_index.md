@@ -8,13 +8,32 @@ description: Deploy the ThousandEyes Enterprise Agent in Kubernetes and verify t
 
 This section guides you through deploying the ThousandEyes Enterprise Agent in your Kubernetes cluster.
 
-## Components
 
-The deployment consists of two files:
+## Installation Steps
 
-### 1. Secrets File (`credentialsSecret.yaml`)
+### Step 1: Create the ThousandEyes Token
 
-Contains your ThousandEyes agent token (base64 encoded). This secret is referenced by the deployment to authenticate the agent with ThousandEyes Cloud.
+1. Log in to the ThousandEyes platform at [app.thousandeyes.com/login](https://app.thousandeyes.com/login)
+
+2. Navigate to **Network & App Synthetics > Agent Settings > Enterprise Agents > Add New Enterprise Agent**
+
+3. Click the **Appliance** tab
+
+4. Copy your **Account Group Token**
+
+4. Base64 encode the token:
+
+   ```bash
+   echo -n 'your-token-here' | base64
+   ```
+
+5. Save the base64-encoded output for the next step
+
+![Get ThousandEyes Token](../images/te1.gif)
+
+### Step 2: Create the Secret
+
+Create a file named `credentialsSecret.yaml` with your base64-encoded token:
 
 ```yaml
 apiVersion: v1
@@ -23,26 +42,23 @@ metadata:
   name: te-creds
 type: Opaque
 data:
-  TEAGENT_ACCOUNT_TOKEN: <base64-encoded-token>
+  TEAGENT_ACCOUNT_TOKEN: <your-base64-encoded-token-here>
 ```
 
-### 2. Deployment Manifest (`thousandEyesDeploy.yaml`)
+Apply the secret:
 
-Defines the Enterprise Agent pod configuration with the following key settings:
+```bash
+kubectl apply -f credentialsSecret.yaml
+```
 
-- **Namespace**: `te-demo` (customize as needed)
-- **Image**: `thousandeyes/enterprise-agent:latest` from Docker Hub
-- **Hostname**: `te-agent-aleccham` (appears in ThousandEyes dashboard)
-- **Capabilities**: Requires `NET_ADMIN` and `SYS_ADMIN` for network testing
-- **Resources**: 
-  - Memory limit: 3584Mi
-  - Memory request: 2000Mi
+### Step 3: Create the Deployment
+
+Create a file named `thousandEyesDeploy.yaml` with the deployment manifest shown below (customize the `hostname` with your username, like `tihard`):
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: te-demo
   name: thousandeyes
   labels:
     app: thousandeyes
@@ -56,7 +72,7 @@ spec:
       labels:
         app: thousandeyes
     spec:
-      hostname: te-agent-aleccham
+      hostname: te-agent-USERNAME
       containers:
       - name: thousandeyes
         image: 'thousandeyes/enterprise-agent:latest'
@@ -83,68 +99,14 @@ spec:
             memory: 2000Mi
 ```
 
-{{% notice title="Important Notes" style="warning" %}}
+{{% notice title="Explanation of settings" style="info" %}}
 - The agent requires elevated privileges (`NET_ADMIN`, `SYS_ADMIN`) to perform network tests
 - The `TEAGENT_INET: "4"` environment variable forces IPv4-only mode (required for some network configurations)
 - The `/sbin/my_init` command is required for proper agent initialization and service management
 - The `imagePullPolicy: Always` ensures you always pull the latest image version
 - Adjust the `hostname` field to uniquely identify your agent in the ThousandEyes dashboard
-- Modify the `namespace` to match your Kubernetes environment
 - The ThousandEyes Enterprise Agent has relatively high hardware requirements; you may need to adjust these depending on your environment
 {{% /notice %}}
-
-## Installation Steps
-
-### Step 1: Create the ThousandEyes Token
-
-1. Log in to the ThousandEyes platform at [app.thousandeyes.com/login](https://app.thousandeyes.com/login)
-
-2. Navigate to **Cloud & Enterprise Agents > Agent Settings > Add New Enterprise Agent**
-
-3. Copy your **Account Group Token**
-
-4. Base64 encode the token:
-
-   ```bash
-   echo -n 'your-token-here' | base64
-   ```
-
-5. Save the base64-encoded output for the next step
-
-![Get ThousandEyes Token](../images/te1.gif)
-
-### Step 2: Create the Namespace
-
-Create the namespace (if it doesn't exist):
-
-```bash
-kubectl create namespace te-demo
-```
-
-### Step 3: Create the Secret
-
-Create a file named `credentialsSecret.yaml` with your base64-encoded token:
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: te-creds
-  namespace: te-demo
-type: Opaque
-data:
-  TEAGENT_ACCOUNT_TOKEN: <your-base64-encoded-token-here>
-```
-
-Apply the secret:
-
-```bash
-kubectl apply -f credentialsSecret.yaml
-```
-
-### Step 4: Create the Deployment
-
-Create a file named `thousandEyesDeploy.yaml` with the deployment manifest shown above (customize the hostname and namespace as needed).
 
 Apply the deployment:
 
@@ -157,7 +119,7 @@ kubectl apply -f thousandEyesDeploy.yaml
 Verify the agent is running:
 
 ```bash
-kubectl get pods -n te-demo
+kubectl get pods
 ```
 
 Expected output:
@@ -169,14 +131,14 @@ thousandeyes-xxxxxxxxxx-xxxxx   1/1     Running   0          2m
 Check the logs to ensure the agent is connecting:
 
 ```bash
-kubectl logs -n te-demo -l app=thousandeyes
+kubectl logs -l app=thousandeyes
 ```
 
 ### Step 6: Verify in ThousandEyes Dashboard
 
 Verify in the ThousandEyes dashboard that the agent has registered successfully:
 
-Navigate to **Cloud & Enterprise Agents > Agent Settings** to see your newly registered agent.
+Navigate to **Network & App Synthetics > Agent Settings** to see your newly registered agent.
 
 {{% notice title="Success" style="success" icon="check" %}}
 Your ThousandEyes Enterprise Agent is now running in Kubernetes! Next, we'll integrate it with Splunk Observability Cloud.
