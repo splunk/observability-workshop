@@ -76,4 +76,4 @@ The high-level steps to do this are as follows:
 
 ![Open Remote Folder](../images/OpenRemoteFolder.png)
 
-You can now files remotely with VS Code! 
+You can now edit files remotely with VS Code! 
