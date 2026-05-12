@@ -228,11 +228,38 @@ You can check that your app is deployed, along with all the other pods:
 kubectl get pods
 ```
 
-
 We are going to patch every PetClinic Java deployment to two things:
 * The Java injection (which instruments the service)
 * The OTEL Propagators (to ensure all 3 are set)
 
+Create a new file, `instrumentation.yaml`, and add the following:
+
+```yaml
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: splunk-otel-collector
+spec:
+  propagators:
+    - baggage
+    - b3
+    - tracecontext
+  sampler:
+    type: parentbased_always_on
+```
+
+Then deploy it with:
+```bash
+kubectl apply -f instrumentation.yaml
+```
+
+This is the critical part for the ThousandEyes scenario:
+
+- `b3` allows extraction of ThousandEyes B3 headers.
+- `tracecontext` preserves traceparent and tracestate.
+- `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request.
+
+Then let's inject the java instrumentation:
 ```bash
 kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
 ```
@@ -242,9 +269,10 @@ For other runtimes, use the annotation that matches the language:
 - `instrumentation.opentelemetry.io/inject-python`
 - `instrumentation.opentelemetry.io/inject-dotnet`
 
-Let's check to see what happened with the instrumentation:
+We can check that our instrumentation deployed with:
 ```bash
-kubectl describe pod api-gateway
+kubectl exec -n default deploy/api-gateway -- printenv | \
+  grep -E 'OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
 ```
 
 You can see that this pod now has the Java instrumentation enabled. In fact you can also see that the propagators are already including `baggage`, `b3` and `tracecontext`.
