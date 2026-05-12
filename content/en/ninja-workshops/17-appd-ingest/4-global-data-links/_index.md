@@ -7,6 +7,12 @@ time: 10 minutes
 description: Create a global data link in Splunk Observability Cloud that navigates directly to the corresponding AppDynamics tier view using the appd.* span attributes.
 ---
 
+{{% notice title="NOTICE" style="primary" icon="lightbulb" %}}
+If participating in a group workshop please observe your instructor and refrain from creating more global data links.
+You do not need to complete this section of the workshop yourself. The instructions are included for enablement and documentation purposes.
+Thank you!
+{{% /notice %}}
+
 The `appd.*` attributes on your traces are more than metadata they can power **global data links** that let anyone viewing a trace in Splunk Observability Cloud jump straight into the corresponding AppDynamics view with a single click.
 
 ## What are Global Data Links?
