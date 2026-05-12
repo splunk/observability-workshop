@@ -10,7 +10,7 @@ This workshop is available on Splunk Show and will take some time to start up al
 
 The Workshop is titled **"Tech Summit 2025: OBS-122"** or you can go directly to it's entry on [Splunk Show](https://show.splunk.com/template/646/). It takes approximately 15 minutes to start up however data generation and ingestion will take up to a half hour.
 
-![show-entry](../images/show_entry.png?classes=inline)
+![show-entry](../../images/show_entry.png?classes=inline)
 
 # Splunk Observability Cloud Access
 
