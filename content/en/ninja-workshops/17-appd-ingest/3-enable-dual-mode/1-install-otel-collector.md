@@ -26,7 +26,7 @@ Run the Splunk OTel Collector install script. This installs the collector as a `
 
 ```bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-  sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN
+  sudo sh /tmp/splunk-otel-collector.sh --realm $REALM --deployment-environment ${INSTANCE}-appd-dual --hec-token ${HEC_TOKEN} --hec-url ${HEC_URL}  -- $ACCESS_TOKEN
 ```
 
 {{% /tab %}}
@@ -38,6 +38,8 @@ Splunk OpenTelemetry Collector has been successfully installed.
 
 {{% /tab %}}
 {{< /tabs >}}
+
+Here we make sure to pass along our environment with `--deployment-environment` as well as our hec log exporting details with `--hec-token` and `--hec-url`. This is important to get our logs out and correlated!
 
 ## Apply the Workshop Collector Configuration
 
@@ -52,18 +54,6 @@ look for this section under `processors:`:
 {{% tab title="collector-config.yaml" %}}
 
 ```yaml
-  resource/workshop:
-    attributes:
-      - key: host.name
-        value: "${INSTANCE}"
-        action: upsert
-      - key: deployment.environment
-        value: "${INSTANCE}-appd-dual"
-        action: upsert 
-      - key: deployment.environment.name
-        value: "${INSTANCE}-appd-dual"
-        action: upsert
-
   transform/drop_dims_high_cardinality:
       error_mode: ignore
       metric_statements:
@@ -94,9 +84,6 @@ look for this section under `processors:`:
 
 {{% /tab %}}
 {{% /tabs %}}
-
-These processors make sure we correctly reference our variables for the `host.name` and `deployment.enviroment`/`deployment.environment.name`(preferred) attributes.
-
 The `transform/drop_dims_high_cardinality` processor uses [OpenTelemetry Transformation Language (OTTL)](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/pkg/ottl/LANGUAGE.md) to check our metrics for any that have more than 34 attributes (the actual value attached to the metric counts as a point also).
 
 - **IMPORTANT: Currently we will drop metrics that have too many attributes (>36) in the backend.** This can happen with AppDynamics telemetry due to additional attributes.
@@ -110,26 +97,6 @@ We will then copy that custom config over the `agent_config.yaml`:
 
 ```bash
 sudo cp ~/workshop/appd/collector-config.yaml /etc/otel/collector/agent_config.yaml
-```
-
-## Set the Collector Environment Variables
-
-The collector service reads environment variables from a config file. The Splunk OTel Collector binary requires `SPLUNK_REALM` and `SPLUNK_ACCESS_TOKEN` (with the `SPLUNK_` prefix). Your instance has `REALM` and `ACCESS_TOKEN`, so we map them:
-
-```bash
-sudo bash -c "cat > /etc/otel/collector/splunk-otel-collector.conf << EOF
-INSTANCE=${INSTANCE}
-SPLUNK_INGEST_URL=https://ingest.${REALM}.signalfx.com
-SPLUNK_CONFIG=/etc/otel/collector/agent_config.yaml
-SPLUNK_ACCESS_TOKEN=${ACCESS_TOKEN}
-SPLUNK_REALM=${REALM}
-SPLUNK_API_URL=https://api.${REALM}.signalfx.com
-SPLUNK_HEC_TOKEN=${HEC_TOKEN}
-SPLUNK_HEC_URL=${HEC_URL}
-SPLUNK_MEMORY_TOTAL_MIB=512
-SPLUNK_BUNDLE_DIR=/usr/lib/splunk-otel-collector/agent-bundle
-SPLUNK_COLLECTD_DIR=/usr/lib/splunk-otel-collector/agent-bundle/run/collectd
-EOF"
 ```
 
 ## Restart the Collector

@@ -39,7 +39,7 @@ java -javaagent:agent/javaagent.jar \
   -Dagent.deployment.mode=dual \
   -Dotel.traces.exporter=otlp \
   -Dotel.exporter.otlp.endpoint=http://localhost:4318 \
-  -Dotel.resource.attributes=service.name=OrderService,service.namespace=Dual-Ingest-${INSTANCE},deployment.environment=${INSTANCE}-appd-dual \
+  -Dotel.resource.attributes=service.name=OrderService,service.namespace=Dual-Ingest-${INSTANCE},deployment.environment=${INSTANCE}-appd-dual,deployment.environment.name=${INSTANCE}-appd-dual \
   -jar app/target/ingest-workshop-1.0.0.jar &
 ```
 
@@ -53,7 +53,7 @@ Press return to go back to your prompt.
 | `-Dagent.deployment.mode=dual` | Enables dual signal mode the full OTel Java auto-instrumentation runs alongside the AppD agent |
 | `-Dotel.traces.exporter=otlp` | Tells the OTel instrumentation to export spans via OTLP |
 | `-Dotel.exporter.otlp.endpoint` | Points to the local OTel Collector on port 4318 (HTTP/protobuf) |
-| `-Dotel.resource.attributes` | Sets OTel resource attributes: `service.name` maps to the AppD tier, `service.namespace` maps to the AppD application, `deployment.environment` tags data for your workshop instance |
+| `-Dotel.resource.attributes` | Sets OTel resource attributes: `service.name` maps to the AppD tier, `service.namespace` maps to the AppD application, `deployment.environment`/`deployment.environment.name` tags data for your workshop instance |
 
 ## Restart the Load Generator
 
@@ -73,7 +73,7 @@ Check the application logs for confirmation that dual mode started:
 {{% tab title="Command" %}}
 
 ```bash
-ps aux | grep "deployment.mode=dual" | grep -v grep
+ps aux | grep "deployment.mode=dual"
 ```
 
 {{% /tab %}}

@@ -76,3 +76,57 @@ OBI gives you **full distributed tracing without any code changes**:
 - **Zero application restarts**: OBI attaches to already-running processes via eBPF
 - **Language agnostic**: works with Go, Node.js, Python, Java, Rust, C++ or anything that speaks HTTP or gRPC
 - **One container or one Helm flag**: add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done
+
+## OBI vs Traditional Zero-Code Instrumentation
+
+OBI and existing traditional language-specific zero-code instrumentation (Java, JS, .NET, Python, Go, PHP) serve complementary roles in an observability strategy. Understanding the differences helps determine when to use each approach.
+
+### 1. Instrumentation Model
+
+| Aspect | OBI | Traditional Zero-Code Instrumentations |
+|---|---|---|
+| Execution model | Out-of-process | In-process |
+| Instrumentation layer | Linux kernel / network | Application runtime |
+| Requires code changes | No | No or minimal |
+| Requires application restart | No | Yes |
+| Security profile | Isolated | Same permission profile as the application |
+
+### 2. Level of Visibility
+
+| Capability | OBI | Traditional Zero-Code Instrumentations |
+|---|---|---|
+| Distributed tracing | Protocol-level | Full-fidelity |
+| RED metrics | Yes | Yes |
+| Application logs collection | No | Yes |
+| Application log-trace correlation | Yes | Yes |
+| Application internals (frameworks, functions) | No (partial, mostly in Go) | Yes |
+| Custom spans / business attributes | No | Yes |
+| Runtime metrics (JVM, memory, threads) | No, for now | Yes |
+
+### 3. Coverage & Compatibility
+
+| Scenario | OBI | Traditional Zero-Code Instrumentations |
+|---|---|---|
+| Multi-language environments | Strong (protocol-based) | Language-specific |
+| Third-party applications | Supported | Limited, contrib repos |
+| Legacy systems | Supported | Limited |
+| Compiled languages (C/C++/Rust) | Supported (with some limitations in async) | Limited |
+| Async / complex frameworks | Limited in some cases | Strong |
+
+### 4. Operational Characteristics
+
+| Aspect | OBI | Traditional Zero-Code Instrumentations |
+|---|---|---|
+| Deployment effort | Low (drop-in) | Medium (agent attachment) |
+| Time to first visibility | Minutes | "More" minutes |
+| Changes to application lifecycle | No | Yes |
+| Performance overhead | Minimal and isolated | Varies by language/runtime |
+
+### 5. Splunk Distro Features
+
+| Feature | OBI | Traditional Zero-Code Instrumentations |
+|---|---|---|
+| Always-on Profiling | No (may be bundled with eBPF profiler in future) | CPU for most, Memory for some |
+| Call graphs | No | CPU for most, Memory for some |
+| File-based configuration | Incoming | Java, Node.js, .NET, Python (incoming) |
+| No-code instrumentation | N/A | Yes |

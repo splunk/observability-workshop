@@ -143,18 +143,6 @@ processors:
         value: "agent"
         key: otelcol.service.mode
 
-  resource/workshop:
-    attributes:
-      - key: host.name
-        value: "${INSTANCE}"
-        action: upsert
-      - key: deployment.environment
-        value: "${INSTANCE}-appd-dual"
-        action: upsert 
-      - key: deployment.environment.name
-        value: "${INSTANCE}-appd-dual"
-        action: upsert
-
   transform/drop_dims_high_cardinality:
       error_mode: ignore
       metric_statements:
@@ -249,20 +237,19 @@ service:
       - memory_limiter
       - batch
       - resourcedetection
-      - resource/workshop
       #- resource/add_environment
       exporters: [otlp_http, signalfx]
       # Use instead when sending to gateway
       #exporters: [otlp_grpc/gateway, signalfx]
     metrics:
       receivers: [hostmetrics, otlp]
-      processors: [memory_limiter, batch, resourcedetection, resource/workshop, transform/drop_dims_high_cardinality]
+      processors: [memory_limiter, batch, resourcedetection, transform/drop_dims_high_cardinality]
       exporters: [signalfx]
       # Use instead when sending to gateway
       #exporters: [otlp_grpc/gateway]
     metrics/internal:
       receivers: [prometheus/internal]
-      processors: [memory_limiter, batch, resourcedetection, resource/add_mode, resource/workshop, transform/drop_dims_high_cardinality]
+      processors: [memory_limiter, batch, resourcedetection, resource/add_mode, transform/drop_dims_high_cardinality]
       # When sending to gateway, at least one metrics pipeline needs
       # to use signalfx exporter so host metadata gets emitted
       exporters: [signalfx]

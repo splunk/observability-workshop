@@ -14,6 +14,9 @@ Replace `<YOUR-ACCESS-KEY>` with the AppDynamics token from the previous step:
 Export your environment variables
 ```bash
 export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
+```
+and
+```bash
 export APPD_APP_NAME=Dual-Ingest-${INSTANCE}
 ```
 
