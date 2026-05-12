@@ -2,7 +2,7 @@
 title: Splunk Integration
 linkTitle: 3. Splunk Integration
 weight: 3
-time: 15 minutes
+time: 10 minutes
 description: Configure the OpenTelemetry-based metrics stream from ThousandEyes into Splunk Observability Cloud.
 ---
 
@@ -13,6 +13,13 @@ Splunk Observability Cloud is a real-time observability platform purpose-built f
 {{% notice title="Scope Of This Section" style="info" %}}
 This section covers the **metrics streaming** path from ThousandEyes into Splunk Observability Cloud. The next section adds the separate **distributed tracing** workflow that creates bi-directional links between ThousandEyes and Splunk APM.
 {{% /notice %}}
+
+{{% notice title="Only need 1 integration" style="warning" %}}
+Rather than having each workshop attendee set this up, watch your instructor perform the following steps.
+
+You will continue performing steps on the next page.
+{{% /notice %}}
+
 
 ## Step 1: Get or Create a Splunk Observability Cloud Access Token
 
@@ -27,13 +34,6 @@ For this workshop we will use the token provided. You can get it from the instan
 ## Step 2: Create an Integration
 
 This integration is the one-way telemetry stream that gets ThousandEyes metrics into Splunk Observability Cloud dashboards and detectors.
-
-{{% notice title="Only need 1 integration" style="warning" %}}
-Rather than having each workshop attendee set this up, watch your instructor perform the following steps.
-
-You will continue performing steps on the next page.
-{{% /notice %}}
-
 
 ### Using the ThousandEyes UI
 
@@ -62,57 +62,7 @@ To integrate Splunk Observability Cloud with ThousandEyes:
 
 You have now successfully integrated your ThousandEyes data with Splunk Observability Cloud.
 
-### Using the ThousandEyes API
 
-For a programmatic integration, use the following API commands:
-
-#### HTTP Protocol
-
-```bash
-curl -v -XPOST https://api.thousandeyes.com/v7/stream \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $BEARER_TOKEN" \
-  -d '{
-    "type": "opentelemetry",
-    "testMatch": [{
-      "id": "281474976717575",
-      "domain": "cea"
-    }],
-    "endpointType": "http",
-    "streamEndpointUrl": "https://ingest.{REALM}.signalfx.com:443/v2/datapoint/otlp",
-    "customHeaders": {
-      "X-SF-Token": "{TOKEN}",
-      "Content-Type": "application/x-protobuf"
-    }
-  }'
-```
-
-#### gRPC Protocol
-
-```bash
-curl -v -XPOST https://api.thousandeyes.com/v7/stream \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $BEARER_TOKEN" \
-  -d '{
-    "type": "opentelemetry",
-    "testMatch": [{
-      "id": "281474976717575",
-      "domain": "cea"
-    }],
-    "endpointType": "grpc",
-    "streamEndpointUrl": "https://ingest.{REALM}.signalfx.com:443",
-    "customHeaders": {
-      "X-SF-Token": "{TOKEN}",
-      "Content-Type": "application/x-protobuf"
-    }
-  }'
-```
-
-Replace `streamEndpointUrl` and `X-SF-Token` values with the correct values for your Splunk Observability Cloud instance.
-
-{{% notice title="Note" style="info" %}}
-Make sure to replace `{REALM}` with your Splunk environment realm (e.g., `us1`, `us2`, `eu0`) and `{TOKEN}` with your actual Splunk access token.
-{{% /notice %}}
 
 {{% notice title="What Comes Next" style="primary" icon="lightbulb" %}}
 After you finish the metrics integration, continue to **Distributed Tracing** to add the reverse investigation path from ThousandEyes into Splunk APM and back again.
@@ -128,7 +78,7 @@ Once the integration is set up, you can view real-time monitoring data in the Th
 - **Web Page Load Completion (%)**: Indicates the percentage of successful page loads
 - **Page Load Duration (seconds)**: Displays the time taken to load pages
 
-### Dashboard Template
+## Step 4: Dashboard Template
 
 You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json).
 
