@@ -12,8 +12,12 @@ Replace `<YOUR-ACCESS-KEY>` with the AppDynamics token from the previous step:
 {{< tabs >}}
 {{% tab title="Command" %}}
 Export your environment variables
+Use your AppD key you obtained previously
 ```bash
 export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
+```
+Then export the appd app name with your unique instance identifier
+```bash
 export APPD_APP_NAME=Dual-Ingest-${INSTANCE}
 ```
 
