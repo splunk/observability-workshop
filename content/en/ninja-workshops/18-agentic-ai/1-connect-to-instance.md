@@ -28,6 +28,12 @@ connect to your EC2 instance using one of the methods below:
 * Earlier versions of Windows
     * Use Putty 
 
+{{% notice title="Note: Answer 'yes' when asked if you want to continue connecting" style="primary" icon="running" %}}
+
+![SSH Connection](../images/ssh-connection.png)
+
+{{% / notice %}}
+
 {{% notice title="VPN Connection" style="green" icon="running" %}}
 
 If you're working from an office and having trouble connecting, try connecting 
