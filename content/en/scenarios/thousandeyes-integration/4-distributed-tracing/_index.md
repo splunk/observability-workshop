@@ -16,70 +16,75 @@ This is the piece that gives you **bi-directional access** between the two envir
 
 By the end of this section, you will be able to:
 
-- Deploy and use the included Spring PetClinic Kubernetes application as a trace target
 - Instrument an internal service so it sends traces to Splunk APM
 - Enable distributed tracing on a ThousandEyes **HTTP Server** or **API** test
 - Configure the ThousandEyes **Generic Connector** for Splunk APM
 - Open the ThousandEyes **Service Map** and jump directly into the corresponding Splunk trace
 - Use the ThousandEyes metadata in Splunk APM to jump back to the original ThousandEyes test
 
-## Step 1: Enable Instrumentation and make ThousandEyes changes
+### Summary of the changes we need to make
 
-We are going to patch every PetClinic Java deployment to two things:
-* The Java injection (which instruments the service)
-* The OTEL Propagators (to ensure all 3 are set)
-* The sampler to `be parentbased_always_on`
+The [ThousandEyes documentation](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing), and specifically [the page for Splunk Observability APM](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm), shows what is needed for distributed tracing:
 
-```bash
-kubectl edit instrumentation splunk-otel-collector 
-```
-
-#### THIS SECTION NEEDS TO BE FIXED
-
-```yaml
-apiVersion: opentelemetry.io/v1alpha1
-kind: Instrumentation
-metadata:
-  name: splunk-otel-collector
-spec:
-  propagators:
-    - baggage
-    - b3
-    - tracecontext
-  sampler:
-    type: parentbased_always_on
-```
-
-Then deploy it with:
-```bash
-kubectl apply -f instrumentation.yaml
-```
-
-This is the critical part for the ThousandEyes scenario:
-
+For Propagators:
+- `baggage` for 
 - `b3` allows extraction of ThousandEyes B3 headers.
-- `tracecontext` preserves traceparent and tracestate.
-- `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request.
+- `tracecontext` preserves `traceparent` and `tracestate`
+
+In addition setting the sampler to `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request. However this is not needed with Splunk, since Splunk samples 100% of traces.
+
+We will make the following changes:
+* Step 1: Modify the OTel Collector
+  * Ensure all 3 propagators are set
+* Step 2: Patch the Application
+  * Patch the services to inject java instrumentation
+
+### Step 1: Enable Instrumentation and make ThousandEyes changes
+
+Let's check the configuration of the instrumentation:
+
+```bash
+kubectl describe instrumentation splunk-otel-collector 
+```
+
+You will see that the propagators are already set. So we don't need to make that change.
+
+### Step 2: Patch the application
+
+First, let's check which container images are deployed:
+
+```bash
+kubectl describe pods api-gateway | grep Image:
+```
+
+We can see there is only one container for the gateway.
 
 Then let's inject the java instrumentation:
 ```bash
 kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
 ```
 
-For other runtimes, use the annotation that matches the language:
+{{% notice title="For other runtimes" style="info" %}}
+For other runtimes, use the annotation that matches the language; for example:
 - `instrumentation.opentelemetry.io/inject-nodejs`
 - `instrumentation.opentelemetry.io/inject-python`
 - `instrumentation.opentelemetry.io/inject-dotnet`
+{{% /notice %}}
+
+There will be no change for the `config-server`, `discovery-server` and `admin-server` as these have already been patched.
 
 We can check that our instrumentation deployed with:
 ```bash
-kubectl exec -n default deploy/api-gateway -- printenv | \
-  grep -E 'Image:|OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
+kubectl describe pods api-gateway | grep Image:
 ```
 
-You can see that this pod now has the Java instrumentation enabled, and the propagators are including `baggage`, `b3` and `tracecontext`.
+You can also see that this pod has the Java instrumentation enabled, and the propagators are including `baggage`, `b3` and `tracecontext`:
 
-Validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs:
+```bash
+kubectl describe pods api-gateway
+```
+
+Now we can validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs by running:
 
 ```bash
 kubectl run te-petclinic-curl \
@@ -88,6 +93,9 @@ kubectl run te-petclinic-curl \
   --image=curlimages/curl \
   --command -- curl -sS http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 ```
+
+You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`):
+
 
 We are going to use this URL for the trace-enabled ThousandEyes **HTTP Server** or **API** tests from the TE agent:
 
@@ -117,7 +125,7 @@ http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 Use a business transaction, not a pure `/health` endpoint, for the tracing exercise. A multi-service request gives you a far better Service Map in ThousandEyes and a more useful trace in Splunk APM.
 {{% /notice %}}
 
-## Step 2: Create the Splunk APM Connector in ThousandEyes
+### Step 2: Create the Splunk APM Connector in ThousandEyes
 
 {{% notice title="Only need 1 integration" style="warning" %}}
 Rather than having each workshop attendee set this up, watch your instructor perform the following steps.
@@ -144,7 +152,7 @@ The metric streaming integration from the previous section uses an **Ingest** to
 
 ![Splunk APM Operation in ThousandEyes](../images/splunk-apm-operation.png)
 
-## Step 3: Configure Distributed Tracing on the ThousandEyes Test
+### Step 3: Configure Distributed Tracing on the ThousandEyes Test
 
 Create or edit an **API** test that targets the instrumented backend endpoint from Step 1.
 
@@ -164,7 +172,7 @@ After the test runs, ThousandEyes injects the trace headers and captures the tra
 
 It may take some time for the trace to show up. You can go to the service map (in ThousandEyes) and copy the trace id to find in Observability Cloud. You will see the trace is likely still in progress.
 
-## Step 4: Validate the Bi-Directional Investigation Loop
+### Step 4: Validate the Bi-Directional Investigation Loop
 
 Once the test is running and the connector is enabled, validate the workflow in both directions.
 
@@ -177,7 +185,7 @@ Once the test is running and the connector is enabled, validate the workflow in 
 
 ![ThousandEyes Service Map with Splunk APM correlation](../images/thousandeyes-service-map.png)
 
-### Continue in Splunk APM
+#### Continue in Splunk APM
 
 Inside Splunk APM, verify that the trace contains ThousandEyes metadata such as:
 

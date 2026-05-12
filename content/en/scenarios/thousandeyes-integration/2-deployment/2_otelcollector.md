@@ -8,11 +8,11 @@ description: Deploy the OTel Collector.
 
 Next we will deploy the open telemetry collector
 
-## Step 1: Deploy the Open Telemetry Collector
+## Installation Steps
+
+### Step 1: Deploy the Open Telemetry Collector
 
 If your application is already instrumented and traces are visible in Splunk APM, you can skip to Step 2. Otherwise, the fastest learning path in Kubernetes is to use the Splunk OpenTelemetry Collector with the Operator enabled for zero-code instrumentation.
-
-### Install the Splunk OpenTelemetry Collector with the Operator
 
 ```bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart

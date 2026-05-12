@@ -29,7 +29,7 @@ This section guides you through deploying the ThousandEyes Enterprise Agent in y
 
 5. Save the base64-encoded output for the next step
 
-![Get ThousandEyes Token](../images/te1.gif)
+![Get ThousandEyes Token](../../images/te1.gif)
 
 ### Step 2: Create the Secret
 
@@ -122,11 +122,19 @@ Verify the agent is running:
 kubectl get pods
 ```
 
-Expected output:
+Expected output, it may take a few tries to come up:
 ```
 NAME                            READY   STATUS    RESTARTS   AGE
 thousandeyes-xxxxxxxxxx-xxxxx   1/1     Running   0          2m
 ```
+
+{{% notice title="Tip" style="info" %}}
+You can use:
+```bash
+watch -n 1 kubectl get pods
+```
+to monitor until the pod is running. Use this tip any time we're waiting for something to start.
+{{% /notice %}}
 
 Check the logs to ensure the agent is connecting:
 
@@ -139,6 +147,7 @@ kubectl logs -l app=thousandeyes
 Verify in the ThousandEyes dashboard that the agent has registered successfully:
 
 Navigate to **Network & App Synthetics > Agent Settings** to see your newly registered agent.
+![ThousandEyes Agent List](../../images/te-agents.png)
 
 {{% notice title="Success" style="success" icon="check" %}}
 Your ThousandEyes Enterprise Agent is now running in Kubernetes! Next, we'll integrate it with Splunk Observability Cloud.

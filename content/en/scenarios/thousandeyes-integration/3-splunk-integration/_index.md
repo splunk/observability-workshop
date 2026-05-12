@@ -21,7 +21,7 @@ You will continue performing steps on the next page.
 {{% /notice %}}
 
 
-## Step 1: Get or Create a Splunk Observability Cloud Access Token
+### Step 1: Get or Create a Splunk Observability Cloud Access Token
 
 To send ThousandEyes metrics to Splunk Observability Cloud, you need an access token with the **Ingest** scope.
 
@@ -31,11 +31,11 @@ For this workshop we will use the token provided. You can get it from the instan
 . ~/workshop/petclinic/scripts/check_env.sh | grep ACCESS_TOKEN
 ```
 
-## Step 2: Create an Integration
+### Step 2: Create an Integration
 
 This integration is the one-way telemetry stream that gets ThousandEyes metrics into Splunk Observability Cloud dashboards and detectors.
 
-### Using the ThousandEyes UI
+#### Using the ThousandEyes UI
 
 To integrate Splunk Observability Cloud with ThousandEyes:
 
@@ -58,7 +58,7 @@ To integrate Splunk Observability Cloud with ThousandEyes:
 11. Select a test 
 12. Click **Save** to complete the integration setup
 
-   ![Integration Complete](../images/te2.gif)
+![Integration Complete](../images/te2.gif)
 
 You have now successfully integrated your ThousandEyes data with Splunk Observability Cloud.
 
@@ -68,7 +68,7 @@ You have now successfully integrated your ThousandEyes data with Splunk Observab
 After you finish the metrics integration, continue to **Distributed Tracing** to add the reverse investigation path from ThousandEyes into Splunk APM and back again.
 {{% /notice %}}
 
-## Step 3: ThousandEyes Dashboard in Splunk Observability Cloud
+### Step 3: ThousandEyes Dashboard in Splunk Observability Cloud
 
 Once the integration is set up, you can view real-time monitoring data in the ThousandEyes Network Monitoring Dashboard within Splunk Observability Cloud. The dashboard includes:
 
@@ -78,9 +78,13 @@ Once the integration is set up, you can view real-time monitoring data in the Th
 - **Web Page Load Completion (%)**: Indicates the percentage of successful page loads
 - **Page Load Duration (seconds)**: Displays the time taken to load pages
 
-## Step 4: Dashboard Template
+#### Deploy the Dashboard Template
 
-You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json).
+You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json). Then you can import it into Splunk Observability Cloud. (This has already been done.)
+
+If you  have any tests running you will see data already:
+
+![Splunk Observability Cloud Dashboard for ThousandEyes](../images/splunk-o11y-dashboard-te.png)
 
 {{% notice title="Success" style="success" icon="check" %}}
 Your ThousandEyes data is now streaming to Splunk Observability Cloud. Next, add the distributed tracing connector so you can pivot between ThousandEyes and Splunk APM during troubleshooting.

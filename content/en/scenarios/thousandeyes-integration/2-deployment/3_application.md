@@ -8,7 +8,9 @@ description: Deploy the application
 
 In this step we will deploy the sample application (Pet Clinic).
 
-## Step 1: Deploy the Application
+## Installation Steps
+
+### Step 1: Deploy the Application
 
 To deploy the app:
 
