@@ -1,7 +1,7 @@
 ---
 title: API Examples
-linkTitle: 9. API Examples
-weight: 9
+linkTitle: 8. API Examples
+weight: 8
 time: 5 minutes
 description: API Examples you can use
 ---

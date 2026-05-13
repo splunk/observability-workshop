@@ -34,6 +34,9 @@ The metric streaming integration from the previous section uses an **Ingest** to
 5. Create a **New Operation** and select **Splunk Observability APM**.
 6. Name it `Splunk APM`.
 7. **Save & Assign Connector** to enable the operation and save the integration.
-8. Select the connector and click **Save**.
 
 ![Splunk APM Operation in ThousandEyes](../../images/splunk-apm-operation.png)
+
+8. Select the connector and click **Save**.
+
+![Splunk APM Manage Operations in ThousandEyes](../../images/splunk-apm-manage-operations.png)

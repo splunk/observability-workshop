@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
-linkTitle: 8. Troubleshooting
-weight: 8
+linkTitle: 7. Troubleshooting
+weight: 7
 time: 15 minutes
 description: Diagnose common deployment, connectivity, metrics-streaming, and trace-correlation issues in the ThousandEyes scenario.
 ---

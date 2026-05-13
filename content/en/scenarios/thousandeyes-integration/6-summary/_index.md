@@ -1,7 +1,7 @@
 ---
 title: Summary
-linkTitle: 7. Summary
-weight: 7
+linkTitle: 6. Summary
+weight: 6
 time: 5 minutes
 description: Workshop Summary
 ---
