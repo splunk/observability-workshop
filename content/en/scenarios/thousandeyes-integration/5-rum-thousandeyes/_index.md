@@ -30,13 +30,13 @@ Integrate ThousandEyes with Splunk RUM to understand if network issues correlate
 
 Go to the RUM application where your ThousandEyes tests are running, and view the Map.
 Hover over the locations where you also have ThousandEyes test running to see the preview of ThousandEyes metrics:
-![Geo map view in Splunk RUM, with Network Latency from ThousandEyes visible](../images/rum-thousandeyes-map-preview.png)
+![Geo map view in Splunk RUM, with Network Latency from ThousandEyes visible](../images/rum-thousandeyes-map-preview.png?width=45vw)
 
 If you have active alerts in ThousandEyes, you will see the ThousandEyes icon over the relevant location bubble in RUM:
-![Geo map view in Splunk RUM](../images/rum-thousandeyes-map.png)
+![Geo map view in Splunk RUM](../images/rum-thousandeyes-map.png?width=45vw)
 
 Click into a relevant region to see the Network metrics alongside other metrics from RUM, and open `View ThousandEyes Tests` to go to the relevant tests in ThousandEyes:
-![RUM metrics with ThousandEyes metrics and Tests dialog open](../images/rum-thousandeyes-tests-dialog.png)
+![RUM metrics with ThousandEyes metrics and Tests dialog open](../images/rum-thousandeyes-tests-dialog.png?width=45vw)
 
 ## See RUM and ThousandEyes metrics in a custom dashboard
 Now you can correlate other Observability Cloud KPIs with signals from your relevant ThousandEyes tests!

@@ -47,8 +47,6 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-
-
 You can check that your app is deployed, along with all the other pods:
 
 {{< tabs >}}
@@ -79,4 +77,30 @@ visits-service-5966f7b74f-hrch9                             1/1     Running   0 
 {{% /tab %}}
 {{< /tabs >}}
 
+### Step 2: Very the application is publicly accessible
 
+To test the application, you need to obtain the public IP address of your instance. You can do this by running the following command:
+{{< tabs >}}
+{{% tab title="Script" %}}
+``` bash
+curl http://ifconfig.me
+```
+{{% /tab %}}
+{{% tab title="IP ADDRESS" %}}
+```text
+32.157.204.101
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+Validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
+
+![Pet shop](../../images/petclinic.png?width=45vw)
+
+Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians** **(2)** tabs, confirming that you see a list of names on each page.
+
+![Owners](../../images/petclinic-owners.png?width=45vw)
+
+{{% notice title="Success" style="success" icon="check" %}}
+If you can see your application publicly you are good to move to the next step.
+{{% /notice %}}

@@ -148,17 +148,13 @@ kubectl run te-petclinic-curl \
   --image=curlimages/curl \
   --command -- curl -sS http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 ```
-
-
 {{% /tab %}}
 {{% tab title="Example Output" %}}
-
 ```text
 [{"id":1,"firstName":"George","lastName":"Franklin","address":"110 W. Liberty St.","city":"Madison","telephone":"6085551023","pets":[{"id":1,"name":"Leo","birthDate":"2000-09-07","type":{"id":1,"name":"cat"}}]},{"id":2,"firstName":"Betty","lastName":"Davis","address":"638 Cardinal Ave.","city":"Sun Prairie","telephone":"6085551749","pets":[{"id":2,"name":"Basil","birthDate":"2002-08-06","type":{"id":6,"name":"hamster"}}]},{"id":3,"firstName":"Eduardo","lastName":"Rodriquez","address":"2693 Commerce St.","city":"McFarland","telephone":"6085558763","pets":[{"id":4,"name":"Jewel","birthDate":"2000-03-07","type":{"id":2,"name":"dog"}},{"id":3,"name":"Rosy","birthDate":"2001-04-17","type":{"id":2,"name":"dog"}}]},{"id":4,"firstName":"Harold","lastName":"Davis","address":"563 Friendly St.","city":"Windsor","telephone":"6085553198","pets":[{"id":5,"name":"Iggy","birthDate":"2000-11-30","type":{"id":3,"name":"lizard"}}]},{"id":5,"firstName":"Peter","lastName":"McTavish","address":"2387 S. Fair Way","city":"Madison","telephone":"6085552765","pets":[{"id":6,"name":"George","birthDate":"2000-01-20","type":{"id":4,"name":"snake"}}]},{"id":6,"firstName":"Jean","lastName":"Coleman","address":"105 N. Lake St.","city":"Monona","telephone":"6085552654","pets":[{"id":8,"name":"Max","birthDate":"1995-09-04","type":{"id":1,"name":"cat"}},{"id":7,"name":"Samantha","birthDate":"1995-09-04","type":{"id":1,"name":"cat"}}]},{"id":7,"firstName":"Jeff","lastName":"Black","address":"1450 Oak Blvd.","city":"Monona","telephone":"6085555387","pets":[{"id":9,"name":"Lucky","birthDate":"1999-08-06","type":{"id":5,"name":"bird"}}]},{"id":8,"firstName":"Maria","lastName":"Escobito","address":"345 Maple St.","city":"Madison","telephone":"6085557683","pets":[{"id":10,"name":"Mulligan","birthDate":"1997-02-24","type":{"id":2,"name":"dog"}}]},{"id":9,"firstName":"David","lastName":"Schroeder","address":"2749 Blackhawk Trail","city":"Madison","telephone":"6085559435","pets":[{"id":11,"name":"Freddy","birthDate":"2000-03-09","type":{"id":5,"name":"bird"}}]},{"id":10,"firstName":"Carlos","lastName":"Estaban","address":"2335 Independence La.","city":"Waunakee","telephone":"6085555487","pets":[{"id":12,"name":"Lucky","birthDate":"2000-06-24","type":{"id":2,"name":"dog"}},{"id":13,"name":"Sly","birthDate":"2002-06-08","type":{"id":1,"name":"cat"}}]}]pod "te-petclinic-curl" deleted from default namespace
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
 
 You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`):
-![ThousandEyes Service Map](../../images/splunk-apm-service-map.png)
+![ThousandEyes Service Map](../../images/splunk-apm-service-map.png?width=45vw)

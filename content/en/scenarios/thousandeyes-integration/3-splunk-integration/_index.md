@@ -31,6 +31,8 @@ For this workshop we will use the token provided. You can get it from the instan
 . ~/workshop/petclinic/scripts/check_env.sh | grep ACCESS_TOKEN
 ```
 
+Or you can get it from the Splunk Observability Cloud UI, as shown in the clip below.
+
 ### Step 2: Create an Integration
 
 This integration is the one-way telemetry stream that gets ThousandEyes metrics into Splunk Observability Cloud dashboards and detectors.
@@ -40,10 +42,7 @@ This integration is the one-way telemetry stream that gets ThousandEyes metrics 
 To integrate Splunk Observability Cloud with ThousandEyes:
 
 1. Log in to your account on the ThousandEyes platform and go to **Manage > Integration > Integration 1.0**
-2. Click **New Integration** and select **OpenTelemetry Integration**
-
-   ![ThousandEyes Integration Setup](../images/te1.gif)
-
+2. Click **New Integration** and select **ThousandEyes for OpenTelemetry**
 3. Enter a **Name** for the integration
 4. Set the **Target** to **HTTP**
 5. Enter the **Endpoint URL**: `https://ingest.{REALM}.signalfx.com/v2/datapoint/otlp`
@@ -55,14 +54,19 @@ To integrate Splunk Observability Cloud with ThousandEyes:
    - `Content-Type: application/x-protobuf`
 9. For **OpenTelemetry Signal**, select **Metric**
 10. For **Data Model Version**, select **v2**
-11. Select a test 
+11. Select the tests you want to send.
+{{% notice title="Add test later" style="primary" icon="lightbulb" %}}
+If you add a new test, you will need to add it back to this integration later
+{{% /notice %}}
 12. Click **Save** to complete the integration setup
 
-![Integration Complete](../images/te2.gif)
+![Integration Complete](../images/te2.gif?width=45vw)
 
 You have now successfully integrated your ThousandEyes data with Splunk Observability Cloud.
 
-
+{{% notice title="Pending State" style="note" %}}
+The integration may state in a **Pending** state for a bit. You may need to refresh before it turns to **Connected**.
+{{% /notice %}}
 
 {{% notice title="What Comes Next" style="primary" icon="lightbulb" %}}
 After you finish the metrics integration, continue to **Distributed Tracing** to add the reverse investigation path from ThousandEyes into Splunk APM and back again.
@@ -82,9 +86,9 @@ Once the integration is set up, you can view real-time monitoring data in the Th
 
 You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json). Then you can import it into Splunk Observability Cloud. (This has already been done.)
 
-If you  have any tests running you will see data already:
+If you  have any tests running you will see data already.
 
-![Splunk Observability Cloud Dashboard for ThousandEyes](../images/splunk-o11y-dashboard-te.png)
+![Splunk Observability Cloud Dashboard for ThousandEyes](../images/splunk-o11y-dashboard-te.png?width=45vw)
 
 {{% notice title="Success" style="success" icon="check" %}}
 Your ThousandEyes data is now streaming to Splunk Observability Cloud. Next, add the distributed tracing connector so you can pivot between ThousandEyes and Splunk APM during troubleshooting.

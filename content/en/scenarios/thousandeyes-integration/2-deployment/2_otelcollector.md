@@ -82,3 +82,8 @@ Check if your Cluster is in **Splunk Observability Cloud**:
 * Go to **Infrastructure > Kubernetes Entities**
 * You should see your cluster in the list
   * It may take several minutes for it to show up
+
+
+{{% notice title="Success" style="success" icon="check" %}}
+If you found your cluster you are sending data in correctly.
+{{% /notice %}}

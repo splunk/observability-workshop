@@ -40,6 +40,7 @@ We will create two tests:
 - **How often test runs**: 30 minutes
 - **Agents**: Select the `Enterprise Agents` tab and select the agent you deployed earlier in this guide
 - **Enable distributed tracing**: Enable
+![Distributed Testing check](../../images/test-distributed-tracing.png?width=45vw)
 4. Click **Next**
 5. Configure this page
 - **Step Name**: Get Owners
@@ -50,7 +51,7 @@ We will create two tests:
 
 It may a little time but eventually the trace should show up. You can switch tabs a few times until the map shows up:
 
-![ThousandEyes APM Service Map](../../images/apm-thousandeyes-map.png)
+![ThousandEyes APM Service Map](../../images/apm-thousandeyes-map.png?width=45vw)
 
 You can also click the link to the trace to see this in Splunk APM:
 

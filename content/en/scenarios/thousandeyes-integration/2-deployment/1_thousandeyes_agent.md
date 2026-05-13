@@ -39,7 +39,7 @@ dXabsfuenBabjeTZ3anVvxgyYds0cas=
 
 5. Save the base64-encoded output for the next step
 
-![Get ThousandEyes Token](../../images/te1.gif)
+![Get ThousandEyes Token](../../images/te1.gif?width=45vw)
 
 ### Step 2: Create the Secret
 
@@ -201,11 +201,16 @@ Starting browserbot in daemon mode
 Verify in the ThousandEyes dashboard that the agent has registered successfully:
 
 Navigate to **Network & App Synthetics > Agent Settings** to see your newly registered agent.
-![ThousandEyes Agent List](../../images/te-agents.png)
+![ThousandEyes Agent List](../../images/te-agents.png?width=45vw)
 
 {{% notice title="Success" style="success" icon="check" %}}
 Your ThousandEyes Enterprise Agent is now running in Kubernetes! Next, we'll integrate it with Splunk Observability Cloud.
 {{% /notice %}}
+
+{{% notice title="Troubleshooting Guidance" style="primary" icon="warn" %}}
+If for some reason you didn't see the agent, check to make sure you encoded the token (first step).
+{{% /notice %}}
+
 
 ## Background
 
