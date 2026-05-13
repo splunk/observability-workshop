@@ -15,11 +15,16 @@ For Propagators:
 - `b3` allows extraction of ThousandEyes B3 headers.
 - `tracecontext` preserves `traceparent` and `tracestate`
 
-In addition setting the sampler to `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request. However this is not needed with Splunk, since Splunk samples 100% of traces.
+In addition setting the sampler to `parentbased_always_on` ensures the trace continues once ThousandEyes starts the request.
+
+{{% notice title="Important Lesson" style="warning" %}}
+In our testing (at least at the time of this writing) we've confirmed that the order of the propagators makes a difference, and the default doesn't work. So we will need to patch the correct order now.
+{{% /notice %}}
+
 
 We will make the following changes:
 * Step 1: Modify the OTel Collector
-  * Ensure all 3 propagators are set
+  * Patch the instrumentation with the correct order for propagators (`baggage`, `b3`, `tracecontext`)
 * Step 2: Patch the application
   * Patch the services to inject java instrumentation
 
@@ -50,29 +55,16 @@ Spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-Under `Propagators` you can see that the ones we need are already set, so we don't need to make that change.
-
-{{% notice title="Important Lesson" style="warning" %}}
-However, in our testing (at least at the time of this writing) we've confirmed that the order makes a difference, and the default doesn't work. So we will need to patch the correct order now.
-{{% /notice %}}
+Under `Propagators` you can see that the ones we need are set, but we will still patch it so it's in the correct order.
 
 ### Step 2: Patch the instrumentation (to resolve the defaults)
 
-We're going to patch this for now, but any future upgrades will lose this change. So the right way to do this would be to update a values.yaml file so that this is always applied.
+We're going to patch this for now, but any future upgrades will lose this change. So the right way to do this would be to update a `values.yaml` file so that this is always applied.
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 ```bash
-kubectl patch instrumentation splunk-otel-collector -n default \
-  --type=merge \
-  -p '{
-    "spec": {
-      "propagators": ["baggage", "b3", "tracecontext"],
-    }
-  }'
-
-
-kubectl patch instrumentation splunk-otel-collector -n default \
+kubectl patch instrumentation splunk-otel-collector \
   --type=merge \
   -p '{
     "spec": {
@@ -86,7 +78,34 @@ kubectl patch instrumentation splunk-otel-collector -n default \
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 ```text
+instrumentation.opentelemetry.io/splunk-otel-collector patched
+```
+{{% /tab %}}
+{{< /tabs >}}
 
+You can then verify the Propagators (in the right order) and added sampler are there:
+{{< tabs >}}
+{{% tab title="Script" %}}
+```bash
+kubectl describe instrumentation splunk-otel-collector
+```
+{{% /tab %}}
+{{% tab title="Example Abbreviated Output" %}}
+```text
+Name:         splunk-otel-collector
+Namespace:    default
+Labels:       app=splunk-otel-collector
+...
+Spec:
+...
+  Propagators:
+    baggage
+    b3
+    tracecontext
+  ...
+  Sampler:
+    Type:  parentbased_always_on
+...
 ```
 {{% /tab %}}
 {{< /tabs >}}
@@ -225,5 +244,19 @@ kubectl run te-petclinic-curl \
 This may take some time until you get the expected output.
 {{% /notice %}}
 
-You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`):
+Your deployment environment is:
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+```bash
+echo "thousandeyes-$INSTANCE"
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+thousandeyes-shw-xxxx
+{{% /tab %}}
+{{< /tabs >}}
+
+You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`)
+
 ![ThousandEyes Service Map](../../images/splunk-apm-service-map.png?width=45vw)
