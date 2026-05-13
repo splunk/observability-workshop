@@ -171,7 +171,7 @@ watch -n 1 kubectl get pods
 to monitor until the pod is running. Use this tip any time we're waiting for something to start.
 {{% /notice %}}
 
-Check the logs to ensure the agent is connecting:
+Check the logs to ensure the agent is connecting. It may take a little bit to get similar output to what is below.
 
 {{< tabs >}}
 {{% tab title="Script" %}}

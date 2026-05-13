@@ -52,7 +52,47 @@ Spec:
 
 Under `Propagators` you can see that the ones we need are already set, so we don't need to make that change.
 
-### Step 2: Patch the application
+{{% notice title="Important Lesson" style="warning" %}}
+However, in our testing (at least at the time of this writing) we've confirmed that the order makes a difference, and the default doesn't work. So we will need to patch the correct order now.
+{{% /notice %}}
+
+### Step 2: Patch the instrumentation (to resolve the defaults)
+
+We're going to patch this for now, but any future upgrades will lose this change. So the right way to do this would be to update a values.yaml file so that this is always applied.
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+```bash
+kubectl patch instrumentation splunk-otel-collector -n default \
+  --type=merge \
+  -p '{
+    "spec": {
+      "propagators": ["baggage", "b3", "tracecontext"],
+    }
+  }'
+
+
+kubectl patch instrumentation splunk-otel-collector -n default \
+  --type=merge \
+  -p '{
+    "spec": {
+      "propagators": ["baggage", "b3", "tracecontext"],
+      "sampler": {
+        "type": "parentbased_always_on"
+      }
+    }
+  }'
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```text
+
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+
+### Step 3: Patch the application
 
 First, let's check which container images are deployed:
 
@@ -115,7 +155,7 @@ kubectl describe pods api-gateway | grep Image:
 {{% /tab %}}
 {{< /tabs >}}
 
-You can also see that this pod has the Java instrumentation enabled, and the propagators are including `baggage`, `b3` and `tracecontext`:
+You can also see that this pod has the Java instrumentation enabled, and the propagators are including `baggage`, `b3`, and `tracecontext` in the right ordeer:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -125,16 +165,41 @@ kubectl describe pods api-gateway | grep OTEL_PROPAGATORS
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 ```text
-      OTEL_PROPAGATORS:                      tracecontext,baggage,b3
+      OTEL_PROPAGATORS:                      baggage,b3,tracecontext
 ```
 {{% /tab %}}
 {{< /tabs >}}
 
-Now we can validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs.
+{{% notice title="Restart all the pods" style="warning" %}}
+Since some of the pods were already injected, it's important we restart them all to get the correct instrumentation.
 
-{{% notice title="Be patient" style="warning" %}}
-This may take some time until you get the expected output.
+To do that:
+{{< tabs >}}
+{{% tab title="Script" %}}
+```bash
+kubectl rollout restart deployment
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```text
+deployment.apps/admin-server restarted
+deployment.apps/api-gateway restarted
+deployment.apps/config-server restarted
+deployment.apps/customers-service restarted
+deployment.apps/discovery-server restarted
+deployment.apps/petclinic-db restarted
+deployment.apps/petclinic-loadgen-deployment restarted
+deployment.apps/splunk-otel-collector-k8s-cluster-receiver restarted
+deployment.apps/splunk-otel-collector-operator restarted
+deployment.apps/thousandeyes restarted
+deployment.apps/vets-service restarted
+deployment.apps/visits-service restarted
+```
+{{% /tab %}}
+{{< /tabs >}}
 {{% /notice %}}
+
+Now we can validate the in-cluster API path from the namespace where the ThousandEyes Enterprise Agent runs.
 
 Try running:
 
@@ -155,6 +220,10 @@ kubectl run te-petclinic-curl \
 ```
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Be patient" style="warning" %}}
+This may take some time until you get the expected output.
+{{% /notice %}}
 
 You should see the full environment showing in Splunk Observability Cloud (filter on your environment, `thousandeyes-shw-xxxx`):
 ![ThousandEyes Service Map](../../images/splunk-apm-service-map.png?width=45vw)
