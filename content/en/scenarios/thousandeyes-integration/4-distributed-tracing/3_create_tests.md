@@ -28,6 +28,9 @@ We will create three tests:
 - **Verify Content**: Optional, use `PetClinic` if you want to validate the returned page content.
 ![ThousandEyes Script Settings](../../images/test-distributed-tracing.png?width=20vw)
 4. Click **Instant Test**
+{{% notice title="Instant Test" style="info" %}}
+This will open a new tab and not save your test, so be aware of this.
+{{% /notice %}}
 6. Switch to the **Service Map** tab
 
 It may take a little time for the service map view to show up in ThousandEyes, but you should be able to find the trace in Splunk Observability Cloud
