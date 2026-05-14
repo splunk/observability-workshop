@@ -1,10 +1,13 @@
 ---
 title: Kubernetes Service Testing and Correlation
-linkTitle: 5. Kubernetes Testing
-weight: 5
+linkTitle: 4.5. Kubernetes Testing
+weight: 4.5
 time: 20 minutes
 description: Create internal Kubernetes and external dependency tests that are useful for both synthetic monitoring and trace correlation.
+draft: true
 ---
+
+THIS ALSO NEEDS TO BE REVIEWED
 
 ## Replicating AppDynamics Test Recommendations
 
@@ -106,15 +109,11 @@ Create at least two PetClinic tests: one simple availability test for the fronte
 Set a shell variable for the target URL while you validate the endpoints:
 
 ```bash
-PETCLINIC_NAMESPACE=default
-PETCLINIC_BASE_URL="http://api-gateway.$PETCLINIC_NAMESPACE.svc.cluster.local:82"
-
 kubectl run te-petclinic-curl \
-  -n te-demo \
   --rm -it \
   --restart=Never \
   --image=curlimages/curl \
-  --command -- curl -sS "$PETCLINIC_BASE_URL/api/customer/owners"
+  --command -- curl -sS "http://api-gateway.default.svc.cluster.local:82/api/customer/owners"
 ```
 
 ### Test 1: PetClinic Frontend Availability

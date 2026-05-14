@@ -47,7 +47,7 @@ Think of this scenario as two connected integrations: the OpenTelemetry stream g
 ## Prerequisites
 
 - A Kubernetes cluster (v1.16+)
-- RBAC permissions to deploy resources in your chosen namespace
+- RBAC permissions to deploy resources in your chosen namespace (Note: In this workshop we will use the default namespace)
 - A ThousandEyes account with access to Enterprise Agent tokens
 - A Splunk Observability Cloud account with ingest token access and permission to create an API token for APM lookups
 
