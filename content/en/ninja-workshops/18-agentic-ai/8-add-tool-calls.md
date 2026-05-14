@@ -387,10 +387,15 @@ Notice how we passed a tool when creating the flight, hotel, and activity specia
 When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill 
 the request. 
 
-> Hint: run the following command to compare your changes with the model solution:
->
-> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-agents-and-tools/main.py`
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
 
+Run the following command to compare your changes with the expected solution:
+
+```bash
+diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-agents-and-tools/main.py
+```
+
+{{% / notice %}}
 
 ## Build an Updated Docker Image
 

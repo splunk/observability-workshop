@@ -94,9 +94,16 @@ def hotel_specialist_node(
     return state
 ```
 
-> Hint: run the following command to compare your changes with the model solution:
->
-> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quality-issue/main.py`
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+
+Run the following command to compare your changes with the expected solution:
+
+```bash
+diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quality-issue/main.py
+```
+
+{{% / notice %}}
+
 
 ## Build an Updated Docker Image
 
