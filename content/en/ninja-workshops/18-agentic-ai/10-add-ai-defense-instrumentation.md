@@ -71,9 +71,15 @@ cisco-aidefense-sdk>=2.0.0
 httpx>=0.24.0
 ````
 
-> Hint: run the following command to compare your changes with the expected solution:
->
-> `diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-ai-defense/requirements.txt`
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+
+Run the following command to compare your changes with the expected solution:
+
+```bash
+diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-with-ai-defense/requirements.txt
+```
+
+{{% / notice %}}
 
 ### Build an Updated Docker Image
 
@@ -120,10 +126,15 @@ instrumentation:
           image: localhost:9999/agentic-ai-app:app-with-ai-defense
 ```
 
-> Hint: run the following command to compare your changes with the expected solution:
->
-> `diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-ai-defense/k8s.yaml`
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
 
+Run the following command to compare your changes with the expected solution:
+
+```bash
+diff ~/workshop/agentic-ai/base-app/k8s.yaml ~/workshop/agentic-ai/app-with-ai-defense/k8s.yaml
+```
+
+{{% / notice %}}
 
 ### Deploy the Updated Application
 
