@@ -2653,7 +2653,7 @@ var relearn_searchindex = [
     "description": "シンセティック監視とトレース相関の両方に役立つ、内部 Kubernetes テストと外部依存関係テストを作成します。",
     "tags": [],
     "title": "Kubernetes サービステストと相関",
-    "uri": "/observability-workshop/ja/scenarios/thousandeyes-integration/4-kubernetes-testing/index.html"
+    "uri": "/observability-workshop/ja/scenarios/thousandeyes-integration/5-kubernetes-testing/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Lambdaトレーシング",
@@ -3157,7 +3157,7 @@ var relearn_searchindex = [
     "description": "ThousandEyes シナリオにおけるデプロイメント、接続性、メトリクスストリーミング、トレース相関の一般的な問題を診断します。",
     "tags": [],
     "title": "トラブルシューティング",
-    "uri": "/observability-workshop/ja/scenarios/thousandeyes-integration/5-troubleshooting/index.html"
+    "uri": "/observability-workshop/ja/scenarios/thousandeyes-integration/7-troubleshooting/index.html"
   },
   {
     "breadcrumb": "Splunk Observability Workshops \u003e Splunk4Ninjas Workshops \u003e Splunk Observability Cloud での AI 活用",
