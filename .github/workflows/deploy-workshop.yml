@@ -24,6 +24,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+          ssh-key: ${{ secrets.RELEASE_SSH_KEY }}
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
