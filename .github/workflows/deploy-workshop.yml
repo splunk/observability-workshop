@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-          fetch-depth: 1
+          fetch-depth: 0
           ssh-key: ${{ secrets.RELEASE_SSH_KEY }}
 
       - name: Setup Hugo
@@ -73,6 +73,7 @@ jobs:
           awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
           mv README.new.md README.md
 
+          git fetch --tags origin
           git add README.md
           git commit --amend -m "Releasing v${TAG}"
           git tag -a "v${TAG}" -m "Version ${TAG}"
