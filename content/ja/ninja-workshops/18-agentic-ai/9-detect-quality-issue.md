@@ -1,40 +1,40 @@
 ---
 title: 品質問題の検出
-linkTitle: 9. 品質問題の検出
+linkTitle: 9. Detect Quality Issue
 weight: 9
 time: 15 minutes
 ---
 
-> 注意: このセクションでは複数のファイルを変更する必要があります。
-> 変更箇所がわからない場合やアプリケーションが動作しなくなった場合は、
-> `~/workshop/agentic-ai/app-with-quality-issue` フォルダにある
+> 注意: このセクションのワークショップでは、複数のファイルを変更する必要があります。
+> 変更箇所が分からない場合や、アプリケーションが動作しなくなった場合は、
+> `~/workshop/agentic-ai/app-with-quality-issue` フォルダにあるこのセクションの
 > モデルソリューションを参照してください。
 
-前のセクションでは、アプリケーションを OpenTelemetry で計装し、
-エージェントの応答のセマンティック品質を評価するように設定しました。
+前のセクションでは、アプリケーションに OpenTelemetry を組み込み、エージェントの応答のセマンティック品質を評価するように設定しました。
 
-このセクションでは、アプリケーションにいくつかの品質問題を追加し、
-Splunk Observability Cloud がそのような問題をどのように検出できるかを確認します。
+このセクションでは、アプリケーションにいくつかの品質問題を追加し、Splunk Observability Cloud がそのような問題をどのように検出できるかを確認します。
 
 ## Poisoned Chat Wrapper について
 
-このセクションでは、既存の `ChatModel` をラップして出力をインターセプトし「汚染」する `PoisonedChatWrapper` というカスタムクラスを使用します。このアプローチを採用したのは、OpenTelemetry 計装でキャプチャされる前に出力をインターセプトできるようにするためです。
+このセクションでは、既存の `ChatModel` をラップして出力をインターセプトし「汚染」する `PoisonedChatWrapper` というカスタムクラスを使用します。このアプローチを採用したのは、OpenTelemetry インストルメンテーションでキャプチャされる前に出力をインターセプトできるようにするためです。
 
 この仕組みに興味がある場合は、`poison_chat_wrapper.py` ファイルを確認してください。
 
 ## Hotel Specialist の出力を汚染する
 
-次に、hotel specialist エージェントがこのラッパーを使用して LLM の出力を変更するように修正します。まず、`~/workshop/agentic-ai/base-app/main.py` ファイルを編集し、`Begin: Add Import Statements` と `End: Add Import Statements` の間に以下の import 文を追加します:
+次に、hotel specialist エージェントがこのラッパーを使用して LLM の出力を変更するように修正します。まず、`~/workshop/agentic-ai/base-app/main.py` ファイルを編集し、`Begin: Add Import Statements` と `End: Add Import Statements` の間に以下のインポート文を追加します
 
 ```python
 from poison_chat_wrapper import PoisonedChatWrapper
 ```
 
-次に、`hotel_specialist_node` 関数の定義を以下に置き換えます:
+> 注意: この新しいインポート文は、先ほど追加した他のインポート文に加えて追加するものです。
+
+次に、`hotel_specialist_node` 関数の定義を以下のように置き換えます
 
 > ヒント: `vi` エディタで大量の行を一括削除するには、`Shift` + `v` を押して `Visual
-> Line` モードに入り、下矢印キーで削除したい行をすべて選択してから、`d`
-> を押して選択した行を削除します。
+> Line` モードにし、下矢印キーで削除したい行をすべて選択してから、`d` を押して
+> 選択した行を削除します。
 
 ```python
 def hotel_specialist_node(
@@ -87,13 +87,19 @@ def hotel_specialist_node(
     return state
 ```
 
-> ヒント: 以下のコマンドを実行して、変更内容をモデルソリューションと比較できます:
->
-> `diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quality-issue/main.py`
+{{% notice title="進む前に作業内容を確認してください" style="primary" icon="running" %}}
+
+以下のコマンドを実行して、変更内容を期待されるソリューションと比較します
+
+```bash
+diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quality-issue/main.py
+```
+
+{{% / notice %}}
 
 ## 更新された Docker イメージのビルド
 
-新しいタグで更新された Docker イメージをビルドします:
+新しいタグで更新された Docker イメージをビルドします
 
 ``` bash
 cd ~/workshop/agentic-ai/base-app
@@ -101,9 +107,14 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-qu
 docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 ```
 
+> ヒント: イメージのビルドに時間がかかりすぎる場合は、代わりにビルド済みのイメージを使用することを検討してください。
+> その場合は、`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルのイメージ名を
+> `localhost:9999/agentic-ai-app:app-with-quality-issue` の代わりに
+> `ghcr.io/splunk/agentic-ai-app:app-with-quality-issue` に更新してください。
+
 ### Kubernetes マニフェストの更新
 
-`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、品質問題を含むイメージを使用するようにイメージを更新します:
+`~/workshop/agentic-ai/base-app/k8s.yaml` ファイルを開いて編集し、品質問題のあるイメージを使用するようにイメージを更新します
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-quality-issue
@@ -111,7 +122,7 @@ docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 
 ### 更新されたアプリケーションのデプロイ
 
-以下のようにマニフェストファイルを使用して、更新されたアプリケーションをデプロイできます:
+以下のようにマニフェストファイルを使用して、更新されたアプリケーションをデプロイします
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
@@ -119,7 +130,7 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Kubernetes でのアプリケーションのテスト
 
-新しいアプリケーション Pod が正常に起動し、古い Pod が存在しないことを確認します:
+新しいアプリケーション Pod が正常に起動し、古い Pod が存在しないことを確認します
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -139,7 +150,7 @@ travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
 {{% /tab %}}
 {{< /tabs >}}
 
-次に、以下のコマンドを実行してアプリケーションをテストします:
+次に、以下のコマンドを実行してアプリケーションをテストします
 
 ``` bash
 curl http://travel-planner.localhost/travel/plan \
@@ -152,12 +163,15 @@ curl http://travel-planner.localhost/travel/plan \
   }'
 ```
 
-## Splunk Observability Cloud でデータを確認する
+## Splunk Observability Cloud でのデータ確認
 
-Splunk Observability Cloud に戻り、トレースがどのように表示されるかを確認しましょう。
+Splunk Observability Cloud に戻り、トレースがどのように表示されるか確認しましょう。
 
-`hotel_specialist` エージェントの `invoke_agent` スパンを見ると、エージェントがホテルを推薦した後に `pretty terrible` と呼んでいることから、いくつかの品質問題があることがわかります:
+`hotel_specialist` エージェントの `invoke_agent` スパンを見ると、エージェントがホテルを推薦した後にそれを `pretty terrible` と呼んでいるため、いくつかの品質問題があることがわかります
 
 ![Trace With Quality Issue](../images/TraceWithQualityIssue.png)
 
-> 注意: すべてのエージェント呼び出しが評価されるわけではありません。ワークショップの組織では 20% の確率でのみ評価するように設定されています。これは組織レベルで設定可能です。`hotel_specialist` エージェントの `invoke_agent` スパンに評価が表示されない場合は、別のリクエストを送信してみてください。
+> 注意: すべてのエージェント呼び出しが評価されるわけではありません。ワークショップの組織では
+> 20% の確率でのみ評価するように設定されています。これは組織レベルで設定可能です。
+> `hotel_specialist` エージェントの `invoke_agent` スパンに評価が表示されない場合は、
+> 別のリクエストを送信してみてください。
