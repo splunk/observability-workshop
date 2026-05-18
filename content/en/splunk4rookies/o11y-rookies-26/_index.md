@@ -4,6 +4,7 @@ weight: 5
 authors: ["Pieter Hagen"]
 time: variable
 description: Modular Splunk Observability Cloud workshop — trainers pick shared setup plus any combination of standalone modules.
+draft: true
 ---
 
 ## Introduction
