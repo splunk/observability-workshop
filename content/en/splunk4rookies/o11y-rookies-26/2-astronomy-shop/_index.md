@@ -11,7 +11,7 @@ description: Explore the OpenTelemetry Demo application and generate telemetry d
 
 You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, star charts, and accessories.
 
-> [!splunk] The **Astronomy Shop** is the Splunk distribution of the OpenTelemetry Demo (v2.0.1) — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
+> [!splunk] The **Astronomy Shop** is the Splunk distribution of the OpenTelemetry Demo — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
 
 {{% /notice %}}
 
@@ -23,7 +23,7 @@ You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, st
 * Proceed to checkout and complete a purchase.
 * **Repeat 3-5 times** to generate enough telemetry data.
 
-<!-- TODO screenshot: Astronomy Shop storefront -->
+![ui](../images/astronomy-shop/1-shop.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}

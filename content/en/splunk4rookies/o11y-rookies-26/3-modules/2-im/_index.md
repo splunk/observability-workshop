@@ -1,7 +1,7 @@
 ---
 title: Infrastructure Monitoring
-linkTitle: 8. IM
-weight: 8
+linkTitle: 2. IM
+weight: 2
 archetype: chapter
 time: 20 minutes
 description: Use Splunk Infrastructure Monitoring to monitor hosts, containers, and Kubernetes clusters.

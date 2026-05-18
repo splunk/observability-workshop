@@ -1,7 +1,7 @@
 ---
 title: Workshop Wrap-up
-linkTitle: 9. Workshop Wrap-up
-weight: 9
+linkTitle: 4. Workshop Wrap-up
+weight: 4
 archetype: chapter
 time: 1 minute
 description: Congratulations, you have completed the workshop.
