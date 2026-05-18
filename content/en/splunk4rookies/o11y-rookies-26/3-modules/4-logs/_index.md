@@ -1,7 +1,7 @@
 ---
 title: Log Observer
-linkTitle: 3. Log Observer
-weight: 3
+linkTitle: 4. Log Observer
+weight: 4
 archetype: chapter
 time: 20 minutes
 description: Use Splunk Log Observer as a primary investigation tool to triage issues using filtering, grouping, and pattern analysis.

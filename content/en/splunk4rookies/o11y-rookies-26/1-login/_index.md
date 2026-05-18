@@ -15,8 +15,11 @@ description: Log in to Splunk Observability Cloud and verify access.
   * **[https://app.eu0.signalfx.com](https://app.eu0.signalfx.com)** (EMEA)
   * **[https://app.us1.signalfx.com](https://app.us1.signalfx.com)** (APAC/AMER)
 
-<!-- TODO screenshot: login page -->
+![Login](../images/login/1-login.png)
 
-* You will land on the home page of Splunk Observability Cloud.
+* You will land on the home page of Splunk Observability Cloud.  
+
+
+![ui](../images/login/2-ui.png)
 
 {{% /notice %}}

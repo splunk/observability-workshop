@@ -1,7 +1,7 @@
 ---
 title: Application Performance Monitoring (APM)
-linkTitle: 4. APM
-weight: 4
+linkTitle: 1. APM
+weight: 1
 archetype: chapter
 time: 20 minutes
 description: Use Splunk APM to trace requests across microservices and identify performance bottlenecks.

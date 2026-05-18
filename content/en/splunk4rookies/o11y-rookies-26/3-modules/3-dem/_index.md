@@ -1,7 +1,7 @@
 ---
 title: Digital Experience Monitoring (RUM + Synthetics)
-linkTitle: 5. DEM
-weight: 5
+linkTitle: 3. DEM
+weight: 3
 archetype: chapter
 time: 25 minutes
 description: Use Splunk RUM to analyze real user sessions and Splunk Synthetics for proactive monitoring.

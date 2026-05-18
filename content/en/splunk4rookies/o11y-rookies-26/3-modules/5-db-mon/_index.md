@@ -1,7 +1,7 @@
 ---
 title: Database Monitoring
-linkTitle: 6. DB-MON
-weight: 6
+linkTitle: 5. DB-MON
+weight: 5
 archetype: chapter
 time: 20 minutes
 description: Use Splunk Database Monitoring to investigate slow queries and correlate database performance with application health.
