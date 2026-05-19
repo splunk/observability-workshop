@@ -196,7 +196,7 @@ To do that:
 {{< tabs >}}
 {{% tab title="Script" %}}
 ```bash
-kubectl rollout restart deployment
+kubectl rollout restart deployment -l app.kubernetes.io/part-of=spring-petclinic
 ```
 {{% /tab %}}
 {{% tab title="Example Output" %}}
