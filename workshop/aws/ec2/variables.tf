@@ -99,7 +99,7 @@ variable "tagging_workshop" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "6.69"
+  default     = "6.70"
 }
 
 data "aws_ami" "latest-ubuntu" {
