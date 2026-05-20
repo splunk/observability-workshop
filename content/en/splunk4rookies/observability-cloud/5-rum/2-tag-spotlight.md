@@ -5,8 +5,8 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Make sure you are on the **Custom Events** tab by selecting it.
-* Have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).  
+* Make sure you are on the **Custom Workflows** tab by selecting it.
+* Have a look at the **Custom Workflow Duration** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).  
 
 * Click on the **see all** link under the chart title.
 
