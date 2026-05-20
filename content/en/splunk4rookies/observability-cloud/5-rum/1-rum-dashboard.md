@@ -24,18 +24,18 @@ Click **Digital Experience** then under Real User Monitoring click **Overview** 
 * **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
 * **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.
 * **Back-end Health:** Network Errors and Requests and Time to First Byte.
-* **Custom Events:** RED metrics (Rate, Error & Duration) for custom events.
+* **Custom Workflows:** RED metrics (Rate, Error & Duration) for custom events.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**) and examine the data.
+* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Workflows**) and examine the data.
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**If you examine the charts in the *Custom Events* Tab, **what chart **shows** clearly the** latency Spikes?**
+**If you examine the charts in the *Custom Workflows* Tab, **what chart **shows** clearly the** latency Spikes?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**It is the *Custom Event Latency* chart**
+**It is the *Custom Workflow Duration* chart**
 {{% /tab %}}
 {{< /tabs >}}
 
