@@ -4,7 +4,7 @@ linkTitle: 2.1 RUM Home Page
 weight: 2
 ---
 
-Click **RUM** in the main menu, this will bring you to the main RUM Home or Landing page. The main concept of this page is to provide you at a glance, the overall status of all selected RUM applications, either in a full dashboard or the compact view.
+Click **Digital Experience** then under Real User Monitoring click **Overview** in the main menu, which will bring you to the main RUM Home or Landing page. The main concept of this page is to provide you at a glance, the overall status of all selected RUM applications, either in a full dashboard or the compact view.
 
 Independent of the type of Status Dashboard used, the RUM Home Page is made up of 3 distinct sections:
 
