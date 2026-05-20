@@ -3,7 +3,7 @@ title: 1. RUM Dashboard
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
+Click **Digital Experience** then under Real User Monitoring click **Overview** in the main menu. You arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
 
 ![multiple apps](../images/rum-dashboard.png)
 
@@ -15,7 +15,7 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
   * The **App** selected is **[NAME OF WORKSHOP]-store**.
   * The **Source** is set to **All**.
 * Next, click on the **[NAME OF WORKSHOP]-store** above the **Page Views / JavaScript Errors** chart.
-* This will bring up a new dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events** and comparing them to historic metrics (1 hour by default).
+* This will bring up a new dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, and **Custom Workflows**, and comparing them to historic metrics (1 hour by default). 
 
 {{% /notice %}}
 
