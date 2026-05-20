@@ -59,10 +59,3 @@ Notice my test in ThousandEyes failed? That's because I didn't change the **Veri
 ![Test 2 - ThousandEyes Verify Content Failure](../../images/test2-te-fail.png?width=20vw)
 {{% /notice %}}
 
-### Step 3: HTTP Test (Public)
-
-Finally let's see if we can hit this page from the public.
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
