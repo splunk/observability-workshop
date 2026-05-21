@@ -1,0 +1,21 @@
+<script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v2/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v2/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
+<script>
+SplunkRum.init({
+    realm: "us1",
+    rumAccessToken: "h7q1NLX6lJz0h_5-OqQJkg",
+    applicationName: "observability-workshop",
+    deploymentEnvironment: "splunk.github.io",
+    version: "2.0",
+});
+
+SplunkSessionRecorder.init({
+    applicationName: "observability-workshop",
+    realm: "us1",
+    rumAccessToken: "h7q1NLX6lJz0h_5-OqQJkg",
+    recorder: "splunk",
+    features: {
+        video: true,
+    }
+});
+</script>
