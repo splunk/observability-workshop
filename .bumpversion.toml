@@ -1,0 +1,36 @@
+[tool.bumpversion]
+current_version = "6.72"
+commit = true
+tag = false
+parse = '''v?(?P<major>\d+)\.(?P<minor>\d+)'''
+serialize = ["{major}.{minor}"]
+tag_message = "Version {new_version}"
+message = "Releasing v{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "VERSION"
+
+[[tool.bumpversion.files]]
+filename = "workshop/cloud-init/victorops.yaml"
+search = "WSVERSION={current_version}"
+replace = "WSVERSION={new_version}"
+
+[[tool.bumpversion.files]]
+filename = "workshop/aws/ec2/terraform.tfvars.template"
+search = 'wsversion = "{current_version}"'
+replace = 'wsversion = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "local-hosting/multipass/terraform.tfvars.template"
+search = 'wsversion = "{current_version}"'
+replace = 'wsversion = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "local-hosting/multipass/main.tf"
+search = 'default     = "{current_version}"'
+replace = 'default     = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "workshop/aws/ec2/variables.tf"
+search = 'default     = "{current_version}"'
+replace = 'default     = "{new_version}"'

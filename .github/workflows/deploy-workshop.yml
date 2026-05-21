@@ -20,26 +20,25 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 0
           ssh-key: ${{ secrets.RELEASE_SSH_KEY }}
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.161.1'
           extended: true
 
       - name: Setup yq
-        uses: chrisdickinson/setup-yq@latest
-        with:
-          yq-version: '4.45.1'
-          yq-url: 'https://github.com/mikefarah/yq/releases/download/v{version}/yq_{platform}_{arch}'
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
           cache: 'pip'
@@ -48,7 +47,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Cache go dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/hugo_cache
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
@@ -65,7 +64,7 @@ jobs:
           TAG=$(bump-my-version show new_version --increment "${{ inputs.release_type }}")
           echo "tag_name=${TAG}" >> $GITHUB_OUTPUT
 
-          BASE_URL="$(yq -p=toml .baseURL hugo.toml)"
+          BASE_URL="$(yq -p=toml -oy .baseURL hugo.toml)"
           echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
 
           # Bump version files and commit (tag is handled below, per .bumpversion.cfg `tag = false`)
@@ -131,7 +130,7 @@ jobs:
           EOF
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -142,7 +141,7 @@ jobs:
           commit_message: "Deploy v${{ steps.bumpversion.outputs.tag_name }}"
 
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: v${{ steps.bumpversion.outputs.tag_name }}
           tag_name: v${{ steps.bumpversion.outputs.tag_name }}
