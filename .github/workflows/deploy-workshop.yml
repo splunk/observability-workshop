@@ -29,7 +29,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.155.3'
+          hugo-version: '0.161.1'
           extended: true
 
       - name: Setup yq
@@ -62,11 +62,14 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git pull --rebase
 
-          TAG=$(bumpversion --list "${{ inputs.release_type }}" | awk -F= '/new_version=/ { print $2 }')
+          TAG=$(bump-my-version show new_version --increment "${{ inputs.release_type }}")
           echo "tag_name=${TAG}" >> $GITHUB_OUTPUT
 
-          BASE_URL="$(yq .baseURL hugo.yaml)"
+          BASE_URL="$(yq -p=toml .baseURL hugo.toml)"
           echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
+
+          # Bump version files and commit (tag is handled below, per .bumpversion.cfg `tag = false`)
+          bump-my-version bump "${{ inputs.release_type }}"
 
           # Update README with new release link
           awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://splunk.github.io/observability-workshop/)\";next }1" README.md |
