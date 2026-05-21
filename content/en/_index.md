@@ -20,6 +20,8 @@ Get insights into your applications and infrastructure in real-time with the hel
 These workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.
 {{< /lead>}}
 
+{{< divider >}}
+
 {{< cards >}}
 {{< card title="Resources" href="/resources/" icon="book" >}}
 Resources to help you get the most out of your Splunk Observability Cloud experience.

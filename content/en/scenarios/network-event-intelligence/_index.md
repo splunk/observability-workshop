@@ -3,14 +3,12 @@ title: Network Event Intelligence with Splunk IT Service Intelligence
 linkTitle: Network Event Intelligence
 weight: 10
 archetype: chapter
-time: 2 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
-description: Integrate Cisco Catalyst Center, Solarwinds, and Splunk ITSI to correlate network events across vendors, reduce alert noise, and understand the business impact of network incidents.
+description: Correlate Cisco Catalyst Center and SolarWinds events in Splunk ITSI to cut alert noise and surface the business impact of network incidents.
+time: 30 minutes
 ---
 
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
-
-## Welcome!
+## Welcome
 
 This hands-on workshop is designed specifically for anyone looking to effectively demonstrate and position the power of IT Service Intelligence (ITSI) for Network Event Intelligence use cases. Participants will gain practical experience integrating these platforms, focusing on real-world scenarios and use cases that resonate with potential clients. The workshop emphasizes the correlation of multiple sources across the Cisco Networking portfolio and 3rd party monitoring solutions, enabling Solution Architects to confidently showcase how Splunk can address the critical customer challenge of effective network event correlation.
 
@@ -34,11 +32,12 @@ A comprehensive Network Intelligence strategy requires integrating data from var
 
 ## Workshop Objectives
 
-By the end of this workshop, you will have configured 
-- ITSI to monitor network health from multiple locations using data from Cisco Catalyst Center
-- Inbound notifications from both Catalyst Center and Solarwinds for correlating alerts
-- Correlated episodes using notifications from both Catalyst Center and Solarwinds
-- Episodes that automatically resolve when the health of degraded services return to normal
+By the end of this workshop, you will have configured:
+
+* ITSI to monitor network health from multiple locations using data from Cisco Catalyst Center
+* Inbound notifications from both Catalyst Center and Solarwinds for correlating alerts
+* Correlated episodes using notifications from both Catalyst Center and Solarwinds
+* Episodes that automatically resolve when the health of degraded services return to normal
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 The easiest way to navigate through this workshop is by using:
@@ -46,5 +45,3 @@ The easiest way to navigate through this workshop is by using:
 * the left/right arrows (**<** | **>**) on the top right of this page
 * the left (◀️) and right (▶️) cursor keys on your keyboard
   {{% /notice %}}
-  
-</div>

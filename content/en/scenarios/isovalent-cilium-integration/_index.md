@@ -5,7 +5,7 @@ weight: 6
 archetype: chapter
 authors: ["Alec Chamberlain"]
 time: 105 minutes
-description: Deploy Isovalent Enterprise Platform (Cilium, Hubble, and Tetragon) on Amazon EKS and integrate with Splunk Observability Cloud for comprehensive eBPF-based monitoring and observability. Includes an end-to-end demo investigating a DNS issue using Hubble dashboards.
+description: Stream eBPF network and runtime signals from Cilium, Hubble, and Tetragon on EKS into Splunk Observability Cloud — including a Hubble-driven DNS investigation.
 ---
 
 This workshop demonstrates integrating **Isovalent Enterprise Platform with Splunk Observability Cloud** to provide comprehensive visibility into Kubernetes networking, security, and runtime behavior using eBPF technology.

@@ -7,5 +7,3 @@ params:
   images:
     - ../images/featured-scenarios.jpg
 ---
-
-{{% children depth="1" type="card" description="true" %}}

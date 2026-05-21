@@ -6,7 +6,6 @@ time: 2 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
 
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
 
 ## Accessing your Workshop
 Prior to this workshop you should have been provided details for accessing your workshop instance. This workshop utilizes a preconfigured environment which includes Splunk Enterprise and IT Service Intelligence. A link to the instance and the credentials are available in the Splunk Show instance details.
@@ -17,20 +16,16 @@ An automated break scenario runs on a 30 minute cycle. The Catalyst Center sites
 
 The majority of this workshop will be completed in IT Service Intelligence, so unless otherwise stated, navigation steps will start from there. 
 
-<div style="max-width: 80%; margin: 0 auto;">
 {{% notice style="primary" title="Access your workshop instance" %}} 
-<div style="max-width: 80%; margin: 0 auto;">
 
 **1.** Login to the Splunk instance using the URL and credentials provided in your Splunk Show workshop details.
 
 **2.** Navigate to **Apps -> IT Service Intelligence**.
 
 The first time you open ITSI you may have to dismiss the Getting Started Modal (after reading all of the important information, of course)
-</div>
 
 ![ITSI Getting Started Modal](../images/getting-strarted-modal.png?width=30vw)
 {{% / notice %}} 
-</div>
 
 ## Getting Data In
 
@@ -78,5 +73,3 @@ The App uses the data collected by
 
 ![Cisco Enterprise Networking App](../images/cisco-ent-network-overview.png?width=30vw)
 
-</div>
-</div>

@@ -5,7 +5,7 @@ weight: 5
 archetype: chapter
 authors: ["Alec Chamberlain"]
 time: 120 minutes
-description: Deploy ThousandEyes Enterprise Agent in Kubernetes, stream synthetic data into Splunk Observability Cloud, and enable bi-directional drilldowns between ThousandEyes and Splunk APM.
+description: Run a ThousandEyes Enterprise Agent in Kubernetes, stream synthetics into Splunk Observability Cloud, and pivot between ThousandEyes tests and Splunk APM traces.
 ---
 
 This workshop demonstrates integrating **ThousandEyes with Splunk Observability Cloud** to provide unified visibility across your synthetic monitoring and observability data.

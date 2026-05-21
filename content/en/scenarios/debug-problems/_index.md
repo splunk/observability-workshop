@@ -2,8 +2,8 @@
 title: Debug Problems in Microservices
 linkTitle: Debug Problems in Microservices
 weight: 3
-description: This scenario helps engineering teams identify and fix issues caused by planned and unplanned changes to their microservices-based applications.
-
+description: Trace, profile, and tag your way to root cause when planned or unplanned changes break a microservices application.
+time: 45 minutes
 ---
 
 {{% children description="true" type="card" %}}

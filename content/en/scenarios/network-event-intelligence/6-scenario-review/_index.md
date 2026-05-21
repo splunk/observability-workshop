@@ -6,7 +6,6 @@ time: 10 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
 
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
 
 ## Scenario: Network Issue at a Retail Store
 
@@ -18,20 +17,15 @@ ITSI addresses this challenge by understanding network health by site and networ
 
 ## Scenario Flow: Root Cause Analysis with Catalyst Center
 
-<div style="max-width: 80%; margin: 0 auto;">
 {{% notice title="Scenario Review" style="primary" icon="play" %}}
 
 **1.** Open the **Service Analyzer** in ITSI. Notice that the **Access Points** KPI is showing a degraded health status
 
-<div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
-<div style="text-align: center;">
 The Service Analyzer provides a high-level view of all imported Catalyst Center site services and their current health
-</div>
 
 ![Service Analyzer](../images/service-analyzer.png?width=40vw)
 {{% / notice %}}
-</div>
 
 **2.** Select **Tree** on the right to view the **Service Tree**
 
@@ -39,29 +33,21 @@ The Service Analyzer provides a high-level view of all imported Catalyst Center 
 
 **4.** Select the **Access Points** KPI to drill into the entity details. You should see that this issue is impacting **Floor-1** at this location
 
-<div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
-<div style="text-align: center;">
 Selecting a service reveals its individual KPIs. The Access Points KPI health score shows a degraded state
-</div>
 
 ![Store-SJC12 Access Points KPI](../images/service-kpis.png?width=40vw)
 {{% / notice %}}
-</div>
 
 
 {{% notice title="Bonus" style="primary" icon="lightbulb" %}}
 Drill down into the entity using the **Site Health Summary** link to see the health of the wireless access points at this store in more detail. This dashboard provides a granular view of individual device health scores sourced directly from Catalyst Center.
 
-<div style="max-width: 60%; margin: 0 auto;">
 
-<div style="text-align: center;">
 The Site Health Summary dashboard shows individual access point health scores for the selected location
-</div>
 
 ![Site Health Summary](../images/site-health.png?width=40vw)
 
-</div>
 {{% / notice %}}
 
 **5.** Check the **Episode Review** section located below the KPI health details. If there are any **High** or **Critical** episodes currently open for this site, they will appear here.
@@ -76,47 +62,34 @@ If no episodes are currently **High** or **Critical**, navigate to **Alerts and 
 
 **7.** Review the **impacted services and KPIs** in the episode detail. This view shows exactly which services and KPIs were affected during this episode.
 
-<div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
-<div style="text-align: center;">
 The episode detail ties the alerts back to the affected services and KPIs, giving you a complete picture of the business impact
-</div>
 
 ![Episode Review under KPI](../images/ongoing-episode-overview.png?width=40vw)
 {{% / notice %}}
-</div>
 
 **8.** Select the **Events Timeline** tab to review the order in which the events occurred
 
 **9.** From the **Sort** dropdown, select **Root cause analysis** to reorder the events chronologically
 
-<div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
-<div style="text-align: center;">
 The Events Timeline sorted by Root Cause Analysis reveals the order in which alerts fired, showing the progression from initial fault to cascading impact
-</div>
 
 ![Episode Detail](../images/ongoing-episode.png?width=40vw)
 {{% / notice %}}
-</div>
 
 
 **10.** Review the individual alerts by selecting them from the list. Notice that this episode includes alerts from both **Solarwinds** and **Catalyst Center**. This is because the episode is using the **Network Events by Location NEAP** you created in the previous section, which groups all alerts for a given site regardless of their source
 
-<div style="max-width: 60%; margin: 0 auto;">
 {{% notice style="Info" %}}
-<div style="text-align: center;">
 Cross-vendor alert correlation in a single episode. Both Catalyst Center and Solarwinds alerts are grouped together by location
-</div>
 
 ![Alert Detail](../images/ongoing-episode-event-view.png?width=40vw)
 {{% / notice %}}
-</div>
 
 You are now able to see alerts in context, understand when they occurred, and track severity changes as the situation evolves. When a clearing event is received from either Catalyst Center or Solarwinds, the alert severity will automatically change to **Normal**. The action rule you configured in the NEAP will then automatically resolve the episode once all contributing alerts have returned to normal, closing the loop without any manual intervention.
 
 {{% notice style="Primary" title="Workshop Complete!" %}}
-<div style="text-align: center;">
 
 **Why This Matters**
 
@@ -130,10 +103,7 @@ By automating episode creation and resolution, ITSI reduces mean time to resolut
 
 ![Dancing Buttercup](../../../ninja-workshops/11-ingest-processor-for-observability-cloud/images/Splunk-dancing-buttercup-GIF-103.gif?width=40vw)
 
-</div>
 {{% / notice %}}
 
 {{% /notice %}}
-</div>
 
-</div>

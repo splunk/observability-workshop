@@ -6,7 +6,6 @@ time: 10 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
 
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
 
 ## Correlating Alerts Across Vendors
 
@@ -28,4 +27,3 @@ By the end of this section you will have:
 - Configured automatic episode resolution when network health returns to normal
 - Validated that the Service Analyzer and Episode Review reflect real-time site health
 
-</div>
