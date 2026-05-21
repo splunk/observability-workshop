@@ -18,3 +18,13 @@ github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521152640-3339c2e9e06
 github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521152640-3339c2e9e068/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
 github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521153018-95804daca763 h1:b3sUgcQoKAclbrMsdLAqe5+S/CiZRqtaEfYo/HuUUMQ=
 github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521153018-95804daca763/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521163014-11bc3a16856b h1:YSOkes8bGz0uXiIuRiupJT1rLjV4KdQT/F/rvt3TTQU=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521163014-11bc3a16856b/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521164028-5a0437045845 h1:GQvP5LM8xfRhqpJzIzmOXZmfVVcWkh9+BeBtoQfWbAE=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521164028-5a0437045845/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521164732-ad57a43263f5 h1:c2BWQjqdh9qqxxyurQ2cSeFVtWf3Ef3UTHpZa7GxAcM=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521164732-ad57a43263f5/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521165330-6cef2116e37e h1:Ftpg+vthwqdujP1fEuPFOWDoWbqUuV98ySNBhIDZpwQ=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521165330-6cef2116e37e/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521170041-9b1501ae0384 h1:nVHgMfGQXYAyCl3svGyk2QtHQ1xA4yFQuJGDNhCj//Q=
+github.com/splunk/hugo-theme-splunk-workshop v0.7.1-0.20260521170041-9b1501ae0384/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
