@@ -54,9 +54,9 @@ In most cases, the default settings with `hugo server` work well, and Hugo is av
 
 ## Create Content
 
-The workshop uses the Hugo Relearn Theme. Documentation on how to use the theme can be found [here](https://mcshelby.github.io/hugo-theme-relearn/cont/index.html).
+The workshop uses the [hugo-theme-splunk-workshop](https://splunk.github.io/hugo-theme-splunk-workshop/) theme. See the [authoring docs](https://splunk.github.io/hugo-theme-splunk-workshop/docs/authoring/) for content conventions.
 
-Additional documentation for the shortcodes used in the theme can be found [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/index.html).
+For the shortcodes used in the theme, see the [shortcodes reference](https://splunk.github.io/hugo-theme-splunk-workshop/docs/shortcodes/).
 
 ## Optimising images
 
@@ -115,4 +115,3 @@ and visit [http://localhost:8000/](http://localhost:8000/) to inspect the site.
 6. Click **Run workflow**.
 
 The release will run through the CI/CD pipeline and be deployed to `https://splunk.github.io/observability-workshop/` shortly after.
-
