@@ -1,11 +1,11 @@
 ---
-title: Financial Services Observability Cloud
+title: Finserv Observability Cloud
 weight: 3
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
 time: 30 minutes
 aliases:
   - /en/s4r/
-description: This workshop, tailored for the Financial Services sector, will demonstrate how Splunk Observability Cloud delivers real-time insights into user experience, spanning from front-end applications to back-end services. You'll explore key product features and unique advantages that set Splunk Observability Cloud apart.
+description: For financial services teams. See how Splunk Observability Cloud delivers real-time visibility across the FSI digital ecosystem in a 30-minute hands-on session.
 params:
   images:
     - /images/featured.png

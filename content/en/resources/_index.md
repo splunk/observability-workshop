@@ -1,7 +1,7 @@
 ---
 title: Resources
 weight: 4
-description: Resources for learning about Splunk Observability Cloud
+description: Concepts, conventions, and FAQs to help you get more out of Splunk Observability Cloud.
 params:
   images:
     - ../images/featured-resources.png
