@@ -1,5 +1,5 @@
 ---
-title: Local Hosting with Multipass
+title: Multipass
 weight: 1
 description: Learn how to create a local hosting environment with Multipass - Windows/Linux/Mac(Intel)
 ---
