@@ -5,7 +5,7 @@ weight: 4
 archetype: chapter
 authors: ["Sarah Ware"]
 time: 90 minutes
-description: Use Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user experience, and proactively test scenarios to improve that experience.
+description: Combine Splunk RUM and Synthetics to measure real-user performance, run proactive tests, and alert on the frontend KPIs that matter.
 ---
 
 How can we use Splunk Observability to get insight into end user experience, and proactively test scenarios to improve that experience?

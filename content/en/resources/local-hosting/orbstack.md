@@ -1,5 +1,5 @@
 ---
-title: Local Hosting with OrbStack
+title: OrbStack
 weight: 2
 description: Learn how to create a local hosting environment with OrbStack - Mac (Apple Silicon)
 ---

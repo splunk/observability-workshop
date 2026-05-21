@@ -1,6 +1,7 @@
 .vscode
 .zed
 .DS_Store
+.claude/worktrees/
 /site
 nohup.out
 terraform.tfstate

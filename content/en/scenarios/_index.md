@@ -2,10 +2,8 @@
 title: Scenarios
 weight: 3
 hidden: false
-description: Learn how to build observability solutions with Splunk
+description: Real-world scenarios that map Splunk Observability Cloud to specific jobs to be done — debugging microservices, optimizing cloud monitoring, improving end-user experience, and correlating network events.
 params:
   images:
     - ../images/featured-scenarios.jpg
 ---
-
-{{% children depth="1" type="card" description="true" %}}

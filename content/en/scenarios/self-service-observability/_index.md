@@ -6,7 +6,7 @@ archetype: chapter
 time: 1 minute
 authors: ["Bill Grant"]
 draft: true
-description: This scenario helps platform engineering (or central tools) teams enable engineers with self-service observability tooling at scale, so developers and SREs can spend less time managing their toolchain and more time building and delivering cool software.
+description: For platform teams — standardize collection, manage metrics costs, and run Observability-as-code with Terraform so developers and SREs can self-serve.
 ---
 
 **Splunk Observability Cloud** includes powerful features that help central platform teams that are responsible for creating consistency, standards and best practices in an organization.

@@ -6,7 +6,6 @@ time: 5 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
 
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
 
 ## Adding a Second Alert Source
 
@@ -23,4 +22,3 @@ By the end of this section you will have:
 - Configured the **Solarwinds Inbound Notification** connection which will create Notable Events in ITSI for these alerts
 - Verified that Solarwinds alerts are flowing into ITSI as normalized notable events
 
-</div>

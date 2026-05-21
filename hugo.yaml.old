@@ -12,11 +12,9 @@ enableGitInfo: true
 module:
   hugoVersion:
     extended: true
-    min: 0.155.3
-    max: 0.155.3
-
+    min: 0.161.1
   imports:
-    - path: github.com/McShelby/hugo-theme-relearn
+    - path: github.com/splunk/hugo-theme-splunk-workshop
 languages:
   en:
     title: "Splunk Observability Cloud Workshops"
@@ -42,10 +40,10 @@ markup:
 outputs:
   home:
     - HTML
-    - PRINT
+#    - PRINT
   section:
     - HTML
-    - PRINT
+#    - PRINT
 #  page:
 #    - HTML
 #    - PRINT

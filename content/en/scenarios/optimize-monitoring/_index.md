@@ -4,11 +4,8 @@ linkTitle: Optimize Cloud Monitoring
 weight: 1
 archetype: chapter
 authors: ["Tim Hard"]
-time: 3 minutes
-description: This scenario is for ITOps teams managing a hybrid infrastructure that need to troubleshoot cloud-native performance issues, by correlating real-time metrics with logs to troubleshoot faster, improve MTTD/MTTR, and optimize costs. 
-
-
-draft: false
+description: For ITOps teams on hybrid cloud — standardize collection with OpenTelemetry, reuse dashboards and alerts across teams, and correlate metrics with logs to cut MTTR.
+time: 45 minutes
 ---
 
 The elasticity of cloud architectures means that monitoring artifacts must scale elastically as well, breaking the paradigm of purpose-built monitoring assets. As a result, administrative overhead, visibility gaps, and tech debt skyrocket while MTTR slows. This typically happens for three reasons:

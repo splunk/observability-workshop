@@ -5,7 +5,6 @@ weight: 2
 time: 2 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
-<div style="max-width: 80%; margin: 0 auto; font-size: 18px;">
 
 ## From Device Health to Location-Based Network Visibility
 
@@ -25,7 +24,6 @@ The import workflow reads your Cisco Catalyst Center site hierarchy and creates 
 
 At the heart of this integration is the **Catalyst Center Site** Service Template. When services are imported, this template is applied to each site and provides six out-of-the-box KPIs, each tracking a different layer of the network stack at that location:
 
-<div style="max-width: 60%; margin: 0 auto;">
 
 | KPI | What It Measures |
 |---|---|
@@ -36,7 +34,6 @@ At the heart of this integration is the **Catalyst Center Site** Service Templat
 | **Router Health** | Average HealthScore of Routers |
 | **Wireless Controller Health** | Average HealthScore of Wireless Controllers |
 
-</div>
 
 These KPIs are sourced directly from the Cisco Catalyst Center HealthScore, a 1-10 score that Catalyst Center assigns to each device based on onboarding, connectivity, and radio frequency health. By averaging these scores per network layer, ITSI can pinpoint *exactly which part of the stack* is dragging down a site's overall health. The result is that the jump from "Site X is degraded" to "the Access Layer at Site X is the problem" becomes a matter of seconds.
 
@@ -46,4 +43,3 @@ By the end of this section you will have:
 
 - Installed the **Content Pack for Cisco Enterprise Networks** and imported Catalyst Center sites as ITSI services
 - Validated that the Catalyst Center Site KPIs are populating correctly with real network health data
-</div>
