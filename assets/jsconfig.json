@@ -3,7 +3,7 @@
   "baseUrl": ".",
   "paths": {
    "*": [
-    "../../../../Library/Caches/hugo_cache/modules/filecache/modules/pkg/mod/github.com/splunk/hugo-theme-splunk-workshop@v0.6.1-0.20260520211006-af28df29dff1/assets/*"
+    "../../../../Library/Caches/hugo_cache/modules/filecache/modules/pkg/mod/github.com/splunk/hugo-theme-splunk-workshop@v0.7.1-0.20260521151233-46c46ab02f95/assets/*"
    ]
   }
  }
