@@ -6,7 +6,7 @@ time: 5 minutes
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 ---
 
-ITSI 4.21 includes native data integrations for Cisco Meraki and Catalyst Center alerts. The recommended method is to activate the default connections, which are pre-configured with the required settings to normalize alerts. The default configuration can be customized to meet your customers specific use cases. 
+ITSI 4.21 includes native data integrations for Cisco Meraki and Catalyst Center alerts. The recommended method is to activate the default connections, which are pre-configured with the required settings to normalize alerts. The default configuration can be customized to meet your customers specific use cases.
 
 In this section you'll customize the alert so that you can correlate events across locations as well as update the status mapping so that episodes can automatically resolve when the service health returns to normal.
 
@@ -33,8 +33,8 @@ Adding a custom connection lets you control the search, field mappings, and thro
 **4.** Enter `Catalyst Center Alerts` for the name. Use the following search:
 
 ```splunk
-index=netops sourcetype="cisco:dnac:issue"  
-| eval itsi_site = case( isnotnull(SiteNameHierarchy) AND SiteNameHierarchy!="", mvindex(split(SiteNameHierarchy, "/"), 3), isnotnull(DeviceName) AND DeviceName!="", "Store-" . mvindex(split(DeviceName, "-"), 0) ) 
+index=netops sourcetype="cisco:dnac:issue"
+| eval itsi_site = case( isnotnull(SiteNameHierarchy) AND SiteNameHierarchy!="", mvindex(split(SiteNameHierarchy, "/"), 3), isnotnull(DeviceName) AND DeviceName!="", "Store-" . mvindex(split(DeviceName, "-"), 0) )
 ```
 
 **5.** Click **Validate**
@@ -90,7 +90,7 @@ Map Catalyst Center severity values to the ITSI severity scale so episodes displ
 **16.** Add `NY HQ`, `Store-SJC10`, and `Store-SJC12` to the **Service Association** section
 
 **17.** Use `SiteNameHierarchy` for the **Entity Lookup Field**
- 
+
 **18.** Turn on the **Enable throttling** toggle
 
 **19.** Set the **Suppress period** to every **5 minutes**

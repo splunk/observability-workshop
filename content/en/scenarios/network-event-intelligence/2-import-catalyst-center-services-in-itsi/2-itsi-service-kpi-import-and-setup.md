@@ -17,7 +17,7 @@ To get back to the Import Services page for Catalyst Center, navigate to **Confi
 **1.** Under **Service Import Modules**, select **Cisco Catalyst Center**.
 
 {{% notice style="Info"  %}}
-Automatic service hierarchy imports are supported for both <strong>Catalyst Center</strong> and <strong>Meraki</strong>
+Automatic service hierarchy imports are supported for both **Catalyst Center** and **Meraki**
 
 ![Service Import Modules](../../images/service-import-modules.png?width=40vw)
 {{% / notice %}}
@@ -54,9 +54,9 @@ Review the service hierarchy in the sandbox, then publish to make the services a
 ![Service Sandbox](../../images/service-sandbox-publish.png?width=40vw)
 {{% / notice %}}
 
-**6.** Navigate to **Configuration** > **Service Monitoring** > **Service and KPI Management**. 
+**6.** Navigate to **Configuration** > **Service Monitoring** > **Service and KPI Management**.
 
-**7.** Use the **Select All** check box to select all of your services 
+**7.** Use the **Select All** check box to select all of your services
 
 **8.** With all services selected click **Bulk Action** > **Enable**.
 
@@ -74,7 +74,7 @@ Confirm the enable action. KPIs will begin calculating within a few minutes
 ![Enable KPIs](../../images/enable-kpis.png?width=40vw)
 {{% / notice %}}
 
-{{% notice style="Primary" title="Nice Job!" %}} 
+{{% notice style="Primary" title="Nice Job!" %}}
 You just imported all of the Catalyst Center services without having to create any CSVs, lookups, write any SPL, or manually configure the service dependencies. Pretty neat, huh?
 
 Continue to the next section to validate your configuration is working correctly.
