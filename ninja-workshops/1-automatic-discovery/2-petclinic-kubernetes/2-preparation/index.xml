@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Preparation of the Workshop instance on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/</link><description>Recent content in Preparation of the Workshop instance on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploy the Splunk OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel/</guid><description>&lt;p&gt;To get Observability signals (&lt;strong&gt;metrics, traces&lt;/strong&gt; and &lt;strong&gt;logs&lt;/strong&gt;) into &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; we need to deploy the Splunk OpenTelemetry Collector into the Kubernetes cluster.&lt;/p&gt;
+&lt;p&gt;For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First, we need to add the Helm chart repository to Helm and run &lt;code&gt;helm repo update&lt;/code&gt; to ensure the latest version:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Install Helm Chart"&gt;Install Helm Chart&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Output"&gt;Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Install Helm Chart"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; helm repo update&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Using ACCESS_TOKEN={REDACTED}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Using REALM=eu0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;splunk-otel-collector-chart&amp;#34; has been added to your repositories
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Using ACCESS_TOKEN={REDACTED}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Using REALM=eu0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hang tight while we grab the latest from your chart repositories...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...Successfully got an update from the &amp;#34;splunk-otel-collector-chart&amp;#34; chart repository
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Update Complete. ⎈Happy Helming!⎈&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator for automatic discovery and configuration and code profiling.&lt;/p&gt;</description></item><item><title>Deploy the PetClinic Application</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/</guid><description>&lt;p&gt;The first deployment of our application will be using prebuilt containers to give this base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let&amp;rsquo;s deploy the application:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="kubectl apply"&gt;kubectl apply&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Output"&gt;Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="kubectl apply"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f ~/workshop/petclinic/deployment.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/config-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/config-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/discovery-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/discovery-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/api-gateway created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/api-gateway created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/api-gateway-external created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/customers-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/customers-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/vets-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/vets-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/visits-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/visits-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/admin-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/admin-server created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/petclinic-db created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/petclinic-db created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;configmap/petclinic-db-initdb-config created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/petclinic-loadgen-deployment created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;configmap/scriptfile created&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started, so this may take a couple of minutes.&lt;/p&gt;</description></item></channel></rss>

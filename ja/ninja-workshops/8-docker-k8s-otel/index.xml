@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OpenTelemetry、Docker、K8sを実践で学ぶ on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/</link><description>Recent content in OpenTelemetry、Docker、K8sを実践で学ぶ on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/index.xml" rel="self" type="application/rss+xml"/><item><title>EC2インスタンスへの接続</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/</guid><description>&lt;h2 id="ec2-インスタンスへ接続"&gt;
+ &lt;span class="heading-text"&gt;EC2 インスタンスへ接続&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#ec2-%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e3%81%b8%e6%8e%a5%e7%b6%9a" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;各参加者のために、AWS/EC2にUbuntu Linuxインスタンスを用意しました。&lt;/p&gt;
+&lt;p&gt;インストラクターから提供されたIPアドレスとパスワードを使用して、以下のいずれかの方法でEC2インスタンスに接続してください&lt;/p&gt;</description></item><item><title>OpenTelemetryコレクターのデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/</guid><description>&lt;h2 id="opentelemetry-コレクターのアンインストール"&gt;
+ &lt;span class="heading-text"&gt;OpenTelemetry コレクターのアンインストール&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#opentelemetry-%e3%82%b3%e3%83%ac%e3%82%af%e3%82%bf%e3%83%bc%e3%81%ae%e3%82%a2%e3%83%b3%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;EC2インスタンスには、すでにSplunk DistributionのOpenTelemetryコレクターの古いバージョンが
+インストールされている可能性があります。先に進む前に、次のコマンドを使用してアンインストールしましょう&lt;/p&gt;</description></item><item><title>.NETアプリケーションのデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/</guid><description>&lt;h2 id="前提条件"&gt;
+ &lt;span class="heading-text"&gt;前提条件&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;アプリケーションをデプロイする前に、インスタンスに.NET 8 SDKをインストールする必要があります。&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; sudo apt-get install -y dotnet-sdk-8.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:1 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:2 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-updates InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:3 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-backports InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Ign:5 https://splunk.jfrog.io/splunk/otel-collector-deb release InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:6 https://splunk.jfrog.io/splunk/otel-collector-deb release Release
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading package lists... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading package lists... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Building dependency tree... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading state information... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;The following additional packages will be installed:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0 liblttng-ust-common1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;The following NEW packages will be installed:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-sdk-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; liblttng-ust-common1 liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="m"&gt;0&lt;/span&gt; upgraded, &lt;span class="m"&gt;13&lt;/span&gt; newly installed, &lt;span class="m"&gt;0&lt;/span&gt; to remove and &lt;span class="m"&gt;0&lt;/span&gt; not upgraded.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Need to get &lt;span class="m"&gt;138&lt;/span&gt; MB of archives.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;After this operation, &lt;span class="m"&gt;495&lt;/span&gt; MB of additional disk space will be used.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;etc.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;詳細については、&lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Ubuntu に.NET SDK または.NET Runtime をインストールする &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+
+を参照してください。&lt;/p&gt;</description></item><item><title>OpenTelemetryで.NETアプリケーションを計装する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/</guid><description>&lt;h2 id="splunk-distribution-of-opentelemetry-のダウンロード"&gt;
+ &lt;span class="heading-text"&gt;Splunk Distribution of OpenTelemetry のダウンロード&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#splunk-distribution-of-opentelemetry-%e3%81%ae%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;このワークショップでは、NuGetパッケージを使用せず、Splunk Distribution of OpenTelemetryを
+手動でインストールします。&lt;/p&gt;</description></item><item><title>アプリケーションのDocker化</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/</guid><description>&lt;p&gt;このワークショップの後半では、.NETアプリケーションをKubernetesクラスターにデプロイします。&lt;/p&gt;
+&lt;p&gt;しかし、どのようにそれを行うのでしょうか？&lt;/p&gt;</description></item><item><title>Dockerfileに計装を追加する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/</guid><description>&lt;p&gt;アプリケーションのDocker化に成功したので、OpenTelemetry計装を追加しましょう。&lt;/p&gt;
+&lt;p&gt;これはLinux上で実行しているアプリケーションを計装したときの手順と似ていますが、
+いくつかの重要な違いがあります。&lt;/p&gt;</description></item><item><title>K8s に OpenTelemetry Collector をインストールする</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/</guid><description>&lt;h2 id="ワークショップの-part-1-のおさらい"&gt;
+ &lt;span class="heading-text"&gt;ワークショップの Part 1 のおさらい&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97%e3%81%ae-part-1-%e3%81%ae%e3%81%8a%e3%81%95%e3%82%89%e3%81%84" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ここまでのワークショップで、次の内容を完了しました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Splunk distribution of the OpenTelemetry Collector を Linux ホストにデプロイ&lt;/li&gt;
+&lt;li&gt;トレースとメトリクスを Splunk Observability Cloud に送信するように設定&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションをデプロイし、OpenTelemetry で計装&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションを Docker 化し、トレースが o11y cloud に流れていることを確認&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上記のステップを&lt;strong&gt;完了していない&lt;/strong&gt;場合は、ワークショップの残りの部分に進む前に、次のコマンドを実行してください。&lt;/p&gt;</description></item><item><title>アプリケーションをK8sにデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/</guid><description>&lt;h2 id="dockerfile-の更新"&gt;
+ &lt;span class="heading-text"&gt;Dockerfile の更新&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#dockerfile-%e3%81%ae%e6%9b%b4%e6%96%b0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Kubernetesでは、環境変数は通常、Dockerイメージに組み込むのではなく &lt;code&gt;.yaml&lt;/code&gt; マニフェストファイルで管理されます。そこで、Dockerfileから以下の2つの環境変数を削除しましょう&lt;/p&gt;</description></item><item><title>OpenTelemetryコレクター設定のカスタマイズ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/</guid><description>&lt;p&gt;デフォルト設定を使用してK8sクラスターにSplunk Distribution of OpenTelemetryコレクターを
+デプロイしました。このセクションでは、コレクター設定をカスタマイズする方法をいくつかの例で
+説明します。&lt;/p&gt;</description></item><item><title>OpenTelemetry Collectorの問題をトラブルシュート</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/</guid><description>&lt;p&gt;前のセクションでは、コレクター設定にdebug exporterを追加し、
+traceとlogのパイプラインの一部として設定しました。期待通り、debug出力が
+agent collectorのlogに書き込まれていることが確認できます。&lt;/p&gt;</description></item><item><title>Summary</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/11-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/11-summary/</guid><description>&lt;p&gt;このワークショップでは、以下の概念についてハンズオンで体験しました&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linuxホストに&lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt;をデプロイする方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Splunk Distribution of OpenTelemetry .NET&lt;/strong&gt;で.NETアプリケーションを計装する方法。&lt;/li&gt;
+&lt;li&gt;.NETアプリケーションを「Docker化」し、&lt;strong&gt;Splunk Distribution of OpenTelemetry .NET&lt;/strong&gt;で計装する方法。&lt;/li&gt;
+&lt;li&gt;Helmを使用してKubernetesクラスターに&lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt;をデプロイする方法。&lt;/li&gt;
+&lt;li&gt;コレクター設定をカスタマイズして問題をトラブルシューティングする方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;他の言語と環境でOpenTelemetryがどのように計装されるかを確認するには、
+&lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub リポジトリ &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+をご覧ください。&lt;/p&gt;</description></item></channel></rss>

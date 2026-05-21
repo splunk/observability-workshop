@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>1. The Online Boutique on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/</link><description>Recent content in 1. The Online Boutique on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/index.xml" rel="self" type="application/rss+xml"/><item><title>1.1 Validate APM data</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/validate-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/online-boutique/validate-apm/</guid><description>&lt;h2 id="1-red-metrics"&gt;
+ &lt;span class="heading-text"&gt;1. RED Metrics&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-red-metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Go to &lt;strong&gt;Dashboards → All Dashboards → APM Services → Service&lt;/strong&gt;. Here we can view the RED metrics (Rate, Error &amp;amp; Duration) for the Online Boutique application.&lt;/p&gt;
+&lt;p&gt;For this, we need to know the name of your application environment. In this workshop all the environments use: &lt;code&gt;&amp;lt;instance&amp;gt;-workshop&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To find the &lt;code&gt;instance&lt;/code&gt;, on the AWS/EC2 instance run the following command:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Echo Instance"&gt;Echo Instance&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Output Example"&gt;Output Example&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Echo Instance"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;-workshop&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Output Example"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bdzx-workshop&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Select the environment you found in the previous step then select the &lt;code&gt;frontend&lt;/code&gt; service and set the time to Past 15 minutes.&lt;/p&gt;</description></item></channel></rss>

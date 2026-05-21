@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Synthetics on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/</link><description>Recent content in Splunk Synthetics on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Syntheticsダッシュボード</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/</guid><description>&lt;p&gt;Splunk Observability Cloudのメインメニューから、&lt;strong&gt;Synthetics&lt;/strong&gt;をクリックします。&lt;strong&gt;All&lt;/strong&gt;または&lt;strong&gt;Browser tests&lt;/strong&gt;をクリックして、アクティブなテストのリストを表示します。&lt;/p&gt;</description></item><item><title>2. Syntheticsテスト詳細</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/</guid><description>&lt;p&gt;現在、単一のSynthetic Browserテストの結果を見ています。このテストは&lt;strong&gt;ビジネストランザクション&lt;/strong&gt;に分割されています。これは、ビジネス上重要なユーザーフローを表す、論理的に関連する1つ以上の操作のグループと考えてください。&lt;/p&gt;</description></item><item><title>3. SyntheticsからAPMへ</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/3-synthetics-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/3-synthetics-to-apm/</guid><description>&lt;p&gt;今、以下のような表示が見えているはずです。&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/run-results-place-order.png" alt="注文する" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;ウォーターフォールで&lt;strong&gt;POST checkout&lt;/strong&gt;で始まるエントリを見つけます。&lt;/li&gt;
+&lt;li&gt;その前にある &lt;strong&gt;&amp;gt;&lt;/strong&gt; ボタンをクリックして、メタデータセクションを展開します。収集されたメタデータを観察し、&lt;strong&gt;Server-Timing&lt;/strong&gt;ヘッダーに注目してください。このヘッダーにより、テスト実行をバックエンドトレースに関連付けることができます。&lt;/li&gt;
+&lt;li&gt;ウォーターフォールの&lt;strong&gt;POST checkout&lt;/strong&gt;行にある青い&lt;span class="inline-icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;strong&gt;APM&lt;/strong&gt;リンクをクリックします。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/apm-trace.png" alt="APMトレース" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>4. Synthetics Detector</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/4-synthetics-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/8-synthetics/4-synthetics-detector/</guid><description>&lt;p&gt;これらのテストを24時間365日実行できるため、テストが失敗したり、合意したSLAよりも長く実行され始めた場合に、ソーシャルメディアやアップタイムウェブサイトから通知される前に、早期に警告を受けるための理想的なツールです。&lt;/p&gt;</description></item></channel></rss>

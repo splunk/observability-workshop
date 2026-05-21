@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Log Observer Overview on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/</link><description>Recent content in Log Observer Overview on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Log Observer Home Page</title><link>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/1-log-observer-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/4-log-observer-home/1-log-observer-home/</guid><description>&lt;p&gt;Click &lt;strong&gt;Log Observer&lt;/strong&gt; in the main menu, the Log Observer Home Page is made up of 4 distinct sections:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/log-observer-main.png" alt="Lo Page" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane:&lt;/strong&gt; Training videos and links to documentation to get you started with Splunk Log Observer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Filter Bar:&lt;/strong&gt; Filter on time, indexes, and fields and also Save Queries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logs Table Pane:&lt;/strong&gt; List of log entries that match the current filter criteria.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fields Pane:&lt;/strong&gt; List of fields available in the currently selected index.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt; Splunk indexes&lt;/p&gt;</description></item></channel></rss>

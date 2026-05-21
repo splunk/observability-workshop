@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Phase 3: Kubernetes on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/</link><description>Recent content in Phase 3: Kubernetes on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Build and Load Images</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/1-build-and-load-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/1-build-and-load-images/</guid><description>&lt;h2 id="verify-your-cluster"&gt;
+ &lt;span class="heading-text"&gt;Verify Your Cluster&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#verify-your-cluster" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Your workshop instance has K3d pre-installed. Confirm it&amp;rsquo;s running:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs-0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs-0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="build-the-application-images"&gt;
+ &lt;span class="heading-text"&gt;Build the Application Images&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#build-the-application-images" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The K8s manifests reference locally-built images. Build them from the &lt;code&gt;02-obi-docker/&lt;/code&gt; source:&lt;/p&gt;</description></item><item><title>2. Deploy the Baseline</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/2-deploy-baseline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/2-deploy-baseline/</guid><description>&lt;h2 id="deploy-the-workshop-applications"&gt;
+ &lt;span class="heading-text"&gt;Deploy the Workshop Applications&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#deploy-the-workshop-applications" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The applications go into their own namespace:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/03-obi-k8s
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f namespace.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f apps.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f load-generator.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;namespace/obi-workshop created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/frontend created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/frontend created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/order-processor created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/order-processor created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/payment-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service/payment-service created
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;deployment.apps/load-generator created&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="install-the-splunk-otel-collector"&gt;
+ &lt;span class="heading-text"&gt;Install the Splunk OTel Collector&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#install-the-splunk-otel-collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ is the production way to deploy the collector to Kubernetes. It handles the collector deployment, service, and configuration automatically.&lt;/p&gt;</description></item><item><title>3. Enable OBI via Helm</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</guid><description>&lt;p&gt;Now add tracing to the entire cluster without changing any application code just one Helm upgrade.&lt;/p&gt;
+&lt;h2 id="upgrade-the-collector-with-obi-enabled"&gt;
+ &lt;span class="heading-text"&gt;Upgrade the Collector with OBI Enabled&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#upgrade-the-collector-with-obi-enabled" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm -n obi-workshop upgrade splunk-otel-collector &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; splunk-otel-collector-chart/splunk-otel-collector &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;splunkObservability.realm=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REALM&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;splunkObservability.accessToken=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;clusterName=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;INSTANCE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-k8s&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;environment=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;INSTANCE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-ebpf&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;obi.enabled=true&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That single &lt;code&gt;--set=&amp;quot;obi.enabled=true&amp;quot;&lt;/code&gt; is the only change. The Helm chart handles everything else:&lt;/p&gt;</description></item><item><title>4. How This Scales</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/4-how-this-scales/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/16-obi-ebpf/5-kubernetes/4-how-this-scales/</guid><description>&lt;h2 id="the-pattern-across-environments"&gt;
+ &lt;span class="heading-text"&gt;The Pattern Across Environments&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-pattern-across-environments" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In Phase 0 you ran a binary. In Phase 2 (Docker), you added one container. In Phase 3 (K8s), you ran one &lt;code&gt;helm upgrade&lt;/code&gt;. The pattern is the same:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Environment&lt;/th&gt;
+ &lt;th&gt;OBI Deployment&lt;/th&gt;
+ &lt;th&gt;What Changes&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Bare host&lt;/td&gt;
+ &lt;td&gt;Binary via &lt;code&gt;sudo&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Nothing: OBI watches processes from the kernel&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Docker Compose&lt;/td&gt;
+ &lt;td&gt;One container&lt;/td&gt;
+ &lt;td&gt;Add a service to &lt;code&gt;docker-compose.yaml&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Kubernetes&lt;/td&gt;
+ &lt;td&gt;Helm chart flag&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;helm upgrade&lt;/code&gt; with &lt;code&gt;--set=&amp;quot;obi.enabled=true&amp;quot;&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/zero-code-ebpf-instrumentation.md" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ is the production way to deploy both the collector and OBI. For even more automation, the &lt;a href="https://opentelemetry.io/docs/kubernetes/operator/" target="_blank" rel="noopener"&gt;OpenTelemetry Operator &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ can inject OBI as a sidecar automatically using annotations.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Detectors on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/</link><description>Recent content in Detectors on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/index.xml" rel="self" type="application/rss+xml"/><item><title>Test Detectors</title><link>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</guid><description>&lt;p&gt;Why would we want a &lt;a href="https://docs.splunk.com/observability/en/synthetics/test-config/synth-alerts.html" target="_blank" rel="noopener"&gt;detector on a single Synthetic test &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+? Some examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The endpoint, API transaction, or browser journey is highly critical&lt;/li&gt;
+&lt;li&gt;We have deployed code changes and want to know if the resulting KPI is or is not as we expect&lt;/li&gt;
+&lt;li&gt;We need to temporarily keep a close eye on a specific change we are testing and don&amp;rsquo;t want to create a lot of noise, and will disable the detector later&lt;/li&gt;
+&lt;li&gt;We want to know about unexpected issues before a real user encounters them&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;On the test overview page, click &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;Create Detector&lt;/span&gt;&lt;/button&gt; on the top right.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-16/5ff84106-52ac-4519-8835-999446227709/user_cropped_screenshot.jpeg?tl_px=1144,0&amp;amp;br_px=2864,961&amp;amp;force_format=png&amp;amp;width=1120.0&amp;amp;wat=1&amp;amp;wat_opacity=0.7&amp;amp;wat_gravity=northwest&amp;amp;wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&amp;amp;wat_pad=902,79" alt="create detector on a single synthetic test" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>RUM Detectors</title><link>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</guid><description>&lt;p&gt;Let&amp;rsquo;s say we want to know about an issue in production without waiting for a ticket from our support center. This is where &lt;a href="https://docs.splunk.com/observability/en/rum/rum-alerts.html" target="_blank" rel="noopener"&gt;creating detectors in RUM &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ will be helpful for us.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the RUM overview of our App. Scroll to the LCP chart, click the chart menu icon, and click Create Detector.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../_img/rum-lcp.png" alt="RUM LCP chart with action menu flyout" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Rename the detector to include your &lt;strong&gt;team name&lt;/strong&gt; and &lt;strong&gt;initials&lt;/strong&gt;, and change the scope of the detector to App so we are not limited to a single URL or page. Change the threshold and sensitivity until there is at least one alert event in the time frame.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../_img/rum-detector.png" alt="RUM alert details" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Chart Detectors</title><link>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/</guid><description>&lt;p&gt;With our custom dashboard charts, we can create detectors focussed directly on the data and conditions we care about. In building our charts, we also built signals that can trigger alerts.&lt;/p&gt;
+&lt;h2 id="static-detectors"&gt;
+ &lt;span class="heading-text"&gt;Static detectors&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#static-detectors" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;For many KPIs, we have a static value in mind as a threshold.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;In your custom End User Experience dashboard, go to the &amp;ldquo;LCP - all tests&amp;rdquo; chart.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click the bell icon on the top right of the chart, and select &amp;ldquo;New detector from chart&amp;rdquo;
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-17/2e7a0adf-f4f7-4183-b7e9-08bbe7350232/ascreenshot.jpeg?tl_px=1160,297&amp;amp;br_px=2880,1258&amp;amp;force_format=png&amp;amp;width=1120.0&amp;amp;wat=1&amp;amp;wat_opacity=0.7&amp;amp;wat_gravity=northwest&amp;amp;wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&amp;amp;wat_pad=886,277" alt="new detector from chart" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>

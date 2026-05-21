@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Working with Dashboards on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/</link><description>Recent content in Working with Dashboards on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/index.xml" rel="self" type="application/rss+xml"/><item><title>Editing charts</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/editing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/editing/</guid><description>&lt;h2 id="1-editing-a-chart"&gt;
+ &lt;span class="heading-text"&gt;1. Editing a chart&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-editing-a-chart" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Select the &lt;strong&gt;SAMPLE CHARTS&lt;/strong&gt; dashboard and then click on the three dots &lt;strong&gt;&lt;code&gt;...&lt;/code&gt;&lt;/strong&gt; on the &lt;strong&gt;Latency histogram&lt;/strong&gt; chart, then on &lt;strong&gt;Open&lt;/strong&gt; (or you can click on the name of the chart which here is &lt;strong&gt;Latency histogram&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/latency-histogram-open.png" alt="Sample Charts" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You will see the plot options, current plot and signal (metric) for the &lt;strong&gt;Latency histogram&lt;/strong&gt; chart in the chart editor UI.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/latency-histogram.png" alt="Latency Histogram" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In the &lt;strong&gt;Plot Editor&lt;/strong&gt; tab under &lt;strong&gt;Signal&lt;/strong&gt; you see the metric &lt;strong&gt;&lt;code&gt;demo.trans.latency&lt;/code&gt;&lt;/strong&gt; we are currently plotting.&lt;/p&gt;</description></item><item><title>Saving charts</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/savingcharts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/savingcharts/</guid><description>&lt;h2 id="1-saving-a-chart"&gt;
+ &lt;span class="heading-text"&gt;1. Saving a chart&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-saving-a-chart" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To start saving your chart, lets give it a name and description. Click the name of the chart &lt;strong&gt;Copy of Latency Histogram&lt;/strong&gt; and rename it to &lt;strong&gt;&amp;ldquo;Active Latency&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To change the description click on &lt;strong&gt;Spread of latency values across time.&lt;/strong&gt; and change this to &lt;strong&gt;Overview of latency values in real-time.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/save-chart.png" alt="Save Chart" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Click the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Save As&lt;/span&gt;&lt;/button&gt; button. Make sure your chart has a name, it will use the name &lt;strong&gt;Active Latency&lt;/strong&gt; the you defined in the previous step, but you can edit it here if needed.&lt;/p&gt;</description></item><item><title>3.3 Using Filters &amp; Formulas</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/filtering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/filtering/</guid><description>&lt;h2 id="1-creating-a-new-chart"&gt;
+ &lt;span class="heading-text"&gt;1 Creating a new chart&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-creating-a-new-chart" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s now create a new chart and save it in our dashboard!&lt;/p&gt;
+&lt;p&gt;Select the plus icon (top right of the UI) and from the drop down, choose the option &lt;strong&gt;Chart&lt;/strong&gt;.
+Or click on the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;&lt;ul&gt;
+&lt;li&gt;New Chart&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/span&gt;&lt;/button&gt; Button to create a new chart.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-Filter-0.png" alt="Create new chart" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You will now see a chart template like the following.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-Editing-6.png" alt="Empty Chart" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s enter a metric to plot. We are still going to use the metric &lt;strong&gt;&lt;code&gt;demo.trans.latency&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>3.4 SignalFlow</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/signalflow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/signalflow/</guid><description>&lt;h2 id="1-introduction"&gt;
+ &lt;span class="heading-text"&gt;1. Introduction&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s take a look at SignalFlow - the analytics language of Observability Cloud that can be used to setup monitoring as code.&lt;/p&gt;
+&lt;p&gt;The heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine that runs computations written in a Python-like language. SignalFlow programs accept streaming input and produce output in real time. SignalFlow provides built-in analytical functions that take metric time series (MTS) as input, perform computations, and output a resulting MTS.&lt;/p&gt;</description></item><item><title>Adding charts to dashboards</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/adding-charts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/adding-charts/</guid><description>&lt;h2 id="1-save-to-existing-dashboard"&gt;
+ &lt;span class="heading-text"&gt;1. Save to existing dashboard&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-save-to-existing-dashboard" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Check that you have &lt;strong&gt;YOUR_NAME-Dashboard: YOUR_NAME-Dashboard&lt;/strong&gt; in the top left corner. This means you chart will be saved in this Dashboard.&lt;/p&gt;
+&lt;p&gt;Name the Chart &lt;strong&gt;Latency History&lt;/strong&gt; and add a Chart Description if you wish.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-MoreCharts-1.png" alt="Save Chart 1" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Click on &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;Save And Close&lt;/span&gt;&lt;/button&gt;. This returns you to your dashboard that now has two charts!&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-MoreCharts-2.png" alt="Save Chart 2" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+
+Now let&amp;rsquo;s quickly add another Chart based on the previous one.&lt;/p&gt;</description></item><item><title>Adding Notes and Dashboard Layout</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</guid><description>&lt;h2 id="1-adding-notes"&gt;
+ &lt;span class="heading-text"&gt;1. Adding Notes&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-adding-notes" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Often on dashboards it makes sense to place a short &amp;ldquo;instruction&amp;rdquo; pane that helps users of a dashboard. Lets add one now by clicking on the &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;New Text Note&lt;/span&gt;&lt;/button&gt;
+Button.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-Notes-0.png" alt="three charts" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;This will open the notes editor.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/M-Notes-1.png" alt="Notes 1" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;To allow you to add more then just text to you notes, Splunk is allowing you to use Markdown in these notes/panes.
+Markdown is a lightweight markup language for creating formatted text using plain-text often used in Webpages.&lt;/p&gt;</description></item></channel></rss>

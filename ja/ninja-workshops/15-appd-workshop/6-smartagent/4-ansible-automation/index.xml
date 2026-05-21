@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart Agent と Ansible によるモニタリングのコード化 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/</link><description>Recent content in Smart Agent と Ansible によるモニタリングのコード化 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/index.xml" rel="self" type="application/rss+xml"/><item><title>セットアップと設定</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</guid><description>&lt;h2 id="ステップ2-ファイルとディレクトリ構成を準備する"&gt;
+ &lt;span class="heading-text"&gt;ステップ2: ファイルとディレクトリ構成を準備する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%b9%e3%83%86%e3%83%83%e3%83%972-%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%a8%e3%83%87%e3%82%a3%e3%83%ac%e3%82%af%e3%83%88%e3%83%aa%e6%a7%8b%e6%88%90%e3%82%92%e6%ba%96%e5%82%99%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Ansibleデプロイ用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります&lt;/p&gt;</description></item><item><title>デプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/</guid><description>&lt;h2 id="ステップ4-プレイブックを実行する"&gt;
+ &lt;span class="heading-text"&gt;ステップ4: プレイブックを実行する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%b9%e3%83%86%e3%83%83%e3%83%974-%e3%83%97%e3%83%ac%e3%82%a4%e3%83%96%e3%83%83%e3%82%af%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Smart Agentをデプロイするには、プロジェクトディレクトリから以下のコマンドを実行します&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ansible-playbook -i inventory-cloud.yaml smartagent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;インベントリファイルに別の名前を付けた場合は、&lt;code&gt;inventory-cloud.yaml&lt;/code&gt; を適切なファイル名に置き換えます。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Phase 0: Python ウォームアップ on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/</link><description>Recent content in Phase 0: Python ウォームアップ on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/index.xml" rel="self" type="application/rss+xml"/><item><title>1. アプリのインストールと実行</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/1-install-and-run/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/1-install-and-run/</guid><description>&lt;h2 id="python-環境のセットアップ"&gt;
+ &lt;span class="heading-text"&gt;Python 環境のセットアップ&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#python-%e7%92%b0%e5%a2%83%e3%81%ae%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Phase 0 ディレクトリに移動し、仮想環境を作成します&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/01-obi-python
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 -m venv .venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip3 install -r requirements.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Collecting flask&amp;gt;=3.0,&amp;lt;4.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Downloading ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Successfully installed flask-3.x.x ...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="splunk-認証情報の設定"&gt;
+ &lt;span class="heading-text"&gt;Splunk 認証情報の設定&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#splunk-%e8%aa%8d%e8%a8%bc%e6%83%85%e5%a0%b1%e3%81%ae%e8%a8%ad%e5%ae%9a" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;認証情報を環境変数としてエクスポートします。各プレースホルダーを実際の値に置き換えてください&lt;/p&gt;</description></item><item><title>2. OBI でインストルメントする</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/2-instrument-with-obi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/2-instrument-with-obi/</guid><description>&lt;p&gt;実行中のアプリに&lt;strong&gt;コードを一行も変更せずに&lt;/strong&gt; APM トレーシングを追加します。&lt;/p&gt;
+&lt;h2 id="obi-のダウンロード"&gt;
+ &lt;span class="heading-text"&gt;OBI のダウンロード&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#obi-%e3%81%ae%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases" target="_blank" rel="noopener"&gt;GitHub リリースページ &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+からビルド済みの OBI バイナリをダウンロードします。&lt;/p&gt;</description></item><item><title>3. Splunk APM で確認する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/3-verify-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/2-python-warmup/3-verify-in-splunk/</guid><description>&lt;h2 id="splunk-apm-を確認する"&gt;
+ &lt;span class="heading-text"&gt;Splunk APM を確認する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#splunk-apm-%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;Splunk Observability Cloud で &lt;strong&gt;APM&lt;/strong&gt; に移動します。&lt;/li&gt;
+&lt;li&gt;サービス名 &lt;code&gt;warmup-app&lt;/code&gt; でフィルタリングします。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/hello&lt;/code&gt; エンドポイントのトレースが表示されるはずです。
+&lt;strong&gt;注意: 最初のトレースが取り込まれるまで数分かかる場合があります&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id="何が起きたのか"&gt;
+ &lt;span class="heading-text"&gt;何が起きたのか？&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e4%bd%95%e3%81%8c%e8%b5%b7%e3%81%8d%e3%81%9f%e3%81%ae%e3%81%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Flask アプリは「素のまま」で、オブザーバビリティのコードは一切含まれていません。hello を返すことと heartbeat メトリクスを送信することしかできません。&lt;/li&gt;
+&lt;li&gt;OBI はカーネルのネットワークスタックに eBPF プローブをアタッチし、アプリのプロセスを流れる HTTP トラフィックを観測しました。&lt;/li&gt;
+&lt;li&gt;OBI は OpenTelemetry 互換のトレーススパンを生成し、Splunk に直接送信しました。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;SDK なし、コード変更なし、再起動なしで、カーネルから実行中のプロセスに分散トレーシングを追加しました。&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

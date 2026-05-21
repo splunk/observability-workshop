@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Advanced OpenTelemetry Collector on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/</link><description>Recent content in Advanced OpenTelemetry Collector on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/index.xml" rel="self" type="application/rss+xml"/><item><title>前提条件</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/prerequisites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/prerequisites/</guid><description>&lt;h3 id="前提条件"&gt;
+ &lt;span class="heading-text"&gt;前提条件&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vi&lt;/code&gt;、&lt;code&gt;vim&lt;/code&gt;、&lt;code&gt;nano&lt;/code&gt;、またはお好みのテキストエディタを使用して YAML ファイルを編集するスキル&lt;/li&gt;
+&lt;li&gt;サポートされている環境
+&lt;ul&gt;
+&lt;li&gt;提供される Splunk Workshop インスタンス（推奨）。&lt;code&gt;ssh&lt;/code&gt; アクセス用にポート &lt;code&gt;2222&lt;/code&gt; への外部アクセスが必要です。&lt;/li&gt;
+&lt;li&gt;Apple Mac（Apple Silicon）。&lt;code&gt;jq&lt;/code&gt; のインストールが必要です - &lt;a href="https://jqlang.org/download/" target="_blank" rel="noopener"&gt;&lt;strong&gt;https://jqlang.org/download/&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item></channel></rss>

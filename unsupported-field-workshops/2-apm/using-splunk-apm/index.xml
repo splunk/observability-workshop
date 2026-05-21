@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2. Using Splunk APM on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/</link><description>Recent content in 2. Using Splunk APM on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/index.xml" rel="self" type="application/rss+xml"/><item><title>2.1 Service Map</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/</guid><description>&lt;h2 id="service-map"&gt;
+ &lt;span class="heading-text"&gt;Service Map&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#service-map" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Click on &lt;strong&gt;paymentservice&lt;/strong&gt; in the service map and select &lt;strong&gt;version&lt;/strong&gt; from the &lt;code&gt;breakdown&lt;/code&gt; drop down filter underneath &lt;strong&gt;paymentservice&lt;/strong&gt;. This will filter our service map by the custom span tag &lt;strong&gt;version&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;You will now see the service map has been updated like the below screenshot to show the different versions of the &lt;strong&gt;paymentservice&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Splunk Observability shows that not only is paymentservice experiencing errors (you can see request rate vs error rate) but that this service is the root cause.&lt;/p&gt;</description></item><item><title>2.2 Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/tag_spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/tag_spotlight/</guid><description>&lt;h2 id="tag-spotlight"&gt;
+ &lt;span class="heading-text"&gt;Tag Spotlight&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#tag-spotlight" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;On the right hand side of the screen scroll down on &lt;strong&gt;Tag Spotlight&lt;/strong&gt;, ensure &lt;strong&gt;Top Across All Indexed Tags&lt;/strong&gt; is selected in the dropdown click the full screen button as indicated in the screenshot below.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/tag-spotlight.png" alt="Tag Spotlight" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;The Tag Spotlight Page will be displayed. From this page you can view the top tags in your application and their corresponding error rates and request rates.&lt;/p&gt;
+&lt;p&gt;Note that for the &lt;strong&gt;version&lt;/strong&gt; span tag it appears that version &lt;code&gt;350.10&lt;/code&gt; has a 100% error rate and for our &lt;strong&gt;tenant.level&lt;/strong&gt; span tag it shows that all three tenants (Gold, Silver &amp;amp; Bronze) have errors present.&lt;/p&gt;</description></item><item><title>2.3 Example trace</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/example_trace/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/2-apm/using-splunk-apm/example_trace/</guid><description>&lt;h2 id="example-trace"&gt;
+ &lt;span class="heading-text"&gt;Example Trace&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#example-trace" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/example-trace.png" alt="Example Trace" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You should now see the entire trace along with the spans for the example trace that was selected. Spans which have errors are indicated by a red exclamation mark beside it. If you have a number such as &lt;strong&gt;x6&lt;/strong&gt; in a grey box, click it to expand the compacted &lt;code&gt;paymentservice&lt;/code&gt; spans.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/trace-span.png" alt="Example Trace" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Now click one of the &lt;code&gt;paymentservice&lt;/code&gt; spans with the red exclamation mark to expand it and see the associated metadata and some error details. Note that we are able to see that this error is caused by a 401 error and other useful information such as ‘tenant’ and ‘version’ is also displayed.&lt;/p&gt;</description></item></channel></rss>

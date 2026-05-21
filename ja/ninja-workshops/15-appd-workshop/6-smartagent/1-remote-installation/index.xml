@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>リモートインストール on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/</link><description>Recent content in リモートインストール on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/index.xml" rel="self" type="application/rss+xml"/><item><title>1. 前提条件</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/1-prerequisites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/1-prerequisites/</guid><description>&lt;p&gt;リモートホストにSmart Agentをインストールする前に、以下の前提条件が満たされていることを確認してください&lt;/p&gt;
+&lt;h2 id="必要なアクセス"&gt;
+ &lt;span class="heading-text"&gt;必要なアクセス&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%bf%85%e8%a6%81%e3%81%aa%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SSH アクセス&lt;/strong&gt;：Smart Agentをインストールする予定のすべてのリモートホストへのSSHアクセスが必要です&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SSH 秘密鍵&lt;/strong&gt;：認証用に構成されたSSH秘密鍵&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sudo 権限&lt;/strong&gt;：Control Nodeユーザーはsmartagentctlを実行するためにsudo権限が必要です&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;リモート SSH&lt;/strong&gt;：リモートホストでSSHが有効になっており、アクセス可能である必要があります&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ディレクトリ構造"&gt;
+ &lt;span class="heading-text"&gt;ディレクトリ構造&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%83%87%e3%82%a3%e3%83%ac%e3%82%af%e3%83%88%e3%83%aa%e6%a7%8b%e9%80%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Smart Agentのインストールディレクトリは、Control Nodeに設定されている必要があります&lt;/p&gt;</description></item><item><title>2. 構成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/2-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/2-configuration/</guid><description>&lt;p&gt;Smart Agentのリモートインストールには、2つの主要な構成ファイルが必要です：Smart Agent設定用の &lt;code&gt;config.ini&lt;/code&gt; と、リモートホストと接続パラメータを定義する &lt;code&gt;remote.yaml&lt;/code&gt; です。&lt;/p&gt;</description></item><item><title>3. インストールと起動</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/3-installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/3-installation/</guid><description>&lt;p&gt;設定ファイルの準備ができたら、&lt;code&gt;smartagentctl&lt;/code&gt; コマンドラインツールを使用してリモートホストにSmart Agentをインストールし、起動できます。&lt;/p&gt;</description></item><item><title>4. トラブルシューティング</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/4-troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/15-appd-workshop/6-smartagent/1-remote-installation/4-troubleshooting/</guid><description>&lt;p&gt;このセクションでは、Smart Agentをリモートホストにデプロイする際に発生する一般的な問題とその解決方法について説明します。&lt;/p&gt;
+&lt;h2 id="ssh接続の問題"&gt;
+ &lt;span class="heading-text"&gt;SSH接続の問題&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#ssh%e6%8e%a5%e7%b6%9a%e3%81%ae%e5%95%8f%e9%a1%8c" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="問題-リモートホストに接続できない"&gt;
+ &lt;span class="heading-text"&gt;問題: リモートホストに接続できない&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%95%8f%e9%a1%8c-%e3%83%aa%e3%83%a2%e3%83%bc%e3%83%88%e3%83%9b%e3%82%b9%e3%83%88%e3%81%ab%e6%8e%a5%e7%b6%9a%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%84" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;症状:&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

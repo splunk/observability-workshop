@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APM Features on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/</link><description>Recent content in APM Features on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/index.xml" rel="self" type="application/rss+xml"/><item><title>APM Service Map</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/</guid><description>&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/zero-config-first-services-map.png" alt="apm map" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;The above map shows all the interactions between all the services. The map may still be in an interim state as it will take the PetClinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of &lt;strong&gt;2 minutes&lt;/strong&gt; by entering &lt;strong&gt;-2m&lt;/strong&gt; will help. You can click on the &lt;strong&gt;Refresh&lt;/strong&gt; button &lt;strong&gt;(1)&lt;/strong&gt; in the top right-hand corner of the screen. The initial startup-related errors indicated by red circles will eventually disappear.&lt;/p&gt;</description></item><item><title>APM Trace</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/</guid><description>&lt;p&gt;To pick a trace, select a line in the &lt;code&gt;Service Requests &amp;amp; Errors&lt;/code&gt; chart &lt;strong&gt;(1)&lt;/strong&gt;. A selection of related traces will appear.&lt;/p&gt;
+&lt;p&gt;Once you have the list of related traces, click on the blue &lt;strong&gt;(2)&lt;/strong&gt; Trace ID Link, making sure the trace you select has the same three services mentioned in the Services Column.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/selecting-a-trace.png" alt="workflow-trace-pick" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;This brings us to the selected Trace in the Waterfall view:&lt;/p&gt;
+&lt;p&gt;Here we find several sections:&lt;/p&gt;</description></item><item><title>APM Span</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/</guid><description>&lt;p&gt;While we examine our spans, let&amp;rsquo;s look at several out-of-the-box features that you get &lt;strong&gt;without code modifications&lt;/strong&gt; when using &lt;strong&gt;automatic discovery and configuration&lt;/strong&gt; on top of tracing:&lt;/p&gt;
+&lt;p&gt;First, in the Waterfall Pane, make sure the &lt;code&gt;customers-service:SELECT petclinic&lt;/code&gt; or similar span is selected as shown in the screenshot below:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/db-query.png" alt="DB-query" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The basic latency information is shown as a bar for the instrumented function or call. In our example above, it took 17.8 Milliseconds.&lt;/li&gt;
+&lt;li&gt;Several similar Spans &lt;strong&gt;(1)&lt;/strong&gt; are only visible if the span is repeated multiple times. In this case, there are 10 repeats in our example. You can show/hide them all by clicking on the &lt;code&gt;10x&lt;/code&gt; and all spans will show in order.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inferred Services&lt;/strong&gt;: Calls made to external systems that are not instrumented show up as a grey &amp;lsquo;inferred&amp;rsquo; span. The Inferred Service or span in our example is a call to the Mysql Database &lt;code&gt;mysql:petclinic SELECT petclinic&lt;/code&gt; &lt;strong&gt;(2)&lt;/strong&gt; as shown above.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Span Tags&lt;/strong&gt;: In the Tag Pane, we see standard tags produced by the automatic discovery and configuration. In this case, the span is calling a Database, so it includes the &lt;code&gt;db.statement&lt;/code&gt; tag &lt;strong&gt;(3)&lt;/strong&gt;. This tag will hold the DB query statement and is used by the Database call performed during this span. This will be used by the DB-Query Performance feature. We look at DB-Query Performance in the next section.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Always-on Profiling&lt;/strong&gt;: &lt;strong&gt;IF&lt;/strong&gt; the system is configured to capture Profiling data during a Span life cycle. It will show the number of Call Stacks captured in the Spans timeline. In our example above, we see 18 Call Stacks for the &lt;code&gt;customer-service:GET /owners&lt;/code&gt; Span. &lt;strong&gt;(4)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will look at Profiling in the next section.&lt;/p&gt;</description></item><item><title>Service Centric View</title><link>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/</guid><description>&lt;p&gt;Splunk APM provide &lt;strong&gt;Service Centric Views&lt;/strong&gt; that provide engineers a deep understanding of service performance in one centralized view. Now, across every service, engineers can quickly identify errors or bottlenecks from a service’s underlying infrastructure, pinpoint performance degradation from new deployments, and visualize the health of every third party dependency.&lt;/p&gt;
+&lt;p&gt;To see this dashboard for the &lt;code&gt;api-gateway&lt;/code&gt;, click on &lt;strong&gt;APM&lt;/strong&gt; from the left-hand menu and then click on the &lt;code&gt;api-gateway&lt;/code&gt; service in the list. This will bring you to the Service Centric View dashboard:&lt;/p&gt;</description></item></channel></rss>

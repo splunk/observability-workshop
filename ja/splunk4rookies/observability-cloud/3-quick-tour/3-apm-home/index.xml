@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Application Performance Monitoring概要 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/</link><description>Recent content in Application Performance Monitoring概要 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Application Performance Monitoring ホームページ</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/1-apm-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/3-quick-tour/3-apm-home/1-apm-home/</guid><description>&lt;p&gt;メインメニューの&lt;strong&gt;APM&lt;/strong&gt;をクリックすると、APMホームページが表示されます。APMホームページは3つの明確なセクションで構成されています&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/apm-main.png" alt="APMページ" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;オンボーディングペイン:&lt;/strong&gt; Splunk APMの使用を開始するためのトレーニングビデオとドキュメントへのリンク。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;APM 概要ペイン:&lt;/strong&gt; トップサービスとトップビジネスワークフローのリアルタイムメトリクス。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;機能ペイン:&lt;/strong&gt; サービス、タグ、トレース、データベースクエリパフォーマンス、コードプロファイリングの詳細分析へのリンク。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;APM 概要&lt;/strong&gt;ペインは、アプリケーションの健全性の高レベルの概要を提供します。これにはアプリケーション内のサービス、レイテンシー、エラーの概要が含まれます。また、エラー率別のトップサービスとエラー率別のトップビジネスワークフローのリストも含まれています（ビジネスワークフローは、特定のアクティビティやトランザクションに関連するトレースコレクションの開始から終了までの旅程であり、エンドツーエンドのKPIの監視やルート原因とボトルネックの特定を可能にします）。&lt;/p&gt;</description></item></channel></rss>

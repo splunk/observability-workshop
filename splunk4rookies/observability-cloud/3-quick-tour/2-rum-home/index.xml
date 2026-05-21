@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Real User Monitoring Overview on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/</link><description>Recent content in Real User Monitoring Overview on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Real User Monitoring Home Page</title><link>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/</guid><description>&lt;p&gt;Click &lt;strong&gt;RUM&lt;/strong&gt; in the main menu, this will bring you to the main RUM Home or Landing page. The main concept of this page is to provide you at a glance, the overall status of all selected RUM applications, either in a full dashboard or the compact view.&lt;/p&gt;
+&lt;p&gt;Independent of the type of Status Dashboard used, the RUM Home Page is made up of 3 distinct sections:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-main.png" alt="RUM Page" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane:&lt;/strong&gt; Training videos and links to documentation to get you started with Splunk RUM. (You can hide this pane in case you need the screen real estate).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Filter Pane:&lt;/strong&gt; Filter on the time frame, environment, application and source type.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Application Summary Pane:&lt;/strong&gt; Summary of all your applications that send RUM data.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;RUM Environments &amp;amp; Application and Source Type&lt;/p&gt;</description></item></channel></rss>

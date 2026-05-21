@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Service Bureau on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/</link><description>Recent content in Service Bureau on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/index.xml" rel="self" type="application/rss+xml"/><item><title>Teams</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/teams/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/teams/</guid><description>&lt;ul&gt;
+&lt;li&gt;Introduction to Teams&lt;/li&gt;
+&lt;li&gt;Create a Team and add members to the Team&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="1-introduction-to-teams"&gt;
+ &lt;span class="heading-text"&gt;1. Introduction to Teams&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-introduction-to-teams" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To make sure that users see the dashboards and alerts that are relevant to them when using Observability Cloud, most organizations will use Observability Cloud&amp;rsquo;s Teams feature to assign a member to one or more Teams.&lt;/p&gt;
+&lt;p&gt;Ideally, this matches work-related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in Observability Cloud.&lt;/p&gt;</description></item><item><title>Controlling Usage</title><link>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/tokens/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/unsupported-field-workshops/1-imt/servicebureau/tokens/</guid><description>&lt;ul&gt;
+&lt;li&gt;Discover how you can restrict usage by creating separate Access Tokens and setting limits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="1-access-tokens"&gt;
+ &lt;span class="heading-text"&gt;1. Access Tokens&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-access-tokens" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.&lt;/p&gt;
+&lt;p&gt;In the UI click on the &lt;strong&gt;&amp;raquo;&lt;/strong&gt; bottom left and select the &lt;strong&gt;Settings → Access Tokens&lt;/strong&gt; under &lt;strong&gt;General Settings&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>

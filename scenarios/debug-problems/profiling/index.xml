@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Profiling Workshop on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/</link><description>Recent content in Profiling Workshop on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/index.xml" rel="self" type="application/rss+xml"/><item><title>Build the Sample Application</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/1-build-application/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/1-build-application/</guid><description>&lt;h2 id="introduction"&gt;
+ &lt;span class="heading-text"&gt;Introduction&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;For this workshop, we&amp;rsquo;ll be using a Java-based application called &lt;code&gt;The Door Game&lt;/code&gt;. It will be hosted in Kubernetes.&lt;/p&gt;
+&lt;h2 id="pre-requisites"&gt;
+ &lt;span class="heading-text"&gt;Pre-requisites&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#pre-requisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You will start with an EC2 instance and perform some &lt;a href="#initial-steps"&gt;initial steps&lt;/a&gt;
+ in order to get to the following state:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Deploy the &lt;strong&gt;Splunk distribution of the OpenTelemetry Collector&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Deploy the MySQL database container and populate data&lt;/li&gt;
+&lt;li&gt;Build and deploy the &lt;code&gt;doorgame&lt;/code&gt; application container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="initial-steps"&gt;
+ &lt;span class="heading-text"&gt;Initial Steps&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#initial-steps" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The initial setup can be completed by executing the following steps on the command line of your EC2 instance.&lt;/p&gt;</description></item><item><title>Troubleshoot Game Startup</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/2-troubleshoot-game-startup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/2-troubleshoot-game-startup/</guid><description>&lt;p&gt;Let&amp;rsquo;s use &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; to determine why the game started so slowly.&lt;/p&gt;
+&lt;h2 id="view-your-application-in-splunk-observability-cloud"&gt;
+ &lt;span class="heading-text"&gt;View your application in Splunk Observability Cloud&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#view-your-application-in-splunk-observability-cloud" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Note: when the application is deployed for the first time, it may take a few minutes for the data to appear.&lt;/p&gt;
+&lt;p&gt;Navigate to &lt;strong&gt;APM&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Overview&lt;/strong&gt;, then use the &lt;strong&gt;Environment&lt;/strong&gt; dropdown to select your environment (i.e. &lt;code&gt;profiling-workshop-name&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;If everything was deployed correctly, you should see &lt;code&gt;doorgame&lt;/code&gt; displayed in the list of services:&lt;/p&gt;</description></item><item><title>Enable AlwaysOn Profiling</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/3-enable-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/3-enable-profiling/</guid><description>&lt;p&gt;Let&amp;rsquo;s learn how to enable the memory and CPU profilers, verify their operation,
+and use the results in Splunk Observability Cloud to find out why our application startup is slow.&lt;/p&gt;
+&lt;h3 id="update-the-application-configuration"&gt;
+ &lt;span class="heading-text"&gt;Update the application configuration&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#update-the-application-configuration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;We will need to pass additional configuration arguments to the Splunk OpenTelemetry Java agent in order to
+enable both profilers. The configuration is &lt;a href="https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/instrumentation/instrument-java-application.html#activate-alwayson-profiling" target="_blank" rel="noopener"&gt;documented here &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+
+in detail, but for now we just need the following settings:&lt;/p&gt;</description></item><item><title>Fix Application Startup Slowness</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/4-fix-app-startup-slowness/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/4-fix-app-startup-slowness/</guid><description>&lt;p&gt;In this section, we&amp;rsquo;ll use what we learned from the profiling data in &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; to resolve the slowness we saw when starting our application.&lt;/p&gt;
+&lt;h3 id="examining-the-source-code"&gt;
+ &lt;span class="heading-text"&gt;Examining the Source Code&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#examining-the-source-code" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Open the corresponding source file once again (&lt;code&gt;~/workshop/profiling/doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java&lt;/code&gt;) and focus on the following code:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;public class UserData {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; static final String DB_URL = &amp;#34;jdbc:mysql://mysql/DoorGameDB&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; static final String USER = &amp;#34;root&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; static final String PASS = System.getenv(&amp;#34;MYSQL_ROOT_PASSWORD&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; static final String SELECT_QUERY = &amp;#34;select * FROM DoorGameDB.Users, DoorGameDB.Organizations&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; HashMap&amp;lt;String, User&amp;gt; users;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; public UserData() {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; users = new HashMap&amp;lt;String, User&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; public void loadUserData() {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; // Load user data from the database and store it in a map
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Connection conn = null;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Statement stmt = null;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ResultSet rs = null;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; try{
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; conn = DriverManager.getConnection(DB_URL, USER, PASS);
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; stmt = conn.createStatement();
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; rs = stmt.executeQuery(SELECT_QUERY);
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; while (rs.next()) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; User user = new User(rs.getString(&amp;#34;UserId&amp;#34;), rs.getString(&amp;#34;FirstName&amp;#34;), rs.getString(&amp;#34;LastName&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; users.put(rs.getString(&amp;#34;UserId&amp;#34;), user);
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; }&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After speaking with a database engineer, you discover that the SQL query being executed includes a cartesian join:&lt;/p&gt;</description></item><item><title>Fix In Game Slowness</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/5-fix-ingame-slowness/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/5-fix-ingame-slowness/</guid><description>&lt;p&gt;Now that our game startup slowness has been resolved, let&amp;rsquo;s play several rounds of the Door Game and ensure the rest of the game performs quickly.&lt;/p&gt;
+&lt;p&gt;As you play the game, do you notice any other slowness? Let&amp;rsquo;s look at the data in &lt;strong&gt;Splunk Observability&lt;/strong&gt; Cloud to put some numbers on what we&amp;rsquo;re seeing.&lt;/p&gt;
+&lt;h3 id="review-game-performance-in-splunk-observability-cloud"&gt;
+ &lt;span class="heading-text"&gt;Review Game Performance in Splunk Observability Cloud&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#review-game-performance-in-splunk-observability-cloud" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Navigate to APM then click on Traces on the right-hand side of the screen. Sort the traces by Duration in descending order:&lt;/p&gt;</description></item><item><title>Summary</title><link>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/6-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/scenarios/debug-problems/profiling/6-summary/</guid><description>&lt;p&gt;In this workshop, we accomplished the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We deployed our application and captured traces with &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;We used &lt;strong&gt;Database Query Performance&lt;/strong&gt; to find a slow-running query that impacted the game startup time.&lt;/li&gt;
+&lt;li&gt;We enabled &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and used it to confirm which line of code was causing the increased startup time and memory usage.&lt;/li&gt;
+&lt;li&gt;We found another application performance issue and used &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; again to find the problematic line of code.&lt;/li&gt;
+&lt;li&gt;We applied fixes for both of these issues and verified the result using &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Enabling &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and utilizing &lt;strong&gt;Database Query Performance&lt;/strong&gt; for your applications will let you get even more value from the data you’re sending to &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>

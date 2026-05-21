@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ITSI でのサービスの作成 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/</link><description>Recent content in ITSI でのサービスの作成 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/index.xml" rel="self" type="application/rss+xml"/><item><title>O11y ベースのサービスの作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/1-creating-o11y-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/1-creating-o11y-service/</guid><description>&lt;h1 id="observability-cloud-ベースのサービスから始める"&gt;
+ &lt;span class="heading-text"&gt;Observability Cloud ベースのサービスから始める&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#observability-cloud-%e3%83%99%e3%83%bc%e3%82%b9%e3%81%ae%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%81%8b%e3%82%89%e5%a7%8b%e3%82%81%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Services にアクセス:&lt;/strong&gt; ITSIで &lt;strong&gt;Configuration&lt;/strong&gt; をクリックし、&lt;strong&gt;Services&lt;/strong&gt; をクリックします。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;新しいサービスを作成: PaymentService2:&lt;/strong&gt; &lt;strong&gt;Create New Service&lt;/strong&gt; をクリックします。&lt;/p&gt;</description></item><item><title>AppD ベースのサービスの作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/2-creating-appd-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/12-alerting-monitoring-with-itsi/3-creating-services-in-itsi/2-creating-appd-service/</guid><description>&lt;h1 id="appdynamics-ベースのサービスから始める"&gt;
+ &lt;span class="heading-text"&gt;AppDynamics ベースのサービスから始める&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#appdynamics-%e3%83%99%e3%83%bc%e3%82%b9%e3%81%ae%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%81%8b%e3%82%89%e5%a7%8b%e3%82%81%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Services にアクセス:&lt;/strong&gt; ITSIで &lt;strong&gt;Configuration&lt;/strong&gt; をクリックし、&lt;strong&gt;Services&lt;/strong&gt; をクリックします。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;サービスを作成: AD-Ecommerce2:&lt;/strong&gt; &lt;strong&gt;Create Service -&amp;gt; Create Service&lt;/strong&gt; をクリックします。&lt;/p&gt;</description></item></channel></rss>

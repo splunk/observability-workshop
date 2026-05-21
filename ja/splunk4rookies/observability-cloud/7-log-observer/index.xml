@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Log Observer on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/</link><description>Recent content in Splunk Log Observer on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/index.xml" rel="self" type="application/rss+xml"/><item><title>1. ログフィルタリング</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/</guid><description>&lt;p&gt;&lt;strong&gt;Log Observer (LO)&lt;strong&gt;は、複数の方法で使用できます。クイックツアーでは、LO の&lt;/strong&gt;コード不要インターフェース&lt;/strong&gt;を使用して、ログ内の特定のエントリを検索しました。しかし、このセクションでは、&lt;strong&gt;関連コンテンツ&lt;/strong&gt;リンクを使用してAPMのトレースからLOに到達したと想定しています。&lt;/p&gt;</description></item><item><title>2. ログエントリの表示</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/2-log-entry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/2-log-entry/</guid><description>&lt;p&gt;特定のログ行を見る前に、これまでに行ったことと、可観測性の3本柱に基づいてなぜここにいるのかを簡単に振り返ってみましょう&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;メトリクス&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;トレース&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;ログ&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題がありますか？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題はどこですか？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題は何ですか？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;メトリクスを使用して、アプリケーションに&lt;strong&gt;問題がある&lt;/strong&gt;ことを特定しました。これはサービスダッシュボードのエラー率が、あるべき値よりも高かったことから明らかでした。&lt;/li&gt;
+&lt;li&gt;トレースとスパンタグを使用して、&lt;strong&gt;問題がどこにあるか&lt;/strong&gt;を見つけました。&lt;strong&gt;paymentservice&lt;/strong&gt;には &lt;code&gt;v350.9&lt;/code&gt; と &lt;code&gt;v350.10&lt;/code&gt; の2つのバージョンがあり、&lt;code&gt;v350.10&lt;/code&gt; のエラー率は &lt;strong&gt;100%&lt;/strong&gt; でした。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;paymentservice&lt;/strong&gt;の &lt;code&gt;v350.10&lt;/code&gt; からのこのエラーが、複数の再試行とオンラインブティックのチェックアウトからの応答の長い遅延を引き起こしたことを確認しました。&lt;/li&gt;
+&lt;li&gt;トレースから、&lt;strong&gt;関連コンテンツ&lt;/strong&gt;の力を使用して、失敗した&lt;strong&gt;paymentservice&lt;/strong&gt;バージョンのログエントリに到達しました。これで、&lt;strong&gt;問題が何であるか&lt;/strong&gt;を特定できます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;</description></item><item><title>3. ログタイムラインチャート</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/3-log-timeline-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/3-log-timeline-chart/</guid><description>&lt;p&gt;Log Observerで特定のビューを持った後、そのビューをダッシュボードで使用できると、将来的に問題の検出や解決にかかる時間を短縮するのに非常に役立ちます。ワークショップの一環として、これらのチャートを使用する例示的なカスタムダッシュボードを作成します。&lt;/p&gt;</description></item><item><title>4. ログビューチャート</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/4-log-view-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/observability-cloud/7-log-observer/4-log-view-chart/</guid><description>&lt;p&gt;ログで使用できる次のチャートタイプは&lt;strong&gt;ログビュー&lt;/strong&gt;チャートタイプです。このチャートでは、事前定義されたフィルターに基づいてログメッセージを確認できます。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>リソース on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/resources/</link><description>Recent content in リソース on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/resources/index.xml" rel="self" type="application/rss+xml"/><item><title>よくある質問とその回答</title><link>https://splunk.github.io/observability-workshop/ja/resources/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/resources/faq/</guid><description>&lt;p&gt;オブザーバビリティ、DevOps、インシデント対応、Splunk On-Callに関連する一般的な質問とその回答を集めました。&lt;/p&gt;
+&lt;h2 id="q-アラートとインシデント対応インシデント管理の違いは"&gt;
+ &lt;span class="heading-text"&gt;Q: アラートとインシデント対応、インシデント管理の違いは？&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#q-%e3%82%a2%e3%83%a9%e3%83%bc%e3%83%88%e3%81%a8%e3%82%a4%e3%83%b3%e3%82%b7%e3%83%87%e3%83%b3%e3%83%88%e5%af%be%e5%bf%9c%e3%82%a4%e3%83%b3%e3%82%b7%e3%83%87%e3%83%b3%e3%83%88%e7%ae%a1%e7%90%86%e3%81%ae%e9%81%95%e3%81%84%e3%81%af" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;A: アラート、インシデント対応、インシデント管理は関連する機能です。これらは一緒にインシデント対応および解決プロセスを構成します。&lt;/p&gt;</description></item><item><title>ディメンション、プロパティ、タグ</title><link>https://splunk.github.io/observability-workshop/ja/resources/dimensions_properties_tags/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/resources/dimensions_properties_tags/</guid><description>&lt;h2 id="メトリクスにコンテキストを与える"&gt;
+ &lt;span class="heading-text"&gt;メトリクスにコンテキストを与える&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%83%a1%e3%83%88%e3%83%aa%e3%82%af%e3%82%b9%e3%81%ab%e3%82%b3%e3%83%b3%e3%83%86%e3%82%ad%e3%82%b9%e3%83%88%e3%82%92%e4%b8%8e%e3%81%88%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ディメンションとプロパティの違いや、どちらを使うべきかというのは、よく話題にされます。それぞれの説明から始めるのではなく、私たちがどのように使い、どのように似ているのかを理解してから、それぞれの違いや、なぜどちらかを使うのかの例を見ていくことにしましょう。&lt;/p&gt;</description></item><item><title>OpenTelemetryとSplunkにおける、タグ付けのための命名規則</title><link>https://splunk.github.io/observability-workshop/ja/resources/otel_tagging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/resources/otel_tagging/</guid><description>&lt;h2 id="はじめに"&gt;
+ &lt;span class="heading-text"&gt;はじめに&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%81%af%e3%81%98%e3%82%81%e3%81%ab" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;大規模な組織でOpenTelemetryを展開する際には、タグ付けのための標準化された命名規則を定義し、その規則が遵守されるようにガバナンスプロセスを設定することが非常に重要です。&lt;/p&gt;</description></item></channel></rss>

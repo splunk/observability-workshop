@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API Test on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/</link><description>Recent content in API Test on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/index.xml" rel="self" type="application/rss+xml"/><item><title>Global Variables</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/</guid><description>&lt;h2 id="global-variables"&gt;
+ &lt;span class="heading-text"&gt;Global Variables&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#global-variables" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;APIテストを実行するために使用するグローバル変数を確認します。歯車アイコンの下にある &lt;strong&gt;Global Variables&lt;/strong&gt; をクリックします。&lt;code&gt;env.encoded_auth&lt;/code&gt; という名前のグローバル変数を使用して、Spotify APIトランザクションを構築します。&lt;/p&gt;</description></item><item><title>新しい API テストの作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/</guid><description>&lt;h2 id="新しい-api-テストを作成"&gt;
+ &lt;span class="heading-text"&gt;新しい API テストを作成&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e6%96%b0%e3%81%97%e3%81%84-api-%e3%83%86%e3%82%b9%e3%83%88%e3%82%92%e4%bd%9c%e6%88%90" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Add new test&lt;/span&gt;&lt;/button&gt; ボタンをクリックし、ドロップダウンから &lt;strong&gt;API test&lt;/strong&gt; を選択して新しいAPIテストを作成します。テスト名には &lt;strong&gt;イニシャル&lt;/strong&gt; に続けて &lt;strong&gt;Spotify API&lt;/strong&gt; と入力します（例: &lt;strong&gt;RWC - Spotify API&lt;/strong&gt;）。&lt;/p&gt;</description></item><item><title>認証リクエスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/</guid><description>&lt;h2 id="認証リクエストの追加"&gt;
+ &lt;span class="heading-text"&gt;認証リクエストの追加&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e8%aa%8d%e8%a8%bc%e3%83%aa%e3%82%af%e3%82%a8%e3%82%b9%e3%83%88%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;ul&gt;
+&lt;li&gt;Add requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/span&gt;&lt;/button&gt; をクリックし、リクエストステップ名を入力します（例: &lt;strong&gt;Authenticate with Spotify API&lt;/strong&gt;）。&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../img/add-request.png" alt="placeholder" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Requestセクションを展開し、ドロップダウンからリクエストメソッドを &lt;strong&gt;POST&lt;/strong&gt; に変更して、以下のURLを入力します:&lt;/p&gt;</description></item><item><title>検索リクエスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/</guid><description>&lt;h2 id="検索リクエストの追加"&gt;
+ &lt;span class="heading-text"&gt;検索リクエストの追加&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e6%a4%9c%e7%b4%a2%e3%83%aa%e3%82%af%e3%82%a8%e3%82%b9%e3%83%88%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;ul&gt;
+&lt;li&gt;Add Request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/span&gt;&lt;/button&gt; をクリックして次のステップを追加します。ステップ名を &lt;strong&gt;Search for Tracks named &amp;ldquo;Up around the bend&amp;rdquo;&lt;/strong&gt; とします。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Request&lt;/strong&gt; セクションを展開し、リクエストメソッドを &lt;strong&gt;GET&lt;/strong&gt; に変更して、以下のURLを入力します:&lt;/p&gt;</description></item><item><title>結果の表示</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/</guid><description>&lt;h2 id="結果の表示"&gt;
+ &lt;span class="heading-text"&gt;結果の表示&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e7%b5%90%e6%9e%9c%e3%81%ae%e8%a1%a8%e7%a4%ba" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;テストがプロビジョニングされて実行されるまで数分待ちます。テストが正常に実行されたら、実行をクリックしてテスト結果を表示します:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../img/api-test-result.png" alt="API test result" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>

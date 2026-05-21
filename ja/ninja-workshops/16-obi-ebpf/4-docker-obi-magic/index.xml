@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>フェーズ 2: OBI マジック on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/</link><description>Recent content in フェーズ 2: OBI マジック on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/index.xml" rel="self" type="application/rss+xml"/><item><title>1. OBI サービスの追加</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="docker-composeyaml-に-obi-を追加する"&gt;
+ &lt;span class="heading-text"&gt;docker-compose.yaml に OBI を追加する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#docker-composeyaml-%e3%81%ab-obi-%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;p&gt;エディターで &lt;code&gt;docker-compose.yaml&lt;/code&gt; を開きます&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose down
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;ファイルの一番下までスクロールすると、&lt;code&gt;PHASE 2&lt;/code&gt; と書かれたコメントブロックがあります。以下のブロックを&lt;strong&gt;そのコメントの直下に&lt;/strong&gt;貼り付けてください。&lt;strong&gt;2スペースのインデント&lt;/strong&gt;を維持して、他のサービス（&lt;code&gt;frontend:&lt;/code&gt;、&lt;code&gt;load-generator:&lt;/code&gt; など）と揃うようにします&lt;/p&gt;</description></item><item><title>2. OBI 設定の理解</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</guid><description>&lt;h2 id="obi-設定ファイル"&gt;
+ &lt;span class="heading-text"&gt;OBI 設定ファイル&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#obi-%e8%a8%ad%e5%ae%9a%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;obi-config.yaml&lt;/code&gt;（リポジトリに既に含まれています）を開いて、OBI がサービスを検出し計装する方法を理解しましょう&lt;/p&gt;</description></item><item><title>3. Splunk でトレースを確認する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/3-verify-traces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/4-docker-obi-magic/3-verify-traces/</guid><description>&lt;h2 id="クイック検証"&gt;
+ &lt;span class="heading-text"&gt;クイック検証&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%af%e3%82%a4%e3%83%83%e3%82%af%e6%a4%9c%e8%a8%bc" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;まず、すべてが正常に動作していることを確認します：&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Expected"&gt;Expected&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose ps
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s localhost:3000/create-order &lt;span class="p"&gt;|&lt;/span&gt; python3 -m json.tool
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose logs obi &lt;span class="p"&gt;|&lt;/span&gt; head -30&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Expected"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# docker-compose ps - all 6 containers running
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# curl - returns JSON order confirmation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# obi logs - shows &amp;#34;instrumenting process&amp;#34; for each service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;OBIのログで、次のような行を探してください：&lt;/p&gt;</description></item></channel></rss>
