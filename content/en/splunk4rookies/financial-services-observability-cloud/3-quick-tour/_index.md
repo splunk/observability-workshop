@@ -12,4 +12,3 @@ We are going to start with a short walkthrough of the various components of Splu
 2. **Application Performance Monitoring (APM)**
 3. **Infrastructure Monitoring**
 4. **Log Observer**
-

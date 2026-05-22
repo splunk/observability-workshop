@@ -17,14 +17,13 @@ This is where features such as Splunk's **AlwaysOn Profiling** and **Database Qu
 
 **AlwaysOn Profiling** continuously collects stack traces so that you can discover which lines in your code are consuming the most CPU and memory.  
 
-And **Database Query Performance** can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing. 
+And **Database Query Performance** can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing.
 
 In this workshop, we'll explore:
 
-* How to debug an application with several performance issues. 
-* How to use **Database Query Performance** to find slow-running queries that impact application performance. 
-* How to enable **AlwaysOn Profiling** and use it to find the code that consumes the most CPU and memory. 
-* How to apply fixes based on findings from **Splunk Observability Cloud** and verify the result. 
+* How to debug an application with several performance issues.
+* How to use **Database Query Performance** to find slow-running queries that impact application performance.
+* How to enable **AlwaysOn Profiling** and use it to find the code that consumes the most CPU and memory.
+* How to apply fixes based on findings from **Splunk Observability Cloud** and verify the result.
 
 The workshop uses a Java-based application called `The Door Game` hosted in Kubernetes. Let's get started!
-

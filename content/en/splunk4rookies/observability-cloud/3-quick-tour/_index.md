@@ -14,4 +14,3 @@ We are going to start with a short walkthrough of the various components of Splu
 4. **Log Observer**
 5. **Synthetics**
 6. **Infrastructure Monitoring**
-

@@ -8,4 +8,3 @@ params:
     - images/s4n-featured.png
 ---
 
-{{% children depth="1" type="card" description="true" %}}
