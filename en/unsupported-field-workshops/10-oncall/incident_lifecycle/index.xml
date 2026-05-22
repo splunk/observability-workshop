@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Incident Lifecycle on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/</link><description>Recent content in Incident Lifecycle on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/index.xml" rel="self" type="application/rss+xml"/><item><title>Create Incidents</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/</guid><description>&lt;h2 id="aim"&gt;
+ &lt;span class="heading-text"&gt;Aim&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#aim" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The aim of this module is for you to place yourself &amp;lsquo;On-Call&amp;rsquo; then generate an Incident using the supplied EC2 Instance so you can then work through the lifecycle of an Incident.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="1-on-call"&gt;
+ &lt;span class="heading-text"&gt;1. On-Call&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-on-call" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Before generating any incidents you should assign yourself to the current Shift within your &lt;strong&gt;Follow the Sun Support - Business Hours&lt;/strong&gt; Rotation and also place yourself &lt;strong&gt;On-Call&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on the &lt;strong&gt;Schedule&lt;/strong&gt; link within your &lt;strong&gt;Team&lt;/strong&gt; in the &lt;strong&gt;People&lt;/strong&gt; section on the left, or navigate to &lt;strong&gt;Teams → [Your Team] → Rotations&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Expand the &lt;strong&gt;Follow the Sun Support - Business Hours&lt;/strong&gt; Rotation&lt;/li&gt;
+&lt;li&gt;Click on the &lt;strong&gt;Manage members&lt;/strong&gt; icon (the figures) for the current active shift depending on your time zone
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/manage-members.png" alt="Manage Members" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Use the &lt;strong&gt;Select a user to add&amp;hellip;&lt;/strong&gt; dropdown to add yourself to the shift&lt;/li&gt;
+&lt;li&gt;Then click on &lt;strong&gt;Set Current&lt;/strong&gt; next to your name to make yourself the current &lt;strong&gt;on-call&lt;/strong&gt; user within the shift&lt;/li&gt;
+&lt;li&gt;You should now get a &lt;strong&gt;Push Notification&lt;/strong&gt; to your phone informing you that &lt;strong&gt;You Are Now On-Call&lt;/strong&gt;
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/on-duty.png" alt="On Duty" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="2-trigger-alert"&gt;
+ &lt;span class="heading-text"&gt;2. Trigger Alert&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-trigger-alert" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Switch back to your shell session connected to your EC2 Instance; all of the following commands will be executed from your Instance.&lt;/p&gt;</description></item><item><title>Manage Incidents</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/</guid><description>&lt;h2 id="1-acknowledge"&gt;
+ &lt;span class="heading-text"&gt;1. Acknowledge&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-acknowledge" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Use your Splunk On-Call App on your phone to acknowledge the Incident by clicking on the &lt;strong&gt;push notification&lt;/strong&gt; &amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/mobile-notification.png" alt="Push Notification" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&amp;hellip;to open the alert in the Splunk On-Call mobile app, then clicking on either the &lt;strong&gt;single tick&lt;/strong&gt; in the top right hand corner, or the &lt;strong&gt;Acknowledge&lt;/strong&gt; link to acknowledge the incident and stop the escalation process.&lt;/p&gt;
+&lt;p&gt;The :fontawesome-solid-check: will then transform into a :fontawesome-solid-check::fontawesome-solid-check:, and the status will change from &lt;strong&gt;TRIGGERED&lt;/strong&gt; to &lt;strong&gt;ACKNOWLEDGED&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Build a Distributed Trace in Lambda and Kinesis on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/</link><description>Recent content in Build a Distributed Trace in Lambda and Kinesis on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/index.xml" rel="self" type="application/rss+xml"/><item><title>Setup</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/1-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/1-setup/</guid><description>&lt;p&gt;This lab will make a tracing superhero out of you!&lt;/p&gt;
+&lt;p&gt;In this lab you will learn how a distributed trace is constructed for a small serverless application that runs on AWS Lambda, producing and consuming your message via AWS Kinesis.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/1-architecture.png" alt="1-architecture" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id="pre-requisites"&gt;
+ &lt;span class="heading-text"&gt;Pre-requisites&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#pre-requisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You should already have the lab content available on your EC2 lab host.&lt;/p&gt;
+&lt;p&gt;Ensure that this lab&amp;rsquo;s required folder o11y-lambda-lab is on your home directory:&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
+ &lt;span class="heading-text"&gt;Auto-Instrumentation&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#auto-instrumentation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Navigate to the auto directory that contains auto-instrumentation code.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs-0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-2" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-2" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Inspect the contents of the files in this directory. Take a look at the serverless.yml template.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-1-panel-0" tabindex="0" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs-1-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-1-panel-1" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs-1-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-1-panel-2" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-1-tab-0" data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat serverless.yml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-1-tab-1" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat serverless.yml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-1-tab-2" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat serverless.yml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Lambdas in Splunk APM</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</guid><description>&lt;h2 id="lambdas-in-splunk-apm"&gt;
+ &lt;span class="heading-text"&gt;Lambdas in Splunk APM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#lambdas-in-splunk-apm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Now it&amp;rsquo;s time to check how your Lambda traffic has been captured in Splunk APM.&lt;/p&gt;
+&lt;h2 id="navigate-to-your-splunk-observability-cloud"&gt;
+ &lt;span class="heading-text"&gt;Navigate to your Splunk Observability Cloud&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#navigate-to-your-splunk-observability-cloud" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Select APM from the Main Menu and then select your APM Environment. Your APM environment should be in the format &lt;code&gt;$INSTANCE-apm-lambda&lt;/code&gt; where the hostname value is a four letter name of your lab host. (Check it by looking at your command prompt, or by running &lt;code&gt;echo $INSTANCE&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>Manual Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/4-manual-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/4-manual-instrumentation/</guid><description>&lt;h2 id="manual-instrumentation"&gt;
+ &lt;span class="heading-text"&gt;Manual Instrumentation&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#manual-instrumentation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Navigate to the manual directory that contains manually instrumentated code.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Command"&gt;Command&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/o11y-lambda-lab/manual&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Inspect the contents of the files in this directory. Take a look at the serverless.yml template.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-1-panel-0" tabindex="0" data-tab-label="Command"&gt;Command&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-1-tab-0" data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat serverless.yml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Redeploy Lambdas</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</guid><description>&lt;h2 id="re-deploy-your-lambdas"&gt;
+ &lt;span class="heading-text"&gt;Re-deploy your Lambdas&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#re-deploy-your-lambdas" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;While remaining in your manual directory, run the following commandd to re-deploy your Lambda Functions:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Deploy Producer Code"&gt;Deploy Producer Code&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Expected Output"&gt;Expected Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Deploy Producer Code"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sls deploy -f producer&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Expected Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Deploying function producer to stage dev (us-east-1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;✔ Function code deployed (6s)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Configuration did not change. Configuration update skipped. (6s)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-1-panel-0" tabindex="0" data-tab-label="Deploy Consumer Code"&gt;Deploy Consumer Code&lt;/button&gt;&lt;button id="tabs-1-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-1-panel-1" tabindex="-1" data-tab-label="Expected Output"&gt;Expected Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-1-tab-0" data-tab-label="Deploy Consumer Code"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sls deploy -f consumer&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="tabs-1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-1-tab-1" hidden data-tab-label="Expected Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Deploying function consumer to stage dev (us-east-1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;✔ Function code deployed (6s)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Configuration did not change. Configuration update skipped. (6s)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Note that this deployment now only updates the code changes within the function. Our configuration remains the same.&lt;/p&gt;</description></item><item><title>Updated Lambdas in Splunk APM</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/6-updated-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/6-updated-in-splunk/</guid><description>&lt;p&gt;Navigate back to APM in &lt;a href="https://app.us1.signalfx.com/#/apm" target="_blank" rel="noopener"&gt;Splunk Observabilty Cloud &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;Go back to your Service Dependency map.&lt;/p&gt;
+&lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;Notice the difference?&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/6-updated-1-map.png" alt="6-updated-1-map" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You should be able to see the &lt;code&gt;consumer-lambda&lt;/code&gt; now clearly connected to the &lt;code&gt;producer-lambda&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Remember the value you copied from your producer logs? You can run &lt;code&gt;sls logs -f consumer&lt;/code&gt; command again on your EC2 lab host to fetch one.&lt;/p&gt;</description></item><item><title>Summary</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/7-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/7-summary/</guid><description>&lt;h2 id="before-you-go"&gt;
+ &lt;span class="heading-text"&gt;Before you Go&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#before-you-go" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Please kindly clean up your lab using the following command:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Remove Functions"&gt;Remove Functions&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Remove Functions"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sls remove&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;
+ &lt;span class="heading-text"&gt;Conclusion&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#conclusion" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Congratuations on finishing the lab. You have seen how we complement auto-instrumentation with manual steps to force &lt;code&gt;Producer&lt;/code&gt; function&amp;rsquo;s context to be sent to &lt;code&gt;Consumer&lt;/code&gt; function via a Record put on a Kinesis stream. This allowed us to build the expected Distributed Trace.&lt;/p&gt;</description></item></channel></rss>

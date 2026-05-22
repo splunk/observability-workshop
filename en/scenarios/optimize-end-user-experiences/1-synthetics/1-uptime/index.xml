@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Uptime Test on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/</link><description>Recent content in Uptime Test on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/index.xml" rel="self" type="application/rss+xml"/><item><title>Creating a test</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/1-create-uptime/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/1-create-uptime/</guid><description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Open Synthetics
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../_img/nav-synthetics.png" alt="Synthetics navigation item" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Add new test&lt;/span&gt;&lt;/button&gt; button on the right side of the screen, then select Uptime and HTTP test.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../_img/create-uptime.png" alt="image" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name your test with your &lt;strong&gt;team name&lt;/strong&gt; (provided by your workshop instructor), your initials, and any other details you&amp;rsquo;d like to include, like geographic region.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For now let&amp;rsquo;s test a &lt;strong&gt;GET&lt;/strong&gt; request. Fill in the URL field. You can use one of your own, or one of ours like &lt;a href="https://online-boutique-eu.splunko11y.com" target="_blank" rel="noopener"&gt;https://online-boutique-eu.splunko11y.com &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+, &lt;a href="https://online-boutique-us.splunko11y.com" target="_blank" rel="noopener"&gt;https://online-boutique-us.splunko11y.com &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+, or &lt;a href="https://www.splunk.com" target="_blank" rel="noopener"&gt;https://www.splunk.com &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+.&lt;/p&gt;</description></item><item><title>Understanding results</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/2-understand-uptime-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/1-synthetics/1-uptime/2-understand-uptime-results/</guid><description>&lt;ol&gt;
+&lt;li&gt;From the Synthetics landing page, click into a test to see its summary view and play with the &lt;a href="https://docs.splunk.com/observability/en/synthetics/uptime-test/uptime-test-results.html#customize-the-performance-kpis-chart" target="_blank" rel="noopener"&gt;Performance KPIs chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ filters to see how you can slice and dice your data. This is a good place to get started understanding trends. Later, we will see what custom charts look like, so you can tailor dashboards to the KPIs you care about most.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/c040b5f6-a868-4977-8d3b-bc3e431ffcc8/user_cropped_screenshot.jpeg?tl_px=1160,0&amp;amp;br_px=2880,961&amp;amp;force_format=png&amp;amp;width=1120.0&amp;amp;wat=1&amp;amp;wat_opacity=0.7&amp;amp;wat_gravity=northwest&amp;amp;wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&amp;amp;wat_pad=755,44" alt="KPI chart filters" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question: Using the Performance KPIs chart&lt;/p&gt;</description></item></channel></rss>

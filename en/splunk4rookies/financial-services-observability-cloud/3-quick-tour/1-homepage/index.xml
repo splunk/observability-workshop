@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/</link><description>Recent content in Getting Started on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Page</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/</guid><description>&lt;p&gt;After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/home-screen.png" alt="home page" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Explore your data pane:&lt;/strong&gt; Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation pane:&lt;/strong&gt; Training videos and links to documentation to get you started with Splunk Observability Cloud.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recents pane:&lt;/strong&gt; Recently created/visited dashboards and/or detectors for quick access.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Main Menu pane:&lt;/strong&gt; Navigate the components of Splunk Observability Cloud.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Org Switcher:&lt;/strong&gt; Easily switch between Organizations (if you are a member of more than one Organization).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expand/Contract Main Menu:&lt;/strong&gt; Expand &lt;strong&gt;&amp;raquo;&lt;/strong&gt; / Collapse &lt;strong&gt;&amp;laquo;&lt;/strong&gt; the main menu if space is at a premium.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s start with our first exercise:&lt;/p&gt;</description></item><item><title>Log on FAQ</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/99-login-faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/99-login-faq/</guid><description>&lt;p&gt;This FAQ will address some of the more common issues we have encountered when logging into the Workshop.&lt;/p&gt;
+&lt;h3 id="1-invite-email-or-password-renewal-email-not-arriving"&gt;
+ &lt;span class="heading-text"&gt;1. Invite email or password renewal email not arriving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-invite-email-or-password-renewal-email-not-arriving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The first step to take is to search for an email from &lt;strong&gt;&lt;a href="mailto:noreply@signalfx.com"&gt;noreply@signalfx.com&lt;/a&gt;
+&lt;/strong&gt;, across all your email folders, as this is the address used to send the invite and password renewal emails. If you don&amp;rsquo;t see the email, check your spam/junk folder.&lt;/p&gt;</description></item></channel></rss>
