@@ -21,7 +21,7 @@
  &lt;a class="heading-anchor" href="#pre-requisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;You should have access to the EC2 instance provided in section &lt;a href="https://splunk.github.io/observability-workshop/1-access-ec2"&gt;1.1 Access AWS/EC2 Instance&lt;/a&gt;
+&lt;li&gt;You should have access to the EC2 instance provided in section &lt;a href="https://splunk.github.io/observability-workshop/en/1-access-ec2"&gt;1.1 Access AWS/EC2 Instance&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="initial-steps"&gt;

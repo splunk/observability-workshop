@@ -2,9 +2,9 @@
  &lt;span class="heading-text"&gt;Environment Setup - Mac&lt;/span&gt;
  &lt;a class="heading-anchor" href="#environment-setup---mac" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;p&gt;If you wish to run this on Mac directly, you can see the instructions &lt;a href="https://splunk.github.io/observability-workshop/appendix-a-setup-mac"&gt;here in the appendix&lt;/a&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;p&gt;If you wish to run this on Mac directly, you can see the instructions &lt;a href="https://splunk.github.io/observability-workshop/en/appendix-a-setup-mac"&gt;here in the appendix&lt;/a&gt;
  and skip the next section on Linux.&lt;/p&gt;
-&lt;p&gt;All installs must continue at &lt;a href="https://splunk.github.io/observability-workshop/2-setup-app"&gt;setting up the app&lt;/a&gt;
+&lt;p&gt;All installs must continue at &lt;a href="https://splunk.github.io/observability-workshop/en/2-setup-app"&gt;setting up the app&lt;/a&gt;
 .&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;
 &lt;h2 id="environment-setup---linux"&gt;
