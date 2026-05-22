@@ -25,6 +25,7 @@ kubectl get pods -n otel-splunk
 ```
 
 **Expected Output:**
+
 - 2 nodes in `Ready` state
 - Cilium pods: 2 running (one per node)
 - Hubble relay and timescape: running
@@ -60,6 +61,7 @@ Each command should return Prometheus-formatted metrics.
 ### Search for Isovalent Metrics
 
 Navigate to **Metrics** and search for:
+
 - `cilium_*` - Cilium networking metrics
 - `hubble_*` - Network flow metrics
 - `tetragon_*` - Runtime security metrics
@@ -76,34 +78,40 @@ It may take 2-3 minutes after installation for metrics to start appearing in Spl
 2. Add charts for key metrics:
 
 **Cilium Endpoint State:**
-```
+
+```text
 cilium_endpoint_state{cluster="isovalent-demo"}
 ```
 
 **Hubble Flow Processing:**
-```
+
+```text
 hubble_flows_processed_total{cluster="isovalent-demo"}
 ```
 
 **Tetragon Events:**
-```
+
+```text
 tetragon_dns_total{cluster="isovalent-demo"}
 ```
 
 ### Example Queries
 
 **DNS Query Rate:**
-```
+
+```text
 rate(hubble_dns_queries_total{cluster="isovalent-demo"}[1m])
 ```
 
 **Dropped Packets:**
-```
+
+```text
 sum by (reason) (hubble_drop_total{cluster="isovalent-demo"})
 ```
 
 **Network Policy Enforcements:**
-```
+
+```text
 rate(cilium_policy_l7_total{cluster="isovalent-demo"}[5m])
 ```
 
@@ -114,16 +122,19 @@ rate(cilium_policy_l7_total{cluster="isovalent-demo"}[5m])
 If you don't see metrics:
 
 1. **Check collector logs:**
+
    ```bash
    kubectl logs -n otel-splunk -l app=splunk-otel-collector --tail=200
    ```
 
 2. **Verify scrape targets:**
+
    ```bash
    kubectl describe configmap -n otel-splunk splunk-otel-collector-otel-agent
    ```
 
 3. **Check network connectivity:**
+
    ```bash
    kubectl exec -n otel-splunk -it deployment/splunk-otel-collector -- \
      curl -v https://ingest.<YOUR-REALM>.signalfx.com
@@ -134,16 +145,19 @@ If you don't see metrics:
 If Cilium or Tetragon pods are not running:
 
 1. **Check pod status:**
+
    ```bash
    kubectl describe pod -n kube-system <cilium-pod-name>
    ```
 
 2. **View logs:**
+
    ```bash
    kubectl logs -n kube-system <cilium-pod-name>
    ```
 
 3. **Verify node readiness:**
+
    ```bash
    kubectl get nodes -o wide
    ```
@@ -174,6 +188,4 @@ Now that your integration is working:
 - Explore Hubble's L7 visibility for HTTP/gRPC traffic
 - Use Tetragon to monitor process execution and file access
 
-{{% notice title="Success!" style="success" %}}
-Congratulations! You've successfully integrated Isovalent Enterprise Platform with Splunk Observability Cloud.
-{{% /notice %}}
+{{< checkpoint "You've successfully integrated Isovalent Enterprise Platform with Splunk Observability Cloud!" >}}

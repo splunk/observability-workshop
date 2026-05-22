@@ -28,9 +28,3 @@ In this workshop, we'll explore:
 
 The workshop uses a Java-based application called `The Door Game` hosted in Kubernetes. Let's get started!
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}

@@ -38,10 +38,3 @@ By the end of this workshop, you will have configured:
 * Inbound notifications from both Catalyst Center and Solarwinds for correlating alerts
 * Correlated episodes using notifications from both Catalyst Center and Solarwinds
 * Episodes that automatically resolve when the health of degraded services return to normal
-
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}

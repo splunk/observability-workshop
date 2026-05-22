@@ -8,6 +8,7 @@ weight: 2
 Before starting this workshop, ensure you have the following tools installed:
 
 ### AWS CLI
+
 ```bash
 # Check installation
 aws --version
@@ -16,6 +17,7 @@ aws --version
 ```
 
 ### kubectl
+
 ```bash
 # Check installation
 kubectl version --client
@@ -24,6 +26,7 @@ kubectl version --client
 ```
 
 ### eksctl
+
 ```bash
 # Check installation
 eksctl version
@@ -32,6 +35,7 @@ eksctl version
 ```
 
 ### Helm
+
 ```bash
 # Check installation
 helm version
@@ -59,6 +63,7 @@ You'll need:
 
 {{% notice title="Getting Splunk Credentials" style="tip" %}}
 In Splunk Observability Cloud:
+
 1. Navigate to **Settings** → **Access Tokens**
 2. Create a new token with **Ingest** permissions
 3. Note your realm from the URL: `https://app.<realm>.signalfx.com`
@@ -67,6 +72,7 @@ In Splunk Observability Cloud:
 ## Cost Considerations
 
 ### AWS Costs (Approximate)
+
 - **EKS Control Plane**: ~$73/month
 - **EC2 Nodes (2x m5.xlarge)**: ~$280/month
 - **Data Transfer**: Variable
@@ -75,6 +81,7 @@ In Splunk Observability Cloud:
 **Estimated Total**: ~$380-400/month for lab environment
 
 ### Splunk Costs
+
 - Based on metrics volume (DPM - Data Points per Minute)
 - Free trial available for testing
 

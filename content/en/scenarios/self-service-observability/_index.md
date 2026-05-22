@@ -22,10 +22,3 @@ We will cover:
 We will use a variety of scripts to demonstrate these examples. Be sure to pick a unique name, so your data won't cross over with anyone else taking the workshop at the same time.
 
 Let's get started!
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-{{% /notice %}}

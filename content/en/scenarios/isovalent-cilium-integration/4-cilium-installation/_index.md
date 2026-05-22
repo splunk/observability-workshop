@@ -184,6 +184,7 @@ kubectl get pods -n kube-system | grep -E "(cilium|hubble)"
 ```
 
 **Expected Output:**
+
 - 2 nodes in `Ready` state
 - Cilium pods running (1 per node)
 - Hubble relay and timescape running
@@ -300,6 +301,4 @@ Verify:
 kubectl rollout status -n kube-system ds/cilium-dnsproxy --watch
 ```
 
-{{% notice title="Success" style="success" %}}
-You now have a fully functional EKS cluster with Cilium CNI, Hubble observability, and Tetragon security!
-{{% /notice %}}
+{{< checkpoint "You now have a fully functional EKS cluster with Cilium CNI, Hubble observability, and Tetragon security!" >}}

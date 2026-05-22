@@ -66,6 +66,7 @@ kubectl get pods -n kube-system
 ```
 
 **Expected Output:**
+
 - CoreDNS pods will be in `Pending` state (this is normal - they're waiting for the CNI)
 - No worker nodes yet
 
@@ -92,6 +93,4 @@ Cilium uses Prometheus ServiceMonitor CRDs for metrics:
 kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.68.0/stripped-down-crds.yaml
 ```
 
-{{% notice title="Next Steps" style="success" %}}
-With the EKS cluster created, you're ready to install Cilium, Hubble, and Tetragon.
-{{% /notice %}}
+{{< checkpoint "With the EKS cluster created, you're ready to install Cilium, Hubble, and Tetragon!" >}}

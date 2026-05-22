@@ -8,7 +8,8 @@ weight: 1
 The Isovalent Enterprise Platform consists of three core components built on eBPF (Extended Berkeley Packet Filter) technology:
 
 ### Cilium
-**Cloud Native CNI and Network Security**
+
+#### Cloud Native CNI and Network Security
 
 - eBPF-based networking and security for Kubernetes
 - Replaces kube-proxy with high-performance eBPF datapath
@@ -17,7 +18,8 @@ The Isovalent Enterprise Platform consists of three core components built on eBP
 - Transparent encryption and load balancing
 
 ### Hubble
-**Network Observability**
+
+#### Network Observability
 
 - Built on top of Cilium's eBPF visibility
 - Real-time network flow monitoring
@@ -26,7 +28,8 @@ The Isovalent Enterprise Platform consists of three core components built on eBP
 - Metrics exposed on port 9965
 
 ### Tetragon
-**Runtime Security and Observability**
+
+#### Runtime Security and Observability
 
 - eBPF-based runtime security
 - Process execution monitoring
@@ -36,46 +39,43 @@ The Isovalent Enterprise Platform consists of three core components built on eBP
 
 ## Architecture
 
-```mermaid
+{{< mermaid >}}
 graph TB
     subgraph AWS["Amazon Web Services"]
         subgraph EKS["EKS Cluster"]
             subgraph Node["Worker Node"]
-                CA["Cilium Agent<br/>:9962"]
-                CE["Cilium Envoy<br/>:9964"]
-                HA["Hubble<br/>:9965"]
-                TE["Tetragon<br/>:2112"]
+                CA["Cilium Agent:9962"]
+                CE["Cilium Envoy:9964"]
+                HA["Hubble:9965"]
+                TE["Tetragon:2112"]
                 OC["OTel Collector"]
             end
-            CO["Cilium Operator<br/>:9963"]
+            CO["Cilium Operator:9963"]
             HR["Hubble Relay"]
         end
     end
-    
     subgraph Splunk["Splunk Observability Cloud"]
         IM["Infrastructure Monitoring"]
         DB["Dashboards"]
     end
-    
     CA -.->|"Scrape"| OC
     CE -.->|"Scrape"| OC
     HA -.->|"Scrape"| OC
     TE -.->|"Scrape"| OC
     CO -.->|"Scrape"| OC
-    
     OC ==>|"OTLP/HTTP"| IM
     IM --> DB
-```
+{{< /mermaid >}}
 
 ## Key Components
 
 | Component | Service Name | Port | Purpose |
-|-----------|-------------|------|---------|
-| Cilium Agent | cilium-agent | 9962 | CNI, network policies, eBPF programs |
-| Cilium Envoy | cilium-envoy | 9964 | L7 proxy for HTTP, gRPC |
-| Cilium Operator | cilium-operator | 9963 | Cluster-wide operations |
-| Hubble | hubble-metrics | 9965 | Network flow metrics |
-| Tetragon | tetragon | 2112 | Runtime security metrics |
+| --------- | ------------ | ---- | ------- |
+| Cilium Agent | cilium-agent | `9962` | CNI, network policies, eBPF programs |
+| Cilium Envoy | cilium-envoy | `9964` | L7 proxy for HTTP, gRPC |
+| Cilium Operator | cilium-operator | `9963` | Cluster-wide operations |
+| Hubble | hubble-metrics | `9965` | Network flow metrics |
+| Tetragon | tetragon | `2112` | Runtime security metrics |
 
 ## Benefits of eBPF
 
