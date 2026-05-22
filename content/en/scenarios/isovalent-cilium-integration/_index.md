@@ -2,7 +2,6 @@
 title: Isovalent Enterprise Platform Integration with Splunk Observability Cloud
 linkTitle: Isovalent Splunk Observability Integration
 weight: 6
-archetype: chapter
 authors: ["Alec Chamberlain"]
 time: 105 minutes
 description: Stream eBPF network and runtime signals from Cilium, Hubble, and Tetragon on EKS into Splunk Observability Cloud — including a Hubble-driven DNS investigation.

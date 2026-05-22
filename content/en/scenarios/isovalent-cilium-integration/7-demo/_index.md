@@ -88,7 +88,7 @@ Start by painting the picture. You don't need to click anything yet — just set
 > *"So it's a normal afternoon and an ITSM ticket comes in. The jobs application team is saying that end users are reporting intermittent 500 errors on the recruiter and job posting pages, and load times have gotten noticeably worse over the last 15 minutes or so. It's been escalated to P2. Let's dig in."*
 
 | | |
-|---|---|
+| - | - |
 | **Ticket** | INC-4072 |
 | **Priority** | P2 — High |
 | **Summary** | Intermittent failures and slow response times on jobs-app |
@@ -270,6 +270,7 @@ End by zooming out and making the value statement feel concrete.
 ## Quick Reference
 
 **Inject the problem** (run ~10 min before demo):
+
 ```bash
 helm upgrade jobs-app . -n tenant-jobs --reuse-values \
   --set crawler.replicas=5 \
@@ -279,6 +280,7 @@ helm upgrade jobs-app . -n tenant-jobs --reuse-values \
 ```
 
 **Remediate** (run live in Act 6):
+
 ```bash
 helm upgrade jobs-app . -n tenant-jobs --reuse-values \
   --set crawler.replicas=1 \
@@ -288,6 +290,7 @@ helm upgrade jobs-app . -n tenant-jobs --reuse-values \
 ```
 
 **Confirm the misconfiguration:**
+
 ```bash
 kubectl get deploy crawler -n tenant-jobs
 kubectl get deploy crawler -n tenant-jobs \
@@ -300,7 +303,7 @@ APM → Service Map → *(show it's clean)* → Infrastructure → Kubernetes �
 ## Timing Guide
 
 | Section | Approx. Time |
-|---|---|
+| ------- | ------------ |
 | Act 1 — The Ticket | ~1 min |
 | Act 2 — APM (dead end) | ~2–3 min |
 | Act 3 — Infrastructure (dead end) | ~1–2 min |

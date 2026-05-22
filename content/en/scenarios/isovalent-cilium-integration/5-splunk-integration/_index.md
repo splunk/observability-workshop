@@ -8,7 +8,7 @@ weight: 5
 The Splunk OpenTelemetry Collector uses Prometheus receivers to scrape metrics from all Isovalent components. Each component exposes metrics on different ports, and because Cilium and Hubble share the same pods (just different ports), we configure separate receivers for each one rather than relying on pod annotations.
 
 | Component | Port | What it provides |
-|-----------|------|------------------|
+| --------- | ---- | ---------------- |
 | Cilium Agent | 9962 | eBPF datapath, policy enforcement, IPAM, BPF map stats |
 | Cilium Envoy | 9964 | L7 proxy metrics (HTTP, gRPC) |
 | Cilium Operator | 9963 | Cluster-wide identity and endpoint management |
@@ -270,6 +270,7 @@ certmanager:
 ```
 
 **Important:** Replace:
+
 - `<YOUR-SPLUNK-ACCESS-TOKEN>` with your Splunk Observability Cloud access token
 - `<YOUR-SPLUNK-REALM>` with your realm (e.g., us1, us2, eu0)
 
@@ -308,6 +309,4 @@ kubectl logs -n otel-splunk -l app=splunk-otel-collector --tail=100 | grep -i "c
 
 You should see log entries indicating successful scraping of each component.
 
-{{% notice title="Next Steps" style="success" %}}
-Metrics are now flowing to Splunk Observability Cloud! Proceed to verification to check the dashboards.
-{{% /notice %}}
+{{< checkpoint "Metrics are now flowing to Splunk Observability Cloud! Proceed to verification to check the dashboards." >}}
