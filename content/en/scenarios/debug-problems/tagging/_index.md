@@ -23,9 +23,3 @@ In this workshop, we'll explore:
 
 The workshop uses a simple microservices-based application to illustrate these concepts.  Let's get started!
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}

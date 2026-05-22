@@ -4,16 +4,16 @@ linkTitle: Alerting and Monitoring with Splunk IT Service Intelligence
 weight: 12
 archetype: chapter
 authors: ["Doug Erkkila"]
-description: Scenario Description
+time: 90 minutes
+description: Combine Splunk Enterprise, AppDynamics, Observability Cloud, and ITSI for end-to-end alerting and service-level monitoring — from basic alerts to detector-driven ITSI episodes.
 hidden: false
 ---
 
-# Workshop: Monitoring and Alerting with Splunk IT Service Intelligence
+## Workshop: Monitoring and Alerting with Splunk IT Service Intelligence
 
 This hands-on workshop is designed specifically for anyone looking to effectively demonstrate and position the combined power of Splunk Enterprise, AppDynamics, Splunk Observability Cloud, and Splunk IT Service Intelligence (ITSI). Participants will gain practical experience integrating these platforms, focusing on real-world scenarios and use cases that resonate with potential clients. The workshop emphasizes translating technical capabilities into business value, enabling Solution Architects to confidently showcase how these solutions address critical customer challenges.
 
-
-## Introduction and Overview
+### Introduction and Overview
 
 In today's complex IT landscape, ensuring the performance and availability of applications and services is paramount.  This workshop will introduce you to a powerful combination of tools – Splunk, AppDynamics, Splunk Observability Cloud, and Splunk IT Service Intelligence (ITSI) – that work together to provide comprehensive monitoring and alerting capabilities.
 
@@ -45,10 +45,3 @@ By the end of this workshop, participants will be able to:
 *   Translate technical features into business outcomes, focusing on ROI and addressing specific customer pain points.
 
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}
-  

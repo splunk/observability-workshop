@@ -35,10 +35,3 @@ To address these challenges, Splunk Ingest Processor provides a powerful new fea
 
 In this workshop you'll have the opportunity to get hands on with Ingest Processor and Splunk Observability Cloud to see how it can be used to address the challenges outlined above.
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}
-  

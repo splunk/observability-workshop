@@ -78,9 +78,3 @@ The repository includes:
 - Configuration examples
 - Troubleshooting guides
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-{{% /notice %}}

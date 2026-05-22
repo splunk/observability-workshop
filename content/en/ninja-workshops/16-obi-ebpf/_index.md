@@ -32,9 +32,3 @@ Phase 3:  Same services on Kubernetes + Splunk OTel Collector Helm chart + obi.e
           ↑ same tracing, scales to any cluster
 ```
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left and right cursor keys on your keyboard
-{{% /notice %}}

@@ -28,9 +28,3 @@ This workshop provides hands-on experience deploying and working with several of
 
 > Note: the workshop setup section only needs to be executed by the workshop organizer
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}

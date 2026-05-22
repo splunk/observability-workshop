@@ -28,9 +28,3 @@ in Splunk Observability Cloud. This includes:
 * Practice adding **quality issues** to an application and detecting them with Splunk Observability Cloud using **semantic quality evals**. 
 * Practice adding **AI Defense instrumentation** to the application and **security risks**, and detecting them with Splunk Observability Cloud. 
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}

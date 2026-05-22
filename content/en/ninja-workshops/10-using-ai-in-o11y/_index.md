@@ -28,9 +28,3 @@ By the end of this workshop, you'll understand how to effectively use AI capabil
 - Navigate complex relationships between services, infrastructure, and logs
 - Make informed decisions based on AI-powered insights
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-The easiest way to navigate through this workshop is by using:
-
-* the left/right arrows (**<** | **>**) on the top right of this page
-* the left (◀️) and right (▶️) cursor keys on your keyboard
-{{% /notice %}}
