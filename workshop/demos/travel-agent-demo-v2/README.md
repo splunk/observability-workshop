@@ -76,6 +76,27 @@ Send a request including poison config that forces a PCI violation:
     }'
 ```
 
+Send a request including poison config that uses deterministic behavior (i.e. always 
+inject hallucination and PCI violations, without randomness)
+
+``` bash
+  curl http://localhost:8080/travel/plan \
+    -H "Content-Type: application/json" \
+    -d '{
+      "origin": "New York",
+      "destination": "London",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences.",
+      "travelers": 2,
+      "poison_config": {
+          "prob": "1.0",
+          "types": ["pci_violation"],
+          "max": "1",
+          "seed": "9999",
+          "deterministic": "true"
+      }
+    }'
+```
+
 ## Build Docker Images
 
 The following commands were used to build Docker images for each of the application components. 
@@ -86,8 +107,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app-with-ai-defense
-docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-demo-v2:1.0 .
-docker push ghcr.io/splunk/travel-planner-demo-v2:1.0
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-demo-v2:1.1 .
+docker push ghcr.io/splunk/travel-planner-demo-v2:1.1
 ```
 
 ### Load Generator
@@ -96,6 +117,6 @@ To build the travel agent load generator image:
 
 ``` bash
 cd loadgen
-docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-loadgen-v2:1.0 .
-docker push ghcr.io/splunk/travel-planner-loadgen-v2:1.0
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-loadgen-v2:1.1 .
+docker push ghcr.io/splunk/travel-planner-loadgen-v2:1.1
 ```

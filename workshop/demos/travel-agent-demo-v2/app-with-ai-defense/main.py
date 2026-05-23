@@ -458,6 +458,7 @@ def _poison_config(
         max_snippets = int(custom_config.get("max", 2))
         seed = custom_config.get("seed")
         rng = random.Random(int(seed)) if seed is not None else random.Random()
+        deterministic = custom_config.get("deterministic")
     else:
         prob = float(os.getenv("TRAVEL_POISON_PROB", "0.8"))
         types_raw = os.getenv(
@@ -480,11 +481,14 @@ def _poison_config(
         max_snippets = int(os.getenv("TRAVEL_POISON_MAX", "2"))
         seed = os.getenv("TRAVEL_POISON_SEED")
         rng = random.Random(int(seed)) if seed is not None else random.Random()
+        deterministic = False
+
     return {
         "prob": max(0.0, min(prob, 1.0)),
         "types": types,
         "max": max_snippets,
-         "rng": rng,
+        "rng": rng,
+        "deterministic": deterministic
     }
 
 
@@ -549,16 +553,25 @@ def maybe_add_quality_noise(
 
     if random.random() > cfg["prob"]:
         return base_prompt
-    # choose subset
-    available = cfg["types"][:]
-    rng.shuffle(available)
-    count = rng.randint(1, min(cfg["max"], len(available)))
-    chosen = available[:count]
-    snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
-    # Record events
-    state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
-    injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
-    return injected
+
+    if cfg.get("deterministic"):
+        chosen = ["hallucination","pci_violation"]
+        snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
+        # Record events
+        state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
+        injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
+        return injected
+    else:
+        # choose subset
+        available = cfg["types"][:]
+        rng.shuffle(available)
+        count = rng.randint(1, min(cfg["max"], len(available)))
+        chosen = available[:count]
+        snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
+        # Record events
+        state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
+        injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
+        return injected
 
 
 # ---------------------------------------------------------------------------
