@@ -9,7 +9,7 @@ description: おめでとうございます。Splunk4Rookies - Observability Clo
 
 おめでとうございます。**Splunk4Rookies - Observability Cloud ワークショップ**を修了しました。今日はSplunk Observability Cloudを使用してアプリケーションとインフラストラクチャを監視する方法に慣れました。
 
-この修了証をあなたの{{< badge style="blue" icon="fab fa-fw fa-linkedin-in" >}}{{< linkedin >}}{{< /badge >}}プロフィールに追加して成果をアピールしましょう。
+この修了証をあなたの{{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}}プロフィールに追加して成果をアピールしましょう。
 
 私たちが学んだことと次にできることを振り返ってみましょう。
 

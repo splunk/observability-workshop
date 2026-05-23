@@ -1,7 +1,7 @@
 ---
 title: Running Demo-in-a-Box
 weight: 3
-description: Learn how to use Demo-in-a-Box to manage demos and otel collectors in an easy-to-use web interface.
+description: Manage demos and OpenTelemetry Collectors from a single web UI with Demo-in-a-Box.
 draft: true
 ---
 

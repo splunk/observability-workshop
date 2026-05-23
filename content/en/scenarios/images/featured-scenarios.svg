@@ -1,0 +1,63 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rocket on diverging paths — Scenarios">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="10%" stop-color="#FF007F"/>
+      <stop offset="90%" stop-color="#FF9000"/>
+    </linearGradient>
+    <linearGradient id="brand-h" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop offset="10%" stop-color="#FF007F"/>
+      <stop offset="90%" stop-color="#FF9000"/>
+    </linearGradient>
+    <radialGradient id="bg-bloom" cx="0.62" cy="0.4" r="0.7">
+      <stop offset="0%" stop-color="#FF9000" stop-opacity="0.07"/>
+      <stop offset="55%" stop-color="#FF007F" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#0C1724" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Soft accent bloom -->
+  <rect width="1600" height="1000" fill="url(#bg-bloom)"/>
+
+  <!-- Three diverging trajectory paths from bottom-left toward upper-right -->
+  <g fill="none" stroke="url(#brand)" stroke-linecap="round" stroke-dasharray="4 16">
+    <path d="M 120 880 Q 600 760 950 580 T 1480 320" stroke-width="3" opacity="0.55"/>
+    <path d="M 120 880 Q 700 720 1050 500 T 1500 220" stroke-width="3" opacity="0.40"/>
+    <path d="M 120 880 Q 500 800 900 660 T 1460 460" stroke-width="3" opacity="0.30"/>
+  </g>
+
+  <!-- Solid leading trajectory under the rocket -->
+  <path d="M 120 880 Q 600 760 950 580 T 1380 360"
+        fill="none" stroke="url(#brand)" stroke-width="6"
+        stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Starting marker -->
+  <circle cx="120" cy="880" r="14" fill="url(#brand)"/>
+  <circle cx="120" cy="880" r="28" fill="none" stroke="url(#brand)" stroke-width="3" opacity="0.45"/>
+
+  <!-- Destination markers (multiple scenarios = multiple outcomes) -->
+  <g fill="url(#brand)" opacity="0.85">
+    <polygon points="1480,310 1494,338 1525,343 1502,365 1508,396 1480,381 1452,396 1458,365 1435,343 1466,338"/>
+  </g>
+  <g fill="none" stroke="url(#brand)" stroke-width="3" opacity="0.55">
+    <circle cx="1500" cy="220" r="12"/>
+    <circle cx="1460" cy="460" r="12"/>
+  </g>
+
+  <!-- Rocket — angled along the leading trajectory tangent (~45°) -->
+  <g transform="translate(1180 480) rotate(-30)">
+    <!-- Exhaust flare -->
+    <path d="M -90 0 L -160 -22 L -130 0 L -160 22 Z"
+          fill="url(#brand-h)" opacity="0.65"/>
+    <!-- Body -->
+    <path d="M -90 -38 L 90 -38 Q 150 -38 150 0 Q 150 38 90 38 L -90 38 Z"
+          fill="url(#brand)"/>
+    <!-- Nose cone tip -->
+    <path d="M 130 -22 L 200 0 L 130 22 Z" fill="url(#brand)"/>
+    <!-- Window -->
+    <circle cx="40" cy="0" r="18" fill="#0C1724" opacity="0.65"/>
+    <circle cx="40" cy="0" r="12" fill="#FFFFFF" opacity="0.75"/>
+    <!-- Tail fins -->
+    <path d="M -90 -38 L -120 -68 L -60 -38 Z" fill="url(#brand)" opacity="0.75"/>
+    <path d="M -90 38 L -120 68 L -60 38 Z"   fill="url(#brand)" opacity="0.75"/>
+  </g>
+</svg>

@@ -1,7 +1,7 @@
 ---
 title: Naming Conventions for Tagging with OpenTelemetry and Splunk
 linkTitle: OpenTelemetry Tagging
-description: When deploying OpenTelemetry in a large organization, it’s critical to define a standardized naming convention for tagging, and a governance process to ensure the convention is adhered to.
+description: A naming convention and governance pattern for OpenTelemetry tags in large-scale deployments.
 weight: 4
 ---
 

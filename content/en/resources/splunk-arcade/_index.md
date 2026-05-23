@@ -1,6 +1,6 @@
 ---
 title: Splunk Arcade - Play, Learn & Observe!
-description: SPLUNK ARCADE - Where Retro Gaming Meets Real-World Observability
+description: Retro-arcade-styled mini-games that teach real-world observability skills.
 weight: 4
 ---
 

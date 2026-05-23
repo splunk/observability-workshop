@@ -1,7 +1,7 @@
 ---
 title: Multipass
 weight: 1
-description: Learn how to create a local hosting environment with Multipass - Windows/Linux/Mac(Intel)
+description: Local hosting via Multipass on Windows, Linux, or Intel Mac.
 ---
 
 Install [Multipass](https://multipass.run/) and Terraform for your operating system. On a Mac (Intel), you can also install via [Homebrew](https://brew.sh/) e.g.

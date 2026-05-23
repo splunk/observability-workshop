@@ -1,7 +1,7 @@
 ---
 title: Dimension, Properties and Tags
 weight: 3
-description: One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. 
+description: How dimensions and properties differ — and when to reach for each.
 draft: false
 ---
 

@@ -1,5 +1,6 @@
 +++
-title        = "Observability *Workshops*."
+title        = "Observability Workshops"
+hero_title   = "Observability *Workshops*."
 description  = "Learn how to build observability solutions with Splunk"
 weight       = "1"
 noautocards  = true

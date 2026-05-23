@@ -15,10 +15,11 @@ Splunk Show offers two templates for Observability workshops. Select the one tha
 {{% notice  style="primary" title="**Ninja Workshops Only**" icon="user-ninja" %}}
 
 Set the **Estimated Participants** to the number of attendees you expect, and match this value in the **O11y Shop Quantity** field.  
-> [!TIP]
-> **Tip:** Over-provision by **10% - 20%** to accommodate last-minute attendees.  
 
 {{% /notice %}}
+
+> [!TIP]
+> **Tip:** Over-provision by **10% - 20%** to accommodate last-minute attendees.  
 
 ---
 

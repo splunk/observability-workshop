@@ -14,9 +14,4 @@ You immediately improved the observability of the application and infrastructure
 
 You also learned that with simple configuration changes, you can add even more observability (**logging** and **RUM**) to the application in order to provide end-to-end observability.
 
-<!-- 
-Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="fab fa-fw fa-linkedin-in" >}}{{< linkedin >}}{{< /badge >}} profile.
-
-Let's recap what we have learned and what you can do next.
- -->
 ![Champagne](images/champagne.png?width=45vw)
