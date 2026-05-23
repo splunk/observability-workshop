@@ -549,29 +549,32 @@ def maybe_add_quality_noise(
         return base_prompt
 
     cfg = _poison_config(custom_poison_config)
-    rng = cfg["rng"]
-
-    if random.random() > cfg["prob"]:
-        return base_prompt
 
     if cfg.get("deterministic"):
+        # with deterministic option, always inject the same quality issues for each agent
         chosen = ["hallucination","pci_violation"]
         snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
         # Record events
         state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
         injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
         return injected
-    else:
-        # choose subset
-        available = cfg["types"][:]
-        rng.shuffle(available)
-        count = rng.randint(1, min(cfg["max"], len(available)))
-        chosen = available[:count]
-        snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
-        # Record events
-        state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
-        injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
-        return injected
+
+    # since the deterministic option is not enabled, inject quality issues randomly
+    rng = cfg["rng"]
+
+    if random.random() > cfg["prob"]:
+        return base_prompt
+
+    # choose subset
+    available = cfg["types"][:]
+    rng.shuffle(available)
+    count = rng.randint(1, min(cfg["max"], len(available)))
+    chosen = available[:count]
+    snippets = [_generate_poison_snippet(kind, agent_name) for kind in chosen]
+    # Record events
+    state["poison_events"].extend([f"{agent_name}:{kind}" for kind in chosen])
+    injected = base_prompt + "\n\n" + "\n".join(snippets) + "\n"
+    return injected
 
 
 # ---------------------------------------------------------------------------
