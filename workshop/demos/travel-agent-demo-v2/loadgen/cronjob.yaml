@@ -20,7 +20,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: mcp-client
-              image: ghcr.io/splunk/travel-planner-loadgen-v2:1.0
+              image: ghcr.io/splunk/travel-planner-loadgen-v2:1.1
               imagePullPolicy: Always
               env:
                 # Flask Server URL - using k8s service
@@ -29,6 +29,7 @@ spec:
               command:
                 - python
                 - client.py
+                - -add-deterministic-quality-issues
                 #- --no-poison
               resources:
                 requests:

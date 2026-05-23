@@ -58,7 +58,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Send a request including poison config and a (fake) credit card number:
+Send a request including poison config:
 
 ``` bash
   curl http://localhost:8080/travel/plan \
@@ -66,13 +66,33 @@ Send a request including poison config and a (fake) credit card number:
     -d '{
       "origin": "New York",
       "destination": "London",
-      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences. My credit card number is 4111 1111 1111 1111",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences.",
       "travelers": 2,
       "poison_config": {
           "prob": "1.0",
-          "types": ["hallucination","irrelevance"],
+          "types": ["hallucination","pci_violation"],
           "max": "1",
           "seed": "9999"
+      }
+    }'
+```
+
+Send a request including poison config with deterministic behavior:
+
+``` bash
+  curl http://localhost:8080/travel/plan \
+    -H "Content-Type: application/json" \
+    -d '{
+      "origin": "New York",
+      "destination": "London",
+      "user_request": "We are planning a week-long trip to New York from London. Looking for boutique hotel, business-class flights and unique experiences.",
+      "travelers": 2,
+      "poison_config": {
+          "prob": "1.0",
+          "types": ["hallucination","pci_violation"],
+          "max": "1",
+          "seed": "9999",
+          "deterministic": "true"
       }
     }'
 ```

@@ -45,7 +45,7 @@ POISON_TYPES = [
 ]
 
 
-def generate_random_poison_config() -> dict:
+def generate_random_poison_config(add_deterministic_quality_issues: bool = False) -> dict:
     """Generate a random poison configuration for testing."""
     # Random probability between 0.5 and 1.0
     prob = round(random.uniform(0.5, 1.0), 2)
@@ -62,6 +62,7 @@ def generate_random_poison_config() -> dict:
         "types": types,
         "max": max_snippets,
         "seed": str(random.randint(1000, 9999)),
+        "deterministic": add_deterministic_quality_issues
     }
 
 
@@ -81,6 +82,7 @@ def generate_travel_request(origin: str, destination: str) -> str:
 
 
 def run_client(
+    add_deterministic_quality_issues: bool = False,
     use_poison: bool = True,
     custom_origin: Optional[str] = None,
     custom_destination: Optional[str] = None,
@@ -98,12 +100,13 @@ def run_client(
     # Generate poison config if requested
     poison_config = None
     if use_poison:
-        poison_config = generate_random_poison_config()
+        poison_config = generate_random_poison_config(add_deterministic_quality_issues)
         print("\n💉 Poison Configuration:")
         print(f"  Probability: {poison_config['prob']}")
         print(f"  Types: {', '.join(poison_config['types'])}")
         print(f"  Max snippets: {poison_config['max']}")
         print(f"  Seed: {poison_config['seed']}")
+        print(f"  Deterministic: {poison_config['deterministic']}")
 
     # Generate user request
     user_request = generate_travel_request(origin, destination)
@@ -198,6 +201,11 @@ def main():
         description="Travel Planner MCP Client - Request travel itineraries with optional quality evaluation"
     )
     parser.add_argument(
+        "--add-deterministic-quality-issues",
+        action="store_true",
+        help="Add deterministic quality issues (i.e. no randomness)",
+    )
+    parser.add_argument(
         "--no-poison",
         action="store_true",
         help="Disable poison configuration (no quality degradation testing)",
@@ -217,6 +225,7 @@ def main():
 
     try:
         run_client(
+            add_deterministic_quality_issues=args.add_deterministic_quality_issues,
             use_poison=not args.no_poison,
             custom_origin=args.origin,
             custom_destination=args.destination,
