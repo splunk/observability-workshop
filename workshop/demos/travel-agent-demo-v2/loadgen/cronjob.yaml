@@ -29,7 +29,7 @@ spec:
               command:
                 - python
                 - client.py
-                - -add-deterministic-quality-issues
+                - --add-deterministic-quality-issues
                 #- --no-poison
               resources:
                 requests:
