@@ -3,7 +3,7 @@ title: 2. Application View
 weight: 2
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Explore the RUM dashboard" %}}
 
 * You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Events**, **Network Requests**, **Pages** and a **Map View** comparing them to historic metrics (1 hour by default).
 
@@ -41,4 +41,4 @@ weight: 2
 
 ![RUM See All](../images/rum-see-all.png)
 
-{{% /notice %}}
+{{% /exercise %}}

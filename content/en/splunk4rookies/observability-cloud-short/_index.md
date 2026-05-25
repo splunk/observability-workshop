@@ -4,6 +4,7 @@ weight: 2
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 60 minutes
 description: The condensed version. Hands-on troubleshooting against a fully instrumented Kubernetes microservices app — the essential Splunk Observability Cloud experience in an hour.
+show_toc: false
 params:
   images:
     - images/featured-o11y.png

@@ -3,7 +3,7 @@ title: 3. Viewing Log Entries
 weight: 3
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open an error log" %}}
 
 * Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too).
 {{< tabs >}}
@@ -18,7 +18,7 @@ weight: 3
   ![Log Message](../images/log-observer-log-message.png)
 * Click on the **X** in the log message pane to close it.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice style="blue" title="Congratulations" icon="wine-bottle" %}}
 

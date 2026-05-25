@@ -10,7 +10,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 ![Service Dashboard](../images/apm-service-dashboard.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Widen the timeframe and explore the dashboards" %}}
 
 * Check the **Time** box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previosuly selected to complete (note that the charts are static).
 * In the **Time** box change the timeframe to **-1h**.
@@ -19,11 +19,11 @@ As a service owners you can use the service view in Splunk APM to get a complete
 * **Runtime Metrics** are not available as profiling data is not available for services written in Node.js.
 * Now let's go back to the explore view, you can hit the back button in your Browser
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![APM Explore](../images/apm-business-workflow.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Read the service map popup" %}}
 
 {{< tabs >}}
 {{% tab title="Question" %}}
@@ -33,7 +33,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 **The error percentage is very high.**
 {{% /tab %}}
 {{< /tabs >}}
-{{% /notice %}}
+{{% /exercise %}}
 
 ![APM Service Chart](../images/apm-service-popup-chart.png)
 

@@ -8,7 +8,7 @@ As we already saved some useful log charts in a dashboard in the Log Observer ex
 
  ![Wall mounted](../images/wall-mount.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open your custom dashboard" %}}
 
 * To get back to your dashboard with the two log charts, click on **Dashboards** from the main menu and you will be taken to your Team Dashboard view. Under **Dashboards** click in **Search dashboards** to search for your Service Health Dashboard group.
 * Click on the name and this will bring up your previously saved dashboard.
@@ -34,6 +34,6 @@ For more detail visit [link](https://https://www.splunk.com/en_us/products/obser
 * You should have something similar to the dashboard below:
   ![Initial Dashboard](../images/initial-dashboard.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
 This looks great, let's continue and add more meaningful charts.

@@ -3,7 +3,7 @@ title: 3. Synthetics to APM
 weight: 3
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Jump from Synthetics to APM" %}}
 
 * In the waterfall find an entry that starts with **POST checkout**. If you don't see that, go back and select another failed run result from the **Run results** page.
 
@@ -19,4 +19,4 @@ weight: 3
 * Repeat the earlier exercise to filter down to the errors only.
 * View the error log to validate the failed payment due to an invalid token.
 
-{{% /notice %}}
+{{% /exercise %}}

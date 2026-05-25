@@ -14,17 +14,15 @@ Allow ~10 minutes for attendees to finish this section.
 
 You are a **hip urban professional**, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.
 
-> [!splunk] The purpose of this exercise is for you to interact with the Online Boutique web application. This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout. You will experience some issues and use the data you generate to identify the root cause of that issue.
+> [!IMPORTANT] Interact with Online Boutique — a sample e-commerce app (browse, cart, checkout) wired up for Splunk Observability Cloud. You'll hit some real issues and use the resulting telemetry to track down the root cause.
 
 {{% /notice %}}
 
-{{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
+{{% exercise title="Retail Therapy" %}}
 
 * The application is pre-deployed — your instructor will provide a link to the Online Boutique website (e.g. `http://<s4r-workshop-i-xxx.splunk>.show:81/`). Ports 80 and 443 are also available if port 81 is unreachable.
 * Browse the Online Boutique, add a few items to your cart, and complete a checkout.
 * Repeat this at least 3–5 times to surface the performance issues deliberately built into the application.
-
----
 
 {{< tabs >}}
 {{% tab title="Question" %}}
@@ -41,8 +39,8 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 * When the checkout process is slow, it creates a frustrating user experience. Because this directly impacts customer satisfaction, we should prioritise investigating and resolving the issue.
 
-![Online Boutique](images/shop.png)
+{{% image src="images/shop.png" align="center" %}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Let's go to the next page where we will start using Splunk Observability Cloud and take a look at what the data looks like in **Splunk Real User Monitoring (RUM)**.

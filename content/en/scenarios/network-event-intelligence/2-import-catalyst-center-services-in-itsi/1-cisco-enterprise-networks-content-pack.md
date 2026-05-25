@@ -8,7 +8,7 @@ authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 
 In this section you will install the Cisco Enterprise Networks Content Pack which provides pre-built services, KPIs, and data integrations for Cisco network infrastructure.
 
-{{% notice title="Exercise: Install the Cisco Enterprise Networks Content Pack" style="primary" icon="running" %}}
+{{% exercise %}}
 **1.** In ITSI Navigate to **Configuration -> Data Integrations**
 
 **2.** Select **Content Library** in the tabs under Data Integrations
@@ -65,4 +65,4 @@ In the next section you see how the content pack can be used to automatically im
 Click **Configure Services** and continue to the next section of the workshop.
 {{% / notice %}}
 
-{{% / notice %}}
+{{% / exercise %}}

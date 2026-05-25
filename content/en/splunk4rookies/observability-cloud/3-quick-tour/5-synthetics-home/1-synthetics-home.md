@@ -17,7 +17,7 @@ As part of the workshop we have created a default browser test against the appli
 {{% /notice %}}
 To continue our tour, let's look at the result of our workshop's automatic browser test.  
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open the Synthetics overview" %}}
 
 * In the Test Pane, click on the line that contains the name of your workshop. The result should look like this:
 
@@ -34,6 +34,6 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.

@@ -13,7 +13,7 @@ This view will include **all** the log lines from **all** applications or servic
 
 Even in a small application such as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we are investigating.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter to error logs" %}}
 
 We need to focus on just the Error messages in the logs:
 
@@ -24,6 +24,6 @@ We need to focus on just the Error messages in the logs:
 * You could also add the service name, `sf_service=paymentservice`, to the filter if there are error lines for multiple services, but in our case, this is not necessary.
   ![Error Logs](../images/log-observer-errors.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we will look at log entries in detail.

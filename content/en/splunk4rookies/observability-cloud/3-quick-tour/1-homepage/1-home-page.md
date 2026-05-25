@@ -17,26 +17,26 @@ After you have registered and logged into Splunk Observability Cloud you will be
 
 Let's start with our first exercise:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Check your org and appearance" %}}
 
 * Click on your name in the top right and check the Organization name.
 * If you are not in **Observability Workshop AMER**, select it now.
 * At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
 * Did you also notice this is where the **Log Out** option is? Please don't 😊 !
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 If you have used Splunk Observability before, you may be placed in an Organization you have used previously. Make sure you are in the correct workshop organization. Verify this with your instructor if you have access to multiple Organizations.
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Hide the onboarding guidance" %}}
 
 * Click the help icon and select **Onboarding Guidance**. (You can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
 * Hide the Onboarding Content for the **Home Page**.
 
 * Click **<** to get back to the main menu.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, let's check out **Splunk Real User Monitoring (RUM)**.

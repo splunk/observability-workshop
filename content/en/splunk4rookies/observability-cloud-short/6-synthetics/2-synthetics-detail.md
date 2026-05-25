@@ -3,7 +3,7 @@ title: 2. Synthetics Test Detail
 weight: 2
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Inspect the test playback" %}}
 
 * Now we are looking at the result of a single Synthetic Browser Test.
 
@@ -15,4 +15,4 @@ weight: 2
 * In the Video pane, press on the play button **▶** **(1)** to see the test playback.
 * Using the filter above the filmstrip, under the heading **Filter by a synthetic transaction, page, or step** **(2)**, click on **Place Order** under **Synthetic transactions**.
 
-{{% /notice %}}
+{{% /exercise %}}

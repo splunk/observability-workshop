@@ -27,7 +27,7 @@ If you have used Splunk Enterprise or Splunk Cloud before, you are probably used
 
 Let's run a little search exercise:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter Log Observer to Visa transactions" %}}
 
 * Set the time frame to  **-15m**.
 * Click on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar then click on **Fields** in the dialog.
@@ -48,6 +48,6 @@ Let's run a little search exercise:
 * Click {{% button style="blue" %}}Run search{{% /button %}}
 * You should now have a list of orders that failed to complete for the last 15 minutes.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, let's check out **Splunk Synthetics**.

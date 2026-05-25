@@ -3,7 +3,7 @@ title: 4. APM Service Breakdown
 weight: 4
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Break down by tenant level" %}}
 
 * Select the **paymentservice** in the Service Map.
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
@@ -20,7 +20,7 @@ weight: 4
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 You will now see the **paymentservice** broken down into three services, **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
 

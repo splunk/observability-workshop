@@ -9,7 +9,7 @@ A trace is a collection of spans that share the same trace ID, representing a un
 
 A span represents a single unit of work within a trace, capturing information about a specific operation such as an API call, database query, or service request. Each span includes metadata like the operation name, start time, duration, and associated tags or attributes that provide context about the work being performed.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open the failing span" %}}
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
 
@@ -24,4 +24,4 @@ A span represents a single unit of work within a trace, capturing information ab
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}

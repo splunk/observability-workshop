@@ -13,11 +13,11 @@ First, let's look at the *Information Pane*, this pane provides alert and detect
 
 Meta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Read the node metadata" %}}
 
 * Can you identify the Operating System and Architecture of the node from the metadata?
 
-{{% /notice %}}
+{{% /exercise %}}
 
 As we have seen in the previous exercise, these fields are very useful for filtering the view in charts and Navigators down to a specific subset of metrics we are interested in.
 
@@ -32,7 +32,7 @@ A good example of this is the Kubernetes Navigator showing you related Content t
 
 In the **Information Pane**, you should see two tiles for services detected, the two databases used by our e-commerce application. Let's use this **Related Content**.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Drill into your Redis instance" %}}
 
 * First, make sure you no longer have a filter for the development namespace active. (Simply click on the **x** to remove it from the Filter Pane) as there are no databases in the Development Namespace.
 * Hoover on the **Redis** tile, and click on the {{% button style="blue" %}}Goto all my Redis instances{{% /button %}} button
@@ -44,6 +44,6 @@ In the **Information Pane**, you should see two tiles for services detected, the
 * We should be back in the Kubernetes Navigator, at the container level.
 * Confirm that the names of our cluster and node are all visible at the top of the page and we are back looking at our K8s Cluster, where we started.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 This completes the tour of Splunk Observability Cloud. Let's go and look at our e-commerce site and do some shopping.

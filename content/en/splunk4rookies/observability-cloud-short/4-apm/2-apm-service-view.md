@@ -8,7 +8,7 @@ As a service owner you can use the service view in Splunk APM to get a complete 
 
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Widen the timeframe to expose errors" %}}
 
 * Check the **Time** box, you can see that the dashboards only show data relevant to the time it took for the APM trace we previously selected to complete (note that the charts are static).
 * In the **Time** box change the timeframe to **-1h** **(1)**.
@@ -18,4 +18,4 @@ As a service owner you can use the service view in Splunk APM to get a complete 
 * You can clearly see the **Success rate** is not 100%, this is because we have errors in our service.
 * We need to understand if there is a pattern to this error rate. We have a handy tool for that, click on the **Tag Spotlight** tab **(2)**.
 
-{{% /notice %}}
+{{% /exercise %}}

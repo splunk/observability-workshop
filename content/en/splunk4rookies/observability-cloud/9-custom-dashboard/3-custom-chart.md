@@ -6,7 +6,7 @@ weight: 3
 
 In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously built. This will allow us to see the behavior of our test and get alerted if one or more of our test runs breach its SLA.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add a custom bar chart" %}}
 
 * At the top of the dashboard click on the **+** and select **Chart**.
   ![new chart screen](../images/new-chart.png)
@@ -29,7 +29,7 @@ In this part of the workshop we are going to create a chart that we will add to 
   ![Service Health Dashboard](../images/service-health-dashboard.png)
 * For the final task, click three vertical dots **⋮** at the top right of the page (next to **AI Assistant**) and click on **View fullscreen**. This will be the view you would use on the TV monitor on the wall (press Esc to go back).
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 

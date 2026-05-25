@@ -7,7 +7,7 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 
 ![multiple apps](../images/rum-dashboard.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter RUM to your workshop" %}}
 
 * Make sure you select your workshop by ensuring the drop-downs are set/selected as follows:
   * The **Time frame** is set to **-15m**.
@@ -17,7 +17,7 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 * Next, click on the **[NAME OF WORKSHOP]-store** above the **Page Views / JavaScript Errors** chart.
 * This will bring up a new dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events** and comparing them to historic metrics (1 hour by default).
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![RUM Dashboard](../images/rum-metrics-dashboard.png)
 
@@ -26,7 +26,7 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 * **Back-end Health:** Network Errors and Requests and Time to First Byte.
 * **Custom Events:** RED metrics (Rate, Error & Duration) for custom events.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Explore the RUM tabs" %}}
 
 * Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**) and examine the data.
 
@@ -39,4 +39,4 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}

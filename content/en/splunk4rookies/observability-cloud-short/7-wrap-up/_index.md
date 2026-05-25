@@ -7,8 +7,8 @@ time: 1 minute
 description: Congratulations, you have completed the workshop.
 ---
 
-Congratulations, you have completed the **Cisco Live Walk in Lab Splunk4Rookies - Observability Cloud Workshop**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.
+{{< checkpoint "Congratulations, you have completed the **Splunk4Rookies - Observability Cloud Workshop**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure." >}}
 
-Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}} profile.
+>[!IMPORTANT]Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}} profile."
 
-![Champagne](images/champagne.png)
+{{% image src="images/champagne.png" align="center" height="50vh" %}}
