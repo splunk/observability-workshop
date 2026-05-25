@@ -146,6 +146,7 @@ disableKinds = ["taxonomy", "term"]
   # omit the badge entirely.
   versionBadgeRepo  = ""
   versionBadgeColor = "FF007F"   # hex without the leading #
+  stableOtelVersion = "0.136.0"
 
   [params.social]
     github   = "https://github.com/splunk/observability-workshop"
