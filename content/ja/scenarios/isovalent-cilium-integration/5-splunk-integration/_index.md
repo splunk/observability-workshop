@@ -1,14 +1,14 @@
 ---
-title: Splunk Integration
+title: Splunk インテグレーション
 weight: 5
 ---
 
 ## 概要
 
-Splunk OpenTelemetry Collectorは、Prometheusレシーバーを使用してすべてのIsovalentコンポーネントからメトリクスをスクレイプします。各コンポーネントは異なるポートでメトリクスを公開しており、CiliumとHubbleは同じPodを共有しています（ポートが異なるだけです）。そのため、Podアノテーションに依存するのではなく、各コンポーネントに対して個別のレシーバーを設定します。
+Splunk OpenTelemetry Collector は、Prometheus レシーバーを使用してすべての Isovalent コンポーネントからメトリクスをスクレイピングします。各コンポーネントは異なるポートでメトリクスを公開しており、Cilium と Hubble は同じ Pod を共有しているため（ポートのみ異なる）、Pod アノテーションに依存するのではなく、それぞれに個別のレシーバーを設定します。
 
 | コンポーネント | ポート | 提供する情報 |
-|-----------|------|------------------|
+| --------- | ---- | ---------------- |
 | Cilium Agent | 9962 | eBPF データパス、ポリシー適用、IPAM、BPF マップ統計 |
 | Cilium Envoy | 9964 | L7 プロキシメトリクス（HTTP、gRPC） |
 | Cilium Operator | 9963 | クラスター全体のアイデンティティとエンドポイント管理 |
@@ -269,17 +269,17 @@ certmanager:
   enabled: true
 ```
 
-**重要:** 以下を置き換えてください:
+**重要:** 以下のプレースホルダーを置き換えてください:
 
-- `<YOUR-SPLUNK-ACCESS-TOKEN>` をSplunk Observability Cloudのアクセストークンに
-- `<YOUR-SPLUNK-REALM>` をレルム（例: us1、us2、eu0）に
+- `<YOUR-SPLUNK-ACCESS-TOKEN>` を Splunk Observability Cloud のアクセストークンに置き換えます
+- `<YOUR-SPLUNK-REALM>` をご利用のリージョンに置き換えます（例: us1、us2、eu0）
 
-{{% notice title="厳格なメトリクス許可リストを使用する理由" style="info" %}}
-Ciliumは、ワークロード、名前空間、プロトコルの詳細に関するすべてのラベルの組み合わせを考慮すると、数千のユニークなメトリクスシリーズを出力する可能性があります。`filter/includemetrics` 許可リストがないと、負荷の高いクラスターでは50,000以上のアクティブシリーズが簡単に生成され、Splunkのインジェストに過負荷をかける可能性があります。上記のリストは、CiliumとHubbleのダッシュボードを動作させるために必要なメトリクスと、Network Explorerに必要なTetragonソケット統計を正確に含むようにキュレートされています。後で新しいダッシュボードを追加する場合は、このリストにメトリクスを追加できます。
+{{% notice title="厳密なメトリクス許可リストを使用する理由" style="info" %}}
+Cilium は、ワークロード、名前空間、プロトコルの詳細に関するすべてのラベルの組み合わせを考慮すると、数千のユニークなメトリクスシリーズを生成する可能性があります。`filter/includemetrics` 許可リストがない場合、負荷の高いクラスターでは 50,000 以上のアクティブシリーズが容易に生成され、Splunk のインジェストを圧迫する可能性があります。上記のリストは、Cilium および Hubble ダッシュボードを動作させるメトリクスと、Network Explorer に必要な Tetragon ソケット統計を正確に含むように精選されています。新しいダッシュボードを追加する場合は、このリストにメトリクスを追加できます。
 {{% /notice %}}
 
-{{% notice title="Tetragonソケット統計で可能になること" style="info" %}}
-`tetragon_socket_stats_*` メトリクスは、SplunkのNetwork Explorerで接続ごとのレイテンシとスループット分析を可能にするものです。`srtt_count`/`srtt_sum` は、ワークロードごとの平均TCPラウンドトリップタイムを提供します。`retransmitsegs_total` は、パケットロスと輻輳を表面化します。`txbytes`/`rxbytes` は、接続ごとの帯域幅を示します。これらはAPMや標準のインフラストラクチャメトリクスでは確認できません。
+{{% notice title="Tetragon ソケット統計で可能になること" style="info" %}}
+`tetragon_socket_stats_*` メトリクスにより、Splunk の Network Explorer で接続ごとのレイテンシーとスループット分析が可能になります。`srtt_count`/`srtt_sum` はワークロードごとの平均 TCP ラウンドトリップタイムを提供します。`retransmitsegs_total` はパケットロスと輻輳を可視化します。`txbytes`/`rxbytes` は接続ごとの帯域幅を示します。これらの情報は APM や標準的なインフラストラクチャメトリクスでは確認できません。
 {{% /notice %}}
 
 ## ステップ 2: Splunk OpenTelemetry Collector のインストール
@@ -293,7 +293,7 @@ helm upgrade --install splunk-otel-collector \
   -f splunk-otel-isovalent.yaml
 ```
 
-ロールアウトが完了するまで待ちます:
+ロールアウトの完了を待ちます:
 
 ```bash
 kubectl rollout status daemonset/splunk-otel-collector-agent -n otel-splunk --timeout=60s
@@ -301,14 +301,12 @@ kubectl rollout status daemonset/splunk-otel-collector-agent -n otel-splunk --ti
 
 ## ステップ 3: メトリクス収集の確認
 
-コレクターがメトリクスをスクレイプしていることを確認します:
+コレクターがメトリクスをスクレイピングしていることを確認します:
 
 ```bash
 kubectl logs -n otel-splunk -l app=splunk-otel-collector --tail=100 | grep -i "cilium\|hubble\|tetragon"
 ```
 
-各コンポーネントのスクレイプが成功していることを示すログエントリが表示されるはずです。
+各コンポーネントのスクレイピングが正常に行われていることを示すログエントリが表示されるはずです。
 
-{{% notice title="次のステップ" style="success" %}}
-メトリクスがSplunk Observability Cloudに送信されています！ダッシュボードを確認するには、検証に進んでください。
-{{% /notice %}}
+{{< checkpoint "メトリクスが Splunk Observability Cloud に送信されています！ダッシュボードを確認するために検証に進んでください。" >}}

@@ -1,14 +1,14 @@
 ---
 title: 分散トレーシングと双方向ドリルダウン
-linkTitle: 4.1 インストルメンテーションの設定
+linkTitle: 4.1 計装の設定
 weight: 1
 time: 10 minutes
-description: インストルメンテーションの設定
+description: 計装の設定
 ---
 
 ## 必要な変更の概要
 
-[ThousandEyes のドキュメント](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing)、特に [Splunk Observability APM のページ](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm) に、分散トレーシングに必要な内容が記載されています。
+[ThousandEyes のドキュメント](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing)、特に [Splunk Observability APM のページ](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm) に、分散トレーシングに必要な設定が記載されています。
 
 Propagators について:
 
@@ -18,19 +18,19 @@ Propagators について:
 
 さらに、sampler を `parentbased_always_on` に設定することで、ThousandEyes がリクエストを開始した後もトレースが継続されます。
 
-{{% notice title="重要なポイント" style="warning" %}}
-テストの結果（少なくともこの執筆時点では）、propagators の順序が重要であり、デフォルトの順序では動作しないことが確認されています。そのため、正しい順序にパッチを適用する必要があります。
+{{% notice title="重要な注意点" style="warning" %}}
+テスト（少なくとも本稿執筆時点）において、propagators の順序が重要であり、デフォルトの順序では動作しないことを確認しています。そのため、正しい順序にパッチを適用する必要があります。
 {{% /notice %}}
 
 以下の変更を行います:
 - ステップ 1: OTel Collector の変更
-  - インストルメンテーションに正しい順序の propagators (`baggage`, `b3`, `tracecontext`) をパッチします
-- ステップ 2: アプリケーションのパッチ
-  - サービスに Java インストルメンテーションを注入するためのパッチを適用します
+  - propagators の正しい順序（`baggage`、`b3`、`tracecontext`）で instrumentation にパッチを適用します
+- ステップ 2: アプリケーションへのパッチ
+  - サービスに Java instrumentation を注入するためのパッチを適用します
 
 ### ステップ 1: OTel Collector の変更
 
-インストルメンテーションの設定を確認しましょう:
+instrumentation の設定を確認しましょう:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -59,9 +59,9 @@ Spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-`Propagators` の下に必要なものが設定されていることが確認できますが、正しい順序にするためにパッチを適用します。
+`Propagators` の下に必要なものが設定されていることがわかりますが、正しい順序にするためにパッチを適用します。
 
-### ステップ 2: インストルメンテーションのパッチ（デフォルトの解決）
+### ステップ 2: instrumentation へのパッチ（デフォルトの解決）
 
 ここではパッチで対応しますが、将来のアップグレードでこの変更は失われます。正しい方法は `values.yaml` ファイルを更新して、常にこの設定が適用されるようにすることです。
 
@@ -91,7 +91,7 @@ instrumentation.opentelemetry.io/splunk-otel-collector patched
 {{% /tab %}}
 {{< /tabs >}}
 
-Propagators が正しい順序になっていること、および sampler が追加されていることを確認できます:
+Propagators（正しい順序）と追加された sampler が設定されていることを確認できます:
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -122,7 +122,7 @@ Spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-### ステップ 3: アプリケーションのパッチ
+### ステップ 3: アプリケーションへのパッチ
 
 まず、デプロイされているコンテナイメージを確認しましょう:
 
@@ -143,9 +143,9 @@ kubectl describe pods api-gateway | grep Image:
 {{% /tab %}}
 {{< /tabs >}}
 
-`api-gateway` にはコンテナが1つだけあることが確認できます。アプリケーションにパッチを適用すると、複数のコンテナイメージ（api-gateway 用とインストルメンテーション用）が表示されるようになります。
+`api-gateway` にはコンテナが 1 つだけあることがわかります。アプリケーションにパッチを適用すると、複数のコンテナイメージ（api-gateway 用と instrumentation 用）が表示されるようになります。
 
-Java インストルメンテーションを注入しましょう。（注意: `config-server`、`discovery-server`、`admin-server` は既にパッチが適用されているため、変更はありません。）:
+Java instrumentation を注入しましょう。（注意: `config-server`、`discovery-server`、`admin-server` は既にパッチが適用されているため変更はありません。）:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -171,7 +171,7 @@ deployment.apps/visits-service patched
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="他のランタイムの場合" style="info" %}}
+{{% notice title="他のランタイムについて" style="info" %}}
 他のランタイムの場合は、言語に対応するアノテーションを使用してください。例:
 
 - `instrumentation.opentelemetry.io/inject-nodejs`
@@ -179,7 +179,7 @@ deployment.apps/visits-service patched
 - `instrumentation.opentelemetry.io/inject-dotnet`
 {{% /notice %}}
 
-インストルメンテーションがデプロイされたことを確認できます:
+instrumentation がデプロイされたことを確認できます:
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -198,7 +198,7 @@ kubectl describe pods api-gateway | grep Image:
 {{% /tab %}}
 {{< /tabs >}}
 
-また、この Pod で Java インストルメンテーションが有効になっており、propagators に `baggage`、`b3`、`tracecontext` が正しい順序で含まれていることも確認できます:
+また、この Pod で Java instrumentation が有効になっており、propagators に `baggage`、`b3`、`tracecontext` が正しい順序で含まれていることも確認できます:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -218,14 +218,14 @@ kubectl describe pods api-gateway | grep OTEL_PROPAGATORS
 {{< /tabs >}}
 
 {{% notice title="すべての Pod を再起動" style="warning" %}}
-一部の Pod には既にインストルメンテーションが注入されているため、正しいインストルメンテーションを適用するにはすべてを再起動することが重要です。
+一部の Pod には既に instrumentation が注入されているため、正しい instrumentation を適用するにはすべての Pod を再起動することが重要です。
 
-以下を実行します:
+再起動するには:
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
-kubectl rollout restart deployment
+kubectl rollout restart deployment -l app.kubernetes.io/part-of=spring-petclinic
 ```
 
 {{% /tab %}}
@@ -276,7 +276,7 @@ kubectl run te-petclinic-curl \
 {{< /tabs >}}
 
 {{% notice title="お待ちください" style="warning" %}}
-期待される出力が得られるまで、しばらく時間がかかる場合があります。
+期待される出力が得られるまでに時間がかかる場合があります。
 {{% /notice %}}
 
 デプロイメント環境は以下の通りです:

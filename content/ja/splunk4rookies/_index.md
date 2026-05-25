@@ -1,8 +1,10 @@
----
-title: Splunk4Rookies ワークショップ
-menuPost: " <i class='fa fa-graduation-cap'></i>"
-weight: 1 
-description: 以下は初心者向けワークショップです。
----
++++
+title       = "Splunk4*Rookies*."
+weight      = "1" 
+description = "Splunk Observability Cloud を初めてお使いですか？ここから始めましょう。これらの短いガイド付きワークショップでは、事前の経験を前提とせずにプラットフォーム全体をエンドツーエンドで体験できます。"
+layout      = "default"
+[params]
+  images    = ["images/s4r-featured.png"]
++++
 
-{{% children depth="1" description="true" %}}
+{{% children type="card" description="true" image="true" %}}

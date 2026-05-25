@@ -1,23 +1,23 @@
 ---
 draft: false
 hidden: false
-title: Zero-Code APM with OBI and eBPF
-linkTitle: Zero-Code APM with OBI
+title: OBI と eBPF によるゼロコード APM
+linkTitle: OBI によるゼロコード APM
 weight: 16
 archetype: chapter
 time: 90 minutes
 authors: ["Jeremy Hicks"]
-description: OpenTelemetry eBPF Instrumentation (OBI) がコードを一切変更せずにアプリケーションへ完全な分散トレーシングを追加し、Splunk Observability Cloud にテレメトリを送信する方法を体験するハンズオンワークショップです。
+description: OpenTelemetry eBPF Instrumentation (OBI) がコードを一行も変更せずにアプリケーションへ完全な分散トレーシングを追加し、Splunk Observability Cloud にテレメトリを送信する方法を体験するハンズオンワークショップです。
 ---
 
-このワークショップでは、**OpenTelemetry eBPF Instrumentation (OBI)** のパワーを体験します。OBI は、Linux カーネルから直接サービスを計装する、コード変更不要のアプリケーションパフォーマンスモニタリング手法です。
+このワークショップでは、**OpenTelemetry eBPF Instrumentation (OBI)** のパワーを体験します。OBI は Linux カーネルから直接サービスを計装する、ゼロコードのアプリケーションパフォーマンス監視アプローチです。
 
-3つのフェーズを順に進めていきます。各フェーズは前のフェーズを基に構築されています:
+3つのフェーズを順番に進めていきます。各フェーズは前のフェーズの上に構築されます:
 
-- **Phase 0 -- Python ウォームアップ**: ホスト上で素の Python アプリを実行します。OBI バイナリを使用してカーネルから APM トレーシングを追加します -- SDK もコード変更も不要です。
+- **Phase 0 -- Python ウォームアップ**: ホスト上で素の Python アプリを実行します。OBI バイナリを使用してカーネルから APM トレーシングを追加します。SDK もコード変更も不要です。
 - **Phase 1 -- Docker (OBI 導入前)**: 3つのポリグロットマイクロサービス (Node.js + Go + Go) を Docker Compose でデプロイします。APM が空であることを確認します。
 - **Phase 2 -- Docker (マジック)**: OBI コンテナを1つ追加します。3つのサービスすべてにわたる完全な分散トレースが Splunk APM に表示されます。コード変更はゼロです。
-- **Phase 3 -- Kubernetes**: 同じサービスを K8s にデプロイし、Splunk OTel Collector Helm chart を使用します。1つのフラグで OBI を有効化します。同じコード変更不要のトレーシングを、エンタープライズグレードのオーケストレーションで実現します。
+- **Phase 3 -- Kubernetes**: 同じサービスを Splunk OTel Collector Helm chart を使用して K8s にデプロイします。1つのフラグで OBI を有効にします。同じゼロコードトレーシングを、エンタープライズグレードのオーケストレーションで実現します。
 
 ```text
 Phase 0:  Python (:5150) ──── instrumented by OBI binary on host
@@ -31,10 +31,3 @@ Phase 2:  Same three services + one OBI container
 Phase 3:  Same services on Kubernetes + Splunk OTel Collector Helm chart + obi.enabled=true
           ↑ same tracing, scales to any cluster
 ```
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-このワークショップを進める最も簡単な方法は以下を使用することです:
-
-- このページの右上にある左右の矢印 (**<** | **>**)
-- キーボードの左右カーソルキー
-{{% /notice %}}

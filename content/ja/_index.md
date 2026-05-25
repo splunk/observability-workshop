@@ -1,30 +1,36 @@
----
-archetype: home
-title: Splunk Observability Workshops
-linkTitle: Splunk Observability Workshops
-description: Splunk を使用したオブザーバビリティソリューションの構築方法をご紹介します。
-weight: 1
-isCJKLanguage: true
----
++++
+title        = "Observability *Workshops*."
+description  = "Splunk を使ったオブザーバビリティソリューションの構築方法を学ぶ"
+weight       = "1"
+noautocards  = true
+images       = ["../images/featured-resources.png"]
 
-## Splunk Observabilityワークショップへようこそ
+[[cta]]
+label = "Rookies を見る"
+href  = "/splunk4rookies/"
+style = "primary"
 
-Splunk Observability Cloudの監視、分析、対応ツールを使用して、アプリケーションとインフラストラクチャをリアルタイムで把握することができます。
+[[cta]]
+label = "Ninjas を見る"
+href  = "/ninja-workshops/"
+style = "ghost"
++++
 
-このワークショップでは、メトリクス、トレース、ログを取り込み、監視し、可視化し、分析するためのクラス最高のオブザーバビリティ（可観測性）プラットフォームについて説明します。
+{{< lead >}}
+Splunk Observability Cloud のモニタリング、分析、レスポンスツールを活用して、アプリケーションとインフラストラクチャのインサイトをリアルタイムで取得しましょう。
+これらのワークショップでは、メトリクス、トレース、ログの取り込み、モニタリング、可視化、分析のための最高クラスのオブザーバビリティプラットフォームについて学びます。
+{{< /lead>}}
 
-![gif](images/observability-hero-dashboard.gif)
+{{< divider >}}
 
-{{% notice title="OpenTelemetry" color="#4f62ad" icon="fab fa-wpexplorer" %}}
-このワークショップで[OpenTelemetry](https://opentelemetry.io)をアプリケーションやインフラの分析に役立つテレメトリデータ（メトリクス、トレース、ログ）の計装、生成、収集、エクスポートに使用します。
-{{% /notice %}}
-
-{{% notice title="GitHub" color="#4078c0" icon="fab fa-github" %}}
-このドキュメントには、issueやpull requestで [貢献](https://github.com/splunk/observability-workshop) することができます。より良いワークショップにするために、是非ご協力ください。
-{{% /notice %}}
-
-{{% notice title="Twitter" color="#1DA1F2" icon="fab fa-twitter" %}}
-[Splunk](https://twitter.com/splunk)のTwitterチャンネルでは、アップデート情報や興味深い読み物を紹介しています。
-{{% /notice %}}
-
-{{%children type="card" description="true" %}}
+{{< cards >}}
+{{< card title="リソース" href="/resources/" icon="book" >}}
+Splunk Observability Cloud を最大限に活用するためのリソースです。
+{{< /card >}}
+{{< card title="シナリオ" href="/scenarios/" icon="rocket" >}}
+Splunk Observability Cloud の価値をご自身で体験するためのガイド付きワークショップです。
+{{< /card >}}
+{{< card title="Unsupported Field Workshops" href="/unsupported-field-workshops/" icon="users" >}}
+Unsupported Field Workshops は、Splunk Observability Cloud を最大限に活用するために設計されています。
+{{< /card >}}
+{{< /cards >}}

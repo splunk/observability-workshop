@@ -1,24 +1,19 @@
 ---
-title: OpenTelemetry、Docker、K8sを実践で学ぶ
-linkTitle: OpenTelemetry、Docker、K8sを実践で学ぶ
+title: Hands-On OpenTelemetry, Docker, and K8s
+linkTitle: Hands-On OpenTelemetry, Docker, and K8s
 weight: 8
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: このワークショップでは、これらの概念を説明するためにシンプルな.NETアプリケーションを使用します。さあ、始めましょう！ワークショップの終わりまでに、OpenTelemetryを使用した.NETアプリケーションの計装の実践経験を積み、そのアプリケーションのDocker化およびKubernetesへのデプロイを行います。また、Helmを使用したOpenTelemetryコレクターのデプロイ、コレクター設定のカスタマイズ、コレクター設定の問題のトラブルシューティングの経験も得られます。
+description: このハンズオンワークショップでは、OpenTelemetry を使用した .NET アプリケーションの計装、Docker によるコンテナ化、Kubernetes へのデプロイについて学びます。Helm を使用した OpenTelemetry Collector のデプロイと設定、および一般的な設定問題のトラブルシューティングを習得します。
 draft: false
 hidden: false
 ---
 
-このワークショップでは、以下の項目について実践経験を積むことができます
+このワークショップでは、以下の内容をハンズオンで体験します:
 
-- LinuxおよびKubernetes環境で、SplunkディストリビューションのOpenTelemetry .NETを使用してコレクターのデプロイと.NETアプリケーションの計装を実践します。
-- .NETアプリケーションの「Docker化」、Dockerでの実行、そしてSplunk OpenTelemetry計装の追加を実践します。
-- Helmを使用したK8s環境でのSplunkディストロのコレクターのデプロイを実践します。その後、コレクター設定をカスタマイズし、問題のトラブルシューティングを行います。
+* Linux および Kubernetes 環境で、Splunk distribution of OpenTelemetry .NET を使用した Collector のデプロイと .NET アプリケーションの計装を実践します。
+* .NET アプリケーションの「Docker 化」、Docker での実行、そして Splunk OpenTelemetry 計装の追加を実践します。
+* Helm を使用して K8s 環境に Splunk distro of the Collector をデプロイする方法を実践します。その後、Collector の設定をカスタマイズし、問題のトラブルシューティングを行います。
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-このワークショップを最も簡単にナビゲートする方法は以下を使用することです
-
-- このページの右上にある左右の矢印（**<** | **>**）
-- キーボードの左（◀️）と右（▶️）のカーソルキー
-  {{% /notice %}}
+このワークショップでは、シンプルな .NET アプリケーションを使用してこれらの概念を説明します。それでは始めましょう！

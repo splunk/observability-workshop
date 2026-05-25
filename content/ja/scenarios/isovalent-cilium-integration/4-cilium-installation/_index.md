@@ -123,31 +123,31 @@ enterprise:
 ```
 
 {{% notice title="ラベルコンテキストが重要な理由" style="info" %}}
-各Hubbleメトリクスの `labelsContext` および `sourceContext`/`destinationContext` パラメータは、メトリクスをどのディメンションで分割するかを制御します。`labelsContext=source_namespace,destination_namespace` を設定すると、すべてのメトリクスにこれら2つのラベルが付与され、カーディナリティの爆発を起こすことなくSplunkでnamespaceによるフィルタリングが可能になります。`workload-name|reserved-identity` のフォールバックチェーンは、利用可能な場合はワークロード名を使用し、利用できない場合はセキュリティIDにフォールバックすることを意味します。
+各 Hubble メトリクスの `labelsContext` と `sourceContext`/`destinationContext` パラメータは、メトリクスがどのディメンションで分割されるかを制御します。`labelsContext=source_namespace,destination_namespace` を設定すると、すべてのメトリクスにこれら2つのラベルが付与され、カーディナリティの爆発なしに Splunk で Namespace によるフィルタリングが可能になります。`workload-name|reserved-identity` のフォールバックチェーンは、ワークロード名が利用可能な場合はそれを使用し、利用できない場合はセキュリティ ID にフォールバックすることを意味します。
 {{% /notice %}}
 
 ## ステップ 2: Cilium Enterprise のインストール
 
-新しいノードがEKSクラスターに参加すると、そのノードのkubeletはすぐにCNIプラグインを探してネットワーキングをセットアップします。`/etc/cni/net.d/` に存在するCNI設定を読み取り、それを使用してノードを初期化します。**ノードグループを先に作成すると、AWS VPC CNI が最初に到達します** — そして一度ノードが特定のCNIで初期化されると、別のCNIに切り替えるにはノードをドレインして再初期化する必要があります。
+新しいノードが EKS クラスターに参加すると、そのノードの kubelet はすぐにネットワークを設定する CNI プラグインを探し始めます。`/etc/cni/net.d/` にある CNI 設定を読み取り、それを使用してノードを初期化します。**ノードグループを先に作成すると、AWS VPC CNI が最初に配置されます** — 一度あるCNIでノードが初期化されると、別のCNIに切り替えるにはノードのドレインと再初期化が必要になります。
 
-ノードが存在する前にCiliumをインストールすることで、CiliumのCNI設定が `kube-system` に既に存在し、ノードが起動した瞬間にピックアップされる準備ができていることを保証します。EC2インスタンスが起動すると、CiliumのDaemonSet Podがすぐにスケジュールされ、eBPFプログラムがロードされ、ノードは最初の瞬間からCiliumの制御下で `Ready` 状態になります。
+ノードが存在する前に Cilium をインストールすることで、Cilium の CNI 設定が `kube-system` に既に存在し、ノードが起動した瞬間に使用される準備が整っていることを保証します。EC2 インスタンスが起動すると、Cilium の DaemonSet Pod がすぐにスケジュールされ、eBPF プログラムがロードされ、最初の瞬間から Cilium の制御下でノードが `Ready` 状態になります。
 
-これは、EKSセットアップのステップ3でクラスターが `disableDefaultAddons: true` で作成された理由でもあります — これがないと、AWS VPC CNIが自動的にインストールされ、Ciliumと競合することになります。
+これは、EKS セットアップのステップ 3 でクラスターを `disableDefaultAddons: true` で作成した理由でもあります — これがないと、AWS VPC CNI が自動的にインストールされ、Cilium と競合します。
 
-Helmを使用してCiliumをインストールします：
+Helm を使用して Cilium をインストールします
 
 ```bash
 helm install cilium isovalent/cilium --version 1.18.4 \
   --namespace kube-system -f cilium-enterprise-values.yaml
 ```
 
-{{% notice title="Pending状態のジョブは正常です" style="warning" %}}
-インストール後、いくつかのジョブがPending状態になっているのが見えます — これは正常です。CiliumのHelmチャートにはHubble用のTLS証明書を生成するジョブが含まれており、そのジョブを実行するにはノードが必要です。次のステップでノードが利用可能になると、自動的に完了します。
+{{% notice title="Pending 状態のジョブは想定通りです" style="warning" %}}
+インストール後、一部のジョブが Pending 状態になりますが、これは正常です。Cilium の Helm チャートには Hubble の TLS 証明書を生成するジョブが含まれており、そのジョブは実行するためにノードが必要です。次のステップでノードが利用可能になると自動的に完了します。
 {{% /notice %}}
 
 ## ステップ 3: ノードグループの作成
 
-`nodegroup.yaml` という名前のファイルを作成します：
+`nodegroup.yaml` という名前のファイルを作成します
 
 ```yaml
 apiVersion: eksctl.io/v1alpha5
@@ -162,7 +162,7 @@ managedNodeGroups:
   privateNetworking: true
 ```
 
-ノードグループを作成します（5〜10分かかります）：
+ノードグループを作成します（5〜10分かかります）
 
 ```bash
 eksctl create nodegroup -f nodegroup.yaml
@@ -170,7 +170,7 @@ eksctl create nodegroup -f nodegroup.yaml
 
 ## ステップ 4: Cilium インストールの確認
 
-ノードの準備ができたら、すべてのコンポーネントを確認します：
+ノードの準備ができたら、すべてのコンポーネントを確認します
 
 ```bash
 # Check nodes
@@ -183,18 +183,18 @@ kubectl get pods -n kube-system -l k8s-app=cilium
 kubectl get pods -n kube-system | grep -E "(cilium|hubble)"
 ```
 
-**期待される出力：**
+**期待される出力**
 
 - 2つのノードが `Ready` 状態
-- Cilium Podが実行中（ノードごとに1つ）
-- Hubble relayとtimescapeが実行中
-- Cilium operatorが実行中
+- Cilium Pod が実行中（ノードごとに1つ）
+- Hubble relay と timescape が実行中
+- Cilium operator が実行中
 
 ## ステップ 5: 拡張ネットワークオブザーバビリティを備えた Tetragon のインストール
 
-Tetragonはそのままでもランタイムセキュリティとプロセスレベルの可視性を提供します。Splunkとの統合 — 特にNetwork Explorerダッシュボード — には、TCP/UDPソケット統計、RTT、接続イベント、DNSをカーネルレベルで追跡する拡張ネットワークオブザーバビリティモードも有効にする必要があります。
+Tetragon はデフォルトでランタイムセキュリティとプロセスレベルの可視性を提供します。Splunk との統合 — 特に Network Explorer ダッシュボード — には、TCP/UDP ソケット統計、RTT、接続イベント、DNS をカーネルレベルで追跡する拡張ネットワークオブザーバビリティモードも有効にする必要があります。
 
-`tetragon-network-values.yaml` という名前のファイルを作成します：
+`tetragon-network-values.yaml` という名前のファイルを作成します
 
 ```yaml
 # Tetragon configuration with Enhanced Network Observability enabled
@@ -255,7 +255,7 @@ tetragonOperator:
     enabled: true
 ```
 
-これらの値でTetragonをインストールします：
+以下の values を使用して Tetragon をインストールします
 
 ```bash
 helm install tetragon isovalent/tetragon --version 1.18.0 \
@@ -263,23 +263,23 @@ helm install tetragon isovalent/tetragon --version 1.18.0 \
   -f tetragon-network-values.yaml
 ```
 
-インストールを確認します：
+インストールを確認します
 
 ```bash
 kubectl get pods -n tetragon
 ```
 
-**表示される内容：** TetragonはDaemonSet（ノードごとに1つのPod）とオペレーターとして実行されます。
+**表示される内容** Tetragon は DaemonSet（ノードごとに1つの Pod）と operator として実行されます。
 
 {{% notice title="拡張ネットワークオブザーバビリティが追加するもの" style="info" %}}
-`layer3.tcp.rtt.enabled: true` を設定すると、TetragonはカーネルのTCPソケット状態にフックし、ラウンドトリップタイム、再送回数、送受信バイト数、セグメント数を含む接続ごとのメトリクスを記録します。これらはSplunkのNetwork Explorerのレイテンシとスループットビューを動かす `tetragon_socket_stats_*` メトリクスに供給されます。これがないとイベントカウントのみが取得されますが、これがあると接続品質データが取得できます。
+`layer3.tcp.rtt.enabled: true` を設定すると、Tetragon はカーネルの TCP ソケット状態にフックし、ラウンドトリップタイム、再送回数、送受信バイト数、セグメント数などの接続ごとのメトリクスを記録します。これらは Splunk の Network Explorer のレイテンシーとスループットのビューを支える `tetragon_socket_stats_*` メトリクスに供給されます。これがないとイベントカウントしか取得できませんが、これがあれば接続品質データを取得できます。
 
-TracingPolicies（TCP接続追跡、HTTP可視性など）は、上記のHelm valuesで `tetragonOperator.tracingPolicy.enabled: true` が設定されている場合、Tetragon Operatorによって自動的に管理されます。
+TracingPolicy（TCP 接続追跡、HTTP 可視性など）は、上記の Helm values で `tetragonOperator.tracingPolicy.enabled: true` が設定されている場合、Tetragon Operator によって自動的に管理されます。
 {{% /notice %}}
 
 ## ステップ 6: Cilium DNS Proxy HA のインストール
 
-`cilium-dns-proxy-ha-values.yaml` という名前のファイルを作成します：
+`cilium-dns-proxy-ha-values.yaml` という名前のファイルを作成します
 
 ```yaml
 enableCriticalPriorityClass: true
@@ -288,19 +288,17 @@ metrics:
     enabled: true
 ```
 
-DNS Proxy HAをインストールします：
+DNS Proxy HA をインストールします
 
 ```bash
 helm upgrade -i cilium-dnsproxy isovalent/cilium-dnsproxy --version 1.16.7 \
   -n kube-system -f cilium-dns-proxy-ha-values.yaml
 ```
 
-確認します：
+確認します
 
 ```bash
 kubectl rollout status -n kube-system ds/cilium-dnsproxy --watch
 ```
 
-{{% notice title="成功" style="success" %}}
-これでCilium CNI、Hubbleオブザーバビリティ、Tetragonセキュリティを備えた完全に機能するEKSクラスターが完成しました！
-{{% /notice %}}
+{{< checkpoint "Cilium CNI、Hubble オブザーバビリティ、Tetragon セキュリティを備えた完全に機能する EKS クラスターが完成しました！" >}}

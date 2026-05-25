@@ -1,28 +1,21 @@
 ---
-title: O11y Cloud で問題を解決する
-linkTitle: O11y Cloud で問題を解決する
+title: Solving Problems with O11y Cloud
+linkTitle: Solving Problems with O11y Cloud
 weight: 9
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: OpenTelemetry Collector のデプロイと設定、OpenTelemetry によるアプリケーションの計装、Troubleshooting MetricSets と Tag Spotlight を活用した Splunk Observability Cloud でのパフォーマンス問題の特定と解決方法を学びます。
+description: OpenTelemetry Collector のデプロイと設定、OpenTelemetry によるアプリケーションのインストルメンテーション、Troubleshooting MetricSets と Tag Spotlight を活用した Splunk Observability Cloud でのパフォーマンス問題の特定と解決方法を学びます。
 draft: false
 hidden: false
 ---
 
-このワークショップでは、以下の内容をハンズオン形式で体験します：
+このワークショップでは、以下の内容をハンズオン形式で体験します
 
-* **OpenTelemetry Collector** をデプロイし、Collectorの設定をカスタマイズする
-* アプリケーションをデプロイし、**OpenTelemetry** で計装する
-* **OpenTelemetry SDK** を使用してタグがどのようにキャプチャされるかを確認する
-* **Troubleshooting MetricSet** を作成する
-* **Tag Spotlight** を使用して問題をトラブルシューティングし、根本原因を特定する
+* **OpenTelemetry Collector** のデプロイとコレクター設定のカスタマイズ
+* アプリケーションのデプロイと **OpenTelemetry** によるインストルメンテーション
+* **OpenTelemetry SDK** を使用したタグのキャプチャ方法の確認
+* **Troubleshooting MetricSet** の作成
+* **Tag Spotlight** を使用した問題のトラブルシューティングと根本原因の特定
 
 それでは始めましょう！
-
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-このワークショップを最も簡単にナビゲートする方法は以下の通りです：
-
-* このページの右上にある左右の矢印（**<** | **>**）を使用する
-* キーボードの左（◀️）および右（▶️）カーソルキーを使用する
-  {{% /notice %}}
