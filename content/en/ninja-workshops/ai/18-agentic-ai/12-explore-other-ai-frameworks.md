@@ -240,6 +240,6 @@ There are a few differences:
 
 * The agent names are different (`Hotel Booking Specialist` vs. `hotel_specialist`)
 * The coordinator and plan synthesizer agents aren't listed for the CrewAI version 
-* The spans for the `crewai` inferred service include the agent instructions as part of the waterfall view 
+* The spans for the `travel-planner-crewai` service include the agent instructions as part of the waterfall view 
 
 </details>
