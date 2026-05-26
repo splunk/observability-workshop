@@ -144,7 +144,7 @@ disableKinds = ["taxonomy", "term"]
   # Set versionBadgeRepo to "owner/repo" on GitHub to render a shields.io
   # badge with the latest release tag in the site footer. Leave empty to
   # omit the badge entirely.
-  versionBadgeRepo  = ""
+  versionBadgeRepo  = "splunk/observability-workshop"
   versionBadgeColor = "FF007F"   # hex without the leading #
   stableOtelVersion = "0.136.0"
 
