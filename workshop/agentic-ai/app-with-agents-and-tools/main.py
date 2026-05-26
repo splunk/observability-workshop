@@ -29,8 +29,12 @@ from typing import Annotated, Dict, List, Optional, TypedDict
 from uuid import uuid4
 from pprint import pprint
 from typing import Union
-
 from flask import Flask, request, jsonify
+
+# Begin: Initialize AI Defense
+
+# End: Initialize AI Defense
+
 from langchain_core.messages import (
     AIMessage,
     BaseMessage,
@@ -55,7 +59,6 @@ from langchain.agents import (
 import logging
 
 logging.basicConfig(level=logging.INFO)
-
 
 DESTINATIONS = {
     "paris": {
