@@ -8,7 +8,7 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
 
  To stop that from happening let's detect if our test is taking more than 1.1 minutes.
 
- {{% notice title="Exercise" style="green" icon="running" %}}
+ {{% exercise title="Create a Synthetics detector" %}}
 
 * Go back to the Synthetics home page via the menu on the left
 * Select the workshop test again and click the {{% button %}}**Create Detector**{{% /button %}} button at the top of the page.
@@ -28,4 +28,4 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
 
 * If you can't find yours, but see one called *New Synthetic Detector*, you may not have saved it correctly with your name. Click on the *New Synthetic Detector* link, and redo the rename.
 * Click on the {{% button %}}Close{{% /button %}} button to exit the edit mode.
-{{% /notice %}}
+{{% /exercise %}}

@@ -16,7 +16,7 @@ Trace Analyzer enables you to:
 
 This makes Trace Analyzer ideal for investigating unknown issues, researching specific transactions, and performing root cause analysis when you need to find a needle in a haystack.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Find a failing checkout trace" %}}
 
 ![APM Trace Analyzer](../images/apm-trace-analyzer.png)
 
@@ -26,4 +26,4 @@ This makes Trace Analyzer ideal for investigating unknown issues, researching sp
   * then select the blue **Trace ID** **(2)** to continue
 * This will open the **Trace Waterfall** for that specific trace.
 
-{{% /notice %}}
+{{% /exercise %}}

@@ -7,7 +7,7 @@ A **User Session** in RUM represents a single user's complete interaction with y
 
 Sessions are identified by a unique Session ID and include metadata such as browser type, device, geographic location, and custom tags. This allows you to replay and analyze the exact experience a specific user had, making it invaluable for troubleshooting issues, understanding user behavior, and identifying performance bottlenecks.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Investigate the longest session" %}}
 
 * In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 15 seconds or longer). This will take you to the RUM Session view.
 * Note the length of the span **PlaceOrder**, this is the time it took to complete the order. Not good!
@@ -22,4 +22,4 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 
 ![RUM Session](../images/rum-waterfall.png)
 
-{{% /notice %}}
+{{% /exercise %}}

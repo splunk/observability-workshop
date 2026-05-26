@@ -1,9 +1,11 @@
 ---
-title: 1. RUM Overview
+title: RUM Overview
+linkTitle: 1. RUM Overview
 weight: 1
+time: 5 minutes
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter to your store" %}}
 
 * In Splunk Observability Cloud, from the main menu, hover over **Digital Experience**, then click on **Overview** **(1)** from the **Real User Monitoring** section as shown below.
 
@@ -22,4 +24,4 @@ weight: 1
 
 ![main page](../images/rum-dashboard.png)
 
-{{% /notice %}}
+{{% /exercise %}}

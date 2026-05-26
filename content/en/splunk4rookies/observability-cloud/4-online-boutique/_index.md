@@ -12,7 +12,7 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 {{% /notice %}}
 
-The purpose of this exercise is for you to interact with the Online Boutique web application.  This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout.
+Interact with Online Boutique — a sample e-commerce app (browse, cart, checkout) wired up for Splunk Observability Cloud.
 
 The application will already be deployed for you and your instructor will provide you with a link to the Online Boutique website e.g:
 

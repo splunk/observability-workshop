@@ -22,4 +22,3 @@ In this workshop, we'll explore:
 * How to utilize tags for alerting and dashboards.
 
 The workshop uses a simple microservices-based application to illustrate these concepts.  Let's get started!
-

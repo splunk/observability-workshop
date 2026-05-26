@@ -16,7 +16,7 @@ This is Part 2, of the Infrastructure Monitoring exercise, you should now have a
 
 Given there are two red boxes or tiles, let's see what is going on and if this will affect our Online Boutique site.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Inspect cluster and pod health" %}}
 
 * First, set the time window we are working with to the last 15 minutes. You do this by changing the  the Time picker in the filter pane from **-4h** to **Last 15 minutes**.
 * Hover with your mouse over the Cluster, Node and pods, both **green** and **red** ones.
@@ -46,6 +46,6 @@ The above scenario is common in a shared Kubernetes environment, where teams dep
 
 {{% /notice %}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 None of the Pods that make up our Online Boutique site run in the development namespace and all the other pods are green, we can safely assume these pods do not affect us, so let's move on to look at a few more things.

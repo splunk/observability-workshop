@@ -2,7 +2,7 @@
 title: Local Hosting
 weight: 5
 draft: false
-description: Resources for setting up a locally hosted workshop environment.
+description: Spin up a complete workshop environment on your own machine.
 ---
 
 {{% notice info %}}

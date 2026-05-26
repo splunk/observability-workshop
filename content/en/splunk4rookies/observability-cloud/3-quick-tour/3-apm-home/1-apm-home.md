@@ -20,7 +20,7 @@ To easily differentiate between multiple applications, Splunk uses **environment
 
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter APM to your workshop" %}}
 
 * Verify that the time window we are working with is set to the last 15 minutes (**-15m**).
 * Change the environment to the workshop one by selecting its name from the drop-down box and make sure that is the only one selected.
@@ -35,7 +35,7 @@ To easily differentiate between multiple applications, Splunk uses **environment
 <!--
 * Click on the Explore Tile in the Function Pane. This will bring us to the automatically generated map of our services. This map shows how the services interact together based on the trace data being sent to Splunk Observability Cloud.
 -->
-{{% /notice %}}
+{{% /exercise %}}
 
 If you scroll down the Overview Page you will notice some services listed have **Inferred Service** next to them.
 

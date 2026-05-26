@@ -7,7 +7,7 @@ hidden: true
 
 In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add and filter the request rate chart" %}}
 
 * Select the **2+** at the top of the page and select **Paste charts**, this will create the charts in your custom dashboard.
 * The chart currently shows data for all **Environments** and **Services**, so let's add a filter for our environment and the **paymentservice**.
@@ -22,6 +22,6 @@ In this section, we are going to use the **Copy and Paste** functionality to ext
 * As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again.
 * Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below.
   ![New dashboard look](../images/copyandpastedcharts.png)
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we are going to create a custom chart based on our Synthetic test that is running.

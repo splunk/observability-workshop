@@ -11,9 +11,21 @@ description: In this section, we will use APM to drill down and identify where t
 
 You are a **back-end developer** and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.
 
-> [!splunk] Discover the power of full end-to-end visibility by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
-> RUM and APM are two sides of the same coin. RUM is the client-side view of the application and APM is the server-side view. In this section, we will use APM to drill down and identify where the problem is.
-
 {{% /notice %}}
 
-![Messages](images/messages.png?width=750px)
+> [!IMPORTANT]
+> RUM is the client-side view; APM is the server-side view. Following a RUM trace into the matching APM trace is end-to-end visibility in action — and how we'll drill down to the back-end problem.
+
+{{< webex chat="Pieter Hagen" date="Today • 28/01/2026" seenby="RC" >}}
+{{< webex-msg from="PH" name="Pieter Hagen" time="09:42" color="#571bc0" >}}
+Hey Robert, I've triaged a customer satisfaction issue with Online Boutique. RUM shows poor page load times. I traced a user session to the backend using Related Content — the latency is coming from the **paymentservice**.
+{{< /webex-msg >}}
+
+{{< webex-msg from="PH" name="Pieter Hagen" time="09:43" color="#571bc0" >}}
+Can you dig into the back-end and find the root cause? I'll send you a link to the trace.
+{{< /webex-msg >}}
+
+{{< webex-msg me=true time="09:43" >}}
+On it. I'll check APM and the service map. 👍
+{{< /webex-msg >}}
+{{< /webex >}}

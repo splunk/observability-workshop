@@ -3,7 +3,7 @@ title: 7. APM to Logs
 weight: 7
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Jump from APM to Related Logs" %}}
 
 Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.
 
@@ -22,4 +22,4 @@ Related Content relies on specific metadata that allows APM, Infrastructure Moni
 
 * Next, let's find out more about the error in the logs.
 
-{{% /notice %}}
+{{% /exercise %}}

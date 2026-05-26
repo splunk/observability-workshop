@@ -3,7 +3,7 @@ title: 3. APM Tag Spotlight
 weight: 3
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Find the bad version in Tag Spotlight" %}}
 
 * Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
 
@@ -23,4 +23,4 @@ weight: 3
 * Now that we have identified the tag that indicates the issue, let's see if we can find out more information about the error.
 * Click the **APM** link above **paymentservice** at the top of the page to return to the **APM Overview**.
 * In **APM Overview**, click on **Service Map** in the right-hand pane.
-{{% /notice %}}
+{{% /exercise %}}

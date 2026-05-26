@@ -1,7 +1,7 @@
 ---
 title: Proxmox
 weight: 3
-description: Learn how to create a local hosting environment in Proxmox VE
+description: Local hosting on a Proxmox VE host.
 ---
 
 ## Proxmox Workshop Instance Setup

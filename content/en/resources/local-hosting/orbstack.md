@@ -1,7 +1,7 @@
 ---
 title: OrbStack
 weight: 2
-description: Learn how to create a local hosting environment with OrbStack - Mac (Apple Silicon)
+description: Local hosting via OrbStack on Apple Silicon Macs.
 ---
 
 Install Orbstack and jq:

@@ -10,23 +10,23 @@ As Splunk APM provides a **NoSample** end-to-end visibility of every service Spl
 Splunk Observability Cloud provides several tools for exploring application monitoring data. **Trace Analyzer** is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open the Trace Analyzer" %}}
 
 * With the outer box of the **paymentservice** selected, in the right-hand pane, click on **Traces**.
 * Set **Time Range** to **Last 15 minutes**.
 * Ensure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![APM Trace Analyzer](../images/apm-trace-analyzer.png)
 
 The **Trace & error count** view shows the total traces and traces with errors in a stacked bar chart. You can use your mouse to select a specific period within the available time frame.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Switch to trace-duration view" %}}
 
 * Click on the dropdown menu that says **Trace & error count**, and change it to **Trace duration** 
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![APM Trace Analyzer Heat Map](../images/apm-trace-analyzer-heat-map.png)
 
@@ -38,7 +38,7 @@ The **Trace Duration** view shows a heatmap of traces by duration.  The heatmap 
 
 You can use your mouse to select an area on the heatmap, to focus on a specific time period and trace duration range.  
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Compare error traces over an hour" %}}
 
 * Switch from **Trace duration** back to **Trace & Error count**.
 * In the time picker select **Last 1 hour**.
@@ -48,16 +48,16 @@ You can use your mouse to select an area on the heatmap, to focus on a specific 
 * Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter. If you didn't capture one, please ask your instructor for one.
   ![Traces by Duration](../images/apm-trace-by-duration.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
 We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.
 
 A secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open a failing trace" %}}
 
 * Click on the trace in the list.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we will walk through the trace waterfall.

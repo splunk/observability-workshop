@@ -31,30 +31,27 @@ This workshop focuses on **Enterprise Agent** deployment only.
 
 ## Architecture
 
-```mermaid
+{{< mermaid >}}
 ---
 config:
   theme: 'base'
 ---
 graph LR
     subgraph k8s["Kubernetes Cluster"]
-        secret["Secret<br/>te-creds"]
-        agent["ThousandEyes<br/>Enterprise Agent<br/>Pod"]
-        
+        secret["Secret te-creds"]
+        agent["ThousandEyes<br>Enterprise Agent<br>Pod"]
         subgraph apps["Application Pods"]
             api["API Gateway<br/>Pod"]
             customers["Customers Service<br/>Pod"]
             vets["Vets Service<br/>Pod"]
             visits["Visits Service<br/>Pod"]
         end
-        
         subgraph svcs["Services"]
             api_svc["api-gateway<br/>Service"]
             customers_svc["customers-service<br/>Service"]
             vets_svc["vets-service<br/>Service"]
             visits_svc["visits-service<br/>Service"]
         end
-        
         api_svc --> api
         customers_svc --> customers
         vets_svc --> vets
@@ -125,7 +122,7 @@ graph LR
     style apm fill:#ffccbc,stroke:#d84315,stroke-width:1px
     style alerts fill:#ffccbc,stroke:#d84315,stroke-width:1px
     style user fill:#b2dfdb,stroke:#00695c,stroke-width:2px
-```
+{{< /mermaid >}}
 
 ## Architecture Components
 

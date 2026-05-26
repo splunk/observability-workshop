@@ -16,7 +16,7 @@ Click on **Infrastructure** in the main menu, the Infrastructure Home Page is ma
 
 Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let's do that now.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Explore the Kubernetes navigator" %}}
 
 * Under the **Containers** section in the Integrations Pane **(3)**, select **Kubernetes** as the technology you wish to examine.
 * This should show you two tiles, **K8s Nodes** and **K8s Workloads**.
@@ -31,7 +31,7 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 * The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state **(1)**. The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
 * Note the tiles to the side, under **Nodes dependencies** **(2)**, specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice title="Node Dependencies" style="info" %}}
 
@@ -39,7 +39,7 @@ The UI will show services that are running on the node you have selected if they
 
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open the Redis instance navigator" %}}
 
 * Click on the **Redis** tile and this will take you to the **Redis instances** navigator. Under **REDIS INSTANCE** click on **redis-[NAME OF WORKSHOP]**.
 * This will bring you to the **Redis instance**. This navigator will show charts with metric data from the active Redis instance from our e-commerce site.
@@ -58,7 +58,7 @@ The UI will show services that are running on the node you have selected if they
 
 ![node](../images/node-link.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
 This completes the tour of **Splunk Observability Cloud**.
 

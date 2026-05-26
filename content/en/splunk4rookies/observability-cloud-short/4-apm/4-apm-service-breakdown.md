@@ -3,7 +3,7 @@ title: 4. APM Service Breakdown
 weight: 4
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Break down the service by version" %}}
 
 * Select the **paymentservice** in the Service Map.
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
@@ -25,4 +25,4 @@ Using span tags to break down services is a very powerful feature. It allows you
 
 * Next, we need to drill down into a trace to see what is going on. Click on the red circle for `v350.10` **(1)** in the **paymentservice**, then click on the **Traces** **(2)** tab in the right-hand pane.
 
-{{% /notice %}}
+{{% /exercise %}}

@@ -3,7 +3,7 @@ title: 2. Log Filtering
 weight: 2
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Filter to error logs" %}}
 
 * We need to focus on just the Error messages in the logs:
 * Click on the **Group By** **(1)** drop-down box and use the filter to find **severity**.
@@ -15,6 +15,6 @@ weight: 2
 
 ![Error Logs](../images/log-observer-errors.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we will look at log entries in detail.

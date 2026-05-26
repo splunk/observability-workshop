@@ -9,7 +9,7 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 
 ![Trace Waterfall](../images/apm-trace-waterfall.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open the failing span" %}}
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
 
@@ -22,7 +22,7 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}
 Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.
 
 Related Content relies on specific metadata that allow APM, Infrastructure Monitoring, and Log Observer to pass filters around Observability Cloud. For related logs to work, you need to have the following metadata in your logs:
@@ -33,12 +33,12 @@ Related Content relies on specific metadata that allow APM, Infrastructure Monit
 * `trace_id`
 * `span_id`
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Jump from APM to Related Logs" %}}
 
 * At the very bottom of the **Trace Waterfall** click on **Logs (1)**. This highlights that there are **Related Logs** for this trace.
 * Click on the **Logs for trace xxx** entry in the pop-up, this will open the logs for the complete trace in **Log Observer**.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![Related Logs](../images/apm-related-logs.png)
 

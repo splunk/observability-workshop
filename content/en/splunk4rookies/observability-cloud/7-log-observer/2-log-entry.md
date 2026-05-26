@@ -14,7 +14,7 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 * We did see that this error from the **paymentservice** `v350.10` caused multiple retries and a long delay in the response back from the Online Boutique checkout.
 * From the trace, using the power of **Related Content**, we arrived at the log entries for the failing **paymentservice** version. Now, we can determine **what the problem is**.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Open an error log" %}}
 
 * Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too.
 {{< tabs >}}
@@ -29,7 +29,7 @@ Before we look at a specific log line, let's quickly recap what we have done so 
   ![Log Message](../images/log-observer-log-message.png)
 * Click on the **X** in the log message pane to close it.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice style="blue" title="Congratulations" icon="wine-bottle" %}}
 

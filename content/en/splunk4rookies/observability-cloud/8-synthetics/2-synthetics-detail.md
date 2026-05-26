@@ -20,7 +20,7 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 
 By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page etc.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Inspect the test playback" %}}
 
 
 * Use your mouse to scroll left and right through the filmstrip to see how the site was being rendered during the test run.
@@ -32,4 +32,4 @@ By default, Splunk Synthetics provides screenshots and video capture of the test
 * In the filter, switch to the second Synthetic Transaction **Shop**. Note that the filmstrip and video adjust and move to the beginning of the new transaction.
 * Repeat this for all the other Transactions, then finally select the **PlaceOrder** transaction.
 
-{{% /notice %}}
+{{% /exercise %}}

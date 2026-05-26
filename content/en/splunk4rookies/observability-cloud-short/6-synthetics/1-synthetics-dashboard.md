@@ -3,7 +3,7 @@ title: 1. Synthetics Dashboard
 weight: 1
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Find a failed Synthetics run" %}}
 
 * In Splunk Observability Cloud from the main menu, click on **Digital Experience → Synthetics tests**. Click on **All** or **Browser tests** to see the list of active tests.
 
@@ -20,4 +20,4 @@ weight: 1
 
 * Click on one of the failed results.
 
-{{% /notice %}}
+{{% /exercise %}}

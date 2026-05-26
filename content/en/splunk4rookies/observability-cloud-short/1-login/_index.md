@@ -1,5 +1,5 @@
 ---
-title: Login to Splunk Observability Cloud 
+title: Login
 linkTitle:  1. Login 
 weight: 1 
 archetype: chapter
@@ -9,7 +9,7 @@ description: This section helps you understand how to use Splunk RUM to monitor 
 
 We are going to examine the real user data that has been provided by the telemetry received from all workshop attendees' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Login" %}}
 
 * You should have received an e-mail from Splunk inviting you to the Workshop Org. If you cannot find it, please check your Spam/Junk folders or inform your Instructor.
 * To proceed click the Join Now button or click on the link provided in the e-mail.
@@ -21,4 +21,4 @@ We are going to examine the real user data that has been provided by the telemet
 
 * You will land on the home page of Splunk Observability Cloud.
 
-{{% /notice %}}
+{{% /exercise %}}

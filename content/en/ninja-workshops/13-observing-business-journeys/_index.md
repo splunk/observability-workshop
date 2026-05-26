@@ -8,6 +8,6 @@ description: TBD
 hidden: true
 ---
 
-# Workshop: Biz Journey
+## Workshop: Biz Journey
 
 ABC

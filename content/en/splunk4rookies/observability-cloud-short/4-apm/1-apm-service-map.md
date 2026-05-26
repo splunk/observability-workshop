@@ -9,7 +9,7 @@ When we clicked on the APM link in the RUM waterfall, filters were automatically
 
 You can see the services involved in the workflow in the **Service Map**. In the side pane, charts for the selected workflow are displayed. When you select a service in the **Service Map**, the charts in the side pane are updated to show metrics for the selected service.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Inspect paymentservice on the map" %}}
 
 * Click on the **paymentservice** in the Service Map to select it.
 
@@ -27,4 +27,4 @@ You can see the services involved in the workflow in the **Service Map**. In the
 * Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
 * In the right-hand pane, click on **paymentservice** in blue **(2)**.
 
-{{% /notice %}}
+{{% /exercise %}}

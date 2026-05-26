@@ -9,17 +9,14 @@ enableGitInfo = true
 # the /en/ prefix.
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
-# `categories` is used by the ninja-workshops landing for grouping cards (see
-# the `cards-by-category` shortcode) — but we don't want Hugo's default
-# taxonomy machinery generating /categories/<slug>/ term pages from it.
-# Empty [taxonomies] disables Hugo's `tag` + `category` defaults; disableKinds
-# stops it generating the empty taxonomy list pages too.
+# Suppress Hugo's built-in `tag` and `category` taxonomies — this site
+# doesn't use them, and otherwise Hugo emits empty /categories/ and /tags/
+# listing pages on every build.
 disableKinds = ["taxonomy", "term"]
 
 # NB. Once a table header ([...] or [[...]]) appears below, every key after
 # it belongs to that table until the next header. KEEP all top-level Hugo
 # settings (baseURL, defaultContentLanguage*, disableKinds, …) ABOVE here.
-[taxonomies]
 [module]
   [module.hugoVersion]
     extended = true
@@ -149,6 +146,7 @@ disableKinds = ["taxonomy", "term"]
   # omit the badge entirely.
   versionBadgeRepo  = ""
   versionBadgeColor = "FF007F"   # hex without the leading #
+  stableOtelVersion = "0.136.0"
 
   [params.social]
     github   = "https://github.com/splunk/observability-workshop"
