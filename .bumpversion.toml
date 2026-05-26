@@ -1,5 +1,5 @@
 [tool.bumpversion]
-current_version = "6.75"
+current_version = "6.76"
 commit = true
 tag = false
 parse = '''v?(?P<major>\d+)\.(?P<minor>\d+)'''
