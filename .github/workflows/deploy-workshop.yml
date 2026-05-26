@@ -81,6 +81,9 @@ jobs:
           git tag -a "v${TAG}" -m "Version ${TAG}"
           git push --follow-tags origin main || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
+      - name: Clear stale go vcs cache
+        run: rm -rf /tmp/hugo_cache/modules/filecache/modules/pkg/mod/cache/vcs
+
       - name: Build Hugo site
         run: |
           hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod --cacheDir /tmp/hugo_cache
