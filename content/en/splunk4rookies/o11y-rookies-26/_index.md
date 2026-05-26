@@ -4,22 +4,23 @@ title: Observability Cloud Rookies 2026
 weight: 5
 authors: ["Pieter Hagen"]
 time: variable
-description: Modular Splunk Observability Cloud workshop — trainers pick shared setup plus any combination of standalone modules.
+description: Hands-on Splunk Observability Cloud workshop — your instructor may deliver all lessons in sequence or select individual lessons based on your team's goals and available time.
 draft: true
 params:
   images:
-    - images/o11y26.png
+    - images/o11y-2026.png
 ---
 
 ## Introduction
 
-Gain hands-on experience with Splunk Observability Cloud using the OpenTelemetry Demo (Astronomy Shop) v2.0.1 application. This modular workshop is designed so trainers can pick and choose which product modules to deliver based on audience needs and available time.
+Each lesson below walks you through a specific concept or challenge in Splunk Observability Cloud using the OpenTelemetry Demo (Astronomy Shop) application. Every lesson is self-contained — pick any one and dive in.
 
-## How This Workshop Works
+**If this is your first time here, start with the Intro lesson** or follow your instructor's guidance on which lessons to cover.
 
-Every session starts with two shared setup chapters:
+## Lessons
 
-1. **Login** — Access Splunk Observability Cloud (5 min)
-2. **The Astronomy Shop** — Explore the demo application and generate telemetry data (10 min)
+{{% children page="1-modules" depth="1" type="card" description="true" image="true" %}}
 
-Then the trainer selects any combination of standalone modules from the **Workshop Modules** section. Each module is self-contained — no module depends on another.
+{{% notice style="note" title="Parking Lot" icon="circle-info" %}}
+Login instructions and Astronomy Shop setup details are available at the end of the workshop navigation for reference.
+{{% /notice %}}

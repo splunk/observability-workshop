@@ -1,10 +1,10 @@
 ---
-title: Log Observer
-linkTitle: 4. Log Observer
-weight: 4
+title: Finding the Needle in the Logs
+linkTitle: 6. Finding the Needle in the Logs
+weight: 6
 archetype: chapter
-time: 20 minutes
-description: Use Splunk Log Observer as a primary investigation tool to triage issues using filtering, grouping, and pattern analysis.
+time: 45 minutes
+description: Start from logs alone to triage an incident — filter, group, and spot patterns to find the root cause.
 params:
   images:
     - images/lo.png
@@ -25,4 +25,4 @@ This module contains two scenarios:
 
 <!-- TODO screenshot: Log Observer hero image -->
 
-{{< pager prev="/en/splunk4rookies/o11y-rookies-26/3-modules/"  prevLabel="Back to Modules" >}}
+{{< pager prev="/en/splunk4rookies/o11y-rookies-26/1-modules/"  prevLabel="Back to Lessons" >}}

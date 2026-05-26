@@ -1,10 +1,10 @@
 ---
-title: Digital Experience Monitoring (RUM + Synthetics)
-linkTitle: 3. DEM
-weight: 3
+title: Find the Issue Before Social Media Does...
+linkTitle: 5. Find the Issue Before Social Media Does...
+weight: 5
 #archetype: chapter
-time: 25 minutes
-description: Use Splunk RUM to analyze real user sessions and Splunk Synthetics for proactive monitoring.
+time: 45 minutes
+description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
 draft: true
 params:
   images:

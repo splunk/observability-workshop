@@ -1,10 +1,10 @@
 ---
-title: Application Security
-linkTitle: 6. Secure APP
-weight: 6
+title: Playing Good Defence
+linkTitle: 8. Playing Good Defence
+weight: 8
 #archetype: chapter
-time: 20 minutes
-description: Use Splunk Application Security to detect and investigate vulnerabilities in running applications.
+time: 45 minutes
+description: Detect and investigate runtime vulnerabilities before attackers find them first.
 draft: true
 params:
   images:

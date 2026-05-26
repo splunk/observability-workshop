@@ -1,7 +1,7 @@
 ---
 title: Login to Splunk Observability Cloud
-linkTitle: 1. Login
-weight: 1
+linkTitle: Login
+weight: 11
 archetype: chapter
 time: 5 minutes
 description: Log in to Splunk Observability Cloud and verify access.
@@ -15,11 +15,11 @@ description: Log in to Splunk Observability Cloud and verify access.
   * **[https://app.eu0.signalfx.com](https://app.eu0.signalfx.com)** (EMEA)
   * **[https://app.us1.signalfx.com](https://app.us1.signalfx.com)** (APAC/AMER)
 
-![Login](../images/login/1-login.png)
+![Login](images/1-login.png)
 
 * You will land on the home page of Splunk Observability Cloud.  
 
 
-![ui](../images/login/2-ui.png)
+![ui](images/2-ui.png)
 
 {{% /notice %}}

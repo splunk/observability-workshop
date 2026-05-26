@@ -1,10 +1,10 @@
 ---
-title: Infrastructure Monitoring
-linkTitle: 2. IM
-weight: 2
+title: Neighbours Are a Pain
+linkTitle: 4. Neighbours Are a Pain
+weight: 4
 archetype: chapter
-time: 20 minutes
-description: Use Splunk Infrastructure Monitoring to monitor hosts, containers, and Kubernetes clusters.
+time: 45 minutes
+description: A noisy neighbour is hogging resources — learn how to spot the culprit using infrastructure monitoring.
 draft: true
 params:
   images:

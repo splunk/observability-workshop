@@ -1,10 +1,10 @@
 ---
-title: Database Monitoring
-linkTitle: 5. DB-MON
-weight: 5
+title: What Is That Database Doing...
+linkTitle: 7. What Is That Database Doing...
+weight: 7
 archetype: chapter
-time: 20 minutes
-description: Use Splunk Database Monitoring to investigate slow queries and correlate database performance with application health.
+time: 45 minutes
+description: Investigate slow queries and see how database performance impacts your application.
 draft: true
 params:
   images:

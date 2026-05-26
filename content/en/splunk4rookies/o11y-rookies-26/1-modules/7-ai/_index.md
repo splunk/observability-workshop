@@ -1,10 +1,10 @@
 ---
-title: AI Observability
-linkTitle: 7. AI
-weight: 7
+title: Let's Introduce Our Friend...
+linkTitle: 2. Let's Introduce Our Friend...
+weight: 2
 #archetype: chapter
-time: 20 minutes
-description: Use Splunk Observability Cloud to monitor AI/ML workloads, LLM performance, and AI-powered services.
+time: 45 minutes
+description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
 draft: true
 params:
   images:
@@ -15,4 +15,4 @@ params:
 This module is under development and will be available in a future update.
 {{% /notice %}}
 
-Monitor AI and machine learning workloads running in the Astronomy Shop — track LLM inference latency, token usage, model performance, and correlate AI service health with the broader application using Splunk Observability Cloud.
+In this lesson you learn how Splunk AI can help you find and resolve issues faster — using AI-driven insights to cut through noise, surface root causes, and accelerate your investigations.

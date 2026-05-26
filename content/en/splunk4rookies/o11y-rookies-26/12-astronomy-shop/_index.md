@@ -1,7 +1,7 @@
 ---
 title: The Astronomy Shop
-linkTitle: 2. The Astronomy Shop
-weight: 2
+linkTitle: The Astronomy Shop
+weight: 12
 archetype: chapter
 time: 10 minutes
 description: Explore the OpenTelemetry Demo application and generate telemetry data for the workshop modules.

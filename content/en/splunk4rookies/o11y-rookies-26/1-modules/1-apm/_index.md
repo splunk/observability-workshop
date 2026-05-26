@@ -1,10 +1,10 @@
 ---
-title: Application Performance Monitoring (APM)
-linkTitle: 1. APM
-weight: 1
+title: Where Did That Error Come From?
+linkTitle: 3. Where Did That Error Come From?
+weight: 3
 #archetype: chapter
-time: 20 minutes
-description: Use Splunk APM to trace requests across microservices and identify performance bottlenecks.
+time: 45 minutes
+description: Trace an error across microservices to find exactly which service is breaking — and why.
 draft: true
 params:
   images:
