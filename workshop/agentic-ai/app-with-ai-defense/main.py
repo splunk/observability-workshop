@@ -29,8 +29,23 @@ from typing import Annotated, Dict, List, Optional, TypedDict
 from uuid import uuid4
 from pprint import pprint
 from typing import Union
-
 from flask import Flask, request, jsonify
+
+# Begin: Initialize AI Defense
+
+from aidefense.runtime import agentsec
+agentsec.protect(
+    api_mode={
+        "llm": {
+            "mode": "monitor",    # "enforce" to block violations, "monitor" to log only
+            "endpoint": os.environ["AI_DEFENSE_API_MODE_LLM_ENDPOINT"],
+            "api_key": os.environ["AI_DEFENSE_API_MODE_LLM_API_KEY"],
+        }
+    }
+)
+
+# End: Initialize AI Defense
+
 from langchain_core.messages import (
     AIMessage,
     BaseMessage,
@@ -56,7 +71,6 @@ from poison_chat_wrapper import PoisonedChatWrapper
 import logging
 
 logging.basicConfig(level=logging.INFO)
-
 
 DESTINATIONS = {
     "paris": {

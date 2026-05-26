@@ -43,7 +43,7 @@ The `opentelemetry-instrumentation-aidefense` library can operate in either SDK 
 * With the SDK mode, the developer adds explicit security checks using `inspect_prompt()`. This option is best for developers that want full control how security checks are implemented and how issues are addressed. 
 * With Gateway mode, LLM calls proxied through Cisco AI Defense Gateway so application code changes are not required. This mode is supported for popular commercial LLMs such as OpenAI, Anthropic, etc. 
 
-This workshop utilizes Gateway mode with Azure OpenAI. 
+This workshop utilizes SDK mode with Azure OpenAI. 
 
 ## Setup the Cisco AI Defense Integration
 
@@ -81,6 +81,45 @@ diff ~/workshop/agentic-ai/base-app/requirements.txt ~/workshop/agentic-ai/app-w
 
 {{% / notice %}}
 
+## Import the AI Defense SDK
+
+Let's modify the application to add Cisco AI Defense protection to our agents.
+
+Open the `~/workshop/agentic-ai/base-app/main.py` file for editing.
+
+Import and activate AI Defense protection between the lines that
+say `Begin: Initialize AI Defense` and `End: Initialize AI Defense`:
+
+```python 
+# Begin: Initialize AI Defense
+
+from aidefense.runtime import agentsec
+agentsec.protect(
+    api_mode={
+        "llm": {
+            "mode": "monitor",    # "enforce" to block violations, "monitor" to log only
+            "endpoint": os.environ["AI_DEFENSE_API_MODE_LLM_ENDPOINT"],
+            "api_key": os.environ["AI_DEFENSE_API_MODE_LLM_API_KEY"],
+        }
+    }
+)
+
+# End: Initialize AI Defense
+```
+
+> Important: importing and activating protection needs to be done BEFORE importing LLM client packages such as `langchain_openai`
+
+
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+
+Run the following command to compare your changes with the expected solution:
+
+```bash
+diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-ai-defense/main.py
+```
+
+{{% / notice %}}
+
 ### Build an Updated Docker Image
 
 Build an updated Docker image with a new tag:
@@ -96,34 +135,38 @@ docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 > the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:app-with-ai-defense`
 > instead of `localhost:9999/agentic-ai-app:app-with-ai-defense`.
 
-### Create a Secret for the AI Defense Gateway
+### Create a Secret for AI Defense
 
 The document provided by the workshop instructor contains a `kubectl create secret` 
-command to create a secret to store the AI Defense Gateway URL. 
+command to create a secret to store the the Cisco AI Defense inspection API key 
+and endpoint. 
 
 Copy and paste this `kubectl create secret` command from the document 
 and run it in your ssh terminal.
 
 ### Update the Kubernetes Manifest
 
-Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for editing and
-replace the definition of the `AZURE_OPENAI_ENDPOINT`environment variable 
-as follows, which ensures that any requests destined for Azure OpenAI are 
-instead sent through the AI Defense gateway: 
-
-```yaml
-            - name: AZURE_OPENAI_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: ai-defense-secret
-                  key: ai-defense-gateway-url
-```
-
-In the same file, update the image to ensure we're using the one with the
-instrumentation:
+Open the `~/workshop/agentic-ai/base-app/k8s.yaml` file for update the image 
+to ensure we're using the one with AI Defense:
 
 ```yaml
           image: localhost:9999/agentic-ai-app:app-with-ai-defense
+```
+
+Add the following environment variables to the end of the environment 
+variable section: 
+
+```yaml
+            - name: AI_DEFENSE_API_MODE_LLM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ai-defense-secret
+                  key: ai-defense-inspection-api-key
+            - name: AI_DEFENSE_API_MODE_LLM_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: ai-defense-secret
+                  key: ai-defense-inspection-api-endpoint
 ```
 
 {{% notice title="Check your work before proceeding" style="primary" icon="running" %}}

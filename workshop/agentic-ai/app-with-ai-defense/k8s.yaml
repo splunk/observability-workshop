@@ -28,8 +28,8 @@ spec:
             - name: AZURE_OPENAI_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: ai-defense-secret
-                  key: ai-defense-gateway-url
+                  name: azure-openai-api
+                  key: azure-openai-api-endpoint
             - name: AZURE_OPENAI_API_VERSION
               value: "2024-12-01-preview"
             - name: AZURE_OPENAI_API_KEY
@@ -70,6 +70,16 @@ spec:
               value: "span_metric,splunk"
             - name: SPLUNK_PROFILER_ENABLED
               value: "true"
+            - name: AI_DEFENSE_API_MODE_LLM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ai-defense-secret
+                  key: ai-defense-inspection-api-key
+            - name: AI_DEFENSE_API_MODE_LLM_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: ai-defense-secret
+                  key: ai-defense-inspection-api-endpoint
             # End: Add Environment Variables
           resources:
             requests:
