@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Monitoring Agentic AI Applications with Splunk Observability Cloud on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/</link><description>Recent content in Monitoring Agentic AI Applications with Splunk Observability Cloud on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+ &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Access the &lt;strong&gt;Splunk Show&lt;/strong&gt; event by clicking on the link for your region&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Enroll&lt;/strong&gt; on the top-right corner&lt;/li&gt;
+&lt;li&gt;Then look near the bottom of the page for your EC2 instance details&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should see connection information such as the following:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/ConnectionInformation.png" alt="Connection Information" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Using the IP address (which is part of the &lt;strong&gt;SSH Command&lt;/strong&gt;)
+and &lt;strong&gt;SSH Password&lt;/strong&gt; provided as part of the &lt;strong&gt;Connection Information&lt;/strong&gt;,
+connect to your EC2 instance using one of the methods below:&lt;/p&gt;</description></item><item><title>Review Azure OpenAI Metrics, Dashboards, and Navigators</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</guid><description>&lt;p&gt;This workshop will use OpenAI models running in Azure.&lt;/p&gt;
+&lt;p&gt;You can monitor the performance of Azure OpenAI applications by configuring your
+Azure OpenAI applications to send metrics to Splunk Observability Cloud.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve already integrated our Azure account with the workshop instance
+of Splunk Observability Cloud using the steps described in the
+&lt;a href="https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-infrastructure-monitoring/set-up-data-integrations/cloud-services/azure-openai" target="_blank" rel="noopener"&gt;documentation &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+.&lt;/p&gt;
+&lt;p&gt;To ensure Azure OpenAI metrics are included, the connection was
+configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/AzureConnection.png" alt="Azure connection" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Deploy the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</guid><description>&lt;p&gt;We&amp;rsquo;ll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
+logs from an Agentic AI application running in Kubernetes. In this section, we&amp;rsquo;ll
+install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be
+used to capture metrics, traces, and logs from our environment and send them to
+Splunk.&lt;/p&gt;
+&lt;h2 id="install-the-collector-using-helm"&gt;
+ &lt;span class="heading-text"&gt;Install the Collector using Helm&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#install-the-collector-using-helm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We first need to add the helm repo:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;And ensure the repo is up-to-date:&lt;/p&gt;</description></item><item><title>Deploy the Agentic AI Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/5-deploy-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/5-deploy-the-app/</guid><description>&lt;h2 id="deploy-the-agentic-ai-application-linux"&gt;
+ &lt;span class="heading-text"&gt;Deploy the Agentic AI Application (Linux)&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#deploy-the-agentic-ai-application-linux" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ll start by running the application directly on our Linux EC2 instance.&lt;/p&gt;
+&lt;h3 id="set-environment-variables"&gt;
+ &lt;span class="heading-text"&gt;Set Environment Variables&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#set-environment-variables" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The document provided by the workshop instructor contains &lt;code&gt;export&lt;/code&gt; commands to set the following
+environment variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AZURE_OPENAI_DEPLOYMENT_NAME&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AZURE_OPENAI_API_VERSION&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AZURE_OPENAI_ENDPOINT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AZURE_OPENAI_API_KEY&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These environment variables tell the application how to connect to an
+OpenAI model hosted in Azure.&lt;/p&gt;
+&lt;p&gt;Copy and paste these &lt;code&gt;export&lt;/code&gt; commands from the document and run them in your ssh terminal.&lt;/p&gt;</description></item><item><title>Instrument the Agentic AI Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+If you&amp;rsquo;re not sure where to make the changes, or your application is no
+longer working, please refer to the expected solution for this section
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-instrumentation&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;There are a few steps required to instrument our Agentic AI application
+with OpenTelemetry and deploy it to Kubernetes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add the instrumentation packages to the &lt;code&gt;requirements.txt&lt;/code&gt; file&lt;/li&gt;
+&lt;li&gt;Update the Dockerfile that invokes the application using &lt;code&gt;opentelemetry-instrument&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Build a new Docker image with the instrumentation packages&lt;/li&gt;
+&lt;li&gt;Update the Kubernetes manifest with environment variables&lt;/li&gt;
+&lt;li&gt;Deploy the Kubernetes manifest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="add-instrumentation-packages"&gt;
+ &lt;span class="heading-text"&gt;Add Instrumentation Packages&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#add-instrumentation-packages" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Next, we need to install several instrumentation packages. We can achieve this by
+opening the &lt;code&gt;~/workshop/agentic-ai/base-app/requirements.txt&lt;/code&gt; for editing and adding
+the following packages to the bottom of the file:&lt;/p&gt;</description></item><item><title>Review Agent Trace Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</guid><description>&lt;h2 id="review-llm-provider-configuration"&gt;
+ &lt;span class="heading-text"&gt;Review LLM Provider Configuration&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#review-llm-provider-configuration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Splunk Observability Cloud includes an integration that allows you to connect
+a Large Language Model (LLM). Splunk uses this connection to evaluate the
+&lt;strong&gt;semantic quality&lt;/strong&gt; of LLM responses generated by your applications.&lt;/p&gt;
+&lt;p&gt;This integration has already been configured in the workshop organization.&lt;/p&gt;
+&lt;p&gt;To view the configuration, navigate to &lt;strong&gt;Data Management → Deployed Integrations&lt;/strong&gt;,
+then set the &lt;strong&gt;Categories&lt;/strong&gt; filter to &lt;code&gt;LLMs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Search for &lt;strong&gt;LLM Providers&lt;/strong&gt;, and select it. You should see the following provider:&lt;/p&gt;</description></item><item><title>Add Tool Calls</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+If you&amp;rsquo;re not sure where to make the changes, or your application is no
+longer working, please refer to the model solution for this section
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-agents-and-tools&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;In the previous section, we discovered that our agents aren&amp;rsquo;t appearing on the new
+&lt;strong&gt;Agents&lt;/strong&gt; page, nor in the &lt;strong&gt;Agent flow&lt;/strong&gt; at the top of the trace.&lt;/p&gt;
+&lt;p&gt;The reason is that our application isn&amp;rsquo;t currently using agents, but is instead invoking
+the LLM directly.&lt;/p&gt;</description></item><item><title>Detect Quality Issue</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+If you&amp;rsquo;re not sure where to make the changes, or your application is no
+longer working, please refer to the model solution for this section
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-quality-issue&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;In the previous sections, we instrumented our application with OpenTelemetry, and configured
+it to evaluate the semantic quality of agent responses.&lt;/p&gt;
+&lt;p&gt;In this section, let&amp;rsquo;s add some quality issues to our application, so we can see
+how Splunk Observability Cloud is able to detect such issues.&lt;/p&gt;</description></item><item><title>Add AI Defense Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+If you&amp;rsquo;re not sure where to make the changes, or your application is no
+longer working, please refer to the expected solution for this section
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-ai-defense&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;Splunk Observability Cloud integrates with
+&lt;a href="https://www.cisco.com/site/us/en/products/security/ai-defense/index.html" target="_blank" rel="noopener"&gt;Cisco AI Defense &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+
+to provide a consolidated view of &lt;a href="https://securitydocs.cisco.com/docs/ai-def/user/105473.dita" target="_blank" rel="noopener"&gt;security and privacy risks &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+
+detected at runtime for your AI agents, allowing you to monitor performance and risks in one place.&lt;/p&gt;</description></item><item><title>Detect Security Risks</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+If you&amp;rsquo;re not sure where to make the changes, or your application is no
+longer working, please refer to the model solution for this section
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-security-risk&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;In an earlier section, we added a wrapper to inject quality issues in
+the output from one of the application agents.&lt;/p&gt;
+&lt;p&gt;In this section, we&amp;rsquo;ll perform a similar exercise to create a security risk.&lt;/p&gt;</description></item><item><title>Explore Other Agentic AI Frameworks</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/12-explore-other-ai-frameworks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/12-explore-other-ai-frameworks/</guid><description>&lt;p&gt;In earlier sections of this workshop, we focused on instrumenting Agentic AI applications
+built with &lt;strong&gt;LangChain&lt;/strong&gt; and &lt;strong&gt;LangGraph&lt;/strong&gt; using OpenTelemetry.&lt;/p&gt;
+&lt;p&gt;In this section, we broaden the scope to cover &lt;strong&gt;other popular Agentic AI frameworks&lt;/strong&gt;
+and outline the available instrumentation approaches.&lt;/p&gt;
+&lt;p&gt;At a high level, there are &lt;strong&gt;two primary options&lt;/strong&gt; for instrumenting Agentic AI
+applications with OpenTelemetry. The best approach depends on the framework used
+and whether the application already includes existing instrumentation.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/13-wrapup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/13-wrapup/</guid><description>&lt;p&gt;Congratulations, you&amp;rsquo;ve successfully completed the &lt;strong&gt;Monitoring Agentic AI Applications with Splunk Observability Cloud&lt;/strong&gt; workshop!&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ve achieved the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An understanding of how to connect an &lt;strong&gt;Azure&lt;/strong&gt; account to &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; to capture AI infrastructure-related metrics.&lt;/li&gt;
+&lt;li&gt;Experience exploring out-of-the box &lt;strong&gt;dashboards&lt;/strong&gt; and &lt;strong&gt;navigators&lt;/strong&gt; related to AI infrastructure.&lt;/li&gt;
+&lt;li&gt;An understanding of the &lt;strong&gt;architecture&lt;/strong&gt; of an Agentic AI application built with &lt;strong&gt;LangChain&lt;/strong&gt; and &lt;strong&gt;LangGraph&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Practice deploying an Agentic AI application and &lt;strong&gt;instrumenting&lt;/strong&gt; it with &lt;strong&gt;OpenTelemetry&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Experience exploring how &lt;strong&gt;metrics, traces, and logs&lt;/strong&gt; can be used in Splunk Observability Cloud to understand agent performance.&lt;/li&gt;
+&lt;li&gt;Practice modifying an Agentic AI application to use &lt;strong&gt;tool calls&lt;/strong&gt; and &lt;strong&gt;agents&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Practice adding &lt;strong&gt;quality issues&lt;/strong&gt; to an application and detecting them with Splunk Observability Cloud using &lt;strong&gt;semantic quality evals&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Practice adding &lt;strong&gt;AI Defense instrumentation&lt;/strong&gt; to the application and &lt;strong&gt;security risks&lt;/strong&gt;, and detecting them with Splunk Observability Cloud.&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

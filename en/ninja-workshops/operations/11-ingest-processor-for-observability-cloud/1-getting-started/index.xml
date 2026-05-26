@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/1-getting-started/</link><description>Recent content in Getting Started on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/1-getting-started/index.xml" rel="self" type="application/rss+xml"/><item><title>How to connect to your workshop environment</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/1-getting-started/1-access-cloud-instances/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/1-getting-started/1-access-cloud-instances/</guid><description>&lt;ol&gt;
+&lt;li&gt;How to retrieve the URL for your Splunk Enterprise Cloud instances.&lt;/li&gt;
+&lt;li&gt;How to access the Splunk Observability Cloud workshop organization.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="1-splunk-cloud-instances"&gt;
+ &lt;span class="heading-text"&gt;1. Splunk Cloud Instances&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-splunk-cloud-instances" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;There are three instances that will be used throughout this workshop which have already been provisioned for you:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Splunk Enterprise Cloud&lt;/li&gt;
+&lt;li&gt;Splunk Ingest Processor (SCS Tenant)&lt;/li&gt;
+&lt;li&gt;Splunk Observability Cloud&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The Splunk Enterprise Cloud and Ingest Processor instances are hosted in &lt;a href="https://show.splunk.com" target="_blank" rel="noopener"&gt;Splunk Show &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+. If you were invited to the workshop, you should have received an email with an invite to the event in &lt;a href="https://show.splunk.com" target="_blank" rel="noopener"&gt;Splunk Show &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ or a link to the event will have been provided at the beginning of the workshop.&lt;/p&gt;</description></item></channel></rss>

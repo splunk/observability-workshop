@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Solving Problems with O11y Cloud on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/</link><description>Recent content in Solving Problems with O11y Cloud on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+ &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. Using the IP address and password provided by your instructor, connect to your EC2 instance using one of the methods below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS / Linux
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ssh splunk@IP address&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Windows 10+
+&lt;ul&gt;
+&lt;li&gt;Use the OpenSSH client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Earlier versions of Windows
+&lt;ul&gt;
+&lt;li&gt;Use Putty&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="editing-files"&gt;
+ &lt;span class="heading-text"&gt;Editing Files&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#editing-files" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ll use &lt;code&gt;vi&lt;/code&gt; to edit files during the workshop. Here&amp;rsquo;s a quick primer.&lt;/p&gt;</description></item><item><title>Deploy the OpenTelemetry Collector and Customize Config</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/2-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/2-deploy-collector/</guid><description>&lt;p&gt;The first step to &amp;ldquo;getting data in&amp;rdquo; is to deploy an OpenTelemetry collector, which receives and processes telemetry data in our environment before exporting it to Splunk Observability Cloud.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll be using Kubernetes for this workshop, and will deploy the collector in our K8s cluster using Helm.&lt;/p&gt;
+&lt;h2 id="what-is-helm"&gt;
+ &lt;span class="heading-text"&gt;What is Helm?&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#what-is-helm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Helm is a package manager for Kubernetes which provides the following benefits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Manage Complexity
+&lt;ul&gt;
+&lt;li&gt;deal with a single values.yaml file rather than dozens of manifest files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Easy Updates
+&lt;ul&gt;
+&lt;li&gt;in-place upgrades&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Rollback support
+&lt;ul&gt;
+&lt;li&gt;Just use helm rollback to roll back to an older version of a release&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="install-the-collector-using-helm"&gt;
+ &lt;span class="heading-text"&gt;Install the Collector using Helm&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#install-the-collector-using-helm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s change into the correct directory and run a script to install the collector:&lt;/p&gt;</description></item><item><title>Deploy the Sample Application and Instrument with OpenTelemetry</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/</guid><description>&lt;p&gt;At this point, we&amp;rsquo;ve deployed an OpenTelemetry collector in our K8s cluster, and it&amp;rsquo;s
+successfully collecting infrastructure metrics.&lt;/p&gt;
+&lt;p&gt;The next step is to deploy a sample application and instrument
+with OpenTelemetry to capture traces.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll use a microservices-based application written in Python. To keep the workshop simple,
+we&amp;rsquo;ll focus on two services: a credit check service and a credit processor service.&lt;/p&gt;
+&lt;h2 id="deploy-the-application"&gt;
+ &lt;span class="heading-text"&gt;Deploy the Application&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#deploy-the-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To save time, we&amp;rsquo;ve built Docker images for both of these services already which are available in Docker Hub.
+We can deploy the credit check service in our K8s cluster with the following command:&lt;/p&gt;</description></item><item><title>Create a Troubleshooting MetricSet</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/</guid><description>&lt;h2 id="index-tags"&gt;
+ &lt;span class="heading-text"&gt;Index Tags&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#index-tags" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To use advanced features in &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; such as &lt;strong&gt;Tag Spotlight&lt;/strong&gt;, we&amp;rsquo;ll need to first index one or more tags.&lt;/p&gt;
+&lt;p&gt;To do this, navigate to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;APM &amp;amp; RUM MetricSets&lt;/strong&gt; and ensure the &lt;strong&gt;APM&lt;/strong&gt; tab is selected.&lt;br&gt;
+Then click the &lt;strong&gt;Add MetricSet Configuration&lt;/strong&gt; drop-down and select &lt;strong&gt;Add Custom MetricSet&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s index the &lt;code&gt;credit.score.category&lt;/code&gt; tag by entering the following details (&lt;strong&gt;note&lt;/strong&gt;: since everyone in the workshop is using the same organization, the instructor will do this step on your behalf):&lt;/p&gt;</description></item><item><title>Troubleshoot a Problem Using Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</guid><description>&lt;h2 id="explore-apm-data"&gt;
+ &lt;span class="heading-text"&gt;Explore APM Data&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#explore-apm-data" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s explore some of the APM data we&amp;rsquo;ve captured to see how our application is performing.&lt;/p&gt;
+&lt;p&gt;Navigate to &lt;strong&gt;APM&lt;/strong&gt;, then use the &lt;strong&gt;Environment&lt;/strong&gt; dropdown to select your environment (i.e. &lt;code&gt;tagging-workshop-instancename&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;You should see &lt;code&gt;creditprocessorservice&lt;/code&gt; and &lt;code&gt;creditcheckservice&lt;/code&gt; displayed in the list of services:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/apm_overview.png" alt="APM Overview" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Click on &lt;strong&gt;Service Map&lt;/strong&gt; on the right-hand side to view the service map. We can see that the &lt;code&gt;creditcheckservice&lt;/code&gt; makes calls to the &lt;code&gt;creditprocessorservice&lt;/code&gt;, with an average response time of at least 3 seconds:&lt;/p&gt;</description></item><item><title>Summary</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/6-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/6-summary/</guid><description>&lt;p&gt;This workshop provided hands-on experience with the following concepts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to deploy the &lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt; using Helm.&lt;/li&gt;
+&lt;li&gt;How instrument an application with &lt;a href="https://opentelemetry.io" target="_blank" rel="noopener"&gt;&lt;strong&gt;OpenTelemetry&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+.&lt;/li&gt;
+&lt;li&gt;How to capture tags of interest from your application using an OpenTelemetry SDK.&lt;/li&gt;
+&lt;li&gt;How to index tags in &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; using &lt;strong&gt;Troubleshooting MetricSets&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;How to utilize tags in &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; to find “unknown unknowns” using the &lt;strong&gt;Tag Spotlight&lt;/strong&gt; and &lt;strong&gt;Dynamic Service Map&lt;/strong&gt; features.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Collecting tags aligned with the best practices shared in this workshop will let you get even more value from the data you’re sending to &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt;. Now that you’ve completed this workshop, you have the knowledge you need to start collecting tags from your own applications!&lt;/p&gt;</description></item></channel></rss>
