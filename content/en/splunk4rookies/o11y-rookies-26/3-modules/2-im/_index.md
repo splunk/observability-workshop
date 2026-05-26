@@ -6,6 +6,9 @@ archetype: chapter
 time: 20 minutes
 description: Use Splunk Infrastructure Monitoring to monitor hosts, containers, and Kubernetes clusters.
 draft: true
+params:
+  images:
+    - images/im.gif
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

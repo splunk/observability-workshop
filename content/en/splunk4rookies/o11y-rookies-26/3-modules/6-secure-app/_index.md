@@ -2,10 +2,13 @@
 title: Application Security
 linkTitle: 6. Secure APP
 weight: 6
-archetype: chapter
+#archetype: chapter
 time: 20 minutes
 description: Use Splunk Application Security to detect and investigate vulnerabilities in running applications.
 draft: true
+params:
+  images:
+    - images/secureapp.avif
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

@@ -1,10 +1,14 @@
 ---
+archetype: chapter
 title: Observability Cloud Rookies 2026
 weight: 5
 authors: ["Pieter Hagen"]
 time: variable
 description: Modular Splunk Observability Cloud workshop — trainers pick shared setup plus any combination of standalone modules.
 draft: true
+params:
+  images:
+    - images/o11y26.png
 ---
 
 ## Introduction

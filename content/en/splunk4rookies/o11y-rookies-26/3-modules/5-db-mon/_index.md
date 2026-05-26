@@ -6,6 +6,9 @@ archetype: chapter
 time: 20 minutes
 description: Use Splunk Database Monitoring to investigate slow queries and correlate database performance with application health.
 draft: true
+params:
+  images:
+    - images/db-mon.avif
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

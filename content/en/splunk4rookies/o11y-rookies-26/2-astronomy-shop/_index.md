@@ -23,7 +23,7 @@ You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, st
 * Proceed to checkout and complete a purchase.
 * **Repeat 3-5 times** to generate enough telemetry data.
 
-![ui](../images/astronomy-shop/1-shop.png)
+![ui](images/1-shop.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}

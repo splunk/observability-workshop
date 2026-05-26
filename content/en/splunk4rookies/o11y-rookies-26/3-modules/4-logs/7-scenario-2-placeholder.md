@@ -23,3 +23,5 @@ This page is a placeholder. Exercise steps will be added once the scenario is fi
 {{< /tabs >}}
 
 {{% /notice %}}
+
+{{< pager next="/en/splunk4rookies/o11y-rookies-26/3-modules/"  nextLabel="Back to Modules"  >}}

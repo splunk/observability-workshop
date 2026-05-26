@@ -5,6 +5,9 @@ weight: 4
 archetype: chapter
 time: 20 minutes
 description: Use Splunk Log Observer as a primary investigation tool to triage issues using filtering, grouping, and pattern analysis.
+params:
+  images:
+    - images/lo.png
 ---
 
 {{% notice icon="user" style="orange" title="Persona" %}}
@@ -21,3 +24,5 @@ This module contains two scenarios:
 - **Scenario 2: TBD** — A second investigation scenario (under development)
 
 <!-- TODO screenshot: Log Observer hero image -->
+
+{{< pager prev="/en/splunk4rookies/o11y-rookies-26/3-modules/"  prevLabel="Back to Modules" >}}
