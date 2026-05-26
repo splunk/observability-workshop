@@ -11,9 +11,10 @@ description: In this section, we will use APM to drill down and identify where t
 
 You are a **back-end developer** and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.
 
-> [!IMPORTANT] RUM is the client-side view; APM is the server-side view. Following a RUM trace into the matching APM trace is end-to-end visibility in action — and how we'll drill down to the back-end problem.
-
 {{% /notice %}}
+
+> [!IMPORTANT]
+> RUM is the client-side view; APM is the server-side view. Following a RUM trace into the matching APM trace is end-to-end visibility in action — and how we'll drill down to the back-end problem.
 
 {{< webex chat="Pieter Hagen" date="Today • 28/01/2026" seenby="RC" >}}
 {{< webex-msg from="PH" name="Pieter Hagen" time="09:42" color="#571bc0" >}}

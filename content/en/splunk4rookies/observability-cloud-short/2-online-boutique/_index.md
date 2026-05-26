@@ -14,13 +14,11 @@ Allow ~10 minutes for attendees to finish this section.
 
 You are a **hip urban professional**, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.
 
-> [!IMPORTANT] Interact with Online Boutique — a sample e-commerce app (browse, cart, checkout) wired up for Splunk Observability Cloud. You'll hit some real issues and use the resulting telemetry to track down the root cause.
-
 {{% /notice %}}
 
 {{% exercise title="Retail Therapy" %}}
 
-* The application is pre-deployed — your instructor will provide a link to the Online Boutique website (e.g. `http://<s4r-workshop-i-xxx.splunk>.show:81/`). Ports 80 and 443 are also available if port 81 is unreachable.
+* The application is pre-deployed, your instructor will provide a link to the Online Boutique website (e.g. `http://<s4r-workshop-i-xxx.splunk>.show:81/`). Ports 80 and 443 are also available if port 81 is unreachable.
 * Browse the Online Boutique, add a few items to your cart, and complete a checkout.
 * Repeat this at least 3–5 times to surface the performance issues deliberately built into the application.
 
@@ -32,7 +30,7 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 {{% /tab %}}
 {{% tab title="Answer" %}}
 
-**Slow!** 🐌
+**Sometimes slow!** 🐌
 
 {{% /tab %}}
 {{< /tabs >}}

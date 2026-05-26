@@ -1,6 +1,6 @@
 ---
 title: Observability Cloud (1 hour)
-weight: 2
+weight: 1
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 60 minutes
 description: The condensed version. Hands-on troubleshooting against a fully instrumented Kubernetes microservices app — the essential Splunk Observability Cloud experience in an hour.
@@ -25,6 +25,4 @@ In this 1-hour hands-on session, you'll cover:
 - **Log Observer** - Use "Related Content" to navigate from APM traces to related logs
 - **Synthetics** - Set up 24/7 monitoring with synthetic tests running every minute
 
-![Full Stack](images/featured-o11y.png)
-
-**Let's go shopping!**
+>**Using the Online Boutique, we need to generate some data. Let's go shopping!**
