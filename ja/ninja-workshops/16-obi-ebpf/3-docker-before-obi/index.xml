@@ -3,12 +3,12 @@
  &lt;a class="heading-anchor" href="#splunk-%e8%aa%8d%e8%a8%bc%e6%83%85%e5%a0%b1%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注:&lt;/strong&gt; 環境で &lt;code&gt;env&lt;/code&gt; コマンドを使用して &lt;code&gt;ACCESS_TOKEN&lt;/code&gt;、&lt;code&gt;REALM&lt;/code&gt;、&lt;code&gt;INSTANCE&lt;/code&gt; を取得してください。これらを設定ファイルに貼り付ける必要があります。&lt;/p&gt;</description></item><item><title>2. トラフィックの生成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</guid><description>&lt;h2 id="フロントエンドへのアクセス"&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;注:&lt;/strong&gt; 環境で &lt;code&gt;env&lt;/code&gt; コマンドを使用して &lt;code&gt;ACCESS_TOKEN&lt;/code&gt;、&lt;code&gt;REALM&lt;/code&gt;、&lt;code&gt;INSTANCE&lt;/code&gt; を取得してください。これらを設定ファイルに貼り付ける必要があります。&lt;/p&gt;</description></item><item><title>2. トラフィックの生成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</guid><description>&lt;h2 id="フロントエンドへのアクセス"&gt;
  &lt;span class="heading-text"&gt;フロントエンドへのアクセス&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e3%81%b8%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;p&gt;curlを使用してトラフィックを生成します:&lt;/p&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;curlを使用してトラフィックを生成します:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -36,7 +36,7 @@
  &lt;a class="heading-anchor" href="#%e3%82%a4%e3%83%b3%e3%83%95%e3%83%a9%e3%82%b9%e3%83%88%e3%83%a9%e3%82%af%e3%83%81%e3%83%a3%e3%83%a1%e3%83%88%e3%83%aa%e3%82%af%e3%82%b9%e3%81%ae%e7%a2%ba%e8%aa%8d" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;ol&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a href="https://app.us1.signalfx.com/#/metrics" target="_blank" rel="noopener"&gt;Metric Finder &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
  を開き（または&lt;a href="https://app.us1.signalfx.com/#/chart/new?template=default&amp;amp;filters=sf_metric%3Aworkshop_heartbeat" target="_blank" rel="noopener"&gt;チャートを作成 &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
 して）、&lt;code&gt;workshop_heartbeat&lt;/code&gt; を検索します&lt;/li&gt;
@@ -49,4 +49,4 @@
  &lt;a class="heading-anchor" href="#apm-%e3%81%8c%e7%a9%ba%e3%81%a7%e3%81%82%e3%82%8b%e3%81%93%e3%81%a8%e3%82%92%e7%a2%ba%e8%aa%8d" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;</description></item></channel></rss>

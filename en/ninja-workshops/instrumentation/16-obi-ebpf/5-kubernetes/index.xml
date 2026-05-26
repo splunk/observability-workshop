@@ -118,7 +118,7 @@
  &lt;a class="heading-anchor" href="#upgrade-the-collector-with-obi-enabled" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="code-block"&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;

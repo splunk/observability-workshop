@@ -13,4 +13,4 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Create a directory&lt;/strong&gt;: In your environment create a new directory and change into it:&lt;/p&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;Create a directory&lt;/strong&gt;: In your environment create a new directory and change into it:&lt;/p&gt;</description></item></channel></rss>

@@ -79,7 +79,7 @@
 &lt;/div&gt;
 
 &lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Lambdas in Splunk APM</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</guid><description>&lt;h2 id="lambdas-in-splunk-apm"&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Lambdas in Splunk APM</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/3-lambdas-in-splunk/</guid><description>&lt;h2 id="lambdas-in-splunk-apm"&gt;
  &lt;span class="heading-text"&gt;Lambdas in Splunk APM&lt;/span&gt;
  &lt;a class="heading-anchor" href="#lambdas-in-splunk-apm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -123,7 +123,7 @@
 &lt;/div&gt;
 
 &lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Redeploy Lambdas</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</guid><description>&lt;h2 id="re-deploy-your-lambdas"&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;</description></item><item><title>Redeploy Lambdas</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/5-redeploy-lambdas/</guid><description>&lt;h2 id="re-deploy-your-lambdas"&gt;
  &lt;span class="heading-text"&gt;Re-deploy your Lambdas&lt;/span&gt;
  &lt;a class="heading-anchor" href="#re-deploy-your-lambdas" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -182,7 +182,7 @@
 &lt;/p&gt;
 &lt;p&gt;Go back to your Service Dependency map.&lt;/p&gt;
 &lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;Notice the difference?&lt;/div&gt;&lt;/div&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Workshop Question&lt;/p&gt;&lt;div class="callout__body"&gt;Notice the difference?&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/6-updated-1-map.png" alt="6-updated-1-map" loading="lazy" decoding="async"&gt;

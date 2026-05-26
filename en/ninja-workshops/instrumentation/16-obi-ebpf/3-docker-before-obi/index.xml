@@ -3,7 +3,7 @@
  &lt;a class="heading-anchor" href="#add-your-splunk-credentials" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; obtain your &lt;code&gt;ACCESS_TOKEN&lt;/code&gt;, &lt;code&gt;REALM&lt;/code&gt;, and &lt;code&gt;INSTANCE&lt;/code&gt; in your environment. You will need to paste them into configs.&lt;/p&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; obtain your &lt;code&gt;ACCESS_TOKEN&lt;/code&gt;, &lt;code&gt;REALM&lt;/code&gt;, and &lt;code&gt;INSTANCE&lt;/code&gt; in your environment. You will need to paste them into configs.&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -25,7 +25,7 @@
  &lt;a class="heading-anchor" href="#hit-the-frontend" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;p&gt;Use curl to generate traffic:&lt;/p&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;Use curl to generate traffic:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -58,7 +58,7 @@
  &lt;a class="heading-anchor" href="#verify-infrastructure-metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;ol&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ol&gt;
 &lt;li&gt;Open &lt;a href="https://app.us1.signalfx.com/#/metrics" target="_blank" rel="noopener"&gt;Metric Finder &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
  (or &lt;a href="https://app.us1.signalfx.com/#/chart/new?template=default&amp;amp;filters=sf_metric%3Aworkshop_heartbeat" target="_blank" rel="noopener"&gt;make a chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
 ) and search for &lt;code&gt;workshop_heartbeat&lt;/code&gt;&lt;/li&gt;
@@ -71,4 +71,4 @@
  &lt;a class="heading-anchor" href="#confirm-apm-is-empty" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item></channel></rss>

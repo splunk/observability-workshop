@@ -66,7 +66,7 @@
  &lt;a class="heading-anchor" href="#check-splunk-apm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;ol&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ol&gt;
 &lt;li&gt;Navigate to &lt;strong&gt;APM&lt;/strong&gt; in Splunk Observability Cloud.&lt;/li&gt;
 &lt;li&gt;Filter by service name &lt;code&gt;warmup-app&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;You should see traces for the &lt;code&gt;/hello&lt;/code&gt; endpoint.

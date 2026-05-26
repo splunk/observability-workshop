@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Synthetics on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/</link><description>Recent content in Splunk Synthetics on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Synthetics Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/1-synthetics-dashboard/</guid><description>&lt;p&gt;In Splunk Observability Cloud from the main menu, click on &lt;strong&gt;Synthetics&lt;/strong&gt;. Click on &lt;strong&gt;All&lt;/strong&gt; or &lt;strong&gt;Browser tests&lt;/strong&gt; to see the list of active tests.&lt;/p&gt;
 &lt;p&gt;During our investigation in the RUM section, we found there was an issue with the &lt;strong&gt;Place Order&lt;/strong&gt; Transaction. Let&amp;rsquo;s see if we can confirm this from the Synthetics test as well. We will be using the metric &lt;strong&gt;First byte time&lt;/strong&gt; for the 4th page of the test, which is the &lt;strong&gt;Place Order&lt;/strong&gt; step.&lt;/p&gt;</description></item><item><title>2. Synthetics Test Detail</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/8-synthetics/2-synthetics-detail/</guid><description>&lt;p&gt;Right now we are looking at the result of a single Synthetic Browser Test. This test is split up into &lt;strong&gt;Business Transactions&lt;/strong&gt;, think of this as a group of one or more logically related interactions that represent a business-critical user flow.&lt;/p&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class="callout__body"&gt;&lt;p class="callout__title"&gt;Info&lt;/p&gt;The screenshot below doesn&amp;rsquo;t contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.&lt;/div&gt;&lt;/div&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Info&lt;/p&gt;&lt;div class="callout__body"&gt;The screenshot below doesn&amp;rsquo;t contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/synth-waterfall.png" alt="waterfall" loading="lazy" decoding="async"&gt;
@@ -16,9 +16,13 @@
 &lt;/figure&gt;
 &lt;/p&gt;
 &lt;section class="exercise"&gt;
- &lt;header class="exercise__head"&gt;
- &lt;p class="exercise__label"&gt;Exercise&lt;/p&gt;&lt;p class="exercise__title"&gt;Jump from Synthetics to APM&lt;/p&gt;
+ &lt;header class="exercise__bar"&gt;
+ &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+ &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+ &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;&lt;span class="exercise__bar-title"&gt;Jump from Synthetics to APM&lt;/span&gt;
  &lt;/header&gt;
+ &lt;div class="exercise__panel"&gt;
  &lt;div class="exercise__body"&gt;
  &lt;ul&gt;
 &lt;li&gt;In the waterfall find an entry that starts with &lt;strong&gt;POST checkout&lt;/strong&gt;.&lt;/li&gt;
@@ -27,6 +31,8 @@
 &lt;/span&gt;
 &lt;strong&gt;APM&lt;/strong&gt; link on the &lt;strong&gt;POST checkout&lt;/strong&gt; line in the waterfall.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
  &lt;/div&gt;
 &lt;/section&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
@@ -45,9 +51,13 @@
 &lt;/p&gt;
 &lt;p&gt;To stop that from happening let&amp;rsquo;s detect if our test is taking more than 1.1 minutes.&lt;/p&gt;
  &lt;section class="exercise"&gt;
- &lt;header class="exercise__head"&gt;
- &lt;p class="exercise__label"&gt;Exercise&lt;/p&gt;&lt;p class="exercise__title"&gt;Create a Synthetics detector&lt;/p&gt;
+ &lt;header class="exercise__bar"&gt;
+ &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+ &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+ &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;&lt;span class="exercise__bar-title"&gt;Create a Synthetics detector&lt;/span&gt;
  &lt;/header&gt;
+ &lt;div class="exercise__panel"&gt;
  &lt;div class="exercise__body"&gt;
  &lt;ul&gt;
 &lt;li&gt;
