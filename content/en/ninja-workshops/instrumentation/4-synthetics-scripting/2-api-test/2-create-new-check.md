@@ -4,7 +4,7 @@ linkTitle: 1.2 Create new API test
 weight: 2
 ---
 
-## Create a new API test
+{{< step "Create a new API test" "1" >}}
 
 From the **Synthetics** landing page, click {{< button style="blue" >}}Add new test{{< /button >}} and select **API test** from the dropdown.
 
@@ -18,3 +18,5 @@ Once you click {{< button style="blue" >}}Submit{{< /button >}} you'll land on t
 2. **Search for tracks** — a `GET` to the search endpoint, sending the token from step 1 as a Bearer credential, and extracting an item from the JSON response.
 
 We'll build them one at a time in the next two chapters.
+
+{{</ step >}}
