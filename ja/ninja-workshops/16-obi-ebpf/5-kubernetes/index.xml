@@ -103,7 +103,7 @@
  &lt;span class="heading-text"&gt;Splunk OTel Collector のインストール&lt;/span&gt;
  &lt;a class="heading-anchor" href="#splunk-otel-collector-%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;&lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  は、Kubernetes に Collector をデプロイするための本番環境向けの方法です。Collector のデプロイ、サービス、および設定を自動的に処理します。&lt;/p&gt;</description></item><item><title>3. Helm で OBI を有効化</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</guid><description>&lt;p&gt;アプリケーションコードを一切変更せずに、Helm のアップグレード1回だけでクラスター全体にトレーシングを追加します。&lt;/p&gt;
 &lt;h2 id="obi-を有効にして-collector-をアップグレード"&gt;
  &lt;span class="heading-text"&gt;OBI を有効にして Collector をアップグレード&lt;/span&gt;

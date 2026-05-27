@@ -103,7 +103,7 @@
  &lt;span class="heading-text"&gt;Install the Splunk OTel Collector&lt;/span&gt;
  &lt;a class="heading-anchor" href="#install-the-splunk-otel-collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  is the production way to deploy the collector to Kubernetes. It handles the collector deployment, service, and configuration automatically.&lt;/p&gt;</description></item><item><title>3. Enable OBI via Helm</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/3-add-obi-daemonset/</guid><description>&lt;p&gt;Now add tracing to the entire cluster without changing any application code just one Helm upgrade.&lt;/p&gt;
 &lt;h2 id="upgrade-the-collector-with-obi-enabled"&gt;
  &lt;span class="heading-text"&gt;Upgrade the Collector with OBI Enabled&lt;/span&gt;
@@ -154,6 +154,6 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/zero-code-ebpf-instrumentation.md" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
- is the production way to deploy both the collector and OBI. For even more automation, the &lt;a href="https://opentelemetry.io/docs/kubernetes/operator/" target="_blank" rel="noopener"&gt;OpenTelemetry Operator &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;The &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/zero-code-ebpf-instrumentation.md" target="_blank" rel="noopener"&gt;Splunk OTel Collector Helm chart&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ is the production way to deploy both the collector and OBI. For even more automation, the &lt;a href="https://opentelemetry.io/docs/kubernetes/operator/" target="_blank" rel="noopener"&gt;OpenTelemetry Operator&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  can inject OBI as a sidecar automatically using annotations.&lt;/p&gt;</description></item></channel></rss>

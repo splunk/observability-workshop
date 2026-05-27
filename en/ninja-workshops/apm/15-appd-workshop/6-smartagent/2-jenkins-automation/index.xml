@@ -75,13 +75,8 @@
 &lt;li&gt;&lt;strong&gt;Install Database Agent&lt;/strong&gt; - Installs Database Agent via smartagentctl&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Cleanup All Agents&lt;/strong&gt; - Removes /opt/appdynamics directory&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;All pipeline code is available in the &lt;a href="https://github.com/chambear2809/sm-jenkins" target="_blank" rel="noopener"&gt;sm-jenkins GitHub repository &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
-.&lt;/p&gt;
-&lt;h2 id="pipeline-files"&gt;
- &lt;span class="heading-text"&gt;Pipeline Files&lt;/span&gt;
- &lt;a class="heading-anchor" href="#pipeline-files" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;The repository contains these Jenkinsfile pipeline definitions:&lt;/p&gt;</description></item><item><title>Deployment Workflow</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/apm/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/apm/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/</guid><description>&lt;h2 id="first-deployment"&gt;
+&lt;p&gt;All pipeline code is available in the &lt;a href="https://github.com/chambear2809/sm-jenkins" target="_blank" rel="noopener"&gt;sm-jenkins GitHub repository&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+.&lt;/p&gt;</description></item><item><title>Deployment Workflow</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/apm/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/apm/15-appd-workshop/6-smartagent/2-jenkins-automation/4-deployment-workflow/</guid><description>&lt;h2 id="first-deployment"&gt;
  &lt;span class="heading-text"&gt;First Deployment&lt;/span&gt;
  &lt;a class="heading-anchor" href="#first-deployment" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

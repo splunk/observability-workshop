@@ -53,7 +53,7 @@
 
 &lt;/div&gt;
 
-&lt;p&gt;詳細については、&lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Ubuntu に.NET SDK または.NET Runtime をインストールする &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;詳細については、&lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Ubuntu に.NET SDK または.NET Runtime をインストールする&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
 を参照してください。&lt;/p&gt;</description></item><item><title>OpenTelemetryで.NETアプリケーションを計装する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/</guid><description>&lt;h2 id="splunk-distribution-of-opentelemetry-のダウンロード"&gt;
  &lt;span class="heading-text"&gt;Splunk Distribution of OpenTelemetry のダウンロード&lt;/span&gt;
@@ -91,5 +91,5 @@ agent collectorのlogに書き込まれていることが確認できます。&l
 &lt;li&gt;コレクター設定をカスタマイズして問題をトラブルシューティングする方法。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;他の言語と環境でOpenTelemetryがどのように計装されるかを確認するには、
-&lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub リポジトリ &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub リポジトリ&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 をご覧ください。&lt;/p&gt;</description></item></channel></rss>

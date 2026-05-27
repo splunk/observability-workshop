@@ -3,7 +3,7 @@
  &lt;a class="heading-anchor" href="#enable-the-red-hat-openshift-service-in-aws" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;To deploy OpenShift in your AWS account, we&amp;rsquo;ll need to first enable the
-Red Hat OpenShift service using the &lt;a href="https://us-east-1.console.aws.amazon.com/rosa/home?region=us-east-1#/" target="_blank" rel="noopener"&gt;AWS console &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+Red Hat OpenShift service using the &lt;a href="https://us-east-1.console.aws.amazon.com/rosa/home?region=us-east-1#/" target="_blank" rel="noopener"&gt;AWS console&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;p&gt;Next, follow the instructions to connect your AWS account with your Red Hat account.&lt;/p&gt;
 &lt;h2 id="provision-an-ec2-instance"&gt;
@@ -18,23 +18,13 @@ the limitations running the ROSA command-line interface on Mac OS.&lt;/p&gt;</de
 &lt;/h2&gt;
 &lt;p&gt;The first thing we&amp;rsquo;ll need to do is create an account with Red Hat, which we can do by
 filling out the form
-&lt;a href="https://www.redhat.com/wapps/ugc/register.html?_flowId=register-flow&amp;amp;_flowExecutionKey=e1s1" target="_blank" rel="noopener"&gt;here &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://www.redhat.com/wapps/ugc/register.html?_flowId=register-flow&amp;amp;_flowExecutionKey=e1s1" target="_blank" rel="noopener"&gt;here&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;h2 id="install-the-aws-cli"&gt;
  &lt;span class="heading-text"&gt;Install the AWS CLI&lt;/span&gt;
  &lt;a class="heading-anchor" href="#install-the-aws-cli" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;To install the AWS CLI on the EC2 instance provisioned previously, run the following commands:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl &lt;span class="s2"&gt;&amp;#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&amp;#34;&lt;/span&gt; -o &lt;span class="s2"&gt;&amp;#34;awscliv2.zip&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install unzip
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;unzip awscliv2.zip
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo ./aws/install&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Use the following command to ensure it was installed successfully:&lt;/p&gt;</description></item><item><title>Deploy OpenShift Cluster in AWS</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</guid><description>&lt;h2 id="deploy-an-openshift-cluster"&gt;
+&lt;p&gt;To install the AWS CLI on the EC2 instance provisioned previously, run the following commands:&lt;/p&gt;</description></item><item><title>Deploy OpenShift Cluster in AWS</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</guid><description>&lt;h2 id="deploy-an-openshift-cluster"&gt;
  &lt;span class="heading-text"&gt;Deploy an OpenShift Cluster&lt;/span&gt;
  &lt;a class="heading-anchor" href="#deploy-an-openshift-cluster" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -134,7 +124,7 @@ test data that will be used by workshop participants.&lt;/p&gt;
  &lt;a class="heading-anchor" href="#deploy-a-vector-database" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;For the workshop, we&amp;rsquo;ll deploy an open-source vector database named
-&lt;a href="https://weaviate.io/" target="_blank" rel="noopener"&gt;Weaviate &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://weaviate.io/" target="_blank" rel="noopener"&gt;Weaviate&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;p&gt;First, add the Weaviate helm repo that contains the Weaviate helm chart:&lt;/p&gt;
 &lt;div class="code-block"&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Detectors on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/</link><description>Recent content in Detectors on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/index.xml" rel="self" type="application/rss+xml"/><item><title>Test Detectors</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</guid><description>&lt;p&gt;Why would we want a &lt;a href="https://docs.splunk.com/observability/en/synthetics/test-config/synth-alerts.html" target="_blank" rel="noopener"&gt;detector on a single Synthetic test &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Detectors on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/</link><description>Recent content in Detectors on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/index.xml" rel="self" type="application/rss+xml"/><item><title>Test Detectors</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</guid><description>&lt;p&gt;Why would we want a &lt;a href="https://docs.splunk.com/observability/en/synthetics/test-config/synth-alerts.html" target="_blank" rel="noopener"&gt;detector on a single Synthetic test&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 ? Some examples:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The endpoint, API transaction, or browser journey is highly critical&lt;/li&gt;
@@ -15,7 +15,7 @@
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>RUM Detectors</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</guid><description>&lt;p&gt;Let&amp;rsquo;s say we want to know about an issue in production without waiting for a ticket from our support center. This is where &lt;a href="https://docs.splunk.com/observability/en/rum/rum-alerts.html" target="_blank" rel="noopener"&gt;creating detectors in RUM &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;/p&gt;</description></item><item><title>RUM Detectors</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</guid><description>&lt;p&gt;Let&amp;rsquo;s say we want to know about an issue in production without waiting for a ticket from our support center. This is where &lt;a href="https://docs.splunk.com/observability/en/rum/rum-alerts.html" target="_blank" rel="noopener"&gt;creating detectors in RUM&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  will be helpful for us.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -23,16 +23,6 @@
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../_img/rum-lcp.png" alt="RUM LCP chart with action menu flyout" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Rename the detector to include your &lt;strong&gt;team name&lt;/strong&gt; and &lt;strong&gt;initials&lt;/strong&gt;, and change the scope of the detector to App so we are not limited to a single URL or page. Change the threshold and sensitivity until there is at least one alert event in the time frame.
-&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../_img/rum-detector.png" alt="RUM alert details" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;

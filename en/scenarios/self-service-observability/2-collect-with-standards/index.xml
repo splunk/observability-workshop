@@ -54,5 +54,5 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;See this &lt;a href="https://docs.splunk.com/observability/en/gdi/opentelemetry/deployment-modes.html#agent-configuration" target="_blank" rel="noopener"&gt;documentation page &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;See this &lt;a href="https://docs.splunk.com/observability/en/gdi/opentelemetry/deployment-modes.html#agent-configuration" target="_blank" rel="noopener"&gt;documentation page&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  for more details.&lt;/p&gt;</description></item></channel></rss>

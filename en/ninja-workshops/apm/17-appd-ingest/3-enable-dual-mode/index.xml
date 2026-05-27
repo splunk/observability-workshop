@@ -31,7 +31,7 @@
  &lt;span class="heading-text"&gt;Verify AppDynamics (Unchanged)&lt;/span&gt;
  &lt;a class="heading-anchor" href="#verify-appdynamics-unchanged" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Go back to the &lt;a href="https://se-lab.saas.appdynamics.com/controller/" target="_blank" rel="noopener"&gt;AppDynamics Controller &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;Go back to the &lt;a href="https://se-lab.saas.appdynamics.com/controller/" target="_blank" rel="noopener"&gt;AppDynamics Controller&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 , open your application, and confirm:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;strong&gt;OrderService&lt;/strong&gt; tier is still visible in the flow map&lt;/li&gt;

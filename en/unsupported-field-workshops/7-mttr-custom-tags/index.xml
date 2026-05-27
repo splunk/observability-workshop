@@ -190,7 +190,7 @@
 &lt;/figure&gt;
 &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Open a browser and navigate to &lt;a href="http://EC2-Address:8010" target="_blank" rel="noopener"&gt;http://EC2-Address:8010 &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;Open a browser and navigate to &lt;a href="http://EC2-Address:8010" target="_blank" rel="noopener"&gt;http://EC2-Address:8010&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Replace &lt;strong&gt;EC2-Address&lt;/strong&gt; with the ip address of your host&lt;/li&gt;
@@ -225,7 +225,7 @@
 &lt;ul&gt;
 &lt;li&gt;Prerequisites
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://mac.install.guide/commandlinetools/index.html" target="_blank" rel="noopener"&gt;XCode Command line tools &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://mac.install.guide/commandlinetools/index.html" target="_blank" rel="noopener"&gt;XCode Command line tools&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -235,7 +235,7 @@
  &lt;a class="heading-anchor" href="#homebrew-install" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://docs.brew.sh/Installation" target="_blank" rel="noopener"&gt;Homebrew full install details &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://docs.brew.sh/Installation" target="_blank" rel="noopener"&gt;Homebrew full install details&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="code-block"&gt;

@@ -7,7 +7,7 @@
 &lt;li&gt;Supported Environments:
 &lt;ul&gt;
 &lt;li&gt;Splunk Workshop Instance (preferred)&lt;/li&gt;
-&lt;li&gt;Apple Mac (Apple Silicon). Installation of &lt;code&gt;jq&lt;/code&gt; is required - &lt;a href="https://jqlang.org/download/" target="_blank" rel="noopener"&gt;&lt;strong&gt;https://jqlang.org/download/&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;Apple Mac (Apple Silicon). Installation of &lt;code&gt;jq&lt;/code&gt; is required - &lt;a href="https://jqlang.org/download/" target="_blank" rel="noopener"&gt;&lt;strong&gt;https://jqlang.org/download/&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;

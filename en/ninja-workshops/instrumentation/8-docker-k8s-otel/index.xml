@@ -125,7 +125,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 
 &lt;/div&gt;
 
-&lt;p&gt;Refer to &lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Install .NET SDK or .NET Runtime on Ubuntu &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;Refer to &lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Install .NET SDK or .NET Runtime on Ubuntu&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
 for further details.&lt;/p&gt;</description></item><item><title>Instrument a .NET Application with OpenTelemetry</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/4-instrument-app-with-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/4-instrument-app-with-otel/</guid><description>&lt;h2 id="download-the-splunk-distribution-of-opentelemetry"&gt;
  &lt;span class="heading-text"&gt;Download the Splunk Distribution of OpenTelemetry&lt;/span&gt;
@@ -143,7 +143,7 @@ which we&amp;rsquo;ll use to instrument our .NET application:&lt;/p&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/docker-k8s-otel/helloworld
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Refer to &lt;a href="https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually" target="_blank" rel="noopener"&gt;Install the Splunk Distribution of OpenTelemetry .NET manually &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ &lt;/div&gt;&lt;p&gt;Refer to &lt;a href="https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually" target="_blank" rel="noopener"&gt;Install the Splunk Distribution of OpenTelemetry .NET manually&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
 for further details on the installation process.&lt;/p&gt;</description></item><item><title>Dockerize the Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</guid><description>&lt;p&gt;Later on in this workshop, we&amp;rsquo;re going to deploy our .NET application into a Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;But how do we do that?&lt;/p&gt;
@@ -235,5 +235,5 @@ to review the actual configuration applied to the collector by looking at the co
 &lt;li&gt;How to customize the collector configuration and troubleshoot an issue.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To see how other languages and environments are instrumented with OpenTelemetry,
-explore the &lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub repository &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+explore the &lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub repository&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;</description></item></channel></rss>

@@ -114,7 +114,7 @@ navigating to the directory where the collector configuration file is stored:&lt
  &lt;span class="heading-text"&gt;Capture the NVIDIA DCGM Exporter metrics&lt;/span&gt;
  &lt;a class="heading-anchor" href="#capture-the-nvidia-dcgm-exporter-metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;The &lt;a href="https://github.com/NVIDIA/dcgm-exporter" target="_blank" rel="noopener"&gt;NVIDIA DCGM exporter &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;The &lt;a href="https://github.com/NVIDIA/dcgm-exporter" target="_blank" rel="noopener"&gt;NVIDIA DCGM exporter&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  is running
 in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.&lt;/p&gt;</description></item><item><title>Monitor the Vector Database</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/5-monitor-vector-db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/5-monitor-vector-db/</guid><description>&lt;p&gt;In this step, we&amp;rsquo;ll configure the Prometheus receiver to monitor the Weaviate vector database.&lt;/p&gt;
 &lt;h2 id="what-is-a-vector-database"&gt;
@@ -181,18 +181,9 @@ that uses the instruct and embeddings models.&lt;/p&gt;
  &lt;a class="heading-anchor" href="#what-is-langchain" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;Like most applications that interact with LLMs, our application is written in Python.
-It also uses &lt;a href="https://www.langchain.com/" target="_blank" rel="noopener"&gt;LangChain &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+It also uses &lt;a href="https://www.langchain.com/" target="_blank" rel="noopener"&gt;LangChain&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 , which is an open-source orchestration
-framework that simplifies the development of applications powered by LLMs.&lt;/p&gt;
-&lt;h2 id="application-overview"&gt;
- &lt;span class="heading-text"&gt;Application Overview&lt;/span&gt;
- &lt;a class="heading-anchor" href="#application-overview" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="connect-to-the-llms"&gt;
- &lt;span class="heading-text"&gt;Connect to the LLMs&lt;/span&gt;
- &lt;a class="heading-anchor" href="#connect-to-the-llms" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Our application starts by connecting to two LLMs that we&amp;rsquo;ll be using:&lt;/p&gt;</description></item><item><title>Instrument the LLM Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/9-instrument-llm-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/9-instrument-llm-app/</guid><description>&lt;h2 id="instrument-the-application-with-opentelemetry"&gt;
+framework that simplifies the development of applications powered by LLMs.&lt;/p&gt;</description></item><item><title>Instrument the LLM Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/9-instrument-llm-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/9-instrument-llm-app/</guid><description>&lt;h2 id="instrument-the-application-with-opentelemetry"&gt;
  &lt;span class="heading-text"&gt;Instrument the Application with OpenTelemetry&lt;/span&gt;
  &lt;a class="heading-anchor" href="#instrument-the-application-with-opentelemetry" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

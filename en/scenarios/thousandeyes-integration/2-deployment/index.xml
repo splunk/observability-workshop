@@ -9,7 +9,7 @@
 &lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Log in to the ThousandEyes platform at &lt;a href="https://app.thousandeyes.com/login" target="_blank" rel="noopener"&gt;app.thousandeyes.com/login &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;Log in to the ThousandEyes platform at &lt;a href="https://app.thousandeyes.com/login" target="_blank" rel="noopener"&gt;app.thousandeyes.com/login&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -19,42 +19,7 @@
 &lt;p&gt;Click the &lt;strong&gt;Appliance&lt;/strong&gt; tab&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Copy your &lt;strong&gt;Account Group Token&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Base64 encode the token:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -n &lt;span class="s1"&gt;&amp;#39;your-token-here&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; base64&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dXabsfuenBabjeTZ3anVvxgyYds0cas=&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;ol start="5"&gt;
-&lt;li&gt;Save the base64-encoded output for the next step&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../../images/te1.gif?width=45vw" alt="Get ThousandEyes Token" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</guid><description>&lt;p&gt;Next we will deploy the open telemetry collector&lt;/p&gt;
+&lt;p&gt;Copy your &lt;strong&gt;Account Group Token&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</guid><description>&lt;p&gt;Next we will deploy the open telemetry collector&lt;/p&gt;
 &lt;h2 id="installation-steps"&gt;
  &lt;span class="heading-text"&gt;Installation Steps&lt;/span&gt;
  &lt;a class="heading-anchor" href="#installation-steps" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;

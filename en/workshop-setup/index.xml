@@ -3,19 +3,11 @@
  &lt;a class="heading-anchor" href="#configure-your-org-using-swipe" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h5&gt;
 &lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Important Information&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;SWiPE&lt;/strong&gt; does &lt;strong&gt;not&lt;/strong&gt; provision EC2 instances. These instances are provisioned separately using &lt;strong&gt;Splunk Show&lt;/strong&gt;.&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;SWiPE&lt;/strong&gt; is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access &lt;strong&gt;SWiPE&lt;/strong&gt; &lt;a href="https://swipe.splunk.show" target="_blank" rel="noopener"&gt;&lt;strong&gt;here&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
-.&lt;/p&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/swipe.png" alt="SWiPE" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SWiPE&lt;/strong&gt; will perform the following tasks your workshop environment:&lt;/p&gt;</description></item><item><title>2. Using Splunk Show</title><link>https://splunk.github.io/observability-workshop/en/workshop-setup/2-splunk-show/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/workshop-setup/2-splunk-show/</guid><description>&lt;h5 id="observability-workshop-templates"&gt;
+&lt;p&gt;&lt;strong&gt;SWiPE&lt;/strong&gt; is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access &lt;strong&gt;SWiPE&lt;/strong&gt; &lt;a href="https://swipe.splunk.show" target="_blank" rel="noopener"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+.&lt;/p&gt;</description></item><item><title>2. Using Splunk Show</title><link>https://splunk.github.io/observability-workshop/en/workshop-setup/2-splunk-show/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/workshop-setup/2-splunk-show/</guid><description>&lt;h2 id="observability-workshop-templates"&gt;
  &lt;span class="heading-text"&gt;&lt;strong&gt;Observability Workshop Templates&lt;/strong&gt;&lt;/span&gt;
  &lt;a class="heading-anchor" href="#observability-workshop-templates" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h5&gt;
+&lt;/h2&gt;
 &lt;p&gt;Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -30,7 +22,7 @@
  &lt;tr&gt;
  &lt;td&gt;&lt;strong&gt;Splunk4Rookies - Observability&lt;/strong&gt;&lt;/td&gt;
  &lt;td&gt;This workshop template is designed for beginners. The template pre-deploys the &lt;strong&gt;OpenTelemetry Collector&lt;/strong&gt; and the &lt;strong&gt;Online Boutique&lt;/strong&gt; application. Attendees only need a browser to participate and complete the workshop.&lt;/td&gt;
- &lt;td&gt;&lt;a href="https://show.splunk.com/template/262/" target="_blank" rel="noopener"&gt;&lt;strong&gt;Rookies&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ &lt;td&gt;&lt;a href="https://show.splunk.com/template/262/" target="_blank" rel="noopener"&gt;&lt;strong&gt;Rookies&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/td&gt;
  &lt;td&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
@@ -43,7 +35,7 @@
  &lt;tr&gt;
  &lt;td&gt;&lt;strong&gt;Splunk4Ninjas - Observability&lt;/strong&gt;&lt;/td&gt;
  &lt;td&gt;This workshop template is tailored for &lt;strong&gt;advanced&lt;/strong&gt; users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed.&lt;/td&gt;
- &lt;td&gt;&lt;a href="https://show.splunk.com/template/428/" target="_blank" rel="noopener"&gt;&lt;strong&gt;Ninja&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ &lt;td&gt;&lt;a href="https://show.splunk.com/template/428/" target="_blank" rel="noopener"&gt;&lt;strong&gt;Ninja&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 &lt;/td&gt;
  &lt;td&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
@@ -83,7 +75,7 @@
  &lt;span class="heading-text"&gt;Log Observer Connect&lt;/span&gt;
  &lt;a class="heading-anchor" href="#log-observer-connect" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. &lt;strong&gt;SWiPE&lt;/strong&gt; provides a simple form to configure this and is available &lt;a href="https://swipe.splunk.show/log_observer_connect" target="_blank" rel="noopener"&gt;&lt;strong&gt;here&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. &lt;strong&gt;SWiPE&lt;/strong&gt; provides a simple form to configure this and is available &lt;a href="https://swipe.splunk.show/log_observer_connect" target="_blank" rel="noopener"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;

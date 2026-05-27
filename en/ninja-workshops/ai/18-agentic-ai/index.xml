@@ -23,17 +23,10 @@ connect to your EC2 instance using one of the methods below:&lt;/p&gt;</descript
 Azure OpenAI applications to send metrics to Splunk Observability Cloud.&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve already integrated our Azure account with the workshop instance
 of Splunk Observability Cloud using the steps described in the
-&lt;a href="https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-infrastructure-monitoring/set-up-data-integrations/cloud-services/azure-openai" target="_blank" rel="noopener"&gt;documentation &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://help.splunk.com/en/splunk-observability-cloud/observability-for-ai/splunk-ai-infrastructure-monitoring/set-up-data-integrations/cloud-services/azure-openai" target="_blank" rel="noopener"&gt;documentation&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;p&gt;To ensure Azure OpenAI metrics are included, the connection was
-configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/AzureConnection.png" alt="Azure connection" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>Deploy the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</guid><description>&lt;p&gt;We&amp;rsquo;ll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
+configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;/p&gt;</description></item><item><title>Deploy the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/3-deploy-collector/</guid><description>&lt;p&gt;We&amp;rsquo;ll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
 logs from an Agentic AI application running in Kubernetes. In this section, we&amp;rsquo;ll
 install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be
 used to capture metrics, traces, and logs from our environment and send them to
@@ -116,9 +109,9 @@ If you&amp;rsquo;re not sure where to make the changes, or your application is n
 longer working, please refer to the expected solution for this section
 which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-ai-defense&lt;/code&gt; folder.&lt;/p&gt;
 &lt;/blockquote&gt;&lt;p&gt;Splunk Observability Cloud integrates with
-&lt;a href="https://www.cisco.com/site/us/en/products/security/ai-defense/index.html" target="_blank" rel="noopener"&gt;Cisco AI Defense &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://www.cisco.com/site/us/en/products/security/ai-defense/index.html" target="_blank" rel="noopener"&gt;Cisco AI Defense&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
-to provide a consolidated view of &lt;a href="https://securitydocs.cisco.com/docs/ai-def/user/105473.dita" target="_blank" rel="noopener"&gt;security and privacy risks &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+to provide a consolidated view of &lt;a href="https://securitydocs.cisco.com/docs/ai-def/user/105473.dita" target="_blank" rel="noopener"&gt;security and privacy risks&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 
 detected at runtime for your AI agents, allowing you to monitor performance and risks in one place.&lt;/p&gt;</description></item><item><title>Detect Security Risks</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
