@@ -14,14 +14,13 @@ Splunk Observability Cloud is a real-time observability platform purpose-built f
 This section covers the **metrics streaming** path from ThousandEyes into Splunk Observability Cloud. The next section adds the separate **distributed tracing** workflow that creates bi-directional links between ThousandEyes and Splunk APM.
 {{% /notice %}}
 
-{{% notice title="Only need 1 integration" style="warning" %}}
-Rather than having each workshop attendee set this up, watch your instructor perform the following steps.
+{{< acknowledge "Only need 1 integration" >}}
+Rather than each attendee setting this up, watch your instructor perform the following steps.
 
 You will continue performing steps on the next page.
-{{% /notice %}}
+{{< /acknowledge >}}
 
-
-### Step 1: Get or Create a Splunk Observability Cloud Access Token
+{{< step "Get or Create a Splunk Observability Cloud Access Token" "1" >}}
 
 To send ThousandEyes metrics to Splunk Observability Cloud, you need an access token with the **Ingest** scope.
 
@@ -33,11 +32,13 @@ For this workshop we will use the token provided. You can get it from the instan
 
 Or you can get it from the Splunk Observability Cloud UI, as shown in the clip below.
 
-### Step 2: Create an Integration
+{{< /step >}}
+
+{{< step "Create an Integration" "2" >}}
 
 This integration is the one-way telemetry stream that gets ThousandEyes metrics into Splunk Observability Cloud dashboards and detectors.
 
-#### Using the ThousandEyes UI
+### Using the ThousandEyes UI
 
 To integrate Splunk Observability Cloud with ThousandEyes:
 
@@ -55,9 +56,8 @@ To integrate Splunk Observability Cloud with ThousandEyes:
 9. For **OpenTelemetry Signal**, select **Metric**
 10. For **Data Model Version**, select **v2**
 11. Select the tests you want to send.
-{{% notice title="Add test later" style="primary" icon="lightbulb" %}}
-If you add a new test, you will need to add it back to this integration later
-{{% /notice %}}
+      >[!IMPORTANT] Add test later
+      >If you add a new test, you will need to add it back to this integration later
 12. Click **Save** to complete the integration setup
 
 ![Integration Complete](../images/te2.gif?width=45vw)
@@ -72,7 +72,9 @@ The integration may state in a **Pending** state for a bit. You may need to refr
 After you finish the metrics integration, continue to **Distributed Tracing** to add the reverse investigation path from ThousandEyes into Splunk APM and back again.
 {{% /notice %}}
 
-### Step 3: ThousandEyes Dashboard in Splunk Observability Cloud
+{{< /step >}}
+
+{{< step "ThousandEyes Dashboard in Splunk Observability Cloud" "3">}}
 
 Once the integration is set up, you can view real-time monitoring data in the ThousandEyes Network Monitoring Dashboard within Splunk Observability Cloud. The dashboard includes:
 
@@ -84,12 +86,12 @@ Once the integration is set up, you can view real-time monitoring data in the Th
 
 #### Deploy the Dashboard Template
 
-You can download the dashboard template from the following link: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json). Then you can import it into Splunk Observability Cloud. (This has already been done.)
+You can download the dashboard template from the following link: [**Download ThousandEyes Splunk Observability Cloud dashboard template**](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json). Then you can import it into Splunk Observability Cloud (this has already been done).
 
 If you  have any tests running you will see data already.
 
 ![Splunk Observability Cloud Dashboard for ThousandEyes](../images/splunk-o11y-dashboard-te.png?width=45vw)
 
-{{% notice title="Success" style="success" icon="check" %}}
-Your ThousandEyes data is now streaming to Splunk Observability Cloud. Next, add the distributed tracing connector so you can pivot between ThousandEyes and Splunk APM during troubleshooting.
-{{% /notice %}}
+{{< /step >}}
+
+{{< checkpoint "Your ThousandEyes data is now streaming to Splunk Observability Cloud. Next, add the distributed tracing connector so you can pivot between ThousandEyes and Splunk APM during troubleshooting." >}}

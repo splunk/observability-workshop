@@ -15,7 +15,7 @@ We are going to use this URL for the trace-enabled ThousandEyes **HTTP Server** 
 http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 ```
 
-### Validate That Traces Exist
+## Validate That Traces Exist
 
 1. Wait for the deployment rollout to finish:
 
@@ -36,8 +36,6 @@ http://api-gateway.default.svc.cluster.local:82/api/customer/owners
 {{% notice title="Learning Tip" style="info" %}}
 Use a business transaction, not a pure `/health` endpoint, for the tracing exercise. A multi-service request gives you a far better Service Map in ThousandEyes and a more useful trace in Splunk APM.
 {{% /notice %}}
-
-
 
 ### Step 3: Configure Distributed Tracing on the ThousandEyes Test
 
@@ -88,7 +86,6 @@ Use either the `thousandeyes.permalink` field or the **Go to ThousandEyes test**
 ## Suggested Learning Scenario
 
 Try now creating a web test, using a cloud agent and your url (for example `http://i-0cedf3429f9192aaa.splunk.show:81/#!/owners`, replace with your own instance).
-
 
 ## Need to recheck this section
 

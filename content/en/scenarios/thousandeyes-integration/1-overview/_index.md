@@ -31,11 +31,7 @@ This workshop focuses on **Enterprise Agent** deployment only.
 
 ## Architecture
 
-{{< mermaid >}}
----
-config:
-  theme: 'base'
----
+```mermaid
 graph LR
     subgraph k8s["Kubernetes Cluster"]
         secret["Secret te-creds"]
@@ -56,7 +52,7 @@ graph LR
         customers_svc --> customers
         vets_svc --> vets
         visits_svc --> visits
-        
+
         secret -.-> agent
         agent -->|"HTTP Tests"| api_svc
         agent -->|"HTTP Tests"| customers_svc
@@ -122,7 +118,7 @@ graph LR
     style apm fill:#ffccbc,stroke:#d84315,stroke-width:1px
     style alerts fill:#ffccbc,stroke:#d84315,stroke-width:1px
     style user fill:#b2dfdb,stroke:#00695c,stroke-width:2px
-{{< /mermaid >}}
+```
 
 ## Architecture Components
 

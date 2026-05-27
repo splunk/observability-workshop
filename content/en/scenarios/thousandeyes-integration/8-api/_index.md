@@ -6,11 +6,11 @@ time: 5 minutes
 description: API Examples you can use
 ---
 
-### Using the ThousandEyes API
+## Using the ThousandEyes API
 
 For a programmatic integration, use the following API commands:
 
-#### HTTP Protocol
+### HTTP Protocol
 
 ```bash
 curl -v -XPOST https://api.thousandeyes.com/v7/stream \
@@ -31,7 +31,7 @@ curl -v -XPOST https://api.thousandeyes.com/v7/stream \
   }'
 ```
 
-#### gRPC Protocol
+### gRPC Protocol
 
 ```bash
 curl -v -XPOST https://api.thousandeyes.com/v7/stream \
