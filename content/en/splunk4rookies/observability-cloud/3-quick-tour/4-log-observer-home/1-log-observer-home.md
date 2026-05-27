@@ -4,7 +4,7 @@ linkTitle: 4.1 Log Observer Home Page
 weight: 2
 ---
 
-Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
+Click **Logs** in the main menu, then **Log Observer**. The Log Observer Home Page is made up of 4 distinct sections:
 
 ![Lo Page](../images/log-observer-main.png)
 
