@@ -1,0 +1,113 @@
+baseURL: https://splunk.github.io/
+title: Splunk Observability Cloud Workshops
+enableEmoji: true
+enableRobotsTXT: true
+enableGitInfo: true
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: true
+disableKinds:
+  - taxonomy
+  - term
+module:
+  hugoVersion:
+    extended: true
+    min: 0.161.1
+  imports:
+    - path: github.com/splunk/hugo-theme-splunk-workshop
+languages:
+  en:
+    label: English
+    locale: en
+    weight: 1
+    contentDir: content/en
+  ja:
+    label: 日本語
+    locale: ja
+    weight: 2
+    hasCJKLanguage: true
+    contentDir: content/ja
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+        title: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+  highlight:
+    noClasses: false
+    lineNos: false
+    codeFences: true
+    guessSyntax: true
+    tabWidth: 2
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+    - RSS
+  page:
+    - HTML
+params:
+  brandName: splunk>
+  brandTagline: ""
+  description: Hands-on technical workshops.
+  copyright: "&copy; {year} Splunk LLC All rights reserved."
+  logoLight: images/splunk-logo-black.png
+  logoDark: images/splunk-logo-white.png
+  logoHeight: "40"
+  favicon: favicon.svg
+  heroBackgroundLight: images/background_Splunk-light-mode2_16x9.webp
+  heroBackgroundDark: images/background_Splunk-dark-mode2_16x9.webp
+  defaultMode: auto
+  showThemeToggle: true
+  colorAccent: "#FF007F"
+  colorAccent2: "#FF9000"
+  colorAccent3: "#FFAB0F"
+  colorAccentDark: "#D4006B"
+  colorAccentText: "#BD0D5F"
+  colorAccentTextDark: "#FF7DBA"
+  colorInk: "#0C1724"
+  colorInkMuted: "#585B61"
+  colorPaper: "#FFFFFF"
+  colorSurface: "#F4F6FA"
+  colorSurfaceAlt: "#E9EDF2"
+  colorBorder: "#E1E5EC"
+  colorBorderStrong: "#C7CDD8"
+  colorInkDark: "#F4F1EA"
+  colorInkMutedDark: "#9CA3AF"
+  colorPaperDark: "#0C1724"
+  colorSurfaceDark: "#141E2F"
+  colorSurfaceAltDark: "#1B2740"
+  colorBorderDark: "#1F2C44"
+  colorBorderStrongDark: "#2A3A56"
+  splunkDataSansPro: true
+  fontUrl: https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap
+  fontDisplay: "'Splunk Data Sans Pro', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif"
+  fontBody: "'Splunk Data Sans Pro', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif"
+  fontMono: "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas,
+    monospace"
+  showSidebar: true
+  showToc: true
+  showProgress: true
+  showLightTrails: true
+  contentMaxWidth: 880px
+  editURL: ""
+  repoURL: ""
+  versionBadgeRepo: splunk/observability-workshop
+  versionBadgeColor: FF007F
+  stable_otel_version: 0.136.0
+  social:
+    github: https://github.com/splunk/observability-workshop
+    twitter: https://twitter.com/splunk
+    linkedin: ""
+    youtube: ""
+
