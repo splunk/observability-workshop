@@ -4,7 +4,7 @@ linkTitle: 6.2 Pipeline Configuration
 weight: 2
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Wire up the routing pipelines" %}}
 
 **Update the original `traces` pipeline to use routing**:
 
@@ -52,7 +52,7 @@ Notice this uses `routing` as its only receiver and will recieve data thought it
           - file/traces/route2-security # File exporter for unmatched spans
     ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 

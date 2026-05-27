@@ -12,7 +12,7 @@ This test verifies that the `com.splunk/source` and `os.type` metadata have been
 
 This ensures proper metadata filtering, severity mapping, and structured log enrichment before exporting.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Verify the attributes were removed" %}}
 
 **Check the debug output**: For both the **Agent** and **Gateway** confirm that `com.splunk/source` and `os.type` have been removed:
 
@@ -123,7 +123,7 @@ jq '[.resourceLogs[].scopeLogs[].logRecords[] | {severityText, severityNumber, b
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.

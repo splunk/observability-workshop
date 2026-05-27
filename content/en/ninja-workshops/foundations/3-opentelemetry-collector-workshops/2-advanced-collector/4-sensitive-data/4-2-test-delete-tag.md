@@ -6,7 +6,7 @@ weight: 2
 
 In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the **Agent**.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Test the attributes processor" %}}
 
 **Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
@@ -89,4 +89,4 @@ Notice that the `user.account_password` has been removed, and the `user.phone_nu
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
-{{% /notice %}}
+{{% /exercise %}}

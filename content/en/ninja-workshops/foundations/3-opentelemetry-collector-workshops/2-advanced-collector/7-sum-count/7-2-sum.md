@@ -11,7 +11,7 @@ We’ll specifically use the credit card charges from our base spans and leverag
 
 The connector can be used to collect (**sum**) attribute values from spans, span events, metrics, data points, and log records. It captures each individual value, transforms it into a metric, and passes it along. However, it’s the **backend’s** job to use these metrics and their attributes for calculations and further processing.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add the Sum Connector" %}}
 
 Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor.
 
@@ -30,13 +30,13 @@ Include the Sum Connector in the connectors section of your configuration and de
     
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 In the example above, we check for the `payment.amount` attribute in spans. If it has a valid value, the **Sum** connector generates a metric called `user.card-charge` and includes the `user.name` as an attribute. This enables the backend to track and display a user’s total charges over an extended period, such as a billing cycle.
 
 In the pipeline configuration below, the connector exporter is added to the traces section, while the connector receiver is added to the metrics section.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Wire the connector into the pipelines" %}}
 
 - **Configure the Count Connector in the pipelines**
 
@@ -156,4 +156,4 @@ classDef sub-traces stroke:#fbbf24,stroke-width:1px,color:#fbbf24,stroke-dasharr
 classDef sub-metrics stroke:#38bdf8,stroke-width:1px,color:#38bdf8,stroke-dasharray: 3 3;
 ```
 
-{{% /notice %}}
+{{% /exercise %}}

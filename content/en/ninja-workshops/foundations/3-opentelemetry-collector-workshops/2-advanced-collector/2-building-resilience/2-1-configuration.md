@@ -8,7 +8,7 @@ In this exercise, we will update the `extensions:` section of the `agent.yaml` f
 
 While these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add file storage to the Agent" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `2-building-resilience` directory and run the `clear` command.**
@@ -65,7 +65,7 @@ service:
       - otlp
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Validate the **Agent** configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `metrics:` section of your pipelines will look similar to this:
 

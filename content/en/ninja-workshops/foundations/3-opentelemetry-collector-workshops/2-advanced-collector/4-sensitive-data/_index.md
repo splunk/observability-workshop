@@ -12,7 +12,7 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 - **[Attributes Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md)**: Modifies or removes specific span attributes.
 - [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md): Ensures sensitive data is sanitized before being stored or transmitted.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the `4-sensitive-data` directory" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `4-sensitive-data` directory and run the `clear` command.**
@@ -25,4 +25,4 @@ Copy `*.yaml` from the `3-dropping-spans` directory into `4-sensitive-data`. You
 └── gateway.yaml
 ```
 
-{{% /notice %}}
+{{% /exercise %}}

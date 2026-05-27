@@ -4,7 +4,7 @@ linkTitle: 7.1 Test Count Connector
 weight: 1
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Test the Count Connector" %}}
 
 **Start the Gateway**:  
 In the **Gateway terminal** window run:
@@ -90,4 +90,4 @@ Note: the `logs.full.count` normally is equal to `logs.sw.count` + `logs.lotr.co
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
-{{% /notice %}}
+{{% /exercise %}}

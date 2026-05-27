@@ -4,7 +4,7 @@ linkTitle: 3.1 Configuration
 weight: 1
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add a `filter` processor" %}}
 
 Switch to your **Gateway terminal** window and open the `gateway.yaml` file. Update the `processors` section with the following configuration:
 
@@ -38,7 +38,7 @@ Switch to your **Gateway terminal** window and open the `gateway.yaml` file. Upd
 
 This setup ensures that health check related spans (`/_healthz`) are filtered out early in the pipeline, reducing unnecessary noise in your telemetry data.
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 
