@@ -107,7 +107,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       direction LR
       REC1 --> PRML
       PRML --> PRUP

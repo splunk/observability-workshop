@@ -170,7 +170,7 @@ graph LR
       PRO5 --> EXP2
       end
 
-      subgraph subID2[**Metrics**]
+      subgraph subID2["`**Metrics**`"]
       direction LR
       ROUTE1 --> ROUTE2
       ROUTE2 --> PRO2

@@ -17,7 +17,7 @@ weight: 5
 
 > [!WARNING] We will not add a recipient or activate the detector as we don't want to flood your email with alerts.
 
-{{% image src="../images/synth-detector.png" align="center" %}}
+![Detector](../images/synth-detector.png)
 
 * This application is designed to fail constantly, hence the large number of alerts that would be generated. In a real-world scenario, you would want to fine-tune the threshold to avoid false positives.
 

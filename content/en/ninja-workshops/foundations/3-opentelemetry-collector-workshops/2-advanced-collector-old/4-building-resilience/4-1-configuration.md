@@ -74,7 +74,7 @@ graph LR
     %% Links
     subID1:::sub-metrics
     subgraph " "
-      subgraph subID1[**Metrics**]
+      subgraph subID1["`**Metrics**`"]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO2

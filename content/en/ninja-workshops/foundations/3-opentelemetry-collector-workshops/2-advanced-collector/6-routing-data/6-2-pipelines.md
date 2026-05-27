@@ -80,10 +80,10 @@ graph LR
     subID3:::sub-traces
     subgraph " "
     direction LR
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       REC1 --> ROUTE1
       end
-      subgraph subID2[**Traces/route2-security**]
+      subgraph subID2["`**Traces/route2-security**`"]
       ROUTE1 --> ROUTE2
       ROUTE2 --> PRO1
       PRO1 --> PRO3
@@ -91,7 +91,7 @@ graph LR
       PRO5 --> EXP1
       PRO5 --> EXP2
       end
-      subgraph subID3[**Traces/route1-regular**]
+      subgraph subID3["`**Traces/route1-regular**`"]
       ROUTE1 --> ROUTE3
       ROUTE3 --> PRO2
       PRO2 --> PRO4

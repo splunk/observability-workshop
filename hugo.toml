@@ -134,7 +134,7 @@ disableKinds = ["taxonomy", "term"]
   showToc         = true
   showProgress    = true
   showLightTrails = true
-  contentMaxWidth = "720px"
+  contentMaxWidth = "880px"
 
   # ---- Repo / edit-on-github --------------------------------------------
   editURL = ""
