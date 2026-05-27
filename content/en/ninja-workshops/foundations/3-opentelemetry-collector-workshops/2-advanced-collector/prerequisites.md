@@ -12,7 +12,7 @@ time: 5 minutes
   - A provided Splunk Workshop Instance (preferred). Outbound access to port `2222` is required for `ssh` access.
   - Apple Mac (Apple Silicon). Installation of `jq` is required - [**https://jqlang.org/download/**](https://jqlang.org/download/)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Create the workshop directory" %}}
 
 **Create a directory**: In your environment create a new directory and change into it:
 
@@ -189,4 +189,4 @@ Configuration files created in the following directories:
 Having access to [**jq**](https://jqlang.org/download/) is recommended (installed by default on Splunk workshop instances). This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
 {{% /notice %}}
 -->
-{{% /notice %}}
+{{% /exercise %}}

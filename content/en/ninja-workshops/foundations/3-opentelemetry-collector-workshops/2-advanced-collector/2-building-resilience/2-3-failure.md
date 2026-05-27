@@ -6,7 +6,7 @@ weight: 3
 
 To assess the **Agent's** resilience, we'll simulate a temporary **Gateway** outage and observe how the **Agent** handles it:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Simulate a Gateway outage" %}}
 
 **Simulate a network failure**: In the **Gateway terminal** stop the **Gateway** with `Ctrl-C` and wait until the gateway console shows that it has stopped. The **Agent** will continue running, but it will not be able to send data to the gateway. The output in the **Gateway terminal** should look similar to this:
 
@@ -32,7 +32,7 @@ Notice that the agent’s retry mechanism is activated as it continuously attemp
 2025-07-09T10:25:59.344Z        info    service@v0.126.0/service.go:345 Shutdown complete.      {"resource": {}}
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 > [!IMPORTANT]
 > When you stop the agent, any metrics, traces, or logs held in memory for retry will be lost. However, because we have configured the FileStorage Extension, all telemetry that has not yet been accepted by the target endpoint are safely checkpointed on disk.

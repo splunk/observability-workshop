@@ -4,7 +4,7 @@ linkTitle: 7.3 Test Sum Connector
 weight: 3
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Test the Sum Connector" %}}
 
 **Start the Gateway**:  
 In the **Gateway terminal** window run:
@@ -64,4 +64,4 @@ Peter Jackson        94.39
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
-{{% /notice %}}
+{{% /exercise %}}

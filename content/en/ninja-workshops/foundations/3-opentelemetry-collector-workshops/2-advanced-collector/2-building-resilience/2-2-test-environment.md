@@ -6,7 +6,7 @@ weight: 2
 
 Next, we will configure our environment to be ready for testing the **File Storage** configuration.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the resilience test" %}}
 
 **Start the Gateway**: In the **Gateway terminal** window run:
 
@@ -29,4 +29,4 @@ Next, we will configure our environment to be ready for testing the **File Stora
 Both the **Agent** and **Gateway** should display debug logs, and the **Gateway** should create a `./gateway-traces.out` file.
 
 If everything functions correctly, we can proceed with testing system resilience.
-{{% /notice %}}
+{{% /exercise %}}

@@ -23,7 +23,7 @@ Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
 
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the `5-transform-data` directory" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `5-transform-data` directory and run the `clear` command.**
@@ -36,5 +36,5 @@ Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`. Your
 └── gateway.yaml
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 

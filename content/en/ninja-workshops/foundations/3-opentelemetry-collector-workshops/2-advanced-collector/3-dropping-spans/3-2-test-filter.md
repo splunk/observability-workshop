@@ -6,7 +6,7 @@ weight: 2
 
 To test your configuration, you'll need to generate some trace data that includes a span named `"/_healthz"`.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Verify spans are dropped" %}}
 
 **Start the Gateway**: In your **Gateway terminal** window start the **Gateway**.
 
@@ -97,7 +97,7 @@ The `gateway-metrics.out` file will not contain any spans named `/_healthz`.
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
