@@ -6,3 +6,7 @@ github.com/splunk/hugo-theme-splunk-workshop v0.10.4-0.20260526114556-c5b54ff2f3
 github.com/splunk/hugo-theme-splunk-workshop v0.10.4-0.20260526114556-c5b54ff2f342/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
 github.com/splunk/hugo-theme-splunk-workshop v0.10.4 h1:+JAXBswF/55lisSvd6zkXkeMNPoakE3bbZAq2awq8Zs=
 github.com/splunk/hugo-theme-splunk-workshop v0.10.4/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.10.5 h1:7IT8AQiMM3yrrdSKrahlpZonXvlBHr1YRAYhRRQcleI=
+github.com/splunk/hugo-theme-splunk-workshop v0.10.5/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.10.6 h1:uBEcRLTOwVqKbhksowg1cYI0OMhpLn1r18bzvukpkrI=
+github.com/splunk/hugo-theme-splunk-workshop v0.10.6/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=

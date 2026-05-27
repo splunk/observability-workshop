@@ -116,43 +116,44 @@ graph LR
     ROUTE3(&nbsp;sum&nbsp;<br>fa:fa-route<br> ):::con-receive
 
     %% Links
-    subID1:::sub-traces
-    subID2:::sub-metrics
-    subgraph " " 
+    subgraph wrapper[" "]
       direction LR
-      subgraph subID1[**Traces**]
-      direction LR
-      REC1 --> PRO1
-      PRO1 --> PROA
-      PROA --> PROB
-      PROB --> PRO7
-      PRO7 --> PRO3
-      PRO3 --> PRO5 
-      PRO5 --> EXP1
-      PRO5 --> EXP2
-      PRO5 --> EXP5
-      PRO5 --> ROUTE1
+      subgraph subID1["`**Traces**`"]
+        direction LR
+        REC1 --> PRO1
+        PRO1 --> PROA
+        PROA --> PROB
+        PROB --> PRO7
+        PRO7 --> PRO3
+        PRO3 --> PRO5
+        PRO5 --> EXP1
+        PRO5 --> EXP2
+        PRO5 --> EXP5
+        PRO5 --> ROUTE1
       end
-      
-      subgraph subID2[**Metrics**]
-      direction LR
-      ROUTE1 --> ROUTE3
-      ROUTE3 --> PRO2       
-      ROUTE2 --> PRO2
-      REC3 --> PRO2
-      PRO2 --> PRO8
-      PRO8 --> PRO4
-      PRO4 --> PRO6
-      PRO6 --> EXP3
-      PRO6 --> EXP4
+
+      subgraph subID2["`**Metrics**`"]
+        direction LR
+        ROUTE1 --> ROUTE3
+        ROUTE3 --> PRO2
+        ROUTE2 --> PRO2
+        REC3 --> PRO2
+        PRO2 --> PRO8
+        PRO8 --> PRO4
+        PRO4 --> PRO6
+        PRO6 --> EXP3
+        PRO6 --> EXP4
       end
     end
+    class subID1 sub-traces
+    class subID2 sub-metrics
+
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
-classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
-classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
+classDef sub-logs stroke:#34d399,stroke-width:1px,color:#34d399,stroke-dasharray: 3 3;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px,color:#fbbf24,stroke-dasharray: 3 3;
+classDef sub-metrics stroke:#38bdf8,stroke-width:1px,color:#38bdf8,stroke-dasharray: 3 3;
 ```
 
 {{% /notice %}}

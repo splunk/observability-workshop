@@ -96,7 +96,7 @@ graph LR
     %% Links
     subID1:::sub-logs
     subgraph " "
-      subgraph subID1[**Logs**]
+      subgraph subID1["`**Logs**`"]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO3

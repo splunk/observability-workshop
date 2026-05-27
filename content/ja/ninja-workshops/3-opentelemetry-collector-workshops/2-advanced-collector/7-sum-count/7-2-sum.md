@@ -120,7 +120,7 @@ graph LR
     subID2:::sub-metrics
     subgraph " "
       direction LR
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       direction LR
       REC1 --> PRO1
       PRO1 --> PROA
@@ -134,7 +134,7 @@ graph LR
       PRO5 --> ROUTE1
       end
 
-      subgraph subID2[**Metrics**]
+      subgraph subID2["`**Metrics**`"]
       direction LR
       ROUTE1 --> ROUTE3
       ROUTE3 --> PRO2
