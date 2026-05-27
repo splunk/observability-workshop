@@ -12,8 +12,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose down
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Scroll to the very bottom of the file you&amp;rsquo;ll see a comment block that says &lt;code&gt;PHASE 2&lt;/code&gt;. Paste the following block &lt;strong&gt;directly below that comment&lt;/strong&gt;, keeping the &lt;strong&gt;2-space indentation&lt;/strong&gt; so it lines up with the other services (like &lt;code&gt;frontend:&lt;/code&gt;, &lt;code&gt;load-generator:&lt;/code&gt;, etc.):&lt;/p&gt;</description></item><item><title>2. Understand the OBI Config</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</guid><description>&lt;h2 id="the-obi-configuration-file"&gt;
+ &lt;/div&gt;&lt;p&gt;Scroll to the very bottom of the file you&amp;rsquo;ll see a comment block that says &lt;code&gt;PHASE 2&lt;/code&gt;. Paste the following block &lt;strong&gt;directly below that comment&lt;/strong&gt;, keeping the &lt;strong&gt;2-space indentation&lt;/strong&gt; so it lines up with the other services (like &lt;code&gt;frontend:&lt;/code&gt;, &lt;code&gt;load-generator:&lt;/code&gt;, etc.):&lt;/p&gt;</description></item><item><title>2. Understand the OBI Config</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/2-understand-config/</guid><description>&lt;h2 id="the-obi-configuration-file"&gt;
  &lt;span class="heading-text"&gt;The OBI Configuration File&lt;/span&gt;
  &lt;a class="heading-anchor" href="#the-obi-configuration-file" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -24,8 +23,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/obi/02-obi-docker/obi-config.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="code-block"&gt;
+ &lt;/div&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;yaml&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
@@ -44,8 +42,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;otel_traces_export&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;endpoint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;http://localhost:4318&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id="how-each-section-works"&gt;
+ &lt;/div&gt;&lt;h3 id="how-each-section-works"&gt;
  &lt;span class="heading-text"&gt;How Each Section Works&lt;/span&gt;
  &lt;a class="heading-anchor" href="#how-each-section-works" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
@@ -65,8 +62,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose ps
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s localhost:3000/create-order &lt;span class="p"&gt;|&lt;/span&gt; jq
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose logs obi &lt;span class="p"&gt;|&lt;/span&gt; head -30&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Expected"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
@@ -75,8 +71,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# docker-compose ps - all 6 containers running
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# curl - returns JSON order confirmation
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# obi logs - shows &amp;#34;instrumenting process&amp;#34; for each service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 

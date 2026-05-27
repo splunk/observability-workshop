@@ -34,8 +34,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;activities_summary&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;final_itinerary&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;current_agent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;このステートは、グラフ内のノードからノードへと移動します。&lt;/p&gt;</description></item><item><title>4.3 オーケストレーション</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-3-orchestration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-3-orchestration/</guid><description>&lt;h3 id="実行が始まる場所"&gt;
+ &lt;/div&gt;&lt;p&gt;このステートは、グラフ内のノードからノードへと移動します。&lt;/p&gt;</description></item><item><title>4.3 オーケストレーション</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-3-orchestration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-3-orchestration/</guid><description>&lt;h3 id="実行が始まる場所"&gt;
  &lt;span class="heading-text"&gt;実行が始まる場所&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e5%ae%9f%e8%a1%8c%e3%81%8c%e5%a7%8b%e3%81%be%e3%82%8b%e5%a0%b4%e6%89%80" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
@@ -76,8 +75,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;compiled_app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;initial_state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;node_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;node_state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;final_state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;node_state&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;この関数は以下のアプリケーションライフサイクルを実装しています&lt;/p&gt;</description></item><item><title>4.4 グラフの定義</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-4-graph-definition/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-4-graph-definition/</guid><description>&lt;h2 id="グラフの定義方法"&gt;
+ &lt;/div&gt;&lt;p&gt;この関数は以下のアプリケーションライフサイクルを実装しています&lt;/p&gt;</description></item><item><title>4.4 グラフの定義</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-4-graph-definition/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-4-graph-definition/</guid><description>&lt;h2 id="グラフの定義方法"&gt;
  &lt;span class="heading-text"&gt;グラフの定義方法&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%82%b0%e3%83%a9%e3%83%95%e3%81%ae%e5%ae%9a%e7%be%a9%e6%96%b9%e6%b3%95" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -101,8 +99,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_conditional_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;activity_specialist&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;should_continue&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_conditional_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;plan_synthesizer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;should_continue&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;graph&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;ルーティングロジックは以下の通りです&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;ルーティングロジックは以下の通りです&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;python&lt;/span&gt;&lt;/span&gt;
@@ -117,8 +114,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;plan_synthesizer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;plan_synthesizer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mapping&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;current_agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;END&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;条件付きエッジを使用していますが、ワークフローは実質的にリニア（直線的）です&lt;/p&gt;</description></item><item><title>4.5 ノードの定義</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-5-node-definition/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-5-node-definition/</guid><description>&lt;h2 id="ノードの仕組み"&gt;
+ &lt;/div&gt;&lt;p&gt;条件付きエッジを使用していますが、ワークフローは実質的にリニア（直線的）です&lt;/p&gt;</description></item><item><title>4.5 ノードの定義</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-5-node-definition/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-5-node-definition/</guid><description>&lt;h2 id="ノードの仕組み"&gt;
  &lt;span class="heading-text"&gt;ノードの仕組み&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -149,8 +145,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;messages&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;current_agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;hotel_specialist&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;これは一般的なノードパターンを示しています:&lt;/p&gt;</description></item><item><title>4.6 Message Abstractions</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-6-message-abstractions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-6-message-abstractions/</guid><description>&lt;h2 id="langchain-message-abstractions"&gt;
+ &lt;/div&gt;&lt;p&gt;これは一般的なノードパターンを示しています:&lt;/p&gt;</description></item><item><title>4.6 Message Abstractions</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-6-message-abstractions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-6-message-abstractions/</guid><description>&lt;h2 id="langchain-message-abstractions"&gt;
  &lt;span class="heading-text"&gt;LangChain Message Abstractions&lt;/span&gt;
  &lt;a class="heading-anchor" href="#langchain-message-abstractions" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -166,8 +161,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;HumanMessage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;SystemMessage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;これは、各ノードで以下を分離できるため重要です&lt;/p&gt;</description></item><item><title>4.7 LLMの作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-7-llm-creation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-7-llm-creation/</guid><description>&lt;h2 id="llmの作成"&gt;
+ &lt;/div&gt;&lt;p&gt;これは、各ノードで以下を分離できるため重要です&lt;/p&gt;</description></item><item><title>4.7 LLMの作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-7-llm-creation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-7-llm-creation/</guid><description>&lt;h2 id="llmの作成"&gt;
  &lt;span class="heading-text"&gt;LLMの作成&lt;/span&gt;
  &lt;a class="heading-anchor" href="#llm%e3%81%ae%e4%bd%9c%e6%88%90" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -188,8 +182,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;azure_deployment_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;このアプローチでは、モデルの設定をワークフローロジックから分離しています。
+ &lt;/div&gt;&lt;p&gt;このアプローチでは、モデルの設定をワークフローロジックから分離しています。
 各ノードは、どの程度決定論的または創造的であるべきかに応じて、異なるtemperatureを使用できます。&lt;/p&gt;</description></item><item><title>4.8 Decomposition Pattern</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-8-decomposition-pattern/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/18-agentic-ai/4-review-agentic-ai-app/4-8-decomposition-pattern/</guid><description>&lt;h3 id="シンセサイザーが分解パターンを示します"&gt;
  &lt;span class="heading-text"&gt;シンセサイザーが分解パターンを示します&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%82%b7%e3%83%b3%e3%82%bb%e3%82%b5%e3%82%a4%e3%82%b6%e3%83%bc%e3%81%8c%e5%88%86%e8%a7%a3%e3%83%91%e3%82%bf%e3%83%bc%e3%83%b3%e3%82%92%e7%a4%ba%e3%81%97%e3%81%be%e3%81%99" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -233,5 +226,4 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;messages&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;current_agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;completed&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;これはエージェントアプリの典型的なパターンです&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;これはエージェントアプリの典型的なパターンです&lt;/p&gt;</description></item></channel></rss>

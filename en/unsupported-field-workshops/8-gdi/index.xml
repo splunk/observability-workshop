@@ -14,8 +14,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ll /var/appdata/yelp*&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="2-export-the-following-variables"&gt;
+ &lt;/div&gt;&lt;h2 id="2-export-the-following-variables"&gt;
  &lt;span class="heading-text"&gt;2. Export the following variables&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-export-the-following-variables" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -27,8 +26,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your-access-token&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;REALM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your-o11y-cloud-realm&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;clusterName&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your-k8s-cluster&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="3-clone-the-following-repo"&gt;
+ &lt;/div&gt;&lt;h2 id="3-clone-the-following-repo"&gt;
  &lt;span class="heading-text"&gt;3. Clone the following repo&lt;/span&gt;
  &lt;a class="heading-anchor" href="#3-clone-the-following-repo" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -42,7 +40,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; realtime_enrichment/workshop 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 -m venv rtapp-workshop 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; rtapp-workshop/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Deploy Complex Environments and Capture Metrics</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/2-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/2-deploy/</guid><description>&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Learn how to efficiently deploy complex infrastructure components such as Kafka and MongoDB to demonstrate metrics collection with Splunk O11y IM integrations&lt;/p&gt;
+ &lt;/div&gt;</description></item><item><title>Deploy Complex Environments and Capture Metrics</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/2-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/2-deploy/</guid><description>&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Learn how to efficiently deploy complex infrastructure components such as Kafka and MongoDB to demonstrate metrics collection with Splunk O11y IM integrations&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Duration&lt;/strong&gt;: 15 Minutes&lt;/p&gt;
 &lt;h2 id="scenario"&gt;
  &lt;span class="heading-text"&gt;Scenario&lt;/span&gt;
@@ -71,16 +69,14 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /home/splunk/realtime_enrichment/flask_apps/review/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Inspect review.py (realtime_enrichment/flask_apps/review)&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Inspect review.py (realtime_enrichment/flask_apps/review)&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat review.py&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="code-block"&gt;
+ &lt;/div&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;python&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
@@ -108,8 +104,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;__main__&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Inspect requirements.txt&lt;/p&gt;</description></item><item><title>Instrument REVIEWS for Tracing</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/4-instrument/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/4-instrument/</guid><description>&lt;h2 id="1-use-data-setup-to-instrument-a-python-application"&gt;
+ &lt;/div&gt;&lt;p&gt;Inspect requirements.txt&lt;/p&gt;</description></item><item><title>Instrument REVIEWS for Tracing</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/4-instrument/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/4-instrument/</guid><description>&lt;h2 id="1-use-data-setup-to-instrument-a-python-application"&gt;
  &lt;span class="heading-text"&gt;1. Use Data Setup to instrument a Python application&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-use-data-setup-to-instrument-a-python-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -155,8 +150,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install splunk-opentelemetry[all]
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;splunk-py-trace-bootstrap&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Configure the Downward API to expose environment variables to Kubernetes resources.&lt;/p&gt;</description></item><item><title>Monitor System Logs with Splunk Universal Forwarder</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/5-forwarder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/5-forwarder/</guid><description>&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Learn how to monitor Linux system logs with the Universal Forwarder sending logs to Splunk Enterprise&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Duration&lt;/strong&gt;: 10 Minutes&lt;/p&gt;

@@ -8,5 +8,4 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;If everything is configured correctly, the collector will start and state &lt;code&gt;Everything is ready. Begin running and processing data.&lt;/code&gt; in the output, similar to the following:&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;If everything is configured correctly, the collector will start and state &lt;code&gt;Everything is ready. Begin running and processing data.&lt;/code&gt; in the output, similar to the following:&lt;/p&gt;</description></item></channel></rss>

@@ -14,8 +14,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── inventory-cloud.yaml # Inventory file
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── smartagent.yaml # Playbook
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── variables.yaml # Variables file&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Ensure you have downloaded the correct Smart Agent packages for your target environments.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Ensure you have downloaded the correct Smart Agent packages for your target environments.&lt;/p&gt;
 &lt;h2 id="step-3-understanding-the-files"&gt;
  &lt;span class="heading-text"&gt;Step 3: Understanding the Files&lt;/span&gt;
  &lt;a class="heading-anchor" href="#step-3-understanding-the-files" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -35,8 +34,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ansible-playbook -i inventory-cloud.yaml smartagent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Replace &lt;code&gt;inventory-cloud.yaml&lt;/code&gt; with the appropriate inventory file for your setup if you named it differently.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Replace &lt;code&gt;inventory-cloud.yaml&lt;/code&gt; with the appropriate inventory file for your setup if you named it differently.&lt;/p&gt;
 &lt;h3 id="verification"&gt;
  &lt;span class="heading-text"&gt;Verification&lt;/span&gt;
  &lt;a class="heading-anchor" href="#verification" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;

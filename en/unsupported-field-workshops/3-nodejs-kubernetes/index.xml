@@ -9,8 +9,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl create namespace otel-demo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="2-deploy-the-opentelemetry-demo"&gt;
+ &lt;/div&gt;&lt;h2 id="2-deploy-the-opentelemetry-demo"&gt;
  &lt;span class="heading-text"&gt;2. Deploy the OpenTelemetry Demo&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-deploy-the-opentelemetry-demo" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -21,8 +20,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/apm&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Deploy the OpenTelemetry Demo application:&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</guid><description>&lt;h2 id="1-introduction"&gt;
+ &lt;/div&gt;&lt;p&gt;Deploy the OpenTelemetry Demo application:&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</guid><description>&lt;h2 id="1-introduction"&gt;
  &lt;span class="heading-text"&gt;1. Introduction&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -49,8 +47,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl patch deployment opentelemetry-demo-paymentservice -n otel-demo -p &lt;span class="s1"&gt;&amp;#39;{&amp;#34;spec&amp;#34;: {&amp;#34;template&amp;#34;:{&amp;#34;metadata&amp;#34;:{&amp;#34;annotations&amp;#34;:{&amp;#34;instrumentation.opentelemetry.io/inject-nodejs&amp;#34;:&amp;#34;default/splunk-otel-collector&amp;#34;}}}} }&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This will cause the &lt;code&gt;opentelemetry-demo-paymentservice&lt;/code&gt; pod to restart and after a few minutes, you should see the &lt;code&gt;paymentservice&lt;/code&gt; service in &lt;strong&gt;APM&lt;/strong&gt;.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;This will cause the &lt;code&gt;opentelemetry-demo-paymentservice&lt;/code&gt; pod to restart and after a few minutes, you should see the &lt;code&gt;paymentservice&lt;/code&gt; service in &lt;strong&gt;APM&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/apm-paymentservice.png" alt="Paymentservice" loading="lazy" decoding="async"&gt;

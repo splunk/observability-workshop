@@ -7,49 +7,37 @@
  &lt;span class="heading-text"&gt;High-Level Architecture&lt;/span&gt;
  &lt;a class="heading-anchor" href="#high-level-architecture" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;mermaid&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;graph TB
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph &amp;#34;Jenkins Infrastructure&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JM[Jenkins Master&amp;lt;br/&amp;gt;Web UI + Orchestration]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JA[Jenkins Agent&amp;lt;br/&amp;gt;EC2 in VPC&amp;lt;br/&amp;gt;Label: linux]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph &amp;#34;AWS VPC - Private Network&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph &amp;#34;Target EC2 Instances&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H1[Host 1&amp;lt;br/&amp;gt;172.31.1.243]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H2[Host 2&amp;lt;br/&amp;gt;172.31.1.48]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H3[Host 3&amp;lt;br/&amp;gt;172.31.1.5]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; HN[Host N&amp;lt;br/&amp;gt;172.31.x.x]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DEV[Developer/Operator]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; APPD[AppDynamics&amp;lt;br/&amp;gt;Controller]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DEV --&amp;gt;|1. Triggers Pipeline| JM
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JM --&amp;gt;|2. Assigns Job| JA
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H2
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H3
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| HN
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H1 -.-&amp;gt;|Metrics| APPD
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H2 -.-&amp;gt;|Metrics| APPD
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; H3 -.-&amp;gt;|Metrics| APPD
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; HN -.-&amp;gt;|Metrics| APPD
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style JM fill:#d4e6f1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style JA fill:#a9cce3
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style H1 fill:#aed6f1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style H2 fill:#aed6f1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style H3 fill:#aed6f1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style HN fill:#aed6f1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="network-architecture"&gt;
+&lt;pre class="mermaid"&gt;graph TB
+ subgraph &amp;#34;Jenkins Infrastructure&amp;#34;
+ JM[Jenkins Master&amp;lt;br/&amp;gt;Web UI + Orchestration]
+ JA[Jenkins Agent&amp;lt;br/&amp;gt;EC2 in VPC&amp;lt;br/&amp;gt;Label: linux]
+ end
+ subgraph &amp;#34;AWS VPC - Private Network&amp;#34;
+ subgraph &amp;#34;Target EC2 Instances&amp;#34;
+ H1[Host 1&amp;lt;br/&amp;gt;172.31.1.243]
+ H2[Host 2&amp;lt;br/&amp;gt;172.31.1.48]
+ H3[Host 3&amp;lt;br/&amp;gt;172.31.1.5]
+ HN[Host N&amp;lt;br/&amp;gt;172.31.x.x]
+ end
+ end
+ DEV[Developer/Operator]
+ APPD[AppDynamics&amp;lt;br/&amp;gt;Controller]
+ DEV --&amp;gt;|1. Triggers Pipeline| JM
+ JM --&amp;gt;|2. Assigns Job| JA
+ JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H1
+ JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H2
+ JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| H3
+ JA --&amp;gt;|3. SSH Deploy&amp;lt;br/&amp;gt;Private IPs| HN
+ H1 -.-&amp;gt;|Metrics| APPD
+ H2 -.-&amp;gt;|Metrics| APPD
+ H3 -.-&amp;gt;|Metrics| APPD
+ HN -.-&amp;gt;|Metrics| APPD
+ style JM fill:#d4e6f1
+ style JA fill:#a9cce3
+ style H1 fill:#aed6f1
+ style H2 fill:#aed6f1
+ style H3 fill:#aed6f1
+ style HN fill:#aed6f1&lt;/pre&gt;&lt;h2 id="network-architecture"&gt;
  &lt;span class="heading-text"&gt;Network Architecture&lt;/span&gt;
  &lt;a class="heading-anchor" href="#network-architecture" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

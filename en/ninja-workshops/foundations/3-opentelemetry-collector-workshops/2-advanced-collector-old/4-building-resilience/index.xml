@@ -10,16 +10,14 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;: In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/4-resilience&lt;/code&gt; directory and run:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;: In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/4-resilience&lt;/code&gt; directory and run:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Send five test spans&lt;/strong&gt;: In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/4-resilience&lt;/code&gt; directory and run:&lt;/p&gt;</description></item><item><title>4.3 Simulate Failure</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/</guid><description>&lt;p&gt;To assess the &lt;strong&gt;Agent&amp;rsquo;s&lt;/strong&gt; resilience, we&amp;rsquo;ll simulate a temporary &lt;code&gt;gateway&lt;/code&gt; outage and observe how the &lt;code&gt;agent&lt;/code&gt; handles it:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Send five test spans&lt;/strong&gt;: In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/4-resilience&lt;/code&gt; directory and run:&lt;/p&gt;</description></item><item><title>4.3 Simulate Failure</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/4-building-resilience/4-3-failure/</guid><description>&lt;p&gt;To assess the &lt;strong&gt;Agent&amp;rsquo;s&lt;/strong&gt; resilience, we&amp;rsquo;ll simulate a temporary &lt;code&gt;gateway&lt;/code&gt; outage and observe how the &lt;code&gt;agent&lt;/code&gt; handles it:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Send Traces to the Agent&lt;/strong&gt; – Generate traffic by sending traces to the &lt;code&gt;agent&lt;/code&gt;.&lt;/li&gt;
@@ -36,5 +34,4 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Restart the Agent&lt;/strong&gt;: In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window run:&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Restart the Agent&lt;/strong&gt;: In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window run:&lt;/p&gt;</description></item></channel></rss>

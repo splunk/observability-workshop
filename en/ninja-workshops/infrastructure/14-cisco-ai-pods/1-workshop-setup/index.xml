@@ -34,8 +34,7 @@ filling out the form
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install unzip
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;unzip awscliv2.zip
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo ./aws/install&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Use the following command to ensure it was installed successfully:&lt;/p&gt;</description></item><item><title>Deploy OpenShift Cluster in AWS</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</guid><description>&lt;h2 id="deploy-an-openshift-cluster"&gt;
+ &lt;/div&gt;&lt;p&gt;Use the following command to ensure it was installed successfully:&lt;/p&gt;</description></item><item><title>Deploy OpenShift Cluster in AWS</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/3-deploy-openshift-cluster/</guid><description>&lt;h2 id="deploy-an-openshift-cluster"&gt;
  &lt;span class="heading-text"&gt;Deploy an OpenShift Cluster&lt;/span&gt;
  &lt;a class="heading-anchor" href="#deploy-an-openshift-cluster" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -53,8 +52,7 @@ filling out the form
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;SUBNET_IDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;comma separated list of subnet IDs from earlier rosa create network command&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;OIDC_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;the oidc-provider id returned from the rosa create oidc-config command&amp;gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;OPERATOR_ROLES_PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;rosa-test-a6x9&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Create operator roles for the OIDC configuration using the following command:&lt;/p&gt;</description></item><item><title>Deploy the NVIDIA NIM Operator</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</guid><description>&lt;p&gt;The &lt;strong&gt;NVIDIA GPU Operator&lt;/strong&gt; is a Kubernetes Operator that automates the deployment, configuration,
+ &lt;/div&gt;&lt;p&gt;Create operator roles for the OIDC configuration using the following command:&lt;/p&gt;</description></item><item><title>Deploy the NVIDIA NIM Operator</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</guid><description>&lt;p&gt;The &lt;strong&gt;NVIDIA GPU Operator&lt;/strong&gt; is a Kubernetes Operator that automates the deployment, configuration,
 and management of all necessary NVIDIA software components to provision GPUs within a Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;NVIDIA NIM Operator&lt;/strong&gt; is used to deploy LLMs in Kubernetes environments, such
 as the OpenShift cluster we created earlier in this workshop.&lt;/p&gt;
@@ -71,8 +69,7 @@ to our OpenShift Cluster.&lt;/p&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc create namespace nim-service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="add-secrets-with-ngc-api-key"&gt;
+ &lt;/div&gt;&lt;h2 id="add-secrets-with-ngc-api-key"&gt;
  &lt;span class="heading-text"&gt;Add Secrets with NGC API Key&lt;/span&gt;
  &lt;a class="heading-anchor" href="#add-secrets-with-ngc-api-key" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -86,8 +83,7 @@ to our OpenShift Cluster.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --docker-server&lt;span class="o"&gt;=&lt;/span&gt;nvcr.io &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --docker-username&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$oauthtoken&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --docker-password&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$NGC_API_KEY&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Add a generic secret that model puller containers use to download the model from NVIDIA NGC:&lt;/p&gt;</description></item><item><title>Setup Users</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/6-setup-users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/6-setup-users/</guid><description>&lt;p&gt;In this section, we&amp;rsquo;ll create users for each workshop participant, with a namespace and resource
+ &lt;/div&gt;&lt;p&gt;Add a generic secret that model puller containers use to download the model from NVIDIA NGC:&lt;/p&gt;</description></item><item><title>Setup Users</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/6-setup-users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/6-setup-users/</guid><description>&lt;p&gt;In this section, we&amp;rsquo;ll create users for each workshop participant, with a namespace and resource
 quota for each.&lt;/p&gt;
 &lt;h2 id="create-user-namespaces-and-resource-quotas"&gt;
  &lt;span class="heading-text"&gt;Create User Namespaces and Resource Quotas&lt;/span&gt;
@@ -100,8 +96,7 @@ quota for each.&lt;/p&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; user-setup
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./create-namespaces.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="create-users"&gt;
+ &lt;/div&gt;&lt;h2 id="create-users"&gt;
  &lt;span class="heading-text"&gt;Create Users&lt;/span&gt;
  &lt;a class="heading-anchor" href="#create-users" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -113,8 +108,7 @@ the ROSA-managed HTPasswd IdP with a custom one:&lt;/p&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./create-users.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="re-create-the-cluster-admin-user-then-login-again"&gt;
+ &lt;/div&gt;&lt;h2 id="re-create-the-cluster-admin-user-then-login-again"&gt;
  &lt;span class="heading-text"&gt;Re-create the cluster-admin user then login again&lt;/span&gt;
  &lt;a class="heading-anchor" href="#re-create-the-cluster-admin-user-then-login-again" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -133,8 +127,7 @@ each of the workshop participant namespaces.&lt;/p&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc new-project admin-otel &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Add the Splunk OpenTelemetry Collector for Kubernetes&amp;rsquo; Helm chart repository:&lt;/p&gt;</description></item><item><title>Deploy the Vector Database</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</guid><description>&lt;p&gt;In this step, we&amp;rsquo;ll deploy a vector database to the OpenShift cluster and populate it with
+ &lt;/div&gt;&lt;p&gt;Add the Splunk OpenTelemetry Collector for Kubernetes&amp;rsquo; Helm chart repository:&lt;/p&gt;</description></item><item><title>Deploy the Vector Database</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</guid><description>&lt;p&gt;In this step, we&amp;rsquo;ll deploy a vector database to the OpenShift cluster and populate it with
 test data that will be used by workshop participants.&lt;/p&gt;
 &lt;h2 id="deploy-a-vector-database"&gt;
  &lt;span class="heading-text"&gt;Deploy a Vector Database&lt;/span&gt;
@@ -151,8 +144,7 @@ test data that will be used by workshop participants.&lt;/p&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo add weaviate https://weaviate.github.io/weaviate-helm
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo update&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;The &lt;code&gt;weaviate/weaviate-values.yaml&lt;/code&gt; file includes the configuration we&amp;rsquo;ll use to deploy
+ &lt;/div&gt;&lt;p&gt;The &lt;code&gt;weaviate/weaviate-values.yaml&lt;/code&gt; file includes the configuration we&amp;rsquo;ll use to deploy
 the Weviate vector database.&lt;/p&gt;</description></item><item><title>Deploy the Portworx Metrics Endpoint</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/9-deploy-portworx-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/9-deploy-portworx-service/</guid><description>&lt;p&gt;In this step, we&amp;rsquo;ll deploy a Python service that mimics the Portworx metrics endpoint.
 This will be used in the workshop to configure monitoring for Pure Storage.&lt;/p&gt;
 &lt;h2 id="deploy-the-portworx-metrics-endpoint"&gt;
@@ -167,8 +159,7 @@ This will be used in the workshop to configure monitoring for Pure Storage.&lt;/
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc new-project portworx
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc apply -f ./portworx/k8s.yaml -n portworx&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="test-the-portworx-metrics-endpoint"&gt;
+ &lt;/div&gt;&lt;h2 id="test-the-portworx-metrics-endpoint"&gt;
  &lt;span class="heading-text"&gt;Test the Portworx Metrics Endpoint&lt;/span&gt;
  &lt;a class="heading-anchor" href="#test-the-portworx-metrics-endpoint" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -185,13 +176,11 @@ and the endpoint URL for the OIDC provider by running the following command:&lt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rosa describe cluster --cluster&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$CLUSTER_NAME&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Delete the cluster using the following command&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Delete the cluster using the following command&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rosa delete cluster --cluster&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$CLUSTER_NAME&lt;/span&gt; --watch&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Delete the cluster-specific Operator IAM roles:&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;Delete the cluster-specific Operator IAM roles:&lt;/p&gt;</description></item></channel></rss>

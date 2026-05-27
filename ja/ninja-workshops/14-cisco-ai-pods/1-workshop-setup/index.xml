@@ -26,8 +26,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc create namespace nim-service&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="ngc-apiキーを使用したsecretの追加"&gt;
+ &lt;/div&gt;&lt;h2 id="ngc-apiキーを使用したsecretの追加"&gt;
  &lt;span class="heading-text"&gt;NGC APIキーを使用したSecretの追加&lt;/span&gt;
  &lt;a class="heading-anchor" href="#ngc-api%e3%82%ad%e3%83%bc%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%97%e3%81%9fsecret%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -43,8 +42,7 @@
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; user-setup
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./create-namespaces.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="ユーザーの作成"&gt;
+ &lt;/div&gt;&lt;h2 id="ユーザーの作成"&gt;
  &lt;span class="heading-text"&gt;ユーザーの作成&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%81%ae%e4%bd%9c%e6%88%90" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

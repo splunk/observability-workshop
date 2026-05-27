@@ -7,8 +7,7 @@ In the &lt;strong&gt;Gateway terminal&lt;/strong&gt; window navigate to the &lt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;:&lt;br&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;:&lt;br&gt;
 In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; directory and run:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -16,8 +15,7 @@ In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;co
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Send 12 Logs lines with the Loadgen&lt;/strong&gt;:&lt;br&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Send 12 Logs lines with the Loadgen&lt;/strong&gt;:&lt;br&gt;
 In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; directory.&lt;br&gt;
 Send 12 log lines, they should be read in two intervals. Do this with the following &lt;code&gt;loadgen&lt;/code&gt; command:&lt;/p&gt;</description></item><item><title>Create metrics with Sum Connector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-2-sum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-2-sum/</guid><description>&lt;p&gt;In this section, we’ll explore how the &lt;a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector" target="_blank" rel="noopener"&gt;&lt;strong&gt;Sum Connector&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
  can extract values from spans and convert them into metrics.&lt;/p&gt;
@@ -31,8 +29,7 @@ In the &lt;strong&gt;Gateway terminal&lt;/strong&gt; window navigate to the &lt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;:&lt;br&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;:&lt;br&gt;
 In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; directory and run:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -40,6 +37,5 @@ In the &lt;strong&gt;Agent terminal&lt;/strong&gt; window navigate to the &lt;co
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Loadgen&lt;/strong&gt;:&lt;br&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Loadgen&lt;/strong&gt;:&lt;br&gt;
 In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; directory. Send 8 spans with the following &lt;code&gt;loadgen&lt;/code&gt; command:&lt;/p&gt;</description></item></channel></rss>

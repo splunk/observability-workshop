@@ -62,48 +62,42 @@ running in the cluster, and sends the resulting data to Splunk Observability Clo
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm version&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;version.BuildInfo&lt;span class="o"&gt;{&lt;/span&gt;Version:&lt;span class="s2"&gt;&amp;#34;v3.19.4&amp;#34;&lt;/span&gt;, GitCommit:&lt;span class="s2"&gt;&amp;#34;7cfb6e486dac026202556836bb910c37d847793e&amp;#34;&lt;/span&gt;, GitTreeState:&lt;span class="s2"&gt;&amp;#34;clean&amp;#34;&lt;/span&gt;, GoVersion:&lt;span class="s2"&gt;&amp;#34;go1.24.11&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm version&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;version.BuildInfo&lt;span class="o"&gt;{&lt;/span&gt;Version:&lt;span class="s2"&gt;&amp;#34;v3.19.4&amp;#34;&lt;/span&gt;, GitCommit:&lt;span class="s2"&gt;&amp;#34;7cfb6e486dac026202556836bb910c37d847793e&amp;#34;&lt;/span&gt;, GitTreeState:&lt;span class="s2"&gt;&amp;#34;clean&amp;#34;&lt;/span&gt;, GoVersion:&lt;span class="s2"&gt;&amp;#34;go1.24.11&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm version&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;version.BuildInfo&lt;span class="o"&gt;{&lt;/span&gt;Version:&lt;span class="s2"&gt;&amp;#34;v3.19.4&amp;#34;&lt;/span&gt;, GitCommit:&lt;span class="s2"&gt;&amp;#34;7cfb6e486dac026202556836bb910c37d847793e&amp;#34;&lt;/span&gt;, GitTreeState:&lt;span class="s2"&gt;&amp;#34;clean&amp;#34;&lt;/span&gt;, GoVersion:&lt;span class="s2"&gt;&amp;#34;go1.24.11&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 
@@ -116,8 +110,7 @@ navigating to the directory where the collector configuration file is stored:&lt
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; otel-collector&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="capture-the-nvidia-dcgm-exporter-metrics"&gt;
+ &lt;/div&gt;&lt;h2 id="capture-the-nvidia-dcgm-exporter-metrics"&gt;
  &lt;span class="heading-text"&gt;Capture the NVIDIA DCGM Exporter metrics&lt;/span&gt;
  &lt;a class="heading-anchor" href="#capture-the-nvidia-dcgm-exporter-metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -179,8 +172,7 @@ as expected.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -f ./otel-collector-values.yaml &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -n &lt;span class="nv"&gt;$USER_NAME&lt;/span&gt; &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; splunk-otel-collector-chart/splunk-otel-collector&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;blockquote&gt;&lt;p&gt;Note: if you get an error that says &lt;code&gt;Missing variables&lt;/code&gt;, you&amp;rsquo;ll need to
+ &lt;/div&gt;&lt;blockquote&gt;&lt;p&gt;Note: if you get an error that says &lt;code&gt;Missing variables&lt;/code&gt;, you&amp;rsquo;ll need to
 define your environment variables again. Add your participant number
 before running the following commands:&lt;/p&gt;</description></item><item><title>Review the LLM Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/8-review-llm-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/8-review-llm-app/</guid><description>&lt;p&gt;In the final step of the workshop, we&amp;rsquo;ll deploy an application to our OpenShift cluster
 that uses the instruct and embeddings models.&lt;/p&gt;
@@ -217,8 +209,7 @@ installed with &lt;code&gt;pip install&lt;/code&gt;):&lt;/p&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;splunk-opentelemetry==2.8.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;We also added the following to the &lt;code&gt;Dockerfile&lt;/code&gt; used to build the
+ &lt;/div&gt;&lt;p&gt;We also added the following to the &lt;code&gt;Dockerfile&lt;/code&gt; used to build the
 container image for this application, to install additional OpenTelemetry
 instrumentation packages:&lt;/p&gt;</description></item><item><title>Deploy the LLM Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/10-deploy-llm-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/10-deploy-llm-app/</guid><description>&lt;h2 id="deploy-the-llm-application"&gt;
  &lt;span class="heading-text"&gt;Deploy the LLM Application&lt;/span&gt;
@@ -232,8 +223,7 @@ instrumentation packages:&lt;/p&gt;</description></item><item><title>Deploy the 
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/cisco-ai-pods
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc apply -f ./llm-app/k8s-manifest.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;blockquote&gt;&lt;p&gt;Note: to build a Docker image for this Python application, we executed the following commands:&lt;/p&gt;
+ &lt;/div&gt;&lt;blockquote&gt;&lt;p&gt;Note: to build a Docker image for this Python application, we executed the following commands:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -242,8 +232,7 @@ instrumentation packages:&lt;/p&gt;</description></item><item><title>Deploy the 
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; workshop/cisco-ai-pods/llm-app
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker build --platform linux/amd64 -t ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0 .
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker push ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;&lt;h2 id="test-the-llm-application"&gt;
+ &lt;/div&gt;&lt;/blockquote&gt;&lt;h2 id="test-the-llm-application"&gt;
  &lt;span class="heading-text"&gt;Test the LLM Application&lt;/span&gt;
  &lt;a class="heading-anchor" href="#test-the-llm-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

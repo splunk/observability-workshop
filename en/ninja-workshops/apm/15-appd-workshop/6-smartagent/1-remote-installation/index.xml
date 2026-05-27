@@ -25,8 +25,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /home/ubuntu/appdsm&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;The two files you&amp;rsquo;ll configure:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;The two files you&amp;rsquo;ll configure:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;config.ini&lt;/code&gt; - Smart Agent configuration deployed to all remote hosts&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;remote.yaml&lt;/code&gt; - Remote hosts and SSH connection settings&lt;/li&gt;
@@ -81,8 +80,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;600&lt;/span&gt; /home/ubuntu/.ssh/id_rsa
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;644&lt;/span&gt; /home/ubuntu/.ssh/id_rsa.pub
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;700&lt;/span&gt; /home/ubuntu/.ssh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h4 id="2-test-ssh-connectivity-manually"&gt;
+ &lt;/div&gt;&lt;h4 id="2-test-ssh-connectivity-manually"&gt;
  &lt;span class="heading-text"&gt;2. Test SSH Connectivity Manually&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-test-ssh-connectivity-manually" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h4&gt;

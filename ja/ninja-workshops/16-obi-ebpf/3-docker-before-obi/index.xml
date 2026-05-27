@@ -15,7 +15,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s http://localhost:3000/create-order &lt;span class="p"&gt;|&lt;/span&gt; python3 -m json.tool&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;以下のようなJSONレスポンスが表示されます:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -30,8 +30,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;amount&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;リクエストは3つのサービスすべてを通過しました。しかし、現時点では誰も監視していません。&lt;/p&gt;</description></item><item><title>3. Splunk の確認</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/3-check-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/3-check-splunk/</guid><description>&lt;h2 id="インフラストラクチャメトリクスの確認"&gt;
+ &lt;/div&gt;&lt;p&gt;リクエストは3つのサービスすべてを通過しました。しかし、現時点では誰も監視していません。&lt;/p&gt;</description></item><item><title>3. Splunk の確認</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/3-check-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/16-obi-ebpf/3-docker-before-obi/3-check-splunk/</guid><description>&lt;h2 id="インフラストラクチャメトリクスの確認"&gt;
  &lt;span class="heading-text"&gt;インフラストラクチャメトリクスの確認&lt;/span&gt;
  &lt;a class="heading-anchor" href="#%e3%82%a4%e3%83%b3%e3%83%95%e3%83%a9%e3%82%b9%e3%83%88%e3%83%a9%e3%82%af%e3%83%81%e3%83%a3%e3%83%a1%e3%83%88%e3%83%aa%e3%82%af%e3%82%b9%e3%81%ae%e7%a2%ba%e8%aa%8d" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

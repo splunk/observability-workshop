@@ -7,8 +7,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Agent を起動する&lt;/strong&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent を起動する&lt;/strong&gt;
 &lt;strong&gt;Agent terminal&lt;/strong&gt; ウィンドウで以下を実行します&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -16,8 +15,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Loadgen で12行のログを送信する&lt;/strong&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Loadgen で12行のログを送信する&lt;/strong&gt;
 &lt;strong&gt;Spans terminal&lt;/strong&gt; ウィンドウで、12行のログを送信します。これらは2つのインターバルで読み取られるはずです。以下の &lt;code&gt;loadgen&lt;/code&gt; コマンドを実行してください&lt;/p&gt;</description></item><item><title>7.2 Sum Connector でメトリクスを作成する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-2-sum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-2-sum/</guid><description>&lt;p&gt;このセクションでは、&lt;a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector" target="_blank" rel="noopener"&gt;&lt;strong&gt;Sum Connector&lt;/strong&gt; &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
  がスパンから値を抽出してメトリクスに変換する方法を説明します。&lt;/p&gt;
 &lt;p&gt;具体的には、ベーススパンからクレジットカードの請求額を取得し、Sum Connector を活用して合計請求額をメトリクスとして取得します。&lt;/p&gt;</description></item><item><title>7.3 Sum Connector のテスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/</guid><description>&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
@@ -29,8 +27,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Agent を起動する&lt;/strong&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent を起動する&lt;/strong&gt;
 &lt;strong&gt;Agent terminal&lt;/strong&gt; ウィンドウで以下を実行します&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -38,6 +35,5 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Loadgen を起動する&lt;/strong&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Loadgen を起動する&lt;/strong&gt;
 &lt;strong&gt;Spans terminal&lt;/strong&gt; ウィンドウで、以下の &lt;code&gt;loadgen&lt;/code&gt; コマンドを使用して8つのスパンを送信します&lt;/p&gt;</description></item></channel></rss>

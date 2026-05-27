@@ -7,43 +7,32 @@
  &lt;span class="heading-text"&gt;High-Level Architecture&lt;/span&gt;
  &lt;a class="heading-anchor" href="#high-level-architecture" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;mermaid&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;graph TB
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph Internet
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; GH[GitHub.com&amp;lt;br/&amp;gt;Repository &amp;amp; Actions]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; User[Developer&amp;lt;br/&amp;gt;Local Machine]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph AWS[&amp;#34;AWS VPC (172.31.0.0/16)&amp;#34;]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph SG[&amp;#34;Security Group: smartagent-lab&amp;#34;]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Runner[Self-hosted Runner&amp;lt;br/&amp;gt;EC2 Instance&amp;lt;br/&amp;gt;172.31.1.x]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; subgraph Targets[&amp;#34;Target Hosts&amp;#34;]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; T1[Target Host 1&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.243]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; T2[Target Host 2&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.48]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; T3[Target Host 3&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.5]
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; end
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; User --&amp;gt;|git push| GH
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; GH &amp;lt;--&amp;gt;|HTTPS:443&amp;lt;br/&amp;gt;Poll for jobs| Runner
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T2
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T3
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style GH fill:#24292e,color:#fff
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style User fill:#0366d6,color:#fff
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style Runner fill:#28a745,color:#fff
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style T1 fill:#ffd33d,color:#000
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style T2 fill:#ffd33d,color:#000
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; style T3 fill:#ffd33d,color:#000&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="network-architecture"&gt;
+&lt;pre class="mermaid"&gt;graph TB
+ subgraph Internet
+ GH[GitHub.com&amp;lt;br/&amp;gt;Repository &amp;amp; Actions]
+ User[Developer&amp;lt;br/&amp;gt;Local Machine]
+ end
+ subgraph AWS[&amp;#34;AWS VPC (172.31.0.0/16)&amp;#34;]
+ subgraph SG[&amp;#34;Security Group: smartagent-lab&amp;#34;]
+ Runner[Self-hosted Runner&amp;lt;br/&amp;gt;EC2 Instance&amp;lt;br/&amp;gt;172.31.1.x]
+ subgraph Targets[&amp;#34;Target Hosts&amp;#34;]
+ T1[Target Host 1&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.243]
+ T2[Target Host 2&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.48]
+ T3[Target Host 3&amp;lt;br/&amp;gt;Ubuntu EC2&amp;lt;br/&amp;gt;172.31.1.5]
+ end
+ end
+ end
+ User --&amp;gt;|git push| GH
+ GH &amp;lt;--&amp;gt;|HTTPS:443&amp;lt;br/&amp;gt;Poll for jobs| Runner
+ Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T1
+ Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T2
+ Runner --&amp;gt;|SSH:22&amp;lt;br/&amp;gt;Private IPs| T3
+ style GH fill:#24292e,color:#fff
+ style User fill:#0366d6,color:#fff
+ style Runner fill:#28a745,color:#fff
+ style T1 fill:#ffd33d,color:#000
+ style T2 fill:#ffd33d,color:#000
+ style T3 fill:#ffd33d,color:#000&lt;/pre&gt;&lt;h2 id="network-architecture"&gt;
  &lt;span class="heading-text"&gt;Network Architecture&lt;/span&gt;
  &lt;a class="heading-anchor" href="#network-architecture" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -78,8 +67,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Option 2: Clone directly (for testing)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/chambear2809/github-actions-lab.git
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; github-actions-lab&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="configure-self-hosted-runner"&gt;
+ &lt;/div&gt;&lt;h2 id="configure-self-hosted-runner"&gt;
  &lt;span class="heading-text"&gt;Configure Self-hosted Runner&lt;/span&gt;
  &lt;a class="heading-anchor" href="#configure-self-hosted-runner" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

@@ -10,8 +10,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$ACCESS_TOKEN&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$REALM&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Navigate to the Phase 1/2 directory and open &lt;code&gt;docker-compose.yaml&lt;/code&gt; in your editor:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Navigate to the Phase 1/2 directory and open &lt;code&gt;docker-compose.yaml&lt;/code&gt; in your editor:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -19,8 +18,7 @@
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>2. Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</guid><description>&lt;h2 id="hit-the-frontend"&gt;
+ &lt;/div&gt;&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>2. Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/16-obi-ebpf/3-docker-before-obi/2-generate-traffic/</guid><description>&lt;h2 id="hit-the-frontend"&gt;
  &lt;span class="heading-text"&gt;Hit the Frontend&lt;/span&gt;
  &lt;a class="heading-anchor" href="#hit-the-frontend" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -32,7 +30,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s http://localhost:3000/create-order &lt;span class="p"&gt;|&lt;/span&gt; jq&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;You should see a JSON response like:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -47,8 +45,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;amount&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;The request flowed through all three services. But right now, nobody is watching.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;The request flowed through all three services. But right now, nobody is watching.&lt;/p&gt;
 &lt;h2 id="look-at-the-code"&gt;
  &lt;span class="heading-text"&gt;Look at the Code&lt;/span&gt;
  &lt;a class="heading-anchor" href="#look-at-the-code" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;

@@ -24,8 +24,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone -b distributed-tracing-for-development-teams https://github.com/shabuhabs/javashop-otel.git&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Access the workshop directory:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="code-block"&gt;
@@ -34,8 +33,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; javashop-otel&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Set Environment Variables&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="code-block"&gt;
@@ -44,8 +42,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nano .env&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+ &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
 &lt;li&gt;NO spaces in &amp;lt;your_name&amp;gt;&lt;/li&gt;
 &lt;li&gt;The shop_user provides us an Environment Tag.&lt;/li&gt;
 &lt;li&gt;To get your access token, go to your Splunk O11y UI -&amp;gt; Settings -&amp;gt;Access Tokens.&lt;/li&gt;
@@ -63,8 +60,7 @@
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;SHOP_USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;your_name&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;SPLUNK_ACCESS_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;your_token&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;SPLUNK_REALM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;your_realm&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Save in nano with &lt;strong&gt;[CTRL]-o [ENTER]&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Exit nano with &lt;strong&gt;[CTRL]-x&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -115,8 +111,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;private&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;myCoolFunction234234234&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nd"&gt;@SpanAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;myInt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;myInt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;code&gt;@SpanAttribute(&amp;quot;myint&amp;quot;)&lt;/code&gt; is an OpenTelemetry Annotation that was added by our Java Otel Annotator tool.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;code&gt;@SpanAttribute(&amp;quot;myint&amp;quot;)&lt;/code&gt; is an OpenTelemetry Annotation that was added by our Java Otel Annotator tool.&lt;/p&gt;
 &lt;h2 id="fixing-the-code"&gt;
  &lt;span class="heading-text"&gt;Fixing the code&lt;/span&gt;
  &lt;a class="heading-anchor" href="#fixing-the-code" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -139,8 +134,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sleepy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;nextInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;5000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;3000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;3000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;to this:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="code-block"&gt;
@@ -158,8 +152,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// sleepy.nextInt(5000 - 3000)&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// + 3000);&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;which is basically placing comments (//) before the lines in myCoolFunction234234234 that are causing the slowness:&lt;/p&gt;</description></item><item><title>Rebuild and Deploy</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/</guid><description>&lt;h2 id="rebuild-and-deploy"&gt;
+ &lt;/div&gt;&lt;p&gt;which is basically placing comments (//) before the lines in myCoolFunction234234234 that are causing the slowness:&lt;/p&gt;</description></item><item><title>Rebuild and Deploy</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/8-rebuild-and-deploy/</guid><description>&lt;h2 id="rebuild-and-deploy"&gt;
  &lt;span class="heading-text"&gt;Rebuild and Deploy&lt;/span&gt;
  &lt;a class="heading-anchor" href="#rebuild-and-deploy" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -172,8 +165,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./BuildAndDeploy.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+ &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Wait a few minutes . . .&lt;/li&gt;
 &lt;li&gt;Return to the service map&lt;/li&gt;
 &lt;/ul&gt;
@@ -255,8 +247,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;homebrew/bin/brew shellenv&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;brew update --force --quiet
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod -R go-w &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --prefix&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;/share/zsh&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h4 id="install-colima"&gt;
+ &lt;/div&gt;&lt;h4 id="install-colima"&gt;
  &lt;span class="heading-text"&gt;Install Colima&lt;/span&gt;
  &lt;a class="heading-anchor" href="#install-colima" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h4&gt;

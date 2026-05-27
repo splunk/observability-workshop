@@ -32,16 +32,14 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://accounts.spotify.com/api/token&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;In the &lt;strong&gt;Payload body&lt;/strong&gt; section enter the following:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;In the &lt;strong&gt;Payload body&lt;/strong&gt; section enter the following:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;grant_type=client_credentials&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Next, add two &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;ul&gt;
+ &lt;/div&gt;&lt;p&gt;Next, add two &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;ul&gt;
 &lt;li&gt;Request headers&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/span&gt;&lt;/button&gt; with the following key/value pairings:&lt;/p&gt;
@@ -60,8 +58,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://api.spotify.com/v1/search?q=Up%20around%20the%20bend&amp;amp;type=track&amp;amp;offset=0&amp;amp;limit=5&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Next, add two request headers with the following key/value pairings:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Next, add two request headers with the following key/value pairings:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;CONTENT-TYPE: application/json&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;AUTHORIZATION: Bearer {{custom.access_token}}&lt;/strong&gt;

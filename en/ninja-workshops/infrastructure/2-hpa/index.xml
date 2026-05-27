@@ -33,8 +33,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/k3s/otel-apache.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;yaml&lt;/span&gt;&lt;/span&gt;
@@ -49,8 +48,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;type == &amp;#34;port&amp;#34; &amp;amp;&amp;amp; pod.name matches &amp;#34;apache&amp;#34; &amp;amp;&amp;amp; port == 80&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;endpoint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;http://php-apache-svc.apache.svc.cluster.local/server-status?auto&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="2--observation-rules-in-the-opentelemetry-config"&gt;
+ &lt;/div&gt;&lt;h2 id="2--observation-rules-in-the-opentelemetry-config"&gt;
  &lt;span class="heading-text"&gt;2. Observation Rules in the OpenTelemetry config&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2--observation-rules-in-the-opentelemetry-config" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -65,8 +63,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/k3s/php-apache.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.&lt;/p&gt;
 &lt;p&gt;A stateless application does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.&lt;/p&gt;</description></item><item><title>Fix PHP/Apache Issue</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/5-fix-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/5-fix-apache/</guid><description>&lt;h2 id="1-kubernetes-resources"&gt;
  &lt;span class="heading-text"&gt;1. Kubernetes Resources&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-kubernetes-resources" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -84,7 +81,6 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/k3s/loadgen.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This file contains the configuration for the load generator and will create a new ReplicaSet with two replicas of the load generator image.&lt;/p&gt;</description></item><item><title>Setup Horizontal Pod Autoscaling (HPA)</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/7-setup-hpa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/7-setup-hpa/</guid><description>&lt;p&gt;In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), to automatically scale the workload to match demand.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;This file contains the configuration for the load generator and will create a new ReplicaSet with two replicas of the load generator image.&lt;/p&gt;</description></item><item><title>Setup Horizontal Pod Autoscaling (HPA)</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/7-setup-hpa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-hpa/7-setup-hpa/</guid><description>&lt;p&gt;In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), to automatically scale the workload to match demand.&lt;/p&gt;
 &lt;p&gt;Horizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources (for example: memory or CPU) to the Pods that are already running for the workload.&lt;/p&gt;
 &lt;p&gt;If the load decreases, and the number of Pods is above the configured minimum, the HorizontalPodAutoscaler instructs the workload resource (the Deployment, StatefulSet, or other similar resource) to scale back down.&lt;/p&gt;</description></item></channel></rss>

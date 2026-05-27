@@ -37,8 +37,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh &amp;gt; /tmp/splunk-otel-collector.sh&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo sh /tmp/splunk-otel-collector.sh --uninstall&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -73,8 +72,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;No VM guests are running outdated hypervisor &lt;span class="o"&gt;(&lt;/span&gt;qemu&lt;span class="o"&gt;)&lt;/span&gt; binaries on this host.
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Successfully removed the splunk-otel-collector package&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 
@@ -97,8 +95,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; sudo apt-get install -y dotnet-sdk-8.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 &lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -124,8 +121,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Need to get &lt;span class="m"&gt;138&lt;/span&gt; MB of archives.
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;After this operation, &lt;span class="m"&gt;495&lt;/span&gt; MB of additional disk space will be used.
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;etc. &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 
@@ -147,8 +143,7 @@ which we&amp;rsquo;ll use to instrument our .NET application:&lt;/p&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/docker-k8s-otel/helloworld
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Refer to &lt;a href="https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually" target="_blank" rel="noopener"&gt;Install the Splunk Distribution of OpenTelemetry .NET manually &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
+ &lt;/div&gt;&lt;p&gt;Refer to &lt;a href="https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually" target="_blank" rel="noopener"&gt;Install the Splunk Distribution of OpenTelemetry .NET manually &lt;span aria-hidden="true" style="font-size:0.75em;opacity:0.6;"&gt;&amp;#x2197;&lt;/span&gt;&lt;/a&gt;
 
 for further details on the installation process.&lt;/p&gt;</description></item><item><title>Dockerize the Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</guid><description>&lt;p&gt;Later on in this workshop, we&amp;rsquo;re going to deploy our .NET application into a Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;But how do we do that?&lt;/p&gt;
@@ -204,8 +199,7 @@ than baking them into the Docker image. So let&amp;rsquo;s remove the following 
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Then remove the following two environment variables:&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Then remove the following two environment variables:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;dockerfile&lt;/span&gt;&lt;/span&gt;
@@ -213,8 +207,7 @@ than baking them into the Docker image. So let&amp;rsquo;s remove the following 
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-dockerfile" data-lang="dockerfile"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;ENV&lt;/span&gt; &lt;span class="nv"&gt;OTEL_SERVICE_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;helloworld
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;ENV&lt;/span&gt; &lt;span class="nv"&gt;OTEL_RESOURCE_ATTRIBUTES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;deployment.environment=otel-$INSTANCE&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;blockquote&gt;&lt;p&gt;To save your changes in vi, press the &lt;code&gt;esc&lt;/code&gt; key to enter command mode, then type &lt;code&gt;:wq!&lt;/code&gt; followed by pressing the &lt;code&gt;enter/return&lt;/code&gt; key.&lt;/p&gt;</description></item><item><title>Customize the OpenTelemetry Collector Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</guid><description>&lt;p&gt;We deployed the Splunk Distribution of the OpenTelemetry Collector in our K8s cluster
+ &lt;/div&gt;&lt;blockquote&gt;&lt;p&gt;To save your changes in vi, press the &lt;code&gt;esc&lt;/code&gt; key to enter command mode, then type &lt;code&gt;:wq!&lt;/code&gt; followed by pressing the &lt;code&gt;enter/return&lt;/code&gt; key.&lt;/p&gt;</description></item><item><title>Customize the OpenTelemetry Collector Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</guid><description>&lt;p&gt;We deployed the Splunk Distribution of the OpenTelemetry Collector in our K8s cluster
 using the default configuration. In this section, we&amp;rsquo;ll walk through several examples
 showing how to customize the collector config.&lt;/p&gt;
 &lt;h2 id="get-the-collector-configuration"&gt;

@@ -15,5 +15,4 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Verify debug output&lt;/strong&gt;: If everything is configured correctly, the first and last lines of the output will look like:&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Verify debug output&lt;/strong&gt;: If everything is configured correctly, the first and last lines of the output will look like:&lt;/p&gt;</description></item></channel></rss>

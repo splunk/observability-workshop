@@ -21,8 +21,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/k3s/otel-apache.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;このファイルには、PHP/Apacheデプロイメントを監視するためのOpenTelemetryエージェントの設定が含まれています。&lt;/p&gt;</description></item><item><title>Apache のデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/4-deploy-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/4-deploy-apache/</guid><description>&lt;h2 id="1-phpapache-デプロイメント-yaml-の確認"&gt;
+ &lt;/div&gt;&lt;p&gt;このファイルには、PHP/Apacheデプロイメントを監視するためのOpenTelemetryエージェントの設定が含まれています。&lt;/p&gt;</description></item><item><title>Apache のデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/4-deploy-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/4-deploy-apache/</guid><description>&lt;h2 id="1-phpapache-デプロイメント-yaml-の確認"&gt;
  &lt;span class="heading-text"&gt;1. PHP/Apache デプロイメント YAML の確認&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-phpapache-%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%83%a1%e3%83%b3%e3%83%88-yaml-%e3%81%ae%e7%a2%ba%e8%aa%8d" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -33,8 +32,7 @@
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/workshop/k3s/php-apache.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;このファイルには、PHP/Apacheデプロイメントの設定が含まれており、PHP/Apacheイメージの単一レプリカを持つ新しいStatefulSetを作成します。&lt;/p&gt;</description></item><item><title>PHP/Apache の問題の修正</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/5-fix-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/5-fix-apache/</guid><description>&lt;h2 id="1-kubernetes-リソース"&gt;
+ &lt;/div&gt;&lt;p&gt;このファイルには、PHP/Apacheデプロイメントの設定が含まれており、PHP/Apacheイメージの単一レプリカを持つ新しいStatefulSetを作成します。&lt;/p&gt;</description></item><item><title>PHP/Apache の問題の修正</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/5-fix-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/2-hpa/5-fix-apache/</guid><description>&lt;h2 id="1-kubernetes-リソース"&gt;
  &lt;span class="heading-text"&gt;1. Kubernetes リソース&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-kubernetes-%e3%83%aa%e3%82%bd%e3%83%bc%e3%82%b9" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

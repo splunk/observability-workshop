@@ -12,13 +12,11 @@ Configure the gateway to exclude spans with the name &lt;code&gt;/_healthz&lt;/c
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config ./gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;: In your &lt;strong&gt;Agent terminal&lt;/strong&gt; window start the &lt;strong&gt;Agent&lt;/strong&gt;.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Agent&lt;/strong&gt;: In your &lt;strong&gt;Agent terminal&lt;/strong&gt; window start the &lt;strong&gt;Agent&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config ./agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Start the Loadgen&lt;/strong&gt;: In the &lt;strong&gt;Loadgen terminal&lt;/strong&gt; window, execute the following command to start the load generator with health check spans enabled:&lt;/p&gt;</description></item></channel></rss>
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Start the Loadgen&lt;/strong&gt;: In the &lt;strong&gt;Loadgen terminal&lt;/strong&gt; window, execute the following command to start the load generator with health check spans enabled:&lt;/p&gt;</description></item></channel></rss>
