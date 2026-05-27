@@ -16,6 +16,7 @@ If your application is already instrumented and traces are visible in Splunk APM
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 
@@ -30,8 +31,10 @@ helm install splunk-otel-collector splunk-otel-collector-chart/splunk-otel-colle
   --set operatorcrds.install=true \
   --set agent.service.enabled=true
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 Using ACCESS_TOKEN=XXX
 Using REALM=us1
@@ -57,32 +60,34 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
   If the Instrumentation CR was not created, see Troubleshooting:
   https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/auto-instrumentation-install.md#troubleshooting-the-operator
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 Your cluster name is:
 
-
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 export | grep CLUSTER_NAME
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 CLUSTER_NAME=shw-xxxx-cluster
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-
 Check if your Cluster is in **Splunk Observability Cloud**:
+
 * Go to **Infrastructure > Kubernetes Entities**
 * You should see your cluster in the list
   * It may take several minutes for it to show up
-
 
 {{% notice title="Success" style="success" icon="check" %}}
 If you found your cluster you are sending data in correctly.

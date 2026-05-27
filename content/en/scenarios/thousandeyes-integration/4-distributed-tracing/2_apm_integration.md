@@ -28,7 +28,6 @@ The metric streaming integration from the previous section uses an **Ingest** to
     - **Header**: `X-SF-Token: <your-api-scope-token>`
 4. Click **Save and Assign Operation**
 
-
     ![Splunk APM Generic Connector in ThousandEyes](../../images/splunk-apm-generic-connector.png?width=35vw)
 5. Click **New Operation** and select **Splunk Observability APM**.
 6. Name it `Splunk APM`.

@@ -12,15 +12,17 @@ THIS CONTENT NEEDS TO BE REVIEWED; FOR NOW REMOVING.
 Integrate ThousandEyes with Splunk RUM to understand if network issues correlate to end user issues.
 
 ## Requirements
+
 1. Admin privilege to both Splunk Observability Cloud and ThousandEyes
 1. At least one application sending data into Splunk RUM
-1. At least one test of these types running in ThousandEyes, on the **same domain** as the app in Splunk RUM: 
+1. At least one test of these types running in ThousandEyes, on the **same domain** as the app in Splunk RUM:
     - [agent-to-server](https://docs.thousandeyes.com/product-documentation/tests/network-tests#agent-to-server-tests)
     - [HTTP server](https://docs.thousandeyes.com/product-documentation/tests/http-server-tests)
     - [page load](https://docs.thousandeyes.com/product-documentation/tests/web-layer-tests#page-load-test)
     - [transaction](https://docs.thousandeyes.com/product-documentation/tests/web-layer-tests#transaction-test)
 
 ## Steps to integrate
+
 1. In ThousandEyes, create an OAuth Bearer token:
     - Select your username on the top-right corner, and then select **Profile**.
     - Under User API Tokens, next to **OAuth Bearer Token**, click **Create** to generate the token. You will need a code from email to verify.
@@ -43,7 +45,9 @@ Click into a relevant region to see the Network metrics alongside other metrics 
 ![RUM metrics with ThousandEyes metrics and Tests dialog open](../images/rum-thousandeyes-tests-dialog.png?width=45vw)
 
 ## See RUM and ThousandEyes metrics in a custom dashboard
+
 Now you can correlate other Observability Cloud KPIs with signals from your relevant ThousandEyes tests!
+
 1. Go to Dashboards > search for "RUM" > click into one of the out-of-the-box RUM dashboards in the `RUM applications` group
 1. Either copy charts with RUM KPIs that interest you, or open a dashboard's action menu on the top right and `Save As` to create a copy in your own dashboard group.
 1. On the new dashboard, create a new chart with the signal `network.latency`

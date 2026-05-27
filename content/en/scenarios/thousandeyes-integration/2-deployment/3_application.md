@@ -16,11 +16,14 @@ To deploy the app:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl apply -f ~/workshop/petclinic/deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 deployment.apps/config-server created
 service/config-server created
@@ -44,6 +47,7 @@ ingress.networking.k8s.io/api-gateway-ingress created
 deployment.apps/petclinic-loadgen-deployment created
 configmap/scriptfile created
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -51,11 +55,14 @@ You can check that your app is deployed, along with all the other pods:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl get pods
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 NAME                                                        READY   STATUS    RESTARTS   AGE
 admin-server-54b4d6f54-sfnsz                                1/1     Running   0          4m
@@ -74,6 +81,7 @@ thousandeyes-746b4d894b-rxb55                               1/1     Running   0 
 vets-service-5bfb88c5f8-69zwl                               1/1     Running   0          4m
 visits-service-5966f7b74f-hrch9                             1/1     Running   0          4m
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -82,14 +90,18 @@ visits-service-5966f7b74f-hrch9                             1/1     Running   0 
 To test the application, you need to obtain the public IP address of your instance. You can do this by running the following command:
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ``` bash
 curl http://ifconfig.me
 ```
+
 {{% /tab %}}
 {{% tab title="IP ADDRESS" %}}
+
 ```text
 32.157.204.101
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

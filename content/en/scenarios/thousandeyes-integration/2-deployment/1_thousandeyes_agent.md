@@ -8,7 +8,6 @@ description: Deploy the ThousandEyes Enterprise Agent in Kubernetes and verify t
 
 This section guides you through deploying the ThousandEyes Enterprise Agent in your Kubernetes cluster.
 
-
 ## Installation Steps
 
 ### Step 1: Create the ThousandEyes Token
@@ -21,25 +20,29 @@ This section guides you through deploying the ThousandEyes Enterprise Agent in y
 
 4. Copy your **Account Group Token**
 
-4. Base64 encode the token:
+5. Base64 encode the token:
 
-{{< tabs >}}
-{{% tab title="Script" %}}
-```bash
-echo -n 'your-token-here' | base64
-```
-{{% /tab %}}
-{{% tab title="Example Output" %}}
-```text
-dXabsfuenBabjeTZ3anVvxgyYds0cas=
-```
-{{% /tab %}}
-{{< /tabs >}}
+    {{< tabs >}}
+    {{% tab title="Script" %}}
 
+    ```bash
+    echo -n 'your-token-here' | base64
+    ```
 
-5. Save the base64-encoded output for the next step
+    {{% /tab %}}
 
-![Get ThousandEyes Token](../../images/te1.gif?width=45vw)
+    {{% tab title="Example Output" %}}
+
+    ```text
+    dXabsfuenBabjeTZ3anVvxgyYds0cas=
+    ```
+
+    {{% /tab %}}
+    {{< /tabs >}}
+
+6. Save the base64-encoded output for the next step
+
+    ![Get ThousandEyes Token](../../images/te1.gif?width=45vw)
 
 ### Step 2: Create the Secret
 
@@ -59,18 +62,20 @@ Apply the secret:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl apply -f credentialsSecret.yaml
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```text
 secret/te-creds created
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ### Step 3: Create the Deployment
 
@@ -121,6 +126,7 @@ spec:
 ```
 
 {{% notice title="Explanation of settings" style="info" %}}
+
 - The agent requires elevated privileges (`NET_ADMIN`, `SYS_ADMIN`) to perform network tests
 - The `TEAGENT_INET: "4"` environment variable forces IPv4-only mode (required for some network configurations)
 - The `/sbin/my_init` command is required for proper agent initialization and service management
@@ -133,14 +139,18 @@ Apply the deployment:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl apply -f thousandEyesDeploy.yaml
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 deployment.apps/thousandeyes created
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -150,24 +160,30 @@ Verify the agent is running:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl get pods
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 Expected output, it may take a few tries to come up:
+
 ```text
 NAME                            READY   STATUS    RESTARTS   AGE
 thousandeyes-xxxxxxxxxx-xxxxx   1/1     Running   0          2m
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="Tip" style="info" %}}
 You can use:
+
 ```bash
 watch -n 1 kubectl get pods
 ```
+
 to monitor until the pod is running. Use this tip any time we're waiting for something to start.
 {{% /notice %}}
 
@@ -175,11 +191,14 @@ Check the logs to ensure the agent is connecting. It may take a little bit to ge
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ```bash
 kubectl logs -l app=thousandeyes
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```text
 INFO: execution time 20 seconds.
 INFO: rootfs setup successfully
@@ -192,9 +211,9 @@ Writing manifest to image destination
 time="2026-05-12T22:08:37Z" level=warning msg="specgen \"cni_networks\" option is deprecated use the \"networks\" map instead"
 Starting browserbot in daemon mode
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ### Step 6: Verify in ThousandEyes Dashboard
 
@@ -210,7 +229,6 @@ Your ThousandEyes Enterprise Agent is now running in Kubernetes! Next, we'll int
 {{% notice title="Troubleshooting Guidance" style="primary" icon="warn" %}}
 If for some reason you didn't see the agent, check to make sure you encoded the token (first step).
 {{% /notice %}}
-
 
 ## Background
 

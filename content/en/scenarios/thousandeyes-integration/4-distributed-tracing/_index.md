@@ -21,8 +21,3 @@ By the end of this section, you will be able to:
 - Configure the ThousandEyes **Generic Connector** for Splunk APM
 - Open the ThousandEyes **Service Map** and jump directly into the corresponding Splunk trace
 - Use the ThousandEyes metadata in Splunk APM to jump back to the original ThousandEyes test
-
-
-
-
-

@@ -3,7 +3,7 @@ title: 2. Using Splunk Show
 weight: 2
 ---
 
-##### **Observability Workshop Templates**
+## **Observability Workshop Templates**
 
 Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:
 
@@ -23,7 +23,7 @@ Set the **Estimated Participants** to the number of attendees you expect, and ma
 
 ---
 
-##### **Important Configuration Tips**
+### **Important Configuration Tips**
 
 When provisioning your instances, keep the following in mind:
 
