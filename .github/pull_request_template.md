@@ -1,33 +1,44 @@
-# Pull Request Template
+## Summary
 
-## Description
+What this PR changes and why. One or two sentences.
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Fixes # (optional — link an issue / ticket)
 
-Fixes # (issue)
+## Type of change
 
-### Type of change
+- [ ] New workshop
+- [ ] New chapter or page in an existing workshop
+- [ ] Content edits (clarity, correctness, polish) to existing pages
+- [ ] Restructure / reorganize (move, split, merge, renumber)
+- [ ] URL change — `aliases:` added for any renamed or moved page
+- [ ] Image / screenshot refresh
+- [ ] Translation sync (`content/en` ↔ `content/ja`)
+- [ ] Content removal / archival
+- [ ] Theme bump or shortcode / layout adoption
+- [ ] Frontmatter-only changes (weight, `draft`, `hidden`, `archetype`, …)
+- [ ] Lint / formatting cleanup (low-risk, scan-approve)
+- [ ] CI / build / tooling
+- [ ] Bug fix (broken link, busted shortcode, etc.)
+- [ ] Other — describe:
 
-Please delete options that are not relevant.
+## What's affected
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+- **Workshop(s) / area:** e.g. `splunk4rookies/observability-cloud-short/`, `ninja-workshops/foundations/3-opentelemetry-collector-workshops/`
+- **Languages:** [ ] `content/en` &nbsp;&nbsp; [ ] `content/ja`
 
-## How Has This Been Tested?
+## Reviewer focus
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+Anything you'd specifically like the reviewer to check? (e.g. "verify the `kubectl` command in step 3 against the current OTel collector"). Leave blank if not applicable.
 
-- [ ] Test A
-- [ ] Test B
+## Screenshots / preview
 
-## Checklist
+For visual changes, paste a before/after screenshot or a Hugo preview link.
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] Markdown Lint passes locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+## Verification
+
+- [ ] `hugo` builds cleanly (no warnings or errors)
+- [ ] `npx markdownlint-cli2 '<paths/*.md>'` passes for touched files
+- [ ] Any new images have meaningful alt text
+- [ ] No TODO image placeholders left unintentionally
+- [ ] No published URLs changed, OR `aliases:` frontmatter added for any renamed / moved pages
+- [ ] Identified and updated parallel / sibling pages where this workshop shares content with another (e.g. `observability-cloud-short` ↔ `observability-cloud`), OR confirmed none exist
