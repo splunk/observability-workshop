@@ -14,13 +14,11 @@ We'll start by running the application directly on our Linux EC2 instance.
 The document provided by the workshop instructor contains `export` commands to set the following 
 environment variables: 
 
-* `AZURE_OPENAI_DEPLOYMENT_NAME`
-* `AZURE_OPENAI_API_VERSION`
-* `AZURE_OPENAI_ENDPOINT`
-* `AZURE_OPENAI_API_KEY`
+* `OPENAI_API_KEY`
+* `OPENAI_BASE_URL`
 
 These environment variables tell the application how to connect to an 
-OpenAI model hosted in Azure. 
+OpenAI model hosted in Azure (via Lite LLM Proxy). 
 
 Copy and paste these `export` commands from the document and run them in your ssh terminal.
 
@@ -106,22 +104,22 @@ Let's create a new namespace to host our application:
 kubectl create ns travel-agent
 ```
 
-### Create Secret with Azure Credentials
+### Create Secret with the OpenAI Credentials
 
-We'll use a Kubernetes secret to store the Azure OpenAI endpoint and key:
+We'll use a Kubernetes secret to store the OpenAI endpoint and key:
 
 > Caution: ensure you run this command in the terminal where you set 
-> the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment 
+> the `OPENAI_API_KEY` and `OPENAI_BASE_URL` environment 
 > variables earlier. 
 
 ``` bash
-{ [ -z "$AZURE_OPENAI_ENDPOINT" ] || \
-  [ -z "$AZURE_OPENAI_API_KEY" ]; } && \
+{ [ -z "$OPENAI_API_KEY" ] || \
+  [ -z "$OPENAI_BASE_URL" ]; } && \
   echo "Error: Missing variables" || \
-  kubectl create secret generic azure-openai-api \
+  kubectl create secret generic openai-api \
   -n travel-agent \
-  --from-literal=azure-openai-api-endpoint=$AZURE_OPENAI_ENDPOINT \
-  --from-literal=azure-openai-api-key=$AZURE_OPENAI_API_KEY
+  --from-literal=openai-api-endpoint=$OPENAI_BASE_URL \
+  --from-literal=openai-api-key=$OPENAI_API_KEY
 ```
 
 > Note: if you get an error that says Missing variables, you’ll need to 
