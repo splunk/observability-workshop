@@ -88,6 +88,16 @@ jobs:
         run: |
           hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod --cacheDir /tmp/hugo_cache
 
+      - name: Promote themed 404 to repo root
+        # `defaultContentLanguageInSubdir = true` makes Hugo emit /en/404.html
+        # and /ja/404.html but no language-neutral /404.html. GitHub Pages only
+        # serves the catch-all from the repo root, so without this copy a
+        # bookmarked /repo/en/foo (or /repo/latest/en/foo) hits GitHub's plain
+        # text/plain 404 instead of the themed page. Assets in the EN 404 are
+        # already absolute (/<repo>/css/…) so the copied page renders fine
+        # from the root.
+        run: cp public/en/404.html public/404.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

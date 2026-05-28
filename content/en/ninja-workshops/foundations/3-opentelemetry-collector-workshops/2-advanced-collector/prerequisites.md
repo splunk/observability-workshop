@@ -5,7 +5,7 @@ archetype: chapter
 time: 5 minutes
 ---
 
-### Prerequisites
+## Prerequisites
 
 - Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
 - Supported Environments:
@@ -14,7 +14,9 @@ time: 5 minutes
 
 {{% exercise title="Create the workshop directory" %}}
 
-**Create a directory**: In your environment create a new directory and change into it:
+{{< step "Initial Setup" "1" >}}
+
+In your environment create a new directory and change into it:
 
 ``` bash
 mkdir advanced-otel-workshop && \
@@ -37,8 +39,11 @@ kubectl delete ~/workshop/apm/deployment.yaml
 ```
 
 {{% /notice %}}
+{{< /step >}}
 
-**Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
+{{< step "Download workshop binaries" "2" >}}
+
+Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
 
 {{% tabs %}}
 {{% tab title="Splunk Workshop Instance" %}}
@@ -60,33 +65,12 @@ curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/wor
 chmod +x setup-workshop.sh
 ```
 
-<!--
-{{% notice style="warning" title="macOS Users" icon="desktop" %}}
-Before running the binaries on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures they can execute without restrictions.
-
-Run the following command in your terminal:
-
-```bash { title="Remove Quarantine Attribute"}
-xattr -dr com.apple.quarantine otelcol && \
-xattr -dr com.apple.quarantine loadgen
-```
-
-{{% /notice %}}
--->
 {{% /tab %}}
 {{% /tabs %}}
 
-<!--
-**Update file permissions**: Once downloaded, update the file permissions to make all files executable:
+{{< /step >}}
 
-```bash
-chmod +x otelcol loadgen setup-workshop.sh && \
-./otelcol -v && \
-./loadgen --help && \
-./setup-workshop.sh
-```
--->
-
+{{< step "Run the setup" "3" >}}
 Run the `setup-workshop.sh` script which will configure the correct permissions and also create the initial configurations for the **Agent** and the **Gateway**:
 
 {{% tabs %}}
@@ -184,9 +168,8 @@ Configuration files created in the following directories:
 └── setup-workshop.sh
 ```
 
-<!--
-{{% notice note %}}
-Having access to [**jq**](https://jqlang.org/download/) is recommended (installed by default on Splunk workshop instances). This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
-{{% /notice %}}
--->
+{{< /step >}}
+
 {{% /exercise %}}
+
+{{< checkpoint "Workshop environment is ready — onto **Chapter 1: Agent Configuration**." >}}
