@@ -1,8 +1,2 @@
-github.com/splunk/hugo-theme-splunk-workshop v0.10.8 h1:Y2+4KCWKDqUXmEk9Hp8MtnJYZK+aKa0b3j6iHGyDDEc=
-github.com/splunk/hugo-theme-splunk-workshop v0.10.8/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
-github.com/splunk/hugo-theme-splunk-workshop v0.10.9 h1:BimhaM7o+MMOxkblJQOVqqTuNLZCdtnxcmdC7CB3rBo=
-github.com/splunk/hugo-theme-splunk-workshop v0.10.9/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
-github.com/splunk/hugo-theme-splunk-workshop v0.10.10 h1:DSh7v89CIZaOADD3kSr4fU9oHkJLvWu7OWry7lhVK18=
-github.com/splunk/hugo-theme-splunk-workshop v0.10.10/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
-github.com/splunk/hugo-theme-splunk-workshop v0.11.0 h1:B8KTrX3gT2jlfZbXhAUYrr6lYxHh6Oz6j9MxctEpWWQ=
-github.com/splunk/hugo-theme-splunk-workshop v0.11.0/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
+github.com/splunk/hugo-theme-splunk-workshop v0.11.2 h1:6cWtrqiGKt4NDFlM+wIw0E6FcnCXWQ4PXNFCMlXwS/I=
+github.com/splunk/hugo-theme-splunk-workshop v0.11.2/go.mod h1:W41sA3uf5oTWqIUA1aUY4M0C/JEaMa0gV3CqVDs0ReA=
