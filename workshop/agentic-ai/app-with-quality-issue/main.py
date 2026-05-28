@@ -41,7 +41,7 @@ from langchain_core.messages import (
     HumanMessage,
     SystemMessage,
 )
-from langchain_openai import AzureChatOpenAI
+from langchain_openai import ChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 
@@ -162,19 +162,15 @@ class PlannerState(TypedDict):
     final_itinerary: Optional[str]
     current_agent: str
 
-def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> AzureChatOpenAI:
-    """Create an AzureChatOpenAI instance."""
+def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> ChatOpenAI:
+    """Create an ChatOpenAI instance."""
 
-    azure_deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-    azure_openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+    model_name = os.getenv("OPENAI_MODEL_NAME", "gpt-4.1-mini")
 
-    # Azure OpenAI Configuration
-    return AzureChatOpenAI(
-        azure_deployment = azure_deployment_name,
-        openai_api_version = azure_openai_api_version,
+    return ChatOpenAI(
+        model = model_name,
         temperature = temperature,
-        model_name = azure_deployment_name,
-        # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
+        # Uses OPENAI_API_KEY and OPENAI_BASE_URL automatically from environment
     )
 
 
