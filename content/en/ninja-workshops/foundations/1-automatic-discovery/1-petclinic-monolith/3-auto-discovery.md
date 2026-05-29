@@ -4,7 +4,7 @@ linkTitle: 3. Automatic Discovery
 weight: 3
 ---
 
-You can now start the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` and `otel.resource.attributes` to a logical names using the instance name. These will also be used in the UI for filtering:
+You can now start the application with the following command. Notice that we are passing the `mysql` profile to the application; this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` and `otel.resource.attributes` to logical names using the instance name. These will also be used in the UI later for filtering:
 
 ```bash
 java \
@@ -14,11 +14,11 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-You can validate the application is running by visiting `http://<IP_ADDRESS>:8083` (replace `<IP_ADDRESS>` with the IP address you obtained earlier).
+You can validate the application is running by visiting `http://<IP_ADDRESS>:8083` in a web browser (replace `<IP_ADDRESS>` with the IP address you obtained earlier).
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-When you start the PetClinic application you will see the collector automatically detect the application and instrument it for traces and profiling.
+When you start the Spring PetClinic application, you will see the collector automatically detect the application and instrument it for traces and profiling.
 
 {{% tab title="Example output" %}}
 
@@ -45,13 +45,13 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu click **APM** and then click the **Environment** dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
+You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu click **APM → Overview** and then click the **Environment** dropdown and select your environment e.g. `<INSTANCE>-petclinic-env` (where`<INSTANCE>` is replaced with the value you noted down earlier).
 
-Once your validation is complete you can stop the application by pressing `Ctrl-c`.
+Once validation is complete, you can stop the application by pressing `Ctrl-c` in your command prompt or terminal window.
 
-Resource attributes can be added to every reported span. For example `version=0.314`. A comma-separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
+Resource attributes can be added to every reported span, for example `version=0.314`. A comma-separated list of resource attributes can also be defined, e.g. `key1=val1,key2=val2`.
 
-Let's launch the PetClinic again using new resource attributes. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. Let's add a new resource attribute `version=0.314`:
+Let's launch the Spring PetClinic application again, but with new resource attributes. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. Let's add a new resource attribute `version=0.314`:
 
 ```bash
 java \
@@ -61,4 +61,4 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Back in the Splunk APM UI we can drill down on a recent trace and see the new `version` attribute in a span.
+In the Splunk APM UI we can drill down into a recent trace and see the new `version` attribute in a span.
