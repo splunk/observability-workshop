@@ -54,13 +54,11 @@ Splunk.&lt;/p&gt;
 &lt;p&gt;The document provided by the workshop instructor contains &lt;code&gt;export&lt;/code&gt; commands to set the following
 environment variables:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;AZURE_OPENAI_DEPLOYMENT_NAME&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AZURE_OPENAI_API_VERSION&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AZURE_OPENAI_ENDPOINT&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AZURE_OPENAI_API_KEY&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPENAI_API_KEY&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPENAI_BASE_URL&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;These environment variables tell the application how to connect to an
-OpenAI model hosted in Azure.&lt;/p&gt;
+OpenAI model hosted in Azure (via Lite LLM Proxy).&lt;/p&gt;
 &lt;p&gt;Copy and paste these &lt;code&gt;export&lt;/code&gt; commands from the document and run them in your ssh terminal.&lt;/p&gt;</description></item><item><title>Instrument the Agentic AI Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the expected solution for this section
