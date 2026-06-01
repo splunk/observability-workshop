@@ -18,7 +18,7 @@ You can validate the application is running by visiting `http://<IP_ADDRESS>:808
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-When you start the Spring PetClinic application, you will see the collector automatically detect the application and instrument it for traces and profiling.
+When you start the PetClinic application, you will see the collector automatically detect the application and instrument it for traces and profiling.
 
 {{% tab title="Example output" %}}
 
