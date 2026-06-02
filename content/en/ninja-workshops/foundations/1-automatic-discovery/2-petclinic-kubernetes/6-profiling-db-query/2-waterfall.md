@@ -17,7 +17,7 @@ To dive deeper into Always-on Profiling, select Span **(3)** (as referenced in t
 ![Profiling main](../../images/profiling-memory.png)
 
 * The Time filter will be set to the time frame of the span we selected **(1)**
-* Java Memory Metric Charts **(2)** allow you to monitor `Heap Memory`, application activity like `Memory Allocation Rate`, and `Garbage Collection` Metrics.
+* Java Memory Metric Charts **(2)** allow you to monitor Heap memory, application activity like the rate at which memory is allocated, and Garbage Collections.
 * Ability to focus/see metrics and Stack Traces only related to the Span **(3)**, This will filter out background activities running in the Java application if required.
 * Java Function calls identified **(4)**, allowing you to drill down into the Methods called from that function.
 * The Flame Graph **(5)**, with the visualization of hierarchy based on the stack traces of the profiled service.
