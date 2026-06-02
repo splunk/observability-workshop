@@ -1,15 +1,15 @@
 ---
-title: まとめ
-linkTitle: 6. まとめ
+title: Summary
+linkTitle: 6. Summary
 weight: 6
 time: 5 minutes
 description: ワークショップのまとめ
 ---
 
-このセッションでは、以下のことを学びました
+このセッションでは、以下の方法を学びました。
 
 - ThousandEyes インテグレーションのセットアップ
-  - Metrics（datapoint）インテグレーション
+  - メトリクス（datapoint）インテグレーション
   - APM インテグレーション
-- ThousandEyes 固有のインストルメンテーションヘッダーとサンプラー設定を使用して、アプリケーションのトレーシングを有効にする方法
-- テストスクリプトを作成し、Splunk APM と ThousandEyes 間をナビゲートする方法
+- 特定の ThousandEyes インストルメンテーションヘッダーとサンプラー設定を使用して、アプリケーションのトレーシングを有効化
+- テストスクリプトの作成と、Splunk APM と ThousandEyes 間のナビゲーション

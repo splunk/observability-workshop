@@ -1,36 +1,37 @@
 ---
-title: 分散トレーシングと双方向ドリルダウン
-linkTitle: 4.1 インストルメンテーションの設定
+title: Distributed Tracing and Bi-Directional Drilldowns
+linkTitle: 4.1 Configure Instrumentation
 weight: 1
 time: 10 minutes
-description: インストルメンテーションの設定
+description: インストルメンテーションを設定する
 ---
 
 ## 必要な変更の概要
 
-[ThousandEyes のドキュメント](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing)、特に [Splunk Observability APM のページ](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm) に、分散トレーシングに必要な内容が記載されています。
+[ThousandEyes ドキュメント](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing)、特に [Splunk Observability APM 用のページ](https://docs.thousandeyes.com/product-documentation/integration-guides/custom-built-integrations/distributed-tracing/distributed-tracing-splunk-apm)では、分散トレーシングに必要な設定が示されています。
 
 Propagators について:
 
 - `baggage`
-- `b3` は ThousandEyes の B3 ヘッダーの抽出を可能にします。
+- `b3` は ThousandEyes の B3 ヘッダーを抽出できるようにします。
 - `tracecontext` は `traceparent` と `tracestate` を保持します。
 
-さらに、sampler を `parentbased_always_on` に設定することで、ThousandEyes がリクエストを開始した後もトレースが継続されます。
+加えて、サンプラーを `parentbased_always_on` に設定することで、ThousandEyes がリクエストを開始した後もトレースが継続されることを保証します。
 
 {{% notice title="重要なポイント" style="warning" %}}
-テストの結果（少なくともこの執筆時点では）、propagators の順序が重要であり、デフォルトの順序では動作しないことが確認されています。そのため、正しい順序にパッチを適用する必要があります。
+私たちのテスト（少なくとも本記事執筆時点）では、propagators の順序が結果に影響することと、デフォルト設定では動作しないことを確認しました。そのため、ここで正しい順序にパッチを当てる必要があります。
 {{% /notice %}}
 
-以下の変更を行います:
-- ステップ 1: OTel Collector の変更
-  - インストルメンテーションに正しい順序の propagators (`baggage`, `b3`, `tracecontext`) をパッチします
-- ステップ 2: アプリケーションのパッチ
-  - サービスに Java インストルメンテーションを注入するためのパッチを適用します
+以下の変更を行います。
 
-### ステップ 1: OTel Collector の変更
+- ステップ 1: OTel Collector を変更
+  - propagators の正しい順序（`baggage`、`b3`、`tracecontext`）でインストルメンテーションにパッチを当てる
+- ステップ 2: アプリケーションにパッチを当てる
+  - 各サービスに java インストルメンテーションをインジェクションするためのパッチを当てる
 
-インストルメンテーションの設定を確認しましょう:
+### ステップ 1: OTel Collector を変更する
+
+インストルメンテーションの設定を確認しましょう。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -59,11 +60,11 @@ Spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-`Propagators` の下に必要なものが設定されていることが確認できますが、正しい順序にするためにパッチを適用します。
+`Propagators` の下を見ると、必要なものは設定されていますが、正しい順序にするためにパッチを当てます。
 
-### ステップ 2: インストルメンテーションのパッチ（デフォルトの解決）
+### ステップ 2: インストルメンテーションにパッチを当てる（デフォルトを修正するため）
 
-ここではパッチで対応しますが、将来のアップグレードでこの変更は失われます。正しい方法は `values.yaml` ファイルを更新して、常にこの設定が適用されるようにすることです。
+ここではパッチを当てますが、今後アップグレードするとこの変更は失われます。そのため、本来は `values.yaml` ファイルを更新して、常に適用されるようにするのが正しい方法です。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -91,7 +92,7 @@ instrumentation.opentelemetry.io/splunk-otel-collector patched
 {{% /tab %}}
 {{< /tabs >}}
 
-Propagators が正しい順序になっていること、および sampler が追加されていることを確認できます:
+その後、Propagators が正しい順序で設定されていること、そしてサンプラーが追加されていることを確認できます。
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -122,9 +123,9 @@ Spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-### ステップ 3: アプリケーションのパッチ
+### ステップ 3: アプリケーションにパッチを当てる
 
-まず、デプロイされているコンテナイメージを確認しましょう:
+まず、デプロイされているコンテナイメージを確認しましょう。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -143,9 +144,9 @@ kubectl describe pods api-gateway | grep Image:
 {{% /tab %}}
 {{< /tabs >}}
 
-`api-gateway` にはコンテナが1つだけあることが確認できます。アプリケーションにパッチを適用すると、複数のコンテナイメージ（api-gateway 用とインストルメンテーション用）が表示されるようになります。
+`api-gateway` のコンテナは 1 つだけであることがわかります。アプリケーションにパッチを当てると、複数のコンテナイメージ（api-gateway 用と、インストルメンテーション用）が表示されるようになります。
 
-Java インストルメンテーションを注入しましょう。（注意: `config-server`、`discovery-server`、`admin-server` は既にパッチが適用されているため、変更はありません。）:
+それでは java インストルメンテーションをインジェクションしましょう。（注: `config-server`、`discovery-server`、`admin-server` についてはすでにパッチ済みのため、変更はありません。）
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -172,14 +173,14 @@ deployment.apps/visits-service patched
 {{< /tabs >}}
 
 {{% notice title="他のランタイムの場合" style="info" %}}
-他のランタイムの場合は、言語に対応するアノテーションを使用してください。例:
+他のランタイムを使用する場合は、その言語に合致するアノテーションを使用してください。例:
 
 - `instrumentation.opentelemetry.io/inject-nodejs`
 - `instrumentation.opentelemetry.io/inject-python`
 - `instrumentation.opentelemetry.io/inject-dotnet`
 {{% /notice %}}
 
-インストルメンテーションがデプロイされたことを確認できます:
+インストルメンテーションがデプロイされたかは、以下で確認できます。
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -198,7 +199,7 @@ kubectl describe pods api-gateway | grep Image:
 {{% /tab %}}
 {{< /tabs >}}
 
-また、この Pod で Java インストルメンテーションが有効になっており、propagators に `baggage`、`b3`、`tracecontext` が正しい順序で含まれていることも確認できます:
+また、この Pod で Java インストルメンテーションが有効になっていること、そして propagators に `baggage`、`b3`、`tracecontext` が正しい順序で含まれていることも確認できます。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -217,15 +218,15 @@ kubectl describe pods api-gateway | grep OTEL_PROPAGATORS
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="すべての Pod を再起動" style="warning" %}}
-一部の Pod には既にインストルメンテーションが注入されているため、正しいインストルメンテーションを適用するにはすべてを再起動することが重要です。
+{{% notice title="すべての Pod を再起動する" style="warning" %}}
+一部の Pod はすでにインジェクション済みのため、正しいインストルメンテーションを反映させるには、すべての Pod を再起動することが重要です。
 
-以下を実行します:
+そのためには:
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
-kubectl rollout restart deployment
+kubectl rollout restart deployment -l app.kubernetes.io/part-of=spring-petclinic
 ```
 
 {{% /tab %}}
@@ -250,9 +251,9 @@ deployment.apps/visits-service restarted
 {{< /tabs >}}
 {{% /notice %}}
 
-これで、ThousandEyes Enterprise Agent が実行されている namespace からクラスター内の API パスを検証できます。
+これで、ThousandEyes Enterprise Agent が動作する namespace から、クラスター内 API パスを検証できます。
 
-以下を実行してみてください:
+以下を実行してみてください。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -275,11 +276,11 @@ kubectl run te-petclinic-curl \
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="お待ちください" style="warning" %}}
-期待される出力が得られるまで、しばらく時間がかかる場合があります。
+{{% notice title="少々お待ちください" style="warning" %}}
+期待される出力が得られるまでに、しばらく時間がかかる場合があります。
 {{% /notice %}}
 
-デプロイメント環境は以下の通りです:
+あなたのデプロイ環境は以下のとおりです。
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -293,6 +294,6 @@ thousandeyes-shw-xxxx
 {{% /tab %}}
 {{< /tabs >}}
 
-Splunk Observability Cloud に完全な環境が表示されるはずです（環境 `thousandeyes-shw-xxxx` でフィルタリングしてください）。
+Splunk Observability Cloud で、環境全体が表示されているはずです（あなたの環境 `thousandeyes-shw-xxxx` でフィルタしてください）。
 
 ![ThousandEyes Service Map](../../images/splunk-apm-service-map.png?width=45vw)

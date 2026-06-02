@@ -1,28 +1,28 @@
 ---
-title: 1. APM探索
+title: 1. APM Explore
 weight: 1
 ---
 
-APMサービスマップは、APMで計装された（インストルメンテーション）サービスと推測されるサービスの間の依存関係と接続を表示します。このマップは、時間範囲、環境、ワークフロー、サービス、タグフィルターでの選択に基づいて動的に生成されます。
+APM Service Map は、APM で計装されたサービスおよび推測されたサービス間の依存関係と接続を表示します。マップは、時間範囲、環境、ワークフロー、サービス、タグフィルターで選択した内容に基づいて動的に生成されます。
 
-RUMウォーターフォールでAPMリンクをクリックすると、そのワークフロー名（`frontend:/cart/checkout`）に関連するサービスを表示するために、サービスマップビューに自動的にフィルターが追加されました。
+RUM ウォーターフォールで APM リンクをクリックした際、その **WorkFlow Name** (`frontend:/cart/checkout`) に関係するサービスを表示するために、Service Map ビューにフィルターが自動的に追加されました。
 
-ワークフローに関連するサービスは**Service Map**で確認できます。サイドペインの**Business Workflow**の下には、選択したワークフローのチャートが表示されています。**Service Map**とビジネスワークフローチャートは同期しています。**Service Map**でサービスを選択すると、**Business Workflow**ペインのチャートが更新され、選択したサービスのメトリクスが表示されます。
+ワークフローに関係するサービスは **Service Map** で確認できます。サイドペインの **Business Workflow** には、選択したワークフローに関するチャートが表示されます。**Service Map** と **Business Workflow** のチャートは同期しています。**Service Map** でサービスを選択すると、**Business Workflow** ペインのチャートが更新され、選択したサービスのメトリクスが表示されます。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Inspect paymentservice on the map" %}}
 
-- サービスマップで**paymentservice**をクリックします。
+* Service Map で **paymentservice** をクリックします。
 
-{{% /notice %}}
+{{% /exercise %}}
 
-![APM探索](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.png)
 
-Splunk APMはまた、リアルタイムで発生している問題を確認し、問題がサービス、特定のエンドポイント、または基盤となるインフラストラクチャに関連しているかどうかを迅速に判断するのに役立つ組み込みの **Service Centric View(サービス中心ビュー)** も提供しています。より詳しく見てみましょう。
+Splunk APM はさらに、組み込みの **Service Centric Views** を提供しており、リアルタイムで発生している問題を確認し、その問題がサービス、特定のエンドポイント、または基盤となるインフラストラクチャのいずれに関連しているのかを迅速に判断できます。詳しく見ていきましょう。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Open the paymentservice view" %}}
 
-- 右側のペインで、青色の**paymentservice**をクリックします。
+* 右側のペインで、青色の **paymentservice** をクリックします。
 
-{{% /notice %}}
+{{% /exercise %}}
 
-![APMサービス](../images/apm-service.png)
+![APM Service](../images/apm-service.png)

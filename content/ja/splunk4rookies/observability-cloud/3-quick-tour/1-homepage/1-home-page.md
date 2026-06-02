@@ -1,42 +1,42 @@
 ---
-title: ホームページ
-linkTitle: 1.1 ホームページ
+title: Home Page
+linkTitle: 1.1 Home Page
 weight: 2
-time: 5分
+time: 5 minutes
 ---
 
-Splunk Observability Cloudに登録してログインすると、ホームページ（ランディングページ）に移動します。ここでは、開始に役立ついくつかの便利な機能が見つかります。
+Splunk Observability Cloud に登録してログインすると、ホームページ（ランディングページ）が表示されます。このページには、使い始めるのに役立つ便利な機能がいくつか用意されています。
 
-![ホームページ](../images/home-screen.png)
+![home page](../images/home-page.png)
 
-1. **データ探索パネル:** どの統合が有効になっているかを表示し、管理者の場合は追加の統合を追加できます。
-2. **ドキュメントパネル:** Splunk Observability Cloudの使用を開始するためのトレーニングビデオとドキュメントへのリンク。
-3. **最近のアクティビティパネル:** 最近作成/訪問したダッシュボードやディテクターにすぐにアクセスできます。
-4. **メインメニューパネル:** Splunk Observability Cloudのコンポーネントを操作します。
-5. **組織切り替え:** 複数の組織のメンバーである場合は、組織間を簡単に切り替えることができます。
-6. **メインメニューの展開/縮小:** スペースが限られている場合にメインメニューを展開 **>>** / 折りたたむ **<<** ことができます。
+1. **Expand/Contract Main Menu:** スペースが限られている場合は、メインメニューを **>>** で展開、**<<** で折りたたむことができます。
+2. **Org Switcher:** Organization を切り替えます（複数の Organization に所属している場合）。
+3. **Teams:** 自分が所属する Team が関心を持つアセットに絞り込みます。
+4. **Active Alerts:** すぐに対応が必要なアラートをひと目で確認できます。
+5. **AI Assistant:** 根本原因の分析を加速し、問題の特定と修正をより迅速に行うための専門的なガイダンスを得られます。
 
-最初の演習から始めましょう
+それでは、最初の演習から始めましょう。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Check your org and appearance" %}}
 
-- メインメニューを展開し、**設定**をクリックします。
-- **組織切り替え**で、複数の組織にアクセスできるかどうかを確認します。
+* 右上の自分の名前をクリックして、Organization の名前を確認します。
+* **Observability Workshop AMER** に入っていない場合は、ここで選択してください。
+* メニューの下部で、好みの外観を **Light**、**Dark**、**Auto** のいずれかから選択します。
+* このメニューに **Log Out** オプションもあることに気づきましたか？ ログアウトしないでくださいね 😊 ！
 
+{{% /exercise %}}
+
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+以前に Splunk Observability を使用したことがある場合、過去に利用していた Organization に配置されることがあります。正しいワークショップ用の Organization にいることを確認してください。複数の Organization にアクセスできる場合は、講師に確認してください。
 {{% /notice %}}
 
-{{% notice title="ヒント" style="primary"  icon="lightbulb" %}}
-以前にSplunk Observabilityを使用したことがある場合は、以前に使用した組織に配置されている可能性があります。正しいワークショップ組織にいることを確認してください。複数の組織へのアクセス権がある場合は、インストラクターに確認してください。
-{{% /notice %}}
+{{% exercise title="Hide the onboarding guidance" %}}
 
-{{% notice title="演習" style="green" icon="running" %}}
+* ヘルプアイコンをクリックし、**Onboarding Guidance** を選択します。（オンボーディングペインの表示／非表示を切り替えられます。製品を十分に理解している場合や、より多くの情報を表示するためにスペースを活用したい場合に便利です）
+* **Home Page** のオンボーディングコンテンツを非表示にします。
 
-- **オンボーディングガイダンス**をクリックします（ここでオンボーディングパネルの表示/非表示を切り替えることができます。製品に十分に精通していて、より多くの情報を表示するためにスペースを使用できる場合に便利です）。
-- **ホームページ**のオンボーディングコンテンツを非表示にします。
-- メニューの下部で、お好みのテーマ：**Light**、**Dark**、または**System(Auto)**モードを選択します。
-- これが**Log out**オプションがある場所であることにも気づきましたか？どうかログアウトしないでください 😊！
-- **<** をクリックしてメインメニューに戻ります。
+* **<** をクリックしてメインメニューに戻ります。
 
-{{% /notice %}}
+{{% /exercise %}}
 
-次に、**Splunk Real User Monitoring (RUM)** を確認しましょう。
+次は、**Splunk Real User Monitoring (RUM)** を見ていきましょう。

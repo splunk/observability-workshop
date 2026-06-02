@@ -1,39 +1,39 @@
 ---
-title: ダッシュボードの強化
-linkTitle: 1. ダッシュボードの強化
+title: ダッシュボードの拡張
+linkTitle: 1. ダッシュボードの拡張
 weight: 1
 ---
 
-Log Observer演習ですでにいくつかの便利なログチャートをダッシュボードに保存したので、そのダッシュボードを拡張していきます。
+Log Observer の演習でいくつかの便利なログチャートをダッシュボードに保存済みなので、そのダッシュボードを拡張していきます。
 
-![壁掛け](../images/wall-mount.png)
+ ![Wall mounted](../images/wall-mount.png)
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="カスタムダッシュボードを開く" %}}
 
-- 2つのログチャートがあるダッシュボードに戻るには、メインメニューから**Dashboard**をクリックすると、チームダッシュボードビューに移動します。**Dashboard**の下にある**Search Dashboard**をクリックして、あなたのサービスヘルスダッシュボードグループを検索します。
-- 名前をクリックすると、以前に保存したダッシュボードが表示されます。
-  ![ログリスト](../../7-log-observer/images/log-observer-custom-dashboard.png)
-- ログ情報は便利ですが、チームにとって意味のあるものにするにはさらに情報が必要なので、もう少し情報を追加しましょう。
-- 最初のステップは、ダッシュボードに説明チャートを追加することです。{{% button style="grey" %}}New text note{{% /button %}}をクリックし、ノート内のテキストを次のテキストに置き換えてから、{{% button style="blue" %}}Save and Close{{% /button %}}ボタンをクリックし、チャートに**手順**と名前をつけます。
-  {{% notice title="テキストノートで使用する情報" style="grey" %}}
+* 2 つのログチャートを含むダッシュボードに戻るには、メインメニューから **Dashboards** をクリックしてください。Team Dashboard ビューが表示されます。**Dashboards** の下にある **Search dashboards** をクリックして、Service Health Dashboard グループを検索します。
+* 名前をクリックすると、以前に保存したダッシュボードが表示されます。
+  ![log list](../../7-log-observer/images/log-observer-custom-dashboard.png)
+* ログ情報そのものは有用ですが、チームにとって意味のあるものにするにはさらに情報が必要です。情報を追加していきましょう。
+* 最初のステップとして、説明用のチャートをダッシュボードに追加します。{{% button style="grey" %}}New text note{{% /button %}} をクリックし、ノート内のテキストを以下の内容に置き換えてください。その後 {{% button style="blue" %}}Save and close{{% /button %}} ボタンをクリックし、チャート名を **Instructions** にします。
+{{% notice title=" テキストノートに使用する情報" style="grey" %}}
 
 ```text
 
-これは**支払いサービス**のためのカスタムヘルスダッシュボードです。
-ログのエラーに注意してください。
-詳細については[リンク](https://https://www.splunk.com/en_us/products/observability.html)をご覧ください。
+This is a Custom Health Dashboard for the **Payment service**,  
+Please pay attention to any errors in the logs.
+For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
 
 ```
 
 {{% /notice %}}
 
-- チャートが適切な順序になっていません。チャートを役立つように並べ替えましょう。
-- **手順**チャートの上端にマウスを移動すると、マウスポインタが **☩** に変わります。これにより、ダッシュボード内でチャートをドラッグできるようになります。**手順**チャートを左上の位置にドラッグし、右端をドラッグしてページの1/3のサイズにリサイズします。
-- **ログタイムラインビュー**チャートを**手順**チャートの横にドラッグして追加し、ページの残りの2/3を埋めるようにリサイズして、2つのチャートの横にエラー率チャートを配置し、ページ全体を埋めるようにリサイズします。
-- 次に、**ログライン**チャートをページの幅にリサイズし、少なくとも2倍の長さになるようにリサイズします。
-- 以下のダッシュボードに似た形になっているはずです
-  ![初期ダッシュボード](../images/initial-dashboard.png)
+* チャートの並びがきれいではないので、これを修正して有用な配置に並べ替えましょう。
+* **Instructions** チャートの上端にマウスを移動すると、マウスポインターが **☩** に変わります。これによりダッシュボード内でチャートをドラッグできます。**Instructions** チャートを左上にドラッグし、右端をドラッグしてページの 1/3 の幅にリサイズしてください。
+* **Log Timeline view** チャートを **Instruction** チャートの隣にドラッグして配置し、ページの残り 2/3 を埋めるようにリサイズします。
+* 次に、**Log lines** チャートをページ幅いっぱいにリサイズし、少なくとも 2 倍の長さになるよう縦にもリサイズしてください。
+* 以下のようなダッシュボードに近い見た目になるはずです:
+  ![Initial Dashboard](../images/initial-dashboard.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
-これは素晴らしいですね。引き続き、より意味のあるチャートを追加していきましょう。
+良い感じです。引き続きより意味のあるチャートを追加していきましょう。

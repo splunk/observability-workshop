@@ -1,5 +1,5 @@
 ---
-title: ビジネスジャーニーの観測
+title: Observing Business Journeys
 linkTitle: Obs Biz Journey
 weight: 13
 archetype: chapter
@@ -8,6 +8,6 @@ description: TBD
 hidden: true
 ---
 
-# ワークショップ: Biz Journey
+## ワークショップ: Biz Journey
 
 ABC

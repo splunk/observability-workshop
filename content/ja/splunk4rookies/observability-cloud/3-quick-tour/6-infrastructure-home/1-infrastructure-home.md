@@ -1,65 +1,65 @@
 ---
-title: Infrastructureナビゲーター
-linkTitle: 6.1 Infrastructureナビゲーター
+title:  Infrastructure Navigators
+linkTitle: 6.1 Infrastructure Navigators
 weight: 2
 hidden: true
 ---
 
-メインメニューの**Infrastructure**をクリックすると、Infrastructureホームページが表示されます。このページは4つの異なるセクションで構成されています。
+メインメニューで **Infrastructure** をクリックします。Infrastructure Home ページは 4 つの異なるセクションで構成されています。
 
-![インフラメイン](../images/infrastructure-main.png)
+![Infra main](../images/infrastructure-main.png)
 
-1. **オンボーディングペイン:** SplunkInfrastructureモニタリングの使用を開始するためのトレーニングビデオとドキュメントへのリンク。
-2. **時間とフィルターペイン:** 時間ウィンドウ（トップレベルでは設定できません）
-3. **インテグレーションペイン:** Splunk Observability Cloudにメトリクスを送信しているすべてのテクノロジーのリスト。
-4. **タイルペイン:** インテグレーション別に分類された、監視されているサービスの総数。
+1. **Onboarding Pane:** Splunk Infrastructure Monitoring を始めるためのトレーニング動画とドキュメントへのリンク。
+2. **Time & Filter Pane:** 時間ウィンドウ（トップレベルでは設定不可）。
+3. **Integrations Pane:** Splunk Observability Cloud にメトリクスを送信しているすべてのテクノロジーのリスト。
+4. **Tile Pane:** 監視中のサービスの総数を、インテグレーションごとに分類して表示します。
 
-Infrastructureペインを使用して、関心のあるInfrastructure/テクノロジーを選択できます。早速試してみましょう。
+Infrastructure ペインを使用して、注目したいインフラストラクチャ／テクノロジーを選択できます。早速やってみましょう。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Explore the Kubernetes navigator" %}}
 
-- インテグレーションペイン（**3**）の**コンテナ**セクションで、調査したいテクノロジーとして**Kubernetes**を選択します。
-- すると、**K8s ノード**と**K8s ワークロード**の2つのタイルが表示されます。
-- 各タイルの下部には履歴グラフが表示され、上部にはアラートが発生した通知が表示されます。すべてのタイルで、各タイルのこの追加情報により、Infrastructureの健全性の良い概要が得られます。
-- **K8s ノード**タイルをクリックします。
-- Kubernetesクラスターの表示が一つ以上表示されます。
-- {{% button %}}フィルターを追加{{% /button %}}ボタンをクリックします。`k8s.cluster.name` と入力し、検索結果をクリックします。
-- リストから**[ワークショップ名]-k3s-cluster**を選択し、{{% button style="blue" %}}フィルターを適用{{% /button %}}ボタンをクリックします。
+* Integrations Pane **(3)** の **Containers** セクションで、調査したいテクノロジーとして **Kubernetes** を選択します。
+* **K8s Nodes** と **K8s Workloads** という 2 つのタイルが表示されるはずです。
+* 各タイルの下部には履歴グラフが表示され、上部にはトリガーされたアラートの通知が表示されます。すべてのタイルにわたるこれらの追加情報により、インフラストラクチャの健全性の概要を把握できます。
+* **K8s Nodes** タイルをクリックします。
+* Kubernetes クラスターを表す 1 つまたは複数の表現が表示されます。
+* {{% button %}}Add filters{{% /button %}} ボタンをクリックします。`k8s.cluster.name` と入力し、検索結果をクリックします。
+* リストから **[NAME OF WORKSHOP]-k3s-cluster** を選択し、{{% button style="blue" %}}Apply Filter{{% /button %}} ボタンをクリックします。
 
-  ![クラスター](../images/k8s-cluster.png)
+  ![cluster](../images/k8s-cluster.png)
 
-- Kubernetesナビゲーターは色を使用して健全性を示します。ご覧のように、失敗状態（**1**）にある2つの不健全なポッドまたはサービスがあります。残りは健全で実行中です。これは共有Kubernetes環境では珍しくないため、ワークショップ用にこの状況を再現しました。
-- 側面のタイル、特に**ノード依存関係**（**2**）の下のMySQLとRedisのタイルに注目してください。これらは私たちのEコマースアプリケーションで使用されている2つのデータベースです。
+* Kubernetes Navigator は色を使って健全性を示します。ご覧のとおり、2 つの pod またはサービスが不健全で Failed 状態 **(1)** にあります。残りは健全に稼働中です。共有 Kubernetes 環境ではこれは珍しいことではないため、ワークショップでもその状況を再現しています。
+* サイドにあるタイル、特に **Nodes dependencies** **(2)** の下にある MySQL と Redis のタイルに注目してください。これらは e コマースアプリケーションで使用される 2 つのデータベースです。
+
+{{% /exercise %}}
+
+{{% notice title="Node Dependencies" style="info" %}}
+
+選択したノード上で動作しているサービスは、OpenTelemetry Collector で監視するように構成されている場合に UI に表示されます。
 
 {{% /notice %}}
 
-{{% notice title="ノード依存関係" style="info" %}}
+{{% exercise title="Open the Redis instance navigator" %}}
 
-UIでは、OpenTelemetryコレクターによって監視するよう設定されている場合、選択したノードで実行されているサービスが表示されます。
-
-{{% /notice %}}
-
-{{% notice title="演習" style="green" icon="running" %}}
-
-- **Redis**タイルをクリックすると、**Redis インスタンス**ナビゲーターに移動します。**REDIS インスタンス**の下で**redis-[ワークショップ名]**をクリックします。
-- これにより**Redis インスタンス**に移動します。このナビゲーターでは、EコマースサイトのアクティブなRedisインスタンスからのメトリクスデータのチャートが表示されます。
+* **Redis** タイルをクリックすると、**Redis instances** ナビゲーターに遷移します。**REDIS INSTANCE** の下で **redis-[NAME OF WORKSHOP]** をクリックします。
+* これにより、**Redis instance** に移動します。このナビゲーターには、e コマースサイトで稼働中の Redis インスタンスからのメトリクスデータがチャートで表示されます。
   ![redis](../images/redis-2.png)
-  {{< tabs >}}
-  {{% tab title="質問" %}}
-  **このビューでインスタンス依存関係タイルの名前を言えますか？**
-  {{% /tab %}}
-  {{% tab title="回答" %}}
-  **はい、Kubernetes のものがあります。**
-  {{% /tab %}}
-  {{< /tabs >}}
+{{< tabs >}}
+{{% tab title="Question" %}}
+**このビューの Instance dependencies タイルの名前は何ですか？**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**はい、Kubernetes 用のものが 1 つあります。**
+{{% /tab %}}
+{{< /tabs >}}
 
-- タイルをクリックすると、Kubernetesナビゲーターに戻りますが、今回はRedisサービスを実行しているPodを表示するPodレベルになります。
-- クラスターレベルに戻るには、画面上部の**クラスター**リンク（**1**）をクリックするだけです。
+* タイルをクリックすると、Kubernetes Navigator に戻ります。今度は Pod レベルで、Redis サービスを実行している Pod が表示されます。
+* Cluster レベルに戻るには、画面上部の **Cluster** **(1)** リンクをクリックするだけです。
 
-![ノード](../images/node-link.png)
+![node](../images/node-link.png)
 
-{{% /notice %}}
+{{% /exercise %}}
 
-これで**Splunk Observability Cloud**のツアーは終了です。
+これで **Splunk Observability Cloud** のツアーは完了です。
 
-仮想の 💶 を持って、私たちのEコマースサイト「Online Boutique」を見て、ショッピングをしましょう。
+ここで仮想の 💶 を受け取って、e コマースサイトの「Online Boutique」を見に行き、ショッピングをしてみましょう。

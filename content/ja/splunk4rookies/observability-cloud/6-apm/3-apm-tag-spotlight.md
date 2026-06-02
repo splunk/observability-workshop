@@ -3,39 +3,38 @@ title: 3. APM Tag Spotlight
 weight: 3
 ---
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="paymentservice の Tag Spotlight を開く" %}}
 
-- **paymentservice**のタグを表示するには、**paymentservice**をクリックし、右側の機能ペインの**Tag Spotlight**をクリックします（画面の解像度によっては下にスクロールする必要があるかもしれません）。
-- **Tag Spotlight**に入ったら、フィルターアイコンから**Show tags with no values**チェックボックスがオフになっていることを確認してください。
+* **paymentservice** のタグを表示するには、**paymentservice** をクリックし、画面右側の機能ペインにある **Tag Spotlight** をクリックします（画面解像度によってはスクロールが必要な場合があります）。* **Tag Spotlight** に入ったら、**Show tags with no values** トグルがオフになっていることを確認します。
 
-{{% /notice %}}
+{{% /exercise %}}
 
 ![APM Tag Spotlight](../images/apm-tag-spotlight.png)
 
-**Tag Spotlight**のビューは、チャートとカードの両方で設定可能です。デフォルトでは**リクエストとエラー**に設定されています。
+**Tag Spotlight** のビューは、チャートとカードの両方について設定可能です。ビューはデフォルトで **Requests & Errors** に設定されています。
 
-また、カードに表示されるタグメトリクスを設定することも可能です。以下の任意の組み合わせを選択できます
+カードに表示するタグメトリクスを設定することもできます。以下を任意に組み合わせて選択できます。
 
-- Requests
-- Errors
-- Root Cause errors
-- P50 Latency
-- P90 Latency
-- P99 Latency
+* Requests
+* Errors
+* Root cause errors
+* P50 Latency
+* P90 Latency
+* P99 Latency
 
-改めて、フィルターアイコンから**Show tags with no values**チェックボックスがオフになっていることを確認してください。
+また、**Show tags with no values** トグルがオフになっていることも確認してください。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Tag Spotlight で問題のあるバージョンを特定する" %}}
 
 {{< tabs >}}
-{{% tab title="質問" %}}
-**どのカードが問題を特定するタグを明らかにしていますか？**
+{{% tab title="Question" %}}
+**問題を特定できるタグを示しているのはどのカードでしょうか？**
 {{% /tab %}}
-{{% tab title="回答" %}}
-**「Version」カードです。`v350.10` に対するリクエスト数がエラー数と一致しています（つまり 100%）**
+{{% tab title="Answer" %}}
+***version* カードです。`v350.10` に対するリクエスト数とエラー数が一致しており、すなわちエラー率が 100% となっています**
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
-**paymentservice**の問題を引き起こしているバージョンを特定したので、エラーについてさらに詳しい情報が見つかるか確認してみましょう。ページ上部の **← Tag Spotlight** をクリックして、サービスマップに戻ります。
+問題を引き起こしている **paymentservice** のバージョンを特定できたので、エラーに関するより詳しい情報が得られないか確認してみましょう。Service Map に戻るため、ページ上部の **← Tag Spotlight** をクリックします。

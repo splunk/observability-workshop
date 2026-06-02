@@ -3,40 +3,42 @@ title: Splunk Integration
 linkTitle: 3. Splunk Integration
 weight: 3
 time: 10 minutes
-description: ThousandEyes から Splunk Observability Cloud への OpenTelemetry ベースのメトリクスストリーミングを設定します。
+description: ThousandEyes から Splunk Observability Cloud への OpenTelemetry ベースのメトリクスストリームを構成します。
 ---
 
 ## Splunk Observability Cloud について
 
-Splunk Observability Cloud は、メトリクス、トレース、ログを大規模にモニタリングするために構築されたリアルタイムオブザーバビリティプラットフォームです。OpenTelemetry データを取り込み、高度なダッシュボードと分析機能を提供することで、チームがパフォーマンスの問題を迅速に検出し解決できるようにします。このセクションでは、OpenTelemetry を使用して ThousandEyes データを Splunk Observability Cloud と統合する方法を説明します。
+Splunk Observability Cloud は、メトリクス、トレース、ログを大規模に監視するために専用設計されたリアルタイムオブザーバビリティプラットフォームです。OpenTelemetry データを取り込み、高度なダッシュボードと分析機能を提供することで、チームがパフォーマンス問題を迅速に検出して解決できるよう支援します。本セクションでは、OpenTelemetry を使用して ThousandEyes データを Splunk Observability Cloud と統合する方法について説明します。
 
-{{% notice title="このセクションの範囲" style="info" %}}
-このセクションでは、ThousandEyes から Splunk Observability Cloud への**メトリクスストリーミング**パスについて説明します。次のセクションでは、ThousandEyes と Splunk APM の間に双方向リンクを作成する別の**分散トレーシング**ワークフローを追加します。
+{{% notice title="本セクションのスコープ" style="info" %}}
+本セクションでは、ThousandEyes から Splunk Observability Cloud への**メトリクスストリーミング**経路について説明します。次のセクションでは、ThousandEyes と Splunk APM の間で双方向のリンクを作成する別の**分散トレーシング**ワークフローを追加します。
 {{% /notice %}}
 
-{{% notice title="統合は1つだけ必要" style="warning" %}}
-各ワークショップ参加者がこの設定を行うのではなく、インストラクターが以下の手順を実行するのを確認してください。
+{{< acknowledge "必要な統合は1つのみ" >}}
+各受講者がこの設定を行うのではなく、講師が以下の手順を実演するのを見てください。
 
-次のページから引き続き手順を実行します。
-{{% /notice %}}
+次のページから、皆さんは引き続き手順を実施します。
+{{< /acknowledge >}}
 
-### ステップ 1: Splunk Observability Cloud アクセストークンの取得または作成
+{{< step "Splunk Observability Cloud アクセストークンの取得または作成" "1" >}}
 
-ThousandEyes メトリクスを Splunk Observability Cloud に送信するには、**Ingest** スコープを持つアクセストークンが必要です。
+ThousandEyes のメトリクスを Splunk Observability Cloud に送信するには、**Ingest** スコープを持つアクセストークンが必要です。
 
-このワークショップでは、提供されたトークンを使用します。インスタンスから取得できます:
+本ワークショップでは、用意されたトークンを使用します。インスタンスから以下のように取得できます:
 
 ```bash
 . ~/workshop/petclinic/scripts/check_env.sh | grep ACCESS_TOKEN
 ```
 
-または、以下のクリップに示すように Splunk Observability Cloud UI から取得できます。
+または、以下のクリップで示すように、Splunk Observability Cloud の UI から取得することもできます。
 
-### ステップ 2: 統合の作成
+{{< /step >}}
 
-この統合は、ThousandEyes メトリクスを Splunk Observability Cloud のダッシュボードとディテクターに送信する一方向のテレメトリストリームです。
+{{< step "統合の作成" "2" >}}
 
-#### ThousandEyes UI の使用
+この統合は、ThousandEyes のメトリクスを Splunk Observability Cloud のダッシュボードや Detector に送り込む一方向のテレメトリーストリームです。
+
+### ThousandEyes UI を使用する
 
 Splunk Observability Cloud と ThousandEyes を統合するには:
 
@@ -44,51 +46,52 @@ Splunk Observability Cloud と ThousandEyes を統合するには:
 2. **New Integration** をクリックし、**ThousandEyes for OpenTelemetry** を選択します
 3. 統合の **Name** を入力します
 4. **Target** を **HTTP** に設定します
-5. **Endpoint URL** を入力します: `https://ingest.{REALM}.signalfx.com/v2/datapoint/otlp`
-   - `{REALM}` を Splunk 環境に置き換えます（例: `us1`、`eu0`）
+5. **Endpoint URL** に `https://ingest.{REALM}.signalfx.com/v2/datapoint/otlp` を入力します
+   - `{REALM}` を Splunk 環境（例: `us1`、`eu0`）に置き換えてください
 6. **Preset Configuration** で **Splunk Observability Cloud** を選択します
 7. **Auth Type** で **Custom** を選択します
 8. 以下の **Custom Headers** を追加します:
-   - `X-SF-Token: {TOKEN}`（ステップ 1 で作成した Splunk Observability Cloud アクセストークンを入力します）
+   - `X-SF-Token: {TOKEN}` (ステップ1で作成した Splunk Observability Cloud のアクセストークンを入力します)
    - `Content-Type: application/x-protobuf`
 9. **OpenTelemetry Signal** で **Metric** を選択します
 10. **Data Model Version** で **v2** を選択します
-11. 送信するテストを選択します。
-{{% notice title="テストは後から追加可能" style="primary" icon="lightbulb" %}}
-新しいテストを追加した場合、後でこの統合にテストを追加し直す必要があります
-{{% /notice %}}
-12. **Save** をクリックして統合のセットアップを完了します
+11. 送信したいテストを選択します。
+      >[!IMPORTANT] テストの後からの追加について
+      >新しいテストを追加した場合、後でこの統合に再度追加する必要があります
+12. **Save** をクリックして統合の設定を完了します
 
 ![Integration Complete](../images/te2.gif?width=45vw)
 
-これで ThousandEyes データと Splunk Observability Cloud の統合が正常に完了しました。
+これで ThousandEyes のデータを Splunk Observability Cloud に正常に統合できました。
 
 {{% notice title="Pending 状態" style="note" %}}
-統合がしばらく **Pending** 状態のままになる場合があります。**Connected** に変わる前にリフレッシュが必要な場合があります。
+統合はしばらくの間 **Pending** 状態のままになる場合があります。**Connected** に変わるまでに更新が必要な場合があります。
 {{% /notice %}}
 
-{{% notice title="次のステップ" style="primary" icon="lightbulb" %}}
-メトリクスの統合が完了したら、**Distributed Tracing** に進み、ThousandEyes から Splunk APM への逆方向の調査パスを追加します。
+{{% notice title="次にやること" style="primary" icon="lightbulb" %}}
+メトリクス統合が完了したら、**Distributed Tracing** に進み、ThousandEyes から Splunk APM へ、そして再び戻る逆方向の調査経路を追加してください。
 {{% /notice %}}
 
-### ステップ 3: Splunk Observability Cloud の ThousandEyes ダッシュボード
+{{< /step >}}
 
-統合のセットアップが完了すると、Splunk Observability Cloud 内の ThousandEyes Network Monitoring Dashboard でリアルタイムのモニタリングデータを確認できます。ダッシュボードには以下が含まれます:
+{{< step "Splunk Observability Cloud の ThousandEyes ダッシュボード" "3">}}
+
+統合の設定が完了すると、Splunk Observability Cloud 内の ThousandEyes Network Monitoring Dashboard でリアルタイムの監視データを閲覧できるようになります。このダッシュボードには以下が含まれます:
 
 - **HTTP Server Availability (%)**: 監視対象の HTTP サーバーの可用性を表示します
-- **HTTP Throughput (bytes/s)**: 時間経過に伴うデータ転送速度を表示します
-- **Client Request Duration (seconds)**: クライアントリクエストのレイテンシを測定します
-- **Web Page Load Completion (%)**: ページロードの成功率を表示します
-- **Page Load Duration (seconds)**: ページのロード時間を表示します
+- **HTTP Throughput (bytes/s)**: 経時的なデータ転送レートを表示します
+- **Client Request Duration (seconds)**: クライアントリクエストのレイテンシーを測定します
+- **Web Page Load Completion (%)**: ページ読み込みの成功率をパーセンテージで示します
+- **Page Load Duration (seconds)**: ページの読み込みにかかった時間を表示します
 
 #### ダッシュボードテンプレートのデプロイ
 
-以下のリンクからダッシュボードテンプレートをダウンロードできます: [Download ThousandEyes Splunk Observability Cloud dashboard template (Google Drive)](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json)。その後、Splunk Observability Cloud にインポートできます。（これはすでに完了しています。）
+ダッシュボードテンプレートは以下のリンクからダウンロードできます: [**ThousandEyes Splunk Observability Cloud ダッシュボードテンプレートをダウンロード**](https://github.com/thousandeyes/thousandeyes-observability-dashboards/blob/main/splunk/ThousandEyesDashboard.json)。その後、Splunk Observability Cloud にインポートできます（本ワークショップでは設定済みです）。
 
-テストが実行されている場合は、すでにデータが表示されます。
+実行中のテストがある場合は、すでにデータが表示されているはずです。
 
 ![Splunk Observability Cloud Dashboard for ThousandEyes](../images/splunk-o11y-dashboard-te.png?width=45vw)
 
-{{% notice title="成功" style="success" icon="check" %}}
-ThousandEyes データが Splunk Observability Cloud にストリーミングされるようになりました。次に、分散トレーシングコネクターを追加して、トラブルシューティング中に ThousandEyes と Splunk APM の間をシームレスに移動できるようにします。
-{{% /notice %}}
+{{< /step >}}
+
+{{< checkpoint "ThousandEyes のデータが Splunk Observability Cloud にストリーミングされるようになりました。次は、トラブルシューティング中に ThousandEyes と Splunk APM の間を行き来できるよう、分散トレーシングコネクターを追加します。" >}}

@@ -1,26 +1,26 @@
 ---
-title: 3. SyntheticsからAPMへ
+title: 3. Synthetics to APM
 weight: 3
 ---
 
-今、以下のような表示が見えているはずです。
+これで、以下のような画面が表示されているはずです。
 
-![注文する](../images/run-results-place-order.png)
+![Place Order](../images/run-results-place-order.png)
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="Synthetics から APM へジャンプする" %}}
 
-- ウォーターフォールで**POST checkout**で始まるエントリを見つけます。
-- その前にある **>** ボタンをクリックして、メタデータセクションを展開します。収集されたメタデータを観察し、**Server-Timing**ヘッダーに注目してください。このヘッダーにより、テスト実行をバックエンドトレースに関連付けることができます。
-- ウォーターフォールの**POST checkout**行にある青い{{% icon icon="link" %}} **APM**リンクをクリックします。
-  {{% /notice %}}
+* ウォーターフォールの中から、**POST checkout** で始まるエントリを見つけます。
+* その前にある **>** ボタンをクリックして、メタデータセクションを展開します。収集されているメタデータを確認し、**Server-Timing** ヘッダーに注目してください。このヘッダーによって、テスト実行をバックエンドのトレースと関連付けることができます。
+* ウォーターフォールの **POST checkout** の行にある青い {{% icon icon="link" %}} **APM** リンクをクリックします。
+{{% /exercise %}}
 
-![APMトレース](../images/apm-trace.png)
+![APM trace](../images/apm-trace.png)
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="APM で失敗した支払いを確認する" %}}
 
-- **paymentservice**に対して1つ以上のエラーが表示されていることを確認します（**1**）。
-- 同じエラーであることを確認するには、**ログ**の関連コンテンツをクリックします（**2**）。
-- 前回の演習を繰り返して、エラーのみにフィルタリングします。
-- エラーログを表示して、無効なトークンによる支払い失敗を確認します。
+* **paymentservice** **(1)** に 1 件以上のエラーが表示されていることを確認します。
+* 同じエラーであることを確認するため、**Logs** **(2)** の関連コンテンツをクリックします。
+* 先ほどの演習を繰り返し、エラーのみに絞り込みます。
+* エラーログを表示し、無効なトークンが原因で支払いが失敗したことを確認します。
 
-{{% /notice %}}
+{{% /exercise %}}

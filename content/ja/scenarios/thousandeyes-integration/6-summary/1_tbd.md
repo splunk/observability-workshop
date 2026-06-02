@@ -7,55 +7,55 @@ description: TBD
 draft: true
 ---
 
-## サポートされるワークフロー
+## サポートされているワークフロー
 
-この学習シナリオは、ThousandEyes と Splunk が文書化しているサポート対象のワークフローに従います
+このラーニングシナリオは、ThousandEyes と Splunk によってドキュメント化されているサポート対象のワークフローに従っています。
 
-- ThousandEyes は、分散トレーシングが有効な場合、**HTTP Server** テストおよび **API** テストに `b3`、`traceparent`、`tracestate` ヘッダーを自動的に挿入します。
-- 監視対象のエンドポイントは、ヘッダーを受け入れ、OpenTelemetry で計装され、トレースコンテキストを伝播し、オブザーバビリティバックエンドにトレースを送信する必要があります。
-- Splunk APM の場合、ThousandEyes は `https://api.<REALM>.signalfx.com` を指す **Generic Connector** を使用し、**API-scope** の Splunk トークンで認証します。
-- Splunk APM は、一致するトレースに `thousandeyes.test.id` や `thousandeyes.permalink` などの ThousandEyes 属性を付加し、ThousandEyes への逆方向のジャンプを可能にします。
+- ThousandEyes は分散トレーシングが有効化されている場合、**HTTP Server** および **API** テストに対して `b3`、`traceparent`、`tracestate` ヘッダーを自動的に注入します。
+- 監視対象のエンドポイントはヘッダーを受け入れ、OpenTelemetry でインストルメンテーションされ、トレースコンテキストを伝播し、observability バックエンドにトレースを送信する必要があります。
+- Splunk APM では、ThousandEyes は `https://api.<REALM>.signalfx.com` を指す **Generic Connector** を使用し、**API スコープ** の Splunk トークンで認証します。
+- Splunk APM は一致するトレースに `thousandeyes.test.id` や `thousandeyes.permalink` などの ThousandEyes 属性を付加し、これにより ThousandEyes への逆方向のジャンプが可能になります。
 
-## これらのヘッダーが実際に意味すること
+## これらのヘッダーが実際に意味するもの
 
-この部分は見過ごされがちですが、見過ごすべきではありません。トレースの相関は、サービスが ThousandEyes の挿入するヘッダーを理解し、トレースを正しく継続する場合にのみ機能します。
+この部分は読み流されがちですが、流すべきではありません。トレースの相関は、サービスが ThousandEyes が注入するヘッダーを理解し、トレースを正しく継続できる場合にのみ機能します。
 
 - `traceparent` と `tracestate` は W3C Trace Context ヘッダーです。
-- `b3` は Zipkin B3 シングルヘッダー形式です。
-- ThousandEyes が両方を挿入するのは、実際の環境にはプロキシ、メッシュ、ゲートウェイ、アプリランタイムが混在しており、すべてが同じ伝播形式を優先するとは限らないためです。
+- `b3` は Zipkin B3 single-header フォーマットです。
+- 実環境にはプロキシ、メッシュ、ゲートウェイ、アプリケーションランタイムが混在しており、これらすべてが同じ伝播フォーマットを優先するわけではないため、ThousandEyes は両方を注入します。
 
-OpenTelemetry の用語では、重要な設定はプロパゲーターリストです
+OpenTelemetry の用語では、重要な設定は propagator のリストです。
 
 ```text
 OTEL_PROPAGATORS=baggage,b3,tracecontext
 ```
 
-これにより2つのことが実現されます
+これは 2 つのことを実現します。
 
-1. サービスが、受信した ThousandEyes リクエストから **B3** または **W3C** コンテキストのいずれかを抽出できるようになります。
-2. `tracecontext` を有効にしておくことで、W3C の `tracestate` が保持されます。
+1. サービスが ThousandEyes からの受信リクエストから **B3** または **W3C** コンテキストのいずれかを抽出できるようにします。
+2. `tracecontext` を有効にすることで W3C `tracestate` を保持します。
 
 {{% notice title="重要な詳細" style="warning" %}}
-`tracestate` を別の OpenTelemetry プロパゲーターとして追加する必要は**ありません**。`tracecontext` プロパゲーターが `traceparent` と `tracestate` の両方を処理します。
+`tracestate` を別の OpenTelemetry propagator として追加する必要は **ありません**。`tracecontext` propagator が `traceparent` と `tracestate` の両方を処理します。
 {{% /notice %}}
 
-## 「正しく構成された」状態とは
+## 「正しく実装された状態」とはどういう状態か
 
-コレクターはこのセットアップの一部に過ぎません。Kubernetes における正しい ThousandEyes トレーシングデプロイメントには **3つのレイヤー** があります
+Collector はこのセットアップの 1 つの構成要素にすぎません。Kubernetes における正しい ThousandEyes トレーシングのデプロイには **3 つのレイヤー** があります。
 
-1. **Deployment アノテーション** — OpenTelemetry Operator がランタイム固有の計装を挿入できるようにします。
-2. **Instrumentation リソース** — 挿入された SDK がトレースの送信先と使用するプロパゲーターを認識できるようにします。
-3. **Collector トレースパイプライン** — OTLP トレースが実際に受信され、Splunk APM にエクスポートされるようにします。
+1. **Deployment アノテーション**: OpenTelemetry Operator がランタイム固有のインストルメンテーションを注入できるようにします。
+2. **Instrumentation リソース**: 注入された SDK がトレースの送信先と使用する propagator を認識できるようにします。
+3. **Collector トレースパイプライン**: OTLP トレースが実際に受信され、Splunk APM にエクスポートされるようにします。
 
-最もよくある間違いは、コレクターだけに焦点を当てることです。コレクターは生の `b3`、`traceparent`、`tracestate` リクエストヘッダーを直接見ることはありません。アプリケーションまたは自動計装ライブラリがまずこれらのヘッダーを抽出し、スパンコンテキストを継続してから、OTLP 経由でコレクターにスパンを送信する必要があります。
+最もよくある間違いは、Collector のみに焦点を当ててしまうことです。Collector は生の `b3`、`traceparent`、`tracestate` リクエストヘッダーを直接見ることはありません。アプリケーションまたは自動インストルメンテーションライブラリが最初にこれらのヘッダーを抽出し、span コンテキストを継続し、その後 OTLP 経由で Collector にスパンを送信する必要があります。
 
-## PetClinic 構成パターン
+## PetClinic の設定パターン
 
-以下の例では、このワークショップに含まれる Spring PetClinic アプリケーションを使用します。ThousandEyes がトレース相関に必要とする Kubernetes アノテーション、`Instrumentation` リソース、および Pod レベルの設定を示します。
+以下の例では、このワークショップに含まれる Spring PetClinic アプリケーションを使用します。これらは ThousandEyes がトレース相関のために必要とする Kubernetes アノテーション、`Instrumentation` リソース、Pod レベルの設定を示しています。
 
 ### 1. Deployment アノテーション
 
-このガイドでは、PetClinic の Java デプロイメントは `default/splunk-otel-collector` Instrumentation リソースを参照しています
+このガイドでは、PetClinic Java の Deployment は `default/splunk-otel-collector` Instrumentation リソースを指しています。
 
 ```yaml
 apiVersion: apps/v1
@@ -69,11 +69,11 @@ spec:
         instrumentation.opentelemetry.io/inject-java: default/splunk-otel-collector
 ```
 
-ThousandEyes のリクエストがトレースに変換されない場合、最初に確認すべき場所です。
+ThousandEyes のリクエストがトレースに変換されない場合、これが最初に確認すべき箇所です。
 
 ### 2. Instrumentation リソース
 
-これは PetClinic の `Instrumentation` オブジェクトで、ThousandEyes に関連するフィールドのみを抜粋したものです
+これは PetClinic の `Instrumentation` オブジェクトを、ThousandEyes に関連するフィールドのみに絞ったものです。
 
 ```yaml
 apiVersion: opentelemetry.io/v1alpha1
@@ -94,23 +94,23 @@ spec:
       value: deployment.environment=thousandeyes-petclinic
 ```
 
-ThousandEyes シナリオにおける重要なポイントは以下の通りです
+これが ThousandEyes シナリオにとって重要な部分です。
 
-- `endpoint` はクラスターローカルの OTel エージェントサービスにスパンを送信します。
-- `b3` は ThousandEyes B3 ヘッダーの抽出を可能にします。
+- `endpoint` はクラスター内の OTel agent サービスにスパンを送信します。
+- `b3` により ThousandEyes の B3 ヘッダーを抽出できます。
 - `tracecontext` は `traceparent` と `tracestate` を保持します。
-- `parentbased_always_on` は、ThousandEyes がリクエストを開始した後もトレースが継続されることを保証します。
+- `parentbased_always_on` は ThousandEyes がリクエストを開始した後にトレースが確実に継続されるようにします。
 
-### 3. 挿入された Pod が実際に受け取る設定
+### 3. 注入された Pod が実際に取得する内容
 
-実行中の PetClinic `api-gateway` Pod で、オペレーターが期待される OpenTelemetry 設定を挿入したことを検証します
+実行中の PetClinic `api-gateway` Pod で、Operator が期待される OpenTelemetry の設定を注入したことを検証します。
 
 ```bash
 kubectl exec deploy/api-gateway -- printenv | \
   grep -E 'OTEL_EXPORTER_OTLP_ENDPOINT|OTEL_PROPAGATORS|OTEL_TRACES_SAMPLER|OTEL_RESOURCE_ATTRIBUTES'
 ```
 
-以下のような値が表示されるはずです
+以下のような値が表示されるはずです。
 
 ```yaml
 - name: OTEL_EXPORTER_OTLP_ENDPOINT
@@ -123,11 +123,11 @@ kubectl exec deploy/api-gateway -- printenv | \
   value: deployment.environment=thousandeyes-petclinic
 ```
 
-これは有用な検証チェックポイントです。プロパゲーターが抽象的な設定オブジェクトで宣言されているだけでなく、実際にワークロードに適用されていることを証明するためです。
+これは有用な検証チェックポイントです。なぜなら、propagator が抽象的な設定オブジェクト内で宣言されているだけでなく、実際にワークロードに適用されていることを証明できるためです。
 
-### 4. Agent Collector トレースパイプライン
+### 4. Agent Collector のトレースパイプライン
 
-`otel-splunk` 内のライブエージェントコレクターは、OTLP、Jaeger、Zipkin トラフィックを受信し、トレースを上流に転送しています。以下は、実行中の ConfigMap から抜粋したものです
+`otel-splunk` で稼働する agent collector は OTLP、Jaeger、Zipkin のトラフィックを受信し、トレースを上流に転送しています。以下は実行中の ConfigMap から抜粋したものです。
 
 ```yaml
 receivers:
@@ -155,12 +155,12 @@ service:
       exporters: [otlp, signalfx]
 ```
 
-ThousandEyes にとって重要なのは、コレクターの特別な B3 オプションではありません。重要なのは、コレクターが `4317` と `4318` で OTLP を公開しており、サービスがそこにスパンをエクスポートしていることです。
+ThousandEyes にとって重要なのは、Collector における特別な B3 オプションではありません。重要なのは、Collector が `4317` と `4318` で OTLP を公開し、サービスがそこにスパンをエクスポートしていることです。
 
-{{% notice title="PetClinic のポイント" style="info" %}}
-PetClinic の `Instrumentation` リソースは、`b3` と `tracecontext` を明示的に含んでいるため、ThousandEyes で従うべきパターンです。これがこのシナリオで必要な構成です。
+{{% notice title="PetClinic から得られる要点" style="info" %}}
+PetClinic の `Instrumentation` リソースは、`b3` を `tracecontext` と一緒に明示的に含んでいるため、ThousandEyes で踏襲すべきパターンです。これがこのシナリオで必要となる設定です。
 {{% /notice %}}
 
 {{% notice title="重要" style="warning" %}}
-このセクションではブラウザページの URL を使用**しないでください**。ThousandEyes のドキュメントによると、ブラウザはこのワークフローに必要なカスタムトレースヘッダーを受け入れません。代わりに、**HTTP Server** テストまたは **API** テストの背後にある計装済みのバックエンドエンドポイントを使用してください。
+このセクションではブラウザのページ URL を **使用しないでください**。ThousandEyes は、ブラウザがこのワークフローに必要なカスタムトレースヘッダーを受け入れないことをドキュメント化しています。代わりに、**HTTP Server** または **API** テストの背後にあるインストルメンテーション済みのバックエンドエンドポイントを使用してください。
 {{% /notice %}}

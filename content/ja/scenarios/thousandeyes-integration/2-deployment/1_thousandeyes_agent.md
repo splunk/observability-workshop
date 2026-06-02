@@ -3,16 +3,16 @@ title: ThousandEyes Agent
 linkTitle: 2.1 ThousandEyes Agent
 weight: 1
 time: 20 minutes
-description: Kubernetes に ThousandEyes Enterprise Agent をデプロイし、ThousandEyes Cloud に正しく登録されていることを確認します。
+description: ThousandEyes Enterprise Agent を Kubernetes にデプロイし、ThousandEyes Cloud に正しく登録されることを確認します。
 ---
 
-このセクションでは、Kubernetes クラスターに ThousandEyes Enterprise Agent をデプロイする手順を説明します。
+このセクションでは、ThousandEyes Enterprise Agent を Kubernetes クラスターにデプロイする手順を説明します。
 
 ## インストール手順
 
-### ステップ 1: ThousandEyes トークンの作成
+### Step 1: ThousandEyes トークンの作成
 
-1. ThousandEyes プラットフォーム（[app.thousandeyes.com/login](https://app.thousandeyes.com/login)）にログインします
+1. ThousandEyes プラットフォーム [app.thousandeyes.com/login](https://app.thousandeyes.com/login) にログインします
 
 2. **Network & App Synthetics > Agent Settings > Enterprise Agents > Add New Enterprise Agent** に移動します
 
@@ -20,32 +20,33 @@ description: Kubernetes に ThousandEyes Enterprise Agent をデプロイし、T
 
 4. **Account Group Token** をコピーします
 
-4. トークンを Base64 エンコードします:
+5. トークンを Base64 エンコードします:
 
-{{< tabs >}}
-{{% tab title="Script" %}}
+    {{< tabs >}}
+    {{% tab title="Script" %}}
 
-```bash
-echo -n 'your-token-here' | base64
-```
+    ```bash
+    echo -n 'your-token-here' | base64
+    ```
 
-{{% /tab %}}
-{{% tab title="Example Output" %}}
+    {{% /tab %}}
 
-```text
-dXabsfuenBabjeTZ3anVvxgyYds0cas=
-```
+    {{% tab title="Example Output" %}}
 
-{{% /tab %}}
-{{< /tabs >}}
+    ```text
+    dXabsfuenBabjeTZ3anVvxgyYds0cas=
+    ```
 
-5. Base64 エンコードされた出力を次のステップのために保存します
+    {{% /tab %}}
+    {{< /tabs >}}
 
-![Get ThousandEyes Token](../../images/te1.gif?width=45vw)
+6. 次のステップで使用するため、Base64 エンコードされた出力を保存しておきます
 
-### ステップ 2: Secret の作成
+    ![Get ThousandEyes Token](../../images/te1.gif?width=45vw)
 
-Base64 エンコードされたトークンを使用して、`credentialsSecret.yaml` という名前のファイルを作成します:
+### Step 2: Secret の作成
+
+Base64 エンコードされたトークンを使って、`credentialsSecret.yaml` という名前のファイルを作成します:
 
 ```yaml
 apiVersion: v1
@@ -76,9 +77,9 @@ secret/te-creds created
 {{% /tab %}}
 {{< /tabs >}}
 
-### ステップ 3: Deployment の作成
+### Step 3: Deployment の作成
 
-以下のデプロイメントマニフェストを使用して、`thousandEyesDeploy.yaml` という名前のファイルを作成します（`hostname` をご自身のユーザー名（例: `tihard`）にカスタマイズしてください）:
+下記のデプロイメントマニフェストを使って、`thousandEyesDeploy.yaml` という名前のファイルを作成します（`hostname` は `tihard` のように、自分のユーザー名でカスタマイズします）:
 
 ```yaml
 apiVersion: apps/v1
@@ -126,12 +127,12 @@ spec:
 
 {{% notice title="設定の説明" style="info" %}}
 
-- エージェントはネットワークテストを実行するために昇格された権限（`NET_ADMIN`、`SYS_ADMIN`）が必要です
-- 環境変数 `TEAGENT_INET: "4"` は IPv4 専用モードを強制します（一部のネットワーク構成で必要）
+- エージェントはネットワークテストを実行するために、昇格された権限（`NET_ADMIN`、`SYS_ADMIN`）を必要とします
+- 環境変数 `TEAGENT_INET: "4"` は IPv4 のみのモードを強制します（一部のネットワーク構成で必要です）
 - `/sbin/my_init` コマンドはエージェントの適切な初期化とサービス管理に必要です
-- `imagePullPolicy: Always` により、常に最新のイメージバージョンがプルされます
-- `hostname` フィールドを調整して、ThousandEyes ダッシュボードでエージェントを一意に識別できるようにしてください
-- ThousandEyes Enterprise Agent のハードウェア要件は比較的高いため、環境に応じて調整が必要な場合があります
+- `imagePullPolicy: Always` により、常に最新のイメージバージョンが取得されます
+- `hostname` フィールドを調整して、ThousandEyes ダッシュボード上でエージェントを一意に識別できるようにします
+- ThousandEyes Enterprise Agent はハードウェア要件が比較的高いため、環境に応じて調整が必要になる場合があります
 {{% /notice %}}
 
 Deployment を適用します:
@@ -153,9 +154,9 @@ deployment.apps/thousandeyes created
 {{% /tab %}}
 {{< /tabs >}}
 
-### ステップ 5: デプロイメントの確認
+### Step 5: Deployment の確認
 
-エージェントが実行されていることを確認します:
+エージェントが稼働していることを確認します:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -166,7 +167,7 @@ kubectl get pods
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
-期待される出力です。起動するまでに数回の確認が必要な場合があります:
+期待される出力です。起動するまで数回試行が必要な場合があります:
 
 ```text
 NAME                            READY   STATUS    RESTARTS   AGE
@@ -176,17 +177,17 @@ thousandeyes-xxxxxxxxxx-xxxxx   1/1     Running   0          2m
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="ヒント" style="info" %}}
-以下のコマンドを使用できます:
+{{% notice title="Tip" style="info" %}}
+次のコマンドを使用できます:
 
 ```bash
 watch -n 1 kubectl get pods
 ```
 
-Pod が実行状態になるまで監視できます。何かの起動を待つ際にはいつでもこのヒントを活用してください。
+これで Pod が稼働状態になるまで監視できます。何かの起動を待つ際にはいつでもこの方法を活用してください。
 {{% /notice %}}
 
-ログを確認してエージェントが接続していることを確認します。以下のような出力が表示されるまで少し時間がかかる場合があります。
+ログを確認して、エージェントが接続していることを確認します。下記のような出力になるまで少し時間がかかる場合があります。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -214,21 +215,21 @@ Starting browserbot in daemon mode
 {{% /tab %}}
 {{< /tabs >}}
 
-### ステップ 6: ThousandEyes ダッシュボードでの確認
+### Step 6: ThousandEyes ダッシュボードでの確認
 
-ThousandEyes ダッシュボードでエージェントが正常に登録されたことを確認します:
+ThousandEyes ダッシュボードで、エージェントが正常に登録されていることを確認します:
 
 **Network & App Synthetics > Agent Settings** に移動して、新しく登録されたエージェントを確認します。
 ![ThousandEyes Agent List](../../images/te-agents.png?width=45vw)
 
-{{% notice title="成功" style="success" icon="check" %}}
-ThousandEyes Enterprise Agent が Kubernetes で実行されています！次に、Splunk Observability Cloud との統合を行います。
+{{% notice title="Success" style="success" icon="check" %}}
+ThousandEyes Enterprise Agent が Kubernetes 上で稼働するようになりました。次に、Splunk Observability Cloud と統合します。
 {{% /notice %}}
 
 {{% notice title="トラブルシューティングガイダンス" style="primary" icon="warn" %}}
-エージェントが表示されない場合は、トークンを正しくエンコードしたか（最初のステップ）確認してください。
+何らかの理由でエージェントが表示されない場合は、トークンが正しくエンコードされているか（最初のステップ）を確認してください。
 {{% /notice %}}
 
 ## 背景
 
-ThousandEyes は公式の Kubernetes デプロイメントドキュメントを提供していません。標準的なデプロイ方法は `docker run` コマンドを使用するため、再利用可能な Kubernetes マニフェストへの変換が困難です。このガイドは、本番環境対応の Kubernetes 設定を提供することでそのギャップを埋めます。
+ThousandEyes は公式の Kubernetes デプロイメントドキュメントを提供していません。標準的なデプロイ方法は `docker run` コマンドを使用するため、再利用可能な Kubernetes マニフェストへの変換が困難です。このガイドは、本番環境で利用可能な Kubernetes 構成を提供することで、そのギャップを埋めます。

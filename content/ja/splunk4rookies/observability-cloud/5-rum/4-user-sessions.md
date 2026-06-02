@@ -1,26 +1,25 @@
 ---
-title: 4. ユーザーセッション
+title: 4. User Sessions
 weight: 4
 ---
+{{% exercise title="APMへのジャンプオフポイントを見つける" %}}
 
-{{% notice title="演習" style="green" icon="running" %}}
+* 右上の **X** をクリックして RUM Session Replay を閉じます。
+* スパンの長さに注目してください。これは注文完了までにかかった時間です。良くないですね！
+* ページを下にスクロールすると、**Tags** メタデータ（Tag Spotlight で使用されます）が表示されます。タグの後には、ロードされたページオブジェクト（HTML、CSS、画像、JavaScript など）を示すウォーターフォールが表示されます。
+* ページをさらにスクロールして、青い **APM** リンク（URL の末尾が `/cart/checkout` のもの）が出てくるまで進み、そこにマウスオーバーします。
 
-- 右上隅の**X**をクリックして、RUMセッションリプレイを閉じます。
-- スパンの長さに注目してください。これは注文を完了するのにかかった時間で、良くありません！
-- ページを下にスクロールすると、**タグ**メタデータ（Tag Spotlightで使用されるもの）が表示されます。タグの後に、ウォーターフォールが表示され、読み込まれたページオブジェクト（HTML、CSS、画像、JavaScriptなど）が表示されます。
-- ページを下にスクロールし続けて、青い**APM**リンク（URLの末尾に `/cart/checkout` があるもの）まで移動し、その上にカーソルを置きます。
+{{% /exercise %}}
 
-{{% /notice %}}
+![RUM Session](../images/rum-waterfall.png)
 
-![RUMセッション](../images/rum-waterfall.png)
+これにより、APM Performance Summary が表示されます。このようなエンドツーエンド（RUM から APM）のビューは、問題のトラブルシューティングに非常に役立ちます。
 
-これによりAPMパフォーマンスサマリーが表示されます。このエンドツーエンド（RUMからAPM）のビューは、問題のトラブルシューティングを行う際に非常に便利です。
+{{% exercise title="RUM から APM へジャンプする" %}}
 
-{{% notice title="演習" style="green" icon="running" %}}
+* 上のスクリーンショットのように、**paymentservice** と **checkoutservice** がエラー状態になっていることがわかります。
+* **Workflow Name** の下にある `front-end:/cart/checkout` をクリックすると、**APM Service Map** が表示されます。
 
-- 上のスクリーンショットのように、**paymentservice**と**checkoutservice**がエラー状態にあることがわかります。
-- **ワークフロー名**の下にある `front-end:/cart/checkout` をクリックすると、**APM サービスマップ**が表示されます。
+{{% /exercise %}}
 
-{{% /notice %}}
-
-![RUMからAPMへ](../images/rum-to-apm.png)
+![RUM to APM](../images/rum-to-apm.png)

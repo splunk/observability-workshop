@@ -6,13 +6,13 @@ time: 15 minutes
 description: OTel Collector をデプロイします。
 ---
 
-次に、OpenTelemetry Collector をデプロイします。
+次に OpenTelemetry Collector をデプロイします。
 
 ## インストール手順
 
-### ステップ 1: OpenTelemetry Collector のデプロイ
+### Step 1: OpenTelemetry Collector のデプロイ
 
-アプリケーションが既にインストルメント済みで、トレースが Splunk APM に表示されている場合は、ステップ 2 に進んでください。そうでない場合、Kubernetes での最も速い学習パスは、Operator を有効にしたゼロコードインストルメンテーション付きの Splunk OpenTelemetry Collector を使用することです。
+アプリケーションがすでに計装されており、Splunk APM でトレースが確認できる場合は、Step 2 までスキップできます。そうでない場合、Kubernetes 上で最も早く学習を進めるには、Operator を有効化したゼロコード計装で Splunk OpenTelemetry Collector を使用するのが最善です。
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -64,7 +64,7 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-クラスター名は以下の通りです:
+クラスター名は次のとおりです:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -83,12 +83,12 @@ CLUSTER_NAME=shw-xxxx-cluster
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** でクラスターを確認します:
+クラスターが **Splunk Observability Cloud** に表示されているか確認します:
 
 * **Infrastructure > Kubernetes Entities** に移動します
-* リストにクラスターが表示されるはずです
-  * 表示されるまでに数分かかる場合があります
+* 一覧にクラスターが表示されているはずです
+  * 表示されるまで数分かかる場合があります
 
 {{% notice title="Success" style="success" icon="check" %}}
-クラスターが見つかれば、データが正しく送信されています。
+クラスターが見つかれば、データは正しく送信されています。
 {{% /notice %}}

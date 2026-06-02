@@ -1,45 +1,45 @@
 ---
-title: 6. APMウォーターフォール
+title: 6. APM Waterfall
 weight: 6
 ---
 
-**トレースアナライザー**から**トレースウォーターフォール**に到達しました。トレースは同じトレースIDを共有するスパンの集まりで、アプリケーションとその構成サービスによって処理される一意のトランザクションを表します。
+**Trace Analyzer** から **Trace Waterfall** に到達しました。トレースとは、同じトレース ID を共有するスパンの集合体であり、アプリケーションとそれを構成するサービスによって処理される 1 つのユニークなトランザクションを表します。
 
-Splunk APMの各スパンは、単一の操作をキャプチャします。Splunk APMは、スパンがキャプチャする操作がエラーになった場合、そのスパンをエラースパンとみなします。
+Splunk APM の各スパンは、単一の操作をキャプチャします。Splunk APM は、スパンがキャプチャした操作がエラーになった場合、そのスパンをエラースパンとみなします。
 
-![トレースウォーターフォール](../images/apm-trace-waterfall.png)
+![Trace Waterfall](../images/apm-trace-waterfall.png)
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="失敗したスパンを開く" %}}
 
-- ウォーターフォール内の任意の `paymentservice:grpc.hipstershop.PaymentService/Charge` スパンの横にある{{% button style="red"  %}}!{{% /button %}}をクリックします。
+* Waterfall 内の任意の `paymentservice:grpc.hipstershop.PaymentService/Charge` スパンの隣にある {{% button style="red"  %}}!{{% /button %}} をクリックします。
 
 {{< tabs >}}
 {{% tab title="質問" %}}
-**スパン詳細で報告されているエラーメッセージとバージョンは何ですか？**
+**Span Details に報告されているエラーメッセージとバージョンは何ですか？**
 {{% /tab %}}
 {{% tab title="回答" %}}
-**`Invalid request`（無効なリクエスト）と `v350.10` です**。
+**`Invalid request` と `v350.10`** です。
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
-問題を引き起こしている**paymentservice**のバージョンを特定したので、エラーについてさらに詳しい情報が見つかるか確認してみましょう。ここで**関連ログ**の出番です。
+{{% /exercise %}}
+問題の原因となっている **paymentservice** のバージョンを特定できたので、次はエラーに関する詳細情報を確認していきましょう。ここで活躍するのが **Related Logs** です。
 
-関連コンテンツ(Related Contents)は、APM、インフラストラクチャモニタリング、およびLog Observerが可観測性クラウド全体でフィルターを渡すことを可能にする特定のメタデータに依存しています。関連ログが機能するためには、ログに以下のメタデータが必要です
+Related Content は、APM、Infrastructure Monitoring、Log Observer が Observability Cloud 全体でフィルターを受け渡せるようにする特定のメタデータに依存しています。Related Logs を機能させるには、ログに以下のメタデータが含まれている必要があります。
 
-- `service.name`
-- `deployment.environment`
-- `host.name`
-- `trace_id`
-- `span_id`
+* `service.name`
+* `deployment.environment`
+* `host.name`
+* `trace_id`
+* `span_id`
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="APM から Related Logs にジャンプする" %}}
 
-- **トレースウォーターフォール**の一番下で**Logs (1)**をクリックします。これは、このトレースに**関連ログ**があることを示しています。
-- ポップアップの**Logs for trace xxx**（トレースxxxのログ）エントリをクリックすると、**Log Observer**で完全なトレースのログが開きます。
+* **Trace Waterfall** の一番下で **Logs (1)** をクリックします。これにより、このトレースに **Related Logs** があることが強調表示されます。
+* ポップアップで **Logs for trace xxx** のエントリをクリックすると、**Log Observer** でこのトレース全体のログが開きます。
 
-{{% /notice %}}
+{{% /exercise %}}
 
-![関連ログ](../images/apm-related-logs.png)
+![Related Logs](../images/apm-related-logs.png)
 
-次に、ログのエラーについてさらに詳しく調べてみましょう。
+次に、ログでエラーに関する詳細を調べていきましょう。

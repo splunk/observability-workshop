@@ -1,16 +1,13 @@
 ---
-title: ワークショップ まとめ 🎁
-linkTitle: 10. ワークショップ まとめ
+title: ワークショップのまとめ 🎁
+linkTitle: 10. ワークショップのまとめ
 weight: 10
 archetype: chapter
-time: 10 minutes
-description: おめでとうございます。Splunk4Rookies - Observability Cloudワークショップを修了しました。今日はSplunk Observability Cloudを使用してアプリケーションとインフラストラクチャを監視する方法に慣れました。
+description: おめでとうございます、Splunk4Rookies - Observability Cloud ワークショップを修了しました。本日、Splunk Observability Cloud を使ってアプリケーションとインフラストラクチャーを監視する方法に慣れていただきました。
 ---
 
-おめでとうございます。**Splunk4Rookies - Observability Cloud ワークショップ**を修了しました。今日はSplunk Observability Cloudを使用してアプリケーションとインフラストラクチャを監視する方法に慣れました。
+この修了証を {{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}} プロフィールに追加して、達成を祝いましょう。
 
-この修了証をあなたの{{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}}プロフィールに追加して成果をアピールしましょう。
+学んだ内容と次に何ができるかを振り返りましょう。
 
-私たちが学んだことと次にできることを振り返ってみましょう。
-
-![シャンパン](images/champagne.png?width=45vw)
+![Champagne](images/champagne.png?width=45vw)

@@ -1,42 +1,42 @@
 ---
-title: 1. RUMダッシュボード
+title: 1. RUM ダッシュボード
 weight: 1
 ---
 
-Splunk Observability Cloudのメインメニューから、**RUM**をクリックします。RUMホームページに到着します。このビューについては、先ほどの短い紹介ですでに説明しました。
+メインメニューで **Digital Experience** をクリックし、Real User Monitoring の下にある **Overview** をクリックします。RUM のホームページが表示されますが、このビューについては前のセクションの簡単な紹介で既に説明しています。
 
-![複数のアプリ](../images/rum-dashboard.png)
+![multiple apps](../images/rum-dashboard.png)
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="ワークショップに RUM をフィルタリングする" %}}
 
-- ドロップダウンが以下のように設定/選択されていることを確認して、ワークショップを選択してください
-  - **時間枠**は **-15m** に設定されていること。
-  - 選択されている**Environment**は **[ワークショップ名]-workshop** であること。
-  - 選択されている**App**は **[ワークショップ名]-store** であること。
-  - **Source**は**All**に設定されていること。
-- 次に、**Page Views / JavaScript Errors**チャートの上にある **[ワークショップ名]-store** をクリックします。
-- これにより、**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events**ごとにメトリクスを分類し、過去のメトリクス（デフォルトでは1時間）と比較する新しいダッシュボードビューが表示されます。
+* ドロップダウンが以下のように設定/選択されていることを確認して、ご自身のワークショップを選択してください:
+  * **Time frame** が **-15m** に設定されています。
+  * 選択されている **Environment** が **[NAME OF WORKSHOP]-workshop** です。
+  * 選択されている **App** が **[NAME OF WORKSHOP]-store** です。
+  * **Source** が **All** に設定されています。
+* 次に、**Page Views / JavaScript Errors** チャートの上にある **[NAME OF WORKSHOP]-store** をクリックします。
+* これにより、メトリクスを **UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Workflows** に分類し、過去のメトリクス（デフォルトでは 1 時間）と比較する新しいダッシュボードビューが表示されます。
 
-{{% /notice %}}
+{{% /exercise %}}
 
-![RUMダッシュボード](../images/rum-metrics-dashboard.png)
+![RUM Dashboard](../images/rum-metrics-dashboard.png)
 
-- **UX Metrics:** ページビュー、ページロード、Webバイタルメトリクス。
-- **Front-end Health:** JavaScriptエラーとロングタスクの期間と数の内訳。
-- **Back-end Health:** ネットワークエラー、リクエスト、最初のバイトまでの時間。
-- **Custom Events:** Custom EventsのREDメトリクス（レート、エラー、期間）。
+* **UX Metrics:** Page Views、Page Load、および Web Vitals メトリクス。
+* **Front-end Health:** JavaScript エラーと Long Task の duration および count の内訳。
+* **Back-end Health:** Network Errors と Requests、Time to First Byte。
+* **Custom Workflows:** カスタムイベントの RED メトリクス（Rate、Error、Duration）。
 
-{{% notice title="演習" style="green" icon="running" %}}
+{{% exercise title="RUM タブを探索する" %}}
 
-- 各タブ（**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events**）をクリックしてデータを調べます。
+* 各タブ（**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Workflows**）をクリックして、データを確認してください。
 
 {{< tabs >}}
-{{% tab title="質問" %}}
-「Custom Events」タブのチャートを調べると、**どのチャート**が**レイテンシースパイクを**明確に示していますか？
+{{% tab title="Question" %}}
+***Custom Workflows* タブのチャートを確認すると、レイテンシのスパイクを明確に示しているのはどのチャートですか?**
 {{% /tab %}}
-{{% tab title="回答" %}}
-それは **「Custom Event Latency」** チャートです
+{{% tab title="Answer" %}}
+***Custom Workflow Duration* チャートです**
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+{{% /exercise %}}

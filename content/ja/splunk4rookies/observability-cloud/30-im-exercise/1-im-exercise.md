@@ -5,37 +5,37 @@ weight: 1
 time: 5 minutes
 ---
 
-This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you're not familiar with it.
+これは Kubernetes Navigator エクササイズの最初のセクションです。Kubernetes に馴染みがない方のために、以下に Kubernetes に関する概要情報を記載します。
 
-{{% notice title=" Kubernetes Terminology" style="info" %}}
-K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application
+{{% notice title=" Kubernetes 用語" style="info" %}}
+K8s（Kubernetes の略）は、オープンソースのコンテナオーケストレーションプラットフォームです。コンテナ化されたアプリケーションのデプロイ、スケーリング、メンテナンスを管理するもので、本ワークショップでは e-commerce アプリケーションをホストするために使用します。
 
-**Some terminology:**
+**用語について:**
 
-* A Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications.
-* Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop.
-* Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management
-* Applications are a collection of one or more Pods interacting together to provide a service.
-* Namespaces help you keep your applications organized and separate within the cluster, by providing a logical separation for multiple teams or projects within a cluster.
-* Workloads are like a task list and  define how many instances of your application should run, how they should be created, and how they should respond to failures
+* Kubernetes クラスターは、ノードと呼ばれるマシンのグループであり、コンテナ化されたアプリケーションを実行するために連携して動作します。
+* ノードは、クラスター内の個別のサーバーまたは VM です。通常、クラスター内には複数のノードがありますが、本ワークショップのように 1 つだけのノードで構成される場合もあります。
+* Pod は Kubernetes でデプロイ可能な最小単位で、同じネットワークとストレージを共有する 1 つ以上のコンテナを表し、効率的なアプリケーションのスケーリングと管理を可能にします。
+* アプリケーションは、サービスを提供するために連携する 1 つ以上の Pod の集合です。
+* Namespace は、クラスター内の複数のチームやプロジェクトに対して論理的な分離を提供することで、クラスター内のアプリケーションを整理し分離するのに役立ちます。
+* Workload はタスクリストのようなもので、アプリケーションのインスタンスをいくつ実行するか、どのように作成するか、障害にどう対応するかを定義します。
 {{% /notice %}}
 
-Please select the **K8s nodes** tile from the Tile pane if you have not yet done so.
-(Select **Kubernetes** as your Technology). This will bring you to the Kubernetes Navigator Page.
+まだ選択していない場合は、Tile ペインから **K8s nodes** タイルを選択してください。
+（Technology として **Kubernetes** を選択します）。これにより、Kubernetes Navigator ページが表示されます。
 
 ![Kubernetes](../images/im-kubernetes.png)
 
-The screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters & their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.
+上記のスクリーンショットは、Kubernetes navigator のメイン部分を示しています。Splunk Observability Cloud にメトリクスを送信しているすべてのクラスターとそのノード、およびクラスターベースのメトリクスを表示する最初のチャート行が表示されます。ワークショップでは、ほとんどの場合シングルノードの Kubernetes クラスターが表示されます。
 
-Before we dive deeper, let's make sure we are looking at our cluster.
+本格的に掘り下げる前に、自分のクラスターを表示していることを確認しましょう。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="自分のクラスターにフィルターする" %}}
 
-* First, use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
-* This can be done by selecting `k8s.cluster.name` from the filter drop-down box.
-* You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/select-checkmark.png?classes=inline&width=30px).
-* Click the {{% button style="blue"  %}} Apply Filter  {{% /button %}} button to focus on our Cluster
-* We now should have a single cluster visible.
-{{% /notice %}}
+* まず、![k8s filter](../images/k8s-add-filter.png?classes=inline) オプションを使用して、自分のクラスターを選択します。
+* これは、フィルターのドロップダウンボックスから `k8s.cluster.name` を選択することで行えます。
+* その後、（インストラクターから提供された）クラスター名の入力を開始できます。名前はドロップダウンの値にも表示されるはずです。自分のクラスターを選択し、ワークショップ用のものだけが ![blue tick](../images/select-checkmark.png?classes=inline&width=30px) でハイライトされていることを確認してください。
+* {{% button style="blue"  %}} Apply Filter  {{% /button %}} ボタンをクリックして、自分のクラスターにフォーカスします。
+* これで、単一のクラスターが表示されるはずです。
+{{% /exercise %}}
 
-Let's move on to the next page of this exercise and look at your cluster in detail.
+それでは、このエクササイズの次のページに進み、クラスターの詳細を見ていきましょう。
