@@ -137,12 +137,12 @@ docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 
 ### Create a Secret for AI Defense
 
-The document provided by the workshop instructor contains a `kubectl create secret` 
-command to create a secret to store the the Cisco AI Defense inspection API key 
-and endpoint. 
+Run the following command to create a secret to store the the Cisco AI Defense inspection API key 
+and endpoint: 
 
-Copy and paste this `kubectl create secret` command from the document 
-and run it in your ssh terminal.
+```bash
+kubectl create secret generic ai-defense-secret -n travel-agent --from-literal=ai-defense-inspection-api-key="$AI_DEFENSE_INSPECTION_API_KEY" --from-literal=ai-defense-inspection-api-endpoint="$AI_DEFENSE_INSPECTION_API_ENDPOINT"
+```
 
 ### Update the Kubernetes Manifest
 
