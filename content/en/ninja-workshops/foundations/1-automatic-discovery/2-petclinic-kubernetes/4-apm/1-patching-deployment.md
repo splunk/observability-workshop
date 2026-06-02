@@ -4,7 +4,7 @@ linkTitle: 1. Patching the Deployment
 weight: 1
 ---
 
-To configure **automatic discovery and configuration**, the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the `api-gateway` does not have the `splunk-otel-java` image by running the following:
+To configure **automatic discovery and configuration**, the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the `api-gateway` does not already contain the `splunk-otel-java` image by running the following:
 
 {{< tabs >}}
 {P}{{% tab title="Describe api-gateway" %}}
@@ -23,7 +23,7 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-Next, enable the Java automatic discovery and configuration for all the services by adding the annotation to the deployments. The following command will patch the all deployments. This will trigger the OpenTelemetry Operator to inject the `splunk-otel-java` image into the Pods:
+Next, enable Java automatic discovery and configuration for all the services by adding the annotation to the deployments. The following command will patch all the deployments. This will trigger the OpenTelemetry Operator to inject the `splunk-otel-java` image into the Pods:
 
 {{< tabs >}}
 {{% tab title="Patch all PetClinic services" %}}
@@ -76,4 +76,4 @@ Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. Aft
 
 ![restart](../../images/k8s-navigator-restarted-pods.png)
 
-Wait for the Pods to turn green in the Kubernetes Navigator, then go tho the next section.
+Wait for the Pods to turn green in the Kubernetes Navigator, then proceed to the next section.
