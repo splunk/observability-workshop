@@ -11,16 +11,12 @@ We'll start by running the application directly on our Linux EC2 instance.
 
 ### Set Environment Variables
 
-The document provided by the workshop instructor contains `export` commands to set the following 
-environment variables: 
+Your EC2 instance includes the following pre-set environment variables, which
+tell the application how to connect to an
+OpenAI model hosted in Azure (via Lite LLM Proxy).
 
 * `OPENAI_API_KEY`
 * `OPENAI_BASE_URL`
-
-These environment variables tell the application how to connect to an 
-OpenAI model hosted in Azure (via Lite LLM Proxy). 
-
-Copy and paste these `export` commands from the document and run them in your ssh terminal.
 
 ### Create Virtual Environment
 
@@ -108,10 +104,6 @@ kubectl create ns travel-agent
 
 We'll use a Kubernetes secret to store the OpenAI endpoint and key:
 
-> Caution: ensure you run this command in the terminal where you set 
-> the `OPENAI_API_KEY` and `OPENAI_BASE_URL` environment 
-> variables earlier. 
-
 ``` bash
 { [ -z "$OPENAI_API_KEY" ] || \
   [ -z "$OPENAI_BASE_URL" ]; } && \
@@ -123,8 +115,8 @@ We'll use a Kubernetes secret to store the OpenAI endpoint and key:
 ```
 
 > Note: if you get an error that says Missing variables, you’ll need to 
-> define your environment variables again using the `export` commands 
-> provided in the document from your instructor. 
+> manually define environment variables to connect to OpenAI API before 
+> running this command. 
 
 ### Deploy the Application Using the Kubernetes Manifest File
 
