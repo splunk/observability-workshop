@@ -1,15 +1,16 @@
 ---
-title: 3. Workshop Clean-up
+title: Workshop Clean-up
 weight: 3
+time: false
 ---
 
-##### **Workshop Cleanup**
+## **Workshop Cleanup**
 
 After completing your workshop session, it’s important to clean up the environment to save costs and ensure resources are properly managed. Use **SWiPE** to handle the cleanup process efficiently.
 
 ---
 
-##### **What SWiPE Deletes**
+### **What SWiPE Deletes**
 
 SWiPE automates the following cleanup tasks:
 
@@ -22,13 +23,13 @@ SWiPE automates the following cleanup tasks:
 
 ---
 
-##### **Advanced Cleanup Features**
+### **Advanced Cleanup Features**
 
 SWiPE also offers advanced cleanup options, such as deleting tokens and detectors. Use these features **with caution**, as they permanently remove resources.
 
 ---
 
-##### **Don’t Forget to Delete Workshop Instances**
+### **Don’t Forget to Delete Workshop Instances**
 
 In addition to using SWiPE, ensure you **delete your workshop instances** in [**Splunk Show**](https://show.splunk.com) to avoid unnecessary costs.
 

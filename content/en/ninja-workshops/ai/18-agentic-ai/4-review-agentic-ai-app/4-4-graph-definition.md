@@ -54,12 +54,9 @@ Even though this uses conditional edges, the workflow is effectively linear:
 If the workflow is effectively linear, why does the graph still use
 `add_conditional_edges` and the `should_continue()` router?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 Because it makes the workflow **flexible and extensible**. Even though the current flow
 is linear, the routing function allows the graph to dynamically decide the next node
 based on the state. This makes it easy to add branching, retries, or different
 execution paths later without redesigning the graph.
-
-</details>
+{{< /details >}}

@@ -79,9 +79,7 @@ dotnet run
 
 How can we see what traces are being exported by the .NET application from our Linux instance?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 There are two ways we can do this:
 
 1. We could add `OTEL_TRACES_EXPORTER=otlp,console` at the start of the `dotnet run` command, which ensures that traces are both written to collector via OTLP as well as the console.
@@ -104,7 +102,7 @@ service:
       - resourcedetection
       exporters: [otlphttp, signalfx, debug]
 ```
-</details>
+{{< /details >}}
 
 ## Access the Application
 
