@@ -7,22 +7,19 @@ time: 10 minutes
 
 Once the installation has completed, you can log in to **Splunk Observability Cloud** and verify that the metrics are flowing in from your Kubernetes cluster.
 
-From the left-hand menu, click on **Infrastructure** and select **Kubernetes**, then select the **Kubernetes nodes** tile.
+From the left-hand menu, click on **Infrastructure** and select **Kubernetes overview**. You will be prompted to apply at least one filter. Click inside the **k8s.cluster.name** field, then select the `<INSTANCE>-k3s-cluster` (where`<INSTANCE>` is replaced with the value you noted down earlier). Click **Apply Filters**.
 
-![NavigatorList](../images/navigatorlist.png)
+![K8s Filter Dialog](../images/k8s-filter-dialog.png)
 
-Once you are in the **Kubernetes nodes** overview, change the **Time** filter from **-1h** to the last 15 minutes **(-15m)** to focus on the latest data, then select **Table** to list all the nodes that are reporting metrics.
+Once you are in the **Kubernetes overview**, select the **Nodes (3)** card title to list all the nodes in your cluster that are reporting metrics.
 
-Next, in the **Refine by:** panel, select **Cluster name** and choose your cluster from the list.
+![K8s Overview](../images/k8s-overview.png)
 
-{{% notice title="Tip" style="info" icon="lightbulb" %}}
-To identify your specific cluster, use the `INSTANCE` value from the shell script output you ran during setup. This unique identifier helps you locate your workshop cluster among other nodes in the list.
-{{% /notice %}}
+Next, in the **Kubernetes entities** panel, select the node that hosts the largest number of pods. It will be named 'k3d-<INSTANCE>-cluster-server-0' or similar.
 
-This will filter the list to show only the nodes from your cluster.
+![K8s Node List](../images/k8s-node-list.png)
 
-![K8s Nodes](../images/k8s-nodes.png)
+In the node panel, select the **Logs** tab to see the logs from the relevant node.
 
-Switch to the **K8s node logs** view to see the logs from your nodes.
+![K8s Node Logs](../images/k8s-node-logs.png)
 
-![Logs](../images/k8s-peek-at-logs.png)
