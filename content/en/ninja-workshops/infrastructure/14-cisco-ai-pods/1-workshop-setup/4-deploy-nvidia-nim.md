@@ -8,45 +8,45 @@ time: 20 minutes
 The **NVIDIA GPU Operator** is a Kubernetes Operator that automates the deployment, configuration,
 and management of all necessary NVIDIA software components to provision GPUs within a Kubernetes cluster.
 
-The **NVIDIA NIM Operator** is used to deploy LLMs in Kubernetes environments, such 
-as the OpenShift cluster we created earlier in this workshop. 
+The **NVIDIA NIM Operator** is used to deploy LLMs in Kubernetes environments, such
+as the OpenShift cluster we created earlier in this workshop.
 
-This section of the workshop walks through the steps necessary to deploy both the 
-NVIDIA GPU and NIM operators in our OpenShift cluster. 
+This section of the workshop walks through the steps necessary to deploy both the
+NVIDIA GPU and NIM operators in our OpenShift cluster.
 
 ## Create a NVIDIA NGC Account
 
-An NVIDIA GPU CLOUD (NGC) account is required to download LLMs and deploy them 
-using the NVIDIA NIM operator. You can register [here](https://ngc.nvidia.com/signin) 
-to create an account. 
+An NVIDIA GPU CLOUD (NGC) account is required to download LLMs and deploy them
+using the NVIDIA NIM operator. You can register [here](https://ngc.nvidia.com/signin)
+to create an account.
 
-## Register with the NVIDIA Developer Program 
+## Register with the NVIDIA Developer Program
 
-Registering with the [NVIDIA Developer Program](https://developer.nvidia.com/) allows us 
-to get access to NVIDIA NIM, which we'll use later in the workshop to deploy LLMs. 
+Registering with the [NVIDIA Developer Program](https://developer.nvidia.com/) allows us
+to get access to NVIDIA NIM, which we'll use later in the workshop to deploy LLMs.
 
-Ensure that `NVIDIA Developer Program` appears on your list of NVIDIA subscriptions in NGC: 
+Ensure that `NVIDIA Developer Program` appears on your list of NVIDIA subscriptions in NGC:
 
 ![NVIDIA Subscriptions](../../images/NVIDIA-Subscriptions.png)
 
 ## Generate an NGC API Key
 
-Once you're logged in to the NGC website, click on your user account icon on the 
-top-right corner of the screen and select **Setup**. 
+Once you're logged in to the NGC website, click on your user account icon on the
+top-right corner of the screen and select **Setup**.
 
-Then click **Generate API Key** and follow the instructions. Ensure the key is associated 
-with the **NGC Catalog** and **Secrets Manager** services. 
+Then click **Generate API Key** and follow the instructions. Ensure the key is associated
+with the **NGC Catalog** and **Secrets Manager** services.
 
-Save the generated key in a safe place as we'll use it later in the workshop. 
+Save the generated key in a safe place as we'll use it later in the workshop.
 
-Refer to [NVIDIA Documentation](https://docs.nvidia.com/ngc/gpu-cloud/ngc-user-guide/index.html#generating-api-key) 
-for further details on generating an NGC API key. 
+Refer to [NVIDIA Documentation](https://docs.nvidia.com/ngc/gpu-cloud/ngc-user-guide/index.html#generating-api-key)
+for further details on generating an NGC API key.
 
 ## Install the Node Feature Discovery Operator
 
-The steps in this section are based on [Installing the NFD Operator using the CLI ](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#install-operator-cli_psap-node-feature-discovery-operator). 
+The steps in this section are based on [Installing the NFD Operator using the CLI ](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#install-operator-cli_psap-node-feature-discovery-operator).
 
-Run the following script to install the Node Feature Discovery Operator: 
+Run the following script to install the Node Feature Discovery Operator:
 
 ``` bash
 cd nvidia
@@ -87,13 +87,13 @@ Run the following script to create the Node Feature Discovery CR:
 
 The steps in this section are based on [Installing the NVIDIA GPU Operator on OpenShift](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/install-gpu-ocp.html#installing-the-nvidia-gpu-operator-on-openshift).
 
-Run the following script to install the NVIDIA GPU Operator: 
+Run the following script to install the NVIDIA GPU Operator:
 
 ``` bash
 ./install-nvidia-gpu-operator.sh
 ```
 
-Wait until the install plan has been created: 
+Wait until the install plan has been created:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -113,7 +113,7 @@ install-mmlxq   gpu-operator-certified.v25.3.4   Manual     false
 {{% /tab %}}
 {{< /tabs >}}
 
-Approve the install plan with the following commands: 
+Approve the install plan with the following commands:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -133,7 +133,7 @@ installplan.operators.coreos.com/install-rc9xq patched
 {{% /tab %}}
 {{< /tabs >}}
 
-## Create the Cluster Policy 
+## Create the Cluster Policy
 
 The steps in this section are based on [Create the cluster policy using the CLI](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/install-gpu-ocp.html#create-the-cluster-policy-using-the-cli).
 
@@ -143,7 +143,7 @@ The steps in this section are based on [Create the cluster policy using the CLI]
 
 ## Verify the NVIDIA GPU Operator Installation
 
-Verify the successful installation of the NVIDIA GPU Operator using the following command: 
+Verify the successful installation of the NVIDIA GPU Operator using the following command:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -197,7 +197,7 @@ daemonset.apps/nvidia-operator-validator                       2         2      
 
 The steps in this section are based on [Install from GitHub release](https://sdk.operatorframework.io/docs/installation/#install-from-github-release).
 
-### Download the release binary 
+### Download the release binary
 
 Set platform information:
 
@@ -302,20 +302,20 @@ ngc config set
 Define an environment variable with your NGC API key:
 
 ``` bash
-export NGC_API_KEY=<your NGC API key> 
+export NGC_API_KEY=<your NGC API key>
 ```
 
 ## Install the NVIDIA NIM Operator
 
 The steps in this section are based on [Installing NIM Operator on Red Hat OpenShift Using operator-sdk (for Development-Only)](https://docs.nvidia.com/nim-operator/latest/install.html#installing-nim-operator-on-red-hat-openshift-using-operator-sdk-for-development-only).
 
-Run the following script to install the NIM operator: 
+Run the following script to install the NIM operator:
 
 ``` bash
 ./install-nim-operator.sh
 ```
 
-Confirm the controller pod is running: 
+Confirm the controller pod is running:
 
 {{< tabs >}}
 {{% tab title="Script" %}}

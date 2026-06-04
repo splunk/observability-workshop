@@ -60,7 +60,7 @@ helm upgrade --install \
 
 ## Populate the Vector Database
 
-Now that Weaviate is up and running, let's add some data to it 
+Now that Weaviate is up and running, let's add some data to it
 that we'll use in the workshop with a custom application.
 
 The application used to do this is based on

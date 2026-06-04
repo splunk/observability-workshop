@@ -22,11 +22,11 @@ and **SSH Password** provided as part of the **Connection Information**,
 connect to your EC2 instance using one of the methods below:
 
 * Mac OS / Linux
-    * ssh splunk@IP address
+  * ssh splunk@IP address
 * Windows 10+
-    * Use the OpenSSH client
+  * Use the OpenSSH client
 * Earlier versions of Windows
-    * Use Putty
+  * Use Putty
 
 {{% notice title="Note: Answer 'yes' when asked if you want to continue connecting" style="primary" icon="running" %}}
 
@@ -68,7 +68,7 @@ The high-level steps to do this are as follows:
 2. In VS Code, navigate to **Settings** and then **Extensions**.
 3. Search for the **Remote – SSH extension** (by Microsoft) and install it.
 
-![Install Remote SSH Extension](../images/InstallRemoteSSH.png)
+    ![Install Remote SSH Extension](../images/InstallRemoteSSH.png)
 
 4. Press F1 (or Ctrl+Shift+P on Windows / Cmd+Shift+P on Mac OS).
 5. Run **Remote-SSH: Connect to Host**.

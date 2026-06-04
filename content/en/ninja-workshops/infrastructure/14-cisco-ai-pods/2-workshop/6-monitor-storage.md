@@ -5,26 +5,26 @@ weight: 6
 time: 5 minutes
 ---
 
-In this step, we'll configure the Prometheus receiver to monitor the storage. 
+In this step, we'll configure the Prometheus receiver to monitor the storage.
 
-## What storage do Cisco AI PODs utilize? 
+## What storage do Cisco AI PODs utilize?
 
-Cisco AI PODs have a number of different storage options, including Pure Storage, 
-VAST, and NetApp. 
+Cisco AI PODs have a number of different storage options, including Pure Storage,
+VAST, and NetApp.
 
-The workshop will focus on Pure Storage. 
+The workshop will focus on Pure Storage.
 
-## How do we capture Pure Storage metrics? 
+## How do we capture Pure Storage metrics?
 
-Cisco AI PODs that utilize Pure Storage also use a technology called Portworx, 
-which provides persistent storage for Kubernetes. 
+Cisco AI PODs that utilize Pure Storage also use a technology called Portworx,
+which provides persistent storage for Kubernetes.
 
-Portworx includes a metrics endpoint that we can scrape using the Prometheus receiver. 
+Portworx includes a metrics endpoint that we can scrape using the Prometheus receiver.
 
 ## Capture Storage Metrics with Prometheus
 
-Let's modify the OpenTelemetry collector configuration to scrape Portworx metrics 
-with the Prometheus **receiver**. 
+Let's modify the OpenTelemetry collector configuration to scrape Portworx metrics
+with the Prometheus **receiver**.
 
 To do so, let's add an additional Prometheus **receiver creator** section
 to the `otel-collector-values.yaml` file. Add it after the `receiver_creator/weaviate`
@@ -75,8 +75,8 @@ processor configuration as well:
 
 > Note: add just the new metrics starting with `px_cluster_cpu_percent`
 
-We'll need to add a new metrics **pipeline** for Portworx metrics as well. 
-Add the following to the bottom of the file: 
+We'll need to add a new metrics **pipeline** for Portworx metrics as well.
+Add the following to the bottom of the file:
 
 ``` yaml
         metrics/storage:

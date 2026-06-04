@@ -28,8 +28,6 @@ used Agentic AI frameworks, including:
 * OpenAI SDK
 * OpenAI Agents SDK
 
-#### When to use this option
-
 Choose this approach when:
 
 * Your application uses one of the frameworks listed above.
@@ -63,15 +61,11 @@ Commonly used third-party instrumentation libraries include:
 * [OpenLIT](https://docs.openlit.io/latest/sdk/overview)
 * [Traceloop / OpenLLMetry](https://www.traceloop.com/docs/openllmetry/introduction)
 
-#### When to use this option
-
 This approach is well suited when:
 
 * Your application uses an Agentic AI framework not listed in Option 1
 * The application is **already instrumented** with a third-party instrumentation library
 * You want to avoid re-instrumenting existing code
-
-#### How it works
 
 Third-party libraries typically emit telemetry in their own formats or earlier OpenTelemetry schemas.
 To integrate this data with Splunk Observability Cloud:
@@ -235,8 +229,7 @@ LangChain/LangGraph version of the application:
 Do you notice anything different about the CrewAI traces compared
 to LangChain/LangGraph traces?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
+{{< details summary="Do you notice anything different about the CrewAI traces compared to LangChain/LangGraph traces?" >}}
 
 There are a few differences:
 
@@ -244,4 +237,4 @@ There are a few differences:
 * The coordinator and plan synthesizer agents aren't listed for the CrewAI version
 * The spans for the `travel-planner-crewai` service include the agent instructions as part of the waterfall view
 
-</details>
+{{< /details >}}

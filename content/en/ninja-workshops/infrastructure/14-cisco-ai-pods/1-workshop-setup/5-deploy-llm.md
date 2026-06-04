@@ -5,8 +5,8 @@ weight: 5
 time: 20 minutes
 ---
 
-In this section, we'll use the NVIDIA NIM Operator to deploy two Large Language Models 
-to our OpenShift Cluster. 
+In this section, we'll use the NVIDIA NIM Operator to deploy two Large Language Models
+to our OpenShift Cluster.
 
 ## Create a Namespace
 
@@ -34,16 +34,16 @@ oc create secret -n nim-service generic ngc-api-secret \
 
 ## Deploy an LLM
 
-Run the following command to create the NIMCache and NIMService: 
+Run the following command to create the NIMCache and NIMService:
 
 ``` bash
 oc apply -n nim-service -f nvidia-llm.yaml
 ```
 
-Confirm that the Persistent Volume was created and the Persistent Volume Claim 
-was bound to is successfully: 
+Confirm that the Persistent Volume was created and the Persistent Volume Claim
+was bound to is successfully:
 
-> Note: this can take several minutes to occur 
+> Note: this can take several minutes to occur
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -68,7 +68,7 @@ persistentvolumeclaim/meta-llama-3-2-1b-instruct-pvc   Bound    pvc-a603b8a7-144
 {{% /tab %}}
 {{< /tabs >}}
 
-Confirm that the NIMCache is Ready: 
+Confirm that the NIMCache is Ready:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -108,17 +108,17 @@ meta-llama-3-2-1b-instruct   Ready    11m
 {{% /tab %}}
 {{< /tabs >}}
 
-## Test the LLM 
+## Test the LLM
 
-Let's ensure the LLM is working as expected. 
+Let's ensure the LLM is working as expected.
 
-Start a pod that has access to the curl command: 
+Start a pod that has access to the curl command:
 
 ``` bash
 oc run --rm -it -n default curl --image=curlimages/curl:latest -- sh
 ```
 
-Then run the following command to send a prompt to the LLM: 
+Then run the following command to send a prompt to the LLM:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -182,10 +182,10 @@ curl -X "POST" \
 
 ## Deploy an Embeddings Model
 
-We're also going to deploy an [embeddings model](https://build.nvidia.com/nvidia/llama-3_2-nv-embedqa-1b-v2/deploy) 
-in our cluster, which will be used later in the workshop to implement Retrieval Augmented Generation (RAG). 
+We're also going to deploy an [embeddings model](https://build.nvidia.com/nvidia/llama-3_2-nv-embedqa-1b-v2/deploy)
+in our cluster, which will be used later in the workshop to implement Retrieval Augmented Generation (RAG).
 
-Run the following command to deploy the embeddings model: 
+Run the following command to deploy the embeddings model:
 
 ``` bash
 oc apply -n nim-service -f nvidia-embeddings.yaml

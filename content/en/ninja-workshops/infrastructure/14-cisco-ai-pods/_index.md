@@ -1,5 +1,5 @@
 ---
-title: Monitoring Cisco AI Pods with Splunk Observability Cloud 
+title: Monitoring Cisco AI Pods with Splunk Observability Cloud
 linkTitle: Monitoring Cisco AI Pods with Splunk Observability Cloud
 weight: 14
 archetype: chapter
