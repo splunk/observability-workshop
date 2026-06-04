@@ -55,24 +55,18 @@ This function implements the following application lifecycle:
 Why does the code use `compiled_app.stream(initial_state, config)` instead of
 simply calling the graph once and getting the final result?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 Because streaming executes the workflow **step by step as each node runs**. This lets
 the application observe intermediate states, track which node is executing,
 and monitor the workflow in real time instead of waiting only for the final output.
-
-</details>
+{{< /details >}}
 
 #### Question 2
 
 Why do we create an `initial_state` before running the graph?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 Because LangGraph workflows operate on a shared state object. The `initial_state`
 provides the starting data that nodes will read from, update, and pass along as
 the workflow progresses.
-
-</details>
+{{< /details >}}

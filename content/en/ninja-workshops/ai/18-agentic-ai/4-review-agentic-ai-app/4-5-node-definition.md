@@ -48,9 +48,7 @@ The hotel and activity nodes follow the same structure, which makes the workflow
 When creating the LLM for the `flight_specialist` node, we specified
 a temperature of `0.4`. What does this mean?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 Temperature controls how random or creative the model’s responses are.
 
 * **Lower temperature (e.g., 0.0–0.3)**: more deterministic and consistent responses
@@ -60,5 +58,4 @@ Temperature controls how random or creative the model’s responses are.
 So setting **temperature=0.4** means the `flight_specialist` agent will produce
 responses that are **mostly consistent and reliable, with a small amount of
 variation**, which useful for tasks that need correctness but not completely rigid answers.
-
-</details>
+{{< /details >}}

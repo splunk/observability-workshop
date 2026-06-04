@@ -1,6 +1,7 @@
 ---
-title: 2. Using Splunk Show
+title: Using Splunk Show
 weight: 2
+time: false
 ---
 
 ## **Observability Workshop Templates**

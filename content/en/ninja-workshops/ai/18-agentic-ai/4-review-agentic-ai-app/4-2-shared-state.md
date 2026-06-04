@@ -44,9 +44,7 @@ How would you explain the syntax used for the `messages` field?
 messages: Annotated[List[AnyMessage], add_messages]
 ```
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 `messages: Annotated[List[AnyMessage], add_messages]` does two things.
 
 * `List[AnyMessage]` defines the **type** of the field: it’s a list of LangChain message objects (system, human, or AI messages).
@@ -54,5 +52,4 @@ messages: Annotated[List[AnyMessage], add_messages]
 
 Specifically, `add_messages` means that when a node writes new messages, LangGraph will **append them to the existing list instead of overwriting it**.
 So the conversation history grows as each node adds messages.
-
-</details>
+{{< /details >}}

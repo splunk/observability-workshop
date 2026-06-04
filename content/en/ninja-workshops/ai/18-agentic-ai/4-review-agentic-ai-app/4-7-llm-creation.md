@@ -29,9 +29,7 @@ creative they should be.
 
 How would you create an LLM for Azure OpenAI (rather than OpenAI?)
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 Creating an LLM for Azure OpenAI has a few differences. The function would return a `AzureChatOpenAI`
 object instead of `ChatOpenAI`.
 
@@ -51,5 +49,4 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Azur
         # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
     )
 ```
-
-</details>
+{{< /details >}}
