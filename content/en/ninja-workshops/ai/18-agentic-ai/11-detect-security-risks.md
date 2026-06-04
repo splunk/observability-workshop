@@ -10,26 +10,27 @@ time: 15 minutes
 > longer working, please refer to the model solution for this section
 > which is in the `~/workshop/agentic-ai/app-with-security-risk` folder.
 
-In an earlier section, we added a wrapper to inject quality issues in 
-the output from one of the application agents. 
+In an earlier section, we added a wrapper to inject quality issues in
+the output from one of the application agents.
 
-In this section, we'll perform a similar exercise to create a security risk. 
+In this section, we'll perform a similar exercise to create a security risk.
 
-Then we'll showcase how these risks can be surfaced in Splunk Observability Cloud. 
+Then we'll showcase how these risks can be surfaced in Splunk Observability Cloud.
 
 ## Poison the Activity Specialist Output
 
 Let's modify the activity specialist agent to use this wrapper and modify
-the LLM output. 
+the LLM output.
 
 Open the `~/workshop/agentic-ai/base-app/main.py` file for editing.
 
-Replace the definition of the `activity_specialist_node` function with the version included below. 
-This effectively simulates a scenario where the LLM has 
-included the user's credit card number as part of the response, which is 
-a clear security risk and PCI violation. 
+Replace the definition of the `activity_specialist_node` function with the version included below.
+This effectively simulates a scenario where the LLM has
+included the user's credit card number as part of the response, which is
+a clear security risk and PCI violation.
 
-> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
+> [!TIP]
+> To delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual
 > Line` mode, then use the down arrow to select all the lines you want to delete, then press `d`
 > to delete the selected lines.
 
@@ -101,7 +102,8 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-se
 docker push localhost:9999/agentic-ai-app:app-with-security-risk
 ```
 
-> Tip: if the image is taking too long to build, consider using the pre-built
+> [!TIP]
+> If the image is taking too long to build, consider using the pre-built
 > image instead. To do so, update the image name in
 > the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:app-with-security-risk`
 > instead of `localhost:9999/agentic-ai-app:app-with-security-risk`.
@@ -137,10 +139,10 @@ kubectl get pods -n travel-agent
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-````
+```text
 NAME                                        READY   STATUS    RESTARTS   AGE
 travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
-````
+```
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -160,9 +162,9 @@ curl http://travel-planner.localhost/travel/plan \
 
 ## View Events in Cisco AI Defense
 
-Workshop attendees won’t be able to log in to the AI Defense application directly. 
-However, if we were able to view the AI Defense dashboard, we would see that an 
-event was logged for this request and that the credit card number included in the 
+Workshop attendees won’t be able to log in to the AI Defense application directly.
+However, if we were able to view the AI Defense dashboard, we would see that an
+event was logged for this request and that the credit card number included in the
 prompt was automatically redacted.
 
 ![AI Defense Events](../images/AIDefenseEvents.png)
@@ -181,12 +183,12 @@ includes security risks now!
 
 ![Agents with Security Risks](../images/AgentsWithSecurityRisks.png)
 
-> You should also see the security risks on the `AI overview` page, as well as the 
-> `AI agent` page for the `plan_synthesizer` agent. 
+> You should also see the security risks on the `AI overview` page, as well as the
+> `AI agent` page for the `plan_synthesizer` agent.
 
 Navigate to `APM -> AI trace data` and load the most recent trace.
 
-In the agent flow, we can see that a security risk was detected: 
+In the agent flow, we can see that a security risk was detected:
 
 ![Agent Flow With Security Risk](../images/AgentFlowWithSecurityRisk.png)
 
@@ -196,15 +198,15 @@ card number in the response in plain text:
 
 ![Trace With Security Risk](../images/TraceWithSecurityRisk.png)
 
-Clicking on the security risk provides additional details, along with a link 
-to view the event in Cisco AI Defense: 
+Clicking on the security risk provides additional details, along with a link
+to view the event in Cisco AI Defense:
 
 ![Security Risk Details](../images/SecurityRiskDetails.png)
 
-And if we view the `Span details` for this span, we can see that the 
-`gen_ai.security.event_id` attribute is included with this span: 
+And if we view the `Span details` for this span, we can see that the
+`gen_ai.security.event_id` attribute is included with this span:
 
 ![Security Event Span Attribute](../images/SecurityEventSpanAttribute.png)
 
-This attribute allows us to correlate the span in Splunk Observability Cloud 
-with the corresponding event in Cisco AI Defense. 
+This attribute allows us to correlate the span in Splunk Observability Cloud
+with the corresponding event in Cisco AI Defense.

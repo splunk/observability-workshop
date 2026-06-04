@@ -41,8 +41,7 @@ python3 main.py
 ### Test the Application
 
 Open a second terminal session connected to your EC2 instance, and run the following
-command to test the application. It should return the suggested travel plans in json 
-format: 
+command to test the application. It should return the suggested travel plans in json format:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -70,31 +69,32 @@ curl http://localhost:8080/travel/plan \
 
 ### Stop the Application
 
-Once you've confirmed that the application is working successfully, return to your 
-first terminal and stop the application. 
+Once you've confirmed that the application is working successfully, return to your first terminal and stop the application.
 
 ## Deploy the Agentic AI Application (Kubernetes)
 
-Now that the application is working successfully, let's deploy it to Kubernetes. 
+Now that the application is working successfully, let's deploy it to Kubernetes.
 
-### Build the Docker Image 
+### Build the Docker Image
 
 In this section, we'll use the Dockerfile located at `~/workshop/agentic-ai/base-app/Dockerfile`
-to build a Docker image for the application. Run the following commands to build the image: 
+to build a Docker image for the application. Run the following commands to build the image:
 
 ``` bash
 cd ~/workshop/agentic-ai/base-app
 docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:base-app .
 docker push localhost:9999/agentic-ai-app:base-app
 ```
-> Tip: if the image is taking too long to build, consider using the pre-built
-> image instead. To do so, update the image name in 
+
+> [!TIP]
+> If the image is taking too long to build, consider using the pre-built
+> image instead. To do so, update the image name in
 > the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:base-app`
-> instead of `localhost:9999/agentic-ai-app:base-app`. 
+> instead of `localhost:9999/agentic-ai-app:base-app`.
 
 ### Create Application Namespace
 
-Let's create a new namespace to host our application: 
+Let's create a new namespace to host our application:
 
 ``` bash
 kubectl create ns travel-agent
@@ -114,16 +114,17 @@ We'll use a Kubernetes secret to store the OpenAI endpoint and key:
   --from-literal=openai-api-key=$OPENAI_API_KEY
 ```
 
-> Note: if you get an error that says Missing variables, you’ll need to 
-> manually define environment variables to connect to OpenAI API before 
-> running this command. 
+> [!NOTE]
+> If you get an error that says Missing variables, you’ll need to
+> manually define environment variables to connect to OpenAI API before
+> running this command.
 
 ### Deploy the Application Using the Kubernetes Manifest File
 
 A pre-built Kubernetes manifest can be found in the file named
 `~/workshop/agentic-ai/base-app/k8s.yaml`.
 
-We can deploy the application using the manifest file as follows: 
+We can deploy the application using the manifest file as follows:
 
 ``` bash
 kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
@@ -131,7 +132,7 @@ kubectl apply -f ~/workshop/agentic-ai/base-app/k8s.yaml
 
 ### Ensure the Application is Running
 
-Use the following command to ensure the application pod has a 
+Use the following command to ensure the application pod has a
 status of `Running`:
 
 {{< tabs >}}
@@ -144,15 +145,15 @@ kubectl get pods -n travel-agent
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-````
+```text
 NAME                                        READY   STATUS    RESTARTS   AGE
 travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
-````
+```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-### Test the Application in Kubernetes 
+### Test the Application in Kubernetes
 
 Run the following command to test the application:
 

@@ -5,52 +5,53 @@ weight: 8
 time: 15 minutes
 ---
 
-> Note: this section of the workshop requires changes to multiple files.
+> [!NOTE]
+> This section of the workshop requires changes to multiple files.
 > If you're not sure where to make the changes, or your application is no
 > longer working, please refer to the model solution for this section
 > which is in the `~/workshop/agentic-ai/app-with-agents-and-tools` folder.
 
-In the previous section, we discovered that our agents aren't appearing on the new 
-**Agents** page, nor in the **Agent flow** at the top of the trace. 
+In the previous section, we discovered that our agents aren't appearing on the new
+**Agents** page, nor in the **Agent flow** at the top of the trace.
 
-The reason is that our application isn't currently using agents, but is instead invoking 
-the LLM directly. 
+The reason is that our application isn't currently using agents, but is instead invoking
+the LLM directly.
 
-In other words, right now, our app is like a scripted play. Every line and every action is written 
-in the code. When we call the LLM, we are just asking it to read a specific line. 
-Because the LLM isn't making choices, the Observability for AI instrumentation doesn't 
+In other words, right now, our app is like a scripted play. Every line and every action is written
+in the code. When we call the LLM, we are just asking it to read a specific line.
+Because the LLM isn't making choices, the Observability for AI instrumentation doesn't
 recognize it as an autonomous agent.
 
 In this next section, we are going to give the LLM **tools** and the authority
-to decide how to use them. By moving to an agentic model, the LLM will start 
+to decide how to use them. By moving to an agentic model, the LLM will start
 generating **Tool Calls**. Our OpenTelemetry instrumentation will capture these
-interactions, allowing us to see the LLM's thought process and 
-tool usage, and each of our agents will be represented in Splunk Observability Cloud. 
+interactions, allowing us to see the LLM's thought process and
+tool usage, and each of our agents will be represented in Splunk Observability Cloud.
 
 ## Direct Invocation vs. Agentic Traces
 
-Before making these changes, let's dive deeper into how traces are captured 
-when the LLM is invoked directly vs. via an agent. 
+Before making these changes, let's dive deeper into how traces are captured
+when the LLM is invoked directly vs. via an agent.
 
 **Direct Invocation Traces:**
 
-When you call `llm.invoke()`, the instrumentation sees a standard "Chat" or "Completion" span. 
-It records the prompt and the response. Because there is no "loop" or "tool-calling" logic 
-managed by the agent framework, Splunk Observability Cloud doesn't see the metadata required 
+When you call `llm.invoke()`, the instrumentation sees a standard "Chat" or "Completion" span.
+It records the prompt and the response. Because there is no "loop" or "tool-calling" logic
+managed by the agent framework, Splunk Observability Cloud doesn't see the metadata required
 to categorize the span as an "Agent."
 
 **Agentic Traces:**
 
-When you use an agent (e.g., `create_react_agent`), 
-the framework wraps the execution in specific "Agent" and "Tool" spans. These 
-spans contain metadata that tells OpenTelemetry: "This isn't 
-just a chat; this is a reasoning loop with specific tools." This is what 
+When you use an agent (e.g., `create_react_agent`),
+the framework wraps the execution in specific "Agent" and "Tool" spans. These
+spans contain metadata that tells OpenTelemetry: "This isn't
+just a chat; this is a reasoning loop with specific tools." This is what
 populates the Agents Page and the Agent Flow diagrams in the trace visualization.
 
-## Make a Backup 
+## Make a Backup
 
-Before making changes to the Python code, make a backup of the `main.py` file 
-using the following command: 
+Before making changes to the Python code, make a backup of the `main.py` file
+using the following command:
 
 ```bash
 cp ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/base-app/main.py.bak
@@ -79,7 +80,7 @@ from langchain.agents import (
 In the same `main.py` file, add the tool definitions between the lines that
 say `Begin: Tool Definitions` and `End: Tool Definitions`:
 
-```python 
+```python
 # Begin: Tool Definitions
 
 @tool
@@ -141,17 +142,17 @@ with the agent name, and then invoke the agent rather than the LLM.
 
 {{% notice title="LangChain Agents" style="green" icon="running" %}}
 
-In the next step, we’ll add **agents** to our application. But what exactly is an 
+In the next step, we’ll add **agents** to our application. But what exactly is an
 agent in the context of LangChain?
 
-According to the [LangChain documentation](https://docs.langchain.com/oss/python/langchain/agents): 
+According to the [LangChain documentation](https://docs.langchain.com/oss/python/langchain/agents):
 
-"Agents combine language models with tools to create systems that 
-can reason about tasks, decide which tools to use, and iteratively 
+"Agents combine language models with tools to create systems that
+can reason about tasks, decide which tools to use, and iteratively
 work towards solutions."
 
-In practice, this means the model is no longer limited to generating text. Instead, 
-it can choose from a set of available **tools** (such as APIs, databases, or code execution) 
+In practice, this means the model is no longer limited to generating text. Instead,
+it can choose from a set of available **tools** (such as APIs, databases, or code execution)
 to help complete a task.
 
 This style of agent is often called a **LangChain ReAct agent**.
@@ -167,13 +168,12 @@ This process repeats until the agent has gathered enough information to produce 
 
 {{% /notice %}}
 
+Replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, `activity_specialist_node`, and `plan_synthesizer_node` functions with the following:
 
-Replace the definitions for the `coordinator_node`, `flight_specialist_node`, `hotel_specialist_node`, 
-`activity_specialist_node`, and `plan_synthesizer_node` functions with the following: 
-
-> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
-> Line` mode, then use the down arrow to select all the lines you want to delete, then press `d` 
-> to delete the selected lines. 
+> [!TIP]
+> To delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual
+> Line` mode, then use the down arrow to select all the lines you want to delete, then press `d`
+> to delete the selected lines.
 
 ```python
 def coordinator_node(
@@ -383,9 +383,9 @@ def plan_synthesizer_node(state: PlannerState) -> PlannerState:
     return state
 ```
 
-Notice how we passed a tool when creating the flight, hotel, and activity specialist agents. 
-When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill 
-the request. 
+Notice how we passed a tool when creating the flight, hotel, and activity specialist agents.
+When the agent is invoked, the LLM will decide whether the tool should be invoked to fulfill
+the request.
 
 {{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
 
@@ -407,11 +407,11 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-ag
 docker push localhost:9999/agentic-ai-app:app-with-agents-and-tools
 ```
 
-> Tip: if the image is taking too long to build, consider using the pre-built
+> [!TIP]
+> If the image is taking too long to build, consider using the pre-built
 > image instead. To do so, update the image name in
 > the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:app-with-agents-and-tools`
 > instead of `localhost:9999/agentic-ai-app:app-with-agents-and-tools`.
-
 
 ### Update the Kubernetes Manifest
 
@@ -445,10 +445,10 @@ kubectl get pods -n travel-agent
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-````
+```text
 NAME                                        READY   STATUS    RESTARTS   AGE
 travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
-````
+```
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -468,28 +468,28 @@ curl http://travel-planner.localhost/travel/plan \
 
 ## View Data in Splunk Observability Cloud
 
-Let's return to Splunk Observability Cloud to see how the trace looks now. 
+Let's return to Splunk Observability Cloud to see how the trace looks now.
 
 Navigate to `APM` and then select `AI agents`. Ensure your environment name
-is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page 
-populated now! 
+is selected (e.g. `agentic-ai-$INSTANCE`). You'll notice that the page
+populated now!
 
 ![Agents](../images/Agents-v2.png)
 
-Navigate to `APM -> AI trace data`. This is a new page that lets us search 
-for traces that include AI-related content: 
+Navigate to `APM -> AI trace data`. This is a new page that lets us search
+for traces that include AI-related content:
 
 ![Agents](../images/AI-trace-data.png)
 
-
 Ensure your environment name is selected (e.g. `agentic-ai-$INSTANCE`).  
-Select one of the newer traces. We see all of our agents represented in the Agent flow now! 
+Select one of the newer traces. We see all of our agents represented in the Agent flow now!
 
 ![Trace](../images/Trace-v2.png)
 
-We can also see the tool calls: 
+We can also see the tool calls:
 
->Note: switch from the `AI details` to `Span details` on the right-hand side of the screen
-> to see the tool call details. 
+> [!NOTE]
+> Switch from the `AI details` to `Span details` on the right-hand side of the screen
+> to see the tool call details.
 
 ![Trace](../images/TraceWithToolCalls.png)

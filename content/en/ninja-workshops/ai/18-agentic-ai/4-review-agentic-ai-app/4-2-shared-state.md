@@ -38,7 +38,7 @@ This is a key LangGraph mental model: **stateful workflow orchestration**.
 
 ### Knowledge Check
 
-How would you explain the syntax used for the `messages` field? 
+How would you explain the syntax used for the `messages` field?
 
 ```python
 messages: Annotated[List[AnyMessage], add_messages]
