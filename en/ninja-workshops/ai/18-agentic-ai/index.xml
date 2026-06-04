@@ -51,34 +51,22 @@ Splunk.&lt;/p&gt;
  &lt;span class="heading-text"&gt;Set Environment Variables&lt;/span&gt;
  &lt;a class="heading-anchor" href="#set-environment-variables" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;The document provided by the workshop instructor contains &lt;code&gt;export&lt;/code&gt; commands to set the following
-environment variables:&lt;/p&gt;
+&lt;p&gt;Your EC2 instance includes the following pre-set environment variables, which
+tell the application how to connect to an
+OpenAI model hosted in Azure (via Lite LLM Proxy).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;OPENAI_API_KEY&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;OPENAI_BASE_URL&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;These environment variables tell the application how to connect to an
-OpenAI model hosted in Azure (via Lite LLM Proxy).&lt;/p&gt;
-&lt;p&gt;Copy and paste these &lt;code&gt;export&lt;/code&gt; commands from the document and run them in your ssh terminal.&lt;/p&gt;</description></item><item><title>Instrument the Agentic AI Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+&lt;h3 id="create-virtual-environment"&gt;
+ &lt;span class="heading-text"&gt;Create Virtual Environment&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#create-virtual-environment" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Next, we&amp;rsquo;ll create a Python virtual environment and install the packages needed to
+run the application:&lt;/p&gt;</description></item><item><title>Instrument the Agentic AI Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/6-instrument-the-app/</guid><description>&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;This section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the expected solution for this section
-which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-instrumentation&lt;/code&gt; folder.&lt;/p&gt;
-&lt;/blockquote&gt;&lt;p&gt;There are a few steps required to instrument our Agentic AI application
-with OpenTelemetry and deploy it to Kubernetes:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Add the instrumentation packages to the &lt;code&gt;requirements.txt&lt;/code&gt; file&lt;/li&gt;
-&lt;li&gt;Update the Dockerfile that invokes the application using &lt;code&gt;opentelemetry-instrument&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build a new Docker image with the instrumentation packages&lt;/li&gt;
-&lt;li&gt;Update the Kubernetes manifest with environment variables&lt;/li&gt;
-&lt;li&gt;Deploy the Kubernetes manifest&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="add-instrumentation-packages"&gt;
- &lt;span class="heading-text"&gt;Add Instrumentation Packages&lt;/span&gt;
- &lt;a class="heading-anchor" href="#add-instrumentation-packages" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Next, we need to install several instrumentation packages. We can achieve this by
-opening the &lt;code&gt;~/workshop/agentic-ai/base-app/requirements.txt&lt;/code&gt; for editing and adding
-the following packages to the bottom of the file:&lt;/p&gt;</description></item><item><title>Review Agent Trace Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</guid><description>&lt;h2 id="review-llm-provider-configuration"&gt;
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-instrumentation&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Review Agent Trace Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/7-review-agent-trace-data/</guid><description>&lt;h2 id="review-llm-provider-configuration"&gt;
  &lt;span class="heading-text"&gt;Review LLM Provider Configuration&lt;/span&gt;
  &lt;a class="heading-anchor" href="#review-llm-provider-configuration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -88,30 +76,16 @@ a Large Language Model (LLM). Splunk uses this connection to evaluate the
 &lt;p&gt;This integration has already been configured in the workshop organization.&lt;/p&gt;
 &lt;p&gt;To view the configuration, navigate to &lt;strong&gt;Data Management → Deployed Integrations&lt;/strong&gt;,
 then set the &lt;strong&gt;Categories&lt;/strong&gt; filter to &lt;code&gt;LLMs&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Search for &lt;strong&gt;LLM Providers&lt;/strong&gt;, and select it. You should see the following provider:&lt;/p&gt;</description></item><item><title>Add Tool Calls</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+&lt;p&gt;Search for &lt;strong&gt;LLM Providers&lt;/strong&gt;, and select it. You should see the following provider:&lt;/p&gt;</description></item><item><title>Add Tool Calls</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/8-add-tool-calls/</guid><description>&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;This section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the model solution for this section
-which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-agents-and-tools&lt;/code&gt; folder.&lt;/p&gt;
-&lt;/blockquote&gt;&lt;p&gt;In the previous section, we discovered that our agents aren&amp;rsquo;t appearing on the new
-&lt;strong&gt;Agents&lt;/strong&gt; page, nor in the &lt;strong&gt;Agent flow&lt;/strong&gt; at the top of the trace.&lt;/p&gt;
-&lt;p&gt;The reason is that our application isn&amp;rsquo;t currently using agents, but is instead invoking
-the LLM directly.&lt;/p&gt;</description></item><item><title>Detect Quality Issue</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-agents-and-tools&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Detect Quality Issue</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/9-detect-quality-issue/</guid><description>&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;This section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the model solution for this section
-which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-quality-issue&lt;/code&gt; folder.&lt;/p&gt;
-&lt;/blockquote&gt;&lt;p&gt;In the previous sections, we instrumented our application with OpenTelemetry, and configured
-it to evaluate the semantic quality of agent responses.&lt;/p&gt;
-&lt;p&gt;In this section, let&amp;rsquo;s add some quality issues to our application, so we can see
-how Splunk Observability Cloud is able to detect such issues.&lt;/p&gt;</description></item><item><title>Add AI Defense Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-quality-issue&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Add AI Defense Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/10-add-ai-defense-instrumentation/</guid><description>&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;This section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the expected solution for this section
-which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-ai-defense&lt;/code&gt; folder.&lt;/p&gt;
-&lt;/blockquote&gt;&lt;p&gt;Splunk Observability Cloud integrates with
-&lt;a href="https://www.cisco.com/site/us/en/products/security/ai-defense/index.html" target="_blank" rel="noopener"&gt;Cisco AI Defense&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
-
-to provide a consolidated view of &lt;a href="https://securitydocs.cisco.com/docs/ai-def/user/105473.dita" target="_blank" rel="noopener"&gt;security and privacy risks&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
-
-detected at runtime for your AI agents, allowing you to monitor performance and risks in one place.&lt;/p&gt;</description></item><item><title>Detect Security Risks</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
+which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-ai-defense&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Detect Security Risks</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/11-detect-security-risks/</guid><description>&lt;blockquote&gt;&lt;p&gt;Note: this section of the workshop requires changes to multiple files.
 If you&amp;rsquo;re not sure where to make the changes, or your application is no
 longer working, please refer to the model solution for this section
 which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-security-risk&lt;/code&gt; folder.&lt;/p&gt;

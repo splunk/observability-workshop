@@ -16,9 +16,7 @@ the limitations running the ROSA command-line interface on Mac OS.&lt;/p&gt;</de
  &lt;span class="heading-text"&gt;Create a Red Hat Login&lt;/span&gt;
  &lt;a class="heading-anchor" href="#create-a-red-hat-login" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create an account with Red Hat, which we can do by
-filling out the form
-&lt;a href="https://www.redhat.com/wapps/ugc/register.html?_flowId=register-flow&amp;amp;_flowExecutionKey=e1s1" target="_blank" rel="noopener"&gt;here&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create an account with Red Hat, which we can do by &lt;a href="https://www.redhat.com/wapps/ugc/register.html?_flowId=register-flow&amp;amp;_flowExecutionKey=e1s1" target="_blank" rel="noopener"&gt;filling out the form&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
 .&lt;/p&gt;
 &lt;h2 id="install-the-aws-cli"&gt;
  &lt;span class="heading-text"&gt;Install the AWS CLI&lt;/span&gt;
@@ -30,19 +28,7 @@ filling out the form
 &lt;/h2&gt;
 &lt;p&gt;We&amp;rsquo;ll use the ROSA CLI to deploy an OpenShift Cluster.&lt;/p&gt;
 &lt;p&gt;First, we&amp;rsquo;ll need to set a few environment variables:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;Note: be sure to fill in the Subnet IDs and OIDC ID before running the EXPORT commands&lt;/p&gt;
-&lt;/blockquote&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;CLUSTER_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;rosa-test
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;AWS_REGION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;us-east-2
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;AWS_INSTANCE_TYPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;g5.4xlarge
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;SUBNET_IDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;comma separated list of subnet IDs from earlier rosa create network command&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;OIDC_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;the oidc-provider id returned from the rosa create oidc-config command&amp;gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;OPERATOR_ROLES_PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;rosa-test-a6x9&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Create operator roles for the OIDC configuration using the following command:&lt;/p&gt;</description></item><item><title>Deploy the NVIDIA NIM Operator</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</guid><description>&lt;p&gt;The &lt;strong&gt;NVIDIA GPU Operator&lt;/strong&gt; is a Kubernetes Operator that automates the deployment, configuration,
+&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;Be sure to fill in the Subnet IDs and OIDC ID before running the EXPORT commands&lt;/p&gt;</description></item><item><title>Deploy the NVIDIA NIM Operator</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/4-deploy-nvidia-nim/</guid><description>&lt;p&gt;The &lt;strong&gt;NVIDIA GPU Operator&lt;/strong&gt; is a Kubernetes Operator that automates the deployment, configuration,
 and management of all necessary NVIDIA software components to provision GPUs within a Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;NVIDIA NIM Operator&lt;/strong&gt; is used to deploy LLMs in Kubernetes environments, such
 as the OpenShift cluster we created earlier in this workshop.&lt;/p&gt;
@@ -116,7 +102,7 @@ each of the workshop participant namespaces.&lt;/p&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc new-project admin-otel &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc new-project admin-otel&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;p&gt;Add the Splunk OpenTelemetry Collector for Kubernetes&amp;rsquo; Helm chart repository:&lt;/p&gt;</description></item><item><title>Deploy the Vector Database</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/1-workshop-setup/8-deploy-vector-db/</guid><description>&lt;p&gt;In this step, we&amp;rsquo;ll deploy a vector database to the OpenShift cluster and populate it with
 test data that will be used by workshop participants.&lt;/p&gt;
 &lt;h2 id="deploy-a-vector-database"&gt;

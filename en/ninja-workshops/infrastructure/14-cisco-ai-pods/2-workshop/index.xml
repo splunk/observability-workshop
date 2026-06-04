@@ -214,20 +214,7 @@ instrumentation packages:&lt;/p&gt;</description></item><item><title>Deploy the 
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/cisco-ai-pods
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;oc apply -f ./llm-app/k8s-manifest.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;blockquote&gt;&lt;p&gt;Note: to build a Docker image for this Python application, we executed the following commands:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; workshop/cisco-ai-pods/llm-app
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker build --platform linux/amd64 -t ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0 .
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker push ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/blockquote&gt;&lt;h2 id="test-the-llm-application"&gt;
- &lt;span class="heading-text"&gt;Test the LLM Application&lt;/span&gt;
- &lt;a class="heading-anchor" href="#test-the-llm-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Let&amp;rsquo;s ensure the application is working as expected.&lt;/p&gt;</description></item><item><title>Review Metrics, Traces, and Logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/11-review-traces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/11-review-traces/</guid><description>&lt;h2 id="view-trace-data-in-splunk-observability-cloud"&gt;
+ &lt;/div&gt;&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;To build a Docker image for this Python application, we executed the following commands:&lt;/p&gt;</description></item><item><title>Review Metrics, Traces, and Logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/11-review-traces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/14-cisco-ai-pods/2-workshop/11-review-traces/</guid><description>&lt;h2 id="view-trace-data-in-splunk-observability-cloud"&gt;
  &lt;span class="heading-text"&gt;View Trace Data in Splunk Observability Cloud&lt;/span&gt;
  &lt;a class="heading-anchor" href="#view-trace-data-in-splunk-observability-cloud" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
