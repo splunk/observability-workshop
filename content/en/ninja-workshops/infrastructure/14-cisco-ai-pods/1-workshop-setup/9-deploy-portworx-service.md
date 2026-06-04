@@ -5,12 +5,12 @@ weight: 9
 time: 10 minutes
 ---
 
-In this step, we'll deploy a Python service that mimics the Portworx metrics endpoint. 
-This will be used in the workshop to configure monitoring for Pure Storage. 
+In this step, we'll deploy a Python service that mimics the Portworx metrics endpoint.
+This will be used in the workshop to configure monitoring for Pure Storage.
 
 ## Deploy the Portworx Metrics Endpoint
 
-Run the following command to deploy the Portworx metrics endpoint service: 
+Run the following command to deploy the Portworx metrics endpoint service:
 
 ``` bash
 oc new-project portworx
@@ -19,7 +19,7 @@ oc apply -f ./portworx/k8s.yaml -n portworx
 
 ## Test the Portworx Metrics Endpoint
 
-Let's ensure the Portworx metrics endpoint is working as expected. 
+Let's ensure the Portworx metrics endpoint is working as expected.
 
 Start a pod that has access to the curl command:
 

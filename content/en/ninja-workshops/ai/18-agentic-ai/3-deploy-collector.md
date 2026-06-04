@@ -6,10 +6,10 @@ time: 10 minutes
 ---
 
 We'll be using OpenTelemetry throughout the workshop to capture metrics, traces, and
-logs from an Agentic AI application running in Kubernetes. In this section, we'll 
-install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be 
-used to capture metrics, traces, and logs from our environment and send them to 
-Splunk. 
+logs from an Agentic AI application running in Kubernetes. In this section, we'll
+install an OpenTelemetry collector in our Kubernetes cluster using Helm. This will be
+used to capture metrics, traces, and logs from our environment and send them to
+Splunk.
 
 ## Install the Collector using Helm
 
@@ -37,7 +37,8 @@ vi values.yaml
 
 Then paste the following contents:
 
-> Type `:set paste` before pasting the contents, to prevent `vi` from auto-indenting the pasted code. 
+> [!TIP]
+> Type `:set paste` before pasting the contents, to prevent `vi` from auto-indenting the pasted code.
 
 ``` yaml
 agent:
@@ -47,10 +48,11 @@ agent:
         send_otlp_histograms: true
 ```
 
+> [!TIP]
 > To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
-This custom configuration ensures that any histogram metrics received by the exporter 
-will be sent to Splunk Observability backend in OTLP format without conversion 
+This custom configuration ensures that any histogram metrics received by the exporter
+will be sent to Splunk Observability backend in OTLP format without conversion
 to SignalFx format. This setting is critical to ensure that histogram metrics used
 by AI Agent Monitoring such as `gen_ai.evaluation.score` are processed as expected.
 
@@ -69,7 +71,7 @@ Now we can use the following command to install the collector:
   --set="splunkPlatform.endpoint=$HEC_URL" \
   --set="splunkPlatform.index=splunk4rookies-workshop" \
   -f values.yaml \
-  splunk-otel-collector-chart/splunk-otel-collector 
+  splunk-otel-collector-chart/splunk-otel-collector
 ```
 
 {{% /tab %}}
@@ -118,19 +120,20 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 
 ### Using the New Kubernetes Experience
 
-If you're configured to use the new Kubernetes experience in O11y Cloud, follow the steps in 
-this section. Otherwise, refer to the **Using the Traditional Kubernetes Experience** section 
-instead. 
+If you're configured to use the new Kubernetes experience in O11y Cloud, follow the steps in
+this section. Otherwise, refer to the **Using the Traditional Kubernetes Experience** section
+instead.
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes overview**, 
-then add your cluster name (which is `<your instance name>-cluster`): 
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes overview**,
+then add your cluster name (which is `<your instance name>-cluster`):
 
-> Tip: use the `echo $INSTANCE` command if you've forgotten your instance name
+> [!TIP]
+> Use the `echo $INSTANCE` command if you've forgotten your instance name
 
 ![Kubernetes overview filter](../images/k8sOverviewFilter.png)
 
-After clicking **Apply Filters** you should see an overview for your cluster 
-similar to the following: 
+After clicking **Apply Filters** you should see an overview for your cluster
+similar to the following:
 
 ![Kubernetes overview new experience](../images/k8sOverviewNewExperience.png)
 
@@ -139,6 +142,7 @@ similar to the following:
 In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
 and then search for your cluster name (which is `<your instance name>-cluster`):
 
-> Tip: use the `echo $INSTANCE` command if you've forgotten your instance name
+> [!TIP]
+> Use the `echo $INSTANCE` command if you've forgotten your instance name
 
 ![Kubernetes cluster](../images/k8scluster.png)

@@ -5,15 +5,15 @@ weight: 3
 time: 10 minutes
 ---
 
-In this section we'll deploy the OpenTelemetry Collector in our OpenShift namespace, 
-which gathers metrics, logs, and traces from the infrastructure and applications 
-running in the cluster, and sends the resulting data to Splunk Observability Cloud. 
+In this section we'll deploy the OpenTelemetry Collector in our OpenShift namespace,
+which gathers metrics, logs, and traces from the infrastructure and applications
+running in the cluster, and sends the resulting data to Splunk Observability Cloud.
 
 ## Deploy the OpenTelemetry Collector
 
 ### Ensure Helm is installed
 
-Run the following command to confirm that Helm is installed: 
+Run the following command to confirm that Helm is installed:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -32,9 +32,9 @@ version.BuildInfo{Version:"v3.19.4", GitCommit:"7cfb6e486dac026202556836bb910c37
 {{% /tab %}}
 {{< /tabs >}}
 
-If it's not installed, execute the following commands: 
+If it's not installed, execute the following commands:
 
-``` bash 
+``` bash
 sudo apt-get install curl gpg apt-transport-https --yes
 curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
@@ -58,8 +58,8 @@ helm repo update
 
 ### Configure Environment Variables
 
-Set environment variables to configure the Splunk environment you'd like 
-the collector to send data to: 
+Set environment variables to configure the Splunk environment you'd like
+the collector to send data to:
 
 ``` bash
 export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
@@ -68,7 +68,7 @@ export ENVIRONMENT_NAME=ai-pod-$USER_NAME
 export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
-Confirm that the environment name is set: 
+Confirm that the environment name is set:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -89,7 +89,7 @@ ai-pod-workshop-participant-1
 
 ### Deploy the Collector
 
-Navigate to the workshop directory: 
+Navigate to the workshop directory:
 
 ``` bash
 cd ~/workshop/cisco-ai-pods
@@ -126,7 +126,7 @@ Then install the collector in your namespace using the following command:
 > export SPLUNK_INDEX=splunk4rookies-workshop
 > ```
 
-Run the following command to confirm that the collector pods are running: 
+Run the following command to confirm that the collector pods are running:
 
 ````
 watch -n 1 oc get pods
@@ -136,13 +136,13 @@ splunk-otel-collector-agent-58rwm                             1/1     Running   
 splunk-otel-collector-agent-8dndr                             1/1     Running   0          6m40s
 ````
 
-> Note: in OpenShift environments, the collector takes about three minutes to 
-> start and transition to the `Running` state. 
+> Note: in OpenShift environments, the collector takes about three minutes to
+> start and transition to the `Running` state.
 
 ### Review Collector Data in Splunk Observability Cloud
 
-Confirm that you can see your cluster in **Splunk Observability Cloud** by navigating to 
-**Infrastructure Monitoring** -> **Kubernetes** -> **Kubernetes Clusters** and then 
+Confirm that you can see your cluster in **Splunk Observability Cloud** by navigating to
+**Infrastructure Monitoring** -> **Kubernetes** -> **Kubernetes Clusters** and then
 adding a filter on `k8s.cluster.name` with your cluster name (i.e. `ai-pod-workshop-participant-1`):
 
 ![Kubernetes Pods](../../images/KubernetesPods.png)

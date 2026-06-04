@@ -19,7 +19,7 @@ Set the **Estimated Participants** to the number of attendees you expect, and ma
 {{% /notice %}}
 
 > [!TIP]
-> **Tip:** Over-provision by **10% - 20%** to accommodate last-minute attendees.  
+> Over-provision by **10% - 20%** to accommodate last-minute attendees.  
 
 ---
 

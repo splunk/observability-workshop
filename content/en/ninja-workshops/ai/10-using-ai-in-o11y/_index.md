@@ -2,7 +2,7 @@
 title: Using AI in Splunk Observability Cloud
 linkTitle: Using AI in Splunk Observability Cloud
 weight: 10
-archetype: chapter
+layout: chapter
 time: 90 minutes
 authors: ["Pieter Hagen"]
 description: Hands-on tour of the AI/ML features in Splunk Observability Cloud — AutoDetect, Tag Spotlight, Log Observer AI, APM AI Assistant, and Predictive Analytics.

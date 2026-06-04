@@ -4,7 +4,7 @@ linkTitle: 4.7 LLM Creation
 weight: 7
 ---
 
-## LLM Creation 
+## LLM Creation
 
 The LLM itself is created here:
 
@@ -32,11 +32,11 @@ How would you create an LLM for Azure OpenAI (rather than OpenAI?)
 <details>
   <summary><b>Click here to see the answer</b></summary>
 
-Creating an LLM for Azure OpenAI has a few differences. The function would return a `AzureChatOpenAI` 
-object instead of `ChatOpenAI`. 
+Creating an LLM for Azure OpenAI has a few differences. The function would return a `AzureChatOpenAI`
+object instead of `ChatOpenAI`.
 
-The solution would also require Azure-specific parameters (`azure_deployment`, 
-`openai_api_version`, `Azure endpoint`). Here's an example: 
+The solution would also require Azure-specific parameters (`azure_deployment`,
+`openai_api_version`, `Azure endpoint`). Here's an example:
 
 ```python
 def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> AzureChatOpenAI:
