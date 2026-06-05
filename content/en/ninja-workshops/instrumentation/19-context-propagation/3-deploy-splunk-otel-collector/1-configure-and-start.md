@@ -5,7 +5,7 @@ weight: 1
 
 ## Verify or Add Your Splunk Credentials
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Configure and Start" %}}
 
 ``` bash
 echo $ACCESS_TOKEN; echo $REALM; echo $INSTANCE
@@ -25,7 +25,7 @@ SPLUNK_REALM=<YOUR-REALM>
 WORKSHOP_ENV=trace-propagation-<YOUR-INITIALS>
 ```
 
-## Deploy the collector
+### Deploy the collector
 
 This script:
 
@@ -67,7 +67,7 @@ Validating collector health...
 The workshop deploys two collector workloads:
 
 | Workload | Role |
-|----------|------|
+| -------- | ---- |
 | `deployment/splunk-otel-collector` | OTLP gateway + **k8s_cluster** receiver (cluster infrastructure metrics) |
 | `daemonset/splunk-otel-collector-agent` | **hostmetrics** + **kubeletstats** (node, pod, container metrics) |
 
@@ -75,16 +75,19 @@ The workshop deploys two collector workloads:
 - **Gateway config:** `k8s/splunk-otel-collector/workshop-config.yaml`
 - **Agent config:** `k8s/splunk-otel-collector/agent-config.yaml`
 
-## Confirm collector health
+### Confirm collector health
 
 ```bash
 curl -s http://localhost:13133/
 ```
 
-## Check collector logs:
+### Check collector logs
+
 Confirm the collector starts without pipeline errors (no repeated `401`, `403`, or export failures).
 
 ```bash
 kubectl logs deployment/splunk-otel-collector -n trace-workshop --tail 20
 kubectl logs daemonset/splunk-otel-collector-agent -n trace-workshop --tail 20
 ```
+
+{{%/ exercise %}}

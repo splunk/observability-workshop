@@ -2,7 +2,6 @@
 title: "Phase 2: Install Splunk Otel Collector"
 linkTitle: 3. Install Splunk Otel Collector
 weight: 3
-archetype: chapter
 time: 30 minutes
 description: Deploy Splunk Otel Collector to collect Host Metrics and Instrument the App.
 ---
