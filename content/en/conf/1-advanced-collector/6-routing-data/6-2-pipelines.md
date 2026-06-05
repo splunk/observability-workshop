@@ -22,7 +22,7 @@ weight: 2
 **Add both the `route1-regular` and `route2-security` traces pipelines** below the existing `traces` pipeline:
 
 1. **Configure Route1-regular pipeline**: This pipeline will handle all spans that have  **no match** in the routing table in the connector.
-Notice this uses `routing` as its only receiver and will recieve data thought its `connection` from the original traces pipeline. 
+Notice this uses `routing` as its only receiver and will recieve data thought its `connection` from the original traces pipeline.
 
     ```yaml
         traces/route1-regular:         # Default pipeline for unmatched spans
@@ -81,7 +81,7 @@ graph LR
     subID3:::sub-traces
     subgraph " "
     direction LR
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       REC1 -- > ROUTE1
       end
       subgraph subID2[**Traces/standard**]

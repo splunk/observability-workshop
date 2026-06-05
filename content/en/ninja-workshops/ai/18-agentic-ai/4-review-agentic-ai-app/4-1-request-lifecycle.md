@@ -52,13 +52,10 @@ A helpful way to explain this is:
 
 Where does the LangGraph workflow actually start executing in this API flow?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
-It starts inside `plan_travel_internal()`. The Flask route only receives 
-the request and extracts parameters. `plan_travel_internal()` initializes 
-the workflow state and invokes the LangGraph graph, which then runs the nodes 
-(coordinator, specialists, synthesizer) that update the state until 
+{{< details summary="Click here to see the answer" >}}
+It starts inside `plan_travel_internal()`. The Flask route only receives
+the request and extracts parameters. `plan_travel_internal()` initializes
+the workflow state and invokes the LangGraph graph, which then runs the nodes
+(coordinator, specialists, synthesizer) that update the state until
 the final itinerary is produced.
-
-</details>
+{{< /details >}}

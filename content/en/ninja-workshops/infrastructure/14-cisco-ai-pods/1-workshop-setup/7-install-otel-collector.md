@@ -6,16 +6,16 @@ time: 5 minutes
 ---
 
 In this section, we'll install the OpenTelemetry collector with only the clusterReceiver enabled
-(as the workshop participants will install their own agent in their namespace). 
-We'll then take the ClusterRole created by this collector installation and bind it to 
-each of the workshop participant namespaces. 
+(as the workshop participants will install their own agent in their namespace).
+We'll then take the ClusterRole created by this collector installation and bind it to
+each of the workshop participant namespaces.
 
-## Install the OpenTelemetry Collector 
+## Install the OpenTelemetry Collector
 
 First, we'll create a new project for the collector and switch to that project:
 
 ```bash
-oc new-project admin-otel 
+oc new-project admin-otel
 ```
 
 Add the Splunk OpenTelemetry Collector for Kubernetes' Helm chart repository:
@@ -39,10 +39,10 @@ the collector to send data to:
 ``` bash
 export CLUSTER_NAME=ai-pod-workshop-admin
 export ENVIRONMENT_NAME=ai-pod-workshop-admin
-export SPLUNK_ACCESS_TOKEN=<your access token for Splunk Observability Cloud> 
+export SPLUNK_ACCESS_TOKEN=<your access token for Splunk Observability Cloud>
 export SPLUNK_REALM=<your realm for Splunk Observability Cloud i.e. us0, us1, eu0, etc.>
-export SPLUNK_HEC_URL=<HEC endpoint to send logs to Splunk platform i.e. https://<hostname>:443/services/collector/event> 
-export SPLUNK_HEC_TOKEN=<HEC token to send logs to Splunk platform> 
+export SPLUNK_HEC_URL=<HEC endpoint to send logs to Splunk platform i.e. https://<hostname>:443/services/collector/event>
+export SPLUNK_HEC_TOKEN=<HEC token to send logs to Splunk platform>
 export SPLUNK_INDEX=splunk4rookies-workshop
 ```
 
@@ -97,7 +97,7 @@ EOF
 done
 ```
 
-We also need to grant the SecurityContextConstraint (SCC) to each namespace ServiceAccount: 
+We also need to grant the SecurityContextConstraint (SCC) to each namespace ServiceAccount:
 
 ``` bash
 for i in {1..30}; do

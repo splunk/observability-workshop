@@ -5,41 +5,37 @@ weight: 9
 time: 15 minutes
 ---
 
-> Note: this section of the workshop requires changes to multiple files.
+> [!NOTE]
+> This section of the workshop requires changes to multiple files.
 > If you're not sure where to make the changes, or your application is no
 > longer working, please refer to the model solution for this section
 > which is in the `~/workshop/agentic-ai/app-with-quality-issue` folder.
 
-In the previous sections, we instrumented our application with OpenTelemetry, and configured 
-it to evaluate the semantic quality of agent responses. 
+In the previous sections, we instrumented our application with OpenTelemetry, and configured it to evaluate the semantic quality of agent responses.
 
-In this section, let's add some quality issues to our application, so we can see 
-how Splunk Observability Cloud is able to detect such issues. 
+In this section, let's add some quality issues to our application, so we can see how Splunk Observability Cloud is able to detect such issues.
 
 ## About the Poisoned Chat Wrapper
 
-In this section, we'll use a custom class named `PoisonedChatWrapper` which wraps the existing 
-`ChatModel` to intercept and 'poison' the output. We've taken this approach so that we 
-can intercept the output before it's captured with OpenTelemetry instrumentation. 
+In this section, we'll use a custom class named `PoisonedChatWrapper` which wraps the existing `ChatModel` to intercept and 'poison' the output. We've taken this approach so that we can intercept the output before it's captured with OpenTelemetry instrumentation.
 
-If you're curious to understand this is done, please review the `poison_chat_wrapper.py` file. 
+If you're curious to understand this is done, please review the `poison_chat_wrapper.py` file.
 
 ## Poison the Hotel Specialist Output
 
-Next, let's modify the hotel specialist agent to use this wrapper and modify 
-the LLM output. First, modify the `~/workshop/agentic-ai/base-app/main.py` file 
-to add the following import statement between the lines that say 
-`Begin: Add Import Statements` and `End: Add Import Statements`:
+Next, let's modify the hotel specialist agent to use this wrapper and modify the LLM output. First, modify the `~/workshop/agentic-ai/base-app/main.py` file to add the following import statement between the lines that say `Begin: Add Import Statements` and `End: Add Import Statements`:
 
 ```python
 from poison_chat_wrapper import PoisonedChatWrapper
 ```
 
-> Note: This new import statement is in addition to the other ones we added earlier. 
+> [!NOTE]
+> This new import statement is in addition to the other ones we added earlier.
 
-Then, replace the definition of the `hotel_specialist_node` function with the following: 
+Then, replace the definition of the `hotel_specialist_node` function with the following:
 
-> Tip: to delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual 
+> [!TIP]
+> To delete a large number of lines in bulk using the `vi` editor, press `Shift` + `v` to ensure `Visual
 > Line` mode, then use the down arrow to select all the lines you want to delete, then press `d`
 > to delete the selected lines.
 
@@ -104,7 +100,6 @@ diff ~/workshop/agentic-ai/base-app/main.py ~/workshop/agentic-ai/app-with-quali
 
 {{% / notice %}}
 
-
 ## Build an Updated Docker Image
 
 Build an updated Docker image with a new tag:
@@ -115,7 +110,8 @@ docker build --platform linux/amd64 -t localhost:9999/agentic-ai-app:app-with-qu
 docker push localhost:9999/agentic-ai-app:app-with-quality-issue
 ```
 
-> Tip: if the image is taking too long to build, consider using the pre-built
+> [!TIP]
+> If the image is taking too long to build, consider using the pre-built
 > image instead. To do so, update the image name in
 > the `~/workshop/agentic-ai/base-app/k8s.yaml` file to `ghcr.io/splunk/agentic-ai-app:app-with-quality-issue`
 > instead of `localhost:9999/agentic-ai-app:app-with-quality-issue`.
@@ -152,10 +148,10 @@ kubectl get pods -n travel-agent
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-````
+```text
 NAME                                        READY   STATUS    RESTARTS   AGE
 travel-planner-langchain-68977dc5c4-4w7p9   1/1     Running   0          41s
-````
+```
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -175,15 +171,14 @@ curl http://travel-planner.localhost/travel/plan \
 
 ## View Data in Splunk Observability Cloud
 
-Let's return to Splunk Observability Cloud to see how the trace looks now. 
+Let's return to Splunk Observability Cloud to see how the trace looks now.
 
-Looking at the `invoke_agent` span for the `hotel_specialist` agent, we can see that the 
-agent has several quality issues, as it recommended a hotel and then called it 
-`pretty terrible`: 
+Looking at the `invoke_agent` span for the `hotel_specialist` agent, we can see that the agent has several quality issues, as it recommended a hotel and then called it `pretty terrible`:
 
 ![Trace With Quality Issue](../images/TraceWithQualityIssue.png)
 
-> Note: not all agent invocations are evaluated, as the workshop org is set to 
-> evaluate only 20% of the time. This is configurable at the org level. If you don't see 
-> an evaluation on the `invoke_agent` span for the `hotel_specialist` agent, trying sending 
-> another request. 
+> [!NOTE]
+> Not all agent invocations are evaluated, as the workshop org is set to
+> evaluate only 20% of the time. This is configurable at the org level. If you don't see
+> an evaluation on the `invoke_agent` span for the `hotel_specialist` agent, trying sending
+> another request.

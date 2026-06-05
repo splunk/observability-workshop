@@ -63,7 +63,7 @@ connectors:
 - **Explanation of the Metrics Counters**
 
   - `logs.full.count`: Tracks the total number of logs processed during each read interval.  
-  Since this metric has no filtering conditions, every log that passes through the system is included in the count. 
+  Since this metric has no filtering conditions, every log that passes through the system is included in the count.
   - `logs.sw.count` Counts logs that contain a quote from a Star Wars movie.
   - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
   - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR for the read interval.
@@ -169,7 +169,7 @@ graph LR
       PRO5 --> EXP2
       end
       
-      subgraph subID2[**Metrics**]
+      subgraph subID2["`**Metrics**`"]
       direction LR
       ROUTE1 --> ROUTE2       
       ROUTE2 --> PRO2

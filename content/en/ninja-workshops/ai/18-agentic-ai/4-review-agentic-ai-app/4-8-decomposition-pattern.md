@@ -50,21 +50,18 @@ This is a classic pattern for agentic apps:
 * collect intermediate outputs
 * synthesize into a final response
 
-That is one of the main architectural ideas you should take away from this overview. 
+That is one of the main architectural ideas you should take away from this overview.
 
 ### Knowledge Check
 
-Why does the app use a separate `plan_synthesizer` node instead of letting 
+Why does the app use a separate `plan_synthesizer` node instead of letting
 one agent generate the entire travel plan?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
-Because the system breaks the problem into **specialized tasks** first (flights, hotels, activities). 
-Each specialist produces a focused summary, and the `plan_synthesizer` node then **combines those 
+{{< details summary="Click here to see the answer" >}}
+Because the system breaks the problem into **specialized tasks** first (flights, hotels, activities).
+Each specialist produces a focused summary, and the `plan_synthesizer` node then **combines those
 outputs into one coherent itinerary**.
 
-This pattern improves **modularity, reliability, and observability**, since each agent 
+This pattern improves **modularity, reliability, and observability**, since each agent
 handles a smaller problem and the final node integrates the results.
-
-</details>
+{{< /details >}}

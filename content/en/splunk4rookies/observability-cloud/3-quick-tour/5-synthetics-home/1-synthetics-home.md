@@ -4,13 +4,13 @@ linkTitle: 5.1 Synthetics Home Page
 weight: 2
 ---
 
-Click on **Synthetics** in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
+Click on **Digital Experience** in the main menu, then under Synthetic Monitoring click **Synthetic Tests**. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
 
 ![Synthetic main](../images/synthetics-main.png)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Synthetics.
-2. **Test Pane:** List of all the tests that are configured (**Browser**, **API** and **Uptime**)
-3. **Create Test Pane:** Drop-down for creating new Synthetic tests.
+2. **Test Pane:** List of all the tests that are configured (**Browser**, **API** and **HTTP**)
+3. **Create New Test:** Drop-down for creating new Synthetic tests.
 
 {{% notice title="Info" style="info" %}}
 As part of the workshop we have created a default browser test against the application we are running. You find it in the Test Pane **(2)**. It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop (your instructor should have provided that to you).

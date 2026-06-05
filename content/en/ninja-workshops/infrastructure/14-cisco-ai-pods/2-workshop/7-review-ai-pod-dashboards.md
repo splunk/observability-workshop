@@ -5,9 +5,9 @@ weight: 7
 time: 10 minutes
 ---
 
-In this section, we'll review the AI POD dashboards in Splunk Observability Cloud 
-to confirm that the data from NVIDIA, Pure Storage, and Weaviate is captured 
-as expected. 
+In this section, we'll review the AI POD dashboards in Splunk Observability Cloud
+to confirm that the data from NVIDIA, Pure Storage, and Weaviate is captured
+as expected.
 
 ## Update the OpenTelemetry Collector Config
 
@@ -31,9 +31,9 @@ We can apply the collector configuration changes by running the following Helm c
   splunk-otel-collector-chart/splunk-otel-collector
 ```
 
-> Note: if you get an error that says `Missing variables`, you'll need to 
-> define your environment variables again. Add your participant number 
-> before running the following commands: 
+> Note: if you get an error that says `Missing variables`, you'll need to
+> define your environment variables again. Add your participant number
+> before running the following commands:
 > ``` bash
 > export PARTICIPANT_NUMBER=<your participant number>
 > export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
@@ -61,10 +61,10 @@ following example:
 
 ## Review the Weaviate Infrastructure Navigator
 
-Since Weaviate isn't included by default with an AI POD, it's 
-not included on the out-of-the-box AI POD dashboard. Instead, 
-we can view Weaviate performance data using one of the infrastructure 
-navigators. 
+Since Weaviate isn't included by default with an AI POD, it's
+not included on the out-of-the-box AI POD dashboard. Instead,
+we can view Weaviate performance data using one of the infrastructure
+navigators.
 
 In Splunk Observability Cloud, navigate to `Infrastructure` -> `AI Frameworks` -> `Weaviate`.
 Filter on the `k8s.cluster.name` of interest, and ensure the navigator is populated as in the

@@ -2,7 +2,7 @@
 title: Monitoring Agentic AI Applications with Splunk Observability Cloud
 linkTitle: Monitoring Agentic AI Applications with Splunk Observability Cloud
 weight: 18
-archetype: chapter
+layout: chapter
 time: 45 minutes
 authors: ["Derek Mitchell"]
 description: Instrument a LangChain-based agentic AI app with OpenTelemetry and use Splunk Observability Cloud to surface quality issues and AI security risks.

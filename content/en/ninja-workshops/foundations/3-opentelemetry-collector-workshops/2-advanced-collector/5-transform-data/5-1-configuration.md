@@ -4,7 +4,7 @@ linkTitle: 5.1 Configuration
 weight: 1
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add a `transform` processor" %}}
 **Add a `transform` processor**: Switch to your **Gateway terminal** window and edit the `gateway.yaml` and add the following `transform` processor:
 
 ```yaml
@@ -78,7 +78,7 @@ This method of mapping all JSON fields to top-level attributes should only be us
       - file/logs
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Validate the agent configuration using [**https://otelbin.io**](https://otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
 
@@ -96,7 +96,7 @@ graph LR
     %% Links
     subID1:::sub-logs
     subgraph " "
-      subgraph subID1[**Logs**]
+      subgraph subID1["`**Logs**`"]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO3

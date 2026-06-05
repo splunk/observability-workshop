@@ -5,37 +5,37 @@ weight: 5
 time: 5 minutes
 ---
 
-In this step, we'll configure the Prometheus receiver to monitor the Weaviate vector database. 
+In this step, we'll configure the Prometheus receiver to monitor the Weaviate vector database.
 
-## What is a Vector Database? 
+## What is a Vector Database?
 
 A **vector database** stores and indexes data as numerical "vector embeddings," which capture
 the **semantic meaning** of information like text or images. Unlike traditional databases,
 they excel at **similarity searches**, finding conceptually related data points rather
 than exact matches.
 
-## How is a Vector Database Used? 
+## How is a Vector Database Used?
 
 Vector databases play a key role in a pattern called
-**Retrieval Augmented Generation (RAG)**, which is widely used by 
-applications that leverage Large Language Models (LLMs). 
+**Retrieval Augmented Generation (RAG)**, which is widely used by
+applications that leverage Large Language Models (LLMs).
 
-The pattern is as follows: 
+The pattern is as follows:
 
-* The end-user asks a question to the application 
+* The end-user asks a question to the application
 * The application takes the question and calculates a vector embedding for it
 * The app then performs a similarity search, looking for related documents in the vector database
-* The app then takes the original question and the related documents, and sends it to the LLM as context 
-* The LLM reviews the context and returns a response to the application 
+* The app then takes the original question and the related documents, and sends it to the LLM as context
+* The LLM reviews the context and returns a response to the application
 
 ## Capture Weaviate Metrics with Prometheus
 
-Let's modify the OpenTelemetry collector configuration to scrape Weaviate's Prometheus 
-metrics. 
+Let's modify the OpenTelemetry collector configuration to scrape Weaviate's Prometheus
+metrics.
 
-To do so, let's add an additional Prometheus **receiver** creator section 
-to the `otel-collector-values.yaml` file.  Add it after the `receiver_creator/nvidia` 
-section but before the `pipelines` section: 
+To do so, let's add an additional Prometheus **receiver** creator section
+to the `otel-collector-values.yaml` file.  Add it after the `receiver_creator/nvidia`
+section but before the `pipelines` section:
 
 ``` yaml
       receiver_creator/weaviate:
@@ -54,8 +54,8 @@ section but before the `pipelines` section:
             rule: type == "pod" && labels["app"] == "weaviate"
 ```
 
-We'll need to ensure that Weaviate's metrics are added to the `filter/metrics_to_be_included` filter 
-processor configuration as well: 
+We'll need to ensure that Weaviate's metrics are added to the `filter/metrics_to_be_included` filter
+processor configuration as well:
 
 ``` yaml
     processors:
@@ -82,9 +82,9 @@ processor configuration as well:
 
 > Note: add just the new metrics starting with `object_count`
 
-We also want to add a Resource **processor** to the configuration file with 
-the following configuration. Add it after the `filter/metrics_to_be_included` **processor** 
-but before the `receivers` section: 
+We also want to add a Resource **processor** to the configuration file with
+the following configuration. Add it after the `filter/metrics_to_be_included` **processor**
+but before the `receivers` section:
 
 ``` yaml
       resource/weaviate:
@@ -94,15 +94,15 @@ but before the `receivers` section:
             action: insert
 ```
 
-This **processor** takes the `service.instance.id` property on the Weaviate metrics 
+This **processor** takes the `service.instance.id` property on the Weaviate metrics
 and copies it into a new property called `weaviate.instance.id`. This is done so
-that we can more easily distinguish Weaviate metrics from other metrics that use 
-`service.instance.id`, which is a standard OpenTelemetry property used in 
-Splunk Observability Cloud. 
+that we can more easily distinguish Weaviate metrics from other metrics that use
+`service.instance.id`, which is a standard OpenTelemetry property used in
+Splunk Observability Cloud.
 
-We'll need to add a new metrics **pipeline** for Weaviate metrics as well (we 
-need to use a separate **pipeline** since we don't want the `weaviate.instance.id` 
-metric to be added to non-Weaviate metrics). Add the following to the bottom of the file: 
+We'll need to add a new metrics **pipeline** for Weaviate metrics as well (we
+need to use a separate **pipeline** since we don't want the `weaviate.instance.id`
+metric to be added to non-Weaviate metrics). Add the following to the bottom of the file:
 
 ``` yaml
         metrics/weaviate:
@@ -120,7 +120,7 @@ metric to be added to non-Weaviate metrics). Add the following to the bottom of 
 ```
 
 Take a moment to compare the
-contents of your modified `otel-collector-values.yaml` file with the 
+contents of your modified `otel-collector-values.yaml` file with the
 `otel-collector-values-with-weaviate.yaml` file. Remember that indentation
 is important for `yaml` files, and needs to be precise:
 

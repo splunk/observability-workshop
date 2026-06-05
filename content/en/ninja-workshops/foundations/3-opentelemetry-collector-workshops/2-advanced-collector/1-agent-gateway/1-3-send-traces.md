@@ -6,7 +6,7 @@ hidden: true
 draft: true
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Send a test trace" %}}
 
 **Send a Test Trace**:
 
@@ -93,4 +93,4 @@ jq -c '.resourceSpans[] as $resource | $resource.scopeSpans[].spans[] | "Span \(
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 -->
 
-{{% /notice %}}
+{{% /exercise %}}

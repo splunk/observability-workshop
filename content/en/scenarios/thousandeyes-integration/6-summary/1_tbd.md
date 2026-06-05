@@ -164,6 +164,3 @@ The PetClinic `Instrumentation` resource is the pattern to follow for ThousandEy
 {{% notice title="Important" style="warning" %}}
 Do **not** use a browser page URL for this section. ThousandEyes documents that browsers do not accept the custom trace headers required for this workflow. Use an instrumented backend endpoint behind an **HTTP Server** or **API** test instead.
 {{% /notice %}}
-
-
-

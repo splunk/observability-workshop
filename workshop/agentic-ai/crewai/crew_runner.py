@@ -17,30 +17,29 @@ def _load_yaml(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
-def _azure_model_name() -> str:
-    deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+def _openai_model_name() -> str:
+    deployment = os.getenv("OPENAI_MODEL_NAME")
     if not deployment:
-        raise RuntimeError("Missing AZURE_OPENAI_DEPLOYMENT_NAME")
-    return f"azure/{deployment}"
+        raise RuntimeError("Missing OPENAI_MODEL_NAME")
+    return deployment
 
 
-def _validate_azure_env() -> None:
+def _validate_openai_env() -> None:
     required = [
-        "AZURE_API_KEY",
-        "AZURE_ENDPOINT",
-        "AZURE_OPENAI_API_VERSION",
-        "AZURE_OPENAI_DEPLOYMENT_NAME",
+        "OPENAI_BASE_URL",
+        "OPENAI_MODEL_NAME",
+        "OPENAI_API_KEY",
     ]
     missing = [k for k in required if not os.getenv(k)]
     if missing:
-        raise RuntimeError(f"Missing Azure env vars: {', '.join(missing)}")
+        raise RuntimeError(f"Missing OpenAI env vars: {', '.join(missing)}")
 
 
 def build_crew() -> Crew:
-    _validate_azure_env()
+    _validate_openai_env()
     agents_cfg = _load_yaml("config/agents.yaml")
     tasks_cfg = _load_yaml("config/tasks.yaml")
-    model = _azure_model_name()
+    model = _openai_model_name()
 
     coordinator = Agent(
         config=agents_cfg["coordinator"],

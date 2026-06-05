@@ -17,13 +17,13 @@ To dive deeper into Always-on Profiling, select Span **(3)** (as referenced in t
 ![Profiling main](../../images/profiling-memory.png)
 
 * The Time filter will be set to the time frame of the span we selected **(1)**
-* Java Memory Metric Charts **(2)** allow you to `Monitor Heap Memory, Application Activity` like `Memory Allocation Rate` and `Garbage Collecting` Metrics.
+* Java Memory Metric Charts **(2)** allow you to monitor Heap memory, application activity like the rate at which memory is allocated, and Garbage Collections.
 * Ability to focus/see metrics and Stack Traces only related to the Span **(3)**, This will filter out background activities running in the Java application if required.
 * Java Function calls identified **(4)**, allowing you to drill down into the Methods called from that function.
 * The Flame Graph **(5)**, with the visualization of hierarchy based on the stack traces of the profiled service.
 * Ability to select the Service instance **(6)** in case the service spins up multiple version of itself.  
 
-For further investigation, the UI allows you to click a stack trace so that you can see the called function and the relevant line from the flame chart that you can then use in your coding platform to view the actual lines of code (depending of course on your preferred Coding platform).
+For further investigation, the UI allows you to click a stack trace so that you can see the called function and the relevant line from the flame chart. You can then cross-reference this in your preferred coding platform to view the actual lines of source code involved.
 
 <!-- Once you have identified the relevant Function or Method you are interested in, `com.mysql.cj.protocol.a.NativePacketPayload.readBytes` in our example but yours may differ, so pick the top one **(1)**  and find it at the e bottom of the Flame Graph **(2)**. Click on it in the Flame Graph, it will show a pane as shown in the image below, where you can see the Thread information **(3)** by clicking on the blue *Show Thread Info* link. If you click on the *Copy Stack Trace* **(4)** button, you grab the actual stack trace that you can use in your coding platform to go to the actual lines of code used at this point (depending of course on your preferred Coding platform)
 

@@ -154,7 +154,7 @@ In **HTTP Communication and Performance**, enable distributed tracing and keep t
 
 ![PetClinic ThousandEyes HTTP Server tracing settings](../images/te-petclinic-http-settings.png)
 
-4. Save the test and let it run for a few intervals.
+1. Save the test and let it run for a few intervals.
 
 {{% notice title="Trace Test Requirement" style="warning" %}}
 Use an **HTTP Server** or **API** test for the distributed tracing exercise. Browser-style page load and transaction tests are useful for end-user monitoring, but they are not the right test type for injecting the trace headers required by the ThousandEyes and Splunk APM workflow.

@@ -1,7 +1,7 @@
 ---
 title: The Astronomy Shop
 linkTitle: The Astronomy Shop
-weight: 12
+weight: 2
 archetype: chapter
 time: 10 minutes
 description: Explore the OpenTelemetry Demo application and generate telemetry data for the workshop modules.
@@ -11,9 +11,10 @@ description: Explore the OpenTelemetry Demo application and generate telemetry d
 
 You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, star charts, and accessories.
 
-> [!splunk] The **Astronomy Shop** is the Splunk distribution of the OpenTelemetry Demo — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
-
 {{% /notice %}}
+
+> >[!IMPORTANT]
+> The **Astronomy Shop** is the Splunk version of the OpenTelemetry Demo — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

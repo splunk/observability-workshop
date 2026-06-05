@@ -9,7 +9,7 @@ The [**Routing Connector**](https://github.com/open-telemetry/opentelemetry-coll
 
 For example, you might want to send *production* data to one exporter while directing *test* or *development* data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the `6-routing-data` directory" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `6-routing-data` directory and run the `clear` command.**
@@ -22,6 +22,6 @@ Copy `*.yaml` from the `5-transform-data` directory into `6-routing-data`. Your 
 └── gateway.yaml
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we will configure the routing connector and the respective pipelines.

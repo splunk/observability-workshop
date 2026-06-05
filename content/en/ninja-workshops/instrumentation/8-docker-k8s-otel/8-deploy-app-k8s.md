@@ -294,9 +294,7 @@ After a minute or so, you should see traces flowing in the o11y cloud. But, if y
 
 If you are a developer and just want to quickly grab the trace id or see console feedback, what environment variable could you add to the deployment.yaml file?
 
-<details>
-  <summary><b>Click here to see the answer</b></summary>
-
+{{< details summary="Click here to see the answer" >}}
 If you recall in our challenge from Section 4, *Instrument a .NET Application with OpenTelemetry*, we showed you a trick to write traces to the console using the `OTEL_TRACES_EXPORTER` environment variable. We can add this variable to our deployment.yaml, redeploy our application, and tail the logs from our helloworld app so that we can grab the trace id to then find the trace in Splunk Observability Cloud. (In the next section of our workshop, we will also walk through using the debug exporter, which is how you would typically debug your application in a K8s environment.)
 
 First, open the deployment.yaml file in vi:
@@ -398,5 +396,4 @@ Resource associated with Activity:
 {{< /tabs >}}
 
 Then, in your other terminal window, generate a trace with your curl command. You will see the trace id in the console in which you are tailing the logs. Copy the `Activity.TraceId:` value and paste it into the Trace search field in APM.
-
-</details>
+{{< /details >}}

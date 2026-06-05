@@ -1,9 +1,10 @@
 ---
-title: 2. Using Splunk Show
+title: Using Splunk Show
 weight: 2
+time: false
 ---
 
-##### **Observability Workshop Templates**
+## **Observability Workshop Templates**
 
 Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:
 
@@ -19,11 +20,11 @@ Set the **Estimated Participants** to the number of attendees you expect, and ma
 {{% /notice %}}
 
 > [!TIP]
-> **Tip:** Over-provision by **10% - 20%** to accommodate last-minute attendees.  
+> Over-provision by **10% - 20%** to accommodate last-minute attendees.  
 
 ---
 
-##### **Important Configuration Tips**
+### **Important Configuration Tips**
 
 When provisioning your instances, keep the following in mind:
 
