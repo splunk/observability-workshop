@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Monitoring as Code with Smart Agent and Ansible on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/</link><description>Recent content in Monitoring as Code with Smart Agent and Ansible on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/index.xml" rel="self" type="application/rss+xml"/><item><title>Setup &amp; Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</guid><description>&lt;h2 id="step-2-prepare-your-files-and-directory-structure"&gt;
+ &lt;span class="heading-text"&gt;Step 2: Prepare Your Files and Directory Structure&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#step-2-prepare-your-files-and-directory-structure" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Create a project directory for your Ansible deployment. It should contain the following files:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── appdsmartagent_64_linux_24.6.0.2143.deb # Debian package
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── appdsmartagent_64_linux_24.6.0.2143.rpm # RedHat package
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── inventory-cloud.yaml # Inventory file
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── smartagent.yaml # Playbook
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── variables.yaml # Variables file&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Ensure you have downloaded the correct Smart Agent packages for your target environments.&lt;/p&gt;
+&lt;h2 id="step-3-understanding-the-files"&gt;
+ &lt;span class="heading-text"&gt;Step 3: Understanding the Files&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#step-3-understanding-the-files" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-inventory-files-inventory-cloudyaml"&gt;
+ &lt;span class="heading-text"&gt;1. Inventory Files (&lt;code&gt;inventory-cloud.yaml&lt;/code&gt;)&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-inventory-files-inventory-cloudyaml" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The inventory file lists the hosts where the Smart Agent will be deployed. Define your hosts and authentication details here.&lt;/p&gt;</description></item><item><title>Deployment</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/3-deployment/</guid><description>&lt;h2 id="step-4-execute-the-playbook"&gt;
+ &lt;span class="heading-text"&gt;Step 4: Execute the Playbook&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#step-4-execute-the-playbook" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To deploy the Smart Agent, run the following command from your project directory:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ansible-playbook -i inventory-cloud.yaml smartagent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Replace &lt;code&gt;inventory-cloud.yaml&lt;/code&gt; with the appropriate inventory file for your setup if you named it differently.&lt;/p&gt;
+&lt;h3 id="verification"&gt;
+ &lt;span class="heading-text"&gt;Verification&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#verification" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;After the playbook completes successfully, you can verify the deployment by logging into one of the target hosts and checking the service status:&lt;/p&gt;</description></item></channel></rss>
