@@ -7,6 +7,7 @@ authors: ["Robert Castley"]
 time: 45 minutes
 aliases:
   - /ninja-workshops/2-hpa/
+product: "Observability Cloud"
 ---
 
 This hands-on workshop teaches you how to monitor Kubernetes Horizontal Pod Autoscaling (HPA) using the Splunk OpenTelemetry Collector. You'll deploy a PHP/Apache application with a load generator to trigger auto-scaling events and observe the complete scaling lifecycle.
