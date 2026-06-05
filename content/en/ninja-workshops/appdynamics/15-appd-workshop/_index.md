@@ -1,10 +1,11 @@
 ---
-title: Splunk4Ninjas AppDynamics
+title: Splunk4Ninjas
 weight: 15
 time: 90 minutes
 description: Full-stack AppDynamics walkthrough — Java APM, server visibility, browser RUM, database monitoring, and Business iQ analytics.
 aliases:
   - /ninja-workshops/15-appd-workshop/
+product: "AppDynamics"
 ---
 
 ## Introduction
