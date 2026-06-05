@@ -43,7 +43,9 @@ Kustomize Version: v5.8.1
 
 You're now ready to deploy application services on k3d
 
-## Set Up the Environment
+{{% exercise title="Install and Run" %}}
+
+### Set Up the Environment
 
 Navigate to the Phase 1 directory and create a virtual environment:
 
@@ -62,28 +64,26 @@ cd ~/workshop/context-propagation/scripts
 Creating k3d cluster 'trace-workshop'...
 INFO[0000] portmapping '8080:8080' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy] 
 INFO[0000] portmapping '13133:13133' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy] 
-INFO[0000] Prep: Network                                
-INFO[0000] Created network 'k3d-trace-workshop'         
+INFO[0000] Prep: Network
+INFO[0000] Created network 'k3d-trace-workshop'
 INFO[0000] Created image volume k3d-trace-workshop-images ...
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-## Set Your Splunk Credentials
+### Set Your Splunk Credentials
 
 Export your credentials as environment variables. Replace each placeholder with your actual values:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
 Your environment should have values for `ACCESS_TOKEN` and `REALM`when you type `env`
-
 
 ``` bash
 export CLUSTER_NAME=trace-workshop-"<YOUR_INITIALS>"
 export WORKSHOP_ENV="trace-propagation-<YOUR-INITIALS>"
 ```
 
-**If  some or all the values they do not exist export them as follows**
+If  some or all the values they do not exist export them as follows:
 
 ``` bash
 export ACCESS_TOKEN="<YOUR_TOKEN>"
@@ -92,11 +92,9 @@ export CLUSTER_NAME=trace-workshop-"<YOUR_INITIALS>"
 export WORKSHOP_ENV="trace-propagation-<YOUR-INITIALS>"
 ```
 
-{{% /notice %}}
+### Run the App
 
-## Run the App
-
-The app will automatically start in the background, run validation checks and send 2 (or ]up-to 15) requests. 
+The app will automatically start in the background, run validation checks and send 2 (or ]up-to 15) requests.
 
 Expected Outout
 
@@ -153,12 +151,13 @@ Health endpoints:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Check Splunk APM
+{{% /exercise %}}
+
+### Check Splunk APM
 
 1. Open [Splunk Observability Cloud UI](http://app.us1.signalfx.com) (url depends on your workshop location) and search for `trace-propagation-<your initials>` in APM -> Service Map
 2. This will return no results..
 
-
 {{% notice title="Note" style="info" %}}
-At this point you have a running app and proof that there is no data in Splunk. The app has no instrumentation code whatsoever.. 
+At this point you have a running app and proof that there is no data in Splunk. The app has no instrumentation code whatsoever.
 {{% /notice %}}
