@@ -52,7 +52,7 @@ OpenTelemetry プロジェクトは頻繁に開発が行われているため、
 {{< mermaid >}}
 %%{
   init:{
-    "theme":"base",
+
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",
