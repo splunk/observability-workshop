@@ -11,7 +11,6 @@ A receiver, which can be push or pull based, is how data gets into the Collector
 {{< mermaid >}}
 %%{
   init:{
-    "theme":"base",
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",

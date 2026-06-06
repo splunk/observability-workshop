@@ -52,7 +52,6 @@ By the end of this talk, attendees will be able to:
 {{< mermaid >}}
 %%{
   init:{
-    "theme":"base",
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",
