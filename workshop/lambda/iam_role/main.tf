@@ -34,21 +34,63 @@ resource "aws_iam_role_policy_attachment" "lambda_kinesis_execution" {
 resource "aws_iam_policy" "lambda_cloudwatch_logs" {
   name = "LambdaCloudWatchLogsCustomPolicy"
   policy = jsonencode({
-      "Version": "2012-10-17",
-      "Statement": [
-          {
-              "Effect": "Allow",
-              "Action": [
-                  "logs:CreateLogStream",
-                  "logs:PutLogEvents"
-              ],
-              "Resource": "*"
-          }
-      ]
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource" : "*"
+      }
+    ]
   })
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_cloudwatch_logs_attachment" {
   role       = aws_iam_role.lambda_kinesis.name
   policy_arn = aws_iam_policy.lambda_cloudwatch_logs.arn
+}
+
+# Create IAM User for Workshop Resource Deployment
+resource "aws_iam_user" "workshop" {
+  name = var.workshop_user_name
+}
+
+resource "aws_iam_access_key" "workshop" {
+  user = aws_iam_user.workshop.name
+}
+
+resource "aws_iam_user_policy" "workshop_lambda_setup" {
+  name = "LambdaWorkshopSetupPolicy"
+  user = aws_iam_user.workshop.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "apigateway:*",
+          "kinesis:*",
+          "lambda:*",
+          "logs:*",
+          "s3:*"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:GetRole",
+          "iam:ListAttachedRolePolicies",
+          "iam:ListRolePolicies",
+          "iam:ListRoleTags",
+          "iam:PassRole"
+        ]
+        Resource = aws_iam_role.lambda_kinesis.arn
+      }
+    ]
+  })
 }
