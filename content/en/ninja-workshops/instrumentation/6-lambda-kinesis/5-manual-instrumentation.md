@@ -12,86 +12,77 @@ Once again, we will first start by taking a look at our operating directory, and
 
 #### The `manual` directory
 
-- Run the following command to get into the `workshop/lambda/manual` directory:
+* Run the following command to get into the `workshop/lambda/manual` directory:
+```bash
+cd ~/workshop/lambda/manual
+```
 
-  ```bash
-  cd ~/workshop/lambda/manual
-  ```
+* Inspect the contents of this directory with the `ls` command:
+```bash
+ls
+```
 
-- Inspect the contents of this directory with the `ls` command:
+- The output should include the following files and directories:
 
-  ```bash
-  ls
-  ```
-
-  - _The output should include the following files and directories:_
-
-    ```bash
-    handler             outputs.tf          terraform.tf        variables.tf
-    main.tf             send_message.py     terraform.tfvars
-    ```
+```bash
+handler             outputs.tf          terraform.tf        variables.tf
+main.tf             send_message.py     terraform.tfvars
+```
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Do you see any difference between this directory and the auto directory when you first started?
 {{% /notice %}}
 
-#### Compare `auto` and `manual` files
-
 Let's make sure that all these files that LOOK the same, are actually the same.
 
-- Compare the `main.tf` files in the `auto` and `manual` directories:
+* Compare the `main.tf` files in the `auto` and `manual` directories:
+```bash
+diff ~/workshop/lambda/auto/main.tf ~/workshop/lambda/manual/main.tf
+```
 
-  ```bash
-  diff ~/workshop/lambda/auto/main.tf ~/workshop/lambda/manual/main.tf
-  ```
+* There is no difference! _(Well, there shouldn't be. Ask your workshop facilitator to assist you if there is)_
 
-  - There is no difference! _(Well, there shouldn't be. Ask your workshop facilitator to assist you if there is)_
+* Now, let's compare the `producer.mjs` files:
+```bash
+diff ~/workshop/lambda/auto/handler/producer.mjs ~/workshop/lambda/manual/handler/producer.mjs
+```
 
-- Now, let's compare the `producer.mjs` files:
+* There's quite a few differences here!
 
-  ```bash
-  diff ~/workshop/lambda/auto/handler/producer.mjs ~/workshop/lambda/manual/handler/producer.mjs
-  ```
+* You may wish to view the entire file and examine its content
 
-  - There's quite a few differences here!
+```bash
+cat ~/workshop/lambda/manual/handler/producer.mjs
+```
 
-- You may wish to view the entire file and examine its content
+* Notice how we are now importing some OpenTelemetry objects directly into our function to handle some of the manual instrumentation tasks we require.
 
-  ```bash
-  cat ~/workshop/lambda/manual/handler/producer.mjs
-  ```
+```js
+import { context, propagation, trace, } from "@opentelemetry/api";
+```
 
-  - Notice how we are now importing some OpenTelemetry objects directly into our function to handle some of the manual instrumentation tasks we require.
+* We are importing the following objects from [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) to propagate our context in our producer function:
+  * context
+  * propagation
+  * trace
 
-  ```js
-  import { context, propagation, trace, } from "@opentelemetry/api";
-  ```
+* Finally, compare the `consumer.mjs` files:
 
-  - We are importing the following objects from [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) to propagate our context in our producer function:
-    - context
-    - propagation
-    - trace
+ ```bash
+ diff ~/workshop/lambda/auto/handler/consumer.mjs ~/workshop/lambda/manual/handler/consumer.mjs
+ ```
 
-- Finally, compare the `consumer.mjs` files:
+- Here also, there are a few differences of note. Let's take a closer look
+```bash
+cat handler/consumer.mjs
+```
 
-  ```bash
-  diff ~/workshop/lambda/auto/handler/consumer.mjs ~/workshop/lambda/manual/handler/consumer.mjs
-  ```
-
-  - Here also, there are a few differences of note. Let's take a closer look
-
-    ```bash
-    cat handler/consumer.mjs
-    ```
-
-    - In this file, we are importing the following [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) objects:
-      - propagation
-      - trace
-      - ROOT_CONTEXT
+- In this file, we are importing the following [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) objects:
+  - propagation
+  - trace
+  - ROOT_CONTEXT
     - We use these to extract the trace context that was propagated from the producer function
     - Then to add new span attributes based on our `name` and `superpower` to the extracted trace context
-
-#### Propagating the Trace Context from the Producer Function
 
 The below code executes the following steps inside the producer function:
 
