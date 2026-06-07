@@ -56,6 +56,7 @@ jobs:
 
       - name: Bump version and create tag
         id: bumpversion
+        if: github.repository == 'splunk/observability-workshop'
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -81,12 +82,25 @@ jobs:
           git tag -a "v${TAG}" -m "Version ${TAG}"
           git push --follow-tags origin main || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
+      - name: Compute deploy metadata (fork)
+        id: forkmeta
+        if: github.repository != 'splunk/observability-workshop'
+        run: |
+          # Forks skip the bump step above and instead deploy the current
+          # checked-in VERSION to <fork-owner>.github.io/<repo>. This step
+          # provides the same outputs (tag_name, base_url) the bump step
+          # would have set on upstream, so the Build / Deploy steps below
+          # don't need to care which path we came from.
+          TAG=$(cat VERSION)
+          echo "tag_name=${TAG}" >> $GITHUB_OUTPUT
+          echo "base_url=https://${{ github.repository_owner }}.github.io/" >> $GITHUB_OUTPUT
+
       - name: Clear stale go vcs cache
         run: rm -rf /tmp/hugo_cache/modules/filecache/modules/pkg/mod/cache/vcs
 
       - name: Build Hugo site
         run: |
-          hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url }}observability-workshop" --noChmod --cacheDir /tmp/hugo_cache
+          hugo --minify --destination "public" --baseURL "${{ steps.bumpversion.outputs.base_url || steps.forkmeta.outputs.base_url }}observability-workshop" --noChmod --cacheDir /tmp/hugo_cache
 
       - name: Promote themed 404 to repo root
         # `defaultContentLanguageInSubdir = true` makes Hugo emit /en/404.html
@@ -107,9 +121,10 @@ jobs:
           force_orphan: false
           user_name: ${{ github.actor }}
           user_email: ${{ github.actor }}@users.noreply.github.com
-          commit_message: "Deploy v${{ steps.bumpversion.outputs.tag_name }}"
+          commit_message: "Deploy v${{ steps.bumpversion.outputs.tag_name || steps.forkmeta.outputs.tag_name }}"
 
       - name: Publish GitHub release
+        if: github.repository == 'splunk/observability-workshop'
         uses: softprops/action-gh-release@v2
         with:
           name: v${{ steps.bumpversion.outputs.tag_name }}
