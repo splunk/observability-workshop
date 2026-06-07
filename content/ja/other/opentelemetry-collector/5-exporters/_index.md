@@ -8,7 +8,6 @@ weight: 5
 
 このワークショップでは、[**otlphttp**](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) エクスポーターを使用します。OpenTelemetry Protocol (OTLP) は、テレメトリーデータを伝送するためのベンダーニュートラルで標準化されたプロトコルです。OTLPエクスポーターは、OTLPプロトコルを実装するサーバーにデータを送信します。OTLPエクスポーターは、[**gRPC**](https://grpc.io/) および [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)/[**JSON**](https://www.json.org/json-en.html) プロトコルの両方をサポートします。
 
-
 {{< mermaid >}}
 %%{
   init:{

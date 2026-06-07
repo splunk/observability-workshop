@@ -5,7 +5,7 @@ weight: 2
 
 {{% exercise title="Generate Traffic" %}}
 
-### Confirm Collector Health
+## Confirm Collector Health
 
 ```bash
 curl -s http://localhost:13133/
