@@ -5,14 +5,14 @@ description: Verify the Online Boutique application is deployed into Kubernetes 
 time: 15 minutes
 ---
 
-* {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Deploy the Online Boutique application in Kubernetes
+* {{% badge style="primary" icon=star title="" %}}**Ninja**{{% /badge %}} Deploy the Online Boutique application in Kubernetes
 * Verify the application is running
 * Generate some artificial traffic using Locust
 * See APM metrics in the UI
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Deploy the Online Boutique{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja** - Deploy the Online Boutique{{% /badge %}}" %}}
 
 ## 1. Check your EC2 server
 
@@ -130,7 +130,7 @@ If you select the **WORKLOADS** tab again you should now see that there are some
 
 ## Visit the Online Boutique
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Visit the Online Boutique you just deployed{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja** - Visit the Online Boutique you just deployed{{% /badge %}}" %}}
 {{% notice style="blue" %}}
 
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.

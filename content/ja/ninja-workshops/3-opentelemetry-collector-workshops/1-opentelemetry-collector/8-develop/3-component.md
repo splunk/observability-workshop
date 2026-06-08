@@ -43,7 +43,7 @@ Exporter が解決するビジネスユースケースは以下の通りです
 OpenTelemetry Collector は「バックエンド」、つまりオールインワンのオブザーバビリティスイートになることを望んでおらず、むしろ OpenTelemetry を創設した原則を維持しています。つまり、すべての人のためのベンダーに依存しないオブザーバビリティです。詳細を再確認するには、[**Exporter の概要**](../5-exporters) をお読みください。
 
 {{% /tab %}}
-{{% tab title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Connectors{{% /badge %}}"  %}}
+{{% tab title="{{% badge style=primary icon=star %}}**Ninja:** Connectors{{% /badge %}}"  %}}
 
 これはワークショップで見逃されたコンポーネントタイプです。比較的新しい Collector への追加であるためです。Connector を考える最良の方法は、異なるテレメトリタイプとパイプライン間で使用できる Processor のようなものです。つまり、Connector はログとしてデータを受け入れ、メトリクスを出力したり、あるパイプラインからメトリクスを受け入れ、観測したデータに関するメトリクスを提供したりできます。
 

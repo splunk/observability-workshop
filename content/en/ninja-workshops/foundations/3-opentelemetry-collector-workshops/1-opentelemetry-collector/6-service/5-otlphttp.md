@@ -28,7 +28,7 @@ service:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
 The collector captures internal signals about its behavior this also includes additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information
@@ -99,7 +99,8 @@ service:
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your final configuration{{% /badge %}}" %}}
+{{% expand title="Review your final configuration" %}}
+
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 

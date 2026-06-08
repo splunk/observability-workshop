@@ -10,7 +10,7 @@ You will notice in the default configuration there are other receivers: **otlp**
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
 
 To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) to create a new receiver as these services start up.
 

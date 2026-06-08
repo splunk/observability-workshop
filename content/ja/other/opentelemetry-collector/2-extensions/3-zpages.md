@@ -40,7 +40,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storageエクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** storageエクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}
 
 これをこなうには、ディストリビューションに `file_storage` エクステンションモジュールがインストールされていることを確認する必要があります。確認するには、`otelcol-contrib components` コマンドを実行します: 
 

@@ -4,7 +4,7 @@ linkTitle: 8.1 Project Setup
 weight: 9
 ---
 
-## Project Setup {{% badge style=primary icon=user-ninja %}}**Ninja**{{% /badge %}}
+## Project Setup {{% badge style=primary icon=star %}}**Ninja**{{% /badge %}}
 
 {{% notice style="note" %}}
 

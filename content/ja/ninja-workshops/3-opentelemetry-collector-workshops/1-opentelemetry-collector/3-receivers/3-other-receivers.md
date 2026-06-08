@@ -10,7 +10,7 @@ weight: 3
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Receiver を動的に作成する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Receiver を動的に作成する{{% /badge %}}" %}}
 
 Docker コンテナ、Kubernetes Pod、SSH セッションなどの短期間のタスクを監視するために、[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) と [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) を使用して、これらのサービスが起動するときに新しい Receiver を作成できます。
 

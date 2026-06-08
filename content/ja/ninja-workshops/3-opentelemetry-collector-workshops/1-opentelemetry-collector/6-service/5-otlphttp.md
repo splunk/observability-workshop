@@ -28,7 +28,7 @@ service:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Collector の内部を観察する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Collector の内部を観察する{{% /badge %}}" %}}
 
 Collector は、実行中のコンポーネントからの追加シグナルを含む、自身の動作に関する内部シグナルをキャプチャします。
 これは、データフローに関する判断を行うコンポーネントが、その情報をメトリクスまたはトレースとして公開する方法を必要とするためです。

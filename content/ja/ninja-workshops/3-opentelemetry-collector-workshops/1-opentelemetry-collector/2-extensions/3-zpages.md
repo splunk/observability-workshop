@@ -40,7 +40,7 @@ weight: 3
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storage 拡張機能でデータの耐久性を向上させる{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** storage 拡張機能でデータの耐久性を向上させる{{% /badge %}}" %}}
 
 このためには、使用しているディストリビューションに `file_storage` 拡張機能がインストールされていることを確認する必要があります。これは、`otelcol-contrib components` コマンドを実行することで確認でき、以下のような結果が表示されるはずです
 
