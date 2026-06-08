@@ -75,13 +75,9 @@ A connector only accepts data exported from one pipeline and receiver by another
 
 {{% /expand %}}
 
----
-
 ## Configuration Check-in
 
 That's processors covered, let's check our configuration changes.
-
----
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
@@ -197,5 +193,3 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
-
----

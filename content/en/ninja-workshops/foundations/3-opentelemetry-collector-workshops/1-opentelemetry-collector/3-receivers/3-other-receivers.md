@@ -50,13 +50,9 @@ For more examples, refer to these [receiver creator's examples](https://github.c
 
 {{% /expand %}}
 
----
-
 ## Configuration Check-in
 
 We've now covered receivers, so let's now check our configuration changes.
-
----
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
@@ -161,8 +157,6 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
-
----
 
 Now that we have reviewed how data gets into the OpenTelemetry Collector through receivers, let's now take a look at how the Collector processes the received data.
 

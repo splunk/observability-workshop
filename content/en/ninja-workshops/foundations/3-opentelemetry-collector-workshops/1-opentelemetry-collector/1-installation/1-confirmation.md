@@ -203,8 +203,6 @@ Which leave you with the following directory structure:
 
 {{% /expand %}}
 
----
-
 ## Default configuration
 
 OpenTelemetry is configured through YAML files. These files have default configurations that we can modify to meet our needs. Let's look at the default configuration that is supplied:
