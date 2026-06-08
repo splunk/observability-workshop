@@ -25,7 +25,7 @@ weight: 9
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}go.modをレビューする{{% /badge %}}" %}}
 
-`` text
+``` text
 module splunk.conf/workshop/example/jenkinscireceiver
 
 go 1.20

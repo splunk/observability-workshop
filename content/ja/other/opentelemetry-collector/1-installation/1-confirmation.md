@@ -44,7 +44,6 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{% /tab %}}
 {{< /tabs >}}
 
-
 {{% notice title="Tips: status表示を中止するには" style="info" %}}
 `systemctl status` コマンドの表示を中止するときは `q` キーを押してください。
 {{% /notice %}}
@@ -110,7 +109,7 @@ sudo systemctl restart otelcol-contrib
 - ocbのインストール
   - ocbバイナリーを [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)
     からダウンロードして、次のコマンドを実行します:
-    
+
     ```bash
     mv ocb_0.80.0_darwin_arm64 /usr/bin/ocb
     chmod 755 /usr/bin/ocb
@@ -154,7 +153,6 @@ sudo systemctl restart otelcol-contrib
 ## Ninja ゾーン
 
 必要なツールをすべてインストールしたら、以下のディレクトリ構造に従い、 `otelcol-builder.yaml` という新しいファイルを作成します:
-
 
 ``` bash
 .

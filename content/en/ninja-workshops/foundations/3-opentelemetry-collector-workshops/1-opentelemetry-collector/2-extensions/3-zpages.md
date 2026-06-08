@@ -266,13 +266,9 @@ There is a potential that this could impact data throughput performance due to d
 
 {{% /expand %}}
 
----
-
 ## Configuration Check-in
 
 Now that we've covered extensions, let's check our configuration changes.
-
----
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
@@ -355,8 +351,6 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
-
----
 
 Now that we have reviewed extensions, let's dive into the data pipeline portion of the workshop. A pipeline defines a path the data follows in the Collector starting from reception, moving to  further processing or modification, and finally exiting the Collector via exporters.
 

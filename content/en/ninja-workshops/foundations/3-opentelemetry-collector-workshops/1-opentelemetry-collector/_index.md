@@ -19,13 +19,9 @@ Throughout the workshop there will be expandable {{% badge style=primary icon=st
 
 Please note that the content in these sections may go out of date due to the frequent development being made to the OpenTelemetry project. Links will be provided in the event details are out of sync, please let us know if you spot something that needs updating.
 
----
-
 {{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Test Me!{{% /badge %}}" %}}
 **By completing this workshop you will officially be an OpenTelemetry Collector Ninja!**
 {{% /expand %}}
-
----
 
 ## Target Audience
 
