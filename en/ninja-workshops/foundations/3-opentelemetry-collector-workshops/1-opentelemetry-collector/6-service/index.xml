@@ -121,7 +121,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;exporters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="l"&gt;debug, otlphttp/splunk]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;hr&gt;
 &lt;details class="solution expand"&gt;
- &lt;summary class="solution__summary"&gt;{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}&lt;/summary&gt;
+ &lt;summary class="solution__summary"&gt;&lt;span class="badge badge--accent"&gt;&lt;span class="badge__icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;strong&gt;Ninja:&lt;/strong&gt; Observing the collector internals&lt;/span&gt;&lt;/summary&gt;
  &lt;div class="solution__body"&gt;
  &lt;p&gt;The collector captures internal signals about its behavior this also includes additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information

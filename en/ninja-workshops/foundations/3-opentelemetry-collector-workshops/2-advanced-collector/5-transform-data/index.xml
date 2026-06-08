@@ -4,7 +4,7 @@
 &lt;/span&gt;
 &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
 &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Add a `transform` processor&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add a &lt;code&gt;transform&lt;/code&gt; processor&lt;/span&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;

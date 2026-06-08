@@ -25,15 +25,90 @@
 <button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir advanced-otel-workshop <span class=o>&amp;&amp;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=nb>cd</span> advanced-otel-workshop</span></span></code></pre></div></div><p>We will refer to this directory as <code>[WORKSHOP]</code> for the remainder of the workshop.</p><div class="callout callout--warning"><span class=callout__icon aria-hidden=true><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42.0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><p class=callout__title>Remove any existing OpenTelemetry Collectors</p><div class=callout__body><p>If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:</p><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
 <button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>helm delete splunk-otel-collector</span></span></code></pre></div></div><p>The EC2 instance in that case may also run some services that can interfere with this workshop , so run the following command to make sure they are stopped if present:</p><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
-<button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl delete ~/workshop/apm/deployment.yaml</span></span></code></pre></div></div></div></div><p><strong>Download workshop binaries</strong>: Change into your <code>[WORKSHOP]</code> directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:</p><div class=tabs data-tabs><div class=tabs__list role=tablist><button id=tabs-1-tab-0 class="tabs__btn is-active" role=tab aria-selected=true aria-controls=tabs-1-panel-0 tabindex=0 data-tab-label="Splunk Workshop Instance">Splunk Workshop Instance</button><button id=tabs-1-tab-1 class=tabs__btn role=tab aria-selected=false aria-controls=tabs-1-panel-1 tabindex=-1 data-tab-label="Apple Silicon">Apple Silicon</button></div><div id=tabs-1-panel-0 class="tabs__panel is-active" role=tabpanel aria-labelledby=tabs-1-tab-0 data-tab-label="Splunk Workshop Instance"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
+<button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl delete ~/workshop/apm/deployment.yaml</span></span></code></pre></div></div></div></div><p><strong>Download workshop binaries</strong>: Change into your <code>[WORKSHOP]</code> directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:</p><div class=tabs data-tabs><div class=tabs__list role=tablist><button id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-0 class="tabs__btn is-active" role=tab aria-selected=true aria-controls=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-0 tabindex=0 data-tab-label="Splunk Workshop Instance">Splunk Workshop Instance</button><button id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-1 class=tabs__btn role=tab aria-selected=false aria-controls=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-1 tabindex=-1 data-tab-label="Apple Silicon">Apple Silicon</button></div><div id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-0 class="tabs__panel is-active" role=tabpanel aria-labelledby=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-0 data-tab-label="Splunk Workshop Instance"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
 <button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.136.0/otelcol_linux_amd64 -o otelcol <span class=o>&amp;&amp;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl>curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen <span class=o>&amp;&amp;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl>curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh <span class=o>&amp;&amp;</span> <span class=se>\
-</span></span></span><span class=line><span class=cl>chmod +x setup-workshop.sh</span></span></code></pre></div></div></div><div id=tabs-1-panel-1 class=tabs__panel role=tabpanel aria-labelledby=tabs-1-tab-1 hidden data-tab-label="Apple Silicon"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
+</span></span></span><span class=line><span class=cl>chmod +x setup-workshop.sh</span></span></code></pre></div></div></div><div id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-1 class=tabs__panel role=tabpanel aria-labelledby=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-1 hidden data-tab-label="Apple Silicon"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
 <button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.136.0/otelcol_darwin_arm64 -o otelcol <span class=o>&amp;&amp;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl>curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen <span class=o>&amp;&amp;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl>curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh <span class=o>&amp;&amp;</span> <span class=se>\
-</span></span></span><span class=line><span class=cl>chmod +x setup-workshop.sh</span></span></code></pre></div></div></div></div></div></div><nav class=pager aria-label="Workshop navigation"><a class="pager__btn pager__btn--prev" href=/observability-workshop/en/conf/1-advanced-collector/ rel=prev><span class=pager__label>Previous</span>
+</span></span></span><span class=line><span class=cl>chmod +x setup-workshop.sh</span></span></code></pre></div></div></div></div></div><div id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-2 class=tabs__panel role=tabpanel aria-labelledby=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-2 hidden data-tab-label="Setup Workshop"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>bash</span></span>
+<button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>./setup-workshop.sh</span></span></code></pre></div></div></div><div id=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--panel-3 class=tabs__panel role=tabpanel aria-labelledby=tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-1-advanced-collector-prerequisites-md-1-1--tab-3 hidden data-tab-label="Verify Setup"><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>text</span></span>
+<button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
+</span></span><span class=line><span class=cl>██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
+</span></span><span class=line><span class=cl>███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
+</span></span><span class=line><span class=cl>╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
+</span></span><span class=line><span class=cl>███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝
+</span></span><span class=line><span class=cl>╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Welcome to the Splunk Advanced OpenTelemetry Workshop!
+</span></span><span class=line><span class=cl>======================================================
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>macOS detected. Removing quarantine attributes...
+</span></span><span class=line><span class=cl>otelcol version v0.126.0
+</span></span><span class=line><span class=cl>Usage: loadgen [OPTIONS]
+</span></span><span class=line><span class=cl>Options:
+</span></span><span class=line><span class=cl>  -base       Send base traces (enabled by default)
+</span></span><span class=line><span class=cl>  -health     Send health traces
+</span></span><span class=line><span class=cl>  -security   Send security traces
+</span></span><span class=line><span class=cl>  -logs       Enable logging of random quotes to quotes.log
+</span></span><span class=line><span class=cl>  -json       Output logs in JSON format (only applicable with -logs)
+</span></span><span class=line><span class=cl>  -count      Number of traces or logs to send (default: infinite)
+</span></span><span class=line><span class=cl>  -h, --help  Display this help message
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Example:
+</span></span><span class=line><span class=cl>  loadgen -health -security -count 10   Send 10 health and security traces
+</span></span><span class=line><span class=cl>  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log
+</span></span><span class=line><span class=cl>Creating workshop directories...
+</span></span><span class=line><span class=cl>✓ Created subdirectories:
+</span></span><span class=line><span class=cl>  ├── 1-agent-gateway
+</span></span><span class=line><span class=cl>  ├── 2-building-resilience
+</span></span><span class=line><span class=cl>  ├── 3-dropping-spans
+</span></span><span class=line><span class=cl>  ├── 4-sensitive-data
+</span></span><span class=line><span class=cl>  ├── 5-transform-data
+</span></span><span class=line><span class=cl>  └── 6-routing-data
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Creating configuration files for 1-agent-gateway...
+</span></span><span class=line><span class=cl>Creating OpenTelemetry Collector agent configuration file: 1-agent-gateway/agent.yaml
+</span></span><span class=line><span class=cl>✓ Configuration file created successfully: 1-agent-gateway/agent.yaml
+</span></span><span class=line><span class=cl>✓ File size:     4355 bytes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Creating OpenTelemetry Collector gateway configuration file: 1-agent-gateway/gateway.yaml
+</span></span><span class=line><span class=cl>✓ Configuration file created successfully: 1-agent-gateway/gateway.yaml
+</span></span><span class=line><span class=cl>✓ File size:     3376 bytes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>✓ Completed configuration files for 1-agent-gateway
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Creating configuration files for 2-building-resilience...
+</span></span><span class=line><span class=cl>Creating OpenTelemetry Collector agent configuration file: 2-building-resilience/agent.yaml
+</span></span><span class=line><span class=cl>✓ Configuration file created successfully: 2-building-resilience/agent.yaml
+</span></span><span class=line><span class=cl>✓ File size:     4355 bytes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Creating OpenTelemetry Collector gateway configuration file: 2-building-resilience/gateway.yaml
+</span></span><span class=line><span class=cl>✓ Configuration file created successfully: 2-building-resilience/gateway.yaml
+</span></span><span class=line><span class=cl>✓ File size:     3376 bytes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>✓ Completed configuration files for 2-building-resilience
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Workshop environment setup complete!
+</span></span><span class=line><span class=cl>Configuration files created in the following directories:
+</span></span><span class=line><span class=cl>  1-agent-gateway/
+</span></span><span class=line><span class=cl>    ├── agent.yaml
+</span></span><span class=line><span class=cl>    └── gateway.yaml
+</span></span><span class=line><span class=cl>  2-building-resilience/
+</span></span><span class=line><span class=cl>    ├── agent.yaml
+</span></span><span class=line><span class=cl>    └── gateway.yaml</span></span></code></pre></div></div></div></div><div class=code-block><div class=code-block__header><span class=code-block__file><span class=code-block__lang>text</span></span>
+<button class=code-block__copy type=button aria-label="Copy code to clipboard">Copy</button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>[WORKSHOP]
+</span></span><span class=line><span class=cl>├── 1-agent-gateway
+</span></span><span class=line><span class=cl>├── 2-building-resilience
+</span></span><span class=line><span class=cl>├── 3-dropping-spans
+</span></span><span class=line><span class=cl>├── 4-sensitive-data
+</span></span><span class=line><span class=cl>├── 5-transform-data
+</span></span><span class=line><span class=cl>├── 6-routing-data
+</span></span><span class=line><span class=cl>├── loadgen
+</span></span><span class=line><span class=cl>├── otelcol
+</span></span><span class=line><span class=cl>└── setup-workshop.sh</span></span></code></pre></div></div></div></div><nav class=pager aria-label="Workshop navigation"><a class="pager__btn pager__btn--prev" href=/observability-workshop/en/conf/1-advanced-collector/ rel=prev><span class=pager__label>Previous</span>
 <span class=pager__title>Advanced OpenTelemetry Collector</span>
 </a><a class="pager__btn pager__btn--next" href=/observability-workshop/en/conf/1-advanced-collector/1-agent-gateway/ rel=next><span class=pager__label>Next</span>
 <span class=pager__title>1. Agent Configuration</span></a></nav><footer class=page-meta-footer><span class=page-meta-footer__label>Last Modified</span>

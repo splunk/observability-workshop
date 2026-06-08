@@ -22,9 +22,9 @@
 &lt;/h2&gt;
 &lt;p&gt;まず、すべてが正常に動作していることを確認します：&lt;/p&gt;
 &lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-0-panel-1" tabindex="-1" data-tab-label="Expected"&gt;Expected&lt;/button&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--panel-1" tabindex="-1" data-tab-label="Expected"&gt;Expected&lt;/button&gt;
 &lt;/div&gt;
-&lt;div id="tabs-0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
@@ -33,7 +33,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s localhost:3000/create-order &lt;span class="p"&gt;|&lt;/span&gt; python3 -m json.tool
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose logs obi &lt;span class="p"&gt;|&lt;/span&gt; head -30&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-0-tab-1" hidden data-tab-label="Expected"&gt;&lt;div class="code-block"&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-16-obi-ebpf-4-docker-obi-magic-3-verify-traces-md-10-1--tab-1" hidden data-tab-label="Expected"&gt;&lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
