@@ -15,13 +15,13 @@ OpenTelemetry を始めたばかりの組織では、まずオブザーバビリ
 
 ### Ninja セクション
 
-ワークショップを通じて、展開可能な {{% badge style=primary icon=user-ninja %}}**Ninja** セクション{{% /badge %}} があります。これらはより実践的で、ワークショップ中または自分の時間に探求できる詳細な技術情報を提供します。
+ワークショップを通じて、展開可能な {{% badge style=primary icon=star %}}**Ninja** セクション{{% /badge %}} があります。これらはより実践的で、ワークショップ中または自分の時間に探求できる詳細な技術情報を提供します。
 
 OpenTelemetry プロジェクトは頻繁に開発が行われているため、これらのセクションの内容が古くなる可能性があることに注意してください。詳細が同期していない場合はリンクが提供されます。更新が必要な箇所を見つけた場合はお知らせください。
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** テストしてみよう！{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** テストしてみよう！{{% /badge %}}" %}}
 **このワークショップを完了すると、正式に OpenTelemetry Collector Ninja になれます！**
 {{% /expand %}}
 

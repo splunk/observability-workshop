@@ -9,7 +9,6 @@ OpenTelemetry Collector がインストールできたので、OpenTelemetry Col
 {{< mermaid >}}
 %%{
   init:{
-    "theme": "base",
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",

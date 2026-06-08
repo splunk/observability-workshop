@@ -10,7 +10,7 @@ weight: 3
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** レシーバーを動的に生成する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** レシーバーを動的に生成する{{% /badge %}}" %}}
 
 dockerコンテナ、kubernetesポッド、sshセッションのような短時間のタスクを観測するために、[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) レシーバーと [observer](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) エクステンションを使って、対象のサービスが起動するタイミングで新しいレシーバーを作成することができます。
 

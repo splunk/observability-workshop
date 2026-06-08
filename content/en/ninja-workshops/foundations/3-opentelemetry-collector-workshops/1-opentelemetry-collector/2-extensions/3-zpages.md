@@ -40,7 +40,7 @@ Example URL: [**http://localhost:55679/debug/extensionz**](http://localhost:5567
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
 
 For this, we will need to validate that our distribution has the `file_storage` extension installed. This can be done by running the command `otelcol-contrib components` which should show results like:
 
