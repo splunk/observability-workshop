@@ -2,8 +2,7 @@
 title: AI Observability
 linkTitle: AI
 weight: 5
-description: Apply observability to AI/ML and agentic workloads.
-time: 2 hours 15 minutes
+description: Use AI inside Splunk Observability Cloud and apply observability to AI/ML and agentic workloads.
+time: 6 hours 45 minutes
 layout: "hero"
 ---
-

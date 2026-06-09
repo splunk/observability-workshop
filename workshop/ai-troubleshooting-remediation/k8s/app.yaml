@@ -1,0 +1,240 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-service
+  namespace: ai-remediation
+  labels:
+    app: checkout-service
+    app.kubernetes.io/name: checkout-service
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkout-service
+  template:
+    metadata:
+      labels:
+        app: checkout-service
+        app.kubernetes.io/name: checkout-service
+        app.kubernetes.io/part-of: ai-troubleshooting-remediation
+    spec:
+      containers:
+        - name: checkout-service
+          image: ai-remediation-app:local
+          imagePullPolicy: IfNotPresent
+          command:
+            - opentelemetry-instrument
+            - uvicorn
+            - checkout_service:app
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8080"
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: INVENTORY_URL
+              value: http://inventory-service:8081
+            - name: OTEL_SERVICE_NAME
+              value: checkout-service
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: deployment.environment=ai-remediation-workshop,service.version=1.0.0,app.workshop=ai-troubleshooting-remediation
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(NODE_IP):4317
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: grpc
+            - name: LOG_LEVEL
+              value: INFO
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkout-service
+  namespace: ai-remediation
+  labels:
+    app: checkout-service
+    app.kubernetes.io/name: checkout-service
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+spec:
+  selector:
+    app: checkout-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-service
+  namespace: ai-remediation
+  labels:
+    app: inventory-service
+    app.kubernetes.io/name: inventory-service
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-service
+  template:
+    metadata:
+      labels:
+        app: inventory-service
+        app.kubernetes.io/name: inventory-service
+        app.kubernetes.io/part-of: ai-troubleshooting-remediation
+    spec:
+      containers:
+        - name: inventory-service
+          image: ai-remediation-app:local
+          imagePullPolicy: IfNotPresent
+          command:
+            - opentelemetry-instrument
+            - uvicorn
+            - inventory_service:app
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8081"
+          ports:
+            - containerPort: 8081
+              name: http
+          env:
+            - name: ISSUE_MODE
+              value: healthy
+            - name: ERROR_RATE
+              value: "0.65"
+            - name: LATENCY_MS
+              value: "2200"
+            - name: OTEL_SERVICE_NAME
+              value: inventory-service
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: deployment.environment=ai-remediation-workshop,service.version=1.0.0,app.workshop=ai-troubleshooting-remediation
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(NODE_IP):4317
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: grpc
+            - name: LOG_LEVEL
+              value: INFO
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-service
+  namespace: ai-remediation
+  labels:
+    app: inventory-service
+    app.kubernetes.io/name: inventory-service
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+spec:
+  selector:
+    app: inventory-service
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remediation-loadgen
+  namespace: ai-remediation
+  labels:
+    app: remediation-loadgen
+    app.kubernetes.io/name: remediation-loadgen
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remediation-loadgen
+  template:
+    metadata:
+      labels:
+        app: remediation-loadgen
+        app.kubernetes.io/name: remediation-loadgen
+        app.kubernetes.io/part-of: ai-troubleshooting-remediation
+    spec:
+      containers:
+        - name: remediation-loadgen
+          image: ai-remediation-app:local
+          imagePullPolicy: IfNotPresent
+          command:
+            - opentelemetry-instrument
+            - python
+            - loadgen.py
+          env:
+            - name: TARGET_URL
+              value: http://checkout-service:8080/checkout
+            - name: REQUEST_INTERVAL_SECONDS
+              value: "1.0"
+            - name: OTEL_SERVICE_NAME
+              value: remediation-loadgen
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: deployment.environment=ai-remediation-workshop,service.version=1.0.0,app.workshop=ai-troubleshooting-remediation
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(NODE_IP):4317
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: grpc
+            - name: LOG_LEVEL
+              value: INFO
+          resources:
+            requests:
+              cpu: 50m
+              memory: 96Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+

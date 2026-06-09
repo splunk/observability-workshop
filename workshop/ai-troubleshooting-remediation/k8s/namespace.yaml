@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-remediation
+  labels:
+    app.kubernetes.io/name: ai-remediation
+    app.kubernetes.io/part-of: ai-troubleshooting-remediation
+

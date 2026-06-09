@@ -1,0 +1,7 @@
+logsEngine: otel
+splunkObservability:
+  infrastructureMonitoringEventsEnabled: true
+agent:
+  service:
+    enabled: true
+
