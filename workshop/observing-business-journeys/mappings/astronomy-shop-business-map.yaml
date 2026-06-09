@@ -1,0 +1,178 @@
+business_application: Astronomy Shop
+environment: business-journey-workshop
+source_app: OpenTelemetry Astronomy Shop
+
+transactions:
+  - id: browse_catalog
+    name: Browse Catalog
+    owner: Digital Commerce
+    criticality: medium
+    business_impact: Customers cannot reliably discover products or recommendations.
+    estimated_revenue_per_minute: 100
+    slo:
+      availability: 99.5
+      latency_p99_ms: 1200
+    entrypoints:
+      - service: frontend
+        route: /
+      - service: frontend
+        route: /api/products
+      - service: frontend
+        route: /api/recommendations
+    supporting_services:
+      required:
+        - frontend-proxy
+        - frontend
+        - product-catalog
+        - currency
+      graceful_degradation:
+        - recommendation
+        - ad
+    o11y_attributes:
+      business.application: astronomy-shop
+      business.transaction: Browse Catalog
+      business.capability: catalog
+      business.criticality: medium
+    itsi:
+      service_name: BT - Browse Catalog
+      parent_service: Astronomy Shop Revenue
+      importance: 6
+
+  - id: manage_cart
+    name: Manage Cart
+    owner: Digital Commerce
+    criticality: high
+    business_impact: Customers cannot build or maintain an order.
+    estimated_revenue_per_minute: 250
+    slo:
+      availability: 99.7
+      latency_p99_ms: 900
+    entrypoints:
+      - service: frontend
+        route: /api/cart
+    supporting_services:
+      required:
+        - frontend-proxy
+        - frontend
+        - cart
+        - valkey-cart
+      graceful_degradation: []
+    o11y_attributes:
+      business.application: astronomy-shop
+      business.transaction: Manage Cart
+      business.capability: cart
+      business.criticality: high
+    itsi:
+      service_name: BT - Manage Cart
+      parent_service: Astronomy Shop Revenue
+      importance: 8
+
+  - id: complete_checkout
+    name: Complete Checkout
+    owner: Revenue Operations
+    criticality: critical
+    business_impact: Customers cannot place orders; revenue capture is directly at risk.
+    estimated_revenue_per_minute: 500
+    slo:
+      availability: 99.9
+      latency_p99_ms: 1500
+    entrypoints:
+      - service: frontend
+        route: /api/checkout
+    supporting_services:
+      required:
+        - frontend-proxy
+        - frontend
+        - checkout
+        - cart
+        - payment
+        - shipping
+        - currency
+      graceful_degradation: []
+    o11y_attributes:
+      business.application: astronomy-shop
+      business.transaction: Complete Checkout
+      business.capability: checkout
+      business.criticality: critical
+    itsi:
+      service_name: BT - Complete Checkout
+      parent_service: Astronomy Shop Revenue
+      importance: 11
+
+  - id: confirm_order
+    name: Confirm Order
+    owner: Fulfillment Operations
+    criticality: high
+    business_impact: Customers might not receive confirmation and downstream order records can lag.
+    estimated_revenue_per_minute: 200
+    slo:
+      availability: 99.7
+      latency_p99_ms: 5000
+    entrypoints:
+      - service: checkout
+        event: order submitted
+      - service: kafka
+        topic: orders
+    supporting_services:
+      required:
+        - email
+        - accounting
+        - kafka
+        - postgresql
+      graceful_degradation: []
+    o11y_attributes:
+      business.application: astronomy-shop
+      business.transaction: Confirm Order
+      business.capability: post-order
+      business.criticality: high
+    itsi:
+      service_name: BT - Confirm Order
+      parent_service: Astronomy Shop Revenue
+      importance: 8
+
+technical_services:
+  frontend-proxy:
+    team: Platform Edge
+    business_capabilities: [catalog, cart, checkout]
+  frontend:
+    team: Web Experience
+    business_capabilities: [catalog, cart, checkout]
+  product-catalog:
+    team: Catalog
+    business_capabilities: [catalog]
+  recommendation:
+    team: Personalization
+    business_capabilities: [catalog]
+  ad:
+    team: Digital Commerce
+    business_capabilities: [catalog]
+  currency:
+    team: Payments
+    business_capabilities: [catalog, checkout]
+  cart:
+    team: Cart
+    business_capabilities: [cart, checkout]
+  valkey-cart:
+    team: Cart
+    business_capabilities: [cart, checkout]
+  checkout:
+    team: Checkout
+    business_capabilities: [checkout]
+  payment:
+    team: Payments
+    business_capabilities: [checkout]
+  shipping:
+    team: Fulfillment
+    business_capabilities: [checkout]
+  email:
+    team: Fulfillment
+    business_capabilities: [post-order]
+  accounting:
+    team: Finance Systems
+    business_capabilities: [post-order]
+  kafka:
+    team: Platform Messaging
+    business_capabilities: [post-order]
+  postgresql:
+    team: Platform Data
+    business_capabilities: [post-order]

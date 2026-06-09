@@ -1,0 +1,48 @@
+# Values merged into the Splunk OpenTelemetry Collector chart.
+#
+# These rules are intentionally workshop-scoped. In production, prefer adding
+# stable business attributes in application instrumentation, then use collector
+# rules as a bridge for legacy services or shared enrichment.
+
+environment: business-journey-workshop
+
+agent:
+  service:
+    enabled: true
+  config:
+    processors:
+      transform/business_transactions:
+        error_mode: ignore
+        trace_statements:
+          - context: span
+            statements:
+              - set(attributes["business.application"], "astronomy-shop")
+              - set(attributes["business.capability"], "catalog") where resource.attributes["service.name"] == "frontend" or resource.attributes["service.name"] == "frontend-proxy" or resource.attributes["service.name"] == "product-catalog" or resource.attributes["service.name"] == "recommendation" or resource.attributes["service.name"] == "ad" or resource.attributes["service.name"] == "currency"
+              - set(attributes["business.capability"], "cart") where resource.attributes["service.name"] == "cart" or resource.attributes["service.name"] == "valkey-cart"
+              - set(attributes["business.capability"], "checkout") where resource.attributes["service.name"] == "checkout" or resource.attributes["service.name"] == "payment" or resource.attributes["service.name"] == "shipping"
+              - set(attributes["business.capability"], "post-order") where resource.attributes["service.name"] == "email" or resource.attributes["service.name"] == "accounting" or resource.attributes["service.name"] == "kafka" or resource.attributes["service.name"] == "postgresql"
+              - set(attributes["business.transaction"], "Browse Catalog") where attributes["http.route"] == "/" or attributes["http.route"] == "/api/products" or attributes["http.route"] == "/api/recommendations" or resource.attributes["service.name"] == "product-catalog" or resource.attributes["service.name"] == "recommendation" or resource.attributes["service.name"] == "ad"
+              - set(attributes["business.transaction"], "Manage Cart") where attributes["http.route"] == "/api/cart" or resource.attributes["service.name"] == "cart" or resource.attributes["service.name"] == "valkey-cart"
+              - set(attributes["business.transaction"], "Complete Checkout") where attributes["http.route"] == "/api/checkout" or resource.attributes["service.name"] == "checkout" or resource.attributes["service.name"] == "payment" or resource.attributes["service.name"] == "shipping"
+              - set(attributes["business.transaction"], "Confirm Order") where resource.attributes["service.name"] == "email" or resource.attributes["service.name"] == "accounting" or resource.attributes["service.name"] == "kafka"
+              - set(attributes["business.criticality"], "medium") where attributes["business.transaction"] == "Browse Catalog"
+              - set(attributes["business.criticality"], "high") where attributes["business.transaction"] == "Manage Cart"
+              - set(attributes["business.criticality"], "critical") where attributes["business.transaction"] == "Complete Checkout"
+              - set(attributes["business.criticality"], "high") where attributes["business.transaction"] == "Confirm Order"
+    service:
+      pipelines:
+        traces:
+          receivers:
+            - otlp
+            - jaeger
+            - zipkin
+          processors:
+            - memory_limiter
+            - k8s_attributes
+            - transform/business_transactions
+            - batch
+            - resourcedetection
+            - resource
+            - resource/add_environment
+          exporters:
+            - otlp_http

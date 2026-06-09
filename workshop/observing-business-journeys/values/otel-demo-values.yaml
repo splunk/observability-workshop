@@ -1,0 +1,57 @@
+# Values for the OpenTelemetry Astronomy Shop demo.
+#
+# The demo's bundled observability components are disabled. Every service sends
+# OTLP data to the node-local Splunk OpenTelemetry Collector agent by using the
+# pod's host IP.
+
+default:
+  envOverrides:
+    - name: OTEL_COLLECTOR_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: 'service.name=$(OTEL_SERVICE_NAME),service.namespace=astronomy-shop,service.version={{ .Chart.AppVersion }},deployment.environment=business-journey-workshop,business.application=astronomy-shop'
+
+components:
+  frontend-proxy:
+    service:
+      type: NodePort
+      port: 8080
+      nodePort: 30080
+
+  load-generator:
+    enabled: true
+    useDefault:
+      env: true
+    envOverrides:
+      - name: LOCUST_WEB_PORT
+        value: "8089"
+      - name: LOCUST_USERS
+        value: "12"
+      - name: LOCUST_SPAWN_RATE
+        value: "2"
+      - name: LOCUST_HOST
+        value: http://frontend-proxy:8080
+      - name: LOCUST_HEADLESS
+        value: "true"
+      - name: LOCUST_AUTOSTART
+        value: "true"
+      - name: LOCUST_BROWSER_TRAFFIC_ENABLED
+        value: "false"
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://$(OTEL_COLLECTOR_NAME):4317
+    resources:
+      limits:
+        memory: 1500Mi
+
+opentelemetry-collector:
+  enabled: false
+jaeger:
+  enabled: false
+prometheus:
+  enabled: false
+grafana:
+  enabled: false
+opensearch:
+  enabled: false
