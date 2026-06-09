@@ -8,10 +8,58 @@ The app is intentionally small:
 - `inventory-service` reserves inventory for checkout requests.
 - `loadgen` continuously calls `checkout-service`.
 
+## Application Flow
+
+The lab models a checkout dependency chain:
+
+```text
+remediation-loadgen -> checkout-service /checkout -> inventory-service /reserve
+```
+
+`checkout-service` creates cart context such as cart type, SKU, quantity, and cart value. It then calls `inventory-service` to reserve inventory. `inventory-service` can run normally or simulate an incident by adding latency, returning errors, or exiting at startup to create Kubernetes restart signals.
+
+## Instrumentation Model
+
+The application is instrumented with Python OpenTelemetry.
+
+- `app/requirements.txt` installs `opentelemetry-distro`, OTLP export, FastAPI instrumentation, `requests` instrumentation, and logging instrumentation.
+- `app/Dockerfile` runs `opentelemetry-bootstrap -a install` so the instrumentation packages are configured in the image.
+- `k8s/app.yaml` starts each process with `opentelemetry-instrument`, which creates spans for inbound FastAPI requests and outbound `requests` calls.
+- `OTEL_SERVICE_NAME` names the APM services as `checkout-service`, `inventory-service`, and `remediation-loadgen`.
+- `OTEL_RESOURCE_ATTRIBUTES` adds `deployment.environment=ai-remediation-workshop`, `service.version=1.0.0`, and `app.workshop=ai-troubleshooting-remediation`.
+- `OTEL_EXPORTER_OTLP_ENDPOINT=http://$(NODE_IP):4317` sends OTLP traces to the node-local Splunk OpenTelemetry Collector agent.
+
+The Python services also add custom span attributes such as `app.cart.type`, `app.cart.value`, `app.sku`, `app.quantity`, `app.issue_mode`, and `app.checkout.duration_ms`. Those attributes give students concrete evidence to inspect while comparing the AI troubleshooting agent's hypothesis with traces, logs, service metrics, and Kubernetes infrastructure telemetry.
+
 The app supports two issue modes:
 
 - `latency-errors`: `inventory-service` becomes slow and intermittently returns errors. Use this for an APM service alert.
 - `crashloop`: `inventory-service` exits on startup. Use this for a Kubernetes infrastructure alert.
+
+## Quick Workshop CLI
+
+Use `ai-remediation` as a BusyBox-style helper for quick demos and workshop resets. It wraps the scripts below and resolves its paths from the script location, so it can be invoked by relative or absolute path.
+
+```bash
+export SPLUNK_REALM=us1
+export SPLUNK_ACCESS_TOKEN=<access-token>
+
+./ai-remediation doctor kind
+./ai-remediation start kind
+```
+
+The `start` command deploys the lab, sends smoke traffic, and injects the default `latency-errors` issue. You can also run each workshop step individually:
+
+```bash
+./ai-remediation deploy kind
+./ai-remediation smoke kind
+./ai-remediation issue latency-errors kind
+./ai-remediation status kind
+./ai-remediation remediate kind
+./ai-remediation cleanup kind
+```
+
+For other runtimes, replace `kind` with `minikube`, `microk8s`, or `cloud`. For cloud deployments, set `IMAGE_REGISTRY` before running `deploy` or `start`.
 
 ## Install Laptop Tools
 

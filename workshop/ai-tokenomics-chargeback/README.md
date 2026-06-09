@@ -25,6 +25,8 @@ telemetry.
   token and GPU-hour pricing.
 * `scripts/benchmark_ollama.py` - Local Ollama benchmark that derives input, output,
   and blended token rates from observed throughput and an hourly cost model.
+* `scripts/simulate_token_cost_risk.py` - Synthetic event generator for token surge,
+  tenant misuse, unknown attribution, and chargeback alarm labs.
 
 ## Recommended Flow
 
@@ -36,6 +38,7 @@ telemetry.
 4. Use the derived token rates as the workshop rate card.
 5. Add the custom instrumentation helper to a local app or use the benchmark output as
    sample chargeback data.
+6. Run `scripts/simulate_token_cost_risk.py` to practice proactive cost alarms.
 
 ### Shared GPU Path
 

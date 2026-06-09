@@ -1,6 +1,8 @@
 # Simple AI Agent Exercise
 
-This exercise teaches the mechanics of an AI agent without requiring an API key.
+This exercise teaches the mechanics of an AI agent with a local LLM first. It uses
+Ollama by default and can also run against an OpenAI-compatible hosted API when you have
+an API key.
 
 The agent has:
 
@@ -13,13 +15,24 @@ The agent has:
 Run the completed version:
 
 ```bash
-python3 agent_solution.py "Plan my day and draft a customer follow-up"
+ollama pull llama3.2
+python3 agent.py "Plan my day and draft a customer follow-up"
 ```
 
-Complete the workshop version:
+Use a different local model:
 
 ```bash
-python3 agent_starter.py "Plan my day and draft a customer follow-up"
+OLLAMA_MODEL=qwen2.5 python3 agent.py "Plan my day and draft a customer follow-up"
 ```
 
 Edit `profile.json` to make the assistant personal to you.
+
+Run with an OpenAI-compatible API key:
+
+```bash
+OPENAI_API_KEY="your-key" OPENAI_MODEL="your-model" AGENT_BACKEND=openai \
+  python3 agent.py "Plan my day and draft a customer follow-up"
+```
+
+The agent uses an OpenAI-compatible `/v1/chat/completions` endpoint so the same code path
+works with local model servers and hosted providers.

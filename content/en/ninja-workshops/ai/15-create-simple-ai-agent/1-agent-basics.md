@@ -12,9 +12,9 @@ An AI agent is a software loop that combines four pieces:
 * **Tools**: functions the agent can call to read data or take action.
 * **Decision logic**: a model or controller that chooses the next step.
 
-In a production agent, the decision logic is often an LLM. In this workshop, the
-decision logic is intentionally small and deterministic so you can see the shape of the
-system without debugging model behavior.
+In this workshop, the decision logic is a local LLM by default. Python still owns the
+tool registry, validation, and execution. The model can request an action, but the
+application decides whether that action is allowed.
 
 ## The Agent Loop
 

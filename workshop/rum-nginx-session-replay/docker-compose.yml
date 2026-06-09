@@ -1,0 +1,15 @@
+services:
+  dxa-rum-workshop:
+    image: nginx:1.27-alpine
+    ports:
+      - "${DEMO_PORT:-8088}:8080"
+    environment:
+      SPLUNK_RUM_REALM: "${SPLUNK_RUM_REALM:-us1}"
+      SPLUNK_RUM_ACCESS_TOKEN: "${SPLUNK_RUM_ACCESS_TOKEN:-replace-with-your-rum-token}"
+      SPLUNK_RUM_APPLICATION_NAME: "${SPLUNK_RUM_APPLICATION_NAME:-dxa-rum-workshop}"
+      SPLUNK_RUM_APP_VERSION: "${SPLUNK_RUM_APP_VERSION:-1.0.0}"
+      SPLUNK_RUM_ENVIRONMENT: "${SPLUNK_RUM_ENVIRONMENT:-workshop}"
+      SPLUNK_RUM_AGENT_VERSION: "${SPLUNK_RUM_AGENT_VERSION:-v3}"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template:ro

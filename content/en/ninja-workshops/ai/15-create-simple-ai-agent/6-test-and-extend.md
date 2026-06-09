@@ -8,9 +8,9 @@ time: 10 minutes
 Try a few different requests:
 
 ```bash
-python3 agent_starter.py "Draft a concise update for my manager"
-python3 agent_starter.py "Create a task to review alert noise tomorrow"
-python3 agent_starter.py "Plan my day around a reliability review"
+python3 agent.py "Draft a concise update for my manager"
+python3 agent.py "Create a task to review alert noise tomorrow"
+python3 agent.py "Plan my day around a reliability review"
 ```
 
 Watch which tools the agent chooses. The point of the exercise is to make the decision
@@ -49,7 +49,7 @@ To add the new tool, make three small edits:
    when the request asks for planning or priorities.
 
 The pattern is the same for every new tool: define, register, decide when to call it,
-then observe the result.
+describe it in `build_decision_messages`, then observe the result.
 
 ## Production Readiness Checklist
 

@@ -1,0 +1,37 @@
+server {
+  listen 8080;
+  server_name _;
+
+  root /usr/share/nginx/html;
+  index index.html;
+
+  gzip off;
+
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.observability.splunkcloud.com; connect-src 'self' https://rum-ingest.${SPLUNK_RUM_REALM}.observability.splunkcloud.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+  location = /healthz {
+    access_log off;
+    return 204;
+  }
+
+  location = /api/recommendations {
+    default_type application/json;
+    add_header Cache-Control "no-store" always;
+    return 200 '{"recommendations":["Baseline Monitor","Replay Analyzer","Release Guard"]}';
+  }
+
+  location = /__splunk_rum_loaded {
+    add_header Cache-Control "no-store" always;
+    return 204;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+
+    sub_filter_once on;
+    sub_filter_types text/html;
+    sub_filter '<head>' '<head><meta name="splunk-dxa-rum-injected" content="nginx"><script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/${SPLUNK_RUM_AGENT_VERSION}/splunk-otel-web.js" crossorigin="anonymous"></script><script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/${SPLUNK_RUM_AGENT_VERSION}/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script><script>(function(){function rumLoaded(status){var url="/__splunk_rum_loaded?status="+encodeURIComponent(status);if(navigator.sendBeacon){navigator.sendBeacon(url);return;}fetch(url,{method:"POST",keepalive:true,mode:"same-origin"}).catch(function(){});}if(!window.SplunkRum){rumLoaded("missing");return;}try{window.SplunkRum.init({realm:"${SPLUNK_RUM_REALM}",rumAccessToken:"${SPLUNK_RUM_ACCESS_TOKEN}",applicationName:"${SPLUNK_RUM_APPLICATION_NAME}",version:"${SPLUNK_RUM_APP_VERSION}",deploymentEnvironment:"${SPLUNK_RUM_ENVIRONMENT}",user:{trackingMode:"anonymousTracking"},instrumentations:{visibility:true,interactions:{eventNames:window.SplunkRum.DEFAULT_AUTO_INSTRUMENTED_EVENT_NAMES.concat(["change","submit"])}},spaMetrics:true,ignoreUrls:[/\/healthz$/, /\/readyz$/, /\/__splunk_rum_loaded/],privacy:{maskAllText:true,sensitivityRules:[{rule:"unmask",selector:"[data-rum-allow-text]"},{rule:"exclude",selector:"[data-rum-exclude]"}]},exporter:{onAttributesSerializing:function(attrs){var url=attrs["http.url"];if(typeof url==="string"){attrs["http.url"]=url.replace(/([?&](?:token|secret|password|email)=)[^&]*/gi,function(_,key){return key+"[redacted]";});}return attrs;}}});if(window.SplunkSessionRecorder){window.SplunkSessionRecorder.init({realm:"${SPLUNK_RUM_REALM}",rumAccessToken:"${SPLUNK_RUM_ACCESS_TOKEN}",recorder:"splunk",maskAllInputs:true,maskAllText:true,sensitivityRules:[{type:"unmask",selector:"[data-rum-allow-text]"},{type:"exclude",selector:"[data-rum-exclude]"}]});}rumLoaded("initialized");}catch(e){rumLoaded("error");throw e;}}());</script>';
+  }
+}

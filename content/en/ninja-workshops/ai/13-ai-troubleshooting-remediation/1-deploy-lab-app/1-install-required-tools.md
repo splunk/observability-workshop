@@ -5,6 +5,8 @@ weight: 1
 
 Students can run this workshop on macOS, Windows, or Linux. Every local deployment needs a container engine, Kubernetes CLI access, Helm, Git, and one local Kubernetes runtime.
 
+The tools below are used to deploy a small instrumented checkout application into Kubernetes. The app sends traces, service metadata, pod logs, and Kubernetes infrastructure telemetry to Splunk Observability Cloud so the AI troubleshooting agent has real evidence to analyze after an issue is injected.
+
 ## Required Tools
 
 | Tool | Why it is needed |
@@ -134,4 +136,3 @@ Only the runtime you selected needs to pass its version or status check.
 {{% notice title="Access Token" style="info" %}}
 The install scripts do not create Splunk Observability Cloud tokens. Before deploying the lab app, create or obtain an access token for your `us1` organization and keep it available as `SPLUNK_ACCESS_TOKEN`.
 {{% /notice %}}
-

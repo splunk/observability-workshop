@@ -79,4 +79,5 @@ By the end of the workshop, you will have a working pattern for:
 * GPU pool allocation formulas based on shared workload usage.
 * A dashboard layout for executive summary, team breakdown, model economics, and GPU
   efficiency.
+* Simulated token surge, tenant misuse, and unknown attribution scenarios.
 * Detectors for cost spikes, budget burn, inefficient GPU use, and runaway token growth.

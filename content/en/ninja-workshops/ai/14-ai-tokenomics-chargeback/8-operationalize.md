@@ -1,6 +1,6 @@
 ---
-title: 8. Operationalize Tokenomics
-weight: 8
+title: 9. Operationalize Tokenomics
+weight: 9
 ---
 
 The workshop pattern is useful only if teams can repeat it across models, applications,

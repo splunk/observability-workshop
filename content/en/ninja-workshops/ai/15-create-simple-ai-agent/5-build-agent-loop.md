@@ -5,15 +5,7 @@ weight: 5
 time: 15 minutes
 ---
 
-The agent loop lives in `run_agent`.
-
-Find this section in `agent_starter.py`:
-
-```python
-# TODO: call the selected tool, store the observation, and continue the loop.
-```
-
-Replace the placeholder with the following logic:
+The agent loop lives in `run_agent`. The most important part is the tool execution block:
 
 ```python
 tool = TOOLS[action.tool_name]
@@ -48,7 +40,7 @@ The loop should now:
 Run:
 
 ```bash
-python3 agent_starter.py "Plan my day and draft a customer follow-up"
+python3 agent.py "Plan my day and draft a customer follow-up"
 ```
 
 Expected behavior:
@@ -79,7 +71,10 @@ purposes:
 * In a monitored system, each observation can become trace, log, or evaluation data.
 
 {{% notice title="Troubleshooting" style="info" %}}
-If the starter does not run, compare your file with
-`workshop/simple-ai-agent/agent_solution.py`. The solution is intentionally compact so
-you can inspect the complete loop in one place.
+If the agent cannot reach Ollama, confirm Ollama is running and the model is available:
+
+```bash
+ollama list
+ollama pull llama3.2
+```
 {{% /notice %}}

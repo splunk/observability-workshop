@@ -8,10 +8,10 @@ time: 10 minutes
 Open:
 
 ```text
-workshop/simple-ai-agent/agent_starter.py
+workshop/simple-ai-agent/agent.py
 ```
 
-The file contains placeholders marked with `TODO`. The first task is to add tools.
+The first task is to understand the tools the local LLM can request.
 
 ## Tool Contract
 
@@ -53,14 +53,13 @@ by the decision function is not registered, the script raises an error instead o
 unknown code.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Add the `TOOLS` registry in `agent_starter.py`, then run:
+Review the `TOOLS` registry in `agent.py`, then run:
 
 ```bash
-python3 agent_starter.py "Plan my day and draft a customer follow-up"
+python3 agent.py "Plan my day and draft a customer follow-up"
 ```
 
-The script will still need the agent loop in the next section, but the tool registry
-should now be defined.
+Confirm the model can request only the tools listed in `TOOLS`.
 {{% /notice %}}
 
 ## What the Registry Protects

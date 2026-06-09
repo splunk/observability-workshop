@@ -13,14 +13,10 @@ Now create a controlled incident. Use the APM issue path for the primary worksho
 
 ```bash
 cd workshop/ai-troubleshooting-remediation
-./scripts/inject-issue.sh latency-errors
+./ai-remediation issue latency-errors <runtime>
 ```
 
-For MicroK8s, use:
-
-```bash
-KUBECTL_CMD="microk8s kubectl" ./scripts/inject-issue.sh latency-errors
-```
+Replace `<runtime>` with `kind`, `minikube`, `microk8s`, or `cloud`.
 
 * Wait three to five minutes for traces and service metrics to show the new behavior.
 * In **APM**, open `checkout-service` or `inventory-service`.
@@ -36,13 +32,7 @@ KUBECTL_CMD="microk8s kubectl" ./scripts/inject-issue.sh latency-errors
 Use this variant when you want a Kubernetes Infrastructure Monitoring alert.
 
 ```bash
-./scripts/inject-issue.sh crashloop
-```
-
-For MicroK8s, use:
-
-```bash
-KUBECTL_CMD="microk8s kubectl" ./scripts/inject-issue.sh crashloop
+./ai-remediation issue crashloop <runtime>
 ```
 
 * Confirm that `inventory-service` restarts:
@@ -70,13 +60,7 @@ kubectl -n ai-remediation describe deploy inventory-service
 To remediate the injected issue manually, run:
 
 ```bash
-./scripts/remediate.sh
-```
-
-For MicroK8s, use:
-
-```bash
-KUBECTL_CMD="microk8s kubectl" ./scripts/remediate.sh
+./ai-remediation remediate <runtime>
 ```
 
 Do not run remediation yet if you still need the alert to stay active for the next chapter.

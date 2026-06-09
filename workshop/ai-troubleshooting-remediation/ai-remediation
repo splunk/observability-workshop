@@ -1,0 +1,442 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SELF_NAME="$(basename "$0")"
+SCRIPT_SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$SCRIPT_SOURCE" ]]; do
+  SOURCE_DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" && pwd)"
+  SCRIPT_SOURCE="$(readlink "$SCRIPT_SOURCE")"
+  [[ "$SCRIPT_SOURCE" != /* ]] && SCRIPT_SOURCE="$SOURCE_DIR/$SCRIPT_SOURCE"
+done
+WORKSHOP_DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" && pwd)"
+SCRIPTS_DIR="$WORKSHOP_DIR/scripts"
+
+VALID_APPLETS=(
+  cleanup
+  demo
+  deploy
+  doctor
+  env
+  help
+  issue
+  logs
+  remediate
+  smoke
+  start
+  status
+  tools
+  workshop
+)
+
+usage() {
+  cat <<'EOF'
+AI Remediation workshop helper
+
+Usage:
+  ./ai-remediation <command> [options]
+  <applet-name> [options]              # when symlinked as an applet
+
+Quick demo path:
+  export SPLUNK_REALM=us1
+  export SPLUNK_ACCESS_TOKEN=<access-token>
+  ./ai-remediation start kind
+
+Commands:
+  start [runtime] [issue]              Deploy, smoke test, then inject an issue.
+  demo [runtime] [issue]               Alias for start.
+  deploy [runtime]                     Deploy to kind, minikube, microk8s, or cloud.
+  issue [mode] [runtime]               Set issue mode.
+  remediate [runtime]                  Return inventory-service to healthy mode.
+  smoke [runtime]                      Send quick checkout smoke traffic.
+  status [runtime]                     Show lab Kubernetes resources.
+  logs [runtime]                       Tail recent lab app logs.
+  cleanup [runtime]                    Delete the lab namespace.
+  doctor [runtime]                     Check required tools and environment variables.
+  tools [runtime]                      Install local laptop tools where supported.
+  env [runtime]                        Print environment setup hints.
+  workshop                             Print the matching workshop guide path.
+  help                                 Show this help.
+
+Runtimes:
+  kind | minikube | microk8s | cloud
+
+Issue modes:
+  latency-errors | latency | errors | crashloop | healthy
+
+Common examples:
+  ./ai-remediation doctor kind
+  ./ai-remediation deploy kind
+  ./ai-remediation issue latency-errors
+  ./ai-remediation status
+  ./ai-remediation remediate
+  ./ai-remediation cleanup
+
+Cloud example:
+  export IMAGE_REGISTRY=ghcr.io/<org-or-user>
+  ./ai-remediation start cloud latency-errors
+
+MicroK8s example:
+  ./ai-remediation start microk8s latency-errors
+EOF
+}
+
+die() {
+  echo "ai-remediation: $*" >&2
+  exit 1
+}
+
+is_applet() {
+  local name="$1"
+  local applet
+  for applet in "${VALID_APPLETS[@]}"; do
+    [[ "$name" == "$applet" ]] && return 0
+  done
+  return 1
+}
+
+normalize_runtime() {
+  local runtime="${1:-${LOCAL_RUNTIME:-kind}}"
+  case "$runtime" in
+    kind|minikube|microk8s|cloud)
+      printf '%s\n' "$runtime"
+      ;;
+    *)
+      die "unknown runtime '$runtime'. Expected kind, minikube, microk8s, or cloud."
+      ;;
+  esac
+}
+
+normalize_issue_mode() {
+  local mode="${1:-latency-errors}"
+  case "$mode" in
+    healthy|latency|errors|latency-errors|crashloop)
+      printf '%s\n' "$mode"
+      ;;
+    *)
+      die "unknown issue mode '$mode'. Expected healthy, latency, errors, latency-errors, or crashloop."
+      ;;
+  esac
+}
+
+runtime_env() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+
+  if [[ "$runtime" == "microk8s" ]]; then
+    export KUBECTL_CMD="${KUBECTL_CMD:-microk8s kubectl}"
+    export HELM_CMD="${HELM_CMD:-microk8s helm3}"
+  fi
+}
+
+kubectl_for_runtime() {
+  local runtime kubectl_cmd
+  runtime="$(normalize_runtime "${1:-}")"
+  kubectl_cmd="${KUBECTL_CMD:-kubectl}"
+
+  if [[ "$runtime" == "microk8s" ]]; then
+    kubectl_cmd="${KUBECTL_CMD:-microk8s kubectl}"
+  fi
+
+  read -r -a KUBECTL <<< "$kubectl_cmd"
+}
+
+require_command() {
+  local name="$1"
+  if command -v "$name" >/dev/null 2>&1; then
+    echo "ok: $name"
+    return 0
+  fi
+
+  echo "missing: $name" >&2
+  return 1
+}
+
+require_env() {
+  local name="$1"
+  if [[ -n "${!name:-}" ]]; then
+    echo "ok: $name"
+    return 0
+  fi
+
+  echo "missing: $name" >&2
+  return 1
+}
+
+cmd_doctor() {
+  local runtime missing=0
+  runtime="$(normalize_runtime "${1:-}")"
+
+  echo "Checking runtime: $runtime"
+  require_env SPLUNK_REALM || missing=1
+  require_env SPLUNK_ACCESS_TOKEN || missing=1
+
+  case "$runtime" in
+    kind)
+      require_command docker || missing=1
+      require_command kubectl || missing=1
+      require_command helm || missing=1
+      require_command kind || missing=1
+      ;;
+    minikube)
+      require_command docker || missing=1
+      require_command kubectl || missing=1
+      require_command helm || missing=1
+      require_command minikube || missing=1
+      ;;
+    microk8s)
+      require_command docker || missing=1
+      require_command microk8s || missing=1
+      ;;
+    cloud)
+      require_command docker || missing=1
+      require_command kubectl || missing=1
+      require_command helm || missing=1
+      require_env IMAGE_REGISTRY || missing=1
+      ;;
+  esac
+
+  if [[ "$missing" -ne 0 ]]; then
+    echo ""
+    echo "Run './ai-remediation env $runtime' for setup hints."
+    exit 1
+  fi
+
+  echo "Ready for $runtime."
+}
+
+cmd_tools() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+
+  if [[ "$runtime" == "cloud" ]]; then
+    die "tools cloud is not automated. Install Docker, kubectl, and Helm, then run './ai-remediation doctor cloud'."
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      "$SCRIPTS_DIR/install-tools-macos.sh"
+      ;;
+    Linux)
+      LOCAL_RUNTIME="$runtime" "$SCRIPTS_DIR/install-tools-linux.sh"
+      ;;
+    *)
+      die "automatic tool install is supported for macOS and Debian/Ubuntu Linux. Use scripts/install-tools-windows.ps1 on Windows."
+      ;;
+  esac
+}
+
+cmd_deploy() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  runtime_env "$runtime"
+
+  case "$runtime" in
+    kind)
+      "$SCRIPTS_DIR/deploy-local-kind.sh"
+      ;;
+    minikube)
+      "$SCRIPTS_DIR/deploy-local-minikube.sh"
+      ;;
+    microk8s)
+      "$SCRIPTS_DIR/deploy-local-microk8s.sh"
+      ;;
+    cloud)
+      "$SCRIPTS_DIR/deploy-cloud.sh"
+      ;;
+  esac
+}
+
+cmd_smoke() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  runtime_env "$runtime"
+  "$SCRIPTS_DIR/smoke-test.sh"
+}
+
+cmd_issue() {
+  local mode runtime
+  mode="$(normalize_issue_mode "${1:-}")"
+  runtime="$(normalize_runtime "${2:-}")"
+  runtime_env "$runtime"
+  "$SCRIPTS_DIR/inject-issue.sh" "$mode"
+}
+
+cmd_remediate() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  runtime_env "$runtime"
+  "$SCRIPTS_DIR/remediate.sh"
+}
+
+cmd_cleanup() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  runtime_env "$runtime"
+  "$SCRIPTS_DIR/cleanup.sh"
+}
+
+cmd_status() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  kubectl_for_runtime "$runtime"
+
+  echo "Kubernetes context:"
+  "${KUBECTL[@]}" config current-context || true
+  echo ""
+
+  echo "Lab resources:"
+  "${KUBECTL[@]}" -n ai-remediation get deploy,pods,svc 2>/dev/null || {
+    echo "No ai-remediation namespace or resources found."
+  }
+  echo ""
+
+  echo "Collector resources:"
+  "${KUBECTL[@]}" get pods -l app=splunk-otel-collector 2>/dev/null || true
+}
+
+cmd_logs() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+  kubectl_for_runtime "$runtime"
+
+  "${KUBECTL[@]}" -n ai-remediation logs \
+    -l 'app in (checkout-service,inventory-service,remediation-loadgen)' \
+    --all-containers=true \
+    --tail="${TAIL_LINES:-80}" \
+    --prefix=true
+}
+
+cmd_env() {
+  local runtime
+  runtime="$(normalize_runtime "${1:-}")"
+
+  cat <<EOF
+# Required before deployment:
+export SPLUNK_REALM=\${SPLUNK_REALM:-us1}
+export SPLUNK_ACCESS_TOKEN=<access-token>
+
+# Optional identity defaults:
+export CLUSTER_NAME=\${CLUSTER_NAME:-ai-remediation-${runtime}}
+export ENVIRONMENT=\${ENVIRONMENT:-ai-remediation-workshop}
+EOF
+
+  case "$runtime" in
+    cloud)
+      cat <<'EOF'
+export IMAGE_REGISTRY=<registry>/<namespace>
+export IMAGE_TAG=${IMAGE_TAG:-latest}
+EOF
+      ;;
+    microk8s)
+      cat <<'EOF'
+export LOCAL_RUNTIME=microk8s
+export KUBECTL_CMD="microk8s kubectl"
+export HELM_CMD="microk8s helm3"
+EOF
+      ;;
+    *)
+      cat <<EOF
+export LOCAL_RUNTIME=$runtime
+EOF
+      ;;
+  esac
+}
+
+cmd_workshop() {
+  cat <<EOF
+Workshop guide:
+  content/en/ninja-workshops/ai/13-ai-troubleshooting-remediation/
+
+Quick path:
+  cd $WORKSHOP_DIR
+  export SPLUNK_REALM=us1
+  export SPLUNK_ACCESS_TOKEN=<access-token>
+  ./ai-remediation start kind latency-errors
+
+After the issue is injected, follow the workshop chapters to create or open
+a supported APM/Kubernetes alert, review the AI troubleshooting evidence,
+and execute the guarded remediation plan.
+EOF
+}
+
+cmd_start() {
+  local runtime issue
+  runtime="$(normalize_runtime "${1:-}")"
+  issue="$(normalize_issue_mode "${2:-latency-errors}")"
+
+  cmd_deploy "$runtime"
+  cmd_smoke "$runtime"
+  cmd_issue "$issue" "$runtime"
+
+  cat <<EOF
+
+Demo is ready.
+Runtime: $runtime
+Issue mode: $issue
+
+Next steps:
+  ./ai-remediation status $runtime
+  Follow the workshop guide to create or open a supported alert.
+  Use './ai-remediation remediate $runtime' when ready to reset the app.
+EOF
+}
+
+dispatch() {
+  local command
+
+  if is_applet "$SELF_NAME"; then
+    command="$SELF_NAME"
+  else
+    command="${1:-help}"
+    if [[ $# -gt 0 ]]; then
+      shift
+    fi
+  fi
+
+  case "$command" in
+    help|-h|--help)
+      usage
+      ;;
+    start|demo)
+      cmd_start "${1:-}" "${2:-}"
+      ;;
+    deploy)
+      cmd_deploy "${1:-}"
+      ;;
+    issue)
+      cmd_issue "${1:-}" "${2:-}"
+      ;;
+    remediate)
+      cmd_remediate "${1:-}"
+      ;;
+    smoke)
+      cmd_smoke "${1:-}"
+      ;;
+    status)
+      cmd_status "${1:-}"
+      ;;
+    logs)
+      cmd_logs "${1:-}"
+      ;;
+    cleanup)
+      cmd_cleanup "${1:-}"
+      ;;
+    doctor)
+      cmd_doctor "${1:-}"
+      ;;
+    tools)
+      cmd_tools "${1:-}"
+      ;;
+    env)
+      cmd_env "${1:-}"
+      ;;
+    workshop)
+      cmd_workshop
+      ;;
+    *)
+      die "unknown command '$command'. Run './ai-remediation help'."
+      ;;
+  esac
+}
+
+dispatch "$@"

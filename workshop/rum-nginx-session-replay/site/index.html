@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DXA with Splunk RUM Workshop</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #111827;
+      --muted: #4b5563;
+      --paper: #ffffff;
+      --surface: #f4f7f8;
+      --line: #d1d5db;
+      --accent: #bd0d5f;
+      --accent-2: #0f766e;
+      --warn: #b45309;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    header,
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 32px 0 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+    }
+
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+      align-items: start;
+      padding-bottom: 40px;
+    }
+
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .product {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    button,
+    input,
+    select {
+      min-height: 40px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border-color: transparent;
+      color: #ffffff;
+      background: var(--accent);
+      padding: 0 14px;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: var(--accent-2);
+    }
+
+    button.warning {
+      background: var(--warn);
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0 10px;
+      background: #ffffff;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 6px;
+      background: #ecfdf5;
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .journey {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .sensitive {
+      margin-top: 14px;
+      border-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 820px) {
+      .grid,
+      .products,
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p data-rum-allow-text>Splunk DXA and RUM workshop</p>
+    <h1 data-rum-allow-text>Analyze a checkout journey from real user telemetry</h1>
+    <p>This demo page gives Splunk RUM and Digital Experience Analytics page views, clicks, route changes, resource timing, form activity, and one controlled JavaScript error.</p>
+  </header>
+
+  <main class="grid">
+    <section aria-labelledby="catalog-heading">
+      <h2 id="catalog-heading" data-rum-allow-text>Product catalog</h2>
+      <div class="toolbar">
+        <label>
+          Filter products
+          <select id="filter" data-dxa-event="filter-products">
+            <option value="all">All products</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+          </select>
+        </label>
+        <button type="button" class="secondary" id="load-recommendations" data-dxa-event="load-recommendations">Load recommendations</button>
+      </div>
+
+      <div class="products" id="products">
+        <article class="product" data-tier="standard" data-product-id="baseline-monitor">
+          <div>
+            <strong data-rum-allow-text>Baseline Monitor</strong>
+            <p>Fast page load and stable resource timing.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="view-product secondary" data-product-id="baseline-monitor" data-dxa-event="view-product">View product</button>
+            <button type="button" class="add-cart" data-product-id="baseline-monitor" data-dxa-event="add-to-cart">Add to cart</button>
+          </div>
+        </article>
+        <article class="product" data-tier="premium" data-product-id="replay-analyzer">
+          <div>
+            <strong data-rum-allow-text>Replay Analyzer</strong>
+            <p>Correlates session replay with user timing and errors.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="view-product secondary" data-product-id="replay-analyzer" data-dxa-event="view-product">View product</button>
+            <button type="button" class="add-cart" data-product-id="replay-analyzer" data-dxa-event="add-to-cart">Add to cart</button>
+          </div>
+        </article>
+        <article class="product" data-tier="premium" data-product-id="release-guard">
+          <div>
+            <strong data-rum-allow-text>Release Guard</strong>
+            <p>Tracks version and environment during rollout.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="view-product secondary" data-product-id="release-guard" data-dxa-event="view-product">View product</button>
+            <button type="button" class="add-cart" data-product-id="release-guard" data-dxa-event="add-to-cart">Add to cart</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="status" id="cart-status">No product selected.</div>
+      <p class="journey" id="journey-state">Journey stage: landing</p>
+    </section>
+
+    <section aria-labelledby="checkout-heading">
+      <h2 id="checkout-heading" data-rum-allow-text>Checkout</h2>
+      <form id="checkout" data-dxa-event="checkout-form">
+        <label>
+          Email
+          <input name="email" autocomplete="email" value="alex@example.com">
+        </label>
+        <label>
+          Shipping method
+          <select name="shipping" id="shipping-method" data-dxa-event="select-shipping">
+            <option value="standard">Standard shipping</option>
+            <option value="expedited">Expedited shipping</option>
+          </select>
+        </label>
+        <label>
+          Support note
+          <input name="note" value="Please expedite this order.">
+        </label>
+        <label data-rum-exclude>
+          Card number excluded from replay
+          <input name="card" inputmode="numeric" value="4111111111111111">
+        </label>
+        <button type="button" class="secondary" id="begin-checkout" data-dxa-event="begin-checkout">Begin checkout</button>
+        <button type="submit" data-dxa-event="order-submitted">Submit order</button>
+        <button type="button" class="warning" id="trigger-error" data-dxa-event="checkout-error">Trigger JavaScript error</button>
+      </form>
+      <section class="sensitive" data-rum-exclude>
+        <h3>Sensitive support transcript</h3>
+        <p>This entire region is excluded from replay by the injected sensitivity rule.</p>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    var selectedProduct = "";
+    var cartCount = 0;
+    var cartStatus = document.getElementById("cart-status");
+    var journeyState = document.getElementById("journey-state");
+
+    function setJourney(stage, path) {
+      journeyState.textContent = "Journey stage: " + stage;
+      if (path && window.location.pathname !== path) {
+        history.pushState({ stage: stage }, "", path);
+      }
+    }
+
+    document.getElementById("filter").addEventListener("change", function (event) {
+      var value = event.target.value;
+      document.querySelectorAll(".product").forEach(function (product) {
+        product.hidden = value !== "all" && product.dataset.tier !== value;
+      });
+    });
+
+    document.getElementById("load-recommendations").addEventListener("click", function () {
+      fetch("/api/recommendations?source=workshop").then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        cartStatus.textContent = "Recommendations loaded: " + data.recommendations.join(", ") + ".";
+      });
+    });
+
+    document.querySelectorAll(".view-product").forEach(function (button) {
+      button.addEventListener("click", function () {
+        selectedProduct = button.dataset.productId;
+        cartStatus.textContent = "Viewing " + selectedProduct.replace(/-/g, " ") + ".";
+        setJourney("product viewed", "/products/" + selectedProduct);
+      });
+    });
+
+    document.querySelectorAll(".add-cart").forEach(function (button) {
+      button.addEventListener("click", function () {
+        selectedProduct = button.dataset.productId;
+        cartCount += 1;
+        cartStatus.textContent = "Cart contains " + cartCount + " item" + (cartCount === 1 ? "." : "s.");
+        setJourney("cart updated", "/cart");
+      });
+    });
+
+    document.getElementById("begin-checkout").addEventListener("click", function () {
+      if (!selectedProduct) {
+        selectedProduct = "release-guard";
+      }
+      cartStatus.textContent = "Checkout started for " + selectedProduct.replace(/-/g, " ") + ".";
+      setJourney("checkout started", "/checkout");
+    });
+
+    document.getElementById("shipping-method").addEventListener("change", function (event) {
+      cartStatus.textContent = "Shipping changed to " + event.target.value + ".";
+    });
+
+    document.getElementById("checkout").addEventListener("submit", function (event) {
+      event.preventDefault();
+      cartStatus.textContent = "Order submitted from the demo checkout.";
+      setJourney("order submitted", "/checkout/complete");
+    });
+
+    document.getElementById("trigger-error").addEventListener("click", function () {
+      var order = undefined;
+      cartStatus.textContent = order.total;
+    });
+  </script>
+</body>
+</html>

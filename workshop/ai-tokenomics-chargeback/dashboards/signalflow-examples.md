@@ -68,6 +68,20 @@ requests = data('ai.request.count').sum(by=['ai.workload.name'])
 (cost / requests).publish(label='Cost per request')
 ```
 
+Context window explosion:
+
+```python
+tokens = data('ai.tokens.input').sum(by=['ai.workload.name'])
+requests = data('ai.request.count').sum(by=['ai.workload.name'])
+(tokens / requests).publish(label='Input tokens per request')
+```
+
+Tenant misuse:
+
+```python
+data('ai.request.estimated_cost_usd').sum(by=['ai.tenant.id']).publish(label='Cost by tenant')
+```
+
 GPU idle waste:
 
 ```python

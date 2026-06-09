@@ -56,21 +56,21 @@ For `kind`:
 
 ```bash
 cd workshop/ai-troubleshooting-remediation
-./scripts/deploy-local-kind.sh
+./ai-remediation deploy kind
 ```
 
 For Minikube:
 
 ```bash
 cd workshop/ai-troubleshooting-remediation
-./scripts/deploy-local-minikube.sh
+./ai-remediation deploy minikube
 ```
 
 For MicroK8s:
 
 ```bash
 cd workshop/ai-troubleshooting-remediation
-./scripts/deploy-local-microk8s.sh
+./ai-remediation deploy microk8s
 ```
 
 * Confirm the app is running:
@@ -96,14 +96,10 @@ remediation-loadgen-...
 * Send a quick smoke test:
 
 ```bash
-./scripts/smoke-test.sh
+./ai-remediation smoke <runtime>
 ```
 
-For MicroK8s, use:
-
-```bash
-KUBECTL_CMD="microk8s kubectl" ./scripts/smoke-test.sh
-```
+Replace `<runtime>` with `kind`, `minikube`, or `microk8s`.
 
 {{< tabs >}}
 {{% tab title="Question" %}}

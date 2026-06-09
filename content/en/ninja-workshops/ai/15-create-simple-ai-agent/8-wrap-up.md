@@ -1,7 +1,7 @@
 ---
-title: 7. Wrap Up
-linkTitle: 7. Wrap Up
-weight: 7
+title: 8. Wrap Up
+linkTitle: 8. Wrap Up
+weight: 8
 time: 5 minutes
 ---
 
@@ -11,11 +11,12 @@ You created a small AI-agent-shaped application:
 * The agent selected tools from an allowlist.
 * Each tool returned an observation.
 * The final answer was generated after the agent collected enough context.
+* The local LLM controller reused the same tools that the hosted API path can use.
 
-The exercise used deterministic Python to keep the mechanics visible. To move this into
-a real AI agent, replace `decide_next_action` with an LLM or framework such as LangGraph,
-LangChain, Semantic Kernel, or another agent runtime. Keep the same discipline around
-tool boundaries, state, safety, and observability.
+The exercise used a model call for the decision function while keeping the tool registry
+and validation boundary in Python. Larger systems can use frameworks such as LangGraph,
+LangChain, Semantic Kernel, or another agent runtime, but the same discipline around tool
+boundaries, state, safety, and observability still applies.
 
 ## Next Steps
 

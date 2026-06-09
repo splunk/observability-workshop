@@ -5,8 +5,8 @@ weight: 3
 time: 10 minutes
 ---
 
-Before editing the starter file, review how the Python code is organized. The example is
-small, but it uses the same building blocks as larger agent applications.
+Before editing the agent, review how the Python code is organized. The example is small,
+but it uses the same building blocks as larger agent applications.
 
 ## Imports and Profile Path
 
@@ -14,7 +14,10 @@ At the top of the file, Python imports standard library modules only:
 
 ```python
 import json
+import os
 import sys
+import urllib.error
+import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
@@ -23,7 +26,9 @@ from typing import Any, Callable
 These imports do the following:
 
 * `json` reads `profile.json`.
+* `os` reads backend and model configuration from environment variables.
 * `sys` reads the request passed on the command line.
+* `urllib` sends HTTP requests to the local or hosted model endpoint.
 * `dataclass` creates small state objects with less boilerplate.
 * `Path` builds a file path that works from any current directory.
 * `Any` and `Callable` describe flexible tool inputs and callable tool functions.
@@ -137,27 +142,67 @@ TOOLS = {
 This registry is an allowlist. If a tool is not in `TOOLS`, the agent cannot call it.
 That makes the boundary of the agent explicit.
 
+## Model Configuration
+
+The agent uses Ollama by default:
+
+```python
+backend = os.getenv("AGENT_BACKEND", "ollama").strip().lower()
+```
+
+When `AGENT_BACKEND=ollama`, the default endpoint is:
+
+```text
+http://localhost:11434/v1
+```
+
+When `AGENT_BACKEND=openai`, the agent reads `OPENAI_API_KEY`, `OPENAI_MODEL`, and
+optionally `OPENAI_BASE_URL`.
+
+## Model Request
+
+The `chat_completion` function sends an OpenAI-compatible request:
+
+```python
+payload = {
+    "model": config.model,
+    "messages": messages,
+    "temperature": 0,
+}
+```
+
+The model response is read from:
+
+```python
+data["choices"][0]["message"]["content"]
+```
+
+This keeps the local LLM path and hosted API path on the same request shape.
+
 ## Decision Function
 
-`decide_next_action` is the controller:
+`decide_next_action_with_model` is the controller:
 
 ```python
-def decide_next_action(state: AgentState) -> Action:
-    request = state.request.lower()
-    used_tools = {observation.tool_name for observation in state.observations}
+def decide_next_action_with_model(state: AgentState, config: ModelConfig) -> Action:
+    content = chat_completion(config, build_decision_messages(state))
 ```
 
-The function lowercases the request so simple keyword checks are easier. It also builds a
-set of tools already used in this run. That prevents repeated calls to the same tool.
+The function sends the request, observations, and tool descriptions to the model. The
+model must return JSON describing the next action.
 
-Each branch returns an `Action`:
+For example:
 
-```python
-return Action("lookup_profile", {"section": section})
+```json
+{
+  "tool_name": "lookup_profile",
+  "arguments": {
+    "section": "current_goals"
+  }
+}
 ```
 
-The first value is the tool name. The second value is the argument dictionary that will
-be expanded into the tool call later.
+Python parses that JSON into an `Action`.
 
 When no more tools are needed, the controller returns:
 
@@ -168,20 +213,34 @@ return Action("final_answer")
 `final_answer` is not a tool. It is a sentinel value that tells the loop to stop and
 build the response.
 
+## Action Validation
+
+The model does not get to call arbitrary code. `normalize_action` validates the requested
+tool:
+
+* `lookup_profile` can only read known profile sections.
+* `create_task` receives a title and priority.
+* `draft_message` receives an audience and topic.
+* Unknown tools, repeated tools, and invalid final answers stop the run with a clear
+  error.
+
 ## Agent Loop
 
 `run_agent` connects the pieces:
 
 ```python
+backend = get_backend()
+model_config = get_model_config(backend)
 profile = load_profile()
 state = AgentState(request=request)
 ```
 
-First, it loads profile context and creates state for this request.
+First, it chooses the backend, loads model configuration, loads profile context, and
+creates state for this request.
 
 ```python
 for _ in range(5):
-    action = decide_next_action(state)
+    action = decide_next_action_with_model(state, model_config)
 ```
 
 The loop has a maximum of five steps. Step limits are important because real agents can
@@ -189,7 +248,7 @@ otherwise get stuck calling tools repeatedly.
 
 ```python
 if action.tool_name == "final_answer":
-    return build_final_answer(state)
+    return build_model_final_answer(state, model_config)
 ```
 
 If the controller says the work is done, the loop returns the final answer.
@@ -233,6 +292,6 @@ if __name__ == "__main__":
     print(run_agent(user_request))
 ```
 
-When you run `python3 agent_solution.py "Plan my day"`, everything after the filename is
+When you run `python3 agent.py "Plan my day"`, everything after the filename is
 joined into one request string. If you do not pass a request, the script uses a default
 example.

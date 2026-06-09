@@ -41,7 +41,7 @@ export ENVIRONMENT=ai-remediation-workshop
 
 ```bash
 cd workshop/ai-troubleshooting-remediation
-./scripts/deploy-cloud.sh
+./ai-remediation deploy cloud
 ```
 
 * Confirm the app is running:
@@ -54,7 +54,7 @@ kubectl -n ai-remediation get deploy
 * Send a smoke test:
 
 ```bash
-./scripts/smoke-test.sh
+./ai-remediation smoke cloud
 ```
 
 {{< tabs >}}
