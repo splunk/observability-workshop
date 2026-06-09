@@ -31,11 +31,13 @@ Configure the following in the alert signal:
 - **Signal (A):** `system.cpu.utilization`
 
 {{% button style="blue" %}}Add Filter{{% /button %}}
+
 - **Filter:** `deployment.environment : astronomy-shop`
 
 {{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}, choose Historical Anomaly and then
 
 {{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
+
 - **Cycle length:** `1d`
 - **Alert when:** `Too high`
 - **Trigger Sensitivity:** `High`
@@ -52,9 +54,9 @@ Under Message Preview, click **Customize** and review the generated message:
 
 ```handlebars
 {{#if anomalous}}
-	Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
+ Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
 {{else}}
-	Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
+ Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
 {{/if}}
 
 {{#if anomalous}}
@@ -82,6 +84,7 @@ Signal details:
 Teams:{{#each detectorTeams}} {{name}}{{#unless @last}},{{/unless}}{{/each}}.
 {{/if}}
 ```
+
 ---
 
 ### What This Message Is Doing
@@ -116,7 +119,7 @@ The following variables are automatically available:
 Any stream that is published in SignalFlow becomes available as:
 `{{inputs.<stream_name>.value}}`
 
-Click {{% button style="blue" %}}Done Editing{{% /button %}} to close the custom message. 
+Click {{% button style="blue" %}}Done Editing{{% /button %}} to close the custom message.
 
 {{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}} and do not select anything, we don't actually want to send notifications for this scenario
 

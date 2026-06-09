@@ -178,7 +178,3 @@ This will drill down to the node level.  Next, open the Metrics sidebar by click
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
 ![Sidebar metrics](../images/explore-metrics.png)
-
-[^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years and thus are suitable for embedding into emitters that send data points over long periods, or for any long-running scripts that call the Splunk API.
-
-[^2]: A realm is a self-contained deployment of Splunk in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm and `ingest.eu0.signalfx.com` for the **`eu0`** realm). This realm name is shown on your profile page in the Splunk UI. If you do not include the realm name when specifying an endpoint, Splunk will interpret it as pointing to the **`us0`** realm.

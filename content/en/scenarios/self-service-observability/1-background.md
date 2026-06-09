@@ -15,6 +15,7 @@ First we have the **Open Telemetry Collector**, which lives on hosts or kubernet
 Source: [OTel Documentation](https://opentelemetry.io/docs/)
 
 The way the **OTel Collector** collects and sends data is using **pipelines**. Pipelines are made up of:
+
 * **Receivers**: Collect telemetry from one or more sources; they are pull- or push-based.
 * **Processors**: Take data from receivers and modify or transform them. Unlike receivers and exporters, processors process data in a specific order.
 * **Exporters**: Send data to one or more observability backends or other destinations.

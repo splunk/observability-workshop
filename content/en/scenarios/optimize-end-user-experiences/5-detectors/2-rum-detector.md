@@ -7,7 +7,6 @@ hidden: false
 
 Let's say we want to know about an issue in production without waiting for a ticket from our support center. This is where [creating detectors in RUM](https://docs.splunk.com/observability/en/rum/rum-alerts.html) will be helpful for us.
 
-
 1. Go to the RUM overview of our App. Scroll to the LCP chart, click the chart menu icon, and click Create Detector.
 ![RUM LCP chart with action menu flyout](../_img/rum-lcp.png)
 
@@ -23,8 +22,3 @@ Now, your workshop instructor will change something on the website. How do you f
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 Wait a few minutes, and take a look at the online store homepage in your browser. How is the experience in an incognito browser window? How is it different when you refresh the page?
 {{% /notice %}}
-
-
-
-
-

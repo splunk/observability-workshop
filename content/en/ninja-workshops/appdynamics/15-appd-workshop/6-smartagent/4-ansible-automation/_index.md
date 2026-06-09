@@ -33,36 +33,37 @@ graph TD
 
 ### Key Components
 
-*   **Ansible Control Node**: The machine where you run the playbooks (e.g., your laptop or a jump host).
-*   **Target Hosts**: The servers where the Smart Agent will be installed.
-*   **Inventory**: A list of target hosts and their connection details.
-*   **Playbook**: The YAML file defining the deployment tasks.
+* **Ansible Control Node**: The machine where you run the playbooks (e.g., your laptop or a jump host).
+* **Target Hosts**: The servers where the Smart Agent will be installed.
+* **Inventory**: A list of target hosts and their connection details.
+* **Playbook**: The YAML file defining the deployment tasks.
 
 ## Prerequisites
 
 Before beginning, ensure you have:
-*   Access to the target hosts via SSH.
-*   Sudo privileges on the target hosts.
-*   The Smart Agent installation packages (`.deb` or `.rpm`) downloaded.
-*   Account details for your AppDynamics Controller (Access Key, Account Name, URL).
+
+* Access to the target hosts via SSH.
+* Sudo privileges on the target hosts.
+* The Smart Agent installation packages (`.deb` or `.rpm`) downloaded.
+* Account details for your AppDynamics Controller (Access Key, Account Name, URL).
 
 ## Step 1: Install Ansible on macOS
 
 To start, we need to install Ansible on your control node.
 
-1.  **Install Homebrew** (if not already installed):
+1. **Install Homebrew** (if not already installed):
 
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-2.  **Install Ansible**:
+2. **Install Ansible**:
 
     ```bash
     brew install ansible
     ```
 
-3.  **Verify the Installation**:
+3. **Verify the Installation**:
 
     ```bash
     ansible --version

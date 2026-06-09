@@ -8,6 +8,7 @@ description: In this exercise you will access your AppDynamics Controller from y
 In this exercise you will access your AppDynamics Controller from your web browser and download the Database Visibility agent from there.
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Download the Database Agent
@@ -18,15 +19,15 @@ Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com
 
 ![Getting Started](images/04-download-gettingstarted.png)
 
-4. Click **Databases**.
+1. Click **Databases**.
 
 ![Select Agent](images/04-download-db-agent.png)
 
-## Download the Database Agent.
+## Download the Database Agent
 
-5. Select **MySQL** from the Select Database Type dropdown menu.
-6. Accept the defaults for the Controller connection.
-7. Click **Click Here to Download**.
+1. Select **MySQL** from the Select Database Type dropdown menu.
+2. Accept the defaults for the Controller connection.
+3. Click **Click Here to Download**.
 
 ![Download](images/04-download-download.png)
 

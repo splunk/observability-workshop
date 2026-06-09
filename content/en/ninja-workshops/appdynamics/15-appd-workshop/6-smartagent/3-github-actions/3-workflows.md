@@ -15,6 +15,7 @@ The GitHub Actions lab includes **11 workflows** for complete Smart Agent lifecy
 ### 1. Deployment (1 workflow)
 
 #### Deploy Smart Agent (Batched)
+
 - **File**: `deploy-agent-batched.yml`
 - **Purpose**: Installs Smart Agent and starts the service
 - **Features**:
@@ -31,21 +32,25 @@ The GitHub Actions lab includes **11 workflows** for complete Smart Agent lifecy
 All installation workflows use `smartagentctl` to install specific agent types:
 
 #### Install Node Agent (Batched)
+
 - **File**: `install-node-batched.yml`
 - **Command**: `smartagentctl install node`
 - **Batched**: Yes (configurable)
 
 #### Install Machine Agent (Batched)
+
 - **File**: `install-machine-batched.yml`
 - **Command**: `smartagentctl install machine`
 - **Batched**: Yes (configurable)
 
 #### Install DB Agent (Batched)
+
 - **File**: `install-db-batched.yml`
 - **Command**: `smartagentctl install db`
 - **Batched**: Yes (configurable)
 
 #### Install Java Agent (Batched)
+
 - **File**: `install-java-batched.yml`
 - **Command**: `smartagentctl install java`
 - **Batched**: Yes (configurable)
@@ -55,21 +60,25 @@ All installation workflows use `smartagentctl` to install specific agent types:
 All uninstallation workflows use `smartagentctl` to remove specific agent types:
 
 #### Uninstall Node Agent (Batched)
+
 - **File**: `uninstall-node-batched.yml`
 - **Command**: `smartagentctl uninstall node`
 - **Batched**: Yes (configurable)
 
 #### Uninstall Machine Agent (Batched)
+
 - **File**: `uninstall-machine-batched.yml`
 - **Command**: `smartagentctl uninstall machine`
 - **Batched**: Yes (configurable)
 
 #### Uninstall DB Agent (Batched)
+
 - **File**: `uninstall-db-batched.yml`
 - **Command**: `smartagentctl uninstall db`
 - **Batched**: Yes (configurable)
 
 #### Uninstall Java Agent (Batched)
+
 - **File**: `uninstall-java-batched.yml`
 - **Command**: `smartagentctl uninstall java`
 - **Batched**: Yes (configurable)
@@ -77,14 +86,16 @@ All uninstallation workflows use `smartagentctl` to remove specific agent types:
 ### 4. Smart Agent Management (2 workflows)
 
 #### Stop and Clean Smart Agent (Batched)
+
 - **File**: `stop-clean-smartagent-batched.yml`
-- **Commands**: 
+- **Commands**:
   - `smartagentctl stop`
   - `smartagentctl clean`
 - **Purpose**: Stops the Smart Agent service and purges all data
 - **Batched**: Yes (configurable)
 
 #### Cleanup All Agents (Batched)
+
 - **File**: `cleanup-appdynamics.yml`
 - **Command**: `sudo rm -rf /opt/appdynamics`
 - **Purpose**: Completely removes the /opt/appdynamics directory

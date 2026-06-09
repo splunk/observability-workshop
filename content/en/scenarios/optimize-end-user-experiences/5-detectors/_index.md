@@ -8,6 +8,7 @@ time: 20 minutes
 After we have a good understanding of our performance baseline, we can start to create Detectors so that we receive alerts when our KPIs are unexpected. If we create detectors before understanding our baseline, we run the risk of generating unnecessary alert noise.
 
 For RUM and Synthetics, we will explore how to create detectors:
+
 1. on a single Synthetic test
 1. on a single KPI in RUM
 1. on a dashboard chart

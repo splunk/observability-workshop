@@ -7,10 +7,10 @@ description: In this exercise you review dashboards and troubleshoot a Browser S
 
 In this exercise you will complete the following tasks:
 
-*   Review the Browser Session you created.
-*   Review the Pages & AJAX Requests Dashboard.
-*   Review the Dashboard for a specific Base Page.
-*   Troubleshoot a Browser Snapshot.
+* Review the Browser Session you created.
+* Review the Pages & AJAX Requests Dashboard.
+* Review the Dashboard for a specific Base Page.
+* Troubleshoot a Browser Snapshot.
 
 ## Review the Browser Session you created
 
@@ -33,12 +33,12 @@ Once you find and open the session you created, follow these steps to explore th
 
 > _Note:_ Your session may not have a **View Snapshot** link in any of the pages (as seen in step five). You will find a session that has one to explore later in this exercise.
 
-5. Click the **Session Summary** link to view the summary data.
-6. When you click on a page listed on the left, you see the details of that page on the right.
-7. You can always see the full name of the page you have selected in the left list.
-8. Click on a horizontal blue bar in the waterfall view to show the details of that item.
-9. Some pages may have a link to a correlated snapshot that was captured on the server side.
-10. Click the configuration icon to change the columns shown in the pages list.
+1. Click the **Session Summary** link to view the summary data.
+2. When you click on a page listed on the left, you see the details of that page on the right.
+3. You can always see the full name of the page you have selected in the left list.
+4. Click on a horizontal blue bar in the waterfall view to show the details of that item.
+5. Some pages may have a link to a correlated snapshot that was captured on the server side.
+6. Click the configuration icon to change the columns shown in the pages list.
 
 You can read more about the Browser RUM Sessions [**here**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/overview-of-the-controller-ui-for-browser-rum/browser-rum-sessions).
 
@@ -54,7 +54,6 @@ Navigate to the Pages & AJAX Requests dashboard, review the options there, and o
 4. Click **Details** to open the Base Page dashboard.
 
 ![BRUM Dash 3](images/05-brum-ajax-list.png)
-
 
 ## Review the Dashboard for a specific Base Page
 
@@ -74,11 +73,10 @@ You can read more about the Base Page dashboard [**here**](https://help.splunk.c
 
 ![BRUM Dash 4](images/05-brum-main-page-summary.png)
 
-
 ## Troubleshoot a Browser Snapshot
 
 {{% notice title="Note" style="orange"  %}}
-Your application may not have any browser snapshots as such you will not be able to follow the entire workflow. You can switch to the browser application **AD-Ecommerce-Browser** if you would like to follow this section with a different demo application 
+Your application may not have any browser snapshots as such you will not be able to follow the entire workflow. You can switch to the browser application **AD-Ecommerce-Browser** if you would like to follow this section with a different demo application
 {{% /notice %}}
 
 Navigate to the Browser Snapshots list dashboard and open a specific Browser Snapshot by following these steps.
@@ -117,4 +115,3 @@ Once you open the snapshot segment for the Enquiry-Services Tier, you can see th
 You can read more about the Browser Snapshots [**here**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-app-dashboard/browser-snapshots_1) and [**here**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-app-dashboard/browser-snapshots_1/page-snapshots).
 
 ![BRUM Dash 9](images/06-brum-dashboard-09.png)
-

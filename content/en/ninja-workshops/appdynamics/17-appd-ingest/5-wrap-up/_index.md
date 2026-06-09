@@ -40,7 +40,7 @@ sudo systemctl stop splunk-otel-collector
 
 - **The `appd.*` correlation attributes are what make the integration valuable.** Without them (hybrid mode), you get OTel traces in Splunk O11y but no way to link back to the specific AppDynamics business transaction, tier, or application. Dual mode provides that linkage.
 
-- **Global data links turn correlation into workflow.** Instead of manually cross-referencing two tools, engineers can click from a Splunk O11y trace directly into the AppDynamics view 
+- **Global data links turn correlation into workflow.** Instead of manually cross-referencing two tools, engineers can click from a Splunk O11y trace directly into the AppDynamics view
 
 - **This pattern supports gradual migration.** Organizations can run dual mode for a period to validate that Splunk Observability Cloud captures the same signal quality, then decide per-service whether to continue dual, switch to Splunk-only instrumentation, or stay with AppDynamics.
 

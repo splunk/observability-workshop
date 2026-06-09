@@ -26,4 +26,3 @@ By the end of this section you will have:
 - Created a **custom Notable Event Aggregation Policy** that groups alerts from both Catalyst Center and SolarWinds by network site
 - Configured automatic episode resolution when network health returns to normal
 - Validated that the Service Analyzer and Episode Review reflect real-time site health
-

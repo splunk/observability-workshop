@@ -13,16 +13,18 @@ Once again, we will first start by taking a look at our operating directory, and
 #### The `manual` directory
 
 * Run the following command to get into the `workshop/lambda/manual` directory:
+
 ```bash
 cd ~/workshop/lambda/manual
 ```
 
 * Inspect the contents of this directory with the `ls` command:
+
 ```bash
 ls
 ```
 
-- The output should include the following files and directories:
+* The output should include the following files and directories:
 
 ```bash
 handler             outputs.tf          terraform.tf        variables.tf
@@ -36,6 +38,7 @@ Do you see any difference between this directory and the auto directory when you
 Let's make sure that all these files that LOOK the same, are actually the same.
 
 * Compare the `main.tf` files in the `auto` and `manual` directories:
+
 ```bash
 diff ~/workshop/lambda/auto/main.tf ~/workshop/lambda/manual/main.tf
 ```
@@ -43,6 +46,7 @@ diff ~/workshop/lambda/auto/main.tf ~/workshop/lambda/manual/main.tf
 * There is no difference! _(Well, there shouldn't be. Ask your workshop facilitator to assist you if there is)_
 
 * Now, let's compare the `producer.mjs` files:
+
 ```bash
 diff ~/workshop/lambda/auto/handler/producer.mjs ~/workshop/lambda/manual/handler/producer.mjs
 ```
@@ -72,17 +76,18 @@ import { context, propagation, trace, } from "@opentelemetry/api";
  diff ~/workshop/lambda/auto/handler/consumer.mjs ~/workshop/lambda/manual/handler/consumer.mjs
  ```
 
-- Here also, there are a few differences of note. Let's take a closer look
+* Here also, there are a few differences of note. Let's take a closer look
+
 ```bash
 cat handler/consumer.mjs
 ```
 
-- In this file, we are importing the following [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) objects:
-  - propagation
-  - trace
-  - ROOT_CONTEXT
-    - We use these to extract the trace context that was propagated from the producer function
-    - Then to add new span attributes based on our `name` and `superpower` to the extracted trace context
+* In this file, we are importing the following [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api) objects:
+  * propagation
+  * trace
+  * ROOT_CONTEXT
+    * We use these to extract the trace context that was propagated from the producer function
+    * Then to add new span attributes based on our `name` and `superpower` to the extracted trace context
 
 The below code executes the following steps inside the producer function:
 

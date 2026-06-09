@@ -22,4 +22,3 @@ Next, in the **Kubernetes entities** panel, select the node that hosts the large
 In the node panel, select the **Logs** tab to see the logs from the relevant node.
 
 ![K8s Node Logs](../images/k8s-node-logs.png)
-

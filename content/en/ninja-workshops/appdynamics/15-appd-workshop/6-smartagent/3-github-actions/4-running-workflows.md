@@ -21,6 +21,7 @@ All workflows are configured with `workflow_dispatch`, meaning they must be trig
 ### Step 2: Select Workflow
 
 On the left sidebar, you'll see all available workflows:
+
 - Deploy Smart Agent
 - Install Node Agent (Batched)
 - Install Machine Agent (Batched)
@@ -124,6 +125,7 @@ Let's walk through a complete first-time deployment:
 ### Step 1: Verify Setup
 
 Before running any workflows, ensure:
+
 - ✅ Self-hosted runner shows "Idle" (green)
 - ✅ `SSH_PRIVATE_KEY` secret is configured
 - ✅ `DEPLOYMENT_HOSTS` variable contains your target IPs
@@ -132,6 +134,7 @@ Before running any workflows, ensure:
 ### Step 2: Deploy Smart Agent
 
 **Via GitHub UI:**
+
 1. Go to **Actions** tab
 2. Select **"Deploy Smart Agent"**
 3. Click **"Run workflow"**
@@ -139,6 +142,7 @@ Before running any workflows, ensure:
 5. Click **"Run workflow"**
 
 **Via GitHub CLI:**
+
 ```bash
 gh workflow run "Deploy Smart Agent" --repo YOUR_USERNAME/github-actions-lab
 ```
@@ -146,6 +150,7 @@ gh workflow run "Deploy Smart Agent" --repo YOUR_USERNAME/github-actions-lab
 ### Step 3: Monitor Execution
 
 The workflow will show:
+
 1. **Prepare** job - Creating batch matrix
 2. **Deploy** job (one per batch) - Deploying to hosts
 
@@ -165,6 +170,7 @@ sudo ./smartagentctl status
 ```
 
 **Expected output:**
+
 ```
 Smart Agent is running (PID: 12345)
 Service: appdsmartagent.service
@@ -289,6 +295,7 @@ gh workflow run "Cleanup All Agents"
 **Cause**: Runner not available or offline
 
 **Solution**:
+
 1. Check runner status: Settings → Actions → Runners
 2. Verify runner shows "Idle" (green)
 3. Restart runner if needed: `sudo ./svc.sh restart`
@@ -300,16 +307,19 @@ gh workflow run "Cleanup All Agents"
 **Solutions**:
 
 **Test SSH manually:**
+
 ```bash
 # From runner instance
 ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 ```
 
 **Check security groups:**
+
 - Verify SSH (22) allowed from runner
 - Confirm runner and targets in same security group
 
 **Verify SSH key:**
+
 - Ensure `SSH_PRIVATE_KEY` secret matches actual key
 - Verify public key is on target hosts
 
@@ -318,6 +328,7 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 **Symptom**: Some hosts succeed, others fail
 
 **Solution**:
+
 1. View workflow logs to identify failed hosts
 2. SSH to failed hosts to investigate
 3. Re-run workflow (idempotent - skips successful hosts)
@@ -327,6 +338,7 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 **Symptom**: "Error splitting hosts into batches"
 
 **Solution**:
+
 - Check `DEPLOYMENT_HOSTS` variable format
 - Ensure one IP per line
 - No trailing spaces or special characters
@@ -337,11 +349,13 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243
 ### Adjusting Batch Size
 
 **Smaller batches** (fewer resources, slower):
+
 ```bash
 gh workflow run "Deploy Smart Agent" -f batch_size=128
 ```
 
 **Larger batches** (more resources, faster):
+
 ```bash
 gh workflow run "Deploy Smart Agent" -f batch_size=256
 ```

@@ -12,15 +12,19 @@ Replace `<YOUR-ACCESS-KEY>` with the AppDynamics token from the previous step:
 {{< tabs >}}
 {{% tab title="Command" %}}
 Export your environment variables
+
 ```bash
 export APPD_ACCESS_KEY=<Your-AppDynamics-access-key>
 ```
+
 and
+
 ```bash
 export APPD_APP_NAME=Dual-Ingest-${INSTANCE}
 ```
 
 Then we can start java with the agent:
+
 ```bash
 cd ~/workshop/appd
 

@@ -48,4 +48,3 @@ on your OpenShift cluster name. The charts should be populated as in the
 following example:
 
 ![NIM LLMS Dashboard](../../images/NIMLLM.png)
-

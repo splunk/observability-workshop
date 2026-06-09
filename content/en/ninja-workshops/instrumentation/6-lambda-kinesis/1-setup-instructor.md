@@ -12,6 +12,7 @@ The instructor is going to setup a user and then provide each user with an `acce
 Your students will all need a `Splunk4Ninjas - Observability` instance.
 
 As preparation before the class, the instructor machine will need:
+
 * AWS CLI
 * Terraform
 
@@ -20,7 +21,6 @@ When going to the AWS access portal, you can click on the **access keys** to cop
 ![Access Keys](../images/14_aws_keys.png)
 
 ### Create an IAM Role (Workshop Instructor Only)
-
 
 ``` bash
 # Copy access keys into terminal first before running these steps
@@ -34,7 +34,7 @@ terraform apply
 terraform output -raw workshop_secret_access_key
 ```
 
-### Provide these to the class:
+### Provide these to the class
 
 * `workshop_access_key_id`: This was shown after the `terraform apply`
 * `workshop_secret_access_key`: This is the key you output raw after the fact, with `terraform output`.
@@ -42,6 +42,7 @@ terraform output -raw workshop_secret_access_key
 Be aware of any extra characters at the end of the double-quotes and any other extra characters.
 
 ### Cleanup
+
 {{< notice warning >}}
 After the workshop is complete, it is important to cleanup as follows, otherwise you may still have open access to AWS, or still running Lambdas and other resources.
 {{< /notice >}}
@@ -52,6 +53,7 @@ terraform destroy
 ```
 
 You will also need to cleanup any artifacts the students didn't destroy during the workshop. Check:
+
 1. AWS API Gateway
 2. Lambda Functions
 3. Kinesis Stream

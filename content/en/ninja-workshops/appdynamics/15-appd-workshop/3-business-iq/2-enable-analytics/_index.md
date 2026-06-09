@@ -11,6 +11,7 @@ Analytics formerly required a separate agent that was bundled with Machine Agent
 In this exercise you will access your AppDynamics Controller from your web browser and enable the Agentless Analytics from there.
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Navigate to the Analytics Configuration
@@ -23,13 +24,12 @@ Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com
 
 ![Enable Analytics](images/05-biq-transaction-analytics.png)
 
-
 ## Validate Transaction Summary
 
 You want to verify that Analytics is working for that application and showing transactions.
 
-1.  Select the **Analytics tab** tab on the left menu.
-2.  Select the **Home** tab.
-3.  Under **Transactions from** filter to your application **Supercar-Trader-YOURINITIALS**
+1. Select the **Analytics tab** tab on the left menu.
+2. Select the **Home** tab.
+3. Under **Transactions from** filter to your application **Supercar-Trader-YOURINITIALS**
 
 ![Validate Analytics](images/05-biq-transaction-analytics.png)

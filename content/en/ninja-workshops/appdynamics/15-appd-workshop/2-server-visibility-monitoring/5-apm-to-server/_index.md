@@ -16,14 +16,14 @@ With Server Visibility enabled, you can access server performance metrics in the
 
 ![Server to APM](images/server-apm-link.png)
 
-2. Click the down arrow on one of the listed Tiers.
-3. Click the Node of the Tier link. 
+1. Click the down arrow on one of the listed Tiers.
+2. Click the Node of the Tier link.
 
 ![Dashboard Example](images/server-tier-link.png)
 
-You are now on the **Node Dashboard**. 
+You are now on the **Node Dashboard**.
 
-4. Click the **Server** tab to see the related host metrics
+1. Click the **Server** tab to see the related host metrics
 
 ![Dashboard Example](images/server-node-server.png)
 

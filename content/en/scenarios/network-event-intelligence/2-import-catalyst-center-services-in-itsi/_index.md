@@ -24,7 +24,6 @@ The import workflow reads your Cisco Catalyst Center site hierarchy and creates 
 
 At the heart of this integration is the **Catalyst Center Site** Service Template. When services are imported, this template is applied to each site and provides six out-of-the-box KPIs, each tracking a different layer of the network stack at that location:
 
-
 | KPI | What It Measures |
 |---|---|
 | **Access Layer** | Average HealthScore of Access Layer devices |
@@ -33,7 +32,6 @@ At the heart of this integration is the **Catalyst Center Site** Service Templat
 | **Distribution Layer** | Average HealthScore of Distribution Layer devices |
 | **Router Health** | Average HealthScore of Routers |
 | **Wireless Controller Health** | Average HealthScore of Wireless Controllers |
-
 
 These KPIs are sourced directly from the Cisco Catalyst Center HealthScore, a 1-10 score that Catalyst Center assigns to each device based on onboarding, connectivity, and radio frequency health. By averaging these scores per network layer, ITSI can pinpoint *exactly which part of the stack* is dragging down a site's overall health. The result is that the jump from "Site X is degraded" to "the Access Layer at Site X is the problem" becomes a matter of seconds.
 

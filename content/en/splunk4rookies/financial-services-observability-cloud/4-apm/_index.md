@@ -13,4 +13,4 @@ You are a **back-end developer** and you have been called in to help investigate
 
 {{% /notice %}}
 
-Getting to the root cause of a problem in cloud-native environments requires engineers to navigate through immense complexity within a distributed system. Oftentimes, you didn’t write the code and you lack the background and context to quickly understand what’s going on when a problem occurs. That is where Splunk APM comes in. 
+Getting to the root cause of a problem in cloud-native environments requires engineers to navigate through immense complexity within a distributed system. Oftentimes, you didn’t write the code and you lack the background and context to quickly understand what’s going on when a problem occurs. That is where Splunk APM comes in.

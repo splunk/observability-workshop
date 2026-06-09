@@ -13,9 +13,9 @@ How can we use Splunk Observability to get insight into end user experience, and
 Sections:
 
 - Set up basic [Synthetic tests](./1-synthetics/_index.md) to understand availability and performance ASAP
-   - Uptime test
-   - API test
-   - Single page Browser test
+  - Uptime test
+  - API test
+  - Single page Browser test
 - Explore [RUM](./2-rum/_index.md) to understand our real users
 - Write [advanced Synthetics tests](./3-advanced-synthetics/_index.md) based on what we've learned about our users and what we need them to do
 - Customize [dashboard charts](./4-dashboards/_index.md) to capture our KPIs, show trends, and show data in context of our events
@@ -30,6 +30,6 @@ As a reminder, we need frontend performance monitoring to capture everything tha
 
 ## References
 
-Throughout this workshop, we will see references to resources to help further understand end user experience and how to optimize it. In addition to [Splunk Docs](https://docs.splunk.com/observability/en/rum/intro-to-rum.html) for supported features and [Lantern](https://lantern.splunk.com/Observability/UCE/Optimized_experiences) for tips and tricks, [Google's web.dev](https://web.dev/) and [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Performance) are great resources. 
+Throughout this workshop, we will see references to resources to help further understand end user experience and how to optimize it. In addition to [Splunk Docs](https://docs.splunk.com/observability/en/rum/intro-to-rum.html) for supported features and [Lantern](https://lantern.splunk.com/Observability/UCE/Optimized_experiences) for tips and tricks, [Google's web.dev](https://web.dev/) and [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Performance) are great resources.
 
 Remember that the specific libraries, platforms, and CDNs you use often also have their own specific resources. For example [React](https://react.dev/reference/react/useCallback#skipping-re-rendering-of-components), [Wordpress](https://wpengine.com/support/troubleshooting-high-time-first-byte-ttfb/), and [Cloudflare](https://community.cloudflare.com/t/improving-time-to-first-byte-ttfb-with-cloudflare/390367) all have their own tips to improve performance.

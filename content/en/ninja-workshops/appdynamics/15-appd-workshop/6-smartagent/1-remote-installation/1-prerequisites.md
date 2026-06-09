@@ -21,6 +21,7 @@ cd /home/ubuntu/appdsm
 ```
 
 The directory contains:
+
 - `smartagentctl` - Command-line utility to manage SmartAgent
 - `smartagent` - The SmartAgent binary
 - `config.ini` - Main configuration file

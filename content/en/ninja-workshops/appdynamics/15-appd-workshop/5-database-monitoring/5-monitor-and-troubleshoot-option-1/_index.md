@@ -41,21 +41,21 @@ The main database dashboard shows you key insights for the database including:
 
 1. Click the health status circle to see details of the server health:
 
-* Green: server is healthy.
-* Yellow: server with warning-level violations.
-* Red: server with critical-level violations.
+- Green: server is healthy.
+- Yellow: server with warning-level violations.
+- Red: server with critical-level violations.
 
-2. The database type or vendor will always be seen here.
-3. Observe the total time spent executing SQL statements during the specified time period.
-4. Observe the total number of executions during the specified time period.
-5. Hover over the time series on the chart to see the detail of the recorded metrics.
+1. The database type or vendor will always be seen here.
+2. Observe the total time spent executing SQL statements during the specified time period.
+3. Observe the total number of executions during the specified time period.
+4. Hover over the time series on the chart to see the detail of the recorded metrics.
 
 Click the orange circle at the top of the data point to view the time comparison report, which shows query run times and wait states 15 minutes before and 15 minutes after the selected time.
 
-6. Left-click and hold down your mouse button while dragging from left to right to highlight a spike seen in the chart.
-7. Click the configuration button to exclude unwanted wait states from the top ten.
-8. Hover over the labels for each wait state to see a more detailed description.
-9. Observe the average number of active connections actively running a query during the selected time period.
+1. Left-click and hold down your mouse button while dragging from left to right to highlight a spike seen in the chart.
+2. Click the configuration button to exclude unwanted wait states from the top ten.
+3. Hover over the labels for each wait state to see a more detailed description.
+4. Observe the average number of active connections actively running a query during the selected time period.
 
 ![Main Database Dashboard](images/04-db-overview.png)
 

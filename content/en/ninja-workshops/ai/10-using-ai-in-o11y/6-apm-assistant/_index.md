@@ -15,18 +15,21 @@ AI Assistant features may vary by Splunk Observability Cloud version and entitle
 ## Key Capabilities
 
 ### 1. Trace Analysis
+
 - **Automatic span analysis**: Identifies slow or problematic spans
 - **Bottleneck detection**: Highlights performance bottlenecks in distributed traces
 - **Error pattern recognition**: Groups and analyzes error traces
 - **Dependency insights**: Understands service dependencies and call patterns
 
 ### 2. Guided Troubleshooting
+
 - **Root cause suggestions**: Proposes likely root causes based on trace data
 - **Investigation pathways**: Suggests what to examine next
 - **Historical comparisons**: Compares current issues with past patterns
 - **Resolution recommendations**: Offers potential fixes based on similar issues
 
 ### 3. Contextual Insights
+
 - **Natural language summaries**: Explains complex traces in plain language
 - **Impact assessment**: Estimates the scope and severity of issues
 - **Service health insights**: Summarizes service performance trends
@@ -37,6 +40,7 @@ AI Assistant features may vary by Splunk Observability Cloud version and entitle
 ### Scenario 1: Investigating a Slow Trace
 
 **Traditional approach:**
+
 1. Open trace waterfall
 2. Manually scan all spans
 3. Calculate durations
@@ -45,6 +49,7 @@ AI Assistant features may vary by Splunk Observability Cloud version and entitle
 6. Form hypothesis about root cause
 
 **With AI Assistant:**
+
 1. Open trace
 2. AI highlights: "Database query in checkout-service took 2.3s (95th percentile: 45ms)"
 3. Suggests: "Check database index on orders table"
@@ -54,6 +59,7 @@ AI Assistant features may vary by Splunk Observability Cloud version and entitle
 ### Scenario 2: Understanding Error Patterns
 
 **AI Assistant provides:**
+
 - Grouping of similar errors
 - Frequency analysis
 - First occurrence timestamp
@@ -113,6 +119,7 @@ AI Assistant features may vary by Splunk Observability Cloud version and entitle
 ### Critical Path Highlighting
 
 AI automatically identifies the critical path through a distributed trace:
+
 - **Critical spans**: Spans that directly contributed to total latency
 - **Parallelizable spans**: Spans that could be optimized through async processing
 - **Waiting time**: Time spent waiting for downstream services
@@ -120,6 +127,7 @@ AI automatically identifies the critical path through a distributed trace:
 ### Span Anomaly Detection
 
 AI detects unusual spans by considering:
+
 - **Duration**: Compared to historical baseline
 - **Frequency**: How often this span appears
 - **Error rate**: Errors in this span vs. normal
@@ -128,6 +136,7 @@ AI detects unusual spans by considering:
 ### Service Dependency Intelligence
 
 AI understands your service architecture:
+
 - **Dependency mapping**: Automatically maps service relationships
 - **Impact analysis**: Predicts how service issues affect dependents
 - **Circular dependency detection**: Identifies problematic call patterns
@@ -138,6 +147,7 @@ AI understands your service architecture:
 ### Smart Alert Prioritization
 
 AI helps prioritize alerts by:
+
 - **Business impact scoring**: Estimates user/revenue impact
 - **Historical context**: Compares with past similar alerts
 - **Correlation analysis**: Groups related alerts
@@ -146,6 +156,7 @@ AI helps prioritize alerts by:
 ### Adaptive Thresholds
 
 For APM-based detectors:
+
 - **Dynamic baselines**: Adjusts thresholds based on traffic patterns
 - **Seasonal awareness**: Accounts for time-of-day/day-of-week patterns
 - **Deployment awareness**: Recognizes deployment events
@@ -158,6 +169,7 @@ For APM-based detectors:
 Some AI Assistant implementations allow natural language queries:
 
 **Example questions:**
+
 - "Why is checkout-service slow?"
 - "What changed in the last hour?"
 - "Which endpoints are experiencing errors?"
@@ -165,6 +177,7 @@ Some AI Assistant implementations allow natural language queries:
 - "Compare current performance with last week"
 
 **AI provides:**
+
 - Natural language answers
 - Relevant traces and metrics
 - Visualization of the data
@@ -173,26 +186,32 @@ Some AI Assistant implementations allow natural language queries:
 ## Best Practices for AI Assistant
 
 ### 1. Provide Rich Context
+
 Help AI help you:
+
 - Use descriptive span names
 - Add relevant tags and attributes
 - Include error details in spans
 - Tag deployment events
 
 ### 2. Trust but Verify
+
 - Use AI suggestions as starting points
 - Validate findings with actual data
 - Cross-reference with metrics and logs
 - Apply domain knowledge
 
 ### 3. Learn from AI Patterns
+
 - Note common root causes AI identifies
 - Observe which tags are most useful
 - Study the investigation paths AI suggests
 - Build automation based on repeated patterns
 
 ### 4. Provide Feedback
+
 If your AI Assistant supports feedback:
+
 - Mark helpful suggestions
 - Report incorrect analyses
 - The system learns from your feedback

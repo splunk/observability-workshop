@@ -10,7 +10,7 @@ weight: 2
 What metrics are available? Is your data consistent across time and locations? Do certain locations run slower than others? Are there any spikes or failures?
 {{% /notice %}}
 
-1. Click into a recent run either in the chart or in the table below. 
+1. Click into a recent run either in the chart or in the table below.
 ![run results chart](../../_img/run-results.png)
 
 1. If there are failures, look at the response to see if you need to add a response code assertion (302 is a common one), if there is some authorization needed, or different request headers added. Here we have information about this particular test run including if it succeeded or failed, the location, timestamp, and duration in addition to the other Uptime test metrics. Click through to see the response, request, and connection info as well.

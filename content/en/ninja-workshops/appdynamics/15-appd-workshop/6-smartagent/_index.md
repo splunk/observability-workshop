@@ -30,12 +30,14 @@ This section covers four distinct approaches to deploying Smart Agent at scale:
 The most direct approach using the `smartagentctl` CLI tool to deploy via SSH.
 
 **Best for:**
+
 - Quick deployments to a moderate number of hosts
 - Environments without existing CI/CD infrastructure
 - Testing and proof-of-concept scenarios
 - Direct control over deployment process
 
 **Key Features:**
+
 - Direct SSH-based deployment
 - Simple YAML configuration
 - No additional tooling required
@@ -46,12 +48,14 @@ The most direct approach using the `smartagentctl` CLI tool to deploy via SSH.
 Enterprise-grade deployment using Jenkins pipelines for complete lifecycle management.
 
 **Best for:**
+
 - Organizations already using Jenkins
 - Complex deployment workflows
 - Environments requiring approval gates
 - Integration with existing CI/CD pipelines
 
 **Key Features:**
+
 - Parameterized pipelines
 - Batch processing for thousands of hosts
 - Complete lifecycle management
@@ -62,12 +66,14 @@ Enterprise-grade deployment using Jenkins pipelines for complete lifecycle manag
 Modern CI/CD approach using GitHub Actions workflows with self-hosted runners.
 
 **Best for:**
+
 - Teams using GitHub for version control
 - Cloud-native environments
 - GitOps workflows
 - Distributed teams preferring web-based management
 
 **Key Features:**
+
 - 11 specialized workflows
 - Self-hosted runner in your VPC
 - GitHub secrets integration
@@ -78,11 +84,13 @@ Modern CI/CD approach using GitHub Actions workflows with self-hosted runners.
 Configuration management approach using Ansible playbooks for infrastructure as code.
 
 **Best for:**
+
 - Teams using Ansible for configuration management
 - Declarative infrastructure definition
 - Consistent state management across fleets
 
 **Key Features:**
+
 - Infrastructure as Code (IaC)
 - Idempotent playbooks
 - Inventory management

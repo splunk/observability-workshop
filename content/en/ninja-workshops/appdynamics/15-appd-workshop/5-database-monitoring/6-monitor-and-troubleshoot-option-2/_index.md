@@ -53,29 +53,25 @@ A query’s execution plan reveals whether the query is optimizing its use of in
 
 ![Troubleshoot Expensive Query](images/04-db-execution-plan.png)
 
-
-
 Let’s investigate the indexes on the table using the Obect Browser next.
 
-5. Click on the **Object Browser** option to view details of the schema for the tables
-6. Click the **Database** option.
-7. Click on the **supercars** schema to expand the list of tables.
-8. Click on the **CARS** table to see the details of the table.
-9. You can see that the CAR_ID column is defined as the primary key
+1. Click on the **Object Browser** option to view details of the schema for the tables
+2. Click the **Database** option.
+3. Click on the **supercars** schema to expand the list of tables.
+4. Click on the **CARS** table to see the details of the table.
+5. You can see that the CAR_ID column is defined as the primary key
 
 ![Troubleshoot Expensive Query](images/04-db-object-browser.png)
 
-10. Use the outer scroll bar to scroll down the page.
-11. Notice the primary key index defined in the table.
+1. Use the outer scroll bar to scroll down the page.
+2. Notice the primary key index defined in the table.
 
 ![Troubleshoot Car Index](images/04-db-cars-index.png)
 
-
-12. Click on the **MANUFACTURER** table to view its details.
-13. Notice the **MANUFACTURER_ID** column is not defined as a primary key.
-14. Scroll down the page to see there are no indexes defined for the table.
+1. Click on the **MANUFACTURER** table to view its details.
+2. Notice the **MANUFACTURER_ID** column is not defined as a primary key.
+3. Scroll down the page to see there are no indexes defined for the table.
 
 ![Troubleshoot Expensive Query](images/04-db-man-table.png)
 
-
-The MANUFACTURER_ID column needs an index created for it to improve the performance of any queries on the table. If you analyzed a different query the underlying issue may be different but the most common issues shown in this lab come because the queries are either executing a join with the MANUFACTURER table or querying that table directly. 
+The MANUFACTURER_ID column needs an index created for it to improve the performance of any queries on the table. If you analyzed a different query the underlying issue may be different but the most common issues shown in this lab come because the queries are either executing a join with the MANUFACTURER table or querying that table directly.

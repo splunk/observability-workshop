@@ -5,11 +5,11 @@ weight: 6
 time: 2 minutes
 ---
 
-This workshop provided hands-on experience with the following concepts: 
+This workshop provided hands-on experience with the following concepts:
 
-* How to deploy the **Splunk Distribution of the OpenTelemetry Collector** using Helm. 
-* How instrument an application with [**OpenTelemetry**](https://opentelemetry.io). 
-* How to capture tags of interest from your application using an OpenTelemetry SDK. 
+* How to deploy the **Splunk Distribution of the OpenTelemetry Collector** using Helm.
+* How instrument an application with [**OpenTelemetry**](https://opentelemetry.io).
+* How to capture tags of interest from your application using an OpenTelemetry SDK.
 * How to index tags in **Splunk Observability Cloud** using **Troubleshooting MetricSets**.
 * How to utilize tags in **Splunk Observability Cloud** to find “unknown unknowns” using the **Tag Spotlight** and **Dynamic Service Map** features.
 

@@ -7,40 +7,40 @@ description: In this exercise you review dashboards and navigate the demo app.
 
 In this exercise you will complete the following tasks:
 
-*   Review the Browser Application Overview Dashboard
-*   Review the Browser Application Geo Dashboard
-*   Review the Browser Application Usage Stats Dashboard
-*   Navigate the Supercar-Trader application web pages
+* Review the Browser Application Overview Dashboard
+* Review the Browser Application Geo Dashboard
+* Review the Browser Application Usage Stats Dashboard
+* Navigate the Supercar-Trader application web pages
 
 ## Review the Browser Application Overview Dashboard
 
 Navigate to the User Experience dashboard and drill into the browser application overview dashboard by following these steps.
 
 1. Click the **User Experience** tab on the left menu.
-2. Search for you Web Application **Supercar-Trader-Web-##-###**. 
+2. Search for you Web Application **Supercar-Trader-Web-##-###**.
 3. Click **Details** or double click on your application name
 
 ![BRUM Dash 1](images/04-brum-app.png)
 
 The Overview dashboard displays a set of configurable widgets. The default widgets contain multiple graphs and lists that feature common high-level indicators of application performance, including:
 
-*   End User Response Time Distribution
-*   End User Response Time Trend
-*   Total Page Requests by Geo
-*   End User Response Time by Geo
-*   Top 10 Browsers
-*   Top 10 Devices
-*   Page Requests per Minute
-*   Top 5 Pages by Total Requests
-*   Top 5 Countries by Total Page Requests
+* End User Response Time Distribution
+* End User Response Time Trend
+* Total Page Requests by Geo
+* End User Response Time by Geo
+* Top 10 Browsers
+* Top 10 Devices
+* Page Requests per Minute
+* Top 5 Pages by Total Requests
+* Top 5 Countries by Total Page Requests
 
 Explore the features of the dashboard.
 
-4. Click **+** to choose additional graphs and widgets to add to the dashboard.
-5. Click and drag the bottom right corner of any widget to resize it.
-6. Select the outlined area in any widget to move and place it on the dashboard.
-7. Click on the title of any widget to drill into the detail dashboard.
-8. Click **X** in the top right corner of any widget to remove it from the dashboard.
+1. Click **+** to choose additional graphs and widgets to add to the dashboard.
+2. Click and drag the bottom right corner of any widget to resize it.
+3. Select the outlined area in any widget to move and place it on the dashboard.
+4. Click on the title of any widget to drill into the detail dashboard.
+5. Click **X** in the top right corner of any widget to remove it from the dashboard.
 
 Any changes you make to the dashboard widget layout will automatically be saved.
 
@@ -70,10 +70,11 @@ You can read more about the Browser Application Geo dashboard [**here**](https:/
 The **Usage Stats** dashboard presents an aggregated page-load usage data based on your users browser type and device/platform.
 
 The Browser Application Usage Stats dashboard helps you discover:
-*   The slowest browsers in terms of total end-user response time.
-*   The slowest browsers to render the response page.
-*   The browsers that most of your end users use.
-*   The browsers that most of your end users use in a particular country or region.
+
+* The slowest browsers in terms of total end-user response time.
+* The slowest browsers to render the response page.
+* The browsers that most of your end users use.
+* The browsers that most of your end users use in a particular country or region.
 
 Navigate to the Browser Application Usage Stats dashboard and explore the features of the dashboard described below.
 
@@ -86,18 +87,18 @@ Navigate to the Browser Application Usage Stats dashboard and explore the featur
 
 Use these steps to explore more metrics by browser and version.
 
-5. Use the scroll bar on the right to scroll to the bottom of the page.
-6. Explore the available metrics by browser and version.
-7. Explore the available metrics by country.
+1. Use the scroll bar on the right to scroll to the bottom of the page.
+2. Explore the available metrics by browser and version.
+3. Explore the available metrics by country.
 
 ![BRUM Dash 5](images/04-brum-usage-stats2.png)
 
 Navigate to the Devices dashboard and explore the features of the dashboard described below.
 
-8. Click the **Devices** option.
-9. Look at the load by device break out.
-10. Hover over the sections in the pie chart to see the details.
-11. Explore the available performance metrics by device.
+1. Click the **Devices** option.
+2. Look at the load by device break out.
+3. Hover over the sections in the pie chart to see the details.
+4. Explore the available performance metrics by device.
 
 You can read more about the Browser Application Usage Stats dashboard [**here**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-app-dashboard/usage-stats).
 

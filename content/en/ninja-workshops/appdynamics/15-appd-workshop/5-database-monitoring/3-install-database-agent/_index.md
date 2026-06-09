@@ -21,24 +21,27 @@ By this point you should have received the information regarding the EC2 instanc
 
 On your local machine, open a terminal window and change into the directory where the database agent file was downloaded to. Upload the file into the EC2 instance using the following command. This may take some time to complete. If you are in a Windows OS, you may have to use a programm such as WinSCP.
 
-* Update the IP address or public DNS for your instance.
-* Update the filename to match your exact version.
+- Update the IP address or public DNS for your instance.
+- Update the filename to match your exact version.
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 cd ~/Downloads
 scp -P 2222 db-agent-*.zip splunk@i-0267b13f78f891b64.splunk.show:/home/splunk
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 splunk@i-0267b13f78f891b64.splunk.show's password:
 db-agent-25.7.0.5137.zip                                                                                                                               100%   70MB   5.6MB/s   00:12
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ## Install the Database Agent
 
@@ -49,7 +52,7 @@ cd /opt/appdynamics
 mkdir dbagent
 ```
 
-Use the following commands to copy the Database agent zip file to the directory and unzip the file. The name of your Database agent file may be slightly different than the example below. 
+Use the following commands to copy the Database agent zip file to the directory and unzip the file. The name of your Database agent file may be slightly different than the example below.
 
 ```bash
 cp ~/db-agent-*.zip /opt/appdynamics/dbagent/

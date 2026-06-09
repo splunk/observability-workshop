@@ -39,6 +39,7 @@ Your self-hosted runner must be deployed in the same AWS VPC as your target EC2 
 1. **Launch EC2 instance** in your VPC (Ubuntu or Amazon Linux 2)
 
 2. **Navigate to runner settings** in your forked repository:
+
    ```
    Settings → Actions → Runners → New self-hosted runner
    ```
@@ -69,6 +70,7 @@ sudo ./svc.sh start
 ### Verify Runner Status
 
 Check that the runner appears as **"Idle"** (green) in:
+
 ```
 Settings → Actions → Runners
 ```
@@ -95,6 +97,7 @@ cat /path/to/your-key.pem
 ```
 
 Example format:
+
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA...
@@ -102,7 +105,7 @@ MIIEpAIBAAKCAQEA...
 -----END RSA PRIVATE KEY-----
 ```
 
-4. Click **"Add secret"**
+1. Click **"Add secret"**
 
 {{% notice style="important" %}}
 Never commit SSH keys to your repository! Always use GitHub Secrets for sensitive credentials.
@@ -129,25 +132,28 @@ This variable contains the list of all target hosts where Smart Agent should be 
 ```
 
 **Format Requirements:**
+
 - One IP per line
 - No commas
 - No spaces
 - No extra characters
 - Use Unix line endings (LF, not CRLF)
 
-4. Click **"Add variable"**
+1. Click **"Add variable"**
 
 ### Optional Variables
 
 These variables are optional and used for Smart Agent service user/group configuration:
 
 #### SMARTAGENT_USER
+
 1. Click **"New repository variable"**
 2. **Name**: `SMARTAGENT_USER`
 3. **Value**: e.g., `appdynamics`
 4. Click **"Add variable"**
 
 #### SMARTAGENT_GROUP
+
 1. Click **"New repository variable"**
 2. **Name**: `SMARTAGENT_GROUP`
 3. **Value**: e.g., `appdynamics`
@@ -160,9 +166,11 @@ For the lab setup with all EC2 instances in the same VPC and security group:
 ### Security Group Rules
 
 **Inbound Rules:**
+
 - SSH (port 22) from same security group (source: same SG)
 
 **Outbound Rules:**
+
 - HTTPS (port 443) to 0.0.0.0/0 (for GitHub API access)
 - SSH (port 22) to same security group (for target access)
 
@@ -220,6 +228,7 @@ You should see: "Listening for Jobs"
 **Symptom**: Workflows stay in "queued" state
 
 **Solution**:
+
 - Check runner status: `sudo systemctl status actions.runner.*`
 - Restart runner: `sudo ./svc.sh restart`
 - Verify outbound HTTPS (443) connectivity to GitHub
@@ -229,6 +238,7 @@ You should see: "Listening for Jobs"
 **Symptom**: Workflows fail with "Permission denied" or "Connection refused"
 
 **Solution**:
+
 ```bash
 # Test from runner
 ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
@@ -242,6 +252,7 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 **Symptom**: Error: "hostname contains invalid characters"
 
 **Solution**:
+
 - Edit `DEPLOYMENT_HOSTS` variable
 - Ensure no trailing spaces
 - Use Unix line endings (LF, not CRLF)
@@ -252,6 +263,7 @@ ssh -i ~/.ssh/test-key.pem ubuntu@172.31.1.243 -o ConnectTimeout=10
 **Symptom**: Error: "Secret SSH_PRIVATE_KEY not found"
 
 **Solution**:
+
 - Verify secret name exactly matches: `SSH_PRIVATE_KEY`
 - Check secret is in repository secrets (not environment secrets)
 - Ensure you have repository admin access

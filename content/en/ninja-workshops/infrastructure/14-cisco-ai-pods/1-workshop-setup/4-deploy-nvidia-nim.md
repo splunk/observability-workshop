@@ -44,7 +44,7 @@ for further details on generating an NGC API key.
 
 ## Install the Node Feature Discovery Operator
 
-The steps in this section are based on [Installing the NFD Operator using the CLI ](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#install-operator-cli_psap-node-feature-discovery-operator).
+The steps in this section are based on [Installing the NFD Operator using the CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#install-operator-cli_psap-node-feature-discovery-operator).
 
 Run the following script to install the Node Feature Discovery Operator:
 
@@ -75,7 +75,7 @@ nfd-controller-manager-7f86ccfb58-vgr4x   2/2     Running   0          10m
 
 ## Create a NodeFeatureDiscovery CR
 
-The steps in this section are based on [Creating a NodeFeatureDiscovery CR by using the CLI ](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#creating-nfd-cr-cli_psap-node-feature-discovery-operator).
+The steps in this section are based on [Creating a NodeFeatureDiscovery CR by using the CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/specialized_hardware_and_driver_enablement/psap-node-feature-discovery-operator#creating-nfd-cr-cli_psap-node-feature-discovery-operator).
 
 Run the following script to create the Node Feature Discovery CR:
 

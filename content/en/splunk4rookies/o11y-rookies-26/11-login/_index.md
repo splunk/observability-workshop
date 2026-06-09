@@ -19,7 +19,6 @@ description: Log in to Splunk Observability Cloud and verify access.
 
 * You will land on the home page of Splunk Observability Cloud.  
 
-
 ![ui](images/2-ui.png)
 
 {{% /notice %}}

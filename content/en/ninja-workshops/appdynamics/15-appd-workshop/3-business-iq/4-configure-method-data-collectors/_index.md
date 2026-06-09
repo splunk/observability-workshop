@@ -8,13 +8,12 @@ Method invocation data collectors capture code data such as method arguments, va
 
 In this exercise you will perform the following tasks:
 
-*   Discover methods.
-*   Open a discovery session.
-*   Discover method parameters.
-*   Drill down to an object within the code.
-*   Create a method invocation data collector.
-*   Validate analytics on method invocation data collectors.
-
+* Discover methods.
+* Open a discovery session.
+* Discover method parameters.
+* Drill down to an object within the code.
+* Create a method invocation data collector.
+* Validate analytics on method invocation data collectors.
 
 ## Open a Discovery Session
 
@@ -29,20 +28,19 @@ You may not have an application developer available to identify the method or pa
 
 ![OpenDiscoverySession](images/05-live-preview.png)
 
-
-7. Click on **Start Discovery Session** button
-8. Select the **Web-Portal Node** in the pop-up windows. It should be the same node that the method you are investigating runs on
-9. Click **Ok**
+1. Click on **Start Discovery Session** button
+2. Select the **Web-Portal Node** in the pop-up windows. It should be the same node that the method you are investigating runs on
+3. Click **Ok**
 
 ![OpenDiscoverySession](images/05-biq-trans-disco.png)
 
-10. Select **Tools** on the right toggle.
-11. Select **Classes/Methods** in the drop-down list.
-12. Select **Classes** with name in the **Search** section.
-13. Type in the class name **supercars.dataloader.CarDataLoader** in the text box. To find the class name you can search through call graphs, or ideally find it in the source code. 
-14. Click **Apply** to search for the matching class methods.
-15. Once the results appear, expand the class that matches your search.
-16. Look for the same method **saveCar**.
+1. Select **Tools** on the right toggle.
+2. Select **Classes/Methods** in the drop-down list.
+3. Select **Classes** with name in the **Search** section.
+4. Type in the class name **supercars.dataloader.CarDataLoader** in the text box. To find the class name you can search through call graphs, or ideally find it in the source code.
+5. Click **Apply** to search for the matching class methods.
+6. Once the results appear, expand the class that matches your search.
+7. Look for the same method **saveCar**.
 
 ![OpenDiscoverySession](images/05-biq-trans-disco-config.png)
 
@@ -76,12 +74,12 @@ With the findings from the previous exercises, you can now configure a method in
 
 We will create a method invocation data collector to capture the car details.
 
-7. For the **Name**, specify **SellCarMI-YOURINITIALS**.
-8. Enable **Transaction Snapshots**.
-9. Enable **Transaction Analytics**.
-10. Select **with a Class Name that**.
-11. Add **supercars.dataloader.CarDataLoader** as the **Class Name**.
-12. Add **saveCar** as the **Method Name**.
+1. For the **Name**, specify **SellCarMI-YOURINITIALS**.
+2. Enable **Transaction Snapshots**.
+3. Enable **Transaction Analytics**.
+4. Select **with a Class Name that**.
+5. Add **supercars.dataloader.CarDataLoader** as the **Class Name**.
+6. Add **saveCar** as the **Method Name**.
 
 ![NewMIDCDataCollector](images/05-biq-midc-config.png)
 
@@ -89,20 +87,20 @@ Then as observed, the Input Parameter of Index 0 in SaveCar method was an on Obj
 
 So to explain that how we fetched that value in the MIDC, we will do the below:
 
-13. Click on **Add**  at the bottom of the MIDC panel, to specify the new data that you want to collect.
-14. In the Display Name, specify **CarPrice_MIDC**
-15. In the Collect Data From, select **Method Parameter of Index 0**, which is our **CarForm Object**.
-16. For the **Operation on Method Parameter**, select **Use Getter Chain**. You will be calling a method inside CarForm to return the car details.
-17. Then specify **getPrice()**, the Getter method inside the **CarForm** class that will return the price.
-18. Click **Save**.
+1. Click on **Add**  at the bottom of the MIDC panel, to specify the new data that you want to collect.
+2. In the Display Name, specify **CarPrice_MIDC**
+3. In the Collect Data From, select **Method Parameter of Index 0**, which is our **CarForm Object**.
+4. For the **Operation on Method Parameter**, select **Use Getter Chain**. You will be calling a method inside CarForm to return the car details.
+5. Then specify **getPrice()**, the Getter method inside the **CarForm** class that will return the price.
+6. Click **Save**.
 
 ![CreateMIDCDataCollector1](images/05-biq-midc-datacoll.png)
 
-19. Repeat the above steps for all the properties, including color, model, and any others that you want to collect data for.
+1. Repeat the above steps for all the properties, including color, model, and any others that you want to collect data for.
 
 ![CreateMIDCDataCollector2](images/05-biq-midc-details.png)
 
-20. **Save MIDC**, and apply to the **”/Supercar-Trader/sell.do”** business transaction.
+1. **Save MIDC**, and apply to the **”/Supercar-Trader/sell.do”** business transaction.
 
 The implementation of the MIDC requires that we restart the JVM:
 
@@ -113,6 +111,7 @@ The implementation of the MIDC requires that we restart the JVM:
 cd /usr/local/apache/apache-tomcat-9/bin
 ./shutdown.sh
 ```
+
 If you find any remaining application JVMs still running, kill the remaining JVMs using the command below.
 
 {{< tabs >}}
@@ -125,20 +124,24 @@ sudo pkill -f Supercar-Trader
 {{% /tab %}}
 {{< /tabs >}}
 
-3. Restart the Tomcat Server
+1. Restart the Tomcat Server
 
 ``` bash
 ./startup.sh
 ```
-4. Validate that the Tomcat server is running, this can take a few minutes
+
+1. Validate that the Tomcat server is running, this can take a few minutes
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 curl localhost:8080
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 <!DOCTYPE html>
 <html lang="en">
@@ -153,9 +156,9 @@ curl localhost:8080
         <div id="wrapper"
 ....
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ## Validate analytics on MD parameters
 
@@ -163,12 +166,12 @@ Go to the website and apply some manual load on the Sell Car Page by submitting 
 
 You will now verify if the business data was captured by HTTP data collectors in AppDynamics Analytics.
 
-1. Select the **Analytics** tab. 
-2. Select the **Searches** tab and Add a new **Drag and Drop Search**. 
+1. Select the **Analytics** tab.
+2. Select the **Searches** tab and Add a new **Drag and Drop Search**.
 3. Click the **+ Add** button and create a new **Drag and Drop Search**.
-4. Click **+ Add Criteria** 
+4. Click **+ Add Criteria**
 5. Select **Application** and Search For Your Application Name **Supercar-Trader-YOURINITIALS**
-6. Verify that the **Business Parameters** appear as a field in the **Custom Method Data**. 
+6. Verify that the **Business Parameters** appear as a field in the **Custom Method Data**.
 7. Verify that the **CarPrice Field** has data.
 
 ![ValidateMIDCDataCollector](images/05-biq-search-results.png)

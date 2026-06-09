@@ -11,7 +11,6 @@ In this exercise you will perform the following actions:
 2. Configure the Machine agent
 3. Start the Machine agent
 
-
 {{% notice title="Note" style="orange"  %}}
 We will use a script to download the machine agent into your EC2 instance. Normally, you would have to download the machine agent by logging into [https://accounts.appdynamics.com/](https://accounts.appdynamics.com/) but due to potential access limitations we will use the script which downloads it directly from the portal. If you have access to the AppDynamics portal and would like to download the machine agent, you can follow the below steps to download it and reference the steps used in the Install Agent section of the APM lab to SCP it into your VM.
 
@@ -19,11 +18,10 @@ We will use a script to download the machine agent into your EC2 instance. Norma
 2. On the left side menu click on **Downloads**
 3. Under **Type** select **Machine Agent**
 4. Under **Operating System** Select **Linux**
-5. Find the **Machine Agent Bundle - 64-bit linux (zip)** and click on the **Download** button. 
+5. Find the **Machine Agent Bundle - 64-bit linux (zip)** and click on the **Download** button.
 6. Follow the steps in the Install Agent section to SCP the downloaded file into your EC2 instance.
 7. Unbundle the zip file into the /opt/appdynamics/machineagent directory and proceed to the configuration section of this lab
 {{% /notice %}}
-
 
 ## Run the Install Script
 
@@ -46,7 +44,7 @@ You should see output similar to the following image.
 
 ## Configure the Server Agent
 
-Obtain the configuration property values listed below from the Java Agents “controller-info.xml” and have them available for the next step. 
+Obtain the configuration property values listed below from the Java Agents “controller-info.xml” and have them available for the next step.
 
 ```bash
 cat /opt/appdynamics/javaagent/conf/controller-info.xml
@@ -88,6 +86,3 @@ ps -ef | grep machine
 You should see output similar to the following image.
 
 ![Example Output](images/run-machine-agent.png)
-
-
-

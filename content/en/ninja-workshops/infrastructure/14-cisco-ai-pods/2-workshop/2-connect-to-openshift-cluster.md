@@ -13,11 +13,11 @@ Using the IP address and password provided by your instructor, connect to your E
 using one of the methods below:
 
 * Mac OS / Linux
-    * ssh splunk@IP address
+  * ssh splunk@IP address
 * Windows 10+
-    * Use the OpenSSH client
+  * Use the OpenSSH client
 * Earlier versions of Windows
-    * Use Putty
+  * Use Putty
 
 ## Set the Workshop Participant Number
 

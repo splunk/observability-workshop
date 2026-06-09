@@ -85,6 +85,7 @@ oc apply -f ./load-embeddings/k8s-job.yaml
 
 > Note: to build a Docker image for the Python application that loads the embeddings
 > into Weaviate, we executed the following commands:
+>
 > ``` bash
 > cd workshop/cisco-ai-pods/load-embeddings
 > docker build --platform linux/amd64 -t derekmitchell399/load-embeddings:1.0 .

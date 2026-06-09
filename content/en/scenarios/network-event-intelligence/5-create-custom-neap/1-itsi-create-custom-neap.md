@@ -52,7 +52,6 @@ Event iQ in IT Service Intelligence (ITSI) uses machine learning algorithms to c
 Using Event iQ in your workflow helps you quickly set up automated alert monitoring, reduce alert noise, and execute event actions. Additionally, algorithms can be continuously tuned to fit your environment's alerting needs.
 {{% /notice %}}
 
-
 **8.** Expand **Episode Information**.
 
 * Set **Episode Title** to **Static Value** and enter `Network Issue Impacting: %subcomponent%`

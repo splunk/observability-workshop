@@ -21,7 +21,6 @@ control how those steps flow together in an agentic application.
 
 {{% /notice %}}
 
-
 Although the primary goal of the workshop is to instrument the application with **OpenTelemetry**,
 having a basic understanding of how the application is structured will make the observability
 work much clearer. Seeing how the agents, tools, and workflows are built will help you

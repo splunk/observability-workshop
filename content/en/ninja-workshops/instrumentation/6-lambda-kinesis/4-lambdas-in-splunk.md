@@ -21,7 +21,6 @@ In Splunk Observability Cloud:
 It may take a few minutes for your traces to appear in Splunk APM. Try hitting refresh on your browser until you find your environment name in the list of environments.
 {{< /notice >}}
 
-
 ![Splunk APM, Environment Name](../images/02-Auto-APM-EnvironmentName.png)
 
 Once you've selected your Environment name from the Environment drop down, you can take a look at the Service Map for your Lambda functions.
@@ -73,6 +72,7 @@ The resources we deployed as part of this auto-instrumenation exercise need to b
 ```bash
 fg
 ```
+
 * This brings your background process to the foreground.
 * Next you can hit `[CONTROL-C]` to kill the process.
 
@@ -83,14 +83,17 @@ Terraform is great at managing the state of our resources individually, and as a
 Please follow these steps to destroy your resources:
 
 * Change to the `auto` directory:
+
 ```bash
 cd ~/workshop/lambda/auto
 ```
 
 * Destroy the Lambda functions and other AWS resources you deployed earlier:
+
 ```bash
 terraform destroy
 ```
+
 * respond `yes` when you see the `Enter a value:` prompt
 * This will result in the resources being destroyed, leaving you with a clean environment
 

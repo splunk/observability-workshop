@@ -7,7 +7,7 @@ draft: true
 ---
 
 {{% notice title="Prerequsites" style="primary"  icon="lightbulb" %}}
-This is a continuation of the Application Performance Monitoring lab. Verify that your application is running and has load for the past hour. If needed return to the generate-application-load section to restart the load generator. 
+This is a continuation of the Application Performance Monitoring lab. Verify that your application is running and has load for the past hour. If needed return to the generate-application-load section to restart the load generator.
 {{% /notice %}}
 
 Follow the steps seen below until you get to the Select the agent type for download section and if you do not see the Servers tile then you will need to use the Deploy Server Agent - Option 2 approach.
@@ -15,6 +15,7 @@ Follow the steps seen below until you get to the Select the agent type for downl
 The advantage to using the Option 1 is that the agent will be pre-configured to connect to your controller VS using Option 2 will require that you edit the configuration of the agent to connect to the controller.
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Navigate to the Getting Started Wizard
@@ -35,7 +36,7 @@ Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com
 
 1. Leave the Platform Bundle set to Linux and 64-bit.
 2. Accept defaults for the Controller connection.
-2. Click Click Here to Download.
+3. Click Click Here to Download.
 
 ![Download](images/download-wizard-03.png)
 
@@ -74,9 +75,8 @@ Use the following commands to start the Server Visibility agent and verify that 
 cd /opt/appdynamics/machineagent/bin
 nohup ./machine-agent &
 ps -ef | grep machine
-``` 
+```
 
 You should see output similar to the following image.
 
 ![Install](images/svm-install-01.png)
-
