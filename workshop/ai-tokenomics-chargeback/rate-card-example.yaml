@@ -1,0 +1,85 @@
+version: workshop-2026-06
+currency: USD
+
+# These are workshop examples collected from public pricing models on 2026-06-09.
+# Always verify current prices and use your organization's approved internal rates
+# before using this for production chargeback.
+sources:
+  openai_api_pricing: https://developers.openai.com/api/docs/pricing
+  github_copilot_models_pricing: https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing
+  hugging_face_inference_providers_pricing: https://huggingface.co/docs/inference-providers/en/pricing
+  hugging_face_inference_endpoints_pricing: https://huggingface.co/docs/inference-endpoints/en/pricing
+  aws_ec2_on_demand_pricing: https://aws.amazon.com/ec2/pricing/on-demand/
+
+token_models:
+  # Public managed API style examples.
+  github-copilot-gpt-5-mini:
+    basis: public_token_rate
+    input_usd_per_1m_tokens: 0.25
+    cached_input_usd_per_1m_tokens: 0.025
+    output_usd_per_1m_tokens: 2.00
+    source: github_copilot_models_pricing
+
+  openai-gpt-5.4-nano:
+    basis: public_token_rate
+    input_usd_per_1m_tokens: 0.20
+    cached_input_usd_per_1m_tokens: 0.02
+    output_usd_per_1m_tokens: 1.25
+    source: openai_api_pricing
+
+  openai-gpt-5.4-mini:
+    basis: public_token_rate
+    input_usd_per_1m_tokens: 0.75
+    cached_input_usd_per_1m_tokens: 0.075
+    output_usd_per_1m_tokens: 4.50
+    source: openai_api_pricing
+
+  # Internal workshop model. This is not a vendor-published token price for NIM.
+  # Use it only to keep the lab math simple when the application runs on shared GPUs.
+  internal-llama-3.2-1b-instruct:
+    basis: workshop_internal_showback
+    input_usd_per_1m_tokens: 0.20
+    output_usd_per_1m_tokens: 1.25
+    source: workshop_assumption
+
+gpu_hourly:
+  hf-endpoint-t4-aws-x1:
+    basis: dedicated_endpoint_hourly
+    gpu_type: NVIDIA T4
+    gpu_count: 1
+    hourly_usd: 0.50
+    source: hugging_face_inference_endpoints_pricing
+
+  hf-endpoint-l4-aws-x1:
+    basis: dedicated_endpoint_hourly
+    gpu_type: NVIDIA L4
+    gpu_count: 1
+    hourly_usd: 0.80
+    source: hugging_face_inference_endpoints_pricing
+
+  hf-endpoint-a100-aws-x1:
+    basis: dedicated_endpoint_hourly
+    gpu_type: NVIDIA A100
+    gpu_count: 1
+    hourly_usd: 2.50
+    source: hugging_face_inference_endpoints_pricing
+
+  hf-endpoint-h100-aws-x1:
+    basis: dedicated_endpoint_hourly
+    gpu_type: NVIDIA H100
+    gpu_count: 1
+    hourly_usd: 4.50
+    source: hugging_face_inference_endpoints_pricing
+
+  hf-endpoint-h200-aws-x1:
+    basis: dedicated_endpoint_hourly
+    gpu_type: NVIDIA H200
+    gpu_count: 1
+    hourly_usd: 5.00
+    source: hugging_face_inference_endpoints_pricing
+
+overhead:
+  shared_platform_overhead_percent: 15
+  include_observability_pipeline: true
+  include_vector_database: true
+  include_storage_and_network: true

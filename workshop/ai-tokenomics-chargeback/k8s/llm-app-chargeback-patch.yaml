@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-app
+spec:
+  template:
+    metadata:
+      labels:
+        ai.splunk.com/team: support-ai
+        ai.splunk.com/cost-center: cc-ml-1200
+        ai.splunk.com/workload: support-rag
+        ai.splunk.com/product-area: customer-support
+    spec:
+      containers:
+        - name: llm-app
+          env:
+            - name: AI_TEAM_DEFAULT
+              value: support-ai
+            - name: AI_COST_CENTER_DEFAULT
+              value: cc-ml-1200
+            - name: AI_TENANT_ID_DEFAULT
+              value: tenant-shared
+            - name: AI_WORKLOAD_NAME
+              value: support-rag
+            - name: AI_PRODUCT_AREA
+              value: customer-support
+            - name: DEPLOYMENT_ENVIRONMENT
+              value: ai-tokenomics-workshop
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.namespace=ai,ai.team=support-ai,ai.cost_center=cc-ml-1200,ai.workload.name=support-rag,ai.product_area=customer-support,deployment.environment=ai-tokenomics-workshop

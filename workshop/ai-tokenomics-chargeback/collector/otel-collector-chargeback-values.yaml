@@ -1,0 +1,35 @@
+# Merge these processor settings into the Splunk OpenTelemetry Collector Helm values
+# used for the Cisco AI Pods workshop. The default chart already receives OTLP
+# metrics, traces, and logs. Do not create a second OTLP metrics pipeline unless you
+# first disable the chart's default OTLP metrics pipeline.
+#
+# Add attributes/chargeback to the existing metrics, traces, and logs pipelines if you
+# want the collector to remove user/session identifiers. Add ai.tokens.* and
+# ai.request.* metrics to any custom metric allowlist you operate.
+agent:
+  config:
+    processors:
+      attributes/chargeback:
+        actions:
+          - key: enduser.id
+            action: delete
+          - key: user.id
+            action: delete
+          - key: session.id
+            action: delete
+          - key: ai.chargeback.source
+            value: opentelemetry
+            action: upsert
+          - key: ai.chargeback.rate_card.version
+            value: workshop-2026-06
+            action: upsert
+      filter/chargeback_metrics:
+        metrics:
+          include:
+            match_type: strict
+            metric_names:
+              - ai.tokens.input
+              - ai.tokens.output
+              - ai.tokens.total
+              - ai.request.count
+              - ai.request.estimated_cost_usd

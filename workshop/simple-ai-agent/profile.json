@@ -1,0 +1,11 @@
+{
+  "name": "Workshop Participant",
+  "role": "Site reliability engineer",
+  "current_goals": [
+    "Reduce alert noise",
+    "Prepare a customer reliability review",
+    "Improve incident follow-up quality"
+  ],
+  "communication_style": "clear, direct, and concise",
+  "working_hours": "9:00 AM to 5:00 PM"
+}
