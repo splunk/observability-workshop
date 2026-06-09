@@ -13,6 +13,34 @@ The app supports two issue modes:
 - `latency-errors`: `inventory-service` becomes slow and intermittently returns errors. Use this for an APM service alert.
 - `crashloop`: `inventory-service` exits on startup. Use this for a Kubernetes infrastructure alert.
 
+## Install Laptop Tools
+
+macOS:
+
+```bash
+./scripts/install-tools-macos.sh
+```
+
+Linux:
+
+```bash
+LOCAL_RUNTIME=kind ./scripts/install-tools-linux.sh
+LOCAL_RUNTIME=minikube ./scripts/install-tools-linux.sh
+LOCAL_RUNTIME=microk8s ./scripts/install-tools-linux.sh
+```
+
+Windows PowerShell:
+
+```powershell
+.\scripts\install-tools-windows.ps1
+```
+
+Windows students can also use WSL2 with Ubuntu:
+
+```powershell
+.\scripts\install-tools-windows.ps1 -IncludeWsl
+```
+
 ## Quick Start: Local Laptop with kind
 
 ```bash

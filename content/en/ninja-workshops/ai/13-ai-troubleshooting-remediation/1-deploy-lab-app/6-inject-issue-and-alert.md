@@ -1,6 +1,6 @@
 ---
-title: 5. Inject the Example Issue and Create an Alert
-weight: 5
+title: 6. Inject the Example Issue and Create an Alert
+weight: 6
 ---
 
 Now create a controlled incident. Use the APM issue path for the primary workshop because it produces a clear service-level root cause and remediation path. Use the Kubernetes issue path as an advanced variant.

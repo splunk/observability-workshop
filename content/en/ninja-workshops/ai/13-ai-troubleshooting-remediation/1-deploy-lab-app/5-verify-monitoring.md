@@ -1,6 +1,6 @@
 ---
-title: 4. Verify Monitoring
-weight: 4
+title: 5. Verify Monitoring
+weight: 5
 ---
 
 Before creating the issue, verify both Kubernetes telemetry and APM service telemetry. If either signal is missing, the AI troubleshooting workflow will have less evidence to work with.
@@ -60,4 +60,3 @@ app.workshop=ai-troubleshooting-remediation
 | No APM services | Confirm app pods have `OTEL_EXPORTER_OTLP_ENDPOINT=http://$(NODE_IP):4317` and the load generator is running. |
 | Services exist but environment is wrong | Check `OTEL_RESOURCE_ATTRIBUTES` in `k8s/app.yaml`. |
 | Logs missing | Confirm `logsEngine: otel` is set in `k8s/collector-values.yaml` and pod logs are being collected. |
-

@@ -1,6 +1,6 @@
 ---
-title: 1. Understand the Lab Application
-weight: 1
+title: 2. Understand the Lab Application
+weight: 2
 ---
 
 The lab application is a small checkout workflow designed for this workshop. It is intentionally smaller than the OpenTelemetry Demo or PetClinic so students can understand the failure mode quickly.
@@ -63,4 +63,3 @@ find . -maxdepth 3 -type f | sort
 {{< /tabs >}}
 
 {{% /notice %}}
-

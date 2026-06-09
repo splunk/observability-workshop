@@ -1,6 +1,6 @@
 ---
-title: 2. Deploy on a Local Laptop
-weight: 2
+title: 3. Deploy on a Local Laptop
+weight: 3
 ---
 
 Use this path when students want to run the workshop on a local Kubernetes runtime. The workshop includes scripts for `kind`, Minikube, and MicroK8s. Each path builds the app image, loads it into the local cluster, installs the Splunk OpenTelemetry Collector, and deploys the app.

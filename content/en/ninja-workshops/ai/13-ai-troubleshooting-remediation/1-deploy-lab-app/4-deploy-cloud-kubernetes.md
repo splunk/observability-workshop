@@ -1,6 +1,6 @@
 ---
-title: 3. Deploy in Cloud Kubernetes
-weight: 3
+title: 4. Deploy in Cloud Kubernetes
+weight: 4
 ---
 
 Use this path when students have access to an existing Kubernetes cluster in a cloud provider or shared workshop environment. The app image must be pushed to a registry that the cluster can pull from.
@@ -71,4 +71,3 @@ kubectl -n ai-remediation get deploy
 {{% notice title="Cloud Safety" style="info" %}}
 Use a non-production cluster. The lab creates a namespace named `ai-remediation`, installs or upgrades a Helm release named `splunk-otel-collector`, and generates continuous test traffic.
 {{% /notice %}}
-

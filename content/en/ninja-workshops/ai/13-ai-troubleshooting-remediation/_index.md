@@ -3,7 +3,7 @@ title: AI Troubleshooting Agent and Remediation Plan
 linkTitle: AI Troubleshooting and Remediation
 weight: 13
 layout: chapter
-time: 3 hours
+time: 3 hours 15 minutes
 authors: ["Splunk Observability Workshop Contributors"]
 description: Use AI troubleshooting agent and AI remediation plan to move from supported alerts to evidence-backed root cause hypotheses and guided remediation.
 draft: false
@@ -17,9 +17,9 @@ This workshop is designed for advanced users who already know the basics of Splu
 
 ## Workshop Overview
 
-In this 3-hour hands-on session, you'll cover:
+In this 3-hour 15-minute hands-on session, you'll cover:
 
-- **Deploy the Lab App** - Run the instrumented checkout application on a local laptop or cloud Kubernetes cluster and send telemetry to Splunk Observability Cloud.
+- **Deploy the Lab App** - Install required laptop tools, run the instrumented checkout application on a local laptop or cloud Kubernetes cluster, and send telemetry to Splunk Observability Cloud.
 - **Prepare the Incident** - Confirm feature availability, select a supported alert, and capture the incident context the agent needs.
 - **Troubleshoot With the Agent** - Review the alert overview, suspected root causes, impact analysis, and supporting evidence.
 - **Remediate With the Action Plan** - Use AI-generated hypotheses and guided steps while keeping humans in control of production changes.
