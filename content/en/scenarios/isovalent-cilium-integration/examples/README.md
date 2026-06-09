@@ -5,17 +5,21 @@ This directory contains the configuration files used during the deployment of Is
 ## Files Overview
 
 ### EKS Cluster Configuration
+
 - **cluster.yaml** - Initial EKS cluster configuration
 - **nodegroup.yaml** - Node group configuration
 
 ### Cilium Enterprise Configuration
+
 - **cilium-enterprise-values.yaml** - Main Cilium Enterprise Helm values
 - **cilium-dns-proxy-ha-values.yaml** - DNS Proxy HA Helm values
 
 ### Splunk OpenTelemetry Configuration
+
 - **splunk-otel-isovalent.yaml** - Splunk OpenTelemetry Collector Helm values with Isovalent metrics receivers and metric filtering
 
 ### Splunk Observability Cloud Dashboards
+
 - **Cilium by Isovalent.json** - Pre-built dashboard for Cilium metrics (agent status, ENI allocation, BPF map pressure)
 - **Hubble by Isovalent.json** - Pre-built dashboard for Hubble metrics (network flows, DNS queries, dropped packets)
 
@@ -24,26 +28,31 @@ This directory contains the configuration files used during the deployment of Is
 Before using these configuration files, you **must** replace the following placeholders with your actual values:
 
 ### 1. EKS API Server Endpoint
+
 **File:** `cilium-enterprise-values.yaml`  
 **Placeholder:** `<YOUR-EKS-API-SERVER-ENDPOINT>`  
 **Location:** Line 28 (`k8sServiceHost`)
 
 **How to get it:**
+
 ```bash
 kubectl cluster-info | grep 'Kubernetes control plane' | awk '{print $NF}' | sed 's|https://||'
 ```
 
 **Example value:**
+
 ```
 79F5FA6349FF9D1DC9052A3140032E7A.gr7.us-east-1.eks.amazonaws.com
 ```
 
 ### 2. Splunk Access Token
+
 **File:** `splunk-otel-isovalent.yaml`  
 **Placeholder:** `<YOUR-SPLUNK-ACCESS-TOKEN>`  
 **Field:** `splunkObservability.accessToken`
 
 **How to get it:**
+
 1. Log into Splunk Observability Cloud
 2. Navigate to **Settings** > **Access Tokens**
 3. Create a new token with **INGEST** permissions or use an existing one
@@ -51,16 +60,19 @@ kubectl cluster-info | grep 'Kubernetes control plane' | awk '{print $NF}' | sed
 **Security note:** Keep this token secure. Do not commit it to version control.
 
 ### 3. Splunk Realm
+
 **File:** `splunk-otel-isovalent.yaml`  
 **Placeholder:** `<YOUR-SPLUNK-REALM>`  
 **Field:** `splunkObservability.realm`
 
 **How to find it:**
+
 1. Log into Splunk Observability Cloud
 2. Navigate to **Settings** > **Account**
 3. Your realm is displayed (e.g., `us0`, `us1`, `eu0`, `ap0`)
 
 **Common realms:**
+
 - `us0` - US East (N. Virginia)
 - `us1` - US East (Ohio)
 - `eu0` - Europe (Frankfurt)
@@ -105,6 +117,7 @@ The `splunk-otel-isovalent.yaml` file includes a `filter/includemetrics` process
 - **Focus on key indicators**: Only send metrics that provide actionable insights
 
 **Default filtered metrics include:**
+
 - Container and pod resource metrics (CPU, memory, restarts)
 - Cilium networking metrics (endpoints, BPF maps, policies, API limiter)
 - Hubble observability metrics (flows, DNS, HTTP, drops)

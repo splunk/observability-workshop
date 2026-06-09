@@ -20,4 +20,3 @@ Splunk Observability Cloud. Specifically, you had the opportunity to:
 * Configure monitoring for Pure Storage metrics using Prometheus.
 * Instrument Python services that interact with Large Language Models (LLMs) with OpenTelemetry.
 * Understand which details which OpenTelemetry captures in the trace from applications that interact with LLMs.
-

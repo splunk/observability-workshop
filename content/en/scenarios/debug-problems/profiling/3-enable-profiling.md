@@ -6,13 +6,13 @@ time: 20 minutes
 ---
 
 Let's learn how to enable the memory and CPU profilers, verify their operation,
-and use the results in Splunk Observability Cloud to find out why our application startup is slow. 
+and use the results in Splunk Observability Cloud to find out why our application startup is slow.
 
 ### Update the application configuration
 
 We will need to pass additional configuration arguments to the Splunk OpenTelemetry Java agent in order to
 enable both profilers. The configuration is [documented here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/instrumentation/instrument-java-application.html#activate-alwayson-profiling)
-in detail, but for now we just need the following settings: 
+in detail, but for now we just need the following settings:
 
 ````
 SPLUNK_PROFILER_ENABLED="true"
@@ -57,19 +57,19 @@ This confirms that the profiler is enabled and sending data to the OpenTelemetry
 
 Visit `http://<your IP address>:81` and play a few more rounds of The Door Game.
 
-Then head back to Splunk Observability Cloud, click on **APM** -> **Trace analyzer**. 
+Then head back to Splunk Observability Cloud, click on **APM** -> **Trace analyzer**.
 
 Filter on traces involving the `doorgame` service and the `GET new-game` operation (since we're troubleshooting the game startup sequence):
 
 ![New Game Traces](../images/new_game_traces.png)
 
-Selecting one of these traces brings up the following screen: 
+Selecting one of these traces brings up the following screen:
 
 ![Trace with Call Stacks](../images/trace_with_call_stacks.png)
 
-You can see that the spans now include "Call Stacks", which is a result of us enabling CPU and memory profiling earlier. 
+You can see that the spans now include "Call Stacks", which is a result of us enabling CPU and memory profiling earlier.
 
-Click on the span named `doorgame: SELECT doorgamedb`, then click on CPU stack traces on the right-hand side: 
+Click on the span named `doorgame: SELECT doorgamedb`, then click on CPU stack traces on the right-hand side:
 
 ![Trace with CPU Call Stacks](../images/trace_with_cpu_call_stacks.png)
 
@@ -120,19 +120,19 @@ java.net.SocketInputStream.read(Unknown Source:0)
 java.lang.ThreadLocal.get(Unknown Source:0)
 ````
 
-We can interpret the stack trace as follows: 
+We can interpret the stack trace as follows:
 
-* When starting a new Door Game, a call is made to load user data. 
-* This results in executing a SQL query to load the user data (which is related to the slow SQL query we saw earlier). 
-* We then see calls to read data in from the database. 
+* When starting a new Door Game, a call is made to load user data.
+* This results in executing a SQL query to load the user data (which is related to the slow SQL query we saw earlier).
+* We then see calls to read data in from the database.
 
-So, what does this all mean? It means that our application startup is slow since it's spending time loading user data. In fact, the profiler has told us the exact line of code where this happens: 
+So, what does this all mean? It means that our application startup is slow since it's spending time loading user data. In fact, the profiler has told us the exact line of code where this happens:
 
 ````
 com.splunk.profiling.workshop.UserData.loadUserData(UserData.java:33)
 ````
 
-Let's open the corresponding source file (`./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`) and look at this code in more detail: 
+Let's open the corresponding source file (`./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`) and look at this code in more detail:
 
 ````
 public class UserData {
@@ -164,29 +164,30 @@ public class UserData {
                 users.put(rs.getString("UserId"), user);
             }
 ````
-Here we can see the application logic in action. It establishes a connection to the database, then executes the SQL query we saw earlier: 
+
+Here we can see the application logic in action. It establishes a connection to the database, then executes the SQL query we saw earlier:
 
 ````
 select * FROM DoorGameDB.Users, DoorGameDB.Organizations
 ````
 
-It then loops through each of the results, and loads each user into a `HashMap` object, which is a collection of `User` objects. 
+It then loops through each of the results, and loads each user into a `HashMap` object, which is a collection of `User` objects.
 
-We have a good understanding of why the game startup sequence is so slow, but how do we fix it? 
+We have a good understanding of why the game startup sequence is so slow, but how do we fix it?
 
-For more clues, let's have a look at the other part of AlwaysOn Profiling:  memory profiling.  To do this, click on the `Memory` tab in AlwaysOn profiling: 
+For more clues, let's have a look at the other part of AlwaysOn Profiling:  memory profiling.  To do this, click on the `Memory` tab in AlwaysOn profiling:
 
 ![Memory Profiling](../images/memory_profiling.png)
 
-At the top of this view, we can see how much heap memory our application is using, the heap memory allocation rate, and garbage collection activity. 
+At the top of this view, we can see how much heap memory our application is using, the heap memory allocation rate, and garbage collection activity.
 
-We can see that our application is using about 400 MB out of the max 1 GB heap size, which seems excessive for such a simple application. We can also see that some garbage collection occurred, which caused our application to pause (and probably annoyed those wanting to play the Game Door). 
+We can see that our application is using about 400 MB out of the max 1 GB heap size, which seems excessive for such a simple application. We can also see that some garbage collection occurred, which caused our application to pause (and probably annoyed those wanting to play the Game Door).
 
 At the bottom of the screen, which can see which methods in our Java application code are associated with the most heap memory usage. Click on the first item in the list to show the Memory Allocation Stack Traces associated with the `java.util.Arrays.copyOf` method specifically:
 
 ![Memory Allocation Stack Traces](../images/memory_allocation_stack_traces.png)
 
-With help from the profiler, we can see that the `loadUserData` method not only consumes excessive CPU time, but it also consumes excessive memory when storing the user data in the `HashMap` collection object. 
+With help from the profiler, we can see that the `loadUserData` method not only consumes excessive CPU time, but it also consumes excessive memory when storing the user data in the `HashMap` collection object.
 
 ## What did we accomplish?
 
@@ -198,7 +199,7 @@ We've come a long way already!
   * How to navigate to AlwaysOn Profiling from the troubleshooting view
   * How to explore the flamegraph and method call duration table through navigation and filtering
   * How to identify when a span has sampled call stacks associated with it
-  * How to explore heap utilization and garbage collection activity 
-  * How to view memory allocation stack traces for a particular method 
+  * How to explore heap utilization and garbage collection activity
+  * How to view memory allocation stack traces for a particular method
 
-In the next section, we'll apply a fix to our application to resolve the slow startup performance. 
+In the next section, we'll apply a fix to our application to resolve the slow startup performance.

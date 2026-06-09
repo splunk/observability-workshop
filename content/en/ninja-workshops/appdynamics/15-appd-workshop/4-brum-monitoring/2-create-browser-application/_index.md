@@ -7,11 +7,12 @@ description: In this exercise you will create and configure your application in 
 
 In this exercise you will complete the following tasks:
 
-*   Access your AppDynamics Controller from your web browser.
-*   Create the Browser Application in the Controller.
-*   Configure the Browser Application.
+* Access your AppDynamics Controller from your web browser.
+* Create the Browser Application in the Controller.
+* Configure the Browser Application.
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Create the Browser Application in the Controller
@@ -26,9 +27,9 @@ It is **very important** that you create a unique name for your browser applicat
 2. Click the **Browser Apps** option under **User Experience**.
 3. Click **Add App**.
 4. Choose the option **Create an Application manually**.
-5. Type in a unique name for your browser application in the format _Supercar-Trader-Web-<your\_initials\_or\_name>-<four\_random\_numbers>_ 
+5. Type in a unique name for your browser application in the format _Supercar-Trader-Web-<your\_initials\_or\_name>-<four\_random\_numbers>_
     * Example 1: Supercar-Trader-Web-JFK-3179
-    * Example 2: Supercar-Trader-Web-JohnSmith-0953   
+    * Example 2: Supercar-Trader-Web-JohnSmith-0953
 6. Click **OK**.
 
 ![Create App](images/02-brum-create-app.png)
@@ -42,10 +43,10 @@ You should now see the **Browser App Dashboard** for the **Supercar-Trader-Web-#
 
 Change the default configuration to have the IP Address stored along with the data captured by the browser monitoring agent by following these steps.
 
-3. Click the **Settings** tab.
-4. Use the scroll bar on the right to scroll to the bottom of the screen.
-5. Check the **Store IP Address** check box.
-6. Click **Save**.
+1. Click the **Settings** tab.
+2. Use the scroll bar on the right to scroll to the bottom of the screen.
+3. Check the **Store IP Address** check box.
+4. Click **Save**.
 
 You can read more about configuring the Controller UI for Browser RUM [here](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/overview-of-the-controller-ui-for-browser-rum/configure-the-controller-ui-for-browser-rum).
 

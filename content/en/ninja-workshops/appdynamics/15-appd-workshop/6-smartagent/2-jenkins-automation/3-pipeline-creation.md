@@ -55,14 +55,17 @@ First, fork the repository to your own GitHub account or organization, or use th
 In the pipeline configuration page:
 
 **General Section:**
+
 - **Description**: `Deploys AppDynamics Smart Agent to multiple hosts`
 - Leave **Discard old builds** unchecked (or configure as desired)
 
 **Build Triggers:**
+
 - Leave unchecked for manual-only execution
 - Or configure webhook/polling if desired
 
 **Pipeline Section:**
+
 - **Definition**: Select `Pipeline script from SCM`
 - **SCM**: Select `Git`
 - **Repository URL**: `https://github.com/chambear2809/sm-jenkins`
@@ -191,6 +194,7 @@ Defines actions to run after pipeline completion, regardless of success or failu
 For clarity and organization, use a consistent naming convention:
 
 **Recommended names:**
+
 ```
 01-Deploy-Smart-Agent
 02-Install-Machine-Agent
@@ -215,6 +219,7 @@ For better organization, you can use Jenkins folders:
    - Create pipelines as described above
 
 **Example structure:**
+
 ```
 AppDynamics Smart Agent/
 ├── Deployment/
@@ -234,6 +239,7 @@ You can view the complete pipeline code in the GitHub repository:
 [https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.deploy)
 
 **Other pipelines:**
+
 - [Jenkinsfile.install-machine-agent](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.install-machine-agent)
 - [Jenkinsfile.install-db-agent](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.install-db-agent)
 - [Jenkinsfile.cleanup](https://github.com/chambear2809/sm-jenkins/blob/main/pipelines/Jenkinsfile.cleanup)

@@ -20,6 +20,7 @@ The `appd.*` attributes on your traces are more than metadata they can power **g
 Global data links are a Splunk Observability Cloud feature that creates clickable links on span attributes, tag values, or metric dimensions. When a user clicks a linked value, they are taken to an external URL you define with the actual attribute value substituted into the URL template.
 
 ### Pre-requisite for our Data Link
+
 Copy the URL to your application in AppDynamics. The important part of the URL that identifies your application is a query parameter on the url (E.G. `&application=99999`)
 The full url including the application query parameter are used to build your global data link
 ![AppD Application ID](../_images/app-url.png)
@@ -31,7 +32,6 @@ The full url including the application query parameter are used to build your gl
 3. Click **New Link**.
 4. Configure the link:
 
-
 | Field               | Value                                                                                                                                        |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Link Label**      | `Open in AppDynamics`                                                                                                                        |
@@ -41,15 +41,14 @@ The full url including the application query parameter are used to build your gl
 | **Time format**         | `Unix time: epoch milliseconds`                                                                                                                                 |
 | **Minimum trigger** | `appd.tier.name`                                                                                                                             |
 
-
 {{% notice title="URL Template Syntax" style="primary" icon="lightbulb" %}}
-The double curly braces `{{ end_time }}` and `{{ start_time }}` are template variables. Splunk Observability Cloud substitutes them with the actual values at click time. 
+The double curly braces `{{ end_time }}` and `{{ start_time }}` are template variables. Splunk Observability Cloud substitutes them with the actual values at click time.
 
 `<YOUR_APPLICATION_ID_NUMBER>` is the number from your query parameters for your specific application
 {{% /notice %}}
 ![Global Datalink Config](../_images/global-datalink-config.png?width=50vw)
 
-5. Click **Save**.
+1. Click **Save**.
 
 ## Test the Global Data Link
 

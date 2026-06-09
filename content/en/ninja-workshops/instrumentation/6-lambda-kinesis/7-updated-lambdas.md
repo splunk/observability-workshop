@@ -38,11 +38,9 @@ Next, we will take another look at a trace related to our Environment.
 
 ![Splunk APM, Trace Button](../images/10-Manual-TraceButton.png)
 
-
 {{< notice info >}}
 The Trace ID was a part of the trace context that we propagated.
 {{< /notice >}}
-
 
 You can read up on two of the most common propagation standards:
 
@@ -85,6 +83,7 @@ The resources we deployed as part of this auto-instrumenation exercise need to b
 ```bash
 fg
 ```
+
 * This brings your background process to the foreground.
 * Next you can hit `[CONTROL-C]` to kill the process.
 
@@ -95,14 +94,17 @@ Terraform is great at managing the state of our resources individually, and as a
 Please follow these steps to destroy your resources:
 
 * Change to the `manual` directory:
+
 ```bash
 cd ~/workshop/lambda/manual
 ```
 
 * Destroy the Lambda functions and other AWS resources you deployed earlier:
+
 ```bash
 terraform destroy
 ```
+
 * respond `yes` when you see the `Enter a value:` prompt
 * This will result in the resources being destroyed, leaving you with a clean environment
 

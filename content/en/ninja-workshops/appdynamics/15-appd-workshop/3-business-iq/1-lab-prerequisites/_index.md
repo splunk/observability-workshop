@@ -7,11 +7,12 @@ description: In this exercise you will access your Controller and verify applica
 
 In this exercise you will complete the following tasks:
 
-*   Access your AppDynamics Controller from your web browser.
-*   Verify transaction load to the application.
-*   Restart the application and transaction load if needed.
+* Access your AppDynamics Controller from your web browser.
+* Verify transaction load to the application.
+* Restart the application and transaction load if needed.
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Verify transaction load to the application
@@ -26,9 +27,9 @@ Check the application flow map:
 
 Check the list of business transactions:
 
-4. Click the **Business Transactions** option on the left menu.
-5. Verify you see the eleven business transactions seen below.
-6. Verify that they have some number of calls during the last hour.
+1. Click the **Business Transactions** option on the left menu.
+2. Verify you see the eleven business transactions seen below.
+3. Verify that they have some number of calls during the last hour.
 
 **Note:** If you don’t see the **Calls** column, you can click the **View Options** toolbar button to show that column.
 
@@ -36,12 +37,11 @@ Check the list of business transactions:
 
 Check the agent status for the Nodes:
 
-7. Click the **Tiers & Nodes** option on the left menu.
-8. Click **Grid View**.
-9. Verify that the **App Agent Status** for each Node is greater than 90% during the last hour.
+1. Click the **Tiers & Nodes** option on the left menu.
+2. Click **Grid View**.
+3. Verify that the **App Agent Status** for each Node is greater than 90% during the last hour.
 
 ![Verify Agents](images/01-prereq-tiersnodes.png)
-
 
 ## Restart the Application and Load Generation if Needed
 
@@ -83,7 +83,7 @@ sudo pkill -f Supercar-Trader
 {{% /tab %}}
 {{< /tabs >}}
 
-Use the following commands to stop the load generation for the application. Wait until all processes are stopped. 
+Use the following commands to stop the load generation for the application. Wait until all processes are stopped.
 
 ``` bash
 cd /opt/appdynamics/lab-artifacts/phantomjs
@@ -91,6 +91,7 @@ cd /opt/appdynamics/lab-artifacts/phantomjs
 ```
 
 Restart the Tomcat server:
+
 ``` bash
 cd /usr/local/apache/apache-tomcat-9/bin
 ./startup.sh
@@ -100,11 +101,14 @@ Wait for two minutes and use the following command to ensure Apache Tomcat is ru
 
 {{< tabs >}}
 {{% tab title="Command" %}}
+
 ``` bash
 curl localhost:8080
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 <!DOCTYPE html>
 <html lang="en">
@@ -119,6 +123,7 @@ curl localhost:8080
         <div id="wrapper"
 ....
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

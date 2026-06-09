@@ -7,15 +7,15 @@ time: 15 minutes
 
 ## Recap of Part 1 of the Workshop
 
-At this point in the workshop, we've successfully: 
+At this point in the workshop, we've successfully:
 
 * Deployed the Splunk distribution of the OpenTelemetry Collector on our Linux Host
 * Configured it to send traces and metrics to Splunk Observability Cloud
-* Deployed a .NET application and instrumented it with OpenTelemetry 
+* Deployed a .NET application and instrumented it with OpenTelemetry
 * Dockerized the .NET application and ensured traces are flowing to o11y cloud
 
 If you **haven't** completed the steps listed above, please execute the following commands before proceeding with
-the remainder of the workshop: 
+the remainder of the workshop:
 
 ``` bash
 cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop/docker-k8s-otel/helloworld/
@@ -28,11 +28,11 @@ cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/works
 
 ## Introduction to Part 2 of the Workshop
 
-In the next part of the workshop, we want to run the application in Kubernetes, 
-so we'll need to deploy the Splunk distribution of the OpenTelemetry Collector 
-in our Kubernetes cluster. 
+In the next part of the workshop, we want to run the application in Kubernetes,
+so we'll need to deploy the Splunk distribution of the OpenTelemetry Collector
+in our Kubernetes cluster.
 
-Let's define some key terms first. 
+Let's define some key terms first.
 
 ### Key Terms
 
@@ -41,10 +41,10 @@ Let's define some key terms first.
 _"Kubernetes is a portable, extensible, open source platform for managing containerized
 workloads and services, that facilitates both declarative configuration and automation."_
 
-Source:  https://kubernetes.io/docs/concepts/overview/
+Source:  <https://kubernetes.io/docs/concepts/overview/>
 
 We'll deploy the Docker image we built earlier for our application into our Kubernetes cluster, after making
-a small modification to the Dockerfile. 
+a small modification to the Dockerfile.
 
 #### What is Helm?
 
@@ -52,7 +52,7 @@ Helm is a package manager for Kubernetes.
 
 _“It helps you define, install, and upgrade even the most complex Kubernetes application.”_
 
-Source:  https://helm.sh/
+Source:  <https://helm.sh/>
 
 We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.
 
@@ -65,9 +65,9 @@ We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.
 * Rollback support
   * Just use helm rollback to roll back to an older version of a release
 
-## Uninstall the Host Collector 
+## Uninstall the Host Collector
 
-Before moving forward, let’s remove the collector we installed earlier on the Linux host: 
+Before moving forward, let’s remove the collector we installed earlier on the Linux host:
 
 ``` bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh;
@@ -76,22 +76,22 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 
 ## Install the Collector using Helm
 
-Let’s use the command line rather than the in-product wizard to create our own 
-`helm` command to install the collector. 
+Let’s use the command line rather than the in-product wizard to create our own
+`helm` command to install the collector.
 
-We first need to add the helm repo: 
+We first need to add the helm repo:
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 ```
 
-And ensure the repo is up-to-date: 
+And ensure the repo is up-to-date:
 
 ``` bash
 helm repo update
 ```
 
-To configure the helm chart deployment, let's create a new file named `values.yaml` in 
+To configure the helm chart deployment, let's create a new file named `values.yaml` in
 the `/home/splunk` directory:
 
 ``` bash
@@ -100,9 +100,10 @@ cd /home/splunk
 # create a values.yaml file in vi
 vi values.yaml
 ```
+
 > Press ‘i’ to enter into insert mode in vi before pasting the text below.
 
-Then paste the following contents: 
+Then paste the following contents:
 
 ``` yaml
 logsEngine: otel
@@ -135,7 +136,7 @@ agent:
 
 > To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
-Now we can use the following command to install the collector: 
+Now we can use the following command to install the collector:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -172,7 +173,7 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 ## Confirm the Collector is Running
 
-We can confirm whether the collector is running with the following command: 
+We can confirm whether the collector is running with the following command:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -197,7 +198,7 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**, 
-and then search for your cluster name (which is `$INSTANCE-cluster`): 
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
+and then search for your cluster name (which is `$INSTANCE-cluster`):
 
 ![Kubernetes node](../images/k8snode.png)

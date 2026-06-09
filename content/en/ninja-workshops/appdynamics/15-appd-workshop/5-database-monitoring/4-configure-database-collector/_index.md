@@ -16,6 +16,7 @@ In this exercise you will perform the following tasks:
 - Confirm the Database Collector is collecting data
 
 ## Login to the Controller
+
 Log into the [AppDynamics SE Lab Controller](https://se-lab.saas.appdynamics.com/controller/) using your Cisco credentials.
 
 ## Configure a Database Collector in the Controller
@@ -25,35 +26,34 @@ Use the following steps to change the settings for the query literals and naviga
 1. Click the **Databases** tab on the left menu.
 2. Click the **Configuration** tab on the bottom left.
 3. Uncheck the checkbox for **Remove literals from the queries**.
-5. Click the **Collectors** option.
+4. Click the **Collectors** option.
 
 ![Configuration](images/05-db-configure-collector.png)
 
 Use the following steps to configure a new Database collector.
 
-6. Click **Add** button.
-7. Select **MySQL** for the database type.
-8. Select **DBMon-Lab-Agent** for the database agent and enter the following parameters.
-9. Collector Name: **Supercar-MySQL-YOURINITIALS**
-10. Hostname or IP Address: **localhost**
-11. Listener Port: **3306**
+1. Click **Add** button.
+2. Select **MySQL** for the database type.
+3. Select **DBMon-Lab-Agent** for the database agent and enter the following parameters.
+4. Collector Name: **Supercar-MySQL-YOURINITIALS**
+5. Hostname or IP Address: **localhost**
+6. Listener Port: **3306**
 
 ![Configuration1](images/05-db-collector-config1.png)
 
-12. Username: **root**
-13. Password: **Welcome1!**
+1. Username: **root**
+2. Password: **Welcome1!**
 
 ![Configuration2](images/05-db-username.png)
 
-14. Select the **Monitor Operating System** checkbox under the **Advanced Options**
-15. Select **Linux** as the operating system and enter the following parameters.
-16. SSH Port: **22**
-17. Username: **splunk**
-18. Password: **Password Provided by Your Instructor to SSH into the EC2 Instance**
-19. Click **OK** to save the collector.
+1. Select the **Monitor Operating System** checkbox under the **Advanced Options**
+2. Select **Linux** as the operating system and enter the following parameters.
+3. SSH Port: **22**
+4. Username: **splunk**
+5. Password: **Password Provided by Your Instructor to SSH into the EC2 Instance**
+6. Click **OK** to save the collector.
 
 ![Advance Options](images/05-db-advance-options.png)
-
 
 ## Confirm that the Database Collector is collecting data
 
@@ -69,6 +69,5 @@ _Note: It may take up to 18 minutes from the time you configure your collector t
 ![Application](images/04-db-db-controller.png)
 
 ![Application](images/04-db-db-dashboard.png)
-
 
 You can read more about configuring Database Collectors [here](https://docs.appdynamics.com/appd/24.x/latest/en/database-visibility/add-database-collectors)

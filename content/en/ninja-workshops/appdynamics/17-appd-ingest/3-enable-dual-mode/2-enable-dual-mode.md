@@ -93,4 +93,4 @@ The AppDynamics agent is now sending:
 
 - **AppD APM data** to the AppDynamics Controller (unchanged)
 - **OTLP traces** to the local OTel Collector on `localhost:4318`, which forwards to Splunk Observability Cloud
-    - use `env` in your instance to see the `{INSTANCE}` value used for your environment `deployment.environment=${INSTANCE}-appd-dual`
+  - use `env` in your instance to see the `{INSTANCE}` value used for your environment `deployment.environment=${INSTANCE}-appd-dual`

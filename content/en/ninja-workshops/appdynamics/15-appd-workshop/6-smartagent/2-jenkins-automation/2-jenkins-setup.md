@@ -24,6 +24,7 @@ Install these plugins via **Manage Jenkins → Plugins → Available Plugins**:
 4. **Git Plugin** (if using SCM)
 
 To install:
+
 1. Navigate to **Manage Jenkins → Plugins**
 2. Click **Available** tab
 3. Search for each plugin
@@ -38,6 +39,7 @@ Your Jenkins agent must be able to reach target EC2 instances via private IPs. T
 1. **Launch EC2 instance in same VPC** as your target hosts
 
 2. **Install Java** (required by Jenkins):
+
    ```bash
    sudo apt-get update
    sudo apt-get install -y openjdk-11-jdk
@@ -67,6 +69,7 @@ All pipelines in this workshop use the `linux` label. Make sure your agent is co
 {{% /notice %}}
 
 To set or modify labels:
+
 1. Go to **Manage Jenkins → Nodes**
 2. Click on your agent
 3. Click **Configure**
@@ -94,6 +97,7 @@ This credential allows Jenkins to SSH into your target EC2 instances.
   - **From Jenkins master**: Specify path
 
 **Example format**:
+
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA...
@@ -112,6 +116,7 @@ This credential contains the list of all target hosts where Smart Agent should b
 - **Secret**: Enter newline-separated IPs
 
 **Example**:
+
 ```
 172.31.1.243
 172.31.1.48
@@ -122,6 +127,7 @@ This credential contains the list of all target hosts where Smart Agent should b
 
 {{% notice style="important" %}}
 **Format Requirements:**
+
 - One IP per line
 - No commas
 - No spaces
@@ -176,6 +182,7 @@ ls -lh appdsmartagent_64_linux.zip
 The pipelines reference the Smart Agent ZIP at: `/var/jenkins_home/smartagent/appdsmartagent.zip`
 
 You can either:
+
 1. Place the ZIP at this exact location
 2. Modify the `SMARTAGENT_ZIP_PATH` pipeline parameter to point to your ZIP location
 
@@ -237,6 +244,7 @@ pipeline {
 **Symptom**: "No agent available" error when running pipelines
 
 **Solution**:
+
 - Check: **Manage Jenkins → Nodes**
 - Ensure agent is online
 - Verify agent has `linux` label
@@ -247,6 +255,7 @@ pipeline {
 **Symptom**: Cannot connect to target hosts via SSH
 
 **Solution**:
+
 ```bash
 # Test from Jenkins agent machine
 ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
@@ -260,6 +269,7 @@ ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
 **Symptom**: "Credential not found" error
 
 **Solution**:
+
 - Verify credential IDs exactly match:
   - `ssh-private-key`
   - `deployment-hosts`
@@ -271,6 +281,7 @@ ssh -i /path/to/key ubuntu@172.31.1.243 -o ConnectTimeout=10
 **Symptom**: SSH succeeds but commands fail with permission denied
 
 **Solution**:
+
 ```bash
 # On target host, verify user is in sudoers
 sudo visudo

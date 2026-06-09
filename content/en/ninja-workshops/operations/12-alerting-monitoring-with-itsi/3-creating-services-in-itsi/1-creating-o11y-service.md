@@ -16,13 +16,13 @@ weight: 2
 
 4. **Select Template:** Choose "Link service to a service template" and search for "Splunk APM Business Workflow KPIs" from the template dropdown. Click **Create** to save the new service.
 
-6. **Entity Assignment:**
+5. **Entity Assignment:**
     * The page will load and display the new Service and you will be on the Entities page. This demo defaults to selecting the *paymentservice:grpc.hipstershop.PaymentService/Charge* entity. In a real world situation you would need to match the workflow to the entity name manually.
     * **Direct Entity Selection (If Available):** Search for the entity using `sf_workflow="paymentservice:grpc.hipstershop.PaymentService/Charge"` and select it.
 
-7. **Save Service (PaymentService2):** Click "Save" to create "PaymentService2".
+6. **Save Service (PaymentService2):** Click "Save" to create "PaymentService2".
 
-8. **Settings:** Click the "Settings" tab, enable *Backfill* and keep that standard 7 days. Enable the Service, and click "Save"
+7. **Settings:** Click the "Settings" tab, enable *Backfill* and keep that standard 7 days. Enable the Service, and click "Save"
 
 ## Setting PaymentService2's Service Health as a Dependency for Online-Boutique-US
 
@@ -30,7 +30,7 @@ weight: 2
 
 2. **Edit Online-Boutique-US:** Click "Edit".
 
-3. **Service Dependencies:** Look for the "Service Dependencies" section. 
+3. **Service Dependencies:** Look for the "Service Dependencies" section.
 
 4. **Add Dependency:**  There should be an option to add a dependent service.  Search for "PaymentService2".
 

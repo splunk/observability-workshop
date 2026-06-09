@@ -123,6 +123,7 @@ sequenceDiagram
 ### Jenkins Master
 
 **Responsibilities:**
+
 - Web UI for users
 - Pipeline orchestration
 - Credential management
@@ -130,6 +131,7 @@ sequenceDiagram
 - Job scheduling
 
 **Requirements:**
+
 - Jenkins 2.300+
 - Plugins: Pipeline, SSH Agent, Credentials, Git
 - Network access to agent
@@ -137,10 +139,12 @@ sequenceDiagram
 ### Jenkins Agent
 
 **Location:**
+
 - AWS VPC (same as targets)
 - Private network access
 
 **Responsibilities:**
+
 - Execute pipeline stages
 - SSH to target hosts
 - File transfers (SCP)
@@ -148,6 +152,7 @@ sequenceDiagram
 - Error collection
 
 **Requirements:**
+
 - Label: `linux`
 - Java 11+
 - SSH client
@@ -157,12 +162,14 @@ sequenceDiagram
 ### Target Hosts
 
 **Pre-requisites:**
+
 - Ubuntu 20.04+
 - SSH server running
 - User with sudo access
 - Authorized SSH key
 
 **Post-deployment:**
+
 ```
 /opt/appdynamics/
 └── appdsmartagent/
@@ -280,6 +287,7 @@ WITHIN EACH BATCH:
 ### Scaling Characteristics
 
 **Deployment Speed (default BATCH_SIZE=256):**
+
 - 10 hosts → 1 batch → ~2 minutes
 - 100 hosts → 1 batch → ~3 minutes
 - 500 hosts → 2 batches → ~6 minutes
@@ -287,6 +295,7 @@ WITHIN EACH BATCH:
 - 5,000 hosts → 20 batches → ~60 minutes
 
 **Factors affecting speed:**
+
 - Network bandwidth (19MB package per host)
 - SSH connection overhead (~1s per host)
 - Target host CPU/disk speed

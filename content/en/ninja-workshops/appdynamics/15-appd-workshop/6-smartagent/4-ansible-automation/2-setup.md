@@ -78,18 +78,18 @@ smart_agent_package_redhat: 'appdsmartagent_64_linux_24.6.0.2143.rpm'  # or the 
 
 The playbook orchestrates the deployment of the Cisco AppDynamics Distribution of OpenTelemetry Collector. Here is a concise summary of its tasks:
 
-1.  **Prerequisites**: Installs necessary packages (`yum-utils` for RedHat, `curl`/`apt-transport-https` for Debian).
-2.  **Directory Setup**: Ensures the `/opt/appdynamics/appdsmartagent` directory exists.
-3.  **Configuration**: 
-    *   Checks if `config.ini` exists.
-    *   Creates a default `config.ini` using values from `variables.yaml` if missing.
-    *   Updates configuration keys (AccountAccessKey, ControllerURL, etc.) using `lineinfile` to ensure settings are correct.
-4.  **Package Management**: 
-    *   Determines the correct package path based on OS family (Debian/RedHat).
-    *   Fails if the package is missing locally.
-    *   Copies the package to the target host's `/tmp` directory.
-    *   Installs the package using `dpkg` or `yum`.
-5.  **Service Management**: Restarts the `smartagent` service.
-6.  **Cleanup**: Removes the temporary package file.
+1. **Prerequisites**: Installs necessary packages (`yum-utils` for RedHat, `curl`/`apt-transport-https` for Debian).
+2. **Directory Setup**: Ensures the `/opt/appdynamics/appdsmartagent` directory exists.
+3. **Configuration**:
+    * Checks if `config.ini` exists.
+    * Creates a default `config.ini` using values from `variables.yaml` if missing.
+    * Updates configuration keys (AccountAccessKey, ControllerURL, etc.) using `lineinfile` to ensure settings are correct.
+4. **Package Management**:
+    * Determines the correct package path based on OS family (Debian/RedHat).
+    * Fails if the package is missing locally.
+    * Copies the package to the target host's `/tmp` directory.
+    * Installs the package using `dpkg` or `yum`.
+5. **Service Management**: Restarts the `smartagent` service.
+6. **Cleanup**: Removes the temporary package file.
 
 The playbook uses `when: ansible_os_family == ...` conditionals to handle both RedHat and Debian systems within the same workflow.

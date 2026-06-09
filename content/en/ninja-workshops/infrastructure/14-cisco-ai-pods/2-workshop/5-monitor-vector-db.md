@@ -130,7 +130,6 @@ diff otel-collector-values.yaml otel-collector-values-with-weaviate.yaml
 
 Update your file if needed to ensure the contents match.
 
-
 {{% notice title="Don't restart the collector yet" style="warning" %}}
 
 Because restarting the collector in an OpenShift environment takes 3 minutes per node,

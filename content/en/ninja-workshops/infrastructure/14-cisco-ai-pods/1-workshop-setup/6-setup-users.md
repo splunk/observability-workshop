@@ -42,6 +42,7 @@ Grant each user access to their namespace only:
 ```
 
 Note: if you see errors such as the following, they can be safely ignored
+
 ````
 Warning: User 'participant1' not found
 clusterrole.rbac.authorization.k8s.io/admin added: "participant1"

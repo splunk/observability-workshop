@@ -151,6 +151,7 @@ sudo ./smartagentctl start --remote --verbose --service
 ```
 
 When installed as a service:
+
 - Smart Agent will start automatically on system boot
 - Can be managed using `systemctl` commands
 - Better integration with system logging
@@ -200,6 +201,7 @@ The `max_concurrency` setting in `remote.yaml` controls parallel execution:
 - **Higher values (8+)**: Faster deployment to many hosts, requires more resources
 
 Example: With 12 hosts and `max_concurrency: 4`:
+
 - First batch: Hosts 1-4 processed simultaneously
 - Second batch: Hosts 5-8 processed simultaneously  
 - Third batch: Hosts 9-12 processed simultaneously

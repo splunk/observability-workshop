@@ -11,11 +11,13 @@ Seeing as we're in a new directory, we will need to initialize Terraform here on
 {{% exercise title="Redeploying the Lambda Function" %}}
 
 * Run the following command to get into the `workshop/lambda/manual` directory:
+
 ```bash
 cd ~/workshop/lambda/manual
 ```
 
 * Run the following command to initialize Terraform in this new directory
+
 ```bash
 terraform init
 ```
@@ -23,17 +25,21 @@ terraform init
 Let's go ahead and deploy those resources again as well!
 
 * Run the **terraform plan** command, ensuring there are no issues.
+
 ```bash
 terraform plan
 ```
   
 * Follow up with the **terraform apply** command to deploy the Lambda functions and other supporting resources from the **main.tf** file:
+
 ```bash
 terraform apply
 ```
-- Respond **yes** when you see the **Enter a value:** prompt
 
-- This will result in the following outputs:
+* Respond **yes** when you see the **Enter a value:** prompt
+
+* This will result in the following outputs:
+
 ```bash
 Outputs:
 
@@ -57,25 +63,31 @@ As you can tell, aside from the first portion of the base_url and the log gropu 
 Once more, we will send our `name` and `superpower` as a message to our endpoint. This will then be added to a record in our Kinesis Stream, along with our trace context.
 
 * Run the following command to get into the `workshop/lambda/manual` directory:
+
 ```bash
 cd ~/workshop/lambda/manual
 ```
 
 * Run the `send_message.py` script as a background process:
+
 ```bash
 nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
 ```
 
 * Next, check the contents of the response.logs file for successful calls to our**producer-lambda** endpoint:
+
 ```bash
 cat response.logs
 ```
+
 * You should see the following output among the lines printed to your screen if your message is successful:
+
 ```bash
 {"message": "Message placed in the Event Stream: hostname-eventStream"}
 ```
 
-- If unsuccessful, you will see:
+* If unsuccessful, you will see:
+
 ```bash
 {"message": "Internal server error"}
 ```
@@ -91,11 +103,13 @@ If this occurs, ask one of the workshop facilitators for assistance.
 Let's see what our logs look like now.
 
 * Check the **producer.logs** file:
+
 ```bash
 cat producer.logs
 ```
 
 * And the **consumer.logs** file:
+
 ```bash
 cat consumer.logs
 ```
@@ -105,7 +119,6 @@ Examine the logs carefully.
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Do you notice the difference?
 {{% /notice %}}
- 
 
 #### Copy the Trace ID from the `consumer.logs` file
 
@@ -113,12 +126,12 @@ This time around, we can see that the consumer-lambda log group is logging our m
 
 To copy the Trace ID:
 
-- Take a look at one of the `Kinesis Message` logs. Within it, there is a `data` dictionary
-- Take a closer look at `data` to see the nested `tracecontext` dictionary
-- Within the `tracecontext` dictionary, there is a `traceparent` key-value pair
-- The `traceparent` key-value pair holds the Trace ID we seek
-  - There are 4 groups of values, separated by `-`. The Trace ID is the 2nd group of characters
-- **Copy the Trace ID, and save it.** We will need it for a later step in this workshop
+* Take a look at one of the `Kinesis Message` logs. Within it, there is a `data` dictionary
+* Take a closer look at `data` to see the nested `tracecontext` dictionary
+* Within the `tracecontext` dictionary, there is a `traceparent` key-value pair
+* The `traceparent` key-value pair holds the Trace ID we seek
+  * There are 4 groups of values, separated by `-`. The Trace ID is the 2nd group of characters
+* **Copy the Trace ID, and save it.** We will need it for a later step in this workshop
 
 ![Lambda Consumer Logs, Manual Instruamentation](../images/08-Manual-ConsumerLogs.png)
 

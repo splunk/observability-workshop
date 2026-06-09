@@ -7,7 +7,7 @@ time: 10 minutes
 
 ## Uninstall the OpenTelemetry Collector
 
-Our EC2 instance may already have an older version the Splunk Distribution of the OpenTelemetry Collector 
+Our EC2 instance may already have an older version the Splunk Distribution of the OpenTelemetry Collector
 installed.  Before proceeding further, let's uninstall it using the following command:
 
 {{< tabs >}}
@@ -56,17 +56,16 @@ Successfully removed the splunk-otel-collector package
 {{% /tab %}}
 {{< /tabs >}}
 
-
 ## Deploy the OpenTelemetry Collector
 
-Let’s deploy the latest version of the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance. 
+Let’s deploy the latest version of the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance.
 
 We can do this by downloading the collector binary using `curl`, and then running it  
-with specific arguments that tell the collector which realm to report data into, which access 
-token to use, and which deployment environment to report into. 
+with specific arguments that tell the collector which realm to report data into, which access
+token to use, and which deployment environment to report into.
 
-> A deployment environment in Splunk Observability Cloud is a distinct deployment of your system 
-> or application that allows you to set up configurations that don’t overlap with configurations 
+> A deployment environment in Splunk Observability Cloud is a distinct deployment of your system
+> or application that allows you to set up configurations that don’t overlap with configurations
 > in other deployments of the same application.
 
 {{< tabs >}}
@@ -99,11 +98,11 @@ etc.
 {{< /tabs >}}
 
 Refer to [Install the Collector for Linux with the installer script](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-linux/install-linux.html#otel-install-linux)
-for further details on how to install the collector. 
+for further details on how to install the collector.
 
 ## Confirm the Collector is Running
 
-Let's confirm that the collector is running successfully on our instance. 
+Let's confirm that the collector is running successfully on our instance.
 
 > Press Ctrl + C to exit out of the status command.
 
@@ -135,9 +134,9 @@ sudo systemctl status splunk-otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-## How do we view the collector logs? 
+## How do we view the collector logs?
 
-We can view the collector logs using `journalctl`: 
+We can view the collector logs using `journalctl`:
 
 > Press Ctrl + C to exit out of tailing the log.
 
@@ -166,9 +165,8 @@ etc.
 
 ## Collector Configuration
 
-Where do we find the configuration that is used by this collector? 
+Where do we find the configuration that is used by this collector?
 
-It's available in the `/etc/otel/collector` directory.  Since we installed the 
-collector in `agent` mode, the collector configuration can be found in the 
-`agent_config.yaml` file. 
-
+It's available in the `/etc/otel/collector` directory.  Since we installed the
+collector in `agent` mode, the collector configuration can be found in the
+`agent_config.yaml` file.

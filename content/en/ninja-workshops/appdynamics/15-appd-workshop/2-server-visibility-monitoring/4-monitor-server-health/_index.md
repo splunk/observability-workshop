@@ -26,7 +26,8 @@ Now that you have the Machine agent installed, let’s take a look at some of th
 You can now explore the server dashboard. This dashboard enables you to perform the following tasks:
 
 See charts of key performance metrics for the selected monitored servers, including:  
--  Server availability
+
+- Server availability
 - CPU, memory, and network usage percentages
 - Server properties
 - Disk, partition, and volume metrics
@@ -35,36 +36,37 @@ See charts of key performance metrics for the selected monitored servers, includ
 You can read more about the Server Main dashboard [here](https://help.splunk.com/en/appdynamics-saas/infrastructure-visibility/25.7.0/server-visibility/monitor-your-servers-using-server-visibility/server-dashboard).
 
 Review the **Top Pane** of the dashboard which provides you the following information:
+
 - Host Id: This is an ID for the server that is unique to the Splunk AppDynamics Controller
-- Health: Shows the overall health of the server. 
+- Health: Shows the overall health of the server.
 - Hierachy: Arbitrary hierarchy to group your severs together. See documentation for additional details [here](https://help.splunk.com/en/appdynamics-saas/infrastructure-visibility/25.7.0/machine-agent/configure-the-machine-agent/machine-agent-configuration-properties)
 
 1. Click on the health server icon to view the **Violations * Anomalies** panel. Review the panel to identify potential issues
-2. Click on the **Current Health Rule Evaluation Status** to see if there are any current issues being alerted on for this server 
+2. Click on the **Current Health Rule Evaluation Status** to see if there are any current issues being alerted on for this server
 
 ![Server Health](images/server-health.png)
 ![Server violations](images/server-health-violations.png)
 
-3. Click on the **CPU Usage too high** rule 
-4. Click on **Edit Health Rule**. This will open the **Edit Health Rule** panel
+1. Click on the **CPU Usage too high** rule
+2. Click on **Edit Health Rule**. This will open the **Edit Health Rule** panel
 
 ![Edit Health Rule](images/server-edit-hr.png)
 
 This panel gives us the ability to configure the Health Rule. A different lab will go into more details on creating and customizing health rules. For now we will just review the existing rule
 
-5. Click on the **Warning Criteria** 
+1. Click on the **Warning Criteria**
 
 ![Edit Health Rule - Warning](images/server-warning.png)
 
 In this example we can see that the warning criteria is set when the CPU is above 5%. This is the reason why our health rule is showing a warning and not a healthy state. Cancel out of the **Edit Health Rule** panel to get back to the **Server Dashboard**
 
-
 ## Review the Server Processes Dashboard
 
 1. Click the **Processes** tab.
-2. Click **View Options** to select different data columns. Review the KPIs available to view 
+2. Click **View Options** to select different data columns. Review the KPIs available to view
 
 You can now explore the server processes dashboard. This dashboard enables you to perform the following tasks:
+
 - View all the processes active during the selected time period. The processes are grouped by class as specified in the ServerMonitoring.yml file.
 - View the full command line that started this process by hovering over the process entry in the Command Line column.
 - Expand a process class to see the processes associated with that class.

@@ -19,7 +19,7 @@ Refactor the wizard-generated detector to:
 
 From the detector action menu in the upper right hand corner **(⋯)**, select **Edit in SignalFlow**
 
-You should still be in the Detector UI for the detector you just saved, if not: 
+You should still be in the Detector UI for the detector you just saved, if not:
 
 Navigate to:
 
@@ -30,7 +30,8 @@ Locate your detector and open it, then **Edit in SignalFlow.**
 ---
 
 ## Generated SignalFlow
-Choose the **SignalFlow** tab and review the generated SignalFlow for the historical anomaly detector. 
+
+Choose the **SignalFlow** tab and review the generated SignalFlow for the historical anomaly detector.
 
 {{% notice title="Notice on Format" style="info" %}}
 Note that the format of ```against_periods.detector_mean_std``` function is on a single line. You an either add line returns after each parameter or copy and paste the same formatted SignalFlow below for readability.
@@ -254,6 +255,7 @@ static_threshold.publish('CPU_static_threshold')
 ---
 
 ## Result
+
 {{< tabs >}}
 {{% tab title="Results" %}}
 
@@ -268,6 +270,7 @@ You have transformed a wizard convenience helper into:
 This structure provides greater precision, flexibility, and clarity in detector behavior.
 {{% /tab %}}
 {{% tab title="Final SignalFlow" %}}
+
 ```python
 #import from SignalFx Library
 from signalfx.detectors.against_periods import streams
@@ -299,6 +302,7 @@ detect(
 fire_top.publish('CPU_top_threshold')
 static_threshold.publish('CPU_static_threshold')
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

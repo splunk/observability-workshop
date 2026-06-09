@@ -8,6 +8,7 @@ authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 
 
 ## Accessing your Workshop
+
 Prior to this workshop you should have been provided details for accessing your workshop instance. This workshop utilizes a preconfigured environment which includes Splunk Enterprise and IT Service Intelligence. A link to the instance and the credentials are available in the Splunk Show instance details.
 
 All of the data required for completing this workshop is available in the `netops` index. This index includes data from  **Catalyst Center**, **Merkai**, and alerts from **Solarwinds**.
@@ -66,10 +67,10 @@ While Cisco Meraki is not covered in this workshop, there is Cisco Meraki data a
 
 _The Cisco Enterprise Networking for Splunk Platform presents visualizations in dashboards for different Cisco Products - Cisco Identity Services Engine, Cisco SD-WAN, Cisco Catalyst Center, Cisco Cyber Vision Cisco Meraki and Cisco ThousandEyes._
 The App uses the data collected by
+
 * _Cisco Catalyst Add-on for Splunk_
 * _Cisco Catalyst Enhanced Netflow Add-on for Splunk_
 * _Cisco Meraki Add-on for Splunk_
 * _Cisco ThousandEyes App for Splunk_
 
 ![Cisco Enterprise Networking App](../images/cisco-ent-network-overview.png?width=30vw)
-

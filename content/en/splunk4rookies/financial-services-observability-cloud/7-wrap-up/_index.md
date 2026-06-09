@@ -11,7 +11,6 @@ Congratulations, you have completed the **Splunk4Rookies - Observability Cloud W
 
 Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}} profile.
 
-
 Let's recap what we have learned and what you can do next.
 
 ![Champagne](images/champagne.png?width=45vw)

@@ -6,11 +6,11 @@ hidden: false
 ---
 
 Why would we want a [detector on a single Synthetic test](https://docs.splunk.com/observability/en/synthetics/test-config/synth-alerts.html)? Some examples:
+
 - The endpoint, API transaction, or browser journey is highly critical
 - We have deployed code changes and want to know if the resulting KPI is or is not as we expect
 - We need to temporarily keep a close eye on a specific change we are testing and don't want to create a lot of noise, and will disable the detector later
 - We want to know about unexpected issues before a real user encounters them
-
 
 1. On the test overview page, click {{% button %}}Create Detector{{% /button %}} on the top right.
 ![create detector on a single synthetic test](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-16/5ff84106-52ac-4519-8835-999446227709/user_cropped_screenshot.jpeg?tl_px=1144,0&br_px=2864,961&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=902,79)

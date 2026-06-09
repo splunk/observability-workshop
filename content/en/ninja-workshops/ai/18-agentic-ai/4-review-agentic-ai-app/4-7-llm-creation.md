@@ -49,4 +49,5 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Azur
         # AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT environment variables will be used to connect to the LLM
     )
 ```
+
 {{< /details >}}

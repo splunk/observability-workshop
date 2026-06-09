@@ -45,7 +45,7 @@ First, we see page load and route change information, which can help us understa
 
 ![Page load and route change charts](../images/page-load-route-change.png)
 
-Next, Google has defined Core Web Vitals to quantify the user experience as measured by loading, interactivity, and visual stability. Splunk RUM builds in Google's thresholds into the UI, so you can easily see if your metrics are in an acceptable range. 
+Next, Google has defined Core Web Vitals to quantify the user experience as measured by loading, interactivity, and visual stability. Splunk RUM builds in Google's thresholds into the UI, so you can easily see if your metrics are in an acceptable range.
 
 ![Core Web Vitals charts](../images/core-web-vitals-overview.png)
 

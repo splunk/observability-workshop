@@ -11,10 +11,10 @@ HTTP data collectors capture the URLs, parameter values, headers, and cookies of
 
 In this exercise you will perform the following tasks:
 
-*   Enable all HTTP data collectors.
-*   Observe and Select relevant HTTP data collectors.
-*   Capture Business Data in Analytics using HTTP Params.
-*   Validate Analytics on HTTP Parameters.
+* Enable all HTTP data collectors.
+* Observe and Select relevant HTTP data collectors.
+* Capture Business Data in Analytics using HTTP Params.
+* Validate Analytics on HTTP Parameters.
 
 ## Enable all HTTP data collectors
 
@@ -41,16 +41,15 @@ You will now configure an HTTP data collector to capture all HTTP Parameters. Yo
 4. Click on **\+ Add** in the HTTP Parameters section.
 5. For the new Parameter, specify **All** as the Display Name
 6. Then specify an asterisk **\*** in the HTTP Parameter name.
-7. Click **Save** 
+7. Click **Save**
 
 ![HTTPDataCollectors 2](images/05-biq-http-collector.png)
 
-8. Click "Ok" to confirm the data collector.
-9. Enable **/Supercar-Trader/sell.do** Transaction
-10. Click **Save**
+1. Click "Ok" to confirm the data collector.
+2. Enable **/Supercar-Trader/sell.do** Transaction
+3. Click **Save**
 
 ![HTTPDataCollectors 2](images/05-biq-bt-enble.png)
-
 
 ## Observe and Select Relevant HTTP Data Collectors
 
@@ -58,15 +57,14 @@ You will now configure an HTTP data collector to capture all HTTP Parameters. Yo
 
 You can now see all HTTP Parameters. You will see a number of key metrics, such as Car Price, Color, Year, and more.
 
-2. Note the exact Parameter names to add them again in the **HTTP Parameters** list and enable them in Transaction Analytics.
-3. Once they are added, delete the **All HTTP Param** HTTP data collector.
+1. Note the exact Parameter names to add them again in the **HTTP Parameters** list and enable them in Transaction Analytics.
+2. Once they are added, delete the **All HTTP Param** HTTP data collector.
 
 ![HTTPDataCollectors 2](images/05-biq-snapshot-collector.png)
 
-
 ## Capture Business Data in Analytics with HTTP Params
 
-You will now configure the HTTP data collector again, but this time you will capture only the useful HTTP Parameters and enable them in Transaction Analytics. Add a new HTTP Data Collector: Application -> Configuration -> Instrumentation -> Data Collector tab -> Click **Add** Under the **HTTP Request Data Collectors** section 
+You will now configure the HTTP data collector again, but this time you will capture only the useful HTTP Parameters and enable them in Transaction Analytics. Add a new HTTP Data Collector: Application -> Configuration -> Instrumentation -> Data Collector tab -> Click **Add** Under the **HTTP Request Data Collectors** section
 
 1. In the Name, specify **CarDetails**.
 2. Enable **Transaction Snapshots**.
@@ -81,13 +79,12 @@ You will now configure the HTTP data collector again, but this time you will cap
 ![SaveHttpDataCollectors](images/05-biq-httpcollector-cardetails.png)
 ![Car Params](images/05-biq-car-params.png)
 
-10. Enable **/Supercar-Trader/sell.do** Transaction
-11. Click **Save**
+1. Enable **/Supercar-Trader/sell.do** Transaction
+2. Click **Save**
 
 ![HTTPDataCollectors 2](images/05-biq-cardetails-bt.png)
 
-12. Delete the **All HTTP Param** Collector by Clicking on it, then click **Delete** button.
-
+1. Delete the **All HTTP Param** Collector by Clicking on it, then click **Delete** button.
 
 ## Validate Analytics on HTTP Parameters
 
@@ -99,9 +96,9 @@ You will now validate whether the business data was captured by HTTP data collec
 
 ![Drag and Drop Search](images/05-biq-search.png)
 
-4. Click **+ Add Criteria** 
-5. Select **Application** and Search For Your Application Name **Supercar-Trader-YOURINITIALS**
-6. Under the **Fields** panel verify that the **Business Parameters** appear as a field in the Custom HTTP Request Data.
-7. Check the box for **CarPrice_http** and Validate that the field has data.
+1. Click **+ Add Criteria**
+2. Select **Application** and Search For Your Application Name **Supercar-Trader-YOURINITIALS**
+3. Under the **Fields** panel verify that the **Business Parameters** appear as a field in the Custom HTTP Request Data.
+4. Check the box for **CarPrice_http** and Validate that the field has data.
 
 ![ValidateHttpDataCollectors](images/05-biq-search-validation.png)

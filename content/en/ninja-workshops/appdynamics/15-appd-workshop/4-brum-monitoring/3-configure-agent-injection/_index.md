@@ -7,8 +7,8 @@ description: In this exercise you will enable JavaScript Injection and select BT
 
 In this exercise you will complete the following tasks:
 
-*   Enable JavaScript Agent injection.
-*   Select Business Transactions for injection.
+* Enable JavaScript Agent injection.
+* Select Business Transactions for injection.
 
 ## Enable JavaScript Agent injection
 
@@ -20,20 +20,19 @@ While AppDynamics supports various methods for injecting the JavaScript Agent, y
 
 ![BRUM Dash 1](images/03-brum-app-integration.png)
 
-4. Click the **JavaScript Agent Injection** tab.
-5. Click **Enable** so that it turns blue.
-6. Ensure that **Supercar-Trader-Web-##-####** is the selected browser app. Choose the application that you created in the previous section
-7. Check the **Enable** check box under **Enable JavaScript Injection**
-8. Click **Save**.
+1. Click the **JavaScript Agent Injection** tab.
+2. Click **Enable** so that it turns blue.
+3. Ensure that **Supercar-Trader-Web-##-####** is the selected browser app. Choose the application that you created in the previous section
+4. Check the **Enable** check box under **Enable JavaScript Injection**
+5. Click **Save**.
 
 ![BRUM Dash 2](images/03-brum-agent-injection.png)
   
-
 It takes a few minutes for the Auto-Injection to discover potential Business Transactions. While this is happening, use these steps to enable the Business Transaction Correlation. For newer APM agents this is done automatically
 
-9. Click the **Business Transaction Correlation** tab.
-10. Click the **Enable** button under the **Manually Enable Business Transactions** section.
-11. Click **Save**.
+1. Click the **Business Transaction Correlation** tab.
+2. Click the **Enable** button under the **Manually Enable Business Transactions** section.
+3. Click **Save**.
 
 ![BRUM Dash 3](images/03-brum-bt-manual.png)
 
@@ -43,7 +42,7 @@ Use the following steps to select the Business Transactions for Auto-Injection.
 
 1. Click the **JavaScript Agent Injection** tab.
 2. Type **.do** in the search box.
-3. Click the **Refresh List** link for the Business Transactions until all 9 BTs show up. 
+3. Click the **Refresh List** link for the Business Transactions until all 9 BTs show up.
 4. Select all Business Transactions from the right list box.
 5. Click the arrow button to move them to the left list box.
 6. Ensure that all Business Transactions are moved into the left list box.
