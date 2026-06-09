@@ -10,6 +10,7 @@ sources:
   hugging_face_inference_providers_pricing: https://huggingface.co/docs/inference-providers/en/pricing
   hugging_face_inference_endpoints_pricing: https://huggingface.co/docs/inference-endpoints/en/pricing
   aws_ec2_on_demand_pricing: https://aws.amazon.com/ec2/pricing/on-demand/
+  ollama_usage_metrics: https://docs.ollama.com/api/usage
 
 token_models:
   # Public managed API style examples.
@@ -77,6 +78,42 @@ gpu_hourly:
     gpu_count: 1
     hourly_usd: 5.00
     source: hugging_face_inference_endpoints_pricing
+
+local_hourly_cost_models:
+  # Use this for a workshop where every student has different hardware.
+  # It prices local inference as if the same work had run on a comparable public GPU.
+  market_proxy:
+    basis: public_gpu_hourly_proxy
+    accelerator_hourly_usd: 0.80
+    source_example: hf-endpoint-l4-aws-x1
+
+  # Use this for a laptop or workstation where you know the purchase price.
+  # Formula: ((purchase_price * gpu_allocation_ratio) - residual_value) / useful_life_hours
+  hardware_amortization:
+    basis: owned_hardware_amortization
+    purchase_price_usd: 3000
+    gpu_allocation_ratio: 0.35
+    residual_value_usd: 300
+    useful_life_hours: 6000
+    derived_accelerator_hourly_usd: 0.125
+
+  # Use this only to demonstrate that electricity alone understates true platform cost.
+  energy_only:
+    basis: local_power_draw
+    power_watts: 65
+    electricity_usd_per_kwh: 0.17
+    derived_energy_hourly_usd: 0.01105
+
+derived_local_token_rates:
+  # Replace these values with output from scripts/benchmark_ollama.py.
+  local-ollama-example:
+    basis: observed_local_throughput
+    model: llama3.2:1b
+    cost_model: market_proxy
+    input_usd_per_1m_tokens: null
+    output_usd_per_1m_tokens: null
+    blended_usd_per_1m_tokens: null
+    source: local_benchmark
 
 overhead:
   shared_platform_overhead_percent: 15

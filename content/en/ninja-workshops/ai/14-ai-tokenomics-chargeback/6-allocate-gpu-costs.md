@@ -4,9 +4,9 @@ weight: 6
 ---
 
 Token cost is directly attributable when the application reports owner dimensions.
-GPU cost is usually a shared pool. A single GPU might serve many teams through one NIM
-deployment, or a team might reserve GPUs that sit idle. Your allocation model must match
-how the platform is operated.
+Accelerator cost can be local or shared. A laptop GPU might serve one developer, while a
+cluster GPU might serve many teams through one NIM or vLLM deployment. Your allocation
+model must match how the platform is operated.
 
 ## Allocation Options
 
@@ -16,8 +16,10 @@ how the platform is operated.
 | Token-weighted | Shared model serving with good token telemetry | Fair for LLM serving, but ignores non-token GPU work |
 | Request-time weighted | Request traces include model latency and owner | Better for mixed request cost, but needs consistent traces |
 | Energy-weighted | DCGM power or energy data is trusted | Good for sustainability reporting, but still needs attribution |
+| Local throughput | Laptop/workstation model benchmark | No cluster needed, but it is a rate-card estimate rather than fleet telemetry |
 
-For a workshop, use token-weighted allocation:
+For the local workshop, start with throughput-derived rates from the benchmark. For a
+shared GPU workshop, use token-weighted allocation:
 
 ```text
 team_gpu_cost = gpu_pool_cost * team_tokens / all_tokens
