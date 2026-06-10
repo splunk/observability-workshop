@@ -1,0 +1,19 @@
+aws_region  = "us-east-2"
+environment = "dev"
+owner       = "lab-team"
+expires_at  = "2026-06-30T23:59:59Z"
+
+student_count = 20
+
+gpu_instance_type     = "g5.4xlarge"
+gpu_desired_size      = 2
+gpu_min_size          = 0
+gpu_max_size          = 2
+gpu_node_disk_size_gb = 200
+
+install_gpu_operator  = true
+enable_ebs_csi_driver = true
+
+tags = {
+  CostCenter = "clus-ltrobs-2001"
+}

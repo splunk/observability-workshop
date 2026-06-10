@@ -1,0 +1,245 @@
+.md-typeset__table {
+  min-width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+}
+
+.md-grid {
+  max-width: 1440px;
+}
+
+:root {
+  --md-primary-fg-color: #07182d;
+  --md-primary-fg-color--dark: #07182d;
+  --md-accent-fg-color: #02c8ff;
+  --cl-blue: #02c8ff;
+  --cl-blue-2: #0a60ff;
+  --cl-magenta: #ff007f;
+  --cl-orange: #ff9000;
+  --cl-ink: #07182d;
+  --cl-card-border: rgba(7, 24, 45, 0.14);
+}
+
+[data-md-color-scheme="default"] {
+  --md-typeset-a-color: #0a60ff;
+  --md-accent-fg-color: #02c8ff;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #54cfff;
+  --md-accent-fg-color: #02c8ff;
+  --cl-card-border: rgba(255, 255, 255, 0.18);
+}
+
+.md-header,
+.md-tabs {
+  background-color: var(--cl-ink);
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.45rem;
+  width: auto;
+}
+
+.cl-home {
+  background:
+    linear-gradient(90deg, rgba(7, 24, 45, 0.96) 0%, rgba(7, 24, 45, 0.8) 38%, rgba(7, 24, 45, 0.22) 72%),
+    url("../template_assets/cisco-live-2026/cl26-dark-hero.png") center / cover no-repeat,
+    var(--cl-ink);
+  color: #fff;
+  min-height: calc(100vh - 5.8rem);
+  overflow: hidden;
+}
+
+.cl-home__grid {
+  align-items: flex-end;
+  display: flex;
+  min-height: calc(100vh - 5.8rem);
+  padding: 8.5rem 1.2rem 5rem;
+}
+
+.cl-home__content {
+  max-width: 39rem;
+  padding: 0;
+}
+
+.cl-home__eyebrow {
+  color: var(--cl-blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.cl-home h1 {
+  color: #fff;
+  font-size: 4.35rem;
+  font-weight: 700;
+  line-height: 0.98;
+  margin: 0 0 1.2rem;
+}
+
+.cl-home__lead {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 1.12rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 33rem;
+}
+
+.cl-home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.6rem;
+}
+
+.cl-home .md-button {
+  border-color: rgba(255, 255, 255, 0.72);
+  color: #fff;
+}
+
+.cl-home .md-button--primary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--cl-ink);
+}
+
+.cl-home .md-button:focus,
+.cl-home .md-button:hover {
+  background: var(--cl-blue);
+  border-color: var(--cl-blue);
+  color: var(--cl-ink);
+}
+
+.cl-home-body {
+  padding: 2.4rem 1.2rem 3.4rem;
+}
+
+.cl-section-heading {
+  margin-bottom: 1.2rem;
+}
+
+.cl-section-heading p {
+  color: var(--md-accent-fg-color);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+}
+
+.cl-section-heading h2 {
+  font-size: 1.65rem;
+  margin: 0;
+}
+
+.cl-feature-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cl-feature-card {
+  background: linear-gradient(180deg, rgba(2, 200, 255, 0.06), rgba(2, 200, 255, 0));
+  border: 1px solid var(--cl-card-border);
+  border-top: 3px solid var(--cl-blue);
+  border-radius: 8px;
+  color: var(--md-default-fg-color) !important;
+  display: block;
+  min-height: 13.5rem;
+  padding: 1.1rem;
+  text-decoration: none;
+}
+
+.cl-feature-card:focus,
+.cl-feature-card:hover {
+  border-color: var(--cl-blue);
+  box-shadow: 0 0 0 1px var(--cl-blue);
+}
+
+.cl-feature-card:nth-child(2) {
+  background: linear-gradient(180deg, rgba(10, 96, 255, 0.06), rgba(10, 96, 255, 0));
+  border-top-color: var(--cl-blue-2);
+}
+
+.cl-feature-card:nth-child(3) {
+  background: linear-gradient(180deg, rgba(255, 0, 127, 0.06), rgba(255, 0, 127, 0));
+  border-top-color: var(--cl-magenta);
+}
+
+.cl-feature-card:nth-child(4) {
+  background: linear-gradient(180deg, rgba(255, 144, 0, 0.08), rgba(255, 144, 0, 0));
+  border-top-color: var(--cl-orange);
+}
+
+.cl-feature-card span {
+  color: var(--md-accent-fg-color);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cl-feature-card h3 {
+  font-size: 1.08rem;
+  margin: 0 0 0.55rem;
+}
+
+.cl-feature-card p {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .cl-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 59.9375em) {
+  .cl-home__grid {
+    min-height: auto;
+    padding: 7rem 1.2rem 3rem;
+  }
+
+  .cl-home__content {
+    max-width: none;
+    padding: 1.5rem 0 0.5rem;
+  }
+
+  .cl-home h1 {
+    font-size: 3.2rem;
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .cl-home {
+    min-height: auto;
+  }
+
+  .cl-home__grid {
+    padding-bottom: 1.6rem;
+  }
+
+  .cl-home h1 {
+    font-size: 2.35rem;
+  }
+
+  .cl-home__lead {
+    font-size: 1rem;
+  }
+
+  .cl-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cl-feature-card {
+    min-height: 0;
+  }
+}

@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopmate-ai
+  labels:
+    app: shopmate-ai
+    app.kubernetes.io/name: shopmate-ai
+    app.kubernetes.io/part-of: ai-pods
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopmate-ai
+  template:
+    metadata:
+      labels:
+        app: shopmate-ai
+        app.kubernetes.io/name: shopmate-ai
+        app.kubernetes.io/part-of: ai-pods
+    spec:
+      containers:
+        - name: shopmate-ai
+          image: 148679414075.dkr.ecr.us-east-1.amazonaws.com/clus-ltrobs-2001/shopmate-ai:lab-stable
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: NIM_BASE_URL
+              value: http://nim-service.nim-system.svc.cluster.local:8000/v1
+            - name: NIM_API_KEY
+              value: nim-local-key
+            - name: NIM_MODEL
+              value: meta/llama-3.2-1b-instruct
+            - name: SHOPMATE_USE_AGENT_TOOLS
+              value: "true"
+            - name: SHOPMATE_DISABLE_OPENAI_AGENT_TRACING
+              value: "false"
+            - name: OTEL_SERVICE_NAME
+              value: shopmate-ai
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://student-collector:4318
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_INSTRUMENTATION_GENAI_EMITTERS
+              value: span_metric
+            - name: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT
+              value: SPAN_ONLY
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: delta
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=<STUDENT-ID>"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopmate-ai
+  labels:
+    app: shopmate-ai
+    app.kubernetes.io/name: shopmate-ai
+    app.kubernetes.io/part-of: ai-pods
+spec:
+  type: ClusterIP
+  selector:
+    app: shopmate-ai
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

@@ -1,0 +1,72 @@
+fullnameOverride: student-collector
+clusterName: clus-ltrobs-2001-student-01
+
+agent:
+  enabled: false
+
+clusterReceiver:
+  enabled: false
+
+gateway:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
+  extraEnvs:
+    - name: STUDENT_ID
+      value: student-01
+    - name: STUDENT_NAMESPACE
+      value: student-01
+    - name: LOGICAL_CLUSTER_NAME
+      value: clus-ltrobs-2001-student-01
+  config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+    processors:
+      k8s_attributes: null
+      resource/environment:
+        attributes:
+          - key: deployment.environment
+            value: ${env:STUDENT_ID}
+            action: upsert
+          - key: k8s.cluster.name
+            value: ${env:LOGICAL_CLUSTER_NAME}
+            action: upsert
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, resource/environment, batch]
+          exporters: [otlp_http, signalfx]
+        metrics:
+          receivers: [otlp]
+          processors: [memory_limiter, resource/environment, batch]
+          exporters: [signalfx]
+
+rbac:
+  create: false
+
+serviceAccount:
+  create: false
+  name: student
+
+secret:
+  create: false
+  name: splunk-observability-token
+  validateSecret: false
+
+splunkObservability:
+  realm: us1

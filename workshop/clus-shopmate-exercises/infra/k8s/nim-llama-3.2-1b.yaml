@@ -1,0 +1,58 @@
+apiVersion: apps.nvidia.com/v1alpha1
+kind: NIMCache
+metadata:
+  name: meta-llama-3-2-1b-instruct
+  namespace: nim-system
+  labels:
+    app.kubernetes.io/name: meta-llama-3-2-1b-instruct
+    app.kubernetes.io/part-of: ai-pods
+    app.kubernetes.io/component: nim-cache
+    ai-pods/project: ai-pods
+    ai-pods/environment: workshop
+spec:
+  source:
+    ngc:
+      modelPuller: nvcr.io/nim/meta/llama-3.2-1b-instruct:1.12.0
+      pullSecret: ngc-secret
+      authSecret: ngc-api-secret
+      model:
+        engine: tensorrt_llm
+        tensorParallelism: "1"
+  storage:
+    pvc:
+      create: true
+      storageClass: gp2
+      size: 50Gi
+      volumeAccessMode: ReadWriteOnce
+---
+apiVersion: apps.nvidia.com/v1alpha1
+kind: NIMService
+metadata:
+  name: nim-service
+  namespace: nim-system
+  labels:
+    app.kubernetes.io/name: nim-service
+    app.kubernetes.io/part-of: ai-pods
+    app.kubernetes.io/component: nim-inference
+    ai-pods/project: ai-pods
+    ai-pods/environment: workshop
+spec:
+  image:
+    repository: nvcr.io/nim/meta/llama-3.2-1b-instruct
+    tag: "1.12.0"
+    pullPolicy: IfNotPresent
+    pullSecrets:
+      - ngc-secret
+  authSecret: ngc-api-secret
+  storage:
+    nimCache:
+      name: meta-llama-3-2-1b-instruct
+      profile: ""
+  replicas: 1
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+  expose:
+    service:
+      type: ClusterIP
+      port: 8000

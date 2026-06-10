@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" aria-label="AeroMesh Training Tee">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#111418" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg)"/>
+  <path d="M0 512 C170 470 273 596 446 522 C604 456 715 402 900 452 L900 640 L0 640 Z" fill="#ffffff" opacity="0.65"/>
+  <circle cx="748" cy="132" r="94" fill="#02b8df" opacity="0.16"/>
+  <circle cx="138" cy="142" r="62" fill="#f8fafc" opacity="0.20"/>
+
+
+  <g filter="url(#shadow)" transform="translate(224 92)">
+    <path d="M146 55 L226 94 L306 55 L439 140 L380 232 L334 208 L334 481 L118 481 L118 208 L72 232 L13 140 Z" fill="#111418"/>
+    <path d="M146 55 C177 106 274 106 306 55 L275 40 C250 58 202 58 177 40 Z" fill="#02b8df"/>
+    <path d="M144 182 L306 182 M144 236 L306 236 M144 290 L306 290 M144 344 L306 344" stroke="#02b8df" stroke-width="9" stroke-linecap="round" opacity="0.55"/>
+    <path d="M122 208 L72 232 L37 178 M330 208 L380 232 L415 178" stroke="#f8fafc" stroke-width="8" stroke-linecap="round" opacity="0.75"/>
+  </g>
+
+
+  <text x="56" y="568" fill="#111418" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">AeroMesh Training Tee</text>
+  <text x="56" y="604" fill="#5e6874" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">ShopMate Sports</text>
+
+</svg>

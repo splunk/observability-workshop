@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Cisco AI POD hardware stack</title>
+  <desc id="desc">A conceptual Cisco AI POD hardware stack showing management, AI applications, Kubernetes, compute, GPU, network fabrics, storage, and Splunk observability mapping.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#eef6fb"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07182d"/>
+      <stop offset="1" stop-color="#12375f"/>
+    </linearGradient>
+    <style>
+      .bg { fill: url(#bg); }
+      .title { fill: #07182d; font: 700 28px Arial, Helvetica, sans-serif; }
+      .subtitle { fill: #39516a; font: 16px Arial, Helvetica, sans-serif; }
+      .layer { stroke-width: 2; rx: 10; }
+      .mgmt { fill: #f4f0ff; stroke: #6246c9; }
+      .app { fill: #e9f8ff; stroke: #02a6d6; }
+      .compute { fill: #fff0f7; stroke: #d80b6d; }
+      .gpu { fill: #fff6e8; stroke: #e07900; }
+      .network { fill: #eefaf4; stroke: #16845a; }
+      .storage { fill: #ffffff; stroke: #7f93a8; }
+      .splunk { fill: url(#dark); stroke: #07182d; }
+      .head { fill: #07182d; font: 700 17px Arial, Helvetica, sans-serif; }
+      .text { fill: #39516a; font: 14px Arial, Helvetica, sans-serif; }
+      .small { fill: #4b647d; font: 12px Arial, Helvetica, sans-serif; }
+      .whiteHead { fill: #ffffff; font: 700 17px Arial, Helvetica, sans-serif; }
+      .whiteText { fill: #d7ecff; font: 14px Arial, Helvetica, sans-serif; }
+      .arrow { stroke: #4b647d; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #4b647d; stroke-width: 2; fill: none; stroke-dasharray: 6 7; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b647d"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1100" height="620" rx="18"/>
+  <text class="title" x="44" y="56">Cisco AI POD Hardware Stack</text>
+  <text class="subtitle" x="44" y="84">Read from top to bottom: operations and apps depend on Kubernetes, compute, GPU, network fabrics, and storage.</text>
+
+  <rect class="layer mgmt" x="70" y="122" width="660" height="70"/>
+  <text class="head" x="98" y="154">Management and Operations</text>
+  <text class="text" x="98" y="180">Cisco Intersight, Nexus Dashboard, automation, lifecycle, inventory, health</text>
+
+  <rect class="layer app" x="70" y="216" width="660" height="70"/>
+  <text class="head" x="98" y="248">AI Platform and Applications</text>
+  <text class="text" x="98" y="274">Kubernetes or OpenShift, NVIDIA NIM, AI apps, agents, model endpoints</text>
+
+  <rect class="layer compute" x="70" y="310" width="314" height="82"/>
+  <text class="head" x="98" y="342">Cisco UCS Compute</text>
+  <text class="text" x="98" y="368">C885A M8 dense GPU servers</text>
+  <text class="text" x="98" y="388">C845A M8 flexible GPU servers</text>
+
+  <rect class="layer gpu" x="416" y="310" width="314" height="82"/>
+  <text class="head" x="444" y="342">Accelerators</text>
+  <text class="text" x="444" y="368">NVIDIA HGX H100/H200 or PCIe GPUs</text>
+  <text class="text" x="444" y="388">GPU memory, power, DCGM telemetry</text>
+
+  <rect class="layer network" x="70" y="416" width="660" height="70"/>
+  <text class="head" x="98" y="448">Network Fabrics</text>
+  <text class="text" x="98" y="474">Cisco Nexus 9000 backend east-west GPU fabric and frontend north-south fabric</text>
+
+  <rect class="layer storage" x="70" y="510" width="660" height="58"/>
+  <text class="head" x="98" y="545">Storage and Data</text>
+  <text class="text" x="296" y="545">Local NVMe, enterprise storage integrations, model and training data paths</text>
+
+  <rect class="layer splunk" x="790" y="210" width="240" height="184"/>
+  <text class="whiteHead" x="818" y="246">Splunk Observability</text>
+  <text class="whiteText" x="818" y="278">APM and agent traces</text>
+  <text class="whiteText" x="818" y="306">NIM and token metrics</text>
+  <text class="whiteText" x="818" y="334">GPU and pod metrics</text>
+  <text class="whiteText" x="818" y="362">AI POD dashboards</text>
+
+  <path class="arrow" d="M400 192 V216"/>
+  <path class="arrow" d="M400 286 V310"/>
+  <path class="arrow" d="M400 392 V416"/>
+  <path class="arrow" d="M400 486 V510"/>
+  <path class="dash" d="M730 156 C775 156 785 246 790 246"/>
+  <path class="dash" d="M730 251 C760 251 765 278 790 278"/>
+  <path class="dash" d="M730 351 C760 351 765 334 790 334"/>
+  <path class="dash" d="M730 451 C765 451 775 362 790 362"/>
+
+  <text class="small" x="790" y="444">Lab note: ShopMate Sports runs on shared cloud GPU infrastructure.</text>
+  <text class="small" x="790" y="466">The hardware docs explain the production Cisco AI POD target state.</text>
+</svg>

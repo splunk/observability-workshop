@@ -1,0 +1,106 @@
+{
+  "locations": [
+    {
+      "id": "downtown",
+      "name": "Downtown Demo Store",
+      "pickup_enabled": true
+    },
+    {
+      "id": "convention",
+      "name": "Convention Center Pop-up",
+      "pickup_enabled": true
+    },
+    {
+      "id": "warehouse",
+      "name": "Regional Demo Warehouse",
+      "pickup_enabled": false
+    }
+  ],
+  "items": [
+    {
+      "product_id": "roadflow-880",
+      "location_quantities": {
+        "downtown": 8,
+        "convention": 6,
+        "warehouse": 23
+      }
+    },
+    {
+      "product_id": "paceforge-racer",
+      "location_quantities": {
+        "downtown": 4,
+        "convention": 2,
+        "warehouse": 12
+      }
+    },
+    {
+      "product_id": "trailridge-gtx",
+      "location_quantities": {
+        "downtown": 5,
+        "convention": 3,
+        "warehouse": 14
+      }
+    },
+    {
+      "product_id": "studio-knit",
+      "location_quantities": {
+        "downtown": 11,
+        "convention": 9,
+        "warehouse": 21
+      }
+    },
+    {
+      "product_id": "courtline-rally",
+      "location_quantities": {
+        "downtown": 3,
+        "convention": 4,
+        "warehouse": 9
+      }
+    },
+    {
+      "product_id": "cloudrest-slide",
+      "location_quantities": {
+        "downtown": 14,
+        "convention": 12,
+        "warehouse": 32
+      }
+    },
+    {
+      "product_id": "aeromesh-tee",
+      "location_quantities": {
+        "downtown": 18,
+        "convention": 16,
+        "warehouse": 41
+      }
+    },
+    {
+      "product_id": "stride-short",
+      "location_quantities": {
+        "downtown": 15,
+        "convention": 13,
+        "warehouse": 34
+      }
+    },
+    {
+      "product_id": "summit-pack",
+      "location_quantities": {
+        "downtown": 6,
+        "convention": 5,
+        "warehouse": 13
+      }
+    },
+    {
+      "product_id": "tempo-cap",
+      "location_quantities": {
+        "downtown": 24,
+        "convention": 19,
+        "warehouse": 43
+      }
+    }
+  ],
+  "limitations": [
+    "Inventory quantities are demo examples and are not live store inventory.",
+    "The demo inventory file does not contain size-level or color-level counts.",
+    "The demo inventory file does not contain zip-specific availability."
+  ]
+}

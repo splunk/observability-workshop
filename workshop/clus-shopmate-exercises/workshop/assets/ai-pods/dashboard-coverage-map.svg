@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">AI POD dashboard coverage map</title>
+  <desc id="desc">A visual matrix showing which Splunk AI POD-style views are core to the lab and which require optional Cisco infrastructure integrations.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fbff; }
+      .title { fill: #07182d; font: 700 28px Arial, Helvetica, sans-serif; }
+      .subtitle { fill: #39516a; font: 16px Arial, Helvetica, sans-serif; }
+      .panel { fill: #ffffff; stroke: #ccd9e4; stroke-width: 2; rx: 12; }
+      .core { fill: #e9f8ff; stroke: #02a6d6; stroke-width: 2; rx: 8; }
+      .optional { fill: #fff6e8; stroke: #e07900; stroke-width: 2; rx: 8; }
+      .experience { fill: #fff0f7; stroke: #d80b6d; stroke-width: 2; rx: 8; }
+      .head { fill: #07182d; font: 700 18px Arial, Helvetica, sans-serif; }
+      .text { fill: #39516a; font: 14px Arial, Helvetica, sans-serif; }
+      .small { fill: #4b647d; font: 12px Arial, Helvetica, sans-serif; }
+      .tagCore { fill: #02a6d6; }
+      .tagOpt { fill: #e07900; }
+      .tagText { fill: #ffffff; font: 700 11px Arial, Helvetica, sans-serif; }
+      .line { stroke: #c9d7e4; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1100" height="560" rx="18"/>
+  <text class="title" x="44" y="56">AI POD Dashboard Coverage Map</text>
+  <text class="subtitle" x="44" y="84">The lab populates the app, NIM, GPU, Kubernetes, and tokenomics path first. Other Cisco AI POD tabs need optional integrations.</text>
+
+  <rect class="panel" x="44" y="120" width="1012" height="370"/>
+  <line class="line" x1="382" y1="120" x2="382" y2="490"/>
+  <line class="line" x1="718" y1="120" x2="718" y2="490"/>
+
+  <text class="head" x="72" y="158">Core lab signals</text>
+  <rect class="core" x="72" y="184" width="268" height="46"/>
+  <text class="text" x="94" y="213">APM traces and agent spans</text>
+  <rect class="core" x="72" y="244" width="268" height="46"/>
+  <text class="text" x="94" y="273">NIM latency and token metrics</text>
+  <rect class="core" x="72" y="304" width="268" height="46"/>
+  <text class="text" x="94" y="333">GPU DCGM metrics</text>
+  <rect class="core" x="72" y="364" width="268" height="46"/>
+  <text class="text" x="94" y="393">Kubernetes pod health</text>
+  <rect class="tagCore" x="72" y="430" width="86" height="26" rx="13"/>
+  <text class="tagText" x="93" y="448">CORE</text>
+
+  <text class="head" x="414" y="158">Splunk experiences</text>
+  <rect class="experience" x="414" y="184" width="260" height="46"/>
+  <text class="text" x="436" y="213">AI Agent Monitoring</text>
+  <rect class="experience" x="414" y="244" width="260" height="46"/>
+  <text class="text" x="436" y="273">APM service map and traces</text>
+  <rect class="experience" x="414" y="304" width="260" height="46"/>
+  <text class="text" x="436" y="333">Metrics analytics and dashboards</text>
+  <rect class="experience" x="414" y="364" width="260" height="46"/>
+  <text class="text" x="436" y="393">AI Pod overview where data exists</text>
+  <text class="small" x="414" y="448">Use filters: deployment.environment, k8s.namespace.name, service.name</text>
+
+  <text class="head" x="750" y="158">Optional AI POD integrations</text>
+  <rect class="optional" x="750" y="184" width="268" height="46"/>
+  <text class="text" x="772" y="213">Cisco UCS via Intersight</text>
+  <rect class="optional" x="750" y="244" width="268" height="46"/>
+  <text class="text" x="772" y="273">Cisco Nexus telemetry</text>
+  <rect class="optional" x="750" y="304" width="268" height="46"/>
+  <text class="text" x="772" y="333">NetApp or Pure Storage</text>
+  <rect class="optional" x="750" y="364" width="268" height="46"/>
+  <text class="text" x="772" y="393">Vector database telemetry</text>
+  <rect class="tagOpt" x="750" y="430" width="110" height="26" rx="13"/>
+  <text class="tagText" x="772" y="448">OPTIONAL</text>
+
+  <text class="small" x="44" y="528">Dashboard coverage grows with enabled integrations. The core lab teaches the workflow; full AI POD environments add more infrastructure evidence.</text>
+</svg>

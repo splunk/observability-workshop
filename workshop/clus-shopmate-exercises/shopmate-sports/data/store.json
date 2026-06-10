@@ -1,0 +1,39 @@
+{
+  "name": "ShopMate Sports Demo Store",
+  "topics": [
+    {
+      "id": "pickup",
+      "name": "Pickup",
+      "summary": "Free pickup is available for demo orders over $75 at pickup-enabled demo locations.",
+      "details": [
+        "Pickup availability depends on the location quantities in inventory.json.",
+        "The demo data does not reserve items or create a real order."
+      ],
+      "keywords": ["pickup", "pick", "store", "location", "available"]
+    },
+    {
+      "id": "delivery",
+      "name": "Delivery",
+      "summary": "Standard demo delivery is 3 to 5 business days from the regional demo warehouse.",
+      "details": [
+        "The demo data does not include zip-specific delivery estimates.",
+        "Expedited shipping and carrier selection are not included."
+      ],
+      "keywords": ["delivery", "shipping", "ship", "arrive", "arrival"]
+    },
+    {
+      "id": "hours",
+      "name": "Store hours",
+      "summary": "Demo locations are listed as open from 9 AM to 6 PM local lab time.",
+      "details": [
+        "Hours are example lab data and are not connected to a real store system."
+      ],
+      "keywords": ["hours", "open", "close", "closing"]
+    }
+  ],
+  "limitations": [
+    "No real store reservation is created.",
+    "No payment, order status, or carrier tracking is available.",
+    "No zip-specific delivery date is available."
+  ]
+}

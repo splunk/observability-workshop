@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" aria-label="Stride 5 Inch Short">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fce7f3"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#111418" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg)"/>
+  <path d="M0 512 C170 470 273 596 446 522 C604 456 715 402 900 452 L900 640 L0 640 Z" fill="#ffffff" opacity="0.65"/>
+  <circle cx="748" cy="132" r="94" fill="#0a60ff" opacity="0.16"/>
+  <circle cx="138" cy="142" r="62" fill="#111418" opacity="0.20"/>
+
+
+  <g filter="url(#shadow)" transform="translate(216 126)">
+    <path d="M86 62 L392 62 L430 414 L288 414 L241 238 L196 414 L49 414 Z" fill="#e4006d"/>
+    <path d="M86 62 L392 62 L383 141 L94 141 Z" fill="#111418" opacity="0.88"/>
+    <path d="M241 238 L241 86" stroke="#0a60ff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M99 174 C144 196 186 196 225 174 M257 174 C307 197 352 197 389 174" fill="none" stroke="#111418" stroke-width="8" stroke-linecap="round" opacity="0.78"/>
+    <path d="M98 99 L378 99" stroke="#0a60ff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+
+  <text x="56" y="568" fill="#111418" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Stride 5 Inch Short</text>
+  <text x="56" y="604" fill="#5e6874" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">ShopMate Sports</text>
+
+</svg>

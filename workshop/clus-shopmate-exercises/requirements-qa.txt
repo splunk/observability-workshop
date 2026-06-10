@@ -1,0 +1,4 @@
+--index-url https://pypi.org/simple
+pytest>=8.2,<9
+PyYAML>=6.0,<7
+playwright>=1.48,<2

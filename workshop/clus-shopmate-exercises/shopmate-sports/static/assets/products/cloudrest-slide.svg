@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" aria-label="CloudRest Slide">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#111418" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg)"/>
+  <path d="M0 512 C170 470 273 596 446 522 C604 456 715 402 900 452 L900 640 L0 640 Z" fill="#ffffff" opacity="0.65"/>
+  <circle cx="748" cy="132" r="94" fill="#0a60ff" opacity="0.16"/>
+  <circle cx="138" cy="142" r="62" fill="#f8fafc" opacity="0.20"/>
+
+
+  <g filter="url(#shadow)" transform="translate(110 184)">
+    <path d="M128 267 C226 234 491 233 649 263 C704 274 726 312 706 350 C686 389 620 408 514 408 L162 408 C80 406 50 348 79 309 C90 294 106 280 128 267 Z" fill="#f8fafc"/>
+    <path d="M133 314 C272 349 514 346 678 313" fill="none" stroke="#111418" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+    <path d="M216 204 C326 148 506 148 606 210 C630 225 638 256 624 283 C515 254 331 253 201 284 C184 255 190 218 216 204 Z" fill="#111418"/>
+    <path d="M261 231 C350 202 474 202 570 233" fill="none" stroke="#0a60ff" stroke-width="18" stroke-linecap="round"/>
+    <path d="M199 290 C321 260 512 259 638 288" fill="none" stroke="#f8fafc" stroke-width="8" stroke-linecap="round" opacity="0.68"/>
+  </g>
+
+
+  <text x="56" y="568" fill="#111418" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">CloudRest Slide</text>
+  <text x="56" y="604" fill="#5e6874" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">ShopMate Sports</text>
+
+</svg>

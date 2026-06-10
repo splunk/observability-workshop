@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopMate Sports</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="utility-bar">
+        <span>Free pickup for lab orders over $75</span>
+        <span>Convention-ready footwear and gear</span>
+      </div>
+      <div class="nav-shell">
+        <a class="brand" href="/" aria-label="ShopMate Sports home">
+          <span class="brand-mark">S</span>
+          <span>ShopMate Sports</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary navigation">
+          <button class="nav-link is-active" data-nav-category="All">New</button>
+          <button class="nav-link" data-nav-category="Running">Running</button>
+          <button class="nav-link" data-nav-category="Training">Training</button>
+          <button class="nav-link" data-nav-category="Trail">Trail</button>
+          <button class="nav-link" data-nav-category="Accessories">Accessories</button>
+        </nav>
+        <button class="cart-button" type="button" id="cartButton" aria-label="Open cart">
+          <span class="cart-icon" aria-hidden="true"></span>
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Spring 2026 Training Edit</p>
+          <h1>Gear for long show-floor days and faster miles.</h1>
+          <p class="hero-text">
+            Shop shoes, apparel, and travel-ready accessories with help from a retail assistant tuned for this catalog.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#products">Shop new arrivals</a>
+            <button class="secondary-link" type="button" id="heroChatButton">Ask ShopMate</button>
+          </div>
+        </div>
+        <div class="hero-products" aria-label="Featured products">
+          <img src="/assets/products/roadflow-880.png" alt="RoadFlow 880 running shoe" />
+          <img src="/assets/products/summit-pack.png" alt="Summit Day Pack" />
+          <img src="/assets/products/stride-short.png" alt="Stride 5 Inch Short" />
+        </div>
+      </section>
+
+      <section class="shop-layout" id="products" aria-label="Product catalog">
+        <aside class="filter-panel" aria-label="Catalog filters">
+          <div class="filter-block">
+            <h2>Search</h2>
+            <label class="search-field">
+              <span class="visually-hidden">Search products</span>
+              <input id="searchInput" type="search" placeholder="Search shoes, bags, apparel" />
+            </label>
+          </div>
+
+          <div class="filter-block">
+            <h2>Category</h2>
+            <div class="segmented" id="categoryFilters" role="group" aria-label="Category filters"></div>
+          </div>
+
+          <div class="filter-block">
+            <h2>Fit</h2>
+            <label class="check-row">
+              <input id="wideOnly" type="checkbox" />
+              <span>Wide sizes</span>
+            </label>
+            <label class="check-row">
+              <input id="inStockOnly" type="checkbox" checked />
+              <span>In stock</span>
+            </label>
+          </div>
+        </aside>
+
+        <section class="catalog-area">
+          <div class="catalog-toolbar">
+            <div>
+              <p class="eyebrow">Catalog</p>
+              <h2 id="productCount">Products</h2>
+            </div>
+            <label class="sort-control">
+              <span>Sort</span>
+              <select id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="rating">Top rated</option>
+              </select>
+            </label>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <aside class="chat-panel" id="chatPanel" aria-label="ShopMate assistant">
+          <div class="chat-heading">
+            <div>
+              <p class="eyebrow">Assistant</p>
+              <h2>ShopMate</h2>
+            </div>
+            <div class="status-pill" id="nimStatus">Local mode</div>
+          </div>
+
+          <div class="meter-grid" aria-label="Token meter">
+            <div>
+              <span>Session tokens</span>
+              <strong id="sessionTokens">0</strong>
+            </div>
+            <div>
+              <span>Last turn</span>
+              <strong id="lastTokens">0</strong>
+            </div>
+            <div>
+              <span>Latency</span>
+              <strong id="lastLatency">0 ms</strong>
+            </div>
+          </div>
+
+          <div class="prompt-chips" aria-label="Example prompts">
+            <button type="button">I need shoes for walking all day at Cisco Live.</button>
+            <button type="button">What is good for wide feet under $140?</button>
+            <button type="button">Compare running shoes for fast workouts.</button>
+          </div>
+
+          <div class="chat-log" id="chatLog" aria-live="polite"></div>
+
+          <form class="chat-form" id="chatForm">
+            <label class="visually-hidden" for="chatInput">Message ShopMate</label>
+            <textarea id="chatInput" rows="3" placeholder="Ask about fit, size, training, travel, or products"></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </aside>
+      </section>
+    </main>
+
+    <dialog class="product-dialog" id="productDialog">
+      <button class="dialog-close" type="button" id="dialogClose" aria-label="Close product details"></button>
+      <div id="dialogContent"></div>
+    </dialog>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

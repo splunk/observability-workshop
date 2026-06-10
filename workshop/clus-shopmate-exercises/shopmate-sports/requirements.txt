@@ -1,0 +1,6 @@
+--index-url https://pypi.org/simple
+openai>=1.109.0
+openai-agents>=0.3.3
+splunk-opentelemetry>=2.10.1
+splunk-otel-instrumentation-openai>=0.1.2
+splunk-otel-instrumentation-openai-agents>=0.1.3

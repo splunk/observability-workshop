@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Cisco AI POD monitoring layers</title>
+  <desc id="desc">A conceptual map from enterprise AI applications through model serving, GPU and Kubernetes infrastructure, Cisco infrastructure, and Splunk Observability Cloud experiences.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#edf6fa"/>
+    </linearGradient>
+    <linearGradient id="splunk" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07182d"/>
+      <stop offset="1" stop-color="#0a60ff"/>
+    </linearGradient>
+    <style>
+      .bg { fill: url(#bg); }
+      .title { fill: #07182d; font: 700 28px Arial, Helvetica, sans-serif; }
+      .subtitle { fill: #39516a; font: 16px Arial, Helvetica, sans-serif; }
+      .box { fill: #ffffff; stroke: #ccd9e4; stroke-width: 2; rx: 8; }
+      .box-blue { fill: #e9f8ff; stroke: #02a6d6; }
+      .box-magenta { fill: #fff0f7; stroke: #d80b6d; }
+      .box-orange { fill: #fff6e8; stroke: #e07900; }
+      .box-green { fill: #eefaf4; stroke: #16845a; }
+      .box-dark { fill: url(#splunk); stroke: #07182d; }
+      .head { fill: #07182d; font: 700 17px Arial, Helvetica, sans-serif; }
+      .text { fill: #39516a; font: 14px Arial, Helvetica, sans-serif; }
+      .whiteHead { fill: #ffffff; font: 700 17px Arial, Helvetica, sans-serif; }
+      .whiteText { fill: #d7ecff; font: 14px Arial, Helvetica, sans-serif; }
+      .arrow { stroke: #4b647d; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .lane { fill: none; stroke: #d7e4ee; stroke-width: 1.5; stroke-dasharray: 6 7; }
+      .badge { fill: #07182d; }
+      .badgeText { fill: #ffffff; font: 700 12px Arial, Helvetica, sans-serif; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b647d"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1100" height="620" rx="18"/>
+  <text class="title" x="44" y="54">Cisco AI POD Monitoring Layers</text>
+  <text class="subtitle" x="44" y="82">Use the lab signals to practice the same investigation path used for production AI infrastructure.</text>
+
+  <rect class="lane" x="30" y="112" width="1040" height="402" rx="14"/>
+
+  <rect class="box box-blue" x="58" y="150" width="190" height="130"/>
+  <text class="head" x="78" y="184">Enterprise AI App</text>
+  <text class="text" x="78" y="214">APM traces</text>
+  <text class="text" x="78" y="238">Agent spans</text>
+  <text class="text" x="78" y="262">Token metrics</text>
+
+  <rect class="box box-magenta" x="292" y="150" width="190" height="130"/>
+  <text class="head" x="312" y="184">Model Serving</text>
+  <text class="text" x="312" y="214">NVIDIA NIM</text>
+  <text class="text" x="312" y="238">Latency and queue</text>
+  <text class="text" x="312" y="262">Prompt/output tokens</text>
+
+  <rect class="box box-orange" x="526" y="150" width="190" height="130"/>
+  <text class="head" x="546" y="184">GPU Platform</text>
+  <text class="text" x="546" y="214">DCGM metrics</text>
+  <text class="text" x="546" y="238">Utilization and memory</text>
+  <text class="text" x="546" y="262">Power and temperature</text>
+
+  <rect class="box box-green" x="760" y="150" width="190" height="130"/>
+  <text class="head" x="780" y="184">Cisco Stack</text>
+  <text class="text" x="780" y="214">UCS servers</text>
+  <text class="text" x="780" y="238">Nexus networking</text>
+  <text class="text" x="780" y="262">Storage integrations</text>
+
+  <rect class="box box-dark" x="292" y="348" width="500" height="118"/>
+  <text class="whiteHead" x="320" y="382">Splunk Observability Cloud</text>
+  <text class="whiteText" x="320" y="412">AI Agent Monitoring, APM traces, dashboards, navigators, metrics analytics</text>
+  <text class="whiteText" x="320" y="438">Student lab focuses on app, NIM, GPU, Kubernetes, and tokenomics signals</text>
+
+  <path class="arrow" d="M248 215 H292"/>
+  <path class="arrow" d="M482 215 H526"/>
+  <path class="arrow" d="M716 215 H760"/>
+  <path class="arrow" d="M153 280 C153 410 260 407 292 407"/>
+  <path class="arrow" d="M387 280 C387 326 390 333 420 348"/>
+  <path class="arrow" d="M621 280 C621 326 620 333 585 348"/>
+  <path class="arrow" d="M855 280 C855 410 815 407 792 407"/>
+
+  <rect class="badge" x="58" y="540" width="162" height="32" rx="16"/>
+  <text class="badgeText" x="82" y="561">Core lab signal</text>
+  <rect class="box box-green" x="248" y="540" width="178" height="32" rx="16"/>
+  <text class="text" x="270" y="561">Optional AI POD signal</text>
+  <rect class="box box-blue" x="454" y="540" width="232" height="32" rx="16"/>
+  <text class="text" x="476" y="561">Correlate by time and attributes</text>
+</svg>

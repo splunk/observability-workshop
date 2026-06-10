@@ -1,0 +1,2 @@
+--index-url https://pypi.org/simple
+mkdocs-material==9.5.49

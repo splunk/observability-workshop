@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Student collector flow</title>
+  <desc id="desc">A student namespace collector receives ShopMate telemetry, scrapes shared NIM and GPU endpoints, and exports tagged telemetry to Splunk Observability Cloud.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fbff; }
+      .namespace { fill: #ffffff; stroke: #b9c9d8; stroke-width: 2; rx: 14; }
+      .shared { fill: #fff8ee; stroke: #e07900; stroke-width: 2; rx: 14; }
+      .splunk { fill: #07182d; stroke: #07182d; stroke-width: 2; rx: 14; }
+      .card { fill: #ffffff; stroke: #ccd9e4; stroke-width: 2; rx: 8; }
+      .app { fill: #e9f8ff; stroke: #02a6d6; }
+      .collector { fill: #fff0f7; stroke: #d80b6d; }
+      .metric { fill: #eefaf4; stroke: #16845a; }
+      .platform { fill: #f4f0ff; stroke: #6246c9; }
+      .title { fill: #07182d; font: 700 28px Arial, Helvetica, sans-serif; }
+      .label { fill: #07182d; font: 700 18px Arial, Helvetica, sans-serif; }
+      .head { fill: #07182d; font: 700 16px Arial, Helvetica, sans-serif; }
+      .text { fill: #39516a; font: 14px Arial, Helvetica, sans-serif; }
+      .small { fill: #4b647d; font: 12px Arial, Helvetica, sans-serif; }
+      .whiteHead { fill: #ffffff; font: 700 17px Arial, Helvetica, sans-serif; }
+      .whiteText { fill: #d7ecff; font: 14px Arial, Helvetica, sans-serif; }
+      .arrow { stroke: #4b647d; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #4b647d; stroke-width: 2.5; fill: none; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b647d"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1100" height="620" rx="18"/>
+  <text class="title" x="44" y="56">Student Collector Flow</text>
+  <text class="text" x="44" y="84">The student collector is the hands-on config surface for app telemetry and focused GPU/NIM scraping.</text>
+
+  <rect class="namespace" x="54" y="120" width="610" height="382"/>
+  <text class="label" x="82" y="154">Student namespace</text>
+  <text class="small" x="82" y="178">deployment.environment, k8s.namespace.name, service.name</text>
+
+  <rect class="card app" x="94" y="218" width="190" height="116"/>
+  <text class="head" x="116" y="250">ShopMate Sports</text>
+  <text class="text" x="116" y="278">service.name=shopmate-ai</text>
+  <text class="text" x="116" y="302">Agent traces</text>
+  <text class="text" x="116" y="324">Token metrics</text>
+
+  <rect class="card collector" x="412" y="208" width="210" height="144"/>
+  <text class="head" x="434" y="240">Student Collector</text>
+  <text class="text" x="434" y="268">OTLP 4317/4318</text>
+  <text class="text" x="434" y="292">resource/environment</text>
+  <text class="text" x="434" y="316">batch and export</text>
+  <text class="text" x="434" y="340">Prometheus scraping</text>
+
+  <rect class="shared" x="54" y="522" width="610" height="58"/>
+  <text class="head" x="82" y="557">Shared endpoints: DCGM exporter and NVIDIA NIM /v1/metrics</text>
+
+  <rect class="card metric" x="724" y="138" width="156" height="98"/>
+  <text class="head" x="748" y="170">NIM Metrics</text>
+  <text class="text" x="748" y="196">Latency</text>
+  <text class="text" x="748" y="220">Tokens</text>
+
+  <rect class="card metric" x="902" y="138" width="156" height="98"/>
+  <text class="head" x="926" y="170">GPU Metrics</text>
+  <text class="text" x="926" y="196">DCGM</text>
+  <text class="text" x="926" y="220">Utilization</text>
+
+  <rect class="card platform" x="724" y="280" width="334" height="86"/>
+  <text class="head" x="748" y="313">Instructor platform collector</text>
+  <text class="text" x="748" y="339">Kubernetes and baseline infrastructure telemetry</text>
+
+  <rect class="splunk" x="724" y="414" width="334" height="108"/>
+  <text class="whiteHead" x="748" y="450">Splunk Observability Cloud</text>
+  <text class="whiteText" x="748" y="480">APM, AI Agent Monitoring, metrics,</text>
+  <text class="whiteText" x="748" y="504">dashboards, and AI POD-style views</text>
+
+  <path class="arrow" d="M284 276 H412"/>
+  <path class="arrow" d="M622 280 C700 280 690 452 724 452"/>
+  <path class="dash" d="M517 352 V522"/>
+  <path class="dash" d="M622 250 C678 250 690 188 724 188"/>
+  <path class="dash" d="M622 250 C742 250 788 188 902 188"/>
+  <path class="arrow" d="M802 236 C802 344 812 388 826 414"/>
+  <path class="arrow" d="M980 236 C980 344 970 388 952 414"/>
+  <path class="arrow" d="M891 366 V414"/>
+</svg>

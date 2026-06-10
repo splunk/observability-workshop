@@ -1,0 +1,94 @@
+site_name: CLUS-LTROBS-2001
+site_description: From Deployment to Deep Insights - Mastering AI/ML with Cisco AI Pods and Splunk
+site_author: Cisco Live US 2026 Lab Team
+copyright: Copyright &copy; 2026 Cisco
+docs_dir: workshop
+site_dir: site
+
+repo_name: ai-pods
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.instant
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+  custom_dir: workshop/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: CiscoSans
+    code: Roboto Mono
+  logo: template_assets/cisco-live-2026/cisco-logo-white.svg
+  favicon: template_assets/cisco-live-2026/cisco-logo-ink.svg
+
+nav:
+  - Overview: index.md
+  - Prerequisites: prerequisites.md
+  - "Lab Files": lab-files.md
+  - "0. Orientation": module-0-orientation.md
+  - "Data Journey": data-journey.md
+  - "1. Student Collector": module-1-collector.md
+  - "2. App Instrumentation": module-2-app-instrumentation.md
+  - "3. GPU and NIM Scraping": module-3-gpu-nim-scraping.md
+  - "4. Correlation": module-4-correlation.md
+  - "5. Tokenomics": module-5-tokenomics.md
+  - "Final Review": final-review.md
+  - "Appendix: AI POD Hardware Docs": appendix-ai-pod-hardware.md
+  - "Appendix: Troubleshooting": appendix-troubleshooting.md
+  - "Appendix: GitHub and Splunk References": reference-github-splunk.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+extra:
+  generator: false
+  event_name: Cisco Live US 2026
+  event_region: US
+  event_year: "2026"
+
+extra_css:
+  - stylesheets/extra.css

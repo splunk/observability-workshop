@@ -1,0 +1,19 @@
+# Instructor-owned NVIDIA GPU Operator values for the EKS lab baseline.
+#
+# This stack defaults to an EKS NVIDIA accelerated AMI, so the host driver and
+# container toolkit are provided by the node image. The operator still manages
+# device plugin and DCGM exporter components for the workshop.
+
+operator:
+  defaultRuntime: containerd
+
+dcgmExporter:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+
+toolkit:
+  enabled: false
+
+driver:
+  enabled: false

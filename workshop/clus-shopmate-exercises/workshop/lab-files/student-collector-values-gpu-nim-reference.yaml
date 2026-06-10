@@ -1,0 +1,107 @@
+# Complete reference values for the student collector after Module 3.
+# Replace the <...> placeholders with your lab handout values before using.
+# This file is intended as a known-good reference for comparison.
+
+fullnameOverride: student-collector
+clusterName: "<LOGICAL_CLUSTER_NAME>"
+
+agent:
+  enabled: false
+
+clusterReceiver:
+  enabled: false
+
+gateway:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
+  extraEnvs:
+    - name: STUDENT_ID
+      value: "<STUDENT_ID>"
+    - name: STUDENT_NAMESPACE
+      value: "<STUDENT_NAMESPACE>"
+    - name: LOGICAL_CLUSTER_NAME
+      value: "<LOGICAL_CLUSTER_NAME>"
+    - name: DCGM_SCRAPE_TARGET
+      value: nvidia-dcgm-exporter.gpu-operator.svc.cluster.local:9400
+    - name: NIM_SCRAPE_TARGET
+      value: nim-service.nim-system.svc.cluster.local:8000
+  config:
+    exporters:
+      signalfx:
+        send_otlp_histograms: true
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+      prometheus/gpu_nim:
+        config:
+          scrape_configs:
+            - job_name: dcgm
+              scrape_interval: 60s
+              static_configs:
+                - targets:
+                    - ${env:DCGM_SCRAPE_TARGET}
+            - job_name: nim
+              scrape_interval: 60s
+              metrics_path: /v1/metrics
+              static_configs:
+                - targets:
+                    - ${env:NIM_SCRAPE_TARGET}
+    processors:
+      k8s_attributes: null
+      resource/environment:
+        attributes:
+          - key: deployment.environment
+            value: ${env:STUDENT_ID}
+            action: upsert
+          - key: k8s.cluster.name
+            value: ${env:LOGICAL_CLUSTER_NAME}
+            action: upsert
+      filter/gpu_nim_allowlist:
+        metrics:
+          include:
+            match_type: regexp
+            metric_names:
+              - ^DCGM_FI_DEV_(GPU_UTIL|FB_USED|FB_FREE|GPU_TEMP|POWER_USAGE)$
+              - ^DCGM_FI_PROF_(GR_ENGINE_ACTIVE|PIPE_TENSOR_ACTIVE)$
+              - ^(vllm[:_])?(num_requests_running|num_requests_waiting|prompt_tokens_total|generation_tokens_total|request_success_total|request_failure_total|request_finish_total|e2e_request_latency_seconds|time_to_first_token_seconds|time_per_output_token_seconds|request_prompt_tokens|request_generation_tokens|gpu_cache_usage_perc)$
+              - ^http\.server\.active_requests$
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, resource/environment, batch]
+          exporters: [otlp_http, signalfx]
+        metrics:
+          receivers: [otlp]
+          processors: [memory_limiter, resource/environment, batch]
+          exporters: [signalfx]
+        metrics/gpu_nim:
+          receivers: [prometheus/gpu_nim]
+          processors: [memory_limiter, resource/environment, filter/gpu_nim_allowlist, batch]
+          exporters: [signalfx]
+
+rbac:
+  create: false
+
+serviceAccount:
+  create: false
+  name: student
+
+secret:
+  create: false
+  name: "<SPLUNK_ACCESS_TOKEN_SECRET>"
+  validateSecret: false
+
+splunkObservability:
+  realm: "<SPLUNK_REALM>"

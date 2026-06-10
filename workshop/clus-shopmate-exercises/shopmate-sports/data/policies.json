@@ -1,0 +1,28 @@
+{
+  "policies": [
+    {
+      "id": "returns",
+      "name": "Returns",
+      "summary": "Unused gear can be returned within 30 days with the receipt.",
+      "details": [
+        "Items must be clean, undamaged, and include original packaging when available.",
+        "Refunds return to the original payment method in the demo policy."
+      ],
+      "keywords": ["return", "returns", "refund", "receipt"]
+    },
+    {
+      "id": "fit-exchanges",
+      "name": "Fit exchanges",
+      "summary": "Worn performance footwear can be exchanged within 14 days when the issue is fit-related.",
+      "details": [
+        "Fit exchanges apply to size, width, heel slip, or toe-box comfort issues.",
+        "The demo policy does not include medical guarantees or injury claims."
+      ],
+      "keywords": ["fit", "size", "width", "exchange", "comfort"]
+    }
+  ],
+  "limitations": [
+    "No live promotions, payment status, or order status are available.",
+    "No medical or injury outcome claims are available."
+  ]
+}

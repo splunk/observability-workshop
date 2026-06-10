@@ -1,0 +1,78 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<section class="cl-home">
+  <div class="cl-home__grid md-grid">
+    <div class="cl-home__content md-typeset">
+      <p class="cl-home__eyebrow">Cisco Live US 2026 | CLUS-LTROBS-2001 Lab Guide</p>
+      <h1>From Deployment To Deep Insights</h1>
+      <p class="cl-home__lead">
+        Follow the student path for observing a retail AI assistant across traces,
+        metrics, GPU signals, NVIDIA NIM, and tokenomics.
+      </p>
+
+      <div class="cl-home__actions">
+        <a href="{{ 'prerequisites/' | url }}" class="md-button md-button--primary">Start Lab</a>
+        <a href="{{ 'module-0-orientation/' | url }}" class="md-button">Orientation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cl-home-body md-typeset">
+  <div class="md-grid">
+    <div class="cl-section-heading">
+      <p>Cisco Live US 2026</p>
+      <h2>AI PODs In One Minute</h2>
+    </div>
+
+    <p>
+      A Cisco AI POD is a repeatable infrastructure pattern for AI workloads:
+      GPU compute, high-speed networking, storage, platform software, and
+      operations tooling working together. In this lab, the GPUs are the center
+      of the story. ShopMate Sports creates demand, NVIDIA NIM serves the model,
+      GPUs accelerate the work, and Splunk helps you prove what happened.
+    </p>
+
+    <p>
+      Your path is simple: start a baseline collector, point the agent app at it,
+      find the app trace, change the collector file to add GPU and NIM metrics,
+      then compare the before/after evidence with the environment filter.
+    </p>
+
+    <div class="cl-section-heading">
+      <p>Cisco Live US 2026</p>
+      <h2>Your Workshop Path</h2>
+    </div>
+
+    <div class="cl-feature-grid">
+      <a class="cl-feature-card" href="{{ 'module-1-collector/' | url }}">
+        <span>01</span>
+        <h3>Student Collector</h3>
+        <p>Start a namespace-scoped OTLP gateway and confirm GPU/NIM scraping is not enabled yet.</p>
+      </a>
+      <a class="cl-feature-card" href="{{ 'module-2-app-instrumentation/' | url }}">
+        <span>02</span>
+        <h3>Assistant Traces</h3>
+        <p>Inspect the ShopMate API, OpenAI-compatible assistant, NIM, and token signals.</p>
+      </a>
+      <a class="cl-feature-card" href="{{ 'module-3-gpu-nim-scraping/' | url }}">
+        <span>03</span>
+        <h3>GPU And NIM</h3>
+        <p>Change the collector file, explain the diff, and verify new model-serving and GPU metrics in Splunk.</p>
+      </a>
+      <a class="cl-feature-card" href="{{ 'module-5-tokenomics/' | url }}">
+        <span>04</span>
+        <h3>Tokenomics Challenge</h3>
+        <p>Find the environment, conversation, and agent-loop behavior behind high token spend.</p>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block site_nav %}{% endblock %}
+{% block container %}{% endblock %}
+{% block content %}{% endblock %}
