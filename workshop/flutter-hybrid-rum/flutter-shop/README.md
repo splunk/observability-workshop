@@ -11,6 +11,7 @@ The app demonstrates three instrumentation boundaries:
 - Flutter RUM in `lib/main.dart` and `lib/src/rum_service.dart`.
 - Custom Flutter events and workflows around product, cart, and checkout actions.
 - Browser RUM inside `assets/web/checkout.html`, loaded by the WebView checkout screen.
+- A dedicated examples screen that contrasts automatic instrumentation with custom instrumentation.
 
 ## Requirements
 
@@ -65,7 +66,10 @@ flutter run \
 2. Tap **View** on a product, then **Add to cart**.
 3. Open the cart and tap **Start checkout**.
 4. In the WebView checkout page, tap **Calculate shipping**, then **Complete checkout**.
-5. Return to Splunk RUM and filter by the application name and environment.
+5. Open **Telemetry status**, then **Open instrumentation examples**.
+6. Tap **Generate automatic network request** to produce auto-captured network telemetry.
+7. Tap **Send custom event** and **Run custom workflow** to produce explicit custom telemetry.
+8. Return to Splunk RUM and filter by the application name and environment.
 
 ## Instrumentation Map
 
@@ -76,8 +80,28 @@ flutter run \
 | Product view | `lib/src/screens/product_detail_screen.dart` | Tracks manual screen view and product viewed event. |
 | Add to cart | `lib/src/shop_store.dart` | Tracks `cart_item_added`. |
 | Checkout duration | `lib/src/shop_store.dart` | Starts and ends a `checkout` workflow. |
+| Auto vs custom examples | `lib/src/screens/instrumentation_examples_screen.dart` | Shows an auto-captured network request and explicit custom event/workflow calls. |
 | Embedded checkout | `assets/web/checkout.html` | Initializes browser RUM for WebView JavaScript. |
 | Backend calls | `lib/src/shop_api.dart` and WebView `fetch()` calls | Creates mobile and WebView network requests for RUM/APM validation. |
+
+## Automatic vs Custom Instrumentation
+
+Automatic instrumentation happens after the agent is installed. The app does normal work, and the enabled modules observe framework activity:
+
+- Screen navigation through Flutter routes.
+- Taps and user interactions.
+- Supported crashes, ANR, slow rendering, and lifecycle signals.
+- HTTP calls made by the Flutter layer.
+
+Custom instrumentation is explicit code that adds business meaning:
+
+- `product_viewed`
+- `cart_item_added`
+- `checkout_started`
+- `checkout_completed`
+- `checkout_failed`
+- `workshop_custom_event`
+- `manual_instrumentation_training` workflow
 
 ## Notes
 

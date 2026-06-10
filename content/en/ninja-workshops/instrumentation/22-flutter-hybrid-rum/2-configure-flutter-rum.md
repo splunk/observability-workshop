@@ -113,6 +113,25 @@ With only the initialization step, the app starts sending telemetry with:
 
 The next section adds business context so those raw technical signals become useful during troubleshooting.
 
+## Automatic Instrumentation Examples
+
+The sample app includes automatic instrumentation examples in:
+
+```text
+workshop/flutter-hybrid-rum/flutter-shop/lib/src/screens/instrumentation_examples_screen.dart
+```
+
+Use the **Generate automatic network request** button on that screen. The button calls normal app code in `ShopStore`, which calls `ShopApi.fetchProducts()`. There is no direct Splunk RUM API call in that path. When live RUM is enabled, the network instrumentation module should capture the HTTP request as part of the mobile session.
+
+Other automatic examples happen as you use the app:
+
+| User action | Why it is automatic |
+| ----------- | ------------------- |
+| Navigate from catalog to cart | Navigation is captured by the enabled navigation module and route observer. |
+| Tap product and cart buttons | Interaction instrumentation observes supported user interactions. |
+| Load product data or submit checkout | Covered HTTP calls are captured by network instrumentation. |
+| Load the embedded checkout WebView | Browser RUM captures web route, resource, click, and fetch activity inside the WebView. |
+
 {{% notice title="Token handling" style="info" %}}
 RUM access tokens are intended for client-side telemetry ingestion, but they are still configuration values. Keep them out of screenshots, public repositories, crash reports, and unrelated logs.
 {{% /notice %}}

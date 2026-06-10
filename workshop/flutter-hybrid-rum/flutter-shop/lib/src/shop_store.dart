@@ -34,6 +34,10 @@ class ShopStore extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> runAutoNetworkExample() async {
+    await _api.fetchProducts();
+  }
+
   Future<void> addToCart(Product product) async {
     await _api.addToCart(product);
 
