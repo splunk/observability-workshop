@@ -29,6 +29,12 @@ adds product context:
 | Payment validation error | The app catches the error, so it might not crash. | Track a handled exception. |
 | Payment API request | Mobile latency needs to connect to backend latency. | Capture network timing and correlate to APM. |
 
+In the included sample app, the manual instrumentation is in:
+
+```text
+workshop/android-app-monitoring/app/src/main/java/com/splunk/workshop/androidrum/MainActivity.java
+```
+
 ## Track Screen Navigation
 
 For XML and Activity/Fragment apps, automatic lifecycle events may be enough for a

@@ -40,6 +40,14 @@ that describe your own app's user journey.
 - A backend endpoint that the app calls, ideally instrumented with Splunk APM for
   trace correlation.
 
+The workshop includes a runnable sample app at:
+
+```text
+workshop/android-app-monitoring/
+```
+
+Use Android Studio or the included Gradle wrapper to build and run it in an emulator.
+
 {{% notice title="Version Compatibility" style="info" %}}
 The Splunk RUM Android 2.x agent builds for Android API level 21 and higher. By
 default, the agent runs on devices with Android API level 24 and higher. If you need
@@ -79,12 +87,12 @@ will add for observability.
 
 | App behavior | Code location | Instrumentation added |
 | --- | --- | --- |
-| App process starts | `Application.onCreate()` | `SplunkRum.install()` initializes the SDK once. |
+| App process starts | `InstrumentedShopApplication.onCreate()` | `SplunkRum.install()` initializes the SDK once. |
 | App moves between foreground and background | Android lifecycle callbacks | Lifecycle module records app state changes automatically. |
-| User taps buttons and moves through screens | Activities, fragments, or Compose navigation | Automatic interaction capture plus manual screen names. |
-| App calls backend APIs | OkHttp or `HttpURLConnection` client | Automatic HTTP module records request timing and response data. |
-| Checkout submit starts and completes | Checkout repository, use case, or view model | Manual workflow span around the checkout operation. |
-| App catches a recoverable error | Error handler or view model | Manual handled exception event with safe context. |
+| User taps buttons and moves through screens | `MainActivity` button handlers | Automatic interaction capture plus manual screen names. |
+| App calls backend APIs | `MainActivity` OkHttp calls | Manual OkHttp wrapper records request timing and response data. |
+| Checkout submit starts and completes | `MainActivity.submitCheckout()` | Manual workflow span around the checkout operation. |
+| App catches a recoverable error | `MainActivity.trackHandledPaymentError()` | Manual handled exception event with safe context. |
 | Production crash stack traces are obfuscated | CI release build | Mapping file upload de-obfuscates crashes in RUM. |
 
 ## Data Flow

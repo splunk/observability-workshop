@@ -42,6 +42,18 @@ booking, checkout, claim submission, or account update.
 
 The first module explains this app model in detail before you configure RUM.
 
+## Lab Files
+
+The runnable Android sample app is in:
+
+```text
+workshop/android-app-monitoring/
+```
+
+Open it in Android Studio or build it from the command line. The app can run without a
+RUM token for local exploration, but it sends data to Splunk RUM only when you pass a
+valid realm and RUM access token.
+
 ## How We Add Instrumentation
 
 Instrumentation is added in layers:

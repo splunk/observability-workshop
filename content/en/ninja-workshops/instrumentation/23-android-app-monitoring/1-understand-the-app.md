@@ -5,10 +5,15 @@ time: 10 minutes
 description: Understand the reference Android app, its user journey, and where monitoring code will be added.
 ---
 
-This workshop uses a fictional Android shopping app called **Buttercup** as the
-reference app. Buttercup is intentionally ordinary: it has screens, buttons, API
-calls, successful journeys, and failure paths. That makes it a useful model for most
-mobile apps.
+This workshop uses a small Android shopping app called **Buttercup** as the reference
+app. The runnable app lives in:
+
+```text
+workshop/android-app-monitoring/
+```
+
+Buttercup is intentionally ordinary: it has screens, buttons, API calls, successful
+journeys, and failure paths. That makes it a useful model for most mobile apps.
 
 You can use your own Android app instead. When you see a Buttercup screen or workflow,
 replace it with the equivalent screen or workflow in your app.
@@ -43,13 +48,13 @@ Use this model to map Buttercup to your own app.
 
 | Buttercup area | Typical Android code location | What happens there |
 | --- | --- | --- |
-| App startup | `Application`, main `Activity` | The process starts and the first screen loads. |
-| Product list | Activity, fragment, or Compose route | The user sees catalog data from a backend API. |
-| Product detail | Activity, fragment, or Compose route | The user opens one item and might add it to the cart. |
-| Cart | View model, repository, API client | The app updates cart state and calls cart APIs. |
-| Checkout shipping | View model and validation logic | The app validates user input and records checkout progress. |
-| Checkout payment | Payment view model, repository, API client | The app submits payment and waits on backend services. |
-| Confirmation | Activity, fragment, or Compose route | The app reports that checkout completed successfully. |
+| App startup | `InstrumentedShopApplication.java` | The process starts and Splunk RUM is initialized. |
+| Product list | `MainActivity.java` | The user sees catalog data from a backend API. |
+| Product detail | `MainActivity.java` | The user opens one item and might add it to the cart. |
+| Cart | `MainActivity.java` | The app updates cart state and records cart activity. |
+| Checkout shipping | `MainActivity.java` | The app validates user intent and records checkout progress. |
+| Checkout payment | `MainActivity.java` | The app submits payment and waits on a backend-style HTTP call. |
+| Confirmation | `MainActivity.java` | The app reports that checkout completed successfully. |
 
 The workshop does not require these exact class names. The important part is knowing
 which code owns startup, navigation, API calls, checkout, and error handling.
@@ -65,6 +70,14 @@ We add monitoring in five layers. Each layer answers a different question.
 | Automatic modules | Enable lifecycle, rendering, crash, ANR, interaction, and HTTP modules | What happened without custom app code? |
 | Manual app context | Track screen names, custom events, workflows, and handled exceptions | What business journey was the user trying to complete? |
 | Release metadata | Upload R8/ProGuard mapping files in CI | Can production crash stack traces be understood? |
+
+In the sample app, these layers are split across three files:
+
+| File | What to inspect |
+| --- | --- |
+| `app/build.gradle.kts` | SDK dependency and `BuildConfig` values for realm, token, app name, and environment. |
+| `InstrumentedShopApplication.java` | RUM initialization and automatic module configuration. |
+| `MainActivity.java` | Manual navigation, custom events, workflow spans, handled exceptions, and OkHttp instrumentation. |
 
 ## What the SDK Captures Automatically
 

@@ -8,6 +8,15 @@ description: Add Maven Central, desugaring, and the Splunk RUM Android dependenc
 In this module you will add the Splunk RUM Android agent dependency and make sure the
 Android build can run the APIs used by the agent.
 
+If you are using the included sample app, open:
+
+```text
+workshop/android-app-monitoring/app/build.gradle.kts
+```
+
+The dependency and build configuration are already present so you can inspect them
+instead of typing them manually.
+
 ## Add Maven Central
 
 Confirm that your project repositories include Maven Central.

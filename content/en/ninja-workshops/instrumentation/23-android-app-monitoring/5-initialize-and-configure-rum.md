@@ -8,6 +8,12 @@ description: Initialize the Splunk RUM Android agent from the Application class.
 Initialize RUM once, as early as practical in your application lifecycle. The usual
 place is `Application.onCreate()`.
 
+In the included sample app, this code is in:
+
+```text
+workshop/android-app-monitoring/app/src/main/java/com/splunk/workshop/androidrum/InstrumentedShopApplication.java
+```
+
 ## What This Step Changes
 
 Before this module, Buttercup is just a normal Android app. It launches screens and
@@ -135,6 +141,18 @@ Start the app on an emulator or device:
 
 Open Logcat and filter for Splunk or OpenTelemetry messages. Then use the app for a
 minute so the agent has lifecycle and interaction data to send.
+
+For the included sample app:
+
+```bash
+cd workshop/android-app-monitoring
+
+ANDROID_HOME="$HOME/Library/Android/sdk" ./gradlew :app:installDebug \
+  -PsplunkRealm=us1 \
+  -PsplunkRumAccessToken=replace-with-rum-token \
+  -PsplunkRumAppName=buttercup-android \
+  -PsplunkRumEnvironment=workshop
+```
 
 ## Exercise
 
