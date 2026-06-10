@@ -1,7 +1,7 @@
 ---
 title: Splunk APM, Lambda Functions and Traces, Again!
-linkTitle: 6. Updated Lambdas in Splunk APM
-weight: 6
+linkTitle: 7. Updated Lambdas in Splunk APM
+weight: 7
 ---
 
 In order to see the result of our context propagation outside of the logs, we'll once again consult the [Splunk APM UI](https://app.us1.signalfx.com/#/apm).
