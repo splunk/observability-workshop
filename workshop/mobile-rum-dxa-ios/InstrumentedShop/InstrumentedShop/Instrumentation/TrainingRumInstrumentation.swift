@@ -12,11 +12,20 @@ final class TrainingRumInstrumentation {
 
     func start(configuration: RumConfiguration) {
         record(.bootstrap, "RUM Bootstrap", attributes: [
+            "instrumentation.type": "automatic",
             "realm": configuration.realm,
             "application.name": configuration.applicationName,
             "deployment.environment": configuration.deploymentEnvironment,
             "app.version": configuration.appVersion,
             "rum.token": configuration.rumAccessToken == "training-mode" ? "training-mode" : "configured"
+        ])
+    }
+
+    func enableAutomaticNavigationTracking() {
+        record(.bootstrap, "Automatic Navigation Tracking Enabled", attributes: [
+            "instrumentation.type": "automatic",
+            "captures": "screen transitions",
+            "rum.api": "navigation.preferences.enableAutomatedTracking"
         ])
     }
 

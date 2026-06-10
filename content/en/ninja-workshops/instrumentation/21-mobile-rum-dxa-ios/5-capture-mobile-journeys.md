@@ -14,11 +14,11 @@ Custom events and workflows add that product meaning:
 
 | App code location | Instrumentation | Meaning added |
 | --- | --- | --- |
-| Product detail screen appears | `trackCustomEvent(name: "Product Viewed", ...)` | User entered the product journey. |
-| Add-to-cart button handler | `trackCustomEvent(name: "Add To Cart", ...)` | User showed purchase intent. |
-| Checkout screen appears | `trackCustomEvent(name: "Checkout Started", ...)` | User entered the conversion funnel. |
+| Product detail screen appears | `trackCustomEvent("Product Viewed", ...)` | User entered the product journey. |
+| Add-to-cart button handler | `trackCustomEvent("Add To Cart", ...)` | User showed purchase intent. |
+| Checkout screen appears | `trackCustomEvent("Checkout Started", ...)` | User entered the conversion funnel. |
 | Checkout submission method | `trackWorkflow("Order Submitted")` | App timed the operation that completes conversion. |
-| Checkout error handler | `trackCustomEvent(name: "Checkout Failed", ...)` | App marked a business-impacting failure. |
+| Checkout error handler | `trackCustomEvent("Checkout Failed", ...)` | App marked a business-impacting failure. |
 
 In the included app, those hook points are concentrated in:
 
@@ -47,15 +47,12 @@ Keep attributes intentionally low-cardinality. Category, feature, route, and res
 Use a zero-duration event for a discrete action, such as tapping `Add To Cart`:
 
 ```swift
-let attributes: NSDictionary = [
-    "app.feature": "cart",
-    "product.category": "workshop"
-]
+let attributes = MutableAttributes()
+attributes[string: "app.feature"] = "cart"
+attributes[string: "product.category"] = product.category
+attributes[int: "cart.size"] = cart.items.count
 
-SplunkRum.shared.customTracking.trackCustomEvent(
-    name: "Add To Cart",
-    attributes: attributes
-)
+SplunkRum.shared.customTracking.trackCustomEvent("Add To Cart", attributes)
 ```
 
 The supporting example is:
@@ -118,6 +115,14 @@ try MobileJourneyInstrumentation.runCheckoutSubmission(
 ```
 
 For async checkout code, keep the same idea: start the workflow before the operation begins, add the result attributes, and end the span after success or failure.
+
+The runnable app includes a concrete async reference:
+
+```text
+workshop/mobile-rum-dxa-ios/InstrumentedShop/InstrumentedShop/Instrumentation/SplunkRumExamples.swift
+```
+
+Look at `trackCheckoutSubmission(...)` for the custom workflow span and `checkoutFailed(...)` for the handled failure event.
 
 ## Validate event design
 

@@ -16,6 +16,7 @@
 		B7F5973933E02CA1EF67DB6F /* RumConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545B94646006279119D4D1C0 /* RumConfiguration.swift */; };
 		BDB71639CD9563379C74804F /* TrainingRumInstrumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AEFB86ED66308C4E98C77 /* TrainingRumInstrumentation.swift */; };
 		D07104A4AF9BB069CDC1E6E0 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7865AB1A5198764D295E0 /* CheckoutView.swift */; };
+		DA4E91F73A6D628BE077B256 /* SplunkRumExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06A3193A6180A9B3CBC2295 /* SplunkRumExamples.swift */; };
 		F8690EB593BF47670C4A4268 /* CheckoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E59D55A271F0167E76A90 /* CheckoutService.swift */; };
 		F8B27B090C20A9AAD2F81035 /* TelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB7839CF88187795AE6770 /* TelemetryView.swift */; };
 		FFB170BD33E5C60F90042DF4 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230E567CD545C0BA01E227E /* ConfirmationView.swift */; };
@@ -35,6 +36,7 @@
 		BB85E7E4CE0543A95E918AD0 /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		D3AB7839CF88187795AE6770 /* TelemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryView.swift; sourceTree = "<group>"; };
 		E281E6B91521FDCE3420C058 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		F06A3193A6180A9B3CBC2295 /* SplunkRumExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplunkRumExamples.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				545B94646006279119D4D1C0 /* RumConfiguration.swift */,
+				F06A3193A6180A9B3CBC2295 /* SplunkRumExamples.swift */,
 				387AEFB86ED66308C4E98C77 /* TrainingRumInstrumentation.swift */,
 			);
 			path = Instrumentation;
@@ -151,6 +154,7 @@
 				4A767F84A66E9EC672E6FBF2 /* Models.swift in Sources */,
 				3E7FDC4DB7140C1F49253B00 /* ProductDetailView.swift in Sources */,
 				B7F5973933E02CA1EF67DB6F /* RumConfiguration.swift in Sources */,
+				DA4E91F73A6D628BE077B256 /* SplunkRumExamples.swift in Sources */,
 				F8B27B090C20A9AAD2F81035 /* TelemetryView.swift in Sources */,
 				BDB71639CD9563379C74804F /* TrainingRumInstrumentation.swift in Sources */,
 				1B3BE0617FE22C10331AEC84 /* WorkshopStore.swift in Sources */,

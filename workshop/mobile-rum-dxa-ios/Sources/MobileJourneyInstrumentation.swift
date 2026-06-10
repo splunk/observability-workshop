@@ -3,28 +3,28 @@ import SplunkAgent
 
 enum MobileJourneyInstrumentation {
     static func reportProductViewed(category: String) {
-        let attributes: NSDictionary = [
-            "app.feature": "catalog",
-            "product.category": category
-        ]
+        let attributes = MutableAttributes()
+        attributes[string: "app.feature"] = "catalog"
+        attributes[string: "product.category"] = category
 
-        SplunkRum.shared.customTracking.trackCustomEvent(
-            name: "Product Viewed",
-            attributes: attributes
-        )
+        SplunkRum.shared.customTracking.trackCustomEvent("Product Viewed", attributes)
     }
 
     static func reportAddToCart(category: String, cartSize: Int) {
-        let attributes: NSDictionary = [
-            "app.feature": "cart",
-            "product.category": category,
-            "cart.size": cartSize
-        ]
+        let attributes = MutableAttributes()
+        attributes[string: "app.feature"] = "cart"
+        attributes[string: "product.category"] = category
+        attributes[int: "cart.size"] = cartSize
 
-        SplunkRum.shared.customTracking.trackCustomEvent(
-            name: "Add To Cart",
-            attributes: attributes
-        )
+        SplunkRum.shared.customTracking.trackCustomEvent("Add To Cart", attributes)
+    }
+
+    static func reportCheckoutStarted(cartSize: Int) {
+        let attributes = MutableAttributes()
+        attributes[string: "app.feature"] = "checkout"
+        attributes[int: "cart.size"] = cartSize
+
+        SplunkRum.shared.customTracking.trackCustomEvent("Checkout Started", attributes)
     }
 
     static func runCheckoutSubmission(
@@ -50,15 +50,11 @@ enum MobileJourneyInstrumentation {
     }
 
     static func reportCheckoutFailed(step: String, errorType: String) {
-        let attributes: NSDictionary = [
-            "app.feature": "checkout",
-            "checkout.step": step,
-            "error.type": errorType
-        ]
+        let attributes = MutableAttributes()
+        attributes[string: "app.feature"] = "checkout"
+        attributes[string: "checkout.step"] = step
+        attributes[string: "error.type"] = errorType
 
-        SplunkRum.shared.customTracking.trackCustomEvent(
-            name: "Checkout Failed",
-            attributes: attributes
-        )
+        SplunkRum.shared.customTracking.trackCustomEvent("Checkout Failed", attributes)
     }
 }

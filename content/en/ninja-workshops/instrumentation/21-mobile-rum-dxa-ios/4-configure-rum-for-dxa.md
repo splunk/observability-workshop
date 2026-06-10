@@ -14,7 +14,7 @@ The bootstrap code answers three questions for every mobile signal:
 | --- | --- | --- |
 | Where should telemetry be sent? | `realm` and `rumAccessToken` | `us1` and the mobile RUM token. |
 | Which app and release produced it? | `appName`, environment, and app version | `ios-dxa-workshop`, `workshop`, `1.0.0`. |
-| How should users and screens be grouped? | anonymous tracking and navigation naming | anonymous user/session IDs, `Cart`, `Checkout`. |
+| How should users and screens be grouped? | anonymous tracking, automatic navigation, and explicit screen names where needed | anonymous user/session IDs, `Cart`, `Checkout`. |
 
 Without this configuration, RUM might still collect technical telemetry, but DXA will be harder to use because sessions, events, environments, and releases will not line up cleanly.
 
@@ -49,7 +49,7 @@ If user tracking is disabled, RUM can still collect technical telemetry, but DXA
 
 ## Normalize screen names
 
-Automatic navigation tracking is useful, but raw controller names are often too technical for DXA users. Add a navigation event processor when internal class names need to become business-friendly screen names.
+Automatic navigation tracking is useful, but raw controller or SwiftUI host names are often too technical for DXA users. Keep automatic navigation enabled, then report explicit screen names at stable view boundaries when the app needs business-friendly labels.
 
 For the workshop app, map implementation names to product language:
 
@@ -61,42 +61,29 @@ For the workshop app, map implementation names to product language:
 | `CheckoutViewController` or `CheckoutView` | `Checkout` |
 | `ConfirmationViewController` or `ConfirmationView` | `Order Confirmation` |
 
-Example mapping:
+SwiftUI example:
 
 ```swift
-class WorkshopNavigationProcessor: NavigationEventProcessor {
-    func onViewController(
-        typeName: String,
-        controllerIdentity: String
-    ) -> NavigationEvent? {
-        let mapped = [
-            "ProductDetailViewController": "Product Detail",
-            "CartViewController": "Cart",
-            "CheckoutViewController": "Checkout"
-        ][typeName] ?? typeName.replacingOccurrences(of: "ViewController", with: "")
-
-        return NavigationEvent(
-            name: mapped,
-            attributes: ["app.feature": "checkout"]
-        )
+struct CheckoutView: View {
+    var body: some View {
+        CheckoutForm()
+            .onAppear {
+                SplunkRum.shared.navigation.track(screen: "Checkout")
+            }
     }
 }
 ```
 
-Pass the processor during install:
+UIKit example:
 
 ```swift
-let navigationConfig = NavigationConfiguration(
-    isEnabled: true,
-    enableAutomatedTracking: true,
-    navigationEventProcessor: WorkshopNavigationProcessor()
-)
-
-try SplunkRum.install(
-    with: agentConfiguration,
-    moduleConfigurations: [navigationConfig]
-)
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    SplunkRum.shared.navigation.track(screen: "Checkout")
+}
 ```
+
+The training app keeps these screen hook points in `WorkshopStore.screenViewed(...)` so students can see the naming decision in one place.
 
 ## Add stable global attributes
 

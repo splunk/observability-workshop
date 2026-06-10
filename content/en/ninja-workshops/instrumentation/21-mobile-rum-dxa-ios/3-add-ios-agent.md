@@ -45,6 +45,14 @@ InstrumentedShop/InstrumentedShop/Instrumentation/TrainingRumInstrumentation.swi
 
 `WorkshopStore.bootstrapIfNeeded()` is the app lifecycle hook. `TrainingRumInstrumentation.start(...)` is the local stand-in for the real `SplunkRum.install(...)` call.
 
+The runnable app also includes a real-code reference that is compiled only after the Splunk package is available:
+
+```text
+workshop/mobile-rum-dxa-ios/InstrumentedShop/InstrumentedShop/Instrumentation/SplunkRumExamples.swift
+```
+
+Use `SplunkRumAutoInstrumentationExample` for automatic instrumentation setup and `SplunkRumCustomInstrumentationExample` for the custom journey events added later.
+
 ## Add bootstrap code
 
 Add a bootstrap file to the app target. The supporting example is:
@@ -70,6 +78,7 @@ let agentConfiguration = AgentConfiguration(
 )
 
 let agent = try SplunkRum.install(with: agentConfiguration)
+agent.user.preferences.trackingMode = .anonymousTracking
 agent.navigation.preferences.enableAutomatedTracking = true
 agent.sessionReplay.start()
 ```

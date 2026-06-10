@@ -40,19 +40,22 @@ final class WorkshopStore: ObservableObject {
                 appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
             )
         )
+        instrumentation.enableAutomaticNavigationTracking()
         instrumentation.enableAnonymousTracking()
         instrumentation.startSessionReplay()
     }
 
     func screenViewed(_ name: String, feature: String) {
         instrumentation.screenViewed(name, attributes: [
-            "app.feature": feature
+            "app.feature": feature,
+            "instrumentation.type": "automatic"
         ])
     }
 
     func productViewed(_ product: Product) {
         instrumentation.customEvent("Product Viewed", attributes: [
             "app.feature": "catalog",
+            "instrumentation.type": "custom",
             "product.category": product.category
         ])
     }
@@ -66,6 +69,7 @@ final class WorkshopStore: ObservableObject {
 
         instrumentation.customEvent("Add To Cart", attributes: [
             "app.feature": "cart",
+            "instrumentation.type": "custom",
             "product.category": product.category,
             "cart.size": "\(cartCount)"
         ])
@@ -75,6 +79,7 @@ final class WorkshopStore: ObservableObject {
         cartItems.removeAll { $0.id == item.id }
         instrumentation.customEvent("Remove From Cart", attributes: [
             "app.feature": "cart",
+            "instrumentation.type": "custom",
             "cart.size": "\(cartCount)"
         ])
     }
@@ -82,6 +87,7 @@ final class WorkshopStore: ObservableObject {
     func checkoutStarted() {
         instrumentation.customEvent("Checkout Started", attributes: [
             "app.feature": "checkout",
+            "instrumentation.type": "custom",
             "cart.size": "\(cartCount)"
         ])
         instrumentation.markSensitiveView("checkout.email")
@@ -92,6 +98,7 @@ final class WorkshopStore: ObservableObject {
         guard !cartItems.isEmpty else {
             instrumentation.customEvent("Checkout Failed", attributes: [
                 "app.feature": "checkout",
+                "instrumentation.type": "custom",
                 "checkout.step": "preflight",
                 "error.type": "empty_cart"
             ])
@@ -101,6 +108,7 @@ final class WorkshopStore: ObservableObject {
         isSubmittingCheckout = true
         let workflow = instrumentation.startWorkflow("Order Submitted", attributes: [
             "app.feature": "checkout",
+            "instrumentation.type": "custom",
             "checkout.method": paymentMethod,
             "cart.size": "\(cartCount)"
         ])
@@ -127,6 +135,7 @@ final class WorkshopStore: ObservableObject {
             ])
             instrumentation.customEvent("Checkout Failed", attributes: [
                 "app.feature": "checkout",
+                "instrumentation.type": "custom",
                 "checkout.step": "submit",
                 "error.type": String(describing: type(of: error))
             ])
@@ -138,7 +147,8 @@ final class WorkshopStore: ObservableObject {
     func clearTelemetry() {
         events.removeAll()
         instrumentation.customEvent("Telemetry Cleared", attributes: [
-            "app.feature": "training"
+            "app.feature": "training",
+            "instrumentation.type": "custom"
         ])
     }
 }

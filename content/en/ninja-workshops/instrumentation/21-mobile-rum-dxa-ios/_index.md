@@ -58,7 +58,7 @@ The workshop adds instrumentation in layers:
 | --- | --- | --- |
 | RUM package | Xcode Swift Package Manager | Makes the Splunk RUM iOS agent available to the app target. |
 | Bootstrap | SwiftUI `App.init()` or UIKit app delegate startup | Starts RUM once, sets realm/token/app/environment, and enables automatic navigation tracking. |
-| Navigation naming | RUM install configuration | Converts technical controller names into readable screen names such as `Product Detail` and `Checkout`. |
+| Screen naming | Automatic navigation plus explicit screen naming where needed | Captures screen transitions and lets the app report readable names such as `Product Detail` and `Checkout`. |
 | Custom journey events | Button handlers and checkout methods | Creates DXA-friendly events such as `Add To Cart`, `Checkout Started`, and `Order Submitted`. |
 | Session Replay privacy | View setup and reusable sensitive components | Records the session while hiding fields, payment containers, account details, and WebView content. |
 | Span interception | RUM agent configuration | Redacts sensitive exported metadata such as full URLs before telemetry leaves the device. |
@@ -78,6 +78,7 @@ Key files:
 | --- | --- |
 | `InstrumentedShop/WorkshopStore.swift` | Owns cart and checkout state, and calls the instrumentation layer at each business event. |
 | `InstrumentedShop/Instrumentation/TrainingRumInstrumentation.swift` | Local stand-in for Splunk RUM that records events to the app's Telemetry tab. |
+| `InstrumentedShop/Instrumentation/SplunkRumExamples.swift` | Real Splunk RUM examples for automatic bootstrap instrumentation and custom journey instrumentation. |
 | `InstrumentedShop/Views/*.swift` | SwiftUI screens for catalog, product detail, cart, checkout, confirmation, and telemetry. |
 | `project.yml` | XcodeGen source for the Xcode project. |
 | `InstrumentedShop.xcodeproj` | Generated Xcode project that students can open directly. |

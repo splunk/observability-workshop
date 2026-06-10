@@ -13,6 +13,7 @@ Each screen and user action maps to a RUM or DXA concept:
 | App action | Training event | Real Splunk RUM equivalent |
 | --- | --- | --- |
 | App launch | `RUM Bootstrap` | `SplunkRum.install(...)` during startup. |
+| Bootstrap configuration | `Automatic Navigation Tracking Enabled` | `navigation.preferences.enableAutomatedTracking = true`. |
 | Screen appears | `Catalog`, `Product Detail`, `Cart`, `Checkout` | automatic navigation tracking with readable screen names. |
 | Product opens | `Product Viewed` | `customTracking.trackCustomEvent`. |
 | Add-to-cart tap | `Add To Cart` | `customTracking.trackCustomEvent`. |
@@ -57,4 +58,7 @@ xcodebuild \
 3. Repeat checkout with **Simulate checkout failure** enabled.
 4. Open `WorkshopStore.swift` to see where the app calls the instrumentation layer.
 5. Open `TrainingRumInstrumentation.swift` to see the local stand-in for Splunk RUM.
-6. In the workshop labs, add the Splunk RUM iOS package and replace the training implementation with real Splunk RUM calls.
+6. Open `SplunkRumExamples.swift` for real Splunk examples:
+   - `SplunkRumAutoInstrumentationExample` shows package bootstrap, global attributes, span redaction, anonymous tracking, automatic navigation, and Session Replay startup.
+   - `SplunkRumCustomInstrumentationExample` shows screen naming, custom events, checkout workflow spans, and failure attributes.
+7. In the workshop labs, add the Splunk RUM iOS package and replace the training implementation with real Splunk RUM calls.

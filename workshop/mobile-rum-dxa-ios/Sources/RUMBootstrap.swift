@@ -1,29 +1,12 @@
 import Foundation
 import SplunkAgent
 
-final class WorkshopNavigationProcessor: NavigationEventProcessor {
-    func onViewController(
-        typeName: String,
-        controllerIdentity: String
-    ) -> NavigationEvent? {
-        let mappedName = [
-            "ProductDetailViewController": "Product Detail",
-            "CartViewController": "Cart",
-            "CheckoutViewController": "Checkout"
-        ][typeName] ?? typeName.replacingOccurrences(of: "ViewController", with: "")
-
-        return NavigationEvent(
-            name: mappedName,
-            attributes: [
-                "app.feature": "checkout",
-                "app.team": "mobile"
-            ]
-        )
-    }
-}
-
 enum RUMBootstrap {
     static func install() {
+        let globalAttributes = MutableAttributes()
+        globalAttributes[string: "app.team"] = "mobile-experience"
+        globalAttributes[string: "workshop.name"] = "mobile-rum-dxa-ios"
+
         let endpointConfiguration = EndpointConfiguration(
             realm: "YOUR_REALM",
             rumAccessToken: "YOUR_RUM_ACCESS_TOKEN"
@@ -33,21 +16,14 @@ enum RUMBootstrap {
             endpoint: endpointConfiguration,
             appName: "YOUR_APP_NAME",
             deploymentEnvironment: "YOUR_DEPLOYMENT_ENVIRONMENT"
-        ).spanInterceptor(PrivacySpanInterceptor.redact)
-
-        let navigationConfig = NavigationConfiguration(
-            isEnabled: true,
-            enableAutomatedTracking: true,
-            navigationEventProcessor: WorkshopNavigationProcessor()
         )
+        .globalAttributes(globalAttributes)
+        .spanInterceptor(PrivacySpanInterceptor.redact)
 
         do {
-            let agent = try SplunkRum.install(
-                with: agentConfiguration,
-                moduleConfigurations: [navigationConfig]
-            )
+            let agent = try SplunkRum.install(with: agentConfiguration)
 
-            SplunkRum.shared.user.preferences.trackingMode = .anonymousTracking
+            agent.user.preferences.trackingMode = .anonymousTracking
             agent.navigation.preferences.enableAutomatedTracking = true
             agent.sessionReplay.start()
         } catch {

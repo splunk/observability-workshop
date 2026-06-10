@@ -74,6 +74,7 @@ You should see events such as:
 | Event | Why it exists |
 | --- | --- |
 | `RUM Bootstrap` | The app started the instrumentation layer. |
+| `Automatic Navigation Tracking Enabled` | The app enabled automatic RUM screen instrumentation. |
 | `Catalog` and `Product Detail` | Screen tracking fired as views appeared. |
 | `Product Viewed` | The app reported a product journey event. |
 | `Add To Cart` | The add-to-cart button handler reported user intent. |
@@ -104,6 +105,12 @@ The training implementation is:
 
 ```text
 workshop/mobile-rum-dxa-ios/InstrumentedShop/InstrumentedShop/Instrumentation/TrainingRumInstrumentation.swift
+```
+
+Real Splunk RUM examples for the same hook points are in:
+
+```text
+workshop/mobile-rum-dxa-ios/InstrumentedShop/InstrumentedShop/Instrumentation/SplunkRumExamples.swift
 ```
 
 In later labs, students keep the app flow and replace the training implementation with real Splunk RUM calls.
