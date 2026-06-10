@@ -15,18 +15,22 @@ product: "Observability Cloud"
 
 This workshop picks up after workshop 18 and shows the fastest path to instrumenting a LangChain app with Galileo.
 
-You will reuse the **multi-agent travel planner** from workshop 18. It is a Flask API backed by a LangGraph
+You will reuse the **multi-agent travel planner** from workshop [Monitoring Agentic AI Applications](ninja-workshops/ai/18-agentic-ai/). It is a Flask API backed by a LangGraph
 workflow whose nodes (coordinator, flight specialist, hotel specialist, activity specialist, and
 synthesizer) each call an LLM through LangChain. Instead of sending its telemetry to Splunk
 Observability Cloud, you'll trace it with Galileo (Splunk Agent Observability).
 
-You will:
+{{< objectives title="Objectives" >}}
 
 * Install the Galileo SDK and set required environment variables.
 * Add Galileo context initialization and a single LangChain callback to the travel planner.
 * Run a real travel-planning request and verify the full multi-agent trace in the Galileo console.
 
-Primary references:
+{{< /objectives >}}
+
+{{% notice style="info" title="Primary references" %}}
 
 * [Galileo Quickstart](https://docs.galileo.ai/getting-started/quickstart)
 * [Galileo LangChain integration](https://docs.galileo.ai/sdk-api/third-party-integrations/langchain/langchain)
+
+{{% /notice %}}

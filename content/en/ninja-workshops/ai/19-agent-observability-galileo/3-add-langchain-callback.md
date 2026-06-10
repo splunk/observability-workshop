@@ -14,14 +14,20 @@ pass a single callback in the **run config** when the compiled graph is streamed
 one trace per request, with a nested LLM span for each agent node (coordinator, flight, hotel,
 activity, and synthesizer).
 
-1. Add the callback import alongside the other LangChain imports in `main.py`:
+{{< exercise title="Add the LangChain callback" >}}
+
+{{< step title="Import the callback"  >}}
+
+Add the callback import alongside the other LangChain imports in `main.py`:
 
 ```python
 from galileo.handlers.langchain import GalileoCallback
 ```
 
-2. In `plan_travel_internal()`, create a callback and attach it to the run config passed to
-   `compiled_app.stream(...)`. The existing code should look something like this:
+{{< /step >}}
+
+{{< step title="Attach the callback to the graph run config"  >}}
+In `plan_travel_internal()`, create a callback and attach it to the run config passed to `compiled_app.stream(...)`. The existing code should look something like this:
 
 ```python
     workflow = build_workflow()
@@ -32,8 +38,7 @@ from galileo.handlers.langchain import GalileoCallback
         final_state = node_state
 ```
 
-   Update it to build a config that includes the Galileo callback (merging it with any existing
-   config the app already passes). This passes the execution of each node in the agent to Galileo:
+Update it to build a config that includes the Galileo callback (merging it with any existing config the app already passes). This passes the execution of each node in the agent to Galileo:
 
 ```python
     workflow = build_workflow()
@@ -48,8 +53,15 @@ from galileo.handlers.langchain import GalileoCallback
         final_state = node_state
 ```
 
-   Passing the callback at the graph level means it propagates to every node's `llm.invoke(...)`
-   call automatically. No further instrumentation is needed.
+Passing the callback at the graph level means it propagates to every node's `llm.invoke(...)` call automatically. No further instrumentation is needed.
+
+{{< /step >}}
+
+{{< /exercise >}}
+
+{{< checkpoint title="Knowledge Check" >}}
+
+Where do you attach the `GalileoCallback` in a LangGraph workflow?
 
 {{% notice title="Async workflows" style="blue" icon="info-circle" %}}
 If your app streams the graph asynchronously (`compiled_app.astream(...)`), use
