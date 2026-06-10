@@ -1,0 +1,24 @@
+name: flutter_hybrid_rum_shop
+description: A Flutter and hybrid WebView sample app for the Splunk RUM instrumentation workshop.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  splunk_otel_flutter: ^1.0.3
+  webview_flutter: ^4.10.0
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/web/checkout.html

@@ -15,10 +15,16 @@ product: "Observability Cloud"
 
 Mobile teams often own more than one front-end surface: native screens, Flutter views, and embedded web experiences delivered through a WebView or a hybrid framework. This workshop uses a small mobile checkout scenario to show how to decide where instrumentation belongs, add Splunk RUM to a Flutter app, instrument a hybrid web layer, and validate the resulting sessions in Splunk Observability Cloud.
 
-The lab is designed for an existing app. If you do not have one available, treat the sample as a reference architecture and use the snippets in:
+The lab includes a complete Flutter sample app and smaller reference snippets:
 
 ```text
 workshop/flutter-hybrid-rum/
+```
+
+The runnable sample app is in:
+
+```text
+workshop/flutter-hybrid-rum/flutter-shop/
 ```
 
 ## What the App Does
@@ -68,6 +74,17 @@ Instrumentation is added at the runtime boundary where the work happens. The app
 | Backend APIs | API services or gateway | Splunk APM/OpenTelemetry and trace header preservation | Server-side spans that explain why a mobile request was slow or failed. |
 
 After instrumentation, the same checkout flow produces an end-to-end troubleshooting path: start from a user session in RUM, inspect the Flutter screens and WebView events, open the slow or failed network request, and follow the linked backend trace in APM.
+
+## Sample App Files
+
+| Path | Purpose |
+| ---- | ------- |
+| `flutter-shop/lib/main.dart` | Reads configuration, installs Flutter RUM, creates the app store, and starts the app. |
+| `flutter-shop/lib/src/rum_service.dart` | Wraps Splunk RUM setup, global attributes, screen tracking, custom events, and checkout workflow tracking. |
+| `flutter-shop/lib/src/shop_store.dart` | Owns cart and checkout business actions, then calls the RUM service at meaningful user milestones. |
+| `flutter-shop/lib/src/shop_api.dart` | Sends demo HTTP requests so mobile network spans appear in RUM. |
+| `flutter-shop/lib/src/screens/checkout_webview_screen.dart` | Loads the embedded checkout page and bridges checkout completion back to Flutter. |
+| `flutter-shop/assets/web/checkout.html` | Initializes browser RUM inside the WebView and makes web-owned checkout requests. |
 
 ## Workshop Goals
 

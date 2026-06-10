@@ -5,6 +5,13 @@ weight: 2
 
 The Flutter path instruments the mobile shell: app launch, lifecycle, Flutter navigation, interactions, supported crash signals, and HTTP calls made by the Flutter layer. In the checkout scenario, this covers the home screen, product list, cart screen, and order confirmation screen.
 
+The complete sample app already contains these changes in:
+
+```text
+workshop/flutter-hybrid-rum/flutter-shop/lib/main.dart
+workshop/flutter-hybrid-rum/flutter-shop/lib/src/rum_service.dart
+```
+
 The exact package version can change, so use the current version from the Splunk guided setup or from `pub.dev`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}

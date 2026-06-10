@@ -22,12 +22,21 @@ Instrumentation is added in three places:
 - `hybrid/rum-bootstrap.js` initializes browser RUM inside the WebView's JavaScript runtime.
 - `apm/server-timing.md` documents the backend headers and APM setup needed to connect front-end sessions to server-side traces.
 
+For a complete runnable sample, use:
+
+```text
+flutter-shop/
+```
+
+That app includes a Flutter product catalog, cart, embedded WebView checkout, simulated backend calls, Flutter RUM initialization, custom RUM events, a checkout workflow, and browser RUM inside the WebView HTML asset.
+
 ## Files
 
 | Path | Purpose |
 | ---- | ------- |
 | `.env.example` | Local workshop values for realm, token, app name, environment, and app version. |
 | `flutter/main.dart` | Minimal Flutter RUM initialization and context examples. |
+| `flutter-shop/` | Complete Flutter sample app with Flutter and WebView instrumentation. |
 | `hybrid/rum-bootstrap.js` | Browser RUM bootstrap pattern for embedded WebView/hybrid content. |
 | `hybrid/webview-config.html` | Example configuration block for server-rendered or injected WebView settings. |
 | `apm/server-timing.md` | Backend checklist for RUM-to-APM correlation. |
@@ -43,9 +52,9 @@ source .env
 set +a
 ```
 
-3. Add the current `splunk_otel_flutter` package to your Flutter app.
-4. Adapt `flutter/main.dart` to your app's initialization path.
-5. If your app uses WebView content, add browser RUM to the web bundle using `hybrid/rum-bootstrap.js`.
+3. Run the complete sample app from `flutter-shop/`, or add the current `splunk_otel_flutter` package to your own app.
+4. Adapt the `flutter-shop/lib/src/rum_service.dart` pattern to your app's initialization path.
+5. If your app uses WebView content, add browser RUM to the web bundle using `flutter-shop/assets/web/checkout.html` or `hybrid/rum-bootstrap.js`.
 6. Generate sessions from a simulator or real device.
 7. Validate the sessions in Splunk RUM and check APM correlation for backend calls.
 
