@@ -2736,14 +2736,14 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Activate Environment&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and activate the virtual environment you created in &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
- (or create a fresh one):&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and create a new virtual environment:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 -m venv .venv
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -2753,15 +2753,9 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Install Galileo SDK&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Install the Galileo SDK alongside the app&amp;rsquo;s existing dependencies:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install galileo python-dotenv&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;The app already installs &lt;code&gt;langchain&lt;/code&gt;, &lt;code&gt;langchain-openai&lt;/code&gt;, &lt;code&gt;langgraph&lt;/code&gt;, and &lt;code&gt;flask&lt;/code&gt; via its
-&lt;code&gt;requirements.txt&lt;/code&gt;. Galileo&amp;rsquo;s LangChain callback ships with the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;</description></item><item><title>Review Azure OpenAI Metrics, Dashboards, and Navigators</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</guid><description>&lt;p&gt;This workshop will use OpenAI models running in Azure.&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;The app already installs &lt;code&gt;langchain&lt;/code&gt;, &lt;code&gt;langchain-openai&lt;/code&gt;, &lt;code&gt;langgraph&lt;/code&gt;, and &lt;code&gt;flask&lt;/code&gt; via its
+&lt;code&gt;requirements.txt&lt;/code&gt;. Galileo&amp;rsquo;s LangChain callback ships with the &lt;code&gt;galileo&lt;/code&gt; package, so
+let&amp;rsquo;s add it here.&lt;/p&gt;</description></item><item><title>Review Azure OpenAI Metrics, Dashboards, and Navigators</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/2-review-azure-ai-metrics/</guid><description>&lt;p&gt;This workshop will use OpenAI models running in Azure.&lt;/p&gt;
 &lt;p&gt;You can monitor the performance of Azure OpenAI applications by configuring your
 Azure OpenAI applications to send metrics to Splunk Observability Cloud.&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve already integrated our Azure account with the workshop instance
@@ -6570,22 +6564,6 @@ in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.&lt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Active Environment&lt;/p&gt;
-&lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the base-app directory and activate the virtual environment:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;2&lt;/div&gt;
-&lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Run the app&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;Start the app:&lt;/p&gt;
@@ -6613,7 +6591,7 @@ in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.&lt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section class="step"&gt;
-&lt;div class="step__num"&gt;3&lt;/div&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Send a request to the app&lt;/p&gt;</description></item><item><title>Service Centric View</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/</guid><description>&lt;p&gt;Splunk APM provide &lt;strong&gt;Service Centric Views&lt;/strong&gt; that provide engineers a deep understanding of service performance in one centralized view. Now, across every service, engineers can quickly identify errors or bottlenecks from a service’s underlying infrastructure, pinpoint performance degradation from new deployments, and visualize the health of every third party dependency.&lt;/p&gt;
 &lt;p&gt;To see this dashboard for the &lt;code&gt;api-gateway&lt;/code&gt;, click on &lt;strong&gt;APM → Overview&lt;/strong&gt; from the left-hand menu, click in the &amp;lsquo;Navigate to a service, business transaction, or trace&amp;rsquo; field, and then select the &lt;code&gt;api-gateway&lt;/code&gt; service in the drop-down list. This will bring you to the Service Centric View dashboard:&lt;/p&gt;</description></item><item><title>Test settings</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/4-edit-test-settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/4-edit-test-settings/</guid><description>&lt;p&gt;The simple settings allow you to configure the basics of the test:&lt;/p&gt;

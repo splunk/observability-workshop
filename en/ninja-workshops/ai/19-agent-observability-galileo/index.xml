@@ -21,14 +21,14 @@ across tools using a workload you already understand.&lt;/p&gt;</description></i
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Activate Environment&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and activate the virtual environment you created in &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
- (or create a fresh one):&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and create a new virtual environment:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 -m venv .venv
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -38,15 +38,9 @@ across tools using a workload you already understand.&lt;/p&gt;</description></i
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Install Galileo SDK&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Install the Galileo SDK alongside the app&amp;rsquo;s existing dependencies:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install galileo python-dotenv&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;The app already installs &lt;code&gt;langchain&lt;/code&gt;, &lt;code&gt;langchain-openai&lt;/code&gt;, &lt;code&gt;langgraph&lt;/code&gt;, and &lt;code&gt;flask&lt;/code&gt; via its
-&lt;code&gt;requirements.txt&lt;/code&gt;. Galileo&amp;rsquo;s LangChain callback ships with the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;</description></item><item><title>Add the LangChain Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</guid><description>&lt;p&gt;Galileo&amp;rsquo;s &lt;code&gt;GalileoCallback&lt;/code&gt; is a standard LangChain callback handler. When you attach it to a
+&lt;div class="step__body"&gt;&lt;p&gt;The app already installs &lt;code&gt;langchain&lt;/code&gt;, &lt;code&gt;langchain-openai&lt;/code&gt;, &lt;code&gt;langgraph&lt;/code&gt;, and &lt;code&gt;flask&lt;/code&gt; via its
+&lt;code&gt;requirements.txt&lt;/code&gt;. Galileo&amp;rsquo;s LangChain callback ships with the &lt;code&gt;galileo&lt;/code&gt; package, so
+let&amp;rsquo;s add it here.&lt;/p&gt;</description></item><item><title>Add the LangChain Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</guid><description>&lt;p&gt;Galileo&amp;rsquo;s &lt;code&gt;GalileoCallback&lt;/code&gt; is a standard LangChain callback handler. When you attach it to a
 LangChain or LangGraph run, it automatically captures prompts, responses, model names, token usage,
 timing, and the nesting of each step.&lt;/p&gt;
 &lt;p&gt;Because the travel planner is a &lt;strong&gt;LangGraph&lt;/strong&gt; workflow, you don&amp;rsquo;t need to edit every node. Instead,
@@ -65,22 +59,6 @@ activity, and synthesizer).&lt;/p&gt;</description></item><item><title>Run and V
 &lt;div class="exercise__body"&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Active Environment&lt;/p&gt;
-&lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the base-app directory and activate the virtual environment:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;2&lt;/div&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Run the app&lt;/p&gt;
 &lt;/header&gt;
@@ -109,7 +87,7 @@ activity, and synthesizer).&lt;/p&gt;</description></item><item><title>Run and V
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section class="step"&gt;
-&lt;div class="step__num"&gt;3&lt;/div&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Send a request to the app&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
  multi-agent travel planner and instrumented it with Galileo (Splunk Agent Observability) by adding just two things: &lt;code&gt;galileo_context.init(...)&lt;/code&gt; and a single &lt;code&gt;GalileoCallback&lt;/code&gt; on the LangGraph run config.&lt;/p&gt;
