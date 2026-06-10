@@ -1,7 +1,7 @@
 ---
 title: Deploying Lambda Functions & Generating Trace Data
-linkTitle: 5. Redeploying Lambda Functions
-weight: 5
+linkTitle: 6. Redeploying Lambda Functions
+weight: 6
 ---
 
 Now that we know how to apply manual instrumentation to the functions and services we wish to capture trace data for, let's go about deploying our Lambda functions again, and generating traffic against our `producer-lambda` endpoint.
