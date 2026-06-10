@@ -1,0 +1,91 @@
+# Optional OpenTelemetry Operator auto-instrumentation example.
+#
+# This file is not applied by the default lab. Enable the operator first:
+#
+#   ENABLE_OTEL_OPERATOR=true ./scripts/deploy-minikube.sh
+#
+# Then apply:
+#
+#   kubectl apply -f instrumentation/auto-instrumentation-example.yaml
+#
+# Astronomy Shop is already instrumented. Use this example for an additional
+# uninstrumented service you add to the lab, or as a pattern for customer apps.
+
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: astronomy-shop-auto
+  namespace: otel-demo
+spec:
+  exporter:
+    endpoint: http://splunk-otel-collector-agent.splunk-otel.svc.cluster.local:4317
+  propagators:
+    - tracecontext
+    - baggage
+    - b3
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1.0"
+  env:
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: service.namespace=astronomy-shop,deployment.environment=business-journey-workshop,business.application=astronomy-shop
+    - name: OTEL_EXPORTER_OTLP_PROTOCOL
+      value: grpc
+  java:
+    env:
+      - name: OTEL_INSTRUMENTATION_COMMON_DEFAULT_ENABLED
+        value: "true"
+  nodejs:
+    env:
+      - name: OTEL_NODE_RESOURCE_DETECTORS
+        value: env,host,os
+  python:
+    env:
+      - name: OTEL_PYTHON_LOG_CORRELATION
+        value: "true"
+  dotnet:
+    env:
+      - name: OTEL_DOTNET_AUTO_TRACES_ENABLED
+        value: "true"
+
+---
+# Example patch target. Copy the annotation pattern onto the deployment you want
+# auto-instrumented. Pick the annotation that matches the runtime.
+#
+# Java:
+#   instrumentation.opentelemetry.io/inject-java: "otel-demo/astronomy-shop-auto"
+#
+# Node.js:
+#   instrumentation.opentelemetry.io/inject-nodejs: "otel-demo/astronomy-shop-auto"
+#
+# Python:
+#   instrumentation.opentelemetry.io/inject-python: "otel-demo/astronomy-shop-auto"
+#
+# .NET:
+#   instrumentation.opentelemetry.io/inject-dotnet: "otel-demo/astronomy-shop-auto"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-uninstrumented-service
+  namespace: otel-demo
+spec:
+  selector:
+    matchLabels:
+      app: example-uninstrumented-service
+  template:
+    metadata:
+      labels:
+        app: example-uninstrumented-service
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "otel-demo/astronomy-shop-auto"
+    spec:
+      containers:
+        - name: app
+          image: node:22-alpine
+          command:
+            - sh
+            - -c
+            - |
+              node -e 'require("http").createServer((req,res)=>res.end("ok\n")).listen(8080)'
+          ports:
+            - containerPort: 8080

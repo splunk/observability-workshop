@@ -42,6 +42,7 @@ The Splunk CDN script downloads do not appear in nginx logs unless you self-host
 - Loading the Splunk RUM browser agent from the current Splunk Observability Cloud CDN domain.
 - Setting `user.trackingMode` to `anonymousTracking` for DXA user/session correlation.
 - Capturing click, submit, change, page load, route-change, resource, and error activity.
+- Adding custom workflow spans for product view, cart, recommendations, checkout, and demo error actions.
 - Keeping RUM privacy and Session Replay masking restrictive by default.
 - Marking selected demo text as safe with `data-rum-allow-text`.
 - Excluding sensitive regions with `data-rum-exclude`.

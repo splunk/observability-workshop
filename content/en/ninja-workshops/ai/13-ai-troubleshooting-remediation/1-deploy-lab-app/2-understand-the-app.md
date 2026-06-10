@@ -35,11 +35,27 @@ Component roles:
 
 ## How Instrumentation Is Added
 
-The app uses Python OpenTelemetry instrumentation in two layers.
+The app intentionally shows both OpenTelemetry automatic instrumentation and small custom instrumentation additions. Automatic instrumentation creates the baseline service map, request spans, and dependency spans. Custom instrumentation adds the domain-specific attributes that make the traces useful during an incident.
 
-First, the container image installs the OpenTelemetry packages and runs `opentelemetry-bootstrap -a install` during the Docker build. That installs instrumentation hooks for FastAPI, `requests`, and Python logging based on `app/requirements.txt`.
+### Auto Instrumentation Example
 
-Second, each Kubernetes container starts through the OpenTelemetry launcher:
+The container image installs OpenTelemetry packages for FastAPI, outbound HTTP requests, logging, and OTLP export:
+
+```text
+opentelemetry-distro
+opentelemetry-exporter-otlp
+opentelemetry-instrumentation-fastapi
+opentelemetry-instrumentation-requests
+opentelemetry-instrumentation-logging
+```
+
+During the Docker build, the image runs:
+
+```dockerfile
+RUN opentelemetry-bootstrap -a install
+```
+
+That command installs the instrumentation dependencies detected for the Python application. At runtime, Kubernetes starts each app process through the OpenTelemetry launcher:
 
 ```yaml
 command:
@@ -48,7 +64,16 @@ command:
   - checkout_service:app
 ```
 
-The same pattern is used for `inventory-service`, and the load generator starts with `opentelemetry-instrument python loadgen.py`. This automatic instrumentation creates spans for inbound FastAPI requests and outbound `requests` calls. The `tracecontext` propagator keeps the load generator, checkout service, and inventory service in one distributed trace.
+The same pattern is used for `inventory-service`, and the load generator starts with:
+
+```yaml
+command:
+  - opentelemetry-instrument
+  - python
+  - loadgen.py
+```
+
+This automatic instrumentation creates spans for inbound FastAPI requests and outbound `requests` calls. The `tracecontext` propagator keeps the load generator, checkout service, and inventory service in one distributed trace without adding manual trace propagation code.
 
 The Kubernetes manifest supplies the service identity and export path:
 
@@ -57,7 +82,45 @@ The Kubernetes manifest supplies the service identity and export path:
 - `OTEL_EXPORTER_OTLP_ENDPOINT=http://$(NODE_IP):4317` sends telemetry to the node-local Splunk OpenTelemetry Collector agent.
 - `OTEL_EXPORTER_OTLP_PROTOCOL=grpc` uses the OTLP gRPC receiver exposed by the collector agent.
 
-The Python code also adds workshop-specific span attributes so the investigation has useful evidence:
+### Custom Instrumentation Example
+
+Automatic instrumentation explains that a request was slow or failed. Custom instrumentation explains what the request was doing when that happened.
+
+In `checkout_service.py`, the service gets the current request span, adds business context, and creates a child span around the inventory dependency call:
+
+```python
+span = trace.get_current_span()
+span.set_attribute("app.cart.type", cart)
+span.set_attribute("app.cart.value", cart_value)
+span.set_attribute("app.sku", sku)
+span.set_attribute("service.version", SERVICE_VERSION)
+
+with tracer.start_as_current_span("checkout.reserve_inventory") as reserve_span:
+    reserve_span.set_attribute("app.sku", sku)
+    reserve_span.set_attribute("app.quantity", quantity)
+```
+
+When the inventory call fails, the code records the exception and marks the span as an error:
+
+```python
+reserve_span.record_exception(exc)
+reserve_span.set_status(Status(StatusCode.ERROR, str(exc)))
+span.set_status(Status(StatusCode.ERROR, "inventory request failed"))
+```
+
+In `inventory_service.py`, the service adds the active issue mode to the span so the trace shows whether the pod was healthy, slow, erroring, or crash-looping:
+
+```python
+span = trace.get_current_span()
+span.set_attribute("app.issue_mode", mode)
+span.set_attribute("app.sku", sku)
+span.set_attribute("app.quantity", quantity)
+span.set_attribute("app.cart.type", cart)
+```
+
+Those custom attributes are intentionally simple. They give students a concrete pattern they can reuse: keep automatic instrumentation for the common framework and network spans, then add a small number of domain attributes that explain customer impact and remediation context.
+
+The Python code adds these workshop-specific span attributes:
 
 - `app.cart.type`: set by `checkout-service` and `inventory-service` to show which simulated cart path the request used.
 - `app.cart.value`: set by `checkout-service` to show the approximate business value of the checkout request.

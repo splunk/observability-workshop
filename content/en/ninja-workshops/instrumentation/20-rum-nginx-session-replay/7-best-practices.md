@@ -1,7 +1,7 @@
 ---
-title: 7. Operationalize DXA and RUM
-linkTitle: 7. Operationalize
-weight: 7
+title: 8. Operationalize DXA and RUM
+linkTitle: 8. Operationalize
+weight: 8
 ---
 
 Use this checklist before rolling out DXA-backed RUM instrumentation beyond the lab.

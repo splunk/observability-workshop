@@ -31,6 +31,38 @@ The technology team supports a few critical systems:
 | Notification Gateway | Sends SMS and email updates | Synthetic availability, provider errors |
 | Dispatch Queue | Holds route assignments waiting for confirmation | Queue depth, oldest pending route age |
 
+## Runnable app
+
+The sample app for this story is in:
+
+```text
+workshop/meridian-delivery-promise/
+```
+
+Run it locally:
+
+```bash
+cd workshop/meridian-delivery-promise
+cp .env.example .env
+docker compose up -d --build
+./scripts/smoke-test.sh
+```
+
+Open the patient portal:
+
+```text
+http://localhost:8090
+```
+
+Use the app buttons or helper script to switch incident modes:
+
+```bash
+./scripts/set-incident.sh healthy
+./scripts/set-incident.sh geocode-latency
+./scripts/set-incident.sh queue-backlog
+./scripts/set-incident.sh patient-portal-slow
+```
+
 ## The incident
 
 At 8:10 AM, dispatchers notice that the morning route board is behind. Drivers are waiting for confirmed routes, but the patient portal still looks mostly available. No single alert explains the issue.
@@ -235,4 +267,3 @@ This story is simple, but it is not generic:
 * [Monitor your services with the ITSI Service Analyzer](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/visualize-and-assess-service-health/4.19/service-analyzer/monitor-your-services-with-the-itsi-service-analyzer)
 * [Configure KPI thresholds in ITSI](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/visualize-and-assess-service-health/4.21/create-kpis/configure-kpi-thresholds-in-itsi)
 * [Overview of Service Insights in ITSI](https://help.splunk.com/splunk-it-service-intelligence/splunk-it-service-intelligence/visualize-and-assess-service-health/4.19/overview/overview-of-service-insights-in-itsi)
-

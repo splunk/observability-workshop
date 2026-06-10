@@ -1,6 +1,31 @@
 # Splunk Observability Cloud to Splunk On-Call Terraform Example
 
-This directory contains an optional Terraform example for the Observability Cloud and Splunk On-Call incident response workshop.
+This directory contains support files for the Observability Cloud and Splunk On-Call incident response workshop.
+
+## Checkout Demo App
+
+The workshop demo app lives in:
+
+```text
+workshop/on-call/checkout-demo
+```
+
+Use it to generate checkout traces, custom metrics, and an injectable incident for the detector and Splunk On-Call workflow.
+
+Quick start:
+
+```bash
+cd workshop/on-call/checkout-demo
+cp .env.example .env
+# edit .env and set SPLUNK_REALM and SPLUNK_ACCESS_TOKEN
+./scripts/start.sh
+./scripts/inject-issue.sh latency-errors
+./scripts/remediate.sh
+```
+
+See `checkout-demo/README.md` for the full walkthrough.
+
+## Terraform Detector Example
 
 The Terraform creates a Splunk Observability Cloud detector and configures the detector rule to notify Splunk On-Call through a routing key. Use the UI-based workshop first if attendees are learning the workflow. Use this example when you want to show how detector configuration can be managed as code.
 

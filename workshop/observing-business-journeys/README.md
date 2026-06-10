@@ -49,6 +49,17 @@ export SPLUNK_HEC_INSECURE=true
 
 This sends only detector-like alert events. It does not send traces, metrics, or logs to Splunk Enterprise.
 
+## Instrumentation Examples
+
+Optional examples are in:
+
+```text
+instrumentation/
+```
+
+- `auto-instrumentation-example.yaml` shows how to use the OpenTelemetry Operator for an added uninstrumented service.
+- `custom-instrumentation-examples.md` shows Python, Node.js, and Java snippets for app-owned business span attributes.
+
 ## Workshop Content
 
 The Hugo workshop pages are in:

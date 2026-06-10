@@ -15,6 +15,8 @@ telemetry.
 
 * `instrumentation/tokenomics_instrumentation.py` - Python helper for custom
   OpenTelemetry token and cost metrics.
+* `local-llm-app/` - Runnable Flask app that calls local Ollama and emits tokenomics
+  traces and metrics.
 * `k8s/llm-app-chargeback-patch.yaml` - Kubernetes patch that adds default owner
   metadata to the sample `llm-app` deployment.
 * `collector/otel-collector-chargeback-values.yaml` - Collector processor additions
@@ -36,8 +38,7 @@ telemetry.
 2. Run `scripts/benchmark_ollama.py` against the local model.
 3. Choose an hourly cost model: market proxy, hardware amortization, or energy-only.
 4. Use the derived token rates as the workshop rate card.
-5. Add the custom instrumentation helper to a local app or use the benchmark output as
-   sample chargeback data.
+5. Run `local-llm-app/` to send instrumented local model traffic.
 6. Run `scripts/simulate_token_cost_risk.py` to practice proactive cost alarms.
 
 ### Shared GPU Path

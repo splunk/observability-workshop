@@ -84,10 +84,11 @@ You need the following access before starting:
 * Permission to create or edit detectors in Observability Cloud.
 * A Splunk On-Call account.
 * Splunk On-Call global admin or alert admin access for the integration endpoint and routing key setup.
-* A service, host, Kubernetes workload, synthetic test, or sample metric that can be used to create a detector.
+* Docker with Docker Compose to run the included checkout demo app.
+* A Splunk Observability Cloud access token that can ingest traces and metrics.
 
 {{% notice title="Instructor note" style="info" %}}
-If attendees do not have a live application, use Observability Cloud sample data or an existing host metric. The core learning objective is the alert-to-incident workflow, not the specific metric used to trigger the detector.
+This workshop includes a small checkout demo app in `workshop/on-call/checkout-demo`. If Docker is not available, use Observability Cloud sample data or an existing host metric. The core learning objective is the alert-to-incident workflow, not the specific metric used to trigger the detector.
 {{% /notice %}}
 
 ## Lab Flow
@@ -95,9 +96,10 @@ If attendees do not have a live application, use Observability Cloud sample data
 1. Review the use case and decide what should page a human.
 2. Prepare a Splunk On-Call team, escalation policy, and routing key.
 3. Connect Splunk Observability Cloud to Splunk On-Call.
-4. Create an actionable detector and add the On-Call recipient.
-5. Trigger or simulate an incident and run the response workflow.
-6. Operationalize the pattern for production teams.
+4. Run the checkout demo app and verify telemetry in Observability Cloud.
+5. Create an actionable detector and add the On-Call recipient.
+6. Trigger or simulate an incident and run the response workflow.
+7. Operationalize the pattern for production teams.
 
 ## Official References
 

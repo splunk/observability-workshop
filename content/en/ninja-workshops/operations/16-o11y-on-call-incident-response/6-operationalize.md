@@ -1,7 +1,7 @@
 ---
 title: Operationalize the Pattern
-linkTitle: 6. Operationalize
-weight: 6
+linkTitle: 7. Operationalize
+weight: 7
 time: 5 minutes
 description: Turn the workshop workflow into a production-ready operating model.
 ---
@@ -109,4 +109,3 @@ The value of this workflow is not just that an alert can create an incident. The
 * Splunk On-Call routes the incident and coordinates human response.
 * The responder starts with service context, not a generic page.
 * Teams can review the incident timeline and improve the detector or runbook.
-

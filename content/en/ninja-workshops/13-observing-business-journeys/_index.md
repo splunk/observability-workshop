@@ -19,6 +19,7 @@ The runnable lab is designed for a laptop with Minikube. Astronomy Shop runs loc
 - Deploy the OpenTelemetry Astronomy Shop locally in Minikube.
 - Map services, routes, dependencies, and owners to business transactions.
 - Enrich traces with `business.application`, `business.transaction`, `business.capability`, and `business.criticality` attributes.
+- Compare collector enrichment, auto instrumentation, and application-owned custom instrumentation.
 - Create APM MetricSets, dashboards, and detectors that use business context.
 - Send Observability Cloud alerts into Splunk platform and ITSI.
 - Model ITSI services, KPIs, dependencies, episodes, and a glass table around customer-impacting journeys.
@@ -40,6 +41,8 @@ The key files are:
 | `scripts/set-flag.sh` | Enables or clears built-in Astronomy Shop failure scenarios. |
 | `values/splunk-otel-collector-values.yaml` | Adds business transaction attributes to spans in the collector trace pipeline. |
 | `values/otel-demo-values.yaml` | Configures Astronomy Shop to send OTLP telemetry to the node-local Splunk collector. |
+| `instrumentation/auto-instrumentation-example.yaml` | Optional OpenTelemetry Operator example for auto-instrumenting an added service. |
+| `instrumentation/custom-instrumentation-examples.md` | App-code examples for adding business attributes directly to spans. |
 | `mappings/astronomy-shop-business-map.yaml` | Working service-to-business transaction map for the lab. |
 | `itsi/o11y-alert-kpi-searches.md` | ITSI KPI and episode search examples for Observability Cloud alert payloads. |
 

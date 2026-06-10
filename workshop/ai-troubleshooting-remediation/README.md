@@ -20,7 +20,9 @@ remediation-loadgen -> checkout-service /checkout -> inventory-service /reserve
 
 ## Instrumentation Model
 
-The application is instrumented with Python OpenTelemetry.
+The application is instrumented with Python OpenTelemetry and shows both automatic and custom instrumentation.
+
+Automatic instrumentation:
 
 - `app/requirements.txt` installs `opentelemetry-distro`, OTLP export, FastAPI instrumentation, `requests` instrumentation, and logging instrumentation.
 - `app/Dockerfile` runs `opentelemetry-bootstrap -a install` so the instrumentation packages are configured in the image.
@@ -29,7 +31,14 @@ The application is instrumented with Python OpenTelemetry.
 - `OTEL_RESOURCE_ATTRIBUTES` adds `deployment.environment=ai-remediation-workshop`, `service.version=1.0.0`, and `app.workshop=ai-troubleshooting-remediation`.
 - `OTEL_EXPORTER_OTLP_ENDPOINT=http://$(NODE_IP):4317` sends OTLP traces to the node-local Splunk OpenTelemetry Collector agent.
 
-The Python services also add custom span attributes such as `app.cart.type`, `app.cart.value`, `app.sku`, `app.quantity`, `app.issue_mode`, and `app.checkout.duration_ms`. Those attributes give students concrete evidence to inspect while comparing the AI troubleshooting agent's hypothesis with traces, logs, service metrics, and Kubernetes infrastructure telemetry.
+Custom instrumentation:
+
+- `checkout_service.py` uses `trace.get_current_span()` to add `app.cart.type`, `app.cart.value`, `app.sku`, and `service.version` to the active request span.
+- `checkout_service.py` creates a child span named `checkout.reserve_inventory` around the inventory dependency call.
+- `inventory_service.py` adds `app.issue_mode`, `app.sku`, `app.quantity`, and `app.cart.type` so traces show the injected failure context.
+- Error paths call `record_exception()` and `set_status(StatusCode.ERROR, ...)` so failed requests are visible in trace analysis.
+
+Those attributes give students concrete evidence to inspect while comparing the AI troubleshooting agent's hypothesis with traces, logs, service metrics, and Kubernetes infrastructure telemetry.
 
 The app supports two issue modes:
 

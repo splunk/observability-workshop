@@ -1,41 +1,50 @@
 ---
 title: Create an Actionable Detector
-linkTitle: 4. Create Detector
-weight: 4
+linkTitle: 5. Create Detector
+weight: 5
 time: 15 minutes
 description: Create a detector in Observability Cloud and route its alert recipient to Splunk On-Call.
 ---
 
 ## Goal
 
-In this section, you will create or edit a detector in Splunk Observability Cloud and add the Splunk On-Call integration as an alert recipient.
-
-Use an existing service metric if you have one. If you do not have application telemetry available, use a host, Kubernetes, synthetic, or sample metric that can safely trigger during the workshop.
+In this section, you will create a detector in Splunk Observability Cloud using the checkout demo app metric and add the Splunk On-Call integration as an alert recipient.
 
 ## 1. Choose the Signal
 
-Recommended signals for a checkout-service incident:
+Use the custom metric emitted by the checkout demo app:
 
-| Signal type | Example detector condition |
+| Signal | Value |
 | --- | --- |
-| APM latency | p95 checkout duration is above the service objective for 5 minutes. |
-| APM errors | checkout error rate is above 5 percent for 5 minutes. |
-| Synthetic monitoring | checkout browser test fails from two or more locations. |
-| Infrastructure | checkout workload CPU remains above 90 percent and request latency is also elevated. |
+| Metric | `workshop.checkout.errors` |
+| Filter | `deployment.environment:on-call-workshop` |
+| Split by | `app.issue_mode`, `http.response.status_code`, or `status` |
+| Trigger | Error count is greater than `0` for a fast workshop, or greater than `5` for 5 minutes for a quieter detector. |
+
+Alternative signal:
+
+| Signal | Value |
+| --- | --- |
+| Metric | `workshop.checkout.latency_ms` |
+| Filter | `deployment.environment:on-call-workshop` |
+| Analytics | p95 latency |
+| Trigger | p95 is greater than `1500` ms for several minutes. |
 
 {{% notice title="Workshop shortcut" style="primary" icon="lightbulb" %}}
-For a fast lab, start with one metric that is already available and lower the threshold temporarily so the detector can trigger. Raise the threshold or deactivate the detector at the end of the workshop.
+For a fast lab, use `workshop.checkout.errors` and set the threshold to greater than `0`. For a more realistic lab, require several errors over a 5-minute window.
 {{% /notice %}}
 
 ## 2. Create the Detector
 
-1. In Splunk Observability Cloud, open the chart, service view, navigator, or dashboard that contains the signal.
-2. Create a detector from the chart or open **Alerts & Detectors** and create a new detector.
-3. Name the detector `Checkout Workshop - Sustained Degradation`.
-4. Select the alert signal.
-5. Configure a static or dynamic threshold that represents sustained impact.
-6. Use a duration such as 5 minutes to avoid paging on short spikes.
-7. Run the detector preview or pre-flight check to estimate alert volume.
+1. In Splunk Observability Cloud, create a new chart.
+2. Search for the metric `workshop.checkout.errors`.
+3. Add the filter `deployment.environment:on-call-workshop`.
+4. Add a **Sum** aggregation. For the workshop, group by `app.issue_mode` and `http.response.status_code`.
+5. Save the chart or create a detector directly from the chart.
+6. Name the detector `Checkout Workshop - Sustained Degradation`.
+7. Configure a static threshold.
+8. Use threshold `> 0` for a fast demo, or `> 5` for 5 minutes for a quieter lab.
+9. Run the detector preview or pre-flight check to estimate alert volume.
 
 ## 3. Add the Alert Message
 
@@ -52,12 +61,13 @@ Trigger:
 - Rule: {{{ruleName}}}
 - Condition: {{{readableRule}}}
 - Signal value: {{inputs.A.value}}
+- Dimensions: {{{dimensions}}}
 
 First response:
 1. Open the detector and review the triggering dimension.
-2. Open APM > Service map and select checkout.
+2. Open APM > Service map and select checkout-service.
 3. Check Trace Analyzer for slow or erroring checkout traces.
-4. Check Infrastructure > Kubernetes or hosts for resource saturation.
+4. Check inventory-service for latency or 503 responses.
 
 Runbook:
 https://example.com/runbooks/checkout

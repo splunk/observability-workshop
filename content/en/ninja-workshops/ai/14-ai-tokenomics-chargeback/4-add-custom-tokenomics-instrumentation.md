@@ -4,7 +4,12 @@ weight: 4
 ---
 
 The built-in instrumentation tells you what happened inside an AI request. The custom
-instrumentation in this section tells you who should own the cost.
+instrumentation in this section tells you who should own the cost. The runnable local
+app for this workshop is:
+
+```text
+workshop/ai-tokenomics-chargeback/local-llm-app
+```
 
 ## Review the Companion Example
 
@@ -22,6 +27,9 @@ It demonstrates how to:
 * Estimate request cost from a rate card.
 * Attach the same dimensions and token counts to the active span.
 
+The local app imports this helper, calls Ollama, and records the custom metrics after
+each model response.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 Review the instrumentation helper:
@@ -33,6 +41,46 @@ Review the instrumentation helper:
 5. Confirm that token counts are recorded as counters and span attributes.
 6. Find `estimate_request_cost_usd`.
 7. Replace the workshop rates with your instructor-provided rate card if needed.
+
+{{% /notice %}}
+
+## Run the Local App
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+Start Ollama and the local app:
+
+```bash
+ollama pull llama3.2:1b
+ollama serve
+```
+
+In another terminal:
+
+```bash
+cd workshop/ai-tokenomics-chargeback/local-llm-app
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+export OLLAMA_MODEL=llama3.2:1b
+export INPUT_USD_PER_1M=0.20
+export OUTPUT_USD_PER_1M=1.25
+
+python app.py
+```
+
+Send a request:
+
+```bash
+curl -s http://localhost:8080/ask \
+  -H "content-type: application/json" \
+  -H "x-ai-team: support-ai" \
+  -H "x-ai-cost-center: cc-ml-1200" \
+  -H "x-ai-tenant-id: tenant-local" \
+  -d '{"question":"How should we explain AI chargeback to app teams?"}' | jq
+```
 
 {{% /notice %}}
 

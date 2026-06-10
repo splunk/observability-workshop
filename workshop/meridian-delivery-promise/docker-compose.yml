@@ -1,0 +1,102 @@
+name: meridian-delivery-promise
+
+x-meridian-service: &meridian-service
+  build:
+    context: ./app
+  image: meridian-delivery-promise-app:local
+  environment: &meridian-env
+    SERVICE_VERSION: "1.0.0"
+    MERIDIAN_INCIDENT_MODE: ${MERIDIAN_INCIDENT_MODE:-healthy}
+    MERIDIAN_INCIDENT_MODE_FILE: /state/incident-mode
+    OTEL_TRACES_EXPORTER: ${OTEL_TRACES_EXPORTER:-none}
+    OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://otel-collector:4317}
+    OTEL_EXPORTER_OTLP_PROTOCOL: ${OTEL_EXPORTER_OTLP_PROTOCOL:-grpc}
+    OTEL_RESOURCE_ATTRIBUTES: ${OTEL_RESOURCE_ATTRIBUTES:-deployment.environment=meridian-workshop,app.workshop=meridian-delivery-promise,business.service=Medication Delivery Promise}
+    LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  volumes:
+    - ./state:/state
+  networks:
+    - meridian
+
+services:
+  patient-portal:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: patient-portal
+      OTEL_SERVICE_NAME: patient-confirmation
+      ROUTE_PLANNER_URL: http://route-planner-api:8080
+      COURIER_API_URL: http://courier-mobile-api:8080
+      NOTIFICATION_URL: http://notification-gateway:8080
+      SPLUNK_RUM_REALM: ${SPLUNK_RUM_REALM:-us1}
+      SPLUNK_RUM_ACCESS_TOKEN: ${SPLUNK_RUM_ACCESS_TOKEN:-}
+      SPLUNK_RUM_APPLICATION_NAME: ${SPLUNK_RUM_APPLICATION_NAME:-meridian-patient-portal}
+      SPLUNK_RUM_ENVIRONMENT: ${SPLUNK_RUM_ENVIRONMENT:-meridian-workshop}
+      SPLUNK_RUM_AGENT_VERSION: ${SPLUNK_RUM_AGENT_VERSION:-v3}
+    ports:
+      - "${MERIDIAN_PORT:-8090}:8080"
+    depends_on:
+      - route-planner-api
+      - courier-mobile-api
+      - notification-gateway
+
+  route-planner-api:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: route-planner-api
+      OTEL_SERVICE_NAME: route-planner-api
+      GEOCODING_URL: http://geocoding-provider:8080
+    depends_on:
+      - geocoding-provider
+
+  geocoding-provider:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: geocoding-provider
+      OTEL_SERVICE_NAME: geocoding-provider
+
+  courier-mobile-api:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: courier-mobile-api
+      OTEL_SERVICE_NAME: courier-mobile-api
+
+  notification-gateway:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: notification-gateway
+      OTEL_SERVICE_NAME: notification-gateway
+
+  loadgen:
+    <<: *meridian-service
+    environment:
+      <<: *meridian-env
+      SERVICE_ROLE: loadgen
+      OTEL_SERVICE_NAME: meridian-loadgen
+      PATIENT_PORTAL_URL: http://patient-portal:8080
+      MERIDIAN_LOAD_INTERVAL_SECONDS: ${MERIDIAN_LOAD_INTERVAL_SECONDS:-2.0}
+    depends_on:
+      - patient-portal
+
+  otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:0.111.0
+    profiles: ["o11y"]
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    environment:
+      SPLUNK_REALM: ${SPLUNK_REALM:-us1}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+    volumes:
+      - ./collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    networks:
+      - meridian
+
+networks:
+  meridian:
+    driver: bridge

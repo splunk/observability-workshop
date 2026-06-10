@@ -273,6 +273,42 @@
     var cartStatus = document.getElementById("cart-status");
     var journeyState = document.getElementById("journey-state");
 
+    function getProductTier(productId) {
+      var product = document.querySelector('[data-product-id="' + productId + '"]');
+      return product ? product.dataset.tier : "unknown";
+    }
+
+    function startCustomWorkflowSpan(name, attributes) {
+      var api = window[Symbol.for("opentelemetry.js.api.1")];
+      if (!api || !api.trace) {
+        return null;
+      }
+
+      return api.trace.getTracer("dxa-rum-workshop").startSpan(name, {
+        attributes: Object.assign({ "workflow.name": name }, attributes || {})
+      });
+    }
+
+    function recordSpanError(span, error) {
+      if (!span) {
+        return;
+      }
+
+      if (typeof span.recordException === "function") {
+        span.recordException(error);
+      }
+
+      if (typeof span.setStatus === "function") {
+        span.setStatus({ code: 2, message: error.message });
+      }
+    }
+
+    function endSpan(span) {
+      if (span && typeof span.end === "function") {
+        span.end();
+      }
+    }
+
     function setJourney(stage, path) {
       journeyState.textContent = "Journey stage: " + stage;
       if (path && window.location.pathname !== path) {
@@ -288,18 +324,36 @@
     });
 
     document.getElementById("load-recommendations").addEventListener("click", function () {
+      var span = startCustomWorkflowSpan("recommendations.load", {
+        "cart.item_count": cartCount,
+        "recommendations.source": "workshop"
+      });
+
       fetch("/api/recommendations?source=workshop").then(function (response) {
         return response.json();
       }).then(function (data) {
+        if (span && typeof span.setAttribute === "function") {
+          span.setAttribute("recommendations.count", data.recommendations.length);
+        }
         cartStatus.textContent = "Recommendations loaded: " + data.recommendations.join(", ") + ".";
+      }).catch(function (error) {
+        recordSpanError(span, error);
+        throw error;
+      }).finally(function () {
+        endSpan(span);
       });
     });
 
     document.querySelectorAll(".view-product").forEach(function (button) {
       button.addEventListener("click", function () {
         selectedProduct = button.dataset.productId;
+        var span = startCustomWorkflowSpan("product.view", {
+          "product.id": selectedProduct,
+          "product.tier": getProductTier(selectedProduct)
+        });
         cartStatus.textContent = "Viewing " + selectedProduct.replace(/-/g, " ") + ".";
         setJourney("product viewed", "/products/" + selectedProduct);
+        endSpan(span);
       });
     });
 
@@ -307,8 +361,14 @@
       button.addEventListener("click", function () {
         selectedProduct = button.dataset.productId;
         cartCount += 1;
+        var span = startCustomWorkflowSpan("cart.add", {
+          "cart.item_count": cartCount,
+          "product.id": selectedProduct,
+          "product.tier": getProductTier(selectedProduct)
+        });
         cartStatus.textContent = "Cart contains " + cartCount + " item" + (cartCount === 1 ? "." : "s.");
         setJourney("cart updated", "/cart");
+        endSpan(span);
       });
     });
 
@@ -316,8 +376,14 @@
       if (!selectedProduct) {
         selectedProduct = "release-guard";
       }
+      var span = startCustomWorkflowSpan("checkout.start", {
+        "cart.item_count": cartCount,
+        "product.id": selectedProduct,
+        "product.tier": getProductTier(selectedProduct)
+      });
       cartStatus.textContent = "Checkout started for " + selectedProduct.replace(/-/g, " ") + ".";
       setJourney("checkout started", "/checkout");
+      endSpan(span);
     });
 
     document.getElementById("shipping-method").addEventListener("change", function (event) {
@@ -326,13 +392,30 @@
 
     document.getElementById("checkout").addEventListener("submit", function (event) {
       event.preventDefault();
+      var span = startCustomWorkflowSpan("checkout.submit", {
+        "cart.item_count": cartCount,
+        "checkout.shipping_method": document.getElementById("shipping-method").value
+      });
       cartStatus.textContent = "Order submitted from the demo checkout.";
       setJourney("order submitted", "/checkout/complete");
+      endSpan(span);
     });
 
     document.getElementById("trigger-error").addEventListener("click", function () {
-      var order = undefined;
-      cartStatus.textContent = order.total;
+      var span = startCustomWorkflowSpan("checkout.error", {
+        "cart.item_count": cartCount,
+        "error.demo": true
+      });
+
+      try {
+        var order = undefined;
+        cartStatus.textContent = order.total;
+      } catch (error) {
+        recordSpanError(span, error);
+        throw error;
+      } finally {
+        endSpan(span);
+      }
     });
   </script>
 </body>

@@ -107,6 +107,13 @@ export NIM_MODEL="meta/llama-3.2-1b-instruct"
 opentelemetry-instrument python shopmate-sports/server.py
 ```
 
+Expected auto-instrumented evidence:
+
+- OpenAI Agents SDK spans for agent orchestration and tool activity.
+- OpenAI-compatible NIM spans for model request timing and token fields.
+- GenAI span metrics for Splunk AI Agent Monitoring and tokenomics views.
+- The standard `deployment.environment` resource attribute for student isolation.
+
 The app disables OpenAI Agents SDK native tracing by default to avoid sending
 traces to OpenAI when NIM is the backend. Splunk/OpenTelemetry zero-code
 instrumentation still wraps the OpenAI and OpenAI Agents libraries. To change
@@ -135,6 +142,66 @@ custom spans provide app context without duplicating AI agent nodes.
 
 The response still includes approximate token counts for the storefront token
 meter. Those values are UI feedback, not the monitoring source of truth.
+
+## Custom Instrumentation Examples
+
+The app creates lightweight custom spans in `server.py` for retail workflow
+context. Auto instrumentation owns `gen_ai.*` fields; custom spans use
+`shopmate.*` attributes for app-owned details.
+
+Workflow span:
+
+```python
+from opentelemetry import trace as otel_trace
+
+CUSTOM_TRACER = otel_trace.get_tracer("shopmate.custom") if otel_trace else None
+
+def workflow_span_context(message, history, specialist_count):
+    if not CUSTOM_TRACER:
+        return nullcontext(None)
+    return CUSTOM_TRACER.start_as_current_span(
+        "shopmate.workflow",
+        attributes={
+            "shopmate.workflow.name": "multi_agent_retail_assistant",
+            "shopmate.model.system": "nvidia_nim",
+            "shopmate.model.name": NIM_MODEL,
+            "shopmate.coordinator.agent_name": "ShoppingAssistantAgent",
+            "shopmate.request.preview": preview_text(message),
+            "shopmate.history.user_messages": sum(
+                1 for item in history if item.get("role") == "user"
+            ),
+            "shopmate.specialist.count": specialist_count,
+        },
+    )
+```
+
+Specialist agent step span:
+
+```python
+def agent_step_span_context(agent_name, prompt):
+    if not CUSTOM_TRACER:
+        return nullcontext(None)
+    return CUSTOM_TRACER.start_as_current_span(
+        f"shopmate.agent.{agent_name}",
+        attributes={
+            "shopmate.agent.name": agent_name,
+            "shopmate.model.system": "nvidia_nim",
+            "shopmate.model.name": NIM_MODEL,
+            "shopmate.agent.prompt.preview": preview_text(prompt, 400),
+        },
+    )
+```
+
+Response attributes:
+
+```python
+workflow_span.set_attribute("shopmate.response.preview", preview_text(reply))
+workflow_span.set_attribute("shopmate.response.tokens.estimated", estimate_tokens(reply))
+workflow_span.set_attribute(
+    "shopmate.specialist.names",
+    ",".join([*specialist_outputs.keys(), "ShoppingAssistantAgent"]),
+)
+```
 
 ## Product Asset Generation
 

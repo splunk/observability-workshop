@@ -112,9 +112,18 @@ The workshop covers:
 
 * Splunk On-Call team, escalation policy, and routing key setup.
 * Observability Cloud Splunk On-Call notification integration.
+* A checkout demo app that emits APM traces and custom metrics through OpenTelemetry.
 * Detector creation and alert-recipient configuration.
 * Incident acknowledgement, investigation, reroute, and resolution.
 * Production guardrails for severity, routing, message design, and noisy-alert reduction.
+
+The demo app is located at:
+
+```text
+workshop/on-call/checkout-demo
+```
+
+It emits the services `checkout-service`, `inventory-service`, and `checkout-loadgen`, plus the metrics `workshop.checkout.requests`, `workshop.checkout.errors`, and `workshop.checkout.latency_ms`.
 
 ## Implementation Checklist
 

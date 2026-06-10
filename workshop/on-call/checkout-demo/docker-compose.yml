@@ -1,0 +1,98 @@
+name: on-call-checkout-demo
+
+services:
+  splunk-otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:${SPLUNK_OTEL_COLLECTOR_VERSION:-latest}
+    command: ["--config=/etc/otelcol/config.yaml"]
+    restart: unless-stopped
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "13133:13133"
+    environment:
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:?Set SPLUNK_ACCESS_TOKEN in .env or your shell}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us1}
+      SPLUNK_MEMORY_LIMIT_MIB: ${SPLUNK_MEMORY_LIMIT_MIB:-512}
+    volumes:
+      - ./otel-collector/config.yaml:/etc/otelcol/config.yaml:ro
+
+  inventory-service:
+    build:
+      context: ./app
+    command:
+      - opentelemetry-instrument
+      - uvicorn
+      - inventory_service:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8081"
+    restart: unless-stopped
+    ports:
+      - "${INVENTORY_APP_PORT:-18081}:8081"
+    environment:
+      ISSUE_MODE: ${ISSUE_MODE:-healthy}
+      ERROR_RATE: ${ERROR_RATE:-0.65}
+      LATENCY_MS: ${LATENCY_MS:-2200}
+      SERVICE_VERSION: ${SERVICE_VERSION:-1.0.0}
+      OTEL_SERVICE_NAME: inventory-service
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${ENVIRONMENT:-on-call-workshop},service.version=${SERVICE_VERSION:-1.0.0},app.workshop=on-call-incident-response,app.component=inventory
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://splunk-otel-collector:4317
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+      OTEL_LOGS_EXPORTER: none
+      OTEL_METRIC_EXPORT_INTERVAL: "10000"
+      LOG_LEVEL: INFO
+    depends_on:
+      - splunk-otel-collector
+
+  checkout-service:
+    build:
+      context: ./app
+    command:
+      - opentelemetry-instrument
+      - uvicorn
+      - checkout_service:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+    restart: unless-stopped
+    ports:
+      - "${CHECKOUT_APP_PORT:-18080}:8080"
+    environment:
+      INVENTORY_URL: http://inventory-service:8081
+      SERVICE_VERSION: ${SERVICE_VERSION:-1.0.0}
+      OTEL_SERVICE_NAME: checkout-service
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${ENVIRONMENT:-on-call-workshop},service.version=${SERVICE_VERSION:-1.0.0},app.workshop=on-call-incident-response,app.component=checkout
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://splunk-otel-collector:4317
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+      OTEL_LOGS_EXPORTER: none
+      OTEL_METRIC_EXPORT_INTERVAL: "10000"
+      LOG_LEVEL: INFO
+    depends_on:
+      - splunk-otel-collector
+      - inventory-service
+
+  loadgen:
+    build:
+      context: ./app
+    command: ["python", "loadgen.py"]
+    restart: unless-stopped
+    environment:
+      TARGET_URL: http://checkout-service:8080/checkout
+      REQUEST_INTERVAL_SECONDS: ${REQUEST_INTERVAL_SECONDS:-1.0}
+      OTEL_SERVICE_NAME: checkout-loadgen
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${ENVIRONMENT:-on-call-workshop},service.version=${SERVICE_VERSION:-1.0.0},app.workshop=on-call-incident-response,app.component=loadgen
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://splunk-otel-collector:4317
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+      OTEL_LOGS_EXPORTER: none
+      OTEL_METRIC_EXPORT_INTERVAL: "10000"
+      LOG_LEVEL: INFO
+    depends_on:
+      - checkout-service

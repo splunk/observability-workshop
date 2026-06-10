@@ -18,6 +18,7 @@ The runnable lab uses nginx to inject the RUM snippet because it is easy to run 
 
 - Configure Splunk RUM browser agent version 2.0 or later for DXA.
 - Explicitly enable anonymous user tracking so DXA can correlate events by user and session.
+- Compare automatic browser instrumentation with targeted custom workflow spans.
 - Generate page load, click, route, error, and checkout activity in a local browser app.
 - Create a DXA project, event definitions, user segments, funnel analysis, and time series analysis.
 - Use RUM sessions, Session Replay, and APM links to investigate the behavior surfaced by DXA.
@@ -39,4 +40,5 @@ The workshop content uses the sample files as reference implementations. You can
 - [Create and manage event definitions](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/create-and-manage-event-definitions)
 - [Install the Splunk RUM browser agent](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/install-the-splunk-rum-browser-agent)
 - [Configure the Splunk RUM browser agent](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/configure-the-splunk-rum-browser-agent)
+- [Manually instrument browser-based web applications](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/manually-instrument-browser-based-web-applications)
 - [Introduction to Splunk RUM](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/introduction-to-splunk-rum)

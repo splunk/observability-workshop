@@ -1,7 +1,7 @@
 ---
-title: 4. Validate RUM Data
-linkTitle: 4. Validate RUM
-weight: 4
+title: 5. Validate RUM Data
+linkTitle: 5. Validate RUM
+weight: 5
 ---
 
 Before creating DXA projects and analyses, validate that the application is sending RUM data with the expected session and user context.

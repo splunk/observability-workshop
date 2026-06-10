@@ -1,7 +1,7 @@
 ---
-title: 6. Build Segments and Analyses
-linkTitle: 6. Analyze DXA
-weight: 6
+title: 7. Build Segments and Analyses
+linkTitle: 7. Analyze DXA
+weight: 7
 ---
 
 With event definitions in place, build the DXA views that help product, UX, and engineering teams reason about behavior together.

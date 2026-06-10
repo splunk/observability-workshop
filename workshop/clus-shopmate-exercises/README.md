@@ -1,7 +1,14 @@
-# AI Pods Lab Project
+# ShopMate AI Pods Lab Project
 
-This repository contains source material for a Cisco Live instructor-led lab
-about observing a Cisco AI POD-inspired AI/ML environment with Splunk.
+This directory is a focused local copy of the source material for a Cisco Live
+instructor-led lab about observing a Cisco AI POD-inspired AI/ML environment
+with Splunk.
+
+Run source-preview and app-maintenance commands from this directory:
+
+```bash
+cd workshop/clus-shopmate-exercises
+```
 
 The lab uses a shared Kubernetes GPU environment, NVIDIA NIM, OpenTelemetry, and
 instrumented sample AI applications to show how operators can connect
@@ -16,10 +23,11 @@ can be edited, tested, and published from one place.
 
 - `workshop/` - main attendee-facing lab guide for `CLUS-LTROBS-2001`
 - `shopmate-sports/` - retail AI app used by the main lab
-- `ticketmate-ai/` and `workshop-ticketmate/` - alternate ticketing-themed workshop
 - `infra/` - Terraform and Kubernetes assets for the instructor-managed lab environment
 - `docs/` - project notes, setup plans, telemetry design, and validation checklists
-- `deliverables/` - supporting source material for final lab artifacts
+
+This copy intentionally omits the alternate TicketMate workshop, editor/agent
+rule files, raw Codex archives, and large presentation/PDF deliverables.
 
 ## Lab Theme
 
@@ -44,12 +52,6 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-docs.txt
 mkdocs serve
-```
-
-TicketMate workshop:
-
-```bash
-mkdocs serve -f mkdocs-ticketmate.yml -a 127.0.0.1:8002
 ```
 
 ## More Detail
