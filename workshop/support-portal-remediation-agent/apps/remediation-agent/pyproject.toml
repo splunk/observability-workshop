@@ -1,0 +1,14 @@
+[project]
+name = "ibobs-remediation-agent"
+version = "0.1.0"
+description = "Python remediation agent for the Cisco Live demo"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn>=0.34.0",
+  "openai>=2.8.0",
+  "galileo[openai]>=2.3.0,<3.0.0",
+  "splunk-opentelemetry>=2.9.0",
+  "opentelemetry-instrumentation-fastapi==0.60b1",
+  "opentelemetry-instrumentation-httpx==0.60b1"
+]

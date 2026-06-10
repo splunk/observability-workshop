@@ -1,0 +1,20 @@
+{
+  "name": "@ibobs/telemetry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./browser": "./src/browser.ts",
+    "./node": "./src/node.ts",
+    "./splunk-node": "./src/splunk-node.ts"
+  },
+  "dependencies": {
+    "@ibobs/shared-types": "0.1.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@splunk/otel": "^4.4.0",
+    "@splunk/otel-web": "^2.3.0",
+    "pino": "^9.9.2"
+  }
+}

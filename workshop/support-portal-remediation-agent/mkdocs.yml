@@ -1,0 +1,34 @@
+site_name: Cisco Live 2026 Workshop Runbook
+site_description: Detailed step-by-step workshop documentation for the IBOBS-2002 demo repository.
+site_url: https://example.invalid/ciscolive26
+repo_name: ciscolive26
+docs_dir: docs
+theme:
+  name: mkdocs
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Workshop:
+      - Quick Start: workshop/quickstart.md
+      - Prerequisites: workshop/prerequisites.md
+      - Environment Setup: workshop/environment.md
+      - Install and Start: workshop/install-and-start.md
+      - Splunk Validation: workshop/splunk-validation.md
+      - Live Demo Flow: workshop/live-demo-flow.md
+      - Galileo Showcase: workshop/galileo-showcase.md
+      - Galileo Experiments: workshop/galileo-experiments.md
+      - Span Attribute Exercises: workshop/span-attribute-exercises.md
+      - Troubleshooting: workshop/troubleshooting.md
+      - Rehearsal Plan: workshop/rehearsal-plan.md
+      - Architecture Summary: workshop/architecture.md
+  - Existing Technical Notes:
+      - Build Sequence: runbooks/BUILD_SEQUENCE.md
+      - Collector Validation: runbooks/COLLECTOR_VALIDATION.md
+      - Orchestrator Flow: architecture/ORCHESTRATOR_FLOW.md
+      - Splunk API Integration: architecture/SPLUNK_API_INTEGRATION.md
+      - Splunk Objects: architecture/SPLUNK_OBJECTS.md
+      - Test Strategy: testing/TEST_STRATEGY.md

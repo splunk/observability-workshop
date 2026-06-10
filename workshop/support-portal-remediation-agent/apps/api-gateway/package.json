@@ -1,0 +1,20 @@
+{
+  "name": "@ibobs/api-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx src/bootstrap.ts",
+    "build": "echo build api-gateway",
+    "lint": "echo lint api-gateway",
+    "typecheck": "echo typecheck api-gateway"
+  },
+  "dependencies": {
+    "@ibobs/runtime-config": "0.1.0",
+    "@ibobs/shared-types": "0.1.0",
+    "@ibobs/telemetry": "0.1.0",
+    "@fastify/cors": "^11.0.1",
+    "fastify": "^5.2.1"
+  }
+}

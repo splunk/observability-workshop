@@ -1,0 +1,103 @@
+[
+  {
+    "key": "executive_story",
+    "name": "IBOBS Executive Story",
+    "timeRange": "-30m",
+    "charts": [
+      {
+        "name": "Claims Portal Request Duration",
+        "type": "time",
+        "programText": "A = data('service.request.duration.ns', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}')).percentile(pct=95, by=['sf_service']).publish(label='P95 Duration')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 0 }
+      },
+      {
+        "name": "Claims Knowledge Cache Filesystem Utilization",
+        "type": "single_value",
+        "programText": "A = data('{{cache_utilization_metric}}', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.name', 'claims-knowledge') and filter('service.instance.id', '{{instance}}') and filter('mountpoint', '{{cache_mountpoint}}') and filter('demo.metric_source', '{{evidence_metric_source}}')).max(by=['service.name', 'service.instance.id', 'mountpoint']).publish(label='Claims Knowledge Cache Utilization')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 6 }
+      }
+    ]
+  },
+  {
+    "key": "business_transactions",
+    "name": "IBOBS APM Service Requests",
+    "timeRange": "-30m",
+    "charts": [
+      {
+        "name": "Request Duration by Service",
+        "type": "time",
+        "programText": "A = data('service.request.duration.ns', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}')).percentile(pct=95, by=['sf_service']).publish(label='P95 Duration')",
+        "grid": { "width": 12, "height": 1, "row": 0, "column": 0 }
+      },
+      {
+        "name": "Request Count by Service",
+        "type": "time",
+        "programText": "A = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}')).count(by=['sf_service']).publish(label='Requests')",
+        "grid": { "width": 12, "height": 1, "row": 1, "column": 0 }
+      }
+    ]
+  },
+  {
+    "key": "digital_experience",
+    "name": "IBOBS Digital Experience",
+    "timeRange": "-30m",
+    "charts": [
+      {
+        "name": "RUM Page Loads",
+        "type": "time",
+        "programText": "A = data('rum.page_view', filter=filter('deployment.environment', '{{deployment_environment}}')).count().publish(label='Page Views')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 0 }
+      },
+      {
+        "name": "Frontend Transaction Spans",
+        "type": "time",
+        "programText": "A = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('sf_service', 'ibobs-claims-portal')).count(by=['app.business_transaction']).publish(label='Transactions')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 6 }
+      }
+    ]
+  },
+  {
+    "key": "service_health",
+    "name": "IBOBS Service Health",
+    "timeRange": "-30m",
+    "charts": [
+      {
+        "name": "APM Duration by Service",
+        "type": "time",
+        "programText": "A = data('service.request.duration.ns', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}')).percentile(pct=95, by=['sf_service']).publish(label='P95 Duration')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 0 }
+      },
+      {
+        "name": "APM Error Rate by Service",
+        "type": "time",
+        "programText": "A = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}') and filter('sf_error', 'true')).count(by=['sf_service'])\nB = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}')).count(by=['sf_service'])\nC = (A / B).publish(label='Error Rate')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 6 }
+      },
+      {
+        "name": "Claims Knowledge Cache Filesystem Utilization",
+        "type": "time",
+        "programText": "A = data('{{cache_utilization_metric}}', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.name', 'claims-knowledge') and filter('service.instance.id', '{{instance}}') and filter('mountpoint', '{{cache_mountpoint}}') and filter('demo.metric_source', '{{evidence_metric_source}}')).max(by=['service.name', 'service.instance.id', 'mountpoint']).publish(label='Claims Knowledge Cache Utilization')",
+        "grid": { "width": 12, "height": 1, "row": 1, "column": 0 }
+      }
+    ]
+  },
+  {
+    "key": "operator_remediation",
+    "name": "IBOBS Remediation Operations",
+    "timeRange": "-30m",
+    "charts": [
+      {
+        "name": "Orchestrator Request Duration",
+        "type": "time",
+        "programText": "A = data('service.request.duration.ns', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}') and filter('sf_service', 'remediation-orchestrator')).percentile(pct=95).publish(label='P95 Duration')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 0 }
+      },
+      {
+        "name": "Remediation Agent Request Duration",
+        "type": "time",
+        "programText": "A = data('service.request.duration.ns', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}') and filter('sf_service', 'remediation-agent')).percentile(pct=95).publish(label='P95 Duration')",
+        "grid": { "width": 6, "height": 1, "row": 0, "column": 6 }
+      }
+    ]
+  }
+]

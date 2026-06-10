@@ -1,0 +1,48 @@
+{
+  "name": "ciscolive26-demo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev:all",
+    "dev:collector": "docker compose --env-file .env -f infra/docker/docker-compose.yml up splunk-otel-collector",
+    "dev:tunnel": "cloudflared tunnel --url http://127.0.0.1:${ORCHESTRATOR_PORT:-18110}",
+    "terraform:webhook-plan": "bash -lc 'set -a && source .env && set +a && terraform -chdir=infra/terraform plan -input=false -target=signalfx_detector.claims_knowledge_filesystem_pressure -target=signalfx_detector.claims_knowledge_latency -target=signalfx_detector.claims_knowledge_error_rate -var=\"splunk_access_token=$SPLUNK_ACCESS_TOKEN\" -var=\"splunk_realm=${SPLUNK_REALM:-us1}\" -var=\"deployment_environment=${DEPLOYMENT_ENVIRONMENT:-demo}\" -var=\"instance=${INSTANCE:-student-001}\" -var=\"cache_mountpoint=${SPLUNK_CACHE_MOUNTPOINT:-/var/cache/claims-knowledge}\" -var=\"cache_utilization_metric=${SPLUNK_CACHE_UTILIZATION_METRIC:-${CLAIMS_KNOWLEDGE_CACHE_UTILIZATION_METRIC:-claims_knowledge.cache.utilization}}\" -var=\"claim_status_latency_metric=${SPLUNK_CLAIM_STATUS_LATENCY_METRIC:-${CLAIMS_KNOWLEDGE_CLAIM_STATUS_LATENCY_METRIC:-claims_knowledge.claim_status.latency_ms}}\" -var=\"orchestrator_webhook_url=$ORCHESTRATOR_PUBLIC_WEBHOOK_URL\" -var=\"existing_webhook_credential_id=$SPLUNK_EXISTING_WEBHOOK_CREDENTIAL_ID\" -var=\"enable_webhook_integration=false\"'",
+    "terraform:webhook-apply": "bash -lc 'set -a && source .env && set +a && terraform -chdir=infra/terraform apply -input=false -auto-approve -target=signalfx_detector.claims_knowledge_filesystem_pressure -target=signalfx_detector.claims_knowledge_latency -target=signalfx_detector.claims_knowledge_error_rate -var=\"splunk_access_token=$SPLUNK_ACCESS_TOKEN\" -var=\"splunk_realm=${SPLUNK_REALM:-us1}\" -var=\"deployment_environment=${DEPLOYMENT_ENVIRONMENT:-demo}\" -var=\"instance=${INSTANCE:-student-001}\" -var=\"cache_mountpoint=${SPLUNK_CACHE_MOUNTPOINT:-/var/cache/claims-knowledge}\" -var=\"cache_utilization_metric=${SPLUNK_CACHE_UTILIZATION_METRIC:-${CLAIMS_KNOWLEDGE_CACHE_UTILIZATION_METRIC:-claims_knowledge.cache.utilization}}\" -var=\"claim_status_latency_metric=${SPLUNK_CLAIM_STATUS_LATENCY_METRIC:-${CLAIMS_KNOWLEDGE_CLAIM_STATUS_LATENCY_METRIC:-claims_knowledge.claim_status.latency_ms}}\" -var=\"orchestrator_webhook_url=$ORCHESTRATOR_PUBLIC_WEBHOOK_URL\" -var=\"existing_webhook_credential_id=$SPLUNK_EXISTING_WEBHOOK_CREDENTIAL_ID\" -var=\"enable_webhook_integration=false\"'",
+    "simulate:traffic": "node scripts/traffic-simulator.mjs",
+    "simulate:rum": "node scripts/rum-simulator.mjs",
+    "simulate:galileo": "node scripts/galileo-showcase.mjs",
+    "experiment:galileo": "apps/remediation-agent/.venv/bin/python scripts/galileo-remediation-experiment.py --suite mcp",
+    "experiment:galileo:mcp": "apps/remediation-agent/.venv/bin/python scripts/galileo-remediation-experiment.py --suite mcp",
+    "experiment:galileo:tools": "apps/remediation-agent/.venv/bin/python scripts/galileo-remediation-experiment.py --suite tools",
+    "experiment:galileo:all": "apps/remediation-agent/.venv/bin/python scripts/galileo-remediation-experiment.py --suite all",
+    "dev:agent": "cd apps/remediation-agent && .venv/bin/uvicorn app.main:app --app-dir . --host 127.0.0.1 --port ${REMEDIATION_AGENT_PORT:-18800}",
+    "dev:all": "concurrently -n knowledge,assistant,case,scenario,api,orchestrator,agent,frontend,console \"npm run dev --workspace @ibobs/knowledge-service\" \"npm run dev --workspace @ibobs/assistant-service\" \"npm run dev --workspace @ibobs/case-service\" \"npm run dev --workspace @ibobs/scenario-controller\" \"npm run dev --workspace @ibobs/api-gateway\" \"npm run dev --workspace @ibobs/remediation-orchestrator\" \"npm run dev:agent\" \"npm run dev --workspace @ibobs/frontend\" \"npm run dev --workspace @ibobs/operator-console\"",
+    "dev:backend": "concurrently -n knowledge,assistant,case,scenario,api,orchestrator,agent \"npm run dev --workspace @ibobs/knowledge-service\" \"npm run dev --workspace @ibobs/assistant-service\" \"npm run dev --workspace @ibobs/case-service\" \"npm run dev --workspace @ibobs/scenario-controller\" \"npm run dev --workspace @ibobs/api-gateway\" \"npm run dev --workspace @ibobs/remediation-orchestrator\" \"npm run dev:agent\"",
+    "test": "npm run test:ts",
+    "test:ts": "tsx --test tests/unit/*.test.ts",
+    "test:python": "python3 -m unittest discover -s tests -p 'test_*.py'",
+    "splunk:render": "python3 infra/splunk/sync_splunk_objects.py",
+    "splunk:apply": "python3 infra/splunk/sync_splunk_objects.py --apply",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "concurrently": "^9.2.1",
+    "playwright": "^1.54.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@splunk/otel": "^4.4.0",
+    "@splunk/otel-web": "^2.3.0"
+  }
+}

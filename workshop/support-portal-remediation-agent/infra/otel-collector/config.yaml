@@ -1,0 +1,122 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  hostmetrics:
+    collection_interval: 30s
+    root_path: /hostfs
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      load:
+      memory:
+      network:
+      paging:
+      processes:
+  hostmetrics/cache_volume:
+    collection_interval: 15s
+    scrapers:
+      filesystem:
+        include_virtual_filesystems: true
+        include_fs_types:
+          match_type: strict
+          fs_types:
+            - tmpfs
+        include_mount_points:
+          match_type: strict
+          mount_points:
+            - /var/cache/claims-knowledge
+        metrics:
+          system.filesystem.usage:
+            enabled: true
+          system.filesystem.utilization:
+            enabled: true
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 512
+  batch:
+  resourcedetection:
+    detectors: [env, system]
+    timeout: 2s
+    override: true
+  resource/lab_identity:
+    attributes:
+      - action: upsert
+        key: deployment.environment
+        value: ${DEPLOYMENT_ENVIRONMENT}
+      - action: upsert
+        key: service.instance.id
+        value: ${INSTANCE}
+      - action: upsert
+        key: host.name
+        value: ${INSTANCE}
+      - action: upsert
+        key: host
+        value: ${INSTANCE}
+      - action: upsert
+        key: lab.name
+        value: ciscolive26
+      - action: upsert
+        key: lab.student.id
+        value: ${INSTANCE}
+  resource/claims_knowledge_infra_relation:
+    attributes:
+      # Keep the host metrics discoverable from the Splunk APM service map.
+      # The metrics are still out-of-the-box host metrics; these are entity
+      # dimensions for the single-host workshop demo.
+      - action: upsert
+        key: sf_service
+        value: claims-knowledge
+      - action: upsert
+        key: service.name
+        value: claims-knowledge
+      - action: upsert
+        key: service.namespace
+        value: ibobs2002
+      - action: upsert
+        key: sf_environment
+        value: ${DEPLOYMENT_ENVIRONMENT}
+
+exporters:
+  signalfx:
+    access_token: ${SPLUNK_ACCESS_TOKEN}
+    realm: ${SPLUNK_REALM}
+    api_url: https://api.${SPLUNK_REALM}.observability.splunkcloud.com
+    ingest_url: https://ingest.${SPLUNK_REALM}.observability.splunkcloud.com
+    root_path: /hostfs
+    sync_host_metadata: true
+    correlation:
+      # The demo walkthrough often pauses on a trace before navigating to infra.
+      # Keep the service-to-host relation alive for the full presentation window.
+      stale_service_timeout: 2h
+      log_updates: true
+  otlp_http/traces:
+    traces_endpoint: https://ingest.${SPLUNK_REALM}.observability.splunkcloud.com/v2/trace/otlp
+    headers:
+      X-SF-Token: ${SPLUNK_ACCESS_TOKEN}
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, resourcedetection, resource/lab_identity, batch]
+      exporters: [otlp_http/traces, signalfx]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, resourcedetection, resource/lab_identity, batch]
+      exporters: [signalfx]
+    metrics/infrastructure:
+      receivers: [hostmetrics]
+      processors: [memory_limiter, resourcedetection, resource/lab_identity, resource/claims_knowledge_infra_relation, batch]
+      exporters: [signalfx]
+    metrics/cache_volume:
+      receivers: [hostmetrics/cache_volume]
+      processors: [memory_limiter, resourcedetection, resource/lab_identity, resource/claims_knowledge_infra_relation, batch]
+      exporters: [signalfx]

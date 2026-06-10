@@ -1,0 +1,35 @@
+[
+  {
+    "key": "claims_knowledge_filesystem_pressure",
+    "name": "IBOBS Claims Knowledge Cache Filesystem Pressure",
+    "programText": "A = data('{{cache_utilization_metric}}', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.name', 'claims-knowledge') and filter('service.instance.id', '{{instance}}') and filter('mountpoint', '{{cache_mountpoint}}') and filter('demo.metric_source', '{{evidence_metric_source}}')).max(by=['service.name', 'service.instance.id', 'mountpoint']).publish(label='Claims Knowledge Cache Utilization')\ndetect(when(A > {{filesystem_utilization_threshold}}, lasting='2m')).publish('Claims Knowledge Cache Filesystem Pressure')",
+    "rule": {
+      "detectLabel": "Claims Knowledge Cache Filesystem Pressure",
+      "severity": "Critical",
+      "description": "Claims knowledge cache utilization is above the lab threshold for the synthetic cache volume.",
+      "runbookUrlTemplate": "{{orchestrator_webhook_url}}"
+    }
+  },
+  {
+    "key": "claims_knowledge_latency",
+    "name": "IBOBS Claims Knowledge APM Latency",
+    "programText": "A = data('{{claim_status_latency_metric}}', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.name', 'claims-knowledge') and filter('service.instance.id', '{{instance}}') and filter('app.business_transaction', 'claim_status_response') and filter('demo.metric_source', '{{evidence_metric_source}}')).max(by=['service.name', 'service.instance.id', 'app.business_transaction']).publish(label='AI Claim Status Latency')\ndetect(when(A > {{apm_latency_threshold_ms}}, lasting='2m')).publish('Claims Knowledge APM Latency')",
+    "rule": {
+      "detectLabel": "Claims Knowledge APM Latency",
+      "severity": "Major",
+      "description": "AI Claim Status latency is elevated for the claims-knowledge service.",
+      "runbookUrlTemplate": "{{orchestrator_webhook_url}}"
+    }
+  },
+  {
+    "key": "claims_knowledge_error_rate",
+    "name": "IBOBS Claims Knowledge APM Error Rate",
+    "programText": "A = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}') and filter('sf_service', 'claims-knowledge') and filter('sf_error', 'true')).count()\nB = data('service.request', filter=filter('deployment.environment', '{{deployment_environment}}') and filter('service.instance.id', '{{instance}}') and filter('sf_service', 'claims-knowledge')).count()\nC = (A / B).publish(label='Error Rate')\ndetect(when(C > {{apm_error_threshold}}, lasting='2m')).publish('Claims Knowledge APM Error Rate')",
+    "rule": {
+      "detectLabel": "Claims Knowledge APM Error Rate",
+      "severity": "Major",
+      "description": "Splunk APM service request error rate is elevated for the claims-knowledge service.",
+      "runbookUrlTemplate": "{{orchestrator_webhook_url}}"
+    }
+  }
+]
