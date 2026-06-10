@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Galileo Instrumentation for LangChain Apps on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/</link><description>Recent content in Galileo Instrumentation for LangChain Apps on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/index.xml" rel="self" type="application/rss+xml"/><item><title>Introduction</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/1-introduction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/1-introduction/</guid><description>&lt;p&gt;In &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+ you instrumented and observed an &lt;strong&gt;agentic AI travel planner&lt;/strong&gt;. That application is a &lt;strong&gt;Flask API&lt;/strong&gt; wrapping a &lt;strong&gt;LangGraph&lt;/strong&gt; workflow, where each node
+(coordinator, flight specialist, hotel specialist, activity specialist, and synthesizer) calls an LLM
+through &lt;strong&gt;LangChain&lt;/strong&gt;&amp;rsquo;s &lt;code&gt;ChatOpenAI&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In this follow-on workshop, you will take that same application and add &lt;strong&gt;Galileo instrumentation&lt;/strong&gt; to
+it. Rather than re-instrumenting from scratch, you&amp;rsquo;ll attach a single Galileo callback to the LangGraph
+workflow so every agent&amp;rsquo;s LLM call is captured. This lets you compare and validate AI trace visibility
+across tools using a workload you already understand.&lt;/p&gt;</description></item><item><title>Quickstart Setup</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/2-quickstart-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/2-quickstart-setup/</guid><description>&lt;p&gt;Start by adding the Galileo SDK to the travel planner&amp;rsquo;s environment and initializing Galileo tracing.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Quickstart setup&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Activate Environment&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and activate the virtual environment you created in &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+ (or create a fresh one):&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Install Galileo SDK&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Install the Galileo SDK alongside the app&amp;rsquo;s existing dependencies:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install galileo python-dotenv&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;The app already installs &lt;code&gt;langchain&lt;/code&gt;, &lt;code&gt;langchain-openai&lt;/code&gt;, &lt;code&gt;langgraph&lt;/code&gt;, and &lt;code&gt;flask&lt;/code&gt; via its
+&lt;code&gt;requirements.txt&lt;/code&gt;. Galileo&amp;rsquo;s LangChain callback ships with the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;</description></item><item><title>Add the LangChain Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/3-add-langchain-callback/</guid><description>&lt;p&gt;Galileo&amp;rsquo;s &lt;code&gt;GalileoCallback&lt;/code&gt; is a standard LangChain callback handler. When you attach it to a
+LangChain or LangGraph run, it automatically captures prompts, responses, model names, token usage,
+timing, and the nesting of each step.&lt;/p&gt;
+&lt;p&gt;Because the travel planner is a &lt;strong&gt;LangGraph&lt;/strong&gt; workflow, you don&amp;rsquo;t need to edit every node. Instead,
+pass a single callback in the &lt;strong&gt;run config&lt;/strong&gt; when the compiled graph is streamed. Galileo then records
+one trace per request, with a nested LLM span for each agent node (coordinator, flight, hotel,
+activity, and synthesizer).&lt;/p&gt;</description></item><item><title>Run and Verify the Trace</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/4-run-and-verify-trace/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/4-run-and-verify-trace/</guid><description>&lt;p&gt;Run the travel planner, send a request through it, then confirm the multi-agent trace landed in Galileo.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Run the app and verify the trace&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Active Environment&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the base-app directory and activate the virtual environment:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/agentic-ai/base-app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Run the app&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Start the app:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-run-app-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-run-app-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-run-app-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-run-app-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-run-app-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-run-app-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 main.py&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs-run-app-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-run-app-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;INFO:root:[INFO] Starting Flask server on http://0.0.0.0:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Serving Flask app &amp;#39;main&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Running on all addresses (0.0.0.0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Running on http://127.0.0.1:8080&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;3&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Send a request to the app&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/19-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+ multi-agent travel planner and instrumented it with Galileo (Splunk Agent Observability) by adding just two things: &lt;code&gt;galileo_context.init(...)&lt;/code&gt; and a single &lt;code&gt;GalileoCallback&lt;/code&gt; on the LangGraph run config.&lt;/p&gt;
+&lt;p&gt;With that, every agent node&amp;rsquo;s LLM call now appears as a nested span in a single Galileo trace per request — no per-node changes required and very low maintenance.&lt;/p&gt;
+&lt;p&gt;You now have the same workload traced in &lt;strong&gt;two&lt;/strong&gt; observability tools (Splunk Observability Cloud from &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+, and Galileo here), which is a useful basis for comparison.&lt;/p&gt;</description></item></channel></rss>
