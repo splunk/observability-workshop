@@ -11,7 +11,7 @@ authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 
 Prior to this workshop you should have been provided details for accessing your workshop instance. This workshop utilizes a preconfigured environment which includes Splunk Enterprise and IT Service Intelligence. A link to the instance and the credentials are available in the Splunk Show instance details.
 
-All of the data required for completing this workshop is available in the `netops` index. This index includes data from  **Catalyst Center**, **Merkai**, and alerts from **Solarwinds**.
+All of the data required for completing this workshop is available in the `netops` index. This index includes data from  **Catalyst Center**, **Meraki**, and alerts from **Solarwinds**.
 
 An automated break scenario runs on a 30 minute cycle. The Catalyst Center sites will be healthy for 15 minutes, followed by 15 minutes of degraded performance. While the environment is unhealthy, Issues and Alerts are generated from **Catalyst Center** and **Solarwinds**.
 
