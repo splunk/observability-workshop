@@ -1,7 +1,7 @@
 ---
 title: Conclusion
-linkTitle: 7. Conclusion
-weight: 7
+linkTitle: 8. Conclusion
+weight: 8
 ---
 
 Congratulations on finishing the Lambda Tracing Workshop! You have seen how we can complement auto-instrumentation with manual steps to have the `producer-lambda` function's context be sent to the `consumer-lambda` function via a record in a Kinesis stream. This allowed us to build the expected Distributed Trace, and to contextualize the relationship between both functions in Splunk APM.
