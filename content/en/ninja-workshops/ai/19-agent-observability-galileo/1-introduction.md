@@ -18,7 +18,7 @@ across tools using a workload you already understand.
 
 * The workshop 18 travel planner app (`~/workshop/agentic-ai/base-app`), or your own copy of it.
 * A Galileo account and API key.
-* An OpenAI API key (the same `OPENAI_API_KEY` the app already uses).
+* An OpenAI API key (an `OPENAI_API_KEY` will be pre-defined on your workshop instance).
 * Python 3.10+ environment with package install access.
 
 {{% /prerequisites %}}

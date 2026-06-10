@@ -11,10 +11,11 @@ Start by adding the Galileo SDK to the travel planner's environment and initiali
 
 {{< step title="Activate Environment"  >}}
 
-Navigate to the app directory and activate the virtual environment you created in [Monitoring Agentic AI Applications](ninja-workshops/ai/18-agentic-ai/) (or create a fresh one):
+Navigate to the app directory and create a new virtual environment:
 
 ```bash
 cd ~/workshop/agentic-ai/base-app
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -22,45 +23,54 @@ source .venv/bin/activate
 
 {{< step title="Install Galileo SDK"  >}}
 
-Install the Galileo SDK alongside the app's existing dependencies:
+The app already installs `langchain`, `langchain-openai`, `langgraph`, and `flask` via its
+`requirements.txt`. Galileo's LangChain callback ships with the `galileo` package, so 
+let's add it here. 
+
+Open the `~/workshop/agentic-ai/base-app/requirements.txt` file for editing 
+and add the following packages: 
 
 ```bash
-pip install galileo python-dotenv
+galileo
+python-dotenv
 ```
 
-The app already installs `langchain`, `langchain-openai`, `langgraph`, and `flask` via its
-`requirements.txt`. Galileo's LangChain callback ships with the `galileo` package.
+Then add all of the packages to the virtual environment: 
+
+```bash
+pip install -r requirements.txt
+```
 
 {{< /step >}}
 
 {{< step title="Configure Galileo credentials"  >}}
 
-Add your credentials to the app's `.env` file.
+Your EC2 instance comes pre-configured with `OPENAI_API_KEY` and 
+`OPENAI_BASE_URL` environment variables, which will be used by the application. 
+
+To define additional environment variables, create a new file named
+`~/workshop/agentic-ai/base-app/.env` and add your credentials: 
 
 ```ini
-OPENAI_API_KEY="your-openai-api-key"
-OPENAI_BASE_URL="https://lite-llm-proxy.splunko11y.com/v1"
 GALILEO_API_KEY="your-galileo-api-key"
 GALILEO_CONSOLE_URL="https://console.multitenant.galileocloud.io"
-# Recommended: uncomment to group this workshop's traces under their own project
-# and log stream. If you leave these commented out, Galileo uses a project and log
+# If you comment out the next two uncommented lines, Galileo uses a project and log
 # stream both named "default".
-# GALILEO_PROJECT="Workshop19Galileo"
-# GALILEO_LOG_STREAM="TravelPlanner"
+GALILEO_PROJECT="Workshop19Galileo"
+GALILEO_LOG_STREAM="TravelPlanner-${INSTANCE}"
 ```
-
-Uncommenting `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` keeps the workshop traces easy to find.
-Leaving them commented is fine too — your traces will just land in the `default` project and
-`default` log stream.
 
 {{< /step >}}
 
 {{< step title="Initialize Galileo in the app"  >}}
-Initialize Galileo near the top of `main.py`, right after the existing imports and `load_dotenv()` call. Passing the environment variables through means the project and log stream come from your `.env` when set, and fall back to Galileo's `default`/`default` when not:
+Initialize Galileo near the top of `~/workshop/agentic-ai/base-app/main.py`, right before `import logging`. Passing the environment variables through means the project and log stream come from your `.env` when set, and fall back to Galileo's `default`/`default` when not:
 
 ```python
 import os
+from dotenv import load_dotenv
 from galileo import galileo_context
+
+load_dotenv()
 
 galileo_context.init(project=os.getenv("GALILEO_PROJECT"),
                      log_stream=os.getenv("GALILEO_LOG_STREAM"))
@@ -72,7 +82,7 @@ galileo_context.init(project=os.getenv("GALILEO_PROJECT"),
 
 {{< checkpoint title="Knowledge Check" >}}
 
-If you leave `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` commented out in your `.env`, where will
+If you comment out the `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` variables in your `.env`, where will
 your traces show up in Galileo?
 
 {{< details summary="Click here to see the answer" >}}
