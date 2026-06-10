@@ -76,9 +76,9 @@ Now that we have seen that, it's time to clean up.
 
 ## Stop the messages
 
-The resources we deployed as part of this auto-instrumenation exercise need to be cleaned. Likewise, the script that was generating traffice against our `producer-lambda` endpoint needs to be stopped, if it's still running. Follow the below steps to clean up.
+The resources we deployed as part of this instrumenation exercise need to be cleaned up. Likewise, the script that was generating traffic against our `producer-lambda` endpoint needs to be stopped, if it's still running. Follow the below steps to clean up resources.
 
-* If the `send_message.py` script is still running, stop it with the follwing commands:
+* If the `send_message.py` script is still running, stop it with the following commands:
 
 ```bash
 fg
@@ -88,8 +88,6 @@ fg
 * Next you can hit `[CONTROL-C]` to kill the process.
 
 ## Destroy all AWS resources
-
-Terraform is great at managing the state of our resources individually, and as a deployment. It can even update deployed resources with any changes to their definitions. But to start afresh, we will destroy the resources and redeploy them as part of the manual instrumentation portion of this workshop.
 
 Please follow these steps to destroy your resources:
 
