@@ -9,16 +9,6 @@ Run the travel planner, send a request through it, then confirm the multi-agent 
 
 {{< exercise title="Run the app and verify the trace" >}}
 
-{{< step title="Active Environment" >}}
-Navigate to the base-app directory and activate the virtual environment:
-
-```bash
-cd ~/workshop/agentic-ai/base-app
-source .venv/bin/activate
-```
-
-{{< /step >}}
-
 {{< step title="Run the app"  >}}
 Start the app:
 
@@ -108,9 +98,20 @@ curl http://localhost:8080/travel/plan \
 
 {{< step title="Verify the trace in Galileo" >}}
 
-In the Galileo console (https://console.multitenant.galileocloud.io/splunkse) , open the project and log stream your traces landed in. If you uncommented
-   `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` in your `.env`, that's `Workshop19Galileo` /
-   `TravelPlanner`; otherwise it's the `default` project and `default` log stream.
+In the Galileo console (https://console.multitenant.galileocloud.io/splunkse), 
+open the `Workshop19Galileo` project (unless you commented out the `GALILEO_PROJECT` environment
+variable in the `.env` file). 
+
+Then, to find your log stream, first echo the `INSTANCE` environment variable on 
+your EC2 instance: 
+
+```bash
+echo $INSTANCE
+```
+
+Then look for the log stream named `TravelPlanner-` followed by your instance name. 
+For example, `TravelPlanner-shw-9306`. 
+
 {{< /step >}}
 
 {{< step title="Find the trace" >}}
