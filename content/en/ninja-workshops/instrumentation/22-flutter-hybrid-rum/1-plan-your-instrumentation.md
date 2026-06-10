@@ -137,6 +137,18 @@ You will make four kinds of changes:
 
 If you also own the backend, you validate that backend services are instrumented with APM and preserve trace context. If another team owns the backend, you use this workshop to define the contract they need to provide.
 
+## Complete Sample App
+
+Use the complete sample when you want to run the flow instead of adapting snippets immediately:
+
+```bash
+cd workshop/flutter-hybrid-rum/flutter-shop
+./scripts/bootstrap-platforms.sh
+flutter run
+```
+
+The sample app works without a real RUM token so you can explore the screens first. With a real token, the same app sends live RUM telemetry.
+
 {{< tabs >}}
 {{% tab title="Question" %}}
 **Why not install every available agent in every layer?**

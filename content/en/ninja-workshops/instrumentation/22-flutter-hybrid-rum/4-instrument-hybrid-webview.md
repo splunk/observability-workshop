@@ -20,6 +20,13 @@ Use the Splunk browser instrumentation guided setup to generate the current snip
 
 This instrumentation goes into the web bundle loaded by the WebView. It does not go into `main.dart`.
 
+In the complete sample app, the two relevant files are:
+
+| File | Purpose |
+| ---- | ------- |
+| `flutter-shop/lib/src/screens/checkout_webview_screen.dart` | Loads the WebView HTML, injects safe RUM configuration, and receives checkout completion from JavaScript. |
+| `flutter-shop/assets/web/checkout.html` | Loads the Splunk browser RUM agent, initializes WebView RUM, and creates web-owned checkout events and network calls. |
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 Open `workshop/flutter-hybrid-rum/hybrid/rum-bootstrap.js` and adapt the values:

@@ -7,6 +7,13 @@ Automatic instrumentation gives you the baseline. Useful mobile troubleshooting 
 
 In the sample app, this is the difference between seeing "a mobile request was slow" and seeing "checkout slowed down for the `1.0.0` workshop build while a gold-tier test user moved from cart review to payment authorization."
 
+The complete sample app keeps these calls in two places:
+
+| File | Purpose |
+| ---- | ------- |
+| `flutter-shop/lib/src/rum_service.dart` | Defines the Splunk RUM calls. |
+| `flutter-shop/lib/src/shop_store.dart` | Calls the RUM service when cart and checkout business events happen. |
+
 ## Add Global Attributes
 
 Global attributes apply to telemetry emitted after they are set. Use them for low-cardinality context that helps operators filter and compare sessions.
