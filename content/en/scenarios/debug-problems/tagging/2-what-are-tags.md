@@ -30,7 +30,7 @@ Tags are essential for an application to be truly observable. As we saw with our
 
 Tags add the context to the traces to help us understand why some users get a great experience and others don't.  And powerful features in **Splunk Observability Cloud** utilize tags to help you jump quickly to root cause.
 
-## Sneak Peak: Tag Spotlight
+## Sneak Peek: Tag Spotlight
 
 **Tag Spotlight** uses tags to discover trends that contribute to high latency or error rates:
 
@@ -42,7 +42,7 @@ Splunk has analyzed all of the tags included as part of traces that involve the 
 
 It tells us very quickly whether some tag values have more errors than others.
 
-If we look at the version tag, we can see that version 350.10 of the service has a 100% error rate, whereas version 350.9 of the service has no errors at all:
+If we look at the version tag, we can see that version `350.10` of the service has a 100% error rate, whereas version `350.9` of the service has no errors at all:
 
 ![Tag Spotlight Preview](../images/tag_spotlight_preview_details.png)
 
