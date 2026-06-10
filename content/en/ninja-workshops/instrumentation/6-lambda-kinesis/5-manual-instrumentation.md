@@ -1,7 +1,7 @@
 ---
 title: Manual Instrumentation
-linkTitle: 4. Manual Instrumentation
-weight: 4
+linkTitle: 5. Manual Instrumentation
+weight: 5
 ---
 
 The second part of our workshop will focus on demonstrating how manual instrumentation with OpenTelemetry empowers us to enhance telemetry collection. More specifically, in our case, it will enable us to propagate trace context data from the `producer-lambda` function to the `consumer-lambda` function, thus enabling us to see the relationship between the two functions, even across Kinesis Stream, which currently does not support automatic context propagation.
