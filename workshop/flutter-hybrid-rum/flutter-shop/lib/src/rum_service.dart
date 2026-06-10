@@ -14,6 +14,10 @@ class RumService {
 
   bool get enabled => _enabled;
 
+  // Automatic instrumentation is enabled during install. The app does not call
+  // Splunk RUM for every tap, route change, lifecycle transition, crash, slow
+  // render, or supported network request. The enabled modules observe those
+  // signals after the agent is installed.
   Future<void> install(RumConfig config) async {
     if (!config.liveRumEnabled) {
       debugPrint('Splunk RUM disabled: using placeholder RUM token.');
@@ -76,6 +80,8 @@ class RumService {
     );
   }
 
+  // Custom instrumentation starts here. These methods add app-specific meaning
+  // that automatic instrumentation cannot infer from framework activity alone.
   Future<void> trackProductViewed(Product product) async {
     if (!_enabled) {
       return;
@@ -110,6 +116,46 @@ class RumService {
         ),
       ),
     );
+  }
+
+  Future<void> trackWorkshopMilestone({required String scenario}) async {
+    if (!_enabled) {
+      return;
+    }
+    await _safeCall(
+      () => SplunkRum.instance.customTracking.trackCustomEvent(
+        name: 'workshop_custom_event',
+        attributes: MutableAttributes(
+          attributes: {
+            'workshop.scenario': MutableAttributeString(value: scenario),
+            'instrumentation.type': MutableAttributeString(value: 'custom'),
+          },
+        ),
+      ),
+    );
+  }
+
+  Future<void> runTrainingWorkflow() async {
+    if (!_enabled) {
+      return;
+    }
+    await _safeCall(() async {
+      final workflow = await SplunkRum.instance.customTracking.startWorkflow(
+        name: 'manual_instrumentation_training',
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 400));
+      await SplunkRum.instance.customTracking.trackCustomEvent(
+        name: 'manual_instrumentation_training_step',
+        attributes: MutableAttributes(
+          attributes: {
+            'workshop.step': MutableAttributeString(value: 'examples_screen'),
+            'instrumentation.type': MutableAttributeString(value: 'custom'),
+          },
+        ),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 250));
+      await workflow.end();
+    });
   }
 
   Future<void> startCheckout(double cartTotal) async {

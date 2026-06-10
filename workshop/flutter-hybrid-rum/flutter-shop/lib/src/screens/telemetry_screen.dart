@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../app.dart';
 import '../rum_service.dart';
+import 'instrumentation_examples_screen.dart';
 
 class TelemetryScreen extends StatefulWidget {
   const TelemetryScreen({super.key});
@@ -49,6 +50,14 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
             '3. Checkout is wrapped in a custom workflow.\n'
             '4. The WebView page initializes browser RUM.\n'
             '5. API calls create network telemetry for RUM/APM validation.',
+          ),
+          const SizedBox(height: 24),
+          FilledButton.icon(
+            icon: const Icon(Icons.play_circle_outline),
+            label: const Text('Open instrumentation examples'),
+            onPressed: () => Navigator.of(context).pushNamed(
+              InstrumentationExamplesScreen.routeName,
+            ),
           ),
         ],
       ),

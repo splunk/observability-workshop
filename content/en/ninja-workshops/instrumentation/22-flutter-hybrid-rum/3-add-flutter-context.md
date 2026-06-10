@@ -72,6 +72,10 @@ For this app:
 - `cart_item_added` tells you a user crossed a meaningful product milestone.
 - `checkout` measures the full checkout duration.
 - `checkout_failed` records a safe failure type without logging payment details, request bodies, names, or email addresses.
+- `workshop_custom_event` shows the smallest possible custom event.
+- `manual_instrumentation_training` shows a custom workflow that is not tied to checkout.
+
+The last two examples are exposed in the app through **Telemetry status** -> **Open instrumentation examples**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -133,3 +137,14 @@ await SplunkRum.instance.navigation.track(screenName: 'CheckoutReviewScreen');
 ```
 
 Use names that product, support, and engineering teams already understand.
+
+## Custom Instrumentation Examples in the App
+
+Use the examples screen when you want to demonstrate explicit instrumentation without walking through the full checkout:
+
+| Button | Code path | Telemetry |
+| ------ | --------- | --------- |
+| **Send custom event** | `RumService.trackWorkshopMilestone()` | Emits `workshop_custom_event` with `workshop.scenario` and `instrumentation.type`. |
+| **Run custom workflow** | `RumService.runTrainingWorkflow()` | Starts `manual_instrumentation_training`, emits a step event, and ends the workflow. |
+
+These examples are intentionally small. They show the difference between telemetry the agent can infer automatically and telemetry the application must describe because only the application knows the business meaning.

@@ -83,6 +83,7 @@ After instrumentation, the same checkout flow produces an end-to-end troubleshoo
 | `flutter-shop/lib/src/rum_service.dart` | Wraps Splunk RUM setup, global attributes, screen tracking, custom events, and checkout workflow tracking. |
 | `flutter-shop/lib/src/shop_store.dart` | Owns cart and checkout business actions, then calls the RUM service at meaningful user milestones. |
 | `flutter-shop/lib/src/shop_api.dart` | Sends demo HTTP requests so mobile network spans appear in RUM. |
+| `flutter-shop/lib/src/screens/instrumentation_examples_screen.dart` | Shows a side-by-side automatic instrumentation example and custom instrumentation examples. |
 | `flutter-shop/lib/src/screens/checkout_webview_screen.dart` | Loads the embedded checkout page and bridges checkout completion back to Flutter. |
 | `flutter-shop/assets/web/checkout.html` | Initializes browser RUM inside the WebView and makes web-owned checkout requests. |
 

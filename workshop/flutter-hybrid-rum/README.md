@@ -36,7 +36,7 @@ That app includes a Flutter product catalog, cart, embedded WebView checkout, si
 | ---- | ------- |
 | `.env.example` | Local workshop values for realm, token, app name, environment, and app version. |
 | `flutter/main.dart` | Minimal Flutter RUM initialization and context examples. |
-| `flutter-shop/` | Complete Flutter sample app with Flutter and WebView instrumentation. |
+| `flutter-shop/` | Complete Flutter sample app with automatic and custom instrumentation examples. |
 | `hybrid/rum-bootstrap.js` | Browser RUM bootstrap pattern for embedded WebView/hybrid content. |
 | `hybrid/webview-config.html` | Example configuration block for server-rendered or injected WebView settings. |
 | `apm/server-timing.md` | Backend checklist for RUM-to-APM correlation. |
@@ -57,5 +57,7 @@ set +a
 5. If your app uses WebView content, add browser RUM to the web bundle using `flutter-shop/assets/web/checkout.html` or `hybrid/rum-bootstrap.js`.
 6. Generate sessions from a simulator or real device.
 7. Validate the sessions in Splunk RUM and check APM correlation for backend calls.
+
+The app's **Telemetry status** screen links to an **Instrumentation examples** screen. Use that screen to generate one automatic instrumentation example and two custom instrumentation examples without completing the full checkout flow.
 
 Do not commit real RUM tokens.

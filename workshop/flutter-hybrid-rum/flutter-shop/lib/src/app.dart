@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'rum_config.dart';
 import 'rum_service.dart';
 import 'screens/catalog_screen.dart';
+import 'screens/instrumentation_examples_screen.dart';
 import 'screens/telemetry_screen.dart';
 import 'shop_store.dart';
 
@@ -30,6 +31,8 @@ class ShopApp extends StatelessWidget {
         ),
         home: const CatalogScreen(),
         routes: {
+          InstrumentationExamplesScreen.routeName: (_) =>
+              const InstrumentationExamplesScreen(),
           TelemetryScreen.routeName: (_) => const TelemetryScreen(),
         },
         navigatorObservers: [RumNavigationObserver()],
