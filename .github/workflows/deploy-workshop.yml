@@ -129,3 +129,4 @@ jobs:
         with:
           name: v${{ steps.bumpversion.outputs.tag_name }}
           tag_name: v${{ steps.bumpversion.outputs.tag_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
