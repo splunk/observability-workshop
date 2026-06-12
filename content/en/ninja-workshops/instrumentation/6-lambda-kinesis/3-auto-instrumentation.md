@@ -63,7 +63,7 @@ By using these environment variables, we are configuring our auto-instrumentatio
 
 ```bash
 SPLUNK_ACCESS_TOKEN = var.o11y_access_token
-SPLUNK_ACCESS_TOKEN = var.o11y_realm
+SPLUNK_REALM = var.o11y_realm
 ```
 
 * We are also setting variables that help OpenTelemetry identify our function/service, as well as the environment/application it is a part of.
@@ -82,7 +82,7 @@ AWS_LAMBDA_EXEC_WRAPPER - "/opt/nodejs-otel-handler"
 * In the case of the `producer-lambda` function, we are setting an environment variable to let the function know what Kinesis Stream to put our record to.
 
 ```bash
-KINESIS_STREAM = aws_kinesis_stream.lambda_streamer.name
+KINESIS_STREAM = aws_kinesis_stream.lambda_stream.name
 ```
 
 * These values are sourced from the environment variables we set in the Prerequisites section, as well as resources that will be deployed as a part of this Terraform configuration file.
