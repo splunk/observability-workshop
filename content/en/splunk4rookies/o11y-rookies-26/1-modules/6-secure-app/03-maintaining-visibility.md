@@ -1,0 +1,54 @@
+---
+title: Maintaining Visibility
+linkTitle: 03-Maintaining-Visibility
+weight: 3
+---
+
+## Why unified visibility matters
+
+When reliability and security live in separate tools, prioritization conversations stall. SREs ask *what broke?* while AppSec asks *what is exploitable?* — and neither view shows services that are simultaneously unhealthy and high-risk.
+
+Splunk Secure Application surfaces vulnerability and attack summaries alongside golden signals on **APM Overview**, **Service Map**, and the **per-service Application Security** workspace. Engineering, application security, and SecOps can share one runtime view without a duplicate agent or workflow.
+
+---
+
+## 3.1 Security posture on APM Overview
+
+1. Navigate to **APM → Overview**.
+2. Set the **environment** filter to `astronomy-shop-*`.
+3. Scroll to the **Services** tab.
+
+Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries — counts of critical and high CVEs and attacks.
+
+**Validation:**
+
+- [ ] Vulnerability and threat badges or counts appear per service
+- [ ] Environment filter scopes data to the intended demo estate
+- [ ] You can articulate how reliability and security context appear together
+
+> *"We are bringing security together with reliability - allowing teams to review Application Security risks in the same place they understand application performance and behavior."*
+
+---
+
+## 3.2 Service Map runtime security widgets
+
+1. Navigate to **APM → Service Map**.
+2. Open the **Services** filter and select **`ad`**.
+3. Click the **`ad`** node in the service map.
+4. Scroll to the **Runtime Vulnerabilities** and **Attacks** widgets.
+
+The widgets summarize the top vulnerabilities (CVE title, ID, score, libraries) and any attack activity (type and outcome).
+
+> *"Blast-radius thinking — issues framed next to dependencies and traffic."*
+
+5. From a widget, drill into a vulnerability or attack detail to review the navigation path.
+
+---
+
+## What you learned
+
+- How to correlate service health with vulnerability and threat profiles on APM Overview.
+- How Service Map widgets frame security issues in topology context.
+- How per-service Application Security keeps triage inside the APM workspace.
+
+**Next:** [Prioritizing Known Threats →](04-prioritizing-known-threats.md)
