@@ -14,7 +14,9 @@ cd ~/workshop/cisco-ai-pods
 oc apply -f ./llm-app/k8s-manifest.yaml
 ```
 
-> Note: to build a Docker image for this Python application, we executed the following commands:
+> [!NOTE]
+> To build a Docker image for this Python application, we executed the following commands:
+>
 > ``` bash
 > cd workshop/cisco-ai-pods/llm-app
 > docker build --platform linux/amd64 -t ghcr.io/splunk/cisco-ai-pod-workshop-app:1.0 .

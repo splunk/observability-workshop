@@ -80,7 +80,7 @@ graph LR
     subID3:::sub-traces
     subgraph " "
     direction LR
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       REC1 --> ROUTE1
       end
       subgraph subID2[**Traces/route2-security**]

@@ -67,6 +67,15 @@ disableKinds = ["taxonomy", "term"]
 # Drop these in your own site's hugo.toml to rebrand the theme entirely.
 # ==========================================================================
 [params]
+  # ---- Legacy URL handling -----------------------------------------------
+  # Older deployments of this site used a `/latest/` segment in the URL
+  # (e.g. /observability-workshop/latest/en/workshop-setup/). External
+  # bookmarks and search results still point there. With this flag set, the
+  # theme's 404 page rewrites `/…/latest/<rest>` to `/…/<rest>` on the fly
+  # so legacy URLs land on the canonical page instead of GitHub's plain 404.
+  # Set to false (or remove) once you're confident no `/latest/` links remain.
+  legacyLatestRedirect = true
+
   # ---- Identity ----------------------------------------------------------
   brandName       = "splunk>"
   brandTagline    = ""           # set to "" to suppress the "splunk> | workshops" tag pill
@@ -134,7 +143,7 @@ disableKinds = ["taxonomy", "term"]
   showToc         = true
   showProgress    = true
   showLightTrails = true
-  contentMaxWidth = "720px"
+  contentMaxWidth = "880px"
 
   # ---- Repo / edit-on-github --------------------------------------------
   editURL = ""

@@ -6,7 +6,7 @@ weight: 3
 
 Now, we can start the **Gateway** and the **Agent**, which is configured to automatically send **Host Metrics** at startup. We do this to verify that data is properly routed from the **Agent** to the **Gateway**.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Start the Gateway and Agent" %}}
 
 **Gateway**: In the **Gateway terminal** window, run the following command to start the **Gateway**:
 
@@ -96,4 +96,4 @@ jq '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "system.cpu.ti
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
 
-{{% /notice %}}
+{{% /exercise %}}

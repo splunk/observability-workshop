@@ -1,11 +1,12 @@
 ---
-title: 4. Trial Org Configuration
+title: Trial Org Configuration
 weight: 4
+time: false
 ---
 
 ## Log Observer Connect
 
-The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. **SWiPE** provides a simple form to configure this and is available [**here**](https://swipe.splunk.show/log_observer_connect).
+The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. **SWiPE** provides a simple form to configure this. You can find this form in the **Tools** section of SWiPE.
 
 ![Log Observer Connect](../images/log-observer-connect.png)
 

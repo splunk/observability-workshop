@@ -8,7 +8,7 @@ In this section, we'll explore how to use the [**Count Connector**](https://gith
 
 Specifically, we'll use the Count Connector to track the number of "Star Wars" and "Lord of the Rings" quotes appearing in our logs, turning them into measurable data points.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the `7-sum-count` directory" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `7-sum-count` directory and run the `clear` command.**
@@ -29,13 +29,13 @@ Find the `filelog/quotes` receiver in the `agent.yaml` and add a `poll_interval`
     poll_interval: 10s                 # Only read every ten seconds 
 ```
   
-{{% /notice %}}
+{{% /exercise %}}
 
 The reason for the delay is that the Count Connector in the OpenTelemetry Collector counts logs only within each processing interval. This means that every time the data is read, the count resets to zero for the next interval. With the default `Filelog reciever` interval of 200ms, it reads every line the loadgen writes, giving us counts of 1. With this interval we make sure we have multiple entries to count.
 
 The Collector can maintain a running count for each read interval by omitting conditions, as shown below. However, it’s best practice to let your backend handle running counts since it can track them over a longer time period.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add the Count Connector" %}}
 
 - **Add the Count Connector**
 
@@ -64,7 +64,7 @@ connectors:
 - **Explanation of the Metrics Counters**
 
   - `logs.full.count`: Tracks the total number of logs processed during each read interval.  
-  Since this metric has no filtering conditions, every log that passes through the system is included in the count. 
+  Since this metric has no filtering conditions, every log that passes through the system is included in the count.
   - `logs.sw.count` Counts logs that contain a quote from a Star Wars movie.
   - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
   - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR for the read interval.
@@ -117,7 +117,7 @@ In the pipeline configuration below, the connector exporter is added to the `log
       - otlphttp
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 We count logs based on their attributes. If your log data is stored in the log body instead of attributes, you’ll need to use a `Transform` processor in your pipeline to extract key/value pairs and add them as attributes.
 
@@ -125,7 +125,7 @@ In this workshop, we’ve already added `merge_maps(attributes, cache, "upsert")
 
 When selecting fields to create attributes from, be mindful—adding all fields indiscriminately is generally not ideal for production environments. Instead, choose only the fields that are truly necessary to avoid unnecessary data clutter.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Validate the agent configuration" %}}
 
 - **Validate** the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs` and `metrics:` sections of your pipelines will look like this:
 
@@ -170,7 +170,7 @@ graph LR
       PRO5 --> EXP2
       end
       
-      subgraph subID2[**Metrics**]
+      subgraph subID2["`**Metrics**`"]
       direction LR
       ROUTE1 --> ROUTE2       
       ROUTE2 --> PRO2
@@ -189,4 +189,4 @@ classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharra
 classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
 ```
 
-{{% /notice %}}
+{{% /exercise %}}

@@ -5,8 +5,8 @@ weight: 6
 time: 5 minutes
 ---
 
-In this section, we'll create users for each workshop participant, with a namespace and resource 
-quota for each. 
+In this section, we'll create users for each workshop participant, with a namespace and resource
+quota for each.
 
 ## Create User Namespaces and Resource Quotas
 
@@ -17,7 +17,7 @@ cd user-setup
 
 ## Create Users
 
-Create an HTPasswd file with participant credentials, then replace 
+Create an HTPasswd file with participant credentials, then replace
 the ROSA-managed HTPasswd IdP with a custom one:
 
 ``` bash
@@ -51,25 +51,25 @@ clusterrole.rbac.authorization.k8s.io/admin added: "participant1"
 
 ### Install the OpenShift CLI
 
-To test the logins from our local machine, we'll need to install the OpenShift CLI. 
+To test the logins from our local machine, we'll need to install the OpenShift CLI.
 
-For MacOS, we can install the OpenShift CLI using the Homebrew package manager: 
+For MacOS, we can install the OpenShift CLI using the Homebrew package manager:
 
 ``` bash
 brew install openshift-cli
 ```
 
-For other installation options, please refer to the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.8/html/cli_tools/openshift-cli-oc). 
+For other installation options, please refer to the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.8/html/cli_tools/openshift-cli-oc).
 
-### Login as Workshop User 
+### Login as Workshop User
 
-Try logging in as one of the workshop users from your local machine: 
+Try logging in as one of the workshop users from your local machine:
 
 ``` bash
 oc login https://api.<cluster-domain>:443 -u participant1 -p 'TempPass123!'
 ```
 
-It should say something like: 
+It should say something like:
 
 ````
 Login successful.
@@ -77,9 +77,9 @@ Login successful.
 You have one project on this server: "workshop-participant-1"
 ````
 
-### Confirm Access to the LLM 
+### Confirm Access to the LLM
 
-Let's ensure we can access the LLM from the workshop user account. 
+Let's ensure we can access the LLM from the workshop user account.
 
 Start a pod that has access to the curl command:
 

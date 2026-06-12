@@ -11,7 +11,7 @@ We’ll specifically use the credit card charges from our base spans and leverag
 
 The connector can be used to collect (**sum**) attribute values from spans, span events, metrics, data points, and log records. It captures each individual value, transforms it into a metric, and passes it along. However, it’s the **backend’s** job to use these metrics and their attributes for calculations and further processing.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add the Sum Connector" %}}
 
 Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor.
 
@@ -30,13 +30,13 @@ Include the Sum Connector in the connectors section of your configuration and de
     
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 In the example above, we check for the `payment.amount` attribute in spans. If it has a valid value, the **Sum** connector generates a metric called `user.card-charge` and includes the `user.name` as an attribute. This enables the backend to track and display a user’s total charges over an extended period, such as a billing cycle.
 
 In the pipeline configuration below, the connector exporter is added to the traces section, while the connector receiver is added to the metrics section.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Wire the connector into the pipelines" %}}
 
 - **Configure the Count Connector in the pipelines**
 
@@ -116,43 +116,44 @@ graph LR
     ROUTE3(&nbsp;sum&nbsp;<br>fa:fa-route<br> ):::con-receive
 
     %% Links
-    subID1:::sub-traces
-    subID2:::sub-metrics
-    subgraph " " 
+    subgraph wrapper[" "]
       direction LR
-      subgraph subID1[**Traces**]
-      direction LR
-      REC1 --> PRO1
-      PRO1 --> PROA
-      PROA --> PROB
-      PROB --> PRO7
-      PRO7 --> PRO3
-      PRO3 --> PRO5 
-      PRO5 --> EXP1
-      PRO5 --> EXP2
-      PRO5 --> EXP5
-      PRO5 --> ROUTE1
+      subgraph subID1["`**Traces**`"]
+        direction LR
+        REC1 --> PRO1
+        PRO1 --> PROA
+        PROA --> PROB
+        PROB --> PRO7
+        PRO7 --> PRO3
+        PRO3 --> PRO5
+        PRO5 --> EXP1
+        PRO5 --> EXP2
+        PRO5 --> EXP5
+        PRO5 --> ROUTE1
       end
-      
-      subgraph subID2[**Metrics**]
-      direction LR
-      ROUTE1 --> ROUTE3
-      ROUTE3 --> PRO2       
-      ROUTE2 --> PRO2
-      REC3 --> PRO2
-      PRO2 --> PRO8
-      PRO8 --> PRO4
-      PRO4 --> PRO6
-      PRO6 --> EXP3
-      PRO6 --> EXP4
+
+      subgraph subID2["`**Metrics**`"]
+        direction LR
+        ROUTE1 --> ROUTE3
+        ROUTE3 --> PRO2
+        ROUTE2 --> PRO2
+        REC3 --> PRO2
+        PRO2 --> PRO8
+        PRO8 --> PRO4
+        PRO4 --> PRO6
+        PRO6 --> EXP3
+        PRO6 --> EXP4
       end
     end
+    class subID1 sub-traces
+    class subID2 sub-metrics
+
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
-classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
-classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
+classDef sub-logs stroke:#34d399,stroke-width:1px,color:#34d399,stroke-dasharray: 3 3;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px,color:#fbbf24,stroke-dasharray: 3 3;
+classDef sub-metrics stroke:#38bdf8,stroke-width:1px,color:#38bdf8,stroke-dasharray: 3 3;
 ```
 
-{{% /notice %}}
+{{% /exercise %}}

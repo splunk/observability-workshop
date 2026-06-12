@@ -4,7 +4,7 @@ langgraph>=1.0.0
 python-dotenv>=1.0.0
 deepeval
 flask>=3.0.0
-litellm==1.83.0
+litellm==1.83.10
 requests>=2.31.0
 splunk-otel-instrumentation-langchain==0.1.7
 splunk-otel-genai-emitters-splunk==0.1.7

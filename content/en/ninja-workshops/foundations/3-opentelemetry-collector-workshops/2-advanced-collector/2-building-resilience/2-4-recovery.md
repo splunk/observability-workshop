@@ -6,7 +6,7 @@ weight: 4
 
 In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from a network outage by restarting the **Gateway** collector. When the **Gateway** becomes available again, the **Agent** will resume sending data from its last check-pointed state, ensuring no data loss.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Restart and verify recovery" %}}
 
 **Restart the Gateway**: In the **Gateway terminal** window run:
 
@@ -64,7 +64,7 @@ jq '.resourceSpans | length | "\(.) resourceSpans found"' gateway-traces.out
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+{{% /exercise %}}
 
 > [!IMPORTANT]
 > Stop the **Agent** and the **Gateway** processes by pressing `Ctrl-C` in their respective terminals.

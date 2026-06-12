@@ -1,15 +1,16 @@
 ---
-title: 5. Presenter Mode
+title: Presenter Mode
 weight: 5
+time: false
 ---
 
-##### **What is Presenter Mode?**
+## **What is Presenter Mode?**
 
 Presenter mode reveals delivery cues — timing hints, "kick this off in the background now" prompts, and other guidance for the person running the workshop — that are hidden from attendees by default. Notes are authored inline alongside the step they relate to, so you see them in context while presenting.
 
 ---
 
-##### **Turning Presenter Mode On**
+### **Turning Presenter Mode On**
 
 Append `?presenter=1` to **any** workshop URL and load the page once. For example:
 
@@ -23,15 +24,11 @@ After that, a magenta **Presenter on** pill appears in the bottom-right corner o
 Bookmark the workshop home page with `?presenter=1` already in the URL. Opening that bookmark on a fresh browser/device flips presenter mode on for you.
 {{% /notice %}}
 
----
-
-##### **Turning Presenter Mode Off**
+### **Turning Presenter Mode Off**
 
 Click the magenta **Presenter on** pill in the bottom-right corner. The pill disappears and the notes are hidden again.
 
----
-
-##### **Authoring Presenter Notes**
+### **Authoring Presenter Notes**
 
 Wrap any guidance in the `presenter` shortcode. The note can contain regular Markdown (lists, code, links, images):
 
@@ -53,9 +50,8 @@ Here's a live example — you'll only see it rendered if you're currently in pre
 This is what a presenter note looks like. If you can read this, presenter mode is on.
 {{< /presenter >}}
 
----
 
-##### **What Attendees See**
+### **What Attendees See**
 
 Nothing. The notes are not rendered, and the toggle pill is not displayed for them.
 

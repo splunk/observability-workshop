@@ -7,6 +7,7 @@ description: Deploy the ThousandEyes Enterprise Agent in Kubernetes and verify t
 ---
 
 In this section we will deploy:
+
 - ThousandEyes Agent
 - OTel Collector
 - Application

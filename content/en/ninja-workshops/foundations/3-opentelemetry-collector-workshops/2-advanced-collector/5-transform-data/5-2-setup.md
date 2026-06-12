@@ -4,7 +4,7 @@ linkTitle: 5.2 Setup Environment
 weight: 2
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the transform test" %}}
 
 **Start the Gateway**: In the **Gateway terminal** run:
 
@@ -26,4 +26,4 @@ weight: 2
 
 The `loadgen` will write 5 log lines to `./quotes.log` in JSON format.
 
-{{% /notice %}}
+{{% /exercise %}}

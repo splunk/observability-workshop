@@ -4,7 +4,7 @@ linkTitle: 3.1 APM Home Page
 weight: 2
 ---
  
-Click **APM** in the main menu, the APM Home Page is made up of 3 distinct sections:
+Click **APM** in the main menu and select **Overview**. The APM Home Page is made up of 3 distinct sections:
 
 ![APM page](../images/apm-main.png)
 

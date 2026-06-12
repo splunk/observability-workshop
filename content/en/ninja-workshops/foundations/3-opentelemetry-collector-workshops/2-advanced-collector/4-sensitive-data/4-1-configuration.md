@@ -20,7 +20,7 @@ Attributes:
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Add attributes and redaction processors" %}}
 
 Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data.
 
@@ -82,7 +82,7 @@ In this step:
       - otlphttp
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 
@@ -102,7 +102,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[**Traces**]
+      subgraph subID1["`**Traces**`"]
       direction LR
       REC1 --> PRML
       PRML --> PRUP

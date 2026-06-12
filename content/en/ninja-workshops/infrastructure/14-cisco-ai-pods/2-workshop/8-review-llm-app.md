@@ -5,23 +5,23 @@ weight: 8
 time: 15 minutes
 ---
 
-In the final step of the workshop, we'll deploy an application to our OpenShift cluster 
-that uses the instruct and embeddings models. 
+In the final step of the workshop, we'll deploy an application to our OpenShift cluster
+that uses the instruct and embeddings models.
 
-## What is LangChain? 
+## What is LangChain?
 
 Like most applications that interact with LLMs, our application is written in Python.
 It also uses [LangChain](https://www.langchain.com/), which is an open-source orchestration
 framework that simplifies the development of applications powered by LLMs.
 
-## Application Overview 
+## Application Overview
 
-### Connect to the LLMs 
+### Connect to the LLMs
 
-Our application starts by connecting to two LLMs that we'll be using: 
+Our application starts by connecting to two LLMs that we'll be using:
 
-* `meta/llama-3.2-1b-instruct`: used for responding to user prompts 
-* `nvidia/llama-3.2-nv-embedqa-1b-v2`: used to calculate embeddings 
+* `meta/llama-3.2-1b-instruct`: used for responding to user prompts
+* `nvidia/llama-3.2-nv-embedqa-1b-v2`: used to calculate embeddings
 
 ``` python
 # connect to a LLM NIM at the specified endpoint, specifying a specific model
@@ -31,14 +31,14 @@ llm = ChatNVIDIA(base_url=INSTRUCT_MODEL_URL, model="meta/llama-3.2-1b-instruct"
 embeddings_model = NVIDIAEmbeddings(model="nvidia/llama-3.2-nv-embedqa-1b-v2",
                                    base_url=EMBEDDINGS_MODEL_URL)
 ```
-> Why are there two models? Here's a helpful analogy: 
-> * The Embedding model is the "Librarian" (it helps find the right books), 
+> Why are there two models? Here's a helpful analogy:
+> * The Embedding model is the "Librarian" (it helps find the right books),
 > * The Instruct model is the "Writer" (it reads the books and writes the answer).
 
 ### Define the Prompt Template
 
-The application then defines a prompt template that will be used in interactions 
-with the `meta/llama-3.2-1b-instruct` LLM: 
+The application then defines a prompt template that will be used in interactions
+with the `meta/llama-3.2-1b-instruct` LLM:
 
 ``` python
 prompt = ChatPromptTemplate.from_messages([
@@ -53,14 +53,14 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 ```
 
-> Note how we're explicitly instructing the LLM to just say it doesn't know the answer if 
-> it doesn't know, which helps minimize hallucinations. There's also a placeholder for 
-> us to provide context that the LLM can use to answer the question. 
+> Note how we're explicitly instructing the LLM to just say it doesn't know the answer if
+> it doesn't know, which helps minimize hallucinations. There's also a placeholder for
+> us to provide context that the LLM can use to answer the question.
 
 ### Connect to the Vector Database
 
-The application then connects to the vector database that was pre-populated 
-with NVIDIA data sheet documents: 
+The application then connects to the vector database that was pre-populated
+with NVIDIA data sheet documents:
 
 ``` python
     weaviate_client = weaviate.connect_to_custom(
@@ -83,7 +83,7 @@ with NVIDIA data sheet documents:
 ### Define the Chain
 
 The application uses **LCEL (LangChain Expression Language)** to define the chain.
-The `|` (pipe) symbol works like an assembly line; the output of one step becomes 
+The `|` (pipe) symbol works like an assembly line; the output of one step becomes
 the input for the next.
 
 ``` python
@@ -98,7 +98,7 @@ the input for the next.
     )
 ```
 
-Let's break this down step-by-step: 
+Let's break this down step-by-step:
 
 * **Step 1: The Input Map {…}**: We are preparing the ingredients for our prompt.
   * context: We turn our vector store into a retriever. This acts like a search engine that finds the most relevant snippets from our NVIDIA data sheets based on the user’s question.
@@ -110,13 +110,13 @@ Let's break this down step-by-step:
 
 ### Invoke the Chain
 
-Finally, the application invokes the chain by passing the end user's question in 
-as input: 
+Finally, the application invokes the chain by passing the end user's question in
+as input:
 
 ``` python
     response = chain.invoke(question)
 ```
 
-This is the "Start" button. You drop the end users' question into the beginning of the pipeline, 
-and it flows through the retriever, the prompt, and the LLM until the answer comes 
+This is the "Start" button. You drop the end users' question into the beginning of the pipeline,
+and it flows through the retriever, the prompt, and the LLM until the answer comes
 out the other side.

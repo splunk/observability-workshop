@@ -41,9 +41,9 @@ splunk-otel-instrumentation-langchain==0.1.4
 splunk-otel-util-genai==0.1.4
 ````
 
-### Environment Variables 
+### Environment Variables
 
-To instrument the application with OpenTelemetry, we also included several 
+To instrument the application with OpenTelemetry, we also included several
 environment variables in the Kubernetes manifest file used to deploy the application:
 
 ``` yaml
@@ -81,6 +81,6 @@ environment variables in the Kubernetes manifest file used to deploy the applica
       value: "true"
 ```
 
-Note that the `OTEL_INSTRUMENTATION_LANGCHAIN_CAPTURE_MESSAGE_CONTENT` and 
-`OTEL_INSTRUMENTATION_GENAI_*` environment variables are specific to the 
-LangChain instrumentation we've used. 
+Note that the `OTEL_INSTRUMENTATION_LANGCHAIN_CAPTURE_MESSAGE_CONTENT` and
+`OTEL_INSTRUMENTATION_GENAI_*` environment variables are specific to the
+LangChain instrumentation we've used.

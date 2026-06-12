@@ -18,12 +18,6 @@ This workshop introduces you to the benefits of embedding application security i
 2. Confirm you land on the **Splunk Observability Cloud** home experience.
 3. From the left navigation, expand **APM**.
 
-**Validation:** The **Application Security** menu item appears under APM.
-
-> **Common pitfall:** If Application Security is not visible, consult with the workshop administrator before continuing.
-
-TO-Do **Add Graphics**
-
 ---
 
 ## 1.2 Setting the workshop context

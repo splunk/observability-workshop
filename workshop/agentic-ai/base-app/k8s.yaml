@@ -23,22 +23,18 @@ spec:
             - containerPort: 8080
               name: http
           env:
-            - name: AZURE_OPENAI_DEPLOYMENT_NAME
-              value: "gpt-4.1-mini"
-            - name: AZURE_OPENAI_ENDPOINT
+            - name: OPENAI_BASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-endpoint
-            - name: AZURE_OPENAI_API_VERSION
-              value: "2024-12-01-preview"
-            - name: AZURE_OPENAI_API_KEY
+                  name: openai-api
+                  key: openai-api-endpoint
+            - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: azure-openai-api
-                  key: azure-openai-api-key
+                  name: openai-api
+                  key: openai-api-key
             # OpenAI Model
-            - name: OPENAI_MODEL
+            - name: OPENAI_MODEL_NAME
               value: "gpt-4.1-mini"
             # Begin: Add Environment Variables
 

@@ -17,13 +17,13 @@ using one of the methods below:
 * Windows 10+
     * Use the OpenSSH client
 * Earlier versions of Windows
-    * Use Putty 
+    * Use Putty
 
 ## Set the Workshop Participant Number
 
-The instructor will provide each participant with a number from 1 to 30. 
+The instructor will provide each participant with a number from 1 to 30.
 Store this in an environment variable, and remember what it is, as
-it will be used throughout the workshop: 
+it will be used throughout the workshop:
 
 ``` bash
 export PARTICIPANT_NUMBER=<your participant number>
@@ -55,26 +55,26 @@ sudo mv kubectl /usr/local/bin/kubectl
 
 ## Connect to the OpenShift Cluster
 
-Ensure the Kube config file is modifiable by the splunk user: 
+Ensure the Kube config file is modifiable by the splunk user:
 
 ``` bash
 chmod 600 /home/splunk/.kube/config
 ```
 
-Use the cluster API URL and password provided by the workshop 
-organizer to log in to the OpenShift cluster: 
+Use the cluster API URL and password provided by the workshop
+organizer to log in to the OpenShift cluster:
 
 ``` bash
 oc login https://api.<cluster-domain>:443 -u participant$PARTICIPANT_NUMBER -p '<password>'
 ```
 
-Ensure you're connected to the OpenShift cluster: 
+Ensure you're connected to the OpenShift cluster:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ``` bash
-oc whoami --show-server 
+oc whoami --show-server
 ```
 
 {{% /tab %}}

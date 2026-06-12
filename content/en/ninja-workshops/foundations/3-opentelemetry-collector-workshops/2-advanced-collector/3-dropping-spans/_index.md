@@ -9,7 +9,7 @@ In this section, we will explore how to use the [**Filter Processor**](https://g
 
 Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces. In this case, we will be filtering out spans that contain `"/_healthz"`, typically associated with health check requests and usually are quite "**noisy**".
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Set up the `3-dropping-spans` directory" %}}
 
 > [!IMPORTANT]
 > **Change _ALL_ terminal windows to the `3-dropping-spans` directory and run the `clear` command.**
@@ -22,6 +22,6 @@ Copy `*.yaml` from the `2-building-resilience` directory into `3-dropping-spans`
 └── gateway.yaml
 ```
 
-{{% /notice %}}
+{{% /exercise %}}
 
 Next, we will configure the **filter processor** and the respective pipelines.
