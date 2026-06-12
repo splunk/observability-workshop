@@ -20,12 +20,6 @@ Splunk Secure Application surfaces vulnerability and attack summaries alongside 
 
 Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries — counts of critical and high CVEs and attacks.
 
-**Validation:**
-
-- [ ] Vulnerability and threat badges or counts appear per service
-- [ ] Environment filter scopes data to the intended demo estate
-- [ ] You can articulate how reliability and security context appear together
-
 > *"We are bringing security together with reliability - allowing teams to review Application Security risks in the same place they understand application performance and behavior."*
 
 ---

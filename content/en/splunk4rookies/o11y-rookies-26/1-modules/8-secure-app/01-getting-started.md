@@ -18,6 +18,8 @@ This workshop introduces you to the benefits of embedding application security i
 2. Confirm you land on the **Splunk Observability Cloud** home experience.
 3. From the left navigation, expand **APM**.
 
+![apm](./images/home.png)
+
 ---
 
 ## 1.2 Setting the workshop context
