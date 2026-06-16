@@ -4,7 +4,7 @@ linkTitle: 05-Risk-Investigation
 weight: 5
 ---
 
-## Why remediation needs runtime context
+## Why investigation needs runtime context
 
 Patching without blast-radius analysis leaves opportunities for exploit: engineering upgrades libraries that only affect one service while the same CVE spans critical paths elsewhere — or teams over-escalate isolated findings.
 
