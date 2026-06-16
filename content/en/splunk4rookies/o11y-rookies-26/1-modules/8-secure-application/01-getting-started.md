@@ -22,7 +22,7 @@ For the workshop, a shared tenant is provided that contains Application Security
 1. Open your browser and sign in to **Splunk Workshop Realm** (credentials provided by your workshop facilitator).
 2. Confirm you land on the **Splunk Observability Cloud** home experience.
 3. From the left navigation, expand **APM** - you will see the Application Security menu option.
-4. Note the workshop **environment** & **service** filters you will use: `astronomy-shop-*` & 'shipping-api'
+4. Note the workshop **environment** filter you will use: `astronomy-shop-*` & 'ad'
 
 ![apm](./images/01-home.png)
 
