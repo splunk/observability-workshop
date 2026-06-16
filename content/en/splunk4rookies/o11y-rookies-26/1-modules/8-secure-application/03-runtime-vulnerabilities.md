@@ -14,19 +14,18 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 
 ## 3.1a Open service-scoped vulnerabilities
 
-1. From the **APM → Overview**.
+1. From the **APM → Overview** page.
 2. Set environment to `astronomy-shop-*`.
-3. Scroll to the services list and click on the **`shipping-api`** service.
+3. Scroll to the services list and click on a service with security insights data e.g **`ad`** service.
 4. Open the **Application Security** tab to view associated security risks scoped to the service.
 
 ![apm](./images/03a-runtime-vuln.png)
 
-OR
+## 3.1b Accessing Vulnerabilities 
 
-## 3.1b Open the Runtime Vulnerabilities view
-
-1. From the left navigation, click **APM → Application Security**.
-2. Select **Runtime Vulnerabilities**.
+You can also navigate to this view from 
+1. **Sevice-Map** → **Vulnerabilities Widget** OR 
+2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities**.
 
 ---
 
