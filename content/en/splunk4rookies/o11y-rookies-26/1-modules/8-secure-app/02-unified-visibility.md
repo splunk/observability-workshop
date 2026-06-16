@@ -1,7 +1,7 @@
 ---
-title: Maintaining Visibility
-linkTitle: 03-Maintaining-Visibility
-weight: 3
+title: Unified Visibility
+linkTitle: 02-Unified-Visibility
+weight: 2
 ---
 
 ## Why unified visibility matters
@@ -12,7 +12,7 @@ Splunk Secure Application surfaces vulnerability and attack summaries alongside 
 
 ---
 
-## 3.1 Security posture on APM Overview
+## 2.1 Security posture on APM Overview
 
 1. Navigate to **APM → Overview**.
 2. Set the **environment** filter to `astronomy-shop-*`.
@@ -20,11 +20,13 @@ Splunk Secure Application surfaces vulnerability and attack summaries alongside 
 
 Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries — counts of critical and high CVEs and attacks.
 
+![apm](./images/02-overview.png)
+
 > *"We are bringing security together with reliability - allowing teams to review Application Security risks in the same place they understand application performance and behavior."*
 
 ---
 
-## 3.2 Service Map runtime security widgets
+## 2.2 Service Map runtime security widgets
 
 1. Navigate to **APM → Service Map**.
 2. Open the **Services** filter and select **`ad`**.
