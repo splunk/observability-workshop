@@ -12,22 +12,31 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 
 ---
 
-## 3.1a Open service-scoped vulnerabilities
+## 3.1 Accessing Vulnerabilities 
+
+### a. Open from service-scoped vulnerabilities
 
 1. From the **APM → Overview** page.
 2. Set environment to `astronomy-shop-*`.
 3. Scroll to the services list and click on a service with security insights data e.g **`ad`** service.
 4. Open the **Application Security** tab to view associated security risks scoped to the service.
 
-![apm](./images/03a-runtime-vuln.png)
+![apm](./images/03a-runtime-vuln-ad.png)
 
-## 3.1b Accessing Vulnerabilities 
+### b. Open from service-map scoped view 
 
 You can also navigate to this view from 
 1. **Sevice-Map** → **Vulnerabilities Widget** OR 
-2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities**.
+
+### c. Open from the Application Security Module
+To view the full vulnerability inventory across all instrumented applications in the environment
+
+1. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** 
+2. Filter **environment** : `astronomy-shop-*` to and select **service** : `ad`'
 
 ---
+
+## 3.2 Vulnerability stakeholder views
 
 You will now see a list of vulnerabilities across the instrumented applications with the following details.
 
@@ -38,12 +47,7 @@ You will now see a list of vulnerabilities across the instrumented applications 
 
 ![apm](./images/03b-runtime-vuln.png)
 
----
-
-## 3.2 Sort and filter for stakeholder views
-
-1. Sort or filter the list of vulnerabilities to review **Critical**, **High** and **Low** severity findings.
-2. Identify at least one row with a high CVSS score — you will return to it in the prioritization module.
+> *"You can sort or filter the list of vulnerabilities to review **Critical**, **High** and **Low** severity findings.."*
 
 ---
 
