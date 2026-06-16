@@ -37,9 +37,9 @@ Observe each service row: alongside standard health metrics, you should see runt
 
 The widgets summarize the top vulnerabilities (CVE title, ID, score, libraries) and any attack activity (type and outcome).
 
-> *"This view highlights Blast-radius thinking - where issues framed next to dependencies and traffic."*
-
 (Optional) - Drill into a vulnerability or attack detail (from the relevant widget) to review the navigation path.
+
+> *"This view highlights Blast-radius thinking - where issues framed next to dependencies and traffic."*
 ---
 
 ## What you learned
