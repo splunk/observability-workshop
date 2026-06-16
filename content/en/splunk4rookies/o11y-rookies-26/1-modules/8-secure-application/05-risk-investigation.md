@@ -1,12 +1,12 @@
 ---
-title: Preioritizing Known Threats
-linkTitle: 05-Preioritizing-Known-Threats
+title: Risk Investigation
+linkTitle: 05-Risk-Investigation
 weight: 5
 ---
 
 ## Why remediation needs runtime context
 
-Patching without blast-radius analysis creates churn: engineering upgrades libraries that only affect one service while the same CVE spans critical paths elsewhere — or teams over-escalate isolated findings.
+Patching without blast-radius analysis leaves opportunities for exploit: engineering upgrades libraries that only affect one service while the same CVE spans critical paths elsewhere — or teams over-escalate isolated findings.
 
 Splunk Secure Application consolidates **library names and versions**, **remediation guidance**, and **affected-service enumeration** in one detail view so upgrade decisions are grounded in what is actually deployed.
 
@@ -21,9 +21,12 @@ Splunk Secure Application consolidates **library names and versions**, **remedia
 |-------|------------------|
 | **Impacted libraries** | Package names and pinned versions |
 | **External references** | Links to advisories and vendor guidance |
+| **Description** | Comprehensive details about the vulnerability |
 | **Recommended actions** | Workarounds and remediation options |
 
-> *"No tedious research across multiple portals — context is in the same place."*
+![apm](./images/05-runtime-details.png)
+
+> *"No tedious research across multiple portals - context is in the same place."*
 
 ---
 
@@ -32,19 +35,14 @@ Splunk Secure Application consolidates **library names and versions**, **remedia
 1. Scroll to the **Affected services** section at the bottom of the vulnerability detail.
 2. Determine whether the same CVE spans additional critical services or is isolated to `ad`.
 
-> *"Before engaging application teams, understand extended risk exposure across the stack."*
+![apm](./images/05-runtime-services.png)
 
----
+> [!NOTE]
+> You can also navitage to the affected service and review other related vulnerable libraries foe the
+> impacted service. Reviewing other deployed packages that may need attention beyond the single CVE under
+> investigation.
 
-## 5.3 Review related libraries on the service
-
-1. Return to the vulnerabilities list for the **`ad`** service.
-2. Open the **Runtime Vulnerabilities on ad** dropdown (or equivalent navigation).
-3. Select **Libraries on ad**.
-
-Review other deployed packages that may need attention beyond the single CVE under investigation.
-
-> *"Broader package hygiene conversation before handing off to engineering."*
+> *"Before engaging application teams, you can review all available resources and external references to understand extended risk exposure across the stack. "*
 
 ---
 
@@ -54,4 +52,4 @@ Review other deployed packages that may need attention beyond the single CVE und
 - How affected-service enumeration informs upgrade prioritization.
 - How service-scoped library inventory strengthens engineering handoffs.
 
-**Next:** [Eliminating Technical Debt →](06-eliminating-technical-debt.md)
+---
