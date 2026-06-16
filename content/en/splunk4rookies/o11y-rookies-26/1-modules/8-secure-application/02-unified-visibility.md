@@ -18,7 +18,7 @@ Splunk Secure Application surfaces vulnerability and attack summaries alongside 
 2. Set the **environment** filter to `astronomy-shop-*`.
 3. Scroll to the **Services** tab.
 
-Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries — counts of critical and high CVEs and attacks.
+Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries for instrumented services- counts of critical and high CVEs and attacks.
 
 ![apm](./images/02-overview.png)
 
@@ -31,14 +31,15 @@ Observe each service row: alongside standard health metrics, you should see runt
 1. Navigate to **APM → Service Map**.
 2. Open the **Services** filter and select **`ad`**.
 3. Click the **`ad`** node in the service map.
-4. Scroll to the **Runtime Vulnerabilities** and **Attacks** widgets.
+4. Scroll to the **Runtime Vulnerabilities** and **Attacks** widgets (right-hand side of screen).
+
+![apm](./images/02-servicemap.png)
 
 The widgets summarize the top vulnerabilities (CVE title, ID, score, libraries) and any attack activity (type and outcome).
 
-> *"Blast-radius thinking — issues framed next to dependencies and traffic."*
+> *"This view highlights Blast-radius thinking - where issues framed next to dependencies and traffic."*
 
-5. From a widget, drill into a vulnerability or attack detail to review the navigation path.
-
+(Optional) - Drill into a vulnerability or attack detail (from the relevant widget) to review the navigation path.
 ---
 
 ## What you learned
@@ -47,4 +48,4 @@ The widgets summarize the top vulnerabilities (CVE title, ID, score, libraries) 
 - How Service Map widgets frame security issues in topology context.
 - How per-service Application Security keeps triage inside the APM workspace.
 
-**Next:** [Prioritizing Known Threats →](04-prioritizing-known-threats.md)
+---

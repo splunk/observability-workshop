@@ -6,12 +6,14 @@ weight: 1
 During this workshop, we'll explore:
 
 - How to navigate Application Security entry points.
-- How to inventory runtime vulnerabilities and correlate security posture with service health.
+- How to inventory runtime vulnerabilities and correlate security posture with application health.
 - How to prioritize findings using threat-informed risk scoring.
 - How to guide remediation, manage vulnerability status, and review library hygiene.
 - How to investigate runtime attacks and integrate notifications with SecOps.
 
-To simplify the workshop modules, a shared tenant is provided. The tenant is pre-configured with APM-instrumented microservices that emit Application Security telemetry — runtime vulnerabilities, library inventory, and  attack events — without requiring you to deploy additional agents beyond existing Observability instrumentation.
+For the workshop, a shared tenant is provided that contains Application Security telemetry (runtime vulnerabilities, library inventory, and attack events). 
+
+> *"The tenant has been pre-configured with APM-instrumented microservices — without requiring to deploy additional agents beyond existing Observability instrumentation."* 
 
 ---
 
