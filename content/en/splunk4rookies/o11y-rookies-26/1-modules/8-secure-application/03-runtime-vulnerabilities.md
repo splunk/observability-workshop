@@ -23,10 +23,10 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 
 ![apm](./images/03a-runtime-vuln-ad.png)
 
-### Optional. Open from alternative views
-
-1. **Sevice-Map** → **Vulnerabilities Widget** OR 
-2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** (Filter **environment** : `astronomy-shop-*` to and select **service** : e.g `ad`'') - To view the full vulnerability inventory across all instrumented applications in the environment
+> [!NOTE]
+> You can navigate to this view from other alternate paths
+> 1. **Sevice-Map** → **Vulnerabilities Widget** OR
+> 2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** (Filter **environment** : `astronomy-shop-*` to and select **service** : e.g `ad`'') - To view the full vulnerability inventory across all instrumented applications in the environment
 
 ---
 
@@ -43,7 +43,9 @@ You will now see a list of vulnerabilities across the instrumented applications 
 
 ![apm](./images/03b-runtime-vuln.png)
 
-> *"You can sort or filter the list of vulnerabilities to review **Critical**, **High** and **Low** severity findings.."*
+> [!NOTE]
+> You can sort or filter the list of vulnerabilities to review **Critical**, 
+> **High** and **Low** severity findings..
 
 ---
 
