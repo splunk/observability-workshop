@@ -23,27 +23,24 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 
 ![apm](./images/03a-runtime-vuln-ad.png)
 
-### b. Open from service-map scoped view 
+### Optional. Open from service-map scoped view 
 
 You can also navigate to this view from 
-1. **Sevice-Map** → **Vulnerabilities Widget** OR 
-
-### c. Open from the Application Security Module
-To view the full vulnerability inventory across all instrumented applications in the environment
-
-1. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** 
-2. Filter **environment** : `astronomy-shop-*` to and select **service** : `ad`'
+a. **Sevice-Map** → **Vulnerabilities Widget** OR 
+b. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** (Filter **environment** : `astronomy-shop-*` to and select **service** : e.g `ad`'') - To view the full vulnerability inventory across all instrumented applications in the environment
 
 ---
 
-## 3.2 Vulnerability stakeholder views
+## 3.2 Stakeholder views
 
 You will now see a list of vulnerabilities across the instrumented applications with the following details.
 
-- [ ] CVE ID - Standard vulnerability identifier
-- [ ] CVSS - Theoretical severity score
+- [ ] **CVE ID** - Standard vulnerability identifier
+- [ ] **CVSS** - Theoretical severity score
+- [ ] **Library** - vulnerabile library identifier
 - [ ] **Status** column shows triage states (e.g., Detected, Fixed, Ignored)
 - [ ] **Security Risk Score** - Threat-informed score combining CVSS with exploit and activity telemetry
+- [ ] **Recommended action** - remediation option for resolving the identified vulnerability
 
 ![apm](./images/03b-runtime-vuln.png)
 
