@@ -12,6 +12,16 @@ Splunk Secure Application closes the loop with **notification rules** that strea
 
 ---
 
+## 7.4 Connect to SecOps [Review]
+
+If your tenant has a pre-provisioned notification integration, note that exploit events can stream to **Splunk Enterprise Security** in real time. You will configure this explicitly in the next module.
+
+![apm](./images/06-notification.png)
+
+> *"SecOps gets these events with full context — no duplicate workflow."*
+
+---
+
 ## 8.1 Security notifications and SIEM integration
 
 1. Navigate to **APM → Application Security → Notifications**.

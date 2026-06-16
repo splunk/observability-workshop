@@ -1,14 +1,16 @@
 ---
 title: Runtime Attack Investigation
-linkTitle: 07-Runtime-Attack-Investigation
-weight: 7
+linkTitle: 06-Runtime-Attack-Investigation
+weight: 6
 ---
 
 ## Why runtime attacks change the conversation
 
-Periodic scanning tells you what *could* be wrong. Runtime attack detection tells you what *is happening* — exploit attempts against known weaknesses, with forensic context for immediate investigation.
+Periodic scanning tells you what *could* be wrong. Runtime attack detection tells you what *is happening* —
+exploit attempts against known weaknesses, with forensic context for immediate investigation.
 
-Splunk Secure Application correlates attack telemetry to vulnerabilities already cataloged, keeping SOC-style investigations inside Observability Cloud.
+Splunk Secure Application correlates attack telemetry to vulnerabilities already cataloged, keeping SOC-style
+investigations inside Observability Cloud.
 
 ---
 
@@ -23,6 +25,8 @@ Splunk Secure Application correlates attack telemetry to vulnerabilities already
 | **Exploit indicators** | Whether an active or historical exploit occurred |
 | **Attack type** | Classification of the exploit attempt |
 | **CVE breadth** | How many weaknesses are implicated |
+
+![apm](./images/06-attack-view.png)
 
 > *"Shift from periodic scanning to runtime-aware threat detection."*
 
@@ -40,6 +44,8 @@ Splunk Secure Application correlates attack telemetry to vulnerabilities already
 - Specific **event** and **trigger**
 - **Code executed** during the exploit
 
+![apm](./images/06-attack--details.png)
+
 ---
 
 ## 7.3 Code-level forensics
@@ -48,15 +54,9 @@ Splunk Secure Application correlates attack telemetry to vulnerabilities already
 2. Expand the stack trace.
 3. Identify the frame and line reference for code accessed during the exploit.
 
+![apm](./images/06-attack-forensics.png)
+
 > *"Exactly which line of code was accessed during this exploit — shorter loop from alert to remediation."*
-
----
-
-## 7.4 Connect to SecOps
-
-If your tenant has a pre-provisioned notification integration, note that exploit events can stream to **Splunk Enterprise Security** in real time. You will configure this explicitly in the next module.
-
-> *"SecOps gets these events with full context — no duplicate workflow."*
 
 ---
 
@@ -66,4 +66,4 @@ If your tenant has a pre-provisioned notification integration, note that exploit
 - How attack detail provides SOC-ready forensic context inside Observability.
 - How stack traces bridge security alerts to developer-ready remediation.
 
-**Next:** [Modernizing Defenses →](08-modernizing-defenses.md)
+---
