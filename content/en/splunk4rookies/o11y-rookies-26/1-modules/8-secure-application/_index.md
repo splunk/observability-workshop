@@ -15,7 +15,9 @@ params:
     - images/secureapp.avif
 ---
 
-This workshop is for application owners, SREs, and SecOps teams. We will detect runtime vulnerabilities and exploits inside Splunk Observability Cloud, prioritize by real-world threat context, and integrate findings with existing SOC workflows.
+This workshop introduces you to the benefits of embedding application security inside Observability workflows. By the end of these modules, you will understand how engineering and security teams can share one runtime view of risk, prioritize beyond CVSS alone, and feed findings into existing SOC tools.
+
+It is suitable for application owners, SREs and SecOps teams. 
 
 ---
 
@@ -32,8 +34,5 @@ To address these challenges you need a way to:
 - **Eliminate technical debt**: Govern vulnerability queues with status lifecycle management and hygiene across shared context.
 - **Prioritize known threats**: Compare CVSS scores with exploitation risk and pivot from cataloged CVEs to runtime attack forensics with code-level stack traces.
 - **Modernize defenses**: Move from periodic scanning and reactive fire drills to continuous runtime detection integrated with Splunk Security.
-
-
-This workshop introduces you to the benefits of embedding application security inside Observability workflows. By the end of these modules, you will understand how engineering and security teams can share one runtime view of risk, prioritize beyond CVSS alone, and feed findings into existing SOC tools.
 
 ---
