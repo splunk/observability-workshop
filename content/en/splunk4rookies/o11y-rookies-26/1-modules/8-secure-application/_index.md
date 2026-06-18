@@ -9,7 +9,7 @@ description: Detect and investigate runtime vulnerabilities before attackers fin
 draft: true
 hidden: true
 aliases:
-  - /o11y-rookies-26/6-secure-app/
+  - /o11y-rookies-26/6-secure-application/
 params:
   images:
     - images/secureapp.avif
