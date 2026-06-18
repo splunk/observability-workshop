@@ -7,7 +7,19 @@ weight: 9
 
 ## Workshop recap
 
-In this workshop, you moved from fragmented application security tooling to an operational model where security is embedded in how teams already understand production.
+When teams ask *what's happening in production, and where should we look first?* — Observability answers the reliability question. **Splunk Secure Application** extends that same story into application security **without bolting on another agent or living in a second product**.
+
+In this workshop, we covered how to move from fragmented application security tooling to an operational model where security is embedded in how teams already understand production. We covered ways to
+
+- Discover vulnerabilities and attacks in **running** applications
+- Move from reactive fire drills toward **proactive defense**
+- Use instrumentation you **already run** for continuous detection, runtime attack signals, and findings  correlated to services, environments, and libraries
+
+
+> *"The payoff: security becomes part of how you understand the app. You defend what is actually deployed, ship securely faster, and spend less time chasing noise."*
+
+
+## Workshop Module Summary
 
 | Module | Capability exercised |
 |--------|---------------------|
@@ -18,20 +30,6 @@ In this workshop, you moved from fragmented application security tooling to an o
 | **Eliminating Technical Debt** | Status lifecycle and org-wide library hygiene |
 | **Runtime Attack Investigation** | Exploit forensics and code-level stack traces |
 | **Modernizing Defenses** | SIEM notifications and detect-to-enforce roadmap |
-
----
-
-## The value proposition
-
-When teams ask *what's happening in production, and where should we look first?* — Observability answers the reliability question. **Splunk Secure Application** extends that same story into application security **without bolting on another agent or living in a second product**.
-
-You are:
-
-- Discovering vulnerabilities in **running** applications
-- Moving from reactive fire drills toward **proactive defense**
-- Using instrumentation you **already run** — continuous detection, runtime attack signals, and findings correlated to services, environments, and libraries
-
-The payoff: security becomes part of how you understand the app. You defend what is actually deployed, ship securely faster, and spend less time chasing noise.
 
 ---
 
