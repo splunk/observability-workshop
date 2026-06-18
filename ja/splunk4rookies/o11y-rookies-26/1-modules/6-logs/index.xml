@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ログから針を見つける on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/</link><description>Recent content in ログから針を見つける on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/index.xml" rel="self" type="application/rss+xml"/><item><title>2. Log Observer への移動</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/2-navigate-log-observer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/2-navigate-log-observer/</guid><description>&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;Splunk Observability Cloud のメインナビゲーションメニューから、&lt;strong&gt;Log Observer&lt;/strong&gt; をクリックします。&lt;/li&gt;
+&lt;li&gt;右上のタイムピッカーを使用して、時間範囲を &lt;strong&gt;Last 15 minutes&lt;/strong&gt; に設定します。&lt;/li&gt;
+&lt;li&gt;フィルターバーで、ワークショップ環境のフィルターを追加します
+&lt;ul&gt;
+&lt;li&gt;&lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Add Filter&lt;/span&gt;&lt;/button&gt; をクリックします&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deployment.environment&lt;/code&gt; を選択します&lt;/li&gt;
+&lt;li&gt;インストラクターから提供された環境名を値に設定します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- TODO screenshot: Log Observer landing page with time range and environment filter set --&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Log Observer のランディングページに、2つの主要なエリアが表示されます&lt;/p&gt;</description></item><item><title>7. シナリオ 2 — 手順</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/7-scenario-2-placeholder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/o11y-rookies-26/1-modules/6-logs/7-scenario-2-placeholder/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;開発中&lt;/p&gt;&lt;div class="callout__body"&gt;このページはプレースホルダーです。シナリオが確定次第、演習手順が追加されます。&lt;/div&gt;&lt;/div&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;ステップ 1: [未定]&lt;/li&gt;
+&lt;li&gt;ステップ 2: [未定]&lt;/li&gt;
+&lt;li&gt;ステップ 3: [未定]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-panel-0" tabindex="0" data-tab-label="質問"&gt;質問&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-panel-1" tabindex="-1" data-tab-label="回答"&gt;回答&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-tab-0" data-tab-label="質問"&gt;&lt;strong&gt;[未定]&lt;/strong&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-splunk4rookies-o11y-rookies-26-1-modules-6-logs-7-scenario-2-placeholder-md-1-1--0-tab-1" hidden data-tab-label="回答"&gt;&lt;strong&gt;[未定]&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description></item></channel></rss>

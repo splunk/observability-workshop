@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Detectors on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/</link><description>Recent content in Detectors on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/index.xml" rel="self" type="application/rss+xml"/><item><title>テストディテクター</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/1-test-detector/</guid><description>&lt;p&gt;&lt;a href="https://docs.splunk.com/observability/en/synthetics/test-config/synth-alerts.html" target="_blank" rel="noopener"&gt;単一の Synthetic テストにディテクター&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+を設定する理由は何でしょうか？いくつかの例を挙げます&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;エンドポイント、APIトランザクション、またはブラウザジャーニーが非常に重要である&lt;/li&gt;
+&lt;li&gt;コード変更をデプロイした後、結果の KPI が期待通りかどうかを確認したい&lt;/li&gt;
+&lt;li&gt;テスト中の特定の変更を一時的に注視する必要があるが、大量のノイズを生成したくない。後でディテクターを無効にする予定である&lt;/li&gt;
+&lt;li&gt;実際のユーザーが遭遇する前に、予期しない問題を把握したい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;テスト概要ページで、右上の &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;Create Detector&lt;/span&gt;&lt;/button&gt; をクリックします。
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-16/5ff84106-52ac-4519-8835-999446227709/user_cropped_screenshot.jpeg?tl_px=1144,0&amp;amp;br_px=2864,961&amp;amp;force_format=png&amp;amp;width=1120.0&amp;amp;wat=1&amp;amp;wat_opacity=0.7&amp;amp;wat_gravity=northwest&amp;amp;wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&amp;amp;wat_pad=902,79" alt="単一の Synthetic テストにディテクターを作成" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>RUM Detectors</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/2-rum-detector/</guid><description>&lt;p&gt;サポートセンターからのチケットを待たずに、本番環境の問題を把握したいとしましょう。ここで &lt;a href="https://docs.splunk.com/observability/en/rum/rum-alerts.html" target="_blank" rel="noopener"&gt;RUM でディテクターを作成する&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ ことが役立ちます。&lt;/p&gt;</description></item><item><title>チャートディテクター</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/5-detectors/3-chart-detector/</guid><description>&lt;p&gt;カスタムダッシュボードチャートを使用して、関心のあるデータや条件に直接フォーカスしたディテクターを作成できます。チャートを構築する過程で、アラートをトリガーできるシグナルも構築しました。&lt;/p&gt;</description></item></channel></rss>

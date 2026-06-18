@@ -1,1 +1,274 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk4Ninjas Workshops on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/</link><description>Recent content in Splunk4Ninjas Workshops on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk4Ninjas Workshops on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/</link><description>Recent content in Splunk4Ninjas Workshops on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/index.xml" rel="self" type="application/rss+xml"/><item><title>EC2 インスタンスへの接続</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/1-connect-to-instance/</guid><description>&lt;h2 id="ec2-インスタンスに接続する"&gt;
+ &lt;span class="heading-text"&gt;EC2 インスタンスに接続する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#ec2-%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e3%81%ab%e6%8e%a5%e7%b6%9a%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;各参加者用に AWS/EC2 に Ubuntu Linux インスタンスを用意しています。&lt;/p&gt;
+&lt;p&gt;講師から提供された IP アドレスとパスワードを使用して、以下のいずれかの方法で EC2 インスタンスに接続してください:&lt;/p&gt;</description></item><item><title>1. OBI サービスの追加</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="docker-composeyaml-に-obi-を追加する"&gt;
+ &lt;span class="heading-text"&gt;docker-compose.yaml に OBI を追加する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#docker-composeyaml-%e3%81%ab-obi-%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;エディタで &lt;code&gt;docker-compose.yaml&lt;/code&gt; を開きます:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose down
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;ファイルの一番下までスクロールすると、&lt;code&gt;PHASE 2&lt;/code&gt; というコメントブロックがあります。そのコメントの&lt;strong&gt;直下&lt;/strong&gt;に以下のブロックを貼り付けてください。他のサービス（&lt;code&gt;frontend:&lt;/code&gt;、&lt;code&gt;load-generator:&lt;/code&gt; など）と揃うように &lt;strong&gt;2スペースのインデント&lt;/strong&gt;を維持してください:&lt;/p&gt;</description></item><item><title>Petclinic App の RUM ビューを選択する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/</guid><description>&lt;p&gt;左側のメニューで &lt;strong&gt;Digital Experience → Real user monitoring → Overview&lt;/strong&gt; をクリックして、RUM の簡単な概要ツアーを始めましょう。次に、&lt;strong&gt;Environment&lt;/strong&gt; フィルター &lt;strong&gt;(1)&lt;/strong&gt; をドロップダウンボックスからワークショップインスタンスの名前に変更し、&lt;strong&gt;&lt;code&gt;&amp;lt;INSTANCE&amp;gt;-workshop&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;(1)&lt;/strong&gt; を選択します（&lt;strong&gt;&lt;code&gt;INSTANCE&lt;/code&gt;&lt;/strong&gt; は先ほど実行したシェルスクリプトの値です）。それだけが選択されていることを確認してください。&lt;/p&gt;</description></item><item><title>1. イメージのビルドとロード</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/1-build-and-load-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/1-build-and-load-images/</guid><description>&lt;h2 id="クラスターの確認"&gt;
+ &lt;span class="heading-text"&gt;クラスターの確認&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%83%bc%e3%81%ae%e7%a2%ba%e8%aa%8d" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ワークショップインスタンスには K3d がプリインストールされています。動作していることを確認します&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-16-obi-ebpf-5-kubernetes-1-build-and-load-images-md-10-1--0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-0 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-agent-1 Ready &amp;lt;none&amp;gt; 4h6m v1.33.4+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-shw-ece9-cluster-server-0 Ready control-plane,master 4h6m v1.33.4+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="アプリケーションイメージのビルド"&gt;
+ &lt;span class="heading-text"&gt;アプリケーションイメージのビルド&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%81%ae%e3%83%93%e3%83%ab%e3%83%89" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;K8s マニフェストはローカルでビルドされたイメージを参照します。&lt;code&gt;02-obi-docker/&lt;/code&gt; ソースからビルドします&lt;/p&gt;</description></item><item><title>チャートの編集</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/7-dashboards-detectors/dashboards/1-03-editing-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/7-dashboards-detectors/dashboards/1-03-editing-chart/</guid><description>&lt;p&gt;このセクションでは、既存のチャートを編集してチャートの構造を理解していきます。チャートエディターを実際に操作し、チャートの設定、データソース、可視化オプションがどのように組み合わさるかを理解するのに最適な方法です。&lt;/p&gt;</description></item><item><title>ノートとダッシュボードレイアウトの追加</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/7-dashboards-detectors/dashboards/1-10-notes-and-layout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/7-dashboards-detectors/dashboards/1-10-notes-and-layout/</guid><description>&lt;h2 id="1-ノートの追加"&gt;
+ &lt;span class="heading-text"&gt;1. ノートの追加&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-%e3%83%8e%e3%83%bc%e3%83%88%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ダッシュボードには、ユーザーを支援する短い「説明」ペインを配置することが有効な場合がよくあります。&lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;strong&gt;New Text Note&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; ボタンをクリックして追加しましょう。&lt;/p&gt;</description></item><item><title>1.3.1 File Exporter のテスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/1-test-fileexporter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/1-agent/1-3-fileexporter/1-test-fileexporter/</guid><description>&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;エージェントを再起動します&lt;/strong&gt;: &lt;strong&gt;Agent ターミナル&lt;/strong&gt;ウィンドウを見つけて、変更した設定を使用して &lt;code&gt;agent&lt;/code&gt; を（再）起動します&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-panel-0" tabindex="0" data-tab-label="Start the Agent"&gt;Start the Agent&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-panel-1" tabindex="-1" data-tab-label="Agent Output"&gt;Agent Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-tab-0" data-tab-label="Start the Agent"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-foundations-3-opentelemetry-collector-workshops-2-advanced-collector-old-1-agent-1-3-fileexporter-1-test-fileexporter-md-1-1--0-tab-1" hidden data-tab-label="Agent Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;トレースを送信します&lt;/strong&gt;: &lt;strong&gt;Spans ターミナル&lt;/strong&gt;ウィンドウから、別のスパンを送信し、以前と同じ出力がコンソールに表示されることを確認します&lt;/p&gt;</description></item><item><title>APM Trace</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/</guid><description>&lt;p&gt;トレースを選択するには、&lt;code&gt;Service Requests &amp;amp; Errors&lt;/code&gt; チャートの線を選択します &lt;strong&gt;(1)&lt;/strong&gt;。関連するトレースの一覧が表示されます。&lt;/p&gt;
+&lt;p&gt;関連するトレースのリストが表示されたら、青い &lt;strong&gt;(2)&lt;/strong&gt; Trace ID リンクを右クリックして、新しいブラウザタブでトレースを開きます。選択するトレースが Services Column に表示されている同じ3つのサービスを含んでいることを確認してください。&lt;/p&gt;</description></item><item><title>2. Dual Mode の有効化</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/2-enable-dual-mode/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/2-enable-dual-mode/</guid><description>&lt;p&gt;JVM コマンドラインに dual signal mode フラグを追加してアプリケーションを再起動します。&lt;/p&gt;
+&lt;h2 id="実行中のアプリケーションを停止する"&gt;
+ &lt;span class="heading-text"&gt;実行中のアプリケーションを停止する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%ae%9f%e8%a1%8c%e4%b8%ad%e3%81%ae%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e5%81%9c%e6%ad%a2%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Phase 1 のアプリケーションとロードジェネレーターを停止します:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;kill&lt;/span&gt; %2 2&amp;gt;/dev/null &lt;span class="c1"&gt;# stop load generator&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;kill&lt;/span&gt; %1 2&amp;gt;/dev/null &lt;span class="c1"&gt;# stop the java app&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Tip&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector のデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/2-deploy-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/2-deploy-collector/</guid><description>&lt;h2 id="opentelemetry-collector-のアンインストール"&gt;
+ &lt;span class="heading-text"&gt;OpenTelemetry Collector のアンインストール&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#opentelemetry-collector-%e3%81%ae%e3%82%a2%e3%83%b3%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;EC2 インスタンスには、古いバージョンの Splunk Distribution of the OpenTelemetry Collector がすでにインストールされている場合があります。先に進む前に、以下のコマンドを使用してアンインストールしましょう&lt;/p&gt;</description></item><item><title>.NET アプリケーションのデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/3-deploy-dotnet-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/3-deploy-dotnet-app/</guid><description>&lt;h2 id="前提条件"&gt;
+ &lt;span class="heading-text"&gt;前提条件&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;アプリケーションをデプロイする前に、インスタンスに .NET 8 SDK をインストールする必要があります。&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; sudo apt-get install -y dotnet-sdk-8.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-ninja-workshops-instrumentation-8-docker-k8s-otel-3-deploy-dotnet-app-md-12-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:1 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:2 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-updates InRelease 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:3 http://us-west-1.ec2.archive.ubuntu.com/ubuntu jammy-backports InRelease 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Ign:5 https://splunk.jfrog.io/splunk/otel-collector-deb release InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hit:6 https://splunk.jfrog.io/splunk/otel-collector-deb release Release
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading package lists... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading package lists... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Building dependency tree... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Reading state information... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;The following additional packages will be installed:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0 liblttng-ust-common1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;The following NEW packages will be installed:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; aspnetcore-runtime-8.0 aspnetcore-targeting-pack-8.0 dotnet-apphost-pack-8.0 dotnet-host-8.0 dotnet-hostfxr-8.0 dotnet-runtime-8.0 dotnet-sdk-8.0 dotnet-targeting-pack-8.0 dotnet-templates-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; liblttng-ust-common1 liblttng-ust-ctl5 liblttng-ust1 netstandard-targeting-pack-2.1-8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="m"&gt;0&lt;/span&gt; upgraded, &lt;span class="m"&gt;13&lt;/span&gt; newly installed, &lt;span class="m"&gt;0&lt;/span&gt; to remove and &lt;span class="m"&gt;0&lt;/span&gt; not upgraded.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Need to get &lt;span class="m"&gt;138&lt;/span&gt; MB of archives.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;After this operation, &lt;span class="m"&gt;495&lt;/span&gt; MB of additional disk space will be used.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;etc. &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;詳細については &lt;a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&amp;amp;pivots=os-linux-ubuntu-2404" target="_blank" rel="noopener"&gt;Install .NET SDK or .NET Runtime on Ubuntu&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ を参照してください。&lt;/p&gt;</description></item><item><title>3. AppD での実行と確認</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/2-run-with-appd/3-run-and-verify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/2-run-with-appd/3-run-and-verify/</guid><description>&lt;p&gt;AppDynamics エージェントをアタッチしてアプリケーションを実行します。これは「通常の」単一送信先へのインストルメンテーションです。&lt;/p&gt;
+&lt;h2 id="appdynamics-エージェントで実行する"&gt;
+ &lt;span class="heading-text"&gt;AppDynamics エージェントで実行する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#appdynamics-%e3%82%a8%e3%83%bc%e3%82%b8%e3%82%a7%e3%83%b3%e3%83%88%e3%81%a7%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;YOUR-ACCESS-KEY&amp;gt;&lt;/code&gt; を前のステップで取得した AppDynamics トークンに置き換えてください&lt;/p&gt;</description></item><item><title>サンプルアプリケーションのデプロイと OpenTelemetry による計装</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/</guid><description>&lt;p&gt;ここまでで、K8s クラスターに OpenTelemetry Collector をデプロイし、インフラストラクチャメトリクスの収集に成功しました。&lt;/p&gt;
+&lt;p&gt;次のステップでは、サンプルアプリケーションをデプロイし、OpenTelemetry で計装してトレースをキャプチャします。&lt;/p&gt;</description></item><item><title>3. 両プラットフォームでの確認</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/3-verify-in-both/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/3-verify-in-both/</guid><description>&lt;p&gt;デュアルモードを有効にし負荷が流れている状態では、数分以内にトレースが Splunk Observability Cloud に到着するはずです。両方の送信先を確認しましょう。&lt;/p&gt;
+&lt;h2 id="appdynamics-の確認変更なし"&gt;
+ &lt;span class="heading-text"&gt;AppDynamics の確認（変更なし）&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#appdynamics-%e3%81%ae%e7%a2%ba%e8%aa%8d%e5%a4%89%e6%9b%b4%e3%81%aa%e3%81%97" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://se-lab.saas.appdynamics.com/controller/" target="_blank" rel="noopener"&gt;AppDynamics Controller&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ に戻り、アプリケーションを開いて以下を確認します&lt;/p&gt;</description></item><item><title>Kubernetes 監査イベントメトリクスの可視化</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/2-create-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/operations/11-ingest-processor-for-observability-cloud/4-update-pipeline-and-visualize/2-create-dashboard/</guid><description>&lt;p&gt;メトリクスにディメンションが追加されたので、イベントの &lt;code&gt;verb&lt;/code&gt; ディメンションを使用して、さまざまな Kubernetes アクションの状態を示すチャートを作成します。&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習: Kubernetes 監査イベントメトリクスの可視化&lt;/p&gt;</description></item><item><title>7.3 Count Connector のテスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector/7-sum-count/7-3-sum-test/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Sum Connector のテスト&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;&lt;strong&gt;Gateway の起動&lt;/strong&gt;:&lt;br&gt;
+&lt;strong&gt;Gateway ターミナル&lt;/strong&gt;ウィンドウで以下を実行します:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent の起動&lt;/strong&gt;:&lt;br&gt;
+&lt;strong&gt;Agent ターミナル&lt;/strong&gt;ウィンドウで以下を実行します:&lt;/p&gt;</description></item><item><title>9.3 Count Connector のテスト</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-3-sum-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/3-opentelemetry-collector-workshops/2-advanced-collector-old/9-sum-count/9-3-sum-test/</guid><description>&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;演習&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;Gateway の起動&lt;/strong&gt;:&lt;br&gt;
+&lt;strong&gt;Gateway ターミナル&lt;/strong&gt;ウィンドウで &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; ディレクトリに移動し、以下を実行します:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;gateway.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Agent の起動&lt;/strong&gt;:&lt;br&gt;
+&lt;strong&gt;Agent ターミナル&lt;/strong&gt;ウィンドウで &lt;code&gt;[WORKSHOP]/9-sum-count&lt;/code&gt; ディレクトリに移動し、以下を実行します:&lt;/p&gt;</description></item><item><title>OpenTelemetry で .NET アプリケーションを計装する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/4-instrument-app-with-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/4-instrument-app-with-otel/</guid><description>&lt;h2 id="splunk-distribution-of-opentelemetry-のダウンロード"&gt;
+ &lt;span class="heading-text"&gt;Splunk Distribution of OpenTelemetry のダウンロード&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#splunk-distribution-of-opentelemetry-%e3%81%ae%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;このワークショップでは、NuGet パッケージを使用する代わりに、Splunk Distribution of OpenTelemetry を手動でインストールします。&lt;/p&gt;
+&lt;p&gt;まず、.NET アプリケーションの計装に使用する最新の &lt;code&gt;splunk-otel-dotnet-install.sh&lt;/code&gt; ファイルをダウンロードします:&lt;/p&gt;</description></item><item><title>Troubleshooting MetricSet の作成</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/</guid><description>&lt;h2 id="タグのインデックス化"&gt;
+ &lt;span class="heading-text"&gt;タグのインデックス化&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%bf%e3%82%b0%e3%81%ae%e3%82%a4%e3%83%b3%e3%83%87%e3%83%83%e3%82%af%e3%82%b9%e5%8c%96" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Tag Spotlight&lt;/strong&gt; などの &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; の高度な機能を使用するには、まず1つ以上のタグをインデックス化する必要があります。&lt;/p&gt;
+&lt;p&gt;これを行うには、&lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;APM &amp;amp; RUM MetricSets&lt;/strong&gt; に移動し、&lt;strong&gt;APM&lt;/strong&gt; タブが選択されていることを確認します。&lt;br&gt;
+次に、&lt;strong&gt;Add MetricSet Configuration&lt;/strong&gt; ドロップダウンをクリックし、&lt;strong&gt;Add Custom MetricSet&lt;/strong&gt; を選択します。&lt;/p&gt;</description></item><item><title>4. スケーリングの仕組み</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/4-how-this-scales/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/16-obi-ebpf/5-kubernetes/4-how-this-scales/</guid><description>&lt;h2 id="環境間のパターン"&gt;
+ &lt;span class="heading-text"&gt;環境間のパターン&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e7%92%b0%e5%a2%83%e9%96%93%e3%81%ae%e3%83%91%e3%82%bf%e3%83%bc%e3%83%b3" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Phase 0 ではバイナリを実行しました。Phase 2（Docker）ではコンテナを1つ追加しました。Phase 3（K8s）では &lt;code&gt;helm upgrade&lt;/code&gt; を1回実行しました。パターンは同じです&lt;/p&gt;</description></item><item><title>Tag Spotlight を使用した問題のトラブルシューティング</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</guid><description>&lt;h2 id="apm-データの探索"&gt;
+ &lt;span class="heading-text"&gt;APM データの探索&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#apm-%e3%83%87%e3%83%bc%e3%82%bf%e3%81%ae%e6%8e%a2%e7%b4%a2" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;キャプチャした APM データを探索して、アプリケーションのパフォーマンスを確認しましょう。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;APM&lt;/strong&gt; に移動し、&lt;strong&gt;Environment&lt;/strong&gt; ドロップダウンを使用して環境を選択します（例: &lt;code&gt;tagging-workshop-instancename&lt;/code&gt;）。&lt;/p&gt;</description></item><item><title>アプリケーションの Docker 化</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/5-dockerize-app/</guid><description>&lt;p&gt;このワークショップの後半では、.NET アプリケーションを Kubernetes クラスターにデプロイします。&lt;/p&gt;
+&lt;p&gt;しかし、どのようにすればよいのでしょうか？&lt;/p&gt;
+&lt;p&gt;最初のステップは、アプリケーションの Docker イメージを作成することです。これはアプリケーションの「Docker 化」と呼ばれ、&lt;code&gt;Dockerfile&lt;/code&gt; の作成から始まります。&lt;/p&gt;</description></item><item><title>Dockerfile に計装を追加する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/</guid><description>&lt;p&gt;アプリケーションの Docker 化が成功したので、次に OpenTelemetry の計装を追加しましょう。&lt;/p&gt;
+&lt;p&gt;これは Linux 上で実行されているアプリケーションを計装したときの手順と似ていますが、いくつかの重要な違いがあります。&lt;/p&gt;</description></item><item><title>まとめ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/6-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/foundations/9-solving-problems-with-o11y-cloud/6-summary/</guid><description>&lt;p&gt;このワークショップでは、以下の概念についてハンズオン体験を行いました&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Helm を使用して &lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt; をデプロイする方法。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://opentelemetry.io" target="_blank" rel="noopener"&gt;&lt;strong&gt;OpenTelemetry&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ でアプリケーションを計装する方法。&lt;/li&gt;
+&lt;li&gt;OpenTelemetry SDK を使用してアプリケーションから関心のあるタグをキャプチャする方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Troubleshooting MetricSets&lt;/strong&gt; を使用して &lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; でタグをインデックス化する方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tag Spotlight&lt;/strong&gt; と &lt;strong&gt;Dynamic Service Map&lt;/strong&gt; 機能を使用して、&lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; でタグを活用し「未知の未知」を発見する方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このワークショップで共有したベストプラクティスに沿ってタグを収集することで、&lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; に送信しているデータからさらに多くの価値を引き出すことができます。このワークショップを完了した今、ご自身のアプリケーションからタグの収集を開始するために必要な知識を身につけました！&lt;/p&gt;</description></item><item><title>K8s に OpenTelemetry Collector をインストールする</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/7-install-collector-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/7-install-collector-k8s/</guid><description>&lt;h2 id="ワークショップ-パート-1-の振り返り"&gt;
+ &lt;span class="heading-text"&gt;ワークショップ パート 1 の振り返り&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97-%e3%83%91%e3%83%bc%e3%83%88-1-%e3%81%ae%e6%8c%af%e3%82%8a%e8%bf%94%e3%82%8a" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ワークショップのこの時点で、以下を完了しています&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux ホストに Splunk ディストリビューションの OpenTelemetry Collector をデプロイしました&lt;/li&gt;
+&lt;li&gt;トレースとメトリクスを Splunk Observability Cloud に送信するように設定しました&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションをデプロイし、OpenTelemetry でインストルメントしました&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションを Docker 化し、トレースが o11y cloud に送信されていることを確認しました&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上記の手順を&lt;strong&gt;まだ完了していない&lt;/strong&gt;場合は、ワークショップの残りの部分に進む前に、以下のコマンドを実行してください&lt;/p&gt;</description></item><item><title>アプリケーションを K8s にデプロイする</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/8-deploy-app-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/8-deploy-app-k8s/</guid><description>&lt;h2 id="dockerfile-を更新する"&gt;
+ &lt;span class="heading-text"&gt;Dockerfile を更新する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#dockerfile-%e3%82%92%e6%9b%b4%e6%96%b0%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Kubernetes では、環境変数は通常 Docker イメージに組み込むのではなく、&lt;code&gt;.yaml&lt;/code&gt; マニフェストファイルで管理します。そのため、Dockerfile から以下の2つの環境変数を削除しましょう&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector 設定のカスタマイズ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/9-customize-collector-config/</guid><description>&lt;p&gt;K8s クラスターにデフォルト設定で Splunk Distribution of the OpenTelemetry Collector をデプロイしました。このセクションでは、Collector の設定をカスタマイズする方法をいくつかの例を通して説明します。&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector の問題をトラブルシュートする</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/10-troubleshoot-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/10-troubleshoot-collector/</guid><description>&lt;p&gt;前のセクションでは、Collector の設定に debug エクスポーターを追加し、トレースとログのパイプラインの一部にしました。期待どおり、エージェント Collector のログに debug 出力が書き込まれることを確認しました。&lt;/p&gt;</description></item><item><title>まとめ</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/11-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/instrumentation/8-docker-k8s-otel/11-summary/</guid><description>&lt;p&gt;このワークショップでは、以下の概念についてハンズオン形式で学びました&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux ホストに &lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt; をデプロイする方法。&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションに &lt;strong&gt;Splunk Distribution of OpenTelemetry .NET&lt;/strong&gt; を使用して計装する方法。&lt;/li&gt;
+&lt;li&gt;.NET アプリケーションを「Docker 化」し、&lt;strong&gt;Splunk Distribution of OpenTelemetry .NET&lt;/strong&gt; を使用して計装する方法。&lt;/li&gt;
+&lt;li&gt;Helm を使用して Kubernetes クラスターに &lt;strong&gt;Splunk Distribution of the OpenTelemetry Collector&lt;/strong&gt; をデプロイする方法。&lt;/li&gt;
+&lt;li&gt;コレクターの設定をカスタマイズし、問題をトラブルシュートする方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;他の言語や環境での OpenTelemetry による計装方法については、&lt;a href="https://github.com/signalfx/splunk-opentelemetry-examples" target="_blank" rel="noopener"&gt;Splunk OpenTelemetry Examples GitHub リポジトリ&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+をご覧ください。&lt;/p&gt;</description></item></channel></rss>

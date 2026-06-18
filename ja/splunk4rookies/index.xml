@@ -1,1 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk4Rookies ワークショップ on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/</link><description>Recent content in Splunk4Rookies ワークショップ on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk4Rookies ワークショップ on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/</link><description>Recent content in Splunk4Rookies ワークショップ on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/splunk4rookies/index.xml" rel="self" type="application/rss+xml"/><item><title>2. ログエントリの確認</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/5-log-observer/2-log-entry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/5-log-observer/2-log-entry/</guid><description>&lt;p&gt;特定のログ行を確認する前に、これまでに行ったことと、Observability の3本柱に基づいてなぜここにいるのかを簡単に振り返りましょう&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Metrics&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Traces&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Logs&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題があるか？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題はどこか？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;em&gt;&lt;strong&gt;問題は何か？&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;メトリクスを使用して、アプリケーションに&lt;strong&gt;問題がある&lt;/strong&gt;ことを特定しました。これは Service Dashboards のエラーレートが想定よりも高かったことから明らかでした。&lt;/li&gt;
+&lt;li&gt;トレースとスパンタグを使用して、&lt;strong&gt;問題がどこにあるか&lt;/strong&gt;を発見しました。&lt;strong&gt;wire-transfer-service&lt;/strong&gt; は &lt;code&gt;v350.9&lt;/code&gt; と &lt;code&gt;v350.10&lt;/code&gt; の2つのバージョンで構成されており、&lt;code&gt;v350.10&lt;/code&gt; のエラーレートは &lt;strong&gt;100%&lt;/strong&gt; でした。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;wire-transfer-service&lt;/strong&gt; &lt;code&gt;v350.10&lt;/code&gt; からのこのエラーが、複数回のリトライとコンプライアンスチェックサービスからのレスポンスの大幅な遅延を引き起こしていることを確認しました。&lt;/li&gt;
+&lt;li&gt;トレースから &lt;strong&gt;Related Content&lt;/strong&gt; の機能を使用して、障害が発生している &lt;strong&gt;wire-transfer-service&lt;/strong&gt; バージョンのログエントリに到達しました。これで、&lt;strong&gt;問題が何であるか&lt;/strong&gt;を特定できます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item><item><title>Infrastructure Exercise - Part 2</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/30-im-exercise/2-im-exercise/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/30-im-exercise/2-im-exercise/</guid><description>&lt;p&gt;これは Infrastructure Monitoring 演習のパート 2 です。ここまでで単一のクラスターが表示されているはずです。&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/k8s-cluster.png" alt="Alt Cluster" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kubernetes Navigator では、クラスターは黒い線で囲まれた四角形で表されます。&lt;/li&gt;
+&lt;li&gt;その中にノードまたはコンピュートエンジンを表す 1 つ以上の青い四角形が含まれています。&lt;/li&gt;
+&lt;li&gt;さらにその中に Pod を表す 1 つ以上の色付きボックスが含まれています（サービスが実行される場所です）。&lt;/li&gt;
+&lt;li&gt;ご想像の通り、&lt;strong&gt;green&lt;/strong&gt; は正常を意味し、&lt;strong&gt;red&lt;/strong&gt; は問題があることを意味します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;赤いボックスまたはタイルが 2 つあるので、何が起きているのか、そしてこれが Online Boutique サイトに影響するかどうかを確認しましょう。&lt;/p&gt;</description></item><item><title>4. Log View チャート</title><link>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/5-log-observer/4-log-view-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/splunk4rookies/financial-services-observability-cloud/5-log-observer/4-log-view-chart/</guid><description>&lt;p&gt;ログで使用できる次のチャートタイプは &lt;strong&gt;Log View&lt;/strong&gt; チャートタイプです。このチャートを使用すると、事前定義されたフィルターに基づいてログメッセージを確認できます。&lt;/p&gt;</description></item></channel></rss>

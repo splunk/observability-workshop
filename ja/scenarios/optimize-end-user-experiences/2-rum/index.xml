@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RUM on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/</link><description>Recent content in RUM on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/index.xml" rel="self" type="application/rss+xml"/><item><title>ブラウザアプリでの RUM 計装</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/2-setup/</guid><description>&lt;ul&gt;
+&lt;li&gt;ブラウザで Online Boutique ウェブページの HEAD セクションを確認します&lt;/li&gt;
+&lt;li&gt;RUM を計装するコードを見つけます&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="1-online-boutique-にアクセスする"&gt;
+ &lt;span class="heading-text"&gt;1. Online Boutique にアクセスする&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-online-boutique-%e3%81%ab%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;ワークショップの講師が、RUM がインストールされた Online Boutique の URL を提供します。次のステップを完了するために使用してください。&lt;/p&gt;</description></item><item><title>Browser Application の健全性を一目で確認する</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</guid><description>&lt;ul&gt;
+&lt;li&gt;このランディングページで利用可能な UI とオプションに慣れましょう&lt;/li&gt;
+&lt;li&gt;Page Views/JavaScript Errors と Request/Errors を単一のビューで確認します&lt;/br&gt;
+Web Vitals メトリクスと、Browser Application に関連して発火した Detector を確認します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="application-summary-dashboard"&gt;
+ &lt;span class="heading-text"&gt;Application Summary Dashboard&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#application-summary-dashboard" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-header-bar"&gt;
+ &lt;span class="heading-text"&gt;1. Header Bar&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-header-bar" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;前のセクションで見たように、RUM Application Summary Dashboard は 5 つの主要セクションで構成されています。&lt;/br&gt;
+最初のセクションは選択ヘッダーで、&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/browser.png?classes=inline&amp;amp;height=25px" alt="RUM-browser" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+ Browser アイコンまたはアプリケーション名の前にある &lt;strong&gt;&amp;gt;&lt;/strong&gt; をクリックしてペインを折りたたむことができます。以下の例ではアプリケーション名は &lt;em&gt;jmcj-store&lt;/em&gt; です。また、アプリケーション名のリンク（以下の例では &lt;em&gt;jmcj-store&lt;/em&gt;）をクリックすると、&lt;em&gt;Application Overview&lt;/em&gt; ページにアクセスできます。&lt;/p&gt;</description></item><item><title>RUM メトリクスの分析</title><link>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/5-analyzing-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/scenarios/optimize-end-user-experiences/2-rum/5-analyzing-metrics/</guid><description>&lt;ul&gt;
+&lt;li&gt;RUM UI で RUM メトリクスとセッション情報を確認します&lt;/li&gt;
+&lt;li&gt;RUM &amp;amp; APM UI で相関する APM トレースを確認します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="1-rum-overview-pages"&gt;
+ &lt;span class="heading-text"&gt;1. RUM Overview Pages&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-rum-overview-pages" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;RUM Application Summary Dashboard から、右側の三点メニュー &lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/trippleburger.png?classes=inline&amp;amp;height=25px" alt="trippleburger" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+ で &lt;em&gt;Open Application Overview&lt;/em&gt; を選択するか、アプリケーション名のリンク（以下の例では &lt;em&gt;jmcj-rum-app&lt;/em&gt;）をクリックして、Application Overview Page を開くことで詳細情報を確認できます。&lt;/p&gt;</description></item></channel></rss>

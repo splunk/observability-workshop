@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart Agent と Ansible によるモニタリングのコード化 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/</link><description>Recent content in Smart Agent と Ansible によるモニタリングのコード化 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/index.xml" rel="self" type="application/rss+xml"/><item><title>セットアップと設定</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/appdynamics/15-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</guid><description>&lt;h2 id="ステップ-2-ファイルとディレクトリ構成の準備"&gt;
+ &lt;span class="heading-text"&gt;ステップ 2: ファイルとディレクトリ構成の準備&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#%e3%82%b9%e3%83%86%e3%83%83%e3%83%97-2-%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%a8%e3%83%87%e3%82%a3%e3%83%ac%e3%82%af%e3%83%88%e3%83%aa%e6%a7%8b%e6%88%90%e3%81%ae%e6%ba%96%e5%82%99" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Ansible デプロイメント用のプロジェクトディレクトリを作成します。以下のファイルを含める必要があります&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── appdsmartagent_64_linux_24.6.0.2143.deb # Debian package
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── appdsmartagent_64_linux_24.6.0.2143.rpm # RedHat package
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── inventory-cloud.yaml # Inventory file
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── smartagent.yaml # Playbook
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── variables.yaml # Variables file&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;ターゲット環境に適した Smart Agent パッケージをダウンロード済みであることを確認してください。&lt;/p&gt;</description></item></channel></rss>

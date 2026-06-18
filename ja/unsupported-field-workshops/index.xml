@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unsupported-Field-Workshops on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/</link><description>Recent content in Unsupported-Field-Workshops on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenTelemetry Demo のデプロイ</title><link>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/</guid><description>&lt;h2 id="1-namespace-の作成"&gt;
+ &lt;span class="heading-text"&gt;1. namespace の作成&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-namespace-%e3%81%ae%e4%bd%9c%e6%88%90" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;他のワークショップと競合しないように、OpenTelemetry Demo を &lt;code&gt;otel-demo&lt;/code&gt; という別の namespace にデプロイします。namespace を作成するには、以下のコマンドを実行します&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
+ &lt;span class="heading-text"&gt;Auto-Instrumentation&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#auto-instrumentation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;自動計装コードが含まれる auto ディレクトリに移動します。&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-0" tabindex="0" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-1" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-2" tabindex="-1" data-tab-label="Command"&gt;Command&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-0" data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-1" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-ja-unsupported-field-workshops-6-lambda-kinesis-2-auto-instrumentation-md-11-1--0-tab-2" hidden data-tab-label="Command"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd ~/o11y-lambda-lab/auto&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;このディレクトリ内のファイルの内容を確認します。serverless.yml テンプレートを見てみましょう。&lt;/p&gt;</description></item><item><title>2.1 Service Map</title><link>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/unsupported-field-workshops/2-apm/using-splunk-apm/service_map/</guid><description>&lt;h2 id="service-map"&gt;
+ &lt;span class="heading-text"&gt;Service Map&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#service-map" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;サービスマップで &lt;strong&gt;paymentservice&lt;/strong&gt; をクリックし、&lt;strong&gt;paymentservice&lt;/strong&gt; の下にある &lt;code&gt;breakdown&lt;/code&gt; ドロップダウンフィルターから &lt;strong&gt;version&lt;/strong&gt; を選択します。これにより、カスタムスパンタグ &lt;strong&gt;version&lt;/strong&gt; でサービスマップがフィルタリングされます。&lt;/p&gt;</description></item></channel></rss>
