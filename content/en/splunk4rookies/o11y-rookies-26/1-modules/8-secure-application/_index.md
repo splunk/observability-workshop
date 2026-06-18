@@ -21,6 +21,8 @@ It is suitable for application owners, SREs and SecOps teams.
 
 ---
 
+## Overview 
+
 Application security data is often scattered across standalone scanners, spreadsheets, and ticket queues that never reflect what is actually running in production. As a result, remediation queues widen gaps between engineering and security, and MTTR for exploitable issues slows. This typically happens for three reasons:
 
 - **Fragmented visibility**: Security and reliability are assessed in separate tools with no shared service context.
