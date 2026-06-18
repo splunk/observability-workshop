@@ -37,4 +37,3 @@ Copy `*.yaml` from the `4-sensitve-data` directory into `5-transform-data`. Your
 ```
 
 {{% /notice %}}
-

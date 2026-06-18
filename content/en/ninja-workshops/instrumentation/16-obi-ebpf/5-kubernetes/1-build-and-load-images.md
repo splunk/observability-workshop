@@ -79,6 +79,7 @@ shw-ece9-cluster   1/1       2/2      true
 {{< /tabs >}}
 
 Now import the images. `CLUSTER_NAME` should be available in your `env` or if it is not try:
+
 ```
 export CLUSTER_NAME=$(k3d cluster list -o json |  jq -r '.[].name')
 ```

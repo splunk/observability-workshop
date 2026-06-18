@@ -2,7 +2,6 @@
 title: Workshop Overview
 linkTitle: 1. Workshop Overview
 weight: 1
-archetype: chapter
 time: 5 minutes
 description: Goals and architecture for the workshop.
 ---
@@ -16,7 +15,7 @@ In this Hands-on Workshop, we will instrument Python microservices with **Splunk
 ## Workshop Outline (~75 min)
 
 | # | Module | Time |
-|---|--------|------|
+| - | ------ | ---- |
 | 1 | [Prerequisites](docs/workshop/1-prerequisites.md) | 5 min |
 | 2 | [Deploy application services](docs/workshop/2-deploy-services.md) | 10 min |
 | 3 | [Deploy Splunk OTel Collector](docs/workshop/3-deploy-collector.md) | 10 min |
@@ -24,12 +23,11 @@ In this Hands-on Workshop, we will instrument Python microservices with **Splunk
 | 5 | [Tag Spotlight](docs/workshop/5-tag-spotlight.md) | 15 min |
 | 6 | [Summary](docs/workshop/6-summary.md) | 5 min |
 
-
 ## Application Architecture
 
 ### Request flow (application data)
 
-```
+```text
 Client / load-generator
     │
     ▼ HTTP

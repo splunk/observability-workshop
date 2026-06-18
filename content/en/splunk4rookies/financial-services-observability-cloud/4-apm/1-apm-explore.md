@@ -7,7 +7,7 @@ When you click into the APM section of Splunk Observability Cloud you are greate
 
 The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
 
-You can see the services involved in any of your APM user workflows by clicking into the **Service Map**. When you select a service in the **Service Map**, the charts in the **Business Workflow** sidepane are updated to show metrics for the selected service. The **Service Map** and any indicators are syncronized with the time picker and chart data displayed. 
+You can see the services involved in any of your APM user workflows by clicking into the **Service Map**. When you select a service in the **Service Map**, the charts in the **Business Workflow** sidepane are updated to show metrics for the selected service. The **Service Map** and any indicators are syncronized with the time picker and chart data displayed.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

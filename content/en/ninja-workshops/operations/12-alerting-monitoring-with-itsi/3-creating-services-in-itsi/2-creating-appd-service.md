@@ -20,7 +20,7 @@ weight: 3
     * The page will load and display the new Service and you will be on the Entities page. This demo defaults to selecting the *AD-Ecommerce:18112:demo1.saas.appdynamics.com* entity. In a real world situation you would need to match the entity_name to the entity name manually.
     * **Direct Entity Selection (If Available):** Search for the entity using `entity_name="AD-Ecommerce:18112:demo1.saas.appdynamics.com"` and select it.
 
-7. **Settings:** Click the "Settings" tab, enable *Backfill* and keep that standard 7 days. Enable the Service, and click "Save"
+6. **Settings:** Click the "Settings" tab, enable *Backfill* and keep that standard 7 days. Enable the Service, and click "Save"
 
 ## Setting AD-Ecommerce2's Service Health as a Dependency for AD.Ecommerce
 
@@ -30,7 +30,7 @@ weight: 3
 
 3. **Edit AD.Ecommerce:** Click "Edit".
 
-4. **Service Dependencies:** Look for the "Service Dependencies" section. 
+4. **Service Dependencies:** Look for the "Service Dependencies" section.
 
 5. **Add Dependency:**  There should be an option to add a dependent service.  Search for "AD-Ecommerce2".
 

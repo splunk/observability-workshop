@@ -5,7 +5,7 @@ weight: 3
 time: 10 minutes
 ---
 
-## Prerequisites 
+## Prerequisites
 
 Before deploying the application, we'll need to install the .NET 8 SDK on our instance.
 
@@ -51,16 +51,16 @@ for further details.
 
 ## Review the .NET Application
 
-In the terminal, navigate to the application directory: 
+In the terminal, navigate to the application directory:
 
 ``` bash
 cd ~/workshop/docker-k8s-otel/helloworld
 ```
 
-We'll use a simple "Hello World" .NET application for this workshop.  The main logic is found 
-in the HelloWorldController.cs file: 
+We'll use a simple "Hello World" .NET application for this workshop.  The main logic is found
+in the HelloWorldController.cs file:
 
-``` cs 
+``` cs
 public class HelloWorldController : ControllerBase
 {
     private ILogger<HelloWorldController> logger;
@@ -117,7 +117,7 @@ Time Elapsed 00:00:02.04
 {{% /tab %}}
 {{< /tabs >}}
 
-If that's successful, we can run it as follows: 
+If that's successful, we can run it as follows:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -144,7 +144,7 @@ info: Microsoft.Hosting.Lifetime[0]
 {{% /tab %}}
 {{< /tabs >}}
 
-Once it's running, open a second SSH terminal to your Ubuntu instance and access the application using curl: 
+Once it's running, open a second SSH terminal to your Ubuntu instance and access the application using curl:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -163,7 +163,7 @@ Hello, World!
 {{% /tab %}}
 {{< /tabs >}}
 
-You can also pass in your name: 
+You can also pass in your name:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -190,5 +190,5 @@ What are the three methods that we can use to instrument our application with Op
 
 ![Traces](../images/NetInstrumentation.png)
 
-See: [Instrument your .NET application for Splunk Observability Cloud](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html) 
-for a discussion of the options. 
+See: [Instrument your .NET application for Splunk Observability Cloud](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html)
+for a discussion of the options.

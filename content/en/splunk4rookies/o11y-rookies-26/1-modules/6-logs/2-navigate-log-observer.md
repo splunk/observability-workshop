@@ -18,8 +18,8 @@ weight: 2
 
 You should now see the Log Observer landing page with two main areas:
 
-- **Timeline chart** (top) — A bar chart showing log volume over time, giving you an at-a-glance view of log activity
-- **Log table** (bottom) — Individual log entries with timestamps, severity, service names, and messages
+* **Timeline chart** (top) — A bar chart showing log volume over time, giving you an at-a-glance view of log activity
+* **Log table** (bottom) — Individual log entries with timestamps, severity, service names, and messages
 
 {{% notice title="Info" style="info" %}}
 Log Observer works with **no-code** filtering — you never need to write SPL or query syntax. Everything is point-and-click, making it accessible to any team member regardless of their Splunk experience.

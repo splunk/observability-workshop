@@ -1,6 +1,5 @@
 ---
-title: Monitoring Cisco AI Pods with Splunk Observability Cloud
-linkTitle: Monitoring Cisco AI Pods with Splunk Observability Cloud
+title: Monitoring Cisco AI Pods
 weight: 14
 archetype: chapter
 time: 60 minutes
@@ -10,6 +9,7 @@ draft: false
 hidden: false
 aliases:
   - /ninja-workshops/14-cisco-ai-pods/
+product: "Observability Cloud"
 ---
 
 **Cisco’s AI-ready PODs** combine the best of hardware and software technologies to create a robust, scalable, and efficient AI-ready infrastructure tailored to diverse needs.
@@ -28,4 +28,5 @@ This workshop provides hands-on experience deploying and working with several of
 * Practice instrumenting Python services that interact with Large Language Models (LLMs) with **OpenTelemetry**.
 * Understanding which details which OpenTelemetry captures in the trace from applications that interact with LLMs.
 
-> Note: the workshop setup section only needs to be executed by the workshop organizer
+> [!NOTE]
+> The workshop setup section only needs to be executed by the workshop organizer

@@ -24,7 +24,7 @@ The **Trace & error count** view shows the total traces and traces with errors i
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on the dropdown menu that says **Trace & error count**, and change it to **Trace duration** 
+* Click on the dropdown menu that says **Trace & error count**, and change it to **Trace duration**
 
 {{% /notice %}}
 

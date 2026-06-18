@@ -31,7 +31,7 @@ weight: 1
 ../loadgen -count 1
 ```
 
-We can now stop the `agent` in the **Agent terminal** window using `Ctrl-C` so that we can verify the `agent.out` file was written. 
+We can now stop the `agent` in the **Agent terminal** window using `Ctrl-C` so that we can verify the `agent.out` file was written.
 
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
 

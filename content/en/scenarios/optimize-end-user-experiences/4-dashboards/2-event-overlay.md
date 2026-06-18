@@ -32,5 +32,5 @@ Seeing the visualization of our KPIs is great. What's better? KPIs in context wi
 ![save dashboard](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-04-02/21dc9ffa-4b33-46b1-81e2-6204924b7ec5/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1432,732&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=868,67)
 
 {{% notice title="Keep in mind" style="primary"  icon="lightbulb" %}}
-Want to add context to that bug ticket, or show your manager how your change improved app performance? Seeing observability data in context with events not only helps with troubleshooting, but also helps us communicate with other teams. 
+Want to add context to that bug ticket, or show your manager how your change improved app performance? Seeing observability data in context with events not only helps with troubleshooting, but also helps us communicate with other teams.
 {{% /notice %}}

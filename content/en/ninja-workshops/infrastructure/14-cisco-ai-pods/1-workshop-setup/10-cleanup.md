@@ -49,4 +49,3 @@ aws cloudformation delete-stack --region $AWS_REGION --stack-name <stack name i.
 
 Refer to [OpenShift documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-deleting-cluster)
 if you'd like to completely remove the Red Hat OpenShift Service from your AWS account.
-

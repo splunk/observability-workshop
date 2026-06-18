@@ -12,7 +12,7 @@ For example, you might want to send *production* data to one exporter while dire
 {{% exercise title="Set up the `6-routing-data` directory" %}}
 
 > [!IMPORTANT]
-> **Change _ALL_ terminal windows to the `6-routing-data` directory and run the `clear` command.**
+> **Change *ALL* terminal windows to the `6-routing-data` directory and run the `clear` command.**
 
 Copy `*.yaml` from the `5-transform-data` directory into `6-routing-data`. Your updated directory structure will now look like this:
 

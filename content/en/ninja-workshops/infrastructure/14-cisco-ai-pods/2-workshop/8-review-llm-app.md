@@ -31,7 +31,9 @@ llm = ChatNVIDIA(base_url=INSTRUCT_MODEL_URL, model="meta/llama-3.2-1b-instruct"
 embeddings_model = NVIDIAEmbeddings(model="nvidia/llama-3.2-nv-embedqa-1b-v2",
                                    base_url=EMBEDDINGS_MODEL_URL)
 ```
+
 > Why are there two models? Here's a helpful analogy:
+>
 > * The Embedding model is the "Librarian" (it helps find the right books),
 > * The Instruct model is the "Writer" (it reads the books and writes the answer).
 

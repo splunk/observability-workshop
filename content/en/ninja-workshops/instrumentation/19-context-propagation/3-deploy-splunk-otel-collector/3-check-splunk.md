@@ -22,13 +22,12 @@ All infrastructure metrics are tagged with `k8s.cluster.name=trace-workshop-<you
 If infrastructure metrics are missing:
 
 | Check | Action |
-|-------|--------|
+| ----- | ------ |
 | Agent DaemonSet | `kubectl get pods -n trace-workshop -l app=splunk-otel-collector-agent` — all Ready |
 | Agent logs | `kubectl logs daemonset/splunk-otel-collector-agent -n trace-workshop` — no kubelet TLS errors |
 | RBAC | ServiceAccount `splunk-otel-collector` has ClusterRole `splunk-otel-collector-workshop` |
 | Token | Ingest token must include **Infrastructure Monitoring** permissions |
 | Cluster filter | Set **k8s.cluster.name** = `trace-workshop` in Splunk IMM |
-
 
 ## Confirm APM Data in Splunk
 
@@ -39,7 +38,7 @@ If infrastructure metrics are missing:
 If services do not appear:
 
 | Check | Action |
-|-------|--------|
+| ----- | ------ |
 | Token | Use an **ingest** access token with APM permissions (not a RUM-only token) |
 | Realm | Match `SPLUNK_REALM` to your org (US0 → `us0`, EU0 → `eu0`) |
 | Environment filter | In APM, set **Environment** = your `WORKSHOP_ENV` |
@@ -56,13 +55,12 @@ If services do not appear:
 ### What you should see after the collector is live
 
 | Hop | Splunk trace behavior |
-|-----|----------------------|
+| --- | --------------------- |
 | **storefront → inventory-service** | **Correlated** — spans for both services appear in the **same trace** |
 | **storefront → payment-service** | **Not correlated** — `payment-service` appears as a **separate root trace** |
 | **payment-proxy** | Usually in the **same trace as storefront** (inbound from storefront); the break is on the **outbound** hop to payment |
 | **payment-service → order-service** | **Correlated** — HTTP from payment to order links in **one trace** (payment’s root trace) |
 | **order-service → RabbitMQ → fulfilment-service** | **RabbitMQ shows as an inferred service** on the order trace (publish/receive spans with `messaging.system=rabbitmq`, `server.address=rabbitmq`). **order and fulfilment traces stay disconnected** — no trace context on AMQP messages in Phase 1 |
-
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -77,7 +75,7 @@ In **APM → Service map**, dependencies appear even when Trace Analyzer waterfa
 {{% /notice %}}
 
 | Hop | What happens |
-|-----|----------------|
+| --- | ------------ |
 | Client → edge proxy | `traceparent` removed before storefront |
 | Storefront → **inventory** (direct HTTP) | `filter_headers_for_mode()` removes headers from `inject_outbound_headers()`, but the Splunk OTel **`requests` auto-instrumentation** still injects W3C `traceparent`. **inventory-service** (`auto` mode) extracts W3C — traces link. |
 | Storefront → **payment-proxy** | Same `requests` instrumentation may link storefront and payment-proxy on the inbound hop |

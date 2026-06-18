@@ -12,4 +12,3 @@ This section includes the steps that workshop attendees will follow:
 * Practice gathering the **Pure Storage** metrics using Prometheus.
 * Practice instrumenting Python services that interact with Large Language Models (LLMs) with **OpenTelemetry**.
 * Understanding which details which OpenTelemetry captures in the trace from applications that interact with LLMs.
-

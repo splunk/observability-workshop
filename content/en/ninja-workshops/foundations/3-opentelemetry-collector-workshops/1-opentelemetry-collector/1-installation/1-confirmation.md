@@ -58,7 +58,7 @@ sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
@@ -202,8 +202,6 @@ Which leave you with the following directory structure:
 1. [https://opentelemetry.io/docs/collector/custom-collector/](https://opentelemetry.io/docs/collector/custom-collector/)
 
 {{% /expand %}}
-
----
 
 ## Default configuration
 

@@ -24,7 +24,7 @@ This will expand the time window and allow you to see more of the metric trends 
 
 Click on the **Data Table (1)** tab in the chart editor.
 
-The **Data Table** gives you a behind-the-scenes look at the metric time series powering the chart. 
+The **Data Table** gives you a behind-the-scenes look at the metric time series powering the chart.
 
 ![Data Table](../../images/data-table.png)
 

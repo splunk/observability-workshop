@@ -10,6 +10,7 @@ time: 10 minutes
 Now we will deploy a collector. At first this will be configured to go directly to the back-end, but we will change the configuration and restart the collector to use the gateway.
 
 The steps:
+
 * Click the **Data Management** icon in the toolbar
 * Click the **+ Add integration** button
 * Click **Deploy the Splunk OpenTelemetry Collector** button
@@ -23,6 +24,7 @@ The steps:
 * Copy the installer script and run it in the provided linux environment.
 
 This collector is sending host metrics, so you can find it in common navigators:
+
 * Click the **Infrastructure** icon in the toolbar
 * Click the **EC2** panel under **Amazon Web Services**
 * The `AWSUniqueId` is the easiest thing to find; add a filter and look for it with a wildcard (i.e. `i-0ba6575181cb05226*`)

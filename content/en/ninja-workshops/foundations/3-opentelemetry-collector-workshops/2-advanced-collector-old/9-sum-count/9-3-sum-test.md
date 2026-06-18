@@ -59,7 +59,7 @@ Peter Jackson        94.39
 ```
 
 {{% /tab %}}
-{{% /tabs %}} 
+{{% /tabs %}}
 
 > [!IMPORTANT]
 > Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.

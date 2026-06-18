@@ -7,21 +7,23 @@ time: 15 minutes
 
 ## Update the Dockerfile
 
-With Kubernetes, environment variables are typically managed in the `.yaml` manifest files rather 
+With Kubernetes, environment variables are typically managed in the `.yaml` manifest files rather
 than baking them into the Docker image.  So let's remove the following two environment variables from the Dockerfile:
 
 ``` bash
 vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
-Then remove the following two environment variables: 
+
+Then remove the following two environment variables:
 
 ``` dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 ```
+
 > To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
-## Build a new Docker Image 
+## Build a new Docker Image
 
 Let's build a new Docker image that excludes the environment variables:
 
@@ -33,26 +35,33 @@ docker build -t helloworld:1.2 .
 
 > Note: we've used a different version (1.2) to distinguish the image from our earlier version.
 > To clean up the older versions, run the following command to get the container id:
+>
 > ``` bash
 > docker ps -a | grep helloworld
 > ```
+>
 > Then run the following command to delete the container:
+>
 > ``` bash
 > docker rm <old container id> --force
 > ```
+>
 > Now we can get the container image id:
+>
 > ``` bash
 > docker images | grep 1.1
 > ```
+>
 > Finally, we can run the following command to delete the old image:
+>
 > ``` bash
 > docker image rm <old image id>
 > ```
 
-## Import the Docker Image to Local Container Repository 
+## Import the Docker Image to Local Container Repository
 
 Normally we’d push our Docker image to a repository such as Docker Hub.
-But for this workshop, we’ll push the Docker image to the local container 
+But for this workshop, we’ll push the Docker image to the local container
 repository running on our EC2 instance at `localhost:9999`
 
 ``` bash
@@ -65,7 +74,7 @@ docker push localhost:9999/helloworld:1.2
 
 ## Deploy the .NET Application
 
-> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key. 
+> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 To deploy our .NET application to K8s, let's create a file named `deployment.yaml` in `/home/splunk`:
 
@@ -100,16 +109,17 @@ spec:
             - name: PORT
               value: "8080"
 ```
+
 > [!tip]- What is a Deployment in Kubernetes?
 > The deployment.yaml file is a kubernetes config file that is used to define a deployment resource. This file is the cornerstone of managing applications in Kubernetes! The deployment config defines the deployment’s ***desired state*** and Kubernetes then ensures the ***actual*** state matches it. This allows application pods to self-heal and also allows for easy updates or roll backs to applications.
 
-Then, create a second file in the same directory named `service.yaml`: 
+Then, create a second file in the same directory named `service.yaml`:
 
 ``` bash
 vi /home/splunk/service.yaml
 ```
 
-And paste in the following: 
+And paste in the following:
 
 ``` yaml
 apiVersion: v1
@@ -128,7 +138,7 @@ spec:
 ```
 
 > [!tip]- What is a Service in Kubernetes?
-> A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time. 
+> A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time.
 
 Then, create a third file in the same directory named `ingress.yaml`:
 
@@ -163,8 +173,7 @@ spec:
 > [!tip]- What is an Ingress in Kubernetes?
 > An Ingress in Kubernetes is a Kubernetes API object that manages external access to services within a cluster, typically HTTP and HTTPS traffic. It acts as a set of rules for routing incoming connections to the correct internal services and pods, handling functions like load balancing, SSL/TLS termination, and name-based virtual hosting
 
-
-We can then use these manifest files to deploy our application: 
+We can then use these manifest files to deploy our application:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -196,18 +205,18 @@ ingress.networking.k8s.io/helloworld-ingress created
 
 ## Test the Application
 
-Use the following command to access the application: 
+Use the following command to access the application:
 
 ``` bash
 curl http://helloworld.localhost/hello/Kubernetes
 ```
 
-## Configure OpenTelemetry 
+## Configure OpenTelemetry
 
-The .NET OpenTelemetry instrumentation was already baked into the Docker image.  But we need to set a few 
-environment variables to tell it where to send the data. 
+The .NET OpenTelemetry instrumentation was already baked into the Docker image.  But we need to set a few
+environment variables to tell it where to send the data.
 
-Add the following to `deployment.yaml` file you created earlier: 
+Add the following to `deployment.yaml` file you created earlier:
 
 > **IMPORTANT** replace `$INSTANCE` in the YAML below with your instance name,
 > which can be determined by running `echo $INSTANCE`.
@@ -228,7 +237,7 @@ Add the following to `deployment.yaml` file you created earlier:
               value: "deployment.environment=otel-$INSTANCE" 
 ```
 
-The complete `deployment.yaml` file should be as follows (with **your** instance name rather than `$INSTANCE`): 
+The complete `deployment.yaml` file should be as follows (with **your** instance name rather than `$INSTANCE`):
 
 ``` yaml
 apiVersion: apps/v1
@@ -266,7 +275,7 @@ spec:
               value: "deployment.environment=otel-$INSTANCE" 
 ```
 
-Apply the changes with: 
+Apply the changes with:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -274,21 +283,24 @@ Apply the changes with:
 ``` bash
 kubectl apply -f deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 deployment.apps/helloworld configured
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-Then use the following command to generate some traffic: 
+Then use the following command to generate some traffic:
 
 ``` bash
 curl http://helloworld.localhost/hello/Kubernetes
 ```
 
-After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ... 
+After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ...
 
 ## A Challenge For You
 
@@ -303,7 +315,8 @@ First, open the deployment.yaml file in vi:
 vi deployment.yaml
 
 ```
-Then, add the `OTEL_TRACES_EXPORTER` environment variable: 
+
+Then, add the `OTEL_TRACES_EXPORTER` environment variable:
 
 ``` yaml
           env:
@@ -323,6 +336,7 @@ Then, add the `OTEL_TRACES_EXPORTER` environment variable:
             - name: OTEL_TRACES_EXPORTER
               value: "otlp,console" 
 ```
+
 Save your changes then redeploy the application:
 
 {{< tabs >}}
@@ -331,11 +345,14 @@ Save your changes then redeploy the application:
 ``` bash
 kubectl apply -f deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ```bash
 deployment.apps/helloworld configured
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -343,11 +360,14 @@ Tail the helloworld logs:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+
 ``` bash
 kubectl logs -l app=helloworld -f
 ```
+
 {{% /tab %}}
 {{% tab title="Example Output" %}}
+
 ``` bash
 info: HelloWorldController[0]
       /hello endpoint invoked by K8s9
@@ -392,6 +412,7 @@ Resource associated with Activity:
     deployment.environment: otel-jen-tko-1b75
 
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

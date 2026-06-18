@@ -53,11 +53,9 @@ ecosystem's data standards.
 
 We will be leveraging **Prometheus Exporters**, which are small utilities
 that translate a component's internal health into a standardized
-metrics endpoint (e.g., http://localhost:9100/metrics).
+metrics endpoint (e.g., <http://localhost:9100/metrics>).
 
 Instead of using a full Prometheus server to collect this data, we will use
 the **OpenTelemetry Collector**. By using its **Prometheus receiver**,
 the collector can **scrape** these endpoints, allowing us to gather
 rich telemetry data using a widely-supported industry format.
-
-

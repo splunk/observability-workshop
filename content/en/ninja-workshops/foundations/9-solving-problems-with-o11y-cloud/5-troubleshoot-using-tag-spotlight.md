@@ -27,7 +27,7 @@ Click on one of the longer running traces. In this example, the trace took five 
 
 ![Long Running Trace](../images/long_running_trace.png)
 
-But why are some traces slow, and others are relatively quick? 
+But why are some traces slow, and others are relatively quick?
 
 Close the trace and return to the Trace Analyzer. If you toggle **Errors only** to `on`, you'll also notice that some traces have errors:
 
@@ -38,9 +38,9 @@ If we look at one of the error traces, we can see that the error occurs when the
 ![Trace with Errors](../images/error_trace.png)
 
 To determine why some requests perform slowly, and why some requests result in errors, we could look through the
-traces one by one and try to find a pattern behind the issues. 
+traces one by one and try to find a pattern behind the issues.
 
-**Splunk Observability Cloud** provides a better way to find the root cause of an issue. We'll explore this next. 
+**Splunk Observability Cloud** provides a better way to find the root cause of an issue. We'll explore this next.
 
 ## Using Tag Spotlight
 
@@ -56,7 +56,7 @@ This illustrates the power of **Tag Spotlight**! Finding this pattern would be t
 
 We've looked at errors, but what about latency? Let's click on the **Requests & errors distribution** dropdown and change it to **Latency distribution**.
 
-> IMPORTANT: Click on the settings icon beside **Cards display** to add the P50 and P99 metrics. 
+> IMPORTANT: Click on the settings icon beside **Cards display** to add the P50 and P99 metrics.
 
 Here, we can see that the requests with a `poor` credit score request are running slowly, with P50, P90, and P99 times of around 3 seconds, which is too long for our users to wait, and much slower than other requests.
 

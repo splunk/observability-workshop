@@ -7,15 +7,14 @@ time: 5 minutes
 
 ## Connect to your EC2 Instance
 
-We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. 
+We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.
 
 Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below: 
+using one of the methods below:
 
-* Mac OS / Linux 
-  * ssh splunk@IP address 
+* Mac OS / Linux
+  * ssh splunk@IP address
 * Windows 10+
   * Use the OpenSSH client
 * Earlier versions of Windows
-  * Use Putty 
-
+  * Use Putty

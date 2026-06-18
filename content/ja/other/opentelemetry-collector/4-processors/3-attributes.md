@@ -49,7 +49,7 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** コネクターを使って内部への洞察を加速する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** コネクターを使って内部への洞察を加速する{{% /badge %}}" %}}
 
 最近追加されたものの一つとして、[connector](https://opentelemetry.io/docs/collector/configuration/#connectors) というコンセプトがあります。これを使うと、あるパイプラインの出力を別のパイプラインの入力に結合できるようになります。
 

@@ -7,9 +7,9 @@ time: 10 minutes
 
 このセクションでは、**Splunk Observability Cloud** のプロファイリングデータから学んだことを活用して、アプリケーション起動時に発生した遅延を解決します。
 
-### ソースコードの確認
+### ソースコードの調査
 
-対応するソースファイル（`~/workshop/profiling/doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`）をもう一度開き、以下のコードに注目してください。
+対応するソースファイル（`~/workshop/profiling/doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`）を再度開き、以下のコードに注目してください
 
 ````
 public class UserData {
@@ -42,7 +42,7 @@ public class UserData {
             }
 ````
 
-データベースエンジニアに相談したところ、実行されている SQL クエリにデカルト結合が含まれていることがわかりました。
+データベースエンジニアに確認したところ、実行されている SQL クエリにデカルト結合が含まれていることが判明しました
 
 ````
 select * FROM DoorGameDB.Users, DoorGameDB.Organizations
@@ -54,50 +54,50 @@ select * FROM DoorGameDB.Users, DoorGameDB.Organizations
 
 さらに、ユーザーテーブルの各レコードが各組織に対して繰り返されるため、クエリは重複したユーザーデータを返すことになります。
 
-したがって、コードがこのクエリを実行すると、10,000,000 個のユーザーオブジェクトを HashMap にロードしようとします。これが実行に非常に時間がかかり、大量のヒープメモリを消費する理由です。
+したがって、コードがこのクエリを実行すると、10,000,000 個のユーザーオブジェクトを HashMap にロードしようとするため、実行に非常に時間がかかり、大量のヒープメモリを消費する理由が説明できます。
 
-### バグを修正しましょう
+### バグを修正する
 
-このコードを最初に書いたエンジニアに相談したところ、Organizations テーブルとの結合は意図しないものだったことが判明しました。
+このコードを最初に書いたエンジニアに相談したところ、Organizations テーブルとの結合は意図しないものであったことが判明しました。
 
-そのため、ユーザーを HashMap にロードする際に、クエリからこのテーブルを削除するだけで済みます。
+したがって、ユーザーを HashMap にロードする際に、クエリからこのテーブルを削除するだけで済みます。
 
-対応するソースファイル（`./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`）をもう一度開き、以下のコード行を変更します。
+対応するソースファイル（`./doorgame/src/main/java/com/splunk/profiling/workshop/UserData.java`）を再度開き、以下のコード行を変更してください
 
 ``` java
     static final String SELECT_QUERY = "select * FROM DoorGameDB.Users, DoorGameDB.Organizations";
 ```
 
-以下のように変更します。
+以下のように変更します
 
 ``` java
     static final String SELECT_QUERY = "select * FROM DoorGameDB.Users";
 ```
 
-これにより、メソッドの実行速度が大幅に向上し、正しい数のユーザー（10,000,000 ではなく 10,000）を HashMap にロードするため、メモリ使用量も削減されます。
+これにより、メソッドの実行が大幅に高速化され、正しい数のユーザーが HashMap にロードされるため（10,000,000 ではなく 10,000）、使用メモリも削減されます。
 
 ### アプリケーションの再ビルドと再デプロイ
 
-以下のコマンドを使用して、Door Game アプリケーションを再ビルドおよび再デプロイし、変更をテストしましょう。
+以下のコマンドを使用して Door Game アプリケーションを再ビルドおよび再デプロイし、変更をテストしましょう
 
 ``` bash
 cd ~/workshop/profiling
 ./5-redeploy-doorgame.sh
 ```
 
-アプリケーションの再デプロイが正常に完了したら、The Door Game に再度アクセスして修正が適用されていることを確認します。
+アプリケーションが正常に再デプロイされたら、修正が適用されていることを確認するために再度 The Door Game にアクセスしてください
 `http://<your IP address>:81`
 
-`Let's Play` をクリックすると、以前よりも早くゲームに移動できるはずです（パフォーマンスにはまだ改善の余地がありますが）。
+`Let's Play` をクリックすると、以前よりも速くゲームに移動できるはずです（まだパフォーマンスの改善の余地はありますが）
 
 ![Choose Door](../images/door_game_choose_door.png)
 
-ゲームをさらに数回開始してから、**Splunk Observability Cloud** に戻り、`GET new-game` オペレーションのレイテンシーが減少したことを確認しましょう。
+さらに数回ゲームを開始してから、**Splunk Observability Cloud** に戻り、`GET new-game` オペレーションのレイテンシーが減少していることを確認してください。
 
-## 達成したこと
+## 何を達成しましたか？
 
-* SQL クエリが遅かった原因を発見しました。
+* SQL クエリが遅い理由を発見しました。
 * 修正を適用し、アプリケーションを再ビルドして再デプロイしました。
-* アプリケーションがより速く新しいゲームを開始できるようになったことを確認しました。
+* アプリケーションが新しいゲームをより速く開始できることを確認しました。
 
-次のセクションでは、引き続きゲームをプレイし、残りのパフォーマンスの問題を見つけて修正していきます。
+次のセクションでは、引き続きゲームをプレイし、見つかった残りのパフォーマンスの問題を修正します。

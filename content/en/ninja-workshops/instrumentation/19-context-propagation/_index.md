@@ -1,10 +1,9 @@
 ---
 draft: true
-hidden: true
 title: Manual Trace Propagation
 linkTitle: Manual Trace Propagation
 weight: 19
-archetype: chapter
+layout: chapter
 time: 90 minutes
 authors: ["Diana Omuoyo"]
 description: Instrument a containerized Python application with Splunk OpenTelemetry, observe fragmented traces when W3C headers are stripped, and fix issue with manual context propagation.

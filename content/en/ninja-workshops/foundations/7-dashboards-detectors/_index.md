@@ -1,5 +1,5 @@
 ---
-title: Dashboard Workshop
+title: Dashboards
 description: Build custom dashboards in Splunk Observability Cloud — charts, filters, analytical functions, and SignalFlow formulas.
 weight: 7
 archetype: chapter
@@ -8,6 +8,7 @@ time: 45 minutes
 draft: false
 aliases:
   - /ninja-workshops/7-dashboards-detectors/
+product: "Observability Cloud"
 ---
 Welcome to the workshop on **Dashboards** in the Splunk Observability Cloud. This session is designed to help you get hands-on experience with building insightful visualizations.
 

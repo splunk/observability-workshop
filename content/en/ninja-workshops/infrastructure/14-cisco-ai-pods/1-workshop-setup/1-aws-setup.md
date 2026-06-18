@@ -22,7 +22,6 @@ but a smaller instance type can also be used.
 
 ssh into the instance once it's up and running.
 
-
 ## Clone the GitHub Repository
 
 Clone the GitHub repository to your EC2 instance:

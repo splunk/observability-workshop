@@ -2,12 +2,11 @@
 title: Wrap-Up
 linkTitle: 6. Wrap-Up
 weight: 6
-archetype: chapter
 time: 5 minutes
 description: Key takeaways & cleanup instructions.
 ---
 
-# Summary
+## Summary
 
 This workshop provided hands-on experience with:
 
@@ -20,13 +19,12 @@ This workshop provided hands-on experience with:
 ## Reference Segments Commands
 
 | Action | Command |
-|--------|---------|
+| ------ | ------- |
 | Step 1 — Deploy Services | `start-lab.sh` |
 | Step 2 — Deploy Collector | `deploy-collector.sh` |
 | Step 3 - Continuous Load | `start-load.sh` |
 | Step 4 - Manual Propagation (code guides) | manual-propagation.md |
 | Step 5 - Stop & clean-Up Stack | `teardown.sh` |
-
 
 ## Clean Up
 

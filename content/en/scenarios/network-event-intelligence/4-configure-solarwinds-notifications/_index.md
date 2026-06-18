@@ -21,4 +21,3 @@ By the end of this section you will have:
 
 - Configured the **Solarwinds Inbound Notification** connection which will create Notable Events in ITSI for these alerts
 - Verified that Solarwinds alerts are flowing into ITSI as normalized notable events
-

@@ -15,7 +15,7 @@ In this workshop, we accomplished the following:
 
 Enabling **AlwaysOn Profiling** and utilizing **Database Query Performance** for your applications will let you get even more value from the data you’re sending to **Splunk Observability Cloud**.  
 
-Now that you’ve completed this workshop, you have the knowledge you need to start collecting deeper diagnostic data from your own applications! 
+Now that you’ve completed this workshop, you have the knowledge you need to start collecting deeper diagnostic data from your own applications!
 
 To get started with **Database Query Performance** today, check out [Monitor Database Query Performance](https://docs.splunk.com/observability/en/apm/db-query-perf/db-query-performance.html).
 

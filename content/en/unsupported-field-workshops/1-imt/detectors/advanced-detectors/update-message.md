@@ -54,9 +54,9 @@ Replace the message body with:
 
 ```handlebars
 {{#if anomalous}}
-	Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
+ Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
 {{else}}
-	Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
+ Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
 {{/if}}
 
 {{#if anomalous}}
@@ -104,7 +104,7 @@ Click {{% button style="blue" %}}ProceedAlert Recipients.{{% /button %}}.
 
 ---
 
-## Step 3 – Update the Alert Rule Description 
+## Step 3 – Update the Alert Rule Description
 
 {{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 

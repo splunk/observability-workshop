@@ -31,4 +31,3 @@ As with the previous Log Timeline chart, we will add a version of this chart to 
 * In the following **Link to teams** dialog box, find the Workshop team that your instructor will have provided for you and click {{% button style="blue" %}}Done{{% /button %}}.
 
 {{% /notice %}}
-

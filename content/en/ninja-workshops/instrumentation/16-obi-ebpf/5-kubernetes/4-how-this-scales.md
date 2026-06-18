@@ -32,8 +32,10 @@ OBI gives you **full distributed tracing without any code changes**:
 - **One container or one Helm flag**: add it to your compose or enable `obi.enabled=true` in your Helm chart and you're done
 
 ## Environments may still require some customization to your obi/eBPF config
+
 In some cases such as OpenShift you may need to add some additional information to your obi configs.
 Thanks to Leandro de Oliveira e Ferreira for this example!
+
 ```
 # obi-scc.yaml
 apiVersion: security.openshift.io/v1

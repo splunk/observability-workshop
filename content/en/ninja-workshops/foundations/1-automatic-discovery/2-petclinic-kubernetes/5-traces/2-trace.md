@@ -6,9 +6,12 @@ weight: 2
 
 To pick a trace, select a line in the `Service Requests & Errors` chart **(1)**. A selection of related traces will appear.
 
-Once you have the list of related traces, click on the blue **(2)** Trace ID Link, making sure the trace you select has the same three services mentioned in the Services Column.
+Once you have the list of related traces, right-click on the blue **(2)** Trace ID Link and open the trace in a new browser tab, making sure the trace you select has the same three services mentioned in the Services Column.
 
 ![workflow-trace-pick](../../images/selecting-a-trace.png)
+
+> [!NOTE]
+> _Be sure to open the trace in a new browser tab, as we will refer back to the same trace in later sections. Opening the trace in a new tab will save time and streamline navigation later._
 
 This brings us to the selected Trace in the Waterfall view:
 

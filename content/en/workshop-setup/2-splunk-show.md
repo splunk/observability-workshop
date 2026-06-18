@@ -46,4 +46,4 @@ When provisioning your instances, keep the following in mind:
 
 ### **Additional Resources**
 
-For more detailed guidance on using Splunk Show, refer to the [**Splunk Show User Guide**](http://go/show/user-guide).
+For more detailed guidance on using Splunk Show, refer to the [**Splunk Show User Guide**](https://splunk.show/userguide).

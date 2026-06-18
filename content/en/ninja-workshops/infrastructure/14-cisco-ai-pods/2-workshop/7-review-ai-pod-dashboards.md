@@ -34,6 +34,7 @@ We can apply the collector configuration changes by running the following Helm c
 > Note: if you get an error that says `Missing variables`, you'll need to
 > define your environment variables again. Add your participant number
 > before running the following commands:
+>
 > ``` bash
 > export PARTICIPANT_NUMBER=<your participant number>
 > export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER
@@ -71,4 +72,3 @@ Filter on the `k8s.cluster.name` of interest, and ensure the navigator is popula
 following example:
 
 ![Kubernetes Pods](../../images/WeaviateNavigator.png)
-

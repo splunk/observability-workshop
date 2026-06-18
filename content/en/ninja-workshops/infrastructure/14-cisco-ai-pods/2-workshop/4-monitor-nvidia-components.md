@@ -45,6 +45,7 @@ And when it finds a pod with this label, it will connect to port 9400 of the pod
 the default metrics endpoint (`/v1/metrics`).
 
 > Why are we using the **receiver_creator** receiver instead of just the **Prometheus** receiver?
+>
 > * The **Prometheus** receiver uses a static configuration that scrapes metrics from predefined endpoints.
 > * The **receiver_creator** receiver enables dynamic creation of receivers (including Prometheus receivers) based on runtime information, allowing for scalable and flexible scraping setups.
 > * Using **receiver_creator** can simplify configurations in dynamic environments by automating the management of multiple Prometheus scraping targets.
@@ -228,4 +229,3 @@ Because restarting the collector in an OpenShift environment takes 3 minutes per
 we'll wait until we've completed all configuration changes before initiating a restart.
 
 {{% /notice %}}
-

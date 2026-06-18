@@ -22,10 +22,12 @@ This section guides you through configuring a basic alert in Splunk IT Service I
 2. **Configure the new search:**
    * **Search Title:** *Service Name* *KPI* Critical
    * **Description:** *Service Name* *KPI* Critical
-   * **Search:** 
+   * **Search:**
+
    ```
    index=itsi_summary kpi="*KPI*" alert_severity=critical
    ```
+
     * **Time Range:** Last 15 minutes
     * **Service:** *Service Name*
     * **Entity Lookup Field:** itsi_service_id

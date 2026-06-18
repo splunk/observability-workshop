@@ -10,7 +10,7 @@ hidden: true
 
 Managing Observability costs is a huge challenge. Users can send in data at will, change data, turn on new integrations, and incur costs that are hard to detect before the surprise overage at the end of the month. Exactly the kind of thing that’s likely to happen to this new team as they set up their new application.
 
-Let's walk through some ways we can mitigate those challenges, while still making 
+Let's walk through some ways we can mitigate those challenges, while still making
 the platform easy for teams to send the data they need to.
 
 ### Tokens
@@ -21,9 +21,7 @@ Let's navigate to **Settings > Access Tokens**. As admins we will be able to see
 
 ![All Access Tokens](images/all_access_tokens.png)
 
-
-
-Still making the product 
+Still making the product
 
     A way to measure and monitor utilization by team
     A way to mitigate unexpected utilization

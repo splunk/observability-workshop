@@ -33,7 +33,7 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 
 {{% notice style="blue" title="Congratulations" icon="wine-bottle" %}}
 
-You have **successfully** used Splunk Observability Cloud to understand why users are experiencing issues while using the wire transfer service. You used Splunk APM and Splunk Log Observer to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, **metrics**, **traces** and **logs** 
+You have **successfully** used Splunk Observability Cloud to understand why users are experiencing issues while using the wire transfer service. You used Splunk APM and Splunk Log Observer to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, **metrics**, **traces** and **logs**
 
 You also learned how to use Splunk's **intelligent tagging and analysis** with **Tag Spotlight** to detect patterns in your applications' behavior and to use the **full stack correlation** power of **Related Content** to quickly move between the different components and telemetry while keeping in context of the issue.
 

@@ -28,7 +28,7 @@ service:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** コレクターの内部を観測する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** コレクターの内部を観測する{{% /badge %}}" %}}
 
 コレクターは、その動作に関する内部シグナルを捕捉しています。これには実行中のコンポーネントからの追加されるシグナルも含まれます。これは、データの流れに関する決定を行うコンポーネントが、その情報をメトリクスやトレースとして表面化する方法を必要とするためです。
 
