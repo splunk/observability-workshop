@@ -31,7 +31,7 @@ Application security data is often scattered across standalone scanners, spreads
 
 To address these challenges you need a way to:
 
-- **Maintain visibility**: Unify reliability and security in existing & shared workspaces — without bolting on a second agent or product.
+- **Maintain visibility**: Unify reliability and security in existing & shared workspaces without bolting on a second agent or product.
 - **Update and upgrade with context**: Tie remediation guidance to vulnerability risk profile, library names, versions, and affected-service blast radius before engaging engineering.
 - **Eliminate technical debt**: Govern vulnerability queues with status lifecycle management and hygiene across shared context.
 - **Prioritize known threats**: Compare CVSS scores with exploitation risk and pivot from cataloged CVEs to runtime attack forensics with code-level stack traces.

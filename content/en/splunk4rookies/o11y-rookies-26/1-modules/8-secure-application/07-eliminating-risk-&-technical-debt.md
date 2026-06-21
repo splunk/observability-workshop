@@ -10,7 +10,7 @@ Unmanaged vulnerability backlogs create risk, noise, stale detections, and confi
 Teams spend remediation capacity on some CVSS resolutions while long-tail legacy library sprawl
 accumulates tech debt.
 
-> *"Having governance of vulnerability status transitions and org-wide library inventory, turns an overwhelming list into an actionable, trackable queue — eliminating debt in the triage process."*
+> *"Having governance of vulnerability status transitions and org-wide library inventory, turns an overwhelming list into an actionable, trackable queue - eliminating debt in the triage process."*
 
 ---
 
@@ -44,7 +44,7 @@ accumulates tech debt.
 ## 6.3 Filter and export for collaboration
 
 1. Open the **Status** dropdown and select **Not Vulnerable**.
-2. Observe which libraries may show no known CVE data — which means that they are healthy relative to known and existing risk. 
+2. Observe which libraries may show no known CVE data, which means that they are healthy relative to known and existing risk. 
 3. Select **Export** (or equivalent) to produce a shareable subset for a mock engineering or SecOps handoff.
 
 ![apm](./images/07-export.png)
@@ -52,7 +52,7 @@ accumulates tech debt.
 > [!NOTE]
 > The risk profile changes as new vulnerabilities are discovered. So while some of these may have no
 > known vulnerabilities at this time, the status may change and hence it is critical to have real-time active 
-> detection in place to track these shifts including `Zero Day Vulnerabilities` - across all your active workloads
+> detection in place to track these shifts including `Zero Day Vulnerabilities` across all your active workloads
 
 ---
 
