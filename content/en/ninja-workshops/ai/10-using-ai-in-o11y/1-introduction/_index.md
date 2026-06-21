@@ -19,21 +19,27 @@ Artificial Intelligence and Machine Learning are transforming how we approach ob
 Splunk Observability Cloud integrates AI and ML throughout the platform:
 
 ### 1. Related Content
+
 Contextual AI that surfaces relevant dashboards, detectors, and resources based on what you're currently viewing, helping you navigate complex environments more efficiently.
 
 ### 2. AutoDetect
+
 Machine learning-powered detector creation that automatically establishes baselines and identifies anomalies specific to your environment without manual threshold configuration.
 
 ### 3. Tag Spotlight
+
 AI-driven root cause analysis that examines patterns across your metadata and tags to pinpoint the source of performance degradations.
 
 ### 4. Log Observer AI
+
 Advanced pattern recognition and anomaly detection in logs, with natural language capabilities to help you understand complex log data.
 
 ### 5. APM AI Assistant
+
 Intelligent guidance for application performance troubleshooting, helping you understand trace data and identify bottlenecks.
 
 ### 6. Predictive Analytics
+
 Forecasting capabilities that use ML models to predict future trends and capacity needs.
 
 ## Workshop Prerequisites

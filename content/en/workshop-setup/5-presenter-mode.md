@@ -50,7 +50,6 @@ Here's a live example — you'll only see it rendered if you're currently in pre
 This is what a presenter note looks like. If you can read this, presenter mode is on.
 {{< /presenter >}}
 
-
 ### **What Attendees See**
 
 Nothing. The notes are not rendered, and the toggle pill is not displayed for them.

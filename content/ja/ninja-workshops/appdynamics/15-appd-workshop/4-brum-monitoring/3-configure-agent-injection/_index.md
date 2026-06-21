@@ -1,0 +1,55 @@
+---
+title: Configure Agent Injection
+time: 3 minutes
+weight: 3
+description: この演習では、JavaScript インジェクションを有効にし、インジェクション対象の BT を選択します。
+---
+
+この演習では、以下のタスクを完了します
+
+* JavaScript Agent インジェクションを有効にします。
+* インジェクション対象の Business Transaction を選択します。
+
+## JavaScript Agent インジェクションの有効化
+
+AppDynamics は JavaScript Agent をインジェクトするさまざまな方法をサポートしていますが、このラボでは Auto-Injection 方式を使用します。以下の手順に従って、JavaScript Agent の Auto-Injection を有効にします。
+
+1. 左メニューの **Applications** タブをクリックし、Supercar-Trader-## アプリケーションにドリルインします。
+2. 左メニュー下部の **Configuration** タブをクリックします。
+3. **User Experience App Integration** オプションをクリックします。
+
+![BRUM Dash 1](images/03-brum-app-integration.png)
+
+1. **JavaScript Agent Injection** タブをクリックします。
+2. **Enable** をクリックして青色に変わることを確認します。
+3. **Supercar-Trader-Web-##-####** が選択されたブラウザアプリであることを確認します。前のセクションで作成したアプリケーションを選択してください。
+4. **Enable JavaScript Injection** の下にある **Enable** チェックボックスをオンにします。
+5. **Save** をクリックします。
+
+![BRUM Dash 2](images/03-brum-agent-injection.png)
+  
+Auto-Injection が潜在的な Business Transaction を検出するまで数分かかります。この間に、以下の手順で Business Transaction Correlation を有効にします。新しい APM エージェントでは、これは自動的に行われます。
+
+1. **Business Transaction Correlation** タブをクリックします。
+2. **Manually Enable Business Transactions** セクションの下にある **Enable** ボタンをクリックします。
+3. **Save** をクリックします。
+
+![BRUM Dash 3](images/03-brum-bt-manual.png)
+
+## インジェクション対象の Business Transaction の選択
+
+以下の手順に従って、Auto-Injection 対象の Business Transaction を選択します。
+
+1. **JavaScript Agent Injection** タブをクリックします。
+2. 検索ボックスに **.do** と入力します。
+3. すべての 9 つの BT が表示されるまで、Business Transaction の **Refresh List** リンクをクリックします。
+4. 右側のリストボックスからすべての Business Transaction を選択します。
+5. 矢印ボタンをクリックして、左側のリストボックスに移動します。
+6. すべての Business Transaction が左側のリストボックスに移動されていることを確認します。
+7. **Save** をクリックします。
+
+JavaScript Agent の Automatic Injection の設定について詳しくは、[**こちら**](https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/25.7.0/end-user-monitoring/browser-monitoring/browser-real-user-monitoring/inject-the-javascript-agent/automatic-injection-of-the-javascript-agent)をご覧ください。
+
+![BRUM Dash 5](images/03-brum-bts-auto-inject.png)
+
+Browser Application に負荷が表示され始めるまで数分間お待ちください。  

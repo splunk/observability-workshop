@@ -5,19 +5,19 @@ weight: 5
 time: 10 minutes
 ---
 
-Now that our game startup slowness has been resolved, let's play several rounds of the Door Game and ensure the rest of the game performs quickly. 
+Now that our game startup slowness has been resolved, let's play several rounds of the Door Game and ensure the rest of the game performs quickly.
 
-As you play the game, do you notice any other slowness?  Let's look at the data in **Splunk Observability** Cloud to put some numbers on what we're seeing. 
+As you play the game, do you notice any other slowness?  Let's look at the data in **Splunk Observability** Cloud to put some numbers on what we're seeing.
 
 ### Review Game Performance in Splunk Observability Cloud
 
-Navigate to APM then click on Traces on the right-hand side of the screen. Sort the traces by Duration in descending order: 
+Navigate to APM then click on Traces on the right-hand side of the screen. Sort the traces by Duration in descending order:
 
 ![Slow Traces](../images/slow_trace.png)
 
-We can see that a few of the traces with an operation of `GET /game/:uid/picked/:picked/outcome` have a duration of just over five seconds. This explains why we're still seeing some slowness when we play the app (note that the slowness is no longer on the game startup operation, `GET /new-game`, but rather a different operation used while actually playing the game). 
+We can see that a few of the traces with an operation of `GET /game/:uid/picked/:picked/outcome` have a duration of just over five seconds. This explains why we're still seeing some slowness when we play the app (note that the slowness is no longer on the game startup operation, `GET /new-game`, but rather a different operation used while actually playing the game).
 
-Let's click on one of the slow traces and take a closer look. Since profiling is still enabled, call stacks have been captured as part of this trace. Click on the child span in the waterfall view, then click CPU Stack Traces: 
+Let's click on one of the slow traces and take a closer look. Since profiling is still enabled, call stacks have been captured as part of this trace. Click on the child span in the waterfall view, then click CPU Stack Traces:
 
 ![View Stack on Span](../images/view_stack_on_span.png)
 
@@ -110,7 +110,7 @@ Once the application has been redeployed successfully, visit The Door Game again
 
 ## What did we accomplish?
 
-* We found another performance issue with our application that impacts game play. 
-* We used the CPU call stacks included in the trace to understand application behavior. 
+* We found another performance issue with our application that impacts game play.
+* We used the CPU call stacks included in the trace to understand application behavior.
 * We learned how the call stack can tell us a story and point us to suspect lines of code.
 * We identified the slow code and fixed it to make it faster.

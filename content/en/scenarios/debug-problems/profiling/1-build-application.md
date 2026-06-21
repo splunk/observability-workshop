@@ -34,7 +34,7 @@ cd ~/workshop/profiling
 
 Now that the application is deployed, let's play with it and generate some observability data.
 
-You should be able to access The Door Game application by pointing your browser to port 81 
+You should be able to access The Door Game application by pointing your browser to port 81
 of the IP address for your EC2 instance.  For example:
 
 ```` text
@@ -45,10 +45,10 @@ You should be met with The Door Game intro screen:
 
 ![Door Game Welcome Screen](../images/door_game_initial_screen.png)
 
-Click `Let's Play` to start the game: 
+Click `Let's Play` to start the game:
 
 ![Let's Play](../images/lets_play.png)
 
-Did you notice that it took a long time after clicking `Let's Play` before we could actually start playing the game?   
+Did you notice that it took a long time after clicking `Let's Play` before we could actually start playing the game?
 
-Let's use **Splunk Observability Cloud** to determine why the application startup is so slow. 
+Let's use **Splunk Observability Cloud** to determine why the application startup is so slow.

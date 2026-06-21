@@ -106,5 +106,3 @@ You can also resize windows by dragging from the left, right and bottom edges.
 As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the right of the others and resize it to match it to the 3 others. Set the **Time** to **-1h** and you should have the following dashboard!
 
 ![TaDA!](../../images/M-Notes-6.png)
-
-

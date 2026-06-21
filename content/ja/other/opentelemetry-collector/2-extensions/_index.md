@@ -9,7 +9,6 @@ weight: 2
 {{< mermaid >}}
 %%{
   init:{
-    "theme": "base",
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",

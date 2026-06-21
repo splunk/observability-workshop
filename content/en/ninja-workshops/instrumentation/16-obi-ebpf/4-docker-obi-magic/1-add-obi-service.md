@@ -29,6 +29,7 @@ Scroll to the very bottom of the file you'll see a comment block that says `PHAS
     environment:
       OTEL_EBPF_CONFIG_PATH: /config/obi-config.yaml
 ```
+
 **Note:** When pasting with vim using `:set paste` before pasting helps maintain formatting
 
 Save the file.

@@ -1,6 +1,6 @@
 ---
-title: Solving Problems with O11y Cloud
-linkTitle: Solving Problems with O11y Cloud
+title: Solving Problems
+linkTitle: Solving Problems
 weight: 9
 archetype: chapter
 time: 45 minutes
@@ -10,6 +10,7 @@ draft: false
 hidden: false
 aliases:
   - /ninja-workshops/9-solving-problems-with-o11y-cloud/
+product: "Observability Cloud"
 ---
 
 In this workshop, you'll get hands-on experience with the following:

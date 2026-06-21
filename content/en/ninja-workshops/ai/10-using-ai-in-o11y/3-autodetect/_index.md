@@ -20,12 +20,15 @@ AutoDetect uses several ML techniques:
 ## Types of ML-Powered Detectors
 
 ### Sudden Change Detection
+
 Alerts when a metric suddenly spikes or drops beyond learned patterns.
 
 ### Historical Anomaly Detection
+
 Compares current values against historical norms, accounting for time-of-day and day-of-week patterns.
 
 ### Resource Detectors
+
 Pre-configured ML detectors for common infrastructure resources (CPU, Memory, Disk).
 
 ## Hands-On Exercise: Create an AutoDetect Detector
@@ -65,6 +68,7 @@ Pre-configured ML detectors for common infrastructure resources (CPU, Memory, Di
 ## Understanding ML Detector Behavior
 
 ### Learning Period
+
 AutoDetect detectors need time to establish baselines:
 
 - **Minimum**: 24 hours of data

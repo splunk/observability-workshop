@@ -1,6 +1,6 @@
 ---
-title: Alerting and Monitoring with Splunk IT Service Intelligence
-linkTitle: Alerting and Monitoring with Splunk IT Service Intelligence
+title: Alerting and Monitoring
+linkTitle: Alerting and Monitoring
 weight: 12
 archetype: chapter
 authors: ["Doug Erkkila"]
@@ -9,6 +9,7 @@ description: Combine Splunk Enterprise, AppDynamics, Observability Cloud, and IT
 hidden: false
 aliases:
   - /ninja-workshops/12-alerting-monitoring-with-itsi/
+product: "ITSI"
 ---
 
 ## Workshop: Monitoring and Alerting with Splunk IT Service Intelligence

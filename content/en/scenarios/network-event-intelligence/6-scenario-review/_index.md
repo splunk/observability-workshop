@@ -39,10 +39,8 @@ Selecting a service reveals its individual KPIs. The Access Points KPI health sc
 ![Store-SJC12 Access Points KPI](../images/service-kpis.png?width=40vw)
 {{% / notice %}}
 
-
 {{% notice title="Bonus" style="primary" icon="lightbulb" %}}
 Drill down into the entity using the **Site Health Summary** link to see the health of the wireless access points at this store in more detail. This dashboard provides a granular view of individual device health scores sourced directly from Catalyst Center.
-
 
 The Site Health Summary dashboard shows individual access point health scores for the selected location
 
@@ -78,7 +76,6 @@ The Events Timeline sorted by Root Cause Analysis reveals the order in which ale
 ![Episode Detail](../images/ongoing-episode.png?width=40vw)
 {{% / notice %}}
 
-
 **10.** Review the individual alerts by selecting them from the list. Notice that this episode includes alerts from both **Solarwinds** and **Catalyst Center**. This is because the episode is using the **Network Events by Location NEAP** you created in the previous section, which groups all alerts for a given site regardless of their source
 
 {{% notice style="Info" %}}
@@ -99,11 +96,10 @@ The result is a system that eliminates tool-swivel, reduces alert noise, and giv
 
 By automating episode creation and resolution, ITSI reduces mean time to resolution and ensures that your team spends their time investigating real issues instead of chasing duplicate alerts across disconnected consoles.
 
-### Happy Splunking!
+### Happy Splunking
 
 ![Dancing Buttercup](../../../ninja-workshops/11-ingest-processor-for-observability-cloud/images/Splunk-dancing-buttercup-GIF-103.gif?width=40vw)
 
 {{% / notice %}}
 
 {{% /notice %}}
-

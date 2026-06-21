@@ -49,7 +49,7 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** connector を使用して内部インサイトを取得する{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** connector を使用して内部インサイトを取得する{{% /badge %}}" %}}
 
 Collector への最新の追加機能の1つは [**connector**](https://opentelemetry.io/docs/collector/configuration/#connectors) の概念で、あるパイプラインの出力を別のパイプラインの入力に接続できます。
 

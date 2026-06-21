@@ -1,6 +1,6 @@
 ---
-title: Monitoring Agentic AI Applications with Splunk Observability Cloud
-linkTitle: Monitoring Agentic AI Applications with Splunk Observability Cloud
+title: Monitoring Agentic AI Applications
+linkTitle: Monitoring Agentic AI Applications
 weight: 18
 layout: chapter
 time: 45 minutes
@@ -10,6 +10,7 @@ draft: false
 hidden: false
 aliases:
   - /ninja-workshops/18-agentic-ai/
+product: "Observability Cloud"
 ---
 
 **Splunk Observability for AI** monitors the performance, quality, security, and cost of AI application stack. It includes the following:

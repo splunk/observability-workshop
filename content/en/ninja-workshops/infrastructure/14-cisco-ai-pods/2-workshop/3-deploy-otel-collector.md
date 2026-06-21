@@ -118,6 +118,7 @@ Then install the collector in your namespace using the following command:
 > Note: if you get an error that says `Missing variables`, you'll need to
 > define your environment variables again. Add your participant number
 > before running the following commands:
+>
 > ``` bash
 > export PARTICIPANT_NUMBER=<your participant number>
 > export USER_NAME=workshop-participant-$PARTICIPANT_NUMBER

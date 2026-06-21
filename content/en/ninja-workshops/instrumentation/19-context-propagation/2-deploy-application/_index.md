@@ -2,7 +2,6 @@
 title: "Phase 1: Deploy Python Microservices"
 linkTitle: 2. Deploy Python Microservices
 weight: 2
-archetype: chapter
 time: 15 minutes
 description: Deploy and run Python microservices on a k3d host, verify that the application is running correctly. 
 ---

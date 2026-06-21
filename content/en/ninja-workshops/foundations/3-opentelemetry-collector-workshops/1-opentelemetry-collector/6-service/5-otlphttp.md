@@ -28,7 +28,7 @@ service:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
 The collector captures internal signals about its behavior this also includes additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information
@@ -93,13 +93,10 @@ service:
 
 {{% /expand %}}
 
----
-
 ## Final configuration
 
----
+{{% expand title="Review your final configuration" %}}
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your final configuration{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -219,12 +216,10 @@ service:
 
 {{% /expand %}}
 
----
-
 {{% notice style="tip" %}}
 It is recommended that you validate your configuration file before restarting the collector. You can do this by pasting the contents of your `config.yaml` file into **[otelbin.io](https://www.otelbin.io/)**.
 
-{{% expand title="{{% badge color=green title=**Screenshot** %}}OTelBin{{% /badge %}}" %}}
+{{% expand title="**Screenshot**: OTelBin" %}}
 ![otelbin-validator](../../images/otelbin.png)
 {{% /expand %}}
 

@@ -12,7 +12,8 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 {{% /notice %}}
 
 ![waterfall](../images/synth-waterfall.png)
-1. **Filter:** Focus in on specific parts of your test; filters the filmstrip, video, and waterfall. 
+
+1. **Filter:** Focus in on specific parts of your test; filters the filmstrip, video, and waterfall.
 2. **Filmstrip:** Offers a set of screenshots of site performance so that you can see how the page responds in real-time.
 3. **Waterfall chart:**  The waterfall chart is a visual representation of the interaction between the test runner and the site being tested.
 4. **Video:** This lets you see exactly what a user trying to load your site from the location and device of a particular test run would experience.
@@ -21,7 +22,6 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page etc.
 
 {{% exercise title="Inspect the test playback" %}}
-
 
 * Use your mouse to scroll left and right through the filmstrip to see how the site was being rendered during the test run.
 * In the Video pane, press on the play button **▶** to see the test playback. If you click the vertical three dots **⋮** you can change the *playback speed*, view it *Picture in Picture* and even *Download* the video.

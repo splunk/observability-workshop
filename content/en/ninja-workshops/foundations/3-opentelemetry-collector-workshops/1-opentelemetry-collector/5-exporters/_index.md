@@ -11,7 +11,7 @@ For this workshop, we will be using the [**otlphttp**](https://opentelemetry.io/
 {{< mermaid >}}
 %%{
   init:{
-    "theme":"base",
+
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",

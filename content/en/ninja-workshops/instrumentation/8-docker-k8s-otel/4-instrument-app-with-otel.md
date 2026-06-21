@@ -7,10 +7,10 @@ time: 20 minutes
 
 ## Download the Splunk Distribution of OpenTelemetry
 
-For this workshop, we'll install the Splunk Distribution of OpenTelemetry manually rather than 
+For this workshop, we'll install the Splunk Distribution of OpenTelemetry manually rather than
 using the NuGet packages.  
 
-We'll start by downloading the latest `splunk-otel-dotnet-install.sh` file, 
+We'll start by downloading the latest `splunk-otel-dotnet-install.sh` file,
 which we'll use to instrument our .NET application:
 
 ``` bash
@@ -43,15 +43,15 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 {{% /tab %}}
 {{< /tabs >}}
 
-
-> Note: we may need to include the ARCHITECTURE environment when running the command above: 
+> Note: we may need to include the ARCHITECTURE environment when running the command above:
+>
 > ``` bash
 > ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
 > ```
 
 ## Activate the Instrumentation
 
-Next, we can activate the OpenTelemetry instrumentation: 
+Next, we can activate the OpenTelemetry instrumentation:
 
 ``` bash
 . $HOME/.splunk-otel-dotnet/instrument.sh
@@ -59,17 +59,16 @@ Next, we can activate the OpenTelemetry instrumentation:
 
 ## Set the Deployment Environment
 
-Let's set the deployment environment, to ensure our data flows into its own 
-environment within Splunk Observability Cloud: 
+Let's set the deployment environment, to ensure our data flows into its own
+environment within Splunk Observability Cloud:
 
-``` bash 
+``` bash
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 ```
 
-
 ## Run the Application with Instrumentation
 
-We can run the application as follows: 
+We can run the application as follows:
 
 ```
 dotnet run
@@ -83,10 +82,12 @@ How can we see what traces are being exported by the .NET application from our L
 There are two ways we can do this:
 
 1. We could add `OTEL_TRACES_EXPORTER=otlp,console` at the start of the `dotnet run` command, which ensures that traces are both written to collector via OTLP as well as the console.
+
 ``` bash
 OTEL_TRACES_EXPORTER=otlp,console dotnet run 
 ```
-2. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs.
+
+1. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs.
 
 ``` yaml
 exporters:
@@ -102,6 +103,7 @@ service:
       - resourcedetection
       exporters: [otlphttp, signalfx, debug]
 ```
+
 {{< /details >}}
 
 ## Access the Application
@@ -112,9 +114,9 @@ Once the application is running, use a second SSH terminal and access it using c
 curl http://localhost:8080/hello
 ```
 
-As before, it should return `Hello, World!`. 
+As before, it should return `Hello, World!`.
 
-If you enabled trace logging, you should see a trace written the console or collector logs such as the following: 
+If you enabled trace logging, you should see a trace written the console or collector logs such as the following:
 
 ````
 info: Program[0]
@@ -175,11 +177,11 @@ Click on **Service Map** on the right-hand side to view the service map.
 
 ![Service Map](../images/service_map.png)
 
-Next, click on **Traces** on the right-hand side to see the traces captured for this application. 
+Next, click on **Traces** on the right-hand side to see the traces captured for this application.
 
 ![Traces](../images/traces.png)
 
-An individual trace should look like the following: 
+An individual trace should look like the following:
 
 ![Traces](../images/trace.png)
 

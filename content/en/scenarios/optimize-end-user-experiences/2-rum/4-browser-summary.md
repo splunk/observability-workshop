@@ -75,4 +75,3 @@ In the screen shot you can see we have a critical alert for the *RUM Aggregated 
 {{% notice title="Exercise" style="green" icon="running" %}}
 Please take a few minutes to experiment with the RUM Application Summary Dashboard  and the underlying chart and dashboards before going on to the next section.
 {{% /notice %}}
-

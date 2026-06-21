@@ -13,6 +13,7 @@ kubectl create namespace otel-demo
 ```
 
 ## 2. Deploy the OpenTelemetry Demo
+
 Next, change to the directory containing the OpenTelemetry Demo application:
 
 ``` bash

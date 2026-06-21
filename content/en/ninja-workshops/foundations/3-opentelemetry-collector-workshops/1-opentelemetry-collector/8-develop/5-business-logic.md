@@ -164,10 +164,11 @@ func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     return s.mb.Emit(), nil
 }
 ```
+
 {{% /tab%}}
 {{% tab title="4. Report the delta" %}}
 
-The final step is to calculate how long it took from 
+The final step is to calculate how long it took from
 commit to job completion to help infer our DORA metrics.
 
 ```go
@@ -232,6 +233,3 @@ There are more than likely features that would be desired from component that yo
 - How do I validate the changes work?
 
 Please take this time to play around, break it, change things around, or even try to capture logs from the builds.
-
-
-[^1]: [DORA Metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance)

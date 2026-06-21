@@ -49,7 +49,7 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
 One of the most recent additions to the collector was the notion of a [**connector**](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join the output of one pipeline to the input of another pipeline.
 
@@ -75,13 +75,9 @@ A connector only accepts data exported from one pipeline and receiver by another
 
 {{% /expand %}}
 
----
-
 ## Configuration Check-in
 
 That's processors covered, let's check our configuration changes.
-
----
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
@@ -197,5 +193,3 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
-
----

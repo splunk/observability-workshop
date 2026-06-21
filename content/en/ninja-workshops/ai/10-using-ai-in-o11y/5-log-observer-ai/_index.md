@@ -19,6 +19,7 @@ Splunk Observability Cloud's Log Observer includes several AI-powered features t
 ### What is Log Pattern Detection?
 
 Instead of viewing individual log lines, pattern detection groups logs by their structure, making it easier to:
+
 - Identify frequent vs. rare patterns
 - Spot new or unusual log patterns
 - Focus on anomalous entries
@@ -27,6 +28,7 @@ Instead of viewing individual log lines, pattern detection groups logs by their 
 ### How It Works
 
 The AI engine:
+
 1. Analyzes log message structures
 2. Identifies variable portions (IDs, timestamps, values)
 3. Creates pattern templates
@@ -52,6 +54,7 @@ The AI engine:
 ### Step 3: Analyze Patterns
 
 Review the pattern list:
+
 - **High-frequency patterns**: Normal, expected logs
 - **New patterns**: Recently appeared (potential issues)
 - **Rare patterns**: Infrequent, worth investigating
@@ -78,6 +81,7 @@ Review the pattern list:
 ### Configuring Anomaly Detection
 
 Set up log-based detectors with ML:
+
 1. Navigate to **Alerts & Detectors**
 2. Create a new detector from Log Observer
 3. Select **Anomaly Detection** mode
@@ -92,6 +96,7 @@ Set up log-based detectors with ML:
 ### AI-Suggested Filters
 
 As you investigate, Log Observer may suggest:
+
 - **Related fields**: Tags or attributes worth filtering on
 - **Common values**: Frequently occurring field values
 - **Anomalous values**: Unusual field values deserving attention
@@ -109,6 +114,7 @@ As you investigate, Log Observer may suggest:
 ### Automatic Context Linking
 
 AI helps connect logs to:
+
 - **Traces**: Link log entries to distributed traces
 - **Services**: Associate logs with APM services
 - **Infrastructure**: Connect to hosts, containers, pods
@@ -117,6 +123,7 @@ AI helps connect logs to:
 ### Following the AI Breadcrumbs
 
 During investigations:
+
 1. Start with a log entry or pattern
 2. Look for **Related Content** suggestions
 3. Jump to correlated traces, metrics, or infrastructure
@@ -128,6 +135,7 @@ During investigations:
 ### Key Insights Panel
 
 AI-generated insights may include:
+
 - **Error rate summaries**: Grouped by error type
 - **Service health**: Based on log severity
 - **Trend analysis**: Changes in log patterns over time
@@ -150,7 +158,9 @@ AI-generated insights may include:
 ## Best Practices for AI-Powered Log Analysis
 
 ### 1. Structure Your Logs
+
 Help AI by using structured logging:
+
 ```json
 {
   "timestamp": "2024-01-15T14:23:45Z",
@@ -164,11 +174,13 @@ Help AI by using structured logging:
 ```
 
 ### 2. Use Consistent Field Names
+
 - Standardize field naming across services
 - Use common taxonomy (e.g., `service.name`, not `serviceName` vs `service_id`)
 - Include essential context in every log
 
 ### 3. Set Appropriate Log Levels
+
 - **DEBUG**: Detailed diagnostic info (development)
 - **INFO**: General informational messages
 - **WARN**: Potentially harmful situations
@@ -176,13 +188,17 @@ Help AI by using structured logging:
 - **FATAL**: Severe errors causing premature termination
 
 ### 4. Leverage Log Sampling
+
 For high-volume logs:
+
 - Use AI to identify representative samples
 - Focus on error logs and anomalies
 - Apply intelligent sampling to reduce costs
 
 ### 5. Create Log-Based Detectors
+
 Set up alerts for:
+
 - Critical error patterns
 - Unusual log volumes
 - New error types
@@ -191,27 +207,33 @@ Set up alerts for:
 ## Use Cases
 
 ### Use Case 1: Identifying a Memory Leak
+
 **Observation**: Pattern analysis shows increasing "GC pressure" warnings
 
 **AI helps by**:
+
 - Grouping GC-related log patterns
 - Highlighting frequency increase
 - Correlating with memory metrics
 - Linking to affected service traces
 
 ### Use Case 2: Detecting Security Issues
+
 **Observation**: New pattern "Authentication failed" appearing
 
 **AI helps by**:
+
 - Flagging as new/rare pattern
 - Clustering by source IP
 - Highlighting unusual access patterns
 - Suggesting security-relevant filters
 
 ### Use Case 3: Database Performance Degradation
+
 **Observation**: Slow query warnings increasing
 
 **AI helps by**:
+
 - Grouping queries by pattern
 - Identifying slowest query types
 - Correlating with database metrics

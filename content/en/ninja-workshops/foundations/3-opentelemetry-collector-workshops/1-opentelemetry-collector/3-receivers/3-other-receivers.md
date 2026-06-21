@@ -10,7 +10,7 @@ You will notice in the default configuration there are other receivers: **otlp**
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=star %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
 
 To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) to create a new receiver as these services start up.
 
@@ -50,13 +50,9 @@ For more examples, refer to these [receiver creator's examples](https://github.c
 
 {{% /expand %}}
 
----
-
 ## Configuration Check-in
 
 We've now covered receivers, so let's now check our configuration changes.
-
----
 
 {{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
@@ -161,8 +157,6 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
-
----
 
 Now that we have reviewed how data gets into the OpenTelemetry Collector through receivers, let's now take a look at how the Collector processes the received data.
 

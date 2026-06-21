@@ -11,6 +11,7 @@ Tag Spotlight is an AI-powered analytics feature that helps you quickly identify
 ## The Problem Tag Spotlight Solves
 
 Imagine you have a service with:
+
 - 10 different regions
 - 5 availability zones per region
 - 20 different service endpoints
@@ -32,11 +33,13 @@ Tag Spotlight uses several analytical techniques:
 Tag Spotlight is available in two main areas:
 
 ### In APM Service Maps
+
 1. Navigate to **APM** → **Services**
 2. Select a service experiencing issues
 3. Click on **Tag Spotlight** in the troubleshooting panel
 
 ### In Troubleshooting MetricSets
+
 1. Create or access a Troubleshooting MetricSet (TMS)
 2. Tag Spotlight is built into the TMS analysis view
 
@@ -53,6 +56,7 @@ Tag Spotlight is available in two main areas:
 ### Step 2: Analyze the Results
 
 Tag Spotlight will show you:
+
 - **Tags ranked by contribution** to performance issues
 - **Comparison charts** showing performance by tag value
 - **Contribution percentage** for each tag
@@ -61,6 +65,7 @@ Tag Spotlight will show you:
 ### Step 3: Interpret the Findings
 
 Look for:
+
 - **High contribution tags**: Tags at the top have the most impact
 - **Outlier values**: Specific tag values performing differently
 - **Time correlation**: When did the divergence start?
@@ -77,6 +82,7 @@ Look for:
 ## Understanding Tag Spotlight Results
 
 ### Contribution Score
+
 Shows what percentage of the performance issue is associated with each tag:
 
 ```text
@@ -90,6 +96,7 @@ Higher percentages indicate stronger correlation with the issue.
 ### Statistical Significance
 
 Tag Spotlight also considers:
+
 - **Sample size**: Are there enough data points?
 - **Variance**: How consistent is the pattern?
 - **Baseline comparison**: How does it compare to normal?
@@ -97,27 +104,33 @@ Tag Spotlight also considers:
 ## Real-World Use Cases
 
 ### Use Case 1: Regional Performance Degradation
+
 **Symptom**: Overall latency increased by 300ms
 
 **Tag Spotlight reveals**:
+
 - `aws_region: eu-central-1` → 92% contribution
 - Other regions performing normally
 
 **Root cause**: Database replication lag in EU region
 
 ### Use Case 2: Version Rollout Issues
+
 **Symptom**: Error rate spiked after deployment
 
 **Tag Spotlight reveals**:
+
 - `version: v3.0.1` → 85% contribution
 - `endpoint: /api/search` → 67% contribution
 
 **Root cause**: New search endpoint introduced a memory leak
 
 ### Use Case 3: Customer Segment Impact
+
 **Symptom**: Increased checkout latency
 
 **Tag Spotlight reveals**:
+
 - `tenant: enterprise-tier` → 71% contribution
 - `payment_method: invoice` → 58% contribution
 
@@ -126,25 +139,32 @@ Tag Spotlight also considers:
 ## Best Practices for Tag Spotlight
 
 ### 1. Ensure Rich Tagging
+
 Tag Spotlight is only as good as your tags. Include:
+
 - **Infrastructure tags**: Region, AZ, cluster, node
 - **Application tags**: Version, environment, feature flags
 - **Business tags**: Tenant, customer tier, product line
 - **Custom dimensions**: Anything relevant to your domain
 
 ### 2. Use Consistent Tag Names
+
 - Use standard naming conventions across services
 - Avoid synonyms (e.g., don't mix `region` and `aws_region`)
 - Document your tagging strategy
 
 ### 3. Combine with Other Tools
+
 Use Tag Spotlight alongside:
+
 - **APM traces**: Verify findings with actual trace data
 - **Metrics**: Confirm patterns in time-series data
 - **Logs**: Find error messages for identified tags
 
 ### 4. Create Troubleshooting MetricSets
+
 For critical services, pre-configure Troubleshooting MetricSets with:
+
 - Key performance indicators (latency, error rate, throughput)
 - Important dimensions (region, version, endpoint)
 - Appropriate baseline comparison periods
@@ -154,6 +174,7 @@ For critical services, pre-configure Troubleshooting MetricSets with:
 TMS are custom metric aggregations designed for Tag Spotlight:
 
 ### Creating a TMS
+
 1. Navigate to **APM** → **Troubleshooting MetricSets**
 2. Click **Create Troubleshooting MetricSet**
 3. Select the service and metric
@@ -161,6 +182,7 @@ TMS are custom metric aggregations designed for Tag Spotlight:
 5. Save and activate
 
 ### When to Create TMS
+
 - **Critical services**: Services with strict SLAs
 - **Complex architectures**: Services with many dimensions
 - **Recurring issues**: Services with frequent performance variations

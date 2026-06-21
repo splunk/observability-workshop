@@ -44,5 +44,3 @@ When asked which dashboard to save the chart to, let's create a **new** one name
 Now we can see the chart on our dashboard, and can add more charts as needed to monitor our credit check service:
 
 ![Credit Check Service Dashboard](../../images/credit_check_service_dashboard.png)
-
-

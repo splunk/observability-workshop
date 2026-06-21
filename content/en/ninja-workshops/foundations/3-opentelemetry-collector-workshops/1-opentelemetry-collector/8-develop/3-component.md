@@ -46,7 +46,7 @@ keep to the principles that founded OpenTelemetry to begin with; A vendor agnost
 To help revisit the details, please read through [**Exporter Overview**](../5-exporters).
 
 {{% /tab %}}
-{{% tab title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Connectors{{% /badge %}}"  %}}
+{{% tab title="Connectors" %}}
 
 This is a component type that was missed in the workshop since it is a relatively new addition to the collector, but the best way to think about a connector is that it is like a processor that allows it to be used across different telemetry types and pipelines. Meaning that a connector can accept data as logs, and output metrics, or accept metrics from one pipeline and provide metrics on the data it has observed.
 

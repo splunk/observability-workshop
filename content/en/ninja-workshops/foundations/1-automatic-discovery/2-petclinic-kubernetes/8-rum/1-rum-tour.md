@@ -18,6 +18,6 @@ To continue, click on the blue link (with your workshop name) to get to the deta
 
 ![rum  main](../../images/rum-main.png)
 Normally, you have only one line inside the first chart. Click on the link that relates to your Petclinic shop,
-http://198.19.249.202:81 in our example:
+<http://198.19.249.202:81> in our example:
 
 This will bring us to the Tag Spotlight page.

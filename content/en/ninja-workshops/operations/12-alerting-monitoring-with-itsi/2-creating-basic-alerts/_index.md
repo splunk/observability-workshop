@@ -21,14 +21,15 @@ Splunk alerts are triggered by search results that match specific criteria. We'l
    ```splunk
    index=main "Invalid user"
    ```
+
     Use the time picker to select "Last 15 minutes"".
 
 2. **Configure the Alert:**
    * Click "Save As" and select "Alert."
    * Give your alert a descriptive name (e.g., "Numerous Invalid User Logins Attempted").
    * **Alert type:**
-      * **Scheduled:** Choose "Scheduled" to evaluate the search on a set schedule. Below scheduled will be the button to select the frequency, select "Run on Cron Schedule". 
-      * **Cron Expression:** */15 * * * *
+      * **Scheduled:** Choose "Scheduled" to evaluate the search on a set schedule. Below scheduled will be the button to select the frequency, select "Run on Cron Schedule".
+      * **Cron Expression:** */15* ** *
       * **Triggered when:** Select "Number of results" "is greater than" "100."
       * **Time Range:** Set to "15 minutes."
    * **Trigger Actions:**
@@ -41,23 +42,23 @@ Splunk alerts are triggered by search results that match specific criteria. We'l
 
 **Time Ranges and Frequency:** Since everything in Splunk core is a search, you need to consider the search timespan and frequency so that you are not a) searching the same data multiple times with an overlap timespan, b) missing events because of a gap between timespan and frequency, c) running too frequently and adding overhead or d) running too infrequently and experiencing delays in alerting.
 
-
 ## 2. Splunk Observability Cloud Alerts (Detectors)
 
 **Create a Detector:**
-   * Click "Detectors & SLOs" in the lefthand menu
-   * Click "Create Detector -> Custom Detector"
-   * Give the detector a descriptive name (e.g., "High CPU Utilization Alert - INITIALS").
-   * **Signal:**
-      * Select the metric you want to monitor ("cpu.utilization"). 
-      * Add any necessary filters to specify the host (`service.name:otelshop-loadgenerator`).
-      * Click "Proceed to Alert Condition"
-   * **Condition:**
-      * Select Static Threshold
-      * Set the threshold: "is above" "90"
-   * **Notifications:**
-      * For this example, choose a simple notification method (e.g., a test webhook). In a real-world scenario, you would configure integrations with PagerDuty, Slack, or other notification systems.
-   * **Save:** Save the detector.
+
+* Click "Detectors & SLOs" in the lefthand menu
+* Click "Create Detector -> Custom Detector"
+* Give the detector a descriptive name (e.g., "High CPU Utilization Alert - INITIALS").
+* **Signal:**
+  * Select the metric you want to monitor ("cpu.utilization").
+  * Add any necessary filters to specify the host (`service.name:otelshop-loadgenerator`).
+  * Click "Proceed to Alert Condition"
+* **Condition:**
+  * Select Static Threshold
+  * Set the threshold: "is above" "90"
+* **Notifications:**
+  * For this example, choose a simple notification method (e.g., a test webhook). In a real-world scenario, you would configure integrations with PagerDuty, Slack, or other notification systems.
+* **Save:** Save the detector.
 
 ![show-entry](../images/detector_preview.png?classes=inline)
 
