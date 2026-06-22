@@ -8,8 +8,9 @@ ENV UID=5001
 ENV GID=5001
 
 RUN addgroup --gid ${GID} -S ${GRP} \
-    && adduser --disabled-password --gecos "" --ingroup ${GRP} --no-create-home --uid ${UID} --system ${USR}
-RUN mkdir -p ${BUILD_HOME} && chown ${USR}:${GRP} -R ${BUILD_HOME}
+    && adduser --disabled-password --gecos "" --ingroup ${GRP} --uid ${UID} --system ${USR}
+RUN mkdir -p ${BUILD_HOME} /home/${USR} \
+    && chown ${USR}:${GRP} -R ${BUILD_HOME} /home/${USR}
 USER ${USR}
 
 WORKDIR ${BUILD_HOME}/
@@ -19,7 +20,7 @@ COPY --chown=${USR}:${GRP} .mvn .mvn
 COPY --chown=${USR}:${GRP} pom.xml .
 COPY --chown=${USR}:${GRP} src src
 
-RUN --mount=type=cache,uid=${UID},gid=${GID},target=/home/${USR}/.m2 ./mvnw clean install -DskipTests
+RUN ./mvnw clean install -DskipTests
 RUN mkdir -p ${ARTIFACTS} && (cd ${ARTIFACTS}; find .. -type f -name "*.jar" -exec jar -xf {} \;)
 
 FROM eclipse-temurin:22-jre-alpine

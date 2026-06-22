@@ -45,20 +45,21 @@ Great, we've identified four tags to capture from this service that could help w
 
 ## Capture Tags
 
-We start by adding OpenTelemetry imports to the top of the `CreditCheckController.java` file:
+We start by uncommenting the following OpenTelemetry imports at the top of the `CreditCheckController.java` file:
 
 ```java
 ...
+import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 ```
 
-Next, we use the `@WithSpan` annotation to produce a span for `creditCheck`:
+Next, we uncomment the `@WithSpan` annotation to produce a span for `creditCheck`:
 
 ```java
 @GetMapping("/check")
-@WithSpan // ADDED
+@WithSpan(kind=SpanKind.SERVER)
 public ResponseEntity<String> creditCheck(@RequestParam("customernum") String customerNum) {
     ...
 ```
