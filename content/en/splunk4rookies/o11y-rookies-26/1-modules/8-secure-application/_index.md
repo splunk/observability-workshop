@@ -3,13 +3,13 @@ title: Application Security
 linkTitle: 8. Application Security
 weight: 8
 archetype: chapter
-time: 60 minutes
+time: 45 minutes
 authors: ["Diana Omuoyo"]
 description: Detect and investigate runtime vulnerabilities before attackers find them first.
 draft: true
 hidden: true
 aliases:
-  - /o11y-rookies-26/6-secure-application/
+  - /o11y-rookies-26/8-secure-application/
 params:
   images:
     - images/secureapp.avif
