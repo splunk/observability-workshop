@@ -85,7 +85,7 @@ These attributes enable **global data links** clickable links on Splunk Observab
 
 ## Prerequisites
 
-Your workshop instance comes pre-configured with the tools you need:
+Your workshop instance comes pre-configured with the tools you need (or spin up your own with this [Splunk Show instance!](https://show.splunk.com/template/428/)):
 
 | Requirement | Status on Workshop Instance |
 |---|---|
