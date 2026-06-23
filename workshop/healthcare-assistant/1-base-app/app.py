@@ -142,7 +142,7 @@ def main():
         st.session_state.rag_initialized = True
 
     if "session_id" not in st.session_state:
-        st.session_state.session_id = str(uuid.uuid4())[:10]
+        st.session_state.session_id = str(uuid.uuid4())
 
     if "agent" not in st.session_state:
         st.session_state.agent = HealthcareAgent(

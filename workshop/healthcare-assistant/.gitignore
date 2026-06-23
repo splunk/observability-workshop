@@ -30,7 +30,7 @@ ehthumbs.db
 Thumbs.db
 
 # Streamlit
-.streamlit/secrets.toml
+**/.streamlit/secrets.toml
 
 # Environment variables
 .env
