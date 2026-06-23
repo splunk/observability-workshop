@@ -82,4 +82,4 @@ For each row, the script:
 
 ## Integration notes
 
-Experiments use the same `HealthcareAgent` as the Streamlit chat app. When `run_experiment` provides an experiment trace context, the agent detects it and adjusts Galileo callback settings so traces nest correctly under the experiment run.
+Experiments use the same `HealthcareAgent` as the Streamlit chat app. When `run_experiment` provides an experiment trace context, the agent detects it **before** opening a log-stream `galileo_context` and uses `GalileoAsyncCallback(start_new_trace=False)` so LangGraph spans nest under the experiment trace. Do not wrap experiment runs in `galileo_context(project=..., log_stream=...)` — that switches to a different logger and collapses the trace to a single span.

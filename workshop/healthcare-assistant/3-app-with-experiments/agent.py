@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
+from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import StructuredTool
 from langchain_openai import ChatOpenAI
 from langgraph.graph import START, StateGraph
@@ -114,11 +115,11 @@ class HealthcareAgent:
             name="Healthcare Assistant",
         ).bind_tools(self.tools)
 
-        async def invoke_chatbot(state):
+        async def invoke_chatbot(state, config: RunnableConfig):
             messages = list(state["messages"])
             if self.system_prompt:
                 messages = [SystemMessage(content=self.system_prompt)] + messages
-            message = await llm_with_tools.ainvoke(messages)
+            message = await llm_with_tools.ainvoke(messages, config)
             return {"messages": [message]}
 
         graph_builder = StateGraph(State)
@@ -128,6 +129,26 @@ class HealthcareAgent:
         graph_builder.add_conditional_edges("chatbot", tools_condition)
         graph_builder.add_edge("tools", "chatbot")
         return graph_builder.compile()
+
+    async def _invoke_graph(
+        self,
+        langchain_messages: List[BaseMessage],
+        *,
+        in_experiment: bool,
+        galileo_logger=None,
+    ):
+        if in_experiment:
+            callback = GalileoAsyncCallback(
+                galileo_logger,
+                start_new_trace=False,
+                flush_on_chain_end=False,
+            )
+        else:
+            galileo_context.start_session(external_id=self.session_id)
+            callback = GalileoAsyncCallback()
+
+        run_config = {**self.langgraph_config, "callbacks": [callback]}
+        return await self.graph.ainvoke({"messages": langchain_messages}, run_config)
 
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
         if not self.tools:
@@ -141,31 +162,26 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with galileo_context(
-            project=os.getenv("GALILEO_PROJECT"),
-            log_stream=os.getenv("GALILEO_LOG_STREAM"),
-        ):
-            galileo_logger = galileo_context.get_logger_instance()
-            is_in_experiment = galileo_logger.current_parent() is not None
+        # Detect experiment mode before opening a log-stream context. Nested
+        # galileo_context(project=..., log_stream=...) switches the singleton
+        # logger key from experiment_id to log_stream, which hides the active
+        # experiment trace and prevents LangGraph spans from nesting correctly.
+        experiment_logger = galileo_context.get_logger_instance()
+        in_experiment = experiment_logger.experiment_id is not None
 
-            if not is_in_experiment:
-                galileo_context.start_session(external_id=self.session_id)
-
-            # Nest under experiment traces; otherwise start a new session trace per turn.
-            if is_in_experiment:
-                callback = GalileoAsyncCallback(
-                    galileo_logger,
-                    start_new_trace=False,
-                    flush_on_chain_end=False,
-                )
-            else:
-                callback = GalileoAsyncCallback()
-            run_config = {**self.langgraph_config, "callbacks": [callback]}
-
-            result = await self.graph.ainvoke(
-                {"messages": langchain_messages},
-                run_config,
+        if in_experiment:
+            result = await self._invoke_graph(
+                langchain_messages,
+                in_experiment=True,
+                galileo_logger=experiment_logger,
             )
+        else:
+            with galileo_context(
+                project=os.getenv("GALILEO_PROJECT"),
+                log_stream=os.getenv("GALILEO_LOG_STREAM"),
+            ):
+                result = await self._invoke_graph(langchain_messages, in_experiment=False)
+
         if result["messages"]:
             return result["messages"][-1].content
         return "No response generated"
