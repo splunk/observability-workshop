@@ -6,7 +6,7 @@ weight: 6
 
 ## Why runtime attacks change the conversation
 
-Periodic scanning tells you what *could* be wrong. Runtime attack detection tells you what *is happening* —
+Periodic scanning tells you what *could* be wrong. Runtime attack detection tells you what *is happening* - 
 exploit attempts against known weaknesses, with forensic context for immediate investigation and mitigation.
 
 Splunk Secure Application correlates attack telemetry to vulnerabilities already cataloged, keeping SOC-style
@@ -36,13 +36,12 @@ investigations inside Observability Cloud.
 
 1. Select one attack activity to open the detailed view.
 2. Review forensic fields:
-
-- Attacked **host**, **environment**, and **service**
-- **Sequence of events** and actions performed
-- Impacted **business context**
-- **Client IP** and **HTTP method**
-- Specific **event** and **trigger**
-- **Code executed** during the exploit
+    - Attacked **host**, **environment**, and **service**
+    - **Sequence of events** and actions performed
+    - Impacted **business context**
+    - **Client IP** and **HTTP method**
+    - Specific **event** and **trigger**
+    - **Code executed** during the exploit
 
 ![apm](./images/06-attack--details.png)
 
@@ -56,7 +55,7 @@ investigations inside Observability Cloud.
 
 ![apm](./images/06-attack-forensics.png)
 
-> *"Identify exactly which line of code was accessed during this exploit — shorter loop from alert to remediation."*
+> *"Identify exactly which line of code was accessed during this exploit shorter loop from alert to remediation."*
 
 ---
 

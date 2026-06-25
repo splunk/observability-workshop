@@ -6,7 +6,7 @@ weight: 8
 
 ## Why integration completes the enterprise defense story
 
-Detecting vulnerabilities and attacks inside Observability is only part the security journey. SecOps teams are also part of the equation, from an enterprise-level defense scale & typically live in SIEM workflows — if vulnerability and attack events & findings do not reach those tools, it creates gaps in security management and often reverts to duplicate ticketing and stale exports.
+Detecting vulnerabilities and attacks inside Observability is only part the security journey. SecOps teams are also part of the equation, from an enterprise-level defense scale & typically live in SIEM workflows. If vulnerability and attack events & findings do not reach those tools, it creates gaps in security management and often reverts to duplicate ticketing and stale exports.
 
 Splunk Secure Application closes the loop with **notification rules** that stream findings to SIEM solutions like Splunk Enterprise Security.
 
@@ -28,7 +28,7 @@ Notification integrations are configured to send vulnerability and attack events
 
 ![apm](./images/06-notification.png)
 
-> *"Single pipeline from runtime findings to SOC visibility - SecOps gets these events with full context — no duplicate workflow."*
+> *"Single pipeline from runtime findings to SOC visibility with no duplicate workflow - SecOps gets these events with full context."*
 
 ---
 

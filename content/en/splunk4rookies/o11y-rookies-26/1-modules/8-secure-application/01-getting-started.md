@@ -13,7 +13,7 @@ During this workshop, we'll explore:
 
 For the workshop, a shared tenant is provided that contains Application Security telemetry (runtime vulnerabilities, library inventory, and attack events). 
 
-> *"The tenant has been pre-configured with APM-instrumented microservices — without requiring to deploy additional agents beyond existing Observability instrumentation."* 
+> *"The tenant has been pre-configured with APM-instrumented microservices without requiring to deploy additional agents beyond existing Observability instrumentation."* 
 
 ---
 

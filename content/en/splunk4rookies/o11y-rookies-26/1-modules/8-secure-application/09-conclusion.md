@@ -6,7 +6,7 @@ weight: 9
 
 ## Workshop recap
 
-When teams ask *what's happening in production, and where should we look first?* — Observability answers the reliability question. **Splunk Secure Application** extends that same story into application security **without bolting on another agent or living in a second product**.
+When teams ask *what's happening in production, and where should we look first?*, Observability answers the reliability question. **Splunk Secure Application** extends that same story into application security **without bolting on another agent or living in a second product**.
 
 In this workshop, we covered how to move from fragmented application security tooling to an operational model where security is embedded in how teams already understand production. We covered ways to
 

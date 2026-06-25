@@ -6,7 +6,7 @@ weight: 3
 
 ## Why a single inventory view matters
 
-Standalone vulnerability scanners often report theoretical findings against code repositories or container images — not what is actually loaded in running JVMs and services. Teams export spreadsheets, cross-reference CMDB entries, and still lack confidence in production exposure.
+Standalone vulnerability scanners often report theoretical findings against code repositories or container images - not what is actually loaded in running JVMs and services. Teams export spreadsheets, cross-reference CMDB entries, and still lack confidence in production exposure.
 
 Splunk Secure Application discovers vulnerabilities **at runtime**, correlated to deployed applications and the same APM context teams use for performance troubleshooting. A consolidated inventory answers the executive question: *what is our application security risk exposure right now?*
 
@@ -17,8 +17,8 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 ### a. Open from service-scoped vulnerabilities
 
 1. From the **APM → Overview** page.
-2. Set environment to `astronomy-shop-*`.
-3. Scroll to the services list and click on a service with security insights data e.g **`ad`** service.
+2. Set environment to 'astronomy-shop-*'.
+3. Scroll to the services list and click on a service with security insights data e.g **'ad'** service.
 4. Open the **Application Security** tab to view associated security risks scoped to the service.
 
 ![apm](./images/03a-runtime-vuln-ad.png)
@@ -26,7 +26,7 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 > [!NOTE]
 > You can navigate to this view from other alternate paths
 > 1. **Sevice-Map** → **Vulnerabilities Widget** OR
-> 2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** (Filter **environment** : `astronomy-shop-*` to and select **service** : e.g `ad`'') - To view the full vulnerability inventory across all instrumented applications in the environment
+> 2. From the left navigation, **APM → Application Security** → **Runtime Vulnerabilities** (Filter **environment** : `astronomy-shop-*` to and select **service** : e.g 'ad') - to view the full vulnerability inventory across all instrumented applications in the environment
 
 ---
 
