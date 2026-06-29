@@ -29,6 +29,8 @@ enable_console_logging()
 from agent_control import ControlSteerError, ControlViolationError, control
 from helpers.agent_control_helpers import (
     build_agent_control_steps,
+    ensure_trace_started,
+    finalize_trace,
     format_blocked_message,
     init_agent_control,
     infer_control_step_name,
@@ -125,6 +127,7 @@ class HealthcareAgent:
     def _init_agent_control(self, galileo_logger) -> None:
         if galileo_logger is None or self._control_steps is None:
             return
+        galileo_logger.enable_agent_control()
         init_agent_control(
             galileo_logger,
             project_name=os.getenv("GALILEO_PROJECT", ""),
@@ -261,19 +264,17 @@ class HealthcareAgent:
         self,
         langchain_messages: List[BaseMessage],
         *,
-        in_experiment: bool,
-        galileo_logger=None,
+        galileo_logger,
     ):
-        if in_experiment:
-            callback = GalileoAsyncCallback(
-                galileo_logger,
-                start_new_trace=False,
-                flush_on_chain_end=False,
-            )
-        else:
+        if galileo_logger.experiment_id is None:
             galileo_context.start_session(external_id=self.session_id)
-            callback = GalileoAsyncCallback()
 
+        # Nest LangGraph spans under the trace started by ensure_trace_started().
+        callback = GalileoAsyncCallback(
+            galileo_logger,
+            start_new_trace=False,
+            flush_on_chain_end=False,
+        )
         run_config = {**self.langgraph_config, "callbacks": [callback]}
         return await self.graph.ainvoke({"messages": langchain_messages}, run_config)
 
@@ -296,24 +297,40 @@ class HealthcareAgent:
         experiment_logger = galileo_context.get_logger_instance()
         in_experiment = experiment_logger.experiment_id is not None
 
+        response = "No response generated"
+
         if in_experiment:
-            self._init_agent_control(experiment_logger)
-            result = await self._invoke_graph(
-                langchain_messages,
-                in_experiment=True,
-                galileo_logger=experiment_logger,
-            )
+            galileo_logger = experiment_logger
+            self._init_agent_control(galileo_logger)
+            ensure_trace_started(galileo_logger, langchain_messages, trace_name="Run Agent")
+            try:
+                result = await self._invoke_graph(
+                    langchain_messages,
+                    galileo_logger=galileo_logger,
+                )
+                if result["messages"]:
+                    response = result["messages"][-1].content
+                return response
+            finally:
+                finalize_trace(galileo_logger, response)
         else:
             with galileo_context(
                 project=os.getenv("GALILEO_PROJECT"),
                 log_stream=os.getenv("GALILEO_LOG_STREAM"),
             ):
-                self._init_agent_control(galileo_context.get_logger_instance())
-                result = await self._invoke_graph(langchain_messages, in_experiment=False)
-
-        if result["messages"]:
-            return result["messages"][-1].content
-        return "No response generated"
+                galileo_logger = galileo_context.get_logger_instance()
+                self._init_agent_control(galileo_logger)
+                ensure_trace_started(galileo_logger, langchain_messages, trace_name="Run Agent")
+                try:
+                    result = await self._invoke_graph(
+                        langchain_messages,
+                        galileo_logger=galileo_logger,
+                    )
+                    if result["messages"]:
+                        response = result["messages"][-1].content
+                    return response
+                finally:
+                    finalize_trace(galileo_logger, response)
 
     def process_query(self, messages: List[Dict[str, str]]) -> str:
         try:
