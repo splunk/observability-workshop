@@ -1801,7 +1801,7 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
  &lt;span class="heading-text"&gt;Why unified visibility matters&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-unified-visibility-matters" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;When reliability and security live in separate tools, prioritization conversations stall. SREs ask &lt;em&gt;what broke?&lt;/em&gt; while AppSec asks &lt;em&gt;what is exploitable?&lt;/em&gt; — and neither view shows services that are simultaneously unhealthy and high-risk.&lt;/p&gt;
+&lt;p&gt;When reliability and security live in separate tools, prioritization conversations stall. SREs ask &lt;em&gt;what broke?&lt;/em&gt; while AppSec asks &lt;em&gt;what is exploitable?&lt;/em&gt; and neither view shows services that are simultaneously unhealthy and high-risk.&lt;/p&gt;
 &lt;p&gt;Splunk Secure Application surfaces vulnerability and attack summaries alongside golden signals on &lt;strong&gt;APM Overview&lt;/strong&gt;, &lt;strong&gt;Service Map&lt;/strong&gt;, and the &lt;strong&gt;per-service Application Security&lt;/strong&gt; workspace. Engineering, application security, and SecOps can share one runtime view without a duplicate agent or workflow.&lt;/p&gt;</description></item><item><title>Viewing the Logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</guid><description>&lt;p&gt;In order to see logs click on the &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/logo-icon.png?classes=inline&amp;amp;height=25px" alt="Logo" loading="lazy" decoding="async"&gt;
@@ -4020,7 +4020,7 @@ configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;
  &lt;span class="heading-text"&gt;Why a single inventory view matters&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-a-single-inventory-view-matters" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Standalone vulnerability scanners often report theoretical findings against code repositories or container images — not what is actually loaded in running JVMs and services. Teams export spreadsheets, cross-reference CMDB entries, and still lack confidence in production exposure.&lt;/p&gt;
+&lt;p&gt;Standalone vulnerability scanners often report theoretical findings against code repositories or container images - not what is actually loaded in running JVMs and services. Teams export spreadsheets, cross-reference CMDB entries, and still lack confidence in production exposure.&lt;/p&gt;
 &lt;p&gt;Splunk Secure Application discovers vulnerabilities &lt;strong&gt;at runtime&lt;/strong&gt;, correlated to deployed applications and the same APM context teams use for performance troubleshooting. A consolidated inventory answers the executive question: &lt;em&gt;what is our application security risk exposure right now?&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Deploy OpenTelemetry Demo Applciation</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</guid><description>&lt;h2 id="introduction"&gt;
  &lt;span class="heading-text"&gt;Introduction&lt;/span&gt;
  &lt;a class="heading-anchor" href="#introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -5904,8 +5904,8 @@ In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;co
  &lt;span class="heading-text"&gt;Why CVSS alone is insufficient&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-cvss-alone-is-insufficient" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;CVSS describes theoretical severity — how bad a vulnerability could be in the abstract. It does not tell you whether a public exploit exists, whether malicious activity has been observed, or whether the weakness is reachable in your running services.&lt;/p&gt;
-&lt;p&gt;Splunk Secure Application adds &lt;strong&gt;Security Risk Score&lt;/strong&gt; — threat telemetry combining base CVSS with real-world signals such as exploit availability and observed activity. Operational risk assessment &amp;amp; triage should use both scores, not CVSS alone.&lt;/p&gt;</description></item><item><title>Creating Routing Keys</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</guid><description>&lt;h2 id="aim"&gt;
+&lt;p&gt;CVSS describes theoretical severity - how bad a vulnerability could be in the abstract. It does not tell you whether a public exploit exists, whether malicious activity has been observed, or whether the weakness is reachable in your running services.&lt;/p&gt;
+&lt;p&gt;Splunk Secure Application adds &lt;strong&gt;Security Risk Score&lt;/strong&gt; - threat telemetry combining base CVSS with real-world signals such as exploit availability and observed activity. Operational risk assessment &amp;amp; triage should use both scores, not CVSS alone.&lt;/p&gt;</description></item><item><title>Creating Routing Keys</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</guid><description>&lt;h2 id="aim"&gt;
  &lt;span class="heading-text"&gt;Aim&lt;/span&gt;
  &lt;a class="heading-anchor" href="#aim" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -6931,7 +6931,7 @@ in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.&lt;
  &lt;span class="heading-text"&gt;Why investigation needs runtime context&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-investigation-needs-runtime-context" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Patching without blast-radius analysis leaves opportunities for exploit: engineering upgrades libraries that only affect one service while the same CVE spans critical paths elsewhere — or teams over-escalate isolated findings.&lt;/p&gt;
+&lt;p&gt;Patching without blast-radius analysis leaves opportunities for exploit: engineering upgrades libraries that only affect one service while the same CVE spans critical paths elsewhere - or teams over-escalate isolated findings.&lt;/p&gt;
 &lt;p&gt;Splunk Secure Application consolidates &lt;strong&gt;library names and versions&lt;/strong&gt;, &lt;strong&gt;remediation guidance&lt;/strong&gt;, and &lt;strong&gt;affected-service enumeration&lt;/strong&gt; in one detail view so upgrade decisions are grounded in what is actually deployed.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="51-guided-vulnerability-troubleshooting"&gt;
@@ -6939,7 +6939,7 @@ in our OpenShift cluster. It exposes GPU metrics that we can send to Splunk.&lt;
  &lt;a class="heading-anchor" href="#51-guided-vulnerability-troubleshooting" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;From the &lt;strong&gt;&lt;code&gt;ad&lt;/code&gt;&lt;/strong&gt; service Application Security view, click the &lt;strong&gt;high CVSS / high risk score&lt;/strong&gt; vulnerability you identified in the previous module.&lt;/li&gt;
+&lt;li&gt;From the &lt;strong&gt;&amp;lsquo;ad`&lt;/strong&gt; service Application Security view, click the &lt;strong&gt;high CVSS / high risk score&lt;/strong&gt; vulnerability you identified in the previous module.&lt;/li&gt;
 &lt;li&gt;Review the vulnerability detail panel:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;table&gt;
@@ -7464,7 +7464,7 @@ as metrics or traces.&lt;/p&gt;</description></item><item><title>Presenter Mode<
  &lt;span class="heading-text"&gt;Why runtime attacks change the conversation&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-runtime-attacks-change-the-conversation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Periodic scanning tells you what &lt;em&gt;could&lt;/em&gt; be wrong. Runtime attack detection tells you what &lt;em&gt;is happening&lt;/em&gt; —
+&lt;p&gt;Periodic scanning tells you what &lt;em&gt;could&lt;/em&gt; be wrong. Runtime attack detection tells you what &lt;em&gt;is happening&lt;/em&gt; -
 exploit attempts against known weaknesses, with forensic context for immediate investigation and mitigation.&lt;/p&gt;
 &lt;p&gt;Splunk Secure Application correlates attack telemetry to vulnerabilities already cataloged, keeping SOC-style
 investigations inside Observability Cloud.&lt;/p&gt;
@@ -7839,7 +7839,7 @@ the ROSA-managed HTPasswd IdP with a custom one:&lt;/p&gt;
 &lt;p&gt;Unmanaged vulnerability backlogs create risk, noise, stale detections, and confirmed work items.
 Teams spend remediation capacity on some CVSS resolutions while long-tail legacy library sprawl
 accumulates tech debt.&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;Having governance of vulnerability status transitions and org-wide library inventory, turns an overwhelming list into an actionable, trackable queue — eliminating debt in the triage process.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;Having governance of vulnerability status transitions and org-wide library inventory, turns an overwhelming list into an actionable, trackable queue - eliminating debt in the triage process.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;&lt;hr&gt;
 &lt;h2 id="61-organization-wide-library-inventory"&gt;
  &lt;span class="heading-text"&gt;6.1 Organization-wide library inventory&lt;/span&gt;
@@ -8151,7 +8151,7 @@ before running the following commands:&lt;/p&gt;</description></item><item><titl
  &lt;span class="heading-text"&gt;Why integration completes the enterprise defense story&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-integration-completes-the-enterprise-defense-story" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Detecting vulnerabilities and attacks inside Observability is only part the security journey. SecOps teams are also part of the equation, from an enterprise-level defense scale &amp;amp; typically live in SIEM workflows — if vulnerability and attack events &amp;amp; findings do not reach those tools, it creates gaps in security management and often reverts to duplicate ticketing and stale exports.&lt;/p&gt;
+&lt;p&gt;Detecting vulnerabilities and attacks inside Observability is only part the security journey. SecOps teams are also part of the equation, from an enterprise-level defense scale &amp;amp; typically live in SIEM workflows. If vulnerability and attack events &amp;amp; findings do not reach those tools, it creates gaps in security management and often reverts to duplicate ticketing and stale exports.&lt;/p&gt;
 &lt;p&gt;Splunk Secure Application closes the loop with &lt;strong&gt;notification rules&lt;/strong&gt; that stream findings to SIEM solutions like Splunk Enterprise Security.&lt;/p&gt;</description></item><item><title>4.8 Decomposition Pattern</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/4-review-agentic-ai-app/4-8-decomposition-pattern/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/4-review-agentic-ai-app/4-8-decomposition-pattern/</guid><description>&lt;h3 id="the-synthesizer-shows-the-decomposition-pattern"&gt;
  &lt;span class="heading-text"&gt;The synthesizer shows the decomposition pattern&lt;/span&gt;
  &lt;a class="heading-anchor" href="#the-synthesizer-shows-the-decomposition-pattern" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -8320,7 +8320,7 @@ framework that simplifies the development of applications powered by LLMs.&lt;/p
  &lt;span class="heading-text"&gt;Workshop recap&lt;/span&gt;
  &lt;a class="heading-anchor" href="#workshop-recap" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;When teams ask &lt;em&gt;what&amp;rsquo;s happening in production, and where should we look first?&lt;/em&gt; — Observability answers the reliability question. &lt;strong&gt;Splunk Secure Application&lt;/strong&gt; extends that same story into application security &lt;strong&gt;without bolting on another agent or living in a second product&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;When teams ask &lt;em&gt;what&amp;rsquo;s happening in production, and where should we look first?&lt;/em&gt;, Observability answers the reliability question. &lt;strong&gt;Splunk Secure Application&lt;/strong&gt; extends that same story into application security &lt;strong&gt;without bolting on another agent or living in a second product&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;In this workshop, we covered how to move from fragmented application security tooling to an operational model where security is embedded in how teams already understand production. We covered ways to&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector Development</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/1-project-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-opentelemetry-collector-workshops/1-opentelemetry-collector/8-develop/1-project-setup/</guid><description>&lt;h2 id="project-setup"&gt;
  &lt;span class="heading-text"&gt;Project Setup &lt;span class="badge badge--accent"&gt;&lt;span class="badge__icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;&lt;/svg&gt;&lt;/span&gt;
  &lt;a class="heading-anchor" href="#project-setup" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
