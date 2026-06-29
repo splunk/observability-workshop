@@ -14,3 +14,6 @@ pyyaml
 toml
 pandas
 galileo
+agent-control-sdk[galileo]>=7.10.0
+agent-control-evaluators>=7.10.0
+agent-control-evaluator-galileo>=7.10.0
