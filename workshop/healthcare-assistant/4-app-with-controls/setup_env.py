@@ -21,6 +21,7 @@ def setup_environment():
             "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
             "GALILEO_API_KEY": secrets.get("galileo_api_key", ""),
             "GALILEO_CONSOLE_URL": secrets.get("galileo_console_url", ""),
+            "GALILEO_API_URL": secrets.get("galileo_api_url", ""),
             "GALILEO_PROJECT": secrets.get("galileo_project", ""),
             "GALILEO_LOG_STREAM": secrets.get("galileo_log_stream", ""),
             "AGENT_CONTROL_URL": secrets.get("agent_control_url", ""),
