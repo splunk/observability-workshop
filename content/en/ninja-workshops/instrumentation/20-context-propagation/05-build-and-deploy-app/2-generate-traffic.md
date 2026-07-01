@@ -16,7 +16,7 @@ You should see the astronomy equipment catalog with telescopes, eyepieces, and a
 
 ![app](./images/cosmic-shop.png)
 
-Optional — RabbitMQ management UI:
+Optional - RabbitMQ management UI:
 
 **http://localhost:15672** (login: `guest` / `guest`)
 

@@ -37,4 +37,7 @@ Browser (RUM)
                                   (Step 07)             (Step 08)        (Step 09)
 ```
 
+---
+
 Let's get started!
+

@@ -43,10 +43,10 @@ Install these tools on your workstation:
 
 You'll need access to a Splunk Observability Cloud org with permission to:
 
-1. **Create an org access token** — used by the OTel Collector and APM agents
-2. **Create a RUM access token** — used by the browser agent (public token)
-3. **View APM traces** — APM → Traces
-4. **View RUM sessions** — RUM → Sessions
+1. **Create an org access token** - used by the OTel Collector and APM agents
+2. **Create a RUM access token** - used by the browser agent (public token)
+3. **View APM traces** - APM → Traces
+4. **View RUM sessions** - RUM → Sessions
 
 ### Gather these values before step 2
 

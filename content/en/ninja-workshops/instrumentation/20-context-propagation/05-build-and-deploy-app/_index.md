@@ -2,7 +2,7 @@
 title: Build & Deploy Application
 linkTitle: 05. Build & Deploy Application
 weight: 5
-time: 2 minutes
+time: 10 minutes
 description: In this step, you'll build Docker images for all Cosmic Observatory Shop services, push them to the k3d local registry, and deploy the full stack to Kubernetes. 
 
 ---
@@ -26,7 +26,7 @@ This builds and pushes four images to `localhost:5111`:
 
 ---
 
-## Validation checklist — build
+## Validation checklist - build
 
 ### 1. Confirm all four images were pushed
 

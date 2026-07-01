@@ -22,7 +22,7 @@ This script:
 
 ---
 
-## Validation checklist — deploy
+## Validation checklist - deploy
 
 ### 1. Confirm all pods are running
 

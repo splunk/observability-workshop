@@ -41,7 +41,7 @@ Open `.env` in your editor and replace the placeholder values:
 
 ```bash
 # Splunk Observability Cloud
-SPLUNK_REALM=<SPLUNK_REALM>
+SPLUNK_REALM=<splunk-realm>
 SPLUNK_ACCESS_TOKEN=<your-org-access-token>
 
 # RUM browser agent
@@ -65,7 +65,7 @@ RABBITMQ_PROPAGATE_CONTEXT=false
 
 ### Splunk RUM (frontend)
 
-Each **Place order** action starts a RUM custom workflow (`purchase.checkout`) — distinct from the **Purchase** button click that only opens the confirmation dialog.
+Each **Place order** action starts a RUM custom workflow (`purchase.checkout`) -  distinct from the **Purchase** button click that only opens the confirmation dialog.
 
 When you run `make build`, the values from `.env` are baked into the static JavaScript bundle. **Session replay** is enabled via `@splunk/otel-web-session-recorder` (requires a RUM token with session replay permissions in Splunk O11y).
 
@@ -86,7 +86,5 @@ Node.js services use `@splunk/otel` and read configuration from **runtime enviro
 - `OTEL_SERVICE_NAME` - service name in APM (e.g. `order-api`, `payment-gateway`)
 - `OTEL_RESOURCE_ATTRIBUTES` - includes `deployment.environment`, `k8s.cluster.name`, and `k8s.pod.name` for Infrastructure ↔ APM correlation
 - `SPLUNK_ACCESS_TOKEN` and `SPLUNK_REALM` - Splunk distro credentials
-
----
 
 ---

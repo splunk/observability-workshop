@@ -46,7 +46,7 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 
 ### Knowledge Check
 
-1. Why NGINX breaks propagation?
+1. Why does NGINX breaks propagation?
 
 {{< details summary="Click here to see the answer" >}}
 Our gateway uses a common production NGINX pattern:
@@ -68,7 +68,7 @@ This is one of the most common causes of broken trace correlation in production.
 
 ---
  
-2. Why RabbitMQ breaks propagation
+2. Why does RabbitMQ breaks propagation
 
 {{< details summary="Click here to see the answer" >}}
 Our storefront publishes orders like this (broken state):
