@@ -17,7 +17,6 @@ kubectl -n cosmic-shop rollout restart deployment/fulfillment-worker
 kubectl -n cosmic-shop rollout status deployment/payment-api --timeout=180s
 kubectl -n cosmic-shop rollout status deployment/fulfillment-worker --timeout=180s
 ```
-
 ---
 
 ## Validation checklist
@@ -30,8 +29,9 @@ Run these commands after redeploy completes.
 {{% tab title="Script" %}}
 
 ```bash
-kubectl -n cosmic-shop exec deploy/payment-api -- wget -qO- http://localhost:3005/health
+kubectl -n cosmic-shop get pods -l app=fulfillment-worker
 kubectl -n cosmic-shop exec deploy/fulfillment-worker -- wget -qO- http://localhost:3006/health
+kubectl -n cosmic-shop exec deploy/payment-api -- wget -qO- http://localhost:3005/health
 ```
 
 {{% /tab %}}

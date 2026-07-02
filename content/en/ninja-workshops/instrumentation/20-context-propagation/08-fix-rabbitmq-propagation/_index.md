@@ -18,7 +18,11 @@ When either side omits this, each consumed message starts a **new root trace** -
 
 ## The fix
 
-### 1. Producer - `services/payment-api/server.js`
+### 1. Producer  - payment-api
+
+```
+vi services/payment-api/server.js
+```
 
 Locate **`buildFulfillmentMessageHeaders()`** and wrap the return value with `injectTraceHeaders()`:
 
@@ -31,7 +35,7 @@ function buildFulfillmentMessageHeaders(order, payment) {
 }
 ```
 
-### 2. Consumer 
+### 2. Consumer - fulfillment-worker
 
 Open file to edit:
 

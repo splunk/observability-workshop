@@ -17,6 +17,8 @@ In Splunk APM you'll see this behaviour:
 - `frontend-api` → `payment-gateway` - connected 
 - `payment-gateway` → `payment-api` - **disconnected** 
 
+![nginx-aft](./images/07-index.png)
+
 The payment gateway still creates its **own spans** (so it shows in the service map), but the upstream call starts a new trace on `payment-api`. This mirrors real teams who add a custom BFF/proxy and forget to propagate context on outbound HTTP calls - or when code uses `suppressTracing()` trying to avoid "double spans" which accidentally breaks propagation.
 
 {{% /notice %}}

@@ -17,7 +17,6 @@ You will now see the RUM session with APM correlation
 
 In **APM → Traces** view, open a recent `frontend-api` trace. The frontend span should share a trace ID with the browser/RUM session after this fix.
 
-
 ![nginx-aft](./images/t-nginx-aft.png)
 
 ---
