@@ -54,7 +54,7 @@ curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm images exist locally
+### 2. Confirm all relevant images exist
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -75,20 +75,5 @@ localhost:5111/cosmic-shop/order-worker      latest    ...
 
 {{% /tab %}}
 {{< /tabs >}}
-
----
-
-## Deploy to Kubernetes
-
-```bash
-make deploy
-```
-
-This script:
-
-1. Applies all Kubernetes manifests from `deploy/k8s/`
-2. Creates a `splunk-otel` secret from your `.env` credentials
-3. Points deployments at registry images
-4. Waits for all rollouts to complete
 
 ---

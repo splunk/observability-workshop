@@ -3,7 +3,8 @@ title: 4. Explore RUM in Splunk
 linkTitle: 4. Explore RUM in Splunk
 weight: 4
 time: 10 minutes
-description: In this step, you'll observe how disconnected traces appear in Splunk Observability Cloud. This is the "problem state" that the rest of the workshop fixes. 
+description: In this step, you'll observe how RUM sessions appear add context to requests and how they appear in Splunk Observability Cloud. This is the "problem state" of how the APM issue reflects in RUM. 
+
 ---
 
 ## The RUM request path
@@ -25,9 +26,7 @@ The browser appears to be correcly instrumented and processing requests as expec
 ---
 
 {{% notice title="Note" style="green" icon="running" %}}
-
 Allow **2–5 minutes** after deploy for RUM data to appear..
-
 {{% /notice %}}
 
 ## Observe in Splunk RUM
@@ -41,46 +40,5 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 ![rum](./images/rumsesh-b4.png)
 
 **Broken state:** RUM cannot link to the backend APM trace because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
-
----
-
-### Knowledge Check
-
-1. Why does NGINX breaks propagation?
-
-{{< details summary="Click here to see the answer" >}}
-Our gateway uses a common production NGINX pattern:
-
-```nginx
-location /api/ {
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_pass http://storefront_api;
-}
-```
-
-When **any** `proxy_set_header` directive is present, NGINX stops automatically forwarding client headers to the upstream. Headers like `traceparent`, `tracestate`, and `baggage` are silently dropped unless explicitly configured.
-
-This is one of the most common causes of broken trace correlation in production.
-{{< /details >}}
-
----
- 
-2. Why does RabbitMQ breaks propagation
-
-{{< details summary="Click here to see the answer" >}}
-Our storefront publishes orders like this (broken state):
-
-```javascript
-channel.sendToQueue(ordersQueue, Buffer.from(JSON.stringify(order)), {
-  persistent: true,
-  headers: { 'x-order-id': order.orderId },  // no traceparent
-});
-```
-
-Unlike HTTP, message brokers don't participate in W3C Trace Context automatically. The producer must **inject** trace context into message headers, and the consumer must **extract** it. Without this, the consumer starts a new root trace.
-{{< /details >}}
 
 ---

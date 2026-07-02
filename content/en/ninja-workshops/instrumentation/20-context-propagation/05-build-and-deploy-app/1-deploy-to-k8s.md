@@ -17,12 +17,12 @@ This script:
 
 1. Applies all Kubernetes manifests from `deploy/k8s/`
 2. Creates a `splunk-otel` secret from your `.env` credentials
-3. Points deployments at registry images
+3. Points deployments at the registry images
 4. Waits for all rollouts to complete
 
 ---
 
-## Validation checklist - deploy
+## Validation checklist - Deploy
 
 ### 1. Confirm all pods are running
 
@@ -50,9 +50,9 @@ storefront-api-xxxxxxxxxx-xxxxx       1/1     Running   0          2m
 
 | STATUS | Likely cause |
 |--------|--------------|
-| `ImagePullBackOff` | Images not pushed — run `make build` again |
+| `ImagePullBackOff` | Images not pushed - run `make build` again |
 | `CrashLoopBackOff` | Check logs with `kubectl -n cosmic-shop logs deployment/<name>` |
-| `Pending` | Insufficient cluster resources — check `kubectl describe pod <name>` |
+| `Pending` | Insufficient cluster resources - check `kubectl describe pod <name>` |
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -178,7 +178,7 @@ docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
 0.0.0.0:30080->30080/tcp, 0.0.0.0:15672->15672/tcp, ...
 ```
 
-If **15672 is missing** from that output, the cluster was created without the RabbitMQ port mapping — see [RabbitMQ UI not loading](#rabbitmq-ui-not-loading) below.
+If **15672 is missing** from that output, the cluster was created without the RabbitMQ port mapping — see `RabbitMQ UI is not loading` below.
 
 **Confirm HTTP responds:**
 
@@ -195,7 +195,7 @@ HTTP 200
 
 Open **http://localhost:15672** in a browser and log in with `guest` / `guest`.
 
-**If the page does not load**, use port-forward in a **separate terminal** (keep it open):
+**If RabbitMQ UI is not loading**, use port-forward in a **separate terminal** (keep it open):
 
 ```bash
 kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672

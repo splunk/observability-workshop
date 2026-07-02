@@ -4,6 +4,7 @@ linkTitle: 03. Create Cluster
 weight: 3
 time: 15 minutes
 description: In this step, you'll create a lightweight Kubernetes cluster using k3d with a local container registry for workshop images.
+
 ---
 
 Our setup script creates:
@@ -25,7 +26,7 @@ From the project root:
 make setup-k3d
 ```
 
-Or run the script directly:
+Or to run the script directly...:
 
 ```bash
 bash scripts/setup-k3d.sh
@@ -141,11 +142,14 @@ If **15672 is missing**, the cluster was created without the RabbitMQ port mappi
 
 ## Troubleshooting
 
-### Port already in use
+Here's some of the potential issues you may encounter in this step & suggested remediation steps.
+
+{{< details summary="Click here to see the answer" >}}
+### Issue 1: Port already in use
 
 If port 30080 or 5111 is taken, either stop the conflicting service or edit `scripts/setup-k3d.sh` to use different ports.
 
-### RabbitMQ UI not loading (missing 15672 on loadbalancer)
+### Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
 
 If http://localhost:15672 does not load, check whether k3d mapped the port:
 
@@ -161,7 +165,7 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 Keep that terminal open, then open http://localhost:15672 (`guest` / `guest`).
 
-### Cluster already exists
+### Issue 3: Cluster already exists
 
 The script skips creation if a cluster named `cosmic-shop` already exists. To start fresh:
 
@@ -169,5 +173,6 @@ The script skips creation if a cluster named `cosmic-shop` already exists. To st
 k3d cluster delete cosmic-shop
 make setup-k3d
 ```
+{{< /details >}}
 
 ---

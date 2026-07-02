@@ -3,22 +3,22 @@ title: Install oTel Collector
 linkTitle: 04. Install oTel Collector
 weight: 4
 time: 15 minutes
-description: In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. 
+description: In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. The collector receives traces and metrics from instrumented services and forwards them to Splunk Observability Cloud.
+
 ---
+
+{{% notice title="Note" style="info" %}}
 
 Each application pod sends data to the collector via the node IP:
 
 ```
 Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O11y Cloud
 ```
+{{% /notice %}}
 
 ---
 
 ## Install via Helm
-
-{{% notice title="Note" style="info" %}}
-**Important:** `make deploy` will **auto-install** the collector if it is missing. You can also install it explicitly first.
-{{% /notice %}}
 
 Ensure your `.env` file is configured, then run:
 
@@ -94,12 +94,46 @@ READY should be `1/1` and STATUS should be `Running`. If STATUS is `CrashLoopBac
 {{% /tab %}}
 {{< /tabs >}}
 
+### 3. Confirm collector logs show no auth errors
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+```bash
+kubectl -n cosmic-shop logs -l app.kubernetes.io/name=splunk-otel-collector --tail=30
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```
+... Everything is ready. Begin running and processing data.
+```
+
+**Failure indicators to watch for:**
+
+```
+401 Unauthorized
+access token is invalid
+failed to export
+connection refused
+```
+
+If you see auth errors, verify your org access token and realm in `.env`, then reinstall:
+
+```bash
+make collector
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ---
 
 ## Confirm your cluster in Splunk Observability Cloud
 
 1. Open Splunk Observability Cloud
-2. Navigate to **Infrastructure → Kubernetes → Kubernetes Clusters**
+2. Navigate to **Infrastructure → Kubernetes → Kubernetes Entities → Clusters**
 3. Search for your cluster name (`cosmic-shop-cluster` or the value of `CLUSTER_NAME` in `.env`)
 
 The cluster should appear within a few minutes of the collector starting.
@@ -107,6 +141,10 @@ The cluster should appear within a few minutes of the collector starting.
 ---
 
 ## Troubleshooting
+
+Here's some of the potential issues you may encounter in this step & suggested remediation steps.
+
+{{< details summary="Click here to see the answer" >}}
 
 ### Helm install fails with auth error
 
@@ -116,4 +154,5 @@ Verify `SPLUNK_ACCESS_TOKEN` and `SPLUNK_REALM` in `.env` are correct and the to
 
 Wait 2–3 minutes. Confirm the collector pod is running and check its logs for export errors.
 
+{{< /details >}}
 ---

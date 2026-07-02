@@ -4,6 +4,7 @@ linkTitle: 3. Explore APM in Splunk
 weight: 3
 time: 10 minutes
 description: In this step, you'll observe how disconnected traces appear in Splunk Observability Cloud. This is the "problem state" that the rest of the workshop fixes. 
+
 ---
 
 ## The APM request path
@@ -33,9 +34,7 @@ Three breaks occur:
 ## Observe in Splunk APM
 
 {{% notice title="Note" style="green" icon="running" %}}
-
 Allow **2–5 minutes** after generating data for metrics to appear..
-
 {{% /notice %}}
 
 ### Service map
@@ -70,43 +69,11 @@ Allow **2–5 minutes** after generating data for metrics to appear..
 
 ---
 
-## Generate RUM data
+## Knowledge Check
 
-1. Open **http://localhost:30080**
-2. Open browser DevTools → **Network** tab
-3. Place 3–5 orders for different products
-4. In the Network tab, inspect a `POST /api/orders` request
-5. Confirm the request includes a `traceparent` header (injected by Splunk RUM)
+### Why NGINX breaks propagation
 
-Example header:
-
-```
-traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
-```
-
-The browser is doing its part.
-
----
-
-{{% notice title="Note" style="green" icon="running" %}}
-
-Allow **2–5 minutes** after deploy for infrastructure metrics to appear..
-
-{{% /notice %}}
-
-## Observe in Splunk RUM
-
-1. Navigate to **RUM → Sessions**
-2. Open a recent session
-3. Click on a `fetch` resource for `/api/orders`
-4. Look for the **Backend Trace** link
-
-**Broken state:** RUM cannot link to the backend APM trace because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
-
----
-
-## Why NGINX breaks propagation
-
+{{< details summary="Click here to see the answer" >}}
 Our gateway uses a common production NGINX pattern:
 
 ```nginx
@@ -119,14 +86,17 @@ location /api/ {
 }
 ```
 
+``` text
 When **any** `proxy_set_header` directive is present, NGINX stops automatically forwarding client headers to the upstream. Headers like `traceparent`, `tracestate`, and `baggage` are silently dropped unless explicitly configured.
 
 This is one of the most common causes of broken trace correlation in production.
-
+```
+{{< /details >}}
 ---
 
-## Why RabbitMQ breaks propagation
+### Why RabbitMQ breaks propagation
 
+{{< details summary="Click here to see the answer" >}}
 Our storefront publishes orders like this (broken state):
 
 ```javascript
@@ -135,7 +105,9 @@ channel.sendToQueue(ordersQueue, Buffer.from(JSON.stringify(order)), {
   headers: { 'x-order-id': order.orderId },  // no traceparent
 });
 ```
-
+``` text
 Unlike HTTP, message brokers don't participate in W3C Trace Context automatically. The producer must **inject** trace context into message headers, and the consumer must **extract** it. Without this, the consumer starts a new root trace.
+```
+{{% /notice %}}
 
 ---

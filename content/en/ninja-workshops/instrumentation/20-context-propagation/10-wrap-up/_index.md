@@ -1,7 +1,7 @@
 ---
 title: Wrap-Up
-linkTitle: 6. Wrap-Up
-weight: 6
+linkTitle: 10. Wrap-Up
+weight: 10
 time: 5 minutes
 description: Key takeaways & cleanup instructions.
 ---

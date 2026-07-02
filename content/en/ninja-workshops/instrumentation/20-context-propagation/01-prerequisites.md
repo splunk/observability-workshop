@@ -4,6 +4,7 @@ linkTitle: 01. Prerequisites
 weight: 1
 time: 5 minutes
 description: Goals and architecture for the workshop.
+
 ---
 
 # Prerequisites
@@ -20,7 +21,7 @@ This workshop assumes familiarity with:
 - HTTP request/response flow
 - The idea of distributed tracing (spans, trace IDs)
 
-No prior OpenTelemetry experience is required - we'll explain context propagation as we go.
+OpenTelemetry experience is required - we'll explain context propagation as we go.
 
 ---
 
@@ -45,8 +46,8 @@ You'll need access to a Splunk Observability Cloud org with permission to:
 
 1. **Create an org access token** - used by the OTel Collector and APM agents
 2. **Create a RUM access token** - used by the browser agent (public token)
-3. **View APM traces** - APM → Traces
-4. **View RUM sessions** - RUM → Sessions
+3. **View APM traces** - APM → Service Map & APM → Traces
+4. **View RUM sessions** - Digital Experience → Session Search
 
 ### Gather these values before step 2
 
@@ -54,14 +55,14 @@ You'll need access to a Splunk Observability Cloud org with permission to:
 |----------|------------------|
 | `SPLUNK_REALM` | Your org URL, e.g. `us0` from `https://app.us0.signalfx.com` |
 | `SPLUNK_ACCESS_TOKEN` | Settings → Access Tokens → Create Token (Ingest scope) |
-| `SPLUNK_RUM_ACCESS_TOKEN` | Data Management → RUM → Create RUM access token |                            /api/email/send-confirmation
+| `SPLUNK_RUM_ACCESS_TOKEN` | Data Management → RUM → Create RUM access token |
 
-```
 ## Validation checklist
 
 Run these commands from your assigned instance before continuing. Each section includes expected output so you can confirm you're ready.
 
 ### 1. Verify required tools
+
 **Expected output (versions may vary):**
 
 {{< tabs >}}
