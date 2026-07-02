@@ -1,33 +1,33 @@
 ---
 title: Wrap-Up
-linkTitle: 10. Wrap-Up
 weight: 10
 time: 5 minutes
 description: Key takeaways & cleanup instructions.
+
 ---
 
 ## Summary
 
-This workshop provided hands-on experience with:
+## Workshop summary
 
-- How **header-stripping reverse proxies** break W3C Trace Context propagation
-- Deploying application services first, and validating the end-to-end request flow runs correctly.
-- Then deploying the **Splunk Distribution of the OpenTelemetry Collector** and instrumenting the Python microservices to export telemetry to **Splunk Observability Cloud**
-- Observing **fragmented traces** in Phase 1, and validating Infrastructure metrics
-- Restoring **connected traces** in Phase 2 with manual inject/extract
+In this workshop you traced a single checkout from Splunk RUM through an order → payment → fulfillment pipeline and restored correlation at three places where traces commonly go dark. 
 
-## Reference Segments Commands
+First, at the edge NGINX gateway, explicit proxy_set_header rules forwarded the request but not W3C Trace Context - so you added proxy_set_header traceparent $http_traceparent (plus tracestate and baggage) to pass headers through the reverse proxy. 
 
-| Action | Command |
-| ------ | ------- |
-| Step 1 — Deploy Services | `start-lab.sh` |
-| Step 2 — Deploy Collector | `deploy-collector.sh` |
-| Step 3 - Continuous Load | `start-load.sh` |
-| Step 4 - Manual Propagation (code guides) | manual-propagation.md |
-| Step 5 - Stop & clean-Up Stack | `teardown.sh` |
+Second, at the payment gateway, an instrumented Node.js proxy still broke the chain because its outbound HTTP call did not propagate context - a typical BFF/proxy bug you fixed in application code with propagation.inject() and by removing suppressTracing() on the upstream fetch. 
 
-## Clean Up
+Third, across RabbitMQ, the broker does not carry trace context on its own; the async handoff failed because the producer did not inject W3C headers into AMQP message properties and the consumer did not extract them - so you wired inject-on-publish and extract-on-consume (the same contract OTel messaging instrumentation automates in other stacks). 
+
+Together, these fixes reconnect browser/RUM spans, synchronous HTTP hops through proxies and app-layer gateways, and asynchronous fulfillment work into one trace you can follow end to end in Splunk APM.
+
+---
+
+## Clean up
+
+Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images):
 
 ```bash
-./scripts/teardown.sh
+make cleanup
 ```
+
+---
