@@ -145,11 +145,11 @@ If **15672 is missing**, the cluster was created without the RabbitMQ port mappi
 Here's some of the potential issues you may encounter in this step & suggested remediation steps.
 
 {{< details summary="Click here to see the answer" >}}
-### Issue 1: Port already in use
+### Potential Issue 1: Port already in use
 
 If port 30080 or 5111 is taken, either stop the conflicting service or edit `scripts/setup-k3d.sh` to use different ports.
 
-### Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
+### Potential Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
 
 If http://localhost:15672 does not load, check whether k3d mapped the port:
 
@@ -165,7 +165,7 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 Keep that terminal open, then open http://localhost:15672 (`guest` / `guest`).
 
-### Issue 3: Cluster already exists
+### Potential Issue 3: Cluster already exists
 
 The script skips creation if a cluster named `cosmic-shop` already exists. To start fresh:
 

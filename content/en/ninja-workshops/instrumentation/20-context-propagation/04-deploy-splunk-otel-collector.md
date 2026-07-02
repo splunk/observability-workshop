@@ -146,11 +146,11 @@ Here's some of the potential issues you may encounter in this step & suggested r
 
 {{< details summary="Click here to see the answer" >}}
 
-### Helm install fails with auth error
+### Potential Issue 1. Helm install fails with auth error
 
 Verify `SPLUNK_ACCESS_TOKEN` and `SPLUNK_REALM` in `.env` are correct and the token has ingest permissions.
 
-### No cluster in Infrastructure navigator
+### Potential Issue 2. No cluster in Infrastructure navigator
 
 Wait 2–3 minutes. Confirm the collector pod is running and check its logs for export errors.
 

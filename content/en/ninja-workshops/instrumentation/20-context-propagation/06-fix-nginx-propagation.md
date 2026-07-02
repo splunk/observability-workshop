@@ -1,7 +1,7 @@
 ---
 title: Fix NGINX Propagation
 linkTitle: 06. Fix NGINX Propagation
-weight: 2
+weight: 6
 time: 15 minutes
 description: In this step, you'll **edit** the edge gateway NGINX configuration to forward W3C Trace Context headers, then **redeploy** the gateway so the change takes effect. That restores correlation between Splunk RUM and your backend APM traces for the order path.
 
@@ -244,5 +244,35 @@ Place 2–3 new orders in the shop using a **fresh incognito window** or hard-re
 | payment-api / fulfillment-worker in same trace | **No — still broken** |
 
 In **APM → Traces** view, open a recent `order-api` `POST /api/orders` trace. The order span should share a trace ID with the browser/RUM session after this fix.
+
+---
+
+## Troubleshooting
+
+Here's some of the potential issues you may encounter in this step & suggested remediation steps.
+
+{{< details summary="Click here to see the answer" >}}
+
+### Potential Issue 1: Traces still disconnected after fix
+
+- Confirm you **saved** `deploy/k8s/gateway-config.yaml` and ran **`make fix-nginx`** (or the manual `kubectl apply` + restart commands)
+- Confirm the gateway pod restarted: `kubectl -n cosmic-shop get pods -l app=gateway`
+- Verify the ConfigMap: `kubectl -n cosmic-shop get configmap gateway-nginx-config -o yaml | grep traceparent`
+- Verify inside the pod: `kubectl -n cosmic-shop exec deploy/gateway -- cat /etc/nginx/conf.d/default.conf`
+- Generate **new** traffic - old traces won't change retroactively
+
+### Potential Issue 2: ConfigMap updated but pod still shows old config
+
+NGINX does not hot-reload ConfigMap volume changes on an existing pod. Always **`rollout restart deployment/gateway`** after editing the YAML.
+
+### Potential Issue 3: CORS preflight stripping headers
+
+If you add CORS to NGINX, ensure `traceparent` and `tracestate` are in `Access-Control-Allow-Headers`:
+
+```nginx
+add_header Access-Control-Allow-Headers 'Content-Type, traceparent, tracestate, baggage';
+```
+
+{{< /details >}}
 
 ---

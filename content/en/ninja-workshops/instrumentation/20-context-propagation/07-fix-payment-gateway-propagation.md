@@ -1,15 +1,20 @@
 ---
-title: "Phase 1: Deploy Python Microservices"
-linkTitle: 2. Deploy Python Microservices
-weight: 2
+title: Fix Payment Gateway Propagation
+linkTitle: 7. Fix Payment Gateway Propagation
+weight: 7
 time: 15 minutes
-description: Deploy and run Python microservices on a k3d host, verify that the application is running correctly. 
+description: In this step, you'll enable W3C Trace Context forwarding on the **payment-gateway** proxy so traces correlate from **frontend-api** through to the payment API. Unlike the edge NGINX gateway, `payment-gateway` is an **instrumented Node.js service** - it appears as its own node in the Splunk APM **Service Map**.
+
 ---
 
-This phase shows that the application works and that an API request returns a valid full end-to-end response.
+{{% notice title="Note" style="info" %}}
+After fixing the edge NGINX gateway (step 06), traces now connect from the browser through `frontend-api` and into `order-api`. But when **frontend-api** submits payment via `payment-gateway`, the proxy forwards to `payment-api` **without** W3C trace headers.
 
-By the end of this section you will have:
+In Splunk APM you'll see this behaviour:
 
-1. A running Python microservices with no instrumentation
-2. Validation that your application is receiving requests and the output data is valid
-3. Verification that no data is in Splunk Observability Cloud at this stage.
+- `frontend-api` → `payment-gateway` - connected 
+- `payment-gateway` → `payment-api` - **disconnected** 
+{{% /notice %}}
+---
+
+## The fix
