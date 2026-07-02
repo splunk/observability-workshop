@@ -20,6 +20,10 @@ Third, across RabbitMQ, the broker does not carry trace context on its own; the 
 
 Together, these fixes reconnect browser/RUM spans, synchronous HTTP hops through proxies and app-layer gateways, and asynchronous fulfillment work into one trace you can follow end to end in Splunk APM.
 
+{{% notice title="Note" style="info" %}}
+Congratulations - you've restored full-stack observability across proxies and message buses!
+{{% /notice %}}
+
 ---
 
 ## Clean up
@@ -31,3 +35,4 @@ make cleanup
 ```
 
 ---
+

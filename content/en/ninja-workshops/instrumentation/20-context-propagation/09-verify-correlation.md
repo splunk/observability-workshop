@@ -9,7 +9,10 @@ description: In this final step, you'll confirm that traces flow continuously fr
 
 ## End-to-end validation
 
-### Command-line
+### Send New Web Request
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ```bash
 curl -s -X POST http://localhost:30080/api/purchases \
@@ -18,7 +21,8 @@ curl -s -X POST http://localhost:30080/api/purchases \
   | python3 -m json.tool
 ```
 
-**Expected output:**
+{{% /tab %}}
+{{% tab title="Expected Output" %}}
 
 ```json
 {
@@ -34,21 +38,29 @@ curl -s -X POST http://localhost:30080/api/purchases \
     }
 }
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 Copy the trace ID (the 32-character hex segment) - you'll use it to search in Splunk APM.
 
-Wait ~2 seconds, then confirm worker fulfillment:
+### Wait ~2 seconds, then confirm worker fulfillment:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ```bash
 kubectl -n cosmic-shop logs deployment/order-worker --tail=3
 ```
 
-**Expected log:**
+{{% /tab %}}
+{{% tab title="Expected Output" %}}
 
 ```
 Fulfilled order ORD-1719763200456 for SkyWatcher EQ6-R Pro Mount
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
 ---
 
 ## Verify in Splunk RUM
@@ -75,15 +87,6 @@ Fulfilled order ORD-1719763200456 for SkyWatcher EQ6-R Pro Mount
    - Minimum duration: any
 3. Open the trace linked from RUM (or search by trace ID from the `traceparent` header)
 
-### Validation criteria (fully fixed state)
-
-| Check | Pass criteria |
-|-------|---------------|
-| Single trace ID across all services | RUM, storefront-api, catalog-api, order-worker spans share one ID |
-| order-worker parent span | Child of `storefront.publish_order` |
-| Span count per order | ≥ 8 spans (HTTP + messaging + fulfillment steps) |
-| No orphan root spans | Zero standalone `order-worker` traces for new orders |
-
 ### Expected span hierarchy
 
 ```
@@ -103,6 +106,7 @@ Trace ID: 4bf92f3577b34da6a3ce929d0e0e4736  (example)
         │       └─ send_confirmation
         └─ (response 202)
 ```
+
 ### To Update
 ![trace-b4](./images/trace-b4.png)
 

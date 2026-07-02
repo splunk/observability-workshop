@@ -111,26 +111,4 @@ Ports 30080, 5111, and 15672 are available
 {{% /tab %}}
 {{< /tabs >}}
 
-### 3. Confirm project directory
-
-{{< tabs >}}
-{{% tab title="Script" %}}
-
-```bash
-ls workshop/index.md docker-compose.yml .env.example Makefile
-```
-
-{{% /tab %}}
-{{% tab title="Example Output" %}}
-
-``` text
-.env.example
-docker-compose.yml
-Makefile
-workshop/index.md
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
 ---

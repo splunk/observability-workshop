@@ -56,8 +56,6 @@ CLUSTER_NAME=cosmic-shop-cluster
 REGISTRY=localhost:5111
 TAG=latest
 
-# Workshop: propagation
-RABBITMQ_PROPAGATE_CONTEXT=false
 ```
 
 {{% /notice %}}
