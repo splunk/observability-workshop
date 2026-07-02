@@ -35,7 +35,7 @@ Install these tools on your workstation:
 | [kubectl](https://kubernetes.io/docs/tasks/tools/) | 1.28+ | `kubectl version --client` |
 | [k3d](https://k3d.io/) | 5.6+ | `k3d version` |
 | [Helm](https://helm.sh/docs/intro/install/) | 3.12+ | `helm version` |
-| [Node.js](https://nodejs.org/) (optional, for local dev) | 20.x | `node --version` |
+| [Node.js](https://nodejs.org/) (optional) | 20.x | `node --version` |
 | [Git](https://git-scm.com/) | 2.x | `git --version` |
 
 ---

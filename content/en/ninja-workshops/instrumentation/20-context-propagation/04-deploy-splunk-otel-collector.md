@@ -11,7 +11,7 @@ description: In this step, you'll deploy the Splunk Distribution of the OpenTele
 
 Each application pod sends data to the collector via the node IP:
 
-```
+```text
 Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O11y Cloud
 ```
 {{% /notice %}}
@@ -78,13 +78,16 @@ STATUS must be `deployed`. If it shows `failed`, re-check `SPLUNK_REALM` and `SP
 {{% tab title="Script" %}}
 
 ```bash
-kubectl -n cosmic-shop get pods -l app.kubernetes.io/name=splunk-otel-collector
+kubectl -n cosmic-shop get pods -l 'app=splunk-otel-collector,component=otel-collector-agent'
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```
+NAME                            DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+splunk-otel-collector-agent     1         1         1       1            1           <none>          2m
+
 NAME                                  READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-xxxxx     1/1     Running   0          60s
 ```
@@ -100,7 +103,7 @@ READY should be `1/1` and STATUS should be `Running`. If STATUS is `CrashLoopBac
 {{% tab title="Script" %}}
 
 ```bash
-kubectl -n cosmic-shop logs -l app.kubernetes.io/name=splunk-otel-collector --tail=30
+kubectl -n cosmic-shop logs -l 'app=splunk-otel-collector,component=otel-collector-agent' --tail=30
 ```
 
 {{% /tab %}}

@@ -26,7 +26,7 @@ This builds and pushes four images to `localhost:5111`:
 
 ---
 
-## Validation checklist - build
+## Validation checklist - Build
 
 ### 1. Confirm all four images were pushed
 

@@ -79,8 +79,6 @@ rabbitmq         NodePort    10.43.xxx.xxx   <none>        5672:xxxxx/TCP,15672:
 storefront-api   ClusterIP   10.43.xxx.xxx   <none>        3001/TCP             2m
 ```
 
-Note `frontend` exposes port **30080**.
-
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -90,18 +88,18 @@ Note `frontend` exposes port **30080**.
 {{% tab title="Script" %}}
 
 ```bash
-kubectl -n cosmic-shop exec deploy/storefront-api -- wget -qO- http://localhost:3001/health
+kubectl -n cosmic-shop exec deploy/frontend-api -- wget -qO- http://localhost:3007/health
 kubectl -n cosmic-shop exec deploy/catalog-api -- wget -qO- http://localhost:3002/health
-kubectl -n cosmic-shop exec deploy/order-worker -- wget -qO- http://localhost:3003/health
+kubectl -n cosmic-shop exec deploy/order-api -- wget -qO- http://localhost:3001/health
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```json
-{"status":"ok","service":"storefront-api","rabbitmq":true,"propagation":false}
+{"status":"ok","service":"frontend-api","stage":"bff"}
 {"status":"ok","service":"catalog-api"}
-{"status":"ok","service":"order-worker","propagation":false}
+{"status":"ok","service":"order-api","stage":"order"}
 ```
 
 {{% /tab %}}
@@ -111,7 +109,6 @@ kubectl -n cosmic-shop exec deploy/order-worker -- wget -qO- http://localhost:30
 
 {{< tabs >}}
 {{% tab title="Script" %}}
-
 
 ```bash
 curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:30080/

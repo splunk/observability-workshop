@@ -26,20 +26,15 @@ From the project root:
 make setup-k3d
 ```
 
-Or to run the script directly...:
-
-```bash
-bash scripts/setup-k3d.sh
-```
-
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` text
 Creating k3d cluster 'cosmic-shop' with local registry on port 5111...
 ...
-k3d cluster ready.
+k3d cluster 'cosmic-shop' ready.
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
