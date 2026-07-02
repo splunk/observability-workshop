@@ -56,15 +56,6 @@ Allow **2–5 minutes** after generating data for metrics to appear..
 
 **What you'll see (broken state):**
 
-| Span | Service | Parent |
-|------|---------|--------|
-| Browser fetch | RUM | — (browser root) |
-| `POST /api/orders` | order-api | **None** (orphan root) |
-| `catalog.get_product` | catalog-api | order-api child ✓ |
-| `payment-gateway.proxy_payment` | payment-gateway | May link to order-api |
-| `payment.process_payment` | payment-api | **None** (orphan root) |
-| `fulfillment.process_job` | fulfillment-worker | **None** (orphan root) |
-
 ![trace-b4](./images/trace-b4.png)
 
 ---

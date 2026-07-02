@@ -132,15 +132,6 @@ The `traceHint.traceId` should match the trace ID you sent in the `traceparent` 
 
 Place 2–3 new orders in the shop using a **fresh incognito window** or hard-refresh (Cmd+Shift+R).
 
-### 6. Confirm partial correlation in Splunk
-
-| Check | Expected after NGINX fix |
-|-------|--------------------------|
-| RUM "Backend Trace" link on checkout | **Visible** |
-| payment-api / fulfillment-worker in same trace | **No — still broken** |
-
-In **APM → Traces** view, open a recent `order-api` `POST /api/orders` trace. The order span should share a trace ID with the browser/RUM session after this fix.
-
 ---
 
 ## Troubleshooting

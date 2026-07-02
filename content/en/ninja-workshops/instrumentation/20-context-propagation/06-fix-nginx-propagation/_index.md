@@ -29,8 +29,6 @@ So trace headers for `/api/purchases` must survive **frontend-api â†’ gateway â†
 
 ## The fix
 
-
-
 We now need to add explicit forwarding for the three W3C context headers in each `location` block:
 
 ```nginx
@@ -46,7 +44,7 @@ These directives tell NGINX to pass the incoming trace context from the client (
 ## Apply the fix
 
 ```
-vi ~/deploy/k8s/gateway-config.yaml 
+vi deploy/k8s/gateway-config.yaml 
 ```
 
 Locate the **`location /api/`** block inside the `default.conf` section (the indented NGINX config under `data:`).
@@ -60,7 +58,9 @@ Add explicit forwarding for the three W3C context headers **after** the standard
     proxy_set_header baggage $http_baggage;
 ```
 
+{{% notice title="Note" style="green" icon="running" %}}
 These directives tell NGINX to pass the incoming trace context from `frontend-api` through to `order-api`.
+{{% /notice %}}
 
 ---
 

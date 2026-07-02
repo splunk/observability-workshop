@@ -39,6 +39,16 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 
 ![rum](./images/rumsesh-b4.png)
 
-**Broken state:** RUM cannot link to the backend APM trace because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
+---
+
+# Check-Point
+
+{{% notice title="Note" style="green" icon="running" %}}
+Both RUM and APM show a **Broken state:** 
+
+RUM cannot link to the backend APM trace because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
+
+In the next steps, we will resolve these issues.
+{{% /notice %}}
 
 ---
