@@ -13,9 +13,9 @@ aliases:
 
 ## Overview
 
-In this workshop, you'll deploy the **Cosmic Observatory Shop** - an astronomy equipment storefront and instrument it with Splunk RUM and Splunk APM. 
+In this workshop, you'll deploy the **Cosmic Observatory Shop** - an astronomy equipment storefront - and instrument it with Splunk RUM and Splunk APM. 
 
-You will observe fragmented service map and traces when required W3C headers are stripped at these **three** infrastructure layers. 
+You will observe fragmented service map and traces when required W3C headers are stripped at these **three** layers. 
 1. **Edge NGINX gateway** - drops W3C trace headers (frontend-api → order API)
 2. **Payment gateway proxy** - instrumented Node.js proxy drops headers (frontend-api → payment API)
 3. **RabbitMQ message bus** - async payment → fulfillment with no trace context in AMQP headers
@@ -34,7 +34,7 @@ Browser (RUM)
                               └─► Payment Gateway → Payment API → RabbitMQ → Fulfillment Worker
                                         ▲                    ▲              ▲
                                    Break #1              Break #2       Break #3
-                                  (Step 07)             (Step 08)        (Step 09)
+                                   (Step 06)             (Step 07)      (Step 08)
 ```
 
 ---

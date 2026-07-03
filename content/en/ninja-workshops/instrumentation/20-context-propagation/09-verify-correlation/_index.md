@@ -3,11 +3,11 @@ title: Verify Correlation
 linkTitle: 9. Verify Correlation
 weight: 9
 time: 10 minutes
-description: In this final step, you'll confirm that traces flow continuously from browser click through the NGINX gateway, API services, RabbitMQ, and the background worker — all visible as a single trace in Splunk Observability Cloud.
+description: In this final step, you'll confirm that traces flow continuously from browser click through the NGINX gateway, API services, RabbitMQ, and the background worker - all visible as a single trace in Splunk Observability Cloud.
  
 ---
 
-## End-to-end validation
+## End-to-End Validation
 
 ### Send New Web Request
 
@@ -92,27 +92,27 @@ Fulfilled order ORD-1719763200456 for SkyWatcher EQ6-R Pro Mount
 ```
 Trace ID: 4bf92f3577b34da6a3ce929d0e0e4736  (example)
 
-├─ documentLoad / routeChange          [RUM]
-├─ HTTP GET /api/catalog               [RUM → storefront-api]
-│   └─ GET /api/catalog                [storefront-api]
-│       └─ catalog.list_products       [catalog-api]
-└─ HTTP POST /api/orders               [RUM → storefront-api]
-    └─ POST /api/orders                [storefront-api]
-        ├─ catalog.get_product         [catalog-api]
-        ├─ storefront.publish_order      [storefront-api, PRODUCER]
-        │   └─ order-worker.process_order  [order-worker, CONSUMER]
+├─ documentLoad / routeChange               [RUM]
+├─ HTTP GET /api/catalog                    [RUM → storefront-api]
+│   └─ GET /api/catalog                     [storefront-api]
+│       └─ catalog.list_products            [catalog-api]
+└─ HTTP POST /api/orders                    [RUM → storefront-api]
+    └─ POST /api/orders                     [storefront-api]
+        ├─ catalog.get_product              [catalog-api]
+        ├─ storefront.publish_order         [storefront-api, PRODUCER]
+        │   └─ order-worker.process_order   [order-worker, CONSUMER]
         │       ├─ validate_inventory
         │       ├─ prepare_shipment
         │       └─ send_confirmation
         └─ (response 202)
 ```
 
-### To Update
-![trace-b4](./images/trace-b4.png)
+### TO UPDATE
+![trace-b4](./images/trace-aft.png)
 
 ---
 
-## Verify service map
+## Verify Service Map
 
 1. Navigate to **APM → Service Map**
 2. Filter environment: `workshop-context-prop`
@@ -120,7 +120,7 @@ Trace ID: 4bf92f3577b34da6a3ce929d0e0e4736  (example)
    - `storefront-api` → `catalog-api`
    - `storefront-api` → `order-worker` (via RabbitMQ)
 
-### To Update
-![trace-b4](./images/trace-b4.png)
+### TO UPDATE
+![trace-b4](./images/servicemap-aft.png)
 
 ---

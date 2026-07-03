@@ -5,7 +5,7 @@ time: 5 minutes
 
 ---
 
-## Rebuild and redeploy after saving
+## Rebuild and Redeploy After Saving
 
 From the project root run these steps:
 
@@ -19,7 +19,7 @@ kubectl -n cosmic-shop rollout status deployment/fulfillment-worker --timeout=18
 ```
 ---
 
-## Validation checklist
+## Validation Checklist
 
 Run these commands after redeploy completes.
 

@@ -9,13 +9,13 @@ description: In this step, you'll create a lightweight Kubernetes cluster using 
 
 Our setup script creates:
 
-- A single-server k3d cluster named `cosmic-shop`
+- A single server k3d cluster named `cosmic-shop`
 - A local Docker registry on port **5111** for pushing workshop images
 - NodePort mappings for the shop UI (**30080**) and RabbitMQ management UI (**15672**)
 
 ---
 
-## Create the cluster
+## Create the Cluster
 
 From the project root:
 
@@ -40,7 +40,7 @@ k3d cluster 'cosmic-shop' ready.
 
 ---
 
-## Validation checklist
+## Validation Checklist
 
 ### 1. Confirm k3d cluster exists
 

@@ -46,7 +46,7 @@ helm upgrade --install splunk-otel-collector splunk-otel-collector-chart/splunk-
 
 ---
 
-## Validation checklist
+## Validation Checklist
 
 Run these commands after `make collector` completes.
 
@@ -133,7 +133,7 @@ make collector
 
 ---
 
-## Confirm your cluster in Splunk Observability Cloud
+## Confirm your Cluster in Splunk Observability Cloud
 
 1. Open Splunk Observability Cloud
 2. Navigate to **Infrastructure → Kubernetes → Kubernetes Entities → Clusters**

@@ -18,7 +18,7 @@ When either side omits this, each consumed message starts a **new root trace** -
 
 ## The fix
 
-### 1. Producer  - payment-api
+### 1. Producer - payment-api
 
 ```
 vi services/payment-api/server.js
@@ -65,7 +65,7 @@ const parentContext = extractTraceContext(msg.properties.headers ?? {});
 
 ---
 
-## Before and after
+## Before and After
 
 ### Producer
 

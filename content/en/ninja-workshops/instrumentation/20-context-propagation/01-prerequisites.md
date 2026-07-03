@@ -9,38 +9,38 @@ description: Goals and architecture for the workshop.
 
 # Prerequisites
 
-Before starting this workshop, ensure you have the following tools installed and a Splunk Observability Cloud account ready.
+Before starting this workshop, ensure you have the following tools installed and have a Splunk Observability Cloud account ready.
 
 ---
 
-## Knowledge prerequisites
+## Knowledge Prerequisites
 
 This workshop assumes familiarity with:
 
 - Basic Kubernetes concepts (pods, deployments, services)
 - HTTP request/response flow
-- The idea of distributed tracing (spans, trace IDs)
+- The idea of distributed tracing (spans, traces...)
 
-OpenTelemetry experience is required - we'll explain context propagation as we go.
+OpenTelemetry experience is required - we'll explain context propagation challenges as we go.
 
 ---
 
-## Required software
+## Required Software
 
-Install these tools on your workstation:
+These tools will be installed on your instance:
 
 | Tool | Minimum version | Verify |
 |------|-----------------|--------|
 | [Docker](https://docs.docker.com/get-docker/) | 24.x | `docker --version` |
 | [kubectl](https://kubernetes.io/docs/tasks/tools/) | 1.28+ | `kubectl version --client` |
 | [k3d](https://k3d.io/) | 5.6+ | `k3d version` |
+| [Git](https://git-scm.com/) | 2.x | `git --version` |
 | [Helm](https://helm.sh/docs/intro/install/) | 3.12+ | `helm version` |
 | [Node.js](https://nodejs.org/) (optional) | 20.x | `node --version` |
-| [Git](https://git-scm.com/) | 2.x | `git --version` |
 
 ---
 
-## Splunk Observability Cloud access
+## Splunk Observability Cloud Access
 
 You'll need access to a Splunk Observability Cloud org with permission to:
 
@@ -57,7 +57,7 @@ You'll need access to a Splunk Observability Cloud org with permission to:
 | `SPLUNK_ACCESS_TOKEN` | Settings → Access Tokens → Create Token (Ingest scope) |
 | `SPLUNK_RUM_ACCESS_TOKEN` | Data Management → RUM → Create RUM access token |
 
-## Validation checklist
+## Validation Checklist
 
 Run these commands from your assigned instance before continuing. Each section includes expected output so you can confirm you're ready.
 

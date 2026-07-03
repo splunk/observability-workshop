@@ -5,7 +5,7 @@ time: 5 minutes
 
 ---
 
-## Rebuild and redeploy after saving
+## Rebuild and Redeploy After Saving
 
 {{% notice title="Note" style="info" %}}
 Saving `server.js` does **not** update running pods until you rebuild and restart.
@@ -22,7 +22,7 @@ kubectl -n cosmic-shop rollout status deployment/payment-gateway --timeout=180s
 
 ---
 
-## Validation checklist
+## Validation Checklist
 
 Run these commands after redeploy completes.
 

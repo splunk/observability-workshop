@@ -5,7 +5,7 @@ time: 5 minutes
 
 ---
 
-## Redeploy after saving
+## Redeploy After Saving
 
 Saving the file does **not** update the running gateway. You must apply the ConfigMap and restart the deployment so NGINX loads the new config.
 
@@ -38,7 +38,7 @@ proxy_set_header traceparent $http_traceparent;
 
 ---
 
-## Validation checklist
+## Validation Checklist
 
 Run these commands after redeploy completes.
 

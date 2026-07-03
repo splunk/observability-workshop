@@ -24,7 +24,7 @@ The payment gateway still creates its **own spans** (so it shows in the service 
 {{% /notice %}}
 ---
 
-## The fix
+## The Fix
 
 Open the server.js file and locate **`buildUpstreamHeaders()`**.
 
@@ -66,7 +66,7 @@ const upstreamContext = context.active();
 
 ---
 
-## Before and after
+## Before and After
 
 {{< tabs >}}
 {{% tab title="Before" %}}

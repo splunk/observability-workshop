@@ -8,8 +8,6 @@ description: Key takeaways & cleanup instructions.
 
 ## Summary
 
-## Workshop summary
-
 In this workshop you traced a single checkout from Splunk RUM through an order → payment → fulfillment pipeline and restored correlation at three places where traces commonly go dark. 
 
 First, at the edge NGINX gateway, explicit proxy_set_header rules forwarded the request but not W3C Trace Context - so you added proxy_set_header traceparent $http_traceparent (plus tracestate and baggage) to pass headers through the reverse proxy. 
@@ -26,7 +24,7 @@ Congratulations - you've restored full-stack observability across proxies and me
 
 ---
 
-## Clean up
+## Clean Up
 
 Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images):
 

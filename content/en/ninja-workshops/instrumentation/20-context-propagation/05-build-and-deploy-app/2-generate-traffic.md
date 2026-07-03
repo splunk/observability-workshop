@@ -7,7 +7,7 @@ description: In this step, you'll generate traffic through Cosmic Observatory Sh
 
 ---
 
-## Access the application
+## Access the Application
 
 Open the Cosmic Observatory Shop in your browser:
 
@@ -32,7 +32,7 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 ---
 
-## Generate initial traffic
+## Generate Initial Traffic
 
 1. After opening the shop at http://localhost:30080
 2. Enter an email address (e.g. `observer@cosmic.shop`)

@@ -31,7 +31,7 @@ SPLUNK_RUM_ACCESS_TOKEN
 {{% /tab %}}
 {{< /tabs >}}
 
-**If they do not exist export them as follows**
+**If they do not exist configure them as follows**
 
 
 ```bash
@@ -55,7 +55,6 @@ K3D_CLUSTER_NAME=cosmic-shop
 CLUSTER_NAME=cosmic-shop-cluster
 REGISTRY=localhost:5111
 TAG=latest
-
 ```
 
 {{% /notice %}}

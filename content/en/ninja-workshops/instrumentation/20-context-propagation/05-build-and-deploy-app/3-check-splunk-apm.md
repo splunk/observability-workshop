@@ -7,7 +7,7 @@ description: In this step, you'll observe how disconnected traces appear in Splu
 
 ---
 
-## The APM request path
+## The APM Request Path
 
 When you clicked **Place order**, the request flowed through:
 
@@ -16,8 +16,8 @@ Browser (RUM span)
   → Frontend NGINX
     → Edge Gateway NGINX     ← break #1: trace headers dropped
       → Order API
-        → Catalog API        ← direct HTTP (may share order-api trace)
-        → Payment Gateway    ← break #2: strips headers to payment-api (visible in service map)
+        → Catalog API        ← direct HTTP 
+        → Payment Gateway    ← break #2: strips headers to payment-api
           → Payment API
             → RabbitMQ       ← break #3: no trace context in message
               → Fulfillment Worker  ← orphan root trace
@@ -34,7 +34,7 @@ Three breaks occur:
 ## Observe in Splunk APM
 
 {{% notice title="Note" style="green" icon="running" %}}
-Allow **2–5 minutes** after generating data for metrics to appear..
+Allow **2-5 minutes** after generating data for metrics to appear..
 {{% /notice %}}
 
 ### Service map

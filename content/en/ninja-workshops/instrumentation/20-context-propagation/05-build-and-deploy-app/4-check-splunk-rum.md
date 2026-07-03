@@ -7,7 +7,7 @@ description: In this step, you'll observe how RUM sessions appear add context to
 
 ---
 
-## The RUM request path
+## The RUM Request Path
 
 1. Open **http://localhost:30080**
 2. Open browser DevTools → **Network** tab

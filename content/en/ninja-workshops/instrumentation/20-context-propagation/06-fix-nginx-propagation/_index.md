@@ -41,7 +41,7 @@ These directives tell NGINX to pass the incoming trace context from the client (
 
 ---
 
-## Apply the fix
+## Apply the Fix
 
 ```
 vi deploy/k8s/gateway-config.yaml 
