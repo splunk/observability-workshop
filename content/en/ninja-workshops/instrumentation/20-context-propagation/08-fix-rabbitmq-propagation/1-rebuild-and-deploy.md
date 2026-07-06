@@ -82,7 +82,7 @@ RabbitMQ context propagation: ENABLED
 
 ### 4. Place a test order and verify worker processing
 
-{{% /notice %}}
+{{% notice %}}
 Place **new** orders after redeploy - messages published before the fix will not carry trace context.
 
 {{% /notice %}}
@@ -128,3 +128,4 @@ The failure mode is the same - instrumentation disabled or misconfigured - but t
 This workshop uses raw `amqplib` because that is still common in Node.js services and makes the inject/extract contract explicit.
 
 ---
+{{< /details >}}
