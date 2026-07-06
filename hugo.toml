@@ -35,6 +35,16 @@ disableKinds = ["taxonomy", "term"]
     weight         = 2
     hasCJKLanguage = true
     contentDir     = "content/ja"
+  # PT-BR is staged for review only. Keep it disabled until the translated
+  # workshop slice has been reviewed and the localization rollout is approved.
+  # Removing `disabled = true` publishes /pt-br/ URLs and adds the language to
+  # the language switcher.
+  [languages.pt-br]
+    disabled   = true
+    label      = "Português (Brasil)"
+    locale     = "pt-BR"
+    weight     = 3
+    contentDir = "content/pt-br"
 
 # Markup configuration — Goldmark with attributes & raw HTML enabled for rich content
 [markup]

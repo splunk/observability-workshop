@@ -1,0 +1,148 @@
+- id: home
+  translation: "Início"
+- id: workshops
+  translation: "Workshops"
+- id: previous
+  translation: "Anterior"
+- id: next
+  translation: "Próximo"
+- id: onThisPage
+  translation: "Nesta página"
+- id: skipToContent
+  translation: "Ir para o conteúdo"
+- id: editOnGitHub
+  translation: "Editar esta página no GitHub"
+- id: searchPlaceholder
+  translation: "Buscar workshops..."
+- id: searchTrigger
+  translation: "Buscar"
+- id: searchHint
+  translation: "Pressione / para buscar"
+- id: searchEmpty
+  translation: "Nenhum resultado"
+- id: keyboardShortcuts
+  translation: "Atalhos de teclado"
+- id: categoryOther
+  translation: "Outros"
+- id: recentlyUpdated
+  translation: "Atualizados recentemente"
+- id: updatedLabel
+  translation: "Atualizado"
+- id: newLabel
+  translation: "Novo"
+- id: browseFilter
+  translation: "Filtrar workshops por nome, tema ou dificuldade..."
+- id: browseCount
+  translation: "{{ .Workshops }} workshops · {{ .Categories }} categorias"
+- id: workshopsCount
+  translation:
+    one: "{{ .Count }} workshop"
+    other: "{{ .Count }} workshops"
+- id: pagesCount
+  translation:
+    one: "{{ .Count }} página"
+    other: "{{ .Count }} páginas"
+- id: copyCode
+  translation: "Copiar"
+- id: copied
+  translation: "Copiado"
+- id: completed
+  translation: "Concluído"
+- id: chapter
+  translation: "Capítulo"
+- id: notFoundTitle
+  translation: "Esta página não tem trace."
+- id: notFoundLead
+  translation: "Buscamos em todas as métricas, logs e spans por esta URL, mas nada apareceu. A lista de workshops, porém, está bem instrumentada."
+- id: notFoundEyebrow
+  translation: "404 · Nenhum span encontrado"
+- id: notFoundQueryLabel
+  translation: "consulta"
+- id: notFoundResultLabel
+  translation: "resultado"
+- id: notFoundResultValue
+  translation: "0 eventos nos últimos 30 dias"
+- id: takeMeHome
+  translation: "Voltar ao início"
+- id: browseWorkshops
+  translation: "Ver workshops"
+- id: viewOnGitHub
+  translation: "Ver no GitHub"
+- id: builtWithHugo
+  translation: "Criado com Hugo"
+- id: theme
+  translation: "Tema"
+- id: languageSwitcher
+  translation: "Idioma"
+- id: overview
+  translation: "Visão geral"
+- id: openMenu
+  translation: "Abrir menu"
+- id: yourPosition
+  translation: "Progresso de leitura"
+- id: tip
+  translation: "Dica"
+- id: note
+  translation: "Nota"
+- id: info
+  translation: "Informação"
+- id: warning
+  translation: "Aviso"
+- id: danger
+  translation: "Perigo"
+- id: success
+  translation: "Sucesso"
+- id: exercise
+  translation: "Exercício"
+- id: solution
+  translation: "Mostrar solução"
+- id: checkpoint
+  translation: "Checkpoint"
+- id: quickCheck
+  translation: "Checagem rápida"
+- id: quizQuestion
+  translation: "Pergunta"
+- id: exerciseDefault
+  translation: "Tente agora"
+- id: objectivesTitle
+  translation: "O que você vai aprender"
+- id: prerequisitesTitle
+  translation: "Antes de começar"
+- id: acknowledge
+  translation: "Confirmação"
+- id: acknowledgeDefault
+  translation: "Confirme para continuar"
+- id: iUnderstand
+  translation: "Entendi"
+- id: expand
+  translation: "Expandir"
+- id: details
+  translation: "Detalhes"
+- id: presenterNote
+  translation: "Nota do apresentador"
+- id: slidesKicker
+  translation: "Apresentação"
+- id: slidesOpen
+  translation: "Abrir apresentação"
+- id: slidesSlide
+  translation: "slide"
+- id: slidesSlides
+  translation: "slides"
+- id: lastModified
+  translation: "Última modificação"
+- id: author
+  translation: "Autor"
+- id: authors
+  translation: "Autores"
+- id: workshopVersion
+  translation: "Versão do workshop"
+- id: difficultyBeginner
+  translation: "Iniciante"
+- id: difficultyEasy
+  translation: "Fácil"
+- id: difficultyIntermediate
+  translation: "Intermediário"
+- id: difficultyAdvanced
+  translation: "Avançado"
+- id: difficultyExpert
+  translation: "Especialista"
