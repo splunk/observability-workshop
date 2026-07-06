@@ -1,6 +1,6 @@
 ---
 title: The Astronomy Shop
-linkTitle: The Astronomy Shop
+linkTitle: 2. The Astronomy Shop
 weight: 2
 archetype: chapter
 time: 10 minutes
@@ -23,6 +23,7 @@ You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, st
 * Add several items to your cart.
 * Proceed to checkout and complete a purchase.
 * **Repeat 3-5 times** to generate enough telemetry data.
+* If possible, try the astronomy shop via a mobile device, or tablet 
 
 ![ui](images/1-shop.png)
 
