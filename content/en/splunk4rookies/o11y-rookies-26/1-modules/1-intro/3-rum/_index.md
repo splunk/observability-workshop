@@ -1,6 +1,6 @@
 ---
 title: Digital Experience (RUM)
-linkTitle:  3. Digital Experience (RUM)
+linkTitle: 3 . Digital Experience (RUM)
 weight: 3
 archetype: chapter
 time: 15 minutes
@@ -18,7 +18,7 @@ You are a **frontend engineer**, or an **SRE** tasked to do the first triage of 
 
 {{< webex chat="Bill Grant" date="Today • 28/01/2026" seenby="PH" >}}
 {{< webex-msg from="BG" name="Bill Grant" time="09:42" >}}
-Hey! We're getting reports of a potential customer satisfaction issue with the Online Boutique application. Can you do the first triage and see what's going on?
+Hey! We're getting reports of a potential customer satisfaction issue with the  Astronomy shop application. Can you do the first triage and see what's going on?
 {{< /webex-msg >}}
 
 {{< webex-msg me=true time="09:43" >}}
