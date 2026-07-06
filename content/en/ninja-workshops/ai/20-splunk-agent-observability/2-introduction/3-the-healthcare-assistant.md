@@ -76,9 +76,9 @@ the workshop, and each folder also serves as the completed reference for its sta
 
 ```text
 ~/workshop/healthcare-assistant/
-├── 1-base-app/                  # Deploy (Chapter 2): uninstrumented starting point
-├── 2-app-with-instrumentation/  # Instrument, trace, metrics, signals (Chapters 3–6)
-├── 3-app-with-experiments/      # Experiments (Chapter 7)
+├── 1-base-app/                  # Deploy (Chapter 3): uninstrumented starting point
+├── 2-app-with-instrumentation/  # Instrument, trace, metrics, signals (Chapters 4–7)
+├── 3-app-with-experiments/      # Experiments (not used in this workshop)
 └── 4-app-with-controls/         # Guardrails / agent controls (Chapter 8)
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: Deploy the Base Application
-linkTitle: 2. Deploy the Base Application
-weight: 2
+linkTitle: 3. Deploy the Base Application
+weight: 3
 time: 10 minutes
 ---
 

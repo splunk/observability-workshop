@@ -1,7 +1,7 @@
 ---
 title: Surface Emerging Issues with Signals
-linkTitle: 6. Surface Issues with Signals
-weight: 6
+linkTitle: 7. Surface Issues with Signals
+weight: 7
 time: 10 minutes
 ---
 

@@ -5,7 +5,7 @@ weight: 20
 layout: chapter
 time: 2 hours
 authors: ["Derek Mitchell", "Sam Goldfield", "Tim Hard"]
-description: See inside your agentic AI applications. Instrument them, trace and evaluate agent behavior, surface emerging issues, run pre-release experiments, and apply runtime guardrails with Splunk Agent Observability (powered by Galileo).
+description: See inside your agentic AI applications. Instrument them, trace and evaluate agent behavior, surface emerging issues, and apply runtime guardrails with Splunk Agent Observability (powered by Galileo).
 draft: false
 hidden: false
 aliases:
@@ -46,8 +46,6 @@ observable, measurable, and safe.
   surface anomalies such as hallucinations and tool-selection errors.
 * **Surface emerging issues with Signals** that automatically detect agent failure patterns
   that are hard to catch through evals or manual investigation.
-* **Run experiments** against datasets to evaluate and compare agent behavior under
-  controlled conditions before you ship.
 * **Apply guardrails at runtime** that detect and act on policy violations, sensitive-data
   exposure, and unsafe prompts or responses, blocking *or* steering them.
 

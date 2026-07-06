@@ -20,8 +20,6 @@ measure, and govern.
 * **Enabled quality metrics** to automatically catch hallucinations and tool-selection errors.
 * **Used Signals** to surface the unknown unknowns, the recurring failure patterns you didn't
   think to measure.
-* **Ran experiments** to replace guesswork with evidence and prevent regressions before
-  release.
 * **Added guardrails** to block dangerous actions and steer unsafe answers to safety at
   runtime.
 
@@ -43,6 +41,8 @@ infrastructure, APM, and log data: one platform for the whole stack.
 ## Where to go next
 
 * Add custom metrics and **Signals** tuned to your own failure modes.
+* Run **experiments** to replace guesswork with evidence and prevent regressions before
+    release.
 * Wire experiments into CI/CD as an automated release gate.
 * Expand guardrails across more steps: prompt injection, PII exposure, scope enforcement.
 * Route different workloads to dedicated log streams for cleaner separation.

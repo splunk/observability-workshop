@@ -1,7 +1,7 @@
 ---
 title: Enable Quality Metrics
-linkTitle: 5. Enable Quality Metrics
-weight: 5
+linkTitle: 6. Enable Quality Metrics
+weight: 6
 time: 10 minutes
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Trace and Investigate Agent Behavior
-linkTitle: 4. Trace and Investigate
-weight: 4
+linkTitle: 5. Trace and Investigate
+weight: 5
 time: 10 minutes
 ---
 

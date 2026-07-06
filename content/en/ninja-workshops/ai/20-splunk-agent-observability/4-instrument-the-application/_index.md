@@ -1,7 +1,7 @@
 ---
 title: Instrument the Application
-linkTitle: 3. Instrument the Application
-weight: 3
+linkTitle: 4. Instrument the Application
+weight: 4
 time: 15 minutes
 ---
 
