@@ -10,18 +10,33 @@ agent paths.
 
 {{< exercise title="Run and try the assistant" >}}
 
+{{< step title="Stop the k3d cluster" >}}
+
+Stop the `k3d` cluster, since we're not using it in this workshop, and we need
+to free up port 81 for the healthcare assistant application:
+
+```bash
+k3d cluster stop shw-987d-cluster
+```
+
+{{< /step >}}
+
+
 {{< step title="Start the app" >}}
 
 From the `1-base-app` directory (with your virtual environment active), run:
 
 ```bash
-streamlit run app.py
+sudo --preserve-env=OPENAI_API_KEY,OPENAI_BASE_URL \
+  $(which python) -m streamlit run app.py \
+  --server.port 81 \
+  --server.address 0.0.0.0
 ```
 
-Streamlit will print a local URL. Open it in your browser:
+Streamlit will print an external URL. Open it in your browser:
 
 ```text
-  Local URL: http://localhost:8501
+  LExternal URL: http://98.86.181.9:81
 ```
 
 ![Healthcare assistant home screen](../../images/healthcare-assistant-ui.png?width=750px)

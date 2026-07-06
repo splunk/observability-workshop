@@ -4,9 +4,8 @@ from pathlib import Path
 
 import toml
 
-
 def setup_environment():
-    """Load OpenAI and PostgreSQL settings from secrets.toml."""
+    """Load OpenAI settings from env vars and PostgreSQL settings from secrets.toml."""
     secrets_path = Path(".streamlit/secrets.toml")
     if not secrets_path.exists():
         secrets_path = Path(__file__).resolve().parent / ".streamlit" / "secrets.toml"
@@ -17,8 +16,8 @@ def setup_environment():
     try:
         secrets = toml.load(secrets_path)
         env_vars = {
-            "OPENAI_API_KEY": secrets.get("openai_api_key", ""),
-            "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
+            "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
+            "OPENAI_BASE_URL": os.getenv("OPENAI_BASE_URL"),
             "POSTGRES_HOST": secrets.get("postgres_host", "localhost"),
             "POSTGRES_PORT": secrets.get("postgres_port", "5432"),
             "POSTGRES_USER": secrets.get("postgres_user", "postgres"),
