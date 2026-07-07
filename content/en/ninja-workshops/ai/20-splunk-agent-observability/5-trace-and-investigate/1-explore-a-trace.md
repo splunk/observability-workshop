@@ -5,12 +5,7 @@ weight: 1
 time: 10 minutes
 ---
 
-{{% notice style="warning" title="TODO" %}}
-Confirm which organization will be used for the workshop.
-Add knowledge check
-{{% /notice %}}
-
-Open the console and work through a real trace from the traffic you just generated.
+Open the Splunk Agent Observability and work through a real trace from the traffic you just generated.
 
 {{< exercise title="Investigate agent behavior" >}}
 
@@ -18,13 +13,9 @@ Open the console and work through a real trace from the traffic you just generat
 
 **1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.galileocloud.io`
 
-**2.** Confirm you're in the **`ORGANIZATION_PLACEHOLDER`** organization (top-left org switcher)
+**2.** Open the project using the name you set in the **`GALILEO_PROJECT`** field in the previous step, which is based on your participant number (for example, `project-44`)
 
-![Galileo Organization Page](../../images/galileo-organization.png?width=750px)
-
-**3.** Open the project using the name you set in the **`galileo_project`** field in the previous step
-
-**4.** Select the stream using the project/log stream configured in `secrets.toml` (**`local`** by default)
+**3.** Select the `default` log stream
 
 ![Project and log stream selection](../../images/galileo-project.png?width=750px)
 

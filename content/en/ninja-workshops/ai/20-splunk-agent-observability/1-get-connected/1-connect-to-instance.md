@@ -41,18 +41,6 @@ to your corporate VPN first.
 
 {{% /notice %}}
 
-## Retrieve your Instance Name
-
-Once you've logged into your EC2 instance via ssh, use the following command to
-get your instance name:
-
-```bash
-echo $INSTANCE
-```
-
-Make a note of this, as your instance name is unique to you and will be
-used later in the workshop to find your data in Splunk Agent Observability.
-
 ## Connect Visual Studio Code (Optional)
 
 We'll be editing several files throughout the workshop. The workshop instructions

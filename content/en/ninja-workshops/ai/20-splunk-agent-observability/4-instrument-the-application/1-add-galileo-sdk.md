@@ -24,9 +24,22 @@ galileo
 
 {{< /step >}}
 
+{{< step title="Set Environment Variables" >}}
+
+Run the commands provided by your workshop instructor to set environment variables 
+on your EC2 instance. They'll look like the following: 
+
+````
+export PARTICIPANT_NUMBER=<your participant number>  
+export GALILEO_API_KEY=<provided by workshop instructor>  
+export GALILEO_CONSOLE_URL=<provided by workshop instructor>
+````
+
+{{< /step >}}
+
 {{< step title="Create a Galileo Secret" >}}
 
-Run the following command to create a Kubernetes secret, to store the Galileo API key: 
+Run the following command to create a Kubernetes secret, which stores the Galileo API key: 
 
 ```bash
 kubectl create secret generic galileo-secret \

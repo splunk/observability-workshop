@@ -69,7 +69,7 @@ just records it.
 
 {{< /step >}}
 
-{{< step title="Confirm traces are flowing" >}}
+{{< step title="Review the application logs" >}}
 
 Use the following command to view the application logs: 
 
@@ -77,9 +77,19 @@ Use the following command to view the application logs:
 kubectl logs -l app=healthcare-assistant
 ```
 
-With instrumentation in place, you
-should see Galileo activity as each turn completes. The traces are now landing in your project
-and log stream, ready to explore.
+If everything is working as expected, you should see the following in the logs: 
+
+````
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+2026-07-07 17:52:39.433 Uvicorn server started on :::8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://10.42.0.18:8501
+  External URL: http://98.92.157.71:8501
+````
 
 {{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
 

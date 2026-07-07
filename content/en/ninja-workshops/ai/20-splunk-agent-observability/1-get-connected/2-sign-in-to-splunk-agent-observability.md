@@ -10,7 +10,8 @@ time: 5 minutes
 The workshop organizer will provide you with a link and credentials 
 to access Splunk Agent Observability.
 
-After signing in, you should see a screen that looks like the following: 
+After signing in, you should see a screen that includes your project name, such as 
+the following example: 
 
 ![Splunk Agent Observability Initial Screen](../../images/SplunkAgentObservability.png)
 

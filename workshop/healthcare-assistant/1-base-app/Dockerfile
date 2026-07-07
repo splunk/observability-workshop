@@ -4,15 +4,12 @@ FROM python:3.12-slim AS builder
 # Set working directory
 WORKDIR /app
 
-# Install build dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install uv
 
 # Copy requirements and install dependencies
 COPY 1-base-app/requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv pip install --system -r requirements.txt
 
 # Final stage
 FROM python:3.12-slim
