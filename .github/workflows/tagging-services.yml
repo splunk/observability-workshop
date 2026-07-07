@@ -1,0 +1,98 @@
+name: Tagging Services CI
+
+# Triggers when any tagging service changes. Change detection routes to only
+# the affected service's reusable test workflow. Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/tagging/creditcheckservice-java/**'
+      - 'workshop/tagging/creditcheckservice-java-with-tags/**'
+      - 'workshop/tagging/creditcheckservice-py/**'
+      - 'workshop/tagging/creditcheckservice-py-with-tags/**'
+      - 'workshop/tagging/creditprocessorservice/**'
+      - 'workshop/tagging/loadgenerator/**'
+  pull_request:
+    paths:
+      - 'workshop/tagging/creditcheckservice-java/**'
+      - 'workshop/tagging/creditcheckservice-java-with-tags/**'
+      - 'workshop/tagging/creditcheckservice-py/**'
+      - 'workshop/tagging/creditcheckservice-py-with-tags/**'
+      - 'workshop/tagging/creditprocessorservice/**'
+      - 'workshop/tagging/loadgenerator/**'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      java: ${{ steps.filter.outputs.java }}
+      java-tags: ${{ steps.filter.outputs.java-tags }}
+      py: ${{ steps.filter.outputs.py }}
+      py-tags: ${{ steps.filter.outputs.py-tags }}
+      processor: ${{ steps.filter.outputs.processor }}
+      loadgen: ${{ steps.filter.outputs.loadgen }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            java:
+              - 'workshop/tagging/creditcheckservice-java/**'
+            java-tags:
+              - 'workshop/tagging/creditcheckservice-java-with-tags/**'
+            py:
+              - 'workshop/tagging/creditcheckservice-py/**'
+            py-tags:
+              - 'workshop/tagging/creditcheckservice-py-with-tags/**'
+            processor:
+              - 'workshop/tagging/creditprocessorservice/**'
+            loadgen:
+              - 'workshop/tagging/loadgenerator/**'
+
+  creditcheckservice-java:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.java == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-spring-boot-smoke.yml
+    with:
+      service-path: workshop/tagging/creditcheckservice-java
+      port: 8888
+
+  creditcheckservice-java-with-tags:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.java-tags == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-spring-boot-smoke.yml
+    with:
+      service-path: workshop/tagging/creditcheckservice-java-with-tags
+      port: 8888
+
+  creditcheckservice-py:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.py == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-flask-smoke.yml
+    with:
+      service-path: workshop/tagging/creditcheckservice-py
+      port: 8888
+
+  creditcheckservice-py-with-tags:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.py-tags == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-flask-smoke.yml
+    with:
+      service-path: workshop/tagging/creditcheckservice-py-with-tags
+      port: 8888
+
+  creditprocessorservice:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.processor == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-flask-smoke.yml
+    with:
+      service-path: workshop/tagging/creditprocessorservice
+      port: 8899
+
+  loadgenerator:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.loadgen == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-loadgenerator-smoke.yml
+    with:
+      service-path: workshop/tagging/loadgenerator
