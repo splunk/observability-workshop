@@ -18,7 +18,7 @@ for the application that includes our recent changes:
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build --platform linux/amd64 -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
+docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 ```
 

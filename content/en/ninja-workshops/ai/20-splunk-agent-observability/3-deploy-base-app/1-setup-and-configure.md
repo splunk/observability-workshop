@@ -22,6 +22,7 @@ The healthcare assistant is pre-loaded under `~/workshop/healthcare-assistant/`,
 {{< step title="Temporary step: get the latest application code" >}}
 
 ```bash
+rm -Rf ~/workshop/healthcare-assistant
 cd ~
 git clone https://github.com/splunk/observability-workshop.git
 cd observability-workshop
@@ -52,6 +53,7 @@ Run the following command to create a Kubernetes config map, which the store add
 configuration parameters used by the application: 
 
 ```bash
+cd ~/workshop/healthcare-assistant/1-base-app
 kubectl apply -f healthcare-assistant-config.yaml
 ```
 
@@ -84,7 +86,7 @@ for the application:
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build --platform linux/amd64 -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:base-app .
+docker build -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:base-app .
 docker push localhost:9999/healthcare-assistant:base-app
 ```
 

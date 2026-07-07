@@ -8,8 +8,7 @@ RUN pip install uv
 
 # Copy requirements and install dependencies
 COPY 2-app-with-instrumentation/requirements.txt /app/
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv pip install --system -r requirements.txt
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Final stage
 FROM python:3.12-slim
