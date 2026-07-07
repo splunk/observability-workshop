@@ -1,0 +1,87 @@
+name: Spring Boot Smoke Test
+
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the service directory (e.g. workshop/tagging/creditcheckservice-java)
+        required: true
+        type: string
+      port:
+        description: Port the service listens on
+        required: true
+        type: number
+
+jobs:
+  maven-build:
+    name: Maven Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '22'
+          distribution: temurin
+          cache: maven
+
+      - name: Build with Maven
+        run: ./mvnw clean package -DskipTests
+
+  app-smoke-test:
+    name: Application Smoke Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '22'
+          distribution: temurin
+          cache: maven
+
+      - name: Build with Maven
+        run: ./mvnw clean package -DskipTests
+
+      - name: Start application
+        run: java -jar target/*.jar &
+
+      - name: Wait for application to be ready
+        run: |
+          echo "Waiting for application on port ${{ inputs.port }}..."
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:${{ inputs.port }}/test > /dev/null 2>&1; then
+              echo "Application ready after $((i * 2))s"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Application did not start within 60s"
+          exit 1
+
+      - name: Smoke test - root endpoint
+        run: |
+          response=$(curl -sf http://localhost:${{ inputs.port }}/)
+          echo "GET / → $response"
+          [ "$response" = "Hello" ] || (echo "Expected 'Hello', got '$response'" && exit 1)
+
+      - name: Smoke test - test endpoint
+        run: |
+          response=$(curl -sf http://localhost:${{ inputs.port }}/test)
+          echo "GET /test → $response"
+          [ "$response" = "OK" ] || (echo "Expected 'OK', got '$response'" && exit 1)
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:latest ${{ inputs.service-path }}
