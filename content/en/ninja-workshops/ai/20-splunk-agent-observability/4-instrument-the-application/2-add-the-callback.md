@@ -103,6 +103,7 @@ turn instead of a pile of disconnected spans.
 Run the following command to compare your changes with the reference solution: 
 
 ```bash
+cd ~/workshop/healthcare-assistant/2-app-with-instrumentation/
 diff agent.py agent-with-instrumentation.py
 ```
 

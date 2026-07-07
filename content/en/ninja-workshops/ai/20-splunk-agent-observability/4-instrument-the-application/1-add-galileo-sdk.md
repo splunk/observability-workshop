@@ -5,86 +5,64 @@ weight: 1
 time: 5 minutes
 ---
 
-{{% notice style="warning" title="TODO" %}}
-Confirm the `galileo_console_url` and `galileo_project` that should be used for this workshop.
-Will each user create a separate project or should the project be shared?
-{{% /notice %}}
 
 First, add the Galileo package and the configuration the SDK needs to know *where* to send
 traces.
 
 {{< exercise title="Add the SDK and configuration" >}}
 
-{{< step title="Activate the environment" >}}
-
-Change the working directory and activate a virtual environment:
-
-```bash
-cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
-python3 -m venv venv
-source venv/bin/activate
-```
-
-{{< /step >}}
-
 {{< step title="Add the Galileo package" >}}
 
-Galileo's LangChain callback ships in the `galileo` package. Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
-file for editing and add `galileo` as the last line of the file. 
+Galileo's LangChain callback ships in the `galileo` package. 
 
-Then install the dependencies:
+Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
+file for editing and add the following to the end of the file: 
+
+````
+galileo
+````
+
+{{< /step >}}
+
+{{< step title="Create a Galileo Secret" >}}
+
+Run the following command to create a Kubernetes secret, to store the Galileo API key: 
 
 ```bash
-pip install -r requirements.txt
+kubectl create secret generic galileo-secret \
+  --from-literal=GALILEO_API_KEY="$GALILEO_API_KEY"
 ```
 
 {{< /step >}}
 
-{{< step title="Add Galileo configuration to secrets" >}}
+{{< step title="Create a Galileo Config Map" >}}
 
-Next, we need to add the Galileo configuration to the `secrets.toml` file, to tell Galileo 
-which environment to send traces to. 
-
-Make a copy of the `secrets.toml` file we used in the previous step of the workshop: 
+Run the following command to create a Kubernetes config map, which the application will use to
+determine how to send traces to Galileo: 
 
 ```bash
-cp ../1-base-app/.streamlit/secrets.toml ./.streamlit/secrets.toml
-```
-
-Next, open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/.streamlit/secrets.toml` 
-file for editing and add the Galileo API key and configuration provided by the workshop instructor to 
-the top of the file: 
-
-```toml
-# API Keys
-# -----------------------------------------------------------------------------
-galileo_api_key = "your-galileo-api-key"
-
-# Galileo Configuration
-# -----------------------------------------------------------------------------
-# Console URL for your Galileo instance
-galileo_console_url = "https://console.multitenant.galileocloud.io"
-# Optional: omit to use Galileo's default project and log stream
-galileo_project = "healthcare-assistant"
-galileo_log_stream = "local"
+kubectl create configmap galileo-config \
+  --from-literal=GALILEO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
+  --from-literal=GALILEO_PROJECT="project-$PARTICIPANT_NUMBER" \
+  --from-literal=GALILEO_LOG_STREAM="default"
 ```
 
 {{% notice title="Project and log stream" style="info" %}}
 
-`galileo_project` and `galileo_log_stream` decide where your traces appear in the Galileo
+`GALILEO_PROJECT` and `GALILEO_LOG_STREAM` decide where your traces appear in the Galileo
 console. If you leave them blank, the SDK falls back to a project and log stream both named
-`default`. For a shared workshop, consider suffixing the log stream with your instance name
-(for example, `local-shw-1234`) so your traces are easy to find.
+`default`. 
 
 {{% /notice %}}
 
 {{< /step >}}
 
+
 {{< /exercise >}}
 
 {{< checkpoint title="Knowledge Check" >}}
 
-If you comment out `galileo_project` and `galileo_log_stream` in `secrets.toml`. Where will
+If you remove `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` from the `galileo-config` config map, where will
 your traces show up?
 
 {{< details summary="Click here to see the answer" >}}

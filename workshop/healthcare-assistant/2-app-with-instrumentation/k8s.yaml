@@ -26,6 +26,8 @@ spec:
                 name: healthcare-assistant-config
             - configMapRef:
                 name: postgres-config
+            - configMapRef:
+                name: galileo-config
           env:
             - name: OPENAI_BASE_URL
               valueFrom:
@@ -42,6 +44,11 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: POSTGRES_PASSWORD
+            - name: GALILEO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: galileo-secret
+                  key: GALILEO_API_KEY
           resources:
             requests:
               memory: "512Mi"

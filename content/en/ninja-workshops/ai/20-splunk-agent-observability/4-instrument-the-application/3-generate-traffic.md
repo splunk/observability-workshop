@@ -11,17 +11,42 @@ next chapter.
 
 {{< exercise title="Run the app and generate traces" >}}
 
-{{< step title="Run the app" >}}
+{{< step title="Build a New Docker Image" >}}
 
-From `2-app-with-instrumentation` (virtual environment active, database loaded, and your
-Galileo credentials set in `.streamlit/secrets.toml`), start the app and open it in your
-browser:
+Change into the base app directory, then run the following command to build a new Docker image
+for the application that includes our recent changes: 
 
 ```bash
-sudo --preserve-env=OPENAI_API_KEY,OPENAI_BASE_URL \
-  $(which python) -m streamlit run app.py \
-  --server.port 81 \
-  --server.address 0.0.0.0
+cd ~/workshop/healthcare-assistant
+docker build --platform linux/amd64 -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
+docker push localhost:9999/healthcare-assistant:app-with-instrumentation
+```
+
+{{< /step >}}
+
+
+{{< step title="Deploy the healthcare assistant app" >}}
+
+Run the following command to deploy the healthcare assistant app:
+
+```bash
+cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
+kubectl apply -f k8s.yaml
+```
+
+Ensure that the new application pod is running:
+
+```bash
+kubectl get pods -l app=healthcare-assistant
+NAME                                   READY   STATUS    RESTARTS   AGE
+healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
+```
+
+Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
+For example: 
+
+```text
+  External URL: http://98.86.181.9:81
 ```
 
 {{< /step >}}
@@ -46,7 +71,13 @@ just records it.
 
 {{< step title="Confirm traces are flowing" >}}
 
-Watch the terminal where `streamlit run app.py` is running. With instrumentation in place, you
+Use the following command to view the application logs: 
+
+```bash
+kubectl logs -l app=healthcare-assistant
+```
+
+With instrumentation in place, you
 should see Galileo activity as each turn completes. The traces are now landing in your project
 and log stream, ready to explore.
 
@@ -60,6 +91,8 @@ from galileo.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
+
+Then rebuild the Docker image and redeploy the application. 
 
 {{% /notice %}}
 
