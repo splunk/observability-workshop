@@ -10,30 +10,25 @@ agent paths.
 
 {{< exercise title="Run and try the assistant" >}}
 
-{{< step title="Stop the k3d cluster" >}}
 
-Stop the `k3d` cluster, since we're not using it in this workshop, and we need
-to free up port 81 for the healthcare assistant application:
+{{< step title="Deploy the healthcare assistant app" >}}
 
-```bash
-k3d cluster stop shw-987d-cluster
-```
-
-{{< /step >}}
-
-
-{{< step title="Start the app" >}}
-
-From the `1-base-app` directory (with your virtual environment active), run:
+Run the following command to deploy the healthcare assistant app: 
 
 ```bash
-sudo --preserve-env=OPENAI_API_KEY,OPENAI_BASE_URL \
-  $(which python) -m streamlit run app.py \
-  --server.port 81 \
-  --server.address 0.0.0.0
+cd ~/workshop/healthcare-assistant/1-base-app
+kubectl apply -f k8s.yaml
 ```
 
-Streamlit will print an external URL. Open it in your browser:
+Ensure that the application pod is running: 
+
+```bash
+kubectl get pods -l app=healthcare-assistant
+NAME                                   READY   STATUS    RESTARTS   AGE
+healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
+```
+
+Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser: 
 
 ```text
   External URL: http://98.86.181.9:81

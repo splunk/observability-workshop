@@ -19,63 +19,63 @@ The healthcare assistant is pre-loaded under `~/workshop/healthcare-assistant/`,
 
 {{< /step >}}
 
-{{< step title="Activate the environment" >}}
+{{< step title="Create a Kubernetes Secret" >}}
 
-Change into the base app directory, create a virtual environment, and install dependencies:
+Run the following command to create a Kubernetes secret, which the application will use to 
+connect to OpenAI models: 
+
+```bash
+kubectl create secret generic openai-api \
+  --from-literal=openai-api-key="$OPENAI_API_KEY" \
+  --from-literal=openai-api-endpoint="$OPENAI_BASE_URL"
+```
+
+{{< /step >}}
+
+{{< step title="Create a Kubernetes Config Map" >}}
+
+Run the following command to create a Kubernetes config map, which the store additional 
+configuration parameters used by the application: 
+
+```bash
+kubectl apply -f healthcare-assistant-config.yaml
+```
+
+{{< /step >}}
+
+{{< step title="Start the PostgreSQL Database" >}}
+
+The healthcare assistant stores the medicine FAQ embeddings and patient records in PostgreSQL with the
+`pgvector` extension. Start PostgreSQL in Kubernetes using the following command:
 
 ```bash
 cd ~/workshop/healthcare-assistant/1-base-app
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+kubectl apply -f postgres.yaml
+```
+
+Ensure that PostgreSQL is running: 
+
+```bash
+kubectl get pods -l app=postgres
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-66ffcf4b8c-8s5lp   1/1     Running   0          16s
 ```
 
 {{< /step >}}
 
-{{< step title="Configure secrets" >}}
+{{< step title="Build the Docker Image" >}}
 
-The app reads its credentials from `.streamlit/secrets.toml`. Copy the template and open it
-for editing:
-
-```bash
-cp .streamlit/secrets.toml.template .streamlit/secrets.toml
-```
-
-Your workshop instance is pre-configured with `OPENAI_API_KEY` and `OPENAI_BASE_URL` environment variables, 
-which the application uses to connect to an LLM. Other configuration is stored in the `.streamlit/secrets.toml` 
-file.
-
-{{% notice title="Keep secrets out of source control" style="info" %}}
-
-`.streamlit/secrets.toml` holds sensitive keys and database credentials and is **not** committed
-to the repository; only the `.template` file is. Never paste real keys into a committed
-file.
-
-{{% /notice %}}
-
-{{< /step >}}
-
-{{< step title="Start PostgreSQL with pgvector" >}}
-
-The agent stores the medicine FAQ embeddings and patient records in PostgreSQL with the
-`pgvector` extension. Start PostgreSQL in a local container:
+Change into the base app directory, then run the following command to build the Docker image
+for the application: 
 
 ```bash
-docker run -e POSTGRES_USER=postgres \
-           -e POSTGRES_PASSWORD=mypassword \
-           -e POSTGRES_DB=vectordb \
-           --name healthcare-postgres \
-           -p 5432:5432 \
-           -d pgvector/pgvector:pg16
-```
-
-Once PostgreSQL is running, execute the following command to create the extension: 
-
-```bash
-docker exec -it healthcare-postgres psql -U postgres -d vectordb -c "CREATE EXTENSION IF NOT EXISTS vector;"
+cd ~/workshop/healthcare-assistant
+docker build --platform linux/amd64 -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:base-app .
+docker push localhost:9999/healthcare-assistant:base-app
 ```
 
 {{< /step >}}
+
 
 {{< step title="Load vector data and relational tables" >}}
 
@@ -83,12 +83,35 @@ Embed the medicine FAQ into pgvector and load the patient registry into PostgreS
 helper script does both:
 
 ```bash
-./start_vectordb.sh
+cd ~/workshop/healthcare-assistant/1-base-app
+kubectl apply -f setup-job.yaml 
 ```
 
 This runs `python helpers/setup_vectordb.py local`, which creates the
 `healthcare_local_index` pgvector collection from `docs/qa.csv` and the
 `healthcare_patient` table from `docs/relational_patient.csv`.
+
+Monitor the job with the following command: 
+
+```bash
+kubectl logs -f job/vectordb-setup
+```
+
+If successful, the output should include the following: 
+
+````
+Setting up vector database for healthcare in hosted environment
+🔧 Environment setup complete
+Using chunk_size: 1000, chunk_overlap: 200
+Using embedding model: text-embedding-3-large
+Creating PostgreSQL/pgvector collection: healthcare_hosted_index
+Adding documents to vector store...
+Loading relational tables for healthcare...
+✓ Loaded relational table healthcare_patient (30 rows) from relational_patient.csv
+✅ Successfully created vector database for healthcare
+📊 Total documents embedded: 15
+🔗 PostgreSQL collection: healthcare_hosted_index
+````
 
 {{< /step >}}
 
