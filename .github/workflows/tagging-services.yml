@@ -1,4 +1,4 @@
-name: Tagging Services CI
+name: Smoke Test - Tagging Services CI
 
 # Triggers when any tagging service changes. Change detection routes to only
 # the affected service's reusable test workflow. Manual dispatch runs all tests.

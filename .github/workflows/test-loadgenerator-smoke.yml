@@ -1,4 +1,4 @@
-name: Load Generator Smoke Test
+name: Smoke Test - Load Generator
 
 # The load generator is a Locust client, not a server — there's no HTTP endpoint
 # to hit. Tests verify: dependencies install cleanly, the locustfile has no

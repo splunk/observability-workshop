@@ -1,4 +1,4 @@
-name: Flask Smoke Test
+name: Smoke Test - Flask Service
 
 on:
   workflow_call:
