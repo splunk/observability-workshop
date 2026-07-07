@@ -3,9 +3,9 @@ title: Verify Correlation
 linkTitle: 9. Verify Correlation
 weight: 9
 time: 10 minutes
-description: In this final step, you'll confirm that traces flow continuously from browser click through the NGINX gateway, API services, RabbitMQ, and the background worker - all visible as a single trace in Splunk Observability Cloud.
  
 ---
+In this final step, you'll confirm that traces flow continuously from browser click through the NGINX gateway, API services, RabbitMQ, and the background worker - all visible as a single trace in Splunk Observability Cloud.
 
 ## End-to-End Validation
 
@@ -41,17 +41,19 @@ curl -s -X POST http://localhost:30080/api/purchases \
 {{% /tab %}}
 {{< /tabs >}}
 
+{{% notice title="Task" style="info" %}}
 Copy the trace ID (the 32-character hex segment) - you'll use it to search in Splunk APM.
-
-### Wait ~2 seconds, then confirm worker fulfillment:
+{{% /notice %}}
 
 {{< tabs >}}
 {{% tab title="Script" %}}
+{{% notice title="Note" style="info" %}}
+Wait 2 seconds to validate the fulfilment-api
+{{% /notice %}}
 
 ```bash
 kubectl -n cosmic-shop logs deployment/order-worker --tail=3
 ```
-
 {{% /tab %}}
 {{% tab title="Expected Output" %}}
 
@@ -61,7 +63,6 @@ Fulfilled order ORD-1719763200456 for SkyWatcher EQ6-R Pro Mount
 
 {{% /tab %}}
 {{< /tabs >}}
----
 
 ## Verify in Splunk RUM
 
@@ -74,10 +75,8 @@ Fulfilled order ORD-1719763200456 for SkyWatcher EQ6-R Pro Mount
    - **Backend Trace** link navigates to APM
    - Trace ID matches the browser `traceparent` header
 
-### To Update
+### ToDO: Update Image
 ![trace-b4](./images/trace-b4.png)
-
----
 
 ## Verify in Splunk APM
 
@@ -107,10 +106,8 @@ Trace ID: 4bf92f3577b34da6a3ce929d0e0e4736  (example)
         └─ (response 202)
 ```
 
-### TO UPDATE
-![trace-b4](./images/trace-aft.png)
-
----
+### TODO UPDATE Image
+![trace-aft1](./images/trace-aft.png)
 
 ## Verify Service Map
 
@@ -120,7 +117,5 @@ Trace ID: 4bf92f3577b34da6a3ce929d0e0e4736  (example)
    - `storefront-api` → `catalog-api`
    - `storefront-api` → `order-worker` (via RabbitMQ)
 
-### TO UPDATE
-![trace-b4](./images/servicemap-aft.png)
-
----
+### TODO: UPDATE Image
+![servicemap-aft1](./images/servicemap-aft.png)

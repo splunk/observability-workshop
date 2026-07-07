@@ -1,5 +1,5 @@
 ---
-title: Rebuild and Deploy Gateway fix
+title: ReDeploy Gateway fix
 weight: 1
 time: 5 minutes
 
@@ -20,13 +20,11 @@ kubectl -n cosmic-shop rollout restart deployment/payment-gateway
 kubectl -n cosmic-shop rollout status deployment/payment-gateway --timeout=180s
 ```
 
----
-
 ## Validation Checklist
 
 Run these commands after redeploy completes.
 
-### 1. Confirm health endpoint reports propagation
+#### 1. Confirm health endpoint reports propagation
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -47,7 +45,7 @@ The health check probes whether `buildUpstreamHeaders()` adds a `traceparent` he
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Place a test order and inspect traces
+#### 2. Place a test order and inspect traces
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -75,25 +73,27 @@ In **APM → Traces**, open a recent trace for `payment-api`. After this fix:
 {{% /tab %}}
 {{< /tabs >}}
 
----
+{{% notice title="Note" style="info" %}}
+This workshop uses a Node.js proxy so you practice **application-layer** propagation bugs (common in BFFs and custom gateways). The NGINX ConfigMap approach from Step 06 applies when the break is at the **infrastructure proxy** layer instead.
+{{% /notice %}}
 
 ## Troubleshooting
 
-{{< details summary="Click here to see the answer" >}}
-### Potential Issue 1. Traces still disconnected after fix
+{{< details summary="Click here for Troubleshooting Guidance" >}}
+#### Potential Issue 1. Traces still disconnected after fix
 
 - Confirm you **saved** `services/payment-gateway/server.js` and ran **`make fix-payment-gateway`** (rebuild + import + restart)
 - Confirm the pod restarted with a recent AGE: `kubectl -n cosmic-shop get pods -l app=payment-gateway`
 - Verify health shows `"propagation": true`
 - Generate **new** traffic - old traces won't change retroactively
 
-### Potential Issue 2. Health still shows `"propagation": false`
+#### Potential Issue 2. Health still shows `"propagation": false`
 
 - Confirm `propagation.inject()` is inside `buildUpstreamHeaders()` and runs **before** `return headers`
 - Confirm you removed `suppressTracing()` from the upstream fetch path
 - Re-run the full rebuild chain - a restart alone is not enough if the image was not rebuilt
 
-### Potential Issue 3. If gateway setup is using NGINX / ConfigMap proxy 
+#### Potential Issue 3. If gateway setup is using NGINX / ConfigMap proxy 
 
 Some teams implement payment routing with an **API gateway or NGINX sidecar** instead of a Node.js proxy. The failure mode is identical to Step 06: missing `proxy_set_header traceparent` directives.
 
@@ -108,10 +108,4 @@ location /payments/ {
     proxy_pass http://payment_api;
 }
 ```
-
-{{% notice title="Note" style="info" %}}
-This workshop uses a Node.js proxy so you practice **application-layer** propagation bugs (common in BFFs and custom gateways). The NGINX ConfigMap approach from Step 06 applies when the break is at the **infrastructure proxy** layer instead.
-{{% /notice %}}
-
 {{< /details >}}
----
