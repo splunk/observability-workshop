@@ -24,10 +24,7 @@ Observability capture the whole tree automatically.
 
 {{% notice title="Where to work" style="info" %}}
 
-This chapter works in `~/workshop/healthcare-assistant/2-app-with-instrumentation`. That
-folder ships with the instrumentation changes **already applied**, so it doubles as the
-completed reference. Open each file to confirm the change as you go, or, to practice the
-edits yourself, copy your `1-base-app` working tree forward and apply them.
+This chapter works in the `~/workshop/healthcare-assistant/2-app-with-instrumentation` folder.
 
 {{% /notice %}}
 

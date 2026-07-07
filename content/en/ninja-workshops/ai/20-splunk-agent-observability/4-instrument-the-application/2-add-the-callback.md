@@ -13,8 +13,8 @@ node automatically, with no per-tool instrumentation required.
 
 {{< step title="Add the imports" >}}
 
-Open `agent.py`. At the end of the import section, just before `class State(TypedDict)`,
-add:
+Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file for editing. 
+At the end of the import section, just before `class State(TypedDict)`, add:
 
 ```python
 import os
@@ -100,13 +100,10 @@ turn instead of a pile of disconnected spans.
 
 {{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
 
-If traces aren't appearing and you want to see what the SDK is doing, temporarily add the
-following to `agent.py`:
+Run the following command to compare your changes with the reference solution: 
 
-```python
-from galileo.utils.log_config import enable_console_logging
-
-enable_console_logging()
+```bash
+diff agent.py agent-with-instrumentation.py
 ```
 
 {{% /notice %}}

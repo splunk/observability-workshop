@@ -36,7 +36,7 @@ sudo --preserve-env=OPENAI_API_KEY,OPENAI_BASE_URL \
 Streamlit will print an external URL. Open it in your browser:
 
 ```text
-  LExternal URL: http://98.86.181.9:81
+  External URL: http://98.86.181.9:81
 ```
 
 ![Healthcare assistant home screen](../../images/healthcare-assistant-ui.png?width=750px)

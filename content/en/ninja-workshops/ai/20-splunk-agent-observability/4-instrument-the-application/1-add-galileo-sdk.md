@@ -17,7 +17,7 @@ traces.
 
 {{< step title="Activate the environment" >}}
 
-Change into the instrumentation stage and activate a virtual environment:
+Change the working directory and activate a virtual environment:
 
 ```bash
 cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
@@ -29,14 +29,8 @@ source venv/bin/activate
 
 {{< step title="Add the Galileo package" >}}
 
-Galileo's LangChain callback ships in the `galileo` package. Confirm it's listed in
-`requirements.txt`:
-
-```bash
-cat ~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt
-```
-
-You should see the `galileo` package included in the output.
+Galileo's LangChain callback ships in the `galileo` package. Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
+file for editing and add `galileo` as the last line of the file. 
 
 Then install the dependencies:
 
@@ -48,8 +42,18 @@ pip install -r requirements.txt
 
 {{< step title="Add Galileo configuration to secrets" >}}
 
-Copy the template if you haven't already, then add your Galileo settings to
-`.streamlit/secrets.toml`:
+Next, we need to add the Galileo configuration to the `secrets.toml` file, to tell Galileo 
+which environment to send traces to. 
+
+Make a copy of the `secrets.toml` file we used in the previous step of the workshop: 
+
+```bash
+cp ../1-base-app/.streamlit/secrets.toml ./.streamlit/secrets.toml
+```
+
+Next, open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/.streamlit/secrets.toml` 
+file for editing and add the Galileo API key and configuration provided by the workshop instructor to 
+the top of the file: 
 
 ```toml
 # API Keys
@@ -73,30 +77,6 @@ console. If you leave them blank, the SDK falls back to a project and log stream
 (for example, `local-shw-1234`) so your traces are easy to find.
 
 {{% /notice %}}
-
-{{< /step >}}
-
-{{< step title="Expose the Galileo variables to the app" >}}
-
-The app loads secrets into environment variables in `setup_env.py`. Confirm the `env_vars`
-dictionary includes the `GALILEO_*` entries so the SDK can read them:
-
-```python
-        env_vars = {
-            "OPENAI_API_KEY": secrets.get("openai_api_key", ""),
-            "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
-            "GALILEO_API_KEY": secrets.get("galileo_api_key", ""),
-            "GALILEO_CONSOLE_URL": secrets.get("galileo_console_url", ""),
-            "GALILEO_PROJECT": secrets.get("galileo_project", ""),
-            "GALILEO_LOG_STREAM": secrets.get("galileo_log_stream", ""),
-            "POSTGRES_HOST": secrets.get("postgres_host", "localhost"),
-            "POSTGRES_PORT": secrets.get("postgres_port", "5432"),
-            "POSTGRES_USER": secrets.get("postgres_user", "postgres"),
-            "POSTGRES_PASSWORD": secrets.get("postgres_password", ""),
-            "POSTGRES_DB": secrets.get("postgres_db", "vectordb"),
-            "ENVIRONMENT": secrets.get("environment", "local"),
-        }
-```
 
 {{< /step >}}
 

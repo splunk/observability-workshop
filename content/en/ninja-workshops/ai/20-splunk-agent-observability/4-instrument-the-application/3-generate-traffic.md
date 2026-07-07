@@ -18,7 +18,10 @@ Galileo credentials set in `.streamlit/secrets.toml`), start the app and open it
 browser:
 
 ```bash
-streamlit run ~/workshop/healthcare-assistant/2-app-with-instrumentation/app.py
+sudo --preserve-env=OPENAI_API_KEY,OPENAI_BASE_URL \
+  $(which python) -m streamlit run app.py \
+  --server.port 81 \
+  --server.address 0.0.0.0
 ```
 
 {{< /step >}}
