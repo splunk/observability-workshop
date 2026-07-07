@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fix NGINX Propagation on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/</link><description>Recent content in Fix NGINX Propagation on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/index.xml" rel="self" type="application/rss+xml"/><item><title>Redeploy after NGINX fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/1-redeploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/1-redeploy/</guid><description>&lt;h2 id="redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Saving the file does &lt;strong&gt;not&lt;/strong&gt; update the running gateway. You must apply the ConfigMap and restart the deployment so NGINX loads the new config.&lt;/p&gt;
+&lt;p&gt;From the project root run the following:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f deploy/k8s/gateway-config.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/gateway --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Verify the pod picked up your changes:&lt;/p&gt;</description></item><item><title>Observe in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/2-observe-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/2-observe-in-splunk/</guid><description>&lt;h2 id="check-splunk"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-confirm-partial-correlation-in-rum"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm partial correlation in RUM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-partial-correlation-in-rum" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You will now see the RUM session with APM correlation&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/r-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id="2-confirm-partial-correlation-in-traces"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm partial correlation in Traces&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-partial-correlation-in-traces" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In &lt;strong&gt;APM → Traces&lt;/strong&gt; view, open a recent &lt;code&gt;frontend-api&lt;/code&gt; trace. The frontend span should share a trace ID with the browser/RUM session after this fix.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/t-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;</description></item></channel></rss>

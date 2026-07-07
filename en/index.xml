@@ -6,7 +6,29 @@
 &lt;li&gt;How to guide remediation, manage vulnerability status, and review library hygiene.&lt;/li&gt;
 &lt;li&gt;How to investigate runtime attacks and integrate notifications with SecOps.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For the workshop, a shared tenant is provided that contains Application Security telemetry (runtime vulnerabilities, library inventory, and attack events).&lt;/p&gt;</description></item><item><title>Background</title><link>https://splunk.github.io/observability-workshop/en/scenarios/self-service-observability/1-background/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/self-service-observability/1-background/</guid><description>&lt;h2 id="background"&gt;
+&lt;p&gt;For the workshop, a shared tenant is provided that contains Application Security telemetry (runtime vulnerabilities, library inventory, and attack events).&lt;/p&gt;</description></item><item><title>Prerequisites</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/01-prerequisites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/01-prerequisites/</guid><description>&lt;h1 id="prerequisites"&gt;
+ &lt;span class="heading-text"&gt;Prerequisites&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#prerequisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Before starting this workshop, ensure you have the following tools installed and have a Splunk Observability Cloud account ready.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="knowledge-prerequisites"&gt;
+ &lt;span class="heading-text"&gt;Knowledge Prerequisites&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#knowledge-prerequisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This workshop assumes familiarity with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Kubernetes concepts (pods, deployments, services)&lt;/li&gt;
+&lt;li&gt;HTTP request/response flow&lt;/li&gt;
+&lt;li&gt;The idea of distributed tracing (spans, traces&amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OpenTelemetry experience is required - we&amp;rsquo;ll explain context propagation challenges as we go.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="required-software"&gt;
+ &lt;span class="heading-text"&gt;Required Software&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#required-software" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;These tools will be installed on your instance:&lt;/p&gt;</description></item><item><title>Background</title><link>https://splunk.github.io/observability-workshop/en/scenarios/self-service-observability/1-background/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/self-service-observability/1-background/</guid><description>&lt;h2 id="background"&gt;
  &lt;span class="heading-text"&gt;Background&lt;/span&gt;
  &lt;a class="heading-anchor" href="#background" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -270,47 +292,7 @@ the limitations running the ROSA command-line interface on Mac OS.&lt;/p&gt;</de
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>1. Configure and Start the Stack</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/1-configure-and-start/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/1-configure-and-start/</guid><description>&lt;h2 id="verify-or-add-your-splunk-credentials"&gt;
- &lt;span class="heading-text"&gt;Verify or Add Your Splunk Credentials&lt;/span&gt;
- &lt;a class="heading-anchor" href="#verify-or-add-your-splunk-credentials" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Configure and Start&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$ACCESS_TOKEN&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$REALM&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;if no values are set then Create or edit &lt;code&gt;.env&lt;/code&gt; in the repository root:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Obtain your access token from Splunk Observability Cloud: &lt;strong&gt;Settings → Access Tokens&lt;/strong&gt; (Ingest token with APM permissions).. You will need to paste them into configs.&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp .env.example .env&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SPLUNK_ACCESS_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;INGEST_TOKEN&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SPLUNK_REALM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;YOUR-REALM&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;WORKSHOP_ENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;trace-propagation-&amp;lt;YOUR-INITIALS&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;h3 id="deploy-the-collector"&gt;
- &lt;span class="heading-text"&gt;Deploy the collector&lt;/span&gt;
- &lt;a class="heading-anchor" href="#deploy-the-collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;This script:&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+ &lt;/div&gt;&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -460,7 +442,42 @@ using one of the methods below:&lt;/p&gt;
  &lt;span class="heading-text"&gt;2. Install Splunk OTel using Helm&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-install-splunk-otel-using-helm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update:&lt;/p&gt;</description></item><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
+&lt;p&gt;Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update:&lt;/p&gt;</description></item><item><title>1. Deploy to K8s</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/1-deploy-to-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/1-deploy-to-k8s/</guid><description>&lt;h2 id="deploy-to-kubernetes"&gt;
+ &lt;span class="heading-text"&gt;Deploy to Kubernetes&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#deploy-to-kubernetes" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make deploy&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;This script:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Applies all Kubernetes manifests from &lt;code&gt;deploy/k8s/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creates a &lt;code&gt;splunk-otel&lt;/code&gt; secret from your &lt;code&gt;.env&lt;/code&gt; credentials&lt;/li&gt;
+&lt;li&gt;Points deployments at the registry images&lt;/li&gt;
+&lt;li&gt;Waits for all rollouts to complete&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="validation-checklist---deploy"&gt;
+ &lt;span class="heading-text"&gt;Validation checklist - Deploy&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist---deploy" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-confirm-all-pods-are-running"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm all pods are running&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-all-pods-are-running" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-panel-1" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-29-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop get pods&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Expected output:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/wall-mount.png" alt="Wall mounted" loading="lazy" decoding="async"&gt;
@@ -593,56 +610,7 @@ using one of the methods below:&lt;/p&gt;
  &lt;span class="heading-text"&gt;Set Your Splunk Credentials&lt;/span&gt;
  &lt;a class="heading-anchor" href="#set-your-splunk-credentials" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Export your credentials as environment variables. Replace each placeholder with your actual values:&lt;/p&gt;</description></item><item><title>1. Install and Run the App</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/2-deploy-application/1-install-and-run/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/2-deploy-application/1-install-and-run/</guid><description>&lt;h2 id="prerequisites"&gt;
- &lt;span class="heading-text"&gt;Prerequisites&lt;/span&gt;
- &lt;a class="heading-anchor" href="#prerequisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="required"&gt;
- &lt;span class="heading-text"&gt;Required&lt;/span&gt;
- &lt;a class="heading-anchor" href="#required" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker Engine 24+ (image builds and k3d)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;k3d&lt;/strong&gt; v5+ and &lt;strong&gt;kubectl&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Terminal with &lt;code&gt;curl&lt;/code&gt;, &lt;code&gt;docker&lt;/code&gt;, and &lt;code&gt;kubectl&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Splunk Observability Cloud&lt;/strong&gt; org with an &lt;strong&gt;access token&lt;/strong&gt; and &lt;strong&gt;realm&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;APM permissions to view services, traces, and MetricSets&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-panel-0" tabindex="0" data-tab-label="Verify Tooling"&gt;Verify Tooling&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-tab-0" data-tab-label="Verify Tooling"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker info --format &lt;span class="s1"&gt;&amp;#39;{{.ServerVersion}}&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d version
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl version --client&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-19-context-propagation-2-deploy-application-1-install-and-run-md-16-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;28.4.0
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d version v5.9.0
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3s version v1.35.5-k3s1 (default)
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client Version: v1.36.1
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Kustomize Version: v5.8.1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h3 id="optional"&gt;
- &lt;span class="heading-text"&gt;Optional&lt;/span&gt;
- &lt;a class="heading-anchor" href="#optional" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;jq&lt;/code&gt; for JSON output&lt;/li&gt;
-&lt;li&gt;Basic Python and HTTP header familiarity&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You&amp;rsquo;re now ready to deploy application services on k3d&lt;/p&gt;</description></item><item><title>1. Install the OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/1-install-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/1-install-otel-collector/</guid><description>&lt;p&gt;The AppDynamics agent in dual mode emits OpenTelemetry data over OTLP. You need a collector on the same host to receive that data and forward it to Splunk Observability Cloud.&lt;/p&gt;
+&lt;p&gt;Export your credentials as environment variables. Replace each placeholder with your actual values:&lt;/p&gt;</description></item><item><title>1. Install the OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/1-install-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/17-appd-ingest/3-enable-dual-mode/1-install-otel-collector/</guid><description>&lt;p&gt;The AppDynamics agent in dual mode emits OpenTelemetry data over OTLP. You need a collector on the same host to receive that data and forward it to Splunk Observability Cloud.&lt;/p&gt;
 &lt;h2 id="verify-environment-variables"&gt;
  &lt;span class="heading-text"&gt;Verify Environment Variables&lt;/span&gt;
  &lt;a class="heading-anchor" href="#verify-environment-variables" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -801,7 +769,8 @@ with NVIDIA GPUs and NVIDIA AI Enterprise software.&lt;/p&gt;</description></ite
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</guid><description>&lt;section class="exercise"&gt;
+&lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</guid><description>&lt;p&gt;In this exercise, you&amp;rsquo;ll open the RUM Overview dashboard. The data you&amp;rsquo;ll see here was generated and also includes data from all the attendee&amp;rsquo;s including yourself — it captures the browsing and shopping everyone did in the Astronomy Shop earlier, now surfaced as real user metrics like page views, errors, and load performance. This is your chance to see your own session through the lens of Real User Monitoring.&lt;/p&gt;
+&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -819,13 +788,7 @@ with NVIDIA GPUs and NVIDIA AI Enterprise software.&lt;/p&gt;</description></ite
  &lt;img src="../images/rum-de.png" alt="RUM" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This will open up the &lt;strong&gt;Application Summary Dashboard&lt;/strong&gt;. This section shows a quick overview of &lt;strong&gt;all&lt;/strong&gt; the applications being monitored.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The Real User Monitoring (RUM) Overview dashboard in Splunk Observability Cloud provides visibility into how real users experience your web applications. It captures browser-side performance metrics, JavaScript errors, and network request failures as they occur in actual user sessions. The dashboard surfaces Core Web Vitals (LCP, INP, CLS) to measure page load performance, displays error trends over time, and shows recent alerts, giving frontend teams the insights needed to identify and resolve issues affecting end-user experience.&lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</guid><description>&lt;section class="exercise"&gt;
+&lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -1792,7 +1755,226 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; observability-workshop/local-hosting/multipass&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;p&gt;Log Observer Connect:&lt;/p&gt;</description></item><item><title>Infrastructure Exercise - Part 1</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/30-im-exercise/1-im-exercise/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/30-im-exercise/1-im-exercise/</guid><description>&lt;p&gt;This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you&amp;rsquo;re not familiar with it.&lt;/p&gt;
 &lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Kubernetes Terminology&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application&lt;/p&gt;</description></item><item><title>Infrastructure Exercise - Part 1</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/30-im-exercise/1-im-exercise/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/30-im-exercise/1-im-exercise/</guid><description>&lt;p&gt;This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you&amp;rsquo;re not familiar with it.&lt;/p&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Kubernetes Terminology&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application&lt;/p&gt;</description></item><item><title>Using SWiPE</title><link>https://splunk.github.io/observability-workshop/en/workshop-setup/1-swipe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/workshop-setup/1-swipe/</guid><description>&lt;h2 id="configure-your-org-using-swipe"&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Kubernetes Terminology&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application&lt;/p&gt;</description></item><item><title>Rebuild and Deploy Gateway fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/07--fix-payment-gateway-propagation/1-rebuild-and-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/07--fix-payment-gateway-propagation/1-rebuild-and-deploy/</guid><description>&lt;h2 id="rebuild-and-redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Rebuild and Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#rebuild-and-redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;Saving &lt;code&gt;server.js&lt;/code&gt; does &lt;strong&gt;not&lt;/strong&gt; update running pods until you rebuild and restart.&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;From the project root:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/build-images.sh payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/import-images-k3d.sh payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-gateway --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run these commands after redeploy completes.&lt;/p&gt;</description></item><item><title>Rebuild and Deploy RabbitMQ fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/08-fix-rabbitmq-propagation/1-rebuild-and-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/08-fix-rabbitmq-propagation/1-rebuild-and-deploy/</guid><description>&lt;h2 id="rebuild-and-redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Rebuild and Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#rebuild-and-redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;From the project root run these steps:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/build-images.sh payment-api fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/import-images-k3d.sh payment-api fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-api --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/fulfillment-worker --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run these commands after redeploy completes.&lt;/p&gt;
+&lt;h3 id="1-confirm-health-endpoints-report-propagation-enabled"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm health endpoints report propagation enabled&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-health-endpoints-report-propagation-enabled" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/fulfillment-worker -- wget -qO- http://localhost:3006/health
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/payment-api -- wget -qO- http://localhost:3005/health&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;json&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment-api&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;rabbitmq&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment-worker&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/fulfillment-worker -- wget -qO- http://localhost:3006/health
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/payment-api -- wget -qO- http://localhost:3005/health&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;json&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment-api&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;rabbitmq&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment-worker&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fulfillment-worker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/fulfillment-worker -- wget -qO- http://localhost:3006/health
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop &lt;span class="nb"&gt;exec&lt;/span&gt; deploy/payment-api -- wget -qO- http://localhost:3005/health&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-28-1--0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;json&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment-api&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;payment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;rabbitmq&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;service&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment-worker&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;stage&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;fulfillment&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;&amp;#34;propagation&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h3 id="2-confirm-rollouts-completed"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm rollouts completed&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-rollouts-completed" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-1" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/fulfillment-worker&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-1" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/fulfillment-worker&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-50-1--1-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/fulfillment-worker&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h3 id="3-confirm-startup-logs-mention-propagation"&gt;
+ &lt;span class="heading-text"&gt;3. Confirm startup logs mention propagation&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#3-confirm-startup-logs-mention-propagation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/payment-api --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/payment-api --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/payment-api --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-08-fix-rabbitmq-propagation-1-rebuild-and-deploy-md-63-1--2-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RabbitMQ context propagation: ENABLED&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h3 id="4-place-a-test-order-and-verify-worker-processing"&gt;
+ &lt;span class="heading-text"&gt;4. Place a test order and verify worker processing&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#4-place-a-test-order-and-verify-worker-processing" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;</description></item><item><title>Redeploy after NGINX fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/1-redeploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/1-redeploy/</guid><description>&lt;h2 id="redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Saving the file does &lt;strong&gt;not&lt;/strong&gt; update the running gateway. You must apply the ConfigMap and restart the deployment so NGINX loads the new config.&lt;/p&gt;
+&lt;p&gt;From the project root run the following:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f deploy/k8s/gateway-config.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/gateway --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Verify the pod picked up your changes:&lt;/p&gt;</description></item><item><title>Using SWiPE</title><link>https://splunk.github.io/observability-workshop/en/workshop-setup/1-swipe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/workshop-setup/1-swipe/</guid><description>&lt;h2 id="configure-your-org-using-swipe"&gt;
  &lt;span class="heading-text"&gt;&lt;strong&gt;Configure your Org using SWiPE&lt;/strong&gt;&lt;/span&gt;
  &lt;a class="heading-anchor" href="#configure-your-org-using-swipe" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -1802,7 +1984,30 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
  &lt;a class="heading-anchor" href="#why-unified-visibility-matters" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;When reliability and security live in separate tools, prioritization conversations stall. SREs ask &lt;em&gt;what broke?&lt;/em&gt; while AppSec asks &lt;em&gt;what is exploitable?&lt;/em&gt; and neither view shows services that are simultaneously unhealthy and high-risk.&lt;/p&gt;
-&lt;p&gt;Splunk Secure Application surfaces vulnerability and attack summaries alongside golden signals on &lt;strong&gt;APM Overview&lt;/strong&gt;, &lt;strong&gt;Service Map&lt;/strong&gt;, and the &lt;strong&gt;per-service Application Security&lt;/strong&gt; workspace. Engineering, application security, and SecOps can share one runtime view without a duplicate agent or workflow.&lt;/p&gt;</description></item><item><title>Viewing the Logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</guid><description>&lt;p&gt;In order to see logs click on the &lt;figure class="figure"&gt;
+&lt;p&gt;Splunk Secure Application surfaces vulnerability and attack summaries alongside golden signals on &lt;strong&gt;APM Overview&lt;/strong&gt;, &lt;strong&gt;Service Map&lt;/strong&gt;, and the &lt;strong&gt;per-service Application Security&lt;/strong&gt; workspace. Engineering, application security, and SecOps can share one runtime view without a duplicate agent or workflow.&lt;/p&gt;</description></item><item><title>Configure Environment</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/02-configure-environment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/02-configure-environment/</guid><description>&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Validation Checklist&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;Your environment should already have values for &lt;code&gt;SPLUNK_ACCESS_TOKEN&lt;/code&gt;, &lt;code&gt;SPLUNK_REALM&lt;/code&gt;, and &lt;code&gt;SPLUNK_RUM_ACCESS_TOKEN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Run these commands from the project root to verify &lt;code&gt;.env&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;grep -E &lt;span class="s1"&gt;&amp;#39;^SPLUNK_(REALM|ACCESS_TOKEN|RUM_ACCESS_TOKEN)=&amp;#39;&lt;/span&gt; .env &lt;span class="p"&gt;|&lt;/span&gt; cut -d&lt;span class="o"&gt;=&lt;/span&gt; -f1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-02-configure-environment-md-1-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;SPLUNK_REALM
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;SPLUNK_ACCESS_TOKEN
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;SPLUNK_RUM_ACCESS_TOKEN&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;If they do not exist configure them as follows&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Viewing the Logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/1-view-logs/</guid><description>&lt;p&gt;In order to see logs click on the &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/logo-icon.png?classes=inline&amp;amp;height=25px" alt="Logo" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
@@ -1951,46 +2156,7 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
 &lt;/h3&gt;
 &lt;p&gt;It&amp;rsquo;s great that we have a dashboard to monitor the response times of the credit check service by credit score, but we don&amp;rsquo;t want to stare at a dashboard all day.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s create an alert so we can be notified proactively if customers with &lt;code&gt;exceptional&lt;/code&gt; credit scores encounter slow requests.&lt;/p&gt;
-&lt;p&gt;To create this alert, click on the little bell on the top right-hand corner of the chart, then select &lt;strong&gt;New detector from chart&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>2. (Optional) Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/2-generate-traffic/</guid><description>&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Generate Traffic&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;h2 id="confirm-collector-health"&gt;
- &lt;span class="heading-text"&gt;Confirm Collector Health&lt;/span&gt;
- &lt;a class="heading-anchor" href="#confirm-collector-health" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s http://localhost:13133/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;hr&gt;
-&lt;h3 id="generate-traffic"&gt;
- &lt;span class="heading-text"&gt;Generate Traffic&lt;/span&gt;
- &lt;a class="heading-anchor" href="#generate-traffic" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Allow &lt;strong&gt;2–5 minutes&lt;/strong&gt; after the first request for services to appear.&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s http://localhost:8080/api/order &lt;span class="p"&gt;|&lt;/span&gt; jq &lt;span class="s1"&gt;&amp;#39;{order_id, product, tier, amount, inventory: .inventory.reserved, payment: .payment.approved, fulfilment: .fulfilment.carrier}&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;OR send Continuous load (recommended):&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./scripts/4-start-load.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;You should see a JSON response like:&lt;/p&gt;</description></item><item><title>Adding Copied Charts</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</guid><description>&lt;p&gt;In this section, we are going to use the &lt;strong&gt;Copy and Paste&lt;/strong&gt; functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.&lt;/p&gt;
+&lt;p&gt;To create this alert, click on the little bell on the top right-hand corner of the chart, then select &lt;strong&gt;New detector from chart&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Adding Copied Charts</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</guid><description>&lt;p&gt;In this section, we are going to use the &lt;strong&gt;Copy and Paste&lt;/strong&gt; functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.&lt;/p&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
 &lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
 &lt;li&gt;Select the &lt;strong&gt;2+&lt;/strong&gt; at the top of the page and select &lt;strong&gt;Paste charts&lt;/strong&gt;, this will create the charts in your custom dashboard.&lt;/li&gt;
@@ -2131,7 +2297,7 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
 &lt;ul&gt;
-&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Events&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 hour by default).&lt;/li&gt;
+&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 hour by default).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
@@ -2146,7 +2312,7 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
 &lt;li&gt;&lt;strong&gt;UX Metrics&lt;/strong&gt; Page Views, Page Load and Web Vitals metrics&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Front-end Health&lt;/strong&gt; Breakdown of JavaScript Errors and Long Task duration and count&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Back-end Health&lt;/strong&gt; Network Errors and Requests and Time to First Byte&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Custom Events&lt;/strong&gt; RED metrics (Rate, Error &amp;amp; Duration) for custom events&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Custom Workflows&lt;/strong&gt; RED metrics (Rate, Error &amp;amp; Duration) for custom workflows&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Network Requests&lt;/strong&gt; Network URL grouping and key metrics&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Pages&lt;/strong&gt; URL grouping and key metrics and web vitals&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Map View&lt;/strong&gt; Geographical requests by location&lt;/li&gt;
@@ -2545,7 +2711,49 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
  &lt;span class="heading-text"&gt;Look at the Code&lt;/span&gt;
  &lt;a class="heading-anchor" href="#look-at-the-code" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Take a moment to inspect the source code and confirm there is zero instrumentation:&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</guid><description>&lt;h2 id="1-introduction"&gt;
+&lt;p&gt;Take a moment to inspect the source code and confirm there is zero instrumentation:&lt;/p&gt;</description></item><item><title>2. Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/2-generate-traffic/</guid><description>&lt;h2 id="access-the-application"&gt;
+ &lt;span class="heading-text"&gt;Access the Application&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#access-the-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Open the Cosmic Observatory Shop in your browser:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should see the astronomy equipment catalog with telescopes, eyepieces, and astrophotography gear&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/cosmic-shop.png" alt="app" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Optional - RabbitMQ management UI:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;http://localhost:15672&lt;/strong&gt; (login: &lt;code&gt;guest&lt;/code&gt; / &lt;code&gt;guest&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/rabbitmq.png" alt="rabbitmq" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;If the UI does not load, verify the loadbalancer port and use port-forward:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps --filter &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;k3d-cosmic-shop-serverlb --format &lt;span class="s1"&gt;&amp;#39;{{.Ports}}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="generate-initial-traffic"&gt;
+ &lt;span class="heading-text"&gt;Generate Initial Traffic&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#generate-initial-traffic" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;After opening the shop at http://localhost:30080&lt;/li&gt;
+&lt;li&gt;Enter an email address (e.g. &lt;code&gt;observer@cosmic.shop&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Purchase&lt;/strong&gt; on any product&lt;/li&gt;
+&lt;li&gt;Confirm the order in the modal&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Repeat a few times to generate trace data.&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/</guid><description>&lt;h2 id="1-introduction"&gt;
  &lt;span class="heading-text"&gt;1. Introduction&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -3833,7 +4041,63 @@ configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;
 &lt;li&gt;&lt;strong&gt;Credentials Plugin&lt;/strong&gt; (usually pre-installed)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Git Plugin&lt;/strong&gt; (if using SCM)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;To install:&lt;/p&gt;</description></item><item><title>OrbStack</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/orbstack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/orbstack/</guid><description>&lt;p&gt;Install Orbstack and jq:&lt;/p&gt;
+&lt;p&gt;To install:&lt;/p&gt;</description></item><item><title>Observe in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/2-observe-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/06-fix-nginx-propagation/2-observe-in-splunk/</guid><description>&lt;h2 id="check-splunk"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-confirm-partial-correlation-in-rum"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm partial correlation in RUM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-partial-correlation-in-rum" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You will now see the RUM session with APM correlation&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/r-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id="2-confirm-partial-correlation-in-traces"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm partial correlation in Traces&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-partial-correlation-in-traces" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In &lt;strong&gt;APM → Traces&lt;/strong&gt; view, open a recent &lt;code&gt;frontend-api&lt;/code&gt; trace. The frontend span should share a trace ID with the browser/RUM session after this fix.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/t-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;</description></item><item><title>Observe in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/07--fix-payment-gateway-propagation/2-observe-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/07--fix-payment-gateway-propagation/2-observe-in-splunk/</guid><description>&lt;h2 id="check-splunk"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-confirm-partial-correlation-in-service-map"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm partial correlation in Service Map&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-partial-correlation-in-service-map" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You will now see the service map with APM correlation between the payment-gateway and payment-api&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/s-gateway-aft.png" alt="gtway-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id="2-confirm-partial-correlation-in-traces"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm partial correlation in Traces&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-partial-correlation-in-traces" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In &lt;strong&gt;APM → Traces&lt;/strong&gt; view, open a recent &lt;code&gt;order-api&lt;/code&gt; trace. The order span should now show correlation between the order-api and .&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="./images/t-gateway-aft.png" alt="gtway-aft" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;</description></item><item><title>OrbStack</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/orbstack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/orbstack/</guid><description>&lt;p&gt;Install Orbstack and jq:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -4021,7 +4285,159 @@ configured to pull metrics from &lt;code&gt;Cognitive Services&lt;/code&gt;:&lt;
  &lt;a class="heading-anchor" href="#why-a-single-inventory-view-matters" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;Standalone vulnerability scanners often report theoretical findings against code repositories or container images - not what is actually loaded in running JVMs and services. Teams export spreadsheets, cross-reference CMDB entries, and still lack confidence in production exposure.&lt;/p&gt;
-&lt;p&gt;Splunk Secure Application discovers vulnerabilities &lt;strong&gt;at runtime&lt;/strong&gt;, correlated to deployed applications and the same APM context teams use for performance troubleshooting. A consolidated inventory answers the executive question: &lt;em&gt;what is our application security risk exposure right now?&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Deploy OpenTelemetry Demo Applciation</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</guid><description>&lt;h2 id="introduction"&gt;
+&lt;p&gt;Splunk Secure Application discovers vulnerabilities &lt;strong&gt;at runtime&lt;/strong&gt;, correlated to deployed applications and the same APM context teams use for performance troubleshooting. A consolidated inventory answers the executive question: &lt;em&gt;what is our application security risk exposure right now?&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Create Cluster</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/03-create-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/03-create-cluster/</guid><description>&lt;p&gt;Our setup script creates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A single server k3d cluster named &lt;code&gt;cosmic-shop&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A local Docker registry on port &lt;strong&gt;5111&lt;/strong&gt; for pushing workshop images&lt;/li&gt;
+&lt;li&gt;NodePort mappings for the shop UI (&lt;strong&gt;30080&lt;/strong&gt;) and RabbitMQ management UI (&lt;strong&gt;15672&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="create-the-cluster"&gt;
+ &lt;span class="heading-text"&gt;Create the Cluster&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#create-the-cluster" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;From the project root:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-22-1--0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-confirm-k3d-cluster-exists"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm k3d cluster exists&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-k3d-cluster-exists" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cosmic-shop 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cosmic-shop 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-47-1--1-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cosmic-shop 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h3 id="2-confirm-kubernetes-is-reachable"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm Kubernetes is reachable&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-kubernetes-is-reachable" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl cluster-info
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-20-context-propagation-03-create-cluster-md-66-1--2-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Kubernetes control plane is running at https://0.0.0.0:6443
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-cosmic-shop-server-0 Ready control-plane,master 45s v1.28.x+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-cosmic-shop-agent-0 Ready &amp;lt;none&amp;gt; 40s v1.28.x+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;All nodes must show &lt;code&gt;Ready&lt;/code&gt; in the STATUS column.&lt;/p&gt;</description></item><item><title>Deploy OpenTelemetry Demo Applciation</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-monitoring/1-getting-started/2-deploy-application/</guid><description>&lt;h2 id="introduction"&gt;
  &lt;span class="heading-text"&gt;Introduction&lt;/span&gt;
  &lt;a class="heading-anchor" href="#introduction" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -4708,20 +5124,7 @@ activity, and synthesizer).&lt;/p&gt;</description></item><item><title>Apache OT
  &lt;a class="heading-anchor" href="#confirm-apm-is-empty" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item><item><title>3. Check Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/3-check-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/19-context-propagation/3-deploy-splunk-otel-collector/3-check-splunk/</guid><description>&lt;h2 id="confirm-infrastructure-metrics-in-splunk"&gt;
- &lt;span class="heading-text"&gt;Confirm Infrastructure Metrics in Splunk&lt;/span&gt;
- &lt;a class="heading-anchor" href="#confirm-infrastructure-metrics-in-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;Allow &lt;strong&gt;2–5 minutes&lt;/strong&gt; after deploy for infrastructure metrics to appear..&lt;/div&gt;&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;Open &lt;strong&gt;Infrastructure → Kubernetes&lt;/strong&gt; (or &lt;strong&gt;Infrastructure Monitoring&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;Filter by cluster &lt;strong&gt;&lt;code&gt;trace-workshop&lt;/code&gt;&lt;/strong&gt; (&lt;code&gt;k8s.cluster.name&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Confirm node CPU/memory and pod metrics (for example &lt;code&gt;k8s.node.*&lt;/code&gt;, &lt;code&gt;k8s.pod.*&lt;/code&gt;, &lt;code&gt;system.cpu.*&lt;/code&gt;)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;All infrastructure metrics are tagged with &lt;code&gt;k8s.cluster.name=trace-workshop-&amp;lt;your-Initials&amp;gt;&lt;/code&gt; (from &lt;code&gt;K8S_CLUSTER_NAME&lt;/code&gt; in &lt;code&gt;workshop-config&lt;/code&gt; ConfigMap).&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;If infrastructure metrics are missing:&lt;/p&gt;</description></item><item><title>Code to Kubernetes - Python</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/</guid><description>&lt;h2 id="code-to-kubernetes---python"&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item><item><title>Code to Kubernetes - Python</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/</guid><description>&lt;h2 id="code-to-kubernetes---python"&gt;
  &lt;span class="heading-text"&gt;Code to Kubernetes - Python&lt;/span&gt;
  &lt;a class="heading-anchor" href="#code-to-kubernetes---python" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -4939,7 +5342,26 @@ We can deploy the credit check service in our K8s cluster with the following com
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;environment=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;INSTANCE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-ebpf&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;obi.enabled=true&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;That single &lt;code&gt;--set=&amp;quot;obi.enabled=true&amp;quot;&lt;/code&gt; is the only change. The Helm chart handles everything else:&lt;/p&gt;</description></item><item><title>3. Filtering and Grouping</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/3-filtering-and-grouping/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/3-filtering-and-grouping/</guid><description>&lt;p&gt;With Log Observer open and your environment filter set, you&amp;rsquo;re looking at all logs from all services. That&amp;rsquo;s a lot of noise. Let&amp;rsquo;s narrow it down.&lt;/p&gt;
+&lt;p&gt;That single &lt;code&gt;--set=&amp;quot;obi.enabled=true&amp;quot;&lt;/code&gt; is the only change. The Helm chart handles everything else:&lt;/p&gt;</description></item><item><title>3. Explore APM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/3-check-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/3-check-splunk-apm/</guid><description>&lt;h2 id="the-apm-request-path"&gt;
+ &lt;span class="heading-text"&gt;The APM Request Path&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-apm-request-path" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;When you clicked &lt;strong&gt;Place order&lt;/strong&gt;, the request flowed through:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Browser (RUM span)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Frontend NGINX
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Edge Gateway NGINX ← break #1: trace headers dropped
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Order API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Catalog API ← direct HTTP 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment Gateway ← break #2: strips headers to payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → RabbitMQ ← break #3: no trace context in message
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Fulfillment Worker ← orphan root trace&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Three breaks occur:&lt;/p&gt;</description></item><item><title>3. Filtering and Grouping</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/3-filtering-and-grouping/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/3-filtering-and-grouping/</guid><description>&lt;p&gt;With Log Observer open and your environment filter set, you&amp;rsquo;re looking at all logs from all services. That&amp;rsquo;s a lot of noise. Let&amp;rsquo;s narrow it down.&lt;/p&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
 &lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;Step 1: Group by Severity&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -5899,7 +6321,51 @@ In the &lt;strong&gt;Spans terminal&lt;/strong&gt; window navigate to the &lt;co
  &lt;a class="heading-anchor" href="#why-cvss-alone-is-insufficient" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;CVSS describes theoretical severity - how bad a vulnerability could be in the abstract. It does not tell you whether a public exploit exists, whether malicious activity has been observed, or whether the weakness is reachable in your running services.&lt;/p&gt;
-&lt;p&gt;Splunk Secure Application adds &lt;strong&gt;Security Risk Score&lt;/strong&gt; - threat telemetry combining base CVSS with real-world signals such as exploit availability and observed activity. Operational risk assessment &amp;amp; triage should use both scores, not CVSS alone.&lt;/p&gt;</description></item><item><title>Creating Routing Keys</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</guid><description>&lt;h2 id="aim"&gt;
+&lt;p&gt;Splunk Secure Application adds &lt;strong&gt;Security Risk Score&lt;/strong&gt; - threat telemetry combining base CVSS with real-world signals such as exploit availability and observed activity. Operational risk assessment &amp;amp; triage should use both scores, not CVSS alone.&lt;/p&gt;</description></item><item><title>Install oTel Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/04-deploy-splunk-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/04-deploy-splunk-otel-collector/</guid><description>&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;Each application pod sends data to the collector via the node IP:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O11y Cloud&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="install-via-helm"&gt;
+ &lt;span class="heading-text"&gt;Install via Helm&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#install-via-helm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Ensure your &lt;code&gt;.env&lt;/code&gt; file is configured, then run:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make collector&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Or manually:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .env
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm repo update
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm upgrade --install splunk-otel-collector splunk-otel-collector-chart/splunk-otel-collector &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --namespace cosmic-shop &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --create-namespace &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -f deploy/helm/splunk-otel-values.yaml &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;splunkObservability.realm=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SPLUNK_REALM&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;splunkObservability.accessToken=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SPLUNK_ACCESS_TOKEN&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;clusterName=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;CLUSTER_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --set&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;environment=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SPLUNK_DEPLOYMENT_ENV&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run these commands after &lt;code&gt;make collector&lt;/code&gt; completes.&lt;/p&gt;</description></item><item><title>Creating Routing Keys</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/10-oncall/getting_started/routing/</guid><description>&lt;h2 id="aim"&gt;
  &lt;span class="heading-text"&gt;Aim&lt;/span&gt;
  &lt;a class="heading-anchor" href="#aim" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -6282,7 +6748,28 @@ and management of all necessary NVIDIA software components to provision GPUs wit
 &lt;p&gt;The &lt;strong&gt;NVIDIA NIM Operator&lt;/strong&gt; is used to deploy LLMs in Kubernetes environments, such
 as the OpenShift cluster we created earlier in this workshop.&lt;/p&gt;
 &lt;p&gt;This section of the workshop walks through the steps necessary to deploy both the
-NVIDIA GPU and NIM operators in our OpenShift cluster.&lt;/p&gt;</description></item><item><title>Explore Trace Data</title><link>https://splunk.github.io/observability-workshop/en/scenarios/debug-problems/tagging/4-explore-trace-data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/debug-problems/tagging/4-explore-trace-data/</guid><description>&lt;p&gt;Now that we&amp;rsquo;ve captured several tags from our application, let&amp;rsquo;s explore some of the trace data we&amp;rsquo;ve captured that include this additional context, and see if we can identify what&amp;rsquo;s causing a poor user experience in some cases.&lt;/p&gt;
+NVIDIA GPU and NIM operators in our OpenShift cluster.&lt;/p&gt;</description></item><item><title>4. Explore RUM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/4-check-splunk-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/20-context-propagation/05-build-and-deploy-app/4-check-splunk-rum/</guid><description>&lt;h2 id="the-rum-request-path"&gt;
+ &lt;span class="heading-text"&gt;The RUM Request Path&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-rum-request-path" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Open &lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Open browser DevTools → &lt;strong&gt;Network&lt;/strong&gt; tab&lt;/li&gt;
+&lt;li&gt;Place 3–5 orders for different products&lt;/li&gt;
+&lt;li&gt;In the Network tab, inspect a &lt;code&gt;POST /api/orders&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;Confirm the request includes a &lt;code&gt;traceparent&lt;/code&gt; header (injected by Splunk RUM)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Example header:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;The browser appears to be correcly instrumented and processing requests as expected.&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;</description></item><item><title>Explore Trace Data</title><link>https://splunk.github.io/observability-workshop/en/scenarios/debug-problems/tagging/4-explore-trace-data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/debug-problems/tagging/4-explore-trace-data/</guid><description>&lt;p&gt;Now that we&amp;rsquo;ve captured several tags from our application, let&amp;rsquo;s explore some of the trace data we&amp;rsquo;ve captured that include this additional context, and see if we can identify what&amp;rsquo;s causing a poor user experience in some cases.&lt;/p&gt;
 &lt;h2 id="use-trace-analyzer"&gt;
  &lt;span class="heading-text"&gt;Use Trace Analyzer&lt;/span&gt;
  &lt;a class="heading-anchor" href="#use-trace-analyzer" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;

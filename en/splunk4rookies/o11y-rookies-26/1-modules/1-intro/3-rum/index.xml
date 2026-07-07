@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital Experience (RUM) on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/</link><description>Recent content in Digital Experience (RUM) on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/index.xml" rel="self" type="application/rss+xml"/><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</guid><description>&lt;section class="exercise"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital Experience (RUM) on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/</link><description>Recent content in Digital Experience (RUM) on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/index.xml" rel="self" type="application/rss+xml"/><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</guid><description>&lt;p&gt;In this exercise, you&amp;rsquo;ll open the RUM Overview dashboard. The data you&amp;rsquo;ll see here was generated and also includes data from all the attendee&amp;rsquo;s including yourself — it captures the browsing and shopping everyone did in the Astronomy Shop earlier, now surfaced as real user metrics like page views, errors, and load performance. This is your chance to see your own session through the lens of Real User Monitoring.&lt;/p&gt;
+&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -16,13 +17,7 @@
  &lt;img src="../images/rum-de.png" alt="RUM" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This will open up the &lt;strong&gt;Application Summary Dashboard&lt;/strong&gt;. This section shows a quick overview of &lt;strong&gt;all&lt;/strong&gt; the applications being monitored.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The Real User Monitoring (RUM) Overview dashboard in Splunk Observability Cloud provides visibility into how real users experience your web applications. It captures browser-side performance metrics, JavaScript errors, and network request failures as they occur in actual user sessions. The dashboard surfaces Core Web Vitals (LCP, INP, CLS) to measure page load performance, displays error trends over time, and shows recent alerts, giving frontend teams the insights needed to identify and resolve issues affecting end-user experience.&lt;/p&gt;</description></item><item><title>2. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
+&lt;/p&gt;</description></item><item><title>2. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -33,7 +28,7 @@
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
 &lt;ul&gt;
-&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Events&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 hour by default).&lt;/li&gt;
+&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 hour by default).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
@@ -48,7 +43,7 @@
 &lt;li&gt;&lt;strong&gt;UX Metrics&lt;/strong&gt; Page Views, Page Load and Web Vitals metrics&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Front-end Health&lt;/strong&gt; Breakdown of JavaScript Errors and Long Task duration and count&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Back-end Health&lt;/strong&gt; Network Errors and Requests and Time to First Byte&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Custom Events&lt;/strong&gt; RED metrics (Rate, Error &amp;amp; Duration) for custom events&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Custom Workflows&lt;/strong&gt; RED metrics (Rate, Error &amp;amp; Duration) for custom workflows&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Network Requests&lt;/strong&gt; Network URL grouping and key metrics&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Pages&lt;/strong&gt; URL grouping and key metrics and web vitals&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Map View&lt;/strong&gt; Geographical requests by location&lt;/li&gt;
