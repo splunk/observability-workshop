@@ -3,9 +3,9 @@ title: Configure Environment
 linkTitle: 02. Configure Environment
 weight: 2
 time: 5 minutes
-description: In this step, you'll create an `.env` file with your Splunk Observability Cloud credentials and workshop settings. 
 
 ---
+In this step, you'll create an `.env` file with your Splunk Observability Cloud credentials and workshop settings. 
 
 {{% notice title="Validation Checklist" style="green" icon="running" %}}
 Your environment should already have values for `SPLUNK_ACCESS_TOKEN`, `SPLUNK_REALM`, and `SPLUNK_RUM_ACCESS_TOKEN`
@@ -59,4 +59,3 @@ TAG=latest
 
 {{% /notice %}}
 
----

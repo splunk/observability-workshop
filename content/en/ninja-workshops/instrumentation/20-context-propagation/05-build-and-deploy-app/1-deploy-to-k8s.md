@@ -1,11 +1,11 @@
 ---
-title: 1. Deploy to K8s
+title: Deploy to K8s
 linkTitle: 1. Deploy to K8s
 weight: 1
 time: 10 minutes
-description: In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. 
 
 ---
+In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. 
 
 ## Deploy to Kubernetes
 
@@ -20,11 +20,9 @@ This script:
 3. Points deployments at the registry images
 4. Waits for all rollouts to complete
 
----
+## Validation Checklist - Deploy
 
-## Validation checklist - Deploy
-
-### 1. Confirm all pods are running
+#### 1. Confirm all pods are running
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -33,7 +31,8 @@ This script:
 kubectl -n cosmic-shop get pods
 ```
 
-**Expected output:**
+{{% /tab %}}
+{{% tab title="Example Output" %}}
 
 ```
 NAME                                  READY   STATUS    RESTARTS   AGE
@@ -57,7 +56,7 @@ storefront-api-xxxxxxxxxx-xxxxx       1/1     Running   0          2m
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm services and NodePort
+#### 2. Confirm services and NodePort
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -82,7 +81,7 @@ storefront-api   ClusterIP   10.43.xxx.xxx   <none>        3001/TCP             
 {{% /tab %}}
 {{< /tabs >}}
 
-### 3. Confirm backend health endpoints
+#### 3. Confirm backend health endpoints
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -105,7 +104,7 @@ kubectl -n cosmic-shop exec deploy/order-api -- wget -qO- http://localhost:3001/
 {{% /tab %}}
 {{< /tabs >}}
 
-### 4. Confirm shop UI responds
+#### 4. Confirm shop UI responds
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -128,7 +127,7 @@ HTTP 200
 {{% /tab %}}
 {{< /tabs >}}
 
-### 5. Confirm API catalog endpoint via gateway
+#### 5. Confirm API catalog endpoint via gateway
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -155,14 +154,14 @@ curl -s http://localhost:30080/api/catalog | python3 -m json.tool | head -20
 {{% /tab %}}
 {{< /tabs >}}
 
-### 6. Confirm RabbitMQ management UI
-
-{{< tabs >}}
-{{% tab title="Script" %}}
+#### 6. Confirm RabbitMQ management UI
 
 The RabbitMQ Service uses **NodePort 15672** so k3d can expose the management UI through the loadbalancer.
 
-**Verify the k3d loadbalancer mapped port 15672:**
+#### Verify k3d loadbalancer is mapped port 15672
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ```bash
 docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
@@ -177,18 +176,27 @@ docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
 
 If **15672 is missing** from that output, the cluster was created without the RabbitMQ port mapping — see `RabbitMQ UI is not loading` below.
 
-**Confirm HTTP responds:**
+{{% /tab %}}
+{{< /tabs >}}
+
+#### Confirm HTTP responds
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ```bash
 curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:15672/
 ```
-
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```
 HTTP 200
 ```
+{{% /tab %}}
+{{< /tabs >}}
+
+#### Log In to RabbitMQ [Optional]:
 
 Open **http://localhost:15672** in a browser and log in with `guest` / `guest`.
 
@@ -200,7 +208,4 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 Then open http://localhost:15672 again.
 
-{{% /tab %}}
-{{< /tabs >}}
 
----

@@ -3,17 +3,15 @@ title: Create Cluster
 linkTitle: 03. Create Cluster
 weight: 3
 time: 15 minutes
-description: In this step, you'll create a lightweight Kubernetes cluster using k3d with a local container registry for workshop images.
 
 ---
+In this step, you'll create a lightweight Kubernetes cluster using k3d with a local container registry for workshop images.
 
 Our setup script creates:
 
 - A single server k3d cluster named `cosmic-shop`
 - A local Docker registry on port **5111** for pushing workshop images
 - NodePort mappings for the shop UI (**30080**) and RabbitMQ management UI (**15672**)
-
----
 
 ## Create the Cluster
 
@@ -38,11 +36,9 @@ k3d cluster 'cosmic-shop' ready.
 {{% /tab %}}
 {{< /tabs >}}
 
----
-
 ## Validation Checklist
 
-### 1. Confirm k3d cluster exists
+#### 1. Confirm k3d cluster exists
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -61,7 +57,7 @@ cosmic-shop   1/1       1/1      true
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm Kubernetes is reachable
+#### 2. Confirm Kubernetes is reachable
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -88,7 +84,7 @@ All nodes must show `Ready` in the STATUS column.
 {{% /tab %}}
 {{< /tabs >}}
 
-### 3. Confirm k3d containers are running
+#### 3. Confirm k3d containers are running
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -112,7 +108,7 @@ You should see the load balancer exposing ports **30080** and **15672**.
 {{% /tab %}}
 {{< /tabs >}}
 
-### 4. Verify the RabbitMQ port mapping explicitly:
+#### 4. Verify the RabbitMQ port mapping explicitly
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -133,18 +129,16 @@ If **15672 is missing**, the cluster was created without the RabbitMQ port mappi
 {{% /tab %}}
 {{< /tabs >}}
 
----
-
 ## Troubleshooting
 
-Here's some of the potential issues you may encounter in this step & suggested remediation steps.
+Here are some of the potential issues you may encounter in this step & suggested remediation steps.
 
-{{< details summary="Click here to see the answer" >}}
-### Potential Issue 1: Port already in use
+{{< details summary="Click here for Troubleshooting Guidance" >}}
+#### Potential Issue 1: Port already in use
 
 If port 30080 or 5111 is taken, either stop the conflicting service or edit `scripts/setup-k3d.sh` to use different ports.
 
-### Potential Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
+#### Potential Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
 
 If http://localhost:15672 does not load, check whether k3d mapped the port:
 
@@ -160,7 +154,7 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 Keep that terminal open, then open http://localhost:15672 (`guest` / `guest`).
 
-### Potential Issue 3: Cluster already exists
+#### Potential Issue 3: Cluster already exists
 
 The script skips creation if a cluster named `cosmic-shop` already exists. To start fresh:
 
@@ -169,5 +163,3 @@ k3d cluster delete cosmic-shop
 make setup-k3d
 ```
 {{< /details >}}
-
----

@@ -22,7 +22,6 @@ You will observe fragmented service map and traces when required W3C headers are
 
 We will then fix the issues to restore end-to-end context propagation across all service and infrastructure layers.
 
----
 
 ## Architecture | Expected Output
 
@@ -36,8 +35,6 @@ Browser (RUM)
                                    Break #1              Break #2       Break #3
                                    (Step 06)             (Step 07)      (Step 08)
 ```
-
----
 
 Let's get started!
 

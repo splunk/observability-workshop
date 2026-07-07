@@ -2,7 +2,6 @@
 title: Wrap-Up
 weight: 10
 time: 5 minutes
-description: Key takeaways & cleanup instructions.
 
 ---
 
@@ -22,8 +21,6 @@ Together, these fixes reconnect browser/RUM spans, synchronous HTTP hops through
 Congratulations - you've restored full-stack observability across proxies and message buses!
 {{% /notice %}}
 
----
-
 ## Clean Up
 
 Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images):
@@ -31,6 +28,4 @@ Remove all local workshop resources (k3d cluster, Splunk collector, app workload
 ```bash
 make cleanup
 ```
-
----
 
