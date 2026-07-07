@@ -1,0 +1,44 @@
+[
+    {
+      "name": "get_patient_info",
+      "description": "Retrieve patient's details by their ID, including name, address, phone number, patient type, and prescription",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "patient_id": {
+            "type": "string",
+            "description": "The patient's unique identifier (e.g., 'P001', 'P005')"
+          }
+        },
+        "required": ["patient_id"]
+      }
+    },
+    {
+      "name": "delete_patient_record",
+      "description": "Permanently delete a patient record from the registry by their patient ID",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "patient_id": {
+            "type": "string",
+            "description": "The patient's unique identifier to delete (e.g., 'P001', 'P005')"
+          }
+        },
+        "required": ["patient_id"]
+      }
+    },
+    {
+      "name": "search_medicine_qa",
+      "description": "Search the Medicine knowledge base to answer questions about medications, including dosage, side effects, and interactions",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The question or topic to search for (e.g., 'Lisinopril', 'Metformin', 'Aspirin')"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]

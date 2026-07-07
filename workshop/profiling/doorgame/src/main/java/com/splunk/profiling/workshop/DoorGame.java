@@ -1,7 +1,7 @@
 package com.splunk.profiling.workshop;
 
 import io.opentelemetry.api.trace.SpanKind;
-import io.opentelemetry.extension.annotations.WithSpan;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 
 import java.util.Map;
 import java.util.Random;
