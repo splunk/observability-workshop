@@ -1,0 +1,16 @@
+streamlit
+openai
+python-dotenv
+langchain
+langchain-core
+langchain-openai
+langgraph
+langchain-postgres
+psycopg[binary]
+langchain-text-splitters
+langchain-community
+langchain-classic
+pyyaml
+toml
+pandas
+galileo

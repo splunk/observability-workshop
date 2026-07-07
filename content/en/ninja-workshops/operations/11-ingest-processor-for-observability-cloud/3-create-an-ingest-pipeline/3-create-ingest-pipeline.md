@@ -42,15 +42,11 @@ When you open the **Ingest Processor SCS Tenant**, if you are taken to a welcome
 
 ![Configure Snapshot Sourcetype](../../images/capture_snapshot_sourcetype.png?width=20vw)
 
-**8.** In the **Select a metrics destination** step of the Ingest Processor configuration page select **show_o11y_org**. Click **Next**.
-
-![Metrics Destination](../../images/metrics_destination.png?width=20vw)
-
-**9.** In the **Select a data destination** step of the Ingest Processor configuration page select **splunk_indexer**. Under **Specify how you want your events to be routed to an index** select **Default**. Click **Done**.
+**8.** In the **Select a destination for $destination** step of the Ingest Processor configuration page select **splunk_indexer**. Under **Specify how you want your events to be routed to an index** select **Default**. Click **Done**.
 
 ![Event Routing](../../images/event_routing.png?width=20vw)
 
-**10.** In the **Pipeline search field** replace the default search with the following.
+**9.** In the **Pipeline search field** replace the default search with the following.
 
 {{% notice title="Note" style="primary" icon="lightbulb" %}}
 **Replace `UNIQUE_FIELD` in the metric name with a unique value (such as your initials) which will be used to identify your metric in Observability Cloud.**
@@ -87,15 +83,23 @@ Here is a breakdown of what the SPL2 query is doing:
 
 {{% /notice %}}
 
-**11.** In the upper-right corner click the **Preview** button ![Preview Button](../../images/preview.png?height=20px&classes=inline) or press CTRL+Enter (CMD+Enter on Mac). From the **Previewing $pipeline** dropdown select **$metrics_destination**. Confirm you are seeing a preview of the metrics that will be sent to Splunk Observability Cloud.
+**10.** After updating the SPL2 statement, set the metrics destination by clicking `$metrics_destination` under the `Actions` section in the Pipeline details on the right. 
+
+![Preview Pipeline](../../images/pipeline_metrics_destination.png?width=40vw)
+
+**11.** Select `show_o11y_org` as the destination and click `Apply`. The metrics that are created from the kubernetes event logs will now be sent to the selected **Splunk Observability Cloud** organization
+
+![Preview Pipeline](../../images/pipeline_metrics_destination_apply.png?width=40vw)
+
+**12.** In the upper-right corner click the **Preview** button ![Preview Button](../../images/preview.png?height=20px&classes=inline) or press CTRL+Enter (CMD+Enter on Mac). From the **Previewing $pipeline** dropdown select **$metrics_destination**. Confirm you are seeing a preview of the metrics that will be sent to Splunk Observability Cloud.
 
 ![Preview Pipeline](../../images/preview_pipeline.png?width=40vw)
 
-**12.** In the upper-right corner click the **Save pipeline** button ![Save Pipeline Button](../../images/save_pipeline_btn.png?height=20px&classes=inline). Enter `Kubernetes Audit Logs2Metrics USER_ID` for your pipeline name and click **Save**.
+**13.** In the upper-right corner click the **Save pipeline** button ![Save Pipeline Button](../../images/save_pipeline_btn.png?height=20px&classes=inline). Enter `Kubernetes Audit Logs2Metrics USER_ID` for your pipeline name and click **Save**.
 
 ![Save Pipeline Dialog](../../images/save_pipeline_dialog.png?width=40vw)
 
-**13.** After clicking save you will be asked if you would like to apply the newly created pipeline. Click **Yes, apply**.
+**14.** After clicking save you will be asked if you would like to apply the newly created pipeline. Click **Yes, apply**.
 
 ![Apply Pipeline Dialog](../../images/apply_pipeline_dialog.png?width=40vw)
 
