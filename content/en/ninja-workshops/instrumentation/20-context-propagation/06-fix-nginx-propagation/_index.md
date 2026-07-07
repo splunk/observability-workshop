@@ -10,7 +10,7 @@ description: In this step, you'll **edit** the edge gateway NGINX configuration 
 {{% notice title="Note" style="info" %}}
 The workshop runs **two separate NGINX instances**. Only the **edge gateway** will be changed in this step.
 
-### Why only the edge gateway?
+#### Why only the edge gateway?
 
 Because this is the Order traffic path (where break #1 occurs):
 
@@ -23,11 +23,9 @@ Browser
 ```
 
 So trace headers for `/api/purchases` must survive **frontend-api → gateway → order-api**. The edge gateway is dropping `traceparent`, `tracestate`, and `baggage` on the proxy hop to `order-api`.
-
 {{% /notice %}}
----
 
-## The fix
+## The Fix
 
 We now need to add explicit forwarding for the three W3C context headers in each `location` block:
 
@@ -38,8 +36,6 @@ proxy_set_header baggage $http_baggage;
 ```
 
 These directives tell NGINX to pass the incoming trace context from the client (Splunk RUM) through to the upstream service.
-
----
 
 ## Apply the Fix
 
@@ -61,8 +57,6 @@ Add explicit forwarding for the three W3C context headers **after** the standard
 {{% notice title="Note" style="green" icon="running" %}}
 These directives tell NGINX to pass the incoming trace context from `frontend-api` through to `order-api`.
 {{% /notice %}}
-
----
 
 ## Before and after
 
@@ -106,5 +100,3 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
 
 {{% /tab %}}
 {{< /tabs >}}
-
----

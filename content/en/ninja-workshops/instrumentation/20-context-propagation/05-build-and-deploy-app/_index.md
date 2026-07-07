@@ -3,9 +3,9 @@ title: Build & Deploy Application
 linkTitle: 05. Build & Deploy Application
 weight: 5
 time: 10 minutes
-description: In this step, you'll build Docker images for all Cosmic Observatory Shop services, push them to the k3d local registry, and deploy the full stack to Kubernetes. 
 
 ---
+In this step, you'll build Docker images for all Cosmic Observatory Shop services, push them to the k3d local registry, and deploy the full stack to Kubernetes.
 
 ## Build container images
 
@@ -15,7 +15,7 @@ From the project root, with `.env` configured:
 make build
 ```
 
-This builds and pushes four images to `localhost:5111`:
+This builds and pushes four images to `localhost:5111`
 
 | Image | Service |
 |-------|---------|
@@ -24,11 +24,9 @@ This builds and pushes four images to `localhost:5111`:
 | `cosmic-shop/catalog-api` | Product catalog with Splunk APM |
 | `cosmic-shop/order-worker` | RabbitMQ consumer with Splunk APM |
 
----
-
 ## Validation Checklist - Build
 
-### 1. Confirm all four images were pushed
+#### 1. Confirm all four images were pushed
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -54,7 +52,7 @@ curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm all relevant images exist
+#### 2. Confirm all relevant images exist
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -75,5 +73,3 @@ localhost:5111/cosmic-shop/order-worker      latest    ...
 
 {{% /tab %}}
 {{< /tabs >}}
-
----

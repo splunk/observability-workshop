@@ -3,17 +3,12 @@ title: Prerequisites
 linkTitle: 01. Prerequisites
 weight: 1
 time: 5 minutes
-description: Goals and architecture for the workshop.
 
 ---
-
-# Prerequisites
 
 Before starting this workshop, ensure you have the following tools installed and have a Splunk Observability Cloud account ready.
 
----
-
-## Knowledge Prerequisites
+## Knowledge Requirement
 
 This workshop assumes familiarity with:
 
@@ -22,8 +17,6 @@ This workshop assumes familiarity with:
 - The idea of distributed tracing (spans, traces...)
 
 OpenTelemetry experience is required - we'll explain context propagation challenges as we go.
-
----
 
 ## Required Software
 
@@ -38,7 +31,6 @@ These tools will be installed on your instance:
 | [Helm](https://helm.sh/docs/intro/install/) | 3.12+ | `helm version` |
 | [Node.js](https://nodejs.org/) (optional) | 20.x | `node --version` |
 
----
 
 ## Splunk Observability Cloud Access
 
@@ -61,7 +53,7 @@ You'll need access to a Splunk Observability Cloud org with permission to:
 
 Run these commands from your assigned instance before continuing. Each section includes expected output so you can confirm you're ready.
 
-### 1. Verify required tools
+#### 1. Verify required tools
 
 **Expected output (versions may vary):**
 
@@ -90,7 +82,7 @@ git version 2.47.0
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm required ports are free
+#### 2. Confirm required ports are free
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -111,4 +103,3 @@ Ports 30080, 5111, and 15672 are available
 {{% /tab %}}
 {{< /tabs >}}
 
----

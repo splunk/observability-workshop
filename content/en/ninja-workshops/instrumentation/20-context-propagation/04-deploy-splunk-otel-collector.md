@@ -2,10 +2,11 @@
 title: Install oTel Collector
 linkTitle: 04. Install oTel Collector
 weight: 4
-time: 15 minutes
-description: In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. The collector receives traces and metrics from instrumented services and forwards them to Splunk Observability Cloud.
+time: 15 minutes 
 
 ---
+
+In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. The collector receives traces and metrics from instrumented services and forwards them to Splunk Observability Cloud.
 
 {{% notice title="Note" style="info" %}}
 
@@ -16,17 +17,19 @@ Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O1
 ```
 {{% /notice %}}
 
----
-
 ## Install via Helm
 
 Ensure your `.env` file is configured, then run:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ```bash
 make collector
 ```
 
-Or manually:
+{{% /tab %}}
+{{% tab title="Manually" %}}
 
 ```bash
 source .env
@@ -43,14 +46,14 @@ helm upgrade --install splunk-otel-collector splunk-otel-collector-chart/splunk-
   --set="clusterName=${CLUSTER_NAME}" \
   --set="environment=${SPLUNK_DEPLOYMENT_ENV}"
 ```
-
----
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Validation Checklist
 
 Run these commands after `make collector` completes.
 
-### 1. Confirm Helm release is installed
+#### 1. Confirm Helm release is installed
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -72,7 +75,7 @@ STATUS must be `deployed`. If it shows `failed`, re-check `SPLUNK_REALM` and `SP
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm collector pods are running
+#### 2. Confirm collector pods are running
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -97,7 +100,7 @@ READY should be `1/1` and STATUS should be `Running`. If STATUS is `CrashLoopBac
 {{% /tab %}}
 {{< /tabs >}}
 
-### 3. Confirm collector logs show no auth errors
+#### 3. Confirm collector logs show no auth errors
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -131,8 +134,6 @@ make collector
 {{% /tab %}}
 {{< /tabs >}}
 
----
-
 ## Confirm your Cluster in Splunk Observability Cloud
 
 1. Open Splunk Observability Cloud
@@ -141,21 +142,18 @@ make collector
 
 The cluster should appear within a few minutes of the collector starting.
 
----
-
 ## Troubleshooting
 
 Here's some of the potential issues you may encounter in this step & suggested remediation steps.
 
-{{< details summary="Click here to see the answer" >}}
+{{< details summary="Click here for Troubleshooting Guidance" >}}
 
-### Potential Issue 1. Helm install fails with auth error
+#### Potential Issue 1. Helm install fails with auth error
 
 Verify `SPLUNK_ACCESS_TOKEN` and `SPLUNK_REALM` in `.env` are correct and the token has ingest permissions.
 
-### Potential Issue 2. No cluster in Infrastructure navigator
+#### Potential Issue 2. No cluster in Infrastructure navigator
 
 Wait 2–3 minutes. Confirm the collector pod is running and check its logs for export errors.
 
 {{< /details >}}
----

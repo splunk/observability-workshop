@@ -1,11 +1,11 @@
 ---
-title: 4. Explore RUM in Splunk
+title: Explore RUM in Splunk
 linkTitle: 4. Explore RUM in Splunk
 weight: 4
 time: 10 minutes
-description: In this step, you'll observe how RUM sessions appear add context to requests and how they appear in Splunk Observability Cloud. This is the "problem state" of how the APM issue reflects in RUM. 
 
 ---
+In this step, you'll observe how RUM sessions appear add context to requests and how they appear in Splunk Observability Cloud. This is the "problem state" of how the APM issue reflects in RUM. 
 
 ## The RUM Request Path
 
@@ -23,8 +23,6 @@ traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 
 The browser appears to be correcly instrumented and processing requests as expected.
 
----
-
 {{% notice title="Note" style="green" icon="running" %}}
 Allow **2–5 minutes** after deploy for RUM data to appear..
 {{% /notice %}}
@@ -37,11 +35,9 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 4. Click on a `fetch` or `Click`resource for `/api/orders`
 4. Look for the **Backend Trace** link
 
-![rum](./images/rumsesh-b4.png)
+![rum](../images/rumsesh-b4.png)
 
----
-
-# Check-Point
+## Check-Point
 
 {{% notice title="Note" style="green" icon="running" %}}
 Both RUM and APM show a **Broken state:** 
@@ -50,5 +46,3 @@ RUM cannot link to the backend APM trace because the gateway stripped the `trace
 
 In the next steps, we will resolve these issues.
 {{% /notice %}}
-
----

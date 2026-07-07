@@ -1,11 +1,13 @@
 ---
-title: 3. Explore APM in Splunk
+title: Explore APM in Splunk
 linkTitle: 3. Explore APM in Splunk
 weight: 3
 time: 10 minutes
-description: In this step, you'll observe how disconnected traces appear in Splunk Observability Cloud. This is the "problem state" that the rest of the workshop fixes. 
-
+ 
 ---
+
+In this step, you'll observe how disconnected traces appear in Splunk Observability Cloud. This is the "problem state" that the rest of the workshop fixes. 
+
 
 ## The APM Request Path
 
@@ -29,8 +31,6 @@ Three breaks occur:
 2. **HTTP break #2** at the payment-gateway proxy (order API → payment API)
 3. **Messaging break** at RabbitMQ (payment API → fulfillment worker)
 
----
-
 ## Observe in Splunk APM
 
 {{% notice title="Note" style="green" icon="running" %}}
@@ -43,7 +43,7 @@ Allow **2-5 minutes** after generating data for metrics to appear..
 2. Filter environment: `workshop-context-prop`
 3. You should see services: `order-api`, `payment-gateway`, `payment-api`, `fulfillment-worker`, `catalog-api`
 
-![servicemap](./images/servicemap-b4.png)
+![servicemap](../images/servicemap-b4.png)
 
 ### Trace search
 
@@ -56,13 +56,11 @@ Allow **2-5 minutes** after generating data for metrics to appear..
 
 **What you'll see (broken state):**
 
-![trace-b4](./images/trace-b4.png)
-
----
+![trace-b4](../images/trace-b4.png)
 
 ## Knowledge Check
 
-### Why NGINX breaks propagation
+#### Why does NGINX break propagation
 
 {{< details summary="Click here to see the answer" >}}
 Our gateway uses a common production NGINX pattern:
@@ -83,9 +81,8 @@ When **any** `proxy_set_header` directive is present, NGINX stops automatically 
 This is one of the most common causes of broken trace correlation in production.
 ```
 {{< /details >}}
----
 
-### Why RabbitMQ breaks propagation
+#### Why does RabbitMQ break propagation
 
 {{< details summary="Click here to see the answer" >}}
 Our storefront publishes orders like this (broken state):
@@ -100,5 +97,3 @@ channel.sendToQueue(ordersQueue, Buffer.from(JSON.stringify(order)), {
 Unlike HTTP, message brokers don't participate in W3C Trace Context automatically. The producer must **inject** trace context into message headers, and the consumer must **extract** it. Without this, the consumer starts a new root trace.
 ```
 {{% /notice %}}
-
----

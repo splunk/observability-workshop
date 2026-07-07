@@ -3,26 +3,26 @@ title: Fix Payment Gateway Propagation
 linkTitle: 7. Fix Payment Gateway Propagation
 weight: 7
 time: 15 minutes
-description: In this step, you'll **edit application code** in the payment gateway proxy so it forwards W3C Trace Context to `payment-api`, then **rebuild and redeploy** the service.
 
 ---
+
+In this step, you'll **edit application code** in the payment gateway proxy so it forwards W3C Trace Context to `payment-api`, then **rebuild and redeploy** the service.
 
 {{% notice title="Note" style="info" %}}
 After fixing the edge NGINX gateway (step 06), traces may connect from the browser through `frontend-api` and into `order-api`. But when **frontend-api** submits payment via `payment-gateway`, the proxy forwards to `payment-api` **without** W3C trace headers.
 
 This break is a common **Node.js proxy bug**: the service is instrumented and visible in APM, but the outbound `fetch` does not propagate trace context.
+{{% /notice %}}
 
 In Splunk APM you'll see this behaviour:
 
 - `frontend-api` → `payment-gateway` - connected 
 - `payment-gateway` → `payment-api` - **disconnected** 
 
-![nginx-aft](./images/07-index.png)
+![nginx-aft1](./images/07-index.png)
 
 The payment gateway still creates its **own spans** (so it shows in the service map), but the upstream call starts a new trace on `payment-api`. This mirrors real teams who add a custom BFF/proxy and forget to propagate context on outbound HTTP calls - or when code uses `suppressTracing()` trying to avoid "double spans" which accidentally breaks propagation.
 
-{{% /notice %}}
----
 
 ## The Fix
 
@@ -64,8 +64,6 @@ const upstreamContext = suppressTracing(context.active());
 const upstreamContext = context.active();
 ```
 
----
-
 ## Before and After
 
 {{< tabs >}}
@@ -105,5 +103,3 @@ const upstreamContext = context.active();
 
 {{% /tab %}}
 {{< /tabs >}}
-
----

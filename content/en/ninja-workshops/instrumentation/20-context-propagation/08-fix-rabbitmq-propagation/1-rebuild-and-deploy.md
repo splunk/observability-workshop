@@ -1,5 +1,5 @@
 ---
-title: Rebuild and Deploy RabbitMQ fix
+title: ReDeploy RabbitMQ Fix
 weight: 1
 time: 5 minutes
 
@@ -17,13 +17,12 @@ kubectl -n cosmic-shop rollout restart deployment/fulfillment-worker
 kubectl -n cosmic-shop rollout status deployment/payment-api --timeout=180s
 kubectl -n cosmic-shop rollout status deployment/fulfillment-worker --timeout=180s
 ```
----
 
 ## Validation Checklist
 
 Run these commands after redeploy completes.
 
-### 1. Confirm health endpoints report propagation enabled
+#### 1. Confirm health endpoints report propagation enabled
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -45,7 +44,7 @@ kubectl -n cosmic-shop exec deploy/payment-api -- wget -qO- http://localhost:300
 {{% /tab %}}
 {{< /tabs >}}
 
-### 2. Confirm rollouts completed
+#### 2. Confirm rollouts completed
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -58,7 +57,7 @@ kubectl -n cosmic-shop rollout status deployment/fulfillment-worker
 {{% /tab %}}
 {{< /tabs >}}
 
-### 3. Confirm startup logs mention propagation
+#### 3. Confirm startup logs mention propagation
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -73,18 +72,16 @@ kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail=3
 
 ```
 RabbitMQ context propagation: ENABLED
-...
 RabbitMQ context propagation: ENABLED
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-### 4. Place a test order and verify worker processing
+#### 4. Place a test order and verify worker processing
 
-{{% notice %}}
+{{% notice title="Validation" style="green" icon="running" %}}
 Place **new** orders after redeploy - messages published before the fix will not carry trace context.
-
 {{% /notice %}}
 
 {{< tabs >}}
@@ -103,29 +100,25 @@ kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail=3
 {{% /tab %}}
 {{< /tabs >}}
 
----
-
 ## Troubleshooting
 
-{{< details summary="Click here to see the answer" >}}
-### Potential Issue 1. Fulfillment worker still shows orphan traces
+{{< details summary="Click here for Troubleshooting Guidance" >}}
+#### Potential Issue 1. Fulfillment worker still shows orphan traces
 
 - Confirm **both** files were edited (producer inject + consumer extract)
 - Confirm you ran **`make fix-rabbitmq`** (rebuilds both images — restart alone is not enough)
 - Verify both health endpoints show `"propagation": true`
 - Generate **new** orders after the fix
 
-### Potential Issue 2. Only payment-api health is true
+#### Potential Issue 2. Only payment-api health is true
 
 The consumer stub must be replaced with `extractTraceContext()` - fixing only the producer is not sufficient.
 
-### Potential Issue 3. Alternate pattern: auto-instrumentation
+#### Potential Issue 3. Alternate pattern: auto-instrumentation
 
 Some teams use **`@opentelemetry/instrumentation-amqplib`** (OpenTelemetry JS contrib) instead of manual inject/extract. 
 
 The failure mode is the same - instrumentation disabled or misconfigured - but the issue is resolved by enabling the library in `instrumentation.js` rather than editing publish/consume code. 
 
 This workshop uses raw `amqplib` because that is still common in Node.js services and makes the inject/extract contract explicit.
-
----
 {{< /details >}}
