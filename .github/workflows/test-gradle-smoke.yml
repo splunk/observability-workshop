@@ -1,0 +1,91 @@
+name: Smoke Test - Gradle
+
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the service directory (e.g. workshop/profiling/doorgame)
+        required: true
+        type: string
+      port:
+        description: Port the service listens on
+        required: true
+        type: number
+      java-version:
+        description: Java version to build and run with
+        required: false
+        type: string
+        default: '21'
+      smoke-path:
+        description: Endpoint path to hit for the startup health check (e.g. /new-game)
+        required: false
+        type: string
+        default: '/'
+
+jobs:
+  gradle-build:
+    name: Gradle Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: temurin
+          cache: gradle
+
+      - name: Build shadow JAR
+        run: ./gradlew shadowJar
+
+  app-smoke-test:
+    name: Application Smoke Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: temurin
+          cache: gradle
+
+      - name: Build shadow JAR
+        run: ./gradlew shadowJar
+
+      - name: Start application
+        run: java -jar build/libs/*-all.jar &
+
+      - name: Wait for application to be ready
+        run: |
+          echo "Waiting for application on port ${{ inputs.port }}..."
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:${{ inputs.port }}${{ inputs.smoke-path }} > /dev/null 2>&1; then
+              echo "Application ready after $((i * 2))s"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Application did not start within 60s"
+          exit 1
+
+      - name: Smoke test - check endpoint returns 200
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:${{ inputs.port }}${{ inputs.smoke-path }})
+          echo "GET ${{ inputs.smoke-path }} → HTTP $status"
+          [ "$status" = "200" ] || (echo "Expected HTTP 200, got $status" && exit 1)
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:latest ${{ inputs.service-path }}
