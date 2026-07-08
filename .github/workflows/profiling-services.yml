@@ -28,9 +28,7 @@ jobs:
   doorgame:
     needs: detect-changes
     if: needs.detect-changes.outputs.doorgame == 'true' || github.event_name == 'workflow_dispatch'
-    uses: ./.github/workflows/test-gradle-smoke.yml
+    uses: ./.github/workflows/test-spring-boot-smoke.yml
     with:
       service-path: workshop/profiling/doorgame
       port: 9090
-      java-version: '21'
-      smoke-path: /new-game
