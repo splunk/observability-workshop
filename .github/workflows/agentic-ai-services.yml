@@ -1,0 +1,110 @@
+name: Smoke Test - Agentic AI Services CI
+
+# Triggers when any agentic-ai service changes. Change detection routes to only
+# the affected service's reusable test workflow. Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/agentic-ai/base-app/**'
+      - 'workshop/agentic-ai/app-with-agents-and-tools/**'
+      - 'workshop/agentic-ai/app-with-instrumentation/**'
+      - 'workshop/agentic-ai/app-with-quality-issue/**'
+      - 'workshop/agentic-ai/app-with-security-risk/**'
+      - 'workshop/agentic-ai/app-with-ai-defense/**'
+      - 'workshop/agentic-ai/crewai/**'
+      - '.github/workflows/agentic-ai-services.yml'
+      - '.github/workflows/test-agentic-ai-smoke.yml'
+  pull_request:
+    paths:
+      - 'workshop/agentic-ai/base-app/**'
+      - 'workshop/agentic-ai/app-with-agents-and-tools/**'
+      - 'workshop/agentic-ai/app-with-instrumentation/**'
+      - 'workshop/agentic-ai/app-with-quality-issue/**'
+      - 'workshop/agentic-ai/app-with-security-risk/**'
+      - 'workshop/agentic-ai/app-with-ai-defense/**'
+      - 'workshop/agentic-ai/crewai/**'
+      - '.github/workflows/agentic-ai-services.yml'
+      - '.github/workflows/test-agentic-ai-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      base-app: ${{ steps.filter.outputs.base-app }}
+      agents-and-tools: ${{ steps.filter.outputs.agents-and-tools }}
+      instrumentation: ${{ steps.filter.outputs.instrumentation }}
+      quality-issue: ${{ steps.filter.outputs.quality-issue }}
+      security-risk: ${{ steps.filter.outputs.security-risk }}
+      ai-defense: ${{ steps.filter.outputs.ai-defense }}
+      crewai: ${{ steps.filter.outputs.crewai }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            base-app:
+              - 'workshop/agentic-ai/base-app/**'
+            agents-and-tools:
+              - 'workshop/agentic-ai/app-with-agents-and-tools/**'
+            instrumentation:
+              - 'workshop/agentic-ai/app-with-instrumentation/**'
+            quality-issue:
+              - 'workshop/agentic-ai/app-with-quality-issue/**'
+            security-risk:
+              - 'workshop/agentic-ai/app-with-security-risk/**'
+            ai-defense:
+              - 'workshop/agentic-ai/app-with-ai-defense/**'
+            crewai:
+              - 'workshop/agentic-ai/crewai/**'
+
+  base-app:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.base-app == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/base-app
+
+  app-with-agents-and-tools:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.agents-and-tools == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/app-with-agents-and-tools
+
+  app-with-instrumentation:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.instrumentation == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/app-with-instrumentation
+
+  app-with-quality-issue:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.quality-issue == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/app-with-quality-issue
+
+  app-with-security-risk:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.security-risk == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/app-with-security-risk
+
+  app-with-ai-defense:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.ai-defense == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/app-with-ai-defense
+
+  crewai:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.crewai == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/agentic-ai/crewai
+      entrypoint: app.py
