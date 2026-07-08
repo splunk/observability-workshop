@@ -12,82 +12,42 @@ and register the controllable steps.
 
 {{< step title="Set up the environment" >}}
 
-Change into the controls stage and activate a virtual environment:
+Change into the agent controls folder: 
 
 ```bash
 cd ~/workshop/healthcare-assistant/4-app-with-controls
-python3 -m venv venv
-source venv/bin/activate
 ```
 
 {{< /step >}}
 
-{{< step title="Add Agent Control configuration to secrets" >}}
+{{< step title="Create a Galileo Agent Controls Config Map" >}}
 
-Add the Agent Control settings to `.streamlit/secrets.toml` (in addition to your existing
-OpenAI, PostgreSQL, and Galileo settings). Note the additional `galileo_api_url` used by the
-control runtime:
+Run the following command to create a Kubernetes config map, which the application will use to
+configure Galileo Agent Controls:
 
-```toml
-# Galileo Configuration
-# -----------------------------------------------------------------------------
-galileo_console_url = "https://console.multitenant.galileocloud.io"
-galileo_api_url = "https://api.multitenant.galileocloud.io"
-galileo_project = "healthcare-assistant"
-galileo_log_stream = "local"
-
-# Agent Controls
-# -----------------------------------------------------------------------------
-agent_control_url = "https://console.multitenant.galileocloud.io/api/agent-control"
-agent_control_agent_name = "agent-control-example"
-agent_control_runtime_auth_mode = "jwt"
-agent_control_api_key_header = "Galileo-API-Key"
-agent_control_target_type = "log_stream"
+```bash
+kubectl create configmap galileo-agent-control-config \
+  --from-literal=GALILEO_API_URL="https://api.multitenant.galileocloud.io" \
+  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.galileocloud.io/api/agent-control" \
+  --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Galileo-API-Key" \
+  --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
 
 {{% notice title="Match your environment" style="tip" icon="exclamation-triangle" %}}
 
-Update `agent_control_url` and `agent_control_agent_name` to match your environment. The
-`agent_control_agent_name` you set here must match the agent you create in the Galileo
+Update `GALILEO_API_URL`, `AGENT_CONTROL_URL`, and `AGENT_CONTROL_AGENT_NAME` to match your environment. The
+`AGENT_CONTROL_AGENT_NAME` you set here must match the agent you create in the Galileo
 console in the next section.
 
 {{% /notice %}}
 
 {{< /step >}}
 
-{{< step title="Expose the new variables to the app" >}}
-
-Confirm `setup_env.py` populates the `GALILEO_API_URL` and `AGENT_CONTROL_*` variables:
-
-```python
-        env_vars = {
-            "OPENAI_API_KEY": secrets.get("openai_api_key", ""),
-            "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
-            "GALILEO_API_KEY": secrets.get("galileo_api_key", ""),
-            "GALILEO_CONSOLE_URL": secrets.get("galileo_console_url", ""),
-            "GALILEO_API_URL": secrets.get("galileo_api_url", ""),
-            "GALILEO_PROJECT": secrets.get("galileo_project", ""),
-            "GALILEO_LOG_STREAM": secrets.get("galileo_log_stream", ""),
-            "AGENT_CONTROL_URL": secrets.get("agent_control_url", ""),
-            "AGENT_CONTROL_AGENT_NAME": secrets.get("agent_control_agent_name", ""),
-            "AGENT_CONTROL_API_KEY_HEADER": secrets.get("agent_control_api_key_header", "Galileo-API-Key"),
-            "AGENT_CONTROL_RUNTIME_AUTH_MODE": secrets.get("agent_control_runtime_auth_mode", "jwt"),
-            "AGENT_CONTROL_TARGET_TYPE": secrets.get("agent_control_target_type", "log_stream"),
-            "POSTGRES_HOST": secrets.get("postgres_host", "localhost"),
-            "POSTGRES_PORT": secrets.get("postgres_port", "5432"),
-            "POSTGRES_USER": secrets.get("postgres_user", "postgres"),
-            "POSTGRES_PASSWORD": secrets.get("postgres_password", ""),
-            "POSTGRES_DB": secrets.get("postgres_db", "vectordb"),
-            "ENVIRONMENT": secrets.get("environment", "local"),
-        }
-```
-
-{{< /step >}}
-
 {{< step title="Add the Agent Control packages" >}}
 
-Confirm `requirements.txt` includes the Agent Control SDK and the Galileo evaluators, then
-install:
+Confirm `requirements.txt` includes the Agent Control SDK and the Galileo evaluators:
 
 ```text
 agent-control-sdk[galileo]>=7.10.0
@@ -95,16 +55,11 @@ agent-control-evaluators>=7.10.0
 agent-control-evaluator-galileo>=7.10.0
 ```
 
-```bash
-pip install -r requirements.txt
-```
-
 {{< /step >}}
 
 {{< step title="Add the imports and decorate the steps" >}}
 
-In `agent.py`, add the Agent Control imports at the end of the import section, before
-`class State(TypedDict)`:
+In `agent.py`, we've added the Agent Control imports at the end of the import section: 
 
 ```python
 from agent_control import ControlSteerError, ControlViolationError, control
@@ -136,22 +91,28 @@ When a control fires, the SDK raises an exception that the agent catches:
 
 {{< /step >}}
 
-{{< /exercise >}}
+{{< step title="Build a New Docker Image" >}}
 
-{{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
+Change into the base app directory, then run the following command to build a new Docker image
+for the application that includes our recent changes:
 
-To see what Agent Control is doing, enable console logging in `agent.py`:
-
-```python
-from galileo.utils.log_config import enable_console_logging
-
-enable_console_logging()
+```bash
+cd ~/workshop/healthcare-assistant
+docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
+docker push localhost:9999/healthcare-assistant:app-with-controls
 ```
 
-Watch the terminal for `Agent Control initialized` on startup and `BLOCKED` / `STEERED`
-messages when a control fires.
+{{% notice title="Notice what's missing" style="info" %}}
+
+If you're having trouble building the Docker image, or it's taking too long to build, you can use
+the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file
+and change the image to `ghcr.io/splunk/healthcare-assistant:app-with-controls`.
 
 {{% /notice %}}
+
+{{< /step >}}
+
+{{< /exercise >}}
 
 {{< checkpoint title="Knowledge Check" >}}
 

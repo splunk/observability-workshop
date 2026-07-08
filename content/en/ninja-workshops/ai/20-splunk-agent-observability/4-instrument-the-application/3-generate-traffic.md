@@ -22,6 +22,14 @@ docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthca
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 ```
 
+{{% notice title="Notice what's missing" style="info" %}}
+
+If you're having trouble building the Docker image, or it's taking too long to build, you can use
+the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file
+and change the image to `ghcr.io/splunk/healthcare-assistant:app-with-instrumentation`.
+
+{{% /notice %}}
+
 {{< /step >}}
 
 
@@ -36,11 +44,23 @@ kubectl apply -f k8s.yaml
 
 Ensure that the new application pod is running:
 
+{{< tabs id="healthcare-app-monitor" >}}
+{{% tab title="Script" %}}
+
 ```bash
 kubectl get pods -l app=healthcare-assistant
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
 NAME                                   READY   STATUS    RESTARTS   AGE
 healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
-```
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
 For example: 
@@ -66,6 +86,17 @@ later:
 
 Each message returns a normal answer; the callback doesn't change the app's behavior, it
 just records it.
+
+{{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
+
+If you'd like to explore other medications that you can ask about, you can look 
+at the following document: 
+
+```bash
+cat ~/workshop/healthcare-assistant/docs/qa.csv
+```
+
+{{% /notice %}}
 
 {{< /step >}}
 
@@ -102,7 +133,47 @@ from galileo.utils.log_config import enable_console_logging
 enable_console_logging()
 ```
 
-Then rebuild the Docker image and redeploy the application. 
+Then rebuild the Docker image: 
+
+```bash
+cd ~/workshop/healthcare-assistant
+docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
+docker push localhost:9999/healthcare-assistant:app-with-instrumentation
+```
+
+And redeploy the application: 
+
+```bash
+kubectl rollout restart deploy/healthcare-assistant
+```
+
+Use the following command to view the application logs:
+
+{{< tabs id="healthcare-app-logs" >}}
+{{% tab title="Script" %}}
+
+```bash
+kubectl logs -l app=healthcare-assistant
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://10.42.2.14:8501
+  External URL: http://35.175.237.123:8501
+
+INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - galileo.logger - Starting a new session...
+INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% /notice %}}
 

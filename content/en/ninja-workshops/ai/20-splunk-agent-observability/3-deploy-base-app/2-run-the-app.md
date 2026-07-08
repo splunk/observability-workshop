@@ -22,11 +22,23 @@ kubectl apply -f k8s.yaml
 
 Ensure that the application pod is running: 
 
+{{< tabs id="healthcare-app-monitor" >}}
+{{% tab title="Script" %}}
+
 ```bash
 kubectl get pods -l app=healthcare-assistant
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
 NAME                                   READY   STATUS    RESTARTS   AGE
 healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
-```
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser: 
 

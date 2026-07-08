@@ -12,14 +12,103 @@ behavior in the chat *and* in the trace in the console.
 
 {{< step title="Run the app" >}}
 
-From `4-app-with-controls` (virtual environment active, database loaded), start the app:
+Run the following command to deploy the healthcare assistant app:
 
 ```bash
-streamlit run app.py
+cd ~/workshop/healthcare-assistant/4-app-with-controls
+kubectl apply -f k8s.yaml
+```
+
+Ensure that the new application pod is running:
+
+{{< tabs id="healthcare-app-monitor" >}}
+{{% tab title="Script" %}}
+
+```bash
+kubectl get pods -l app=healthcare-assistant
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+NAME                                   READY   STATUS    RESTARTS   AGE
+healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
+For example:
+
+```text
+  External URL: http://98.86.181.9:81
 ```
 
 On startup, watch the terminal for confirmation that Agent Control initialized and
-registered its steps.
+registered its steps: 
+
+```bash
+kubectl logs -l app=healthcare-assistant
+```
+
+{{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
+
+To see what Agent Control is doing, enable console logging in `agent.py`:
+
+```python
+from galileo.utils.log_config import enable_console_logging
+
+enable_console_logging()
+```
+
+Then rebuild the Docker image:
+
+```bash
+cd ~/workshop/healthcare-assistant
+docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
+docker push localhost:9999/healthcare-assistant:app-with-controls
+```
+
+And redeploy the application:
+
+```bash
+kubectl rollout restart deploy/healthcare-assistant
+```
+
+Use the following command to view the application logs:
+
+{{< tabs id="healthcare-app-logs" >}}
+{{% tab title="Script" %}}
+
+```bash
+kubectl logs -l app=healthcare-assistant
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+````
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://10.42.2.14:8501
+  External URL: http://35.175.237.123:8501
+
+INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - galileo.logger - Starting a new session...
+INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Watch the terminal for `Agent Control initialized` on startup and `BLOCKED` / `STEERED`
+messages when a control fires.
+
+{{% /notice %}}
 
 {{< /step >}}
 

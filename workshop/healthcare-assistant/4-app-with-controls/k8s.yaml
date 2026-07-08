@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcare-assistant
+  labels:
+    app: healthcare-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthcare-assistant
+  template:
+    metadata:
+      labels:
+        app: healthcare-assistant
+    spec:
+      containers:
+        - name: healthcare-assistant
+          image: localhost:9999/healthcare-assistant:app-with-controls
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8501
+              name: http
+          envFrom:
+            - configMapRef:
+                name: healthcare-assistant-config
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: galileo-config
+            - configMapRef:
+                name: galileo-agent-control-config
+          env:
+            - name: OPENAI_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api
+                  key: openai-api-endpoint
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api
+                  key: openai-api-key
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_PASSWORD
+            - name: GALILEO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: galileo-secret
+                  key: GALILEO_API_KEY
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcare-assistant-service
+spec:
+  selector:
+    app: healthcare-assistant
+  ports:
+    - port: 8501
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthcare-assistant-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthcare-assistant-service
+                port:
+                  number: 8501

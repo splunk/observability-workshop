@@ -71,11 +71,23 @@ kubectl apply -f postgres.yaml
 
 Ensure that PostgreSQL is running: 
 
+{{< tabs id="postgres-check" >}}
+{{% tab title="Script" %}}
+
 ```bash
 kubectl get pods -l app=postgres
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```bash
 NAME                        READY   STATUS    RESTARTS   AGE
 postgres-66ffcf4b8c-8s5lp   1/1     Running   0          16s
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{< /step >}}
 
@@ -90,8 +102,15 @@ docker build -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:bas
 docker push localhost:9999/healthcare-assistant:base-app
 ```
 
-{{< /step >}}
+{{% notice title="Notice what's missing" style="info" %}}
 
+If you're having trouble building the Docker image, or it's taking too long to build, you can use
+the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/1-base-app/k8s.yaml` file
+and change the image to `ghcr.io/splunk/healthcare-assistant:base-app`.
+
+{{% /notice %}}
+
+{{< /step >}}
 
 {{< step title="Load vector data and relational tables" >}}
 
@@ -107,13 +126,17 @@ This runs `python helpers/setup_vectordb.py local`, which creates the
 `healthcare_local_index` pgvector collection from `docs/qa.csv` and the
 `healthcare_patient` table from `docs/relational_patient.csv`.
 
-Monitor the job with the following command: 
+Monitor the job with the following command (it may take 30-60 seconds for the job to start):
+
+{{< tabs id="vectordb-monitor" >}}
+{{% tab title="Script" %}}
 
 ```bash
 kubectl logs -f job/vectordb-setup
 ```
 
-If successful, the output should include the following: 
+{{% /tab %}}
+{{% tab title="Example Output" %}}
 
 ````
 Setting up vector database for healthcare in hosted environment
@@ -128,6 +151,10 @@ Loading relational tables for healthcare...
 📊 Total documents embedded: 15
 🔗 PostgreSQL collection: healthcare_hosted_index
 ````
+
+{{% /tab %}}
+{{< /tabs >}}
+
 
 {{< /step >}}
 
