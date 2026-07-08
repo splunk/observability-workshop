@@ -1,0 +1,34 @@
+name: Smoke Test - Profiling Services CI
+
+# Triggers when any profiling service changes. Change detection routes to only
+# the affected service's reusable test workflow. Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/profiling/doorgame/**'
+  pull_request:
+    paths:
+      - 'workshop/profiling/doorgame/**'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      doorgame: ${{ steps.filter.outputs.doorgame }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            doorgame:
+              - 'workshop/profiling/doorgame/**'
+
+  doorgame:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.doorgame == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-spring-boot-smoke.yml
+    with:
+      service-path: workshop/profiling/doorgame
+      port: 9090

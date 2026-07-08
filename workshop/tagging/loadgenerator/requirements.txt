@@ -14,7 +14,7 @@ certifi==2024.7.4
     #   requests
 charset-normalizer==3.3.2
     # via requests
-click==8.1.7
+click==8.3.3
     # via flask
 configargparse==1.7
     # via locust

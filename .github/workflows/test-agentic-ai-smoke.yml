@@ -1,0 +1,104 @@
+name: Smoke Test - Agentic AI Service
+
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the service directory (e.g. workshop/agentic-ai/base-app)
+        required: true
+        type: string
+      port:
+        description: Port the service listens on
+        required: false
+        type: number
+        default: 8080
+      entrypoint:
+        description: Python entrypoint file
+        required: false
+        type: string
+        default: main.py
+
+jobs:
+  pip-install:
+    name: Pip Install
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ${{ inputs.service-path }}/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+  app-smoke-test:
+    name: Application Smoke Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    env:
+      # Dummy credentials — apps only call the LLM on /travel/plan, not at startup
+      OPENAI_API_KEY: sk-test-dummy-key-for-smoke-test
+      OPENAI_BASE_URL: http://localhost:9999
+      OPENAI_MODEL_NAME: gpt-4o
+      # Required at import time by app-with-ai-defense (os.environ[] access)
+      AI_DEFENSE_API_MODE_LLM_ENDPOINT: http://localhost:9999
+      AI_DEFENSE_API_MODE_LLM_API_KEY: dummy-key
+      # Prevent OTel from attempting exports to a real collector
+      SPLUNK_ACCESS_TOKEN: dummy-token
+      OTEL_SDK_DISABLED: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ${{ inputs.service-path }}/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Start application
+        run: python ${{ inputs.entrypoint }} &
+
+      - name: Wait for application to be ready
+        run: |
+          echo "Waiting for application on port ${{ inputs.port }}..."
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:${{ inputs.port }}/health > /dev/null 2>&1; then
+              echo "Application ready after $((i * 2))s"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Application did not start within 60s"
+          exit 1
+
+      - name: Health check
+        run: |
+          response=$(curl -sf http://localhost:${{ inputs.port }}/health)
+          echo "GET /health → $response"
+          echo "$response" | python3 -c "
+          import json, sys
+          d = json.load(sys.stdin)
+          status = d.get('status')
+          assert status == 'healthy', f'Expected healthy, got {status!r}: {d}'
+          print('Health check passed')
+          "
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:latest ${{ inputs.service-path }}
