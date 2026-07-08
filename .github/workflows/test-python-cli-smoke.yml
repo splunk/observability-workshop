@@ -1,0 +1,48 @@
+name: Smoke Test - Python CLI Script
+
+# A CLI script is not a server — there is no HTTP endpoint to hit.
+# Tests verify: dependencies install cleanly, the script has no syntax
+# errors, and the Docker image builds successfully.
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the service directory (e.g. workshop/demos/travel-agent-demo/loadgen)
+        required: true
+        type: string
+      script:
+        description: Python script file to syntax-check
+        required: false
+        type: string
+        default: client.py
+
+jobs:
+  pip-install-and-syntax:
+    name: Pip Install and Syntax Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ${{ inputs.service-path }}/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check script syntax
+        run: python -m py_compile ${{ inputs.script }}
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:latest ${{ inputs.service-path }}

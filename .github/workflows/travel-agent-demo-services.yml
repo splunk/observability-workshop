@@ -1,0 +1,75 @@
+name: Smoke Test - Travel Agent Demo Services CI
+
+# Triggers when any travel-agent-demo service changes. Change detection routes
+# to only the affected service's reusable test workflow. Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/demos/travel-agent-demo/app/**'
+      - 'workshop/demos/travel-agent-demo/loadgen/**'
+      - 'workshop/demos/travel-agent-demo-v2/app-with-ai-defense/**'
+      - 'workshop/demos/travel-agent-demo-v2/loadgen/**'
+      - '.github/workflows/travel-agent-demo-services.yml'
+      - '.github/workflows/test-agentic-ai-smoke.yml'
+      - '.github/workflows/test-python-cli-smoke.yml'
+  pull_request:
+    paths:
+      - 'workshop/demos/travel-agent-demo/app/**'
+      - 'workshop/demos/travel-agent-demo/loadgen/**'
+      - 'workshop/demos/travel-agent-demo-v2/app-with-ai-defense/**'
+      - 'workshop/demos/travel-agent-demo-v2/loadgen/**'
+      - '.github/workflows/travel-agent-demo-services.yml'
+      - '.github/workflows/test-agentic-ai-smoke.yml'
+      - '.github/workflows/test-python-cli-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      demo-app: ${{ steps.filter.outputs.demo-app }}
+      demo-loadgen: ${{ steps.filter.outputs.demo-loadgen }}
+      demo-v2-app: ${{ steps.filter.outputs.demo-v2-app }}
+      demo-v2-loadgen: ${{ steps.filter.outputs.demo-v2-loadgen }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            demo-app:
+              - 'workshop/demos/travel-agent-demo/app/**'
+            demo-loadgen:
+              - 'workshop/demos/travel-agent-demo/loadgen/**'
+            demo-v2-app:
+              - 'workshop/demos/travel-agent-demo-v2/app-with-ai-defense/**'
+            demo-v2-loadgen:
+              - 'workshop/demos/travel-agent-demo-v2/loadgen/**'
+
+  travel-agent-demo-app:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.demo-app == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/demos/travel-agent-demo/app
+
+  travel-agent-demo-loadgen:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.demo-loadgen == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-python-cli-smoke.yml
+    with:
+      service-path: workshop/demos/travel-agent-demo/loadgen
+
+  travel-agent-demo-v2-app:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.demo-v2-app == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-agentic-ai-smoke.yml
+    with:
+      service-path: workshop/demos/travel-agent-demo-v2/app-with-ai-defense
+
+  travel-agent-demo-v2-loadgen:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.demo-v2-loadgen == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-python-cli-smoke.yml
+    with:
+      service-path: workshop/demos/travel-agent-demo-v2/loadgen
