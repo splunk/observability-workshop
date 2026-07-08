@@ -36,10 +36,15 @@ RUN addgroup --gid ${GID} -S ${GRP} \
     && adduser --disabled-password --gecos "" --ingroup ${GRP} --no-create-home --uid ${UID} --system ${USR}
 RUN mkdir -p ${APP_HOME} && chown ${USR}:${GRP} -R ${APP_HOME}
 
+# Download agent as root so we can set ownership; ADD from URL doesn't support --chown
+RUN apk add --no-cache curl && \
+    curl -fsSL -o ${APP_HOME}/splunk-otel-javaagent.jar \
+      https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar && \
+    chown ${USR}:${GRP} ${APP_HOME}/splunk-otel-javaagent.jar && \
+    apk del curl
+
 USER ${USR}
 WORKDIR ${APP_HOME}
-
-ADD https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar ${APP_HOME}/splunk-otel-javaagent.jar
 
 COPY --chown=${USR}:${GRP} --from=builder /workspace/app/target/dependency/BOOT-INF/lib /app/lib
 COPY --chown=${USR}:${GRP} --from=builder /workspace/app/target/dependency/META-INF /app/META-INF
