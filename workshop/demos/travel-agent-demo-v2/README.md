@@ -107,8 +107,8 @@ To build the travel agent application image:
 
 ``` bash
 cd app-with-ai-defense
-docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-demo-v2:1.1 .
-docker push ghcr.io/splunk/travel-planner-demo-v2:1.1
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-demo-v2:1.2 .
+docker push ghcr.io/splunk/travel-planner-demo-v2:1.2
 ```
 
 ### Load Generator
@@ -117,6 +117,6 @@ To build the travel agent load generator image:
 
 ``` bash
 cd loadgen
-docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-loadgen-v2:1.1 .
-docker push ghcr.io/splunk/travel-planner-loadgen-v2:1.1
+docker build --platform linux/amd64 -t ghcr.io/splunk/travel-planner-loadgen-v2:1.2 .
+docker push ghcr.io/splunk/travel-planner-loadgen-v2:1.2
 ```
