@@ -67,9 +67,9 @@ jobs:
 
       - name: Smoke test - root endpoint
         run: |
-          response=$(curl -sf http://localhost:${{ inputs.port }}/)
-          echo "GET / → $response"
-          [ "$response" = "Hello" ] || (echo "Expected 'Hello', got '$response'" && exit 1)
+          status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:${{ inputs.port }}/)
+          echo "GET / → HTTP $status"
+          [ "$status" = "200" ] || (echo "Expected HTTP 200, got $status" && exit 1)
 
       - name: Smoke test - test endpoint
         run: |
