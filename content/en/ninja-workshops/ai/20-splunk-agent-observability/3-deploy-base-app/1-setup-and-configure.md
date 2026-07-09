@@ -102,9 +102,9 @@ docker build -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:bas
 docker push localhost:9999/healthcare-assistant:base-app
 ```
 
-{{% notice title="Notice what's missing" style="info" %}}
+{{% notice title="Tip" style="info" %}}
 
-If you're having trouble building the Docker image, or it's taking too long to build, you can use
+If you're having trouble building the Docker image, or it's taking more than five minutes to build, you can use
 the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/1-base-app/k8s.yaml` file
 and change the image to `ghcr.io/splunk/healthcare-assistant:base-app`.
 

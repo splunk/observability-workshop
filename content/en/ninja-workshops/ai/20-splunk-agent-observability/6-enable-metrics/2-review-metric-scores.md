@@ -5,21 +5,17 @@ weight: 2
 time: 5 minutes
 ---
 
-With metrics enabled, send fresh traffic and watch the assistant get scored automatically.
+After a few moments, we'll see how the existing traces get automatically scored on the 
+`Context Adherence` and `Correctness` metrics. 
 This is where a hallucinated dosage or a wrong tool call stops being invisible.
 
-{{< exercise title="Generate traffic and review scores" >}}
+{{< exercise title="Review metric scores" >}}
 
-{{< step title="Send new requests from the app" >}}
+{{< step title="Wait for metrics to be computed" >}}
 
-Back in the running app, send a few more messages so they're scored by the metrics you just
-enabled, including the riskier medical question:
+Looking at the log trace, we can see that metrics are being computed for our traces: 
 
-> What is the dosage and common side effects of Lisinopril?
-
-> Is it safe to double my dose of Lisinopril if I miss a day?
-
-> Can you look up information for patient P001?
+![Log stream metrics computing](../../images/sao-metrics-computing.png?width=750px)
 
 {{< /step >}}
 

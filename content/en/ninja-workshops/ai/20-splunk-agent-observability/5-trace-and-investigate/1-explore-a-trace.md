@@ -2,7 +2,7 @@
 title: Explore a Trace
 linkTitle: 1. Explore a Trace
 weight: 1
-time: 10 minutes
+time: 5 minutes
 ---
 
 Open the Splunk Agent Observability and work through a real trace from the traffic you just generated.
@@ -54,19 +54,13 @@ is the detail that lets you explain *why* the agent answered the way it did.
 
 {{< /step >}}
 
+{{< step title="View the Trace Graph" >}}
+
+Next, click on the **`Trace graph`** tab, which provides a visual, step-by-step view of how 
+this specific interaction executed across the system. 
+
+![Trace Graph](../../images/galileo-trace-graph.png?width=750px)
+
+{{< /step >}}
+
 {{< /exercise >}}
-
-{{% notice title="From investigation to automation" style="info" %}}
-
-Reading individual traces is powerful for a single incident, but you can't manually inspect
-millions of them. In the next chapter you'll enable **metrics** to score every trace
-automatically, so problems like ungrounded medical advice surface on their own.
-
-{{% /notice %}}
-
-{{< checkpoint title="Knowledge Check" >}}
-
-
-{{< details summary="Click here to see the answer" >}}
-
-{{< /details >}}

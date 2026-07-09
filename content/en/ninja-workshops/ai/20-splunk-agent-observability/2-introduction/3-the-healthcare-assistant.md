@@ -85,7 +85,5 @@ the workshop, and each folder also serves as the completed reference for its sta
 {{% notice title="Using the staged folders" style="info" %}}
 
 In each code chapter you'll walk through the exact changes that turn one stage into the next.
-Because each folder already contains the finished code for its stage, you can use it as a
-reference (or `diff` your work against it) if you get stuck.
 
 {{% /notice %}}

@@ -24,7 +24,7 @@ docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 
 {{% notice title="Notice what's missing" style="info" %}}
 
-If you're having trouble building the Docker image, or it's taking too long to build, you can use
+If you're having trouble building the Docker image, or it's taking more than five minutes to build, you can use
 the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file
 and change the image to `ghcr.io/splunk/healthcare-assistant:app-with-instrumentation`.
 
@@ -79,12 +79,7 @@ Exercise both tool paths so you generate a RAG trace and a text-to-SQL trace:
 
 > Can you look up information for patient P001?
 
-Then send a trickier medical question to give yourself something interesting to investigate
-later:
-
-> Is it safe to double my dose of Lisinopril if I miss a day?
-
-Each message returns a normal answer; the callback doesn't change the app's behavior, it
+Note that each prompt returns the same answer that it did before instrumentation; the callback doesn't change the app's behavior, it
 just records it.
 
 {{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
@@ -97,6 +92,20 @@ cat ~/workshop/healthcare-assistant/docs/qa.csv
 ```
 
 {{% /notice %}}
+
+{{< /step >}}
+
+{{< step title="Trigger a hallucination" >}}
+
+Next, click on the `Log Hallucination` button on the left-hand side of the application. This will send
+the same question as before:
+
+> What is the dosage and common side effects of Lisinopril?
+
+But this time, the healthcare assistant responds to say that the common dosage is 
+100mg daily, which is much higher than the actual recommended dosage of just 10-40mg daily. 
+
+This is an inaccurate, and potentially dangerous, response that we'll definitely want to know about! 
 
 {{< /step >}}
 

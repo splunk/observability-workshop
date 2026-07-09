@@ -5,10 +5,6 @@ weight: 1
 time: 5 minutes
 ---
 
-{{% notice style="warning" title="TODO" %}}
-Confirm which organization will be used for the workshop.
-{{% /notice %}}
-
 Metrics are configured on the **log stream**, so every new trace that lands is scored
 automatically. You'll turn on a set of out-of-the-box metrics that matter for a healthcare
 assistant.
@@ -19,35 +15,37 @@ assistant.
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`ORGANIZATION_PLACEHOLDER`** org),
-open the **`healthcare-assistant`** project and select the **`local`** log stream. Open its
-metrics configuration.
+In the Galileo console (`https://console.multitenant.galileocloud.io`),
+open your project and select the **`default`** log stream. 
 
-<!-- TODO screenshot: log stream metrics configuration panel with the list of available out-of-the-box metrics -->
+Click the `Configure Metrics` button to open its metrics configuration.
+
 ![Log stream metrics configuration](../../images/sao-enable-metrics.png?width=750px)
 
 {{< /step >}}
 
-{{< step title="Enable the metrics that matter here" >}}
+{{< step title="Enable the metrics that matter" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: confirm exact metric names available in the UI and update this list -->
-
-Enable a set of out-of-the-box metrics relevant to this assistant, for example:
+Enable the following out-of-the-box metrics for your log stream: 
 
 * **Context Adherence**: is the answer grounded in the retrieved medical content? (catches
   the "double the dose" style hallucination)
 * **Correctness**: is the answer factually right?
-* **Tool Selection Quality**: did the agent pick the right tool with the right arguments?
-* **Prompt Injection**: did the input try to subvert the agent's instructions?
+
+![Log stream enable metrics](../../images/sao-enable-two-metrics.png?width=750px)
 
 Save the configuration. From now on, new traces in this log stream are scored automatically.
 
-{{% notice title="Placeholder" style="info" %}}
+{{< /step >}}
 
-The exact metric names and toggles in the UI may differ. Replace this list and the screenshot
-with your environment's current options when you finalize the workshop.
+{{< step title="Apply the changes" >}}
 
-{{% /notice %}}
+Click `Apply` to apply the changes. We have the option to calculate metrics for traces that were already captured. 
+Select the default option of `Last 1 day`: 
+
+![Compute metrics](../../images/sao-compute-metrics.png?width=350px)
+
+Click the `Compute` button to calculate metrics on existing traces. 
 
 {{< /step >}}
 
