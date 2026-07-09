@@ -1,0 +1,13 @@
+{
+  "name": "catalog-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --import ./instrumentation.js server.js"
+  },
+  "dependencies": {
+    "@splunk/otel": "^4.0.0",
+    "express": "^4.21.2"
+  }
+}

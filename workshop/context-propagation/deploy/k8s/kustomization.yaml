@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cosmic-shop
+
+configMapGenerator:
+  - name: otel-config
+    envs:
+      - otel.env
+    options:
+      disableNameSuffixHash: true
+
+resources:
+  - namespace.yaml
+  - gateway-config.yaml
+  - gateway.yaml
+  - rabbitmq.yaml
+  - catalog-api.yaml
+  - frontend-api.yaml
+  - order-api.yaml
+  - payment-gateway.yaml
+  - payment-api.yaml
+  - fulfillment-worker.yaml
+  - frontend.yaml

@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-gateway
+  namespace: cosmic-shop
+  labels:
+    app: payment-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-gateway
+  template:
+    metadata:
+      labels:
+        app: payment-gateway
+    spec:
+      containers:
+        - name: payment-gateway
+          image: cosmic-shop/payment-gateway:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3004
+          envFrom:
+            - configMapRef:
+                name: otel-config
+          env:
+            - name: PORT
+              value: "3004"
+            - name: OTEL_SERVICE_NAME
+              value: payment-gateway
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(NODE_IP):4318
+            - name: SPLUNK_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-otel
+                  key: accessToken
+            - name: SPLUNK_REALM
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-otel
+                  key: realm
+            - name: K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "$(OTEL_RESOURCE_ATTRIBUTES),k8s.pod.name=$(K8S_POD_NAME),k8s.namespace.name=$(K8S_NAMESPACE)"
+            - name: PAYMENT_API_URL
+              value: http://payment-api:3005
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 3004
+            failureThreshold: 24
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3004
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3004
+            periodSeconds: 15
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-gateway
+  namespace: cosmic-shop
+spec:
+  selector:
+    app: payment-gateway
+  ports:
+    - port: 3004
+      targetPort: 3004
