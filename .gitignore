@@ -64,3 +64,4 @@ workshop/ninja/advanced-otel/1-agent/send-trace.sh
 content/en/conf/1-advanced-collector/1-agent-gateway/old.zip
 observability-workshop.sln
 workshop/appd/app/target/
+assets/jsconfig.json
