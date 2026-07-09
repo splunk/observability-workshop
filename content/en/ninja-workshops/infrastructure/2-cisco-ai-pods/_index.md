@@ -1,6 +1,6 @@
 ---
 title: Monitoring Cisco AI Pods
-weight: 14
+weight: 2
 archetype: chapter
 time: 60 minutes
 authors: ["Derek Mitchell"]
