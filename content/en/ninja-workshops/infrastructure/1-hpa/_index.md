@@ -2,7 +2,7 @@
 title: Monitoring Horizontal Pod Autoscaling in Kubernetes
 linkTitle: Horizontal Pod Autoscaling
 description: Monitor Kubernetes HPA with the Splunk OpenTelemetry Collector — watch scale-up and scale-down events as they happen.
-weight: 2
+weight: 1
 authors: ["Robert Castley"]
 time: 45 minutes
 aliases:
