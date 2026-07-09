@@ -23,26 +23,52 @@ Looking at the log trace, we can see that metrics are being computed for our tra
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the console, return to the **`local`** log stream and open the recent traces. Each trace
-now carries metric scores alongside its spans. Scan for low **Context Adherence** or
-**Correctness** scores; these flag answers that drifted from the retrieved medical content.
+In Splunk Agent Observability, return to the **`default`** log stream and review the recent traces. Each trace
+now carries metric scores alongside its spans. 
 
-<!-- TODO screenshot: trace list / detail showing metric score columns (Context Adherence, Correctness, Tool Selection Quality, Prompt Injection) with at least one low score highlighted -->
 ![Metric scores on traces](../../images/sao-metric-scores.png?width=750px)
+
+We can see that one of the traces evaluated to `False` for both `Context Adherence` and `Correctness`. 
+This is the trace that we sent earlier using the `Log Hallucination` button. 
+
+Let's click on this trace and take a closer look. 
 
 {{< /step >}}
 
 {{< step title="Drill into a flagged trace" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact drilldown steps + screenshot once finalized -->
+Click on the `LLM Response` span, and notice there are two new metric categories on the right-hand side 
+of the screen: `Output Quality`, which includes the `Correctness` metric, and `RAG Quality`, which includes 
+the `Context Adherence` metric. 
 
-Open a trace with a low quality score and confirm the story in the spans: compare the
-retrieved context against the model's answer to see exactly where it went wrong. You've now
-turned "a patient complained" into "here is the specific request, the specific span, and the
+If we hover over `false` beside the `Context Adherence` metric, we can see the rationale for why this span 
+received this score. 
+
+In this case, it explains that the assistant gave a dosage of 100 mg daily
+and side effects of rashes, itching, and swelling, which directly contradicts the context 
+and adds unsupported information.
+
+![Flagged trace detail](../../images/sao-metric-flagged-trace.png?width=750px)
+
+This type of finding turns "a patient complained" into "here is the specific request, the specific span, and the
 specific metric that caught it."
 
-<!-- TODO screenshot: flagged trace detail with the metric score and the offending span expanded -->
-![Flagged trace detail](../../images/sao-metric-flagged-trace.png?width=750px)
+{{< /step >}}
+
+{{< step title="Autotune Feedback" >}}
+
+You may be wondering: what if a metric gets the evaluation wrong? 
+
+We can provide feedback on any metric by clicking the `Add feedback` button: 
+
+![Add Feedback Button](../../images/sao-add-feedback-button.png?width=750px)
+
+And providing the `Corrected value` and `Rationale`:
+
+![Autotune Feedback](../../images/sao-autotune-feedback.png?width=750px)
+
+This human feedback helps improve how the metric evaluates similar cases over time, which ultimately 
+ensures that the scoring becomes more aligned to our real standards. 
 
 {{< /step >}}
 
