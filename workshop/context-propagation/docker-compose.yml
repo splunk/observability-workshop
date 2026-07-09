@@ -1,0 +1,156 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  catalog-api:
+    build:
+      context: .
+      dockerfile: services/catalog-api/Dockerfile
+    environment:
+      PORT: 3002
+      OTEL_SERVICE_NAME: catalog-api
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    ports:
+      - "3002:3002"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend-api:
+    build:
+      context: .
+      dockerfile: services/frontend-api/Dockerfile
+    environment:
+      PORT: 3007
+      OTEL_SERVICE_NAME: frontend-api
+      CATALOG_API_URL: http://catalog-api:3002
+      GATEWAY_URL: http://gateway:80
+      PAYMENT_GATEWAY_URL: http://payment-gateway:3004
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    depends_on:
+      - catalog-api
+      - gateway
+      - payment-gateway
+    ports:
+      - "3007:3007"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  order-api:
+    build:
+      context: .
+      dockerfile: services/order-api/Dockerfile
+    environment:
+      PORT: 3001
+      OTEL_SERVICE_NAME: order-api
+      CATALOG_API_URL: http://catalog-api:3002
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    depends_on:
+      - catalog-api
+    ports:
+      - "3001:3001"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  payment-gateway:
+    build:
+      context: .
+      dockerfile: services/payment-gateway/Dockerfile
+    environment:
+      PORT: 3004
+      OTEL_SERVICE_NAME: payment-gateway
+      PAYMENT_API_URL: http://payment-api:3005
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    depends_on:
+      - payment-api
+    ports:
+      - "3004:3004"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  payment-api:
+    build:
+      context: .
+      dockerfile: services/payment-api/Dockerfile
+    environment:
+      PORT: 3005
+      OTEL_SERVICE_NAME: payment-api
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+      FULFILLMENT_QUEUE: cosmic-fulfillment
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "3005:3005"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  fulfillment-worker:
+    build:
+      context: .
+      dockerfile: services/fulfillment-worker/Dockerfile
+    environment:
+      PORT: 3006
+      OTEL_SERVICE_NAME: fulfillment-worker
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+      FULFILLMENT_QUEUE: cosmic-fulfillment
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
+      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "3006:3006"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  gateway:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./deploy/nginx/gateway.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - order-api
+    ports:
+      - "8080:80"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: services/frontend/Dockerfile
+      args:
+        SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+        SPLUNK_RUM_ACCESS_TOKEN: ${SPLUNK_RUM_ACCESS_TOKEN:-}
+        SPLUNK_RUM_APP_NAME: ${SPLUNK_RUM_APP_NAME:-cosmic-observatory-shop}
+        SPLUNK_DEPLOYMENT_ENV: ${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+    depends_on:
+      - frontend-api
+    ports:
+      - "3000:80"

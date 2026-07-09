@@ -1,0 +1,15 @@
+# Splunk OTel Collector — base Helm values for k3d / generic Kubernetes.
+# Dynamic values (realm, token, clusterName, environment) are set via --set in
+# scripts/install-splunk-collector.sh from .env.
+#
+# For generic k3d clusters, leave distribution empty and set clusterName explicitly.
+
+splunkObservability:
+  metricsEnabled: true
+  tracesEnabled: true
+
+clusterReceiver:
+  enabled: true
+
+gateway:
+  enabled: false
