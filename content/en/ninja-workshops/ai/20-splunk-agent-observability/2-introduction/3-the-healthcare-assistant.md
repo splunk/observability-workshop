@@ -2,7 +2,7 @@
 title: The Healthcare Assistant Application
 linkTitle: 3. The Healthcare Assistant
 weight: 3
-time: 5 minutes
+time: 3 minutes
 ---
 
 The application you'll observe is Careful Health Provider's **healthcare assistant**. It runs

@@ -2,7 +2,7 @@
 title: Introduction
 linkTitle: 2. Introduction
 weight: 2
-time: 15 minutes
+time: 10 minutes
 ---
 
 Before you instrument anything, it helps to understand the problem agentic systems create,

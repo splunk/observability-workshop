@@ -2,7 +2,7 @@
 title: Generate Traffic
 linkTitle: 3. Generate Traffic
 weight: 3
-time: 5 minutes
+time: 4 minutes
 ---
 
 With the callback attached, run the instrumented app and send a few requests. Every turn now

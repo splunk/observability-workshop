@@ -2,7 +2,7 @@
 title: Surface Emerging Issues with Signals
 linkTitle: 7. Surface Issues with Signals
 weight: 7
-time: 10 minutes
+time: 5 minutes
 ---
 
 Metrics catch the problems you knew to measure. But agentic systems fail in ways you didn't

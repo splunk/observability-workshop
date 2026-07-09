@@ -2,7 +2,7 @@
 title: Add the Galileo SDK and Configuration
 linkTitle: 1. Add the Galileo SDK
 weight: 1
-time: 5 minutes
+time: 3 minutes
 ---
 
 

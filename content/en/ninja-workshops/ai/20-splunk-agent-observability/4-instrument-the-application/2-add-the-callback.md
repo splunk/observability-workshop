@@ -2,7 +2,7 @@
 title: Attach the Galileo Callback
 linkTitle: 2. Attach the Galileo Callback
 weight: 2
-time: 5 minutes
+time: 3 minutes
 ---
 
 The agent runs its LangGraph workflow asynchronously, so you'll attach Galileo's

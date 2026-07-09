@@ -2,7 +2,7 @@
 title: Key Concepts
 linkTitle: 2. Key Concepts
 weight: 2
-time: 5 minutes
+time: 4 minutes
 ---
 
 Splunk Agent Observability is built around a small vocabulary. You'll use each of these
@@ -52,14 +52,6 @@ Metrics tell you about problems you thought to measure. **Signals** automaticall
 recurring failure patterns from production traces (planning loops, tool errors,
 hallucinations, routing failures, and more) and explain *what* went wrong, *why*, and *what
 to do next*. They turn weeks of post-incident analysis into minutes of targeted remediation.
-
-## Experiments: evidence before you ship
-
-Without systematic evaluation, every deployment is a leap of faith and regressions stay
-invisible until a user complains. An **experiment** runs your agent over a fixed **dataset**
-of inputs and scores the results with metrics: consistent, reproducible, and comparable. Use
-experiments as a release gate, or to compare variants (prompt, model, configuration) and pick
-the best one.
 
 ## Guardrails: acting at runtime
 

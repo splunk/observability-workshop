@@ -2,7 +2,7 @@
 title: The Challenge
 linkTitle: 1. The Challenge
 weight: 1
-time: 5 minutes
+time: 3 minutes
 ---
 
 ## When an agent gets it wrong

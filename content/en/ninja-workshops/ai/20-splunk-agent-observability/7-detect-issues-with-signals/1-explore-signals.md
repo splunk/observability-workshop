@@ -2,7 +2,7 @@
 title: Explore Signals
 linkTitle: 1. Explore Signals
 weight: 1
-time: 10 minutes
+time: 5 minutes
 ---
 
 {{% notice style="warning" title="TODO" %}}

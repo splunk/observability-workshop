@@ -2,7 +2,7 @@
 title: Instrument the Application
 linkTitle: 4. Instrument the Application
 weight: 4
-time: 15 minutes
+time: 10 minutes
 ---
 
 You can't observe what you don't capture. In this chapter you'll add **Splunk Agent
