@@ -19,28 +19,27 @@
  &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
  &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;h3 id="1-confirm-partial-correlation-in-rum"&gt;
+&lt;h4 id="1-confirm-partial-correlation-in-rum"&gt;
  &lt;span class="heading-text"&gt;1. Confirm partial correlation in RUM&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-confirm-partial-correlation-in-rum" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
+&lt;/h4&gt;
 &lt;p&gt;You will now see the RUM session with APM correlation&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="./images/r-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/r-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;h3 id="2-confirm-partial-correlation-in-traces"&gt;
+&lt;h4 id="2-confirm-partial-correlation-in-traces"&gt;
  &lt;span class="heading-text"&gt;2. Confirm partial correlation in Traces&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-confirm-partial-correlation-in-traces" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
-&lt;/h3&gt;
+&lt;/h4&gt;
 &lt;p&gt;In &lt;strong&gt;APM → Traces&lt;/strong&gt; view, open a recent &lt;code&gt;frontend-api&lt;/code&gt; trace. The frontend span should share a trace ID with the browser/RUM session after this fix.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="./images/t-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/t-nginx-aft.png" alt="nginx-aft" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;
-&lt;hr&gt;</description></item></channel></rss>
+&lt;/p&gt;</description></item></channel></rss>
