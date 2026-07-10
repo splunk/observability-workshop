@@ -35,6 +35,11 @@ disableKinds = ["taxonomy", "term"]
     weight         = 2
     hasCJKLanguage = true
     contentDir     = "content/ja"
+  [languages.pt-br]
+    label      = "Português (Brasil)"
+    locale     = "pt-BR"
+    weight     = 3
+    contentDir = "content/pt-br"
 
 # Markup configuration — Goldmark with attributes & raw HTML enabled for rich content
 [markup]
