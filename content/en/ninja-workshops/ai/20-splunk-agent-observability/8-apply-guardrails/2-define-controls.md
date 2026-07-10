@@ -15,71 +15,64 @@ match should block or steer.
 
 {{< exercise title="Define controls in Galileo" >}}
 
-{{< step title="Open Agent Control in the console" >}}
+{{< step title="Open the Controls tab" >}}
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`ORGANIZATION_PLACEHOLDER`** org),
-navigate to the **Agent Control** area and locate the agent matching your
-`agent_control_agent_name` (for example, `agent-control-example`). The agent appears here
-once the app has run at least once and registered its steps.
+In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
+open your project / **`default`** log stream then click on the **Controls** tab.
 
-<!-- TODO screenshot: Agent Control landing page in the console showing the registered agent and its steps (Healthcare Assistant LLM step, get_patient_info, delete_patient_record, retrieval_step) -->
-![Agent Control agent and steps](../../images/galileo-agent-control-agent.png?width=750px)
+![Log Stream Controls](../../images/galileo-log-stream-controls.png?width=750px)
 
 {{< /step >}}
 
-{{< step title="Review the registered steps" >}}
+{{< step title="Browse and add controls to your agent" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact step-list steps + screenshot once finalized -->
+Click the `Add control` button to add a control to your log stream. 
+You'll be presented with a list of controls to clone and attach to your log stream, 
+as well as the option to create a new control. 
 
-Confirm the steps the app registered are present:
-
-* **Healthcare Assistant**: the LLM step.
-* **get_patient_info**: patient lookup tool.
-* **delete_patient_record**: patient deletion tool.
-* **retrieval_step**: the shared step for search/retrieval tools.
-
-These names come from the `@control(step_name=...)` decorators and the step registration in
-the app, and are what your control rules target.
+![Log Stream Add Controls](../../images/galileo-log-stream-add-controls.png?width=750px)
 
 {{< /step >}}
 
-{{< step title="Create a control that blocks deletions" >}}
+{{< step title="Add the Block Harmful SQL Control" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact control-creation steps + screenshot once finalized -->
+Next, let's add an existing control called `Block-harmful-sql` to our log stream. 
+To do this, click the `Clone and attach` button beside the `Block-harmful-sql` control: 
 
-Create a control targeting the **delete_patient_record** step that **blocks** the action.
-Scope it to the **`local`** log stream (matching your `agent_control_target_type` of
-`log_stream`). This prevents the agent from deleting patient records at run time.
-
-<!-- TODO screenshot: control creation form targeting the delete_patient_record step, action set to Block, scoped to the local log stream -->
 ![Create a blocking control](../../images/galileo-agent-control-block.png?width=750px)
+
+Click on the control name to see the details of the control: 
+
+![Block Control Details](../../images/galileo-block-control-details.png?width=750px)
+
+This control is used to detect and block any `DELETE` SQL operations. It's executed 
+**before** the associated tool call, to prevent the agent from deleting patient 
+records at run time.
+
+Click `Discard Edits` to return to the list of controls for your log stream. 
 
 {{< /step >}}
 
 {{< step title="Create a control that steers the LLM" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact control-creation steps + screenshot once finalized -->
-
-Create a second control targeting the **Healthcare Assistant** LLM step that **steers** the
+Let's add a second control targeting the **Healthcare Assistant** LLM step that **steers** the
 response, for example to keep answers within healthcare scope or to enforce a disclaimer.
-Provide steering guidance the agent will use when it retries.
 
-<!-- TODO screenshot: control creation form targeting the Healthcare Assistant LLM step, action set to Steer, with steering guidance text -->
+To do this, click on the `Add control` button and then click `Clone and attach` beside the 
+`steer-output-pii` control. 
+
+Once the control is added, click on it to view the details: 
+
 ![Create a steering control](../../images/galileo-agent-control-steer.png?width=750px)
+
+This control runs **after** LLM calls, and when a phone number or address are detected in the LLM response, 
+the agent is "steered" towards removing these fields from the final response. 
 
 {{< /step >}}
 
 {{< /exercise >}}
-
-{{% notice title="Placeholders" style="info" %}}
-
-The exact menu names, fields, and condition options in the Agent Control UI may differ from
-what's shown above. Replace these placeholder steps and screenshots with your environment's
-current navigation when you finalize the workshop.
-
-{{% /notice %}}
 
 {{< checkpoint title="Knowledge Check" >}}
 

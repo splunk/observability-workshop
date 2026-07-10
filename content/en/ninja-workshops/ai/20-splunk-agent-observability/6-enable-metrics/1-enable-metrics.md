@@ -15,7 +15,7 @@ assistant.
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`),
+In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project and select the **`default`** log stream. 
 
 Click the `Configure Metrics` button to open its metrics configuration.

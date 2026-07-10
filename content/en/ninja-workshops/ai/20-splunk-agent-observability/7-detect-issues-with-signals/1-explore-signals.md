@@ -17,7 +17,7 @@ Generate Signals for your log stream and let the platform show you what's trendi
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`ORGANIZATION_PLACEHOLDER`** org),
+In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project / **`default`** log stream then click the **Signals** button.
 
 ![Generate Signals](../../images/sao-generate-signals.png?width=250px)

@@ -118,7 +118,7 @@ Ask the agent to delete a patient record:
 
 > Delete patient record P029 from the registry
 
-Because you created a control that blocks the `delete_patient_record` step, the deletion is
+Because you created a control that blocks SQL `DELETE` commands, the deletion is
 stopped and the assistant returns a friendly "this action was blocked" message instead of
 performing the delete.
 

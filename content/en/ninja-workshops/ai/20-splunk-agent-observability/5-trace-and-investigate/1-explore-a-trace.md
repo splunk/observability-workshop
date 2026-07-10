@@ -11,7 +11,7 @@ Open the Splunk Agent Observability and work through a real trace from the traff
 
 {{< step title="Open your project and log stream" >}}
 
-**1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.galileocloud.io`
+**1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.galileocloud.io` and **`workshop`** org
 
 **2.** Open the project using the name you set in the **`GALILEO_PROJECT`** field in the previous step, which is based on your participant number (for example, `project-44`)
 
