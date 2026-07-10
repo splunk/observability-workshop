@@ -1,13 +1,13 @@
 ---
 name: workshop-content
-description: Scaffold and author Splunk Observability Workshop content for this Hugo + Relearn repo. Use this skill whenever the user asks to create a new workshop, add a chapter, draft topic pages, set up the directory tree, write workshop frontmatter, or produce content using the repo's notice/tabs/persona conventions — even if they only describe the topic without saying "workshop" (e.g., "I need a hands-on guide for X", "outline some lab pages for Y", "spin up a new walk-in lab").
+description: Scaffold and author Splunk Observability Workshop content for this Hugo + hugo-theme-splunk-workshop repo. Use this skill whenever the user asks to create a new workshop, add a chapter, draft topic pages, set up the directory tree, write workshop frontmatter, or produce content using the repo's notice/tabs/persona conventions - even if they only describe the topic without saying "workshop" (for example: "I need a hands-on guide for X", "outline some lab pages for Y", "spin up a new walk-in lab").
 ---
 
 # Workshop Content Author
 
-This skill helps the user scaffold and write workshops for the Splunk Observability Workshop repo. Workshops are Hugo pages rendered with the [Relearn theme](https://mcshelby.github.io/hugo-theme-relearn/), so the content has a specific directory shape and a small set of shortcodes that consistently appear across every workshop.
+This skill helps the user scaffold and write workshops for the Splunk Observability Workshop repo. Workshops are Hugo pages rendered with `hugo-theme-splunk-workshop`, so content should follow the repository's current layout, frontmatter, and shortcode conventions.
 
-The goal here is to make it fast to produce a workshop that *looks and feels like the rest of the repo* without the user having to remember every shortcode by hand. You should use the canonical patterns by default but adapt when the user has a reason to deviate — these are conventions, not laws.
+The goal is to make it fast to produce a workshop that looks and feels like the rest of the repo without the user having to remember every shortcode by hand. Use canonical patterns by default, but adapt when a target workshop already uses a different convention.
 
 ## When to use
 
@@ -19,25 +19,31 @@ Trigger on requests like:
 - "Scaffold the directory tree for a 1-hour `<topic>` walk-in lab"
 - "Write the persona block and exercise for the new RUM chapter"
 
-If the user is editing existing pages or asking content questions about a workshop, you can use this skill's references for conventions but you don't need to follow the full scaffold workflow.
+If the user is editing existing pages or asking content questions about a workshop, use this skill's references for conventions, but do not force the full scaffold workflow.
 
-## Where workshops live
+## Where workshop content lives
 
-Workshops are organized by category under `content/en/`:
+Primary language content is under `content/en/` and currently follows this top-level grouping:
 
-```
+```text
 content/en/
-├── splunk4rookies/        # short, walk-in-lab style workshops
-├── ninja-workshops/       # deeper, opinionated technical workshops
-├── scenarios/             # scenario-based labs
+├── splunk4rookies/            # short, walk-in-lab style workshops
+├── ninja-workshops/           # deeper, opinionated technical workshops
+├── scenarios/                 # scenario-based labs
 └── unsupported-field-workshops/
 ```
 
-A workshop is a directory under one of these categories. Each workshop has its own `_index.md` (the landing page) plus numbered chapter folders. Pick the category from context — if the user says "walk-in lab" or "rookies", use `splunk4rookies`; "deep dive" or "advanced" suggests `ninja-workshops`. Ask if it's not clear.
+A workshop is a directory under one of these categories.
+
+Language guidance:
+
+- Default to `content/en/` unless the user asks for another language.
+- Be aware this repo also contains `content/ja/` and `content/pt-br/`.
+- Keep slugs and ordering aligned across languages only when the user explicitly asks for multilingual parity.
 
 ## Shape of a workshop
 
-```
+```text
 <workshop-slug>/
 ├── _index.md                    # landing page (workshop overview)
 ├── images/                      # workshop-level images (e.g., featured-*.png)
@@ -55,80 +61,85 @@ A workshop is a directory under one of these categories. Each workshop has its o
 
 Notes:
 
-- **Numbering in folder/file names is for human ordering**, but Hugo orders by the `weight` frontmatter field. Keep them in sync (1- prefix = `weight: 1`) so the file tree reads like the rendered nav.
-- **A chapter folder can be just `_index.md`** if the chapter has no sub-pages (e.g., `2-online-boutique` and `7-wrap-up` in the short workshop). Don't add sub-pages just to fill space.
-- **Each chapter usually has its own `images/`**; topic pages reference them with a relative path: `![alt](../images/foo.png)`.
-- **The wrap-up chapter** is short and celebratory — typically one `_index.md` with a congrats notice and an image. See `assets/templates/wrap-up-index.md`.
+- Numbering in folder and file names is for human ordering, but Hugo orders by `weight`. Keep them aligned (prefix `1-` should use `weight: 1` for the same level).
+- A chapter folder can be only `_index.md` if no sub-pages are needed.
+- Each chapter usually has its own `images/`; topic pages typically reference with `![alt](../images/foo.png)`.
+- Wrap-up chapters are short and usually contain one `_index.md` plus a celebratory image.
 
 ## Workflow
 
 ### 1. Gather the essentials
 
-Before scaffolding, you need at minimum:
+Before scaffolding, gather at minimum:
 
-- **Workshop title** and a short slug (kebab-case). The slug becomes the folder name.
-- **Category** (`splunk4rookies`, `ninja-workshops`, etc.).
-- **Total time budget** (e.g., "60 minutes", "3 hours").
-- **One-line description** for the frontmatter (this shows up in the workshop list).
-- **Chapter outline**: ordered list of chapters. For each, ideally: chapter title, persona (if applicable), per-chapter time budget, and a rough list of topic pages.
-- **Authors** (optional but used in the top `_index.md`).
+- workshop title and slug (kebab-case),
+- category (`splunk4rookies`, `ninja-workshops`, etc.),
+- total time budget,
+- one-line workshop description,
+- chapter outline (ordered),
+- authors (optional).
 
-If the user gave you only a topic and a vibe, propose an outline and have them edit it before you start writing files. Don't speculate a 7-chapter workshop when they asked for a quick lab.
+If the user only gives a topic, propose a right-sized outline first and confirm before writing files.
 
 ### 2. Scaffold the directory tree
 
-Once the outline is agreed, create the tree. Use the templates in `assets/templates/` as the starting point for each file type — they encode the frontmatter conventions (see `references/frontmatter.md`) so you don't have to remember field-by-field which workshops use `archetype: chapter` vs. `params.images` vs. `linkTitle`.
+Once the outline is agreed, scaffold the tree. Use templates in `assets/templates/` as starting points and then adapt to the target workshop's established style.
 
 Match `weight` to the numeric prefix:
 
-| Folder/file              | weight |
-|--------------------------|--------|
-| `1-login/_index.md`      | 1      |
-| `2-online-boutique/_index.md` | 2 |
-| `3-rum/1-overview.md`    | 1 (within chapter) |
-| `3-rum/2-app-view.md`    | 2 |
+- `1-login/_index.md` -> `weight: 1`
+- `2-online-boutique/_index.md` -> `weight: 2`
+- `3-rum/1-overview.md` -> `weight: 1` (within chapter)
+- `3-rum/2-app-view.md` -> `weight: 2`
 
 Weights restart at 1 *within each chapter folder* — they're scoped to siblings, not global.
 
 ### 3. Author the content
 
-Workshop pages have a recognizable rhythm. The conventions are documented in `references/shortcodes.md` and `references/examples.md`, but the high-level pattern is:
+Workshop pages in this repo usually follow a clear rhythm. The detailed conventions are in `references/shortcodes.md` and `references/examples.md`.
 
-- **Chapter `_index.md`**: short context paragraph, then a **Persona** notice (orange, icon `user`) explaining who the reader is in this chapter and a `> [!splunk]` callout setting the scene. Often ends with an image.
-- **Topic pages**: introductory prose explaining *what* the user is about to look at and *why* it matters, then an **Exercise** notice (green, icon `running`) with the click-by-click steps. Use bold for UI element names (**Digital Experience**, **Service Map**), backticks for technical identifiers (`paymentservice`, `frontend:/cart/checkout`), and numbered callouts like **(1)**, **(2)** to refer to spots on screenshots.
-- **Question/Answer reveals**: when there's a moment where the user should pause and think, wrap the question in a `{{< tabs >}}` block with a Question tab and an Answer tab. This gives the rendered page a "click to reveal" feel without spoiling the answer above the fold.
-- **Buttons in instructions**: when telling the user to click a real UI button, use `{{% button style="blue" %}}Apply{{% /button %}}` so it renders as a button-shaped chip in the prose. The styles match Splunk Observability's button colors (`blue`, `grey`, `red` for danger).
-- **Info notices**: for sidebar-style explanations of a feature ("what is Trace Analyzer?"), use `{{% notice title="..." style="info" %}}` blocks. Use them sparingly — they're for context the user *might* want, not the main flow.
+Common structure:
 
-The why behind these patterns: workshops are read while the reader is also clicking around in a product. The notice blocks chunk the page into "read this", "do this", and "think about this" so the reader can keep their place while context-switching to the UI.
+- **Chapter `_index.md`**: brief context + Persona notice (common pattern), often with a scene-setting Splunk callout and intro image.
+- **Topic pages**: brief conceptual intro (when needed), then Exercise notice with step-by-step actions.
+- **Question/Answer reveal**: use `tabs` with Question and Answer when the user should pause and think.
+- **Button chip references**: use `button` shortcode for literal UI button labels.
+- **Info notices**: use for context that supports learning, not for core click flow.
+
+Writing style:
+
+- bold for UI labels (`**Service Map**`),
+- backticks for identifiers and fields (`paymentservice`, `version`),
+- numbered callouts like `**(1)**` in text if screenshot annotations depend on them.
 
 ### 4. Stub images with TODOs
 
-The user takes the screenshots themselves. For every image referenced in the markdown:
+The user often captures screenshots after draft content is in place. For each referenced image:
 
-- Reference it with the final relative path you expect (`![desc](../images/foo.png)`).
-- Add an HTML comment immediately above with what the screenshot should show: `<!-- TODO screenshot: paymentservice highlighted in service map, side panel showing 100% error rate -->`.
-- Make sure the `images/` folder exists at the right level (chapter or workshop), even if empty — Hugo doesn't care, but it's a clear visual cue that screenshots go here.
+- Use final relative path in markdown.
+- Add an HTML TODO comment immediately above the image.
+- Ensure the corresponding `images/` folder exists at the right level.
 
 ### 5. Sanity-check before declaring done
 
-Run a quick mental pass:
+Before finishing:
 
-- Every chapter folder has an `_index.md`.
-- Every topic page has a `weight`.
-- Every image reference has a TODO comment and a corresponding (empty) folder.
-- No literal placeholder text like `[NAME OF WORKSHOP]` left in unless that's intentional (the short workshop uses this on purpose so instructors can find-and-replace at delivery time — see `references/examples.md`).
-- The top `_index.md` description matches what the workshop actually covers.
+- every chapter folder has `_index.md`,
+- topic pages have `weight`,
+- weight and filename prefixes are aligned,
+- image references and TODO comments are coherent,
+- no accidental placeholders remain,
+- workshop summary matches actual content.
 
-If the user wants to preview the build, the repo has a Hugo setup; `hugo serve` from the repo root will render. You don't need to run it unless asked.
+If asked to verify render, use `hugo serve` from repo root.
 
 ## Reference files
 
 Read these when you need them — they're not loaded by default to keep the skill lean.
 
-- `references/frontmatter.md` — exact frontmatter fields per file type (workshop `_index`, chapter `_index`, topic page) with rationale for each field.
-- `references/shortcodes.md` — full catalog of shortcodes used in the repo (notice variants, tabs, button, icon, badge) with examples and when to use which.
-- `references/examples.md` — annotated excerpts from the `observability-cloud-short` workshop showing patterns in context.
+- `references/frontmatter.md` - frontmatter patterns for workshop `_index.md`, chapter `_index.md`, and topic pages.
+- `references/shortcodes.md` - shortcodes used in this repo with practical usage guidance.
+- `references/examples.md` - annotated excerpts from `content/en/splunk4rookies/observability-cloud-short/` (primary canonical reference).
 
 ## Templates
 
@@ -139,10 +150,16 @@ Bundled in `assets/templates/` — copy and fill in:
 - `topic-page.md` — numbered topic page with intro + exercise + Q&A.
 - `wrap-up-index.md` — short congrats closer for the final chapter.
 
-These are starting points. Don't over-customize them — adapt only the parts the workshop actually needs.
+These are starting points. Keep them lightweight and adapt only what the target workshop needs.
 
 ## Adapting, not enforcing
 
-Other workshops in the repo follow slightly different conventions (the longer `observability-cloud` workshop uses double-digit chapter prefixes like `30-im-exercise/` to insert chapters out of original order). When adding to an existing workshop, *match that workshop's existing conventions* even if they differ from the canonical pattern here. Open one of its chapters first and follow its lead — frontmatter style, image-folder layout, level of prose, depth of exercises.
+Other workshops in the repo use different legacy and transitional patterns. When adding to an existing workshop, match that workshop's conventions first (frontmatter shape, folder style, shortcode usage), then apply canonical guidance where no local pattern exists.
 
-When in doubt, the `observability-cloud-short` workshop at `content/en/splunk4rookies/observability-cloud-short/` is the cleanest reference for the canonical style.
+Compatibility rules for this skill:
+
+- Keep guidance for patterns still used in current content (for example: `archetype: chapter`, `linkTitle` on chapter `_index.md`).
+- Mark those patterns as repository compatibility, not hard requirements for all new content.
+- Prefer consistency within a target workshop over global uniformity.
+
+When in doubt, use `content/en/splunk4rookies/observability-cloud-short/` as the canonical style reference.
