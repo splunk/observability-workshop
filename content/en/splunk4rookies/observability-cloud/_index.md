@@ -4,7 +4,7 @@ weight: 2
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 90 minutes
 aliases:
-  - /en/s4r/
+  - /s4r/observability-cloud/
 description: Three hours, hands-on. Explore the full Splunk Observability Cloud platform end-to-end against a live microservices app and see the features that differentiate it from other observability tools.
 params:
   images:
