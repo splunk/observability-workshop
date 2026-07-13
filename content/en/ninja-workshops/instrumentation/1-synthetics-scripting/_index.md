@@ -1,7 +1,7 @@
 ---
 title: Synthetic Scripting
 description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
-weight: 4
+weight: 1
 authors: ["Robert Castley"]
 time: 45 minutes
 aliases:

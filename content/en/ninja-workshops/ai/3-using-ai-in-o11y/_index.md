@@ -1,7 +1,7 @@
 ---
 title: Using AI in Splunk Observability Cloud
 linkTitle: Using AI in Splunk Observability Cloud
-weight: 10
+weight: 3
 layout: chapter
 time: 90 minutes
 authors: ["Pieter Hagen"]

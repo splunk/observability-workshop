@@ -1,7 +1,7 @@
 ---
 title: Monitoring Agentic AI Applications
 linkTitle: Monitoring Agentic AI Applications
-weight: 18
+weight: 1
 layout: chapter
 time: 45 minutes
 authors: ["Derek Mitchell"]
