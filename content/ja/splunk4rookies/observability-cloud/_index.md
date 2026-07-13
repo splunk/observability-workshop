@@ -4,7 +4,7 @@ weight: 1
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 2 minutes
 aliases:
-  - /ja/s4r/
+  - /s4r/observability-cloud/
 description: このワークショップでは、Splunk Observability Cloudがフロントエンドアプリケーションからバックエンドサービスまで、ユーザー体験の視点からどのように即座に可視性を提供するかをお見せします - Splunk Observability Cloudの最も魅力的な機能と差別化要因を体験していただきます。
 ---
 
