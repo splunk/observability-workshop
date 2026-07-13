@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry Collector
-weight: 3
+weight: 2
 time: 2 hours 15 minutes
 description: Two-part deep dive into the OpenTelemetry Collector — start with the receiver/processor/exporter fundamentals, then build agent and gateway configurations from scratch through real-world scenarios.
 aliases:

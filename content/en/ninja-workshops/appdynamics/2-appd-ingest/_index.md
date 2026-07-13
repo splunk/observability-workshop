@@ -1,8 +1,7 @@
 ---
 title: AppDynamics Dual Ingest to Splunk Observability
 linkTitle: Dual Ingest
-weight: 17
-archetype: chapter
+weight: 2
 time: 45 minutes
 authors: ["Jeremy Hicks"]
 description: Stream APM data from a single AppDynamics Java Agent into both AppDynamics and Splunk Observability Cloud, then link the two with global data links.

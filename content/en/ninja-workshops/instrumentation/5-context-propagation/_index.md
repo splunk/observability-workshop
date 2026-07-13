@@ -2,8 +2,7 @@
 draft: true
 title: Context Propagation
 linkTitle: Context Propagation
-weight: 20
-layout: chapter
+weight: 5
 time: 90 minutes
 authors: ["Diana Omuoyo"]
 description: Distributed tracing breaks silently when proxies and message buses drop W3C trace context. This workshop contains a sample e-commerce application with some of the common context & correlation breaks  

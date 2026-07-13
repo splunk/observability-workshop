@@ -1,7 +1,7 @@
 ---
 title: Alerting and Monitoring
 linkTitle: Alerting and Monitoring
-weight: 12
+weight: 2
 archetype: chapter
 authors: ["Doug Erkkila"]
 time: 90 minutes

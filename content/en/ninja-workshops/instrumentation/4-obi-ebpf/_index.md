@@ -1,10 +1,7 @@
 ---
-draft: false
-hidden: false
 title: Zero-Code APM with OBI and eBPF
 linkTitle: Zero-Code APM with OBI
-weight: 16
-archetype: chapter
+weight: 4
 time: 90 minutes
 authors: ["Jeremy Hicks"]
 description: Add full distributed tracing to apps with zero code changes using OpenTelemetry eBPF Instrumentation, streaming telemetry to Splunk Observability Cloud.

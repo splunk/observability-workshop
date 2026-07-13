@@ -1,12 +1,9 @@
 ---
 title: Monitoring Cisco AI Pods
-weight: 2
-archetype: chapter
+weight: 1
 time: 60 minutes
 authors: ["Derek Mitchell"]
 description: Deploy the OpenTelemetry Collector on Red Hat OpenShift to scrape Cisco AI Pod metrics via Prometheus, and trace the Python services calling LLMs.
-draft: false
-hidden: false
 aliases:
   - /ninja-workshops/14-cisco-ai-pods/
 product: "Observability Cloud"

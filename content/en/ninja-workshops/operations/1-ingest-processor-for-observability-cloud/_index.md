@@ -1,7 +1,7 @@
 ---
 title: Ingest Processor
 linkTitle: Ingest Processor
-weight: 11
+weight: 1
 archetype: chapter
 authors: ["Tim Hard"]
 description: Use Splunk Ingest Processor to turn high-volume logs into metrics — cutting cost and MTTD while keeping the signal.

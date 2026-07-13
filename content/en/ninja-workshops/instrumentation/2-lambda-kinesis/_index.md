@@ -2,7 +2,7 @@
 title: Distributed Tracing for AWS Lambda Functions
 linkTitle: Lambda Tracing
 description: Build a distributed trace across an AWS Lambda producer and consumer connected by an AWS Kinesis stream.
-weight: 6
+weight: 2
 authors: ["Kate Hymers", "Guy-Francis Kono", "Updates: Bill Grant"]
 time: 45 minutes
 aliases:

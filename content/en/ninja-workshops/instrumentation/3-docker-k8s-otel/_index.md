@@ -1,7 +1,7 @@
 ---
 title: Hands-On OpenTelemetry, Docker, and K8s
 linkTitle: Hands-On OpenTelemetry, Docker, and K8s
-weight: 8
+weight: 3
 archetype: chapter
 time: 60 minutes
 authors: ["Derek Mitchell"]

@@ -1,13 +1,10 @@
 ---
 title: Solving Problems
 linkTitle: Solving Problems
-weight: 9
-archetype: chapter
+weight: 4
 time: 45 minutes
 authors: ["Derek Mitchell"]
 description: Deploy the OpenTelemetry Collector, instrument an app, and use Troubleshooting MetricSets and Tag Spotlight to pinpoint the root cause of performance issues.
-draft: false
-hidden: false
 aliases:
   - /ninja-workshops/9-solving-problems-with-o11y-cloud/
 product: "Observability Cloud"
