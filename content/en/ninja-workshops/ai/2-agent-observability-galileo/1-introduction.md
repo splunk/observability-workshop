@@ -5,7 +5,7 @@ weight: 1
 time: 5 minutes
 ---
 
-In [Monitoring Agentic AI Applications](ninja-workshops/ai/18-agentic-ai/) you instrumented and observed an **agentic AI travel planner**. That application is a **Flask API** wrapping a **LangGraph** workflow, where each node
+In [Monitoring Agentic AI Applications](ninja-workshops/ai/1-agentic-ai/) you instrumented and observed an **agentic AI travel planner**. That application is a **Flask API** wrapping a **LangGraph** workflow, where each node
 (coordinator, flight specialist, hotel specialist, activity specialist, and synthesizer) calls an LLM
 through **LangChain**'s `ChatOpenAI`.
 
