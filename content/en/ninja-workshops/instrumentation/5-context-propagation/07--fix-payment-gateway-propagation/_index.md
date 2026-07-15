@@ -6,7 +6,7 @@ time: 15 minutes
 
 ---
 
-In this step, you'll **edit application code** in the payment gateway proxy so it forwards W3C Trace Context to `payment-api`, then **rebuild and redeploy** the service.
+In this step, you'll **edit application code** in the payment gateway proxy so it forwards W3C Trace Context to `payment-api` then **rebuild and redeploy** the service.
 
 {{% notice title="Note" style="info" %}}
 After fixing the edge NGINX gateway (step 06), traces may connect from the browser through `frontend-api` and into `order-api`. But when **frontend-api** submits payment via `payment-gateway`, the proxy forwards to `payment-api` **without** W3C trace headers.
@@ -32,43 +32,13 @@ Open the server.js file and locate **`buildUpstreamHeaders()`**.
 vi services/payment-gateway/server.js
 ```
 
-### 1. Inject W3C trace context into upstream headers
+#### Inject W3C trace context into upstream headers 
 
-Uncomment/add `propagation.inject()` before the return:
-
-```javascript
-function buildUpstreamHeaders() {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  propagation.inject(context.active(), headers, {
-    set: (carrier, key, value) => {
-      carrier[key] = value;
-    },
-  });
-
-  return headers;
-}
-```
-
-### 2. Remove `suppressTracing` on the upstream fetch
-
-Find the upstream call in `POST /payments`:
-
-```javascript
-// Before (broken):
-const upstreamContext = suppressTracing(context.active());
-
-// After (fixed):
-const upstreamContext = context.active();
-```
-
-## Before and After
+1. Uncomment/add `propagation.inject()` before the return:
+2. Remove `suppressTracing` on the upstream fetch
 
 {{< tabs >}}
 {{% tab title="Before" %}}
-
 ```javascript
 function buildUpstreamHeaders() {
   const headers = {

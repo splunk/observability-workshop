@@ -142,6 +142,8 @@ make collector
 
 The cluster should appear within a few minutes of the collector starting.
 
+![cluster](./images/im-cluster.png)
+
 ## Troubleshooting
 
 Here's some of the potential issues you may encounter in this step & suggested remediation steps.

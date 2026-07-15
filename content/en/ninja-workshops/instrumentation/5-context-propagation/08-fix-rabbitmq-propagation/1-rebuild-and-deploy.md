@@ -5,9 +5,9 @@ time: 5 minutes
 
 ---
 
-## Rebuild and Redeploy After Saving
+## Rebuild and Redeploy after Saving
 
-From the project root run these steps:
+From the project root run:
 
 ```bash
 bash scripts/build-images.sh payment-api fulfillment-worker
@@ -73,28 +73,6 @@ kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail=3
 ```
 RabbitMQ context propagation: ENABLED
 RabbitMQ context propagation: ENABLED
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-#### 4. Place a test order and verify worker processing
-
-{{% notice title="Validation" style="green" icon="running" %}}
-Place **new** orders after redeploy - messages published before the fix will not carry trace context.
-{{% /notice %}}
-
-{{< tabs >}}
-{{% tab title="Script" %}}
-
-```bash
-curl -s -X POST http://localhost:30080/api/purchases \
-  -H "Content-Type: application/json" \
-  -d '{"productId":"filter-nebula-uhc","quantity":1,"customerEmail":"propagation-test@cosmic.shop"}' \
-  | python3 -m json.tool
-
-sleep 2
-kubectl -n cosmic-shop logs deployment/fulfillment-worker --tail=3
 ```
 
 {{% /tab %}}

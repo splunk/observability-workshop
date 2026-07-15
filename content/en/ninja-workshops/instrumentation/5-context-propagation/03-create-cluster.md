@@ -19,20 +19,16 @@ From the project root:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
-
 ```bash
 make setup-k3d
 ```
-
 {{% /tab %}}
 {{% tab title="Example Output" %}}
-
 ``` text
 Creating k3d cluster 'cosmic-shop' with local registry on port 5111...
 ...
 k3d cluster 'cosmic-shop' ready.
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
 

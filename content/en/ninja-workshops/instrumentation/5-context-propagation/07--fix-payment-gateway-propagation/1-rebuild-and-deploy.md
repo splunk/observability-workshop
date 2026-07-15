@@ -60,14 +60,28 @@ curl -s -X POST http://localhost:30080/api/purchases \
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
-```text
-In **APM → Traces**, open a recent trace for `payment-api`. After this fix:
-
-| Check | Expected |
-|-------|----------|
-| `payment-api` span parent | Child of `payment-gateway` |
-| `payment-gateway` span parent | Connected to frontend-api purchase flow |
-| `fulfillment-worker` in same trace | **No** — still broken until step 09 |
+```json
+{
+    "message": "Purchase complete \u2014 order placed and payment submitted for fulfillment",
+    "order": {
+        "orderId": "ORD-1783667419611",
+        "productId": "telescope-orion-8",
+        "productName": "Orion 8\" Dobsonian Telescope",
+        "quantity": 1,
+        "total": 449.99,
+        "customerEmail": "gateway-test@cosmic.shop",
+        "createdAt": "2026-07-10T07:10:19.611Z",
+        "requestTraceId": "6891d2d87734d4959214491bb2c600af"
+    },
+    "payment": {
+        "paymentId": "PAY-1783667419703",
+        "orderId": "ORD-1783667419611",
+        "amount": 449.99,
+        "status": "authorized",
+        "method": "stellar-credits",
+        "processedAt": "2026-07-10T07:10:19.703Z"
+    }
+}
 ```
 
 {{% /tab %}}

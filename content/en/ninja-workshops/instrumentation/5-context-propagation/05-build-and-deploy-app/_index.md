@@ -7,7 +7,7 @@ time: 10 minutes
 ---
 In this step, you'll build Docker images for all Cosmic Observatory Shop services, push them to the k3d local registry, and deploy the full stack to Kubernetes.
 
-## Build container images
+## Build Container Images
 
 From the project root, with `.env` configured:
 
@@ -26,15 +26,13 @@ This builds and pushes four images to `localhost:5111`
 
 ## Validation Checklist - Build
 
-#### 1. Confirm all four images were pushed
+#### 1. Confirm all images were pushed
 
 {{< tabs >}}
 {{% tab title="Script" %}}
-
 ```bash
 curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
 ```
-
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
@@ -48,7 +46,6 @@ curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
     ]
 }
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -70,6 +67,5 @@ localhost:5111/cosmic-shop/storefront-api    latest    def456abc789   2 minutes 
 localhost:5111/cosmic-shop/catalog-api       latest    ...
 localhost:5111/cosmic-shop/order-worker      latest    ...
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
