@@ -5,9 +5,20 @@ weight: 4
 time: 5 minutes
 ---
 
-Run the travel planner, send a request through it, then confirm the multi-agent trace landed in Galileo.
+Run the travel planner, send a request through it, then confirm the multi-agent trace landed in
+Splunk Agent Observability.
 
 {{< exercise title="Run the app and verify the trace" >}}
+
+{{< step title="Active Environment" >}}
+Navigate to the base-app directory and activate the virtual environment:
+
+```bash
+cd ~/workshop/agentic-ai/base-app
+source .venv/bin/activate
+```
+
+{{< /step >}}
 
 {{< step title="Run the app"  >}}
 Start the app:
@@ -32,7 +43,8 @@ INFO:root:[INFO] Starting Flask server on http://0.0.0.0:8080
 {{% /tab %}}
 {{< /tabs >}}
 
-{{< /step >}}
+3. In a second terminal, which is signed in to the same environment, send a travel-planning request. You should get the planned itinerary back,
+   confirming the workflow still runs end-to-end with the callback attached:
 
 {{< step title="Send a request to the app"  >}}
 In a second terminal, send a travel-planning request. You should get the planned itinerary back, confirming the workflow still runs end-to-end with the callback attached:
@@ -94,24 +106,9 @@ curl http://localhost:8080/travel/plan \
 {{% /tab %}}
 {{< /tabs >}}
 
-{{< /step >}}
-
-{{< step title="Verify the trace in Galileo" >}}
-
-In the Galileo console (https://console.multitenant.galileocloud.io/splunkse), 
-open the `Workshop19Galileo` project (unless you commented out the `GALILEO_PROJECT` environment
-variable in the `.env` file). 
-
-Then, to find your log stream, first echo the `INSTANCE` environment variable on 
-your EC2 instance: 
-
-```bash
-echo $INSTANCE
-```
-
-Then look for the log stream named `TravelPlanner-` followed by your instance name. 
-For example, `TravelPlanner-shw-9306`. 
-
+4. In the Splunk Agent Observability console (https://console.multitenant.galileocloud.io/splunkse) , open the project and log stream your traces landed in. If you uncommented
+   `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` in your `.env`, that's `Workshop19` /
+   `TravelPlanner`; otherwise it's the `default` project and `default` log stream.
 {{< /step >}}
 
 {{< step title="Find the trace" >}}
@@ -131,12 +128,13 @@ Expand any span and verify it captured the **system and human messages**, the **
 
 {{% notice title="No trace showing up?" style="tip" icon="exclamation-triangle" %}}
 
+* Confirm you were able to log-in to the same environment before sending the request payload, by using a separate terminal session.
 * Confirm `GALILEO_API_KEY` is set in the environment the app runs in (it loads `.env` via
   `load_dotenv()`).
 * Confirm you're viewing the right project and log stream: the values from `GALILEO_PROJECT` /
   `GALILEO_LOG_STREAM` if you set them, or `default` / `default` if you didn't.
 * If you don't see the project, you likely don't have the correct permissions.
-* Check the app logs for Galileo errors in the bash where `python3 main.py` is running.
+* Check the app logs for Splunk Agent Observability errors in the bash where `python3 main.py` is running.
 * Confirm that you are in the `splunkse` organization in the top left of the web page.
 
 {{% /notice %}}
@@ -150,7 +148,7 @@ A single travel-planning request produces one trace containing five nested LLM s
 than five separate traces. Why?
 
 {{< details summary="Click here to see the answer" >}}
-Because the whole LangGraph workflow runs as **one root run** per request, and the callback was
+Because the whole LangGraph workflow runs as one root run per request, and the callback was
 attached to that run's config. LangGraph executes the five nodes (coordinator, flight, hotel,
 activity, synthesizer) within that single run, so each node's `llm.invoke(...)` becomes a child
 span under the same trace. If you instead created a new callback and a new run for each node, you'd
