@@ -9,8 +9,8 @@ Galileo's `GalileoCallback` is a standard LangChain callback handler. When you a
 LangChain or LangGraph run, it automatically captures prompts, responses, model names, token usage,
 timing, and the nesting of each step.
 
-Because the travel planner is a **LangGraph** workflow, you don't need to edit every node. Instead,
-pass a single callback in the **run config** when the compiled graph is streamed. Galileo then records
+Because the travel planner is a LangGraph workflow, you don't need to edit every node. Instead,
+pass a single callback in the run config when the compiled graph is streamed. Splunk Agent Observability then records
 one trace per request, with a nested LLM span for each agent node (coordinator, flight, hotel,
 activity, and synthesizer).
 
@@ -30,15 +30,21 @@ from galileo.handlers.langchain import GalileoCallback
 In `plan_travel_internal()`, create a callback and attach it to the run config passed to `compiled_app.stream(...)`. The existing code should look something like this:
 
 ```python
+    workflow = build_workflow()
+    compiled_app = workflow.compile()
+
     for step in compiled_app.stream(initial_state, config):
         node_name, node_state = next(iter(step.items()))
         final_state = node_state
-        agent_steps.append({"agent": node_name, "status": "completed"})
 ```
 
-Update it to build a config that includes the Galileo callback (merging it with any existing config the app already passes). This passes the execution of each node in the agent to Galileo:
+   Update it to build a config that includes the Splunk Agent Observability callback (merging it with any existing
+   config the app already passes). This passes the execution of each node in the agent to Splunk Agent Observability:
 
 ```python
+    workflow = build_workflow()
+    compiled_app = workflow.compile()
+
     # One callback per request keeps each travel plan in its own trace.
     callback = GalileoCallback()
     run_config = {**config, "callbacks": [callback]}
@@ -46,7 +52,6 @@ Update it to build a config that includes the Galileo callback (merging it with 
     for step in compiled_app.stream(initial_state, run_config):
         node_name, node_state = next(iter(step.items()))
         final_state = node_state
-        agent_steps.append({"agent": node_name, "status": "completed"})
 ```
 
 Passing the callback at the graph level means it propagates to every node's `llm.invoke(...)` call automatically. No further instrumentation is needed.
@@ -57,12 +62,10 @@ Passing the callback at the graph level means it propagates to every node's `llm
 
 {{< checkpoint title="Knowledge Check" >}}
 
-Is the Galileo callback used by the example application synchronous or asynchronous? 
+Where do you attach the `GalileoCallback` in a LangGraph workflow?
 
-{{< details summary="Click here to see the answer" >}}
-The example application uses a synchronous callback. 
-
+{{% notice title="Async workflows" style="blue" icon="info-circle" %}}
 If your app streams the graph asynchronously (`compiled_app.astream(...)`), use
 `GalileoAsyncCallback` instead of `GalileoCallback`. The travel planner runs synchronously, so
 `GalileoCallback` is correct here.
-{{< /details >}}
+{{% /notice %}}
