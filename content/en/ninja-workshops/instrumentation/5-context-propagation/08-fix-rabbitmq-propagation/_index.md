@@ -29,7 +29,6 @@ Locate **`buildFulfillmentMessageHeaders()`** and wrap the return value with `in
 
 {{< tabs >}}
 {{% tab title="Before" %}}
-
 ```javascript
 function buildFulfillmentMessageHeaders(order, payment) {
   return {

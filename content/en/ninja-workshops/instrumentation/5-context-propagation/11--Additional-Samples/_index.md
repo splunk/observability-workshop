@@ -1,5 +1,6 @@
 ---
 title: Appendix
+linkTitle: Appendix
 weight: 11
 archetype: chapter
 

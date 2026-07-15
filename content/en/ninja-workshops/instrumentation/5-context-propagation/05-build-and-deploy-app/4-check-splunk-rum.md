@@ -32,17 +32,23 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 1. Navigate to **Digital Experience → Session Search**
 2. Filter **Environment → `workshop-context-prop`**
 3. Open a recent session
-4. Click on a `fetch` or `Click`resource for `/api/orders`
-4. Look for the **Backend Trace** link
+4. Locate `fetch` requests
+5. You will only see an APM correlation link for 'api/catalog`. 
 
 ![rum](../images/rumsesh-b4.png)
 
+{{% notice title="Note" style="green" icon="running" %}}
+The catalog path never touches the edge gateway - the catalog-api is called directly from frontend-api.
+
+   Browser → frontend NGINX → frontend-api → catalog-api
+
+ So, even with propagation breaking elsewhere, Splunk can still correlate the GET /api/catalog fetch to backend APM via Server-Timing + the frontend-api trace that includes the catalog call.
+{{% /notice %}}
+
 ## Check-Point
 
-{{% notice title="Note" style="green" icon="running" %}}
 Both RUM and APM show a **Broken state:** 
 
-RUM cannot link to the backend APM trace because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
+We are currently not seeing APM correlation links for the other services. This is because RUM cannot link to the backend APM traces because the gateway stripped the `traceparent` header before it reached `storefront-api`. Splunk RUM relies on `Server-Timing` and matching trace IDs for correlation.
 
 In the next steps, we will resolve these issues.
-{{% /notice %}}

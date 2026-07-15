@@ -13,7 +13,7 @@ In this step, you'll observe how disconnected traces appear in Splunk Observabil
 
 When you clicked **Place order**, the request flowed through:
 
-```
+```text
 Browser (RUM span)
   → Frontend NGINX
     → Edge Gateway NGINX     ← break #1: trace headers dropped
@@ -54,7 +54,7 @@ Allow **2-5 minutes** after generating data for metrics to appear..
    - Operation: `POST /api/orders` (or `storefront.place_order`)
 3. Open a recent trace
 
-**What you'll see (broken state):**
+**What you'll see (broken state)**
 
 ![trace-b4](../images/trace-b4.png)
 

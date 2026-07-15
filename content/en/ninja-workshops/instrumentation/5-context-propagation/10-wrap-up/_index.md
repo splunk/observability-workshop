@@ -1,5 +1,6 @@
 ---
 title: Wrap-Up
+linkTitle: Wrap-Up
 weight: 10
 time: 5 minutes
 
@@ -17,13 +18,13 @@ Third, across RabbitMQ, the broker does not carry trace context on its own; the 
 
 Together, these fixes reconnect browser/RUM spans, synchronous HTTP hops through proxies and app-layer gateways, and asynchronous fulfillment work into one trace you can follow end to end in Splunk APM.
 
-{{% notice title="Note" style="info" %}}
+{{% notice title="KUDOS" style="info" %}}
 Congratulations - you've restored full-stack observability across proxies and message buses!
 {{% /notice %}}
 
 ## Clean Up
 
-Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images):
+Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images)
 
 ```bash
 make cleanup

@@ -29,12 +29,6 @@ So trace headers for `/api/purchases` must survive **frontend-api â†’ gateway â†
 
 We now need to add explicit forwarding for the three W3C context headers in each `location` block:
 
-```nginx
-proxy_set_header traceparent $http_traceparent;
-proxy_set_header tracestate $http_tracestate;
-proxy_set_header baggage $http_baggage;
-```
-
 These directives tell NGINX to pass the incoming trace context from the client (Splunk RUM) through to the upstream service.
 
 ## Apply the Fix
@@ -43,22 +37,14 @@ These directives tell NGINX to pass the incoming trace context from the client (
 vi deploy/k8s/gateway-config.yaml 
 ```
 
-Locate the **`location /api/`** block inside the `default.conf` section (the indented NGINX config under `data:`).
-
-Add explicit forwarding for the three W3C context headers **after** the standard `proxy_set_header` lines and **before** `proxy_http_version` / `proxy_pass`:
+Locate the **`location /api/`** block inside the `default.conf` section (the indented NGINX config under `data:`) and add explicit forwarding for the three W3C context headers **after** the standard `proxy_set_header` lines and **before** `proxy_http_version` / `proxy_pass`
 
 ```nginx
-    # W3C Trace Context propagation
-    proxy_set_header traceparent $http_traceparent;
-    proxy_set_header tracestate $http_tracestate;
-    proxy_set_header baggage $http_baggage;
+proxy_set_header traceparent $http_traceparent;
+proxy_set_header tracestate $http_tracestate;
+proxy_set_header baggage $http_baggage;
 ```
 
-{{% notice title="Note" style="green" icon="running" %}}
-These directives tell NGINX to pass the incoming trace context from `frontend-api` through to `order-api`.
-{{% /notice %}}
-
-## Before and after
 
 {{% notice title="Note" style="info" %}}
 Only the **`location /api/`** block on the **edge gateway** is updated (not the frontend NGINX).
@@ -66,7 +52,6 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
 
 {{< tabs >}}
 {{% tab title="Before" %}}
-
 ```nginx
         location /api/ {
             proxy_set_header Host $host;
@@ -100,3 +85,7 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
 
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Note" style="green" icon="running" %}}
+These directives tell NGINX to pass the incoming trace context from `frontend-api` through to `order-api`.
+{{% /notice %}}

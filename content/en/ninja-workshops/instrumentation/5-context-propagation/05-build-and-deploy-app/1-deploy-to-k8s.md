@@ -56,7 +56,7 @@ storefront-api-xxxxxxxxxx-xxxxx       1/1     Running   0          2m
 {{% /tab %}}
 {{< /tabs >}}
 
-#### 2. Confirm services and NodePort
+#### 2. Confirm Services and NodePort
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -81,7 +81,7 @@ storefront-api   ClusterIP   10.43.xxx.xxx   <none>        3001/TCP             
 {{% /tab %}}
 {{< /tabs >}}
 
-#### 3. Confirm backend health endpoints
+#### 3. Confirm Backend Health Endpoints
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -104,7 +104,7 @@ kubectl -n cosmic-shop exec deploy/order-api -- wget -qO- http://localhost:3001/
 {{% /tab %}}
 {{< /tabs >}}
 
-#### 4. Confirm shop UI responds
+#### 4. Confirm Shop UI Responds
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -127,7 +127,7 @@ HTTP 200
 {{% /tab %}}
 {{< /tabs >}}
 
-#### 5. Confirm API catalog endpoint via gateway
+#### 5. Confirm API Catalog Endpoint via Gateway
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -154,7 +154,7 @@ curl -s http://localhost:30080/api/catalog | python3 -m json.tool | head -20
 {{% /tab %}}
 {{< /tabs >}}
 
-#### 6. Confirm RabbitMQ management UI
+#### 6. Confirm RabbitMQ Management UI
 
 The RabbitMQ Service uses **NodePort 15672** so k3d can expose the management UI through the loadbalancer.
 
@@ -179,7 +179,7 @@ If **15672 is missing** from that output, the cluster was created without the Ra
 {{% /tab %}}
 {{< /tabs >}}
 
-#### Confirm HTTP responds
+#### Confirm HTTP Responds
 
 {{< tabs >}}
 {{% tab title="Script" %}}

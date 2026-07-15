@@ -1,8 +1,9 @@
 ---
-draft: true
+draft: false
 title: Context Propagation
 linkTitle: Context Propagation
-weight: 5
+weight: 20
+layout: chapter
 time: 90 minutes
 authors: ["Diana Omuoyo"]
 description: Distributed tracing breaks silently when proxies and message buses drop W3C trace context. This workshop contains a sample e-commerce application with some of the common context & correlation breaks  
@@ -24,16 +25,10 @@ We will then fix the issues to restore end-to-end context propagation across all
 
 ## Architecture | Expected Output
 
-```text
-Browser (RUM)
-    → Frontend → Frontend API (BFF)
-         ├─ catalog path ──► Catalog API
-         └─ purchase workflow ──► Edge Gateway → Order API
-                              └─► Payment Gateway → Payment API → RabbitMQ → Fulfillment Worker
-                                        ▲                    ▲              ▲
-                                   Break #1              Break #2       Break #3
-                                   (Step 06)             (Step 07)      (Step 08)
-```
+The goal is to reolve propagation issues across the three layers and go from a broken state
 
-Let's get started!
+![servicemap1](./images/servicemap-b4.png)
 
+to a fully integrated and correlated view - PlaceHolder Image Below
+
+![servicemap2](./images/servicemap-aft.png)

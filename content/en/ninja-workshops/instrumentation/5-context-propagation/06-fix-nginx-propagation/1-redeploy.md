@@ -126,10 +126,6 @@ The `traceHint.traceId` should match the trace ID you sent in the `traceparent` 
 {{% /tab %}}
 {{< /tabs >}}
 
-###$ 4. Generate new browser traffic
-
-Place 2–3 new orders in the shop using a **fresh incognito window** or hard-refresh (Cmd+Shift+R).
-
 ## Troubleshooting
 
 Here's some of the potential issues you may encounter in this step & suggested remediation steps.

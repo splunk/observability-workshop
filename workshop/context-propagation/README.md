@@ -44,4 +44,3 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 make cleanup              # Full teardown: k3d cluster, collector, images, Compose
 make cleanup-apps         # Remove apps only; keep k3d cluster
 ```
-
