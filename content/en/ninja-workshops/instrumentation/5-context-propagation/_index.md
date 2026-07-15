@@ -1,8 +1,8 @@
 ---
-draft: false
+draft: true
 title: Context Propagation
 linkTitle: Context Propagation
-weight: 20
+weight: 5
 layout: chapter
 time: 90 minutes
 authors: ["Diana Omuoyo"]
