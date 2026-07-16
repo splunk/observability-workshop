@@ -1,13 +1,11 @@
 ---
 title: Splunk Agent Observability Instrumentation for LangChain Apps
 linkTitle: Splunk Agent Observability Instrumentation for LangChain Apps
-weight: 19
+weight: 2
 layout: chapter
 time: 40 minutes
 authors: ["Sam Goldfield"]
 description: Add Splunk Agent Observability tracing to a LangChain app and inspect traces in the console UI.
-draft: false
-hidden: false
 aliases:
   - /ninja-workshops/19-agent-observability-galileo/
 product: "Observability Cloud"
@@ -32,3 +30,6 @@ Observability Cloud, you'll trace it with Splunk Agent Observability.
 
 * [Splunk Agent Observability Quickstart](https://docs.galileo.ai/getting-started/quickstart)
 * [Splunk Agent Observability LangChain integration](https://docs.galileo.ai/sdk-api/third-party-integrations/langchain/langchain)
+
+{{% /notice %}}
+

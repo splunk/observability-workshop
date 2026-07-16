@@ -42,9 +42,10 @@ INFO:root:[INFO] Starting Flask server on http://0.0.0.0:8080
 
 {{% /tab %}}
 {{< /tabs >}}
+{{< /step >}}
 
-3. In a second terminal, which is signed in to the same environment, send a travel-planning request. You should get the planned itinerary back,
-   confirming the workflow still runs end-to-end with the callback attached:
+In a second terminal, which is signed in to the same environment, send a travel-planning request. You should get the planned itinerary back,
+confirming the workflow still runs end-to-end with the callback attached:
 
 {{< step title="Send a request to the app"  >}}
 In a second terminal, send a travel-planning request. You should get the planned itinerary back, confirming the workflow still runs end-to-end with the callback attached:
@@ -106,9 +107,9 @@ curl http://localhost:8080/travel/plan \
 {{% /tab %}}
 {{< /tabs >}}
 
-4. In the Splunk Agent Observability console (https://console.multitenant.galileocloud.io/splunkse) , open the project and log stream your traces landed in. If you uncommented
-   `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` in your `.env`, that's `Workshop19` /
-   `TravelPlanner`; otherwise it's the `default` project and `default` log stream.
+In the Splunk Agent Observability console (https://console.multitenant.galileocloud.io/splunkse), open the project and log stream your traces landed in. If you uncommented
+`GALILEO_PROJECT` and `GALILEO_LOG_STREAM` in your `.env`, that's `Workshop19` /
+`TravelPlanner`; otherwise it's the `default` project and `default` log stream.
 {{< /step >}}
 
 {{< step title="Find the trace" >}}
