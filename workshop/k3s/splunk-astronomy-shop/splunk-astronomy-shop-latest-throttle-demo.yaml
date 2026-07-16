@@ -1,0 +1,191 @@
+# Splunk Astronomy Shop Kubernetes Manifest - throttle-demo
+# Version: 2.0.6
+# Generated on: 2026-07-16T11:22:15Z
+#
+# This manifest combines service deployments for the Splunk Astronomy Shop
+# Services are defined in services.yaml
+---
+
+# === order-validation ===
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+# Kubernetes manifest for order-validation
+#
+# Demo intent: CPU-throttle scenario for k8s admin.
+# limits.cpu is intentionally tight relative to workload. Under load the
+# container hits CFS quota, APM shows p99 latency spikes with no errors.
+# Root cause is visible via container_cpu_cfs_throttled_seconds_total,
+# not pod logs.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-validation
+  labels:
+    opentelemetry.io/name: order-validation
+    app.kubernetes.io/component: order-validation
+    app.kubernetes.io/name: order-validation
+    app.kubernetes.io/version: 2.0.6
+    app.kubernetes.io/part-of: opentelemetry-demo
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    name: tcp-service
+    targetPort: 8080
+  selector:
+    opentelemetry.io/name: order-validation
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-validation
+  labels:
+    opentelemetry.io/name: order-validation
+    app.kubernetes.io/component: order-validation
+    app.kubernetes.io/name: order-validation
+    app.kubernetes.io/version: 2.0.6
+    app.kubernetes.io/part-of: opentelemetry-demo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      opentelemetry.io/name: order-validation
+  template:
+    metadata:
+      labels:
+        opentelemetry.io/name: order-validation
+        app.kubernetes.io/component: order-validation
+        app.kubernetes.io/name: order-validation
+    spec:
+      serviceAccountName: opentelemetry-demo
+      containers:
+      - name: order-validation
+        image: ghcr.io/splunk/opentelemetry-demo/otel-order-validation:2.0.6
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: service
+        env:
+        - name: WORKSHOP_ENV
+          valueFrom:
+            secretKeyRef:
+              name: workshop-secret
+              key: env
+        - name: OTEL_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: OTEL_COLLECTOR_NAME
+          value: $(NODE_IP)
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://$(OTEL_COLLECTOR_NAME):4317
+        - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+          value: cumulative
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.6,deployment.environment=$(WORKSHOP_ENV)-throttle-demo
+        - name: OTEL_PYTHON_LOG_CORRELATION
+          value: 'true'
+        # Skip liveness/readiness probe spans — they swamp the signal from
+        # the actual validation workload.
+        - name: OTEL_PYTHON_FASTAPI_EXCLUDED_URLS
+          value: 'healthz,state'
+        - name: VALIDATION_PORT
+          value: '8080'
+        # Tier iteration counts + wall-clock targets.
+        #
+        # Non-extreme tiers run *paced* — CPU work is split into PACING_CHUNKS
+        # chunks with sleep slack between chunks so per-100ms CPU stays well
+        # under the container's quota. The IM CPU chart shows low baseline
+        # with small spikes; no throttling.
+        #
+        # Extreme runs *tight* — pure CPU burn, naturally pegs the limit
+        # for the full duration. Single dramatic throttle signature in IM,
+        # only triggered by orders that are non-USD AND contain a
+        # high-value SKU (~2% of carts). This is the demo's p99 story.
+        #
+        # Tuning iter counts: enough to be measurable CPU work but small
+        # enough that even a slow host doesn't blow the per-chunk budget.
+        - name: VALIDATION_ITERATIONS_LIGHT
+          value: '30000'
+        - name: VALIDATION_ITERATIONS_MEDIUM
+          value: '100000'
+        - name: VALIDATION_ITERATIONS_HEAVY
+          value: '300000'
+        - name: VALIDATION_ITERATIONS_EXTREME
+          value: '4000000'
+        # Wall-clock targets for paced tiers (light/medium/heavy).
+        - name: VALIDATION_TARGET_LIGHT_SECONDS
+          value: '2.0'
+        - name: VALIDATION_TARGET_MEDIUM_SECONDS
+          value: '5.0'
+        - name: VALIDATION_TARGET_HEAVY_SECONDS
+          value: '10.0'
+        - name: VALIDATION_PACING_CHUNKS
+          value: '10'
+        # SKUs whose presence in cart triggers heavy/extreme tier.
+        # Default: Optical Tube Assembly ($3599, most expensive).
+        - name: HIGH_VALUE_SKUS
+          value: '9SIQT8TOJO'
+        # Random "audit sampling" — fraction of orders forced to extreme
+        # regardless of cart, drives genuine p99+ tail noise.
+        - name: VALIDATION_AUDIT_SAMPLE_RATE
+          value: '0.05'
+        # Background heartbeat that forces the extreme tier on a fixed
+        # cadence. Real orders skew light/medium and only hit extreme
+        # when the cart is non-USD + high-value SKU (~2%), so the p99
+        # chart goes flat between organic extremes. This guarantees at
+        # least one extreme call per interval so the throttle story
+        # stays visible. Synthetic order_ids use the `99-{16-digit}`
+        # format — distinct from real UUID order_ids so APM filters
+        # can separate organic vs. synthetic traffic.
+        - name: VALIDATION_BACKGROUND_INTERVAL_SECONDS
+          value: '120'
+        # Random pick per heartbeat. Regions: Russian, African,
+        # South American, Eastern European, Asian (Burmese).
+        - name: VALIDATION_BACKGROUND_CURRENCIES
+          value: 'RUB,ZAR,BRL,PLN,MMK'
+        - name: FLAGD_HOST
+          value: flagd
+        - name: FLAGD_PORT
+          value: '8013'
+        - name: SPLUNK_PROFILER_LOGS_ENDPOINT
+          value: http://$(OTEL_COLLECTOR_NAME):4317
+        - name: SPLUNK_PROFILER_ENABLED
+          value: 'true'
+        - name: SPLUNK_PROFILER_CALL_STACK_INTERVAL
+          value: '750'
+        # Intentionally tight CPU limit. Workload needs ~400-500m;
+        # 100m guarantees CFS throttling under any sustained load.
+        # k8s admin spots this via:
+        #   kubectl top pod order-validation
+        #   container_cpu_cfs_throttled_seconds_total{pod=~"order-validation.*"}
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        volumeMounts: null
+      volumes: null
+
+---
