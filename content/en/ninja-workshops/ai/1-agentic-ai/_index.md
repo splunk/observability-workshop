@@ -6,8 +6,6 @@ layout: chapter
 time: 45 minutes
 authors: ["Derek Mitchell"]
 description: Instrument a LangChain-based agentic AI app with OpenTelemetry and use Splunk Observability Cloud to surface quality issues and AI security risks.
-draft: false
-hidden: false
 aliases:
   - /ninja-workshops/18-agentic-ai/
 product: "Observability Cloud"
