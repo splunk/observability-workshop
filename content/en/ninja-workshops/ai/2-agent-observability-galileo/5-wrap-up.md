@@ -5,13 +5,13 @@ weight: 5
 time: 20 minutes
 ---
 
-You took the workshop 18 multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
+You took the workshop [Monitoring Agentic AI Applications](ninja-workshops/ai/1-agentic-ai/) multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
 two things: `galileo_context.init(...)` and a single `GalileoCallback` on the LangGraph run config.
 With that, every agent node's LLM call now appears as a nested span in a single Splunk Agent Observability trace per
 request — no per-node changes required and very low maintenance.
 
 You now have the same workload traced in two observability tools (Splunk Observability Cloud from
-workshop 18, and Splunk Agent Observability here), which is a useful basis for comparison. What does Agent Observability show you that Observability Cloud doesn't, and vice versa?
+[Monitoring Agentic AI Applications](ninja-workshops/ai/1-agentic-ai/), and Splunk Agent Observability here), which is a useful basis for comparison. What does Agent Observability show you that Observability Cloud doesn't, and vice versa?
 
 Next, we're going to expand on this by:
 
