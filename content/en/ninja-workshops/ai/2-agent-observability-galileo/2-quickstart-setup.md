@@ -11,7 +11,7 @@ Start by adding the Galileo SDK to the travel planner's environment and initiali
 
 {{< step title="Activate Environment"  >}}
 
-Navigate to the app directory and activate the virtual environment you created in [Monitoring Agentic AI Applications](ninja-workshops/ai/18-agentic-ai/) (or create a fresh one):
+Navigate to the app directory and activate the virtual environment you created in [Monitoring Agentic AI Applications](ninja-workshops/ai/1-agentic-ai/) (or create a fresh one):
 
 ```bash
 cd ~/workshop/agentic-ai/base-app
