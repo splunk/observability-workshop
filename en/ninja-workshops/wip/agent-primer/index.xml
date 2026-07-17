@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Agent Primer on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/</link><description>Recent content in Splunk Observability Agent Primer on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/index.xml" rel="self" type="application/rss+xml"/><item><title>Types of Telemetry</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/1-types-of-telemetry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/1-types-of-telemetry/</guid><description>&lt;h2 id="supported-telemetry"&gt;
+ &lt;span class="heading-text"&gt;Supported telemetry&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#supported-telemetry" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;OTel officially supports 4 types of telemetry, or signals.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll use the definitions provided by the &lt;a href="https://opentelemetry.io/docs/concepts/signals/" target="_blank" rel="noopener"&gt;OTel docs&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+:&lt;/p&gt;
+&lt;h3 id="metrics"&gt;
+ &lt;span class="heading-text"&gt;Metrics&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;&lt;p&gt;A metric is a measurement of a service captured at runtime. The moment of capturing a measurement is known as a metric event, which consists not only of the measurement itself, but also the time at which it was captured and associated metadata.&lt;/p&gt;</description></item><item><title>What is an Agent</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/2-what-is-an-agent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/wip/agent-primer/2-what-is-an-agent/</guid><description>&lt;h2 id="agent-language"&gt;
+ &lt;span class="heading-text"&gt;Agent Language&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#agent-language" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Before we go into the different types of agents it&amp;rsquo;s important that we establish some language we use, so as to not cause confusion.&lt;/p&gt;
+&lt;h2 id="opentelemetry"&gt;
+ &lt;span class="heading-text"&gt;OpenTelemetry&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#opentelemetry" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In OpenTelemetry, there are different components that are used to collect data from a system.&lt;/p&gt;
+&lt;h3 id="collector"&gt;
+ &lt;span class="heading-text"&gt;Collector&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;OpenTelemetry defines the collector as:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;The OpenTelemetry Collector offers a vendor-agnostic implementation of how to receive, process and export telemetry data. It removes the need to run, operate, and maintain multiple agents/collectors. This works with improved scalability and supports open source observability data formats (e.g. Jaeger, Prometheus, Fluent Bit, etc.) sending to one or more open source or commercial backends.&lt;/p&gt;</description></item></channel></rss>

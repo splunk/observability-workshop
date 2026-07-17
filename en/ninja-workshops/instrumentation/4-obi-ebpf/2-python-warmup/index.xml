@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Phase 0: Python Warm-up on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/</link><description>Recent content in Phase 0: Python Warm-up on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Install and Run the App</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/1-install-and-run/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/1-install-and-run/</guid><description>&lt;h2 id="set-up-the-python-environment"&gt;
+ &lt;span class="heading-text"&gt;Set Up the Python Environment&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#set-up-the-python-environment" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Navigate to the Phase 0 directory and create a virtual environment:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/01-obi-python
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 -m venv .venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip3 install -r requirements.txt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-1-install-and-run-md-10-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Collecting flask&amp;gt;=3.0,&amp;lt;4.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Downloading ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Successfully installed flask-3.x.x ...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="set-your-splunk-credentials"&gt;
+ &lt;span class="heading-text"&gt;Set Your Splunk Credentials&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#set-your-splunk-credentials" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Export your credentials as environment variables. Replace each placeholder with your actual values:&lt;/p&gt;</description></item><item><title>2. Instrument with OBI</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/2-instrument-with-obi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/2-instrument-with-obi/</guid><description>&lt;p&gt;Now add APM tracing to this running app &lt;strong&gt;without touching a single line of code&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="download-obi"&gt;
+ &lt;span class="heading-text"&gt;Download OBI&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#download-obi" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Download the pre-built OBI binary from the &lt;a href="https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases" target="_blank" rel="noopener"&gt;GitHub releases page&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/SHA256SUMS&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sha256sum -c SHA256SUMS --ignore-missing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xzf &lt;span class="s2"&gt;&amp;#34;obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls -la ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;obi-v0.6.0-linux-amd64.tar.gz: OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-rwxr-xr-x 1 splunk splunk 112345678 Feb 27 14:47 ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/SHA256SUMS&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sha256sum -c SHA256SUMS --ignore-missing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xzf &lt;span class="s2"&gt;&amp;#34;obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls -la ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;obi-v0.6.0-linux-amd64.tar.gz: OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-rwxr-xr-x 1 splunk splunk 112345678 Feb 27 14:47 ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0.8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget &lt;span class="s2"&gt;&amp;#34;https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/releases/download/v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;/SHA256SUMS&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sha256sum -c SHA256SUMS --ignore-missing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tar -xzf &lt;span class="s2"&gt;&amp;#34;obi-v&lt;/span&gt;&lt;span class="nv"&gt;$VERSION&lt;/span&gt;&lt;span class="s2"&gt;-linux-&lt;/span&gt;&lt;span class="nv"&gt;$ARCH&lt;/span&gt;&lt;span class="s2"&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ls -la ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-4-obi-ebpf-2-python-warmup-2-instrument-with-obi-md-12-1--0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;obi-v0.6.0-linux-amd64.tar.gz: OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-rwxr-xr-x 1 splunk splunk 112345678 Feb 27 14:47 ./obi&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="run-obi"&gt;
+ &lt;span class="heading-text"&gt;Run OBI&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#run-obi" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;</description></item><item><title>3. Verify in Splunk APM</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/3-verify-in-splunk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/2-python-warmup/3-verify-in-splunk/</guid><description>&lt;h2 id="check-splunk-apm"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk APM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk-apm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ol&gt;
+&lt;li&gt;Navigate to &lt;strong&gt;APM&lt;/strong&gt; in Splunk Observability Cloud.&lt;/li&gt;
+&lt;li&gt;Filter by service name &lt;code&gt;warmup-app&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You should see traces for the &lt;code&gt;/hello&lt;/code&gt; endpoint.
+&lt;strong&gt;NOTE: This may take a number of minutes to ingest the first traces&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id="what-just-happened"&gt;
+ &lt;span class="heading-text"&gt;What Just Happened?&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#what-just-happened" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;The Flask app is &amp;ldquo;naked&amp;rdquo; it has zero observability code. It only knows how to say hello and send a heartbeat metric.&lt;/li&gt;
+&lt;li&gt;OBI attached eBPF probes to the kernel&amp;rsquo;s networking stack and observed HTTP traffic flowing through your app&amp;rsquo;s process.&lt;/li&gt;
+&lt;li&gt;OBI generated OpenTelemetry-compatible trace spans and sent them directly to Splunk.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;You just added distributed tracing to a running process from the kernel. No SDK, no code changes, no restart.&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

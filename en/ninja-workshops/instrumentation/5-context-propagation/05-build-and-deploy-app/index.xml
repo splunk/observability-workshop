@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Build &amp; Deploy Application on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/</link><description>Recent content in Build &amp; Deploy Application on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploy to K8s</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/1-deploy-to-k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/1-deploy-to-k8s/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm.&lt;/p&gt;
+&lt;h2 id="deploy-to-kubernetes"&gt;
+ &lt;span class="heading-text"&gt;Deploy to Kubernetes&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#deploy-to-kubernetes" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make deploy&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;This script:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Applies all Kubernetes manifests from &lt;code&gt;deploy/k8s/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creates a &lt;code&gt;splunk-otel&lt;/code&gt; secret from your &lt;code&gt;.env&lt;/code&gt; credentials&lt;/li&gt;
+&lt;li&gt;Points deployments at the registry images&lt;/li&gt;
+&lt;li&gt;Waits for all rollouts to complete&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="validation-checklist---deploy"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist - Deploy&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist---deploy" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h4 id="1-confirm-all-pods-are-running"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm all pods are running&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-all-pods-are-running" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop get pods&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-05-build-and-deploy-app-1-deploy-to-k8s-md-27-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME READY STATUS RESTARTS AGE
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;catalog-api-xxxxxxxxxx-xxxxx 1/1 Running 0 2m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;frontend-xxxxxxxxxx-xxxxx 1/1 Running 0 2m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;gateway-xxxxxxxxxx-xxxxx 1/1 Running 0 2m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;order-worker-xxxxxxxxxx-xxxxx 1/1 Running 0 2m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rabbitmq-xxxxxxxxxx-xxxxx 1/1 Running 0 2m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;splunk-otel-collector-agent-xxxxx 1/1 Running 0 10m
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;storefront-api-xxxxxxxxxx-xxxxx 1/1 Running 0 2m&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Failure indicators:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/2-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/2-generate-traffic/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll generate traffic through Cosmic Observatory Shop.&lt;/p&gt;
+&lt;h2 id="access-the-application"&gt;
+ &lt;span class="heading-text"&gt;Access the Application&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#access-the-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Open the Cosmic Observatory Shop in your browser:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should see the astronomy equipment catalog with telescopes, eyepieces, and astrophotography gear&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/cosmic-shop.png" alt="cosmic-shop" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Optional - RabbitMQ management UI:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;http://localhost:15672&lt;/strong&gt; (login: &lt;code&gt;guest&lt;/code&gt; / &lt;code&gt;guest&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rabbitmq.png" alt="rabbitmq" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;If the UI does not load, verify the loadbalancer port and use port-forward:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps --filter &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;k3d-cosmic-shop-serverlb --format &lt;span class="s1"&gt;&amp;#39;{{.Ports}}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;h2 id="generate-initial-traffic"&gt;
+ &lt;span class="heading-text"&gt;Generate Initial Traffic&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#generate-initial-traffic" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;After opening the shop at http://localhost:30080&lt;/li&gt;
+&lt;li&gt;Enter an email address (e.g. &lt;code&gt;observer@cosmic.shop&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Purchase&lt;/strong&gt; on any product&lt;/li&gt;
+&lt;li&gt;Confirm the order in the modal&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Repeat a few times to generate trace data.&lt;/p&gt;</description></item><item><title>Explore APM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/3-check-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/3-check-splunk-apm/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll observe how disconnected traces appear in Splunk Observability Cloud. This is the &amp;ldquo;problem state&amp;rdquo; that the rest of the workshop fixes.&lt;/p&gt;
+&lt;h2 id="the-apm-request-path"&gt;
+ &lt;span class="heading-text"&gt;The APM Request Path&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-apm-request-path" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;When you clicked &lt;strong&gt;Place order&lt;/strong&gt;, the request flowed through:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Browser (RUM span)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Frontend NGINX
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Edge Gateway NGINX ← break #1: trace headers dropped
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Order API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Catalog API ← direct HTTP 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment Gateway ← break #2: strips headers to payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → RabbitMQ ← break #3: no trace context in message
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Fulfillment Worker ← orphan root trace&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Three breaks occur:&lt;/p&gt;</description></item><item><title>Explore RUM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/4-check-splunk-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/05-build-and-deploy-app/4-check-splunk-rum/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll observe how RUM sessions appear add context to requests and how they appear in Splunk Observability Cloud. This is the &amp;ldquo;problem state&amp;rdquo; of how the APM issue reflects in RUM.&lt;/p&gt;
+&lt;h2 id="the-rum-request-path"&gt;
+ &lt;span class="heading-text"&gt;The RUM Request Path&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-rum-request-path" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Open &lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Open browser DevTools → &lt;strong&gt;Network&lt;/strong&gt; tab&lt;/li&gt;
+&lt;li&gt;Place 3–5 orders for different products&lt;/li&gt;
+&lt;li&gt;In the Network tab, inspect a &lt;code&gt;POST /api/orders&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;Confirm the request includes a &lt;code&gt;traceparent&lt;/code&gt; header (injected by Splunk RUM)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Example header:&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fix NGINX Propagation on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/</link><description>Recent content in Fix NGINX Propagation on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/index.xml" rel="self" type="application/rss+xml"/><item><title>Redeploy after NGINX fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/1-redeploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/1-redeploy/</guid><description>&lt;h2 id="redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Saving the file does &lt;strong&gt;not&lt;/strong&gt; update the running gateway. You must apply the ConfigMap and restart the deployment so NGINX loads the new config.&lt;/p&gt;
+&lt;p&gt;From the project root run the following:&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-06-fix-nginx-propagation-1-redeploy-md-14-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f deploy/k8s/gateway-config.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/gateway --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Verify the pod picked up your changes:&lt;/p&gt;</description></item><item><title>Explore RUM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/2-check-splunk-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/2-check-splunk-rum/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll observe how RUM sessions appear add context to requests and how they appear in Splunk Observability Cloud. This is the &amp;ldquo;problem state&amp;rdquo; of how the APM issue reflects in RUM.&lt;/p&gt;
+&lt;h2 id="the-rum-request-path"&gt;
+ &lt;span class="heading-text"&gt;The RUM Request Path&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-rum-request-path" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;Allow &lt;strong&gt;2–5 minutes&lt;/strong&gt; after deploy for RUM data to appear..&lt;/div&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Open &lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Open browser DevTools → &lt;strong&gt;Network&lt;/strong&gt; tab&lt;/li&gt;
+&lt;li&gt;Place an order&lt;/li&gt;
+&lt;li&gt;In the Network tab, inspect a &lt;code&gt;POST /api/orders&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;Confirm the request includes a &lt;code&gt;traceparent&lt;/code&gt; header (injected by Splunk RUM)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Example header:&lt;/p&gt;</description></item><item><title>Explore APM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/3-check-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/06-fix-nginx-propagation/3-check-splunk-apm/</guid><description>&lt;p&gt;In this step, you’ll observe how the previously disconnected traces appear in Splunk Observability Cloud. This is the &amp;ldquo;Post NGINX Fix&amp;rdquo; applied state.&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Browser (RUM span)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Frontend NGINX
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Edge Gateway NGINX ← Fix #1: trace headers Fixed
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Order API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Catalog API ← direct HTTP 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment Gateway ← break #2: strips headers to payment-api
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Payment API
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → RabbitMQ ← break #3: no trace context in message
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; → Fulfillment Worker ← orphan root trace&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;h2 id="check-splunk"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to &lt;strong&gt;APM → Trace Analyzer&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Paste the &lt;strong&gt;traceID&lt;/strong&gt; value copied from the traceparent in the step before&lt;/li&gt;
+&lt;li&gt;You will see an APM trace for &amp;lsquo;api/frontend-api`.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="1-confirm-the-trace-exists"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm the trace exists&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-the-trace-exists" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;In &lt;strong&gt;APM → Trace Analyzer&lt;/strong&gt; view, paste the traceID value copied from the traceparent above.&lt;/p&gt;</description></item></channel></rss>

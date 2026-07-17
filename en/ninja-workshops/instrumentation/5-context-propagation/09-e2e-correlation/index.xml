@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>E2E Correlation on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/</link><description>Recent content in E2E Correlation on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/index.xml" rel="self" type="application/rss+xml"/><item><title>Explore RUM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/1-check-splunk-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/1-check-splunk-rum/</guid><description>&lt;p&gt;In this step we will review what the E2E correlation looks like from the web application -&amp;gt; through to the fulfilment service.&lt;/p&gt;
+&lt;h2 id="generate-request-from-web-application"&gt;
+ &lt;span class="heading-text"&gt;Generate Request from Web Application&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#generate-request-from-web-application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="send-new-web-request"&gt;
+ &lt;span class="heading-text"&gt;Send New Web Request&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#send-new-web-request" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Open http://localhost:30080&lt;/li&gt;
+&lt;li&gt;Click Buy now → Confirm &amp;amp; place order&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-ui.png" alt="rum-ui" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Validation&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Copy the traceID&lt;/strong&gt; - we will use this in the next step to validate APM e2e correlation&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id="verify-in-splunk-rum"&gt;
+ &lt;span class="heading-text"&gt;Verify in Splunk RUM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#verify-in-splunk-rum" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to &lt;strong&gt;Digital Experience → Session Search&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Find your session (environment &lt;code&gt;workshop-context-prop&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Click the session timeline&lt;/li&gt;
+&lt;li&gt;Select the &lt;code&gt;purchases&lt;/code&gt; fetch event&lt;/li&gt;
+&lt;li&gt;Confirm:
+&lt;ul&gt;
+&lt;li&gt;Response time is displayed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backend Trace&lt;/strong&gt; link navigates to APM&lt;/li&gt;
+&lt;li&gt;Trace ID matches the browser &lt;code&gt;traceparent&lt;/code&gt; header&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/r-trace-e2e.png" alt="trace-rum" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Explore APM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/2-check-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/09-e2e-correlation/2-check-splunk-apm/</guid><description>&lt;p&gt;In this step, you will review what the full APM end-to-end correlation looks like in Splunk Observability Cloud.&lt;/p&gt;
+&lt;h2 id="verify-in-splunk-apm"&gt;
+ &lt;span class="heading-text"&gt;Verify in Splunk APM&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#verify-in-splunk-apm" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="explore-trace"&gt;
+ &lt;span class="heading-text"&gt;Explore Trace&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#explore-trace" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;From RUM session - Open the trace linked from RUM
+OR (paste the trace ID from the &lt;code&gt;traceparent&lt;/code&gt; header or completed purchase request in the UI)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You will see a RUM correlation hyperlink that will take you to the RUM session from previous step.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fix Payment Gateway Propagation on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/</link><description>Recent content in Fix Payment Gateway Propagation on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/index.xml" rel="self" type="application/rss+xml"/><item><title>ReDeploy Gateway fix</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/1-rebuild-and-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/1-rebuild-and-deploy/</guid><description>&lt;h2 id="rebuild-and-redeploy-after-saving"&gt;
+ &lt;span class="heading-text"&gt;Rebuild and Redeploy After Saving&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#rebuild-and-redeploy-after-saving" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;Saving &lt;code&gt;server.js&lt;/code&gt; does &lt;strong&gt;not&lt;/strong&gt; update running pods until you rebuild and restart.&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;From the project root:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/build-images.sh payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash scripts/import-images-k3d.sh payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout restart deployment/payment-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl -n cosmic-shop rollout status deployment/payment-gateway --timeout&lt;span class="o"&gt;=&lt;/span&gt;180s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run these commands after redeploy completes.&lt;/p&gt;</description></item><item><title>Explore APM in Splunk</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/2-check-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/07--fix-payment-gateway-propagation/2-check-splunk-apm/</guid><description>&lt;h2 id="check-splunk"&gt;
+ &lt;span class="heading-text"&gt;Check Splunk&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#check-splunk" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h4 id="1-confirm-partial-correlation-in-service-map"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm partial correlation in Service Map&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-partial-correlation-in-service-map" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Open &lt;strong&gt;http://localhost:30080&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Generate 2-3 new requests&lt;/li&gt;
+&lt;li&gt;Navigate to &lt;strong&gt;APM → Service Map&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Filter environment: &lt;code&gt;workshop-context-prop&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;You may see the service map with APM disjointed correlation between the payment-gateway and payment-api because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The time-window selected is too broad&lt;/li&gt;
+&lt;li&gt;There may still be some health probe orphans&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In this case, the service map will show:&lt;/p&gt;</description></item></channel></rss>
