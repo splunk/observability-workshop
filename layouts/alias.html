@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ .Title | markdownify | plainify }} · {{ site.Title }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <script>
+    (function () {
+      // Auto-forward root alias pages (for example /observability-workshop/) to /<lang>/.
+      var target = "{{ .Permalink }}";
+      var langSegment = "{{ site.Language.Lang | default "en" }}/";
+      var normalize = function (path) {
+        if (!path) return "/";
+        return path.replace(/\/+$/, "") + "/";
+      };
+
+      try {
+        var currentPath = normalize(window.location.pathname);
+        var targetPath = normalize(new URL(target, window.location.origin).pathname);
+        var sourcePath = normalize(targetPath.slice(0, -langSegment.length));
+
+        if (targetPath.endsWith(langSegment) && currentPath === sourcePath) {
+          window.location.replace(target);
+        }
+      } catch (e) {
+        // Keep rendering the alias page if URL parsing fails.
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try {
+        var mode = localStorage.getItem("splunk-workshop-theme") || "{{ site.Params.defaultMode | default `auto` }}";
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var resolved = mode === "auto" ? (dark ? "dark" : "light") : mode;
+        root.setAttribute("data-theme", resolved);
+        root.setAttribute("data-theme-mode", mode);
+      } catch (e) {
+        root.setAttribute("data-theme", "light");
+        root.setAttribute("data-theme-mode", "auto");
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --alias-bg: #f4f6fa;
+      --alias-ink: #0c1724;
+      --alias-muted: #4b5563;
+      --alias-card-bg: #ffffff;
+      --alias-card-border: #d1d9e5;
+      --alias-shadow: rgba(15, 23, 42, 0.12);
+      --alias-kicker: #0f6fc6;
+      --alias-panel-bg: #f8fafc;
+      --alias-panel-border: #d8e2ee;
+      --alias-key: #64748b;
+      --alias-btn-bg: {{ site.Params.colorAccent | default "#FF0F7B" }};
+      --alias-btn-bg-hover: {{ site.Params.colorAccentDark | default "#D4006B" }};
+      --alias-btn-ink: #ffffff;
+      --alias-btn-focus: color-mix(in oklab, var(--alias-btn-bg) 45%, white);
+      --alias-link: #0f6fc6;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --alias-bg: #0f172a;
+      --alias-ink: #e2e8f0;
+      --alias-muted: #cbd5e1;
+      --alias-card-bg: #111827;
+      --alias-card-border: #334155;
+      --alias-shadow: rgba(2, 6, 23, 0.4);
+      --alias-kicker: #93c5fd;
+      --alias-panel-bg: #0b1220;
+      --alias-panel-border: #223047;
+      --alias-key: #94a3b8;
+      --alias-btn-focus: color-mix(in oklab, var(--alias-btn-bg) 30%, white);
+      --alias-link: #93c5fd;
+    }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--alias-bg);
+      color: var(--alias-ink);
+    }
+    .alias-wrap {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+    }
+    .alias-card {
+      width: min(60rem, 100%);
+      box-sizing: border-box;
+      background: var(--alias-card-bg);
+      border: 1px solid var(--alias-card-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 24px 48px var(--alias-shadow);
+    }
+    .alias-kicker {
+      margin: 0 0 0.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--alias-kicker);
+      font-weight: 600;
+    }
+    .alias-title {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      line-height: 1.2;
+    }
+    .alias-lead {
+      margin: 0.75rem 0 1.25rem;
+      color: var(--alias-muted);
+      line-height: 1.5;
+    }
+    .alias-urls {
+      margin: 0;
+      padding: 0.75rem 0.875rem;
+      border-radius: 0.75rem;
+      background: var(--alias-panel-bg);
+      border: 1px solid var(--alias-panel-border);
+    }
+    .alias-row + .alias-row {
+      margin-top: 0.5rem;
+    }
+    .alias-key {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--alias-key);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .alias-value {
+      margin: 0.15rem 0 0;
+      font-size: 0.95rem;
+      overflow-wrap: anywhere;
+      color: var(--alias-ink);
+    }
+    .alias-actions {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .alias-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 0;
+      border-radius: 999px;
+      text-decoration: none;
+      background: var(--alias-btn-bg);
+      color: var(--alias-btn-ink);
+      font-weight: 600;
+      line-height: 1;
+      padding: 0.75rem 1rem;
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .alias-btn:hover {
+      transform: translateY(-1px);
+      background: var(--alias-btn-bg-hover);
+    }
+    .alias-btn:focus-visible {
+      outline: 2px solid var(--alias-btn-focus);
+      outline-offset: 2px;
+    }
+    .alias-home {
+      color: var(--alias-link);
+      text-decoration: none;
+    }
+    .alias-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="alias-wrap">
+    <article class="alias-card" aria-labelledby="alias-title">
+      <p class="alias-kicker">Link updated</p>
+      <h1 class="alias-title" id="alias-title">This page moved</h1>
+      <p class="alias-lead">You followed an older URL. Please update your bookmark to this page's current address.</p>
+
+      <section class="alias-urls" aria-label="Old and new URL">
+        <div class="alias-row">
+          <p class="alias-key">Old URL</p>
+          <p class="alias-value" data-alias-old-url>Loading…</p>
+        </div>
+        <div class="alias-row">
+          <p class="alias-key">New URL</p>
+          <p class="alias-value">{{ .Permalink }}</p>
+        </div>
+      </section>
+
+      <div class="alias-actions">
+        <a class="alias-btn" href="{{ .Permalink }}">Continue to current page <span aria-hidden="true">&rarr;</span></a>
+        <a class="alias-home" href="{{ "/" | relLangURL }}">Go to homepage</a>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var oldUrl = document.querySelector("[data-alias-old-url]");
+      if (!oldUrl) return;
+      oldUrl.textContent = location.origin + location.pathname + location.search + location.hash;
+    })();
+  </script>
+</body>
+</html>

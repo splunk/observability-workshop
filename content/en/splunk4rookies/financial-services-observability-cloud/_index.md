@@ -4,7 +4,7 @@ weight: 3
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
 time: 30 minutes
 aliases:
-  - /en/s4r/
+  - /s4r/financial-services-observability-cloud/
 description: For financial services teams. See how Splunk Observability Cloud delivers real-time visibility across the FSI digital ecosystem in a 30-minute hands-on session.
 params:
   images:

@@ -45,7 +45,7 @@ description: This section helps you understand how to use Splunk RUM to monitor 
 | `title` | yes | Chapter title without a number prefix — used as the page H1. |
 | `linkTitle` | yes | Same title with a leading number ("3. ...") — this is what shows in the left-nav. The number must match the chapter's `weight`. |
 | `weight` | yes | Position within the workshop. Match the folder-name prefix (`3-rum/` → `weight: 3`). |
-| `archetype: chapter` | yes | Tells the Relearn theme to render this as a chapter section (different layout from a regular page). |
+| `archetype: chapter` | recommended for compatibility | Common in existing workshop content and keeps chapter rendering/layout consistent with current repo conventions. |
 | `time` | recommended | Per-chapter time estimate, e.g., `"15 minutes"`. |
 | `description` | yes | One-line summary of what the chapter covers. |
 
@@ -78,5 +78,5 @@ Don't add `description`, `linkTitle`, or `archetype` to topic pages unless there
 
 - **Mismatched weight and prefix.** If the folder is `4-apm/` but the frontmatter says `weight: 5`, the rendered nav will not match the file tree, which makes the repo confusing to navigate.
 - **Numbering inside `title` for chapters.** Chapter `title` should be clean ("Logs"); the number lives in `linkTitle` ("5. Logs"). Topic pages do put the number in `title` because they don't have `linkTitle`.
-- **Forgetting `archetype: chapter`** on chapter `_index.md`. Without it, the theme renders the chapter as a regular page and the styling is off.
+- **Inconsistent chapter metadata.** If surrounding chapters use `archetype: chapter`, keep it for new siblings to avoid visual/layout drift within the same workshop.
 - **`time` mismatched between top `_index.md` and the sum of chapter `time` fields.** The top-level total should add up to roughly the chapter sum. If it doesn't, the workshop list will show one number while attendees experience another.

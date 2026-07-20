@@ -1,0 +1,375 @@
+# Splunk Astronomy Shop Kubernetes Manifest - secureapp
+# Version: 2.0.6
+# Generated on: 2026-07-16T11:22:16Z
+#
+# This manifest combines service deployments for the Splunk Astronomy Shop
+# Services are defined in services.yaml
+---
+
+# === secureapp-loadgen-java ===
+# Unified SecureApp loadgen — 3 language variants (Java, Node, Python).
+# Each variant exercises vulnerability classes for Splunk SecureApp agent
+# detection. Reports as its own service.name.
+# Stitched into secureapp manifest group. Adapted from
+# unified-v2/k8s/base/*.yaml (kustomize source) for astronomy-shop
+# stitcher (flat single-file convention).
+#
+# Image refs updated by .github/scripts/update-manifest-images.py per svc:
+#   secureapp-loadgen-java   -> otel-secureapp-loadgen-java
+#   secureapp-loadgen-node   -> otel-secureapp-loadgen-node
+#   secureapp-loadgen-python -> otel-secureapp-loadgen-python
+---
+# =========================
+# secureapp-loadgen-java
+# =========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: secureapp-loadgen-java
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-java
+    app.kubernetes.io/language: java
+    app.kubernetes.io/part-of: unified-secureapp
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: secureapp-loadgen-java
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secureapp-loadgen-java
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-java
+    app.kubernetes.io/language: java
+    app.kubernetes.io/part-of: unified-secureapp
+    app.kubernetes.io/version: "2.1.3"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: secureapp-loadgen-java
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: secureapp-loadgen-java
+        app.kubernetes.io/language: java
+        app.kubernetes.io/part-of: unified-secureapp
+    spec:
+      serviceAccountName: opentelemetry-demo
+      containers:
+        - name: app
+          image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-java:2.0.6
+          imagePullPolicy: Always
+          command:
+            - /bin/sh
+            - -c
+            - |
+              export OTEL_RESOURCE_ATTRIBUTES="service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.6,deployment.environment=${DEPLOYMENT_ENVIRONMENT}"
+              exec ./entrypoint.sh
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            # Impersonates the ad service in APM dependency map.
+            - name: OTEL_SERVICE_NAME
+              value: "ad"
+            - name: DEPLOYMENT_ENVIRONMENT
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: env
+                  optional: true
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_COLLECTOR_NAME
+              value: $(NODE_IP)
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_METRICS_EXPORTER
+              value: otlp
+            - name: SPLUNK_PROFILER_ENABLED
+              value: "true"
+            - name: SPLUNK_PROFILER_MEMORY_ENABLED
+              value: "true"
+            - name: SPLUNK_PROFILER_LOGS_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318/v1/logs
+            - name: SPLUNK_METRICS_ENABLED
+              value: "true"
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -javaagent:/app/splunk-otel-javaagent.jar
+                -Dargento.allow.security.events=true
+                -Dargento.wait.events.for.first.transaction=false
+            - name: LOADGEN_ENABLED
+              value: "true"
+            - name: LOADGEN_LANGUAGE
+              value: java
+            - name: ATTACK_HOST
+              value: localhost:8080
+            - name: FLAGD_HOST
+              value: flagd
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+---
+# =========================
+# secureapp-loadgen-node
+# =========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: secureapp-loadgen-node
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-node
+    app.kubernetes.io/language: node
+    app.kubernetes.io/part-of: unified-secureapp
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: secureapp-loadgen-node
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secureapp-loadgen-node
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-node
+    app.kubernetes.io/language: node
+    app.kubernetes.io/part-of: unified-secureapp
+    app.kubernetes.io/version: "2.1.3"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: secureapp-loadgen-node
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: secureapp-loadgen-node
+        app.kubernetes.io/language: node
+        app.kubernetes.io/part-of: unified-secureapp
+    spec:
+      serviceAccountName: opentelemetry-demo
+      containers:
+        - name: app
+          image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-node:2.0.6
+          imagePullPolicy: Always
+          command:
+            - node
+            - -r
+            - "@splunk/otel/instrument.js"
+            - src/server.js
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            # Impersonates the frontend service in APM dependency map.
+            - name: OTEL_SERVICE_NAME
+              value: "frontend"
+            # Node app startup asserts DEPLOY_ENV or
+            # deployment.environment(.name) in OTEL_RESOURCE_ATTRIBUTES.
+            - name: DEPLOY_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: env
+                  optional: true
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_COLLECTOR_NAME
+              value: $(NODE_IP)
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318
+            - name: OTEL_EXPORTER_OTLP_LOGS_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318/v1/logs
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_TRACES_EXPORTER
+              value: otlp
+            - name: OTEL_METRICS_EXPORTER
+              value: otlp
+            - name: OTEL_LOGS_EXPORTER
+              value: otlp
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.6,deployment.environment.name=$(DEPLOY_ENV)"
+            - name: SPLUNK_SECUREAPP_AGENT_ENABLED
+              value: "true"
+            - name: SPLUNK_SECUREAPP_DEPENDENCY_INITIAL_DELAY
+              value: "60"
+            - name: SPLUNK_SECUREAPP_DEPENDENCY_SCAN_INTERVAL
+              value: "86400000"
+            - name: SPLUNK_SECUREAPP_RUNTIME_PACKAGES_ONLY
+              value: "true"
+            - name: SPLUNK_SECUREAPP_NO_SELF_REPORT
+              value: "false"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+---
+# =========================
+# secureapp-loadgen-python
+# =========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: secureapp-loadgen-python
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-python
+    app.kubernetes.io/language: python
+    app.kubernetes.io/part-of: unified-secureapp
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: secureapp-loadgen-python
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secureapp-loadgen-python
+  labels:
+    app.kubernetes.io/name: secureapp-loadgen-python
+    app.kubernetes.io/language: python
+    app.kubernetes.io/part-of: unified-secureapp
+    app.kubernetes.io/version: "2.1.3"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: secureapp-loadgen-python
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: secureapp-loadgen-python
+        app.kubernetes.io/language: python
+        app.kubernetes.io/part-of: unified-secureapp
+    spec:
+      serviceAccountName: opentelemetry-demo
+      containers:
+        - name: app
+          image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-python:2.0.6
+          imagePullPolicy: Always
+          command:
+            - opentelemetry-instrument
+            - gunicorn
+            - -c
+            - gunicorn.conf.py
+            - run:app
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            # Impersonates the recommendation service in APM dependency map
+            # (recommendation is Python — same runtime as this variant).
+            - name: OTEL_SERVICE_NAME
+              value: "recommendation"
+            # Python app startup asserts DEPLOY_ENV or
+            # deployment.environment.name in OTEL_RESOURCE_ATTRIBUTES.
+            - name: DEPLOY_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: env
+                  optional: true
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_COLLECTOR_NAME
+              value: $(NODE_IP)
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318
+            - name: OTEL_EXPORTER_OTLP_LOGS_ENDPOINT
+              value: http://$(OTEL_COLLECTOR_NAME):4318/v1/logs
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_TRACES_EXPORTER
+              value: otlp
+            - name: OTEL_METRICS_EXPORTER
+              value: otlp
+            - name: OTEL_LOGS_EXPORTER
+              value: otlp
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.6,deployment.environment.name=$(DEPLOY_ENV)"
+            - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+              value: "false"
+            - name: SPLUNK_SECUREAPP_AGENT_ENABLED
+              value: "true"
+            - name: SPLUNK_SECUREAPP_DEPENDENCY_INITIAL_DELAY
+              value: "60"
+            - name: SPLUNK_SECUREAPP_DEPENDENCY_SCAN_INTERVAL
+              value: "86400"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+
+---

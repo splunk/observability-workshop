@@ -1,6 +1,6 @@
 # Shortcode Reference
 
-The Hugo Relearn theme provides shortcodes (Hugo's mechanism for parameterized template fragments inside markdown). The repo uses a small, consistent set of them. This file is the catalog.
+The `hugo-theme-splunk-workshop` theme provides shortcodes (Hugo's mechanism for parameterized template fragments inside markdown). The repo uses a small, consistent set of them. This file is the catalog.
 
 A note on syntax: Hugo distinguishes `{{% ... %}}` (markdown content inside) from `{{< ... >}}` (raw HTML inside). Most workshop notices use `{{% ... %}}` because the body contains markdown lists. Tabs use `{{< tabs >}}` because the wrapper is structural.
 
@@ -26,7 +26,7 @@ The notice block visually chunks page content into recognizable boxes. It's by f
 | Sidebar context, "what is this feature?" | `info` | (none) | feature name |
 | Final celebration | `blue` | `wine-bottle` | `"Congratulations"` |
 
-The icons come from FontAwesome (the theme bundles them). Icons are optional — leave the `icon=` parameter off if you don't want one.
+The icons come from FontAwesome/Lucide integrations exposed by the theme. Icons are optional - omit `icon=` when unnecessary.
 
 ### When to use each
 
