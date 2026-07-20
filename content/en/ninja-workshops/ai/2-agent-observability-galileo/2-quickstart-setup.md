@@ -15,6 +15,7 @@ Navigate to the app directory and activate the virtual environment you created i
 
 ```bash
 cd ~/workshop/agentic-ai/base-app
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -22,9 +23,10 @@ source .venv/bin/activate
 
 {{< step title="Install Galileo SDK"  >}}
 
-Install the Galileo SDK alongside the app's existing dependencies:
+Install the Galileo SDK alongside the app's existing dependencies in the `requirements.txt`:
 
 ```bash
+pip install -r requirements.txt
 pip install galileo python-dotenv
 ```
 
@@ -53,11 +55,14 @@ Uncommenting `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` keeps the workshop trace
 Leaving them commented is fine too — your traces will just land in the `default` project and
 `default` log stream.
 
-4. Initialize Splunk Agent Observability near the top of `main.py`, right after the existing imports and
+4. Initialize Galileo near the top of `main.py`, right after the existing imports and
    `load_dotenv()` call. Passing the environment variables through means the project and log
    stream come from your `.env` when set, and fall back to Splunk Agent Observability's `default`/`default` when not:
 
 ```python
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 from galileo import galileo_context
 

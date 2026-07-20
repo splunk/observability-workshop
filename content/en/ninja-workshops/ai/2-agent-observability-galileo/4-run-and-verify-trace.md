@@ -11,11 +11,10 @@ Splunk Agent Observability.
 {{< exercise title="Run the app and verify the trace" >}}
 
 {{< step title="Active Environment" >}}
-Navigate to the base-app directory and activate the virtual environment:
+Navigate to the base-app directory:
 
 ```bash
 cd ~/workshop/agentic-ai/base-app
-source .venv/bin/activate
 ```
 
 {{< /step >}}
@@ -136,7 +135,7 @@ Expand any span and verify it captured the **system and human messages**, the **
   `GALILEO_LOG_STREAM` if you set them, or `default` / `default` if you didn't.
 * If you don't see the project, you likely don't have the correct permissions.
 * Check the app logs for Splunk Agent Observability errors in the bash where `python3 main.py` is running.
-* Confirm that you are in the `splunkse` organization in the top left of the web page.
+* Confirm that you are in the correct organization in the top left of the web page.
 
 {{% /notice %}}
 {{< /step >}}
