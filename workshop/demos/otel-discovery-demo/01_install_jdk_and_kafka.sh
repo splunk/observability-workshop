@@ -7,7 +7,7 @@ echo Installing OpenJDK v17
 sudo apt install -y openjdk-17-jdk openjdk-17-jre
 
 echo Downloading Kafka
-curl -sDL https://dlcdn.apache.org/kafka/3.8.0/kafka_2.13-3.8.0.tgz > ./kafka_2.13-3.8.0.tgz
+curl -sDL https://archive.apache.org/dist/kafka/3.8.0/kafka_2.13-3.8.0.tgz > ./kafka_2.13-3.8.0.tgz
 echo Decompressing Kafka binary
 tar -xzf ./kafka_2.13-3.8.0.tgz -C .
 
