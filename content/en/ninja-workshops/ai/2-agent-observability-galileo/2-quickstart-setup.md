@@ -37,6 +37,8 @@ The app already installs `langchain`, `langchain-openai`, `langgraph`, and `flas
 
 {{< step title="Configure Galileo credentials"  >}}
 
+Your EC2 instance comes pre-configured with `OPENAI_API_KEY` and `OPENAI_BASE_URL` environment variables, which will be used by the application. 
+
 Add your credentials to the app's `.env` file.
 
 ```ini

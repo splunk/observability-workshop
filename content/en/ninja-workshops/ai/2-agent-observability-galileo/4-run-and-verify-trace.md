@@ -106,7 +106,7 @@ curl http://localhost:8080/travel/plan \
 {{% /tab %}}
 {{< /tabs >}}
 
-In the Splunk Agent Observability console (https://console.multitenant.galileocloud.io/splunkse), open the project and log stream your traces landed in. If you uncommented
+In the Splunk Agent Observability console (https://console.multitenant.galileocloud.io/<organization>), open the project and log stream your traces landed in. If you uncommented
 `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` in your `.env`, that's `Workshop19` /
 `TravelPlanner`; otherwise it's the `default` project and `default` log stream.
 {{< /step >}}
