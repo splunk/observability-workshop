@@ -1,0 +1,101 @@
+# Enable/disable debug logging
+debug:
+  enabled: false
+  verbose: ~
+
+# Configure unique cluster name & ID
+cluster:
+  name: isovalent-demo
+  id: 0
+
+# Configure ENI specifics
+eni:
+  enabled: true
+  updateEC2AdapterLimitViaAPI: true
+  awsEnablePrefixDelegation: true
+
+enableIPv4Masquerade: false
+loadBalancer:
+  serviceTopology: true
+
+ipam:
+  mode: eni
+
+routingMode: native
+
+# BPF / KubeProxyReplacement
+# IMPORTANT: Replace <YOUR-EKS-API-SERVER-ENDPOINT> with your actual EKS API server endpoint
+# Get it with: kubectl cluster-info | grep 'Kubernetes control plane' | awk '{print $NF}' | sed 's|https://||'
+kubeProxyReplacement: "true"
+k8sServiceHost: <YOUR-EKS-API-SERVER-ENDPOINT>
+k8sServicePort: 443
+
+# Configure TLS configuration in the agent.
+tls:
+  ca:
+    certValidityDuration: 3650 # 10 years
+
+# Enable Cilium Hubble to gain visibility
+hubble:
+  enabled: true
+  metrics:
+    enableOpenMetrics: true
+    enabled:
+      - dns:labelsContext=source_namespace,destination_namespace
+      - drop:labelsContext=source_namespace,destination_namespace
+      - tcp:labelsContext=source_namespace,destination_namespace
+      - port-distribution:labelsContext=source_namespace,destination_namespace
+      - icmp:labelsContext=source_namespace,destination_namespace;sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity
+      - flow:sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity
+      - "httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_namespace,destination_workload,traffic_direction;sourceContext=workload-name|reserved-identity;destinationContext=workload-name|reserved-identity"
+      - "policy:sourceContext=app|workload-name|pod|reserved-identity;destinationContext=app|workload-name|pod|dns|reserved-identity;labelsContext=source_namespace,destination_namespace"
+      - flow_export
+    serviceMonitor:
+      enabled: true
+  tls:
+    enabled: true
+    auto:
+      enabled: true
+      method: cronJob
+      certValidityDuration: 1095 # 3 years
+  relay:
+    enabled: true
+    tls:
+      server:
+        enabled: true
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  timescape:
+    enabled: true
+
+# Enable Cilium Operator metrics
+operator:
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+# Enable Cilium Agent metrics
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+
+# Configure Cilium Envoy options.
+envoy:
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+# Enable Cilium agent's support for Cilium DNS Proxy HA
+extraConfig:
+  external-dns-proxy: "true"
+
+enterprise:
+  featureGate:
+    approved:
+      - DNSProxyHA
+      - HubbleTimescape
