@@ -1,7 +1,7 @@
 ---
 title: Splunk Agent Observability
 linkTitle: Splunk Agent Observability
-weight: 20
+weight: 4
 layout: chapter
 time: 2 hours
 authors: ["Derek Mitchell", "Sam Goldfield", "Tim Hard"]
