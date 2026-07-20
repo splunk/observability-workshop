@@ -5,8 +5,8 @@ weight: 1
 time: 5 minutes
 ---
 
-{{% notice style="warning" title="TODO" %}}
-Confirm which organization will be used for the workshop.
+{{% notice style="warning" title="Caution" %}}
+Please watch the workshop instructor complete the steps in this section, rather than complete them yourself. 
 {{% /notice %}}
 
 Generate Signals for your log stream and let the platform show you what's trending wrong.

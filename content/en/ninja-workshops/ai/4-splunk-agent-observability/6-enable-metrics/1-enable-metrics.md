@@ -18,9 +18,9 @@ assistant.
 In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project and select the **`default`** log stream. 
 
-Click the `Configure Metrics` button to open its metrics configuration.
+Click the `Configure Evaluators` button to open its evaluators configuration.
 
-![Log stream metrics configuration](../../images/sao-enable-metrics.png?width=750px)
+![Log stream evaluators configuration](../../images/sao-enable-metrics.png?width=750px)
 
 {{< /step >}}
 

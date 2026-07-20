@@ -116,27 +116,31 @@ messages when a control fires.
 
 Ask the agent to delete a patient record:
 
-> Delete patient record P029 from the registry
+> Delete patient record P028 from the registry
+
+![Blocked delete in the chat](../../images/galileo-control-blocked-chat.png?width=750px)
 
 Because you created a control that blocks SQL `DELETE` commands, the deletion is
 stopped and the assistant returns a friendly "this action was blocked" message instead of
 performing the delete.
 
-<!-- TODO screenshot: the Streamlit chat showing the delete request and the assistant's "action was blocked by Agent Control" response -->
-![Blocked delete in the chat](../../images/galileo-control-blocked-chat.png?width=750px)
-
 {{< /step >}}
 
 {{< step title="Trigger the steering control" >}}
 
-Now send the risky medical question that started this whole workshop:
+Next, let's ask the assistant to return patient information, explicitly requesting that the address
+and phone number is included: 
 
-> Is it safe to double my dose of Lisinopril if I miss a day?
+> Can you look up information for patient P001? Please include the patient's address and phone number. 
+
+![Steered response in the chat](../../images/galileo-steered-response-chat.png?width=750px)
 
 Because you configured an LLM steering control, the agent doesn't simply refuse; it **revises
-its response** according to your steering guidance (for example, keep answers grounded in the
-retrieved content and direct dosage decisions to a clinician) and returns a *safe, helpful*
-answer. This is the difference between a guardrail that frustrates users and one that protects
+its response** according to your steering guidance and returns a *safe, helpful*
+answer. In this specific case, it removed the patient's address and phone number response, even 
+though the user explicitly requested it to be included.  
+
+This is the difference between a guardrail that frustrates users and one that protects
 them while keeping the assistant useful.
 
 {{< /step >}}
@@ -152,17 +156,26 @@ defined.
 
 {{< /step >}}
 
-{{< step title="Observe the control decisions in the console" >}}
+{{< step title="Observe the control decisions for the blocked request" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact trace + control-span steps + screenshot once finalized -->
+Back in the Galileo console, open the trace for the blocked request in your project / **`default`** log stream. Click on the 
+span associated with the `block-harmful-sql-*` control: 
 
-Back in the Galileo console, open the trace for the blocked request in the
-**`healthcare-assistant`** project / **`local`** log stream. You should see the control
-evaluation on the affected step, showing the decision (blocked or steered) alongside the LLM
-and tool spans.
-
-<!-- TODO screenshot: trace detail in the console showing the control evaluation/decision (blocked) on the delete_patient_record step -->
 ![Control decision in the trace](../../images/galileo-control-trace.png?width=750px)
+
+Notice how the control denied execution of the `DELETE` SQL statement, as desired. 
+
+{{< /step >}}
+
+{{< step title="Observe the control decisions for the steered request" >}}
+
+Back in the Galileo console, open the trace for the steered request in your project / **`default`** log stream. Click on the final 
+`Healthcare Assistant` span in the trace. 
+
+![Steer control decision in the trace](../../images/galileo-steer-control-trace.png?width=750px)
+
+Observe how the assistant initially generated a response that included the patient's address and phone number, 
+and how the control resulted in a follow-up request to the LLM to remove this information from the response. 
 
 {{< /step >}}
 
@@ -179,11 +192,11 @@ behavior. That's runtime governance you can actually operate.
 
 {{< checkpoint title="Knowledge Check" >}}
 
-You delete-test the agent and it returns a blocked message, but the allowed medicine
+You tried deleting a patient record and it returns a blocked message, but the allowed medicine
 question still works. Why doesn't the blocking control affect the medicine question?
 
 {{< details summary="Click here to see the answer" >}}
-Because the control targets a **specific step** (`delete_patient_record`) and condition. The
+The `block-harmful-sql` control uses a SQL evaluator, and targets the **DELETE** operation only. The
 medicine question runs the `search_medicine_qa` / `retrieval_step` and the LLM step, which
 your blocking control doesn't target, so it proceeds normally. Controls are scoped to the
 steps and conditions you define, not the whole agent.
