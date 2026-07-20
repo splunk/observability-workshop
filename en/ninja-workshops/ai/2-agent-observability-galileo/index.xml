@@ -21,7 +21,7 @@ across tools using a workload you already understand.&lt;/p&gt;</description></i
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Activate Environment&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and activate the virtual environment you created in &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/18-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Navigate to the app directory and activate the virtual environment you created in &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
  (or create a fresh one):&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -110,9 +110,11 @@ Splunk Agent Observability.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;p&gt;In a second terminal, which is signed in to the same environment, send a travel-planning request. You should get the planned itinerary back,
-confirming the workflow still runs end-to-end with the callback attached:&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop 18 multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
+confirming the workflow still runs end-to-end with the callback attached:&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+ multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
 two things: &lt;code&gt;galileo_context.init(...)&lt;/code&gt; and a single &lt;code&gt;GalileoCallback&lt;/code&gt; on the LangGraph run config.
 With that, every agent node&amp;rsquo;s LLM call now appears as a nested span in a single Splunk Agent Observability trace per
 request — no per-node changes required and very low maintenance.&lt;/p&gt;
 &lt;p&gt;You now have the same workload traced in two observability tools (Splunk Observability Cloud from
-workshop 18, and Splunk Agent Observability here), which is a useful basis for comparison. What does Agent Observability show you that Observability Cloud doesn&amp;rsquo;t, and vice versa?&lt;/p&gt;</description></item></channel></rss>
+&lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+, and Splunk Agent Observability here), which is a useful basis for comparison. What does Agent Observability show you that Observability Cloud doesn&amp;rsquo;t, and vice versa?&lt;/p&gt;</description></item></channel></rss>
