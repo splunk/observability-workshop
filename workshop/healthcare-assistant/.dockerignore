@@ -1,0 +1,8 @@
+**/__pycache__
+**/*.pyc
+**/*.pyo
+1-base-app/.streamlit/secrets.toml
+1-base-app/k8s.yaml
+1-base-app/postgres.yaml
+1-base-app/setup-job.yaml
+1-base-app/start_vectordb.sh

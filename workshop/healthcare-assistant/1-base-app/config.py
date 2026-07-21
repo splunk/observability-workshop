@@ -8,7 +8,7 @@ APP_ROOT = Path(__file__).resolve().parent
 DOMAIN = "healthcare"
 CONFIG_PATH = APP_ROOT / "config.yaml"
 SYSTEM_PROMPT_PATH = APP_ROOT / "system_prompt.json"
-DOCS_DIR = APP_ROOT / "../docs"
+DOCS_DIR = APP_ROOT / "docs"
 TOOLS_DIR = APP_ROOT / "tools"
 
 

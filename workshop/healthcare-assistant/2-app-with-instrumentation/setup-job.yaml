@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vectordb-setup
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      restartPolicy: OnFailure
+      initContainers:
+        - name: wait-for-postgres
+          image: pgvector/pgvector:pg16
+          command:
+            - sh
+            - -c
+            - |
+              until pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER; do
+                echo "Waiting for postgres..."; sleep 2
+              done
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+      containers:
+        - name: setup
+          image: localhost:9999/healthcare-assistant:base-app
+          imagePullPolicy: Always
+          command: ["python", "helpers/setup_vectordb.py", "hosted"]
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: healthcare-assistant-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_PASSWORD
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api
+                  key: openai-api-key
+            - name: OPENAI_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api
+                  key: openai-api-endpoint
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"

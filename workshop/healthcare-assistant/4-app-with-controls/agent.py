@@ -247,6 +247,18 @@ class HealthcareAgent:
                         llm_messages, last_llm_output["message"], e
                     )
                     last_llm_output["message"] = None
+                except RuntimeError as e:
+                    # Galileo server failed to evaluate a control rule (e.g. misconfigured
+                    # or cloned rule with an internal evaluator error). Log and degrade
+                    # gracefully rather than crashing the agent.
+                    print(f"  ⚠️  Agent Control server error ({LLM_STEP_NAME}): {e}")
+                    message = AIMessage(
+                        content=(
+                            "I'm sorry, I'm unable to process your request right now due to "
+                            "a control evaluation error. Please try again or contact support."
+                        )
+                    )
+                    break
 
             if message is None:
                 message = AIMessage(content="No response generated")

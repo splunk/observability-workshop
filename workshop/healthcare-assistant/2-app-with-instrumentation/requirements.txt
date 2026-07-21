@@ -13,4 +13,3 @@ langchain-classic
 pyyaml
 toml
 pandas
-galileo
