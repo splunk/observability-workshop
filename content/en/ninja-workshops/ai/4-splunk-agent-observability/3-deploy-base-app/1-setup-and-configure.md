@@ -19,21 +19,6 @@ The healthcare assistant is pre-loaded under `~/workshop/healthcare-assistant/`,
 
 {{< /step >}}
 
-{{< step title="Temporary step: get the latest application code" >}}
-
-```bash
-rm -Rf ~/workshop/healthcare-assistant
-cd ~
-git clone https://github.com/splunk/observability-workshop.git
-cd observability-workshop
-git checkout agent-observability-lab-te
-cd workshop
-cp -R healthcare-assistant ~/workshop
-```
-
-{{< /step >}}
-
-
 {{< step title="Create a Kubernetes Secret" >}}
 
 Run the following command to create a Kubernetes secret, which the application will use to 
