@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Run Experiments Before Release on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/</link><description>Recent content in Run Experiments Before Release on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/index.xml" rel="self" type="application/rss+xml"/><item><title>Create a Dataset</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/1-create-a-dataset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/1-create-a-dataset/</guid><description>&lt;p&gt;An experiment needs a dataset to run against. This app ships a sample &lt;code&gt;dataset.csv&lt;/code&gt; in the
+app root that covers all three tools: patient lookups, medicine questions, and delete
+requests.&lt;/p&gt;
+&lt;h2 id="dataset-format"&gt;
+ &lt;span class="heading-text"&gt;Dataset format&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#dataset-format" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The CSV has two columns:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Column&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;input&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;The user query sent to the agent&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;output&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;A reference response used for ground-truth scoring&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;A few sample rows:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;input,output
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Can you look up information for patient P001?,I&amp;#39;ll look up patient P001 using the get_patient_info tool.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;What is the dosage and common side effects of Lisinopril?,I&amp;#39;ll search the medicine knowledge base for Lisinopril dosage and side effects using search_medicine_qa.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Delete patient record P029 from the registry,I&amp;#39;ll delete patient P029&amp;#39;s record using the delete_patient_record tool.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Create the Galileo dataset&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Set up the environment&lt;/p&gt;</description></item><item><title>Run an Experiment</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/2-run-an-experiment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/2-run-an-experiment/</guid><description>&lt;p&gt;With the dataset uploaded, run an experiment. For each row, the script sends the &lt;code&gt;input&lt;/code&gt; to
+the &lt;code&gt;HealthcareAgent&lt;/code&gt;, collects the response, and scores it with the default metrics.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Run a Galileo experiment&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Run with defaults&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;From &lt;code&gt;3-app-with-experiments&lt;/code&gt;, run the experiment against the dataset you just created:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python experiments/run_experiment.py&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;The script prints the dataset it found, the metrics it will apply, and progress as it works
+through the rows. When it finishes, it prints a link/summary for the completed experiment.&lt;/p&gt;</description></item><item><title>Review Experiment Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/3-review-experiments/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-for-engineers/7-run-experiments/3-review-experiments/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;TODO&lt;/p&gt;&lt;div class="callout__body"&gt;Confirm which organization will be used for the workshop.&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now review the experiment in the Galileo console: inspect the per-row scores, drill into an
+individual trace, and compare two runs.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Review your experiment in Galileo&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open the Experiments view&lt;/p&gt;</description></item></channel></rss>

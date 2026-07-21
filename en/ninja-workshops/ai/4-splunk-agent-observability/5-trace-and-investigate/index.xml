@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Trace and Investigate Agent Behavior on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/</link><description>Recent content in Trace and Investigate Agent Behavior on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/index.xml" rel="self" type="application/rss+xml"/><item><title>Explore a Trace</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/1-explore-a-trace/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/1-explore-a-trace/</guid><description>&lt;p&gt;Open the Splunk Agent Observability and work through a real trace from the traffic you just generated.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Investigate agent behavior&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and log stream&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt; and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Open the project using the name you set in the &lt;strong&gt;&lt;code&gt;GALILEO_PROJECT&lt;/code&gt;&lt;/strong&gt; field in the previous step, which is based on your participant number (for example, &lt;code&gt;project-44&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>Explore Other Views</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</guid><description>&lt;p&gt;Let&amp;rsquo;s explore other views in Splunk Agent Observability using the traffic you just generated.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Investigate agent behavior&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and log stream&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;Return to your project and the &lt;code&gt;default&lt;/code&gt; log stream in Splunk Agent Observability.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;View the Agent Graph&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Click on the &lt;strong&gt;&lt;code&gt;Agent graph&lt;/code&gt;&lt;/strong&gt; tab, which aggregates agent behavior
+across all traces in the log stream. It shows the most common execution paths, along with latency and frequency patterns,
+so you can quickly see how the agent is behaving with actual users.&lt;/p&gt;</description></item></channel></rss>

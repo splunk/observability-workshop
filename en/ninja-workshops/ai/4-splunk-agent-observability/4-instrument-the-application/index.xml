@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instrument the Application on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/</link><description>Recent content in Instrument the Application on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/index.xml" rel="self" type="application/rss+xml"/><item><title>Add the Galileo SDK and Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-galileo-sdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-galileo-sdk/</guid><description>&lt;p&gt;First, add the Galileo package and the configuration the SDK needs to know &lt;em&gt;where&lt;/em&gt; to send
+traces.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add the SDK and configuration&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Galileo package&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Galileo&amp;rsquo;s LangChain callback ships in the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
+file for editing and add the following to the end of the file:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;galileo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Set Environment Variables&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Run the commands provided by your workshop instructor to set environment variables
+on your EC2 instance. They&amp;rsquo;ll look like the following:&lt;/p&gt;</description></item><item><title>Attach the Galileo Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</guid><description>&lt;p&gt;The agent runs its LangGraph workflow asynchronously, so you&amp;rsquo;ll attach Galileo&amp;rsquo;s
+&lt;strong&gt;async&lt;/strong&gt; callback. Because the callback is passed at the graph level, it propagates to every
+node automatically, with no per-tool instrumentation required.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add the callback to the agent&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the imports&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py&lt;/code&gt; file for editing.
+At the end of the import section, just before &lt;code&gt;class State(TypedDict)&lt;/code&gt;, add:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;python&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;galileo_context&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo.handlers.langchain&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GalileoAsyncCallback&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wrap the graph invocation in a Galileo context&lt;/p&gt;</description></item><item><title>Generate Traffic</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/3-generate-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/3-generate-traffic/</guid><description>&lt;p&gt;With the callback attached, run the instrumented app and send a few requests. Every turn now
+produces a trace in Splunk Agent Observability. You&amp;rsquo;ll explore those traces in detail in the
+next chapter.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Run the app and generate traces&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Build a New Docker Image&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Change into the base app directory, then run the following command to build a new Docker image
+for the application that includes our recent changes:&lt;/p&gt;</description></item></channel></rss>

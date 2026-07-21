@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Get Connected on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/</link><description>Recent content in Get Connected on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/index.xml" rel="self" type="application/rss+xml"/><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+ &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Access the &lt;strong&gt;Splunk Show&lt;/strong&gt; event by clicking on the link for your region&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Enroll&lt;/strong&gt; on the top-right corner&lt;/li&gt;
+&lt;li&gt;Then look near the bottom of the page for your EC2 instance details&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should see connection information such as the following:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/ConnectionInformation.png" alt="Connection Information" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Using the IP address (which is part of the &lt;strong&gt;SSH Command&lt;/strong&gt;)
+and &lt;strong&gt;SSH Password&lt;/strong&gt; provided as part of the &lt;strong&gt;Connection Information&lt;/strong&gt;,
+connect to your EC2 instance using one of the methods below:&lt;/p&gt;</description></item><item><title>Sign In to Splunk Agent Observability</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</guid><description>&lt;h2 id="sign-in-to-splunk-agent-observability"&gt;
+ &lt;span class="heading-text"&gt;Sign In to Splunk Agent Observability&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#sign-in-to-splunk-agent-observability" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To access Splunk Agent Observability, navigate to
+&lt;a href="https://console.multitenant.galileocloud.io" target="_blank" rel="noopener"&gt;https://console.multitenant.galileocloud.io`&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ using your browser.&lt;/p&gt;
+&lt;p&gt;Use the credentials provided by the workshop organizer to sign in.&lt;/p&gt;
+&lt;p&gt;After signing in, ensure that the &lt;code&gt;workshop&lt;/code&gt; org is selected. Then, you should see a screen that includes your project name, such as
+the following example:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/SplunkAgentObservability.png" alt="Splunk Agent Observability Initial Screen" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>

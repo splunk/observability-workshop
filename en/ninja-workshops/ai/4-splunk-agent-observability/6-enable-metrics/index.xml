@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Enable Quality Metrics on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/</link><description>Recent content in Enable Quality Metrics on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/index.xml" rel="self" type="application/rss+xml"/><item><title>Enable Metrics on the Log Stream</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/1-enable-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/1-enable-metrics/</guid><description>&lt;p&gt;Metrics are configured on the &lt;strong&gt;log stream&lt;/strong&gt;, so every new trace that lands is scored
+automatically. You&amp;rsquo;ll turn on a set of out-of-the-box metrics that matter for a healthcare
+assistant.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Enable out-of-the-box metrics&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your log stream settings&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized --&gt;
+&lt;p&gt;In the Galileo console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
+open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; log stream.&lt;/p&gt;</description></item><item><title>Review Metric Scores</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/2-review-metric-scores/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/2-review-metric-scores/</guid><description>&lt;p&gt;After a few moments, we&amp;rsquo;ll see how the existing traces get automatically scored on the
+&lt;code&gt;Context Adherence&lt;/code&gt; and &lt;code&gt;Correctness&lt;/code&gt; metrics.
+This is where a hallucinated dosage or a wrong tool call stops being invisible.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Review metric scores&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wait for metrics to be computed&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Looking at the log trace, we can see that metrics are being computed for our traces:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/sao-metrics-computing.png?width=750px" alt="Log stream metrics computing" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Review the scores in the log stream&lt;/p&gt;</description></item></channel></rss>

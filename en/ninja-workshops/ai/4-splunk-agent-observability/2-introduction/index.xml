@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/</link><description>Recent content in Introduction on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/index.xml" rel="self" type="application/rss+xml"/><item><title>The Challenge</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/1-the-challenge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/1-the-challenge/</guid><description>&lt;h2 id="when-an-agent-gets-it-wrong"&gt;
+ &lt;span class="heading-text"&gt;When an agent gets it wrong&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#when-an-agent-gets-it-wrong" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Imagine a patient posts this the day after your assistant goes live:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;&amp;ldquo;I tried the new AI assistant to ask about my medication, and it told me to take
+&lt;strong&gt;double&lt;/strong&gt; the dose listed on my prescription. That&amp;rsquo;s not a small mistake. That&amp;rsquo;s
+dangerous. If I hadn&amp;rsquo;t double-checked with my doctor, I could have actually followed that
+advice.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;The infrastructure was healthy. The API returned &lt;code&gt;200 OK&lt;/code&gt;. Latency was fine. Every
+traditional signal said the system was working, and yet the agent produced an answer that
+could harm someone. &lt;strong&gt;That&amp;rsquo;s the agentic AI trust gap&lt;/strong&gt;, and it&amp;rsquo;s invisible to
+infrastructure and APM monitoring alone.&lt;/p&gt;</description></item><item><title>Key Concepts</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/2-key-concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/2-key-concepts/</guid><description>&lt;p&gt;Splunk Agent Observability is built around a small vocabulary. You&amp;rsquo;ll use each of these
+concepts in the chapters that follow, so it&amp;rsquo;s worth getting them straight first. They also
+map directly to this workshop&amp;rsquo;s agenda.&lt;/p&gt;
+&lt;h2 id="traces-spans-and-sessions"&gt;
+ &lt;span class="heading-text"&gt;Traces, spans, and sessions&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#traces-spans-and-sessions" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;The shape of agent telemetry&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;trace&lt;/strong&gt; is one end-to-end request through your agent, for example a single user turn
+in the chat.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;span&lt;/strong&gt; is a single step inside a trace: an LLM call, a tool call, or a retrieval. Spans
+nest, so a trace shows the full tree of what the agent did and in what order.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;session&lt;/strong&gt; groups related traces, for example all the turns in one conversation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Traces are organized by &lt;strong&gt;project&lt;/strong&gt; and &lt;strong&gt;log stream&lt;/strong&gt;. A project is a container for a use
+case (&lt;code&gt;healthcare-assistant&lt;/code&gt;); a log stream is a named destination within it (&lt;code&gt;local&lt;/code&gt;, or one
+per workshop instance). This is where you&amp;rsquo;ll view traces and enable live metrics.&lt;/p&gt;</description></item><item><title>The Healthcare Assistant Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</guid><description>&lt;p&gt;The application you&amp;rsquo;ll observe is Careful Health Provider&amp;rsquo;s &lt;strong&gt;healthcare assistant&lt;/strong&gt;. It runs
+an end-to-end chat experience with retrieval-augmented generation (RAG) and text-to-SQL
+tools, but the base version ships with &lt;strong&gt;no observability instrumentation&lt;/strong&gt;. That&amp;rsquo;s what
+you&amp;rsquo;ll add.&lt;/p&gt;
+&lt;h2 id="tech-stack"&gt;
+ &lt;span class="heading-text"&gt;Tech stack&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#tech-stack" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Layer&lt;/th&gt;
+ &lt;th&gt;Technology&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;UI&lt;/td&gt;
+ &lt;td&gt;Streamlit (&lt;code&gt;app.py&lt;/code&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Agent runtime&lt;/td&gt;
+ &lt;td&gt;LangGraph (&lt;code&gt;agent.py&lt;/code&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;LLM&lt;/td&gt;
+ &lt;td&gt;OpenAI via LangChain (&lt;code&gt;ChatOpenAI&lt;/code&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Vector store&lt;/td&gt;
+ &lt;td&gt;PostgreSQL + pgvector via LangChain &lt;code&gt;PGVector&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Relational data&lt;/td&gt;
+ &lt;td&gt;PostgreSQL tables loaded from CSV&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Config&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;config.yaml&lt;/code&gt;, &lt;code&gt;system_prompt.json&lt;/code&gt;, &lt;code&gt;.streamlit/secrets.toml&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="architecture"&gt;
+ &lt;span class="heading-text"&gt;Architecture&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#architecture" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The Streamlit UI collects a user message and passes the conversation to the
+&lt;code&gt;HealthcareAgent&lt;/code&gt;. The agent runs a &lt;strong&gt;LangGraph&lt;/strong&gt; state graph with two nodes: a &lt;code&gt;chatbot&lt;/code&gt;
+node that calls the LLM, and a &lt;code&gt;tools&lt;/code&gt; node that runs whichever tool the LLM requested,
+looping until the LLM produces a final answer.&lt;/p&gt;</description></item></channel></rss>
