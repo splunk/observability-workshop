@@ -7,7 +7,7 @@ time: 2 hours
 authors: ["Derek Mitchell", "Sam Goldfield", "Tim Hard"]
 description: See inside your agentic AI applications. Instrument them, trace and evaluate agent behavior, surface emerging issues, and apply runtime guardrails with Splunk Agent Observability (powered by Galileo).
 draft: false
-hidden: false
+hidden: true
 aliases:
   - /ninja-workshops/20-splunk-agent-observability/
 product: "Observability Cloud"
