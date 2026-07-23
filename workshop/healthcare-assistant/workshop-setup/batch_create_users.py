@@ -82,10 +82,11 @@ Optional columns: first_name, last_name, role, group_ids
 - group_ids: semicolon-separated group UUIDs to add the user to (find these via the
   console or GET /groups). Leave blank to skip group assignment.
 
-For every user, a new project is also created (named "{first_name} {last_name}",
-falling back to the email if no name is given) and the user is added to it as Owner.
-The project is created under the admin's identity (the admin is auto-added as owner
-at creation time), then the new user is separately granted the Owner role on it.
+For every user, a new project is also created (named "project-{participant_number}",
+falling back to the email local-part if participant_number is absent) and the user is
+added to it as Owner. The project is created under the admin's identity (the admin is
+auto-added as owner at creation time), then the new user is separately granted the
+Owner role on it.
 
 See sample_users.csv in this folder for an example.
 """
@@ -277,8 +278,8 @@ def process_row(base_url: str, admin_headers: dict, default_role: str, shared_pa
     last_name = row.get("last_name", "").strip()
     role = (row.get("role") or default_role).strip()
     group_ids = [g.strip() for g in (row.get("group_ids") or "").split(";") if g.strip()]
-    project_name = email.split("@")[0]
-    # project_name = f"{first_name} {last_name}".strip() or email
+    participant_number = row.get("participant_number", "").strip()
+    project_name = f"project-{participant_number}" if participant_number else email.split("@")[0]
 
     result = {
         "email": email,

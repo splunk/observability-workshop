@@ -6,8 +6,8 @@ Reads the SAME input CSV used for creation (columns: email, first_name, last_nam
 role, group_ids - only `email` is used here) and, for each row:
 
   1. POST /projects/paginated (admin auth) -> finds the project named after the user
-                                              (email local-part, e.g. "participant1"
-                                              for participant1@galileo.ai).
+                                              ("project-{participant_number}", falling
+                                              back to the email local-part if absent).
   2. DELETE /projects/{project_id}          -> deletes the project (synchronous;
                                               also removes its runs/logs/data).
   3. POST /users/all           (admin auth) -> looks up the user's org-scoped id.
@@ -93,7 +93,8 @@ def delete_user(base_url: str, admin_headers: dict, user_id: str) -> tuple[bool,
 
 def process_row(base_url: str, admin_headers: dict, row: dict, dry_run: bool = False) -> dict:
     email = row["email"].strip().lower()
-    project_name = email.split("@")[0]
+    participant_number = row.get("participant_number", "").strip()
+    project_name = f"project-{participant_number}" if participant_number else email.split("@")[0]
 
     result = {
         "email": email,
@@ -176,8 +177,13 @@ def main() -> int:
         print(f"[dry run] Looking up {len(emails)} project(s) and user(s) against {base_url} - nothing will be deleted.")
     elif not args.yes:
         print(f"This will PERMANENTLY delete {len(emails)} project(s) and user(s) against {base_url}:")
-        for email in emails:
-            print(f"  - {email} (project: {email.split('@')[0]})")
+        for row in rows:
+            if not row.get("email", "").strip():
+                continue
+            email = row["email"].strip().lower()
+            participant_number = row.get("participant_number", "").strip()
+            project_name = f"project-{participant_number}" if participant_number else email.split("@")[0]
+            print(f"  - {email} (project: {project_name})")
         confirmation = input("Type 'delete' to proceed: ")
         if confirmation.strip().lower() != "delete":
             print("Aborted.")
