@@ -9,7 +9,7 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 
 {{% exercise title="Investigate the longest session" %}}
 
-* In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 15 seconds or longer). This will take you to the RUM Session view.
+* In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 8 seconds or longer). This will take you to the RUM Session view.
 * Note the length of the span **PlaceOrder**, this is the time it took to complete the order. Not good!
 
 ![RUM Session](../images/rum-waterfall-place-order.png)
