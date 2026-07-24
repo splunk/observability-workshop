@@ -1,1 +1,3 @@
 loadtest_results.csv
+.env
+galileo_loadtest_results.csv

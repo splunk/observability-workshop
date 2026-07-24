@@ -45,11 +45,23 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-Run the load test: 
+Generate application traffic: 
 
 ```bash
 python loadtest_browser.py --csv <path to workshop csv file>
 ```
+
+Generate Galileo console traffic:
+
+```bash
+python loadtest_galileo.py --users-csv ../workshop-setup/users.csv
+```
+
+If you need to debug, run the following command: 
+
+```bash
+python loadtest_galileo.py --users-csv ../workshop-setup/users.csv --headed --max-concurrency 1
+````
 
 ## Cleanup
 
