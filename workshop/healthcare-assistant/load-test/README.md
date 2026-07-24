@@ -57,6 +57,12 @@ Generate Galileo console traffic:
 python loadtest_galileo.py --users-csv ../workshop-setup/users.csv
 ```
 
+If you need to debug, run the following command: 
+
+```bash
+python loadtest_galileo.py --users-csv ../workshop-setup/users.csv --headed --max-concurrency 1
+````
+
 ## Cleanup
 
 Uninstall the application:

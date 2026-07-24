@@ -51,8 +51,8 @@ import time
 from playwright.async_api import Browser, BrowserContext, Page, async_playwright
 
 # ── Timeouts ──────────────────────────────────────────────────────────────────
-SIGNIN_TIMEOUT_MS = 45_000
-NAV_TIMEOUT_MS = 30_000
+SIGNIN_TIMEOUT_MS = 60_000
+NAV_TIMEOUT_MS = 60_000   # doubled from 30s — server is slower under concurrent load
 METRICS_COMPUTE_TIMEOUT_MS = 300_000  # 5 min — server-side computation can be slow
 
 
@@ -146,6 +146,7 @@ async def open_project(page: Page, project_name: str, log) -> None:
         page,
         "tr[data-with-row-border]",
         log=log,
+        success_timeout_ms=NAV_TIMEOUT_MS,
     )
     log(f"project '{project_name}' opened")
 
@@ -232,7 +233,19 @@ async def compute_and_measure(page: Page, log) -> float:
     """Click Compute in the confirmation dialog and measure how long metrics take to resolve."""
     log("waiting for 'Compute' button inside dialog")
     dialog = page.locator('[role="dialog"], [role="alertdialog"]').first
-    compute_btn = dialog.get_by_role("button", name="Compute")
+
+    # Log what the dialog actually contains — helps diagnose variant dialogs
+    # (e.g. "already computing" warnings that have no Compute button)
+    dialog_text = await dialog.inner_text()
+    log(f"dialog text: {dialog_text[:200].strip()!r}")
+
+    # Use has-text rather than get_by_role name= so partial/variant labels still match.
+    # Fall back to a page-wide search in case the button renders outside the dialog portal.
+    compute_btn = (
+        dialog.locator('button:has-text("Compute")')
+        .or_(page.locator('button:has-text("Compute")'))
+        .first
+    )
     await compute_btn.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
     log("clicking 'Compute'")
     # force=True bypasses any Mantine overlay that sits above the button
@@ -286,6 +299,7 @@ async def run_scenario(
     row_num: int,
     sem: asyncio.Semaphore,
     headed: bool,
+    start_delay_s: float = 0.0,
 ) -> dict:
     result: dict = {
         "row": row_num,
@@ -297,6 +311,9 @@ async def run_scenario(
         "error": "",
     }
     wall_start = time.monotonic()
+
+    if start_delay_s > 0:
+        await asyncio.sleep(start_delay_s)
 
     async with sem:
         context: BrowserContext = await browser.new_context()
@@ -348,6 +365,7 @@ async def main_async(
     max_concurrency: int,
     output_csv: str,
     headed: bool,
+    start_delay_s: float,
 ) -> int:
     sem = asyncio.Semaphore(max_concurrency)
 
@@ -363,6 +381,7 @@ async def main_async(
                 i + 1,
                 sem,
                 headed,
+                start_delay_s=i * start_delay_s,
             )
             for i, row in enumerate(rows)
         ]
@@ -430,6 +449,18 @@ def main() -> int:
         help="Run with a visible browser window (use with --max-concurrency 1 for debugging)",
     )
     parser.add_argument(
+        "--start-delay",
+        type=float,
+        default=3.0,
+        metavar="SECONDS",
+        help=(
+            "Seconds to wait between starting each user's session (default: 3). "
+            "Staggering prevents all users from hitting the server simultaneously, "
+            "which causes timeouts under load. With 20 users and --start-delay 3, "
+            "the last user starts 57s after the first."
+        ),
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Print what would be tested without opening any browsers",
@@ -467,10 +498,15 @@ def main() -> int:
 
     print(
         f"Running Galileo load test: {len(rows)} user(s), "
-        f"max_concurrency={args.max_concurrency}, console={console_url}"
+        f"max_concurrency={args.max_concurrency}, "
+        f"start_delay={args.start_delay}s, console={console_url}"
     )
     return asyncio.run(
-        main_async(rows, console_url, password, args.max_concurrency, args.output_csv, args.headed)
+        main_async(
+            rows, console_url, password,
+            args.max_concurrency, args.output_csv,
+            args.headed, args.start_delay,
+        )
     )
 
 
