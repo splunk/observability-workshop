@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """
-Galileo console load test using headless Playwright/Chromium.
+Galileo console script to disable metric configuration using headless Playwright/Chromium.
 
 For each user in users.csv, drives the following flow concurrently:
 
   1. Sign in to the Galileo console
   2. Click their assigned project  (project-{participant_number})
   3. Click the "default" log stream
-  4. Click "Configure Metrics", enable Correctness + Context Adherence, click Apply
-  5. Click "Compute" on the confirmation dialog
-  6. Measure how long it takes for metric values to appear (i.e. "Computing" clears)
-  7. Click into the first trace in the list  (optional — use --skip-trace-click)
+  4. Click "Configure Metrics", disable Correctness + Context Adherence, click Apply
 
 Credentials:
   Users:    --users-csv  (email + participant_number columns)
@@ -25,16 +22,13 @@ SETUP
 USAGE
 -----
     # Full run
-    python loadtest_galileo.py --users-csv ../workshop-setup/users.csv
-
-    # Metrics-only load test (skip trace click — common under high concurrency)
-    python loadtest_galileo.py --users-csv ../workshop-setup/users.csv --skip-trace-click
+    python loadtest_galileo_remove_metric_configuration.py --users-csv ../workshop-setup/users.csv
 
     # Preview without opening any browsers
-    python loadtest_galileo.py --users-csv ../workshop-setup/users.csv --dry-run
+    python loadtest_galileo_remove_metric_configuration.py --users-csv ../workshop-setup/users.csv --dry-run
 
     # Show the browser for debugging selector issues
-    python loadtest_galileo.py --users-csv ../workshop-setup/users.csv --headed --max-concurrency 1
+    python loadtest_galileo_remove_metric_configuration.py --users-csv ../workshop-setup/users.csv --headed --max-concurrency 1
 
 SELECTOR NOTES
 --------------
@@ -56,70 +50,16 @@ from playwright.async_api import Browser, BrowserContext, Page, async_playwright
 # ── Timeouts ──────────────────────────────────────────────────────────────────
 SIGNIN_TIMEOUT_MS = 60_000
 NAV_TIMEOUT_MS = 60_000
-METRICS_COMPUTE_TIMEOUT_MS = 300_000
-COMPUTE_BUTTON_TIMEOUT_MS = 30_000  # Apply → Compute confirmation can take several seconds
 STEP_RETRIES = 4
 STEP_RETRY_DELAY_MS = 1_500
 
 RESULT_FIELDS = [
     "row", "email", "project", "status", "failed_step",
-    "compute_time_s", "total_duration_s", "error", "screenshot",
+    "total_duration_s", "error", "screenshot",
 ]
 
-# JS helpers: detect Queued / Computing status labels (not the Compute button).
-_METRICS_IN_PROGRESS_JS = """
-() => {
-    const isVisible = (el) => {
-        if (!el) return false;
-        const s = window.getComputedStyle(el);
-        if (s.visibility === 'hidden' || s.display === 'none' || s.opacity === '0') return false;
-        const rect = el.getBoundingClientRect();
-        return rect.width > 0 && rect.height > 0;
-    };
-    const isInProgress = (t) => {
-        if (t === 'compute') return false;
-        return t === 'computing' || t === 'computing...'
-            || t === 'queued' || t === 'queued...'
-            || t.startsWith('computing') || t.startsWith('queued');
-    };
-    for (const el of document.querySelectorAll('*')) {
-        if (!isVisible(el)) continue;
-        if (el.tagName === 'BUTTON' || el.closest('button')) continue;
-        const t = (el.textContent || '').trim().toLowerCase();
-        if (isInProgress(t) && (el.textContent || '').trim().length < 40) return true;
-    }
-    return false;
-}
-"""
-
-_METRICS_IN_PROGRESS_LABEL_JS = """
-() => {
-    const isVisible = (el) => {
-        if (!el) return false;
-        const s = window.getComputedStyle(el);
-        if (s.visibility === 'hidden' || s.display === 'none' || s.opacity === '0') return false;
-        const rect = el.getBoundingClientRect();
-        return rect.width > 0 && rect.height > 0;
-    };
-    const isInProgress = (t) => {
-        if (t === 'compute') return false;
-        return t === 'computing' || t === 'computing...'
-            || t === 'queued' || t === 'queued...'
-            || t.startsWith('computing') || t.startsWith('queued');
-    };
-    for (const el of document.querySelectorAll('*')) {
-        if (!isVisible(el)) continue;
-        if (el.tagName === 'BUTTON' || el.closest('button')) continue;
-        const raw = (el.textContent || '').trim();
-        const t = raw.toLowerCase();
-        if (isInProgress(t) && raw.length < 40) return raw;
-    }
-    return '';
-}
-"""
-
 _BROWSER_ARGS = [
-    "--disable-dev-shm-usage",  # avoid /dev/shm exhaustion under many contexts
+    "--disable-dev-shm-usage",
     "--disable-gpu",
 ]
 
@@ -147,7 +87,7 @@ def make_logger(row_num: int, email: str):
     return log
 
 
-# ── Retry / overlay helpers ───────────────────────────────────────────────────
+# ── Retry helper ──────────────────────────────────────────────────────────────
 
 async def retry_click(
     locator,
@@ -155,8 +95,8 @@ async def retry_click(
     success_selector: str,
     *,
     log=None,
-    retries: int = STEP_RETRIES,
-    retry_delay_ms: int = STEP_RETRY_DELAY_MS,
+    retries: int = 4,
+    retry_delay_ms: int = 1500,
     success_timeout_ms: int = 8_000,
     force: bool = False,
 ) -> None:
@@ -164,7 +104,7 @@ async def retry_click(
     last_exc: Exception | None = None
     for attempt in range(retries):
         if attempt > 0 and log:
-            log(f"  retrying click (attempt {attempt + 1}/{retries})...")
+            log(f"  retrying (attempt {attempt + 1}/{retries})...")
         try:
             await locator.click(force=force, timeout=NAV_TIMEOUT_MS)
             await page.wait_for_selector(success_selector, timeout=success_timeout_ms)
@@ -193,14 +133,6 @@ async def dismiss_overlays(page: Page, log=None) -> None:
                 break
         except Exception:
             pass
-
-
-async def wait_for_dialogs_closed(page: Page, timeout_ms: int = 10_000) -> None:
-    """Wait until no modal dialog is attached to the DOM."""
-    await page.wait_for_function(
-        "() => !document.querySelector('[role=\"dialog\"], [role=\"alertdialog\"]')",
-        timeout=timeout_ms,
-    )
 
 
 async def save_failure_screenshot(
@@ -343,7 +275,6 @@ async def _is_on_metrics_config_page(page: Page) -> bool:
 
 
 async def _open_metrics_config_page(page: Page, log) -> None:
-    """Navigate to metrics config if needed; skip the button click when already there."""
     if await _is_on_metrics_config_page(page):
         log("already on metrics configuration page")
         return
@@ -360,13 +291,11 @@ async def _open_metrics_config_page(page: Page, log) -> None:
 
 
 async def _wait_for_metrics_list(page: Page, log) -> None:
-    """Wait for the metrics/evaluators config page and its metric rows to finish loading."""
     await _metrics_config_heading(page).first.wait_for(
         state="visible", timeout=NAV_TIMEOUT_MS,
     )
     log("metrics configuration page loaded")
 
-    # Wait for the table to begin rendering (first row may be above the fold only).
     await page.locator(
         '[role="dialog"] [data-testid="metric-enabled-switch"], '
         '[role="dialog"] input[aria-label*="Enable" i][role="switch"]'
@@ -374,8 +303,66 @@ async def _wait_for_metrics_list(page: Page, log) -> None:
     log("metric list loaded")
 
 
+async def _wait_for_metrics_list_with_retry(page: Page, log) -> None:
+    """Retry waiting for metric rows without re-clicking Configure Metrics."""
+    last_exc: Exception | None = None
+    for attempt in range(STEP_RETRIES):
+        if attempt > 0:
+            log(f"  retrying wait for metric list (attempt {attempt + 1}/{STEP_RETRIES})...")
+        try:
+            await _wait_for_metrics_list(page, log)
+            return
+        except Exception as exc:
+            last_exc = exc
+            if attempt < STEP_RETRIES - 1:
+                await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
+    raise last_exc
+
+
+def _compute_confirmation(page: Page):
+    """Post-Apply dialog offering to compute metrics on existing traces."""
+    return (
+        page.locator('[role="dialog"], [role="alertdialog"]')
+        .filter(has=page.get_by_role("button", name="Compute", exact=True))
+        .filter(has_text="Last")
+        .last
+    )
+
+
+async def _wait_for_log_stream_after_apply(page: Page, log) -> None:
+    """Wait for the metrics config modal to close and the log stream view to return."""
+    last_exc: Exception | None = None
+    for attempt in range(STEP_RETRIES):
+        if attempt > 0:
+            log(f"  retrying wait for log stream view (attempt {attempt + 1}/{STEP_RETRIES})...")
+        try:
+            confirmation = _compute_confirmation(page)
+            if await confirmation.count() > 0 and await confirmation.first.is_visible():
+                log("compute confirmation appeared — clicking Cancel")
+                cancel_btn = confirmation.get_by_role("button", name="Cancel")
+                if await cancel_btn.count() > 0:
+                    await cancel_btn.first.click(force=True, timeout=NAV_TIMEOUT_MS)
+                else:
+                    await dismiss_overlays(page, log)
+
+            try:
+                await _metrics_config_heading(page).first.wait_for(
+                    state="hidden", timeout=15_000,
+                )
+            except Exception:
+                pass
+
+            await _wait_for_log_stream_view(page)
+            log("metric configuration removed, back on log stream view")
+            return
+        except Exception as exc:
+            last_exc = exc
+            if attempt < STEP_RETRIES - 1:
+                await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
+    raise last_exc
+
+
 async def _scroll_metrics_modal(page: Page, delta: int) -> None:
-    """Scroll the metrics modal body down by `delta` pixels."""
     await page.evaluate(
         """([delta]) => {
             const dialog = document.querySelector('[role="dialog"]');
@@ -401,6 +388,21 @@ async def _reset_metrics_modal_scroll(page: Page) -> None:
     )
 
 
+def _metric_toggle_candidates(page: Page, label: str):
+    row = page.locator("tr").filter(has=page.get_by_text(label, exact=True))
+    yield row.locator('[data-testid="metric-enabled-switch"]')
+    yield row.locator(f'input[aria-label="Enable {label} metric"]')
+    yield page.locator(f'input[aria-label="Enable {label} metric"]')
+    yield page.locator(f'input[aria-label="Enable {label} evaluator"]')
+    yield page.locator(f'input[aria-label*="Enable {label}" i]')
+    yield page.get_by_role("switch", name=f"Enable {label} metric")
+    yield page.get_by_role("switch", name=f"Enable {label} evaluator")
+    yield row.locator('input[type="checkbox"]').first
+    yield page.get_by_text(label, exact=True).locator(
+        "xpath=ancestor::*[.//input[@type='checkbox']][1]//input[@type='checkbox']"
+    ).first
+
+
 async def _metric_toggle_attached(page: Page, label: str) -> bool:
     for candidate in _metric_toggle_candidates(page, label):
         if await candidate.count() > 0:
@@ -409,7 +411,6 @@ async def _metric_toggle_attached(page: Page, label: str) -> bool:
 
 
 async def _scroll_to_metric(page: Page, label: str, log) -> None:
-    """Scroll the metrics modal until `label`'s toggle is present in the DOM."""
     if await _metric_toggle_attached(page, label):
         log(f"  '{label}' row already in DOM")
         return
@@ -430,40 +431,7 @@ async def _scroll_to_metric(page: Page, label: str, log) -> None:
     )
 
 
-async def _wait_for_metrics_list_with_retry(page: Page, log) -> None:
-    """Retry waiting for metric rows without re-clicking Configure Metrics."""
-    last_exc: Exception | None = None
-    for attempt in range(STEP_RETRIES):
-        if attempt > 0:
-            log(f"  retrying wait for metric list (attempt {attempt + 1}/{STEP_RETRIES})...")
-        try:
-            await _wait_for_metrics_list(page, log)
-            return
-        except Exception as exc:
-            last_exc = exc
-            if attempt < STEP_RETRIES - 1:
-                await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
-    raise last_exc
-
-
-def _metric_toggle_candidates(page: Page, label: str):
-    """Yield locator candidates for a metric toggle, most specific first."""
-    row = page.locator("tr").filter(has=page.get_by_text(label, exact=True))
-    yield row.locator('[data-testid="metric-enabled-switch"]')
-    yield row.locator(f'input[aria-label="Enable {label} metric"]')
-    yield page.locator(f'input[aria-label="Enable {label} metric"]')
-    yield page.locator(f'input[aria-label="Enable {label} evaluator"]')
-    yield page.locator(f'input[aria-label*="Enable {label}" i]')
-    yield page.get_by_role("switch", name=f"Enable {label} metric")
-    yield page.get_by_role("switch", name=f"Enable {label} evaluator")
-    yield row.locator('input[type="checkbox"]').first
-    yield page.get_by_text(label, exact=True).locator(
-        "xpath=ancestor::*[.//input[@type='checkbox']][1]//input[@type='checkbox']"
-    ).first
-
-
 async def _find_metric_toggle(page: Page, label: str, log) -> object:
-    """Scroll the metrics list if needed, then locate the toggle for `label`."""
     await _scroll_to_metric(page, label, log)
 
     for candidate in _metric_toggle_candidates(page, label):
@@ -517,17 +485,17 @@ async def _wait_for_toggle_state(
     )
 
 
-async def _enable_toggle(page: Page, label: str, log) -> None:
-    """Enable a metric toggle by its display name if it is not already on."""
+async def _disable_toggle(page: Page, label: str, log) -> None:
+    """Disable a metric toggle by its display name if it is currently on."""
     log(f"  locating '{label}' toggle")
     toggle = await _find_metric_toggle(page, label, log)
 
     is_checked = await toggle.evaluate("el => el.checked")
-    if is_checked:
-        log(f"  '{label}' already enabled, skipping")
+    if not is_checked:
+        log(f"  '{label}' already disabled, skipping")
         return
 
-    log(f"  enabling '{label}'")
+    log(f"  disabling '{label}'")
     label_parent = toggle.locator("xpath=ancestor::label[1]")
     if await label_parent.count() > 0:
         await label_parent.click()
@@ -536,166 +504,21 @@ async def _enable_toggle(page: Page, label: str, log) -> None:
 
     await page.wait_for_timeout(300)
     await _scroll_to_metric(page, label, log)
-    await _wait_for_toggle_state(page, label, checked=True)
-    log(f"  '{label}' enabled")
+    await _wait_for_toggle_state(page, label, checked=False)
+    log(f"  '{label}' disabled")
 
 
-async def configure_metrics(page: Page, log) -> None:
+async def remove_metric_configuration(page: Page, log) -> None:
     await _open_metrics_config_page(page, log)
     await _wait_for_metrics_list_with_retry(page, log)
 
-    await _enable_toggle(page, "Correctness", log)
-    await _enable_toggle(page, "Context Adherence", log)
+    await _disable_toggle(page, "Correctness", log)
+    await _disable_toggle(page, "Context Adherence", log)
 
     log("clicking 'Apply'")
-    for attempt in range(STEP_RETRIES):
-        if attempt > 0:
-            log(f"  retrying Apply (attempt {attempt + 1}/{STEP_RETRIES})...")
-        await page.get_by_role("button", name="Apply").click(timeout=NAV_TIMEOUT_MS)
-        break
-    log("Apply clicked — waiting for Compute confirmation in next step")
-
-
-async def _wait_for_computing_to_finish(page: Page, log, t0: float) -> float:
-    """Wait until Queued/Computing status clears before continuing."""
-    try:
-        await page.wait_for_function(_METRICS_IN_PROGRESS_JS, timeout=30_000)
-        label = await page.evaluate(_METRICS_IN_PROGRESS_LABEL_JS) or "Queued/Computing"
-        log(f"'{label}' status visible, waiting for metrics to finish...")
-    except Exception:
-        log("No Queued/Computing status appeared — metrics may have finished quickly")
-
-    await page.wait_for_function(
-        f"() => !({_METRICS_IN_PROGRESS_JS})()",
-        timeout=METRICS_COMPUTE_TIMEOUT_MS,
-    )
-
-    elapsed = time.monotonic() - t0
-    log(f"metrics resolved in {elapsed:.1f}s")
-    return elapsed
-
-
-def _compute_confirmation(page: Page):
-    """The post-Apply dialog that offers to compute metrics on existing traces."""
-    return (
-        page.locator('[role="dialog"], [role="alertdialog"]')
-        .filter(has=page.get_by_role("button", name="Compute", exact=True))
-        .filter(has_text="Last")
-        .last
-    )
-
-
-async def _locate_compute_button(page: Page):
-    """Find Compute inside the confirmation dialog only (not other UI)."""
-    confirmation = _compute_confirmation(page)
-    if await confirmation.count() == 0:
-        return None
-    btn = confirmation.get_by_role("button", name="Compute", exact=True)
-    try:
-        await btn.wait_for(state="visible", timeout=1_000)
-        return btn
-    except Exception:
-        return None
-
-
-async def _click_compute_button(page: Page, log) -> None:
-    """Click Compute in the confirmation dialog and verify that dialog closes."""
-    last_exc: Exception | None = None
-    for attempt in range(STEP_RETRIES):
-        confirmation = _compute_confirmation(page)
-        compute_btn = confirmation.get_by_role("button", name="Compute", exact=True)
-
-        if attempt > 0:
-            log(f"  retrying Compute click (attempt {attempt + 1}/{STEP_RETRIES})...")
-        else:
-            log("clicking 'Compute'")
-
-        try:
-            await confirmation.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
-            await compute_btn.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
-            await compute_btn.scroll_into_view_if_needed()
-
-            try:
-                await compute_btn.click(force=True, timeout=5_000)
-            except Exception:
-                log("  Playwright click failed — trying JS click")
-                await compute_btn.evaluate("el => el.click()")
-
-            await confirmation.wait_for(state="hidden", timeout=15_000)
-            log("compute confirmation dismissed")
-            return
-        except Exception as exc:
-            last_exc = exc
-            if attempt < STEP_RETRIES - 1:
-                await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
-    raise last_exc
-
-
-async def _wait_for_compute_button(page: Page, log) -> None:
-    """Wait for the Compute confirmation button to appear after Apply."""
-    log("waiting for 'Compute' confirmation button")
-    deadline = time.monotonic() + COMPUTE_BUTTON_TIMEOUT_MS / 1000
-    while time.monotonic() < deadline:
-        btn = await _locate_compute_button(page)
-        if btn is not None:
-            log("'Compute' button visible")
-            return
-        await page.wait_for_timeout(500)
-
-    if await page.evaluate(_METRICS_IN_PROGRESS_JS):
-        log("'Compute' button never appeared — metric calculation already in progress")
-        return
-
-    raise TimeoutError(
-        f"'Compute' button did not appear within {COMPUTE_BUTTON_TIMEOUT_MS / 1000}s after Apply"
-    )
-
-
-async def compute_and_measure(page: Page, log) -> float:
-    """Click Compute in the confirmation dialog and measure how long metrics take to resolve."""
-    t0 = time.monotonic()
-    await _wait_for_compute_button(page, log)
-
-    if await _locate_compute_button(page) is None:
-        if await page.evaluate(_METRICS_IN_PROGRESS_JS):
-            return await _wait_for_computing_to_finish(page, log, t0)
-        raise TimeoutError("Compute confirmation expected but button not found")
-
-    await _click_compute_button(page, log)
-    return await _wait_for_computing_to_finish(page, log, t0)
-
-
-async def click_first_trace(page: Page, log) -> None:
-    """Open the first trace row, dismissing Mantine overlays that block pointer events."""
-    log("clicking first trace")
-    url_before = page.url
-    first_row = page.locator(
-        'table tbody tr[class*="table_row"], '
-        '[data-testid*="trace-row"], '
-        'table tbody tr'
-    ).first
-
-    last_exc: Exception | None = None
-    for attempt in range(STEP_RETRIES):
-        if attempt > 0:
-            log(f"  retrying trace click (attempt {attempt + 1}/{STEP_RETRIES})...")
-        await dismiss_overlays(page, log if attempt == 0 else None)
-        try:
-            await wait_for_dialogs_closed(page, timeout_ms=5_000)
-        except Exception:
-            pass
-        await first_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
-
-        try:
-            await first_row.click(force=True, timeout=NAV_TIMEOUT_MS)
-            await page.wait_for_url(lambda url: url != url_before, timeout=NAV_TIMEOUT_MS)
-            log(f"trace detail view loaded: {page.url}")
-            return
-        except Exception as exc:
-            last_exc = exc
-            if attempt < STEP_RETRIES - 1:
-                await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
-    raise last_exc
+    await page.get_by_role("button", name="Apply").click(timeout=NAV_TIMEOUT_MS)
+    log("Apply clicked — waiting to return to log stream view")
+    await _wait_for_log_stream_after_apply(page, log)
 
 
 # ── Per-user orchestration ─────────────────────────────────────────────────────
@@ -710,7 +533,6 @@ async def run_scenario(
     sem: asyncio.Semaphore,
     headed: bool,
     start_delay_s: float,
-    skip_trace_click: bool,
     screenshot_dir: str | None,
     results_lock: asyncio.Lock,
     output_csv: str,
@@ -721,7 +543,6 @@ async def run_scenario(
         "project": project_name,
         "status": "failed",
         "failed_step": "",
-        "compute_time_s": "",
         "total_duration_s": 0.0,
         "error": "",
         "screenshot": "",
@@ -735,6 +556,7 @@ async def run_scenario(
     async with sem:
         context: BrowserContext = await browser.new_context()
         page: Page = await context.new_page()
+
         log = make_logger(row_num, email)
 
         if headed:
@@ -754,19 +576,9 @@ async def run_scenario(
             failed_step = "open_log_stream"
             await open_log_stream(page, log)
 
-            failed_step = "configure_metrics"
-            await configure_metrics(page, log)
-
-            failed_step = "compute_and_measure"
-            compute_s = await compute_and_measure(page, log)
-            result["compute_time_s"] = round(compute_s, 1)
-
-            if skip_trace_click:
-                result["status"] = "success"
-            else:
-                failed_step = "click_first_trace"
-                await click_first_trace(page, log)
-                result["status"] = "success"
+            failed_step = "remove_metric_configuration"
+            await remove_metric_configuration(page, log)
+            result["status"] = "success"
 
         except Exception as exc:
             result["failed_step"] = failed_step
@@ -792,12 +604,9 @@ async def run_scenario(
             writer.writerow(result)
 
     label = "OK  " if result["status"] == "success" else "FAIL"
-    compute_info = (
-        f"  compute={result['compute_time_s']}s" if result["compute_time_s"] != "" else ""
-    )
     step_info = f"  step={result['failed_step']}" if result["failed_step"] else ""
     print(
-        f"[{label}] row {row_num:>3}  {email}  {project_name}{compute_info}{step_info}"
+        f"[{label}] row {row_num:>3}  {email}  {project_name}{step_info}"
         + (f"\n       {result['error'][:200]}" if result["error"] else "")
     )
     return result
@@ -813,7 +622,6 @@ async def main_async(
     output_csv: str,
     headed: bool,
     start_delay_s: float,
-    skip_trace_click: bool,
     screenshot_dir: str | None,
 ) -> int:
     sem = asyncio.Semaphore(max_concurrency)
@@ -838,7 +646,6 @@ async def main_async(
                 sem,
                 headed,
                 start_delay_s=i * start_delay_s,
-                skip_trace_click=skip_trace_click,
                 screenshot_dir=screenshot_dir,
                 results_lock=results_lock,
                 output_csv=output_csv,
@@ -851,16 +658,6 @@ async def main_async(
     passed = sum(1 for r in results if r["status"] == "success")
     failed = len(results) - passed
 
-    compute_times = [
-        r["compute_time_s"] for r in results
-        if isinstance(r["compute_time_s"], (int, float))
-    ]
-    if compute_times:
-        avg_s = round(sum(compute_times) / len(compute_times), 1)
-        max_s = round(max(compute_times), 1)
-        min_s = round(min(compute_times), 1)
-        print(f"\nMetric compute time — min: {min_s}s  avg: {avg_s}s  max: {max_s}s")
-
     if failed:
         by_step: dict[str, int] = {}
         for r in results:
@@ -869,7 +666,7 @@ async def main_async(
         if by_step:
             print("Failures by step:", ", ".join(f"{k}={v}" for k, v in sorted(by_step.items())))
 
-    print(f"Done: {passed}/{len(results)} passed, {failed} failed.")
+    print(f"\nDone: {passed}/{len(results)} passed, {failed} failed.")
     print(f"Results written to {output_csv}.")
     if screenshot_dir and failed:
         print(f"Failure screenshots in {screenshot_dir}/")
@@ -888,8 +685,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--output-csv",
-        default="galileo_loadtest_results.csv",
-        help="Where to write per-user results (default: galileo_loadtest_results.csv)",
+        default="galileo_remove_metric_configuration_results.csv",
+        help="Where to write per-user results (default: galileo_remove_metric_configuration_results.csv)",
     )
     parser.add_argument(
         "--env-file",
@@ -916,11 +713,6 @@ def main() -> int:
             "Seconds to wait between starting each user's session (default: 3). "
             "Staggering prevents all users from hitting the server simultaneously."
         ),
-    )
-    parser.add_argument(
-        "--skip-trace-click",
-        action="store_true",
-        help="Stop after metrics compute completes (skip clicking the first trace)",
     )
     parser.add_argument(
         "--screenshot-dir",
@@ -964,26 +756,22 @@ def main() -> int:
     screenshot_dir = args.screenshot_dir.strip() or None
 
     if args.dry_run:
-        print(f"[dry run] Would test {len(rows)} user(s) against {console_url}:")
+        print(f"[dry run] Would disable metrics for {len(rows)} user(s) against {console_url}:")
         for i, row in enumerate(rows, 1):
             print(f"  {i:>3}. {row['email']}  →  project-{row['participant_number']}")
-        if args.skip_trace_click:
-            print("  (--skip-trace-click: would stop after metrics compute)")
         return 0
 
     print(
-        f"Running Galileo load test: {len(rows)} user(s), "
+        f"Removing Galileo metric configuration: {len(rows)} user(s), "
         f"max_concurrency={args.max_concurrency}, "
-        f"start_delay={args.start_delay}s, "
-        f"skip_trace_click={args.skip_trace_click}, "
-        f"console={console_url}"
+        f"start_delay={args.start_delay}s, console={console_url}"
     )
     return asyncio.run(
         main_async(
             rows, console_url, password,
             args.max_concurrency, args.output_csv,
             args.headed, args.start_delay,
-            args.skip_trace_click, screenshot_dir,
+            screenshot_dir,
         )
     )
 
