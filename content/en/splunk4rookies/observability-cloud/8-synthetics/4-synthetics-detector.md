@@ -18,10 +18,10 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
 * Change the alert criteria so that the metric is Run Duration (instead of Uptime) and the condition is Static Threshold.
 * Set the **Trigger threshold** **(2)** to be around `65,000` to `68,000` and hit enter to update the chart.  Make sure you have more than one spike cutting through the threshold line as shown above (you may have to adjust the threshold value a bit to match your actual latency).
 * Leave the rest as default.
-* Note that there is now a row of red and white triangles appearing below the spikes **(3)**. The red triangles let you know that your detector found that your test was above the given threshold & the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.
+* Note that there is now a row of shapes appearing below the spikes **(3)**. The solid shapes let you know that your detector found that your test was above the given threshold & the outline shapes indicate that the result returned below the threshold. Each shape will trigger an alert. 
 * You can change the Alerts criticality **(4)** by changing the drop-down to a different level, as well as the method of alerting.  Make sure you do **NOT** add a Recipient as this could lead to you being subjected to an alert storm!
 * Click {{% button style="blue" %}}Activate{{% /button %}} to deploy your detector.
-* To see your new created detector click {{% button %}}Edit Test{{% /button %}} button
+* To see your new created detector click **More actions** then **Edit test**.
 * At the bottom of the page is a list of active detectors.
 
   ![list of detectors](../images/detector-list.png)
