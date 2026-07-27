@@ -7,7 +7,10 @@ For each user in users.csv, drives the following flow concurrently:
   1. Sign in to the Galileo console
   2. Click their assigned project  (project-{participant_number})
   3. Click the "default" log stream
-  4. Click "Configure Metrics", disable Correctness + Context Adherence, click Apply
+  4. Click "Configure Metrics", disable Correctness + Context Adherence if enabled, click Apply
+
+If the target metrics are already disabled or not present in the list, the script
+exits metrics configuration without clicking Apply and marks the run as success.
 
 Credentials:
   Users:    --users-csv  (email + participant_number columns)
@@ -187,25 +190,54 @@ async def sign_in(page: Page, console_url: str, email: str, password: str, log) 
     raise last_exc
 
 
-async def open_project(page: Page, project_name: str, log) -> None:
-    log(f"clicking project '{project_name}'")
-    url_before = page.url
+def _project_list_row(page: Page, project_name: str):
+    """Projects-list row whose first column exactly matches `project_name`."""
+    return page.locator("tr[data-with-row-border]").filter(
+        has=page.locator("td").first.get_by_text(project_name, exact=True)
+    )
 
-    project_row = page.locator("tr[data-with-row-border]").filter(
-        has=page.get_by_text(project_name, exact=True)
-    ).first
-    await project_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+
+async def _wait_for_projects_list(page: Page) -> None:
+    await page.get_by_text("Projects", exact=True).first.wait_for(
+        state="visible", timeout=NAV_TIMEOUT_MS,
+    )
+
+
+def _project_breadcrumb_name(page: Page, project_name: str):
+    """Active project name in the header breadcrumb (see Overview page header)."""
+    return (
+        page.locator('nav[aria-label="Breadcrumbs"] [aria-current="page"]')
+        .locator("p.mantine-Text-root")
+        .get_by_text(project_name, exact=True)
+    )
+
+
+async def _verify_project_opened(page: Page, project_name: str) -> None:
+    """Confirm the active project via the breadcrumb current-page label."""
+    await _project_breadcrumb_name(page, project_name).wait_for(
+        state="visible", timeout=NAV_TIMEOUT_MS,
+    )
+
+
+async def open_project(page: Page, project_name: str, log) -> None:
+    log(f"opening project '{project_name}'")
+    url_before = page.url
+    await _wait_for_projects_list(page)
 
     last_exc: Exception | None = None
     for attempt in range(STEP_RETRIES):
         if attempt > 0:
-            log(f"  retrying project click (attempt {attempt + 1}/{STEP_RETRIES})...")
+            log(f"  retrying project open (attempt {attempt + 1}/{STEP_RETRIES})...")
+            if page.url != url_before:
+                await page.go_back(timeout=NAV_TIMEOUT_MS)
+                await _wait_for_projects_list(page)
+
         try:
-            await project_row.locator("td").first.click(timeout=NAV_TIMEOUT_MS)
+            project_row = _project_list_row(page, project_name).first
+            await project_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+            await project_row.locator("td").first.click(force=True, timeout=NAV_TIMEOUT_MS)
             await page.wait_for_url(lambda url: url != url_before, timeout=NAV_TIMEOUT_MS)
-            await page.get_by_text(project_name, exact=True).first.wait_for(
-                state="visible", timeout=NAV_TIMEOUT_MS,
-            )
+            await _verify_project_opened(page, project_name)
             log(f"project '{project_name}' opened: {page.url}")
             return
         except Exception as exc:
@@ -228,6 +260,36 @@ async def _wait_for_log_stream_view(page: Page) -> None:
     )
 
 
+def _log_stream_row(page: Page, stream_name: str):
+    """Log-stream row whose first column exactly matches `stream_name`."""
+    return page.locator("tr[data-with-row-border]").filter(
+        has=page.locator("td").first.get_by_text(stream_name, exact=True)
+    )
+
+
+async def _verify_log_stream_opened(page: Page, stream_name: str) -> None:
+    """Confirm the active log stream view is open (not still on project overview)."""
+    await page.wait_for_function(
+        """({ streamName }) => {
+            const text = document.body.innerText;
+            if (/Configure metrics for|Configure evaluators for/i.test(text)) return true;
+            const hasConfigureBtn = [...document.querySelectorAll('button')].some(
+                b => /Configure Metrics|Configure Evaluators/i.test(b.textContent || '')
+            );
+            if (!hasConfigureBtn) return false;
+            if (decodeURIComponent(location.href).includes(streamName)) {
+                return true;
+            }
+            for (const el of document.querySelectorAll('h1, h2, [class*="Title-root"]')) {
+                if (el.textContent.trim() === streamName) return true;
+            }
+            return hasConfigureBtn;
+        }""",
+        arg={"streamName": stream_name},
+        timeout=NAV_TIMEOUT_MS,
+    )
+
+
 async def open_log_stream(page: Page, log, stream_name: str = "default") -> None:
     log(f"opening log stream '{stream_name}'")
     url_before = page.url
@@ -236,21 +298,24 @@ async def open_log_stream(page: Page, log, stream_name: str = "default") -> None
         state="visible", timeout=NAV_TIMEOUT_MS,
     )
 
-    stream_row = page.locator("tr[data-with-row-border]").filter(
-        has=page.get_by_text(stream_name, exact=True)
-    ).first
-    log(f"waiting for '{stream_name}' log stream row to be visible")
-    await stream_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
-
-    log(f"clicking '{stream_name}' log stream row")
     last_exc: Exception | None = None
     for attempt in range(STEP_RETRIES):
         if attempt > 0:
-            log(f"  retrying log stream click (attempt {attempt + 1}/{STEP_RETRIES})...")
+            log(f"  retrying log stream open (attempt {attempt + 1}/{STEP_RETRIES})...")
+            if page.url != url_before:
+                await page.go_back(timeout=NAV_TIMEOUT_MS)
+                await page.get_by_text("Log stream", exact=False).first.wait_for(
+                    state="visible", timeout=NAV_TIMEOUT_MS,
+                )
+
         try:
+            stream_row = _log_stream_row(page, stream_name).first
+            log(f"waiting for '{stream_name}' log stream row to be visible")
+            await stream_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+            log(f"clicking '{stream_name}' log stream row")
             await stream_row.locator("td").first.click(force=True, timeout=NAV_TIMEOUT_MS)
             await page.wait_for_url(lambda url: url != url_before, timeout=NAV_TIMEOUT_MS)
-            await _wait_for_log_stream_view(page)
+            await _verify_log_stream_opened(page, stream_name)
             log(f"log stream '{stream_name}' opened: {page.url}")
             return
         except Exception as exc:
@@ -388,51 +453,129 @@ async def _reset_metrics_modal_scroll(page: Page) -> None:
     )
 
 
+_METRICS_TO_DISABLE = ["Correctness", "Context Adherence"]
+
+_READ_METRIC_ENABLED_JS = """
+({ label }) => {
+    const dialog = document.querySelector('[role="dialog"]');
+    if (!dialog) return null;
+
+    const ariaSelectors = [
+        `input[aria-label="Enable ${label} metric"]`,
+        `input[aria-label="Enable ${label} evaluator"]`,
+    ];
+    for (const sel of ariaSelectors) {
+        const input = dialog.querySelector(sel);
+        if (input) {
+            if (input.getAttribute('role') === 'switch') {
+                const ariaChecked = input.getAttribute('aria-checked');
+                if (ariaChecked != null) return ariaChecked === 'true';
+            }
+            return !!input.checked;
+        }
+    }
+
+    for (const row of dialog.querySelectorAll('tr')) {
+        let hasLabel = false;
+        for (const cell of row.querySelectorAll('td, th')) {
+            if (cell.textContent.trim() === label) {
+                hasLabel = true;
+                break;
+            }
+        }
+        if (!hasLabel) continue;
+
+        const input = row.querySelector(
+            'input[type="checkbox"][role="switch"], input[type="checkbox"]'
+        );
+        if (input) {
+            if (input.getAttribute('role') === 'switch') {
+                const ariaChecked = input.getAttribute('aria-checked');
+                if (ariaChecked != null) return ariaChecked === 'true';
+            }
+            return !!input.checked;
+        }
+
+        const wrapper = row.querySelector('[data-testid="metric-enabled-switch"]');
+        if (wrapper) {
+            const inner = wrapper.querySelector('input[type="checkbox"]');
+            if (inner) return !!inner.checked;
+        }
+    }
+    return null;
+}
+"""
+
+
+def _metrics_dialog(page: Page):
+    return page.locator('[role="dialog"]').last
+
+
 def _metric_toggle_candidates(page: Page, label: str):
-    row = page.locator("tr").filter(has=page.get_by_text(label, exact=True))
-    yield row.locator('[data-testid="metric-enabled-switch"]')
+    dialog = _metrics_dialog(page)
+    row = dialog.locator("tr").filter(has=dialog.get_by_text(label, exact=True))
+    yield row.locator('input[type="checkbox"][role="switch"]')
     yield row.locator(f'input[aria-label="Enable {label} metric"]')
-    yield page.locator(f'input[aria-label="Enable {label} metric"]')
-    yield page.locator(f'input[aria-label="Enable {label} evaluator"]')
-    yield page.locator(f'input[aria-label*="Enable {label}" i]')
-    yield page.get_by_role("switch", name=f"Enable {label} metric")
-    yield page.get_by_role("switch", name=f"Enable {label} evaluator")
+    yield dialog.locator(f'input[aria-label="Enable {label} metric"]')
+    yield dialog.locator(f'input[aria-label="Enable {label} evaluator"]')
+    yield dialog.locator(f'input[aria-label*="Enable {label}" i]')
+    yield dialog.get_by_role("switch", name=f"Enable {label} metric")
+    yield dialog.get_by_role("switch", name=f"Enable {label} evaluator")
+    yield row.locator('[data-testid="metric-enabled-switch"] input[type="checkbox"]')
+    yield row.locator('[data-testid="metric-enabled-switch"]')
     yield row.locator('input[type="checkbox"]').first
-    yield page.get_by_text(label, exact=True).locator(
-        "xpath=ancestor::*[.//input[@type='checkbox']][1]//input[@type='checkbox']"
-    ).first
+
+
+async def _read_metric_enabled(page: Page, label: str) -> bool | None:
+    """Return True/False for metric enabled state, or None if the row cannot be found."""
+    return await page.evaluate(_READ_METRIC_ENABLED_JS, {"label": label})
 
 
 async def _metric_toggle_attached(page: Page, label: str) -> bool:
-    for candidate in _metric_toggle_candidates(page, label):
-        if await candidate.count() > 0:
-            return True
-    return False
+    return (await _read_metric_enabled(page, label)) is not None
 
 
-async def _scroll_to_metric(page: Page, label: str, log) -> None:
-    if await _metric_toggle_attached(page, label):
-        log(f"  '{label}' row already in DOM")
-        return
+async def _scroll_to_metric(
+    page: Page, label: str, log, *, reset_first: bool = True,
+) -> None:
+    if reset_first:
+        await _reset_metrics_modal_scroll(page)
 
-    log(f"  scrolling metrics list to find '{label}'")
-    await _reset_metrics_modal_scroll(page)
+    if not await _metric_toggle_attached(page, label):
+        log(f"  scrolling metrics list to find '{label}'")
+        for step in range(50):
+            await _scroll_metrics_modal(page, 350)
+            await page.wait_for_timeout(150)
+            if await _metric_toggle_attached(page, label):
+                log(f"  '{label}' row found after {step + 1} scroll step(s)")
+                break
+        else:
+            raise TimeoutError(
+                f"Could not find '{label}' in metrics list after scrolling"
+            )
+    else:
+        log(f"  '{label}' row in DOM — ensuring visible")
 
-    max_steps = 50
-    for step in range(max_steps):
-        await _scroll_metrics_modal(page, 350)
-        await page.wait_for_timeout(150)
-        if await _metric_toggle_attached(page, label):
-            log(f"  '{label}' row found after {step + 1} scroll step(s)")
-            return
-
-    raise TimeoutError(
-        f"Could not find '{label}' in metrics list after scrolling {max_steps} steps"
+    await page.evaluate(
+        """({ label }) => {
+            const dialog = document.querySelector('[role="dialog"]');
+            if (!dialog) return;
+            for (const row of dialog.querySelectorAll('tr')) {
+                for (const cell of row.querySelectorAll('td, th')) {
+                    if (cell.textContent.trim() === label) {
+                        row.scrollIntoView({ block: 'center' });
+                        return;
+                    }
+                }
+            }
+        }""",
+        {"label": label},
     )
+    await page.wait_for_timeout(200)
 
 
 async def _find_metric_toggle(page: Page, label: str, log) -> object:
-    await _scroll_to_metric(page, label, log)
+    await _scroll_to_metric(page, label, log, reset_first=False)
 
     for candidate in _metric_toggle_candidates(page, label):
         try:
@@ -441,6 +584,11 @@ async def _find_metric_toggle(page: Page, label: str, log) -> object:
             toggle = candidate.first
             await toggle.wait_for(state="attached", timeout=2_000)
             await toggle.scroll_into_view_if_needed()
+            tag = await toggle.evaluate("el => el.tagName")
+            if tag and tag.lower() != "input":
+                inner = toggle.locator('input[type="checkbox"]')
+                if await inner.count() > 0:
+                    toggle = inner.first
             return toggle
         except Exception:
             continue
@@ -453,67 +601,207 @@ async def _find_metric_toggle(page: Page, label: str, log) -> object:
     raise TimeoutError(f"Could not find toggle for metric '{label}'")
 
 
+_WAIT_FOR_METRIC_ENABLED_JS = """
+({ label, wantEnabled }) => {
+    const dialog = document.querySelector('[role="dialog"]');
+    if (!dialog) return false;
+
+    const ariaSelectors = [
+        `input[aria-label="Enable ${label} metric"]`,
+        `input[aria-label="Enable ${label} evaluator"]`,
+    ];
+    let enabled = null;
+    for (const sel of ariaSelectors) {
+        const input = dialog.querySelector(sel);
+        if (input) {
+            if (input.getAttribute('role') === 'switch') {
+                const ariaChecked = input.getAttribute('aria-checked');
+                enabled = ariaChecked != null ? ariaChecked === 'true' : !!input.checked;
+            } else {
+                enabled = !!input.checked;
+            }
+            break;
+        }
+    }
+    if (enabled === null) {
+        for (const row of dialog.querySelectorAll('tr')) {
+            let hasLabel = false;
+            for (const cell of row.querySelectorAll('td, th')) {
+                if (cell.textContent.trim() === label) {
+                    hasLabel = true;
+                    break;
+                }
+            }
+            if (!hasLabel) continue;
+            const input = row.querySelector(
+                'input[type="checkbox"][role="switch"], input[type="checkbox"]'
+            );
+            if (input) {
+                if (input.getAttribute('role') === 'switch') {
+                    const ariaChecked = input.getAttribute('aria-checked');
+                    enabled = ariaChecked != null ? ariaChecked === 'true' : !!input.checked;
+                } else {
+                    enabled = !!input.checked;
+                }
+                break;
+            }
+            const wrapper = row.querySelector('[data-testid="metric-enabled-switch"]');
+            if (wrapper) {
+                const inner = wrapper.querySelector('input[type="checkbox"]');
+                if (inner) {
+                    enabled = !!inner.checked;
+                    break;
+                }
+            }
+        }
+    }
+    if (enabled === null) return false;
+    return enabled === wantEnabled;
+}
+"""
+
+
 async def _wait_for_toggle_state(
     page: Page, label: str, checked: bool, timeout_ms: int = 5_000,
 ) -> None:
     """Wait until the metric toggle matches `checked`, re-querying the DOM each poll."""
     await page.wait_for_function(
-        """({ label, wantChecked }) => {
-            const aria = document.querySelector(
-                `input[aria-label="Enable ${label} metric"], `
-                + `input[aria-label="Enable ${label} evaluator"]`
-            );
-            if (aria) return aria.checked === wantChecked;
-            for (const row of document.querySelectorAll('[role="dialog"] tr')) {
-                let hasLabel = false;
-                for (const cell of row.querySelectorAll('td, th')) {
-                    if (cell.textContent.trim() === label) {
-                        hasLabel = true;
-                        break;
-                    }
-                }
-                if (!hasLabel) continue;
-                const input = row.querySelector(
-                    '[data-testid="metric-enabled-switch"], input[type="checkbox"]'
-                );
-                if (input) return input.checked === wantChecked;
-            }
-            return false;
-        }""",
-        arg={"label": label, "wantChecked": checked},
+        _WAIT_FOR_METRIC_ENABLED_JS,
+        arg={"label": label, "wantEnabled": checked},
         timeout=timeout_ms,
     )
 
 
-async def _disable_toggle(page: Page, label: str, log) -> None:
-    """Disable a metric toggle by its display name if it is currently on."""
-    log(f"  locating '{label}' toggle")
-    toggle = await _find_metric_toggle(page, label, log)
+async def _disable_toggle(page: Page, label: str, log) -> bool:
+    """Disable a metric if enabled. Returns True if a toggle click was made."""
+    log(f"  checking '{label}'")
+    last_exc: Exception | None = None
 
-    is_checked = await toggle.evaluate("el => el.checked")
-    if not is_checked:
-        log(f"  '{label}' already disabled, skipping")
+    for attempt in range(STEP_RETRIES):
+        if attempt > 0:
+            log(f"  retry disable '{label}' (attempt {attempt + 1}/{STEP_RETRIES})")
+            await _reset_metrics_modal_scroll(page)
+
+        enabled = await _read_metric_enabled(page, label)
+        if enabled is None:
+            try:
+                await _scroll_to_metric(
+                    page, label, log, reset_first=(attempt == 0),
+                )
+            except TimeoutError:
+                log(f"  '{label}' not in metrics list — nothing to disable")
+                return False
+            enabled = await _read_metric_enabled(page, label)
+
+        if enabled is False:
+            log(f"  '{label}' already disabled")
+            return False
+        if enabled is None:
+            log(f"  '{label}' not in metrics list — nothing to disable")
+            return False
+
+        toggle = await _find_metric_toggle(page, label, log)
+        log(f"  clicking '{label}' toggle off")
+        label_parent = toggle.locator("xpath=ancestor::label[1]")
+        if await label_parent.count() > 0:
+            await label_parent.click(force=True, timeout=NAV_TIMEOUT_MS)
+        else:
+            await toggle.click(force=True, timeout=NAV_TIMEOUT_MS)
+
+        await page.wait_for_timeout(400)
+        await _scroll_to_metric(page, label, log, reset_first=False)
+        try:
+            await _wait_for_toggle_state(page, label, checked=False, timeout_ms=10_000)
+            log(f"  '{label}' disabled")
+            return True
+        except Exception as exc:
+            last_exc = exc
+            await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
+
+    raise last_exc or TimeoutError(f"Failed to disable '{label}'")
+
+
+async def _ensure_metrics_disabled(page: Page, labels: list[str], log) -> bool:
+    """Disable target metrics when enabled. Returns True if any toggle was changed."""
+    changed = False
+    for label in labels:
+        if await _disable_toggle(page, label, log):
+            changed = True
+
+    await _reset_metrics_modal_scroll(page)
+    last_still_on: list[str] = []
+
+    for attempt in range(STEP_RETRIES):
+        still_on: list[str] = []
+        for i, label in enumerate(labels):
+            enabled = await _read_metric_enabled(page, label)
+            if enabled is None:
+                try:
+                    await _scroll_to_metric(
+                        page, label, log, reset_first=(i == 0),
+                    )
+                    enabled = await _read_metric_enabled(page, label)
+                except TimeoutError:
+                    enabled = None
+            if enabled is True:
+                still_on.append(label)
+
+        if not still_on:
+            if changed:
+                log("verified target metrics are disabled")
+            else:
+                log("no target metrics were enabled — nothing to change")
+            return changed
+
+        last_still_on = still_on
+        log(
+            f"  still enabled before Apply: {still_on} "
+            f"(verify attempt {attempt + 1}/{STEP_RETRIES})"
+        )
+        for label in still_on:
+            if await _disable_toggle(page, label, log):
+                changed = True
+        await page.wait_for_timeout(STEP_RETRY_DELAY_MS)
+
+    raise TimeoutError(
+        f"Metrics still enabled before Apply: {last_still_on}"
+    )
+
+
+async def _leave_metrics_config_without_apply(page: Page, log) -> None:
+    """Exit metrics configuration without saving when there were no changes."""
+    if not await _is_on_metrics_config_page(page):
+        log("already on log stream view")
+        await _wait_for_log_stream_view(page)
         return
 
-    log(f"  disabling '{label}'")
-    label_parent = toggle.locator("xpath=ancestor::label[1]")
-    if await label_parent.count() > 0:
-        await label_parent.click()
-    else:
-        await toggle.locator("xpath=..").click()
+    for name in ("Cancel", "Back"):
+        btn = page.get_by_role("button", name=name)
+        try:
+            if await btn.count() > 0 and await btn.first.is_visible():
+                log(f"clicking '{name}' to leave metrics config")
+                await btn.first.click(timeout=NAV_TIMEOUT_MS)
+                await _wait_for_log_stream_view(page)
+                log("returned to log stream view without Apply")
+                return
+        except Exception:
+            continue
 
-    await page.wait_for_timeout(300)
-    await _scroll_to_metric(page, label, log)
-    await _wait_for_toggle_state(page, label, checked=False)
-    log(f"  '{label}' disabled")
+    log("no Cancel/Back button — using browser back")
+    await page.go_back(timeout=NAV_TIMEOUT_MS)
+    await _wait_for_log_stream_view(page)
+    log("returned to log stream view without Apply")
 
 
 async def remove_metric_configuration(page: Page, log) -> None:
     await _open_metrics_config_page(page, log)
     await _wait_for_metrics_list_with_retry(page, log)
 
-    await _disable_toggle(page, "Correctness", log)
-    await _disable_toggle(page, "Context Adherence", log)
+    needs_apply = await _ensure_metrics_disabled(page, _METRICS_TO_DISABLE, log)
+
+    if not needs_apply:
+        await _leave_metrics_config_without_apply(page, log)
+        return
 
     log("clicking 'Apply'")
     await page.get_by_role("button", name="Apply").click(timeout=NAV_TIMEOUT_MS)

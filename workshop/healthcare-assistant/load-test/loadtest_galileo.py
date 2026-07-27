@@ -255,25 +255,54 @@ async def sign_in(page: Page, console_url: str, email: str, password: str, log) 
     raise last_exc
 
 
-async def open_project(page: Page, project_name: str, log) -> None:
-    log(f"clicking project '{project_name}'")
-    url_before = page.url
+def _project_list_row(page: Page, project_name: str):
+    """Projects-list row whose first column exactly matches `project_name`."""
+    return page.locator("tr[data-with-row-border]").filter(
+        has=page.locator("td").first.get_by_text(project_name, exact=True)
+    )
 
-    project_row = page.locator("tr[data-with-row-border]").filter(
-        has=page.get_by_text(project_name, exact=True)
-    ).first
-    await project_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+
+async def _wait_for_projects_list(page: Page) -> None:
+    await page.get_by_text("Projects", exact=True).first.wait_for(
+        state="visible", timeout=NAV_TIMEOUT_MS,
+    )
+
+
+def _project_breadcrumb_name(page: Page, project_name: str):
+    """Active project name in the header breadcrumb (see Overview page header)."""
+    return (
+        page.locator('nav[aria-label="Breadcrumbs"] [aria-current="page"]')
+        .locator("p.mantine-Text-root")
+        .get_by_text(project_name, exact=True)
+    )
+
+
+async def _verify_project_opened(page: Page, project_name: str) -> None:
+    """Confirm the active project via the breadcrumb current-page label."""
+    await _project_breadcrumb_name(page, project_name).wait_for(
+        state="visible", timeout=NAV_TIMEOUT_MS,
+    )
+
+
+async def open_project(page: Page, project_name: str, log) -> None:
+    log(f"opening project '{project_name}'")
+    url_before = page.url
+    await _wait_for_projects_list(page)
 
     last_exc: Exception | None = None
     for attempt in range(STEP_RETRIES):
         if attempt > 0:
-            log(f"  retrying project click (attempt {attempt + 1}/{STEP_RETRIES})...")
+            log(f"  retrying project open (attempt {attempt + 1}/{STEP_RETRIES})...")
+            if page.url != url_before:
+                await page.go_back(timeout=NAV_TIMEOUT_MS)
+                await _wait_for_projects_list(page)
+
         try:
-            await project_row.locator("td").first.click(timeout=NAV_TIMEOUT_MS)
+            project_row = _project_list_row(page, project_name).first
+            await project_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+            await project_row.locator("td").first.click(force=True, timeout=NAV_TIMEOUT_MS)
             await page.wait_for_url(lambda url: url != url_before, timeout=NAV_TIMEOUT_MS)
-            await page.get_by_text(project_name, exact=True).first.wait_for(
-                state="visible", timeout=NAV_TIMEOUT_MS,
-            )
+            await _verify_project_opened(page, project_name)
             log(f"project '{project_name}' opened: {page.url}")
             return
         except Exception as exc:
@@ -296,6 +325,36 @@ async def _wait_for_log_stream_view(page: Page) -> None:
     )
 
 
+def _log_stream_row(page: Page, stream_name: str):
+    """Log-stream row whose first column exactly matches `stream_name`."""
+    return page.locator("tr[data-with-row-border]").filter(
+        has=page.locator("td").first.get_by_text(stream_name, exact=True)
+    )
+
+
+async def _verify_log_stream_opened(page: Page, stream_name: str) -> None:
+    """Confirm the active log stream view is open (not still on project overview)."""
+    await page.wait_for_function(
+        """({ streamName }) => {
+            const text = document.body.innerText;
+            if (/Configure metrics for|Configure evaluators for/i.test(text)) return true;
+            const hasConfigureBtn = [...document.querySelectorAll('button')].some(
+                b => /Configure Metrics|Configure Evaluators/i.test(b.textContent || '')
+            );
+            if (!hasConfigureBtn) return false;
+            if (decodeURIComponent(location.href).includes(streamName)) {
+                return true;
+            }
+            for (const el of document.querySelectorAll('h1, h2, [class*="Title-root"]')) {
+                if (el.textContent.trim() === streamName) return true;
+            }
+            return hasConfigureBtn;
+        }""",
+        arg={"streamName": stream_name},
+        timeout=NAV_TIMEOUT_MS,
+    )
+
+
 async def open_log_stream(page: Page, log, stream_name: str = "default") -> None:
     log(f"opening log stream '{stream_name}'")
     url_before = page.url
@@ -304,21 +363,24 @@ async def open_log_stream(page: Page, log, stream_name: str = "default") -> None
         state="visible", timeout=NAV_TIMEOUT_MS,
     )
 
-    stream_row = page.locator("tr[data-with-row-border]").filter(
-        has=page.get_by_text(stream_name, exact=True)
-    ).first
-    log(f"waiting for '{stream_name}' log stream row to be visible")
-    await stream_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
-
-    log(f"clicking '{stream_name}' log stream row")
     last_exc: Exception | None = None
     for attempt in range(STEP_RETRIES):
         if attempt > 0:
-            log(f"  retrying log stream click (attempt {attempt + 1}/{STEP_RETRIES})...")
+            log(f"  retrying log stream open (attempt {attempt + 1}/{STEP_RETRIES})...")
+            if page.url != url_before:
+                await page.go_back(timeout=NAV_TIMEOUT_MS)
+                await page.get_by_text("Log stream", exact=False).first.wait_for(
+                    state="visible", timeout=NAV_TIMEOUT_MS,
+                )
+
         try:
+            stream_row = _log_stream_row(page, stream_name).first
+            log(f"waiting for '{stream_name}' log stream row to be visible")
+            await stream_row.wait_for(state="visible", timeout=NAV_TIMEOUT_MS)
+            log(f"clicking '{stream_name}' log stream row")
             await stream_row.locator("td").first.click(force=True, timeout=NAV_TIMEOUT_MS)
             await page.wait_for_url(lambda url: url != url_before, timeout=NAV_TIMEOUT_MS)
-            await _wait_for_log_stream_view(page)
+            await _verify_log_stream_opened(page, stream_name)
             log(f"log stream '{stream_name}' opened: {page.url}")
             return
         except Exception as exc:
