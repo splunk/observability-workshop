@@ -1,8 +1,10 @@
 ---
-title: Splunk4Rookies ワークショップ
-menuPost: " <i class='fa fa-graduation-cap'></i>"
-weight: 1 
-description: 以下は初心者向けワークショップです。
+title: Splunk4Rookies
+hero_title: Splunk4*Rookies*.
+weight: 1
+description: Splunk Observability Cloud が初めての方はここから。事前知識不要のガイド付きワークショップで、プラットフォーム全体をエンドツーエンドで体験できます。
+layout: "hero"
 ---
 
-{{% children depth="1" description="true" %}}
+{{% children type="card" description="true" image="true" %}}
+

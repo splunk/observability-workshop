@@ -1,8 +1,8 @@
 ---
-title: Splunk4Ninjas Workshops
-menuPost: " <i class='fa fa-user-ninja'></i>"
+title: Ninja ワークショップ
+hero_title: Splunk4*Ninjas*.
+layout: "hero"
 weight: 2
-description: The following workshops require Ninja skills, wax on, wax off.
+description: Splunk Observability Cloud に慣れてきたら、さらに深く。自動ディスカバリー、AI 支援トラブルシューティング、OpenTelemetry の内部構造、インジェスト処理などの上級ワークショップです。
 ---
 
-{{% children type="card" depth="1" description="true" %}}
