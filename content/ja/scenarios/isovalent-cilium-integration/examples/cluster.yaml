@@ -1,0 +1,12 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: isovalent-demo
+  region: us-east-1
+  version: "1.30"
+iam:
+  withOIDC: true
+addonsConfig:
+  disableDefaultAddons: true
+addons:
+- name: coredns
