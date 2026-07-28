@@ -27,7 +27,7 @@ You are an **aspiring astronomer**, browsing the Astronomy Shop for telescopes, 
 * **Repeat 2-3 times** to generate more user sessions.
 * If possible, also visit the Astronomy Shop via a mobile device or tablet. 
 
-![ui](images/1-shop.png)
+![Astronomy Shop retail site homepage](images/1-shop.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}

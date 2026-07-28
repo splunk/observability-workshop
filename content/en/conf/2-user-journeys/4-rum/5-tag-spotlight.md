@@ -18,6 +18,6 @@ weight: 4
 
 * We now have a User Session table sorted by longest duration (descending), showing users who have been shopping on the site. We could apply more filters to further narrow down the data, e.g. OS version, browser version, etc.
 
-![RUM Tag Spotlight](../images/rum-user-sessions.png)
+![RUM Tag Spotlight with user sessions](../images/rum-user-sessions.png)
 
 {{% /exercise %}}

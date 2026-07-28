@@ -34,6 +34,6 @@ At the top of the session page, click the breadcrumb link to the workshop app.
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Event Latency** chart.
 * In the **Custom Workflow Latency** chart click on the **see all** link under the chart title.
 
-![RUM See All](../images/rum-see-all.png)
+![RUM See All Custom Workflows](../images/rum-see-all.png)
 
 {{% /exercise %}}

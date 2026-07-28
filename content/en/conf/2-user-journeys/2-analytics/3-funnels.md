@@ -18,7 +18,7 @@ This funnel is capturing users who started on the homepage, shopped, and checked
 
 Click segments to view relevant user sessions.
 
-![funnel](../images/funnel.png)
+![funnel for checkout](../images/funnel.png)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}
