@@ -12,7 +12,7 @@ Click **APM** in the main menu and select **Overview**. The APM Home Page is mad
 2. **APM Overview Pane:** Real-time metrics for the Top Services and Top Business Workflows.
 3. **Functions Pane:** Links for deeper analysis of your services, tags, traces, database query performance and code profiling.
 
-The **APM Overview** pan provides a high-level view of the health of your application. It includes a summary of the services, latency and errors in your application. It also includes a list of the top services by error rate and the top business workflows by error rate (a business workflow is the start-to-finish journey of the collection of traces associated with a given activity or transaction and enables monitoring of end-to-end KPIs and identifying root causes and bottlenecks).
+The **APM Overview** panel provides a high-level view of the health of your application. It includes a summary of the services, latency and errors in your application. It also includes a list of the top services by error rate and the top business workflows by error rate (a business workflow is the start-to-finish journey of the collection of traces associated with a given activity or transaction and enables monitoring of end-to-end KPIs and identifying root causes and bottlenecks).
 
 {{% notice title=" About Environments" style="info" %}}
 

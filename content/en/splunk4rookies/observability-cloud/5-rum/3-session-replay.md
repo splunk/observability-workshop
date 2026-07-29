@@ -19,12 +19,12 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% exercise title="Watch the Session Replay" %}}
 
-* Click the RUM Session Replay {{% button icon="play" %}}Replay{{% /button %}} button. RUM Session Replay allows you to replay and see the user session. This is a great way to see exactly what the user experienced.
+* Scroll **UP** to reveal the RUM Session Replay, which allows you to replay and see the user session. This is a great way to see exactly what the user experienced. You may need to wait a few moments for the replay to be generated. 
 * Click the button to start the replay.
 
 {{% /exercise %}}
 
-RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.
+RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed, skip periods of inactivity, and pause the replay.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 

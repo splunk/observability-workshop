@@ -5,9 +5,9 @@ weight: 1
 
 The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
 
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **WorkFlow Name** (`frontend:/cart/checkout`).
+When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **Business Transaction** (`frontend:/cart`).
 
-You can see the services involved in the workflow in the **Service Map**. In the side pane, under **Business Workflow**, charts for the selected workflow are displayed. The **Service Map** and **Business Workflow** charts are synchronized. When you select a service in the **Service Map**, the charts in the **Business Workflow** pane are updated to show metrics for the selected service.
+You can see the services involved in the workflow in the **Service Map**. In the side pane, under **Business Transaction**, charts for the selected workflow are displayed. The **Service Map** and **Business Transaction** charts are synchronized. When you select a service in the **Service Map**, the charts in the **Business Transaction** pane are updated to show metrics for the selected service.
 
 {{% exercise title="Inspect paymentservice on the map" %}}
 

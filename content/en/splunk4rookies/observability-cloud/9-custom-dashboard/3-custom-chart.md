@@ -10,7 +10,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 
 * At the top of the dashboard click on the **+** and select **Chart**.
   ![new chart screen](../images/new-chart.png)
-* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**.
+* First, change the name New Chart to **Overall Test Duration**.
 * For this exercise we want a bar or column chart, so click on the 3rd icon {{% icon icon="chart-bar" %}} in the chart option box.
 * In the **Plot editor** enter `synthetics.run.duration.time.ms` (this is runtime in duration for our test) in the **Signal** box and hit enter.
 * Right now we see different colored bars, a different color for each region the test runs from. As this is not needed we can change that behavior by adding some analytics.

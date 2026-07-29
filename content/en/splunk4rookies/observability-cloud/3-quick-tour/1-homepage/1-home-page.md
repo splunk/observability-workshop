@@ -35,8 +35,6 @@ If you have used Splunk Observability before, you may be placed in an Organizati
 * Click the help icon and select **Onboarding Guidance**. (You can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
 * Hide the Onboarding Content for the **Home Page**.
 
-* Click **<** to get back to the main menu.
-
 {{% /exercise %}}
 
 Next, let's check out **Splunk Real User Monitoring (RUM)**.
