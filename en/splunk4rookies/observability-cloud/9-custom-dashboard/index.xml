@@ -86,7 +86,7 @@
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
-&lt;li&gt;First, use the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: var(--color-ink-muted)"&gt;&lt;span&gt;Untitled chart&lt;/span&gt;&lt;/button&gt; input field and name the chart &lt;strong&gt;Overall Test Duration&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;First, change the name New Chart to &lt;strong&gt;Overall Test Duration&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;For this exercise we want a bar or column chart, so click on the 3rd icon &lt;span class="inline-icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
 in the chart option box.&lt;/li&gt;

@@ -91,7 +91,7 @@
 &lt;ul&gt;
 &lt;li&gt;Close the RUM Session Replay by clicking on the &lt;strong&gt;X&lt;/strong&gt; in the top right corner.&lt;/li&gt;
 &lt;li&gt;Note the length of the span, this is the time it took to complete the order, not good!&lt;/li&gt;
-&lt;li&gt;Scroll down the page and you will see the &lt;strong&gt;Tags&lt;/strong&gt; metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.)&lt;/li&gt;
+&lt;li&gt;Scroll down the page and you will see the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.)&lt;/li&gt;
 &lt;li&gt;Keep scrolling down the page until you come to a blue &lt;strong&gt;APM&lt;/strong&gt; link (the one with &lt;code&gt;/cart/checkout&lt;/code&gt; at the end of the URL) and hover over it.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
