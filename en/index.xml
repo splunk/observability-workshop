@@ -2714,7 +2714,7 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
 &lt;ul&gt;
-&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 hour by default).&lt;/li&gt;
+&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 day by default).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
