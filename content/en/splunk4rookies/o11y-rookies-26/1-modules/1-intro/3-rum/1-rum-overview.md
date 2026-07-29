@@ -13,15 +13,22 @@ In this exercise, you'll open the RUM Overview dashboard. The data you'll see he
 
 ![RUM](../images/rum-de.png)
 
-* This will open up the **Application Summary Dashboard**. This section shows a quick overview of **all** the applications being monitored.
+* This opens the Application Summary Dashboard, which provides a quick overview of all monitored applications.
 
-* The Real User Monitoring (RUM) Overview dashboard in Splunk Observability Cloud provides visibility into how real users experience your web applications. It captures browser-side performance metrics, JavaScript errors, and network request failures as they occur in actual user sessions. The dashboard surfaces Core Web Vitals (LCP, INP, CLS) to measure page load performance, displays error trends over time, and shows recent alerts, giving frontend teams the insights needed to identify and resolve issues affecting end-user experience.
-* To make sure you're looking at the right data, filter down to your own store so the rest of the module focuses on your environment.
+* The Real User Monitoring (RUM) Overview dashboard in Splunk Observability Cloud shows how real users experience your web applications. It captures browser-side performance metrics, JavaScript errors, and failed network requests from actual user sessions. The dashboard also displays Core Web Vitals—LCP, INP, and CLS—along with error trends and recent alerts. These insights help frontend teams identify and resolve issues affecting the end-user experience.
+
+{{< notice tip >}}
+The workshop shown in the screenshots is named **workshop**. Therefore, the screenshots use **workshop-store** as the example application name. When following these instructions, replace [NAME OF WORKSHOP] with the name assigned to your workshop, as described below.
+{{< /notice >}}
+
+* To ensure that you are viewing the correct data, filter the dashboard to show only your workshop environment. The remainder of this module will focus on your own store.
+
 * Please set the filter to the following: **(2)**:
   * The **Time frame** is set to **-15m**.
   * The **Environment** selected is **[NAME OF WORKSHOP]-workshop**.
   * The **App** selected is **[NAME OF WORKSHOP]-store**.
   * The **Source** is set to **Browser**.
+
 * Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart.
 
 ![main page](../images/rum-dashboard.png)
