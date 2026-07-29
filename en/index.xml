@@ -133,8 +133,8 @@ traces.&lt;/p&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Galileo package&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;Galileo&amp;rsquo;s LangChain callback ships in the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;
-&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
-file for editing and add the following to the end of the file:&lt;/p&gt;
+&lt;p&gt;If you open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
+file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
@@ -710,22 +710,10 @@ open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and log stream&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt; and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Open the project using the name you set in the &lt;strong&gt;&lt;code&gt;GALILEO_PROJECT&lt;/code&gt;&lt;/strong&gt; field in the previous step, which is based on your participant number (for example, &lt;code&gt;project-44&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;Please watch the workshop instructor complete the steps in this section, rather than complete them yourself.&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Generate Signals for your log stream and let the platform show you what&amp;rsquo;s trending wrong.&lt;/p&gt;
-&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Review Signals&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;1&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Generate Signals&lt;/p&gt;</description></item><item><title>Feature adoption</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</guid><description>&lt;p&gt;Remember seeing the &amp;ldquo;Ask AI&amp;rdquo; feature on Astronomy Shop product detail pages? We want to understand how our customers are using that feature, including the quick prompts provided below the text input field.
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Open the project using the name you set in the &lt;strong&gt;&lt;code&gt;GALILEO_PROJECT&lt;/code&gt;&lt;/strong&gt; field in the previous step, which is based on your participant number (for example, &lt;code&gt;project-44&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
+if every workshop participant runs the process individually. For this reason, please observe as the
+workshop instructor completes the steps in this section, rather than performing them yourself.&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Generate Signals for your log stream and let the platform show you what&amp;rsquo;s trending wrong.&lt;/p&gt;</description></item><item><title>Feature adoption</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</guid><description>&lt;p&gt;Remember seeing the &amp;ldquo;Ask AI&amp;rdquo; feature on Astronomy Shop product detail pages? We want to understand how our customers are using that feature, including the quick prompts provided below the text input field.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/ask-ai-astronomy.png" alt="Ask AI feature on Astronomy Shop product details" loading="lazy" decoding="async"&gt;
@@ -2787,8 +2775,9 @@ node automatically, with no per-tool instrumentation required.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the imports&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py&lt;/code&gt; file for editing.
-At the end of the import section, just before &lt;code&gt;class State(TypedDict)&lt;/code&gt;, add:&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;We&amp;rsquo;ve already added the following imports to the
+&lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py&lt;/code&gt; file, which are required
+to collect traces:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;python&lt;/span&gt;&lt;/span&gt;
@@ -6224,10 +6213,17 @@ next chapter.&lt;/p&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Build a New Docker Image&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Deploy the healthcare assistant app&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Change into the base app directory, then run the following command to build a new Docker image
-for the application that includes our recent changes:&lt;/p&gt;</description></item><item><title>Import JSON</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</guid><description>&lt;p&gt;To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;strong&gt;Import&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; button, we must first give our test a name e.g. &lt;strong&gt;[&lt;code&gt;&amp;lt;your team name&amp;gt;&lt;/code&gt;] &lt;code&gt;&amp;lt;your initials&amp;gt;&lt;/code&gt; - Online Boutique&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to deploy the healthcare assistant app:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/healthcare-assistant/2-app-with-instrumentation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f k8s.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Ensure that the new application pod is running:&lt;/p&gt;</description></item><item><title>Import JSON</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</guid><description>&lt;p&gt;To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;strong&gt;Import&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; button, we must first give our test a name e.g. &lt;strong&gt;[&lt;code&gt;&amp;lt;your team name&amp;gt;&lt;/code&gt;] &lt;code&gt;&amp;lt;your initials&amp;gt;&lt;/code&gt; - Online Boutique&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../_img/browser-form.png" alt="Browser edit form" loading="lazy" decoding="async"&gt;

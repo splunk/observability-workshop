@@ -16,8 +16,8 @@ traces.&lt;/p&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Galileo package&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;Galileo&amp;rsquo;s LangChain callback ships in the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;
-&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
-file for editing and add the following to the end of the file:&lt;/p&gt;
+&lt;p&gt;If you open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
+file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
@@ -51,8 +51,9 @@ node automatically, with no per-tool instrumentation required.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the imports&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py&lt;/code&gt; file for editing.
-At the end of the import section, just before &lt;code&gt;class State(TypedDict)&lt;/code&gt;, add:&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;We&amp;rsquo;ve already added the following imports to the
+&lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py&lt;/code&gt; file, which are required
+to collect traces:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;python&lt;/span&gt;&lt;/span&gt;
@@ -83,7 +84,14 @@ next chapter.&lt;/p&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Build a New Docker Image&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Deploy the healthcare assistant app&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Change into the base app directory, then run the following command to build a new Docker image
-for the application that includes our recent changes:&lt;/p&gt;</description></item></channel></rss>
+&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to deploy the healthcare assistant app:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/healthcare-assistant/2-app-with-instrumentation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f k8s.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Ensure that the new application pod is running:&lt;/p&gt;</description></item></channel></rss>
