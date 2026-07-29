@@ -71,6 +71,8 @@ agent:
               resource_attributes:
                 sqlserver.instance.name:
                   enabled: true
+                sqlserver.computer.name:
+                  enabled: true
               events:
                 db.server.query_sample:
                   enabled: true
@@ -116,13 +118,15 @@ agent:
             config:
               collection_interval: 10s
               top_query_collection:
-                lookback_time: 120s
+                lookback_time: 300s
               username: sa
               password: "ChangeMe_SuperStrong123!"
               server: '`host`'
               port: 1433
               resource_attributes:
                 sqlserver.instance.name:
+                  enabled: true
+                sqlserver.computer.name:
                   enabled: true
               events:
                 db.server.query_sample:
