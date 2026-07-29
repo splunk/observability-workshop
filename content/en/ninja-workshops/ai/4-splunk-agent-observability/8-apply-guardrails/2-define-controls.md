@@ -73,15 +73,3 @@ the agent is "steered" towards removing these fields from the final response.
 {{< /step >}}
 
 {{< /exercise >}}
-
-{{< checkpoint title="Knowledge Check" >}}
-
-The step names in the console (`delete_patient_record`, `Healthcare Assistant`): where do
-they come from?
-
-{{< details summary="Click here to see the answer" >}}
-They come from the application code: the `@control(step_name=...)` decorators (the LLM step is
-`LLM_STEP_NAME = "Healthcare Assistant"`) and the tool step registration. The app registers
-those steps with Agent Control on startup, which is why they appear in the console for you to
-target with rules.
-{{< /details >}}
