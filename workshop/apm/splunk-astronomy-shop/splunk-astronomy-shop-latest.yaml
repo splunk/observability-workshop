@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest
 # Version: 2.0.7
-# Generated on: 2026-07-29T10:30:47Z
+# Generated on: 2026-07-29T14:42:39Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -1320,7 +1320,7 @@ data:
             "on": true,
             "off": false
           },
-          "defaultVariant": "on"
+          "defaultVariant": "off"
         },
         "llmInaccurateResponse": {
           "defaultVariant": "off",
@@ -1424,7 +1424,7 @@ data:
             "on": true,
             "off": false
           },
-          "defaultVariant": "on"
+          "defaultVariant": "off"
         },
         "paymentUnreachable": {
           "description": "Payment service is unavailable",
@@ -1484,7 +1484,7 @@ data:
             "on": true,
             "off": false
           },
-          "defaultVariant": "on"
+          "defaultVariant": "off"
         },
         "secureappAttack": {
           "description": "Controls secureapp loadgen pace. Minimal spreads vuln probes across ~2 days. Max fires all attacks aggressively every few minutes.",
