@@ -13,6 +13,7 @@ java {
 
 ext['tomcat.version'] = '10.1.55'
 ext['logback.version'] = '1.5.33'
+ext['jackson-databind.version'] = '2.21.5'
 
 repositories {
 	mavenCentral()
