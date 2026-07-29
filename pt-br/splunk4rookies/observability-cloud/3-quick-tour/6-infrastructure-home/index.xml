@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visão geral da infraestrutura on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/</link><description>Recent content in Visão geral da infraestrutura on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Navegadores de infraestrutura</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/1-infrastructure-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/6-infrastructure-home/1-infrastructure-home/</guid><description>&lt;p&gt;Clique em &lt;strong&gt;Infrastructure&lt;/strong&gt; no menu principal, a Home Page da Infraestrutura é composta por 4 seções distintas.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/infrastructure-main.png" alt="Infra principal" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane:&lt;/strong&gt; Vídeos de treinamento e links para documentação para você começar a usar o Splunk Infrastructure Monitoring.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time &amp;amp; Filter Pane:&lt;/strong&gt; Janela de tempo (não configurável no nível superior)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integrations Pane:&lt;/strong&gt; Lista de todas as tecnologias que estão enviando métricas para o Splunk Observability Cloud.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tile Pane:&lt;/strong&gt; Número total de serviços monitorados divididos por integração.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Usando o painel Infraestrutura, podemos selecionar a infraestrutura/tecnologia que nos interessa, vamos fazer isso agora.&lt;/p&gt;</description></item></channel></rss>

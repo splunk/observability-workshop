@@ -1,0 +1,207 @@
+terminationGracePeriodSeconds: 30
+agent:
+  config:
+    extensions:
+      # The k8s_observer detects and reports Kubernetes pod and port endpoints.
+      k8s_observer:
+        auth_type: serviceAccount # Use serviceAccount for in-cluster authentication
+        observe_pods: true        # Enable 'watching' of pods and their ports via k8s API
+    receivers:
+      kubeletstats:
+        collection_interval: 30s
+        insecure_skip_verify: true
+      # Receiver for Cilium metrics on port 9962, and Hubble metrics on port 9965
+      prometheus/isovalent_cilium:
+        config:
+          scrape_configs:
+            - job_name: 'cilium_metrics_9962'
+              scrape_interval: 30s
+              metrics_path: /metrics
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                # Keep only DaemonSet pods
+                - source_labels: [__meta_kubernetes_pod_label_k8s_app]
+                  action: keep
+                  regex: cilium
+                - source_labels: [__meta_kubernetes_pod_ip]
+                  target_label: __address__
+                  replacement: ${__meta_kubernetes_pod_ip}:9962
+                # Add helpful labels
+                - target_label: job
+                  replacement: 'cilium_metrics_9962'
+            - job_name: 'hubble_metrics_9965'
+              scrape_interval: 30s
+              metrics_path: /metrics
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_k8s_app]
+                  action: keep
+                  regex: cilium
+                - source_labels: [__meta_kubernetes_pod_ip]
+                  target_label: __address__
+                  replacement: ${__meta_kubernetes_pod_ip}:9965
+                - target_label: job
+                  replacement: 'hubble_metrics_9965'
+      prometheus/isovalent_envoy:
+        config:
+          scrape_configs:
+            - job_name: 'envoy_metrics_9964'
+              scrape_interval: 30s
+              metrics_path: /metrics
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                # Keep only DaemonSet pods
+                - source_labels: [__meta_kubernetes_pod_label_k8s_app]
+                  action: keep
+                  regex: cilium-envoy
+                - source_labels: [__meta_kubernetes_pod_ip]
+                  target_label: __address__
+                  replacement: ${__meta_kubernetes_pod_ip}:9964
+                # Add helpful labels
+                - target_label: job
+                  replacement: 'cilium_metrics_9964'
+      prometheus/isovalent_operator:
+        config:
+          scrape_configs:
+            - job_name: 'cilium_operator_metrics_9963'
+              scrape_interval: 30s
+              metrics_path: /metrics
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                # Keep only Deployment pods
+                - source_labels: [__meta_kubernetes_pod_label_io_cilium_app]
+                  action: keep
+                  regex: operator
+                # Add helpful labels
+                - target_label: job
+                  replacement: 'cilium_metrics_9963'
+      prometheus/isovalent_tetragon:
+        config:
+          scrape_configs:
+            - job_name: 'tetragon_metrics_2112'
+              scrape_interval: 30s
+              metrics_path: /metrics
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                # Keep only Deployment pods
+                - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+                  action: keep
+                  regex: tetragon
+                - source_labels: [__meta_kubernetes_pod_ip]
+                  target_label: __address__
+                  replacement: ${__meta_kubernetes_pod_ip}:2112
+                # Add helpful labels
+                - target_label: job
+                  replacement: 'tetragon_metrics_2112'
+    processors:
+      # Only include selected metrics to ensure to reduce data volume for Splunk Observability Cloud.
+      filter/includemetrics:
+        metrics:
+          include:
+            match_type: strict
+            metric_names:
+            - container.cpu.usage
+            - container.memory.rss
+            - k8s.container.restarts
+            - k8s.pod.phase
+            - node_namespace_pod_container
+            - tcp.resets
+            - tcp.syn_timeouts
+            # Include selected Cilium metrics
+            - cilium_api_limiter_processed_requests_total
+            - cilium_api_limiter_processing_duration_seconds
+            - cilium_bpf_map_ops_total
+            - cilium_controllers_group_runs_total
+            - cilium_controllers_runs_total
+            - cilium_endpoint_state
+            - cilium_errors_warnings_total
+            - cilium_ip_addresses
+            - cilium_ipam_capacity
+            - cilium_kubernetes_events_total
+            - cilium_policy_l7_total
+            - cilium_proxy_upstream_reply_seconds_bucket
+            # Include selected Hubble metrics
+            - hubble_dns_queries_total
+            - hubble_dns_responses_total
+            - hubble_drop_total
+            - hubble_flows_processed_total
+            - hubble_http_request_duration_seconds_bucket
+            - hubble_http_requests_total
+            - hubble_icmp_total
+            - hubble_policy_verdicts_total
+            - hubble_tcp_flags_total
+            # Include selected Tetragon metrics
+            - tetragon_dns_cache_evictions_total
+            - tetragon_dns_cache_misses_total
+            - tetragon_dns_total
+            - tetragon_http_response_total
+            - tetragon_http_stats_latency_bucket
+            - tetragon_http_stats_latency_count
+            - tetragon_http_stats_latency_sum
+            - tetragon_layer3_event_errors_total
+            - tetragon_socket_stats_retransmitsegs_total
+            - tetragon_socket_stats_rxsegs_total
+            - tetragon_socket_stats_srtt_count
+            - tetragon_socket_stats_srtt_sum
+            - tetragon_socket_stats_txbytes_total
+            - tetragon_socket_stats_txsegs_total
+            - tetragon_socket_stats_udp_retrieve_total
+            - tetragon_socket_stats_udp_txbytes_total
+            - tetragon_socket_stats_udp_txsegs_total
+      resourcedetection:
+        detectors: [system]
+        system:
+          hostname_sources: [os]
+    service:
+      # telemetry:
+      #   logs:
+      #     level: debug
+      pipelines:
+        metrics:
+          receivers:
+            - prometheus/isovalent_cilium
+            - prometheus/isovalent_envoy
+            - prometheus/isovalent_operator
+            - prometheus/isovalent_tetragon
+            - hostmetrics
+            - kubeletstats
+            - otlp
+          processors:
+            - filter/includemetrics
+            - resourcedetection
+autodetect:
+  prometheus: true
+clusterName: isovalent-demo
+  
+# IMPORTANT: Replace <YOUR-SPLUNK-ACCESS-TOKEN> with your actual Splunk Observability Cloud access token
+# Get it from: Splunk Observability Cloud > Settings > Access Tokens
+splunkObservability:
+  accessToken: <YOUR-SPLUNK-ACCESS-TOKEN>
+  # IMPORTANT: Replace <YOUR-SPLUNK-REALM> with your actual Splunk realm (e.g., us0, us1, eu0, ap0)
+  # Find it from: Splunk Observability Cloud > Settings > Account
+  realm: <YOUR-SPLUNK-REALM>
+  profilingEnabled: true
+   
+cloudProvider: aws
+distribution: eks 
+
+gateway:
+  enabled: true
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  
+certmanager:
+  enabled: true
+
+operator:
+  enabled: true

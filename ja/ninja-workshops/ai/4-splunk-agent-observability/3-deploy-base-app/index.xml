@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ベースアプリケーションのデプロイ on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/</link><description>Recent content in ベースアプリケーションのデプロイ on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/index.xml" rel="self" type="application/rss+xml"/><item><title>セットアップと設定</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/1-setup-and-configure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/1-setup-and-configure/</guid><description>&lt;p&gt;この章では &lt;code&gt;1-base-app&lt;/code&gt; フォルダで作業します。以下の手順でPython環境の作成、シークレットの設定、データベースの起動、エージェントが必要とするサンプルデータの読み込みを行います。&lt;/p&gt;</description></item><item><title>アプリケーションの実行</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/2-run-the-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/3-deploy-base-app/2-run-the-app/</guid><description>&lt;p&gt;データベースのロードとシークレットの設定が完了したら、アプリを起動して2つの主要なエージェントパスを試します。&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;アシスタントの実行と試用&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;ヘルスケアアシスタントアプリのデプロイ&lt;/p&gt;</description></item></channel></rss>

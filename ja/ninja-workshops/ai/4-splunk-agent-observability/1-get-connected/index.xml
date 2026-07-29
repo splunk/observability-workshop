@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>接続する on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/</link><description>Recent content in 接続する on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/index.xml" rel="self" type="application/rss+xml"/><item><title>EC2インスタンスへの接続</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="ec2インスタンスに接続する"&gt;
+ &lt;span class="heading-text"&gt;EC2インスタンスに接続する&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#ec2%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e3%81%ab%e6%8e%a5%e7%b6%9a%e3%81%99%e3%82%8b" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;各参加者用にAWS/EC2にUbuntu Linuxインスタンスを用意しています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;お住まいのリージョンのリンクをクリックして &lt;strong&gt;Splunk Show&lt;/strong&gt; イベントにアクセスします&lt;/li&gt;
+&lt;li&gt;右上の &lt;strong&gt;Enroll&lt;/strong&gt; をクリックします&lt;/li&gt;
+&lt;li&gt;ページ下部付近でEC2インスタンスの詳細を確認します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以下のような接続情報が表示されます。&lt;/p&gt;</description></item><item><title>Splunk Agent Observabilityにサインイン</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</guid><description>&lt;h2 id="splunk-agent-observabilityにサインイン"&gt;
+ &lt;span class="heading-text"&gt;Splunk Agent Observabilityにサインイン&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#splunk-agent-observability%e3%81%ab%e3%82%b5%e3%82%a4%e3%83%b3%e3%82%a4%e3%83%b3" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Splunk Agent Observabilityにアクセスするには、ブラウザで&lt;a href="https://console.multitenant.galileocloud.io" target="_blank" rel="noopener"&gt;https://console.multitenant.galileocloud.io`&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+に移動します。&lt;/p&gt;</description></item></channel></rss>

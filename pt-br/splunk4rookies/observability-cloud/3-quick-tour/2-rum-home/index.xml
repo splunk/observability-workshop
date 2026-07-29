@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visão geral do Real User Monitoring on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/</link><description>Recent content in Visão geral do Real User Monitoring on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Real User Monitoring Home Page</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/2-rum-home/1-rum-home/</guid><description>&lt;p&gt;Clique em &lt;strong&gt;Digital Experience&lt;/strong&gt; e, em Real User Monitoring, clique em &lt;strong&gt;Overview&lt;/strong&gt; no menu principal, que o levará à RUM Home Page principal. O conceito desta página é mostrar rapidamente o status geral de todos os aplicativos RUM selecionados, seja em um dashboard completo ou na visualização compacta.&lt;/p&gt;
+&lt;p&gt;Independentemente do tipo de Painel de Status utilizado, a Home Page do RUM é composta por 3 seções distintas:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-main.png" alt="Página RUM" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane:&lt;/strong&gt; Vídeos de treinamento e links para documentação para você começar a usar o Splunk RUM. (Você pode ocultar este painel caso precise do espaço da tela).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Filter Pane:&lt;/strong&gt; Filtre por período, ambiente, aplicativo e tipo de fonte.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Application Summary Pane:&lt;/strong&gt; Resumo de todos os seus aplicativos que enviam dados RUM.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Ambientes RUM e aplicação e tipo de fonte&lt;/p&gt;</description></item></channel></rss>

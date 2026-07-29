@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visão geral de Synthetics on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/</link><description>Recent content in Visão geral de Synthetics on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Synthetics Home Page</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/1-synthetics-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/5-synthetics-home/1-synthetics-home/</guid><description>&lt;p&gt;Clique em &lt;strong&gt;Digital Experience&lt;/strong&gt; no menu principal e, em seguida, em Monitoramento Sintético, clique em &lt;strong&gt;Synthetic Tests&lt;/strong&gt;. Isso nos levará à página inicial do Synthetics. Possui 3 seções distintas que fornecem informações úteis ou permitem escolher ou criar um teste sintético.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/synthetics-main.png" alt="Principal sintético" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane:&lt;/strong&gt; Vídeos de treinamento e links para documentação para você começar a usar o Splunk Synthetics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test Pane:&lt;/strong&gt; Lista de todos os testes que estão configurados (&lt;strong&gt;Browser&lt;/strong&gt;, &lt;strong&gt;API&lt;/strong&gt; e &lt;strong&gt;HTTP&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create New Test:&lt;/strong&gt; Menu suspenso para criar novos testes sintéticos.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Informações&lt;/p&gt;</description></item></channel></rss>

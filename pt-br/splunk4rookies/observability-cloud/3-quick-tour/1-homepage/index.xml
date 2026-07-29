@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Começando on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/</link><description>Recent content in Começando on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/index.xml" rel="self" type="application/rss+xml"/><item><title>Página inicial</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/1-home-page/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/1-home-page/</guid><description>&lt;p&gt;Depois de se registrar e fazer login no Splunk Observability Cloud, você será direcionado para a página inicial ou de destino. Aqui, você encontrará vários recursos úteis para ajudá-lo a começar.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/home-page.png" alt="página inicial" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Expand/Contract Main Menu:&lt;/strong&gt; Expandir &lt;strong&gt;&amp;raquo;&lt;/strong&gt; / Recolher &lt;strong&gt;&amp;laquo;&lt;/strong&gt; o menu principal se o espaço for escasso.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Org Switcher:&lt;/strong&gt; Alternar entre organizações (se você for membro de mais de uma organização).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Teams:&lt;/strong&gt; Concentre-se em ativos de interesse das equipes às quais você pertence.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Active Alerts:&lt;/strong&gt; Veja rapidamente o que pode exigir sua atenção imediata.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI Assistant:&lt;/strong&gt; Acelere a análise da causa raiz e obtenha orientação especializada para encontrar e corrigir problemas com mais rapidez.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Vamos começar com nosso primeiro exercício:&lt;/p&gt;</description></item><item><title>Faça logon nas perguntas frequentes</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/99-login-faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/observability-cloud/3-quick-tour/1-homepage/99-login-faq/</guid><description>&lt;p&gt;Este FAQ abordará alguns dos problemas mais comuns que encontramos ao fazer login no Workshop.&lt;/p&gt;
+&lt;h3 id="1-e-mail-de-convite-ou-e-mail-de-renovação-de-senha-não-chega"&gt;
+ &lt;span class="heading-text"&gt;1. E-mail de convite ou e-mail de renovação de senha não chega&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-e-mail-de-convite-ou-e-mail-de-renova%c3%a7%c3%a3o-de-senha-n%c3%a3o-chega" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;O primeiro passo é procurar um e-mail de &lt;strong&gt;&lt;a href="mailto:noreply@signalfx.com"&gt;noreply@signalfx.com&lt;/a&gt;
+&lt;/strong&gt;, em todas as suas pastas de e-mail, pois este é o endereço utilizado para enviar os e-mails de convite e renovação de senha. Se você não vir o e-mail, verifique sua pasta de spam/lixo eletrônico.&lt;/p&gt;</description></item></channel></rss>

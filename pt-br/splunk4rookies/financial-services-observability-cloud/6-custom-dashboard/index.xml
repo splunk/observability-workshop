@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Painel de integridade do serviço personalizado 🏥 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/</link><description>Recent content in Painel de integridade do serviço personalizado 🏥 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/index.xml" rel="self" type="application/rss+xml"/><item><title>Aprimorando o painel</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;Como já salvamos alguns gráficos de log úteis em um painel no exercício Log Observer, vamos estender esse painel.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/wall-mount.png" alt="Montado na parede" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercício&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;Para voltar ao seu painel com os dois gráficos de log, clique em &lt;strong&gt;Dashboards&lt;/strong&gt; no menu principal e você será levado à visualização do painel da equipe. Em &lt;strong&gt;Dashboards&lt;/strong&gt;, clique em &lt;strong&gt;Search dashboards&lt;/strong&gt; para procurar seu grupo Service Health Dashboard.&lt;/li&gt;
+&lt;li&gt;Clique no nome e isso abrirá o painel salvo anteriormente.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/log-observer-custom-dashboard.png" alt="log list" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Mesmo que as informações de registro sejam úteis, serão necessárias mais informações para que façam sentido para nossa equipe, então vamos adicionar um pouco mais de informações&lt;/li&gt;
+&lt;li&gt;A primeira etapa é adicionar um gráfico de descrição ao painel. Clique em &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: var(--color-ink-muted)"&gt;&lt;span&gt;New text note&lt;/span&gt;&lt;/button&gt; e substitua o texto na nota pelo texto a seguir e, em seguida, clique no botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Save and close&lt;/span&gt;&lt;/button&gt; e nomeie o gráfico como &lt;strong&gt;Instructions&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Informações para usar com nota de texto&lt;/p&gt;</description></item><item><title>Adicionando gráficos copiados</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/2-add-chart/</guid><description>&lt;p&gt;Nesta seção, usaremos a funcionalidade &lt;strong&gt;Copy and Paste&lt;/strong&gt; para estender nosso painel. Lembre-se de que copiamos alguns gráficos durante a seção Painel de serviço do APM, agora iremos adicionar esses gráficos ao nosso painel.&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercício&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;Selecione &lt;strong&gt;2+&lt;/strong&gt; na parte superior da página e selecione &lt;strong&gt;Paste charts&lt;/strong&gt;, isso criará os gráficos em seu painel personalizado.&lt;/li&gt;
+&lt;li&gt;O gráfico atualmente mostra dados de todos os &lt;strong&gt;Environments&lt;/strong&gt; e &lt;strong&gt;Services&lt;/strong&gt;, então vamos adicionar um filtro para nosso ambiente e &lt;strong&gt;paymentservice&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Clique nos 3 pontos &lt;strong&gt;&amp;hellip;&lt;/strong&gt; no canto superior direito do gráfico de valor único &lt;strong&gt;Request Rate&lt;/strong&gt;. Isso abrirá o gráfico no modo de edição.&lt;/li&gt;
+&lt;li&gt;Na nova tela, clique no &lt;strong&gt;x&lt;/strong&gt; no botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;sf_environment:* x&lt;/span&gt;&lt;/button&gt; &lt;strong&gt;(1)&lt;/strong&gt; no meio da tela para fechá-la.&lt;/li&gt;
+&lt;li&gt;Clique em &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;&lt;strong&gt;+&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; para adicionar um novo filtro e selecione &lt;strong&gt;sf_environment&lt;/strong&gt;, escolha [WORKSHOPNAME] no menu suspenso e clique em &lt;strong&gt;Apply&lt;/strong&gt;. O botão mudará para &lt;strong&gt;sf_environment:[WORKSHOPNAME]&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Faça o mesmo com o botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;sf_service.&lt;/span&gt;&lt;/button&gt; &lt;strong&gt;(2)&lt;/strong&gt;, feche-o e crie um novo filtro para &lt;strong&gt;sf_service&lt;/strong&gt;. Só que desta vez mude para &lt;code&gt;paymentservice&lt;/code&gt;.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/edit-chart.png" alt="editar gráfico" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Clique no botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Save and close&lt;/span&gt;&lt;/button&gt; &lt;strong&gt;(3)&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Repita as 4 etapas anteriores para o gráfico de texto &lt;strong&gt;Request Rate&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Clique em &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Save&lt;/span&gt;&lt;/button&gt; depois de atualizar os dois gráficos.&lt;/li&gt;
+&lt;li&gt;Como os novos gráficos colados apareceram na parte inferior do nosso painel, precisamos reorganizar nosso painel novamente.&lt;/li&gt;
+&lt;li&gt;Usando as habilidades de arrastar e soltar e redimensionar que você aprendeu anteriormente, faça com que seu painel se pareça com a imagem abaixo.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/copyandpastedcharts.png" alt="Nova aparência do painel" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;A seguir, criaremos um gráfico personalizado com base em nosso teste sintético que está em execução.&lt;/p&gt;</description></item><item><title>Adicionando um gráfico personalizado</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/3-custom-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/3-custom-chart/</guid><description>&lt;p&gt;Nesta parte do workshop vamos criar um gráfico que adicionaremos ao nosso dashboard, também iremos vinculá-lo ao detector que construímos anteriormente. Isso nos permitirá ver o comportamento de nosso teste e ser alertados se um ou mais de nossos testes violarem seu SLA.&lt;/p&gt;
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Exercício&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;ul&gt;
+&lt;li&gt;Na parte superior do painel, clique em &lt;strong&gt;+&lt;/strong&gt; e selecione &lt;strong&gt;Chart&lt;/strong&gt;.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/new-chart.png" alt="nova tela do gráfico" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Primeiro, use o campo de entrada &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: var(--color-ink-muted)"&gt;&lt;span&gt;Untitled chart&lt;/span&gt;&lt;/button&gt; e dê ao gráfico o nome &lt;strong&gt;Requests by version &amp;amp; error&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Para este exercício queremos um gráfico de barras ou colunas, então clique no terceiro ícone &lt;span class="inline-icon"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+na caixa de opções do gráfico.&lt;/li&gt;
+&lt;li&gt;No &lt;strong&gt;Plot editor&lt;/strong&gt;, insira &lt;code&gt;spans.count&lt;/code&gt; (esse é o tempo de execução do nosso teste) na caixa &lt;strong&gt;Signal&lt;/strong&gt; e pressione Enter.&lt;/li&gt;
+&lt;li&gt;Clique em &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Add filter&lt;/span&gt;&lt;/button&gt; e escolha &lt;code&gt;sf_service:wire-transfer-service&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;No momento vemos barras coloridas diferentes, uma cor diferente para cada região de onde o teste é executado. Como isso não é necessário, podemos mudar esse comportamento adicionando algumas análises.&lt;/li&gt;
+&lt;li&gt;Clique no botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Add analytics&lt;/span&gt;&lt;/button&gt;.&lt;/li&gt;
+&lt;li&gt;No menu suspenso, escolha a opção &lt;strong&gt;Sum&lt;/strong&gt;, selecione &lt;code&gt;sum:aggregation&lt;/code&gt;, clique em &lt;code&gt;version&lt;/code&gt; e depois em &lt;code&gt;sf_error&lt;/code&gt; para agrupar por essas duas dimensões. Observe como o gráfico muda agora que as métricas estão agregadas.
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/spans-sum-version-error.png" alt="new chart screen" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Clique no botão &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Save and close&lt;/span&gt;&lt;/button&gt;.&lt;/li&gt;
+&lt;li&gt;No painel, mova os gráficos para que fiquem como na captura de tela abaixo:
+&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/service-health-dashboard.png" alt="Painel de integridade do serviço" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Para a tarefa final, clique nos três pontos &lt;strong&gt;&amp;hellip;&lt;/strong&gt; na parte superior da página (ao lado de &lt;strong&gt;Event Overlay&lt;/strong&gt;) e clique em &lt;strong&gt;View fullscreen&lt;/strong&gt;. Essa é a visualização que você usaria no monitor de TV na parede (pressione Esc para voltar).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Dica&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visão geral do Application Performance Monitoring on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/</link><description>Recent content in Visão geral do Application Performance Monitoring on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>pt-BR</language><atom:link href="https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Application Performance Monitoring Home Page</title><link>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/1-apm-home/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/pt-br/splunk4rookies/financial-services-observability-cloud/3-quick-tour/2-apm-home/1-apm-home/</guid><description>&lt;p&gt;Clique em &lt;strong&gt;APM&lt;/strong&gt; no menu principal. A página inicial do APM é composta por três seções distintas:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/apm-main.png" alt="página APM" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Onboarding Pane Pane:&lt;/strong&gt; Vídeos de treinamento e links para documentação para você começar a usar o Splunk APM.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;APM Overview Pane:&lt;/strong&gt; Métricas em tempo real para os principais serviços e principais fluxos de trabalho de negócios.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Functions Pane:&lt;/strong&gt; Links para análise mais profunda de seus serviços, tags, rastreamentos, desempenho de consulta de banco de dados e criação de perfil de código.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;O painel &lt;strong&gt;APM Overview&lt;/strong&gt; fornece uma visão de alto nível da integridade do seu aplicativo. Inclui um resumo dos serviços, latência e erros em seu aplicativo. Também inclui uma lista dos principais serviços por taxa de erro e dos principais fluxos de trabalho de negócios por taxa de erro (um fluxo de trabalho de negócios é a jornada do início ao fim da coleção de traces associados a uma determinada atividade ou transação e permite o monitoramento de KPIs de ponta a ponta e a identificação de causas raízes e gargalos).&lt;/p&gt;</description></item></channel></rss>
