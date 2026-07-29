@@ -71,6 +71,12 @@ docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assi
 docker push localhost:9999/healthcare-assistant:app-with-controls
 ```
 
+Update the `k8s.yaml` file to reference the local image instead:
+
+````
+image: localhost:9999/splunk/healthcare-assistant:app-with-controls
+````
+
 And redeploy the application:
 
 ```bash

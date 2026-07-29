@@ -43,10 +43,3 @@ millions of them. In the next chapter you'll enable **metrics** to score every t
 automatically, so problems like ungrounded medical advice surface on their own.
 
 {{% /notice %}}
-
-{{< checkpoint title="Knowledge Check" >}}
-
-
-{{< details summary="Click here to see the answer" >}}
-
-{{< /details >}}

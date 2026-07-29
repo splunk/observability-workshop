@@ -22,7 +22,7 @@ spec:
                 name: postgres-config
       containers:
         - name: setup
-          image: localhost:9999/healthcare-assistant:base-app
+          image: ghcr.io/splunk/healthcare-assistant:base-app
           imagePullPolicy: Always
           command: ["python", "helpers/setup_vectordb.py", "hosted"]
           envFrom:

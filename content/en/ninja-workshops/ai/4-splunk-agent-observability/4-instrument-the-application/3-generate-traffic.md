@@ -11,28 +11,6 @@ next chapter.
 
 {{< exercise title="Run the app and generate traces" >}}
 
-{{< step title="Build a New Docker Image" >}}
-
-Change into the base app directory, then run the following command to build a new Docker image
-for the application that includes our recent changes: 
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
-docker push localhost:9999/healthcare-assistant:app-with-instrumentation
-```
-
-{{% notice title="Notice what's missing" style="info" %}}
-
-If you're having trouble building the Docker image, or it's taking more than five minutes to build, you can use
-the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file
-and change the image to `ghcr.io/splunk/healthcare-assistant:app-with-instrumentation`.
-
-{{% /notice %}}
-
-{{< /step >}}
-
-
 {{< step title="Deploy the healthcare assistant app" >}}
 
 Run the following command to deploy the healthcare assistant app:
@@ -149,6 +127,12 @@ cd ~/workshop/healthcare-assistant
 docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 ```
+
+Update the `k8s.yaml` file to reference the local image instead: 
+
+````
+image: localhost:9999/splunk/healthcare-assistant:app-with-instrumentation
+````
 
 And redeploy the application: 
 

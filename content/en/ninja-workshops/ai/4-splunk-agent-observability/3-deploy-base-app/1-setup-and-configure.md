@@ -76,27 +76,6 @@ postgres-66ffcf4b8c-8s5lp   1/1     Running   0          16s
 
 {{< /step >}}
 
-{{< step title="Build the Docker Image" >}}
-
-Change into the base app directory, then run the following command to build the Docker image
-for the application: 
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:base-app .
-docker push localhost:9999/healthcare-assistant:base-app
-```
-
-{{% notice title="Tip" style="info" %}}
-
-If you're having trouble building the Docker image, or it's taking more than five minutes to build, you can use
-the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/1-base-app/k8s.yaml` file
-and change the image to `ghcr.io/splunk/healthcare-assistant:base-app`.
-
-{{% /notice %}}
-
-{{< /step >}}
-
 {{< step title="Load vector data and relational tables" >}}
 
 Embed the medicine FAQ into pgvector and load the patient registry into PostgreSQL. The

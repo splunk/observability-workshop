@@ -6,7 +6,9 @@ time: 5 minutes
 ---
 
 {{% notice style="warning" title="Caution" %}}
-Please watch the workshop instructor complete the steps in this section, rather than complete them yourself. 
+**Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs 
+if every workshop participant runs the process individually. For this reason, please observe as the 
+workshop instructor completes the steps in this section, rather than performing them yourself.**
 {{% /notice %}}
 
 Generate Signals for your log stream and let the platform show you what's trending wrong.

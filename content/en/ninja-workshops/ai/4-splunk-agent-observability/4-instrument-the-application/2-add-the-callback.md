@@ -13,8 +13,9 @@ node automatically, with no per-tool instrumentation required.
 
 {{< step title="Add the imports" >}}
 
-Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file for editing. 
-At the end of the import section, just before `class State(TypedDict)`, add:
+We've already added the following imports to the
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file, which are required 
+to collect traces: 
 
 ```python
 import os
@@ -50,7 +51,8 @@ The base version of `_process_query_async` invokes the graph with no tracing:
         return "No response generated"
 ```
 
-Update it to open a `galileo_context`, start a session keyed to the agent's `session_id`,
+We've updated the `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file 
+to update this function to open a `galileo_context`, start a session keyed to the agent's `session_id`,
 and attach a fresh `GalileoAsyncCallback` to the run config:
 
 ```python
@@ -95,17 +97,6 @@ Creating one `GalileoAsyncCallback` per call to `_process_query_async` keeps eac
 in its own trace. Because it's attached to the LangGraph run config, every node's LLM and
 tool call becomes a nested span under that same trace, giving you the end-to-end view of a
 turn instead of a pile of disconnected spans.
-
-{{% /notice %}}
-
-{{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
-
-Run the following command to compare your changes with the reference solution: 
-
-```bash
-cd ~/workshop/healthcare-assistant/2-app-with-instrumentation/
-diff agent.py agent-with-instrumentation.py
-```
 
 {{% /notice %}}
 

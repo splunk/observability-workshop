@@ -13,16 +13,7 @@ Splunk Show with the Splunk Observability 4 Ninjas template. Each EC2 instance w
 `OPENAI_API_KEY` and `OPENAI_BASE_URL`, which will be used by the application to connect to 
 OpenAI models running in Azure. 
 
-## Build and Install the Application
-
-Build the application: 
-
-``` bash
-./loadtest-build-app.sh \
-  --csv "<path to workshop csv file>" \
-  --max-parallel 10 \
-  --insecure-hostkey
-```
+## Install the Application
 
 Install the LLM application:
 
