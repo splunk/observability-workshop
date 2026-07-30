@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest - dc-shim
 # Version: 2.0.7
-# Generated on: 2026-07-29T10:30:53Z
+# Generated on: 2026-07-30T14:01:16Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml

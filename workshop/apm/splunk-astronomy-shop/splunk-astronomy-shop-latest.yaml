@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest
 # Version: 2.0.7
-# Generated on: 2026-07-29T14:42:39Z
+# Generated on: 2026-07-30T14:01:11Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -331,7 +331,9 @@ data:
           '--disable-renderer-backgrounding',
           '--memory-pressure-off',
           '--aggressive-cache-discard',
-          '--ignore-certificate-errors',
+          // Do NOT add '--ignore-certificate-errors' or `acceptInsecureCerts: true`.
+          // On plain-HTTP deploys they break Chromium fetch/hydration and every
+          // cycle fails at waitForSelector. See CERT_FLAG_NOTE.md.
           '--allow-insecure-localhost',
           `--user-agent=${customUserAgent}`
         ]

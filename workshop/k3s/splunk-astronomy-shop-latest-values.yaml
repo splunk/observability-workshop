@@ -1,3 +1,13 @@
+# splunk-astronomy-shop helm values
+# Version:    2.0.7
+# Generated:  2026-07-30T14:01:24Z
+# Source:     kubernetes/splunk-astronomy-shop-2.0.7-values.yaml @ 6174220
+#
+# Deploy:
+#   helm upgrade --install splunk-otel-collector \
+#     splunk-otel-collector-chart/splunk-otel-collector \
+#     -f splunk-astronomy-shop-2.0.7-values.yaml
+#
 clusterReceiver:
   extraEnvs:
   - name: WORKSHOP_REALM
