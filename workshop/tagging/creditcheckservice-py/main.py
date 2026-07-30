@@ -17,14 +17,14 @@ def credit_check():
     customerNum = request.args.get('customernum')
 
     # Get Credit Score
-    creditScoreReq = requests.get("http://creditprocessorservice:8899/getScore?customernum=" + customerNum)
+    creditScoreReq = requests.get("http://creditprocessorservice:8899/getScore", params={"customernum": customerNum})
     creditScoreReq.raise_for_status()
     creditScore = int(creditScoreReq.text)
 
     creditScoreCategory = getCreditCategoryFromScore(creditScore)
 
     # Run Credit Check
-    creditCheckReq = requests.get("http://creditprocessorservice:8899/runCreditCheck?customernum=" + str(customerNum) + "&score=" + str(creditScore))
+    creditCheckReq = requests.get("http://creditprocessorservice:8899/runCreditCheck", params={"customernum": customerNum, "score": creditScore})
     creditCheckReq.raise_for_status()
     checkResult = str(creditCheckReq.text)
 
