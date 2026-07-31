@@ -6,8 +6,8 @@ archetype: chapter
 time: 45 minutes
 authors: ["Diana Omuoyo"]
 description: Detect and investigate runtime vulnerabilities before attackers find them first.
-draft: true
-hidden: true
+draft: false
+hidden: false
 aliases:
   - /o11y-rookies-26/8-secure-application/
 params:
@@ -17,9 +17,7 @@ params:
 
 This workshop introduces you to the benefits of embedding application security inside Observability workflows. By the end of these modules, you will understand how engineering and security teams can share one runtime view of risk, prioritize beyond CVSS alone, and feed findings into existing SOC tools.
 
-It is suitable for application owners, SREs and SecOps teams. 
-
----
+It is suitable for application owners, SREs and SecOps teams.
 
 ## Overview 
 
@@ -36,5 +34,3 @@ To address these challenges you need a way to:
 - **Eliminate technical debt**: Govern vulnerability queues with status lifecycle management and hygiene across shared context.
 - **Prioritize known threats**: Compare CVSS scores with exploitation risk and pivot from cataloged CVEs to runtime attack forensics with code-level stack traces.
 - **Modernize defenses**: Move from periodic scanning and reactive fire drills to continuous runtime detection integrated with Splunk Security.
-
----
