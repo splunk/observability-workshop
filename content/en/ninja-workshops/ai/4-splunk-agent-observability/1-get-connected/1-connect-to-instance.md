@@ -5,12 +5,30 @@ weight: 1
 time: 5 minutes
 ---
 
+## Create a Splunk.com Account
+
+You'll need a Splunk.com account to complete this workshop. If you don't already have an account, 
+navigate to https://idp.login.splunk.com/signin/register and complete the form to create your account:  
+
+![Splunk Registration](../../images/SplunkRegistration.png)
+
+Check your inbox for an email from no-reply@idp.login.splunk.com. If you don't see the email, please check your spam folder.
+
+Click on the link in the email to verify your email address. 
+
+## Access the Splunk Show Event
+
+Access the **Splunk Show** event by clicking the link provided by your workshop instructor. 
+You'll need to sign in using your Splunk.com account. 
+
+![Enroll in Splunk Show Event](../../images/EnrollSplunkShowEvent.png)
+
 ## Connect to your EC2 Instance
 
-We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:
+We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To get the 
+details of your EC2 instance from the Splunk Show event: 
 
-* Access the **Splunk Show** event by clicking on the link for your region
-* Click **Enroll** on the top-right corner
+* Click **Enroll event** on the top-right corner
 * Then look near the bottom of the page for your EC2 instance details
 
 You should see connection information such as the following:
