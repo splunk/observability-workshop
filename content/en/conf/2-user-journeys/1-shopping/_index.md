@@ -31,7 +31,7 @@ You are an **aspiring astronomer**, browsing the Astronomy Shop for telescopes, 
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Did everything work perfectly, or did you notice anything unusual when interacting with the application?**
+Did everything work perfectly, or did you notice anything unusual when interacting with the application?
 {{% /tab %}}
 {{% tab title="Answer" %}}
 Some elements and services in the Astronomy Shop have deliberately injected issues. You may have noticed slow responses or errors during checkout — this is intentional and will be investigated in the workshop modules.

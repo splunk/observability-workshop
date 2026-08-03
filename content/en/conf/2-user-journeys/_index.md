@@ -23,7 +23,7 @@ By the end of this workshop, you'll be familiar with understanding application h
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Why is it important to understand end user experience?**
+Why is it important to understand end user experience?
 {{% /tab %}}
 {{% tab title="Answer" %}}
 We measure so that we can improve, and we improve in order to better serve our end users - and ultimately to better achieve our business goals. Happy app users are good for business! 
