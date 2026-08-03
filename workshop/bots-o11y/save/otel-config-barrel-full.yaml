@@ -1,0 +1,217 @@
+clusterReceiver:
+  config:
+    processors:
+      transform/metrics:
+        error_mode: ignore
+        metric_statements:
+        - context: resource
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+      transform/insurance_logs:
+        error_mode: ignore
+        log_statements:
+        - context: resource
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+        - context: log
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "oteldemo", "barrelandsignal")'
+          - 'replace_pattern(body, "\\bButtercupPayments\\b", "ExternalPayment")'
+          - 'replace_pattern(body, "\\bfraud\\-detection\\b", "brands")'
+          - 'replace_pattern(body, "\\brecommendation\\b", "loyalty")'
+          - 'replace_pattern(body, "\\bButtercupPayments\\b", "ExternalPayment")'
+          - 'replace_pattern(body, "buttercup", "externalpayment")'
+          - 'replace_pattern(body, "oteldemo", "barrelandsignal")'
+    service:
+      pipelines:
+        metrics:
+          exporters:
+          - signalfx
+          processors:
+          - memory_limiter
+          - batch
+          - transform/k8shpascaletargetref
+          - resource
+          - resource/k8s_cluster
+          - transform/metrics
+          receivers:
+          - k8s_cluster
+        logs:
+          exporters:
+          - splunk_hec/platform_logs
+          processors:
+          - memory_limiter
+          - batch
+          - attributes/drop_event_attrs
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          - transform/k8sevents
+          - transform/insurance_logs
+          receivers:
+          - k8s_events
+        logs/objects:
+          exporters:
+          - splunk_hec/platform_logs
+          processors:
+          - memory_limiter
+          - batch
+          - resourcedetection
+          - resource
+          - transform/add_sourcetype
+          - resource/add_environment
+          - transform/insurance_logs
+          receivers:
+          - k8s_objects
+agent:
+  config:
+    processors:
+      transform/insurance:
+        error_mode: ignore
+        metric_statements:
+        - context: resource
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+        trace_statements:
+        - context: resource
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+        - context: span
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "buttercup", "externalpayment")'
+          - 'replace_all_patterns(attributes, "value", "oteldemo", "barrelandsignal")'
+          - 'set(name, "barrelandsignal.loyalty/LoyaltyOverview") where name == "oteldemo.RecommendationService/ListRecommendations"'
+          - 'set(name, "barrelandsignal.Collection/GetItem") where name == "oteldemo.ProductCatalogService/GetProduct"'
+          - 'set(name, "barrelandsignal.Collection/GetCollection") where name == "oteldemo.ProductCatalogService/ListProducts"'
+          - 'replace_pattern(name, "\\bButtercupPayments\\b", "ExternalPaymentService")'
+          - 'replace_pattern(name, "buttercup", "externalpayment")'
+          - 'replace_pattern(name, "oteldemo", "barrelandsignal")'
+          - 'replace_pattern(attributes["rpc.service"], "\\bButtercupPayments\\b", "ExternalPaymentService")'
+          - 'replace_pattern(attributes["rpc.service"], "buttercup", "externalpayment")'
+          - 'replace_pattern(attributes["rpc.service"], "oteldemo", "barrelandsignal")'
+      transform/insurance_logs:
+        error_mode: ignore
+        log_statements:
+        - context: resource
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "buttercup", "externalpayment")'
+          - 'replace_all_patterns(attributes, "value", "oteldemo", "barrelandsignal")'
+        - context: log
+          statements:
+          - 'replace_all_patterns(attributes, "value", "^ButtercupPayments$", "ExternalPayment")'
+          - 'replace_all_patterns(attributes, "value", "^fraud\\-detection$", "brands")'
+          - 'replace_all_patterns(attributes, "value", "^frontend$", "landing")'
+          - 'replace_all_patterns(attributes, "value", "^recommendation$", "loyalty")'
+          - 'replace_all_patterns(attributes, "value", "opentelemetry-demo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "astronomy-shop", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "buttercup", "externalpayment")'
+          - 'replace_all_patterns(attributes, "value", "oteldemo", "barrelandsignal")'
+          - 'replace_all_patterns(attributes, "value", "buttercup", "externalpayment")'
+          - 'replace_all_patterns(attributes, "value", "oteldemo", "barrelandsignal")'
+          - 'replace_pattern(body, "\\bButtercupPayments\\b", "ExternalPaymentService")'
+          - 'replace_pattern(body, "\\bfraud\\-detection\\b", "brands")'
+          - 'replace_pattern(body, "\\bfrontend\\b", "landing")'
+          - 'replace_pattern(body, "\\brecommendation\\b", "loyalty")'
+          - 'replace_pattern(body, "\\bButtercupPayments\\b", "ExternalPaymentService")'
+          - 'replace_pattern(body, "buttercup", "externalpayment")'
+          - 'replace_pattern(body, "oteldemo", "barrelandsignal")'
+    service:
+      pipelines:
+        metrics:
+          exporters:
+          - signalfx
+          processors:
+          - memory_limiter
+          - k8s_attributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          - transform/insurance
+          receivers:
+          - host_metrics
+          - kubeletstats
+          - otlp
+          - receiver_creator
+        traces:
+          exporters:
+          - signalfx
+          - otlp_http
+          processors:
+          - memory_limiter
+          - k8s_attributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          - transform/insurance
+          receivers:
+          - otlp
+          - jaeger
+          - zipkin
+        logs:
+          exporters:
+          - splunk_hec/platform_logs
+          processors:
+          - memory_limiter
+          - k8s_attributes
+          - filter/logs
+          - batch
+          - resourcedetection
+          - resource
+          - resource/logs
+          - resource/add_environment
+          - transform/insurance_logs
+          receivers:
+          - file_log
+          - routing/logs
+        logs/entities:
+          exporters:
+          - otlp_http/entities
+          processors:
+          - memory_limiter
+          - batch
+          - resourcedetection
+          - resource
+          - transform/insurance_logs
+          receivers:
+          - nop
+

@@ -1,0 +1,73 @@
+name: Smoke Test - Healthcare Assistant Services CI
+
+# Triggers when any healthcare-assistant service changes. Change detection routes
+# to only the affected service's reusable test workflow. Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/healthcare-assistant/1-base-app/**'
+      - 'workshop/healthcare-assistant/2-app-with-instrumentation/**'
+      - 'workshop/healthcare-assistant/3-app-with-experiments/**'
+      - 'workshop/healthcare-assistant/4-app-with-controls/**'
+      - '.github/workflows/healthcare-assistant-services.yml'
+      - '.github/workflows/test-healthcare-assistant-smoke.yml'
+  pull_request:
+    paths:
+      - 'workshop/healthcare-assistant/1-base-app/**'
+      - 'workshop/healthcare-assistant/2-app-with-instrumentation/**'
+      - 'workshop/healthcare-assistant/3-app-with-experiments/**'
+      - 'workshop/healthcare-assistant/4-app-with-controls/**'
+      - '.github/workflows/healthcare-assistant-services.yml'
+      - '.github/workflows/test-healthcare-assistant-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      base-app: ${{ steps.filter.outputs.base-app }}
+      with-instrumentation: ${{ steps.filter.outputs.with-instrumentation }}
+      with-experiments: ${{ steps.filter.outputs.with-experiments }}
+      with-controls: ${{ steps.filter.outputs.with-controls }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            base-app:
+              - 'workshop/healthcare-assistant/1-base-app/**'
+            with-instrumentation:
+              - 'workshop/healthcare-assistant/2-app-with-instrumentation/**'
+            with-experiments:
+              - 'workshop/healthcare-assistant/3-app-with-experiments/**'
+            with-controls:
+              - 'workshop/healthcare-assistant/4-app-with-controls/**'
+
+  base-app:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.base-app == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-healthcare-assistant-smoke.yml
+    with:
+      service-path: workshop/healthcare-assistant/1-base-app
+
+  app-with-instrumentation:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.with-instrumentation == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-healthcare-assistant-smoke.yml
+    with:
+      service-path: workshop/healthcare-assistant/2-app-with-instrumentation
+
+  app-with-experiments:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.with-experiments == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-healthcare-assistant-smoke.yml
+    with:
+      service-path: workshop/healthcare-assistant/3-app-with-experiments
+
+  app-with-controls:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.with-controls == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-healthcare-assistant-smoke.yml
+    with:
+      service-path: workshop/healthcare-assistant/4-app-with-controls

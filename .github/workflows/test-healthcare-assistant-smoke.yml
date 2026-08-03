@@ -1,0 +1,63 @@
+name: Smoke Test - Healthcare Assistant Service
+
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the service directory (e.g. workshop/healthcare-assistant/1-base-app)
+        required: true
+        type: string
+
+jobs:
+  pip-install:
+    name: Pip Install
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ${{ inputs.service-path }}/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+  syntax-check:
+    name: Syntax Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: ${{ inputs.service-path }}/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check
+        run: |
+          find . -name "*.py" -not -path "./__pycache__/*" | sort | while read f; do
+            python -m py_compile "$f" && echo "OK $f" || exit 1
+          done
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          CONTEXT_DIR=$(dirname "${{ inputs.service-path }}")
+          docker build -f "${{ inputs.service-path }}/Dockerfile" -t smoke-test:latest "$CONTEXT_DIR"

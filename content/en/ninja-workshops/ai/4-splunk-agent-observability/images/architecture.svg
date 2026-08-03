@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Healthcare Assistant architecture with Splunk Agent Observability</title>
+  <desc id="desc">A workshop architecture diagram showing a Streamlit user interface, a LangGraph HealthcareAgent, OpenAI, PostgreSQL with pgvector and relational patient data, configuration and CSV inputs, and telemetry sent through Galileo to Splunk Agent Observability.</desc>
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#EEF4FA"/>
+    </linearGradient>
+    <linearGradient id="agentFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5F0FF"/>
+      <stop offset="1" stop-color="#FBFAFF"/>
+    </linearGradient>
+    <linearGradient id="obsFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#15122B"/>
+      <stop offset="1" stop-color="#23164A"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#16324A" flood-opacity="0.10"/>
+    </filter>
+    <filter id="smallShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#16324A" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0E9F6E"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#C4B5FD"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#64748B"/>
+    </marker>
+    <style>
+      text { font-family: Inter, "Helvetica Neue", Arial, sans-serif; }
+      .kicker { font-size: 18px; font-weight: 700; letter-spacing: 2.2px; }
+      .title { font-size: 42px; font-weight: 760; fill: #102A43; }
+      .subtitle { font-size: 19px; font-weight: 450; fill: #52677A; }
+      .section { font-size: 15px; font-weight: 800; letter-spacing: 1.4px; }
+      .boxTitle { font-size: 22px; font-weight: 750; fill: #102A43; }
+      .boxSub { font-size: 15px; font-weight: 500; fill: #5B7083; }
+      .nodeTitle { font-size: 18px; font-weight: 750; fill: #102A43; }
+      .nodeSub { font-size: 14px; font-weight: 500; fill: #607589; }
+      .small { font-size: 13px; font-weight: 600; fill: #52677A; }
+      .tiny { font-size: 12px; font-weight: 600; fill: #64748B; }
+      .white { fill: #FFFFFF; }
+      .mutedWhite { fill: #D8D2F1; }
+      .flow { fill: none; stroke: #2563EB; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowBlue); }
+      .modelFlow { fill: none; stroke: #7C3AED; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowPurple); }
+      .dataFlow { fill: none; stroke: #0E9F6E; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowGreen); }
+      .supportFlow { fill: none; stroke: #64748B; stroke-width: 1.8; stroke-dasharray: 7 7; stroke-linecap: round; marker-end: url(#arrowGray); }
+      .telemetryFlow { fill: none; stroke: #A78BFA; stroke-width: 2.5; stroke-dasharray: 9 8; stroke-linecap: round; marker-end: url(#arrowWhite); }
+      .flowLabel { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: #F8FBFF; stroke-width: 5px; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#page)"/>
+  <circle cx="1800" cy="20" r="210" fill="#EDE9FE" opacity="0.65"/>
+  <circle cx="65" cy="1020" r="170" fill="#DBEAFE" opacity="0.55"/>
+
+  <!-- Header -->
+  <text x="80" y="62" class="kicker" fill="#7C3AED">HANDS-ON WORKSHOP • APPLICATION ARCHITECTURE</text>
+  <text x="80" y="112" class="title">Healthcare Assistant + Agent Observability</text>
+  <text x="80" y="147" class="subtitle">A LangGraph agent with RAG, text-to-SQL, and end-to-end Galileo telemetry</text>
+
+  <!-- Legend -->
+  <g transform="translate(1380 64)">
+    <rect x="0" y="0" width="460" height="108" rx="16" fill="#FFFFFF" stroke="#D9E3EC" filter="url(#smallShadow)"/>
+    <line x1="24" y1="30" x2="68" y2="30" stroke="#2563EB" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <text x="80" y="35" class="small">request / response</text>
+    <line x1="248" y1="30" x2="292" y2="30" stroke="#0E9F6E" stroke-width="3" marker-end="url(#arrowGreen)"/>
+    <text x="304" y="35" class="small">data access</text>
+    <line x1="24" y1="58" x2="68" y2="58" stroke="#7C3AED" stroke-width="3" marker-end="url(#arrowPurple)"/>
+    <text x="80" y="63" class="small">model / tool call</text>
+    <line x1="248" y1="58" x2="292" y2="58" stroke="#A78BFA" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrowWhite)"/>
+    <text x="304" y="63" class="small">telemetry</text>
+    <line x1="24" y1="86" x2="68" y2="86" stroke="#64748B" stroke-width="2" stroke-dasharray="7 7" marker-end="url(#arrowGray)"/>
+    <text x="80" y="91" class="small">config / setup</text>
+  </g>
+
+  <!-- Participant -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="312" width="220" height="210" rx="24" fill="#FFFFFF" stroke="#CFDDE8" stroke-width="1.5"/>
+  </g>
+  <circle cx="190" cy="372" r="34" fill="#DBEAFE"/>
+  <circle cx="190" cy="360" r="10" fill="#2563EB"/>
+  <path d="M168 390c3-14 12-21 22-21s19 7 22 21" fill="#2563EB"/>
+  <text x="190" y="435" text-anchor="middle" class="boxTitle">Workshop user</text>
+  <text x="190" y="464" text-anchor="middle" class="boxSub">asks a healthcare</text>
+  <text x="190" y="485" text-anchor="middle" class="boxSub">question in a browser</text>
+
+  <!-- Streamlit UI -->
+  <g filter="url(#shadow)">
+    <rect x="370" y="230" width="260" height="390" rx="24" fill="#FFFFFF" stroke="#BFD3E2" stroke-width="1.5"/>
+  </g>
+  <rect x="370" y="230" width="260" height="72" rx="24" fill="#EAF2FF"/>
+  <path d="M370 278h260v24H370z" fill="#EAF2FF"/>
+  <circle cx="411" cy="266" r="18" fill="#FF4B4B"/>
+  <path d="M402 270h18l-5-8h-9z" fill="#FFFFFF"/>
+  <text x="443" y="262" class="boxTitle">Streamlit UI</text>
+  <text x="443" y="284" class="boxSub">app.py</text>
+  <rect x="400" y="331" width="200" height="54" rx="12" fill="#F4F7FA" stroke="#D8E2EA"/>
+  <circle cx="422" cy="350" r="8" fill="#94A3B8"/>
+  <rect x="440" y="343" width="128" height="6" rx="3" fill="#B9C8D5"/>
+  <rect x="440" y="357" width="96" height="6" rx="3" fill="#D1DCE5"/>
+  <rect x="430" y="406" width="170" height="66" rx="12" fill="#EAF2FF"/>
+  <rect x="449" y="426" width="126" height="6" rx="3" fill="#77A5F6"/>
+  <rect x="468" y="440" width="107" height="6" rx="3" fill="#A8C5F8"/>
+  <rect x="400" y="515" width="200" height="54" rx="27" fill="#FFFFFF" stroke="#A9BDD0" stroke-width="1.5"/>
+  <text x="424" y="548" class="nodeSub">Ask a question…</text>
+  <circle cx="572" cy="542" r="17" fill="#2563EB"/>
+  <path d="M565 542h13m-5-5 5 5-5 5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="500" y="594" text-anchor="middle" class="small">chat history • model selection</text>
+
+  <!-- Agent runtime -->
+  <g filter="url(#shadow)">
+    <rect x="690" y="190" width="650" height="600" rx="28" fill="url(#agentFill)" stroke="#CBBEF2" stroke-width="1.8"/>
+  </g>
+  <rect x="690" y="190" width="650" height="80" rx="28" fill="#EDE9FE"/>
+  <path d="M690 242h650v28H690z" fill="#EDE9FE"/>
+  <circle cx="733" cy="230" r="20" fill="#7C3AED"/>
+  <path d="M724 230h18M733 221v18" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="770" y="225" class="boxTitle">HealthcareAgent</text>
+  <text x="770" y="249" class="boxSub">agent.py • process_query()</text>
+  <rect x="1149" y="214" width="151" height="32" rx="16" fill="#FFFFFF" opacity="0.88"/>
+  <text x="1224" y="235" text-anchor="middle" class="small" fill="#6D28D9">LangChain</text>
+
+  <!-- LangGraph graph -->
+  <rect x="725" y="298" width="580" height="436" rx="22" fill="#FFFFFF" stroke="#D8CEF7" stroke-width="1.5"/>
+  <text x="758" y="333" class="section" fill="#6D28D9">LANGGRAPH STATEGRAPH</text>
+  <text x="1272" y="350" text-anchor="end" class="tiny">async graph invocation</text>
+
+  <rect x="744" y="366" width="226" height="100" rx="18" fill="#F0ECFF" stroke="#B8A5F2"/>
+  <circle cx="777" cy="403" r="17" fill="#7C3AED"/>
+  <path d="M769 403h16M777 395v16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="808" y="402" class="nodeTitle">chatbot</text>
+  <text x="774" y="434" class="nodeSub">system prompt + history</text>
+  <text x="774" y="452" class="nodeSub">ChatOpenAI with bound tools</text>
+
+  <rect x="1060" y="366" width="210" height="100" rx="18" fill="#ECFDF5" stroke="#8FD8BD"/>
+  <circle cx="1093" cy="403" r="17" fill="#0E9F6E"/>
+  <path d="M1086 396l14 14m0-14-14 14" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="1124" y="402" class="nodeTitle">tools</text>
+  <text x="1090" y="434" class="nodeSub">ToolNode executes the</text>
+  <text x="1090" y="452" class="nodeSub">LLM-selected function</text>
+
+  <path d="M978 394 C1000 376 1030 376 1052 394" class="modelFlow"/>
+  <rect x="985" y="349" width="60" height="22" rx="11" fill="#FFFFFF" stroke="#E4DCF8"/>
+  <text x="1015" y="364" text-anchor="middle" class="tiny" fill="#6D28D9">tool call</text>
+  <path d="M1052 440 C1030 458 1000 458 978 440" class="dataFlow"/>
+  <rect x="978" y="464" width="74" height="22" rx="11" fill="#FFFFFF" stroke="#D3EEE4"/>
+  <text x="1015" y="479" text-anchor="middle" class="tiny" fill="#0B7E59">tool result</text>
+
+  <!-- Tool list -->
+  <text x="760" y="512" class="section" fill="#0B7E59">REGISTERED TOOLS</text>
+  <g>
+    <rect x="760" y="532" width="510" height="50" rx="12" fill="#F5FBF8" stroke="#C7E9DD"/>
+    <circle cx="786" cy="557" r="11" fill="#0E9F6E"/>
+    <text x="807" y="554" class="small" fill="#143B31">search_medicine_qa</text>
+    <text x="807" y="572" class="tiny">semantic retrieval • RAG</text>
+    <rect x="1156" y="542" width="92" height="30" rx="15" fill="#DDF7ED"/>
+    <text x="1202" y="562" text-anchor="middle" class="tiny" fill="#087451">pgvector</text>
+  </g>
+  <g>
+    <rect x="760" y="592" width="510" height="50" rx="12" fill="#F7FAFC" stroke="#D7E0E7"/>
+    <circle cx="786" cy="617" r="11" fill="#3B82F6"/>
+    <text x="807" y="614" class="small" fill="#173B5E">get_patient_info</text>
+    <text x="807" y="632" class="tiny">LLM-generated SELECT</text>
+    <rect x="1133" y="602" width="115" height="30" rx="15" fill="#E3EEFB"/>
+    <text x="1190" y="622" text-anchor="middle" class="tiny" fill="#235A8E">text-to-SQL</text>
+  </g>
+  <g>
+    <rect x="760" y="652" width="510" height="50" rx="12" fill="#FFF8F6" stroke="#F1D2C8"/>
+    <circle cx="786" cy="677" r="11" fill="#E05D3D"/>
+    <text x="807" y="674" class="small" fill="#6E2B1E">delete_patient_record</text>
+    <text x="807" y="692" class="tiny">LLM-generated DELETE • controlled action</text>
+    <rect x="1133" y="662" width="115" height="30" rx="15" fill="#FCE7E1"/>
+    <text x="1190" y="682" text-anchor="middle" class="tiny" fill="#A5422B">text-to-SQL</text>
+  </g>
+
+  <!-- External services -->
+  <g filter="url(#shadow)">
+    <rect x="1430" y="190" width="410" height="235" rx="24" fill="#FFFFFF" stroke="#D6CCF2" stroke-width="1.5"/>
+  </g>
+  <rect x="1430" y="190" width="410" height="68" rx="24" fill="#F0ECFF"/>
+  <path d="M1430 234h410v24h-410z" fill="#F0ECFF"/>
+  <g transform="translate(1452 206) scale(0.0703125)">
+    <path d="M474.123 209.81c11.525-34.577 7.569-72.423-10.838-103.904-27.696-48.168-83.433-72.94-137.794-61.414a127.14 127.14 0 00-95.475-42.49c-55.564 0-104.936 35.781-122.139 88.593-35.781 7.397-66.574 29.76-84.637 61.414-27.868 48.167-21.503 108.72 15.826 150.007-11.525 34.578-7.569 72.424 10.838 103.733 27.696 48.34 83.433 73.111 137.966 61.585 24.084 27.18 58.833 42.835 95.303 42.663 55.564 0 104.936-35.782 122.139-88.594 35.782-7.397 66.574-29.76 84.465-61.413 28.04-48.168 21.676-108.722-15.654-150.008v-.172zm-39.567-87.218c11.01 19.267 15.139 41.803 11.354 63.65-.688-.516-2.064-1.204-2.924-1.72l-101.152-58.49a16.965 16.965 0 00-16.687 0L206.621 194.5v-50.232l97.883-56.597c45.587-26.32 103.732-10.666 130.052 34.921zm-227.935 104.42l49.888-28.9 49.887 28.9v57.63l-49.887 28.9-49.888-28.9v-57.63zm23.223-191.81c22.364 0 43.867 7.742 61.07 22.02-.688.344-2.064 1.204-3.097 1.72L186.666 117.26c-5.161 2.925-8.258 8.43-8.258 14.45v136.934l-43.523-25.116V130.333c0-52.64 42.491-95.13 95.131-95.302l-.172.172zM52.14 168.697c11.182-19.268 28.557-34.062 49.544-41.803V247.14c0 6.02 3.097 11.354 8.258 14.45l118.354 68.295-43.695 25.288-97.711-56.425c-45.415-26.32-61.07-84.465-34.75-130.052zm26.665 220.71c-11.182-19.095-15.139-41.802-11.354-63.65.688.516 2.064 1.204 2.924 1.72l101.152 58.49a16.965 16.965 0 0016.687 0l118.354-68.467v50.232l-97.883 56.425c-45.587 26.148-103.732 10.665-130.052-34.75h.172zm204.54 87.39c-22.192 0-43.867-7.741-60.898-22.02a62.439 62.439 0 003.097-1.72l101.152-58.317c5.16-2.924 8.429-8.43 8.257-14.45V243.527l43.523 25.116v113.022c0 52.64-42.663 95.303-95.131 95.303v-.172zM461.22 343.303c-11.182 19.267-28.729 34.061-49.544 41.63V264.687c0-6.021-3.097-11.526-8.257-14.45L284.893 181.77l43.523-25.116 97.883 56.424c45.587 26.32 61.07 84.466 34.75 130.053l.172.172z" fill="#111827" fill-rule="nonzero"/>
+  </g>
+  <text x="1503" y="220" class="boxTitle">OpenAI API</text>
+  <text x="1503" y="243" class="boxSub">via LangChain ChatOpenAI</text>
+  <rect x="1465" y="285" width="340" height="54" rx="12" fill="#F8FAFC" stroke="#E0E7EE"/>
+  <text x="1488" y="309" class="small">Agent reasoning + final response</text>
+  <text x="1488" y="328" class="tiny">model selected in Streamlit / config.yaml</text>
+  <rect x="1465" y="353" width="340" height="44" rx="12" fill="#FAF7FF" stroke="#E7DDF8"/>
+  <text x="1488" y="380" class="small" fill="#6D28D9">Embeddings used during vector setup / search</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1430" y="465" width="410" height="325" rx="24" fill="#FFFFFF" stroke="#BFDCCF" stroke-width="1.5"/>
+  </g>
+  <rect x="1430" y="465" width="410" height="68" rx="24" fill="#EAF8F2"/>
+  <path d="M1430 509h410v24h-410z" fill="#EAF8F2"/>
+  <g transform="translate(1450.6 479) scale(0.08981)">
+    <g style="fill-rule:nonzero;clip-rule:nonzero;fill:none;stroke:#FFFFFF;stroke-width:12.4651;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;">
+      <path style="fill:#000000;stroke:#000000;stroke-width:37.3953;stroke-linecap:butt;stroke-linejoin:miter;" d="M323.205,324.227c2.833-23.601,1.984-27.062,19.563-23.239l4.463,0.392c13.517,0.615,31.199-2.174,41.587-7c22.362-10.376,35.622-27.7,13.572-23.148c-50.297,10.376-53.755-6.655-53.755-6.655c53.111-78.803,75.313-178.836,56.149-203.322    C352.514-5.534,262.036,26.049,260.522,26.869l-0.482,0.089c-9.938-2.062-21.06-3.294-33.554-3.496c-22.761-0.374-40.032,5.967-53.133,15.904c0,0-161.408-66.498-153.899,83.628c1.597,31.936,45.777,241.655,98.47,178.31    c19.259-23.163,37.871-42.748,37.871-42.748c9.242,6.14,20.307,9.272,31.912,8.147l0.897-0.765c-0.281,2.876-0.157,5.689,0.359,9.019c-13.572,15.167-9.584,17.83-36.723,23.416c-27.457,5.659-11.326,15.734-0.797,18.367c12.768,3.193,42.305,7.716,62.268-20.224    l-0.795,3.188c5.325,4.26,4.965,30.619,5.72,49.452c0.756,18.834,2.017,36.409,5.856,46.771c3.839,10.36,8.369,37.05,44.036,29.406c29.809-6.388,52.6-15.582,54.677-101.107"/>
+      <path style="fill:#336791;stroke:none;" d="M402.395,271.23c-50.302,10.376-53.76-6.655-53.76-6.655c53.111-78.808,75.313-178.843,56.153-203.326c-52.27-66.785-142.752-35.2-144.262-34.38l-0.486,0.087c-9.938-2.063-21.06-3.292-33.56-3.496c-22.761-0.373-40.026,5.967-53.127,15.902    c0,0-161.411-66.495-153.904,83.63c1.597,31.938,45.776,241.657,98.471,178.312c19.26-23.163,37.869-42.748,37.869-42.748c9.243,6.14,20.308,9.272,31.908,8.147l0.901-0.765c-0.28,2.876-0.152,5.689,0.361,9.019c-13.575,15.167-9.586,17.83-36.723,23.416    c-27.459,5.659-11.328,15.734-0.796,18.367c12.768,3.193,42.307,7.716,62.266-20.224l-0.796,3.188c5.319,4.26,9.054,27.711,8.428,48.969c-0.626,21.259-1.044,35.854,3.147,47.254c4.191,11.4,8.368,37.05,44.042,29.406c29.809-6.388,45.256-22.942,47.405-50.555    c1.525-19.631,4.976-16.729,5.194-34.28l2.768-8.309c3.192-26.611,0.507-35.196,18.872-31.203l4.463,0.392c13.517,0.615,31.208-2.174,41.591-7c22.358-10.376,35.618-27.7,13.573-23.148z"/>
+      <path d="M215.866,286.484c-1.385,49.516,0.348,99.377,5.193,111.495c4.848,12.118,15.223,35.688,50.9,28.045c29.806-6.39,40.651-18.756,45.357-46.051c3.466-20.082,10.148-75.854,11.005-87.281"/>
+      <path d="M173.104,38.256c0,0-161.521-66.016-154.012,84.109c1.597,31.938,45.779,241.664,98.473,178.316c19.256-23.166,36.671-41.335,36.671-41.335"/>
+      <path d="M260.349,26.207c-5.591,1.753,89.848-34.889,144.087,34.417c19.159,24.484-3.043,124.519-56.153,203.329"/>
+      <path style="stroke-linejoin:bevel;" d="M348.282,263.953c0,0,3.461,17.036,53.764,6.653c22.04-4.552,8.776,12.774-13.577,23.155c-18.345,8.514-59.474,10.696-60.146-1.069c-1.729-30.355,21.647-21.133,19.96-28.739c-1.525-6.85-11.979-13.573-18.894-30.338    c-6.037-14.633-82.796-126.849,21.287-110.183c3.813-0.789-27.146-99.002-124.553-100.599c-97.385-1.597-94.19,119.762-94.19,119.762"/>
+      <path d="M188.604,274.334c-13.577,15.166-9.584,17.829-36.723,23.417c-27.459,5.66-11.326,15.733-0.797,18.365c12.768,3.195,42.307,7.718,62.266-20.229c6.078-8.509-0.036-22.086-8.385-25.547c-4.034-1.671-9.428-3.765-16.361,3.994z"/>
+      <path d="M187.715,274.069c-1.368-8.917,2.93-19.528,7.536-31.942c6.922-18.626,22.893-37.255,10.117-96.339c-9.523-44.029-73.396-9.163-73.436-3.193c-0.039,5.968,2.889,30.26-1.067,58.548c-5.162,36.913,23.488,68.132,56.479,64.938"/>
+      <path style="fill:#FFFFFF;stroke-width:4.155;stroke-linecap:butt;stroke-linejoin:miter;" d="M172.517,141.7c-0.288,2.039,3.733,7.48,8.976,8.207c5.234,0.73,9.714-3.522,9.998-5.559c0.284-2.039-3.732-4.285-8.977-5.015c-5.237-0.731-9.719,0.333-9.996,2.367z"/>
+      <path style="fill:#FFFFFF;stroke-width:2.0775;stroke-linecap:butt;stroke-linejoin:miter;" d="M331.941,137.543c0.284,2.039-3.732,7.48-8.976,8.207c-5.238,0.73-9.718-3.522-10.005-5.559c-0.277-2.039,3.74-4.285,8.979-5.015c5.239-0.73,9.718,0.333,10.002,2.368z"/>
+      <path d="M350.676,123.432c0.863,15.994-3.445,26.888-3.988,43.914c-0.804,24.748,11.799,53.074-7.191,81.435"/>
+    </g>
+  </g>
+  <text x="1503" y="491" class="boxTitle">PostgreSQL</text>
+  <text x="1503" y="515" class="boxSub">one database • two access patterns</text>
+
+  <rect x="1465" y="560" width="340" height="92" rx="15" fill="#F0FCF7" stroke="#BFE7D8"/>
+  <rect x="1484" y="578" width="48" height="48" rx="12" fill="#D7F4E9"/>
+  <path d="M1497 609l7-18 7 18 7-18" fill="none" stroke="#0E9F6E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1550" y="589" class="nodeTitle">pgvector collection</text>
+  <text x="1550" y="612" class="nodeSub">healthcare_local_index</text>
+  <text x="1550" y="633" class="tiny">medicine FAQ embeddings</text>
+
+  <rect x="1465" y="669" width="340" height="92" rx="15" fill="#F4F8FC" stroke="#D1DEE8"/>
+  <rect x="1484" y="687" width="48" height="48" rx="12" fill="#E2EDF7"/>
+  <path d="M1496 697h24M1496 707h24M1496 717h24M1504 692v32M1514 692v32" stroke="#3B82F6" stroke-width="2"/>
+  <text x="1550" y="698" class="nodeTitle">relational table</text>
+  <text x="1550" y="721" class="nodeSub">healthcare_patient</text>
+  <text x="1550" y="742" class="tiny">patient records • SELECT / DELETE</text>
+
+  <!-- Main flows -->
+  <path d="M300 417 H360" class="flow"/>
+  <text x="330" y="401" text-anchor="middle" class="flowLabel" fill="#1D4ED8">question / answer</text>
+  <path d="M630 417 H680" class="flow"/>
+  <text x="655" y="405" text-anchor="middle" class="flowLabel" fill="#1D4ED8">query / response</text>
+  <path d="M952 366 C1000 290 1250 292 1428 312" class="modelFlow"/>
+  <rect x="1288" y="266" width="136" height="25" rx="12.5" fill="#FFFFFF" stroke="#E3DAF8"/>
+  <text x="1356" y="283" text-anchor="middle" class="tiny" fill="#6D28D9">prompt / completion</text>
+  <path d="M1270 557 C1349 557 1349 606 1426 606" class="dataFlow"/>
+  <path d="M1270 617 C1349 617 1349 700 1426 700" class="dataFlow"/>
+  <path d="M1270 677 C1349 677 1349 728 1426 728" class="dataFlow"/>
+
+  <!-- Config and setup -->
+  <g filter="url(#smallShadow)">
+    <rect x="80" y="685" width="550" height="105" rx="20" fill="#FFFFFF" stroke="#CDD9E3"/>
+  </g>
+  <text x="108" y="718" class="section" fill="#475569">CONFIGURATION</text>
+  <rect x="108" y="734" width="136" height="32" rx="16" fill="#F1F5F9"/>
+  <text x="176" y="755" text-anchor="middle" class="tiny">config.yaml</text>
+  <rect x="254" y="734" width="168" height="32" rx="16" fill="#F1F5F9"/>
+  <text x="338" y="755" text-anchor="middle" class="tiny">system_prompt.json</text>
+  <rect x="432" y="734" width="170" height="32" rx="16" fill="#FFF5E8"/>
+  <text x="517" y="755" text-anchor="middle" class="tiny" fill="#8A5A16">secrets.toml</text>
+  <path d="M500 685 V644 C500 637 500 635 500 630" class="supportFlow"/>
+  <path d="M602 742 C647 742 652 720 680 720" class="supportFlow"/>
+
+  <g filter="url(#smallShadow)">
+    <rect x="1430" y="812" width="410" height="74" rx="18" fill="#FFFFFF" stroke="#CDD9E3"/>
+  </g>
+  <text x="1457" y="841" class="section" fill="#475569">WORKSHOP DATA SETUP</text>
+  <text x="1457" y="866" class="small">qa.csv + relational_patient.csv</text>
+  <path d="M1690 812 V800" class="supportFlow"/>
+
+  <!-- Observability plane -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="850" width="1280" height="160" rx="28" fill="url(#obsFill)"/>
+  </g>
+  <text x="116" y="887" class="section" fill="#A78BFA">OBSERVABILITY PLANE • ADDED DURING THE WORKSHOP</text>
+  <rect x="116" y="903" width="500" height="84" rx="18" fill="#2D2155" stroke="#6D52B5"/>
+  <circle cx="153" cy="945" r="18" fill="#8B5CF6"/>
+  <path d="M145 945l6 6 11-13" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="183" y="939" class="nodeTitle white">GalileoAsyncCallback</text>
+  <text x="183" y="962" class="nodeSub mutedWhite">one callback per request • attached to LangGraph run config</text>
+
+  <path d="M616 945 H758" class="telemetryFlow"/>
+  <rect x="634" y="932" width="114" height="26" rx="13" fill="#241B47" stroke="#A78BFA"/>
+  <text x="691" y="949" text-anchor="middle" class="tiny" fill="#DDD6FE">traces + spans</text>
+
+  <rect x="766" y="903" width="558" height="84" rx="18" fill="#FFFFFF"/>
+  <circle cx="810" cy="945" r="24" fill="#65A637"/>
+  <path d="M798 935h24l-8 10 8 10h-24l8-10z" fill="#FFFFFF"/>
+  <text x="853" y="934" class="boxTitle">Splunk Agent Observability</text>
+  <text x="853" y="958" class="boxSub">Galileo • investigate every agent turn end to end</text>
+  <text x="853" y="979" class="tiny">traces &amp; spans  •  metrics  •  signals  •  experiments  •  guardrails</text>
+
+  <path d="M1015 790 V810 Q1015 820 1003 820 H662 Q650 820 650 832 V910 Q650 922 638 922 H616" class="telemetryFlow"/>
+  <rect x="702" y="803" width="260" height="34" rx="17" fill="#FFFFFF" stroke="#D9D0F6"/>
+  <text x="832" y="824" text-anchor="middle" class="tiny" fill="#6D28D9">captures LLM, tool, and retrieval spans</text>
+
+  <!-- Footer -->
+  <text x="1430" y="932" class="section" fill="#475569">REQUEST LOOP</text>
+  <text x="1430" y="960" class="small">chatbot → tools → chatbot</text>
+  <text x="1430" y="983" class="small">until the model returns a final answer</text>
+  <text x="1840" y="1042" text-anchor="end" class="tiny">Careful Health Provider workshop reference architecture</text>
+</svg>

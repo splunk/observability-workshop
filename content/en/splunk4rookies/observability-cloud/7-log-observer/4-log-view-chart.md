@@ -10,7 +10,7 @@ As with the previous Log Timeline chart, we will add a version of this chart to 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * After the previous exercise make sure you are still in **Log Observer**.
-* The filters should be the same as the previous exercise, with the time picker set to the **Last 15 minutes** and filtering on severity=error, `sf_service=paymentservice` and `sf_environment=[WORKSHOPNAME]`.
+* The filters should be the same as the previous exercise, with the time picker set to the **Last 15 minutes** and filtering on severity=error, `service.name=paymentservice` and `sf_environment=[WORKSHOPNAME]`.
 * Make sure we have the header with just the fields we wanted.
 * Click again on **Save** and then **Save to Dashboard**.
 * This will again provide you with the Chart creation dialog.

@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest - dc-shim
-# Version: 2.0.6
-# Generated on: 2026-07-16T11:22:16Z
+# Version: 2.0.7
+# Generated on: 2026-07-30T14:01:16Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -58,7 +58,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: shop-dc-shim
-          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-shim:2.0.6
+          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-shim:2.0.7
           imagePullPolicy: Always
           ports:
             - containerPort: 8070
@@ -69,7 +69,7 @@ spec:
           - /bin/bash
           - -c
           - |
-            export OTEL_RESOURCE_ATTRIBUTES="service.name=shop-dc-shim-service,deployment.environment=${ENV_VALUE}-datacenter-b01,service.version=2.0.6,service.namespace=shop-dc-shim"
+            export OTEL_RESOURCE_ATTRIBUTES="service.name=shop-dc-shim-service,deployment.environment=${ENV_VALUE}-datacenter-b01,service.version=2.0.7,service.namespace=shop-dc-shim"
             sed -i "s|http://splunk-otel-collector-agent:4318|http://${NODE_IP}:4318|g" /app/start-app-dual.sh
             exec /app/start-app-dual.sh
           env:
@@ -279,7 +279,7 @@ spec:
               cpu: "50m"
       containers:
         - name: load-generator
-          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-loadgenerator:2.0.6
+          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-loadgenerator:2.0.7
           env:
             - name: TPM
               value: "10"  # Transactions Per Minute - adjust to control load (e.g., 5, 10, 25, 50)
