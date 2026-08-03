@@ -70,24 +70,6 @@ postgres-66ffcf4b8c-8s5lp   1/1     Running   0          16s
 
 {{< /step >}}
 
-{{< step title="Dockerイメージのビルド" >}}
-
-ベースアプリディレクトリに移動し、以下のコマンドを実行してアプリケーションのDockerイメージをビルドします。
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 1-base-app/Dockerfile -t localhost:9999/healthcare-assistant:base-app .
-docker push localhost:9999/healthcare-assistant:base-app
-```
-
-{{% notice title="ヒント" style="info" %}}
-
-Dockerイメージのビルドに問題がある場合、またはビルドに5分以上かかる場合は、ビルド済みのDockerイメージを使用できます。その場合は、`~/workshop/healthcare-assistant/1-base-app/k8s.yaml` ファイルを編集し、イメージを `ghcr.io/splunk/healthcare-assistant:base-app` に変更してください。
-
-{{% /notice %}}
-
-{{< /step >}}
-
 {{< step title="ベクトルデータとリレーショナルテーブルの読み込み" >}}
 
 薬のFAQをpgvectorにエンベディングし、患者レジストリをPostgreSQLに読み込みます。ヘルパースクリプトが両方を実行します。

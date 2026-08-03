@@ -11,15 +11,15 @@ Log Observerで特定のビューを持った後、そのビューをダッシ�
 
 まず、関心のある列のみに情報量を減らします
 
-- **ログテーブル**の上にあるテーブル設定{{% icon icon="cog" %}}アイコンをクリックして**Table Setting**を開き、`_raw` のチェックを外し、次のフィールドが選択されていることを確認します：`k8s.pod.name`、`message`、`version`。
+- **ログテーブル**の上にあるテーブル設定{{< icon "settings" >}}アイコンをクリックして**Table Setting**を開き、`_raw` のチェックを外し、次のフィールドが選択されていることを確認します`k8s.pod.name`、`message`、`version`。
   ![ログテーブル設定](../images/log-observer-table.png)
 - 時間選択から固定時間を削除し、**過去 15 分**に設定します。
-- すべてのトレースでこれを機能させるには、フィルターから `trace_id` を削除し、フィールド `sf_service=paymentservice` と `sf_environment=[WORKSHOPNAME]` を追加します。
+- すべてのトレースでこれを機能させるには、フィルターから `trace_id` を削除し、フィールド `service.name=paymentservice` と `sf_environment=[WORKSHOPNAME]` を追加します。
 - **Save**をクリックし、**Save to Dashboard**を選択します。
   ![保存する](../images/save-query.png)
 - 表示されるチャート作成ダイアログボックスで、**Chart name**として `ログタイムライン` を使用します。
 - {{% button style="blue" %}}Select Dashboard{{% /button %}}をクリックし、ダッシュボード選択ダイアログボックスで{{% button style="blue" %}}New Dashboard{{% /button %}}をクリックします。
-- **New Dashboard**ダイアログボックスに、新しいダッシュボードの名前を入力します（説明を入力する必要はありません）。次の形式を使用します：`イニシャル - サービスヘルスダッシュボード`、そして{{% button style="blue" %}}Save{{% /button %}}をクリックします。
+- **New Dashboard**ダイアログボックスに、新しいダッシュボードの名前を入力します（説明を入力する必要はありません）。次の形式を使用します`イニシャル - サービスヘルスダッシュボード`、そして{{% button style="blue" %}}Save{{% /button %}}をクリックします。ダッシュボード名をメモしておいてください。後ほど必要になります。
 - リスト内で新しいダッシュボードが強調表示されていることを確認し（**1**）、{{% button style="blue" %}}OK{{% /button %}}（**2**）をクリックします。
   ![ダッシュボードの保存](../images/dashboard-save.png)
 - **Chart Type**として**Log timeline**が選択されていることを確認します。

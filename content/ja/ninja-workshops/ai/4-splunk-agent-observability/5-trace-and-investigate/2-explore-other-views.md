@@ -38,9 +38,3 @@ Splunk Agent Observabilityのプロジェクトと `default` ログストリー�
 個々のTraceを読むことは単一のインシデントには有効ですが、何百万ものTraceを手動で検査することはできません。次の章では、すべてのTraceを自動的にスコアリングする **metrics** を有効にし、根拠のない医療アドバイスなどの問題が自動的に浮上するようにします。
 
 {{% /notice %}}
-
-{{< checkpoint title="知識チェック" >}}
-
-{{< details summary="回答を表示するにはここをクリック" >}}
-
-{{< /details >}}

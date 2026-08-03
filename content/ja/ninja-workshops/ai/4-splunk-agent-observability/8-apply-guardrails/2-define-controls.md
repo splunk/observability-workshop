@@ -64,11 +64,3 @@ log streamにクローンしてアタッチできるコントロールのリス�
 {{< /step >}}
 
 {{< /exercise >}}
-
-{{< checkpoint title="Knowledge Check" >}}
-
-コンソール内のステップ名（`delete_patient_record`、`Healthcare Assistant`）はどこから来ていますか？
-
-{{< details summary="ここをクリックして回答を確認" >}}
-アプリケーションコードから来ています。`@control(step_name=...)` デコレータ（LLMステップは `LLM_STEP_NAME = "Healthcare Assistant"`）とツールステップの登録です。アプリは起動時にこれらのステップをAgent Controlに登録するため、コンソールに表示されルールの対象として設定できます。
-{{< /details >}}

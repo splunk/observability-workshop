@@ -3,6 +3,7 @@ title: Getting Started
 linkTitle: 01-Getting-Started
 weight: 1
 ---
+
 このワークショップでは、以下の内容を学びます
 
 - Application Security のエントリーポイントへのナビゲーション方法。
@@ -13,25 +14,26 @@ weight: 1
 
 このワークショップでは、Application Security テレメトリー（ランタイム脆弱性、ライブラリインベントリ、攻撃イベント）を含む共有テナントが提供されます。
 
-> *「このテナントは、既存の Observability インストルメンテーション以外に追加のエージェントをデプロイすることなく、APM インストルメンテーション済みのマイクロサービスで事前設定されています。」*
+{{% notice title="Note" style="info" %}}
+このテナントは、既存の Observability インストルメンテーション以外に追加のエージェントをデプロイすることなく、APM インストルメンテーション済みのマイクロサービスで事前設定されています。
+{{% /notice %}}
 
----
+### Splunk Observability Cloud へのアクセス
 
-## 1.1 Splunk Observability Cloud へのアクセス
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-1. ブラウザを開き、**Splunk Workshop Realm** にサインインします（認証情報はワークショップのファシリテーターから提供されます）。
+1. ブラウザを開き、**Splunk Workshop Realm** にサインインします
+    （認証情報はワークショップのファシリテーターから提供されます）。
 2. **Splunk Observability Cloud** のホーム画面が表示されることを確認します。
 3. 左側のナビゲーションから **APM** を展開します - Application Security メニューオプションが表示されます。
 4. ワークショップで使用する **environment** フィルターを確認します: `astronomy-shop-*` & 'ad'
 
-![apm](./images/01-home.png)
+![apm](../images/01-home.png)
 
----
+{{% /notice %}}
 
-## 学んだこと
+### 学んだこと
 
 - ワークショップテナントへのアクセス方法と Application Security のエンタイトルメントの確認方法。
 - 残りのモジュールで実施するコア機能について。
 - ワークショップのウォークスルーの基盤となる environment とサービスについて。
-
----

@@ -4,7 +4,7 @@ linkTitle: Splunk Agent Observability
 weight: 4
 layout: chapter
 time: 2 hours
-authors: ["Derek Mitchell", "Sam Goldfield", "Tim Hard"]
+authors: ["Denis Abrantes", "Derek Mitchell", "Sam Goldfield", "Tim Hard"]
 description: エージェント型AIアプリケーションの内部を可視化します。計装を行い、エージェントの動作をトレース・評価し、新たな問題を検出し、Splunk Agent Observability（powered by Galileo）でランタイムガードレールを適用します。
 draft: false
 hidden: true
