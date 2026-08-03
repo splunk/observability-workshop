@@ -18,6 +18,9 @@ from config import TOOLS_DIR, load_config, load_system_prompt
 from rag import create_rag_tool
 from tools import logic as tools_logic
 
+import os
+from galileo import galileo_context
+from galileo.handlers.langchain import GalileoAsyncCallback
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -135,10 +138,20 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        result = await self.graph.ainvoke(
-            {"messages": langchain_messages},
-            self.langgraph_config,
-        )
+        with galileo_context(
+            project=os.getenv("GALILEO_PROJECT"),
+            log_stream=os.getenv("GALILEO_LOG_STREAM"),
+        ):
+            galileo_context.start_session(external_id=self.session_id)
+
+            # One callback per request keeps each user turn in its own trace.
+            callback = GalileoAsyncCallback()
+            run_config = {**self.langgraph_config, "callbacks": [callback]}
+
+            result = await self.graph.ainvoke(
+                {"messages": langchain_messages},
+                run_config,
+            )
         if result["messages"]:
             return result["messages"][-1].content
         return "No response generated"

@@ -91,27 +91,6 @@ When a control fires, the SDK raises an exception that the agent catches:
 
 {{< /step >}}
 
-{{< step title="Build a New Docker Image" >}}
-
-Change into the base app directory, then run the following command to build a new Docker image
-for the application that includes our recent changes:
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
-docker push localhost:9999/healthcare-assistant:app-with-controls
-```
-
-{{% notice title="Notice what's missing" style="info" %}}
-
-If you're having trouble building the Docker image, or it's taking too long to build, you can use
-the pre-built docker image instead. To do so, edit the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file
-and change the image to `ghcr.io/splunk/healthcare-assistant:app-with-controls`.
-
-{{% /notice %}}
-
-{{< /step >}}
-
 {{< /exercise >}}
 
 {{< checkpoint title="Knowledge Check" >}}

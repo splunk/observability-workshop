@@ -95,10 +95,6 @@ kubectl apply -f healthcare-assistant-config.yaml
 cd ~/workshop/healthcare-assistant/1-base-app
 kubectl apply -f postgres.yaml
 
-cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
-docker push localhost:9999/healthcare-assistant:app-with-controls
-
 cd ~/workshop/healthcare-assistant/1-base-app
 kubectl apply -f setup-job.yaml
 

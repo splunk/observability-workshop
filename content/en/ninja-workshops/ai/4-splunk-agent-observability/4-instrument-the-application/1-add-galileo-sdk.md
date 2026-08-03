@@ -15,8 +15,8 @@ traces.
 
 Galileo's LangChain callback ships in the `galileo` package. 
 
-Open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
-file for editing and add the following to the end of the file: 
+If you open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
+file, you'll see that this package has already been added: 
 
 ````
 galileo
