@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest
 # Version: 2.0.7
-# Generated on: 2026-07-30T14:01:11Z
+# Generated on: 2026-08-03T11:15:33Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -365,6 +365,42 @@ data:
       return `https://${raw.replace(/\/+$/, '')}/`;
     }
 
+    // --- flagd feature flags via OFREP --------------------------------------
+    // flagd serves the OpenFeature Remote Evaluation Protocol over HTTP on
+    // port 8016 (see src/flagd/flagd-k8s.yaml). Node 24 has global fetch, so
+    // no OpenFeature SDK / gRPC deps are needed — one POST per flag. flagd
+    // returns the live value, so flipping a flag in flagd-ui is reflected on
+    // the next cycle with no loadgen restart. Disable with
+    // FLAGD_OFREP_ENABLED=false; override endpoint with FLAGD_OFREP_URL.
+    const FLAGD_OFREP_ENABLED = (process.env.FLAGD_OFREP_ENABLED || 'true').toLowerCase() !== 'false';
+    const FLAGD_OFREP_URL = (process.env.FLAGD_OFREP_URL || 'http://flagd:8016').replace(/\/+$/, '');
+
+    /**
+     * Evaluate a single flag via OFREP. Returns `def` on any failure (flagd
+     * unreachable, non-2xx, timeout, missing flag) so flag lookups never block
+     * or crash a load cycle.
+     */
+    async function getFlag(key, def) {
+      if (!FLAGD_OFREP_ENABLED) return def;
+      try {
+        const resp = await fetch(`${FLAGD_OFREP_URL}/ofrep/v1/evaluate/flags/${key}`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ context: { targetingKey: 'rumloadgen' } }),
+          signal: AbortSignal.timeout(2000)
+        });
+        if (!resp.ok) {
+          if (debugEnabled) console.log(`[DEBUG] OFREP ${key}: HTTP ${resp.status}`);
+          return def;
+        }
+        const body = await resp.json();
+        return body.value !== undefined ? body.value : def;
+      } catch (e) {
+        if (debugEnabled) console.log(`[DEBUG] OFREP ${key} lookup failed: ${e.message}`);
+        return def;
+      }
+    }
+
     function getProductIds() {
       const envProductIds = (process.env.PRODUCT_IDS || '').trim();
       if (envProductIds) {
@@ -504,6 +540,16 @@ data:
         }
 
         const base = buildBaseUrl();
+
+        // Feature-flag check, run every cycle before product selection so a
+        // flagd-ui toggle takes effect on the very next loop. rumLoadGenPanicMode
+        // is the first test hook for the OFREP integration — real behaviour
+        // change comes later; for now it just proves live flag reactivity.
+        const panicMode = await getFlag('rumLoadGenPanicMode', false);
+        if (panicMode) {
+          console.log('🚨 rum-loadgen Panic mode is on!');
+        }
+
         const productsToOrder = getRandomProducts();
         const cycleCurrency = pickCurrency();
         console.log(`🛒 Ordering ${productsToOrder.length} product(s) in ${cycleCurrency}: ${productsToOrder.join(', ')}`);
@@ -1315,6 +1361,15 @@ data:
     {
       "$schema": "https://flagd.dev/schema/v0/flags.json",
       "flags": {
+        "rumLoadGenPanicMode": {
+          "description": "RUM loadgen reacts to this flag each cycle. On = loadgen logs a panic-mode line (test hook for the flagd OFREP integration; real action TBD).",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
         "orderValidationThrottle": {
           "description": "order-validation runs full CPU-bound compliance/audit path, exposing k8s CPU throttle scenario. Off returns precomputed stub.",
           "state": "ENABLED",
@@ -1775,8 +1830,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
       - name: frontend
-        #image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7
-        iamge: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7-hotfix-frontend-1-beta 
+        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7-hotfix-frontend-1-beta
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
