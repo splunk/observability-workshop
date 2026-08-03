@@ -10,7 +10,7 @@ We've seen individual user actions tracked over time, but how do we know if our 
 
 {{% exercise title="Explore the funnel" %}}
 
-Return to the Project Analyses and open the Homepage to Order Confirmation funnel. Make sure the chart is filtered to show "All users".
+Return to the Project Analyses and open the `Homepage to Order Confirmation` funnel. Make sure the chart is filtered to show "All users".
 
 This funnel is capturing users who started on the homepage, shopped, and checked out. If users dropped off before the next step, that's captured.
 

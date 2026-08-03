@@ -10,7 +10,7 @@ Now let's see how the same type of analysis can help us understand if our end us
 
 {{% exercise title="Monitor friction" %}}
 
-Return to the Project Analyses and open the Frustration timeseries.
+Return to the Project Analyses and open the `Frustration` timeseries.
 
 Explore the chart, data table, and session replay.
 
