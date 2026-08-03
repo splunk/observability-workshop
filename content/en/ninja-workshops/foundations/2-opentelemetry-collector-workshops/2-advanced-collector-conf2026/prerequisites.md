@@ -96,7 +96,7 @@ generator, and setup script:
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol && \
 curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen && \
-curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/advanced-otel/setup-workshop-conf2026.sh -o setup-workshop.sh && \
+curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026/setup-workshop-conf2026.sh -o setup-workshop.sh && \
 chmod +x setup-workshop.sh
 ```
 
@@ -106,7 +106,7 @@ chmod +x setup-workshop.sh
 ```bash
 curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_darwin_arm64 -o otelcol && \
 curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen && \
-curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/advanced-otel/setup-workshop-conf2026.sh -o setup-workshop.sh && \
+curl -L https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026/setup-workshop-conf2026.sh -o setup-workshop.sh && \
 chmod +x setup-workshop.sh
 ```
 
