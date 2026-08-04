@@ -25,14 +25,16 @@ Browser
 So trace headers for `/api/purchases` must survive **frontend-api → gateway → order-api**. The edge gateway is dropping `traceparent`, `tracestate`, and `baggage` on the proxy hop to `order-api`.
 {{% /notice %}}
 
-## The Fix
-
+## Apply the Fix
 We now need to add explicit forwarding for the three W3C context headers in each `location` block:
 
 These directives tell NGINX to pass the incoming trace context from the client (Splunk RUM) through to the upstream service.
 
-## Apply the Fix
+{{% notice title="Note" style="info" %}}
+NOTE: editors other than vi can be used
+{{% /notice %}}
 
+From the project root [~/workshop/context-propagation], Open and edit the gateway-config file:
 ```
 vi deploy/k8s/gateway-config.yaml 
 ```
@@ -85,6 +87,14 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
 
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+Run the following command from ./workshop/context-propagation folder to compare your changes with the expected solution:
+
+```bash
+diff ./deploy/k8s/gateway-config.yaml  ./deploy/k8s/gateway-config-fixed.yaml
+```
+{{% / notice %}}
 
 {{% notice title="Note" style="green" icon="running" %}}
 These directives tell NGINX to pass the incoming trace context from `frontend-api` through to `order-api`.

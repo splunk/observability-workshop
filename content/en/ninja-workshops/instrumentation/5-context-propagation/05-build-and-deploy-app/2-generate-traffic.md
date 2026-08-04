@@ -12,7 +12,7 @@ In this step, you'll generate traffic through Cosmic Observatory Shop.
 
 Open the Cosmic Observatory Shop in your browser:
 
-**http://localhost:30080**
+**http://(your-instance-url):30080**
 
 You should see the astronomy equipment catalog with telescopes, eyepieces, and astrophotography gear...
 
@@ -20,7 +20,7 @@ You should see the astronomy equipment catalog with telescopes, eyepieces, and a
 
 Optional - RabbitMQ management UI:
 
-**http://localhost:15672** (login: `guest` / `guest`)
+**http://(your-instance-url):15672** (login: `guest` / `guest`)
 
 ![rabbitmq](../images/rabbitmq.png)
 
@@ -33,7 +33,8 @@ kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 
 ## Generate Initial Traffic
 
-1. After opening the shop at http://localhost:30080
+1. After opening the shop at http://(your-instance-url)
+:30080
 2. Enter an email address (e.g. `observer@cosmic.shop`)
 3. Click **Purchase** on any product
 4. Confirm the order in the modal
