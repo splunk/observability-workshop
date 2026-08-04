@@ -4,7 +4,7 @@ Distributed tracing breaks silently when proxies and message buses drop W3C trac
 
 1. **Edge NGINX gateway** - strips headers from browser → order API
 2. **Payment gateway proxy** - instrumented Node.js proxy strips headers from order → payment API (visible in Splunk APM service map)
-3. **RabbitMQ** — async payment → fulfillment with no trace context in message headers
+3. **RabbitMQ** - async payment → fulfillment with no trace context in message headers
 
 ## Quick start
 
