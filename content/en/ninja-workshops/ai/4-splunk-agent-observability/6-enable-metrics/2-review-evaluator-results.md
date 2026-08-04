@@ -15,7 +15,7 @@ This is where a hallucinated dosage or a wrong tool call stops being invisible.
 
 Looking at the agent trace, we can see that evaluators are being computed for our traces: 
 
-![Agent stream evaluator computing](../../images/sao-metrics-computing.png?width=750px)
+![Agent stream evaluator computing](../../images/sao-evaluators-computing.png?width=750px)
 
 {{< /step >}}
 
@@ -24,7 +24,7 @@ Looking at the agent trace, we can see that evaluators are being computed for ou
 In Splunk Agent Observability, return to the **`default`** agent stream and review the recent traces. Each trace
 now carries evaluator results alongside its spans. 
 
-![Metric scores on traces](../../images/sao-metric-scores.png?width=750px)
+![Evaluator results on traces](../../images/sao-evaluator-scores.png?width=750px)
 
 We can see that one of the traces evaluated to `False` for both `Context Adherence` and `Correctness`. 
 This is the trace that we sent earlier using the `Log Hallucination` button. 
@@ -46,7 +46,7 @@ In this case, it explains that the assistant gave a dosage of 100 mg daily
 and side effects of rashes, itching, and swelling, which directly contradicts the context 
 and adds unsupported information.
 
-![Flagged trace detail](../../images/sao-metric-flagged-trace.png?width=750px)
+![Flagged trace detail](../../images/sao-evaluator-flagged-trace.png?width=750px)
 
 This type of finding turns "a patient complained" into "here is the specific request, the specific span, and the
 specific evaluator that caught it."

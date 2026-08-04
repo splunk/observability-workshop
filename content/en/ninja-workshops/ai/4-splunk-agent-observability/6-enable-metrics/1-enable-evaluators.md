@@ -16,9 +16,9 @@ assistant.
 In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project and select the **`default`** agent stream. 
 
-Click the `Configure Evaluators` button to open its evaluators configuration.
+Click the `Configure Evaluators` button to open its evaluator configuration.
 
-![Agent stream evaluators configuration](../../images/sao-enable-metrics.png?width=750px)
+![Agent stream evaluators configuration](../../images/sao-enable-evaluators.png?width=750px)
 
 {{< /step >}}
 
@@ -30,7 +30,7 @@ Enable the following out-of-the-box evaluators for your agent stream:
   the "double the dose" style hallucination)
 * **Correctness**: is the answer factually right?
 
-![Agent stream enable evaluators](../../images/sao-enable-two-metrics.png?width=750px)
+![Agent stream enable evaluators](../../images/sao-enable-two-evaluators.png?width=750px)
 
 Save the configuration. From now on, new traces in this agent stream are scored automatically.
 

@@ -39,7 +39,7 @@ see how the overall latency and token usage trends across requests.
 {{% notice title="From investigation to automation" style="info" %}}
 
 Reading individual traces is powerful for a single incident, but you can't manually inspect
-millions of them. In the next chapter you'll enable **metrics** to score every trace
+millions of them. In the next chapter you'll enable **evaluators** to score every trace
 automatically, so problems like ungrounded medical advice surface on their own.
 
 {{% /notice %}}
