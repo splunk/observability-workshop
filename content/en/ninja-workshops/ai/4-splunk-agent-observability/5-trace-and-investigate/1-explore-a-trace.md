@@ -13,7 +13,7 @@ Open the Splunk Agent Observability and work through a real trace from the traff
 
 **1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.galileocloud.io` and **`workshop`** org
 
-**2.** Open the project using the name you set in the **`GALILEO_PROJECT`** field in the previous step, which is based on your participant number (for example, `project-44`)
+**2.** Open the project using the name you set in the **`GALILEO_PROJECT`** field in the previous step, which is based on your participant number (for example, `project-120`)
 
 **3.** Select the `default` agent stream
 
@@ -43,8 +43,6 @@ nested **LLM span** for the chatbot node and a **tool span** for `search_medicin
 {{< /step >}}
 
 {{< step title="Inspect a span" >}}
-
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact span-panel steps + screenshot once finalized -->
 
 Select the **`Healthcare Assistant`** span and confirm it captured the **system and user messages**, the **Available
 Tools**, the **Output**, **Token Counts**, **Latency**, and **Agent Cost**. This

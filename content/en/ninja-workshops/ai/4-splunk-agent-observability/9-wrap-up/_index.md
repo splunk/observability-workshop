@@ -53,7 +53,6 @@ infrastructure, APM, and log data: one platform for the whole stack.
 * [Galileo Quickstart](https://docs.galileo.ai/getting-started/quickstart)
 * [Galileo LangChain integration](https://docs.galileo.ai/sdk-api/third-party-integrations/langchain/langchain)
 
-<!-- TODO screenshot: celebratory image (trophy, fireworks, etc.) sized for the wrap-up page -->
-![Congratulations on completing the workshop](../images/congratulations.png?width=20vw)
+![Congratulations on completing the workshop](../images/Splunk-dancing-buttercup-GIF-103.gif?width=30vw)
 
 {{< checkpoint title="Workshop complete -- **nice work!**" >}}
