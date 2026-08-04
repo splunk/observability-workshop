@@ -21,13 +21,13 @@ map directly to this workshop's agenda.
 
 {{% /notice %}}
 
-Traces are organized by **project** and **log stream**. A project is a container for a use
-case (`healthcare-assistant`); a log stream is a named destination within it (`local`, or one
-per workshop instance). This is where you'll view traces and enable live metrics.
+Traces are organized by **project** and **agent stream**. A project is a container, and an agent stream 
+is a named destination within it. This workshop will use project names like `project-1`, and `project-2`, and 
+an agent stream name of `default`. This is where you'll view traces and enable evaluators.
 
-## Metrics: evaluating quality at scale
+## Evaluators: evaluating quality at scale
 
-**Metrics** (evaluations) score your traces and spans, for example *Context Adherence*
+**Evaluators** score your traces and spans, for example *Context Adherence*
 (is the answer grounded?), *Correctness*, *Tool Selection Quality*, and *Prompt Injection*.
 They turn qualitative quality questions into numbers you can monitor and alert on.
 

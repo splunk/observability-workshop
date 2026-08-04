@@ -11,7 +11,7 @@ if every workshop participant runs the process individually. For this reason, pl
 workshop instructor completes the steps in this section, rather than performing them yourself.**
 {{% /notice %}}
 
-Generate Signals for your log stream and let the platform show you what's trending wrong.
+Generate Signals for your agent stream and let the platform show you what's trending wrong.
 
 {{< exercise title="Review Signals" >}}
 
@@ -20,20 +20,20 @@ Generate Signals for your log stream and let the platform show you what's trendi
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
 In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
-open your project / **`default`** log stream then click the **Signals** button.
+open your project / **`default`** agent stream then click the **Signals** button.
 
 ![Generate Signals](../../images/sao-generate-signals.png?width=250px)
 
-It will take a few moments to analyze the traces in this log stream and generate signals. 
+It will take a few moments to analyze the traces in this agent stream and generate signals. 
 
 {{< /step >}}
 
 {{< step title="Review Signals" >}}
 
-We can see that several signals have been generated for our log stream (the specific signals will vary from 
-one log stream to the next): 
+We can see that several signals have been generated for our agent stream (the specific signals will vary from 
+one agent stream to the next): 
 
-<!-- TODO screenshot: Signals view listing detected failure patterns for the healthcare assistant log stream -->
+<!-- TODO screenshot: Signals view listing detected failure patterns for the healthcare assistant agent stream -->
 ![Signals overview](../../images/sao-signals-overview.png?width=750px)
 
 {{< /step >}}
@@ -85,16 +85,16 @@ become incidents at all.
 
 {{< checkpoint title="Knowledge Check" >}}
 
-How do Signals complement the metrics you enabled in the previous chapter?
+How do Signals complement the evaluators you enabled in the previous chapter?
 
 {{< details summary="Click here to see the answer" >}}
 
-Metrics score **known** quality dimensions you choose to measure (e.g., Context Adherence).
+Evaluators score **known** quality dimensions you choose to measure (e.g., Context Adherence).
 Signals automatically surface **unknown** recurring failure patterns (planning loops, tool
-errors, routing failures) that you didn't write a metric for. Together they cover both the
+errors, routing failures) that you didn't write an evaluator for. Together they cover both the
 problems you anticipated and the ones you didn't.
 
-We have the option to create a new metric from a specific signal, which allows us to 
+We have the option to create a new evaluator from a specific signal, which allows us to 
 track when the underlying issue happens again in the future so we can take appropriate action. 
 
 {{< /details >}}

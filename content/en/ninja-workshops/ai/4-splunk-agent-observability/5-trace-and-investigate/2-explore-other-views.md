@@ -9,16 +9,16 @@ Let's explore other views in Splunk Agent Observability using the traffic you ju
 
 {{< exercise title="Investigate agent behavior" >}}
 
-{{< step title="Open your project and log stream" >}}
+{{< step title="Open your project and agent stream" >}}
 
-Return to your project and the `default` log stream in Splunk Agent Observability.
+Return to your project and the `default` agent stream in Splunk Agent Observability.
 
 {{< /step >}}
 
 {{< step title="View the Agent Graph" >}}
 
 Click on the **`Agent graph`** tab, which aggregates agent behavior
-across all traces in the log stream. It shows the most common execution paths, along with latency and frequency patterns,
+across all traces in the agent stream. It shows the most common execution paths, along with latency and frequency patterns,
 so you can quickly see how the agent is behaving with actual users.
 
 ![Agent Graph](../../images/galileo-agent-graph.png?width=750px)

@@ -60,10 +60,10 @@ kubectl create configmap galileo-config \
   --from-literal=GALILEO_LOG_STREAM="default"
 ```
 
-{{% notice title="Project and log stream" style="info" %}}
+{{% notice title="Project and agent stream" style="info" %}}
 
 `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` decide where your traces appear in the Galileo
-console. If you leave them blank, the SDK falls back to a project and log stream both named
+console. If you leave them blank, the SDK falls back to a project and agent stream both named
 `default`. 
 
 {{% /notice %}}
@@ -79,7 +79,7 @@ If you remove `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` from the `galileo-confi
 your traces show up?
 
 {{< details summary="Click here to see the answer" >}}
-In a project named `default` and a log stream named `default`. With those keys empty,
+In a project named `default` and an agent stream named `default`. With those keys empty,
 `setup_env.py` exports empty `GALILEO_PROJECT` / `GALILEO_LOG_STREAM` values, and the Galileo
-SDK falls back to its built-in `default` project and `default` log stream.
+SDK falls back to its built-in `default` project and `default` agent stream.
 {{< /details >}}

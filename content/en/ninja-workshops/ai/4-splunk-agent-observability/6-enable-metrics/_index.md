@@ -1,23 +1,23 @@
 ---
-title: Enable Quality Metrics
-linkTitle: 6. Enable Quality Metrics
+title: Enable Evaluators
+linkTitle: 6. Evaluators
 weight: 6
 time: 10 minutes
 ---
 
-Reading traces one at a time is great for an incident, but it doesn't scale. **Quality
-metrics** automatically evaluate your agent's interactions so problems (hallucinations,
+Reading traces one at a time is great for an incident, but it doesn't scale. **Evaluators** 
+automatically evaluate your agent's interactions so problems (hallucinations,
 tool-selection errors, prompt injections) surface on their own.
 
 {{% notice title="Persona" style="orange" icon="user" %}}
 
 As Careful Health Provider's **AI engineer**, you want to know the moment the assistant
 produces an ungrounded medical answer, not when it trends on social media. Out-of-the-box
-metrics give you that early-warning system across every request.
+evaluators give you that early-warning system across every request.
 
 {{% /notice %}}
 
-> [!splunk] **Accurate evaluations.** Splunk Agent Observability ships out-of-the-box metrics
+> [!splunk] **Accurate evaluations.** Splunk Agent Observability ships out-of-the-box evaluators
 > that evaluate agent, output, and RAG quality, so you can quickly spot problems, track
 > improvements, and make your agentic applications work better for your users.
 
@@ -31,4 +31,4 @@ traffic (not a 5–10% sample) and even run evaluations fast enough for real-tim
 
 {{% /notice %}}
 
-Continue to enable metrics on your log stream and review the scores.
+Continue to enable evaluators on your agent stream and review the scores.

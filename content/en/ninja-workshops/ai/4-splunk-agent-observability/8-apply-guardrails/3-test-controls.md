@@ -164,7 +164,7 @@ defined.
 
 {{< step title="Observe the control decisions for the blocked request" >}}
 
-Back in the Galileo console, open the trace for the blocked request in your project / **`default`** log stream. Click on the 
+Back in the Galileo console, open the trace for the blocked request in your project / **`default`** agent stream. Click on the 
 span associated with the `block-harmful-sql-*` control: 
 
 ![Control decision in the trace](../../images/galileo-control-trace.png?width=750px)
@@ -175,7 +175,7 @@ Notice how the control denied execution of the `DELETE` SQL statement, as desire
 
 {{< step title="Observe the control decisions for the steered request" >}}
 
-Back in the Galileo console, open the trace for the steered request in your project / **`default`** log stream. Click on the final 
+Back in the Galileo console, open the trace for the steered request in your project / **`default`** agent stream. Click on the final 
 `Healthcare Assistant` span in the trace. 
 
 ![Steer control decision in the trace](../../images/galileo-steer-control-trace.png?width=750px)
