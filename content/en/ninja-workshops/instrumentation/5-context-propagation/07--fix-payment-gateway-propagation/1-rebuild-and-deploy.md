@@ -1,5 +1,5 @@
 ---
-title: ReDeploy Gateway fix
+title: Redeploy Gateway Fix
 weight: 1
 time: 5 minutes
 

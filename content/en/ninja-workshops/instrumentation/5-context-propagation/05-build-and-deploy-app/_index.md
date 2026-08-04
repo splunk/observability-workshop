@@ -9,7 +9,7 @@ In this step, you'll build Docker images for all Cosmic Observatory Shop service
 
 ## Build Container Images
 
-From the project root, with `.env` configured:
+From the project root [~/workshop/context-propagation] with `.env` configured, run:
 
 ```bash
 make build
@@ -31,7 +31,7 @@ This builds and pushes four images to `localhost:5111`
 {{< tabs >}}
 {{% tab title="Script" %}}
 ```bash
-curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
+curl -s http://(your-instance-url):5111/v2/_catalog | python3 -m json.tool
 ```
 {{% /tab %}}
 {{% tab title="Example Output" %}}

@@ -37,7 +37,7 @@ Three breaks occur:
 Allow **2-5 minutes** after generating data for metrics to appear..
 {{% /notice %}}
 
-### Service map
+### Service Map
 
 1. Navigate to **APM → Service Map**
 2. Filter environment: `workshop-context-prop`
@@ -45,7 +45,7 @@ Allow **2-5 minutes** after generating data for metrics to appear..
 
 ![servicemap](../images/servicemap-b4.png)
 
-### Trace search
+### Trace Search
 
 1. Navigate to **APM → Trace Analyzer**
 2. Filter:
@@ -76,7 +76,9 @@ location /api/ {
 ```
 
 ``` text
-When **any** `proxy_set_header` directive is present, NGINX stops automatically forwarding client headers to the upstream. Headers like `traceparent`, `tracestate`, and `baggage` are silently dropped unless explicitly configured.
+When **any** `proxy_set_header` directive is present, NGINX stops automatically forwarding 
+client headers to the upstream. Headers like `traceparent`, `tracestate`, and `baggage` 
+are silently dropped unless explicitly configured.
 
 This is one of the most common causes of broken trace correlation in production.
 ```
@@ -94,6 +96,8 @@ channel.sendToQueue(ordersQueue, Buffer.from(JSON.stringify(order)), {
 });
 ```
 ``` text
-Unlike HTTP, message brokers don't participate in W3C Trace Context automatically. The producer must **inject** trace context into message headers, and the consumer must **extract** it. Without this, the consumer starts a new root trace.
+Unlike HTTP, message brokers don't participate in W3C Trace Context automatically. The
+producer must **inject** trace context into message headers, and the consumer must
+**extract** it. Without this, the consumer starts a new root trace.
 ```
 {{% /notice %}}

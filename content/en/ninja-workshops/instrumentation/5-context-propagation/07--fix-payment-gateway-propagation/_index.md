@@ -26,7 +26,7 @@ The payment gateway still creates its **own spans** (so it shows in the service 
 
 ## The Fix
 
-Open the server.js file and locate **`buildUpstreamHeaders()`**.
+From the project root [~/workshop/context-propagation], Open the server.js file and locate **`buildUpstreamHeaders()`**.
 
 ```
 vi services/payment-gateway/server.js
@@ -73,3 +73,11 @@ const upstreamContext = context.active();
 
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+Run the following command from ./workshop/context-propagation folder to compare your changes with the expected solution:
+
+```bash
+diff ./services/payment-gateway/server.js ./services/payment-gateway/server-fixed.js
+```
+{{% / notice %}}

@@ -7,32 +7,32 @@ time: 5 minutes
 ---
 In this step, you'll create an `.env` file with your Splunk Observability Cloud credentials and workshop settings. 
 
-{{% notice title="Validation Checklist" style="green" icon="running" %}}
+## Validation Checklist
 Your environment should already have values for `SPLUNK_ACCESS_TOKEN`, `SPLUNK_REALM`, and `SPLUNK_RUM_ACCESS_TOKEN`
 
-Run these commands from the project root to verify `.env`.
+Run `env` command from the project root to verify .
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
-grep -E '^SPLUNK_(REALM|ACCESS_TOKEN|RUM_ACCESS_TOKEN)=' .env | cut -d= -f1
+env
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` text
-SPLUNK_REALM
-SPLUNK_ACCESS_TOKEN
-SPLUNK_RUM_ACCESS_TOKEN
+SPLUNK_REALM=<splunk-realm-value>
+SPLUNK_ACCESS_TOKEN=<org-access-token-value>
+SPLUNK_RUM_ACCESS_TOKEN=<rum-access-token-value>
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-**If they do not exist configure them as follows**
-
+{{% notice title="[Optional] Exercise" style="green" icon="running" %}}
+**If these values do not exist in your instance you can configure them as follows** - From the project root [~/workshop/context-propagation]:
 
 ```bash
 cp .env.example .env
@@ -56,6 +56,8 @@ CLUSTER_NAME=cosmic-shop-cluster
 REGISTRY=localhost:5111
 TAG=latest
 ```
-
 {{% /notice %}}
 
+{{% notice title="Note" style="info" %}}
+Your instructor will provide you with all the required login credentials and environment details
+{{% /notice %}}
