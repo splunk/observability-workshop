@@ -36,7 +36,7 @@ entire agent lifecycle, from development through production.
 {{% notice title="Three things you get" style="info" %}}
 
 * **Accurate evaluations**: evaluate agent, output, and RAG quality with high-accuracy evals
-  plus out-of-the-box and custom metrics, so "is this answer good?" becomes a number you can
+  plus out-of-the-box and custom evaluators, so "is this answer good?" becomes a number you can
   track.
 * **Instant visibility**: see the root cause of errors across complex, multi-step agent
   workflows, instead of guessing from logs.

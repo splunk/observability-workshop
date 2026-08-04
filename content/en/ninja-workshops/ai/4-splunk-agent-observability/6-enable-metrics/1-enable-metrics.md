@@ -1,51 +1,49 @@
 ---
-title: Enable Metrics on the Log Stream
-linkTitle: 1. Enable Metrics
+title: Enable Evaluators on the Agent Stream
+linkTitle: 1. Enable Evaluators
 weight: 1
 time: 5 minutes
 ---
 
-Metrics are configured on the **log stream**, so every new trace that lands is scored
-automatically. You'll turn on a set of out-of-the-box metrics that matter for a healthcare
+Evaluators are configured on the **agent stream**, so every new trace that lands is scored
+automatically. You'll turn on a set of out-of-the-box evaluators that matter for a healthcare
 assistant.
 
-{{< exercise title="Enable out-of-the-box metrics" >}}
+{{< exercise title="Enable out-of-the-box evaluators" >}}
 
-{{< step title="Open your log stream settings" >}}
-
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
+{{< step title="Open your agent stream settings" >}}
 
 In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
-open your project and select the **`default`** log stream. 
+open your project and select the **`default`** agent stream. 
 
 Click the `Configure Evaluators` button to open its evaluators configuration.
 
-![Log stream evaluators configuration](../../images/sao-enable-metrics.png?width=750px)
+![Agent stream evaluators configuration](../../images/sao-enable-metrics.png?width=750px)
 
 {{< /step >}}
 
-{{< step title="Enable the metrics that matter" >}}
+{{< step title="Enable the evaluators that matter" >}}
 
-Enable the following out-of-the-box metrics for your log stream: 
+Enable the following out-of-the-box evaluators for your agent stream: 
 
 * **Context Adherence**: is the answer grounded in the retrieved medical content? (catches
   the "double the dose" style hallucination)
 * **Correctness**: is the answer factually right?
 
-![Log stream enable metrics](../../images/sao-enable-two-metrics.png?width=750px)
+![Agent stream enable evaluators](../../images/sao-enable-two-metrics.png?width=750px)
 
-Save the configuration. From now on, new traces in this log stream are scored automatically.
+Save the configuration. From now on, new traces in this agent stream are scored automatically.
 
 {{< /step >}}
 
 {{< step title="Apply the changes" >}}
 
-Click `Apply` to apply the changes. We have the option to calculate metrics for traces that were already captured. 
+Click `Apply` to apply the changes. We have the option to exercise evaluators for traces that were already captured. 
 Select the default option of `Last 1 day`: 
 
 ![Compute metrics](../../images/sao-compute-metrics.png?width=350px)
 
-Click the `Compute` button to calculate metrics on existing traces. 
+Click the `Compute` button to exercise evaluators on existing traces. 
 
 {{< /step >}}
 
@@ -53,10 +51,10 @@ Click the `Compute` button to calculate metrics on existing traces.
 
 {{< checkpoint title="Knowledge Check" >}}
 
-Why enable metrics on the **log stream** rather than scoring traces one by one?
+Why enable evaluators on the **agent stream** rather than scoring traces one by one?
 
 {{< details summary="Click here to see the answer" >}}
-Because log-stream metrics are applied **automatically to every new trace**, giving you
+Because agent-stream evaluators are applied **automatically to every new trace**, giving you
 continuous, scaled evaluation instead of manual spot-checks. Combined with Luna's low-cost
 scoring, you can evaluate all of your traffic rather than a small sample.
 {{< /details >}}
