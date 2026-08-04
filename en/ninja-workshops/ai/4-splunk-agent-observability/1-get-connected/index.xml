@@ -1,24 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Get Connected on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/</link><description>Recent content in Get Connected on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/index.xml" rel="self" type="application/rss+xml"/><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
- &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
- &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Get Connected on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/</link><description>Recent content in Get Connected on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/index.xml" rel="self" type="application/rss+xml"/><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="create-a-splunkcom-account"&gt;
+ &lt;span class="heading-text"&gt;Create a Splunk.com Account&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#create-a-splunkcom-account" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Access the &lt;strong&gt;Splunk Show&lt;/strong&gt; event by clicking on the link for your region&lt;/li&gt;
-&lt;li&gt;Click &lt;strong&gt;Enroll&lt;/strong&gt; on the top-right corner&lt;/li&gt;
-&lt;li&gt;Then look near the bottom of the page for your EC2 instance details&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You should see connection information such as the following:&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll need a Splunk.com account to complete this workshop. If you don&amp;rsquo;t already have an account,
+navigate to &lt;a href="https://idp.login.splunk.com/signin/register" target="_blank" rel="noopener"&gt;https://idp.login.splunk.com/signin/register&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ and complete the form to create your account:&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../../images/ConnectionInformation.png" alt="Connection Information" loading="lazy" decoding="async"&gt;
+ &lt;img src="../../images/SplunkRegistration.png" alt="Splunk Registration" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;Using the IP address (which is part of the &lt;strong&gt;SSH Command&lt;/strong&gt;)
-and &lt;strong&gt;SSH Password&lt;/strong&gt; provided as part of the &lt;strong&gt;Connection Information&lt;/strong&gt;,
-connect to your EC2 instance using one of the methods below:&lt;/p&gt;</description></item><item><title>Sign In to Splunk Agent Observability</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</guid><description>&lt;h2 id="sign-in-to-splunk-agent-observability"&gt;
+&lt;p&gt;Check your inbox for an email from &lt;a href="mailto:no-reply@idp.login.splunk.com"&gt;no-reply@idp.login.splunk.com&lt;/a&gt;
+. If you don&amp;rsquo;t see the email, please check your spam folder.&lt;/p&gt;
+&lt;p&gt;Click on the link in the email to verify your email address.&lt;/p&gt;</description></item><item><title>Sign In to Splunk Agent Observability</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/1-get-connected/2-sign-in-to-splunk-agent-observability/</guid><description>&lt;h2 id="sign-in-to-splunk-agent-observability"&gt;
  &lt;span class="heading-text"&gt;Sign In to Splunk Agent Observability&lt;/span&gt;
  &lt;a class="heading-anchor" href="#sign-in-to-splunk-agent-observability" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;

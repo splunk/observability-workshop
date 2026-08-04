@@ -50,7 +50,7 @@
 &lt;/div&gt;
 &lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-2-user-journeys-3-investigate-2-cause-md-1-1--1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-conf-2-user-journeys-3-investigate-2-cause-md-1-1--1-tab-1" hidden data-tab-label="Answers"&gt;&lt;ol&gt;
 &lt;li&gt;The nearby POST request to the backend API is quite long, and throws a 500 error.&lt;/li&gt;
-&lt;li&gt;Because we&amp;rsquo;ve instrumented this app with both RUM and APM, we get related content between relevant requests. Hovering over the APM link on the long POST request, we see a likely root cause issue flagged on the payment service. So from here we could open the Place Order business operation in APM to see how widespread this issue is, and we can open the specific trace to see span details and any related logs.&lt;/li&gt;
+&lt;li&gt;Because we&amp;rsquo;ve instrumented this app with both RUM and APM, we get related content between relevant requests. Hovering over the APM link on the long POST request, we see a likely root cause issue flagged on the payment service. So from here we could open the business operation in APM to see how widespread this issue is, and we can open the specific trace to see span details and any related logs.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;

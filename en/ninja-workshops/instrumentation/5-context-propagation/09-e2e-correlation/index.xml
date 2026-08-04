@@ -8,7 +8,7 @@
  &lt;a class="heading-anchor" href="#send-new-web-request" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Open http://localhost:30080&lt;/li&gt;
+&lt;li&gt;Open http://(your-instance-url)):30080&lt;/li&gt;
 &lt;li&gt;Click Buy now → Confirm &amp;amp; place order&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;

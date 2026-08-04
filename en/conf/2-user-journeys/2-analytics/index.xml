@@ -16,7 +16,7 @@
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;Navigate to the analyses tab of the DXA project, and click into the timeseries &amp;ldquo;AI feature adoption&amp;rdquo;
+&lt;p&gt;Navigate to the analyses tab of the DXA project, and click into the timeseries &lt;code&gt;AI feature adoption&lt;/code&gt;
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-19/c0716b91-9c74-41f2-9545-dcf6cd46a1fa/ascreenshot_f11164e9f0274895b40466f0b51c8c3e_text_export.jpeg" alt="timeseries with quick prompts" loading="lazy" decoding="async"&gt;
@@ -33,7 +33,7 @@
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;Return to the Project Analyses and open the Frustration timeseries.&lt;/p&gt;
+&lt;p&gt;Return to the Project Analyses and open the &lt;code&gt;Frustration&lt;/code&gt; timeseries.&lt;/p&gt;
 &lt;p&gt;Explore the chart, data table, and session replay.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
@@ -69,5 +69,5 @@
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;Return to the Project Analyses and open the Homepage to Order Confirmation funnel. Make sure the chart is filtered to show &amp;ldquo;All users&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Return to the Project Analyses and open the &lt;code&gt;Homepage to Order Confirmation&lt;/code&gt; funnel. Make sure the chart is filtered to show &amp;ldquo;All users&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;This funnel is capturing users who started on the homepage, shopped, and checked out. If users dropped off before the next step, that&amp;rsquo;s captured.&lt;/p&gt;</description></item></channel></rss>

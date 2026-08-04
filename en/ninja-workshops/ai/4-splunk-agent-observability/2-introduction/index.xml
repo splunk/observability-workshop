@@ -26,9 +26,9 @@ nest, so a trace shows the full tree of what the agent did and in what order.&lt
 &lt;li&gt;A &lt;strong&gt;session&lt;/strong&gt; groups related traces, for example all the turns in one conversation.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Traces are organized by &lt;strong&gt;project&lt;/strong&gt; and &lt;strong&gt;log stream&lt;/strong&gt;. A project is a container for a use
-case (&lt;code&gt;healthcare-assistant&lt;/code&gt;); a log stream is a named destination within it (&lt;code&gt;local&lt;/code&gt;, or one
-per workshop instance). This is where you&amp;rsquo;ll view traces and enable live metrics.&lt;/p&gt;</description></item><item><title>The Healthcare Assistant Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</guid><description>&lt;p&gt;The application you&amp;rsquo;ll observe is Careful Health Provider&amp;rsquo;s &lt;strong&gt;healthcare assistant&lt;/strong&gt;. It runs
+&lt;p&gt;Traces are organized by &lt;strong&gt;project&lt;/strong&gt; and &lt;strong&gt;agent stream&lt;/strong&gt;. A project is a container, and an agent stream
+is a named destination within it. This workshop will use project names like &lt;code&gt;project-1&lt;/code&gt;, and &lt;code&gt;project-2&lt;/code&gt;, and
+an agent stream name of &lt;code&gt;default&lt;/code&gt;. This is where you&amp;rsquo;ll view traces and enable evaluators.&lt;/p&gt;</description></item><item><title>The Healthcare Assistant Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</guid><description>&lt;p&gt;The application you&amp;rsquo;ll observe is Careful Health Provider&amp;rsquo;s &lt;strong&gt;healthcare assistant&lt;/strong&gt;. It runs
 an end-to-end chat experience with retrieval-augmented generation (RAG) and text-to-SQL
 tools, but the base version ships with &lt;strong&gt;no observability instrumentation&lt;/strong&gt;. That&amp;rsquo;s what
 you&amp;rsquo;ll add.&lt;/p&gt;
