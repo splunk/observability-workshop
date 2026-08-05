@@ -45,8 +45,9 @@ exactly or the password attribute will remain in the exported span.
 Click **Add component** again. Select component type `processor`, select
 component `redaction`, and click **Next**.
 
-Set `allow_all_keys` to `true`, set `summary` to `debug`, and add these two
-blocked-value regular expressions:
+In **Options**, set `allow_all_keys` to **True**. Beside `blocked_values`,
+click **+** twice to create two entries, then paste one regular expression into
+each entry:
 
 ```text
 \b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b
@@ -56,6 +57,18 @@ blocked-value regular expressions:
 The first pattern matches the synthetic Visa value and the second matches the
 Mastercard value. The Amex value is intentionally left unmatched so the test
 can demonstrate an incomplete policy.
+
+![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](../images/config-builder-redaction-options.png)
+
+Scroll through the remaining options and set `summary` to `debug`. Leave the
+database sanitizer options and all other optional fields unset.
+
+{{% notice title="Why allow all keys?" style="info" %}}
+Setting `allow_all_keys` to `true` retains attributes whose values do not match
+a blocked pattern. The two matching payment-card values are masked; the
+unmatched Amex value remains visible so you can recognize an incomplete
+redaction policy during validation.
+{{% /notice %}}
 
 Review **Preview** and click **Add**. The generated component should be
 equivalent to:
