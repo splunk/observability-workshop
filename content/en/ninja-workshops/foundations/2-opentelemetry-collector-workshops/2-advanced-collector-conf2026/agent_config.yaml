@@ -3,8 +3,8 @@
 #
 # DEFAULT: Components and pipelines from the Splunk Distribution default Agent
 # configuration linked from Step 1.6.
-# WORKSHOP: A FileLog receiver, resource/add_mode processor, debug exporter,
-# and per-signal file exporters used by the hands-on local exercises.
+# WORKSHOP: A FileLog receiver, resource/add_mode processor, per-signal file
+# exporters, and local debug/file pipeline connections for the exercises.
 #
 # The portable binary requires the setup script to define these variables:
 # SPLUNK_ACCESS_TOKEN, SPLUNK_API_URL, SPLUNK_HEC_TOKEN, SPLUNK_HEC_URL,
@@ -158,9 +158,10 @@ exporters:
     endpoint: "${SPLUNK_INGEST_URL}/v1/log"
     log_data_enabled: false
 
-  # WORKSHOP: Detailed console output and local OTLP JSON files.
+  # DEFAULT COMPONENT, WORKSHOP PIPELINE USE: Detailed console output.
   debug:
     verbosity: detailed
+  # WORKSHOP: Local OTLP JSON files.
   file/traces:
     path: ./agent-traces.out
     append: false
