@@ -1,7 +1,7 @@
 ---
-title: 1.5 Explore the Configuration in Config Builder
-linkTitle: 1.5 Config Builder
-weight: 5
+title: 1.6 Upload the Configuration to Config Builder
+linkTitle: 1.6 Upload Config YAML
+weight: 6
 ---
 
 The starter file begins with Splunk Distribution's default Agent configuration

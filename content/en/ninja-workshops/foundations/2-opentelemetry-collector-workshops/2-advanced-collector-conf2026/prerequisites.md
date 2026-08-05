@@ -19,7 +19,8 @@ time: 5 minutes
 
 ### Values requested by the setup script
 
-For the complete Linux workshop, have these values ready:
+For the default cloud-connected setup on Linux or Apple Silicon, have these
+values ready:
 
 - Your Splunk Observability Cloud **realm** and an **ingest access token**.
   Find the realm under **Settings > your user name > Organizations** using
@@ -47,13 +48,13 @@ Windows and Intel Macs are not supported by this workshop setup. Windows users
 should use the provided Splunk Workshop Instance.
 {{% /notice %}}
 
-{{% notice title="Apple Silicon and local-only mode" style="note" %}}
-Apple Silicon is supported for local Collector and Config Builder exercises.
-The setup automatically selects local-only mode, skips the cloud and HEC
-credential prompts, points those exporters at unused local ports, and records
-both cloud flags as `false`. Skip Step 1.6 and all cloud-validation subsections.
-Connection errors for the local placeholders can be ignored; the workshop
-`debug` and `file` exporters provide the results.
+{{% notice title="Apple Silicon and optional local-only mode" style="note" %}}
+Apple Silicon supports the same local and Splunk Observability Cloud exercises
+as Linux. The first setup prompt asks whether to use local-only mode and
+defaults to **No**. Press Enter to continue with realm and access-token prompts.
+Choose local-only mode only when you intentionally do not want the Agent to
+send telemetry to Splunk backends. You can also preselect it with
+`CONF2026_LOCAL_ONLY=true`.
 {{% /notice %}}
 
 {{% exercise title="Create the workshop directory" %}}
@@ -113,6 +114,17 @@ chmod +x setup-workshop.sh
 {{% /tab %}}
 {{% /tabs %}}
 
+At this point, seeing only these three files is expected:
+
+```text
+loadgen
+otelcol
+setup-workshop.sh
+```
+
+The setup script creates `1-agent/agent_config.yaml` and `workshop-env.sh` in
+the next step.
+
 {{< /step >}}
 
 {{< step "Run the setup" "3" >}}
@@ -123,15 +135,22 @@ Run the setup script:
 ./setup-workshop.sh
 ```
 
+At the first prompt, press Enter to use the default cloud-connected mode. The
+script then requests the Splunk Observability Cloud realm and ingest access
+token. Enter `y` only when you explicitly want local-only mode.
+
 The script:
 
 - Verifies Collector version `0.157.0`.
 - Handles macOS quarantine attributes when running on Apple Silicon.
-- On Linux, prompts for the realm and access token if they are not already
-  present in `REALM` and `SPLUNK_ACCESS_TOKEN`/`ACCESS_TOKEN`.
-- On Linux, prompts for `SPLUNK_API_URL` and optional Splunk HEC credentials,
-  then derives `SPLUNK_INGEST_URL` and the Agent listen interface using the
-  Distribution's installer defaults. Apple Silicon uses local-only values.
+- On Linux and Apple Silicon, defaults to cloud-connected mode and prompts for
+  the realm and access token if they are not already present in `REALM` and
+  `SPLUNK_ACCESS_TOKEN`/`ACCESS_TOKEN`.
+- Prompts for `SPLUNK_API_URL` and optional Splunk HEC credentials, then derives
+  `SPLUNK_INGEST_URL` and the Agent listen interface using the Distribution's
+  installer defaults.
+- Uses local placeholder endpoints only when local-only mode is explicitly
+  selected.
 - Creates the single-Agent starter configuration.
 
 It also generates `[WORKSHOP]/workshop-env.sh`. This file does **not** exist in
@@ -152,10 +171,21 @@ The resulting directory is:
 └── workshop-env.sh
 ```
 
+Verify that both generated files exist:
+
+```bash
+test -f 1-agent/agent_config.yaml && \
+test -f workshop-env.sh && \
+echo "Workshop setup is complete."
+```
+
 `workshop-env.sh` has owner-only permissions and is intentionally not part of
 the repository because it can contain access tokens. Do not share or commit it.
 If it is missing, return to `[WORKSHOP]`, rerun `./setup-workshop.sh`, and check
-that the script reached `Workshop environment setup complete.`
+that the script reached `Workshop environment setup complete.` If the directory
+still contains only `loadgen`, `otelcol`, and `setup-workshop.sh`, setup stopped
+before completion; read the error above the prompt, correct it, and rerun the
+script.
 
 {{< /step >}}
 

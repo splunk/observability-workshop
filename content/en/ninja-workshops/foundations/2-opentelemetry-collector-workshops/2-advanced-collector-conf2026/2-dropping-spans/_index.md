@@ -29,7 +29,7 @@ At scale, these spans add noise and consume processing, network, and storage
 capacity without helping most investigations. The goal is to drop only the
 known health-check operation while preserving application spans.
 
-Continue in Config Builder with the `agent_config.yaml` imported in Step 1.5.
+Continue in Config Builder with the `agent_config.yaml` imported in Step 1.6.
 
 The filter runs before the Agent's exporters. The local `debug` and
 `file/traces` outputs therefore show the same filtered spans prepared for the

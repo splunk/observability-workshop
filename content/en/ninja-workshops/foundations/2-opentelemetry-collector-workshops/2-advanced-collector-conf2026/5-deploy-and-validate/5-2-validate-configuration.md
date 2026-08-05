@@ -9,8 +9,6 @@ this step from the **Loadgen** terminal.
 
 {{% notice title="Cloud validation is conditional" style="info" %}}
 Local console and file validation works in every supported environment.
-Apple Silicon attendees use those local checks and skip every cloud-validation
-subsection.
 
 Run the following without printing any credentials to see which optional
 exporters were configured:

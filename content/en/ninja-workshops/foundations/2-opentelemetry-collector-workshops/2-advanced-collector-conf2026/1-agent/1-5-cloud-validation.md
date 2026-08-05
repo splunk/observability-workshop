@@ -1,21 +1,21 @@
 ---
-title: 1.6 Validate Splunk Observability Cloud
-linkTitle: 1.6 Cloud Validation
-weight: 6
+title: 1.5 Validate Splunk Observability Cloud
+linkTitle: 1.5 Cloud Validation
+weight: 5
 ---
 
 This optional step confirms that the default trace and metrics exporters can
 reach the Splunk Observability Cloud organization configured during setup.
 
 {{% notice title="Skip conditions" style="warning" %}}
-Skip this step when using Apple Silicon, when you cannot provision or access a
-Splunk Observability Cloud organization, or when setup reported local-only
-mode. Local validation from Steps 1.2 through 1.4 is sufficient.
+Skip this step when you cannot access a Splunk Observability Cloud organization
+or when setup reported local-only mode. Local validation from Steps 1.2 through
+1.4 is sufficient.
 {{% /notice %}}
 
 {{% exercise title="Find workshop traces and host metrics" %}}
 
-1. On the Linux workshop instance, confirm cloud mode was enabled:
+1. On the workshop host, confirm cloud mode was enabled:
 
    ```bash
    cd [WORKSHOP]/1-agent

@@ -53,7 +53,7 @@ We will refer to these terminals as **Agent Console**, **Loadgen**, and
 
 ## Understanding the Agent configuration
 
-Let’s review the workshop additions to `agent_config.yaml`. Step 1.5 provides a
+Let’s review the workshop additions to `agent_config.yaml`. Step 1.6 provides a
 complete inventory of the Splunk Distribution defaults. This workshop uses one
 Agent and no Gateway.
 
@@ -151,5 +151,5 @@ workshop, including on Apple Silicon and in local-only mode.
 Local debug/file validation always applies. With valid credentials, the
 default `otlp_http` and `signalfx` exporters also send traces and metrics to
 Splunk Observability Cloud. If setup reported local-only mode, cloud exporter
-errors can be ignored and Step 1.6 must be skipped.
+errors can be ignored and Step 1.5 must be skipped.
 {{% /notice %}}

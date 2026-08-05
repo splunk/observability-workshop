@@ -2,7 +2,7 @@
 # the .conf26 Advanced Collector workshop.
 #
 # DEFAULT: Components and pipelines from the Splunk Distribution default Agent
-# configuration linked from Step 1.5.
+# configuration linked from Step 1.6.
 # WORKSHOP: A FileLog receiver, resource/add_mode processor, debug exporter,
 # and per-signal file exporters used by the hands-on local exercises.
 #
