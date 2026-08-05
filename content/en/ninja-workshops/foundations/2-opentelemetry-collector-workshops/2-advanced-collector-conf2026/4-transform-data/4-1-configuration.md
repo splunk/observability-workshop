@@ -14,7 +14,8 @@ In **Component Inventory**, click **Add component**. Select component type
 Set `error_mode` to `ignore` so one malformed workshop line does not stop the
 logs pipeline.
 
-Add a statement group with context `resource` and this statement:
+Under `log_statements`, click **+** to add a statement group and set its
+context to `resource`. Under that group's `statements`, click **+** and enter:
 
 ```ottl
 keep_keys(resource.attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
@@ -24,24 +25,64 @@ This keeps the resource metadata used by the exercise and removes fields such
 as `com.splunk.source`, `service.name`, and `os.type` from the exported log
 resource.
 
+Under `log_statements`, click **+** again to add a second statement group and
+set its context to `log`. Leave its `statements` list empty for now. The
+complete OTTL expressions are easier and safer to add in the Collector YAML
+editor because several expressions are too long for the Options fields.
+
+![The Transform Processor Options form with resource and log context groups](../images/config-builder-transform-options-contexts.png)
+
+If an empty statement row was added under the `log` context, use its trash-can
+icon to remove it. The `log` context should remain, with no statements beneath
+it.
+
+![The Transform Processor Options form with an empty log statements list](../images/config-builder-transform-empty-log-statements.png)
+
+Select **Preview**. Confirm that the preview contains one `transform`
+processor, a `resource` context with the `keep_keys` statement, and an empty
+`log` context. Click **Add**.
+
+![Previewing the Transform Processor shell before adding it](../images/config-builder-transform-preview.png)
+
 {{< /step >}}
 
-{{< step "Parse fields and map severity" "2" >}}
+{{< step "Complete the log statements in Collector YAML" "2" >}}
 
-Add a second statement group with context `log` and these statements in order:
+Open **Collector YAML**, then click **Edit YAML**.
 
-```ottl
-set(log.cache, ParseJSON(log.body)) where IsMatch(log.body, "^\\{")
-flatten(log.cache, "")
-merge_maps(log.attributes, log.cache, "upsert")
-set(log.severity_text, log.attributes["level"])
-set(log.severity_number, 1) where log.severity_text == "TRACE"
-set(log.severity_number, 5) where log.severity_text == "DEBUG"
-set(log.severity_number, 9) where log.severity_text == "INFO"
-set(log.severity_number, 13) where log.severity_text == "WARN"
-set(log.severity_number, 17) where log.severity_text == "ERROR"
-set(log.severity_number, 21) where log.severity_text == "FATAL"
+![Opening the Collector YAML editor](../images/config-builder-collector-yaml-edit.png)
+
+Find `processors`, then `transform`, then the empty `- context: log` entry.
+Place the cursor on the next line below `- context: log`. Copy and paste the
+entire indented block below exactly as shown:
+
+```yaml
+        statements:
+          - set(log.cache, ParseJSON(log.body)) where IsMatch(log.body,
+            "^\\{")
+          - flatten(log.cache, "")
+          - merge_maps(log.attributes, log.cache, "upsert")
+          - set(log.severity_text, log.attributes["level"])
+          - set(log.severity_number, 1) where log.severity_text ==
+            "TRACE"
+          - set(log.severity_number, 5) where log.severity_text ==
+            "DEBUG"
+          - set(log.severity_number, 9) where log.severity_text == "INFO"
+          - set(log.severity_number, 13) where log.severity_text ==
+            "WARN"
+          - set(log.severity_number, 17) where log.severity_text ==
+            "ERROR"
+          - set(log.severity_number, 21) where log.severity_text ==
+            "FATAL"
 ```
+
+The indentation is part of the YAML. `statements:` must be nested beneath the
+existing `- context: log` entry, and each `- set(...)` or function call must be
+nested beneath `statements:`. Do not add a second `- context: log` entry.
+
+Wait for the editor header to show **VALID**, then click **Save changes**.
+
+![The completed Transform Processor in the Collector YAML editor](../images/config-builder-transform-yaml-complete.png)
 
 `ParseJSON` creates a map in the temporary cache, `flatten` normalizes nested
 fields, and `merge_maps(..., "upsert")` inserts new keys or replaces existing
@@ -51,8 +92,8 @@ into `severity_text` and map it to an OpenTelemetry severity number.
 The load generator produces `DEBUG`, `INFO`, `WARN`, and `ERROR`. The `TRACE`
 and `FATAL` statements demonstrate how the mapping can cover additional input.
 
-Review **Preview** and click **Add**. The generated configuration should define
-one `transform` processor with both statement groups.
+The saved configuration should define one `transform` processor with both
+statement groups.
 
 {{% notice title="Cardinality guidance" style="warning" %}}
 Promoting every JSON field to a top-level attribute is useful for this
