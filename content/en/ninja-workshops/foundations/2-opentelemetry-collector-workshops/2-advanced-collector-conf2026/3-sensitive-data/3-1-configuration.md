@@ -74,9 +74,11 @@ processors:
 
 {{< step "Add both processors to the traces pipeline" "3" >}}
 
-Select **Pipelines**, click the pencil-shaped **Edit** icon for `traces`, and
-select both `attributes` and `redaction` in the **processors** selector. Keep
-all existing selections and click **Edit**.
+Select **Pipelines** and click the pencil-shaped **Edit** icon for `traces`.
+Click **+** beside **processors** to add `attributes`, then repeat to add
+`redaction`. Keep every existing receiver, processor, and exporter. Use the
+drag handles to place both new processors after `filter/health` and before
+`resource/add_mode`, then click **Edit**.
 
 Open **Collector YAML** and confirm:
 
@@ -93,12 +95,12 @@ service:
     traces:
       processors:
         - memory_limiter
+        - filter/health
+        - attributes
+        - redaction
         - resource/add_mode
         - batch
         - resource_detection
-        - filter
-        - attributes
-        - redaction
 ```
 
 The order of `attributes` and `redaction` does not change this exercise's

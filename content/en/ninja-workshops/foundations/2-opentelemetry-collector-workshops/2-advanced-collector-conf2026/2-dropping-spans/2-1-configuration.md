@@ -21,23 +21,38 @@ For **Component**, select `filter`, then click **Next**.
 
 ![Selecting the filter processor](../images/config-builder-filter-component.png)
 
-In **Options**, set `error_mode` to `ignore`. Under `trace_conditions`, add:
+Use `health` as the component name so its Collector component ID is
+`filter/health`.
+
+In **Options**, set the top-level `error_mode` to `ignore`. Beside
+`trace_conditions`, click **+** to add a condition group. Inside that group,
+beside `conditions`, click **+** and enter:
 
 ```ottl
 span.name == "/_healthz"
 ```
+
+Leave the condition group's `context` and `error_mode` fields empty. The
+Collector infers the `span` context from `span.name`, and the group inherits
+the top-level `error_mode`.
 
 {{% notice title="Why these settings?" style="info" %}}
 The condition matches spans by name. Setting `error_mode` to `ignore` keeps the
 pipeline running if a telemetry item cannot be evaluated.
 {{% /notice %}}
 
-![Configuring processor options](../images/config-builder-component-options.png)
+{{% notice title="Use trace_conditions" style="note" %}}
+The legacy `traces.span` filter configuration is deprecated. This workshop
+uses `trace_conditions`. Config Builder represents the condition as a group
+containing a `conditions` list.
+{{% /notice %}}
 
-Select **Preview**, confirm the generated YAML defines `processors.filter`,
-and click **Add**.
+![Adding a span-name condition under trace_conditions](../images/config-builder-filter-trace-conditions.png)
 
-![Previewing and adding the component](../images/config-builder-component-preview.png)
+Select **Preview**, confirm the generated YAML defines
+`processors.filter/health`, and click **Add**.
+
+![Previewing and adding the filter health component](../images/config-builder-filter-health-preview.png)
 
 {{< /step >}}
 
@@ -47,20 +62,16 @@ Select **Pipelines**, find `traces`, and click its pencil-shaped **Edit** icon.
 
 ![Editing the traces pipeline from the Pipelines tab](../images/config-builder-pipelines-edit.png)
 
-{{% notice title="About the screenshot" style="note" %}}
-The screenshot includes an unused `otlp_grpc/gateway` component. This workshop
-uses one Agent and does not add that component to a pipeline.
-{{% /notice %}}
+In the **Edit pipeline** modal, click **+** beside **processors** and add
+`filter/health`. Use the drag handle to place it immediately after
+`memory_limiter`, before `batch` and the remaining processors. Click **Edit**.
 
-In the **Edit pipeline** modal, open the **processors** selector, select
-`filter`, and click **Edit**.
-
-![Selecting processors in the Edit pipeline modal](../images/config-builder-edit-pipeline-modal.png)
+![Adding filter health to the traces pipeline and placing it after memory limiter](../images/config-builder-traces-pipeline-filter-health.png)
 
 {{% notice title="Keep the existing pipeline components" style="warning" %}}
 Keep every currently selected receiver, processor, and exporter. Add only the
-`filter` processor. Clearing a checkbox removes that component from the
-pipeline.
+`filter/health` processor. The screenshot does not show the workshop's
+`resource/add_mode` processor; keep it in your pipeline.
 {{% /notice %}}
 
 {{< /step >}}
@@ -71,23 +82,24 @@ Select **Collector YAML** and confirm the generated configuration includes:
 
 ```yaml
 processors:
-  filter:
+  filter/health:
     error_mode: ignore
     trace_conditions:
-      - 'span.name == "/_healthz"'
+      - conditions:
+          - 'span.name == "/_healthz"'
 
 service:
   pipelines:
     traces:
       processors:
         - memory_limiter
+        - filter/health
         - resource/add_mode
         - batch
         - resource_detection
-        - filter
 ```
 
-The important checks are that `filter` appears exactly once in
+The important checks are that `filter/health` appears exactly once in
 `traces.processors` and that the existing receivers, processors, and exporters
 remain connected.
 

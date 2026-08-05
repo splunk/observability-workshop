@@ -10,7 +10,7 @@ weight: 1
 
 In **Collector YAML**, confirm:
 
-- `filter`, `attributes`, and `redaction` are connected to `traces`.
+- `filter/health`, `attributes`, and `redaction` are connected to `traces`.
 - `transform` is connected to `logs` after `resource_detection`.
 - The imported receivers, processors, exporters, extensions, and six pipelines
   are still present.

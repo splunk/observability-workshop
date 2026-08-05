@@ -105,9 +105,10 @@ explicit field allowlist for real workloads.
 
 {{< step "Add the processor to the logs pipeline" "3" >}}
 
-Select **Pipelines**, click the pencil-shaped **Edit** icon for `logs`, and
-select `transform` in the **processors** selector. Keep all existing receivers,
-processors, and exporters selected, then click **Edit**.
+Select **Pipelines** and click the pencil-shaped **Edit** icon for `logs`.
+Click **+** beside **processors** and add `transform`. Keep every existing
+receiver, processor, and exporter. Use the drag handle to place `transform`
+after `resource_detection`, then click **Edit**.
 
 Open **Collector YAML** and confirm:
 
@@ -115,7 +116,7 @@ Open **Collector YAML** and confirm:
 - `transform` appears exactly once in `service.pipelines.logs.processors`.
 - It appears after `resource_detection`, allowing `host.name` to be detected
   before the resource allowlist is applied.
-- `filter`, `attributes`, and `redaction` remain connected to `traces`.
+- `filter/health`, `attributes`, and `redaction` remain connected to `traces`.
 
 The relevant logs pipeline should be equivalent to:
 
@@ -132,9 +133,9 @@ service:
 ```
 
 Review **Collector YAML** and resolve any errors shown. If `transform` is not
-after `resource_detection`, stop and ask the workshop facilitator before
-continuing. The resource allowlist must run after host metadata is detected,
-and the supplied Pipeline editor does not expose a separate reorder control.
+after `resource_detection`, return to the Pipeline editor and use the drag
+handle to move it. The resource allowlist must run after host metadata is
+detected.
 
 Keep the project open for Chapter 5.
 
