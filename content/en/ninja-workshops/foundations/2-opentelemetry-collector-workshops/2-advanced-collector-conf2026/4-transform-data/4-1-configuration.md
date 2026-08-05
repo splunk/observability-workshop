@@ -118,18 +118,27 @@ Open **Collector YAML** and confirm:
   before the resource allowlist is applied.
 - `filter/health`, `attributes`, and `redaction` remain connected to `traces`.
 
-The relevant logs pipeline should be equivalent to:
+The complete logs pipeline should be equivalent to:
 
 ```yaml
 service:
   pipelines:
     logs:
+      receivers:
+        - fluent_forward
+        - otlp
+        - file_log/quotes
       processors:
         - memory_limiter
         - resource/add_mode
         - batch
         - resource_detection
         - transform
+      exporters:
+        - splunk_hec
+        - splunk_hec/profiling
+        - debug
+        - file/logs
 ```
 
 Review **Collector YAML** and resolve any errors shown. If `transform` is not

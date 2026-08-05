@@ -100,12 +100,16 @@ Open **Collector YAML** and confirm:
   `service.pipelines.traces.processors`.
 - All existing trace receivers and exporters remain connected.
 
-The relevant pipeline list should be equivalent to:
+The complete traces pipeline should be equivalent to:
 
 ```yaml
 service:
   pipelines:
     traces:
+      receivers:
+        - jaeger
+        - otlp
+        - zipkin
       processors:
         - memory_limiter
         - filter/health
@@ -114,11 +118,16 @@ service:
         - resource/add_mode
         - batch
         - resource_detection
+      exporters:
+        - otlp_http
+        - debug
+        - file/traces
 ```
 
 The order of `attributes` and `redaction` does not change this exercise's
-result. Confirm that both appear exactly once and that the existing receivers,
-processors, and exporters remain connected.
+result. Confirm that both appear exactly once, all three trace receivers remain
+connected, and the default cloud exporter plus both local workshop exporters
+remain connected.
 
 Keep the project open and continue to Chapter 4.
 

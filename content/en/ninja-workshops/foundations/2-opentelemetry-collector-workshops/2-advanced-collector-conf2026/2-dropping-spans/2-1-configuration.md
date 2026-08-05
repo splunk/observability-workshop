@@ -91,17 +91,25 @@ processors:
 service:
   pipelines:
     traces:
+      receivers:
+        - jaeger
+        - otlp
+        - zipkin
       processors:
         - memory_limiter
         - filter/health
         - resource/add_mode
         - batch
         - resource_detection
+      exporters:
+        - otlp_http
+        - debug
+        - file/traces
 ```
 
 The important checks are that `filter/health` appears exactly once in
-`traces.processors` and that the existing receivers, processors, and exporters
-remain connected.
+`traces.processors`, all three trace receivers remain connected, and the
+default cloud exporter plus both local workshop exporters remain connected.
 
 Keep this Config Builder project open. You will download the completed
 configuration in Chapter 5.
