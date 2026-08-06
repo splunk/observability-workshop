@@ -24,7 +24,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-	  filter: blob:none
+          filter: "blob:none"
           ssh-key: ${{ secrets.RELEASE_SSH_KEY }}
 
       - name: Setup Hugo
