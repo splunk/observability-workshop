@@ -22,8 +22,9 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v5
         with:
-          submodules: recursive
+          ref: main
           fetch-depth: 0
+	  filter: blob:none
           ssh-key: ${{ secrets.RELEASE_SSH_KEY }}
 
       - name: Setup Hugo
