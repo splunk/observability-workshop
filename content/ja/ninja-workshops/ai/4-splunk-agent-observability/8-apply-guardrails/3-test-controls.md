@@ -69,6 +69,12 @@ docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assi
 docker push localhost:9999/healthcare-assistant:app-with-controls
 ```
 
+ローカルイメージを参照するように `k8s.yaml` ファイルを更新します。
+
+````
+image: localhost:9999/splunk/healthcare-assistant:app-with-controls
+````
+
 アプリケーションを再デプロイします。
 
 ```bash

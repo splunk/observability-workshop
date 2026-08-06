@@ -10,50 +10,36 @@ weight: 3
 
 Splunk Secure Application は、デプロイされたアプリケーションおよびチームがパフォーマンストラブルシューティングに使用するのと同じ APM コンテキストに関連付けて、**ランタイムで**脆弱性を検出します。統合されたインベントリは、経営層の質問に答えます*現在のアプリケーションセキュリティリスクの露出状況はどうなっているか？*
 
----
+### 脆弱性へのアクセス
 
-## 3.1 脆弱性へのアクセス
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-### a. サービススコープの脆弱性から開く
+1. **Sevice-Map** → **Vulnerabilities Widget** に移動します
+2. **Runtime Vulnerabilities** ラベルをクリックして脆弱性リストを開きます
 
-1. **APM → Overview** ページから開きます。
-2. environment を 'astronomy-shop-*' に設定します。
-3. サービスリストをスクロールし、セキュリティインサイトデータのあるサービス（例**'ad'** サービス）をクリックします。
-4. **Application Security** タブを開き、サービスにスコープされた関連するセキュリティリスクを表示します。
+![apm](../images/03a-runtime-vuln-lbl.png)
 
-![apm](./images/03a-runtime-vuln-ad.png)
+{{% /notice %}}
 
-> [!NOTE]
-> このビューには他の代替パスからもナビゲートできます
->
-> 1. **Sevice-Map** → **Vulnerabilities Widget** または
-> 2. 左側のナビゲーションから、**APM → Application Security** → **Runtime Vulnerabilities**（**environment** : `astronomy-shop-*` でフィルタし、**service** : 例 'ad' を選択）- 環境内のすべてのインストルメント済みアプリケーションにわたる完全な脆弱性インベントリを表示します
-
----
-
-## 3.2 ステークホルダービュー
+### ステークホルダービュー
 
 インストルメント済みアプリケーション全体の脆弱性リストが以下の詳細とともに表示されます。
 
-- [ ] **CVE ID** - 標準的な脆弱性識別子
-- [ ] **CVSS** - 理論的な深刻度スコア
-- [ ] **Library** - 脆弱なライブラリの識別子
-- [ ] **Status** 列はトリアージ状態を示します（例：Detected、Fixed、Ignored）
-- [ ] **Security Risk Score** - CVSS とエクスプロイトおよびアクティビティテレメトリを組み合わせた脅威情報に基づくスコア
-- [ ] **Recommended action** - 特定された脆弱性を解決するための修復オプション
-
-![apm](./images/03b-runtime-vuln.png)
+    - **CVE ID** - 標準的な脆弱性識別子
+    - **CVSS Score** - 理論的な脆弱性深刻度スコア
+    - **EPSS Score** - 脅威情報に基づくスコア
+    - **Library** - 脆弱なライブラリの識別子
+    - **Status** - トリアージ状態（例：Detected、Fixed、Ignored）
+    - **Recommended action** - 特定された脆弱性を解決するための修復オプション
+![apm](../images/03a-runtime-vuln-lst.png)
 
 > [!NOTE]
-> 脆弱性リストをソートまたはフィルタして、**Critical**、
-> **High**、**Low** の深刻度の検出結果を確認できます。
+> 詳細がわかっている場合は、特定の CVE を検索できます。また、脆弱性リストを **CVSS Score** でソートして、深刻度別（**Critical、Medium、Low**）に CVE を確認することもできます。
 
 ---
 
-## 学んだこと
+### 学んだこと
 
 - サービスレベルおよび組織全体のランタイム脆弱性インベントリへのアクセス方法。
-- CVE、CVSS、ステータス、Security Risk Score が1つのビューにどのように表示されるか。
+- CVE、CVSS、ステータス、Threat Risk Score が1つのビューにどのように表示されるか。
 - コンテキスト化されたランタイムインベントリが、スタンドアロンのスキャンツールと比較してコンテキストスイッチングをどのように削減するか。
-
----

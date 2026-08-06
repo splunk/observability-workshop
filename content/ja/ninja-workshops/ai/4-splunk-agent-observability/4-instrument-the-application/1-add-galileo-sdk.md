@@ -14,7 +14,7 @@ time: 3 minutes
 
 GalileoのLangChainコールバックは `galileo` パッケージに含まれています。
 
-`~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` ファイルを開き、ファイルの末尾に以下を追加します。
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` ファイルを開くと、このパッケージがすでに追加されていることが確認できます。
 
 ````
 galileo

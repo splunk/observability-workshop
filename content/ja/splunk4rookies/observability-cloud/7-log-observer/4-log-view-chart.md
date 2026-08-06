@@ -10,7 +10,7 @@ weight: 4
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * 前の演習の後、まだ **Log Observer** にいることを確認してください。
-* フィルターは前の演習と同じで、タイムピッカーを **Last 15 minutes** に設定し、severity=error、`sf_service=paymentservice`、`sf_environment=[WORKSHOPNAME]` でフィルタリングしてください。
+* フィルターは前の演習と同じで、タイムピッカーを **Last 15 minutes** に設定し、severity=error、`service.name=paymentservice`、`sf_environment=[WORKSHOPNAME]` でフィルタリングしてください。
 * 必要なフィールドだけのヘッダーになっていることを確認してください。
 * 再度 **Save** をクリックし、次に **Save to Dashboard** をクリックします。
 * 再びチャート作成ダイアログが表示されます。

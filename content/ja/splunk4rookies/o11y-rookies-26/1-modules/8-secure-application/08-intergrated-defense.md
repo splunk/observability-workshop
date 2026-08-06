@@ -10,32 +10,27 @@ Observability 内で脆弱性や攻撃を検出することは、セキュリテ
 
 Splunk Secure Application は、**通知ルール**を使用して検出結果を Splunk Enterprise Security などの SIEM ソリューションにストリーミングすることで、このループを閉じます。
 
----
-
-## 7.4 SIEM 統合を通じて SecOps に接続する
+### SIEM 統合を通じて SecOps に接続する
 
 通知統合は、脆弱性や攻撃のイベントを選択した SIEM ソリューションに送信するように設定されており、SecOps チームにランタイムリスクをリアルタイムで可視化します。
 
+{{% notice title="Exercise" style="green" icon="running" %}}
+
 1. **APM → Application Security → Notifications** に移動します。
+![apm](../images/06-notification-sel.png)
+
 2. 既存の通知ルールを確認します（デモテナントには事前プロビジョニングされた Splunk ES 統合がある場合があります）。
 3. **Create Notification Rule** をクリックして、設定フローを確認します
-
-| ステップ | アクション |
-|------|--------|
-| **Trigger** | 脆弱性またはエクスプロイトのイベントタイプを選択します |
-| **Destination** | サポートされている統合を選択します（例：Splunk ES HTTP Event Collector） |
-| **Credentials** | Vault 管理のシークレットを参照します |
-
-![apm](./images/06-notification.png)
+    - **Trigger** - 脆弱性またはエクスプロイトのイベントタイプを選択します
+    - **Destination** - サポートされている統合を選択します（例：Splunk ES HTTP Event Collector）
+    - **Credentials** - Vault 管理のシークレットを参照します
+![apm](../images/06-notification.png)
+{{% /notice %}}
 
 > *「ランタイムの検出結果から SOC の可視性まで、重複するワークフローなしの単一パイプライン - SecOps はこれらのイベントを完全なコンテキスト付きで受け取ります。」*
 
----
-
-## 学んだこと
+### 学んだこと
 
 - 通知ルールが Observability ネイティブの検出結果を Splunk ES やその他の SOC ツールにフィードする方法。
 - 現在の提供状況を誇張せずに攻撃ブロックのロードマップについて議論する方法。
 - 最新の防御がランタイム検出と既存の SecOps ワークフローをどのように組み合わせるか。
-
----

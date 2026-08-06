@@ -11,7 +11,7 @@ time: 3 minutes
 
 {{< step title="importの追加" >}}
 
-`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` ファイルを編集用に開きます。importセクションの末尾、`class State(TypedDict)` の直前に以下を追加します。
+Traceを収集するために必要な以下のimportを `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` ファイルに追加済みです。
 
 ```python
 import os
@@ -47,7 +47,7 @@ from galileo.handlers.langchain import GalileoAsyncCallback
         return "No response generated"
 ```
 
-これを更新して `galileo_context` を開き、エージェントの `session_id` をキーとしてセッションを開始し、新しい `GalileoAsyncCallback` をrun configに接続します。
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` ファイルを更新して、この関数が `galileo_context` を開き、エージェントの `session_id` をキーとしてセッションを開始し、新しい `GalileoAsyncCallback` をrun configに接続するようにしました。
 
 ```python
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
@@ -88,17 +88,6 @@ from galileo.handlers.langchain import GalileoAsyncCallback
 {{% notice title="なぜリクエストごとに1つのcallbackなのか？" style="info" %}}
 
 `_process_query_async` の呼び出しごとに1つの `GalileoAsyncCallback` を作成することで、各ユーザーターンが独自のTraceに保持されます。LangGraphのrun configに接続されているため、すべてのノードのLLMおよびツール呼び出しが同じTrace配下のネストされたSpanになり、切断されたSpanの山ではなく、ターンのエンドツーエンドビューが得られます。
-
-{{% /notice %}}
-
-{{% notice title="トラブルシューティング" style="tip" icon="exclamation-triangle" %}}
-
-以下のコマンドを実行して、変更内容をリファレンスソリューションと比較します。
-
-```bash
-cd ~/workshop/healthcare-assistant/2-app-with-instrumentation/
-diff agent.py agent-with-instrumentation.py
-```
 
 {{% /notice %}}
 

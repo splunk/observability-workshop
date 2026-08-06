@@ -78,24 +78,6 @@ controlが発火すると、SDKは例外を発生させ、エージェントが�
 
 {{< /step >}}
 
-{{< step title="新しい Docker Image のビルド" >}}
-
-ベースアプリディレクトリに移動し、以下のコマンドを実行して、最近の変更を含むアプリケーションの新しいDocker imageをビルドします。
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
-docker push localhost:9999/healthcare-assistant:app-with-controls
-```
-
-{{% notice title="うまくいかない場合" style="info" %}}
-
-Docker imageのビルドに問題がある場合や、ビルドに時間がかかりすぎる場合は、ビルド済みのdocker imageを代わりに使用できます。`~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` ファイルを編集し、imageを `ghcr.io/splunk/healthcare-assistant:app-with-controls` に変更してください。
-
-{{% /notice %}}
-
-{{< /step >}}
-
 {{< /exercise >}}
 
 {{< checkpoint title="理解度チェック" >}}

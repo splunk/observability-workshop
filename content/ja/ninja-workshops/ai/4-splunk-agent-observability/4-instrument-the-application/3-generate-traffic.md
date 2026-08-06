@@ -9,24 +9,6 @@ time: 4 minutes
 
 {{< exercise title="アプリの実行とトレースの生成" >}}
 
-{{< step title="新しいDockerイメージのビルド" >}}
-
-アプリのベースディレクトリに移動し、以下のコマンドを実行して最近の変更を含むアプリケーションの新しいDockerイメージをビルドします。
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
-docker push localhost:9999/healthcare-assistant:app-with-instrumentation
-```
-
-{{% notice title="うまくいかない場合" style="info" %}}
-
-Dockerイメージのビルドに問題がある場合、またはビルドに5分以上かかる場合は、ビルド済みのDockerイメージを代わりに使用できます。その場合、`~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` ファイルを編集し、イメージを `ghcr.io/splunk/healthcare-assistant:app-with-instrumentation` に変更してください。
-
-{{% /notice %}}
-
-{{< /step >}}
-
 {{< step title="ヘルスケアアシスタントアプリのデプロイ" >}}
 
 以下のコマンドを実行してヘルスケアアシスタントアプリをデプロイします。
@@ -138,6 +120,12 @@ cd ~/workshop/healthcare-assistant
 docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 ```
+
+ローカルイメージを参照するように `k8s.yaml` ファイルを更新します。
+
+````
+image: localhost:9999/splunk/healthcare-assistant:app-with-instrumentation
+````
 
 そしてアプリケーションを再デプロイします。
 
