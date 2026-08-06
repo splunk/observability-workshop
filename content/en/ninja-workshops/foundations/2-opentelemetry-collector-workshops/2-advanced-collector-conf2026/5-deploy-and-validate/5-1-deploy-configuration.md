@@ -4,115 +4,92 @@ linkTitle: 5.1 Deploy Configuration
 weight: 1
 ---
 
-{{% exercise title="Download and start the completed Agent configuration" %}}
+{{% exercise title="Download and start the completed configuration" %}}
 
-{{< step "Review and download the YAML" "1" >}}
+{{< step "Download the YAML" "1" >}}
 
 In **Collector YAML**, confirm:
 
 - `filter/health`, `attributes`, and `redaction` are connected to `traces`.
 - `transform` is connected to `logs` after `resource_detection`.
-- The imported receivers, processors, exporters, extensions, and six pipelines
-  are still present.
+- The `traces`, `metrics`, and `logs` pipelines are present.
 
-If `transform` is not after `resource_detection`, stop and ask the workshop
-facilitator. Do not download the configuration or repair the generated YAML by
-hand.
+Choose **Download** and save the file as `agent_config.yaml`.
 
-Choose **Download** and save the generated file as `agent_config.yaml`.
-
-{{% notice title="Keep secrets outside the YAML" style="warning" %}}
-The configuration must contain environment-variable references such as
-`${SPLUNK_ACCESS_TOKEN}`, not real token values. Never paste
-`workshop-env.sh` or credentials into Config Builder.
+{{% notice title="Keep credentials outside the YAML" style="warning" %}}
+The YAML must contain environment-variable references, not token values.
 {{% /notice %}}
 
 {{< /step >}}
 
-{{< step "Back up and replace the starter configuration" "2" >}}
+{{< step "Replace the running configuration" "2" >}}
 
-Stop the foreground Agent with `Ctrl-C`. In the **Agent Console**, preserve the
-starter configuration without overwriting an earlier backup:
+Stop the Agent with `Ctrl-C`, then back up the starter file:
 
 ```bash
 cd [WORKSHOP]/1-agent
-if [ ! -f agent_config.start.yaml ]; then
-  cp agent_config.yaml agent_config.start.yaml
-fi
+test -f agent_config.start.yaml || cp agent_config.yaml agent_config.start.yaml
 ```
 
 Put the downloaded file at `[WORKSHOP]/1-agent/agent_config.yaml`.
 
-{{% tabs %}}
-{{% tab title="Apple Silicon or same computer" %}}
+{{< tabs id="config-transfer" >}}
+{{% tab title="Same computer" %}}
 
 ```bash
 cp ~/Downloads/agent_config.yaml [WORKSHOP]/1-agent/agent_config.yaml
 ```
 
-Replace `[WORKSHOP]` with the full path to `advanced-otel-workshop`.
+Replace `[WORKSHOP]` with the full workshop path.
 
 {{% /tab %}}
 {{% tab title="Remote workshop instance" %}}
 
-Run this command on your local computer with the SSH values supplied for your
-instance:
+Run this on your local computer with the SSH details supplied for the instance:
 
 ```bash
 scp -P 2222 ~/Downloads/agent_config.yaml \
   <workshop-user>@<workshop-host>:~/advanced-otel-workshop/1-agent/agent_config.yaml
 ```
 
-If the workshop directory is not directly under the remote home directory,
-replace the destination with its actual path.
-
 {{% /tab %}}
-{{% /tabs %}}
+{{< /tabs >}}
 
-Move the earlier plaintext quote log so the File Log Receiver processes only
-the new JSON test data:
+Move the earlier plaintext log so the File Log receiver reads only the new JSON
+test data:
 
 ```bash
-if [ -f quotes.log ]; then
-  mv quotes.log quotes.log.before-config-builder
-fi
+test ! -f quotes.log || mv quotes.log quotes.log.before-config-builder
 ```
-
-The file exporters use `append: false`, so the Agent starts fresh local trace,
-metric, and log output files for this configuration.
 
 {{< /step >}}
 
-{{< step "Start the updated Agent" "3" >}}
-
-From `[WORKSHOP]/1-agent`, source the generated environment file and start the
-Agent:
+{{< step "Restart the Agent" "3" >}}
 
 ```bash
 source ../workshop-env.sh
 ../otelcol --config=agent_config.yaml
 ```
 
-Confirm that startup reaches:
+In the **Tests** terminal, confirm readiness:
 
-```text
-Everything is ready. Begin running and processing data.
+```bash
+curl -fsS http://127.0.0.1:13133/ && echo "Collector is ready"
 ```
 
 Leave the Agent running for Step 5.2.
 
-{{% notice title="If workshop-env.sh is missing" style="info" %}}
-`workshop-env.sh` is generated at `[WORKSHOP]/workshop-env.sh` when
-`setup-workshop.sh` completes. Return to `[WORKSHOP]` and rerun
-`./setup-workshop.sh`; do not create or download this credentials file by hand.
-{{% /notice %}}
+{{% expand title="If the Agent does not start" %}}
 
-If the Collector reports a configuration error, stop it and use the component
-name and field in the error message to correct the Config Builder project.
-Download the corrected YAML and start the Agent again.
+Use the component and field named in the Collector error to correct the Config
+Builder project. Download the YAML again, replace `agent_config.yaml`, and
+restart the Agent. If `workshop-env.sh` is missing, rerun
+`[WORKSHOP]/setup-workshop.sh`.
+
+{{% /expand %}}
 
 {{< /step >}}
 
 {{% /exercise %}}
 
-{{< checkpoint "The updated Agent is running with all four processors enabled." >}}
+{{< checkpoint "The updated single-Agent configuration is running." >}}

@@ -1,0 +1,83 @@
+[SESSION ID]
+Lab Guide
+**UPDATE THIS TABLE AFTER WRITING THE LAB EXERCISES!**
+Table of Contents
+Prerequisites2
+Troubleshooting Connectivity2
+Access the Lab Environment3
+Description3
+Login to Splunk Show3
+Finding Your Instance Details:5
+Exercise 1 – [Title]6
+Description6
+Steps6
+Exercise 2 – [Title]6
+Description6
+Steps6
+Exercise 3 – [Title]7
+Description7
+Steps7
+Prerequisites
+Splunk’s hands-on workshops are delivered via the Splunk Show portal - you will need a splunk.com account in order to access this.
+If you don’t already have a Splunk.com account, please create one here before proceeding with the rest of the workshop.
+Troubleshooting Connectivity
+If you experience connectivity issues with accessing either your workshop environment or the event page, please try the following troubleshooting steps. If you still experience issues please reach out to the team running your workshop.
+Use Google Chrome (if you’re not already)
+If the event page (i.e. https://splunk.show/…) didn’t load when you clicked on the link, try refreshing the page
+Disconnect from VPN (if you’re using one)
+Clear your browser cache and restart your browser (if using Google Chrome, go to: Settings > Privacy and security > Delete browsing data)
+Try using private/incognito browsing mode to rule out any caching issues
+🆘 Need help?
+If you’re still experiencing issues please ask a member of the onsite support team for assistance and they’ll help get you up and running!
+Access the Lab Environment
+Description
+In this exercise, you will access your lab environment using our Splunk Show portal.
+Login to Splunk Show
+You should have received an invite email from Splunk Show containing a link to a workshop event (“https://splunk.show/…”) 
+❌ If you DON’T have an email from Splunk Show:
+Please check your spam folder.
+If you still can’t find the email please visit https://show.splunk.com and log in with your splunk.com account. 
+Find the event for this session (look for the session ID, such as PLA1234, SEC5678, etc.) and click on Enroll event.
+✅ If you DO have an email from Splunk Show:
+Open the email and click on the event link.
+On the Welcome to the Show page click on GO TO SIGN IN and log in using your Splunk.com account.
+🔑 Don’t have a Splunk.com Account?
+If you don’t already have a Splunk.com account, don’t worry - it only takes a few minutes to create one! Please create one here.
+Once logged in you should see the event page. Click on Enroll event.
+🆘 Need help enrolling?
+Please ask a member of the onsite support team for assistance.
+Finding Your Instance Details:
+Scroll down the page to the Instances information section. Here you will find information on how to access your environment(s) along with the login details. 
+Expand this sectionView your login detailsExpand this sectionView your login details
+Expand this section
+View your login details
+Expand this section
+View your login details
+Note: The screenshot above shows ‘Splunk Enterprise’ but it may be called something else depending on the environments used in this hands-on session.
+Exercise 1 – [Title]
+Description
+[Description]
+Steps
+[Step]Example SPL query: 
+<search filter> | command function clause <field> parameter=x
+[Step]
+[Step]
+Note: [Any notes or tips you want to highlight in an exercise]
+Exercise 2 – [Title]
+Description
+[Description]
+Steps
+[Step]Example SPL query: 
+<search filter> | command function clause <field> parameter=x
+[Step]
+[Step]
+Note: [Any notes or tips you want to highlight in an exercise]
+Exercise 3 – [Title]
+Description
+[Description]
+Steps
+[Step]Example SPL query: 
+<search filter> | command function clause <field> parameter=x
+[Step]
+[Step]
+Note: [Any notes or tips you want to highlight in an exercise]

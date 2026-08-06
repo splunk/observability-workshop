@@ -1,0 +1,87 @@
+# Advanced Collector Delta - optional solution with a local RFC 5424 syslog
+# receiver. Logs remain in the debug exporter during the live workshop.
+
+extensions:
+  health_check:
+    endpoint: "${env:SPLUNK_LISTEN_INTERFACE}:13133"
+
+receivers:
+  host_metrics:
+    collection_interval: 30s
+    scrapers:
+      cpu:
+      load:
+      memory:
+  otlp:
+    protocols:
+      http:
+        endpoint: "${env:SPLUNK_LISTEN_INTERFACE}:4318"
+  syslog/workshop:
+    tcp:
+      listen_address: "${env:SPLUNK_LISTEN_INTERFACE}:54526"
+    protocol: rfc5424
+    resource:
+      service.name: workshop-syslog
+
+processors:
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: ${env:SPLUNK_MEMORY_LIMIT_MIB}
+  resource_detection:
+    detectors: [system]
+    override: true
+  filter/drop_health:
+    error_mode: ignore
+    traces:
+      span:
+        - 'name == "/_healthz"'
+  attributes/privacy:
+    actions:
+      - key: user.password
+        action: delete
+      - key: user.visa
+        action: delete
+      - key: user.amex
+        action: delete
+      - key: user.mastercard
+        action: delete
+      - key: user.email
+        action: hash
+  batch:
+
+exporters:
+  signalfx:
+    access_token: "${env:SPLUNK_ACCESS_TOKEN}"
+    api_url: "${env:SPLUNK_API_URL}"
+    ingest_url: "${env:SPLUNK_INGEST_URL}"
+    sync_host_metadata: true
+    correlation:
+  otlp_http:
+    traces_endpoint: "${env:SPLUNK_INGEST_URL}/v2/trace/otlp"
+    headers:
+      X-SF-Token: "${env:SPLUNK_ACCESS_TOKEN}"
+  debug:
+    verbosity: basic
+  debug/detailed:
+    verbosity: detailed
+
+service:
+  extensions: [health_check]
+  pipelines:
+    metrics:
+      receivers: [host_metrics]
+      processors: [memory_limiter, resource_detection, batch]
+      exporters: [signalfx, debug]
+    traces:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - resource_detection
+        - filter/drop_health
+        - attributes/privacy
+        - batch
+      exporters: [otlp_http, debug/detailed]
+    logs:
+      receivers: [otlp, syslog/workshop]
+      processors: [memory_limiter, resource_detection, batch]
+      exporters: [debug/detailed]

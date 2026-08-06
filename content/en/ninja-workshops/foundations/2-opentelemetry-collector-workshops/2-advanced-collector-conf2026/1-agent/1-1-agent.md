@@ -9,29 +9,21 @@ portable-binary approach works on both supported platforms.
 
 {{% exercise title="Check Agent health" %}}
 
-If you have not already started the Agent in the **Agent Console**, run:
-
-```bash
-cd [WORKSHOP]/1-agent
-source ../workshop-env.sh
-../otelcol --config=agent_config.yaml
-```
-
-Confirm that the startup output contains:
-
-```text
-Everything is ready. Begin running and processing data.
-```
+If you have not already started the Agent, run the command on the previous
+page in the **Agent Console**.
 
 Leave that process running. In the **Tests** terminal, check the Agent health
 extension:
 
 ```bash
-curl -fsS http://127.0.0.1:13133/
+curl -fsS http://127.0.0.1:13133/ && \
+echo "Collector is ready"
 ```
 
-The command succeeds when the foreground Agent is healthy. In the **Agent
-Console**, also confirm that the Collector starts without configuration
-errors and reports that it is ready to process data.
+Treat the successful health response as the readiness checkpoint. Collector
+startup logs can include `Everything is ready. Begin running and processing
+data.`, but the exact text and formatting are version-specific and can scroll
+out of view. In the **Agent Console**, confirm only that the Collector remains
+running without configuration errors.
 
 {{% /exercise %}}

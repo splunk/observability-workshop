@@ -4,13 +4,12 @@ linkTitle: 1.5 Cloud Validation
 weight: 5
 ---
 
-This optional step confirms that the default trace and metrics exporters can
-reach the Splunk Observability Cloud organization configured during setup.
+This optional step confirms that the trace and metrics exporters can reach the
+Splunk Observability Cloud organization configured during setup.
 
 {{% notice title="Skip conditions" style="warning" %}}
-Skip this step when you cannot access a Splunk Observability Cloud organization
-or when setup reported local-only mode. Local validation from Steps 1.2 through
-1.4 is sufficient.
+Skip this step when setup did not enable cloud export. Local validation from
+Steps 1.2 through 1.4 is sufficient.
 {{% /notice %}}
 
 {{% exercise title="Find workshop traces and host metrics" %}}
@@ -49,11 +48,9 @@ or when setup reported local-only mode. Local validation from Steps 1.2 through
    `user.*` fields and `otelcol.service.mode=agent`.
 6. Select **Infrastructure > Hosts**. Locate the detected workshop host and
    open it.
-   Confirm recent CPU, memory, load, or network data is present. Cloud-provider
-   and Kubernetes hosts can appear in their corresponding infrastructure
-   navigator instead. If needed, open **Settings > Metric Metadata**, search
-   for `host.name:<detected-host-name>`, and confirm recent host metrics. The
-   displayed metric subset depends on the host operating system.
+   Confirm recent CPU data is present. If needed, open **Settings > Metric
+   Metadata**, search for `host.name:<detected-host-name>`, and confirm a recent
+   `system.cpu.time` data point.
 
 Telemetry can take a short time to become searchable. If nothing appears,
 first confirm the same data is present in the Agent console, then inspect the

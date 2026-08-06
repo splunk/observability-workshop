@@ -16,7 +16,5 @@ You will then verify:
 - JSON logs have useful fields and OpenTelemetry severity values.
 - Traces and metrics reach Splunk Observability Cloud when cloud export is
   enabled.
-- Transformed logs are visible through Log Observer Connect when the optional
-  Splunk HEC and log connection are available.
 
 Local validation is available in every supported environment.

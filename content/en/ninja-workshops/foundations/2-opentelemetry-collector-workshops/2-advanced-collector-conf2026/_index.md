@@ -19,12 +19,9 @@ Geoff Higginbottom.
 In this workshop, you will run one portable Splunk OpenTelemetry Collector in
 **agent mode** on a Linux host or Apple Silicon Mac. The Collector
 receives synthetic traces, reads synthetic logs, and collects host metrics.
-The starter configuration combines Splunk Distribution default pipelines with
-local console and file exporters used by the workshop.
-
-When valid Observability Cloud credentials are supplied, default metrics and
-traces pipelines send data to Splunk. Local exporters remain active so every
-exercise can also be completed without a cloud connection.
+One configuration receives metrics, traces, and logs and always writes local
+debug and file output. When cloud export is enabled, the same metrics and
+traces pipelines also send to Splunk Observability Cloud.
 
 ## Workshop Overview
 
@@ -34,8 +31,7 @@ During this workshop, you will:
 - Generate traces and logs and collect host metrics on Linux or Apple Silicon.
 - Validate all three signals locally and, when available, validate metrics and
   traces in Splunk Observability Cloud.
-- Download the starter `agent_config.yaml` and inspect it in OTel Collector
-  Config Builder.
+- Upload `agent_config.yaml` and inspect it in OTel Collector Config Builder.
 - Progressively explore span filtering, sensitive-data handling, and log
   transformation in Config Builder.
 - Download the completed configuration once, deploy it to the Agent, and

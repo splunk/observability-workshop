@@ -60,7 +60,7 @@ and `resource/add_mode` adds `otelcol.service.mode=agent`.
 
 The synthetic sensitive values are intentional workshop test data that later
 exercises will modify. The spans are written to the console and
-`agent-traces.out`; with valid cloud credentials, the default `otlp_http`
-exporter also sends them to Splunk APM.
+`agent-traces.out`; when cloud export is enabled, `otlp_http` also sends them
+to Splunk APM.
 
 {{% /exercise %}}

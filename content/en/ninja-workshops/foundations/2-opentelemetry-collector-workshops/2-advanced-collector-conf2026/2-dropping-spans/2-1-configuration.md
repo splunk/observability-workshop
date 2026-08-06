@@ -63,15 +63,14 @@ Select **Pipelines**, find `traces`, and click its pencil-shaped **Edit** icon.
 ![Editing the traces pipeline from the Pipelines tab](../images/config-builder-pipelines-edit.png)
 
 In the **Edit pipeline** modal, click **+** beside **processors** and add
-`filter/health`. Use the drag handle to place it immediately after
-`memory_limiter`, before `batch` and the remaining processors. Click **Edit**.
+`filter/health`. Place it immediately after `memory_limiter`, then click
+**Edit**.
 
 ![Adding filter health to the traces pipeline and placing it after memory limiter](../images/config-builder-traces-pipeline-filter-health.png)
 
 {{% notice title="Keep the existing pipeline components" style="warning" %}}
 Keep every currently selected receiver, processor, and exporter. Add only the
-`filter/health` processor. The screenshot does not show the workshop's
-`resource/add_mode` processor; keep it in your pipeline.
+`filter/health` processor.
 {{% /notice %}}
 
 {{< /step >}}
@@ -92,24 +91,20 @@ service:
   pipelines:
     traces:
       receivers:
-        - jaeger
         - otlp
-        - zipkin
       processors:
         - memory_limiter
         - filter/health
-        - resource/add_mode
-        - batch
         - resource_detection
+        - resource/add_mode
       exporters:
-        - otlp_http
         - debug
         - file/traces
 ```
 
-The important checks are that `filter/health` appears exactly once in
-`traces.processors`, all three trace receivers remain connected, and the
-default cloud exporter plus both local workshop exporters remain connected.
+If cloud export is enabled, `otlp_http` also appears under `exporters`. The
+important check is that `filter/health` appears once and all existing
+components remain connected.
 
 Keep this Config Builder project open. You will download the completed
 configuration in Chapter 5.

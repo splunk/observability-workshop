@@ -4,44 +4,40 @@ linkTitle: 1.2 Validate Host Metrics
 weight: 2
 ---
 
-The Agent is configured to collect host metrics automatically. We will verify
-that the receiver, processors, and debug exporter form a working local metrics
-pipeline.
+The metrics pipeline follows the original workshop pattern: it collects CPU
+metrics at startup and then once per hour. This keeps detailed debug output
+readable.
 
-{{% exercise title="Validate host metrics" %}}
+{{% exercise title="Validate host metrics locally" %}}
 
-**Verify the Agent is running:** The foreground Collector from Step 1.1 must
-still be running in the **Agent Console**. If it is not, start it again using
-the command in Step 1.1.
-
-**Verify host metrics:**
-
-1. Leave the **Agent Console** running for at least 10 seconds.
-2. Confirm that the Agent displays host metrics in its detailed debug output.
-3. On Linux, look for metrics such as `system.cpu.time`,
-   `system.memory.usage`, `system.cpu.load_average.1m`, and
-   `system.network.io`. Apple
-   Silicon can expose a different OS-supported subset, so validate the
-   `system.*` metrics that appear in your console.
-
-The output should resemble the following snippet:
+The **Agent Console** should show one metrics block after startup, similar to:
 
 ```text
-NumberDataPoints #31
-Data point attributes:
-     -> state: Str(wait)
-StartTimestamp: 2026-08-02 10:00:00 +0000 UTC
-Timestamp: 2026-08-02 10:00:10 +0000 UTC
-Value: 77.380000
-        {"otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics"}
+Metric #0
+Descriptor:
+     -> Name: system.cpu.time
+NumberDataPoints: ...
 ```
 
-Version `0.157.0` aggregates CPU metrics across logical CPUs by default, so
-your output might not contain a separate `cpu` attribute for every processor.
+If it has scrolled away, check the local output file:
 
-At this stage, the Agent continues to collect host metrics every 10 seconds.
-The metrics are always written to the local debug console and
-`agent-metrics.out`. With valid cloud credentials, the default `signalfx`
-exporter also sends them to Infrastructure Monitoring.
+```bash
+cd [WORKSHOP]/1-agent
+jq -r '
+  .resourceMetrics[].scopeMetrics[].metrics[]
+  | select(.name == "system.cpu.time")
+  | .name
+' agent-metrics.out | sort -u
+```
+
+Expected output:
+
+```text
+system.cpu.time
+```
+
+When cloud export is enabled, this same metrics pipeline also sends the batch
+to Splunk Observability Cloud. Cloud verification is optional and appears in
+Step 5.2.
 
 {{% /exercise %}}

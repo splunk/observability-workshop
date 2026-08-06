@@ -125,18 +125,14 @@ service:
   pipelines:
     logs:
       receivers:
-        - fluent_forward
         - otlp
         - file_log/quotes
       processors:
         - memory_limiter
-        - resource/add_mode
-        - batch
         - resource_detection
         - transform
+        - resource/add_mode
       exporters:
-        - splunk_hec
-        - splunk_hec/profiling
         - debug
         - file/logs
 ```

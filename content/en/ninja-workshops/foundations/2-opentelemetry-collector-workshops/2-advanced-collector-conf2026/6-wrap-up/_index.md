@@ -7,41 +7,47 @@ time: 3 minutes
 
 ![Well done](../images/welldone.png)
 
-You started with Splunk Distribution's default Agent pipelines, validated
-telemetry locally, used Config Builder to add filtering, sensitive-data
-controls, and log transformation, and deployed the completed configuration.
+You used Config Builder to filter noisy spans, protect sensitive attributes,
+transform logs, and validate the result locally. Cloud-enabled attendees also
+verified traces and metrics in Splunk Observability Cloud.
 
-## Continue learning
+## Take-home exercises
 
-1. **Send logs to a non-production Splunk instance.** Create a HEC token and
-   endpoint in your own Splunk Enterprise or Splunk Cloud Platform lab, update
-   `SPLUNK_HEC_TOKEN` and `SPLUNK_HEC_URL`, and validate the `splunk_hec`
-   exporter. Start with Splunk's
-   [Collector-to-Splunk configuration guide](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/get-started-understand-and-use-the-collector/use-the-collector-to-send-container-logs-to-splunk-enterprise/part-2-configure-the-collector-and-splunk-enterprise-instance).
-   Do not send workshop data or credentials to a production instance.
+{{% expand title="Send logs to Splunk Platform" %}}
 
-2. **Deploy Collectors at scale.** Replace one-host manual setup with Splunk's
-   supported Ansible collection. Follow
-   [Deploy the Collector for Linux with Ansible](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-for-linux/install-the-collector-for-linux-tools/ansible-for-linux).
+A Splunk Observability Cloud free organization does not include a Splunk
+Platform HEC endpoint. Use a separate non-production Splunk Enterprise or
+Splunk Cloud Platform environment.
 
-3. **Try zero-code discovery and instrumentation.** Continue with the
-   [Automatic Discovery workshops](/en/ninja-workshops/foundations/1-automatic-discovery/)
-   and the
-   [Zero-Code APM with OBI and eBPF workshop](/en/ninja-workshops/instrumentation/4-obi-ebpf/).
+1. Add and configure the
+   [`splunk_hec` exporter](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/exporters/splunk-hec-exporter).
+2. Connect it to the `logs` pipeline and send the transformed quote logs.
+3. If your environments meet the requirements, configure
+   [Splunk Log Observer Connect](https://help.splunk.com/splunk-observability-cloud/manage-data/view-splunk-platform-logs/introduction-to-splunk-log-observer-connect)
+   to investigate logs alongside metrics and traces.
 
-4. **Adopt OpenTelemetry from AppDynamics.** Use the
-   [AppDynamics Dual Ingest workshop](/en/ninja-workshops/appdynamics/2-appd-ingest/)
-   to send OpenTelemetry traces from an AppDynamics-instrumented application to
-   Splunk Observability Cloud and build navigation between the platforms.
+Never use production credentials for workshop data.
 
-5. **Explore Always-On Profiling.** Work through the
-   [profiling section of Debug Problems in Microservices](/en/scenarios/debug-problems/profiling/)
-   to enable CPU and memory profiling and investigate application code with
-   call stacks and flame graphs.
+{{% /expand %}}
+
+{{% expand title="Add AlwaysOn Profiling" %}}
+
+Instrument a supported application and follow
+[Get data into Splunk APM AlwaysOn Profiling](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/alwayson-profiling/get-data-into-splunk-apm-alwayson-profiling).
+
+{{% /expand %}}
+
+{{% expand title="Strengthen the trace policy" %}}
+
+- Add an Amex pattern and repeat the redaction test. See the
+  [Redaction Processor documentation](https://help.splunk.com/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/processors/redaction-processor).
+- Add another precise noisy-span condition. See the
+  [Filter Processor documentation](https://help.splunk.com/en/splunk-observability-cloud/manage-data/manage-sensitive-data/sanitize-data-with-opentelemetry-collector-processors/filter-processor).
+
+{{% /expand %}}
 
 {{% notice title="Keep your Config Builder result" style="note" %}}
-Save the final downloaded `agent_config.yaml` without secrets. It is a useful
-starting point for these exercises, but review component support, credentials,
-network exposure, and processor ordering before treating a workshop config as
-production configuration.
+Save the final `agent_config.yaml` without secrets. Review component support,
+credentials, network exposure, processor ordering, and data volume before
+using it outside the workshop.
 {{% /notice %}}

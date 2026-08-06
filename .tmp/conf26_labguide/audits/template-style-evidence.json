@@ -1,0 +1,132 @@
+{
+  "input": "/Users/kylwang/Downloads/conf26 TEMPLATE - [Workshop Name] - Lab Guide - [Date] (1).docx",
+  "fonts_by_char_count": {
+    "Consolas": 183,
+    "Arial Unicode MS": 18,
+    "Apple Color Emoji": 2
+  },
+  "direct_run_formatting_runs": 78,
+  "direct_paragraph_formatting_paragraphs": 58,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 1,
+      "text": "[SESSION ID]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 4,
+      "text": "**UPDATE THIS TABLE AFTER WRITING THE LAB EXERCISES!**",
+      "style": "Normal"
+    },
+    {
+      "para_index": 5,
+      "text": "Table of Contents",
+      "style": "Normal"
+    },
+    {
+      "para_index": 27,
+      "text": "Use Google Chrome (if you\u2019re not already)",
+      "style": "List Paragraph"
+    },
+    {
+      "para_index": 29,
+      "text": "Disconnect from VPN (if you\u2019re using one)",
+      "style": "List Paragraph"
+    },
+    {
+      "para_index": 31,
+      "text": "Try using private/incognito browsing mode to rule out any caching issues\n",
+      "style": "List Paragraph"
+    },
+    {
+      "para_index": 32,
+      "text": "\ud83c\udd98 Need help?",
+      "style": "Normal"
+    },
+    {
+      "para_index": 57,
+      "text": "\ud83d\udd11 Don\u2019t have a Splunk.com Account?",
+      "style": "Normal"
+    },
+    {
+      "para_index": 62,
+      "text": "\ud83c\udd98 Need help enrolling?",
+      "style": "Normal"
+    },
+    {
+      "para_index": 78,
+      "text": "Note: [Any notes or tips you want to highlight in an exercise]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 88,
+      "text": "Note: [Any notes or tips you want to highlight in an exercise]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 99,
+      "text": "Note: [Any notes or tips you want to highlight in an exercise]",
+      "style": "Normal"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 1,
+        "text": "[SESSION ID]",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "text": "Lab Guide",
+        "style": "Normal"
+      },
+      {
+        "para_index": 3,
+        "text": "",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "text": "**UPDATE THIS TABLE AFTER WRITING THE LAB EXERCISES!**",
+        "style": "Normal"
+      },
+      {
+        "para_index": 5,
+        "text": "Table of Contents",
+        "style": "Normal"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 1,
+        "run_text": "[SESSION ID]",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "run_text": "Lab Guide",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "**UPDATE THIS TABLE AFTER WRITING THE LAB ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "EXERCISES!*",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "*",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}

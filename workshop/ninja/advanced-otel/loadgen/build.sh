@@ -24,7 +24,7 @@ compile() {
   local OUTPUT_FILE="$OUTPUT_DIR/$APP_NAME-$GOOS-$GOARCH"
 
   echo "Compiling for $GOOS/$GOARCH..."
-  env GOOS="$GOOS" GOARCH="$GOARCH" go build -o "$OUTPUT_FILE" .
+  env CGO_ENABLED=0 GO111MODULE=off GOOS="$GOOS" GOARCH="$GOARCH" go build -trimpath -o "$OUTPUT_FILE" .
   if [ $? -ne 0 ]; then
     echo "Failed to compile for $GOOS/$GOARCH"
     exit 1

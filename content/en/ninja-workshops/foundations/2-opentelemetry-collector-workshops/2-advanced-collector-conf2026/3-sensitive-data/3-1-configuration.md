@@ -107,27 +107,23 @@ service:
   pipelines:
     traces:
       receivers:
-        - jaeger
         - otlp
-        - zipkin
       processors:
         - memory_limiter
         - filter/health
         - attributes
         - redaction
-        - resource/add_mode
-        - batch
         - resource_detection
+        - resource/add_mode
       exporters:
-        - otlp_http
         - debug
         - file/traces
 ```
 
 The order of `attributes` and `redaction` does not change this exercise's
-result. Confirm that both appear exactly once, all three trace receivers remain
-connected, and the default cloud exporter plus both local workshop exporters
-remain connected.
+result. Confirm that both appear exactly once and all existing receivers and
+exporters remain connected. Cloud-enabled configurations also include
+`otlp_http`.
 
 Keep the project open and continue to Chapter 4.
 
