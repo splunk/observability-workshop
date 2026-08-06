@@ -1,5 +1,5 @@
 ---
-title: Understanding Critical User Journeys
+title: Understand Critical User Journeys
 description: Optimize and troubleshoot end user experience with Splunk Observability Cloud.
 weight: 2
 archetype: chapter

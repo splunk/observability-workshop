@@ -18,8 +18,8 @@ You are an **aspiring astronomer**, browsing the Astronomy Shop for telescopes, 
 
 {{% exercise title="Retail Therapy" %}}
 
-* Go to the Astronomy Shop URL provided by your instructor: [Astronomy Shop US](https://astronomy-shop-us.splunko11y.com/)
-* In a private/incognito browser window:
+* The Astronomy Shop URL is provided by your instructor in the Splunk Show Instance details.
+* In a private/incognito browser window, open the Astronomy Shop URL and:
     - Browse the Astronomy Shop products
     - Interact with elements like the "Ask AI" feature and "Show All Reviews"
     - Add a few items to your cart and complete a checkout
