@@ -395,7 +395,7 @@ def build_exercise_one(marker):
         code_template,
         "BRANCH=codex/advanced-collector-conf2026\n"
         "REPO=https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/$BRANCH\n"
-        "LAB=content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026",
+        "LAB=content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184",
     )
     add_lead(doc, marker, "Provided Linux instance")
     add_code(
@@ -403,7 +403,7 @@ def build_exercise_one(marker):
         marker,
         code_template,
         "curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol\n"
-        "curl -L \"$REPO/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64\" -o loadgen\n"
+        "curl -L \"$REPO/workshop/ninja/advanced-otel/conf2026-obs1184/loadgen/build/loadgen-linux-amd64\" -o loadgen\n"
         "curl -L \"$REPO/$LAB/setup-workshop-conf2026.sh\" -o setup-workshop.sh\n"
         "chmod +x setup-workshop.sh",
     )
@@ -413,7 +413,7 @@ def build_exercise_one(marker):
         marker,
         code_template,
         "curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_darwin_arm64 -o otelcol\n"
-        "curl -L \"$REPO/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64\" -o loadgen\n"
+        "curl -L \"$REPO/workshop/ninja/advanced-otel/conf2026-obs1184/loadgen/build/loadgen-darwin-arm64\" -o loadgen\n"
         "curl -L \"$REPO/$LAB/setup-workshop-conf2026.sh\" -o setup-workshop.sh\n"
         "chmod +x setup-workshop.sh",
     )
