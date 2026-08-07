@@ -13,7 +13,9 @@ java {
 
 ext['tomcat.version'] = '10.1.55'
 ext['logback.version'] = '1.5.33'
-ext['jackson-databind.version'] = '2.21.5'
+ext['jackson-bom.version'] = '2.21.5'
+ext['spring-framework.version'] = '6.2.19'
+ext['spring-kafka.version'] = '3.3.16'
 
 repositories {
 	mavenCentral()
