@@ -18,15 +18,19 @@ Select `[WORKSHOP]/1-agent/agent_config.yaml` when Config Builder opens the file
 picker.
 
 {{% /tab %}}
-{{% tab title="Remote workshop instance" %}}
+{{% tab title="Splunk Show instance" %}}
 
-Copy the current file from the instance to your local computer:
+Copy the current file from the instance to your local computer. Replace
+`workshop-user` and `workshop-host` with the supplied SSH details:
 
 ```bash
-scp -P 2222 \
-  <workshop-user>@<workshop-host>:~/advanced-otel-workshop/1-agent/agent_config.yaml \
+scp \
+  workshop-user@workshop-host:~/advanced-otel-workshop/1-agent/agent_config.yaml \
   ~/Downloads/agent_config.yaml
 ```
+
+This example uses standard SSH port 22. If your facilitator supplies a
+different port or copy command, use those details instead.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -39,26 +43,31 @@ scp -P 2222 \
 Button labels can change as Config Builder evolves. Use the action that imports
 an existing Collector configuration.
 
-![OTel Collector Config Builder component inventory](../images/otel-collector-config-builder.png)
-
 {{% notice title="Keep credentials out of Config Builder" style="warning" %}}
 Upload `agent_config.yaml`, not `workshop-env.sh`. The YAML contains environment
-variable references; `workshop-env.sh` can contain your ingest token.
+variable references; `workshop-env.sh` can contain your access token.
 {{% /notice %}}
 
 {{% expand title="How this Agent configuration works" %}}
 
-The Agent has three input paths:
+The Agent has three signal types and eight pipelines. Six come from the
+Splunk Distribution's default `v0.157.0` Agent configuration; the two names
+ending in `/workshop` are added for this lab:
 
-| Pipeline | Receives | Processes | Always exports locally |
-|---|---|---|---|
-| `traces` | OTLP/HTTP from `loadgen` | Memory limit, system resource detection, Agent label | Debug console and `agent-traces.out` |
-| `metrics` | Hourly host CPU and OTLP/HTTP | Memory limit, system resource detection, Agent label | Debug console and `agent-metrics.out` |
-| `logs` | OTLP/HTTP and `quotes.log` | Memory limit, system resource detection, Agent label | Debug console and `agent-logs.out` |
+| Pipeline | Purpose | Export |
+|---|---|---|
+| `traces` | Retains the default Jaeger, OTLP, and Zipkin receivers; `loadgen` uses OTLP/HTTP | Debug, `agent-traces.out`, and optional APM export |
+| `metrics` | Collects the normal host-metrics set every 10 seconds | SignalFx in cloud mode; `nop` when cloud export is skipped |
+| `metrics/internal` | Scrapes the Collector's own Prometheus metrics | SignalFx in cloud mode; `nop` when cloud export is skipped |
+| `logs/signalfx` | Collects the default process-list events | SignalFx in cloud mode; `nop` when cloud export is skipped |
+| `metrics/workshop` | Collects CPU at startup and then hourly | Debug and `agent-metrics.out` |
+| `logs` | Retains the OTLP and Fluent Forward path for take-home use | `nop` during the live lab; connect `splunk_hec` later |
+| `logs/entities` | Retains the discovery-mode entity path | Observability Cloud entity endpoint when discovery adds receivers |
+| `logs/workshop` | Receives OTLP/HTTP and reads `quotes.log` | Debug and `agent-logs.out` |
 
-If cloud export was selected during setup, the same `traces` pipeline also
-uses `otlp_http`, and the same `metrics` pipeline also uses `signalfx`. There
-is no second local configuration or separate metrics pipeline.
+The workshop-specific pipelines protect the normal destination paths from
+exercise-only debug and file output. There is still only one
+`agent_config.yaml`.
 
 `health_check` provides the readiness endpoint on port `13133`.
 `resource/add_mode` adds `otelcol.service.mode=agent` so processed data is easy
@@ -70,4 +79,4 @@ Keep this Config Builder project open for Chapters 2 through 4.
 
 {{% /exercise %}}
 
-{{< checkpoint "The three Agent pipelines are visible in Config Builder." >}}
+{{< checkpoint "The eight Agent pipelines are visible in Config Builder." >}}

@@ -13,17 +13,27 @@ Everyone validates locally first. Cloud verification is optional.
 | Filter spans | Five `/movie-validator` and five `/_healthz` spans | Five `/movie-validator` spans; no `/_healthz` spans |
 | Change attributes | Phone, email, and password are visible | Phone replaced, email hashed, password removed |
 | Redact values | Visa, Mastercard, and Amex are visible | Visa and Mastercard masked; Amex remains visible |
-| Transform logs | Fields remain in the JSON body | Fields become attributes and severity is populated |
+| Transform workshop logs | Fields remain in the JSON body | `logs/workshop` promotes fields and populates severity |
 
-{{% notice title="One metrics pipeline" style="info" %}}
-The `metrics` pipeline follows the original workshop pattern: it collects CPU
-metrics at startup and then once per hour. It always writes to debug and
-`agent-metrics.out`; cloud-enabled setups also send to SignalFx.
+{{% notice title="Three metrics pipelines" style="info" %}}
+`metrics` keeps the normal 10-second host-monitoring path and sends to SignalFx
+in cloud mode. `metrics/workshop` collects CPU at startup and then hourly, and
+always writes the bounded batch to debug and `agent-metrics.out`.
+`metrics/internal` retains Collector self-monitoring and requires no attendee
+action.
+{{% /notice %}}
+
+{{% notice title="Four log pipelines" style="info" %}}
+`logs` preserves the OTLP and Fluent Forward path for the take-home HEC
+exercise and stays on `nop` during the live lab. `logs/workshop` reads
+`quotes.log` and writes only to local debug and `agent-logs.out`.
+`logs/signalfx` retains the default process-list path, and `logs/entities`
+remains available for discovery mode. Neither requires attendee action.
 {{% /notice %}}
 
 {{% expand title="1. Generate the trace test cases" %}}
 
-In the **Loadgen** terminal, send five application spans and five health spans:
+In the **Command terminal**, send five application spans and five health spans:
 
 ```bash
 cd [WORKSHOP]/1-agent
@@ -116,7 +126,7 @@ head -n 1 quotes.log | jq .
 Its `level`, `message`, `movie`, and `timestamp` fields are inside the JSON
 body, and OpenTelemetry severity is not yet set.
 
-Inspect the processed records:
+Inspect the records processed by `logs/workshop`:
 
 ```bash
 jq -s '[
@@ -131,8 +141,9 @@ jq -s '[
 
 Expected behavior:
 
-- `DEBUG`, `INFO`, `WARN`, and `ERROR` map to severity numbers `5`, `9`, `13`,
-  and `17`.
+- Each generated level maps to its OpenTelemetry severity number: `DEBUG` →
+  `5`, `INFO` → `9`, `WARN` → `13`, and `ERROR` → `17`. Five random records
+  might not include every level.
 - `level`, `message`, `movie`, and `timestamp` appear as log attributes.
 - Only `com.splunk.sourcetype`, `host.name`, and `otelcol.service.mode` remain
   as resource attributes.
@@ -191,7 +202,8 @@ jq -r '
 ' agent-metrics.out | sort -u
 ```
 
-Open **Infrastructure > Hosts**, locate that host, and confirm recent CPU data.
+Open **Infrastructure > Hosts**, locate that host, and confirm recent CPU,
+memory, load, or network data from the normal `metrics` pipeline.
 
 See
 [Search traces using Trace Analyzer](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/manage-services-spans-and-traces-in-splunk-apm/search-traces-using-trace-analyzer),

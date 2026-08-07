@@ -58,7 +58,7 @@ The first pattern matches the synthetic Visa value and the second matches the
 Mastercard value. The Amex value is intentionally left unmatched so the test
 can demonstrate an incomplete policy.
 
-![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](../images/config-builder-redaction-options.png)
+![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](../../images/config-builder-redaction-options.png)
 
 Scroll through the remaining options and set `summary` to `debug`. Leave the
 database sanitizer options and all other optional fields unset.
@@ -91,7 +91,12 @@ Select **Pipelines** and click the pencil-shaped **Edit** icon for `traces`.
 Click **+** beside **processors** to add `attributes`, then repeat to add
 `redaction`. Keep every existing receiver, processor, and exporter. Use the
 drag handles to place both new processors after `filter/health` and before
-`resource/add_mode`, then click **Edit**.
+`resourcedetection`, then click **Edit**.
+
+![Adding the attributes and redaction processors to the traces pipeline](../../images/config-builder-traces-attributes-redaction.png)
+
+Use the screenshot as a UI reference for the add controls and drag handles.
+Follow the processor order below for this workshop configuration.
 
 Open **Collector YAML** and confirm:
 
@@ -107,14 +112,17 @@ service:
   pipelines:
     traces:
       receivers:
+        - jaeger
         - otlp
+        - zipkin
       processors:
         - memory_limiter
         - filter/health
         - attributes
         - redaction
-        - resource_detection
+        - resourcedetection
         - resource/add_mode
+        - batch
       exporters:
         - debug
         - file/traces

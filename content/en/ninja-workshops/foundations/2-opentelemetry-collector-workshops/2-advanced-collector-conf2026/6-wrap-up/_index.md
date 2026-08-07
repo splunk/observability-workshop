@@ -19,9 +19,12 @@ A Splunk Observability Cloud free organization does not include a Splunk
 Platform HEC endpoint. Use a separate non-production Splunk Enterprise or
 Splunk Cloud Platform environment.
 
-1. Add and configure the
+1. Set `SPLUNK_HEC_URL` and `SPLUNK_HEC_TOKEN` for your non-production Splunk
+   Platform instance. The configuration already defines the
    [`splunk_hec` exporter](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/exporters/splunk-hec-exporter).
-2. Connect it to the `logs` pipeline and send the transformed quote logs.
+2. In the retained `logs` pipeline, replace `nop` with `splunk_hec` and send an
+   OTLP or Fluent Forward log. To reuse the quote exercise, add the existing
+   `file_log/quotes` receiver and `transform` processor to that pipeline.
 3. If your environments meet the requirements, configure
    [Splunk Log Observer Connect](https://help.splunk.com/splunk-observability-cloud/manage-data/view-splunk-platform-logs/introduction-to-splunk-log-observer-connect)
    to investigate logs alongside metrics and traces.

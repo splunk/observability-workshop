@@ -4,25 +4,29 @@ linkTitle: 1.2 Validate Host Metrics
 weight: 2
 ---
 
-The metrics pipeline follows the original workshop pattern: it collects CPU
-metrics at startup and then once per hour. This keeps detailed debug output
-readable.
+The Agent has three metrics pipelines:
 
-{{% exercise title="Validate host metrics locally" %}}
+- `metrics` collects the normal host-metrics set every 10 seconds. Cloud
+  setups send it to SignalFx; it is not connected to detailed debug.
+- `metrics/workshop` follows the original workshop pattern. It collects CPU
+  metrics at startup and then once per hour, and writes only that bounded batch
+  to debug and `agent-metrics.out`.
+- `metrics/internal` retains the default Collector self-monitoring path. It is
+  not part of the hands-on validation.
+
+{{% exercise title="Validate the workshop metrics pipeline locally" %}}
 
 The **Agent Console** should show one metrics block after startup, similar to:
 
 ```text
-Metric #0
 Descriptor:
      -> Name: system.cpu.time
 NumberDataPoints: ...
 ```
 
-If it has scrolled away, check the local output file:
+If it has scrolled away, run this in the **Command terminal**:
 
 ```bash
-cd [WORKSHOP]/1-agent
 jq -r '
   .resourceMetrics[].scopeMetrics[].metrics[]
   | select(.name == "system.cpu.time")
@@ -36,8 +40,7 @@ Expected output:
 system.cpu.time
 ```
 
-When cloud export is enabled, this same metrics pipeline also sends the batch
-to Splunk Observability Cloud. Cloud verification is optional and appears in
-Step 5.2.
+Cloud-enabled attendees verify the separate `metrics` pipeline later in
+Splunk Observability Cloud.
 
 {{% /exercise %}}

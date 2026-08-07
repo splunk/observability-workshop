@@ -14,7 +14,13 @@ Steps 1.2 through 1.4 is sufficient.
 
 {{% exercise title="Find workshop traces and host metrics" %}}
 
-1. On the workshop host, confirm cloud mode was enabled:
+Steps 1.2 and 1.3 already generated the telemetry for this validation. When
+cloud export is enabled, the Agent continuously sends host metrics and sends
+the `/movie-validator` spans generated in Step 1.3. You do not need to run
+`loadgen` again. The workshop logs generated in Step 1.4 are validated locally
+and are not part of this cloud check.
+
+1. In the **Command terminal**, confirm cloud mode was enabled:
 
    ```bash
    cd [WORKSHOP]/1-agent
@@ -24,38 +30,35 @@ Steps 1.2 through 1.4 is sufficient.
 
    Continue only when the value is `true` and the Agent is running.
 
-2. Generate another small trace sample from `[WORKSHOP]/1-agent`:
-
-   ```bash
-   ../loadgen -count 5
-   ```
-
-3. Read the detected host name from the local metrics output:
+2. Print a ready-to-use Infrastructure Monitoring filter containing the exact
+   host name detected by the Agent:
 
    ```bash
    jq -r '
      .resourceMetrics[].resource.attributes[]
      | select(.key == "host.name")
-     | .value.stringValue
+     | "host.name:\(.value.stringValue)"
    ' agent-metrics.out | sort -u
    ```
 
-4. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
+   Copy the resulting `host.name:<detected-host-name>` value. This is more
+   reliable than assuming that the name shown by your shell matches the name
+   selected by resource detection.
+
+3. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
    choose a recent time range such as the last 15 minutes, and select **All
    traces**.
-5. Filter for service `cinema-service` and operation `/movie-validator`.
+4. Filter for service `cinema-service` and operation `/movie-validator`.
    Open a returned trace and confirm its span attributes include the synthetic
    `user.*` fields and `otelcol.service.mode=agent`.
-6. Select **Infrastructure > Hosts**. Locate the detected workshop host and
-   open it.
-   Confirm recent CPU data is present. If needed, open **Settings > Metric
-   Metadata**, search for `host.name:<detected-host-name>`, and confirm a recent
-   `system.cpu.time` data point.
+5. Select **Infrastructure > Hosts**, choose a recent time range, and paste the
+   `host.name:<detected-host-name>` value into the filter bar. Open the matching
+   host and confirm recent CPU, memory, load, or network data is present.
 
 Telemetry can take a short time to become searchable. If nothing appears,
-first confirm the same data is present in the Agent console, then inspect the
-console for `401`, DNS, TLS, or export errors and recheck the realm, endpoint,
-and ingest-token scope in `workshop-env.sh`.
+confirm the trace and workshop CPU metrics are present locally. Then inspect
+the Agent console for `401`, DNS, TLS, or export errors and recheck the realm,
+endpoint, and access token's ingest authorization in `workshop-env.sh`.
 
 Seeing both the trace and host metrics confirms the `otlp_http` and `signalfx`
 connections are working.

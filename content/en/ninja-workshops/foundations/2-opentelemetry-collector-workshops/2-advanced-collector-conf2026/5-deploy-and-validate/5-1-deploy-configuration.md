@@ -11,8 +11,13 @@ weight: 1
 In **Collector YAML**, confirm:
 
 - `filter/health`, `attributes`, and `redaction` are connected to `traces`.
-- `transform` is connected to `logs` after `resource_detection`.
-- The `traces`, `metrics`, and `logs` pipelines are present.
+- `transform` is connected to `logs/workshop` after `resourcedetection`.
+- All eight imported pipelines are present: `traces`, `metrics`,
+  `metrics/internal`, `logs/signalfx`, `logs`, `logs/entities`,
+  `metrics/workshop`, and `logs/workshop`.
+- `metrics/internal`, `logs/signalfx`, and `logs/entities` remain unchanged.
+- The retained `logs` pipeline still uses `nop`; do not add HEC credentials
+  during the live lab.
 
 Choose **Download** and save the file as `agent_config.yaml`.
 
@@ -43,14 +48,18 @@ cp ~/Downloads/agent_config.yaml [WORKSHOP]/1-agent/agent_config.yaml
 Replace `[WORKSHOP]` with the full workshop path.
 
 {{% /tab %}}
-{{% tab title="Remote workshop instance" %}}
+{{% tab title="Splunk Show instance" %}}
 
-Run this on your local computer with the SSH details supplied for the instance:
+Run this on your local computer after replacing `workshop-user` and
+`workshop-host` with the supplied SSH details:
 
 ```bash
-scp -P 2222 ~/Downloads/agent_config.yaml \
-  <workshop-user>@<workshop-host>:~/advanced-otel-workshop/1-agent/agent_config.yaml
+scp ~/Downloads/agent_config.yaml \
+  workshop-user@workshop-host:~/advanced-otel-workshop/1-agent/agent_config.yaml
 ```
+
+This example uses standard SSH port 22. If your facilitator supplies a
+different port or copy command, use those details instead.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -71,7 +80,7 @@ source ../workshop-env.sh
 ../otelcol --config=agent_config.yaml
 ```
 
-In the **Tests** terminal, confirm readiness:
+In the **Command terminal**, confirm readiness:
 
 ```bash
 curl -fsS http://127.0.0.1:13133/ && echo "Collector is ready"

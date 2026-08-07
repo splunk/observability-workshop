@@ -1,9 +1,5 @@
-# Agent configuration for the .conf26 Advanced Collector workshop.
-#
-# The default components and six default service pipelines are based on the
-# Splunk Distribution of the OpenTelemetry Collector v0.157.0 agent config.
-# Gateway-only alternatives are intentionally omitted. The workshop adds local
-# file/debug exporters plus metrics/workshop and logs/workshop pipelines.
+# Facilitator fallback for the .conf26 Advanced Collector workshop.
+# Attendees normally create this result in OTel Collector Config Builder.
 
 extensions:
   headers_setter:
@@ -53,11 +49,16 @@ receivers:
       load:
       paging:
       processes:
-  # Workshop-only bounded metrics receiver: one CPU batch at startup, then hourly.
   host_metrics/workshop:
     collection_interval: 3600s
     scrapers:
       cpu:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4317"
+      http:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4318"
   jaeger:
     protocols:
       grpc:
@@ -68,13 +69,6 @@ receivers:
         endpoint: "${SPLUNK_LISTEN_INTERFACE}:6831"
       thrift_http:
         endpoint: "${SPLUNK_LISTEN_INTERFACE}:14268"
-  otlp:
-    protocols:
-      grpc:
-        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4317"
-      http:
-        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4318"
-  # Workshop-only receiver for the generated quotes.log file.
   file_log/quotes:
     include: [./quotes.log]
     start_at: beginning
@@ -110,48 +104,54 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: ${SPLUNK_MEMORY_LIMIT_MIB}
+  filter/health:
+    error_mode: ignore
+    trace_conditions:
+      - conditions:
+          - 'span.name == "/_healthz"'
+  attributes:
+    actions:
+      - key: user.phone_number
+        action: update
+        value: UNKNOWN NUMBER
+      - key: user.email
+        action: hash
+      - key: user.password
+        action: delete
+  redaction:
+    allow_all_keys: true
+    blocked_values:
+      - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
+      - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
+    summary: debug
   resourcedetection:
     detectors: [gcp, ecs, ec2, azure, system]
     override: true
-  # Workshop-only marker used in local and cloud validation.
   resource/add_mode:
     attributes:
       - action: upsert
         key: otelcol.service.mode
         value: agent
+  transform:
+    error_mode: ignore
+    log_statements:
+      - context: resource
+        statements:
+          - keep_keys(resource.attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
+      - context: log
+        statements:
+          - set(log.cache, ParseJSON(log.body)) where IsMatch(log.body, "^\\{")
+          - flatten(log.cache, "")
+          - merge_maps(log.attributes, log.cache, "upsert")
+          - set(log.severity_text, log.attributes["level"])
+          - set(log.severity_number, 1) where log.severity_text == "TRACE"
+          - set(log.severity_number, 5) where log.severity_text == "DEBUG"
+          - set(log.severity_number, 9) where log.severity_text == "INFO"
+          - set(log.severity_number, 13) where log.severity_text == "WARN"
+          - set(log.severity_number, 17) where log.severity_text == "ERROR"
+          - set(log.severity_number, 21) where log.severity_text == "FATAL"
 
 exporters:
-  otlp_http:
-    traces_endpoint: "${SPLUNK_INGEST_URL}/v2/trace/otlp"
-    headers:
-      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
-    auth:
-      authenticator: headers_setter
-  signalfx:
-    access_token: "${SPLUNK_ACCESS_TOKEN}"
-    api_url: "${SPLUNK_API_URL}"
-    ingest_url: "${SPLUNK_INGEST_URL}"
-    sync_host_metadata: true
-    correlation:
-  otlp_http/entities:
-    logs_endpoint: "${SPLUNK_INGEST_URL}/v3/event"
-    headers:
-      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
-    auth:
-      authenticator: headers_setter
-  # Retained for the Splunk Platform take-home exercise. The live logs pipeline
-  # remains on nop until participants supply their own HEC endpoint and token.
-  splunk_hec:
-    token: "${SPLUNK_HEC_TOKEN}"
-    endpoint: "${SPLUNK_HEC_URL}"
-    source: otel
-    sourcetype: otel
-    profiling_data_enabled: false
-  splunk_hec/profiling:
-    token: "${SPLUNK_ACCESS_TOKEN}"
-    endpoint: "${SPLUNK_INGEST_URL}/v1/log"
-    log_data_enabled: false
-  # Workshop-only local validation exporters.
   debug:
     verbosity: detailed
   file/traces:
@@ -163,6 +163,34 @@ exporters:
   file/logs:
     path: ./agent-logs.out
     append: false
+  otlp_http:
+    traces_endpoint: "${SPLUNK_INGEST_URL}/v2/trace/otlp"
+    headers:
+      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  otlp_http/entities:
+    logs_endpoint: "${SPLUNK_INGEST_URL}/v3/event"
+    headers:
+      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  signalfx:
+    access_token: "${SPLUNK_ACCESS_TOKEN}"
+    api_url: "${SPLUNK_API_URL}"
+    ingest_url: "${SPLUNK_INGEST_URL}"
+    sync_host_metadata: true
+    correlation:
+  splunk_hec:
+    token: "${SPLUNK_HEC_TOKEN}"
+    endpoint: "${SPLUNK_HEC_URL}"
+    source: otel
+    sourcetype: otel
+    profiling_data_enabled: false
+  splunk_hec/profiling:
+    token: "${SPLUNK_ACCESS_TOKEN}"
+    endpoint: "${SPLUNK_INGEST_URL}/v1/log"
+    log_data_enabled: false
   nop:
 
 service:
@@ -178,16 +206,14 @@ service:
         - pull:
             exporter:
               prometheus:
-                host: '127.0.0.1'
+                host: 127.0.0.1
                 port: 8888
   extensions: [headers_setter, health_check, http_forwarder, http_forwarder/opamp_splunk_o11y, opamp/splunk_o11y, zpages]
   pipelines:
-    # Default pipeline, augmented with workshop debug/file output and mode marker.
     traces:
       receivers: [jaeger, otlp, zipkin]
-      processors: [memory_limiter, resourcedetection, resource/add_mode, batch]
+      processors: [memory_limiter, filter/health, attributes, redaction, resourcedetection, resource/add_mode, batch]
       exporters: [debug, file/traces, otlp_http]
-    # Default Splunk pipelines from v0.157.0.
     metrics:
       receivers: [host_metrics, otlp]
       processors: [memory_limiter, batch, resourcedetection]
@@ -200,21 +226,19 @@ service:
       receivers: [smartagent/processlist]
       processors: [memory_limiter, batch, resourcedetection]
       exporters: [signalfx]
-    logs/entities:
-      receivers: [nop]
-      processors: [memory_limiter, batch, resourcedetection]
-      exporters: [otlp_http/entities]
-    # The default receivers/processors remain intact. HEC is a take-home exercise.
     logs:
       receivers: [fluent_forward, otlp]
       processors: [memory_limiter, batch, resourcedetection]
       exporters: [nop]
-    # Workshop-only pipelines for bounded local validation.
+    logs/entities:
+      receivers: [nop]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [otlp_http/entities]
     metrics/workshop:
       receivers: [host_metrics/workshop]
       processors: [memory_limiter, resourcedetection, resource/add_mode]
       exporters: [debug, file/metrics]
     logs/workshop:
       receivers: [otlp, file_log/quotes]
-      processors: [memory_limiter, resourcedetection, resource/add_mode]
+      processors: [memory_limiter, resourcedetection, transform, resource/add_mode]
       exporters: [debug, file/logs]

@@ -7,7 +7,7 @@ weight: 3
 {{% exercise title="Send a test trace" %}}
 
 1. Verify the foreground Agent is still running in the **Agent Console**.
-2. In the **Loadgen** terminal, send five spans:
+2. In the **Command terminal**, send five spans:
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}

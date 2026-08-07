@@ -12,7 +12,7 @@ In **Component Inventory**, click **Add component**. Select component type
 `processor`, select component `transform`, and click **Next**.
 
 Set `error_mode` to `ignore` so one malformed workshop line does not stop the
-logs pipeline.
+`logs/workshop` pipeline.
 
 Under `log_statements`, click **+** to add a statement group and set its
 context to `resource`. Under that group's `statements`, click **+** and enter:
@@ -30,27 +30,25 @@ set its context to `log`. Leave its `statements` list empty for now. The
 complete OTTL expressions are easier and safer to add in the Collector YAML
 editor because several expressions are too long for the Options fields.
 
-![The Transform Processor Options form with resource and log context groups](../images/config-builder-transform-options-contexts.png)
+![The Transform Processor Options form with resource and log context groups](../../images/config-builder-transform-options-contexts.png)
 
 If an empty statement row was added under the `log` context, use its trash-can
 icon to remove it. The `log` context should remain, with no statements beneath
 it.
 
-![The Transform Processor Options form with an empty log statements list](../images/config-builder-transform-empty-log-statements.png)
+![The Transform Processor Options form with an empty log statements list](../../images/config-builder-transform-empty-log-statements.png)
 
 Select **Preview**. Confirm that the preview contains one `transform`
 processor, a `resource` context with the `keep_keys` statement, and an empty
 `log` context. Click **Add**.
 
-![Previewing the Transform Processor shell before adding it](../images/config-builder-transform-preview.png)
+![Previewing the Transform Processor shell before adding it](../../images/config-builder-transform-preview.png)
 
 {{< /step >}}
 
 {{< step "Complete the log statements in Collector YAML" "2" >}}
 
 Open **Collector YAML**, then click **Edit YAML**.
-
-![Opening the Collector YAML editor](../images/config-builder-collector-yaml-edit.png)
 
 Find `processors`, then `transform`, then the empty `- context: log` entry.
 Place the cursor on the next line below `- context: log`. Copy and paste the
@@ -82,8 +80,6 @@ nested beneath `statements:`. Do not add a second `- context: log` entry.
 
 Wait for the editor header to show **VALID**, then click **Save changes**.
 
-![The completed Transform Processor in the Collector YAML editor](../images/config-builder-transform-yaml-complete.png)
-
 `ParseJSON` creates a map in the temporary cache, `flatten` normalizes nested
 fields, and `merge_maps(..., "upsert")` inserts new keys or replaces existing
 keys in the log attributes. The remaining statements copy the embedded level
@@ -103,33 +99,35 @@ explicit field allowlist for real workloads.
 
 {{< /step >}}
 
-{{< step "Add the processor to the logs pipeline" "3" >}}
+{{< step "Add the processor to the workshop logs pipeline" "3" >}}
 
-Select **Pipelines** and click the pencil-shaped **Edit** icon for `logs`.
+Select **Pipelines** and click the pencil-shaped **Edit** icon for
+`logs/workshop`.
 Click **+** beside **processors** and add `transform`. Keep every existing
 receiver, processor, and exporter. Use the drag handle to place `transform`
-after `resource_detection`, then click **Edit**.
+after `resourcedetection`, then click **Edit**.
 
 Open **Collector YAML** and confirm:
 
 - `transform` contains one resource context and one log context.
-- `transform` appears exactly once in `service.pipelines.logs.processors`.
-- It appears after `resource_detection`, allowing `host.name` to be detected
+- `transform` appears exactly once in the processors list under
+  `service.pipelines.logs/workshop`.
+- It appears after `resourcedetection`, allowing `host.name` to be detected
   before the resource allowlist is applied.
 - `filter/health`, `attributes`, and `redaction` remain connected to `traces`.
 
-The complete logs pipeline should be equivalent to:
+The complete workshop logs pipeline should be equivalent to:
 
 ```yaml
 service:
   pipelines:
-    logs:
+    logs/workshop:
       receivers:
         - otlp
         - file_log/quotes
       processors:
         - memory_limiter
-        - resource_detection
+        - resourcedetection
         - transform
         - resource/add_mode
       exporters:
@@ -138,7 +136,7 @@ service:
 ```
 
 Review **Collector YAML** and resolve any errors shown. If `transform` is not
-after `resource_detection`, return to the Pipeline editor and use the drag
+after `resourcedetection`, return to the Pipeline editor and use the drag
 handle to move it. The resource allowlist must run after host metadata is
 detected.
 

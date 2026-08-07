@@ -24,7 +24,7 @@ echo
 echo "Splunk Advanced OpenTelemetry Workshop .conf26"
 echo "================================================"
 
-for command_name in curl uname sed; do
+for command_name in curl jq uname sed; do
   if ! command -v "${command_name}" >/dev/null 2>&1; then
     echo "Required command not found: ${command_name}" >&2
     exit 1
@@ -102,6 +102,8 @@ realm="${REALM:-}"
 splunk_access_token="${SPLUNK_ACCESS_TOKEN:-${ACCESS_TOKEN:-}}"
 splunk_api_url="${SPLUNK_API_URL:-}"
 splunk_ingest_url="${SPLUNK_INGEST_URL:-}"
+splunk_hec_token="${SPLUNK_HEC_TOKEN:-not-configured}"
+splunk_hec_url="${SPLUNK_HEC_URL:-https://127.0.0.1:8088/services/collector}"
 splunk_listen_interface="${SPLUNK_LISTEN_INTERFACE:-127.0.0.1}"
 splunk_memory_limit_mib="${SPLUNK_MEMORY_LIMIT_MIB:-512}"
 
@@ -115,11 +117,11 @@ if [[ "${cloud_enabled}" == "true" ]]; then
   fi
 
   if [[ -z "${splunk_access_token}" ]]; then
-    read -r -s -p "Splunk Observability Cloud ingest token: " splunk_access_token
+    read -r -s -p "Splunk Observability Cloud access token with ingest authorization: " splunk_access_token
     echo
   fi
   if [[ -z "${splunk_access_token}" ]]; then
-    echo "An ingest token is required for cloud export." >&2
+    echo "An access token with ingest authorization is required for cloud export." >&2
     exit 1
   fi
 
@@ -136,12 +138,15 @@ mkdir -p "${agent_dir}"
 config_url="https://github.com/${repo_owner}/${repo_name}/raw/refs/heads/${repo_ref}/${content_path}/agent_config.yaml"
 curl -fL --retry 3 "${config_url}" -o "${config_path}"
 
-# Keep one configuration file. When cloud export is not selected, disconnect
-# the cloud exporters while retaining local debug and file validation.
+# Keep all eight pipelines in one configuration. Without cloud export, replace
+# active cloud destinations with nop while the workshop pipelines continue
+# local debug and file validation.
 if [[ "${cloud_enabled}" == "false" ]]; then
   sed -i.bak \
     -e 's/exporters: \[debug, file\/traces, otlp_http\]/exporters: [debug, file\/traces]/' \
-    -e 's/exporters: \[debug, file\/metrics, signalfx\]/exporters: [debug, file\/metrics]/' \
+    -e 's/exporters: \[signalfx\]/exporters: [nop]/' \
+    -e 's/exporters: \[otlp_http\/entities\]/exporters: [nop]/' \
+    -e 's/extensions: \[headers_setter, health_check, http_forwarder, http_forwarder\/opamp_splunk_o11y, opamp\/splunk_o11y, zpages\]/extensions: [health_check, zpages]/' \
     "${config_path}"
   rm -f "${config_path}.bak"
 fi
@@ -155,12 +160,14 @@ rm -f "${agent_dir}/agent_config.local.yaml"
   printf 'export SPLUNK_ACCESS_TOKEN=%q\n' "${splunk_access_token}"
   printf 'export SPLUNK_API_URL=%q\n' "${splunk_api_url}"
   printf 'export SPLUNK_INGEST_URL=%q\n' "${splunk_ingest_url}"
+  printf 'export SPLUNK_HEC_TOKEN=%q\n' "${splunk_hec_token}"
+  printf 'export SPLUNK_HEC_URL=%q\n' "${splunk_hec_url}"
   printf 'export SPLUNK_LISTEN_INTERFACE=%q\n' "${splunk_listen_interface}"
   printf 'export SPLUNK_MEMORY_LIMIT_MIB=%q\n' "${splunk_memory_limit_mib}"
   printf 'export CONF2026_CLOUD_ENABLED=%q\n' "${cloud_enabled}"
 } > "${environment_path}"
 chmod 600 "${environment_path}"
-unset splunk_access_token
+unset splunk_access_token splunk_hec_token
 trap - ERR
 
 echo
