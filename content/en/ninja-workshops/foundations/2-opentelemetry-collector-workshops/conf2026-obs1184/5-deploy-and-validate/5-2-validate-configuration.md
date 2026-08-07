@@ -1,10 +1,10 @@
 ---
-title: 5.2 Validate the Configuration
-linkTitle: 5.2 Validate Configuration
+title: 5.2 Validate the configuration
+linkTitle: 5.2 Validate the configuration
 weight: 2
 ---
 
-Keep the updated Collector running in the **Agent terminal**. Run every command
+Keep the updated Collector running in the **Agent terminal**. Run each command
 below in the **Command terminal**, which is already in `[WORKSHOP]/1-agent`.
 
 ## Local validation 1: Drop health-check spans
@@ -24,7 +24,7 @@ does not send them. Find both span names in the output:
 "name": "/_healthz"
 ```
 
-Now send five of each span through the Agent:
+Now send five of each span through the agent:
 
 ```bash
 ../loadgen -health -count 5
@@ -33,7 +33,7 @@ Now send five of each span through the Agent:
 In the **Agent terminal**, the debug exporter prints five
 `/movie-validator` spans. A processed span resembles this excerpt:
 
-```text { title="Expected Agent debug output" }
+```text { title="Expected agent debug output" }
 InstrumentationScope cinema.library 1.0.0
 Span #0
     Name           : /movie-validator
@@ -73,8 +73,8 @@ jq -e -s '
 ' ./agent-traces.out
 ```
 
-The result is `true`. The `-e` option also gives the command a nonzero exit
-status if the assertion fails.
+The result is `true`. If the result is `false`, check the `filter/health`
+configuration and repeat this section.
 
 {{% notice title="Filter precisely" style="primary" icon="lightbulb" %}}
 Use the most specific filter condition that fits your telemetry. Test it with
@@ -91,7 +91,7 @@ Preview one original `/movie-validator` span:
 ```
 
 In the **Command terminal**, the original OTLP payload includes these
-synthetic values:
+sample values:
 
 ```text { title="Original span attributes" }
 user.phone_number = +1555-867-5309
@@ -102,7 +102,7 @@ user.mastercard   = 5555 5555 5555 4444
 user.amex         = 3782 822463 10005
 ```
 
-Send a new span through the Agent:
+Send a new span through the agent:
 
 ```bash
 ../loadgen -count 1
@@ -111,7 +111,7 @@ Send a new span through the Agent:
 The **Agent terminal** shows the span after the `attributes` and `redaction`
 processors. The payment amount can vary.
 
-```text { title="Expected Agent debug output" }
+```text { title="Expected agent debug output" }
 Attributes:
      -> user.name: Str(George Lucas)
      -> user.phone_number: Str(UNKNOWN NUMBER)
@@ -195,7 +195,7 @@ terminal**, confirm that the transform processor sets OpenTelemetry severity,
 promotes the JSON fields to attributes, and keeps only the selected resource
 attributes:
 
-```text { title="Expected Agent debug output" }
+```text { title="Expected agent debug output" }
 Resource attributes:
      -> com.splunk.sourcetype: Str(quotes)
      -> host.name: Str(<detected-host-name>)
@@ -250,7 +250,7 @@ A transformed record resembles:
 Five random records might not include every level. When present, the configured
 mappings are `DEBUG` → `5`, `INFO` → `9`, `WARN` → `13`, and `ERROR` → `17`.
 
-## Optional: Validate in Splunk Observability Cloud
+## Optional: Validate data in Splunk Observability Cloud
 
 Confirm that cloud export was enabled during setup:
 
@@ -259,7 +259,7 @@ source ../workshop-env.sh
 echo "${CONF2026_CLOUD_ENABLED}"
 ```
 
-Continue when the result is `true`. Telemetry can take a short time to become
+Continue when the result is `true`. Telemetry can take a few minutes to become
 searchable.
 
 ### Confirm the filtered and protected traces
@@ -275,7 +275,7 @@ searchable.
 
 ### Confirm host metrics
 
-Print the exact host filter detected by the Agent:
+Print the exact host filter detected by the agent:
 
 ```bash
 jq -r '

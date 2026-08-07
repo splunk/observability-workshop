@@ -1,6 +1,6 @@
 ---
-title: 6. Wrap-up and Take-home Exercises
-linkTitle: 6. Take-home Exercises
+title: 6. Wrap-up and take-home exercises
+linkTitle: 6. Take-home exercises
 weight: 9
 time: 3 minutes
 ---
@@ -8,8 +8,9 @@ time: 3 minutes
 ![Well done](../images/welldone.png)
 
 You used Config Builder to filter noisy spans, protect sensitive attributes,
-transform logs, and validate the result locally. Cloud-enabled attendees also
-verified traces and metrics in Splunk Observability Cloud.
+and transform logs. You then applied the completed configuration and verified
+the results. If you enabled cloud export, you also found traces and metrics in
+Splunk Observability Cloud.
 
 ## Take-home exercises
 
@@ -30,7 +31,7 @@ Splunk Cloud Platform environment.
    [Splunk Log Observer Connect](https://help.splunk.com/splunk-observability-cloud/manage-data/view-splunk-platform-logs/introduction-to-splunk-log-observer-connect)
    to investigate logs alongside metrics and traces.
 
-Never use production credentials for workshop data.
+Use only non-production credentials and data for this exercise.
 
 {{% /expand %}}
 
@@ -51,7 +52,7 @@ Instrument a supported application and follow
 {{% /expand %}}
 
 {{% notice title="Keep your Config Builder result" style="note" %}}
-Save the final `agent_config.yaml` without secrets. Review component support,
-credentials, network exposure, processor ordering, and data volume before
-using it outside the workshop.
+Save the final `agent_config.yaml` without secrets. Before you use it outside
+the workshop, review component support, credentials, network access, processor
+order, and data volume.
 {{% /notice %}}

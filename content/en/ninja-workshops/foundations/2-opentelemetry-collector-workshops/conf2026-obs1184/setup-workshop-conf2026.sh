@@ -14,7 +14,7 @@ collector_version="0.157.0"
 repo_owner="chentaow-splunk"
 repo_name="observability-workshop"
 repo_ref="codex/advanced-collector-conf2026"
-content_path="content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026"
+content_path="content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184"
 workshop_root="${PWD}"
 agent_dir="${workshop_root}/1-agent"
 config_path="${agent_dir}/agent_config.yaml"
@@ -34,11 +34,11 @@ done
 case "$(uname -s)" in
   Darwin)
     if [[ "$(uname -m)" != "arm64" ]]; then
-      echo "This workshop supports Apple Silicon Macs, not Intel Macs." >&2
+      echo "This workshop supports Apple silicon Macs, not Intel-based Macs." >&2
       exit 1
     fi
     xattr -dr com.apple.quarantine otelcol loadgen 2>/dev/null || true
-    echo "Apple Silicon macOS detected."
+    echo "Apple silicon Mac detected."
     ;;
   Linux)
     case "$(uname -m)" in
@@ -51,7 +51,7 @@ case "$(uname -s)" in
     echo "Linux $(uname -m) detected."
     ;;
   *)
-    echo "Unsupported platform. Use Linux or an Apple Silicon Mac." >&2
+    echo "Unsupported platform. Use Linux or an Apple silicon Mac." >&2
     exit 1
     ;;
 esac
@@ -80,22 +80,22 @@ if ! loadgen_help="$(./loadgen --help 2>&1)"; then
   exit 1
 fi
 if [[ "${loadgen_help}" != *"-preview"* ]]; then
-  echo "This workshop requires the conf2026 load generator with -preview support." >&2
-  echo "Download the loadgen binary from the conf2026 path in Prerequisites." >&2
+  echo "This workshop requires the OBS1184 load generator with -preview support." >&2
+  echo "Download the loadgen binary again by following the Prerequisites." >&2
   exit 1
 fi
 unset loadgen_help
 
 cloud_setting="${CONF2026_CLOUD_ENABLED:-}"
 if [[ -z "${cloud_setting}" ]]; then
-  read -r -p "Also send metrics and traces to Splunk Observability Cloud? [y/N]: " cloud_setting
+  read -r -p "Send metrics and traces to Splunk Observability Cloud? [Y/n]: " cloud_setting
 fi
 
 case "${cloud_setting}" in
-  y|Y|yes|YES|Yes|true|TRUE|True|1)
+  ""|y|Y|yes|YES|Yes|true|TRUE|True|1)
     cloud_enabled=true
     ;;
-  ""|n|N|no|NO|No|false|FALSE|False|0)
+  n|N|no|NO|No|false|FALSE|False|0)
     cloud_enabled=false
     ;;
   *)
@@ -181,7 +181,7 @@ echo "Workshop setup complete."
 echo "Collector: ${installed_version}"
 echo "Cloud export: ${cloud_enabled}"
 echo
-echo "Start the Agent:"
+echo "Start the agent:"
 echo "  cd 1-agent"
 echo "  source ../workshop-env.sh"
 echo "  ../otelcol --config=agent_config.yaml"

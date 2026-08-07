@@ -1,12 +1,12 @@
 ---
-title: 1.4 Send Logs
-linkTitle: 1.4 Send Logs
+title: 1.4 Send logs
+linkTitle: 1.4 Send logs
 weight: 4
 ---
 
 {{% exercise title="Send logs through the pipeline" %}}
 
-**Start the log load generator:** In the **Command terminal**, run:
+In the **Command terminal**, start the log load generator:
 
 ```bash
 ../loadgen -logs
@@ -14,19 +14,19 @@ weight: 4
 
 The command writes a continuous stream of quotes to `quotes.log`. The
 `file_log/quotes` receiver reads the file, converts each line into an
-OpenTelemetry log record, and sends it through `logs/workshop` to the Agent
+OpenTelemetry log record, and sends it through `logs/workshop` to the agent's
 debug and file exporters.
 
-The **Agent Console** should display output similar to:
+The **Agent terminal** displays output similar to:
 
-```text { title="Agent Debug Output" }
+```text { title="Agent debug output" }
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
 ObservedTimestamp: 2026-08-02 10:00:00 +0000 UTC
 SeverityText:
 SeverityNumber: Unspecified(0)
 Body: Str(2026-08-02 10:00:00 [ERROR] - There is some good in this world, and it's worth fighting for. LOTR)
 Attributes:
-     -> log.file.path: Str(/path/to/advanced-collector-conf2026/quotes.log)
+     -> log.file.path: Str(/path/to/advanced-otel-workshop/1-agent/quotes.log)
 Trace ID:
 Span ID:
 Flags: 0
@@ -42,11 +42,11 @@ os.type: linux
 otelcol.service.mode: agent
 ```
 
-**Stop `loadgen`:** Press `Ctrl-C` in the **Command terminal**.
+Press `Ctrl-C` in the **Command terminal** to stop `loadgen`.
 
 At this point, the workshop directory contains:
 
-```text { title="Updated Directory Structure" }
+```text { title="Updated directory structure" }
 .
 ├── agent-logs.out
 ├── agent-traces.out

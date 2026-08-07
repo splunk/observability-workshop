@@ -1,20 +1,19 @@
 ---
-title: 3. Redacting Sensitive Data
-linkTitle: 3. Sensitive Data
+title: 3. Protect sensitive data
+linkTitle: 3. Protect sensitive data
 time: 6 minutes
 weight: 6
 ---
 
-Telemetry can contain personal, authentication, or payment information that
-must be changed before it is logged, stored, or transmitted. In this section
-you will configure two controls:
+Telemetry can contain personal, authentication, or payment information. In
+this chapter, you configure two processors to protect that data:
 
 - The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md)
   updates, hashes, or removes known span attributes.
 - The [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md)
   masks values matching patterns such as payment-card numbers.
 
-The unprocessed `/movie-validator` span includes:
+The original `/movie-validator` span includes:
 
 ```text
 Attributes:
@@ -27,9 +26,9 @@ Attributes:
      -> user.mastercard: Str(5555 5555 5555 4444)
 ```
 
-The goal is to replace the phone number, hash the email address, remove the
-password, and mask Visa and Mastercard values. The Amex value is deliberately
-left visible to demonstrate how an incomplete redaction policy behaves.
+You replace the phone number, hash the email address, remove the password, and
+mask the Visa and Mastercard values. You leave the Amex value visible so you
+can see what happens when a redaction policy is incomplete.
 
 Continue editing the same Config Builder project from Chapter 2. Both
-processors run in the Agent before all trace exporters.
+processors run in the agent before all trace exporters.

@@ -1,6 +1,6 @@
 ---
-title: 3.1 Protect Sensitive Span Attributes
-linkTitle: 3.1 Configure Protection
+title: 3.1 Protect sensitive span attributes
+linkTitle: 3.1 Configure protection
 weight: 1
 ---
 
@@ -8,8 +8,8 @@ weight: 1
 
 {{< step "Create the attributes processor" "1" >}}
 
-In **Component Inventory**, click **Add component**. Select component type
-`processor`, select component `attributes`, and click **Next**.
+In **Component Inventory**, select **Add component**. Select component type
+`processor`, select component `attributes`, and select **Next**.
 
 In **Options**, add these actions in order:
 
@@ -17,8 +17,8 @@ In **Options**, add these actions in order:
 2. Hash `user.email`.
 3. Delete `user.password`.
 
-Review **Preview** and click **Add**. The generated component should be
-equivalent to:
+Review **Preview**, then select **Add**. The generated component is equivalent
+to:
 
 ```yaml
 processors:
@@ -42,11 +42,11 @@ exactly or the password attribute will remain in the exported span.
 
 {{< step "Create the redaction processor" "2" >}}
 
-Click **Add component** again. Select component type `processor`, select
-component `redaction`, and click **Next**.
+Select **Add component** again. Select component type `processor`, select
+component `redaction`, and select **Next**.
 
 In **Options**, set `allow_all_keys` to **True**. Beside `blocked_values`,
-click **+** twice to create two entries, then paste one regular expression into
+select **+** twice to create two entries, then paste one regular expression into
 each entry:
 
 ```text
@@ -54,7 +54,7 @@ each entry:
 \b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b
 ```
 
-The first pattern matches the synthetic Visa value and the second matches the
+The first pattern matches the sample Visa value and the second matches the
 Mastercard value. The Amex value is intentionally left unmatched so the test
 can demonstrate an incomplete policy.
 
@@ -70,8 +70,8 @@ unmatched Amex value remains visible so you can recognize an incomplete
 redaction policy during validation.
 {{% /notice %}}
 
-Review **Preview** and click **Add**. The generated component should be
-equivalent to:
+Review **Preview**, then select **Add**. The generated component is equivalent
+to:
 
 ```yaml
 processors:
@@ -87,11 +87,11 @@ processors:
 
 {{< step "Add both processors to the traces pipeline" "3" >}}
 
-Select **Pipelines** and click the pencil-shaped **Edit** icon for `traces`.
-Click **+** beside **processors** to add `attributes`, then repeat to add
+Select **Pipelines** and select the pencil-shaped **Edit** icon for `traces`.
+Select **+** beside **processors** to add `attributes`, then repeat to add
 `redaction`. Keep every existing receiver, processor, and exporter. Use the
 drag handles to place both new processors after `filter/health` and before
-`resourcedetection`, then click **Edit**.
+`resourcedetection`, then select **Edit**.
 
 ![Adding the attributes and redaction processors to the traces pipeline](../../images/config-builder-traces-attributes-redaction.png)
 
@@ -105,7 +105,7 @@ Open **Collector YAML** and confirm:
   `service.pipelines.traces.processors`.
 - All existing trace receivers and exporters remain connected.
 
-The complete traces pipeline should be equivalent to:
+The complete traces pipeline is equivalent to:
 
 ```yaml
 service:
@@ -128,10 +128,10 @@ service:
         - file/traces
 ```
 
-The order of `attributes` and `redaction` does not change this exercise's
-result. Confirm that both appear exactly once and all existing receivers and
-exporters remain connected. Cloud-enabled configurations also include
-`otlp_http`.
+For this exercise, the order of `attributes` and `redaction` does not change
+the result. Confirm that both appear exactly once and that all existing
+receivers and exporters remain connected. Cloud-enabled configurations also
+include `otlp_http`.
 
 Keep the project open and continue to Chapter 4.
 

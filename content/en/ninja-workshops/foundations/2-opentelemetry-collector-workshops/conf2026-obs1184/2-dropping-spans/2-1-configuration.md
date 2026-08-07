@@ -1,6 +1,6 @@
 ---
-title: 2.1 Build the Filter in Config Builder
-linkTitle: 2.1 Configure Filter
+title: 2.1 Build the filter in Config Builder
+linkTitle: 2.1 Configure the filter
 weight: 1
 ---
 
@@ -9,13 +9,13 @@ weight: 1
 {{< step "Create the filter processor" "1" >}}
 
 Open **Data Management > OTel Collector Config Builder**, select
-**Component Inventory**, and click **Add component**.
+**Component Inventory**, and select **Add component**.
 
 For **Component type**, select `processor`.
 
 ![Selecting processor as the component type](../../images/config-builder-component-type.png)
 
-For **Component**, select `filter`, then click **Next**.
+For **Component**, select `filter`, then select **Next**.
 
 ![Selecting the filter processor](../../images/config-builder-filter-component.png)
 
@@ -23,8 +23,8 @@ Use `health` as the component name so its Collector component ID is
 `filter/health`.
 
 In **Options**, set the top-level `error_mode` to `ignore`. Beside
-`trace_conditions`, click **+** to add a condition group. Inside that group,
-beside `conditions`, click **+** and enter:
+`trace_conditions`, select **+** to add a condition group. Inside that group,
+beside `conditions`, select **+** and enter:
 
 ```ottl
 span.name == "/_healthz"
@@ -48,7 +48,7 @@ containing a `conditions` list.
 ![Adding a span-name condition under trace_conditions](../../images/config-builder-filter-trace-conditions.png)
 
 Select **Preview**, confirm the generated YAML defines
-`processors.filter/health`, and click **Add**.
+`processors.filter/health`, and select **Add**.
 
 ![Previewing and adding the filter health component](../../images/config-builder-filter-health-preview.png)
 
@@ -56,10 +56,10 @@ Select **Preview**, confirm the generated YAML defines
 
 {{< step "Add the processor to the traces pipeline" "2" >}}
 
-Select **Pipelines**, find `traces`, and click its pencil-shaped **Edit** icon.
+Select **Pipelines**, find `traces`, and select its pencil-shaped **Edit** icon.
 
-In the **Edit pipeline** modal, click **+** beside **processors** and add
-`filter/health`. Place it immediately after `memory_limiter`, then click
+In the **Edit pipeline** dialog, select **+** beside **processors** and add
+`filter/health`. Place it immediately after `memory_limiter`, then select
 **Edit**.
 
 {{% notice title="Keep the existing pipeline components" style="warning" %}}
@@ -99,9 +99,9 @@ service:
         - file/traces
 ```
 
-If cloud export is enabled, `otlp_http` also appears under `exporters`. The
-important check is that `filter/health` appears once and all existing
-components remain connected.
+If cloud export is enabled, `otlp_http` also appears under `exporters`. Confirm
+that `filter/health` appears once and that all existing components remain
+connected.
 
 Keep this Config Builder project open. You will download the completed
 configuration in Chapter 5.

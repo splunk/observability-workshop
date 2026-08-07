@@ -51,10 +51,10 @@ curl -fL --retry 3 \
   "https://github.com/signalfx/splunk-otel-collector/releases/download/v${collector_version}/${collector_asset}" \
   -o "${lab_dir}/otelcol"
 install -m 0755 \
-  "${repo_dir}/workshop/ninja/advanced-otel/conf2026/loadgen/build/${loadgen_asset}" \
+  "${repo_dir}/workshop/ninja/advanced-otel/conf2026-obs1184/loadgen/build/${loadgen_asset}" \
   "${lab_dir}/loadgen"
 install -m 0755 \
-  "${repo_dir}/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026/setup-workshop-conf2026.sh" \
+  "${repo_dir}/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/setup-workshop-conf2026.sh" \
   "${lab_dir}/setup-workshop.sh"
 chmod 0755 "${lab_dir}/otelcol"
 chown -R "${login_user}:${login_user}" "${lab_dir}"

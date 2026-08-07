@@ -3,7 +3,7 @@
 This workshop uses one agent-mode Collector, one `agent_config.yaml`, and one
 `loadgen` process. The detailed
 attendee instructions live in the Hugo page
-`content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-conf2026/`.
+`content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/`.
 
 ## Delivery objective
 

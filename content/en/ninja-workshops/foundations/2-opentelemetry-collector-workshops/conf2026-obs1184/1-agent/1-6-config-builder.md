@@ -1,6 +1,6 @@
 ---
-title: 1.6 Upload the Configuration to Config Builder
-linkTitle: 1.6 Upload Config YAML
+title: 1.6 Upload the configuration to Config Builder
+linkTitle: 1.6 Upload config YAML
 weight: 6
 ---
 
@@ -45,30 +45,31 @@ Upload `agent_config.yaml`, not `workshop-env.sh`. The YAML contains environment
 variable references; `workshop-env.sh` can contain your access token.
 {{% /notice %}}
 
-{{% expand title="How this Agent configuration works" %}}
+{{% expand title="How this agent configuration works" %}}
 
-The Agent has three signal types and eight pipelines. Six come from the
-Splunk Distribution's default `v0.157.0` Agent configuration; the two names
-ending in `/workshop` are added for this lab:
+The agent has eight pipelines for three signal types. Six come from the
+version `0.157.0` default agent configuration in the Splunk Distribution of
+the OpenTelemetry Collector. The two pipelines ending in `/workshop` are for
+this workshop:
 
 | Pipeline | Purpose | Export |
 |---|---|---|
-| `traces` | Retains the default Jaeger, OTLP, and Zipkin receivers; `loadgen` uses OTLP/HTTP | Debug, `agent-traces.out`, and optional APM export |
-| `metrics` | Collects the normal host-metrics set every 10 seconds | SignalFx in cloud mode; `nop` when cloud export is skipped |
-| `metrics/internal` | Scrapes the Collector's own Prometheus metrics | SignalFx in cloud mode; `nop` when cloud export is skipped |
-| `logs/signalfx` | Collects the default process-list events | SignalFx in cloud mode; `nop` when cloud export is skipped |
+| `traces` | Receives traces through Jaeger, OpenTelemetry Protocol (OTLP), and Zipkin | Debug output, `agent-traces.out`, and optional Splunk APM export |
+| `metrics` | Collects host metrics every 10 seconds | Splunk Observability Cloud in cloud mode; `nop` in local mode |
+| `metrics/internal` | Collects the Collector's internal metrics | Splunk Observability Cloud in cloud mode; `nop` in local mode |
+| `logs/signalfx` | Collects process-list events | Splunk Observability Cloud in cloud mode; `nop` in local mode |
 | `metrics/workshop` | Collects CPU at startup and then hourly | Debug and `agent-metrics.out` |
 | `logs` | Retains the default OTLP and Fluent Forward path | `splunk_hec` and `splunk_hec/profiling`; HEC environment variables remain optional for the live lab |
-| `logs/entities` | Retains the discovery-mode entity path | Observability Cloud entity endpoint when discovery adds receivers |
+| `logs/entities` | Sends entity data when discovery adds receivers | Splunk Observability Cloud entity endpoint |
 | `logs/workshop` | Receives OTLP/HTTP and reads `quotes.log` | Debug and `agent-logs.out` |
 
-The workshop-specific pipelines protect the normal destination paths from
-exercise-only debug and file output. There is still only one
-`agent_config.yaml`.
+The workshop pipelines write sample data to local files so you can complete
+the exercises without sending workshop logs to another system. All eight
+pipelines are in one `agent_config.yaml` file.
 
 `health_check` provides the readiness endpoint on port `13133`.
-`resource/add_mode` adds `otelcol.service.mode=agent` so processed data is easy
-to identify.
+`resource/add_mode` adds `otelcol.service.mode=agent` so you can identify data
+processed by this agent.
 
 {{% /expand %}}
 
@@ -76,4 +77,4 @@ Keep this Config Builder project open for Chapters 2 through 4.
 
 {{% /exercise %}}
 
-{{< checkpoint "The eight Agent pipelines are visible in Config Builder." >}}
+{{< checkpoint "The eight agent pipelines are visible in Config Builder." >}}

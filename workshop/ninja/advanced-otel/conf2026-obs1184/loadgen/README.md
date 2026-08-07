@@ -7,7 +7,7 @@ without sending it to a Collector.
 Build all workshop targets with:
 
 ```bash
-GOCACHE=/tmp/conf2026-go-build-cache ./build.sh
+GOCACHE=/tmp/obs1184-go-build-cache ./build.sh
 ```
 
 Attendee download links use the platform binaries in `build/`.

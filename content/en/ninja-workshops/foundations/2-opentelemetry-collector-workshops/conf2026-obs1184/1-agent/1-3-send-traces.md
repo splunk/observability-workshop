@@ -1,12 +1,12 @@
 ---
-title: 1.3 Send Traces to the Agent
-linkTitle: 1.3 Send Traces
+title: 1.3 Send traces to the agent
+linkTitle: 1.3 Send traces
 weight: 3
 ---
 
 {{% exercise title="Send a test trace" %}}
 
-1. Verify the foreground Agent is still running in the **Agent Console**.
+1. Verify that the agent is still running in the **Agent terminal**.
 2. In the **Command terminal**, send five spans:
 
 {{% tabs %}}
@@ -17,7 +17,7 @@ weight: 3
 ```
 
 {{% /tab %}}
-{{% tab title="Agent Debug Output" %}}
+{{% tab title="Agent debug output" %}}
 
 ```text
 Traces  {"otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "traces", "resource spans": 1, "spans": 1}
@@ -54,11 +54,11 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-**Verify the Agent handled the spans:** In the **Agent Console**, confirm that
-five `/movie-validator` spans appear. Resource detection adds host information,
-and `resource/add_mode` adds `otelcol.service.mode=agent`.
+In the **Agent terminal**, confirm that five `/movie-validator` spans appear.
+Resource detection adds host information, and `resource/add_mode` adds
+`otelcol.service.mode=agent`.
 
-The synthetic sensitive values are intentional workshop test data that later
+The sample sensitive values are workshop test data that later
 exercises will modify. The spans are written to the console and
 `agent-traces.out`; when cloud export is enabled, `otlp_http` also sends them
 to Splunk APM.
