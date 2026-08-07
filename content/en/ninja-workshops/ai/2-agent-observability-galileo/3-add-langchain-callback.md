@@ -30,21 +30,15 @@ from galileo.handlers.langchain import GalileoCallback
 In `plan_travel_internal()`, create a callback and attach it to the run config passed to `compiled_app.stream(...)`. The existing code should look something like this:
 
 ```python
-    workflow = build_workflow()
-    compiled_app = workflow.compile()
-
     for step in compiled_app.stream(initial_state, config):
         node_name, node_state = next(iter(step.items()))
         final_state = node_state
 ```
 
-   Update it to build a config that includes the Splunk Agent Observability callback (merging it with any existing
+   Update it to build a config that includes the Galileo callback (merging it with any existing
    config the app already passes). This passes the execution of each node in the agent to Splunk Agent Observability:
 
 ```python
-    workflow = build_workflow()
-    compiled_app = workflow.compile()
-
     # One callback per request keeps each travel plan in its own trace.
     callback = GalileoCallback()
     run_config = {**config, "callbacks": [callback]}

@@ -8,6 +8,7 @@ time: 10 minutes
 In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. 
 
 ## Deploy to Kubernetes
+From the project root [~/workshop/context-propagation], run:
 
 ```bash
 make deploy
@@ -198,7 +199,7 @@ HTTP 200
 
 #### Log In to RabbitMQ [Optional]:
 
-Open **http://localhost:15672** in a browser and log in with `guest` / `guest`.
+Open **http://(your-instance-url):15672** in a browser and log in with `guest` / `guest`.
 
 **If RabbitMQ UI is not loading**, use port-forward in a **separate terminal** (keep it open):
 
@@ -206,6 +207,6 @@ Open **http://localhost:15672** in a browser and log in with `guest` / `guest`.
 kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 ```
 
-Then open http://localhost:15672 again.
+Then open http://(your-instance-url):15672 again.
 
 

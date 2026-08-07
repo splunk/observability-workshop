@@ -17,7 +17,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 * These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service.
 * Scroll down the page and expand **Infrastructure Metrics**. Here you will see the metrics for the Host and Pod.
 * **Runtime Metrics** are not available as profiling data is not available for services written in Node.js.
-* Now let's go back to the explore view, you can hit the back button in your Browser
+* Now let's go back to the service map view using the menu (APM > Service map). 
 
 {{% /exercise %}}
 
@@ -27,14 +27,12 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?**
+**In the Service Map  click on the **paymentservice**. What can you conclude from the Service Requests & Errors chart in the sidebar?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
 **The error percentage is very high.**
 {{% /tab %}}
 {{< /tabs >}}
 {{% /exercise %}}
-
-![APM Service Chart](../images/apm-service-popup-chart.png)
 
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.

@@ -15,8 +15,8 @@ Change the platform architecture to `linux/arm64` if required:
 
 ``` bash
     docker build --tag loanservice --platform linux/amd64 src/loanservice
-    docker tag loanservice:latest derekmitchell399/loanservice:v0.0.1
-    docker image push derekmitchell399/loanservice:v0.0.1
+    docker tag loanservice:latest derekmitchell399/loanservice:v0.0.2
+    docker image push derekmitchell399/loanservice:v0.0.2
 ```
 
 ### Build the risk service image and push to Docker Hub
@@ -25,7 +25,7 @@ Change the platform architecture to `linux/arm64` if required:
 
 ``` bash
     docker build --tag riskservice --platform linux/amd64 src/riskservice
-    docker tag riskservice:latest derekmitchell399/riskservice:v0.0.1
-    docker image push derekmitchell399/riskservice:v0.0.1
+    docker tag riskservice:latest derekmitchell399/riskservice:v0.0.2
+    docker image push derekmitchell399/riskservice:v0.0.2
 ```
 

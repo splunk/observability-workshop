@@ -21,6 +21,7 @@ When either side omits this, each consumed message starts a **new root trace** -
 
 ### 1. Producer - (payment-api)
 
+From the project root [~/workshop/context-propagation], Open file to edit:
 ```
 vi services/payment-api/server.js
 ```
@@ -52,9 +53,17 @@ function buildFulfillmentMessageHeaders(order, payment) {
 {{% /tab %}}
 {{< /tabs >}}
 
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+Run the following command from ./workshop/context-propagation folder to compare your changes with the expected solution:
+
+```bash
+diff ./services/payment-api/server.js  ./services/payment-api/server-fixed.js
+```
+{{% / notice %}}
+
 ### 2. Consumer - (fulfillment-worker)
 
-Open file to edit:
+From the project root [~/workshop/context-propagation], Open file to edit:
 
 ```
 vi services/fulfillment-worker/worker.js
@@ -90,3 +99,11 @@ const parentContext = extractTraceContext(msg.properties.headers ?? {});
 
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
+Run the following command from ./workshop/context-propagation folder to compare your changes with the expected solution:
+
+```bash
+diff ./services/fulfillment-worker/worker.js  ./services/fulfillment-worker/worker-fixed.js
+```
+{{% / notice %}}

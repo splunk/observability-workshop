@@ -1,0 +1,173 @@
+name: Smoke Test - OTel Discovery Demo Services CI
+
+# Triggers when any otel-discovery-demo source file changes. Change detection
+# routes to only the affected service(s). Manual dispatch runs all tests.
+on:
+  push:
+    paths:
+      - 'workshop/demos/otel-discovery-demo/src/loanservice/**'
+      - 'workshop/demos/otel-discovery-demo/src/riskservice/**'
+  pull_request:
+    paths:
+      - 'workshop/demos/otel-discovery-demo/src/loanservice/**'
+      - 'workshop/demos/otel-discovery-demo/src/riskservice/**'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      loanservice: ${{ steps.filter.outputs.loanservice }}
+      riskservice: ${{ steps.filter.outputs.riskservice }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            loanservice:
+              - 'workshop/demos/otel-discovery-demo/src/loanservice/**'
+            riskservice:
+              - 'workshop/demos/otel-discovery-demo/src/riskservice/**'
+
+  # Verifies the Gradle dependency graph and compilation succeed. Fast feedback
+  # before the slower smoke test that spins up service containers.
+  loanservice-gradle-build:
+    name: loanservice - Gradle Build
+    needs: detect-changes
+    if: needs.detect-changes.outputs.loanservice == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workshop/demos/otel-discovery-demo/src/loanservice
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew bootJar
+
+  # Runs the full application against real MySQL and Kafka service containers
+  # and exercises the /loanRequest endpoint end-to-end.
+  loanservice-smoke-test:
+    name: loanservice - Application Smoke Test
+    needs: detect-changes
+    if: needs.detect-changes.outputs.loanservice == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workshop/demos/otel-discovery-demo/src/loanservice
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: MyDB
+          MYSQL_USER: MyUser
+          MYSQL_PASSWORD: MyPassword
+          MYSQL_ROOT_PASSWORD: rootpassword
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -u root --password=rootpassword"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+      kafka:
+        image: bitnamilegacy/kafka:3.8.0
+        env:
+          KAFKA_CFG_NODE_ID: "1"
+          KAFKA_CFG_PROCESS_ROLES: "controller,broker"
+          KAFKA_CFG_LISTENERS: "PLAINTEXT://:9092,CONTROLLER://:9093"
+          KAFKA_CFG_ADVERTISED_LISTENERS: "PLAINTEXT://localhost:9092"
+          KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT"
+          KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"
+          KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+          KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+          ALLOW_PLAINTEXT_LISTENER: "yes"
+        ports:
+          - 9092:9092
+          - 9093:9093
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew bootJar
+
+      - name: Create Loans table
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u MyUser -pMyPassword MyDB -e \
+            "CREATE TABLE IF NOT EXISTS Loans (ApplicantId INT, LoanAmount DECIMAL(10,2));"
+
+      - name: Wait for Kafka broker
+        run: |
+          echo "Waiting for Kafka on port 9092..."
+          for i in $(seq 1 30); do
+            if nc -z localhost 9092 2>/dev/null; then
+              echo "Kafka ready after $((i * 2))s"
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Start loanservice
+        env:
+          DB_URL: jdbc:mysql://localhost/MyDB
+          KAFKA_BROKER: localhost:9092
+        run: java -jar build/libs/*.jar &
+
+      - name: Wait for loanservice to be ready
+        run: |
+          echo "Waiting for loanservice on port 8080..."
+          for i in $(seq 1 30); do
+            if curl -sf "http://localhost:8080/loanRequest?applicantId=9999&loanAmount=1" > /dev/null 2>&1; then
+              echo "Application ready after $((i * 2))s"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Application did not start within 60s"
+          exit 1
+
+      - name: Smoke test - loan request
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            "http://localhost:8080/loanRequest?applicantId=1234&loanAmount=500")
+          echo "GET /loanRequest → HTTP $status"
+          [ "$status" = "200" ] || (echo "Expected HTTP 200, got $status" && exit 1)
+
+  loanservice-docker-build:
+    name: loanservice - Docker Build
+    needs: detect-changes
+    if: needs.detect-changes.outputs.loanservice == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:loanservice workshop/demos/otel-discovery-demo/src/loanservice
+
+  riskservice:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.riskservice == 'true' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/test-node-consumer-smoke.yml
+    with:
+      service-path: workshop/demos/otel-discovery-demo/src/riskservice
+      node-version: '18'
+      entrypoint: consumer.js

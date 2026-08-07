@@ -9,8 +9,8 @@
   <script>
     (function () {
       // Auto-forward root alias pages (for example /observability-workshop/) to /<lang>/.
-      var target = {{ .Permalink | jsonify }};
-      var langSegment = {{ printf "%s/" (site.Language.Lang | default "en") | jsonify }};
+      var target = "{{ .Permalink }}";
+      var langSegment = "{{ site.Language.Lang | default "en" }}/";
       var normalize = function (path) {
         if (!path) return "/";
         return path.replace(/\/+$/, "") + "/";

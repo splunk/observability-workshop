@@ -15,7 +15,7 @@ Our setup script creates:
 
 ## Create the Cluster
 
-From the project root:
+From the project root [~/workshop/context-propagation], run:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -120,7 +120,7 @@ docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
 0.0.0.0:30080->30080/tcp, 0.0.0.0:15672->15672/tcp, ...
 ```
 
-If **15672 is missing**, the cluster was created without the RabbitMQ port mapping. The management UI will not load at http://localhost:15672 until you recreate the cluster with `make setup-k3d` (see [Troubleshooting](#troubleshooting) below).
+If **15672 is missing**, the cluster was created without the RabbitMQ port mapping. The management UI will not load at http://(your-instance-url):15672 until you recreate the cluster with `make setup-k3d` (see [Troubleshooting](#troubleshooting) below).
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -129,14 +129,14 @@ If **15672 is missing**, the cluster was created without the RabbitMQ port mappi
 
 Here are some of the potential issues you may encounter in this step & suggested remediation steps.
 
-{{< details summary="Click here for Troubleshooting Guidance" >}}
+{{< details summary="Click Here for Troubleshooting Guidance" >}}
 #### Potential Issue 1: Port already in use
 
 If port 30080 or 5111 is taken, either stop the conflicting service or edit `scripts/setup-k3d.sh` to use different ports.
 
 #### Potential Issue 2: RabbitMQ UI not loading (missing 15672 on loadbalancer)
 
-If http://localhost:15672 does not load, check whether k3d mapped the port:
+If http://(your-instance-url):15672 does not load, check whether k3d mapped the port:
 
 ```bash
 docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
@@ -148,11 +148,12 @@ docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
 kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
 ```
 
-Keep that terminal open, then open http://localhost:15672 (`guest` / `guest`).
+Keep that terminal open, then open http://(your-instance-url):15672 (`guest` / `guest`).
 
 #### Potential Issue 3: Cluster already exists
 
 The script skips creation if a cluster named `cosmic-shop` already exists. To start fresh:
+Navigate to project root [~/workshop/context-propagation]
 
 ```bash
 k3d cluster delete cosmic-shop

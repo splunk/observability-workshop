@@ -5,7 +5,7 @@ weight: 2
 
 {{% exercise title="Explore the RUM dashboard" %}}
 
-* You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Workflows**, **Network Requests**, **Pages** and a **Map View** comparing them to historic metrics (1 hour by default).
+* You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Workflows**, **Network Requests**, **Pages** and a **Map View** comparing them to historic metrics (1 day by default).
 
 ![RUM Dashboard](../images/rum-metric-map-charts.png)
 
@@ -35,9 +35,9 @@ weight: 2
 {{% /tab %}}
 {{< /tabs >}}
 
-* Make sure you are on the **Custom Workflows** tab.
+* Make sure you are on the **Custom Workflows** tab **(1)**.
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Workflow Duration P75** chart.
-* In the **Custom Workflows Duration** chart click on the **see all** **(1)** link under the chart title.
+* In the **Custom Workflows Duration** chart click on the **see all** **(2)** link under the chart title.
 
 ![RUM See All](../images/rum-see-all.png)
 

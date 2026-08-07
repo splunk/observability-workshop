@@ -11,7 +11,7 @@ In this step we will review what the E2E correlation looks like from the web app
 
 ### Send New Web Request
 
-1. Open http://localhost:30080
+1. Open http://(your-instance-url)):30080
 2. Click Buy now → Confirm & place order
 
 ![rum-ui](../images/rum-ui.png)

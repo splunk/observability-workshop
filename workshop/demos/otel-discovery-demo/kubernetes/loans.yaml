@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: loanservice
-          image: derekmitchell399/loanservice:v0.0.1
+          image: derekmitchell399/loanservice:v0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: riskservice
-          image: derekmitchell399/riskservice:v0.0.1
+          image: derekmitchell399/riskservice:v0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

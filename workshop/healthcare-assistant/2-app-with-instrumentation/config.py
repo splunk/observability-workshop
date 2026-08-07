@@ -1,5 +1,4 @@
 """Load healthcare app configuration from YAML and JSON files."""
-from functools import lru_cache
 from pathlib import Path
 
 import yaml
@@ -8,11 +7,10 @@ APP_ROOT = Path(__file__).resolve().parent
 DOMAIN = "healthcare"
 CONFIG_PATH = APP_ROOT / "config.yaml"
 SYSTEM_PROMPT_PATH = APP_ROOT / "system_prompt.json"
-DOCS_DIR = APP_ROOT / "../docs"
+DOCS_DIR = APP_ROOT / "docs"
 TOOLS_DIR = APP_ROOT / "tools"
 
 
-@lru_cache(maxsize=1)
 def load_config() -> dict:
     with CONFIG_PATH.open(encoding="utf-8") as f:
         return yaml.safe_load(f)

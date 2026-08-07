@@ -8,6 +8,10 @@ from langchain_core.messages import AIMessage, HumanMessage
 
 from agent import HealthcareAgent
 from config import load_config
+from helpers.hallucination_helpers import (
+    add_hallucination_interaction_to_chat,
+    log_demo_hallucination,
+)
 from rag import get_rag_system
 from setup_env import setup_environment
 
@@ -120,6 +124,33 @@ def render_sidebar(app_config: dict) -> str:
             del st.session_state.agent
         st.session_state.active_model = selected_model
 
+        has_hallucinations = bool(app_config.get("demo_hallucinations", []))
+        if has_hallucinations:
+            st.divider()
+            st.subheader("Hallucination Demo")
+            st.markdown(
+                "Log an intentional hallucination to Splunk Agent Observability."
+            )
+            if st.button("Log Hallucination", key="log_hallucination"):
+                with st.spinner("Logging hallucination to Splunk Agent Observability..."):
+                    existing_logger = (
+                        st.session_state.get("galileo_logger")
+                        if st.session_state.get("galileo_session_started", False)
+                        else None
+                    )
+                    success = log_demo_hallucination(
+                        config=app_config,
+                        existing_logger=existing_logger,
+                        session_id=st.session_state.get("session_id"),
+                    )
+                    if success:
+                        add_hallucination_interaction_to_chat(app_config)
+                        st.rerun()
+                    else:
+                        st.error(
+                            "Failed to log hallucination. Check logs for details."
+                        )
+
     return selected_model
 
 
@@ -135,15 +166,15 @@ def main():
         ],
     )
 
+    if "session_id" not in st.session_state:
+        # Galileo requires session_id to be a valid UUID when grouping traces.
+        st.session_state.session_id = str(uuid.uuid4())
+
     selected_model = render_sidebar(app_config)
 
     if "rag_initialized" not in st.session_state:
         get_rag_system()
         st.session_state.rag_initialized = True
-
-    if "session_id" not in st.session_state:
-        # Galileo requires session_id to be a valid UUID when grouping traces.
-        st.session_state.session_id = str(uuid.uuid4())
 
     if "agent" not in st.session_state:
         st.session_state.agent = HealthcareAgent(

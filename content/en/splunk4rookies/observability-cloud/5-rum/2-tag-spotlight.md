@@ -19,7 +19,6 @@ In this dashboard view, you are presented with all the tags associated with the 
 {{% exercise title="Filter to slow PlaceOrder transactions" %}}
 
 * Change the timeframe to **Last 1 hour**.
-* Click **Add Filters**, select **OS Version**, click **!=** and select **Synthetics** and **RUMLoadGen** then click the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
 * Find the **Custom Event Name** chart, locate **PlaceOrder** in the list, click on it and select **Add to filter**.
 * Notice the large spikes in the graph across the top.
 * Click on the **User Sessions** tab.

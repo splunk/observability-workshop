@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest - lambda
-# Version: 2.0.6
-# Generated on: 2026-07-16T11:22:15Z
+# Version: 2.0.7
+# Generated on: 2026-07-30T14:01:16Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -19,7 +19,7 @@ metadata:
     opentelemetry.io/name: planning
     app.kubernetes.io/component: planning
     app.kubernetes.io/name: planning
-    app.kubernetes.io/version: 2.0.6
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -37,7 +37,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
       - name: planning
-        image: ghcr.io/splunk/opentelemetry-demo/otel-planning:2.0.6
+        image: ghcr.io/splunk/opentelemetry-demo/otel-planning:2.0.7
         imagePullPolicy: Always
         env:
         - name: WORKSHOP_ENV
@@ -74,7 +74,7 @@ spec:
         - name: OTEL_PYTHON_LOG_CORRELATION
           value: 'true'
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.6,service.kafka=spanlink,deployment.environment=$(WORKSHOP_ENV)-lambda
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=spanlink,deployment.environment=$(WORKSHOP_ENV)-lambda
         - name: SPLUNK_PROFILER_ENABLED
           value: 'true'
         - name: SPLUNK_PROFILER_MEMORY_ENABLED

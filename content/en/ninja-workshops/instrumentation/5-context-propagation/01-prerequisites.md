@@ -20,7 +20,7 @@ OpenTelemetry experience is required - we'll explain context propagation challen
 
 ## Required Software
 
-These tools will be installed on your instance:
+These tools will already be installed on your instance:
 
 | Tool | Minimum version | Verify |
 |------|-----------------|--------|
@@ -36,18 +36,9 @@ These tools will be installed on your instance:
 
 You'll need access to a Splunk Observability Cloud org with permission to:
 
-1. **Create an org access token** - used by the OTel Collector and APM agents
-2. **Create a RUM access token** - used by the browser agent (public token)
-3. **View APM traces** - APM → Service Map & APM → Traces
-4. **View RUM sessions** - Digital Experience → Session Search
-
-### Gather these values before step 2
-
-| Variable | Where to find it |
-|----------|------------------|
-| `SPLUNK_REALM` | Your org URL, e.g. `us0` from `https://app.us0.signalfx.com` |
-| `SPLUNK_ACCESS_TOKEN` | Settings → Access Tokens → Create Token (Ingest scope) |
-| `SPLUNK_RUM_ACCESS_TOKEN` | Data Management → RUM → Create RUM access token |
+1. **View APM traces** - APM → Service Map & APM → Traces
+2. **View RUM sessions** - Digital Experience → Session Search
+3. **[Optional] Gather Realm & Token Details** - NOTE: These values are configured in your instance and detail are provided in the next step.
 
 ## Validation Checklist
 

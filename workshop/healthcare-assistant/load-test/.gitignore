@@ -1,0 +1,6 @@
+loadtest_results.csv
+.env
+galileo_loadtest_results.csv
+galileo_failure_screenshots/
+galileo_remove_metric_configuration_results.csv
+browser_failure_screenshots/

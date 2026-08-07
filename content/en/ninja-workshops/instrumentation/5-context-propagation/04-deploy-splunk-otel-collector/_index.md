@@ -19,7 +19,7 @@ Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O1
 
 ## Install via Helm
 
-Ensure your `.env` file is configured, then run:
+Ensure your `.env` file is configured, then from project root [~/workshop/context-propagation] run:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -125,7 +125,7 @@ failed to export
 connection refused
 ```
 
-If you see auth errors, verify your org access token and realm in `.env`, then reinstall:
+If you see auth errors, verify your org access token and realm in `.env`, then reinstall from project root [~/workshop/context-propagation]:
 
 ```bash
 make collector

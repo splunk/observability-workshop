@@ -12,6 +12,7 @@ from typing import Optional, Tuple
 from langchain_postgres import PGVector
 
 from config import DOMAIN, load_config
+from helpers.agent_control_helpers import make_controlled_tool
 from helpers.pgvector_utils import get_pgvector_store
 from helpers.sql_utils import execute_sql, relational_table_name
 from helpers.text_to_sql_utils import generate_sql
@@ -55,6 +56,9 @@ async def _execute_patient_sql(sql: str) -> str:
         return json.dumps({"error": str(e), "sql": sql})
 
 
+_execute_patient_sql = make_controlled_tool(_execute_patient_sql, "get_patient_info")
+
+
 async def _execute_patient_delete_sql(sql: str) -> str:
     """Execute a SQL delete against the patient registry."""
     try:
@@ -62,6 +66,9 @@ async def _execute_patient_delete_sql(sql: str) -> str:
         return json.dumps(result)
     except Exception as e:
         return json.dumps({"error": str(e), "sql": sql})
+
+
+_execute_patient_delete_sql = make_controlled_tool(_execute_patient_delete_sql, "delete_patient_record")
 
 
 async def get_patient_info(patient_id: str) -> str:

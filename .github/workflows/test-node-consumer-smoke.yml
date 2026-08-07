@@ -1,0 +1,51 @@
+name: Smoke Test - Node.js Consumer
+
+# The Node.js consumer is a Kafka subscriber, not an HTTP server — there's no
+# endpoint to hit. Tests verify: dependencies install cleanly, the entrypoint
+# has no syntax errors, and the Docker image builds successfully.
+on:
+  workflow_call:
+    inputs:
+      service-path:
+        description: Repo-relative path to the Node.js service directory (e.g. workshop/demos/otel-discovery-demo/src/riskservice)
+        required: true
+        type: string
+      node-version:
+        description: Node.js version
+        required: false
+        default: '18'
+        type: string
+      entrypoint:
+        description: Main JavaScript file to syntax-check
+        required: false
+        default: consumer.js
+        type: string
+
+jobs:
+  npm-install:
+    name: Npm Install and Syntax Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.service-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check syntax
+        run: node --check ${{ inputs.entrypoint }}
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t smoke-test:latest ${{ inputs.service-path }}
