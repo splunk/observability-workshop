@@ -75,10 +75,16 @@ if [[ "${installed_version}" != *"${collector_version}"* ]]; then
   exit 1
 fi
 
-if ! ./loadgen --help >/dev/null; then
+if ! loadgen_help="$(./loadgen --help 2>&1)"; then
   echo "The load generator does not run on $(uname -s)/$(uname -m)." >&2
   exit 1
 fi
+if [[ "${loadgen_help}" != *"-preview"* ]]; then
+  echo "This workshop requires the conf2026 load generator with -preview support." >&2
+  echo "Download the loadgen binary from the conf2026 path in Prerequisites." >&2
+  exit 1
+fi
+unset loadgen_help
 
 cloud_setting="${CONF2026_CLOUD_ENABLED:-}"
 if [[ -z "${cloud_setting}" ]]; then

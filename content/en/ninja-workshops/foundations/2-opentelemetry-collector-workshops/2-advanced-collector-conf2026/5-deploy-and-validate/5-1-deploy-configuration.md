@@ -33,7 +33,6 @@ The YAML must contain environment-variable references, not token values.
 Stop the Agent with `Ctrl-C`, then back up the starter file:
 
 ```bash
-cd [WORKSHOP]/1-agent
 test -f agent_config.start.yaml || cp agent_config.yaml agent_config.start.yaml
 ```
 

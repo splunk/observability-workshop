@@ -55,8 +55,10 @@ the baseline, health, and log checks:
 
 ```text
 otelcol --config=agent_config.yaml
-loadgen -count 5
+loadgen -preview -health -count 1
 loadgen -health -count 5
+loadgen -preview -count 1
+loadgen -count 1
 loadgen -logs -json -count 5
 ```
 

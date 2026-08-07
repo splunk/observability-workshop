@@ -40,9 +40,6 @@ different port or copy command, use those details instead.
 2. Upload or import `agent_config.yaml`.
 3. Open **Component Inventory**, **Pipelines**, and **Collector YAML**.
 
-Button labels can change as Config Builder evolves. Use the action that imports
-an existing Collector configuration.
-
 {{% notice title="Keep credentials out of Config Builder" style="warning" %}}
 Upload `agent_config.yaml`, not `workshop-env.sh`. The YAML contains environment
 variable references; `workshop-env.sh` can contain your access token.

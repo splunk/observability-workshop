@@ -23,7 +23,6 @@ and are not part of this cloud check.
 1. In the **Command terminal**, confirm cloud mode was enabled:
 
    ```bash
-   cd [WORKSHOP]/1-agent
    source ../workshop-env.sh
    echo "${CONF2026_CLOUD_ENABLED}"
    ```

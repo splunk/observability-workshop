@@ -14,9 +14,6 @@ you will configure two controls:
 - The [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md)
   masks values matching patterns such as payment-card numbers.
 
-The load generator uses synthetic values only. Never upload real personal,
-payment, or authentication data to a shared workshop or Config Builder.
-
 The unprocessed `/movie-validator` span includes:
 
 ```text
