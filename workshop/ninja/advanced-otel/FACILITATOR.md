@@ -42,8 +42,9 @@ The timed lab, including wrap-up, is 55 minutes.
   throttled workshop-metric validation local. The normal host-metrics pipeline
   plus `metrics/internal`, `logs/signalfx`, and `logs/entities` use `nop`
   instead of cloud exporters.
-- **Log paths:** `logs/workshop` owns the live debug/file exercise. The retained
-  `logs` pipeline stays on `nop` until the take-home HEC configuration;
+- **Log paths:** `logs/workshop` owns the live debug/file exercise. The default
+  `logs` pipeline retains its `splunk_hec` and `splunk_hec/profiling`
+  exporters, but receives no workshop-generated file logs;
   `logs/signalfx` retains the default process-list path, and `logs/entities`
   remains unchanged for discovery mode.
 

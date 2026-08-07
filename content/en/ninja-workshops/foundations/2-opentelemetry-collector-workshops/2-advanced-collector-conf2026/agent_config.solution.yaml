@@ -95,6 +95,7 @@ receivers:
     type: processlist
   zipkin:
     endpoint: "${SPLUNK_LISTEN_INTERFACE}:9411"
+  # Used by setup-workshop-conf2026.sh only when cloud export is disabled.
   nop:
 
 processors:
@@ -229,7 +230,7 @@ service:
     logs:
       receivers: [fluent_forward, otlp]
       processors: [memory_limiter, batch, resourcedetection]
-      exporters: [nop]
+      exporters: [splunk_hec, splunk_hec/profiling]
     logs/entities:
       receivers: [nop]
       processors: [memory_limiter, batch, resourcedetection]

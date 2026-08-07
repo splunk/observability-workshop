@@ -24,9 +24,10 @@ action.
 {{% /notice %}}
 
 {{% notice title="Four log pipelines" style="info" %}}
-`logs` preserves the OTLP and Fluent Forward path for the take-home HEC
-exercise and stays on `nop` during the live lab. `logs/workshop` reads
-`quotes.log` and writes only to local debug and `agent-logs.out`.
+`logs` preserves the default OTLP and Fluent Forward path with the
+`splunk_hec` and `splunk_hec/profiling` exporters. The live exercise does not
+route its file logs through that pipeline. `logs/workshop` reads `quotes.log`
+and writes only to local debug and `agent-logs.out`.
 `logs/signalfx` retains the default process-list path, and `logs/entities`
 remains available for discovery mode. Neither requires attendee action.
 {{% /notice %}}

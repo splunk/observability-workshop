@@ -22,7 +22,8 @@ Splunk Cloud Platform environment.
 1. Set `SPLUNK_HEC_URL` and `SPLUNK_HEC_TOKEN` for your non-production Splunk
    Platform instance. The configuration already defines the
    [`splunk_hec` exporter](https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/exporters/splunk-hec-exporter).
-2. In the retained `logs` pipeline, replace `nop` with `splunk_hec` and send an
+2. The default `logs` pipeline already uses `splunk_hec` and
+   `splunk_hec/profiling`. After setting the HEC environment variables, send an
    OTLP or Fluent Forward log. To reuse the quote exercise, add the existing
    `file_log/quotes` receiver and `transform` processor to that pipeline.
 3. If your environments meet the requirements, configure

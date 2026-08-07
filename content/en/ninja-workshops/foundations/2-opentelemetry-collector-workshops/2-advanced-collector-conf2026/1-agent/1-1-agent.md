@@ -66,9 +66,10 @@ The normal `metrics` pipeline sends full host metrics to SignalFx when cloud
 export is enabled. The throttled `metrics/workshop` pipeline always provides
 bounded local debug and file output. `metrics/internal` retains Collector
 self-monitoring, `logs/signalfx` retains the default process-list path, and
-`logs/entities` remains available for discovery mode. The retained `logs`
-pipeline stays on `nop` during the live lab, while `logs/workshop` provides
-local debug and file output for the exercises.
+`logs/entities` remains available for discovery mode. The default `logs`
+pipeline retains its `splunk_hec` and `splunk_hec/profiling` exporters, while
+`logs/workshop` keeps the exercise-generated file logs on local debug and file
+output.
 
 {{% /exercise %}}
 

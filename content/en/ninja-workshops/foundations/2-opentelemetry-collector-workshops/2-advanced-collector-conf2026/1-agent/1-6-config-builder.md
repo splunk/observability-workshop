@@ -61,7 +61,7 @@ ending in `/workshop` are added for this lab:
 | `metrics/internal` | Scrapes the Collector's own Prometheus metrics | SignalFx in cloud mode; `nop` when cloud export is skipped |
 | `logs/signalfx` | Collects the default process-list events | SignalFx in cloud mode; `nop` when cloud export is skipped |
 | `metrics/workshop` | Collects CPU at startup and then hourly | Debug and `agent-metrics.out` |
-| `logs` | Retains the OTLP and Fluent Forward path for take-home use | `nop` during the live lab; connect `splunk_hec` later |
+| `logs` | Retains the default OTLP and Fluent Forward path | `splunk_hec` and `splunk_hec/profiling`; HEC environment variables remain optional for the live lab |
 | `logs/entities` | Retains the discovery-mode entity path | Observability Cloud entity endpoint when discovery adds receivers |
 | `logs/workshop` | Receives OTLP/HTTP and reads `quotes.log` | Debug and `agent-logs.out` |
 

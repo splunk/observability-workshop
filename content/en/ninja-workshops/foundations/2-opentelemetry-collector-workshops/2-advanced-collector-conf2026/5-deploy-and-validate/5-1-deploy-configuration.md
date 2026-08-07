@@ -16,8 +16,9 @@ In **Collector YAML**, confirm:
   `metrics/internal`, `logs/signalfx`, `logs`, `logs/entities`,
   `metrics/workshop`, and `logs/workshop`.
 - `metrics/internal`, `logs/signalfx`, and `logs/entities` remain unchanged.
-- The retained `logs` pipeline still uses `nop`; do not add HEC credentials
-  during the live lab.
+- The default `logs` pipeline still uses `splunk_hec` and
+  `splunk_hec/profiling`. Do not paste HEC credentials into the YAML; the
+  exporters continue to reference environment variables.
 
 Choose **Download** and save the file as `agent_config.yaml`.
 

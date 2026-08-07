@@ -139,8 +139,8 @@ exporters:
       X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
     auth:
       authenticator: headers_setter
-  # Retained for the Splunk Platform take-home exercise. The live logs pipeline
-  # remains on nop until participants supply their own HEC endpoint and token.
+  # Default Splunk HEC exporters. The workshop-generated file logs use the
+  # separate logs/workshop pipeline, so HEC credentials remain optional.
   splunk_hec:
     token: "${SPLUNK_HEC_TOKEN}"
     endpoint: "${SPLUNK_HEC_URL}"
@@ -163,6 +163,7 @@ exporters:
   file/logs:
     path: ./agent-logs.out
     append: false
+  # Used by setup-workshop-conf2026.sh only when cloud export is disabled.
   nop:
 
 service:
@@ -204,11 +205,12 @@ service:
       receivers: [nop]
       processors: [memory_limiter, batch, resourcedetection]
       exporters: [otlp_http/entities]
-    # The default receivers/processors remain intact. HEC is a take-home exercise.
+    # Default Splunk logs pipeline from v0.157.0. Workshop-generated file logs
+    # use logs/workshop instead, so this pipeline receives no live-lab traffic.
     logs:
       receivers: [fluent_forward, otlp]
       processors: [memory_limiter, batch, resourcedetection]
-      exporters: [nop]
+      exporters: [splunk_hec, splunk_hec/profiling]
     # Workshop-only pipelines for bounded local validation.
     metrics/workshop:
       receivers: [host_metrics/workshop]
