@@ -24,15 +24,16 @@ galileo
 
 {{< /step >}}
 
-{{< step title="Set Environment Variables" >}}
+{{< step title="Set the Participant Number Environment Variable" >}}
 
-Run the commands provided by your workshop instructor to set environment variables 
-on your EC2 instance. They'll look like the following: 
+Run the following command to set the `PARTICIPANT_NUMBER` environment variable 
+on your EC2 instance: 
+
+> **Be sure to add the participant number assigned to you in the sign-up sheet before
+> running the following command**
 
 ````
 export PARTICIPANT_NUMBER=<your participant number>  
-export GALILEO_API_KEY=<provided by workshop instructor>  
-export GALILEO_CONSOLE_URL=<provided by workshop instructor>
 ````
 
 {{< /step >}}
