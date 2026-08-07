@@ -6,9 +6,8 @@ APP_NAME="loadgen"
 # Output directory for compiled binaries
 OUTPUT_DIR="build"
 
-# List of target operating systems and architectures
+# Supported workshop platforms. Intel-based Macs use a Splunk Show instance.
 PLATFORMS=(
-  "darwin/amd64"
   "darwin/arm64"
   "linux/amd64"
   "linux/arm64"
@@ -24,7 +23,8 @@ compile() {
   local OUTPUT_FILE="$OUTPUT_DIR/$APP_NAME-$GOOS-$GOARCH"
 
   echo "Compiling for $GOOS/$GOARCH..."
-  env CGO_ENABLED=0 GO111MODULE=off GOOS="$GOOS" GOARCH="$GOARCH" go build -trimpath -o "$OUTPUT_FILE" .
+  env CGO_ENABLED=0 GO111MODULE=off GOOS="$GOOS" GOARCH="$GOARCH" \
+    go build -trimpath -ldflags="-s -w" -o "$OUTPUT_FILE" .
   if [ $? -ne 0 ]; then
     echo "Failed to compile for $GOOS/$GOARCH"
     exit 1
