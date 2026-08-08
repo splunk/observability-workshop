@@ -33,6 +33,19 @@ processors:
         action: delete
 ```
 
+These actions demonstrate three ways to handle known sensitive fields:
+
+- `update` keeps the phone-number key but replaces its value with a safe
+  placeholder. This is useful when downstream searches expect the key to
+  exist.
+- `hash` replaces the email address with a repeatable, non-plain-text value.
+  You can correlate repeated values without exporting the original address.
+- `delete` removes both the password key and its value because the field has
+  no valid observability use in this scenario.
+
+The attributes processor is a good fit when you know the exact attribute keys
+and want a specific action for each one.
+
 {{% notice title="Use the exact password key" style="info" %}}
 The load generator emits `user.password`. The processor key must match it
 exactly or the password attribute will remain in the exported span.
@@ -58,7 +71,7 @@ The first pattern matches the sample Visa value and the second matches the
 Mastercard value. The Amex value is intentionally left unmatched so the test
 can demonstrate an incomplete policy.
 
-![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](../../images/config-builder-redaction-options.png)
+![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](/images/obs1184/config-builder-redaction-options.png)
 
 Scroll through the remaining options and set `summary` to `debug`. Leave the
 database sanitizer options and all other optional fields unset.
@@ -69,6 +82,12 @@ a blocked pattern. The two matching payment-card values are masked; the
 unmatched Amex value remains visible so you can recognize an incomplete
 redaction policy during validation.
 {{% /notice %}}
+
+The redaction processor complements the attributes processor. Instead of
+targeting a known key, it scans attribute values for the configured patterns.
+This helps when the same kind of sensitive value can appear under different
+keys. In production, review the patterns regularly and test them against every
+format your applications can emit.
 
 Review **Preview**, then select **Add**. The generated component is equivalent
 to:
@@ -93,7 +112,11 @@ Select **+** beside **processors** to add `attributes`, then repeat to add
 drag handles to place both new processors after `filter/health` and before
 `resourcedetection`, then select **Edit**.
 
-![Adding the attributes and redaction processors to the traces pipeline](../../images/config-builder-traces-attributes-redaction.png)
+This order first removes spans you do not plan to keep, then protects the
+sensitive values in the remaining spans. Resource detection and batching run
+afterward, so every local or cloud exporter receives the protected version.
+
+![Adding the attributes and redaction processors to the traces pipeline](/images/obs1184/config-builder-traces-attributes-redaction.png)
 
 Use the screenshot as a UI reference for the add controls and drag handles.
 Follow the processor order below for this workshop configuration.

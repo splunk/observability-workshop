@@ -25,24 +25,35 @@ This keeps the resource metadata used by the exercise and removes fields such
 as `com.splunk.source`, `service.name`, and `os.type` from the exported log
 resource.
 
+Resource attributes describe the source that produced a group of log records;
+they are different from attributes on an individual log record. Using the
+`resource` context ensures that `keep_keys` changes only that shared source
+metadata. An explicit allowlist also makes the intended output easier to
+review than removing unwanted keys one at a time.
+
 Under `log_statements`, select **+** again to add a second statement group and
 set its context to `log`. Leave its `statements` list empty for now. The
-Several expressions are too long for the Options fields, so you add the
-complete OTTL expressions in the Collector YAML editor.
+expressions are too long for the Options fields, so you add the complete OTTL
+statements in the Collector YAML editor.
 
-![The Transform Processor Options form with resource and log context groups](../../images/config-builder-transform-options-contexts.png)
+The `log` context gives the statements access to the body, attributes, and
+severity of each individual record. Keeping the resource and log operations
+in separate context groups prevents a statement from accidentally targeting
+the wrong part of the OpenTelemetry data model.
+
+![The Transform Processor Options form with resource and log context groups](/images/obs1184/config-builder-transform-options-contexts.png)
 
 If an empty statement row was added under the `log` context, use its trash-can
 icon to remove it. Keep the `log` context with no statements beneath
 it.
 
-![The Transform Processor Options form with an empty log statements list](../../images/config-builder-transform-empty-log-statements.png)
+![The Transform Processor Options form with an empty log statements list](/images/obs1184/config-builder-transform-empty-log-statements.png)
 
 Select **Preview**. Confirm that the preview contains one `transform`
 processor, a `resource` context with the `keep_keys` statement, and an empty
 `log` context. Select **Add**.
 
-![Previewing the Transform Processor shell before adding it](../../images/config-builder-transform-preview.png)
+![Previewing the Transform Processor shell before adding it](/images/obs1184/config-builder-transform-preview.png)
 
 {{< /step >}}
 
@@ -85,6 +96,12 @@ fields, and `merge_maps(..., "upsert")` inserts new keys or replaces existing
 keys in the log attributes. The remaining statements copy the embedded level
 into `severity_text` and map it to an OpenTelemetry severity number.
 
+The `where IsMatch(log.body, "^\\{")` clause attempts JSON parsing only when
+the body begins with an opening brace. This avoids trying to parse ordinary
+plain-text records as JSON. `error_mode: ignore` provides a second safeguard:
+if one record is malformed, the Collector reports the error and continues
+processing the rest of the batch.
+
 The load generator produces `DEBUG`, `INFO`, `WARN`, and `ERROR`. The `TRACE`
 and `FATAL` statements demonstrate how the mapping can cover additional input.
 
@@ -115,6 +132,12 @@ Open **Collector YAML** and confirm:
 - It appears after `resourcedetection`, allowing `host.name` to be detected
   before the resource allowlist is applied.
 - `filter/health`, `attributes`, and `redaction` remain connected to `traces`.
+
+The position after `resourcedetection` is intentional. If `transform` ran
+first, `host.name` might not exist yet and therefore could not survive the
+resource allowlist. `resource/add_mode` runs afterward and adds
+`otelcol.service.mode=agent`, so the final log resource contains both the
+detected host identity and the Collector mode used in later validation.
 
 The complete workshop logs pipeline is equivalent to:
 

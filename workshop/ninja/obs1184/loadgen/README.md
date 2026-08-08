@@ -8,7 +8,7 @@ The workshop includes three prebuilt binaries because attendees aren't
 required to install Go. They cover Apple silicon, Linux AMD64, and Linux ARM64.
 Intel-based Macs use a Splunk Show instance.
 
-Build the supported workshop targets with:
+From this `loadgen` directory, build the supported workshop targets with:
 
 ```bash
 GOCACHE=/tmp/obs1184-go-build-cache ./build.sh

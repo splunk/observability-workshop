@@ -67,6 +67,11 @@ The workshop pipelines write sample data to local files so you can complete
 the exercises without sending workshop logs to another system. All eight
 pipelines are in one `agent_config.yaml` file.
 
+The separate `/workshop` pipelines preserve the Splunk distribution's default
+pipelines while adding `debug` and `file` exporters for hands-on validation.
+This lets you inspect the workshop data locally without changing how the
+standard pipelines are intended to deliver production telemetry.
+
 `health_check` provides the readiness endpoint on port `13133`.
 `resource/add_mode` adds `otelcol.service.mode=agent` so you can identify data
 processed by this agent.

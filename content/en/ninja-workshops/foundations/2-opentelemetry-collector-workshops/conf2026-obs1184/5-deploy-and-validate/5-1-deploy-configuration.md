@@ -6,6 +6,11 @@ weight: 1
 
 {{% exercise title="Download and start the completed configuration" %}}
 
+You kept one Config Builder project open while completing Chapters 2 through
+4. Deploying it now applies the filter, sensitive-data protection, and log
+transformation together. A single restart also makes the before-and-after
+validation easier to follow.
+
 {{< step "Download the YAML" "1" >}}
 
 In **Collector YAML**, confirm:

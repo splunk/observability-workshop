@@ -14,7 +14,7 @@ collector_version="0.157.0"
 repo_owner="chentaow-splunk"
 repo_name="observability-workshop"
 repo_ref="codex/advanced-collector-conf2026"
-content_path="content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184"
+asset_path="workshop/ninja/obs1184"
 workshop_root="${PWD}"
 agent_dir="${workshop_root}/1-agent"
 config_path="${agent_dir}/agent_config.yaml"
@@ -141,7 +141,7 @@ else
 fi
 
 mkdir -p "${agent_dir}"
-config_url="https://github.com/${repo_owner}/${repo_name}/raw/refs/heads/${repo_ref}/${content_path}/agent_config.yaml"
+config_url="https://github.com/${repo_owner}/${repo_name}/raw/refs/heads/${repo_ref}/${asset_path}/agent_config.yaml"
 curl -fL --retry 3 "${config_url}" -o "${config_path}"
 
 # Keep all eight pipelines in one configuration. Without cloud export, replace

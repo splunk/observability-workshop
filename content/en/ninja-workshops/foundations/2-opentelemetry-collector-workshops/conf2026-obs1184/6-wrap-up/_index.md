@@ -5,7 +5,7 @@ weight: 9
 time: 3 minutes
 ---
 
-![Well done](../images/welldone.png)
+![Well done](/images/obs1184/welldone.png)
 
 You used Config Builder to filter noisy spans, protect sensitive attributes,
 and transform logs. You then applied the completed configuration and verified
