@@ -5,10 +5,6 @@ weight: 2
 time: 7 minutes
 ---
 
-{{% notice style="warning" title="TODO" %}}
-ワークショップで使用する組織を確認してください。
-{{% /notice %}}
-
 アプリは制御可能なステップを *登録* しましたが、*ルールを定義* するのはGalileoコンソールです。どのステップを管理するか、どの条件でトリガーするか、一致した場合にブロックするかステアリングするかを設定します。
 
 {{< exercise title="Galileoでコントロールを定義する" >}}
@@ -17,7 +13,7 @@ time: 7 minutes
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`workshop`** org）で、プロジェクト / **`default`** log streamを開き、 **Controls** タブをクリックします。
+Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`workshop`** org）で、プロジェクト / **`default`** agent streamを開き、 **Controls** タブをクリックします。
 
 ![Log Stream Controls](../../images/galileo-log-stream-controls.png?width=750px)
 
@@ -25,8 +21,8 @@ Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`wor
 
 {{< step title="エージェントにコントロールを追加する" >}}
 
-`Add control` ボタンをクリックして、log streamにコントロールを追加します。
-log streamにクローンしてアタッチできるコントロールのリストと、新しいコントロールを作成するオプションが表示されます。
+`Add control` ボタンをクリックして、agent streamにコントロールを追加します。
+agent streamにクローンしてアタッチできるコントロールのリストと、新しいコントロールを作成するオプションが表示されます。
 
 ![Log Stream Add Controls](../../images/galileo-log-stream-add-controls.png?width=750px)
 
@@ -34,7 +30,7 @@ log streamにクローンしてアタッチできるコントロールのリス�
 
 {{< step title="Block Harmful SQL コントロールを追加する" >}}
 
-次に、既存のコントロール `Block-harmful-sql` をlog streamに追加します。
+次に、既存のコントロール `Block-harmful-sql` をagent streamに追加します。
 `Block-harmful-sql` コントロールの横にある `Clone and attach` ボタンをクリックします。
 
 ![Create a blocking control](../../images/galileo-agent-control-block.png?width=750px)
@@ -45,7 +41,7 @@ log streamにクローンしてアタッチできるコントロールのリス�
 
 このコントロールは、すべての `DELETE` SQL操作を検出してブロックするために使用されます。関連するツール呼び出しの **前に** 実行され、エージェントが実行時に患者レコードを削除することを防ぎます。
 
-`Discard Edits` をクリックして、log streamのコントロールリストに戻ります。
+`Discard Edits` をクリックして、agent streamのコントロールリストに戻ります。
 
 {{< /step >}}
 

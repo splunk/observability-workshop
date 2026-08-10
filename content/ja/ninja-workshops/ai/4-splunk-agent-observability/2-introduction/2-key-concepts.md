@@ -17,11 +17,11 @@ Splunk Agent Observabilityは少数の用語を中心に構築されています
 
 {{% /notice %}}
 
-Traceは **project** と **log stream** で整理されます。projectはユースケースのコンテナ（`healthcare-assistant`）であり、log streamはその中の名前付きの送信先（`local`、またはワークショップインスタンスごとに1つ）です。ここでTraceを表示し、ライブメトリクスを有効にします。
+Traceは **project** と **agent stream** で整理されます。projectはコンテナであり、agent streamはその中の名前付きの送信先です。このワークショップでは `project-1` や `project-2` のようなproject名と、`default` というagent stream名を使用します。ここでTraceを表示し、Evaluatorを有効にします。
 
-## Metrics: 大規模な品質評価
+## Evaluators: 大規模な品質評価
 
-**Metrics**（評価）はTraceとSpanにスコアを付けます。例えば、*Context Adherence*（回答は根拠に基づいているか？）、*Correctness*、*Tool Selection Quality*、*Prompt Injection* などがあります。定性的な品質の問いを、モニタリングやアラート設定が可能な数値に変換します。
+**Evaluators** はTraceとSpanにスコアを付けます。例えば、*Context Adherence*（回答は根拠に基づいているか？）、*Correctness*、*Tool Selection Quality*、*Prompt Injection* などがあります。定性的な品質の問いを、モニタリングやアラート設定が可能な数値に変換します。
 
 しかし、すべてのTraceを手頃なコストで評価するのは困難です。
 

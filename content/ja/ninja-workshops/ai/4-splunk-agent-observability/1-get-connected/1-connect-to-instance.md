@@ -5,12 +5,27 @@ weight: 1
 time: 5 minutes
 ---
 
+## Splunk.comアカウントの作成
+
+このワークショップを完了するにはSplunk.comアカウントが必要です。まだアカウントをお持ちでない場合は、<https://idp.login.splunk.com/signin/register> にアクセスしてフォームに入力し、アカウントを作成してください。
+
+![Splunk Registration](../../images/SplunkRegistration.png)
+
+<no-reply@idp.login.splunk.com>からのメールを確認してください。メールが見つからない場合は、迷惑メールフォルダを確認してください。
+
+メール内のリンクをクリックして、メールアドレスを確認します。
+
+## Splunk Showイベントへのアクセス
+
+ワークショップインストラクターから提供されたリンクをクリックして **Splunk Show** イベントにアクセスします。Splunk.comアカウントでサインインする必要があります。
+
+![Enroll in Splunk Show Event](../../images/EnrollSplunkShowEvent.png)
+
 ## EC2インスタンスに接続する
 
-各参加者用にAWS/EC2にUbuntu Linuxインスタンスを用意しています。
+各参加者用にAWS/EC2にUbuntu Linuxインスタンスを用意しています。Splunk ShowイベントからEC2インスタンスの詳細を取得するには以下の手順に従います。
 
-* お住まいのリージョンのリンクをクリックして **Splunk Show** イベントにアクセスします
-* 右上の **Enroll** をクリックします
+* 右上の **Enroll event** をクリックします
 * ページ下部付近でEC2インスタンスの詳細を確認します
 
 以下のような接続情報が表示されます。

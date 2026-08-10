@@ -147,7 +147,7 @@ LLMステアリングコントロールを設定したため、エージェン�
 
 {{< step title="ブロックされたリクエストのコントロール判定を確認" >}}
 
-Galileoコンソールに戻り、プロジェクト / **`default`** ログストリームでブロックされたリクエストのトレースを開きます。`block-harmful-sql-*` コントロールに関連するSpanをクリックします。
+Galileoコンソールに戻り、プロジェクト / **`default`** エージェントストリームでブロックされたリクエストのトレースを開きます。`block-harmful-sql-*` コントロールに関連するSpanをクリックします。
 
 ![トレースでのコントロール判定](../../images/galileo-control-trace.png?width=750px)
 
@@ -157,7 +157,7 @@ Galileoコンソールに戻り、プロジェクト / **`default`** ログス�
 
 {{< step title="ステアリングされたリクエストのコントロール判定を確認" >}}
 
-Galileoコンソールに戻り、プロジェクト / **`default`** ログストリームでステアリングされたリクエストのトレースを開きます。トレース内の最後の `Healthcare Assistant` Spanをクリックします。
+Galileoコンソールに戻り、プロジェクト / **`default`** エージェントストリームでステアリングされたリクエストのトレースを開きます。トレース内の最後の `Healthcare Assistant` Spanをクリックします。
 
 ![トレースでのステアリングコントロール判定](../../images/galileo-steer-control-trace.png?width=750px)
 
