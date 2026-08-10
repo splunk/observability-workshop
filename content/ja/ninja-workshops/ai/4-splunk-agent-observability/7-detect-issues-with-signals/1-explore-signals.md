@@ -9,7 +9,7 @@ time: 5 minutes
 このセクションの手順は、ワークショップの講師が実施するのを観察してください。ご自身では実行しないでください。
 {{% /notice %}}
 
-ログストリームのSignalsを生成し、プラットフォームに問題のトレンドを表示させます。
+エージェントストリームのSignalsを生成し、プラットフォームに問題のトレンドを表示させます。
 
 {{< exercise title="Signalsの確認" >}}
 
@@ -17,19 +17,19 @@ time: 5 minutes
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`workshop`** org）で、プロジェクト / **`default`** ログストリームを開き、 **Signals** ボタンをクリックします。
+Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`workshop`** org）で、プロジェクト / **`default`** エージェントストリームを開き、 **Signals** ボタンをクリックします。
 
 ![Generate Signals](../../images/sao-generate-signals.png?width=250px)
 
-このログストリーム内のTraceを分析してSignalsを生成するまで、少し時間がかかります。
+このエージェントストリーム内のTraceを分析してSignalsを生成するまで、少し時間がかかります。
 
 {{< /step >}}
 
 {{< step title="Signalsの確認" >}}
 
-ログストリームに対していくつかのSignalsが生成されたことが確認できます（具体的なSignalsはログストリームごとに異なります）。
+エージェントストリームに対していくつかのSignalsが生成されたことが確認できます（具体的なSignalsはエージェントストリームごとに異なります）。
 
-<!-- TODO screenshot: Signals view listing detected failure patterns for the healthcare assistant log stream -->
+<!-- TODO screenshot: Signals view listing detected failure patterns for the healthcare assistant agent stream -->
 ![Signals overview](../../images/sao-signals-overview.png?width=750px)
 
 {{< /step >}}
@@ -74,12 +74,12 @@ Signalsがなければ、この種の分析はエンジニアがインシデン�
 
 {{< checkpoint title="知識チェック" >}}
 
-Signalsは前の章で有効にしたMetricsをどのように補完しますか？
+Signalsは前の章で有効にしたEvaluatorsをどのように補完しますか？
 
 {{< details summary="ここをクリックして回答を表示" >}}
 
-Metricsは、測定対象として選択した **既知の** 品質次元（例: Context Adherence）をスコアリングします。Signalsは、Metricを作成していない **未知の** 繰り返し発生する障害パターン（計画ループ、ツールエラー、ルーティング障害）を自動的に検出します。両方を組み合わせることで、予想していた問題と予想していなかった問題の両方をカバーできます。
+Evaluatorsは、測定対象として選択した **既知の** 品質次元（例: Context Adherence）をスコアリングします。Signalsは、Evaluatorを作成していない **未知の** 繰り返し発生する障害パターン（計画ループ、ツールエラー、ルーティング障害）を自動的に検出します。両方を組み合わせることで、予想していた問題と予想していなかった問題の両方をカバーできます。
 
-特定のSignalから新しいMetricを作成するオプションもあり、将来同じ問題が再発した際に追跡して適切なアクションを取ることができます。
+特定のSignalから新しいEvaluatorを作成するオプションもあり、将来同じ問題が再発した際に追跡して適切なアクションを取ることができます。
 
 {{< /details >}}

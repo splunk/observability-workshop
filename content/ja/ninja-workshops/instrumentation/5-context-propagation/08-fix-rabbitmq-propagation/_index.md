@@ -1,0 +1,113 @@
+---
+title: RabbitMQ Propagationの修正
+linkTitle: 8. RabbitMQ Propagationの修正
+weight: 8
+time: 15 minutes 
+
+---
+
+このステップでは、メッセージの **producer** と **consumer** の**アプリケーションコードを編集**し、W3C Trace ContextがRabbitMQ AMQPヘッダーを通じて伝播されるようにします。
+
+{{% notice title="注意" style="info" %}}
+RabbitMQにはブローカーレベルのトレース設定がありません。伝播は常にアプリケーションコードで実装します。
+
+`payment-api`から`fulfillment-worker`への**非同期ハンドオフ**には、AMQPメッセージヘッダーでの**手動コンテキストインジェクションとエクストラクション**が必要です。
+
+どちらか一方がこれを省略すると、消費された各メッセージは**新しいルートTrace**を開始します。これは本番環境で最も一般的な非同期オブザーバビリティのギャップの1つです。
+{{% /notice %}}
+
+## 修正方法
+
+### 1. Producer -（payment-api）
+
+プロジェクトルート[~/workshop/context-propagation]から、ファイルを開いて編集します。
+
+```
+vi services/payment-api/server.js
+```
+
+**`buildFulfillmentMessageHeaders()`** を見つけ、戻り値を `injectTraceHeaders()` でラップします。
+
+{{< tabs >}}
+{{% tab title="変更前" %}}
+
+```javascript
+function buildFulfillmentMessageHeaders(order, payment) {
+  return {
+    'x-order-id': order.orderId,
+    'x-payment-id': payment.paymentId,
+  };
+}
+```
+
+{{% /tab %}}
+{{% tab title="変更後" %}}
+
+```javascript
+function buildFulfillmentMessageHeaders(order, payment) {
+  return injectTraceHeaders({
+    'x-order-id': order.orderId,
+    'x-payment-id': payment.paymentId,
+  });
+}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+{{% notice title="次に進む前に作業を確認してください" style="primary" icon="running" %}}
+./workshop/context-propagationフォルダから以下のコマンドを実行して、変更内容を期待される解答と比較します。
+
+```bash
+diff ./services/payment-api/server.js  ./services/payment-api/server-fixed.js
+```
+
+{{% / notice %}}
+
+### 2. Consumer -（fulfillment-worker）
+
+プロジェクトルート[~/workshop/context-propagation]から、ファイルを開いて編集します。
+
+```
+vi services/fulfillment-worker/worker.js
+```
+
+ファイルの先頭にimportを追加します。
+
+```javascript
+import { extractTraceContext } from './shared/propagation.js';
+```
+
+**`extractMessageContext()`** スタブを共有エクストラクターに置き換えます。
+
+{{< tabs >}}
+{{% tab title="変更前" %}}
+
+```javascript
+// Remove this stub:
+function extractMessageContext(_headers) {
+  return context.active(); // ignores AMQP headers
+}
+```
+
+{{% /tab %}}
+{{% tab title="変更後" %}}
+
+```javascript
+import { extractTraceContext } from './shared/propagation.js';
+
+// Instead of ignoring AMQP headers, use the shared helper in processFulfillment instead:
+const parentContext = extractTraceContext(msg.properties.headers ?? {});
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+{{% notice title="次に進む前に作業を確認してください" style="primary" icon="running" %}}
+./workshop/context-propagationフォルダから以下のコマンドを実行して、変更内容を期待される解答と比較します。
+
+```bash
+diff ./services/fulfillment-worker/worker.js  ./services/fulfillment-worker/worker-fixed.js
+```
+
+{{% / notice %}}

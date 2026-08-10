@@ -15,7 +15,7 @@ Careful Health Providerのエージェント型ヘルスケアアシスタント
 
 * すべてのエージェントインタラクションをトレースするためにアプリケーションを **計装** しました。
 * エラーの根本原因を迅速に特定するためにエージェントの動作を **トレースおよび調査** しました。
-* ハルシネーションやツール選択エラーを自動的に検出するために **品質メトリクスを有効化** しました。
+* ハルシネーションやツール選択エラーを自動的に検出するために **Evaluatorを有効化** しました。
 * 測定しようと思わなかった繰り返し発生する障害パターン、つまり未知の未知を表面化するために **Signals を使用** しました。
 * 危険なアクションをブロックし、安全でない回答を実行時に安全な方向へ導くために **ガードレールを追加** しました。
 
@@ -31,11 +31,11 @@ Splunk Agent Observabilityは、従来のインフラストラクチャおよび
 
 ## 次のステップ
 
-* 独自の障害モードに合わせたカスタムメトリクスと **Signals** を追加します。
-* 推測をエビデンスに置き換え、リリース前のリグレッションを防止するために **experiments** を実行します。
+* 独自の障害モードに合わせたカスタム **Evaluators** と **Signals** を追加します。
+* 推測をエビデンスに置き換え、リリース前のリグレッションを防止するために **Experiments** を実行します。
 * 自動リリースゲートとしてexperimentsをCI/CDに組み込みます。
 * プロンプトインジェクション、PII漏洩、スコープ制御など、より多くのステップにガードレールを拡大します。
-* よりクリーンな分離のために、異なるワークロードを専用のログストリームにルーティングします。
+* よりクリーンな分離のために、異なるワークロードを専用のエージェントストリームにルーティングします。
 
 ## 参考資料
 
@@ -43,7 +43,6 @@ Splunk Agent Observabilityは、従来のインフラストラクチャおよび
 * [Galileo Quickstart](https://docs.galileo.ai/getting-started/quickstart)
 * [Galileo LangChain integration](https://docs.galileo.ai/sdk-api/third-party-integrations/langchain/langchain)
 
-<!-- TODO screenshot: celebratory image (trophy, fireworks, etc.) sized for the wrap-up page -->
-![ワークショップ完了おめでとうございます](../images/congratulations.png?width=20vw)
+![ワークショップ完了おめでとうございます](../images/Splunk-dancing-buttercup-GIF-103.gif?width=30vw)
 
 {{< checkpoint title="ワークショップ完了 -- **お疲れ様でした！**" >}}
