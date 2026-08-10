@@ -57,11 +57,7 @@ Let's add a second control targeting the **Healthcare Assistant** LLM step that 
 response, for example to keep answers within healthcare scope or to enforce a disclaimer.
 
 To do this, click on the `Add control` button and then click `Clone and attach` beside the 
-`steer-output-pii` control. 
-
-Once the control is added, click on it to view the details: 
-
-![Create a steering control](../../images/galileo-agent-control-steer.png?width=750px)
+`steer-output-pii` control.
 
 This control runs **after** LLM calls, and when a phone number or address are detected in the LLM response, 
 the agent is "steered" towards removing these fields from the final response. 
