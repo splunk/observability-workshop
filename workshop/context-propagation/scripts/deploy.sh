@@ -91,9 +91,9 @@ ensure_splunk_collector() {
   fi
 
   if kubectl -n cosmic-shop get daemonset splunk-otel-collector-agent >/dev/null 2>&1; then
-    echo "  Collector DaemonSet found but not ready — waiting..."
+    echo "  Collector DaemonSet found but not ready - waiting..."
   else
-    echo "  Splunk OTel Collector not installed — running 'make collector'..."
+    echo "  Splunk OTel Collector not installed - running 'make collector'..."
     bash "${ROOT_DIR}/scripts/install-splunk-collector.sh"
   fi
 
@@ -114,7 +114,7 @@ echo "Preflight: checking local images..."
 missing=0
 for app in "${APPS[@]}"; do
   if ! docker image inspect "cosmic-shop/${app}:${TAG}" >/dev/null 2>&1; then
-    echo "  MISSING: cosmic-shop/${app}:${TAG} — run 'make build' first"
+    echo "  MISSING: cosmic-shop/${app}:${TAG} - run 'make build' first"
     missing=1
   else
     echo "  OK: cosmic-shop/${app}:${TAG}"
@@ -148,12 +148,12 @@ echo "Deploying Cosmic Observatory Shop to Kubernetes..."
 IMAGE_PREFIX="cosmic-shop"
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME}" bash "${ROOT_DIR}/scripts/import-images-k3d.sh"
 
-# OTel resource attributes must match collector clusterName + environment for Infra ↔ APM correlation
-cat > "${ROOT_DIR}/deploy/k8s/otel.env" <<EOF
-OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop
-SPLUNK_METRICS_ENABLED=true
-OTEL_PROPAGATORS=tracecontext,baggage
-EOF
+# OTel resource attributes must match collector clusterName + environment for Infra <-> APM correlation
+printf '%s\n' \
+  "OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop" \
+  "SPLUNK_METRICS_ENABLED=true" \
+  "OTEL_PROPAGATORS=tracecontext,baggage" \
+  > "${ROOT_DIR}/deploy/k8s/otel.env"
 echo "Generated otel.env: deployment.environment=${DEPLOYMENT_ENV}, k8s.cluster.name=${CLUSTER_NAME}"
 
 # Secret must exist before pods that reference splunk-otel start
