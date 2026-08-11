@@ -35,12 +35,12 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: http://$(NODE_IP):4318
-            - name: SPLUNK_ACCESS_TOKEN
+            - name: ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: splunk-otel
                   key: accessToken
-            - name: SPLUNK_REALM
+            - name: REALM
               valueFrom:
                 secretKeyRef:
                   name: splunk-otel

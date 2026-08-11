@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
+K3D_CLUSTER_NAME="${INSTANCE:-cosmic-shop}"
 REGISTRY_PORT="${REGISTRY_PORT:-5111}"
 REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
 
@@ -13,7 +13,7 @@ if [[ -f "${ROOT_DIR}/.env" ]]; then
   set +a
 fi
 
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
+K3D_CLUSTER_NAME="${INSTANCE:-cosmic-shop}"
 
 echo "Creating k3d cluster '${K3D_CLUSTER_NAME}' with local registry on port ${REGISTRY_PORT}..."
 

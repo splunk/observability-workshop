@@ -19,10 +19,10 @@ build_image() {
 
   echo "Building ${name}:${TAG}..."
   docker build \
-    --build-arg SPLUNK_REALM="${SPLUNK_REALM:-us0}" \
-    --build-arg SPLUNK_RUM_ACCESS_TOKEN="${SPLUNK_RUM_ACCESS_TOKEN:-}" \
-    --build-arg SPLUNK_RUM_APP_NAME="${SPLUNK_RUM_APP_NAME:-cosmic-observatory-shop}" \
-    --build-arg SPLUNK_DEPLOYMENT_ENV="${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}" \
+    --build-arg REALM="${REALM:-us0}" \
+    --build-arg RUM_TOKEN="${RUM_TOKEN:-}" \
+    --build-arg RUM_APP_NAME="${RUM_APP_NAME:-cosmic-observatory-shop}" \
+    --build-arg DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}" \
     -t "cosmic-shop/${name}:${TAG}" \
     -f "${dockerfile}" \
     "${context}"

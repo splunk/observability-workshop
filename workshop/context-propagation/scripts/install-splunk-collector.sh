@@ -13,10 +13,10 @@ set -a
 source "${ROOT_DIR}/.env"
 set +a
 
-REALM="${SPLUNK_REALM:?SPLUNK_REALM required}"
-ACCESS_TOKEN="${SPLUNK_ACCESS_TOKEN:?SPLUNK_ACCESS_TOKEN required}"
+REALM="${REALM:?REALM required}"
+ACCESS_TOKEN="${ACCESS_TOKEN:?ACCESS_TOKEN required}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
-ENVIRONMENT="${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}"
+ENVIRONMENT="${DEPLOYMENT_ENV:-workshop-context-prop}"
 VALUES_FILE="${ROOT_DIR}/deploy/helm/splunk-otel-values.yaml"
 
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 2>/dev/null || true

@@ -19,9 +19,9 @@ set +a
 
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
-SPLUNK_DEPLOYMENT_ENV="${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
 
-required_vars=(SPLUNK_REALM SPLUNK_ACCESS_TOKEN)
+required_vars=(REALM ACCESS_TOKEN)
 for var in "${required_vars[@]}"; do
   if [[ -z "${!var:-}" ]]; then
     echo "Required variable ${var} is not set in .env"
@@ -151,17 +151,17 @@ K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME}" bash "${ROOT_DIR}/scripts/import-images-k
 
 # OTel resource attributes must match collector clusterName + environment for Infra ↔ APM correlation
 cat > "${ROOT_DIR}/deploy/k8s/otel.env" <<EOF
-OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${SPLUNK_DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop
+OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop
 SPLUNK_METRICS_ENABLED=true
 OTEL_PROPAGATORS=tracecontext,baggage
 EOF
-echo "Generated otel.env: deployment.environment=${SPLUNK_DEPLOYMENT_ENV}, k8s.cluster.name=${CLUSTER_NAME}"
+echo "Generated otel.env: deployment.environment=${DEPLOYMENT_ENV}, k8s.cluster.name=${CLUSTER_NAME}"
 
 # Secret must exist before pods that reference splunk-otel start
 kubectl apply -f "${ROOT_DIR}/deploy/k8s/namespace.yaml"
 kubectl -n cosmic-shop create secret generic splunk-otel \
-  --from-literal=accessToken="${SPLUNK_ACCESS_TOKEN}" \
-  --from-literal=realm="${SPLUNK_REALM}" \
+  --from-literal=accessToken="${ACCESS_TOKEN}" \
+  --from-literal=realm="${REALM}" \
   --dry-run=client -o yaml | kubectl apply -f -
 
 kubectl apply -k "${ROOT_DIR}/deploy/k8s"
