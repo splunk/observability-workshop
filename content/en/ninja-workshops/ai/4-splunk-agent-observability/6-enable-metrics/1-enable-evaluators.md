@@ -13,7 +13,7 @@ assistant.
 
 {{< step title="Open your agent stream settings" >}}
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
+In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project and select the **`default`** agent stream. 
 
 Click the `Configure Evaluators` button to open its evaluator configuration.
