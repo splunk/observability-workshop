@@ -16,7 +16,7 @@ assistant.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your agent stream settings&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;In the Galileo console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
+&lt;div class="step__body"&gt;&lt;p&gt;In the Splunk Agent Observability console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
 open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; agent stream.&lt;/p&gt;
 &lt;p&gt;Click the &lt;code&gt;Configure Evaluators&lt;/code&gt; button to open its evaluator configuration.&lt;/p&gt;</description></item><item><title>Review Evaluator Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</guid><description>&lt;p&gt;After a few moments, we&amp;rsquo;ll see how the existing traces get automatically scored on the
 &lt;code&gt;Context Adherence&lt;/code&gt; and &lt;code&gt;Correctness&lt;/code&gt; evaluators.

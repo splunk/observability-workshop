@@ -12,7 +12,7 @@
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;プロジェクトとログストリームを開く&lt;/p&gt;</description></item><item><title>その他のビューを探索する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</guid><description>&lt;p&gt;先ほど生成したトラフィックを使って、Splunk Agent Observabilityの他のビューを探索しましょう。&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;プロジェクトとエージェントストリームを開く&lt;/p&gt;</description></item><item><title>その他のビューを探索する</title><link>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/ja/ninja-workshops/ai/4-splunk-agent-observability/5-trace-and-investigate/2-explore-other-views/</guid><description>&lt;p&gt;先ほど生成したトラフィックを使って、Splunk Agent Observabilityの他のビューを探索しましょう。&lt;/p&gt;
 &lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
@@ -26,4 +26,4 @@
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;プロジェクトとログストリームを開く&lt;/p&gt;</description></item></channel></rss>
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;プロジェクトとエージェントストリームを開く&lt;/p&gt;</description></item></channel></rss>

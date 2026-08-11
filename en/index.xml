@@ -112,45 +112,29 @@ and register the controllable steps.&lt;/p&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;2&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create a Galileo Agent Controls Config Map&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create an Agent Control Config Map&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;Run the following command to create a Kubernetes config map, which the application will use to
-configure Galileo Agent Controls:&lt;/p&gt;</description></item><item><title>Add the Galileo SDK and Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-galileo-sdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-galileo-sdk/</guid><description>&lt;p&gt;First, add the Galileo package and the configuration the SDK needs to know &lt;em&gt;where&lt;/em&gt; to send
-traces.&lt;/p&gt;
-&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Add the SDK and configuration&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;1&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Galileo package&lt;/p&gt;
-&lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Galileo&amp;rsquo;s LangChain callback ships in the &lt;code&gt;galileo&lt;/code&gt; package.&lt;/p&gt;
-&lt;p&gt;If you open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
-file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
+configure Agent Controls:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;galileo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl create configmap galileo-agent-control-config &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;GALILEO_API_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://api.multitenant.galileocloud.io&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://console.multitenant.galileocloud.io/api/agent-control&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_AGENT_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;agent-control-example&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_API_KEY_HEADER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Galileo-API-Key&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_RUNTIME_AUTH_MODE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;jwt&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_TARGET_TYPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;log_stream&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section class="step"&gt;
-&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div class="step__num"&gt;3&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Set Environment Variables&lt;/p&gt;
-&lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Run the commands provided by your workshop instructor to set environment variables
-on your EC2 instance. They&amp;rsquo;ll look like the following:&lt;/p&gt;</description></item><item><title>1. Add the OBI Service</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="add-obi-to-docker-composeyaml"&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Agent Control packages&lt;/p&gt;</description></item><item><title>1. Add the OBI Service</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="add-obi-to-docker-composeyaml"&gt;
  &lt;span class="heading-text"&gt;Add OBI to docker-compose.yaml&lt;/span&gt;
  &lt;a class="heading-anchor" href="#add-obi-to-docker-composeyaml" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -164,7 +148,32 @@ on your EC2 instance. They&amp;rsquo;ll look like the following:&lt;/p&gt;</desc
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose down
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Scroll to the very bottom of the file you&amp;rsquo;ll see a comment block that says &lt;code&gt;PHASE 2&lt;/code&gt;. Paste the following block &lt;strong&gt;directly below that comment&lt;/strong&gt;, keeping the &lt;strong&gt;2-space indentation&lt;/strong&gt; so it lines up with the other services (like &lt;code&gt;frontend:&lt;/code&gt;, &lt;code&gt;load-generator:&lt;/code&gt;, etc.):&lt;/p&gt;</description></item><item><title>Always-On Profiling &amp; Metrics</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</guid><description>&lt;p&gt;When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and &lt;strong&gt;Metrics&lt;/strong&gt;. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.&lt;/p&gt;
+ &lt;/div&gt;&lt;p&gt;Scroll to the very bottom of the file you&amp;rsquo;ll see a comment block that says &lt;code&gt;PHASE 2&lt;/code&gt;. Paste the following block &lt;strong&gt;directly below that comment&lt;/strong&gt;, keeping the &lt;strong&gt;2-space indentation&lt;/strong&gt; so it lines up with the other services (like &lt;code&gt;frontend:&lt;/code&gt;, &lt;code&gt;load-generator:&lt;/code&gt;, etc.):&lt;/p&gt;</description></item><item><title>Add the Splunk Agent Observability SDK and Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-splunk-ao-sdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/1-add-splunk-ao-sdk/</guid><description>&lt;p&gt;First, add the Splunk Agent Observability SDK to the Python application. Then, add configuration
+so that the SDK knows &lt;em&gt;where&lt;/em&gt; to send traces.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add the SDK and configuration&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Splunk Agent Observability package&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;If you open the &lt;code&gt;~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt&lt;/code&gt;
+file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;galileo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note about the SDK&lt;/p&gt;</description></item><item><title>Always-On Profiling &amp; Metrics</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</guid><description>&lt;p&gt;When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and &lt;strong&gt;Metrics&lt;/strong&gt;. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.&lt;/p&gt;
 &lt;p&gt;When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:&lt;/p&gt;</description></item><item><title>1. APM Explore</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/</guid><description>&lt;p&gt;When you click into the APM section of Splunk Observability Cloud you are greated with an overview of your APM data including top services by error rates, and R.E.D. metrics for services and workflows.&lt;/p&gt;
 &lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.&lt;/p&gt;</description></item><item><title>1. APM Explore</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/1-apm-explore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/1-apm-explore/</guid><description>&lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.&lt;/p&gt;
 &lt;p&gt;When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that &lt;strong&gt;Business Transaction&lt;/strong&gt; (&lt;code&gt;frontend:/cart&lt;/code&gt;).&lt;/p&gt;
@@ -637,7 +646,7 @@ assistant.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your agent stream settings&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;In the Galileo console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
+&lt;div class="step__body"&gt;&lt;p&gt;In the Splunk Agent Observability console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
 open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; agent stream.&lt;/p&gt;
 &lt;p&gt;Click the &lt;code&gt;Configure Evaluators&lt;/code&gt; button to open its evaluator configuration.&lt;/p&gt;</description></item><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
@@ -2724,8 +2733,8 @@ Send 12 log lines, they should be read in two intervals. Do this with the follow
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Click through each of the tabs and examine the data.&lt;/p&gt;</description></item><item><title>Attach the Galileo Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</guid><description>&lt;p&gt;The agent runs its LangGraph workflow asynchronously, so you&amp;rsquo;ll attach Galileo&amp;rsquo;s
-&lt;strong&gt;async&lt;/strong&gt; callback. Because the callback is passed at the graph level, it propagates to every
+&lt;p&gt;Click through each of the tabs and examine the data.&lt;/p&gt;</description></item><item><title>Attach the Splunk Agent Observability Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</guid><description>&lt;p&gt;The agent runs its LangGraph workflow asynchronously, so you&amp;rsquo;ll attach Splunk Agent Observability&amp;rsquo;s
+&lt;strong&gt;async&lt;/strong&gt; callback handler. Because the callback is passed at the graph level, it propagates to every
 node automatically, with no per-tool instrumentation required.&lt;/p&gt;
 &lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
@@ -2753,13 +2762,7 @@ to collect traces:&lt;/p&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;galileo_context&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo.handlers.langchain&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GalileoAsyncCallback&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;2&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wrap the graph invocation in a Galileo context&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
+ &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note about the SDK&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
  &lt;span class="heading-text"&gt;Auto-Instrumentation&lt;/span&gt;
  &lt;a class="heading-anchor" href="#auto-instrumentation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -2907,7 +2910,7 @@ it will be used throughout the workshop:&lt;/p&gt;</description></item><item><ti
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>Define Controls in the Console</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/8-apply-guardrails/2-define-controls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/8-apply-guardrails/2-define-controls/</guid><description>&lt;p&gt;The app now &lt;em&gt;registers&lt;/em&gt; its controllable steps, but it&amp;rsquo;s the Galileo console where you
+&lt;/p&gt;</description></item><item><title>Define Controls in the Console</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/8-apply-guardrails/2-define-controls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/8-apply-guardrails/2-define-controls/</guid><description>&lt;p&gt;The app now &lt;em&gt;registers&lt;/em&gt; its controllable steps, but it&amp;rsquo;s the Splunk Agent Observability console where you
 &lt;em&gt;define the rules&lt;/em&gt;: which steps are governed, what condition triggers them, and whether a
 match should block or steer.&lt;/p&gt;
 &lt;section class="exercise"&gt;
@@ -2916,7 +2919,7 @@ match should block or steer.&lt;/p&gt;
 &lt;/span&gt;
 &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
 &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Define controls in Galileo&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Define controls in Splunk Agent Observability&lt;/span&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
@@ -2925,8 +2928,7 @@ match should block or steer.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open the Controls tab&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized --&gt;
-&lt;p&gt;In the Galileo console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
+&lt;div class="step__body"&gt;&lt;p&gt;In the Splunk Agent Observability console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
 open your project / &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; agent stream then click on the &lt;strong&gt;Controls&lt;/strong&gt; tab.&lt;/p&gt;</description></item><item><title>2. Deploy the Baseline</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</guid><description>&lt;h2 id="deploy-the-workshop-applications"&gt;
  &lt;span class="heading-text"&gt;Deploy the Workshop Applications&lt;/span&gt;
  &lt;a class="heading-anchor" href="#deploy-the-workshop-applications" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
