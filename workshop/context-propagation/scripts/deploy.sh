@@ -4,7 +4,6 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
 # Host exports (workshop VM): REALM, ACCESS_TOKEN, CLUSTER_NAME, DEPLOYMENT_ENV=workshop-${INSTANCE}
@@ -12,6 +11,28 @@ CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
 DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-${INSTANCE:+workshop-${INSTANCE}}}"
 DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
+
+k3d_cluster_exists() {
+  local name="$1"
+  command -v k3d >/dev/null 2>&1 && k3d cluster list 2>/dev/null | grep -q "^${name} "
+}
+
+if [[ -z "${K3D_CLUSTER_NAME:-}" ]]; then
+  for candidate in "${CLUSTER_NAME}" "${INSTANCE:+${INSTANCE}-cluster}" "${INSTANCE:-}" "cosmic-shop"; do
+    [[ -z "${candidate}" ]] && continue
+    if k3d_cluster_exists "${candidate}"; then
+      K3D_CLUSTER_NAME="${candidate}"
+      break
+    fi
+  done
+  if [[ -z "${K3D_CLUSTER_NAME:-}" ]]; then
+    if [[ -n "${INSTANCE:-}" ]]; then
+      K3D_CLUSTER_NAME="${CLUSTER_NAME}"
+    else
+      K3D_CLUSTER_NAME="cosmic-shop"
+    fi
+  fi
+fi
 
 required_vars=(REALM ACCESS_TOKEN)
 for var in "${required_vars[@]}"; do

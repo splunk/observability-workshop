@@ -3,9 +3,33 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
 TAG="${TAG:-latest}"
 DEFAULT_APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
+
+CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
+CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
+
+k3d_cluster_exists() {
+  local name="$1"
+  command -v k3d >/dev/null 2>&1 && k3d cluster list 2>/dev/null | grep -q "^${name} "
+}
+
+if [[ -z "${K3D_CLUSTER_NAME:-}" ]]; then
+  for candidate in "${CLUSTER_NAME}" "${INSTANCE:+${INSTANCE}-cluster}" "${INSTANCE:-}" "cosmic-shop"; do
+    [[ -z "${candidate}" ]] && continue
+    if k3d_cluster_exists "${candidate}"; then
+      K3D_CLUSTER_NAME="${candidate}"
+      break
+    fi
+  done
+  if [[ -z "${K3D_CLUSTER_NAME:-}" ]]; then
+    if [[ -n "${INSTANCE:-}" ]]; then
+      K3D_CLUSTER_NAME="${CLUSTER_NAME}"
+    else
+      K3D_CLUSTER_NAME="cosmic-shop"
+    fi
+  fi
+fi
 
 if [[ $# -gt 0 ]]; then
   APPS=("$@")
@@ -23,7 +47,7 @@ if ! k3d cluster list 2>/dev/null | grep -q "^${K3D_CLUSTER_NAME} "; then
   echo ""
   k3d cluster list 2>/dev/null || true
   echo ""
-  echo "Set K3D_CLUSTER_NAME or INSTANCE (default: cosmic-shop). Run 'make setup-k3d' first."
+  echo "Set K3D_CLUSTER_NAME, CLUSTER_NAME, or INSTANCE. Run 'make setup-k3d' first."
   exit 1
 fi
 
