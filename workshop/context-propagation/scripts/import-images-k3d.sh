@@ -8,10 +8,9 @@ TAG="${TAG:-latest}"
 DEFAULT_APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
 if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
   # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
+  source "${ROOT_DIR}/scripts/load-env.sh"
+  load_env "${ROOT_DIR}/.env"
 fi
 
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"

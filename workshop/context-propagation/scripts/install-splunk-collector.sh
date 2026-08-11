@@ -3,18 +3,12 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-if [[ ! -f "${ROOT_DIR}/.env" ]]; then
-  echo "Missing .env file. Copy .env.example to .env first."
-  exit 1
-fi
-
-set -a
 # shellcheck disable=SC1091
-source "${ROOT_DIR}/.env"
-set +a
+source "${ROOT_DIR}/scripts/load-env.sh"
+load_env "${ROOT_DIR}/.env"
 
-REALM="${REALM:?REALM required}"
-ACCESS_TOKEN="${ACCESS_TOKEN:?ACCESS_TOKEN required}"
+REALM="${REALM:?REALM required — export it or fix .env}"
+ACCESS_TOKEN="${ACCESS_TOKEN:?ACCESS_TOKEN required — export it or fix .env}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
 ENVIRONMENT="${DEPLOYMENT_ENV:-workshop-context-prop}"
 VALUES_FILE="${ROOT_DIR}/deploy/helm/splunk-otel-values.yaml"

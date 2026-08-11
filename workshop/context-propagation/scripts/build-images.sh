@@ -6,10 +6,9 @@ REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
 
 if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
   # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
+  source "${ROOT_DIR}/scripts/load-env.sh"
+  load_env "${ROOT_DIR}/.env"
 fi
 
 build_image() {

@@ -6,13 +6,7 @@ K3D_CLUSTER_NAME="${INSTANCE:-cosmic-shop}"
 REGISTRY_PORT="${REGISTRY_PORT:-5111}"
 REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
 
-if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
-fi
-
+# k3d setup uses INSTANCE / defaults only — no .env required (workshop exports REALM, ACCESS_TOKEN, etc.)
 K3D_CLUSTER_NAME="${INSTANCE:-cosmic-shop}"
 
 echo "Creating k3d cluster '${K3D_CLUSTER_NAME}' with local registry on port ${REGISTRY_PORT}..."

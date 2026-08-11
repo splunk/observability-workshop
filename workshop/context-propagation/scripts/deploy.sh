@@ -7,15 +7,9 @@ TAG="${TAG:-latest}"
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
-if [[ ! -f "${ROOT_DIR}/.env" ]]; then
-  echo "Missing .env file. Copy .env.example to .env and fill in Splunk credentials."
-  exit 1
-fi
-
-set -a
 # shellcheck disable=SC1091
-source "${ROOT_DIR}/.env"
-set +a
+source "${ROOT_DIR}/scripts/load-env.sh"
+load_env "${ROOT_DIR}/.env"
 
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
@@ -24,7 +18,7 @@ DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
 required_vars=(REALM ACCESS_TOKEN)
 for var in "${required_vars[@]}"; do
   if [[ -z "${!var:-}" ]]; then
-    echo "Required variable ${var} is not set in .env"
+    echo "Required variable ${var} is not set (export it or add to .env)"
     exit 1
   fi
 done
