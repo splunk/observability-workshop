@@ -5,12 +5,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
 
-if [[ -f "${ROOT_DIR}/.env" ]]; then
-  # shellcheck disable=SC1091
-  source "${ROOT_DIR}/scripts/load-env.sh"
-  load_env "${ROOT_DIR}/.env"
-fi
-
 build_image() {
   local name="$1"
   local dockerfile="$2"

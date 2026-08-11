@@ -1,6 +1,5 @@
 node_modules/
 dist/
-.env
 deploy/k8s/otel.env
 .DS_Store
 *.log

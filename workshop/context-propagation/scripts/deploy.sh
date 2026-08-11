@@ -4,21 +4,15 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
+K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
-
-# shellcheck disable=SC1091
-source "${ROOT_DIR}/scripts/load-env.sh"
-load_env "${ROOT_DIR}/.env"
-
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
 DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
 
 required_vars=(REALM ACCESS_TOKEN)
 for var in "${required_vars[@]}"; do
   if [[ -z "${!var:-}" ]]; then
-    echo "Required variable ${var} is not set (export it or add to .env)"
+    echo "Required variable ${var} is not exported on the host"
     exit 1
   fi
 done

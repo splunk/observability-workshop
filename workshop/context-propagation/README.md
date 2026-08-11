@@ -9,14 +9,16 @@ Distributed tracing breaks silently when proxies and message buses drop W3C trac
 ## Quick start
 
 ```bash
-cp .env.example .env
-# Edit .env with Splunk credentials
+# Verify workshop credentials are exported (REALM, ACCESS_TOKEN, INSTANCE, etc.)
+env | grep -E '^(REALM|ACCESS_TOKEN|INSTANCE|CLUSTER_NAME)='
 
 make setup-k3d
 make build
 make deploy          # auto-installs Splunk OTel Collector if missing
 open http://localhost:30080
 ```
+
+See `env.example` for the full list of supported environment variables.
 
 ## Services
 

@@ -3,12 +3,8 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# shellcheck disable=SC1091
-source "${ROOT_DIR}/scripts/load-env.sh"
-load_env "${ROOT_DIR}/.env"
-
-REALM="${REALM:?REALM required — export it or fix .env}"
-ACCESS_TOKEN="${ACCESS_TOKEN:?ACCESS_TOKEN required — export it or fix .env}"
+REALM="${REALM:?REALM must be exported on the host}"
+ACCESS_TOKEN="${ACCESS_TOKEN:?ACCESS_TOKEN must be exported on the host}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
 ENVIRONMENT="${DEPLOYMENT_ENV:-workshop-context-prop}"
 VALUES_FILE="${ROOT_DIR}/deploy/helm/splunk-otel-values.yaml"
@@ -39,5 +35,5 @@ echo "Infrastructure ↔ APM correlation tags:"
 echo "  clusterName=${CLUSTER_NAME}  → k8s.cluster.name in Infrastructure navigator"
 echo "  environment=${ENVIRONMENT}     → deployment.environment on collector telemetry"
 echo ""
-echo "Ensure app pods use the same values (make deploy generates otel-config from .env)."
+echo "Ensure app pods use the same values (make deploy generates otel-config from exported env)."
 echo "Verify: bash scripts/verify-infra-apm-config.sh"
