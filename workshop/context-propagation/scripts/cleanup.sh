@@ -39,10 +39,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
-REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
-TAG="${TAG:-latest}"
-
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
 echo "=== Cosmic Observatory Shop — workshop cleanup ==="

@@ -7,8 +7,6 @@ K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
 TAG="${TAG:-latest}"
 DEFAULT_APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
-
 if [[ $# -gt 0 ]]; then
   APPS=("$@")
 else

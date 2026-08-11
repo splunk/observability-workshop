@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-${INSTANCE:+workshop-${INSTANCE}}}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
+RUM_APP_NAME="${RUM_APP_NAME:-${INSTANCE:+workshop-${INSTANCE}}}"
+RUM_APP_NAME="${RUM_APP_NAME:-cosmic-observatory-shop}"
 
 build_image() {
   local name="$1"
@@ -14,8 +18,8 @@ build_image() {
   docker build \
     --build-arg REALM="${REALM:-us0}" \
     --build-arg RUM_TOKEN="${RUM_TOKEN:-}" \
-    --build-arg RUM_APP_NAME="${RUM_APP_NAME:-cosmic-observatory-shop}" \
-    --build-arg DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}" \
+    --build-arg RUM_APP_NAME="${RUM_APP_NAME}" \
+    --build-arg DEPLOYMENT_ENV="${DEPLOYMENT_ENV}" \
     -t "cosmic-shop/${name}:${TAG}" \
     -f "${dockerfile}" \
     "${context}"

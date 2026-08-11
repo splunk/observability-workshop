@@ -10,7 +10,7 @@ Distributed tracing breaks silently when proxies and message buses drop W3C trac
 
 ```bash
 # Verify workshop credentials are exported (REALM, ACCESS_TOKEN, INSTANCE, etc.)
-env | grep -E '^(REALM|ACCESS_TOKEN|INSTANCE|CLUSTER_NAME)='
+env | grep -E '^(REALM|ACCESS_TOKEN|INSTANCE|CLUSTER_NAME|DEPLOYMENT_ENV)='
 
 make setup-k3d
 make build

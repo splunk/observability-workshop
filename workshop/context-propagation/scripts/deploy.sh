@@ -6,7 +6,11 @@ REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-${INSTANCE:-cosmic-shop}}"
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
+
+# Host exports (workshop VM): REALM, ACCESS_TOKEN, CLUSTER_NAME, DEPLOYMENT_ENV=workshop-${INSTANCE}
+CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
 CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-${INSTANCE:+workshop-${INSTANCE}}}"
 DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
 
 required_vars=(REALM ACCESS_TOKEN)
@@ -16,6 +20,13 @@ for var in "${required_vars[@]}"; do
     exit 1
   fi
 done
+
+echo "Deploy config:"
+echo "  realm=${REALM}"
+echo "  clusterName=${CLUSTER_NAME}"
+echo "  deployment.environment=${DEPLOYMENT_ENV}"
+echo "  k3d cluster=${K3D_CLUSTER_NAME}"
+echo ""
 
 wait_rollout() {
   local deploy="$1"
