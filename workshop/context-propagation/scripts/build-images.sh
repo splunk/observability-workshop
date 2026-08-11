@@ -23,8 +23,17 @@ build_image() {
     -t "cosmic-shop/${name}:${TAG}" \
     -f "${dockerfile}" \
     "${context}"
-  docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
-  docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+
+  # Deploy uses k3d image import from cosmic-shop/* tags — registry push is optional.
+  if [[ "${PUSH_TO_REGISTRY:-0}" == "1" ]]; then
+    if curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
+      docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+      docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+    else
+      echo "WARNING: PUSH_TO_REGISTRY=1 but ${REGISTRY} is not reachable — skipping push for ${name}."
+      echo "         Run 'make setup-k3d' to create the k3d registry, or omit PUSH_TO_REGISTRY."
+    fi
+  fi
 }
 
 dockerfile_for() {
@@ -58,4 +67,7 @@ for app in "${APPS[@]}"; do
   build_image "${app}" "${dockerfile}"
 done
 
-echo "Built and pushed: ${APPS[*]} -> ${REGISTRY}"
+echo "Built: ${APPS[*]} (tags: cosmic-shop/<service>:${TAG})"
+if [[ "${PUSH_TO_REGISTRY:-0}" == "1" ]]; then
+  echo "Registry push enabled -> ${REGISTRY}"
+fi

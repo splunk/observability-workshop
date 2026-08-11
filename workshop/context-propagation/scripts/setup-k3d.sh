@@ -43,5 +43,12 @@ else
     --k3s-arg "--disable=traefik@server:0"
 fi
 
+if ! k3d registry list 2>/dev/null | grep -q "${REGISTRY_NAME}"; then
+  echo "Creating k3d registry '${REGISTRY_NAME}' on port ${REGISTRY_PORT}..."
+  k3d registry create "${REGISTRY_NAME}" --port "${REGISTRY_PORT}"
+else
+  echo "Registry '${REGISTRY_NAME}' already running on port ${REGISTRY_PORT}."
+fi
+
 kubectl cluster-info
 echo "k3d cluster '${K3D_CLUSTER_NAME}' ready."
