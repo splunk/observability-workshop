@@ -1363,7 +1363,7 @@ data:
             "targeted": "targeted",
             "max": "max"
           },
-          "defaultVariant": "minimal"
+          "defaultVariant": "max"
         }
       }
     }

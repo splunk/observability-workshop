@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest
 # Version: 2.0.7
-# Generated on: 2026-07-30T14:01:11Z
+# Generated on: 2026-08-03T14:09:37Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -365,6 +365,94 @@ data:
       return `https://${raw.replace(/\/+$/, '')}/`;
     }
 
+    // --- flagd feature flags via OFREP --------------------------------------
+    // flagd serves the OpenFeature Remote Evaluation Protocol over HTTP on
+    // port 8016 (see src/flagd/flagd-k8s.yaml). Node 24 has global fetch, so
+    // no OpenFeature SDK / gRPC deps are needed — one POST per flag. flagd
+    // returns the live value, so flipping a flag in flagd-ui is reflected on
+    // the next cycle with no loadgen restart. Disable with
+    // FLAGD_OFREP_ENABLED=false; override endpoint with FLAGD_OFREP_URL.
+    const FLAGD_OFREP_ENABLED = (process.env.FLAGD_OFREP_ENABLED || 'true').toLowerCase() !== 'false';
+    const FLAGD_OFREP_URL = (process.env.FLAGD_OFREP_URL || 'http://flagd:8016').replace(/\/+$/, '');
+
+    // --- Panic path (angry rage-click) tuning -------------------------------
+    // When the rumLoadGenPanicMode flag is on, every Nth load cycle takes a
+    // DIFFERENT path: instead of placing an order, the browser rapidly clicks
+    // the intentionally-inert "Show All Reviews" button to mimic a frustrated
+    // user rage-clicking, then clicks away — driving RUM frustration / rage-
+    // click detection. Mirrors the Splunk Synthetics rage-click transaction.
+    // N is a fixed constant here for now; the intent is for it to come from the
+    // same flagd entry (rumLoadGenPanicMode variant value) in a later step.
+    const PANIC_EVERY_N_LOOPS = 10;      // take the angry path once every N cycles
+    const PANIC_RAGE_CLICKS = 6;         // clicks per rage burst (synthetics: 1 + 5 repeats)
+    const PANIC_RAGE_INTERVAL_MS = 80;   // gap between rage clicks (synthetics: 80ms)
+    let panicLoopCounter = 0;            // increments each cycle; angry path on multiples of N
+
+    /**
+     * Evaluate a single flag via OFREP. Returns `def` on any failure (flagd
+     * unreachable, non-2xx, timeout, missing flag) so flag lookups never block
+     * or crash a load cycle.
+     */
+    async function getFlag(key, def) {
+      if (!FLAGD_OFREP_ENABLED) return def;
+      try {
+        const resp = await fetch(`${FLAGD_OFREP_URL}/ofrep/v1/evaluate/flags/${key}`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ context: { targetingKey: 'rumloadgen' } }),
+          signal: AbortSignal.timeout(2000)
+        });
+        if (!resp.ok) {
+          if (debugEnabled) console.log(`[DEBUG] OFREP ${key}: HTTP ${resp.status}`);
+          return def;
+        }
+        const body = await resp.json();
+        return body.value !== undefined ? body.value : def;
+      } catch (e) {
+        if (debugEnabled) console.log(`[DEBUG] OFREP ${key} lookup failed: ${e.message}`);
+        return def;
+      }
+    }
+
+    /**
+     * Angry rage-click path. Rapidly clicks the intentionally-inert "Show All
+     * Reviews" button (id btn-show-all-reviews, data-cy ShowAllReviews) to
+     * simulate a frustrated user, then clicks away to the recommendations
+     * section — the same sequence as the Splunk Synthetics rage-click test.
+     * Best-effort: missing elements are logged and skipped, never thrown.
+     */
+    async function rageClickReviews(page) {
+      const reviewBtn = "[data-cy='ShowAllReviews']";
+      try {
+        await page.waitForSelector(reviewBtn, { timeout: 8000, visible: true });
+      } catch {
+        console.log('⚠️ Panic path: "Show All Reviews" button not found, skipping rage clicks');
+        return;
+      }
+      console.log(`🚨 rum-loadgen Panic mode: rage-clicking "Show All Reviews" ${PANIC_RAGE_CLICKS}x @ ${PANIC_RAGE_INTERVAL_MS}ms`);
+      let landed = 0;
+      for (let i = 0; i < PANIC_RAGE_CLICKS; i++) {
+        try {
+          // Surface faults: a swallowed page.click means the click never
+          // dispatched, so RUM never sees it. Log each attempt + outcome.
+          await page.click(reviewBtn);
+          landed++;
+          console.log(`🖱️ rage-click ${i + 1}/${PANIC_RAGE_CLICKS} landed`);
+        } catch (e) {
+          console.log(`❌ rage-click ${i + 1}/${PANIC_RAGE_CLICKS} FAILED: ${e.message}`);
+        }
+        await delay(PANIC_RAGE_INTERVAL_MS);
+      }
+      console.log(`🚨 rage-click burst done: ${landed}/${PANIC_RAGE_CLICKS} landed`);
+      // Click away to the recommendations section, like the synthetics test.
+      const away = "[data-cy='recommendation-list']";
+      await page.waitForSelector(away, { timeout: 5000, visible: true })
+        .then(() => page.click(away))
+        .then(() => console.log('👋 Panic path: clicked away to recommendations'))
+        .catch(() => console.log('⚠️ Panic path: recommendations click-away skipped'));
+      await delay(1500); // let the RUM batcher flush the rage-click beacon
+    }
+
     function getProductIds() {
       const envProductIds = (process.env.PRODUCT_IDS || '').trim();
       if (envProductIds) {
@@ -504,6 +592,20 @@ data:
         }
 
         const base = buildBaseUrl();
+
+        // Feature-flag check each cycle, before product selection, so a
+        // flagd-ui toggle takes effect on the very next loop. When
+        // rumLoadGenPanicMode is on, every PANIC_EVERY_N_LOOPS-th cycle takes
+        // the angry rage-click path instead of placing an order.
+        panicLoopCounter += 1;
+        const panicMode = await getFlag('rumLoadGenPanicMode', false);
+        const angry = panicMode && (panicLoopCounter % PANIC_EVERY_N_LOOPS === 0);
+        if (angry) {
+          console.log(`🚨 rum-loadgen Panic mode: ANGRY rage-click path this cycle (loop #${panicLoopCounter}, every ${PANIC_EVERY_N_LOOPS})`);
+        } else if (panicMode) {
+          console.log(`rum-loadgen Panic mode on; normal path (loop #${panicLoopCounter}, angry every ${PANIC_EVERY_N_LOOPS})`);
+        }
+
         const productsToOrder = getRandomProducts();
         const cycleCurrency = pickCurrency();
         console.log(`🛒 Ordering ${productsToOrder.length} product(s) in ${cycleCurrency}: ${productsToOrder.join(', ')}`);
@@ -611,10 +713,24 @@ data:
             console.log('⏭️ Skipping quick prompts (next run in ' + Math.round((QUICK_PROMPT_INTERVAL_MS - (now - lastQuickPromptTime)) / 1000) + 's)');
           }
 
+          // Angry path: rage-click the reviews button on this product page and
+          // leave — no add-to-cart, no remaining products, no order this cycle.
+          if (angry) {
+            await rageClickReviews(page);
+            break;
+          }
+
           const addSel = "[data-cy='product-add-to-cart']";
           await page.waitForSelector(addSel);
           console.log(`🖱️ Clicking "Add To Cart" for product ${productId}`);
           await page.click(addSel);
+        }
+
+        // Angry cycles already rage-clicked and clicked away above — skip
+        // ordering entirely (the frustrated user never checks out).
+        if (angry) {
+          await fetchShippingInfo(page);
+          return;
         }
 
         // Place order after all products are added to cart
@@ -1019,7 +1135,7 @@ metadata:
     opentelemetry.io/name: currency
     app.kubernetes.io/component: currency
     app.kubernetes.io/name: currency
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1038,7 +1154,7 @@ metadata:
     opentelemetry.io/name: currency
     app.kubernetes.io/component: currency
     app.kubernetes.io/name: currency
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -1082,7 +1198,7 @@ spec:
         - name: VERSION
           value: 2.1.3
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 20Mi
@@ -1106,7 +1222,7 @@ metadata:
     opentelemetry.io/name: email
     app.kubernetes.io/component: email
     app.kubernetes.io/name: email
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1125,7 +1241,7 @@ metadata:
     opentelemetry.io/name: email
     app.kubernetes.io/component: email
     app.kubernetes.io/name: email
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -1173,7 +1289,7 @@ spec:
         - name: FLAGD_PORT
           value: '8013'
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 100Mi
@@ -1194,7 +1310,7 @@ metadata:
     opentelemetry.io/name: flagd
     app.kubernetes.io/component: flagd
     app.kubernetes.io/name: flagd
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1216,7 +1332,7 @@ metadata:
     opentelemetry.io/name: flagd
     app.kubernetes.io/component: flagd
     app.kubernetes.io/name: flagd
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -1315,6 +1431,15 @@ data:
     {
       "$schema": "https://flagd.dev/schema/v0/flags.json",
       "flags": {
+        "rumLoadGenPanicMode": {
+          "description": "RUM loadgen reacts to this flag each cycle via OFREP. On = every Nth load cycle (N fixed at 10 in the loadgen for now) takes an angry rage-click path: rapidly clicks the inert 'Show All Reviews' button then clicks away, no order — drives RUM frustration/rage-click detection. Off = normal order flow every cycle.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
         "orderValidationThrottle": {
           "description": "order-validation runs full CPU-bound compliance/audit path, exposing k8s CPU throttle scenario. Off returns precomputed stub.",
           "state": "ENABLED",
@@ -1515,7 +1640,7 @@ metadata:
     opentelemetry.io/name: flagd-ui
     app.kubernetes.io/component: flagd-ui
     app.kubernetes.io/name: flagd-ui
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1534,7 +1659,7 @@ metadata:
     opentelemetry.io/name: flagd-ui
     app.kubernetes.io/component: flagd-ui
     app.kubernetes.io/name: flagd-ui
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -1775,8 +1900,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
       - name: frontend
-        #image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7
-        iamge: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7-hotfix-frontend-1-beta 
+        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.7-hotfix-frontend-1-beta
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -2167,7 +2291,7 @@ metadata:
     opentelemetry.io/name: kafka
     app.kubernetes.io/component: kafka
     app.kubernetes.io/name: kafka
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -2189,7 +2313,7 @@ metadata:
     opentelemetry.io/name: kafka
     app.kubernetes.io/component: kafka
     app.kubernetes.io/name: kafka
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -2241,7 +2365,7 @@ spec:
         - name: KAFKA_CONTROLLER_QUORUM_VOTERS
           value: 1@kafka:9093
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 800Mi
@@ -3025,7 +3149,7 @@ metadata:
     opentelemetry.io/name: postgresql
     app.kubernetes.io/component: postgresql
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3044,7 +3168,7 @@ metadata:
     opentelemetry.io/name: postgresql
     app.kubernetes.io/component: postgresql
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -3096,7 +3220,7 @@ spec:
         - name: POSTGRES_DB
           value: otel
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 256Mi
@@ -3502,7 +3626,7 @@ metadata:
     opentelemetry.io/name: quote
     app.kubernetes.io/component: quote
     app.kubernetes.io/name: quote
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3521,7 +3645,7 @@ metadata:
     opentelemetry.io/name: quote
     app.kubernetes.io/component: quote
     app.kubernetes.io/name: quote
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -3567,7 +3691,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4318
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 40Mi
@@ -3768,7 +3892,7 @@ metadata:
     opentelemetry.io/name: shipping
     app.kubernetes.io/component: shipping
     app.kubernetes.io/name: shipping
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3787,7 +3911,7 @@ metadata:
     opentelemetry.io/name: shipping
     app.kubernetes.io/component: shipping
     app.kubernetes.io/name: shipping
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -3831,7 +3955,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4317
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 20Mi
@@ -3988,7 +4112,7 @@ metadata:
     opentelemetry.io/name: valkey-cart
     app.kubernetes.io/component: valkey-cart
     app.kubernetes.io/name: valkey-cart
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   type: ClusterIP
@@ -4007,7 +4131,7 @@ metadata:
     opentelemetry.io/name: valkey-cart
     app.kubernetes.io/component: valkey-cart
     app.kubernetes.io/name: valkey-cart
-    app.kubernetes.io/version: 2.1.3
+    app.kubernetes.io/version: 2.0.7
     app.kubernetes.io/part-of: opentelemetry-demo
 spec:
   replicas: 1
@@ -4045,7 +4169,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
           value: cumulative
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.1.3,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.7,service.kafka=no
         resources:
           limits:
             memory: 20Mi

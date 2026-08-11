@@ -8,7 +8,7 @@
 ## Splunk Copyright Notice
 
 ``` text
-© 2005 - 2025 Splunk LLC All rights reserved.
+© 2005 - 2026 Splunk LLC All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
@@ -22,5 +22,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://splunk.github.io/observability-workshop/latest/).
 
 Latest versions of the workshop are:
-- [v6.113](https://splunk.github.io/observability-workshop/)
-- [v6.112](https://splunk.github.io/observability-workshop/)
+- [v6.118](https://splunk.github.io/observability-workshop/)
+- [v6.117](https://splunk.github.io/observability-workshop/)

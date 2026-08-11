@@ -1,0 +1,40 @@
+---
+title: Frustration
+linkTitle: 2. Frustration
+weight: 2
+archetype: chapter
+time: 5 minutes
+---
+
+次に、同じタイプの分析を使って、エンドユーザーがアプリケーションとのインタラクションで摩擦を経験しているかどうかを理解する方法を見てみましょう。
+
+{{% exercise title="摩擦のモニタリング" %}}
+
+Project Analysesに戻り、`Frustration` 時系列を開きます。
+
+チャート、データテーブル、およびセッションリプレイを確認します。
+
+![timeseries chart showing three frustration series](../images/frustration-timeseries.png)
+
+{{< tabs >}}
+{{% tab title="質問" %}}
+
+1. このチャートから何がわかりますか？
+1. ユーザーがフラストレーションを感じている理由がわかりますか？
+
+{{% /tab %}}
+{{% tab title="回答" %}}
+
+1. このチャートは、レイジクリック、エラー、デッドクリックなど、さまざまなタイプのフラストレーションシグナルを時系列で追跡しています。複数のユーザーが摩擦を経験しています！
+1. 役に立たない「Show all reviews」ボタンを見つけましたか？一部のユーザーがクリックしようとしますが何も起こらず、その後レイジクリックします。
+
+![frustration replay](https://colony-recorder.s3.amazonaws.com/files/2026-03-19/13f755d5-8819-4d06-83b3-a0f159568b43/ascreenshot_e2b4eaaa95ca43139b275fbe4609f55c_text_export.jpeg)
+
+{{% /tab %}}
+{{< /tabs >}}
+
+これらのフラストレーションシグナルをモニタリングしているため、アプリケーションやコンテンツを改善するための対策を講じることができ、時間の経過とともにフラストレーションシグナルが減少することが期待できます。アプリケーションを最適化すればするほど、エンドユーザーの満足度が高まり、より成功を収めることができます。
+
+{{% /exercise %}}
+
+フラストレーションといえば、次にエンドユーザーが期待どおりの操作をできない場合に何が起きているかを理解する方法を見てみましょう。

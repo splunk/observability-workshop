@@ -17,7 +17,7 @@ measure, and govern.
 
 * **Instrumented** the application to trace every agent interaction.
 * **Traced and investigated** agent behavior to find the root cause of errors fast.
-* **Enabled quality metrics** to automatically catch hallucinations and tool-selection errors.
+* **Enabled evaluators** to automatically catch hallucinations and tool-selection errors.
 * **Used Signals** to surface the unknown unknowns, the recurring failure patterns you didn't
   think to measure.
 * **Added guardrails** to block dangerous actions and steer unsafe answers to safety at
@@ -40,12 +40,12 @@ infrastructure, APM, and log data: one platform for the whole stack.
 
 ## Where to go next
 
-* Add custom metrics and **Signals** tuned to your own failure modes.
-* Run **experiments** to replace guesswork with evidence and prevent regressions before
+* Add custom **Evaluators** and **Signals** tuned to your own failure modes.
+* Run **Experiments** to replace guesswork with evidence and prevent regressions before
     release.
 * Wire experiments into CI/CD as an automated release gate.
 * Expand guardrails across more steps: prompt injection, PII exposure, scope enforcement.
-* Route different workloads to dedicated log streams for cleaner separation.
+* Route different workloads to dedicated agent streams for cleaner separation.
 
 ## References
 
@@ -53,7 +53,6 @@ infrastructure, APM, and log data: one platform for the whole stack.
 * [Galileo Quickstart](https://docs.galileo.ai/getting-started/quickstart)
 * [Galileo LangChain integration](https://docs.galileo.ai/sdk-api/third-party-integrations/langchain/langchain)
 
-<!-- TODO screenshot: celebratory image (trophy, fireworks, etc.) sized for the wrap-up page -->
-![Congratulations on completing the workshop](../images/congratulations.png?width=20vw)
+![Congratulations on completing the workshop](../images/Splunk-dancing-buttercup-GIF-103.gif?width=30vw)
 
 {{< checkpoint title="Workshop complete -- **nice work!**" >}}

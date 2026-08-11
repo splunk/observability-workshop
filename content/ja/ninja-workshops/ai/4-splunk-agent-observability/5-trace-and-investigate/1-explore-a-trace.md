@@ -9,15 +9,15 @@ Splunk Agent Observabilityを開き、先ほど生成したトラフィックか
 
 {{< exercise title="エージェントの動作を調査する" >}}
 
-{{< step title="プロジェクトとログストリームを開く" >}}
+{{< step title="プロジェクトとエージェントストリームを開く" >}}
 
 **1.** ブラウザで `https://console.multitenant.galileocloud.io` のSplunk Agent Observabilityコンソールにアクセスし、 **`workshop`** orgを選択します
 
-**2.** 前のステップで **`GALILEO_PROJECT`** フィールドに設定した名前（例: `project-44`）を使用してプロジェクトを開きます
+**2.** 前のステップで **`GALILEO_PROJECT`** フィールドに設定した名前（例: `project-120`）を使用してプロジェクトを開きます
 
-**3.** `default` ログストリームを選択します
+**3.** `default` エージェントストリームを選択します
 
-![プロジェクトとログストリームの選択](../../images/galileo-project.png?width=750px)
+![プロジェクトとエージェントストリームの選択](../../images/galileo-project.png?width=750px)
 
 {{< /step >}}
 
@@ -38,8 +38,6 @@ Lisinoprilの用量に関する質問のトレースを開きます。チャッ�
 {{< /step >}}
 
 {{< step title="Spanを検査する" >}}
-
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact span-panel steps + screenshot once finalized -->
 
 **`Healthcare Assistant`** Spanを選択し、 **システムメッセージとユーザーメッセージ** 、 **Available Tools** 、 **Output** 、 **Token Counts** 、 **Latency** 、 **Agent Cost** がキャプチャされていることを確認します。これは、エージェントがなぜそのように回答したかを説明するための詳細情報です。
 

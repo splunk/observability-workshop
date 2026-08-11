@@ -56,9 +56,9 @@ kubectl create configmap galileo-config \
   --from-literal=GALILEO_LOG_STREAM="default"
 ```
 
-{{% notice title="Projectとlog stream" style="info" %}}
+{{% notice title="Projectとagent stream" style="info" %}}
 
-`GALILEO_PROJECT` と `GALILEO_LOG_STREAM` は、GalileoコンソールでTraceが表示される場所を決定します。空のままにすると、SDKはProjectとlog streamの両方が `default` という名前にフォールバックします。
+`GALILEO_PROJECT` と `GALILEO_LOG_STREAM` は、GalileoコンソールでTraceが表示される場所を決定します。空のままにすると、SDKはProjectとagent streamの両方が `default` という名前にフォールバックします。
 
 {{% /notice %}}
 
@@ -71,5 +71,5 @@ kubectl create configmap galileo-config \
 `galileo-config` Config Mapから `GALILEO_PROJECT` と `GALILEO_LOG_STREAM` を削除した場合、Traceはどこに表示されますか？
 
 {{< details summary="回答を表示" >}}
-`default` という名前のProjectと `default` という名前のlog streamに表示されます。これらのキーが空の場合、`setup_env.py` は空の `GALILEO_PROJECT` / `GALILEO_LOG_STREAM` 値をエクスポートし、Galileo SDKは組み込みの `default` Projectと `default` log streamにフォールバックします。
+`default` という名前のProjectと `default` という名前のagent streamに表示されます。これらのキーが空の場合、`setup_env.py` は空の `GALILEO_PROJECT` / `GALILEO_LOG_STREAM` 値をエクスポートし、Galileo SDKは組み込みの `default` Projectと `default` agent streamにフォールバックします。
 {{< /details >}}

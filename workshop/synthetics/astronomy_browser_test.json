@@ -44,6 +44,22 @@
             "type": "run_javascript",
             "value": "var products = [\n\"OLJCESPC7Z\",\n\"2ZYFJ3GM2N\",\n\"1YMWWN1N4O\",\n\"LS4PSXUNUM\",\n\"L9ECAV7KIM\",\n\"0PUK6V6EV0\",\n\"9SIQT8TOJO\",\n\"66VCHSJNUP\",\n\"6E92ZMYYFZ\"\n]\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"http://$EXTERNALIP:81/product/\" + randomProducts, \"_self\");",
             "waitForNav": true
+          },
+          {
+            "name": "scroll",
+            "type": "run_javascript",
+            "waitForNav": false,
+            "waitForNavTimeout": 2000,
+            "waitForNavTimeoutDefault": false,
+            "value": "const element = document.getElementById(\"btn-quick-prompt-summarize\");\n\nelement.scrollIntoView({ behavior: \"smooth\", block: \"center\", inline: \"center\" });"
+          },
+          {
+            "name": "click random Ask AI button",
+            "type": "run_javascript",
+            "waitForNav": false,
+            "waitForNavTimeout": 50,
+            "waitForNavTimeoutDefault": false,
+            "value": "var askAI = [\n'button[id=\"btn-quick-prompt-summarize\"]',\n'button[id=\"btn-quick-prompt-ages\"]',\n'button[id=\"btn-quick-prompt-negative\"]',\n'button[id=\"btn-ask-ai\"]'\n]\n\nvar randomAskAI = askAI[Math.floor(Math.random() * askAI.length)];\n\ndocument.querySelector(randomAskAI).click();"
           }
         ]
       },

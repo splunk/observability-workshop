@@ -5,13 +5,13 @@ weight: 7
 time: 5 minutes
 ---
 
-Metrics catch the problems you knew to measure. But agentic systems fail in ways you didn't
+Evaluators catch the problems you knew to measure. But agentic systems fail in ways you didn't
 anticipate, like planning loops, routing failures, and tool errors. **Signals** find those
 *unknown unknowns* for you.
 
 {{% notice title="Persona" style="orange" icon="user" %}}
 
-As Careful Health Provider's **AI engineer**, you can't write a metric for every possible
+As Careful Health Provider's **AI engineer**, you can't write an evaluator for every possible
 failure mode, and you don't have time to read every trace. You need the platform to tell you,
 proactively, "here's a pattern that's going wrong, and here's what to do about it."
 

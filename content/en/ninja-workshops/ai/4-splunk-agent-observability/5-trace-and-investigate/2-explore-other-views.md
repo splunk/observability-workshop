@@ -9,16 +9,16 @@ Let's explore other views in Splunk Agent Observability using the traffic you ju
 
 {{< exercise title="Investigate agent behavior" >}}
 
-{{< step title="Open your project and log stream" >}}
+{{< step title="Open your project and agent stream" >}}
 
-Return to your project and the `default` log stream in Splunk Agent Observability.
+Return to your project and the `default` agent stream in Splunk Agent Observability.
 
 {{< /step >}}
 
 {{< step title="View the Agent Graph" >}}
 
 Click on the **`Agent graph`** tab, which aggregates agent behavior
-across all traces in the log stream. It shows the most common execution paths, along with latency and frequency patterns,
+across all traces in the agent stream. It shows the most common execution paths, along with latency and frequency patterns,
 so you can quickly see how the agent is behaving with actual users.
 
 ![Agent Graph](../../images/galileo-agent-graph.png?width=750px)
@@ -39,7 +39,7 @@ see how the overall latency and token usage trends across requests.
 {{% notice title="From investigation to automation" style="info" %}}
 
 Reading individual traces is powerful for a single incident, but you can't manually inspect
-millions of them. In the next chapter you'll enable **metrics** to score every trace
+millions of them. In the next chapter you'll enable **evaluators** to score every trace
 automatically, so problems like ungrounded medical advice surface on their own.
 
 {{% /notice %}}
