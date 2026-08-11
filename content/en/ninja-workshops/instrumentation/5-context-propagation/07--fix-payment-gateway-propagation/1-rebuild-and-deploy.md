@@ -11,9 +11,8 @@ time: 5 minutes
 Saving `server.js` does **not** update running pods until you rebuild and restart.
 {{% /notice %}}
 
-From the project root:
-
 ```bash
+cd ~/workshop/context-propagation
 bash scripts/build-images.sh payment-gateway
 bash scripts/import-images-k3d.sh payment-gateway
 kubectl -n cosmic-shop rollout restart deployment/payment-gateway

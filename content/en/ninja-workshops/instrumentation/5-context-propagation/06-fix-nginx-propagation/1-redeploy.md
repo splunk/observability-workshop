@@ -9,12 +9,13 @@ time: 5 minutes
 
 Saving the file does **not** update the running gateway. You must apply the ConfigMap and restart the deployment so NGINX loads the new config.
 
-From the project root run the following:
+Run the following:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
+cd ~/workshop/context-propagation
 kubectl apply -f deploy/k8s/gateway-config.yaml
 kubectl -n cosmic-shop rollout restart deployment/gateway
 kubectl -n cosmic-shop rollout status deployment/gateway --timeout=180s
@@ -152,4 +153,3 @@ If you add CORS to NGINX, ensure `traceparent` and `tracestate` are in `Access-C
 add_header Access-Control-Allow-Headers 'Content-Type, traceparent, tracestate, baggage';
 ```
 {{< /details >}}
-

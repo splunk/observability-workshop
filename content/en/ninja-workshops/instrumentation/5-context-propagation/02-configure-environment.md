@@ -5,12 +5,19 @@ weight: 2
 time: 5 minutes
 
 ---
-In this step, you'll create an `.env` file with your Splunk Observability Cloud credentials and workshop settings. 
+In this step, you'll ensure `env` variables are configured with your Splunk Observability Cloud credentials and workshop settings. 
 
 ## Validation Checklist
-Your environment should already have values for `SPLUNK_ACCESS_TOKEN`, `SPLUNK_REALM`, and `SPLUNK_RUM_ACCESS_TOKEN`
+Your environment should already have values for `INSTANCE`, `CLUSTER`, `REALM`, `ACCESS_TOKEN` and `RUM_TOKEN`
 
-Run `env` command from the project root to verify .
+Configure the additional required `env` values: 
+
+```bash
+export DEPLOYMENT_ENV="workshop-${INSTANCE}"
+export RUM_APP_NAME="workshop-${INSTANCE}"
+```
+
+Run `env` command from the project root to verify.
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -23,38 +30,28 @@ env
 {{% tab title="Example Output" %}}
 
 ``` text
-SPLUNK_REALM=<splunk-realm-value>
-SPLUNK_ACCESS_TOKEN=<org-access-token-value>
-SPLUNK_RUM_ACCESS_TOKEN=<rum-access-token-value>
+INSTANCE=<your-instance>
+CLUSTER_NAME=$INSTANCE-cluster
+REALM=<splunk-realm>
+ACCESS_TOKEN=<access-token>
+RUM_TOKEN=<rum-token>
+DEPLOYMENT_ENV=workshop-${INSTANCE}
+RUM_APP_NAME=workshop-$INSTANCE
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="[Optional] Exercise" style="green" icon="running" %}}
-**If these values do not exist in your instance you can configure them as follows** - From the project root [~/workshop/context-propagation]:
+**If these values do not exist in your instance you can configure them as follows**:
 
 ```bash
-cp .env.example .env
-```
-
-Open `.env` in your editor and replace the placeholder values:
-
-```bash
-# Splunk Observability Cloud
-SPLUNK_REALM=<splunk-realm>
-SPLUNK_ACCESS_TOKEN=<your-org-access-token>
-
-# RUM browser agent
-SPLUNK_RUM_ACCESS_TOKEN=<your-rum-access-token>
-SPLUNK_RUM_APP_NAME=cosmic-observatory-shop
-SPLUNK_DEPLOYMENT_ENV=workshop-context-prop
-
-# Kubernetes
-K3D_CLUSTER_NAME=cosmic-shop
-CLUSTER_NAME=cosmic-shop-cluster
-REGISTRY=localhost:5111
-TAG=latest
+export REALM="us1"
+export ACCESS_TOKEN="your-org-ingest-token"
+export RUM_TOKEN="your-rum-access-token"
+export DEPLOYMENT_ENV="workshop-${INSTANCE}"
+export RUM_APP_NAME="workshop-${INSTANCE}"
+export CLUSTER_NAME="workshop-cluster-${INSTANCE}"
 ```
 {{% /notice %}}
 

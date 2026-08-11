@@ -28,6 +28,7 @@ Remove all local workshop resources (k3d cluster, Splunk collector, app workload
 
 From the project root [~/workshop/context-propagation], run:
 ```bash
+// cd ~/workshop/context-propagation
 make cleanup
 ```
 

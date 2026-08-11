@@ -13,7 +13,7 @@ In this step, you'll observe how RUM sessions appear add context to requests and
 Allow **2–5 minutes** after deploy for RUM data to appear..
 {{% /notice %}}
 
-1. Open **http://localhost:30080**
+1. Open **http://(your-instance-url):30080**
 2. Open browser DevTools → **Network** tab
 3. Place an order
 4. In the Network tab, inspect a `POST /api/orders` request
@@ -35,7 +35,7 @@ The browser appears to be correcly instrumented and processing requests as expec
 ## Observe in Splunk RUM
 
 1. Navigate to **Digital Experience → Session Search**
-2. Filter **Environment → `workshop-context-prop`**
+2. Filter **Environment → `workshop-$INSTANCE`**
 3. Open a recent session
 4. Locate `fetch` requests
 5. You will see an APM correlation link for 'api/catalog`. 

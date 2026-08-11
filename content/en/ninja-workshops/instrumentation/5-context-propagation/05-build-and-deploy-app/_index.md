@@ -9,9 +9,10 @@ In this step, you'll build Docker images for all Cosmic Observatory Shop service
 
 ## Build Container Images
 
-From the project root [~/workshop/context-propagation] with `.env` configured, run:
+With all required `env` values configured, run:
 
 ```bash
+cd ~/workshop/context-propagation
 make build
 ```
 
@@ -31,7 +32,7 @@ This builds and pushes four images to `localhost:5111`
 {{< tabs >}}
 {{% tab title="Script" %}}
 ```bash
-curl -s http://(your-instance-url):5111/v2/_catalog | python3 -m json.tool
+curl -s http://localhost:5111/v2/_catalog | python3 -m json.tool
 ```
 {{% /tab %}}
 {{% tab title="Example Output" %}}
@@ -55,17 +56,20 @@ curl -s http://(your-instance-url):5111/v2/_catalog | python3 -m json.tool
 {{% tab title="Script" %}}
 
 ```bash
-docker images | grep cosmic-shop
+docker images | grep '^cosmic-shop/'
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```
-localhost:5111/cosmic-shop/frontend          latest    abc123def456   2 minutes ago   45MB
-localhost:5111/cosmic-shop/storefront-api    latest    def456abc789   2 minutes ago   180MB
-localhost:5111/cosmic-shop/catalog-api       latest    ...
-localhost:5111/cosmic-shop/order-worker      latest    ...
+cosmic-shop/catalog-api:latest      04c6bff29774        364MB         77.7MB        
+cosmic-shop/frontend-api:latest         ...             ...            ...    
+cosmic-shop/frontend:latest             ...             ...            ...       
+cosmic-shop/fulfillment-worker:latest   ...             ...            ...        
+cosmic-shop/order-api:latest            ...             ...            ...        
+cosmic-shop/payment-api:latest          ...             ...            ...   
+cosmic-shop/payment-gateway:latest      ...             ...            ...
 ```
 {{% /tab %}}
 {{< /tabs >}}

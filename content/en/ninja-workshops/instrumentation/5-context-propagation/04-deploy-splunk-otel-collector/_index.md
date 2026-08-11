@@ -19,12 +19,36 @@ Pod → http://$(NODE_IP):4318 → Splunk OTel Collector DaemonSet → Splunk O1
 
 ## Install via Helm
 
-Ensure your `.env` file is configured, then from project root [~/workshop/context-propagation] run:
+Check that the values are exported successfully:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ```bash
+env | grep -E '^(REALM|ACCESS_TOKEN|INSTANCE|CLUSTER_NAME|DEPLOYMENT_ENV|RUM_APP_NAME)='
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```bash
+ACCESS_TOKEN=abcdefgh
+REALM=realm
+INSTANCE=1234
+CLUSTER_NAME=1234-cluster
+DEPLOYMENT_ENV=workshop-1234
+RUM_APP_NAME=workshop-1234
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+Then run:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+```bash
+cd ~/workshop/context-propagation
 make collector
 ```
 
@@ -41,10 +65,10 @@ helm upgrade --install splunk-otel-collector splunk-otel-collector-chart/splunk-
   --namespace cosmic-shop \
   --create-namespace \
   -f deploy/helm/splunk-otel-values.yaml \
-  --set="splunkObservability.realm=${SPLUNK_REALM}" \
-  --set="splunkObservability.accessToken=${SPLUNK_ACCESS_TOKEN}" \
+  --set="splunkObservability.realm=${REALM}" \
+  --set="splunkObservability.accessToken=${ACCESS_TOKEN}" \
   --set="clusterName=${CLUSTER_NAME}" \
-  --set="environment=${SPLUNK_DEPLOYMENT_ENV}"
+  --set="environment=${DEPLOYMENT_ENV}"
 ```
 {{% /tab %}}
 {{< /tabs >}}
@@ -70,7 +94,7 @@ NAME                    NAMESPACE   REVISION   STATUS     CHART                 
 splunk-otel-collector   cosmic-shop 1          deployed   splunk-otel-collector-0.x.x   0.x.x
 ```
 
-STATUS must be `deployed`. If it shows `failed`, re-check `SPLUNK_REALM` and `SPLUNK_ACCESS_TOKEN` in `.env`.
+STATUS must be `deployed`. If it shows `failed`, re-check `REALM` and `ACCESS_TOKEN` in `env`.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -88,10 +112,8 @@ kubectl -n cosmic-shop get pods -l 'app=splunk-otel-collector,component=otel-col
 {{% tab title="Example Output" %}}
 
 ```
-NAME                            DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-splunk-otel-collector-agent     1         1         1       1            1           <none>          2m
-
 NAME                                  READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-agent-xxxxx     1/1     Running   0          60s
 splunk-otel-collector-agent-xxxxx     1/1     Running   0          60s
 ```
 
@@ -125,7 +147,7 @@ failed to export
 connection refused
 ```
 
-If you see auth errors, verify your org access token and realm in `.env`, then reinstall from project root [~/workshop/context-propagation]:
+If you see auth errors, verify your access token and realm in `env`, then reinstall:
 
 ```bash
 make collector
@@ -138,7 +160,7 @@ make collector
 
 1. Open Splunk Observability Cloud
 2. Navigate to **Infrastructure → Kubernetes → Kubernetes Entities → Clusters**
-3. Search for your cluster name (`cosmic-shop-cluster` or the value of `CLUSTER_NAME` in `.env`)
+3. Search for your cluster name (`cosmic-shop-cluster` or the value of `CLUSTER_NAME` in `env`)
 
 The cluster should appear within a few minutes of the collector starting.
 
@@ -152,7 +174,7 @@ Here's some of the potential issues you may encounter in this step & suggested r
 
 #### Potential Issue 1. Helm install fails with auth error
 
-Verify `SPLUNK_ACCESS_TOKEN` and `SPLUNK_REALM` in `.env` are correct and the token has ingest permissions.
+Verify `ACCESS_TOKEN` and `REALM` in `env` are correct and the token has ingest permissions.
 
 #### Potential Issue 2. No cluster in Infrastructure navigator
 

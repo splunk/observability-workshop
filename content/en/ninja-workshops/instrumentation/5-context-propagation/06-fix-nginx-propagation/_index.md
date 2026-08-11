@@ -34,8 +34,9 @@ These directives tell NGINX to pass the incoming trace context from the client (
 NOTE: editors other than vi can be used
 {{% /notice %}}
 
-From the project root [~/workshop/context-propagation], Open and edit the gateway-config file:
+Open and edit the gateway-config file:
 ```
+cd ~/workshop/context-propagation
 vi deploy/k8s/gateway-config.yaml 
 ```
 
@@ -83,6 +84,13 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
             proxy_http_version 1.1;
             proxy_pass http://order_api;
         }
+```
+
+{{% /tab %}}
+{{% tab title="Solution File" %}}
+
+```
+cp ./deploy/k8s/gateway-config-fixed.yaml ./deploy/k8s/gateway-config.yaml
 ```
 
 {{% /tab %}}

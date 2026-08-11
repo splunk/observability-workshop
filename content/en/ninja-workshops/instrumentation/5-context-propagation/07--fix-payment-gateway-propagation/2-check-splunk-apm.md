@@ -9,10 +9,10 @@ time: 5 minutes
 
 #### 1. Confirm partial correlation in Service Map
 
-1. Open **http://localhost:30080**
+1. Open **http://(your-instance-url):30080**
 2. Generate 2-3 new requests
 3. Navigate to **APM → Service Map**
-4. Filter environment: `workshop-context-prop`
+4. Filter environment: `workshop-$INSTANCE`
 
 {{% notice title="Note" style="green" icon="running" %}}
 You may see the service map with APM disjointed correlation between the payment-gateway and payment-api because:

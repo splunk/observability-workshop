@@ -21,8 +21,9 @@ When either side omits this, each consumed message starts a **new root trace** -
 
 ### 1. Producer - (payment-api)
 
-From the project root [~/workshop/context-propagation], Open file to edit:
+Open file to edit:
 ```
+cd ~/workshop/context-propagation
 vi services/payment-api/server.js
 ```
 
@@ -51,6 +52,13 @@ function buildFulfillmentMessageHeaders(order, payment) {
 }
 ```
 {{% /tab %}}
+{{% tab title="Solution File" %}}
+
+```
+cp ./services/payment-api/server-fixed.js ./services/payment-api/server.js
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="Check your work before proceeding" style="primary" icon="running" %}}
@@ -63,9 +71,10 @@ diff ./services/payment-api/server.js  ./services/payment-api/server-fixed.js
 
 ### 2. Consumer - (fulfillment-worker)
 
-From the project root [~/workshop/context-propagation], Open file to edit:
+Open file to edit:
 
 ```
+cd ~/workshop/context-propagation
 vi services/fulfillment-worker/worker.js
 ```
 
@@ -95,6 +104,13 @@ import { extractTraceContext } from './shared/propagation.js';
 
 // Instead of ignoring AMQP headers, use the shared helper in processFulfillment instead:
 const parentContext = extractTraceContext(msg.properties.headers ?? {});
+```
+
+{{% /tab %}}
+{{% tab title="Solution File" %}}
+
+```
+cp ./services/fulfillment-worker/worker-fixed.js ./services/fulfillment-worker/worker.js
 ```
 
 {{% /tab %}}

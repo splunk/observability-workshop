@@ -64,7 +64,7 @@ Fulfilled order ORD-1783658853932 (payment PAY-1783658853945) for UHC Nebula Fil
 
 1. Navigate to **APM → Trace Analyzer**
 2. Filter:
-   - Environment: `workshop-context-prop`
+   - Environment: `workshop-$INSTANCE`
    - Services: `payment-api`
 3. Select a trace with `payment-api: POST POST` initiating operation
 

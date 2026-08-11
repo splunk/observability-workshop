@@ -23,7 +23,7 @@ In this step we will review what the E2E correlation looks like from the web app
 ## Verify in Splunk RUM
 
 1. Navigate to **Digital Experience → Session Search**
-2. Find your session (environment `workshop-context-prop`)
+2. Find your session (environment `workshop-$INSTANCE`)
 3. Click the session timeline
 4. Select the `purchases` fetch event
 5. Confirm:

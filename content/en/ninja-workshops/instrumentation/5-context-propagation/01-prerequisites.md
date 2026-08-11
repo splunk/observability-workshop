@@ -63,11 +63,13 @@ git --version
 {{% tab title="Example Output" %}}
 
 ``` text
-Docker version 27.4.0, build bde2b89
-Client Version: v1.31.0
-k3d version v5.7.4
-v3.16.2+gf786678
-git version 2.47.0
+Docker version 29.1.3, build 29.1.3-0ubuntu3~22.04.2
+Client Version: v1.34.1
+Kustomize Version: v5.7.1
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+v3.21.3+g1ad6e68
+git version 2.34.1
 ```
 
 {{% /tab %}}

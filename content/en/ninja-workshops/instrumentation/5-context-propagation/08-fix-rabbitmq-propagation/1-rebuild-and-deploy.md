@@ -7,9 +7,8 @@ time: 5 minutes
 
 ## Rebuild and Redeploy after Saving
 
-From the project root run:
-
 ```bash
+cd ~/workshop/context-propagation
 bash scripts/build-images.sh payment-api fulfillment-worker
 bash scripts/import-images-k3d.sh payment-api fulfillment-worker
 kubectl -n cosmic-shop rollout restart deployment/payment-api
