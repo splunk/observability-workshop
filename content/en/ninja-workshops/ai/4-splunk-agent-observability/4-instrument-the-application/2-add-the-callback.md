@@ -1,12 +1,12 @@
 ---
-title: Attach the Galileo Callback
-linkTitle: 2. Attach the Galileo Callback
+title: Attach the Splunk Agent Observability Callback
+linkTitle: 2. Attach the Splunk Agent Observability Callback
 weight: 2
 time: 3 minutes
 ---
 
-The agent runs its LangGraph workflow asynchronously, so you'll attach Galileo's
-**async** callback. Because the callback is passed at the graph level, it propagates to every
+The agent runs its LangGraph workflow asynchronously, so you'll attach Splunk Agent Observability's
+**async** callback handler. Because the callback is passed at the graph level, it propagates to every
 node automatically, with no per-tool instrumentation required.
 
 {{< exercise title="Add the callback to the agent" >}}
@@ -22,6 +22,16 @@ import os
 from galileo import galileo_context
 from galileo.handlers.langchain import GalileoAsyncCallback
 ```
+
+{{% notice title="Note about the SDK" style="info" %}}
+
+This workshop was built using the Galileo LangChain callback handler, `GalileoAsyncCallback`. 
+For new deployments, we recommend using the `SplunkAOCallback` package instead.
+Refer to the 
+[LangChain and LangGraph](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain) document
+for details about this newer SDK.
+
+{{% /notice %}}
 
 {{< /step >}}
 

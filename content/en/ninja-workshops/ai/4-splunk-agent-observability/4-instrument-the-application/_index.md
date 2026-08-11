@@ -18,7 +18,7 @@ Observability capture the whole tree automatically.
 
 {{% /notice %}}
 
-> [!splunk] Instrumentation is remarkably lightweight: a Galileo callback is a standard
+> [!splunk] Instrumentation is remarkably lightweight: a Splunk Agent Observability callback is a standard
 > LangChain callback handler. Attach it to a LangGraph run and it captures prompts,
 > responses, model names, token usage, timing, and span nesting for you.
 
