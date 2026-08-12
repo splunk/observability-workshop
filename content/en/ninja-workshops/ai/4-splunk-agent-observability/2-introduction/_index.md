@@ -20,7 +20,8 @@ after it ships.
 
 {{% /notice %}}
 
-> [!splunk] You already have great observability for infrastructure and application
+> [!splunk] What makes agentic AI different
+> You already have great observability for infrastructure and application
 > performance. Agentic AI is different: the failures are about *reasoning, quality, and
 > safety*, not just latency and errors. This workshop gives you the tools to see and govern
 > that new layer.
