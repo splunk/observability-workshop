@@ -5,17 +5,15 @@ weight: 2
 time: 7 minutes
 ---
 
-The app now *registers* its controllable steps, but it's the Galileo console where you
+The app now *registers* its controllable steps, but it's the Splunk Agent Observability console where you
 *define the rules*: which steps are governed, what condition triggers them, and whether a
 match should block or steer.
 
-{{< exercise title="Define controls in Galileo" >}}
+{{< exercise title="Define controls in Splunk Agent Observability" >}}
 
 {{< step title="Open the Controls tab" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
-
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
+In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project / **`default`** agent stream then click on the **Controls** tab.
 
 ![Log Stream Controls](../../images/galileo-log-stream-controls.png?width=750px)

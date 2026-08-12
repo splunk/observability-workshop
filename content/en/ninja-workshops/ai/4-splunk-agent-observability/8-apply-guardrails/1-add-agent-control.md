@@ -20,10 +20,10 @@ cd ~/workshop/healthcare-assistant/4-app-with-controls
 
 {{< /step >}}
 
-{{< step title="Create a Galileo Agent Controls Config Map" >}}
+{{< step title="Create an Agent Control Config Map" >}}
 
 Run the following command to create a Kubernetes config map, which the application will use to
-configure Galileo Agent Controls:
+configure Agent Controls:
 
 ```bash
 kubectl create configmap galileo-agent-control-config \
@@ -35,25 +35,34 @@ kubectl create configmap galileo-agent-control-config \
   --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
 
-{{% notice title="Match your environment" style="tip" icon="exclamation-triangle" %}}
-
-Update `GALILEO_API_URL`, `AGENT_CONTROL_URL`, and `AGENT_CONTROL_AGENT_NAME` to match your environment. The
-`AGENT_CONTROL_AGENT_NAME` you set here must match the agent you create in the Galileo
-console in the next section.
-
-{{% /notice %}}
-
 {{< /step >}}
 
 {{< step title="Add the Agent Control packages" >}}
 
-Confirm `requirements.txt` includes the Agent Control SDK and the Galileo evaluators:
+Confirm `requirements.txt` includes the Agent Control SDK and evaluators:
 
 ```text
 agent-control-sdk[galileo]>=7.10.0
 agent-control-evaluators>=7.10.0
 agent-control-evaluator-galileo>=7.10.0
 ```
+
+{{% notice title="Note about the SDK" style="info" %}}
+
+This workshop was built using the older `agent-control` packages. For new deployments, we recommend
+using the following packages instead:
+
+```text
+agent-control-sdk[splunk-ao]>=7.10.0
+agent-control-evaluators>=7.10.0
+agent-control-evaluator-splunk-ao>=7.10.0
+```
+
+Refer to the
+[Agent Control](https://agent-observability-docs.splunk.com/concepts/agent-control/overview) document
+for details about this newer SDK.
+
+{{% /notice %}}
 
 {{< /step >}}
 
