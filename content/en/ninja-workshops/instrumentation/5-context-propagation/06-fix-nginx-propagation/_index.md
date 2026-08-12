@@ -88,11 +88,9 @@ Only the **`location /api/`** block on the **edge gateway** is updated (not the 
 
 {{% /tab %}}
 {{% tab title="Solution File" %}}
-
 ```
 cp ./deploy/k8s/gateway-config-fixed.yaml ./deploy/k8s/gateway-config.yaml
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
 

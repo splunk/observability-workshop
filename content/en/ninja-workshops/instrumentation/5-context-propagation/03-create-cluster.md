@@ -9,7 +9,7 @@ In this step, you'll create a lightweight Kubernetes cluster using k3d with a lo
 
 Our setup script creates:
 
-- A single server k3d cluster named `cosmic-shop`
+- A single server k3d cluster named `$INSTANCE-cluster`
 - A local Docker registry on port **5111** for pushing workshop images
 - NodePort mappings for the shop UI (**30080**) and RabbitMQ management UI (**15672**)
 

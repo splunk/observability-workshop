@@ -1,5 +1,5 @@
 ---
-title: Redeploy after NGINX fix
+title: Redeploy after NGINX Fix
 weight: 1
 time: 5 minutes
 

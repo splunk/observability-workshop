@@ -32,13 +32,18 @@ These tools will already be installed on your instance:
 | [Node.js](https://nodejs.org/) (optional) | 20.x | `node --version` |
 
 
-## Splunk Observability Cloud Access
+## Splunk Observability Access
 
 You'll need access to a Splunk Observability Cloud org with permission to:
 
 1. **View APM traces** - APM → Service Map & APM → Traces
 2. **View RUM sessions** - Digital Experience → Session Search
 3. **[Optional] Gather Realm & Token Details** - NOTE: These values are configured in your instance and detail are provided in the next step.
+
+{{% notice title="Note" style="info" %}}
+This Workshop uses the Splunk4Ninjas - Observability template.
+Your instructor will provide you with all the required login credentials and environment details
+{{% /notice %}}
 
 ## Validation Checklist
 

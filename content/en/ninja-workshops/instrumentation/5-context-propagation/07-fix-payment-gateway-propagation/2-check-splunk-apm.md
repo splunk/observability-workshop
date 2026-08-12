@@ -9,10 +9,11 @@ time: 5 minutes
 
 #### 1. Confirm partial correlation in Service Map
 
-1. Open **http://(your-instance-url):30080**
-2. Generate 2-3 new requests
-3. Navigate to **APM → Service Map**
-4. Filter environment: `workshop-$INSTANCE`
+1. Navigate yo the app in the browser http://localhost:30080
+2. Refresh the browser session using Command + Shift + R
+3. Generate 2-3 new requests
+4. Navigate to **APM → Service Map**
+5. Filter environment: `workshop-$INSTANCE`
 
 {{% notice title="Note" style="green" icon="running" %}}
 You may see the service map with APM disjointed correlation between the payment-gateway and payment-api because:
@@ -25,7 +26,7 @@ In this case, the service map will show:
 1. Trace A: frontend-api -> payment-gateway:PORT  (stops at gateway)
 2. Trace B: payment-gateway -> payment-api:PORT   (gateway starts its own root trace)
 
-![gtway-aft](../images/s-disjointed.png)
+![gtway-dsj](../images/s1-disjointed.png)
 
 #### 2. Confirm the purchase flow
 

@@ -40,6 +40,7 @@ app.get('/api/catalog', async (req, res) => {
           { kind: SpanKind.CLIENT },
           async (upstreamSpan) => {
             try {
+              upstreamSpan.setAttribute('peer.service', 'catalog-api');
               const upstream = await fetch(`${catalogUrl}/products`, {
                 headers: forwardTraceHeaders(req.headers),
               });
@@ -86,6 +87,7 @@ app.post('/api/purchases', async (req, res) => {
           { kind: SpanKind.CLIENT },
           async (catalogSpan) => {
             try {
+              catalogSpan.setAttribute('peer.service', 'catalog-api');
               const response = await fetch(`${catalogUrl}/products/${productId}`, {
                 headers: forwardTraceHeaders(req.headers),
               });
@@ -108,6 +110,7 @@ app.post('/api/purchases', async (req, res) => {
           async (orderSpan) => {
             try {
               orderSpan.setAttribute('upstream.gateway', gatewayUrl);
+              orderSpan.setAttribute('peer.service', 'gateway');
               const response = await fetch(`${gatewayUrl}/api/orders`, {
                 method: 'POST',
                 headers: {
@@ -144,6 +147,7 @@ app.post('/api/purchases', async (req, res) => {
           async (paymentSpan) => {
             try {
               paymentSpan.setAttribute('upstream.payment_gateway', paymentGatewayUrl);
+              paymentSpan.setAttribute('peer.service', 'payment-gateway');
               paymentSpan.setAttribute('payment.order_id', order.orderId);
 
               const response = await fetch(`${paymentGatewayUrl}/payments`, {

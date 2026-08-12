@@ -160,7 +160,7 @@ make collector
 
 1. Open Splunk Observability Cloud
 2. Navigate to **Infrastructure → Kubernetes → Kubernetes Entities → Clusters**
-3. Search for your cluster name (`cosmic-shop-cluster` or the value of `CLUSTER_NAME` in `env`)
+3. Search for your cluster name (`$INSTANCE-cluster` or the value of `CLUSTER_NAME` in `env`)
 
 The cluster should appear within a few minutes of the collector starting.
 

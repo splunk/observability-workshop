@@ -24,15 +24,11 @@ build_image() {
     -f "${dockerfile}" \
     "${context}"
 
-  # Deploy uses k3d image import from cosmic-shop/* tags — registry push is optional.
-  if [[ "${PUSH_TO_REGISTRY:-0}" == "1" ]]; then
-    if curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
-      docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
-      docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
-    else
-      echo "WARNING: PUSH_TO_REGISTRY=1 but ${REGISTRY} is not reachable — skipping push for ${name}."
-      echo "         Run 'make setup-k3d' to create the k3d registry, or omit PUSH_TO_REGISTRY."
-    fi
+  # Deploy uses k3d image import from cosmic-shop/* tags. Push to the local registry when
+  # it is running (optional); skip silently when it is not — build must not depend on :5111.
+  if [[ "${SKIP_REGISTRY_PUSH:-0}" != "1" ]] && curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
+    docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+    docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
   fi
 }
 
@@ -68,6 +64,9 @@ for app in "${APPS[@]}"; do
 done
 
 echo "Built: ${APPS[*]} (tags: cosmic-shop/<service>:${TAG})"
-if [[ "${PUSH_TO_REGISTRY:-0}" == "1" ]]; then
-  echo "Registry push enabled -> ${REGISTRY}"
+if [[ "${SKIP_REGISTRY_PUSH:-0}" != "1" ]] && curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
+  echo "Pushed to registry: ${REGISTRY}"
+else
+  echo "Registry push skipped (${REGISTRY} not reachable or SKIP_REGISTRY_PUSH=1)."
+  echo "Images are on the local Docker daemon; 'make deploy' imports them via k3d."
 fi
