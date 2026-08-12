@@ -87,6 +87,7 @@ USER=splunk
 PASSWORD=Splunk123!
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
 LATEST_TERRAFORM_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
+K3D_VERSION=v5.9.0
 
 echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 #set -x
@@ -94,7 +95,7 @@ echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 cat << EOF | tee /var/lib/vz/snippets/k3d.yaml >/dev/null
 #cloud-config
 package_update: true
-package_upgrade: true
+package_upgrade: false
 package_reboot_if_required: false
 
 hostname: $HOSTNAME
@@ -131,12 +132,49 @@ packages:
   - zsh
 
 write_files:
-  - path: /etc/sysctl.conf
-    append: true
+  - path: /etc/modules-load.d/k3d.conf
+    permissions: '0644'
     content: |
+      overlay
+      br_netfilter
+
+  - path: /etc/sysctl.d/99-k3d.conf
+    permissions: '0644'
+    content: |
+      # Kubernetes networking
+      net.bridge.bridge-nf-call-iptables=1
+      net.bridge.bridge-nf-call-ip6tables=1
+      net.ipv4.ip_forward=1
+
       # Increase inotify limits
       fs.inotify.max_user_watches=524288
       fs.inotify.max_user_instances=8192
+
+  # Manage the cluster as a unit so Docker cannot assign node addresses in a
+  # different order when it restarts all k3d containers concurrently.
+  - path: /etc/systemd/system/k3d-cluster.service
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Managed k3d workshop cluster
+      Requires=docker.service
+      PartOf=docker.service
+      After=docker.service network-online.target
+      Wants=network-online.target
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=yes
+      ExecStartPre=-/usr/local/bin/k3d cluster stop ${HOSTNAME}-cluster
+      ExecStart=/usr/local/bin/k3d cluster start ${HOSTNAME}-cluster --wait
+      ExecStop=/usr/local/bin/k3d cluster stop ${HOSTNAME}-cluster
+      TimeoutStartSec=300
+      TimeoutStopSec=120
+      Restart=on-failure
+      RestartSec=10
+
+      [Install]
+      WantedBy=multi-user.target
 
   - path: /etc/skel/.profile
     append: true
@@ -181,6 +219,7 @@ write_files:
       stringData:
         app: $HOSTNAME-store
         env: $HOSTNAME-workshop
+        instance: $HOSTNAME-workshop
         deployment: "deployment.environment=$HOSTNAME-workshop"
         realm: $REALM
         ingest_token: $INGEST_TOKEN
@@ -188,7 +227,7 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: http://$HOSTNAME
+        url: http://host.k3d.internal
 
 runcmd:
   - systemctl start qemu-guest-agent
@@ -220,6 +259,11 @@ runcmd:
   - apt-get update -qq
   - apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   - usermod -aG docker splunk
+
+  # Load and persist the kernel networking prerequisites before creating k3d.
+  - modprobe overlay
+  - modprobe br_netfilter
+  - sysctl --system
 
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
@@ -261,7 +305,7 @@ runcmd:
   - rm -f /tmp/kubectl
 
   # Install k3d
-  - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+  - curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
 
   # Create 3 node k3d cluster
   - >-
@@ -280,6 +324,11 @@ runcmd:
     -v "/home/splunk:/home/splunk@server:*;agent:*"
     -v "/var/log/syslog:/var/log/syslog@server:*;agent:*"
     -v "/var/log/auth.log:/var/log/auth.log@server:*;agent:*"
+
+  # Let systemd manage cluster shutdown/startup as one ordered operation.
+  # Docker restart policies remain enabled for recovery from individual crashes.
+  - systemctl daemon-reload
+  - systemctl enable k3d-cluster.service
 
   # Create k3d kube config and set correct permissions on splunk user home directory
   - mkdir /home/splunk/.kube && k3d kubeconfig get ${HOSTNAME}-cluster > /home/splunk/.kube/config
@@ -320,6 +369,31 @@ qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
 qm set $VMID --cicustom "user=local:snippets/k3d.yaml" >/dev/null
 qm set $VMID --tags o11y-workshop,noble,k3d >/dev/null
+
+VM_NOTES=$(cat <<EOF
+# Splunk Observability Workshop
+
+| Property | Value |
+| --- | --- |
+| VM ID/Environment | **$VMID - $ENV_NAME** |
+| Hostname | **$HOSTNAME** |
+| Operating system | Ubuntu Noble |
+| Cluster | **${HOSTNAME}-cluster** |
+
+## Access
+
+The VM uses DHCP. Obtain its address from the Proxmox Summary page after the
+QEMU guest agent becomes available, then connect with:
+
+\`\`\`bash
+ssh splunk@<IP_ADDRESS>
+Password: Splunk123!
+\`\`\`
+
+EOF
+)
+
+qm set "$VMID" --description "$VM_NOTES" >/dev/null
 #qm set $VMID --ciuser ubuntu
 #qm set $VMID --cipassword Splunk123!
 #qm set $VMID --ciupdate 0
