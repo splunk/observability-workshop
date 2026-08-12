@@ -26,8 +26,8 @@ Congratulations - you've restored full-stack observability across proxies and me
 
 Remove all local workshop resources (k3d cluster, Splunk collector, app workloads, local images)
 
-From the project root [~/workshop/context-propagation], run:
 ```bash
+cd ~/workshop/context-propagation
 make cleanup
 ```
 

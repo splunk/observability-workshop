@@ -40,7 +40,7 @@ Allow **2-5 minutes** after generating data for metrics to appear..
 ### Service Map
 
 1. Navigate to **APM → Service Map**
-2. Filter environment: `workshop-context-prop`
+2. Filter environment: `workshop-$INSTANCE`
 3. You should see services: `order-api`, `payment-gateway`, `payment-api`, `fulfillment-worker`, `catalog-api`
 
 ![servicemap](../images/servicemap-b4.png)
@@ -49,7 +49,7 @@ Allow **2-5 minutes** after generating data for metrics to appear..
 
 1. Navigate to **APM → Trace Analyzer**
 2. Filter:
-   - Environment: `workshop-context-prop`
+   - Environment: `workshop-$INSTANCE`
    - Service: `order-api`
    - Operation: `POST /api/orders` (or `storefront.place_order`)
 3. Open a recent trace

@@ -20,7 +20,7 @@ You will see a RUM correlation hyperlink that will take you to the RUM session f
 ### Explore Service Map
 
 1. Navigate to **APM → Service Map**
-2. Filter environment: `workshop-context-prop`
+2. Filter environment: `workshop-$INSTANCE`
 3. Confirm all services appear with traffic edges:
    - `frontend-api` → `catalog-api`
    - `frontend-api` → `order-api` (via gateway)

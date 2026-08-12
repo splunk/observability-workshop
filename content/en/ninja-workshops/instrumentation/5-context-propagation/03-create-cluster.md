@@ -9,17 +9,16 @@ In this step, you'll create a lightweight Kubernetes cluster using k3d with a lo
 
 Our setup script creates:
 
-- A single server k3d cluster named `cosmic-shop`
+- A single server k3d cluster named `$INSTANCE-cluster`
 - A local Docker registry on port **5111** for pushing workshop images
 - NodePort mappings for the shop UI (**30080**) and RabbitMQ management UI (**15672**)
 
 ## Create the Cluster
 
-From the project root [~/workshop/context-propagation], run:
-
 {{< tabs >}}
 {{% tab title="Script" %}}
 ```bash
+cd ~/workshop/context-propagation
 make setup-k3d
 ```
 {{% /tab %}}
@@ -48,7 +47,7 @@ k3d cluster list
 
 ```
 NAME         SERVERS   AGENTS   LOADBALANCER
-cosmic-shop   1/1       1/1      true
+1234-cluster   1/1       1/1      true
 ```
 {{% /tab %}}
 {{< /tabs >}}
@@ -70,9 +69,9 @@ kubectl get nodes
 Kubernetes control plane is running at https://0.0.0.0:6443
 ...
 
-NAME                       STATUS   ROLES                  AGE   VERSION
-k3d-cosmic-shop-server-0   Ready    control-plane,master   45s   v1.28.x+k3s1
-k3d-cosmic-shop-agent-0    Ready    <none>                 40s   v1.28.x+k3s1
+NAME                             STATUS   ROLES                  AGE   VERSION
+k3d-$INSTANCE-cluster-server-0   Ready    control-plane,master   45s   v1.28.x+k3s1
+k3d-$INSTANCE-cluster-agent-0    Ready    <none>                 40s   v1.28.x+k3s1
 ```
 
 All nodes must show `Ready` in the STATUS column.
@@ -86,7 +85,7 @@ All nodes must show `Ready` in the STATUS column.
 {{% tab title="Script" %}}
 
 ```bash
-docker ps --filter name=k3d-cosmic-shop --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+docker ps --filter name=k3d-$INSTANCE --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 ```
 
 {{% /tab %}}
@@ -94,9 +93,9 @@ docker ps --filter name=k3d-cosmic-shop --format 'table {{.Names}}\t{{.Status}}\
 
 ``` 
 NAMES                     STATUS          PORTS
-k3d-cosmic-shop-serverlb  Up 2 minutes    0.0.0.0:30080->30080/tcp, 0.0.0.0:15672->15672/tcp, ...
-k3d-cosmic-shop-server-0  Up 2 minutes
-k3d-cosmic-shop-agent-0   Up 2 minutes
+k3d-$INSTANCE-serverlb  Up 2 minutes    0.0.0.0:30080->30080/tcp, 0.0.0.0:15672->15672/tcp, ...
+k3d-$INSTANCE-server-0  Up 2 minutes
+k3d-$INSTANCE-agent-0   Up 2 minutes
 ```
 
 You should see the load balancer exposing ports **30080** and **15672**.
@@ -110,7 +109,7 @@ You should see the load balancer exposing ports **30080** and **15672**.
 {{% tab title="Script" %}}
 
 ```bash
-docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
+docker ps --filter name=k3d-$INSTANCE-cluster-serverlb --format '{{.Ports}}'
 ```
 
 {{% /tab %}}
@@ -156,6 +155,7 @@ The script skips creation if a cluster named `cosmic-shop` already exists. To st
 Navigate to project root [~/workshop/context-propagation]
 
 ```bash
+// cd ~/workshop/context-propagation
 k3d cluster delete cosmic-shop
 make setup-k3d
 ```

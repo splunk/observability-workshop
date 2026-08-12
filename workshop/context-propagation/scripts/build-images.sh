@@ -4,13 +4,10 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
-
-if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
-fi
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-${INSTANCE:+workshop-${INSTANCE}}}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
+RUM_APP_NAME="${RUM_APP_NAME:-${INSTANCE:+workshop-${INSTANCE}}}"
+RUM_APP_NAME="${RUM_APP_NAME:-cosmic-observatory-shop}"
 
 build_image() {
   local name="$1"
@@ -19,15 +16,20 @@ build_image() {
 
   echo "Building ${name}:${TAG}..."
   docker build \
-    --build-arg SPLUNK_REALM="${SPLUNK_REALM:-us0}" \
-    --build-arg SPLUNK_RUM_ACCESS_TOKEN="${SPLUNK_RUM_ACCESS_TOKEN:-}" \
-    --build-arg SPLUNK_RUM_APP_NAME="${SPLUNK_RUM_APP_NAME:-cosmic-observatory-shop}" \
-    --build-arg SPLUNK_DEPLOYMENT_ENV="${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}" \
+    --build-arg REALM="${REALM:-us0}" \
+    --build-arg RUM_TOKEN="${RUM_TOKEN:-}" \
+    --build-arg RUM_APP_NAME="${RUM_APP_NAME}" \
+    --build-arg DEPLOYMENT_ENV="${DEPLOYMENT_ENV}" \
     -t "cosmic-shop/${name}:${TAG}" \
     -f "${dockerfile}" \
     "${context}"
-  docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
-  docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+
+  # Deploy uses k3d image import from cosmic-shop/* tags. Push to the local registry when
+  # it is running (optional); skip silently when it is not — build must not depend on :5111.
+  if [[ "${SKIP_REGISTRY_PUSH:-0}" != "1" ]] && curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
+    docker tag "cosmic-shop/${name}:${TAG}" "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+    docker push "${REGISTRY}/cosmic-shop/${name}:${TAG}"
+  fi
 }
 
 dockerfile_for() {
@@ -61,4 +63,10 @@ for app in "${APPS[@]}"; do
   build_image "${app}" "${dockerfile}"
 done
 
-echo "Built and pushed: ${APPS[*]} -> ${REGISTRY}"
+echo "Built: ${APPS[*]} (tags: cosmic-shop/<service>:${TAG})"
+if [[ "${SKIP_REGISTRY_PUSH:-0}" != "1" ]] && curl -sf "http://${REGISTRY}/v2/" >/dev/null 2>&1; then
+  echo "Pushed to registry: ${REGISTRY}"
+else
+  echo "Registry push skipped (${REGISTRY} not reachable or SKIP_REGISTRY_PUSH=1)."
+  echo "Images are on the local Docker daemon; 'make deploy' imports them via k3d."
+fi

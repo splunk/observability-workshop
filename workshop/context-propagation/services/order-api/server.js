@@ -38,6 +38,7 @@ app.post('/api/orders', async (req, res) => {
           { kind: SpanKind.CLIENT },
           async (catalogSpan) => {
             try {
+              catalogSpan.setAttribute('peer.service', 'catalog-api');
               const response = await fetch(`${catalogUrl}/products/${productId}`);
               catalogSpan.setAttribute('http.status_code', response.status);
               return response;

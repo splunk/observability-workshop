@@ -70,6 +70,7 @@ app.post('/payments', async (req, res) => {
             { kind: SpanKind.CLIENT },
             async (forwardSpan) => {
               try {
+                forwardSpan.setAttribute('peer.service', 'payment-api');
                 forwardSpan.setAttribute('http.url', `${paymentApiUrl}/payments`);
                 const response = await fetch(`${paymentApiUrl}/payments`, {
                   method: 'POST',

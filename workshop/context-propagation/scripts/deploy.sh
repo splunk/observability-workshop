@@ -4,30 +4,51 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REGISTRY="${REGISTRY:-localhost:5111}"
 TAG="${TAG:-latest}"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
-if [[ ! -f "${ROOT_DIR}/.env" ]]; then
-  echo "Missing .env file. Copy .env.example to .env and fill in Splunk credentials."
-  exit 1
+# Host exports (workshop VM): REALM, ACCESS_TOKEN, CLUSTER_NAME, DEPLOYMENT_ENV=workshop-${INSTANCE}
+CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
+CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-${INSTANCE:+workshop-${INSTANCE}}}"
+DEPLOYMENT_ENV="${DEPLOYMENT_ENV:-workshop-context-prop}"
+
+k3d_cluster_exists() {
+  local name="$1"
+  command -v k3d >/dev/null 2>&1 && k3d cluster list 2>/dev/null | grep -q "^${name} "
+}
+
+# Pick the k3d cluster that actually exists (CLUSTER_NAME before bare INSTANCE).
+K3D_CLUSTER_OVERRIDE="${K3D_CLUSTER_NAME:-}"
+K3D_CLUSTER_NAME=""
+for candidate in "${CLUSTER_NAME}" "${K3D_CLUSTER_OVERRIDE}" "${INSTANCE:+${INSTANCE}-cluster}" "${INSTANCE:-}" "cosmic-shop"; do
+  [[ -z "${candidate}" ]] && continue
+  if k3d_cluster_exists "${candidate}"; then
+    K3D_CLUSTER_NAME="${candidate}"
+    break
+  fi
+done
+if [[ -z "${K3D_CLUSTER_NAME}" ]]; then
+  if [[ -n "${INSTANCE:-}" ]]; then
+    K3D_CLUSTER_NAME="${CLUSTER_NAME}"
+  else
+    K3D_CLUSTER_NAME="cosmic-shop"
+  fi
 fi
 
-set -a
-# shellcheck disable=SC1091
-source "${ROOT_DIR}/.env"
-set +a
-
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
-CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
-SPLUNK_DEPLOYMENT_ENV="${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}"
-
-required_vars=(SPLUNK_REALM SPLUNK_ACCESS_TOKEN)
+required_vars=(REALM ACCESS_TOKEN)
 for var in "${required_vars[@]}"; do
   if [[ -z "${!var:-}" ]]; then
-    echo "Required variable ${var} is not set in .env"
+    echo "Required variable ${var} is not exported on the host"
     exit 1
   fi
 done
+
+echo "Deploy config:"
+echo "  realm=${REALM}"
+echo "  clusterName=${CLUSTER_NAME}"
+echo "  deployment.environment=${DEPLOYMENT_ENV}"
+echo "  k3d cluster=${K3D_CLUSTER_NAME}"
+echo ""
 
 wait_rollout() {
   local deploy="$1"
@@ -92,9 +113,9 @@ ensure_splunk_collector() {
   fi
 
   if kubectl -n cosmic-shop get daemonset splunk-otel-collector-agent >/dev/null 2>&1; then
-    echo "  Collector DaemonSet found but not ready — waiting..."
+    echo "  Collector DaemonSet found but not ready - waiting..."
   else
-    echo "  Splunk OTel Collector not installed — running 'make collector'..."
+    echo "  Splunk OTel Collector not installed - running 'make collector'..."
     bash "${ROOT_DIR}/scripts/install-splunk-collector.sh"
   fi
 
@@ -115,7 +136,7 @@ echo "Preflight: checking local images..."
 missing=0
 for app in "${APPS[@]}"; do
   if ! docker image inspect "cosmic-shop/${app}:${TAG}" >/dev/null 2>&1; then
-    echo "  MISSING: cosmic-shop/${app}:${TAG} — run 'make build' first"
+    echo "  MISSING: cosmic-shop/${app}:${TAG} - run 'make build' first"
     missing=1
   else
     echo "  OK: cosmic-shop/${app}:${TAG}"
@@ -149,19 +170,19 @@ echo "Deploying Cosmic Observatory Shop to Kubernetes..."
 IMAGE_PREFIX="cosmic-shop"
 K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME}" bash "${ROOT_DIR}/scripts/import-images-k3d.sh"
 
-# OTel resource attributes must match collector clusterName + environment for Infra ↔ APM correlation
-cat > "${ROOT_DIR}/deploy/k8s/otel.env" <<EOF
-OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${SPLUNK_DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop
-SPLUNK_METRICS_ENABLED=true
-OTEL_PROPAGATORS=tracecontext,baggage
-EOF
-echo "Generated otel.env: deployment.environment=${SPLUNK_DEPLOYMENT_ENV}, k8s.cluster.name=${CLUSTER_NAME}"
+# OTel resource attributes must match collector clusterName + environment for Infra <-> APM correlation
+printf '%s\n' \
+  "OTEL_RESOURCE_ATTRIBUTES=deployment.environment=${DEPLOYMENT_ENV},k8s.cluster.name=${CLUSTER_NAME},service.namespace=cosmic-shop" \
+  "SPLUNK_METRICS_ENABLED=true" \
+  "OTEL_PROPAGATORS=tracecontext,baggage" \
+  > "${ROOT_DIR}/deploy/k8s/otel.env"
+echo "Generated otel.env: deployment.environment=${DEPLOYMENT_ENV}, k8s.cluster.name=${CLUSTER_NAME}"
 
 # Secret must exist before pods that reference splunk-otel start
 kubectl apply -f "${ROOT_DIR}/deploy/k8s/namespace.yaml"
 kubectl -n cosmic-shop create secret generic splunk-otel \
-  --from-literal=accessToken="${SPLUNK_ACCESS_TOKEN}" \
-  --from-literal=realm="${SPLUNK_REALM}" \
+  --from-literal=accessToken="${ACCESS_TOKEN}" \
+  --from-literal=realm="${REALM}" \
   --dry-run=client -o yaml | kubectl apply -f -
 
 kubectl apply -k "${ROOT_DIR}/deploy/k8s"

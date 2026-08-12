@@ -11,8 +11,9 @@ In this step we will review what the E2E correlation looks like from the web app
 
 ### Send New Web Request
 
-1. Open http://(your-instance-url)):30080
-2. Click Buy now → Confirm & place order
+1. Navigate yo the app in the browser http://localhost:30080
+2. Refresh the browser session using Command + Shift + R
+3. Click Buy now → Confirm & place order
 
 ![rum-ui](../images/rum-ui.png)
 
@@ -23,7 +24,7 @@ In this step we will review what the E2E correlation looks like from the web app
 ## Verify in Splunk RUM
 
 1. Navigate to **Digital Experience → Session Search**
-2. Find your session (environment `workshop-context-prop`)
+2. Find your session (environment `workshop-$INSTANCE`)
 3. Click the session timeline
 4. Select the `purchases` fetch event
 5. Confirm:
