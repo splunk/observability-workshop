@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>4. Transform logs on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/4-transform-data/</link><description>Recent content in 4. Transform logs on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/4-transform-data/index.xml" rel="self" type="application/rss+xml"/><item><title>4.1 Transform structured logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/4-transform-data/4-1-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/4-transform-data/4-1-configuration/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add the transform processor in Config Builder&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create the transform processor&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;In &lt;strong&gt;Component Inventory&lt;/strong&gt;, select &lt;strong&gt;Add component&lt;/strong&gt;. Select component type
+&lt;code&gt;processor&lt;/code&gt;, select component &lt;code&gt;transform&lt;/code&gt;, and select &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Set &lt;code&gt;error_mode&lt;/code&gt; to &lt;code&gt;ignore&lt;/code&gt; so one malformed workshop line does not stop the
+&lt;code&gt;logs/workshop&lt;/code&gt; pipeline.&lt;/p&gt;
+&lt;p&gt;Under &lt;code&gt;log_statements&lt;/code&gt;, select &lt;strong&gt;+&lt;/strong&gt; to add a statement group and set its
+context to &lt;code&gt;resource&lt;/code&gt;. Under that group&amp;rsquo;s &lt;code&gt;statements&lt;/code&gt;, select &lt;strong&gt;+&lt;/strong&gt; and enter:&lt;/p&gt;</description></item></channel></rss>

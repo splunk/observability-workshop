@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Context Propagation on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/</link><description>Recent content in Context Propagation on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/index.xml" rel="self" type="application/rss+xml"/><item><title>Prerequisites</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/01-prerequisites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/01-prerequisites/</guid><description>&lt;p&gt;Before starting this workshop, ensure you have the following tools installed and have a Splunk Observability Cloud account ready.&lt;/p&gt;
+&lt;h2 id="knowledge-requirement"&gt;
+ &lt;span class="heading-text"&gt;Knowledge Requirement&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#knowledge-requirement" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This workshop assumes familiarity with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Kubernetes concepts (pods, deployments, services)&lt;/li&gt;
+&lt;li&gt;HTTP request/response flow&lt;/li&gt;
+&lt;li&gt;The idea of distributed tracing (spans, traces&amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OpenTelemetry experience is required - we&amp;rsquo;ll explain context propagation challenges as we go.&lt;/p&gt;
+&lt;h2 id="required-software"&gt;
+ &lt;span class="heading-text"&gt;Required Software&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#required-software" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;These tools will already be installed on your instance:&lt;/p&gt;</description></item><item><title>Configure Environment</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/02-configure-environment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/02-configure-environment/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll ensure &lt;code&gt;env&lt;/code&gt; variables are configured with your Splunk Observability Cloud credentials and workshop settings.&lt;/p&gt;
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Your environment should already have values for &lt;code&gt;INSTANCE&lt;/code&gt;, &lt;code&gt;CLUSTER&lt;/code&gt;, &lt;code&gt;REALM&lt;/code&gt;, &lt;code&gt;ACCESS_TOKEN&lt;/code&gt; and &lt;code&gt;RUM_TOKEN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Configure the additional required &lt;code&gt;env&lt;/code&gt; values:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;DEPLOYMENT_ENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;workshop-&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;INSTANCE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;RUM_APP_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;workshop-&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;INSTANCE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Run &lt;code&gt;env&lt;/code&gt; command from the project root to verify.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;env&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-02-configure-environment-md-22-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;INSTANCE=&amp;lt;your-instance&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CLUSTER_NAME=$INSTANCE-cluster
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;REALM=&amp;lt;splunk-realm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ACCESS_TOKEN=&amp;lt;access-token&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RUM_TOKEN=&amp;lt;rum-token&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;DEPLOYMENT_ENV=workshop-${INSTANCE}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RUM_APP_NAME=workshop-$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;[Optional] Exercise&lt;/p&gt;</description></item><item><title>Create Cluster</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/03-create-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/5-context-propagation/03-create-cluster/</guid><description>&lt;p&gt;In this step, you&amp;rsquo;ll create a lightweight Kubernetes cluster using k3d with a local container registry for workshop images.&lt;/p&gt;
+&lt;p&gt;Our setup script creates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A single server k3d cluster named &lt;code&gt;$INSTANCE-cluster&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A local Docker registry on port &lt;strong&gt;5111&lt;/strong&gt; for pushing workshop images&lt;/li&gt;
+&lt;li&gt;NodePort mappings for the shop UI (&lt;strong&gt;30080&lt;/strong&gt;) and RabbitMQ management UI (&lt;strong&gt;15672&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="create-the-cluster"&gt;
+ &lt;span class="heading-text"&gt;Create the Cluster&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#create-the-cluster" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/context-propagation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/context-propagation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/context-propagation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make setup-k3d&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-18-1--0-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Creating k3d cluster &amp;#39;cosmic-shop&amp;#39; with local registry on port 5111...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster &amp;#39;cosmic-shop&amp;#39; ready.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="validation-checklist"&gt;
+ &lt;span class="heading-text"&gt;Validation Checklist&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#validation-checklist" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h4 id="1-confirm-k3d-cluster-exists"&gt;
+ &lt;span class="heading-text"&gt;1. Confirm k3d cluster exists&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#1-confirm-k3d-cluster-exists" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1234-cluster 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1234-cluster 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d cluster list&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-38-1--1-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME SERVERS AGENTS LOADBALANCER
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1234-cluster 1/1 1/1 true&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h4 id="2-confirm-kubernetes-is-reachable"&gt;
+ &lt;span class="heading-text"&gt;2. Confirm Kubernetes is reachable&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#2-confirm-kubernetes-is-reachable" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h4&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl cluster-info
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get nodes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-instrumentation-5-context-propagation-03-create-cluster-md-57-1--2-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Kubernetes control plane is running at https://0.0.0.0:6443
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME STATUS ROLES AGE VERSION
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-$INSTANCE-cluster-server-0 Ready control-plane,master 45s v1.28.x+k3s1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;k3d-$INSTANCE-cluster-agent-0 Ready &amp;lt;none&amp;gt; 40s v1.28.x+k3s1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;All nodes must show &lt;code&gt;Ready&lt;/code&gt; in the STATUS column.&lt;/p&gt;</description></item></channel></rss>

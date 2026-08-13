@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>1. Explore the agent on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/</link><description>Recent content in 1. Explore the agent on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/index.xml" rel="self" type="application/rss+xml"/><item><title>1.1 Start and verify the agent</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-1-agent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-1-agent/</guid><description>&lt;p&gt;The Collector runs in the foreground and uses &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Start the agent and check its health&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Start the agent&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Reuse the terminal from the prerequisites as the &lt;strong&gt;Agent terminal&lt;/strong&gt;. If you are
+using a Splunk Show instance and closed that terminal, reconnect with the SSH
+command and password supplied by email or by the facilitator.&lt;/p&gt;
+&lt;p&gt;In the &lt;strong&gt;Agent terminal&lt;/strong&gt;, run:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;WORKSHOP&lt;span class="o"&gt;]&lt;/span&gt;/1-agent
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ../workshop-env.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../otelcol --config&lt;span class="o"&gt;=&lt;/span&gt;agent_config.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Leave the Collector running in the foreground. This terminal displays Collector
+startup messages and debug exporter output.&lt;/p&gt;</description></item><item><title>1.2 Validate host metrics</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-2-send-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-2-send-metrics/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Validate the workshop metrics pipeline locally&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;The &lt;strong&gt;Agent terminal&lt;/strong&gt; displays a metrics block after startup, similar to:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Descriptor:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; Name: system.cpu.time
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NumberDataPoints: ...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;If it has scrolled away, run this in the &lt;strong&gt;Command terminal&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;jq -r &lt;span class="s1"&gt;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; .resourceMetrics[].scopeMetrics[].metrics[]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; | select(.name == &amp;#34;system.cpu.time&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; | .name
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; agent-metrics.out &lt;span class="p"&gt;|&lt;/span&gt; sort -u&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Expected output:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;system.cpu.time&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;If you enabled cloud export, you verify host metrics in Splunk Observability
+Cloud in Step 1.5.&lt;/p&gt;</description></item><item><title>1.3 Send traces to the agent</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-3-send-traces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-3-send-traces/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Send a test trace&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ol&gt;
+&lt;li&gt;Verify that the agent is still running in the &lt;strong&gt;Agent terminal&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the &lt;strong&gt;Command terminal&lt;/strong&gt;, send five spans:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-panel-0" tabindex="0" data-tab-label="Start the Load Generator"&gt;Start the Load Generator&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-panel-1" tabindex="-1" data-tab-label="Agent debug output"&gt;Agent debug output&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-tab-0" data-tab-label="Start the Load Generator"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../loadgen -count &lt;span class="m"&gt;5&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-ninja-workshops-foundations-2-opentelemetry-collector-workshops-conf2026-obs1184-1-agent-1-3-send-traces-md-1-1--0-tab-1" hidden data-tab-label="Agent debug output"&gt;&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Traces {&amp;#34;otelcol.component.id&amp;#34;: &amp;#34;debug&amp;#34;, &amp;#34;otelcol.component.kind&amp;#34;: &amp;#34;exporter&amp;#34;, &amp;#34;otelcol.signal&amp;#34;: &amp;#34;traces&amp;#34;, &amp;#34;resource spans&amp;#34;: 1, &amp;#34;spans&amp;#34;: 1}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ResourceSpans #0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Resource attributes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; service.name: Str(cinema-service)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; deployment.environment: Str(production)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; host.name: Str(workshop-instance)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; os.type: Str(linux)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; otelcol.service.mode: Str(agent)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ScopeSpans #0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;InstrumentationScope cinema.library 1.0.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;InstrumentationScope attributes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; fintest.scope.attribute: Str(Starwars, LOTR)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Span #0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Trace ID : 97fb4e5b13400b5689e3306da7cff077
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Parent ID :
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ID : 413358465e5b4f15
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Name : /movie-validator
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Kind : Server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Status code : Ok
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Status message : Success
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Attributes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.name: Str(George Lucas)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.phone_number: Str(+1555-867-5309)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.email: Str(george@deathstar.email)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.password: Str(LOTR&amp;gt;StarWars1-2-3)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.visa: Str(4111 1111 1111 1111)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.amex: Str(3782 822463 10005)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; user.mastercard: Str(5555 5555 5555 4444)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -&amp;gt; payment.amount: Double(87.01)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the &lt;strong&gt;Agent terminal&lt;/strong&gt;, confirm that five &lt;code&gt;/movie-validator&lt;/code&gt; spans appear.
+Resource detection adds host information, and &lt;code&gt;resource/add_mode&lt;/code&gt; adds
+&lt;code&gt;otelcol.service.mode=agent&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>1.4 Send logs</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-4-send-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-4-send-logs/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Send logs through the pipeline&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;In the &lt;strong&gt;Command terminal&lt;/strong&gt;, start the log load generator:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../loadgen -logs&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;The command writes a continuous stream of quotes to &lt;code&gt;quotes.log&lt;/code&gt;. The
+&lt;code&gt;file_log/quotes&lt;/code&gt; receiver reads the file, converts each line into an
+OpenTelemetry log record, and sends it through &lt;code&gt;logs/workshop&lt;/code&gt; to the agent&amp;rsquo;s
+debug and file exporters.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Agent terminal&lt;/strong&gt; displays output similar to:&lt;/p&gt;</description></item><item><title>1.5 Validate Splunk Observability Cloud</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-5-cloud-validation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-5-cloud-validation/</guid><description>&lt;p&gt;This optional step confirms that the trace and metrics exporters can reach the
+Splunk Observability Cloud organization configured during setup.&lt;/p&gt;
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;When to skip this step&lt;/p&gt;&lt;div class="callout__body"&gt;Skip this step when setup did not enable cloud export. Local validation from
+Steps 1.2 through 1.4 is sufficient.&lt;/div&gt;&lt;/div&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Find workshop traces and host metrics&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;Steps 1.2 and 1.3 already generated the telemetry for this validation. When
+cloud export is enabled, the agent continuously sends host metrics and sends
+the &lt;code&gt;/movie-validator&lt;/code&gt; spans generated in Step 1.3. You do not need to run
+&lt;code&gt;loadgen&lt;/code&gt; again. The workshop logs generated in Step 1.4 are validated locally
+and are not part of this cloud check.&lt;/p&gt;</description></item><item><title>1.6 Upload the configuration to Config Builder</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-6-config-builder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/1-agent/1-6-config-builder/</guid><description>&lt;p&gt;Upload &lt;code&gt;agent_config.yaml&lt;/code&gt; to see its components and pipelines before you
+modify them.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Open agent_config.yaml in Config Builder&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;Make &lt;code&gt;agent_config.yaml&lt;/code&gt; available to the computer running your browser.&lt;/p&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-config-builder-upload-file-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-config-builder-upload-file-panel-0" tabindex="0" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-1" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-2" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-3" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-4" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-5" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-config-builder-upload-file-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-0" data-tab-label="Same computer"&gt;Select &lt;code&gt;[WORKSHOP]/1-agent/agent_config.yaml&lt;/code&gt; when Config Builder opens the file
+picker.&lt;/div&gt;
+&lt;div id="tabs-config-builder-upload-file-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-1" hidden data-tab-label="Splunk Show instance"&gt;&lt;p&gt;Copy the current file from the instance to your local computer. Replace
+&lt;code&gt;workshop-user&lt;/code&gt; and &lt;code&gt;workshop-host&lt;/code&gt; with the supplied SSH details:&lt;/p&gt;</description></item></channel></rss>

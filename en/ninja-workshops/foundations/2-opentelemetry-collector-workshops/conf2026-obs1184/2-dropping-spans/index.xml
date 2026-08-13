@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2. Drop noisy spans on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/2-dropping-spans/</link><description>Recent content in 2. Drop noisy spans on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/2-dropping-spans/index.xml" rel="self" type="application/rss+xml"/><item><title>2.1 Build the filter in Config Builder</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/2-dropping-spans/2-1-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/2-dropping-spans/2-1-configuration/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Add the filter processor in Config Builder&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create the filter processor&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Open &lt;strong&gt;Data Management &amp;gt; OTel Collector Config Builder&lt;/strong&gt;, select
+&lt;strong&gt;Component Inventory&lt;/strong&gt;, and select &lt;strong&gt;Add component&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;Component type&lt;/strong&gt;, select &lt;code&gt;processor&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/config-builder-component-type.png" alt="Selecting processor as the component type" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;Component&lt;/strong&gt;, select &lt;code&gt;filter&lt;/code&gt;, then select &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/config-builder-filter-component.png" alt="Selecting the filter processor" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;health&lt;/code&gt; as the component name so its Collector component ID is
+&lt;code&gt;filter/health&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;Options&lt;/strong&gt;, set the top-level &lt;code&gt;error_mode&lt;/code&gt; to &lt;code&gt;ignore&lt;/code&gt;. Beside
+&lt;code&gt;trace_conditions&lt;/code&gt;, select &lt;strong&gt;+&lt;/strong&gt; to add a condition group. Inside that group,
+beside &lt;code&gt;conditions&lt;/code&gt;, select &lt;strong&gt;+&lt;/strong&gt; and enter:&lt;/p&gt;</description></item></channel></rss>

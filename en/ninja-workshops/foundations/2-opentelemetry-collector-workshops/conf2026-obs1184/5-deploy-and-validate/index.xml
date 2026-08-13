@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>5. Deploy and validate the configuration on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/</link><description>Recent content in 5. Deploy and validate the configuration on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/index.xml" rel="self" type="application/rss+xml"/><item><title>5.1 Deploy the configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-1-deploy-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-1-deploy-configuration/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Download and start the completed configuration&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;You kept one Config Builder project open while completing Chapters 2 through
+4. Deploying it now applies the filter, sensitive-data protection, and log
+transformation together. A single restart also makes the before-and-after
+validation easier to follow.&lt;/p&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Download the YAML&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;In &lt;strong&gt;Collector YAML&lt;/strong&gt;, confirm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;filter/health&lt;/code&gt;, &lt;code&gt;attributes&lt;/code&gt;, and &lt;code&gt;redaction&lt;/code&gt; are connected to &lt;code&gt;traces&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;transform&lt;/code&gt; is connected to &lt;code&gt;logs/workshop&lt;/code&gt; after &lt;code&gt;resourcedetection&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;All eight imported pipelines are present: &lt;code&gt;traces&lt;/code&gt;, &lt;code&gt;metrics&lt;/code&gt;,
+&lt;code&gt;metrics/internal&lt;/code&gt;, &lt;code&gt;logs/signalfx&lt;/code&gt;, &lt;code&gt;logs&lt;/code&gt;, &lt;code&gt;logs/entities&lt;/code&gt;,
+&lt;code&gt;metrics/workshop&lt;/code&gt;, and &lt;code&gt;logs/workshop&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;metrics/internal&lt;/code&gt;, &lt;code&gt;logs/signalfx&lt;/code&gt;, and &lt;code&gt;logs/entities&lt;/code&gt; remain unchanged.&lt;/li&gt;
+&lt;li&gt;The default &lt;code&gt;logs&lt;/code&gt; pipeline still uses &lt;code&gt;splunk_hec&lt;/code&gt; and
+&lt;code&gt;splunk_hec/profiling&lt;/code&gt;. Do not paste HEC credentials into the YAML; the
+exporters continue to reference environment variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Select &lt;strong&gt;Download YAML&lt;/strong&gt; and save the file as &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>5.2 Validate the configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</guid><description>&lt;p&gt;Keep the updated Collector running in the &lt;strong&gt;Agent terminal&lt;/strong&gt;. Run each command
+below in the &lt;strong&gt;Command terminal&lt;/strong&gt;, which is already in &lt;code&gt;[WORKSHOP]/1-agent&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="local-validation-1-drop-health-check-spans"&gt;
+ &lt;span class="heading-text"&gt;Local validation 1: Drop health-check spans&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#local-validation-1-drop-health-check-spans" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;First, preview one application span and one health-check span exactly as the
+load generator creates them:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../loadgen -preview -health -count &lt;span class="m"&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Preview mode prints the original OTLP payloads in the &lt;strong&gt;Command terminal&lt;/strong&gt; and
+does not send them. Find both span names in the output:&lt;/p&gt;</description></item></channel></rss>
