@@ -1,4 +1,4 @@
-name: Smoke Test - Profiling Services CI
+name: "[smoke] Profiling Services CI"
 
 # Triggers when any profiling service changes. Change detection routes to only
 # the affected service's reusable test workflow. Manual dispatch runs all tests.

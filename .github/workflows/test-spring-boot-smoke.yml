@@ -1,4 +1,4 @@
-name: Smoke Test - Spring Boot Service
+name: "[smoke] Spring Boot Service"
 
 on:
   workflow_call:
