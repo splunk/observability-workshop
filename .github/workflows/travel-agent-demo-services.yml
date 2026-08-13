@@ -1,4 +1,4 @@
-name: Smoke Test - Travel Agent Demo Services CI
+name: "[smoke] Travel Agent Demo Services CI"
 
 # Triggers when any travel-agent-demo service changes. Change detection routes
 # to only the affected service's reusable test workflow. Manual dispatch runs all tests.

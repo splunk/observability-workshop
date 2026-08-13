@@ -1,4 +1,4 @@
-name: Smoke Test - Healthcare Assistant Service
+name: "[smoke] Healthcare Assistant Service"
 
 on:
   workflow_call:

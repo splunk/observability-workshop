@@ -1,4 +1,4 @@
-name: Smoke Test - Node.js Consumer
+name: "[smoke] Node.js Consumer"
 
 # The Node.js consumer is a Kafka subscriber, not an HTTP server — there's no
 # endpoint to hit. Tests verify: dependencies install cleanly, the entrypoint

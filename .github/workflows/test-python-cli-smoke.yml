@@ -1,4 +1,4 @@
-name: Smoke Test - Python CLI Script
+name: "[smoke] Python CLI Script"
 
 # A CLI script is not a server — there is no HTTP endpoint to hit.
 # Tests verify: dependencies install cleanly, the script has no syntax

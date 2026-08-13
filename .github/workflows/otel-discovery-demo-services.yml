@@ -1,4 +1,4 @@
-name: Smoke Test - OTel Discovery Demo Services CI
+name: "[smoke] OTel Discovery Demo Services CI"
 
 # Triggers when any otel-discovery-demo source file changes. Change detection
 # routes to only the affected service(s). Manual dispatch runs all tests.

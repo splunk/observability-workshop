@@ -1,4 +1,4 @@
-name: Smoke Test - Gradle
+name: "[smoke] Gradle"
 
 on:
   workflow_call:

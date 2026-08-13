@@ -1,4 +1,4 @@
-name: Smoke Test - Healthcare Assistant Services CI
+name: "[smoke] Healthcare Assistant Services CI"
 
 # Triggers when any healthcare-assistant service changes. Change detection routes
 # to only the affected service's reusable test workflow. Manual dispatch runs all tests.
