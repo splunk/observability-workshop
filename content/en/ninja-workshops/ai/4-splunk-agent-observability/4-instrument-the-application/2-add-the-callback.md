@@ -26,7 +26,7 @@ from galileo.handlers.langchain import GalileoAsyncCallback
 {{% notice title="Note about the SDK" style="info" %}}
 
 This workshop was built using the Galileo LangChain callback handler, `GalileoAsyncCallback`. 
-For new deployments, we recommend using the `SplunkAOCallback` package instead.
+For new deployments, we recommend using the `SplunkAOAsyncCallback` package instead.
 Refer to the 
 [LangChain and LangGraph](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain) document
 for details about this newer SDK.
