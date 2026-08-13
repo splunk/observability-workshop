@@ -313,8 +313,8 @@ runcmd:
   - >-
     k3d cluster create ${HOSTNAME}-cluster
     --agents 2
-    --servers-memory 6G
-    --agents-memory 4G
+    --servers-memory 8G
+    --agents-memory 7G
     --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@server:0"
     --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@agent:*"
     --image rancher/k3s:v1.33.4-k3s1
@@ -388,7 +388,7 @@ cp --reflink=auto "$IMAGE_CACHE" "$VM_IMAGE"
 
 qemu-img resize "$VM_IMAGE" 60G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
-    --memory 16384 --balloon 16384 \
+    --memory 24576 --balloon 24576 \
     --agent 1 \
     --bios ovmf --machine q35 --efidisk0 $STORAGE:0,pre-enrolled-keys=0 \
     --cpu host --sockets 1 --cores 4 \
