@@ -41,19 +41,19 @@ severity of each individual record. Keeping the resource and log operations
 in separate context groups prevents a statement from accidentally targeting
 the wrong part of the OpenTelemetry data model.
 
-![The Transform Processor Options form with resource and log context groups](/images/obs1184/config-builder-transform-options-contexts.png)
+![The Transform Processor Options form with resource and log context groups](../../images/config-builder-transform-options-contexts.png)
 
 If an empty statement row was added under the `log` context, use its trash-can
 icon to remove it. Keep the `log` context with no statements beneath
 it.
 
-![The Transform Processor Options form with an empty log statements list](/images/obs1184/config-builder-transform-empty-log-statements.png)
+![The Transform Processor Options form with an empty log statements list](../../images/config-builder-transform-empty-log-statements.png)
 
 Select **Preview**. Confirm that the preview contains one `transform`
 processor, a `resource` context with the `keep_keys` statement, and an empty
 `log` context. Select **Add**.
 
-![Previewing the Transform Processor shell before adding it](/images/obs1184/config-builder-transform-preview.png)
+![Previewing the Transform Processor shell before adding it](../../images/config-builder-transform-preview.png)
 
 {{< /step >}}
 

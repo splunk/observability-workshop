@@ -71,7 +71,7 @@ The first pattern matches the sample Visa value and the second matches the
 Mastercard value. The Amex value is intentionally left unmatched so the test
 can demonstrate an incomplete policy.
 
-![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](/images/obs1184/config-builder-redaction-options.png)
+![Configuring allow_all_keys and two blocked value patterns for the Redaction Processor](../../images/config-builder-redaction-options.png)
 
 Scroll through the remaining options and set `summary` to `debug`. Leave the
 database sanitizer options and all other optional fields unset.
@@ -116,7 +116,7 @@ This order first removes spans you do not plan to keep, then protects the
 sensitive values in the remaining spans. Resource detection and batching run
 afterward, so every local or cloud exporter receives the protected version.
 
-![Adding the attributes and redaction processors to the traces pipeline](/images/obs1184/config-builder-traces-attributes-redaction.png)
+![Adding the attributes and redaction processors to the traces pipeline](../../images/config-builder-traces-attributes-redaction.png)
 
 Use the screenshot as a UI reference for the add controls and drag handles.
 Follow the processor order below for this workshop configuration.

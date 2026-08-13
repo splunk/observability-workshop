@@ -13,11 +13,11 @@ Open **Data Management > OTel Collector Config Builder**, select
 
 For **Component type**, select `processor`.
 
-![Selecting processor as the component type](/images/obs1184/config-builder-component-type.png)
+![Selecting processor as the component type](../../images/config-builder-component-type.png)
 
 For **Component**, select `filter`, then select **Next**.
 
-![Selecting the filter processor](/images/obs1184/config-builder-filter-component.png)
+![Selecting the filter processor](../../images/config-builder-filter-component.png)
 
 Use `health` as the component name so its Collector component ID is
 `filter/health`.
@@ -55,12 +55,12 @@ uses `trace_conditions`. Config Builder represents the condition as a group
 containing a `conditions` list.
 {{% /notice %}}
 
-![Adding a span-name condition under trace_conditions](/images/obs1184/config-builder-filter-trace-conditions.png)
+![Adding a span-name condition under trace_conditions](../../images/config-builder-filter-trace-conditions.png)
 
 Select **Preview**, confirm the generated YAML defines
 `processors.filter/health`, and select **Add**.
 
-![Previewing and adding the filter health component](/images/obs1184/config-builder-filter-health-preview.png)
+![Previewing and adding the filter health component](../../images/config-builder-filter-health-preview.png)
 
 {{< /step >}}
 
