@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export TERM=xterm-256color
+set -Eeuo pipefail
 
 apt update -qq
 apt install jq curl -y -qq
@@ -79,12 +79,13 @@ HEC_URL=$(echo ${JSON_RESPONSE} | jq -r '.HEC_URL')
 NEXTID=$(pvesh get /cluster/nextid)
 
 UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
-RANDOM_ADDITION=$((4000 + RANDOM % 1001))
 VMID=$((NEXTID))
 STORAGE=local-lvm
 HOSTNAME=$VMID-$ENV_NAME-$UNIQUE_HOST_ID
-USER=splunk
-PASSWORD=Splunk123!
+VM_USER=splunk
+VM_PASSWORD='Splunk123!'
+SNIPPET_NAME="k3d-${VMID}.yaml"
+SNIPPET_PATH="/var/lib/vz/snippets/${SNIPPET_NAME}"
 LATEST_K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
 LATEST_TERRAFORM_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
 K3D_VERSION=v5.9.0
@@ -92,7 +93,10 @@ K3D_VERSION=v5.9.0
 echo -e "Hostname: ${YW}${HOSTNAME}${CL}\n"
 #set -x
 
-cat << EOF | tee /var/lib/vz/snippets/k3d.yaml >/dev/null
+# Keep each VM's credential-bearing cloud-init data isolated from other
+# deployments and readable only by root on the Proxmox host.
+install -m 0600 /dev/null "$SNIPPET_PATH"
+cat << EOF > "$SNIPPET_PATH"
 #cloud-config
 package_update: true
 package_upgrade: false
@@ -101,12 +105,12 @@ package_reboot_if_required: false
 hostname: $HOSTNAME
 manage_etc_hosts: true
 fqdn: $HOSTNAME
-user: $USER
-password: $PASSWORD
+user: $VM_USER
+password: $VM_PASSWORD
 chpasswd:
   expire: False
 users:
-  - name: $USER
+  - name: $VM_USER
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
 ssh_pwauth: True
@@ -189,7 +193,6 @@ write_files:
       fi
 
       # Splunk environment variables
-      export TERM=xterm-256color
       export RUM_TOKEN="$RUM_TOKEN"
       export ACCESS_TOKEN="$INGEST_TOKEN"
       export INGEST_TOKEN="$INGEST_TOKEN"
@@ -208,7 +211,7 @@ write_files:
       alias dc='docker-compose'
 
   - path: /home/splunk/workshop-secrets.yaml
-    permissions: '0755'
+    permissions: '0600'
     content: |
       apiVersion: v1
       kind: Secret
@@ -241,7 +244,6 @@ runcmd:
   - |
     cat <<'EOF' > /home/splunk/.zshrc
     autoload -U +X compinit && compinit
-    export TERM=xterm-256color
     source /etc/skel/.profile
     source <(kubectl completion zsh)
     source <(helm completion zsh)
@@ -258,7 +260,7 @@ runcmd:
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
   - apt-get update -qq
   - apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  - usermod -aG docker splunk
+  - usermod -aG docker $VM_USER
 
   # Load and persist the kernel networking prerequisites before creating k3d.
   - modprobe overlay
@@ -311,8 +313,8 @@ runcmd:
   - >-
     k3d cluster create ${HOSTNAME}-cluster
     --agents 2
-    --servers-memory 8G
-    --agents-memory 8G
+    --servers-memory 6G
+    --agents-memory 4G
     --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@server:0"
     --k3s-arg "--kubelet-arg=eviction-hard=memory.available<1Gi@agent:*"
     --image rancher/k3s:v1.33.4-k3s1
@@ -352,22 +354,50 @@ runcmd:
   - touch /home/splunk/.cloud-init-complete
 EOF
 
-#qm destroy $VMID >/dev/null
-rm -f noble-server-cloudimg-amd64.img >/dev/null
-wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
-qemu-img resize noble-server-cloudimg-amd64.img 40G >/dev/null
+IMAGE_URL="https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+IMAGE_CACHE="/var/lib/vz/template/iso/noble-server-cloudimg-amd64.img"
+
+WORK_DIR=$(mktemp -d)
+VM_IMAGE="${WORK_DIR}/noble-server-cloudimg-amd64.img"
+
+cleanup() {
+  local exit_code=$?
+  trap - EXIT INT TERM HUP
+
+  # Only remove this deployment's temporary copy.
+  rm -rf -- "$WORK_DIR"
+
+  exit "$exit_code"
+}
+
+trap cleanup EXIT INT TERM HUP
+
+if [[ ! -f "$IMAGE_CACHE" ]]; then
+  echo "Downloading Ubuntu Noble base image..."
+
+  CACHE_DOWNLOAD="${IMAGE_CACHE}.download"
+
+  wget -q -O "$CACHE_DOWNLOAD" "$IMAGE_URL"
+  mv "$CACHE_DOWNLOAD" "$IMAGE_CACHE"
+else
+  echo "Using cached Ubuntu Noble base image."
+fi
+
+# Create a private, disposable copy.
+cp --reflink=auto "$IMAGE_CACHE" "$VM_IMAGE"
+
+qemu-img resize "$VM_IMAGE" 60G >/dev/null
 qm create $VMID --name $HOSTNAME --ostype l26 \
-    --memory 16384 --balloon 0 \
+    --memory 16384 --balloon 16384 \
     --agent 1 \
     --bios ovmf --machine q35 --efidisk0 $STORAGE:0,pre-enrolled-keys=0 \
-    --cpu host --socket 1 --cores 4 \
+    --cpu host --sockets 1 --cores 4 \
     --net0 virtio,bridge=vmbr0 >/dev/null
-qm importdisk $VMID noble-server-cloudimg-amd64.img $STORAGE >/dev/null
+qm importdisk $VMID "$VM_IMAGE" $STORAGE >/dev/null
 qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard=on >/dev/null
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
-
-qm set $VMID --cicustom "user=local:snippets/k3d.yaml" >/dev/null
+qm set $VMID --cicustom "user=local:snippets/${SNIPPET_NAME}" >/dev/null
 qm set $VMID --tags o11y-workshop,noble,k3d >/dev/null
 
 VM_NOTES=$(cat <<EOF
@@ -386,17 +416,14 @@ The VM uses DHCP. Obtain its address from the Proxmox Summary page after the
 QEMU guest agent becomes available, then connect with:
 
 \`\`\`bash
-ssh splunk@<IP_ADDRESS>
-Password: Splunk123!
+ssh $VM_USER@<IP_ADDRESS>
+Password: $VM_PASSWORD
 \`\`\`
 
 EOF
 )
 
 qm set "$VMID" --description "$VM_NOTES" >/dev/null
-#qm set $VMID --ciuser ubuntu
-#qm set $VMID --cipassword Splunk123!
-#qm set $VMID --ciupdate 0
 qm set $VMID --ipconfig0 ip=dhcp >/dev/null
 qm cloudinit update $VMID >/dev/null
 #qm template $VMID
