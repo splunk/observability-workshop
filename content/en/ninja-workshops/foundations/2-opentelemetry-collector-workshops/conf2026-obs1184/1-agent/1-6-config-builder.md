@@ -53,7 +53,7 @@ the OpenTelemetry Collector. The two pipelines ending in `/workshop` are for
 this workshop:
 
 | Pipeline | Purpose | Export |
-|---|---|---|
+| --- | --- | --- |
 | `traces` | Receives traces through Jaeger, OpenTelemetry Protocol (OTLP), and Zipkin | Debug output, `agent-traces.out`, and optional Splunk APM export |
 | `metrics` | Collects host metrics every 10 seconds | Splunk Observability Cloud in cloud mode; `nop` in local mode |
 | `metrics/internal` | Collects the Collector's internal metrics | Splunk Observability Cloud in cloud mode; `nop` in local mode |
