@@ -1,0 +1,245 @@
+# Facilitator fallback for the .conf26 Advanced Collector workshop.
+# Attendees normally create this result in OTel Collector Config Builder.
+
+extensions:
+  headers_setter:
+    headers:
+      - action: upsert
+        key: X-SF-TOKEN
+        from_context: X-SF-TOKEN
+        default_value: "${SPLUNK_ACCESS_TOKEN}"
+  health_check:
+    endpoint: "${SPLUNK_LISTEN_INTERFACE}:13133"
+  http_forwarder:
+    ingress:
+      endpoint: "${SPLUNK_LISTEN_INTERFACE}:6060"
+    egress:
+      endpoint: "${SPLUNK_API_URL}"
+  http_forwarder/opamp_splunk_o11y:
+    ingress:
+      endpoint: "${SPLUNK_LISTEN_INTERFACE}:4320"
+    egress:
+      endpoint: "${SPLUNK_INGEST_URL}"
+      headers:
+        X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+  opamp/splunk_o11y:
+    agent_description:
+      include_resource_attributes: true
+    server:
+      http:
+        endpoint: "${SPLUNK_INGEST_URL}/v1/opamp"
+        polling_interval: 30s
+        headers:
+          X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+  zpages:
+    expvar:
+      enabled: true
+
+receivers:
+  fluent_forward:
+    endpoint: "${SPLUNK_LISTEN_INTERFACE}:8006"
+  host_metrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      memory:
+      network:
+      load:
+      paging:
+      processes:
+  host_metrics/workshop:
+    collection_interval: 3600s
+    scrapers:
+      cpu:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4317"
+      http:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:4318"
+  jaeger:
+    protocols:
+      grpc:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:14250"
+      thrift_binary:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:6832"
+      thrift_compact:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:6831"
+      thrift_http:
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:14268"
+  file_log/quotes:
+    include: [./quotes.log]
+    start_at: beginning
+    include_file_path: true
+    resource:
+      service.name: quote-generator
+      com.splunk.source: ./quotes.log
+      com.splunk.sourcetype: quotes
+  prometheus/internal:
+    config:
+      scrape_configs:
+        - job_name: otel-collector
+          scrape_interval: 10s
+          static_configs:
+            - targets: ["0.0.0.0:8888"]
+          metric_relabel_configs:
+            - source_labels: [__name__]
+              regex: 'promhttp_metric_handler_errors.*'
+              action: drop
+            - source_labels: [__name__]
+              regex: 'otelcol_processor_batch_.*'
+              action: drop
+  smartagent/processlist:
+    type: processlist
+  zipkin:
+    endpoint: "${SPLUNK_LISTEN_INTERFACE}:9411"
+  # Used by setup-workshop-conf2026.sh only when cloud export is disabled.
+  nop:
+
+processors:
+  batch:
+    metadata_keys:
+      - X-SF-Token
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: ${SPLUNK_MEMORY_LIMIT_MIB}
+  filter/health:
+    error_mode: ignore
+    trace_conditions:
+      - conditions:
+          - 'span.name == "/_healthz"'
+  attributes:
+    actions:
+      - key: user.phone_number
+        action: update
+        value: UNKNOWN NUMBER
+      - key: user.email
+        action: hash
+      - key: user.password
+        action: delete
+  redaction:
+    allow_all_keys: true
+    blocked_values:
+      - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
+      - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
+    summary: debug
+  resourcedetection:
+    detectors: [gcp, ecs, ec2, azure, system]
+    override: true
+  resource/add_mode:
+    attributes:
+      - action: upsert
+        key: otelcol.service.mode
+        value: agent
+  transform:
+    error_mode: ignore
+    log_statements:
+      - context: resource
+        statements:
+          - keep_keys(resource.attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
+      - context: log
+        statements:
+          - set(log.cache, ParseJSON(log.body)) where IsMatch(log.body, "^\\{")
+          - flatten(log.cache, "")
+          - merge_maps(log.attributes, log.cache, "upsert")
+          - set(log.severity_text, log.attributes["level"])
+          - set(log.severity_number, 1) where log.severity_text == "TRACE"
+          - set(log.severity_number, 5) where log.severity_text == "DEBUG"
+          - set(log.severity_number, 9) where log.severity_text == "INFO"
+          - set(log.severity_number, 13) where log.severity_text == "WARN"
+          - set(log.severity_number, 17) where log.severity_text == "ERROR"
+          - set(log.severity_number, 21) where log.severity_text == "FATAL"
+
+exporters:
+  debug:
+    verbosity: detailed
+  file/traces:
+    path: ./agent-traces.out
+    append: false
+  file/metrics:
+    path: ./agent-metrics.out
+    append: false
+  file/logs:
+    path: ./agent-logs.out
+    append: false
+  otlp_http:
+    traces_endpoint: "${SPLUNK_INGEST_URL}/v2/trace/otlp"
+    headers:
+      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  otlp_http/entities:
+    logs_endpoint: "${SPLUNK_INGEST_URL}/v3/event"
+    headers:
+      X-SF-Token: "${SPLUNK_ACCESS_TOKEN}"
+    auth:
+      authenticator: headers_setter
+  signalfx:
+    access_token: "${SPLUNK_ACCESS_TOKEN}"
+    api_url: "${SPLUNK_API_URL}"
+    ingest_url: "${SPLUNK_INGEST_URL}"
+    sync_host_metadata: true
+    correlation:
+  splunk_hec:
+    token: "${SPLUNK_HEC_TOKEN}"
+    endpoint: "${SPLUNK_HEC_URL}"
+    source: otel
+    sourcetype: otel
+    profiling_data_enabled: false
+  splunk_hec/profiling:
+    token: "${SPLUNK_ACCESS_TOKEN}"
+    endpoint: "${SPLUNK_INGEST_URL}/v1/log"
+    log_data_enabled: false
+  nop:
+
+service:
+  telemetry:
+    logs:
+      level: ${env:SPLUNK_COLLECTOR_LOG_LEVEL:-info}
+    resource:
+      attributes:
+        - name: otelcol.service.mode
+          value: agent
+    metrics:
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 127.0.0.1
+                port: 8888
+  extensions: [headers_setter, health_check, http_forwarder, http_forwarder/opamp_splunk_o11y, opamp/splunk_o11y, zpages]
+  pipelines:
+    traces:
+      receivers: [jaeger, otlp, zipkin]
+      processors: [memory_limiter, filter/health, attributes, redaction, resourcedetection, resource/add_mode, batch]
+      exporters: [debug, file/traces, otlp_http]
+    metrics:
+      receivers: [host_metrics, otlp]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [signalfx]
+    metrics/internal:
+      receivers: [prometheus/internal]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [signalfx]
+    logs/signalfx:
+      receivers: [smartagent/processlist]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [signalfx]
+    logs:
+      receivers: [fluent_forward, otlp]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [splunk_hec, splunk_hec/profiling]
+    logs/entities:
+      receivers: [nop]
+      processors: [memory_limiter, batch, resourcedetection]
+      exporters: [otlp_http/entities]
+    metrics/workshop:
+      receivers: [host_metrics/workshop]
+      processors: [memory_limiter, resourcedetection, resource/add_mode]
+      exporters: [debug, file/metrics]
+    logs/workshop:
+      receivers: [otlp, file_log/quotes]
+      processors: [memory_limiter, resourcedetection, transform, resource/add_mode]
+      exporters: [debug, file/logs]
