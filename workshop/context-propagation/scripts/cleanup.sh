@@ -3,12 +3,36 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
 TAG="${TAG:-latest}"
 APPS_ONLY=false
 KEEP_IMAGES=false
 SKIP_COMPOSE=false
+
+CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
+CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
+
+k3d_cluster_exists() {
+  local name="$1"
+  command -v k3d >/dev/null 2>&1 && k3d cluster list 2>/dev/null | grep -q "^${name} "
+}
+
+K3D_CLUSTER_OVERRIDE="${K3D_CLUSTER_NAME:-}"
+K3D_CLUSTER_NAME=""
+for candidate in "${CLUSTER_NAME}" "${K3D_CLUSTER_OVERRIDE}" "${INSTANCE:+${INSTANCE}-cluster}" "${INSTANCE:-}" "cosmic-shop"; do
+  [[ -z "${candidate}" ]] && continue
+  if k3d_cluster_exists "${candidate}"; then
+    K3D_CLUSTER_NAME="${candidate}"
+    break
+  fi
+done
+if [[ -z "${K3D_CLUSTER_NAME}" ]]; then
+  if [[ -n "${INSTANCE:-}" ]]; then
+    K3D_CLUSTER_NAME="${CLUSTER_NAME}"
+  else
+    K3D_CLUSTER_NAME="cosmic-shop"
+  fi
+fi
 
 usage() {
   cat <<EOF
@@ -24,7 +48,7 @@ Options:
 
 Default (no flags): full teardown — Compose down, Helm uninstall, k3d cluster + registry, generated files, local images.
 
-Your .env file is never deleted (Splunk credentials are preserved).
+Exported host environment variables are never modified.
 Telemetry already sent to Splunk Observability Cloud is not removed.
 EOF
 }
@@ -39,17 +63,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
-fi
-
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
-REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
-TAG="${TAG:-latest}"
-
 APPS=(catalog-api frontend-api order-api payment-gateway payment-api fulfillment-worker frontend)
 
 echo "=== Cosmic Observatory Shop — workshop cleanup ==="
@@ -57,8 +70,8 @@ echo ""
 
 if [[ "${SKIP_COMPOSE}" == false ]] && [[ -f "${ROOT_DIR}/docker-compose.yml" ]]; then
   echo "1. Stopping Docker Compose stack (if running)..."
-  if docker compose --env-file "${ROOT_DIR}/.env" -f "${ROOT_DIR}/docker-compose.yml" ps -q 2>/dev/null | grep -q .; then
-    docker compose --env-file "${ROOT_DIR}/.env" -f "${ROOT_DIR}/docker-compose.yml" down --remove-orphans
+  if docker compose -f "${ROOT_DIR}/docker-compose.yml" ps -q 2>/dev/null | grep -q .; then
+    docker compose -f "${ROOT_DIR}/docker-compose.yml" down --remove-orphans
     echo "   OK: docker compose down"
   else
     echo "   OK: no Compose containers running"
@@ -137,7 +150,7 @@ echo ""
 echo "=== Cleanup complete ==="
 echo ""
 echo "Preserved:"
-echo "  - .env (Splunk credentials)"
+echo "  - Exported host environment variables"
 echo "  - Source code and workshop docs"
 echo "  - Data already ingested in Splunk Observability Cloud"
 echo ""

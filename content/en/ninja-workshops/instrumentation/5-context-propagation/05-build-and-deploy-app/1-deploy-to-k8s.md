@@ -1,23 +1,24 @@
 ---
-title: Deploy to K8s
-linkTitle: 1. Deploy to K8s
+title: Deploy App to K8s
+linkTitle: 1. Deploy App to K8s
 weight: 1
 time: 10 minutes
 
 ---
-In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your k3d cluster using Helm. 
+In this step, you'll deploy the Splunk Distribution of the OpenTelemetry Collector to your application cluster using Helm. 
 
-## Deploy to Kubernetes
-From the project root [~/workshop/context-propagation], run:
+## Deploy Application to Cluster
+run:
 
 ```bash
+cd ~/workshop/context-propagation
 make deploy
 ```
 
 This script:
 
 1. Applies all Kubernetes manifests from `deploy/k8s/`
-2. Creates a `splunk-otel` secret from your `.env` credentials
+2. Creates a `splunk-otel` secret from your `env` credentials
 3. Points deployments at the registry images
 4. Waits for all rollouts to complete
 
@@ -165,7 +166,7 @@ The RabbitMQ Service uses **NodePort 15672** so k3d can expose the management UI
 {{% tab title="Script" %}}
 
 ```bash
-docker ps --filter name=k3d-cosmic-shop-serverlb --format '{{.Ports}}'
+docker ps --filter name=k3d-$INSTANCE-cluster-serverlb --format '{{.Ports}}'
 ```
 
 {{% /tab %}}
@@ -196,17 +197,3 @@ HTTP 200
 ```
 {{% /tab %}}
 {{< /tabs >}}
-
-#### Log In to RabbitMQ [Optional]:
-
-Open **http://(your-instance-url):15672** in a browser and log in with `guest` / `guest`.
-
-**If RabbitMQ UI is not loading**, use port-forward in a **separate terminal** (keep it open):
-
-```bash
-kubectl -n cosmic-shop port-forward svc/rabbitmq 15672:15672
-```
-
-Then open http://(your-instance-url):15672 again.
-
-

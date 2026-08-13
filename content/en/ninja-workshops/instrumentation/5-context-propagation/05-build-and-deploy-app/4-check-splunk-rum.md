@@ -9,7 +9,7 @@ In this step, you'll observe how RUM sessions appear add context to requests and
 
 ## The RUM Request Path
 
-1. Open **http://localhost:30080**
+1. Open **http://(your-instance-url):30080**
 2. Open browser DevTools → **Network** tab
 3. Place 3–5 orders for different products
 4. In the Network tab, inspect a `POST /api/orders` request
@@ -30,7 +30,7 @@ Allow **2–5 minutes** after deploy for RUM data to appear..
 ## Observe in Splunk RUM
 
 1. Navigate to **Digital Experience → Session Search**
-2. Filter **Environment → `workshop-context-prop`**
+2. Filter **Environment → `workshop-$INSTANCE`**
 3. Open a recent session
 4. Locate `fetch` requests
 5. You will only see an APM correlation link for 'api/catalog`. 

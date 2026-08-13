@@ -32,13 +32,18 @@ These tools will already be installed on your instance:
 | [Node.js](https://nodejs.org/) (optional) | 20.x | `node --version` |
 
 
-## Splunk Observability Cloud Access
+## Splunk Observability Access
 
 You'll need access to a Splunk Observability Cloud org with permission to:
 
 1. **View APM traces** - APM → Service Map & APM → Traces
 2. **View RUM sessions** - Digital Experience → Session Search
 3. **[Optional] Gather Realm & Token Details** - NOTE: These values are configured in your instance and detail are provided in the next step.
+
+{{% notice title="Note" style="info" %}}
+This Workshop uses the Splunk4Ninjas - Observability template.
+Your instructor will provide you with all the required login credentials and environment details
+{{% /notice %}}
 
 ## Validation Checklist
 
@@ -63,11 +68,13 @@ git --version
 {{% tab title="Example Output" %}}
 
 ``` text
-Docker version 27.4.0, build bde2b89
-Client Version: v1.31.0
-k3d version v5.7.4
-v3.16.2+gf786678
-git version 2.47.0
+Docker version 29.1.3, build 29.1.3-0ubuntu3~22.04.2
+Client Version: v1.34.1
+Kustomize Version: v5.7.1
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+v3.21.3+g1ad6e68
+git version 2.34.1
 ```
 
 {{% /tab %}}

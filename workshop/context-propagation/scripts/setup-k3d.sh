@@ -2,18 +2,33 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
 REGISTRY_PORT="${REGISTRY_PORT:-5111}"
 REGISTRY_NAME="${REGISTRY_NAME:-cosmic-shop-registry}"
 
-if [[ -f "${ROOT_DIR}/.env" ]]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "${ROOT_DIR}/.env"
-  set +a
-fi
+CLUSTER_NAME="${CLUSTER_NAME:-${INSTANCE:+${INSTANCE}-cluster}}"
+CLUSTER_NAME="${CLUSTER_NAME:-cosmic-shop-cluster}"
 
-K3D_CLUSTER_NAME="${K3D_CLUSTER_NAME:-cosmic-shop}"
+k3d_cluster_exists() {
+  local name="$1"
+  command -v k3d >/dev/null 2>&1 && k3d cluster list 2>/dev/null | grep -q "^${name} "
+}
+
+K3D_CLUSTER_OVERRIDE="${K3D_CLUSTER_NAME:-}"
+K3D_CLUSTER_NAME=""
+for candidate in "${CLUSTER_NAME}" "${K3D_CLUSTER_OVERRIDE}" "${INSTANCE:+${INSTANCE}-cluster}" "${INSTANCE:-}" "cosmic-shop"; do
+  [[ -z "${candidate}" ]] && continue
+  if k3d_cluster_exists "${candidate}"; then
+    K3D_CLUSTER_NAME="${candidate}"
+    break
+  fi
+done
+if [[ -z "${K3D_CLUSTER_NAME}" ]]; then
+  if [[ -n "${INSTANCE:-}" ]]; then
+    K3D_CLUSTER_NAME="${CLUSTER_NAME}"
+  else
+    K3D_CLUSTER_NAME="cosmic-shop"
+  fi
+fi
 
 echo "Creating k3d cluster '${K3D_CLUSTER_NAME}' with local registry on port ${REGISTRY_PORT}..."
 
@@ -26,6 +41,13 @@ else
     --port "30080:30080@loadbalancer" \
     --port "15672:31672@loadbalancer" \
     --k3s-arg "--disable=traefik@server:0"
+fi
+
+if ! k3d registry list 2>/dev/null | grep -q "${REGISTRY_NAME}"; then
+  echo "Creating k3d registry '${REGISTRY_NAME}' on port ${REGISTRY_PORT}..."
+  k3d registry create "${REGISTRY_NAME}" --port "${REGISTRY_PORT}"
+else
+  echo "Registry '${REGISTRY_NAME}' already running on port ${REGISTRY_PORT}."
 fi
 
 kubectl cluster-info

@@ -17,10 +17,10 @@ Generate Signals for your agent stream and let the platform show you what's tren
 
 {{< step title="Generate Signals" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
+In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
+open your project / **`default`** agent stream. Click on the **AI Assistant** icon. 
 
-In the Galileo console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
-open your project / **`default`** agent stream then click the **Signals** button.
+Change the LLM used by the AI Assistant to be `gpt-5 (Azure)`, then click the **Generate Signals** button.
 
 ![Generate Signals](../../images/sao-generate-signals.png?width=250px)
 

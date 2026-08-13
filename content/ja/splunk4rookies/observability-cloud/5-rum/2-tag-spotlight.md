@@ -19,8 +19,7 @@ weight: 2
 {{% notice title="演習" style="green" icon="running" %}}
 
 - 時間枠を**過去 1 時間**に変更します。
-- **Add filters**をクリックし、**OS Version**を選択し、**!=**をクリックして**Synthetics**と**RUMLoadGen**を選択し、{{% button style="blue" %}}フィルターを適用{{% /button %}}ボタンをクリックします。
-- **Custom Events Name**チャートを見つけ、リスト内の**PlaceOrder**を見つけてクリックし、**Add to filter**を選択します。
+- **Custom Event Name**チャートを見つけ、リスト内の**PlaceOrder**を見つけてクリックし、**Add to filter**を選択します。
 - 上部のグラフに大きなスパイクがあることに注目してください。
 - **User Session**タブをクリックします。
 - **Duration**の見出しを2回クリックして、セッションを期間で並べ替えます（最も長いものが上部に表示されます）。

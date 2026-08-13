@@ -1,19 +1,17 @@
 ---
-title: Add the Galileo SDK and Configuration
-linkTitle: 1. Add the Galileo SDK
+title: Add the Splunk Agent Observability SDK and Configuration
+linkTitle: 1. Add the Splunk Agent Observability SDK
 weight: 1
 time: 3 minutes
 ---
 
 
-First, add the Galileo package and the configuration the SDK needs to know *where* to send
-traces.
+First, add the Splunk Agent Observability SDK to the Python application. Then, add configuration
+so that the SDK knows *where* to send traces.
 
 {{< exercise title="Add the SDK and configuration" >}}
 
-{{< step title="Add the Galileo package" >}}
-
-Galileo's LangChain callback ships in the `galileo` package. 
+{{< step title="Add the Splunk Agent Observability package" >}}
 
 If you open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requirements.txt` 
 file, you'll see that this package has already been added: 
@@ -22,24 +20,34 @@ file, you'll see that this package has already been added:
 galileo
 ````
 
+{{% notice title="Note about the SDK" style="info" %}}
+
+This workshop was built using the older `galileo` package. For new deployments, we recommend 
+using the `splunk_ao` package instead. Refer to the 
+[LangChain and LangGraph](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain) document
+for details about this newer SDK.
+
+{{% /notice %}}
+
 {{< /step >}}
 
-{{< step title="Set Environment Variables" >}}
+{{< step title="Set the Participant Number Environment Variable" >}}
 
-Run the commands provided by your workshop instructor to set environment variables 
-on your EC2 instance. They'll look like the following: 
+Run the following command to set the `PARTICIPANT_NUMBER` environment variable 
+on your EC2 instance: 
+
+> **Be sure to add the participant number assigned to you in the sign-up sheet before
+> running the following command**
 
 ````
 export PARTICIPANT_NUMBER=<your participant number>  
-export GALILEO_API_KEY=<provided by workshop instructor>  
-export GALILEO_CONSOLE_URL=<provided by workshop instructor>
 ````
 
 {{< /step >}}
 
-{{< step title="Create a Galileo Secret" >}}
+{{< step title="Create a Kubernetes Secret" >}}
 
-Run the following command to create a Kubernetes secret, which stores the Galileo API key: 
+Run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key: 
 
 ```bash
 kubectl create secret generic galileo-secret \
@@ -48,10 +56,10 @@ kubectl create secret generic galileo-secret \
 
 {{< /step >}}
 
-{{< step title="Create a Galileo Config Map" >}}
+{{< step title="Create a Config Map" >}}
 
 Run the following command to create a Kubernetes config map, which the application will use to
-determine how to send traces to Galileo: 
+determine how to send traces to Splunk Agent Observability: 
 
 ```bash
 kubectl create configmap galileo-config \
@@ -62,7 +70,7 @@ kubectl create configmap galileo-config \
 
 {{% notice title="Project and agent stream" style="info" %}}
 
-`GALILEO_PROJECT` and `GALILEO_LOG_STREAM` decide where your traces appear in the Galileo
+`GALILEO_PROJECT` and `GALILEO_LOG_STREAM` decide where your traces appear in the Splunk Agent Observability
 console. If you leave them blank, the SDK falls back to a project and agent stream both named
 `default`. 
 

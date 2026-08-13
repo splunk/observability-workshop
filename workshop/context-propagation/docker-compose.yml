@@ -21,9 +21,9 @@ services:
       PORT: 3002
       OTEL_SERVICE_NAME: catalog-api
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     ports:
       - "3002:3002"
     extra_hosts:
@@ -40,9 +40,9 @@ services:
       GATEWAY_URL: http://gateway:80
       PAYMENT_GATEWAY_URL: http://payment-gateway:3004
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     depends_on:
       - catalog-api
       - gateway
@@ -61,9 +61,9 @@ services:
       OTEL_SERVICE_NAME: order-api
       CATALOG_API_URL: http://catalog-api:3002
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     depends_on:
       - catalog-api
     ports:
@@ -80,9 +80,9 @@ services:
       OTEL_SERVICE_NAME: payment-gateway
       PAYMENT_API_URL: http://payment-api:3005
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     depends_on:
       - payment-api
     ports:
@@ -100,9 +100,9 @@ services:
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       FULFILLMENT_QUEUE: cosmic-fulfillment
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -121,9 +121,9 @@ services:
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       FULFILLMENT_QUEUE: cosmic-fulfillment
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://host.docker.internal:4318}
-      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
-      SPLUNK_ACCESS_TOKEN: ${SPLUNK_ACCESS_TOKEN:-}
-      SPLUNK_REALM: ${SPLUNK_REALM:-us0}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${DEPLOYMENT_ENV:-workshop-context-prop}
+      ACCESS_TOKEN: ${ACCESS_TOKEN:-}
+      REALM: ${REALM:-us0}
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -146,10 +146,10 @@ services:
       context: .
       dockerfile: services/frontend/Dockerfile
       args:
-        SPLUNK_REALM: ${SPLUNK_REALM:-us0}
-        SPLUNK_RUM_ACCESS_TOKEN: ${SPLUNK_RUM_ACCESS_TOKEN:-}
-        SPLUNK_RUM_APP_NAME: ${SPLUNK_RUM_APP_NAME:-cosmic-observatory-shop}
-        SPLUNK_DEPLOYMENT_ENV: ${SPLUNK_DEPLOYMENT_ENV:-workshop-context-prop}
+        REALM: ${REALM:-us0}
+        RUM_TOKEN: ${RUM_TOKEN:-}
+        RUM_APP_NAME: ${RUM_APP_NAME:-cosmic-observatory-shop}
+        DEPLOYMENT_ENV: ${DEPLOYMENT_ENV:-workshop-context-prop}
     depends_on:
       - frontend-api
     ports:

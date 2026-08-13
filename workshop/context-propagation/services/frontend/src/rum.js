@@ -7,7 +7,7 @@ const token = import.meta.env.VITE_SPLUNK_RUM_TOKEN;
 export function initSplunkRum() {
   if (!realm || !token || token === 'YOUR_RUM_ACCESS_TOKEN') {
     console.warn(
-      '[Splunk RUM] Skipping initialization — set SPLUNK_REALM and SPLUNK_RUM_ACCESS_TOKEN in .env',
+      '[Splunk RUM] Skipping initialization — export REALM and RUM_TOKEN on the host',
     );
     return;
   }
