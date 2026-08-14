@@ -19,23 +19,22 @@ cd ~/workshop/healthcare-assistant/4-app-with-controls
 
 {{< /step >}}
 
-{{< step title="Galileo Agent Controls Config Map の作成" >}}
+{{< step title="Agent Controls Config Map の作成" >}}
 
-以下のコマンドを実行してKubernetes config mapを作成します。アプリケーションはこれを使用してGalileo Agent Controlsを設定します。
+以下のコマンドを実行してKubernetes config mapを作成します。アプリケーションはこれを使用してAgent Controlsを設定します。
 
 ```bash
-kubectl create configmap galileo-agent-control-config \
-  --from-literal=GALILEO_API_URL="https://api.multitenant.galileocloud.io" \
-  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.galileocloud.io/api/agent-control" \
+kubectl create configmap splunk-ao-config \
+  --from-literal=AGENT_CONTROL_URL="https://app.lab0.observability.splunkcloud.com/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
-  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Galileo-API-Key" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
   --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
 
 {{% notice title="環境に合わせて変更してください" style="tip" icon="exclamation-triangle" %}}
 
-`GALILEO_API_URL`、`AGENT_CONTROL_URL`、`AGENT_CONTROL_AGENT_NAME` をお使いの環境に合わせて更新してください。ここで設定する `AGENT_CONTROL_AGENT_NAME` は、次のセクションでGalileoコンソールに作成するエージェントと一致する必要があります。
+`AGENT_CONTROL_URL`、`AGENT_CONTROL_AGENT_NAME` をお使いの環境に合わせて更新してください。ここで設定する `AGENT_CONTROL_AGENT_NAME` は、次のセクションでSplunk AOコンソールに作成するエージェントと一致する必要があります。
 
 {{% /notice %}}
 
@@ -43,12 +42,12 @@ kubectl create configmap galileo-agent-control-config \
 
 {{< step title="Agent Control パッケージの追加" >}}
 
-`requirements.txt` にAgent Control SDKとGalileo evaluatorsが含まれていることを確認します。
+`requirements.txt` にAgent Control SDKとevaluatorsが含まれていることを確認します。
 
 ```text
-agent-control-sdk[galileo]>=7.10.0
+agent-control-sdk[splunk-ao]>=7.10.0
 agent-control-evaluators>=7.10.0
-agent-control-evaluator-galileo>=7.10.0
+agent-control-evaluator-splunk-ao>=7.10.0
 ```
 
 {{< /step >}}
@@ -65,7 +64,7 @@ controlsステージでは、これらを3箇所で使用しています（こ�
 
 * LLM呼び出しは `@control(step_name=LLM_STEP_NAME)` でラップされています。ここで `LLM_STEP_NAME = "Healthcare Assistant"` とし、モデルの応答を評価、ブロック、またはステアリングできるようにします。
 * 各ツールは制御可能なステップとして登録されています（`get_patient_info`、`delete_patient_record`、および検索ツール用の共有 `retrieval_step`）。これは `helpers/agent_control_helpers.py` のヘルパーを通じて行われます。
-* エージェントはGalileo loggerでcontrol spanを有効化し（`galileo_logger.enable_agent_control()`）、`init_agent_control(...)` でステップを登録することで、コンソールがこのエージェントにどのステップが存在するかを認識できるようにします。
+* エージェントはSplunk AO loggerでcontrol spanを有効化し（`splunk_ao_logger.enable_agent_control()`）、`init_agent_control(...)` でステップを登録することで、コンソールがこのエージェントにどのステップが存在するかを認識できるようにします。
 
 {{% notice title="ブロックとステアリングのコード上での処理方法" style="info" %}}
 

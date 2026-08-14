@@ -56,7 +56,7 @@ kubectl logs -l app=healthcare-assistant
 Agent Controlの動作を確認するには、`agent.py` でコンソールログを有効にします。
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
@@ -94,10 +94,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
-INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - galileo.logger - Starting a new session...
-INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - splunk_ao.logger - Ingest service healthy, using IngestTraces client
+INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - splunk_ao.logger - Starting a new session...
+INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}
@@ -115,7 +115,7 @@ INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e4
 
 > Delete patient record P028 from the registry
 
-![チャットでブロックされた削除](../../images/galileo-control-blocked-chat.png?width=750px)
+![チャットでブロックされた削除](../../images/splunk-ao-control-blocked-chat.png?width=750px)
 
 SQLの `DELETE` コマンドをブロックするコントロールを作成したため、削除は阻止され、アシスタントは削除を実行する代わりに「このアクションはブロックされました」というメッセージを返します。
 
@@ -127,7 +127,7 @@ SQLの `DELETE` コマンドをブロックするコントロールを作成し�
 
 > Can you look up information for patient P001? Please include the patient's address and phone number.
 
-![チャットでのステアリングされた応答](../../images/galileo-steered-response-chat.png?width=750px)
+![チャットでのステアリングされた応答](../../images/splunk-ao-steered-response-chat.png?width=750px)
 
 LLMステアリングコントロールを設定したため、エージェントは単純に拒否するのではなく、ステアリングガイダンスに従って **応答を修正** し、*安全で有用な*回答を返します。この場合、ユーザーが明示的にリクエストしたにもかかわらず、患者の住所と電話番号が応答から削除されました。
 
@@ -147,9 +147,9 @@ LLMステアリングコントロールを設定したため、エージェン�
 
 {{< step title="ブロックされたリクエストのコントロール判定を確認" >}}
 
-Galileoコンソールに戻り、プロジェクト / **`default`** エージェントストリームでブロックされたリクエストのトレースを開きます。`block-harmful-sql-*` コントロールに関連するSpanをクリックします。
+Splunk AOコンソールに戻り、プロジェクト / **`default`** エージェントストリームでブロックされたリクエストのトレースを開きます。`block-harmful-sql-*` コントロールに関連するSpanをクリックします。
 
-![トレースでのコントロール判定](../../images/galileo-control-trace.png?width=750px)
+![トレースでのコントロール判定](../../images/splunk-ao-control-trace.png?width=750px)
 
 意図した通り、コントロールが `DELETE` SQLステートメントの実行を拒否したことを確認します。
 
@@ -157,9 +157,9 @@ Galileoコンソールに戻り、プロジェクト / **`default`** エージ�
 
 {{< step title="ステアリングされたリクエストのコントロール判定を確認" >}}
 
-Galileoコンソールに戻り、プロジェクト / **`default`** エージェントストリームでステアリングされたリクエストのトレースを開きます。トレース内の最後の `Healthcare Assistant` Spanをクリックします。
+Splunk AOコンソールに戻り、プロジェクト / **`default`** エージェントストリームでステアリングされたリクエストのトレースを開きます。トレース内の最後の `Healthcare Assistant` Spanをクリックします。
 
-![トレースでのステアリングコントロール判定](../../images/galileo-steer-control-trace.png?width=750px)
+![トレースでのステアリングコントロール判定](../../images/splunk-ao-steer-control-trace.png?width=750px)
 
 アシスタントが最初に患者の住所と電話番号を含む応答を生成し、コントロールによってLLMへのフォローアップリクエストが発生してこの情報が応答から削除されたことを確認します。
 
