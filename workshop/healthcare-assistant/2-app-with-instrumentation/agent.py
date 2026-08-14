@@ -19,8 +19,8 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
-from galileo import galileo_context
-from galileo.handlers.langchain import GalileoAsyncCallback
+from splunk_ao import splunk_ao_context
+from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -138,14 +138,14 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with galileo_context(
-            project=os.getenv("GALILEO_PROJECT"),
-            log_stream=os.getenv("GALILEO_LOG_STREAM"),
+        with splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
-            galileo_context.start_session(external_id=self.session_id)
+            splunk_ao_context.start_session(external_id=self.session_id)
 
             # One callback per request keeps each user turn in its own trace.
-            callback = GalileoAsyncCallback()
+            callback = SplunkAOAsyncCallback()
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
             result = await self.graph.ainvoke(

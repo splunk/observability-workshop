@@ -115,7 +115,7 @@ To see exactly what the SDK is doing, you can temporarily add the following near
 `agent.py`:
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
@@ -159,10 +159,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
-INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - galileo.logger - Starting a new session...
-INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - splunk_ao.logger - Ingest service healthy, using OTLP export to ingest.<realm>.observability.splunkcloud.com
+INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - splunk_ao.logger - Starting a new session...
+INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}

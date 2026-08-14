@@ -27,7 +27,7 @@ spec:
             - configMapRef:
                 name: postgres-config
             - configMapRef:
-                name: galileo-config
+                name: splunk-ao-config
           env:
             - name: OPENAI_BASE_URL
               valueFrom:
@@ -44,11 +44,21 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: POSTGRES_PASSWORD
-            - name: GALILEO_API_KEY
+            - name: SPLUNK_AO_REALM
               valueFrom:
                 secretKeyRef:
-                  name: galileo-secret
-                  key: GALILEO_API_KEY
+                  name: splunk-ao-secret
+                  key: realm
+            - name: SPLUNK_AO_O11Y_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-ao-secret
+                  key: o11y-token
+            - name: SPLUNK_AO_O11Y_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-ao-secret
+                  key: o11y-api-token
           resources:
             requests:
               memory: "512Mi"
