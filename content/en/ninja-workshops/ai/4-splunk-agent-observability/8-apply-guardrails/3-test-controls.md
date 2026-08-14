@@ -55,7 +55,7 @@ kubectl logs -l app=healthcare-assistant
 
 {{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
 
-To see what Agent Control is doing, enable console logging in `agent.py`:
+To see what Agent Control is doing, enable console logging in `~/workshop/healthcare-assistant/4-app-with-controls/agent.py`:
 
 ```python
 from galileo.utils.log_config import enable_console_logging
@@ -71,16 +71,17 @@ docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assi
 docker push localhost:9999/healthcare-assistant:app-with-controls
 ```
 
-Update the `k8s.yaml` file to reference the local image instead:
+Update the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file to reference the local image instead:
 
 ````
-image: localhost:9999/splunk/healthcare-assistant:app-with-controls
+image: localhost:9999/healthcare-assistant:app-with-controls
 ````
 
 And redeploy the application:
 
 ```bash
-kubectl rollout restart deploy/healthcare-assistant
+cd ~/workshop/healthcare-assistant/4-app-with-controls
+kubectl apply -f k8s.yaml
 ```
 
 Use the following command to view the application logs:

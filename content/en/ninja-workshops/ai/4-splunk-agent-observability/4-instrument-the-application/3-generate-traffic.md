@@ -112,7 +112,7 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
 {{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
 
 To see exactly what the SDK is doing, you can temporarily add the following near the top of
-`agent.py`:
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`:
 
 ```python
 from galileo.utils.log_config import enable_console_logging
@@ -128,16 +128,17 @@ docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthca
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation
 ```
 
-Update the `k8s.yaml` file to reference the local image instead: 
+Update the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file to reference the local image instead: 
 
 ````
-image: localhost:9999/splunk/healthcare-assistant:app-with-instrumentation
+image: localhost:9999/healthcare-assistant:app-with-instrumentation
 ````
 
 And redeploy the application: 
 
 ```bash
-kubectl rollout restart deploy/healthcare-assistant
+cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
+kubectl apply -f k8s.yaml
 ```
 
 Use the following command to view the application logs:
