@@ -9,18 +9,18 @@ time: 5 minutes
 ワークショップで使用する組織を確認してください。
 {{% /notice %}}
 
-Galileoコンソールで実験を確認します。行ごとのスコアを検査し、個別のTraceにドリルダウンし、2つの実行を比較します。
+Splunk AOコンソールで実験を確認します。行ごとのスコアを検査し、個別のTraceにドリルダウンし、2つの実行を比較します。
 
-{{< exercise title="Galileoで実験を確認する" >}}
+{{< exercise title="Splunk AOで実験を確認する" >}}
 
 {{< step title="Experimentsビューを開く" >}}
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`ORGANIZATION_PLACEHOLDER`** org）で、 **`healthcare-assistant`** プロジェクトを開き、 **Experiments** ビューに移動します。先ほど実行した実験（例: `healthcare-experiment` または `lisinopril-eval`）が表示されます。
+Splunk AOコンソールで、 **`healthcare-assistant`** プロジェクトを開き、 **Experiments** ビューに移動します。先ほど実行した実験（例: `healthcare-experiment` または `lisinopril-eval`）が表示されます。
 
 <!-- TODO screenshot: Experiments list in the healthcare-assistant project showing the experiment run(s) with aggregate metric columns -->
-![Experiments list](../../images/galileo-experiments-list.png?width=750px)
+![Experiments list](../../images/splunk-ao-experiments-list.png?width=750px)
 
 {{< /step >}}
 
@@ -31,7 +31,7 @@ Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`ORG
 実験を開き、各メトリクスの集計スコアを確認します。Ground Truth Adherence、Prompt Injection、Chunk Attribution Utilization、Context Adherenceの各スコアは、データセット全体でエージェントがどのように動作したかを要約しています。
 
 <!-- TODO screenshot: experiment summary showing aggregate metric scores across the dataset -->
-![Experiment aggregate metrics](../../images/galileo-experiment-metrics.png?width=750px)
+![Experiment aggregate metrics](../../images/splunk-ao-experiment-metrics.png?width=750px)
 
 {{< /step >}}
 
@@ -42,7 +42,7 @@ Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`ORG
 個別の行を選択して、入力、エージェントの生成出力、参照出力、および行ごとのメトリクススコアを確認します。ここから基礎となるTraceを開くと、第4章で探索したものと同じネストされたSpanが表示されます。今回はスコア付きの実験行に紐付けられています。
 
 <!-- TODO screenshot: single experiment row detail showing input, generated output, reference output, per-row metric scores, and a link to the underlying trace -->
-![Experiment row detail](../../images/galileo-experiment-row-detail.png?width=750px)
+![Experiment row detail](../../images/splunk-ao-experiment-row-detail.png?width=750px)
 
 {{< /step >}}
 
@@ -53,7 +53,7 @@ Galileoコンソール（`https://console.multitenant.galileocloud.io`、 **`ORG
 2つの異なるモデルで実験を実行した場合、実行結果を並べて比較し、各メトリクスでどちらの構成がより高いスコアを得たかを確認します。これが、この章の最初に目指していた客観的な比較です。
 
 <!-- TODO screenshot: side-by-side comparison of two experiment runs (e.g., gpt-4o vs gpt-4o-mini) with metric deltas highlighted -->
-![Experiment comparison](../../images/galileo-experiment-comparison.png?width=750px)
+![Experiment comparison](../../images/splunk-ao-experiment-comparison.png?width=750px)
 
 {{< /step >}}
 

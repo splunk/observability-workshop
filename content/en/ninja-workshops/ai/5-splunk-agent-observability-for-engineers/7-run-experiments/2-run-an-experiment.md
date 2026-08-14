@@ -8,7 +8,7 @@ time: 5 minutes
 With the dataset uploaded, run an experiment. For each row, the script sends the `input` to
 the `HealthcareAgent`, collects the response, and scores it with the default metrics.
 
-{{< exercise title="Run a Galileo experiment" >}}
+{{< exercise title="Run a Splunk AO experiment" >}}
 
 {{< step title="Run with defaults" >}}
 
@@ -38,7 +38,7 @@ python experiments/run_experiment.py --experiment-name "lisinopril-eval" --model
 
 {{% notice title="Default metrics" style="info" %}}
 
-Each experiment scores responses with these built-in Galileo metrics:
+Each experiment scores responses with these built-in Splunk AO metrics:
 
 * **Ground Truth Adherence**: how closely the response matches the reference `output`.
 * **Prompt Injection**: whether the input attempts to subvert the agent's instructions.

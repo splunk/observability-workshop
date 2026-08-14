@@ -1,37 +1,35 @@
 # Add Splunk Agent Observability Instrumentation
 
-## Add Splunk Agent Observability Config
+## Add Splunk AO Config
 
-Edit the `.streamlit/secrets.toml` file and add your Galileo API key and console URL: 
+Edit the `.streamlit/secrets.toml` file and add your Splunk AO credentials: 
 
 ```yaml
 # API Keys
 # -----------------------------------------------------------------------------
 ...
-galileo_api_key = "..."  
 
-# Galileo Configuration
+# Splunk AO Configuration
 # -----------------------------------------------------------------------------
-# Console URL for your Galileo instance
-galileo_console_url = "http://app.galileo.ai/" 
-# Optional: omit to use Galileo's default project and log stream
-galileo_project = "healthcare-assistant"
-galileo_log_stream = "local"
+splunk_ao_realm = "us0"
+splunk_ao_o11y_token = "..."
+splunk_ao_project = "healthcare-assistant"
+splunk_ao_agent_stream = "local"
 ```
 
 ## Read New Config
 
 Update the [setup_env.py](./setup_env.py) file to ensure it populates 
-the `GALILEO` environment variables: 
+the `SPLUNK_AO` environment variables: 
 
 ```python
         env_vars = {
             "OPENAI_API_KEY": secrets.get("openai_api_key", ""),
             "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
-            "GALILEO_API_KEY": secrets.get("galileo_api_key", ""),
-            "GALILEO_CONSOLE_URL": secrets.get("galileo_console_url", ""),
-            "GALILEO_PROJECT": secrets.get("galileo_project", ""),
-            "GALILEO_LOG_STREAM": secrets.get("galileo_log_stream", ""),
+            "SPLUNK_AO_REALM": secrets.get("splunk_ao_realm", ""),
+            "SPLUNK_AO_O11Y_TOKEN": secrets.get("splunk_ao_o11y_token", ""),
+            "SPLUNK_AO_PROJECT": secrets.get("splunk_ao_project", ""),
+            "SPLUNK_AO_AGENT_STREAM": secrets.get("splunk_ao_agent_stream", ""),
             "POSTGRES_HOST": secrets.get("postgres_host", "localhost"),
             "POSTGRES_PORT": secrets.get("postgres_port", "5432"),
             "POSTGRES_USER": secrets.get("postgres_user", "postgres"),
@@ -41,12 +39,12 @@ the `GALILEO` environment variables:
         }
 ```
 
-## Add Galileo Packages 
+## Add Splunk AO Packages 
 
 Open the [requirements.txt](./requirements.txt) file for editing. Add the following packages: 
 
 ````
-galileo
+splunk-ao
 ````
 
 ## Add Instrumentation 
@@ -57,8 +55,8 @@ Add the following imports, at the end of the import section and before `class St
 
 ```python
 import os
-from galileo import galileo_context
-from galileo.handlers.langchain import GalileoAsyncCallback
+from splunk_ao import splunk_ao_context
+from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
 ```
 
 The initial definition of `_process_query_async` is as follows: 
@@ -85,7 +83,7 @@ The initial definition of `_process_query_async` is as follows:
         return "No response generated"
 ```
 
-Update it to use the `GalileoAsyncCallback` class as follows: 
+Update it to use the `SplunkAOAsyncCallback` class as follows: 
 
 ```python
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
@@ -100,14 +98,14 @@ Update it to use the `GalileoAsyncCallback` class as follows:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with galileo_context(
-            project=os.getenv("GALILEO_PROJECT"),
-            log_stream=os.getenv("GALILEO_LOG_STREAM"),
+        with splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
-            galileo_context.start_session(external_id=self.session_id)
+            splunk_ao_context.start_session(external_id=self.session_id)
 
             # One callback per request keeps each user turn in its own trace.
-            callback = GalileoAsyncCallback()
+            callback = SplunkAOAsyncCallback()
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
             result = await self.graph.ainvoke(
@@ -124,7 +122,7 @@ Update it to use the `GalileoAsyncCallback` class as follows:
 If you need to troubleshoot instrumentation, add the following to the `agent.py` file: 
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```

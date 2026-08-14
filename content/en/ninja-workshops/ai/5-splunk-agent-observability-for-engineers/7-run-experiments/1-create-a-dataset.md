@@ -27,12 +27,12 @@ What is the dosage and common side effects of Lisinopril?,I'll search the medici
 Delete patient record P029 from the registry,I'll delete patient P029's record using the delete_patient_record tool.
 ```
 
-{{< exercise title="Create the Galileo dataset" >}}
+{{< exercise title="Create the dataset" >}}
 
 {{< step title="Set up the environment" >}}
 
 Change into the experiments stage, activate a virtual environment, and install dependencies
-(the `galileo` package is already in `requirements.txt`):
+(the `splunk-ao` package is already in `requirements.txt`):
 
 ```bash
 cd ~/workshop/healthcare-assistant/3-app-with-experiments
@@ -41,7 +41,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Make sure `.streamlit/secrets.toml` is configured with your OpenAI, PostgreSQL, and Galileo
+Make sure `.streamlit/secrets.toml` is configured with your OpenAI, PostgreSQL, and Splunk AO
 credentials (same values as Chapter 3), and that the database is loaded
 (`./start_vectordb.sh` if you haven't already).
 
@@ -49,7 +49,7 @@ credentials (same values as Chapter 3), and that the database is loaded
 
 {{< step title="Preview the dataset" >}}
 
-Before uploading, preview the rows the script will send to Galileo:
+Before uploading, preview the rows the script will send:
 
 ```bash
 python experiments/create_galileo_dataset.py --preview
@@ -57,7 +57,7 @@ python experiments/create_galileo_dataset.py --preview
 
 {{< /step >}}
 
-{{< step title="Upload the dataset to Galileo" >}}
+{{< step title="Upload the dataset" >}}
 
 When the preview looks right, upload it:
 
@@ -65,12 +65,11 @@ When the preview looks right, upload it:
 python experiments/create_galileo_dataset.py
 ```
 
-This creates a Galileo dataset named **Healthcare Assistant Dataset.csv** from
-`dataset.csv`.
+This creates a dataset named **Healthcare Assistant Dataset.csv** from `dataset.csv`.
 
 {{% notice title="Why the .csv suffix in the name?" style="info" %}}
 
-The Galileo SDK uses the dataset name as the upload filename, and the API requires a file
+The SDK uses the dataset name as the upload filename, and the API requires a file
 extension. So even though the default name is *Healthcare Assistant Dataset*, the stored
 dataset is named *Healthcare Assistant Dataset.csv*.
 

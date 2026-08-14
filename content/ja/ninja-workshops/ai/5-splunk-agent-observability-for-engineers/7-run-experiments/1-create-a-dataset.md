@@ -25,11 +25,11 @@ What is the dosage and common side effects of Lisinopril?,I'll search the medici
 Delete patient record P029 from the registry,I'll delete patient P029's record using the delete_patient_record tool.
 ```
 
-{{< exercise title="Galileoデータセットの作成" >}}
+{{< exercise title="データセットの作成" >}}
 
 {{< step title="環境のセットアップ" >}}
 
-experimentsステージのディレクトリに移動し、仮想環境を有効化して依存関係をインストールします（ `galileo` パッケージは `requirements.txt` に含まれています）。
+experimentsステージのディレクトリに移動し、仮想環境を有効化して依存関係をインストールします（ `splunk-ao` パッケージは `requirements.txt` に含まれています）。
 
 ```bash
 cd ~/workshop/healthcare-assistant/3-app-with-experiments
@@ -38,13 +38,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-`.streamlit/secrets.toml` にOpenAI、PostgreSQL、Galileoの認証情報が設定されていることを確認してください（Chapter 3と同じ値）。また、データベースがロードされていることも確認してください（まだの場合は `./start_vectordb.sh` を実行します）。
+`.streamlit/secrets.toml` にOpenAI、PostgreSQL、Splunk AOの認証情報が設定されていることを確認してください（Chapter 3と同じ値）。また、データベースがロードされていることも確認してください（まだの場合は `./start_vectordb.sh` を実行します）。
 
 {{< /step >}}
 
 {{< step title="データセットのプレビュー" >}}
 
-アップロードする前に、スクリプトがGalileoに送信する行をプレビューします。
+アップロードする前に、スクリプトが送信する行をプレビューします。
 
 ```bash
 python experiments/create_galileo_dataset.py --preview
@@ -52,7 +52,7 @@ python experiments/create_galileo_dataset.py --preview
 
 {{< /step >}}
 
-{{< step title="Galileoへのデータセットのアップロード" >}}
+{{< step title="データセットのアップロード" >}}
 
 プレビューが正しければ、アップロードします。
 
@@ -60,11 +60,11 @@ python experiments/create_galileo_dataset.py --preview
 python experiments/create_galileo_dataset.py
 ```
 
-これにより、 `dataset.csv` から **Healthcare Assistant Dataset.csv** という名前のGalileoデータセットが作成されます。
+これにより、 `dataset.csv` から **Healthcare Assistant Dataset.csv** という名前のデータセットが作成されます。
 
 {{% notice title="名前に.csvサフィックスが付くのはなぜですか？" style="info" %}}
 
-Galileo SDKはデータセット名をアップロードファイル名として使用し、APIはファイル拡張子を必要とします。そのため、デフォルト名は *Healthcare Assistant Dataset* ですが、保存されるデータセットは *Healthcare Assistant Dataset.csv* という名前になります。
+SDKはデータセット名をアップロードファイル名として使用し、APIはファイル拡張子を必要とします。そのため、デフォルト名は *Healthcare Assistant Dataset* ですが、保存されるデータセットは *Healthcare Assistant Dataset.csv* という名前になります。
 
 {{% /notice %}}
 

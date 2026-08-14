@@ -7,7 +7,7 @@ time: 5 minutes
 
 データセットがアップロードされたら、実験を実行します。各行について、スクリプトは `input` を `HealthcareAgent` に送信し、レスポンスを収集して、デフォルトのメトリクスでスコアリングします。
 
-{{< exercise title="Galileo実験の実行" >}}
+{{< exercise title="Splunk AO実験の実行" >}}
 
 {{< step title="デフォルト設定で実行" >}}
 
@@ -35,7 +35,7 @@ python experiments/run_experiment.py --experiment-name "lisinopril-eval" --model
 
 {{% notice title="デフォルトメトリクス" style="info" %}}
 
-各実験は、以下のGalileo組み込みメトリクスでレスポンスをスコアリングします。
+各実験は、以下のSplunk AO組み込みメトリクスでレスポンスをスコアリングします。
 
 * **Ground Truth Adherence**: レスポンスが参照 `output` にどれだけ一致しているか。
 * **Prompt Injection**: 入力がエージェントの指示を覆そうとしていないか。
