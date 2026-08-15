@@ -57,16 +57,22 @@ Replace `[WORKSHOP]` with the full workshop path.
 {{% /tab %}}
 {{% tab title="Splunk Show instance" %}}
 
-Run this on your local computer after replacing `workshop-user` and
-`workshop-host` with the supplied SSH details:
+Run `scp` on your local computer, not in the SSH session. Use the same user,
+host, and port as the supplied SSH command. For example, if you connect with
+`ssh -p 2222 splunk@127.0.0.1`, enter:
 
 ```bash
-scp ~/Downloads/agent_config.yaml \
-  workshop-user@workshop-host:~/advanced-otel-workshop/1-agent/agent_config.yaml
+scp -P 2222 ~/Downloads/agent_config.yaml \
+  splunk@127.0.0.1:~/advanced-otel-workshop/1-agent/agent_config.yaml
 ```
 
-This example uses standard SSH port 22. If your facilitator supplies a
-different port or copy command, use those details instead.
+At the prompt, enter the password provided for your Splunk Show instance. If
+your supplied SSH command uses different connection details, use those values
+in the `scp` command. The `scp` port option is an uppercase `-P`.
+
+Do not use the host name displayed in the remote shell prompt, such as
+`ip-172-31-40-11`. That internal host name might not resolve from your local
+computer.
 
 {{% /tab %}}
 {{< /tabs >}}
