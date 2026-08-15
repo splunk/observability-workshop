@@ -60,10 +60,16 @@ and are not part of this cloud check.
 
 6. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
    choose a recent time range such as the last 15 minutes, and select **All
-   traces**.
-7. Filter for service `cinema-service` and operation `/movie-validator`.
-   Open a returned trace and confirm its span attributes include the sample
-   `user.*` fields and `otelcol.service.mode=agent`.
+   traces**. Filter for service `cinema-service` and operation
+   `/movie-validator`.
+
+   ![Trace Analyzer filtered to cinema-service and movie-validator with matching traces listed](../images/cloud-validation-trace-analyzer.png)
+
+7. Open a returned trace and select the `/movie-validator` span. In **Span
+   properties**, confirm that its attributes include the sample `user.*` fields
+   and `otelcol.service.mode=agent`.
+
+   ![Trace view with the movie-validator span selected and its attributes displayed in Span properties](../images/cloud-validation-trace-span-properties.png)
 
 Telemetry can take a few minutes to become searchable. If nothing appears,
 confirm the trace and workshop CPU metrics are present locally. Then inspect
