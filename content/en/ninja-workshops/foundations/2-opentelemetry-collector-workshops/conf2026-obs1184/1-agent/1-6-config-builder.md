@@ -5,19 +5,38 @@ weight: 6
 time: 7 minutes
 ---
 
-Upload the example `agent_config.yaml` to see its components and pipelines
-before you modify them.
+Upload `agent_config.yaml` to see its components and pipelines before you
+modify them.
 
 {{% exercise title="Open agent_config.yaml in Config Builder" %}}
 
-On the computer running your browser, open the
+Make `agent_config.yaml` available on the computer running your browser.
+
+{{< tabs id="config-builder-upload-file" >}}
+{{% tab title="Same computer" %}}
+
+Use `[WORKSHOP]/1-agent/agent_config.yaml`, which the setup script created on
+your computer.
+
+{{% /tab %}}
+{{% tab title="Splunk Show instance" %}}
+
+Open the
 [OBS1184 example agent configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml).
-On GitHub, select **Download raw file** and save the file as
-`agent_config.yaml`.
+On GitHub, select **Download raw file** and save `agent_config.yaml` on the
+computer running your browser.
+
+During the standard cloud-enabled Splunk Show setup, the setup script downloads
+this same configuration to the instance. Downloading another copy directly to
+your local computer gives Config Builder the expected file without an `scp`
+transfer or its possible SSH connection and file-path issues.
+
+{{% /tab %}}
+{{< /tabs >}}
 
 1. In Splunk Observability Cloud, open **Data Management > OTel Collector
    Config Builder**.
-2. Upload or import the downloaded `agent_config.yaml`.
+2. Upload or import `agent_config.yaml`.
 3. Open **Component Inventory**, **Pipelines**, and **Collector YAML**.
 
 {{% notice title="Keep credentials out of Config Builder" style="warning" %}}
