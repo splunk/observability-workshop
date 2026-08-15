@@ -7,15 +7,34 @@ time: 5 minutes
 
 ## Before you begin
 
-Use a Splunk Show instance, a Linux computer, or an Apple silicon Mac. You also
-need `bash`, `curl`, `jq`, and a text editor. If you use a Splunk Show instance,
-your local computer also needs `ssh` and `scp`.
+1. Pair up if helpful, and open the published OBS1184 workshop in your browser.
 
-Pairing is optional. For cloud verification, sign in or
-[create a free Splunk Observability Cloud organization](https://www.splunk.com/en_us/download/observability-cloud-free-edition.html).
+   **Workshop guide:** [Open the OBS1184 workshop](https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/prerequisites/)
+
+2. Open Splunk Observability Cloud. Choose one of these options:
+
+   - Sign in to the Observability Workshop organization provided with your
+     Splunk Show instance.
+   - Register for a free Splunk Observability Cloud organization and sign in.
+
+   **Registration:** [Register for Splunk Observability Cloud Free](https://www.splunk.com/en_us/download/observability-cloud-free-edition.html)
+
+3. Choose one supported execution path.
+
+   The workshop requires `bash`, `curl`, `jq`, a text editor, outbound HTTPS,
+   and free local ports `2222`, `4318`, and `13133`. The Splunk Show path also
+   requires `ssh` and `scp` on your local computer.
+
+   - **Splunk Show instance:** Connect with the supplied SSH command. Keep the
+     supplied SSH command and password handy because you use them in each new
+     terminal.
+   - **Linux laptop:** Use Terminal on an `x86_64`/`amd64` or
+     `arm64`/`aarch64` machine.
+   - **Apple silicon Mac:** Use Terminal locally.
 
 {{% notice title="Windows and Intel-based Mac computers" style="warning" %}}
-Use a Splunk Show instance if you have one of these computers.
+Connect to a Splunk Show instance to participate in this workshop remotely.
+Contact a facilitator if you need help.
 {{% /notice %}}
 
 {{% exercise title="Set up the workshop" %}}
@@ -50,8 +69,8 @@ Connect to the Splunk Show instance with the supplied SSH command, then run:
 ```bash
 cd ~/advanced-otel-workshop
 curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -65,8 +84,8 @@ Use this tab for an `x86_64` or `amd64` Linux laptop.
 
 ```bash
 curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -77,8 +96,8 @@ Use this tab when `uname -m` reports `arm64` or `aarch64`.
 
 ```bash
 curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_arm64 -o otelcol
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/loadgen/build/loadgen-linux-arm64 -o loadgen
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -87,8 +106,8 @@ chmod +x setup-workshop.sh
 
 ```bash
 curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_darwin_arm64 -o otelcol
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/loadgen/build/loadgen-darwin-arm64 -o loadgen
-curl -fL https://github.com/chentaow-splunk/observability-workshop/raw/refs/heads/codex/advanced-collector-conf2026/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-darwin-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 

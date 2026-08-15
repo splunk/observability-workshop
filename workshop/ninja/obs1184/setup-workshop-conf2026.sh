@@ -11,9 +11,9 @@ setup_failed() {
 trap setup_failed ERR
 
 collector_version="0.157.0"
-repo_owner="chentaow-splunk"
+repo_owner="splunk"
 repo_name="observability-workshop"
-repo_ref="codex/advanced-collector-conf2026"
+repo_ref="main"
 asset_path="workshop/ninja/obs1184"
 workshop_root="${PWD}"
 agent_dir="${workshop_root}/1-agent"
