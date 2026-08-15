@@ -123,11 +123,12 @@ chmod +x setup-workshop.sh
 ```
 
 At the cloud-export prompt, press **Enter** to send metrics and traces to
-Splunk Observability Cloud. The script then asks for your realm and access
-token. On a Splunk Show instance, the supplied realm appears as the default,
-and an access token might already be available. Press **Enter** to use each
-supplied value, or enter a replacement. Token characters are hidden while you
-type. To keep all workshop data local, enter `n`.
+Splunk Observability Cloud. To keep all workshop data local, enter `n`.
+The script then asks for your realm and access token. On a Splunk Show
+instance, the supplied realm appears as the default, and an access token is
+already available. Press **Enter** to use each supplied value, or enter a
+replacement, such as the realm and access token for your Splunk Observability
+Cloud Free organization. Token characters are hidden while you type.
 
 Setup creates one agent configuration:
 

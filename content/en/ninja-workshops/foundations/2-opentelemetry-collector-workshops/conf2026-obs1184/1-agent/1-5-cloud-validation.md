@@ -2,6 +2,7 @@
 title: 1.5 Validate Splunk Observability Cloud
 linkTitle: 1.5 Cloud validation
 weight: 5
+time: 3 minutes
 ---
 
 This optional step confirms that the trace and metrics exporters can reach the

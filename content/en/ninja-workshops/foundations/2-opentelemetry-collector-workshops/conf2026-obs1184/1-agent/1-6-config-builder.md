@@ -2,6 +2,7 @@
 title: 1.6 Upload the configuration to Config Builder
 linkTitle: 1.6 Upload config YAML
 weight: 6
+time: 7 minutes
 ---
 
 Upload `agent_config.yaml` to see its components and pipelines before you

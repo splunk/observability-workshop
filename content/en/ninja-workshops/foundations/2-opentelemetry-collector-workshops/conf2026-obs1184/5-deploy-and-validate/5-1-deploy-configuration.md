@@ -2,6 +2,7 @@
 title: 5.1 Deploy the configuration
 linkTitle: 5.1 Deploy the configuration
 weight: 1
+time: 3 minutes
 ---
 
 {{% exercise title="Download and start the completed configuration" %}}

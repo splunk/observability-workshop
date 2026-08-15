@@ -2,6 +2,7 @@
 title: 1.2 Validate host metrics
 linkTitle: 1.2 Validate host metrics
 weight: 2
+time: 2 minutes
 ---
 
 {{% exercise title="Validate the workshop metrics pipeline locally" %}}

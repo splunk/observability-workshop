@@ -2,6 +2,7 @@
 title: 1.3 Send traces to the agent
 linkTitle: 1.3 Send traces
 weight: 3
+time: 2 minutes
 ---
 
 {{% exercise title="Send a test trace" %}}

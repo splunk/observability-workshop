@@ -2,6 +2,7 @@
 title: 1.4 Send logs
 linkTitle: 1.4 Send logs
 weight: 4
+time: 3 minutes
 ---
 
 {{% exercise title="Send logs through the pipeline" %}}

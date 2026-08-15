@@ -2,6 +2,7 @@
 title: 5.2 Validate the configuration
 linkTitle: 5.2 Validate the configuration
 weight: 2
+time: 7 minutes
 ---
 
 Keep the updated Collector running in the **Agent terminal**. Run each command
