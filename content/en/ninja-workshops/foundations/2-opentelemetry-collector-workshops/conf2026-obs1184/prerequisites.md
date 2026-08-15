@@ -25,12 +25,18 @@ time: 5 minutes
    and free local ports `2222`, `4318`, and `13133`. The Splunk Show path also
    requires `ssh` and `scp` on your local computer.
 
-   - **Splunk Show instance:** Connect with the supplied SSH command. Keep the
-     supplied SSH command and password handy because you use them in each new
-     terminal.
-   - **Linux laptop:** Use Terminal on an `x86_64`/`amd64` or
-     `arm64`/`aarch64` machine.
-   - **Apple silicon Mac:** Use Terminal locally.
+   - **Splunk Show instance:** Open a terminal on your computer and connect to
+     the Splunk Show instance with the supplied SSH command. Keep the supplied
+     SSH command and password handy because you use them in each new terminal.
+     For example, enter:
+
+     ```bash
+     ssh -p 2222 splunk@127.0.0.1
+     ```
+
+     At the prompt, enter the provided password.
+   - **Linux laptop or Apple silicon Mac:** Use Terminal locally. Linux systems
+     can use an `x86_64`/`amd64` or `arm64`/`aarch64` processor.
 
 {{% notice title="Windows and Intel-based Mac computers" style="warning" %}}
 Connect to a Splunk Show instance to participate in this workshop remotely.
