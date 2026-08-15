@@ -5,14 +5,14 @@ weight: 1
 time: 3 minutes
 ---
 
-{{% exercise title="Download and start the completed configuration" %}}
+{{% exercise title="Start the completed configuration" %}}
 
 You kept one Config Builder project open while completing Chapters 2 through
 4. Deploying it now applies the filter, sensitive-data protection, and log
 transformation together. A single restart also makes the before-and-after
 validation easier to follow.
 
-{{< step "Download the YAML" "1" >}}
+{{< step "Review the completed YAML" "1" >}}
 
 In **Collector YAML**, confirm:
 
@@ -26,7 +26,20 @@ In **Collector YAML**, confirm:
   `splunk_hec/profiling`. Do not paste HEC credentials into the YAML; the
   exporters continue to reference environment variables.
 
+{{< tabs id="completed-config-source" >}}
+{{% tab title="Same computer" %}}
+
 Select **Download YAML** and save the file as `agent_config.yaml`.
+
+{{% /tab %}}
+{{% tab title="Splunk Show instance" %}}
+
+You do not need to download or transfer the YAML. To avoid file-transfer and
+copy-and-paste issues, Step 2 uses the completed configuration that is already
+available on the Splunk Show instance.
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% notice title="Keep credentials outside the YAML" style="warning" %}}
 The YAML must contain environment-variable references, not token values.
@@ -36,14 +49,8 @@ The YAML must contain environment-variable references, not token values.
 
 {{< step "Replace the running configuration" "2" >}}
 
-In the **Agent terminal**, press `Ctrl-C` to stop the agent. In the **Command
-terminal**, back up the starter file:
-
-```bash
-test -f agent_config.start.yaml || cp agent_config.yaml agent_config.start.yaml
-```
-
-Put the downloaded file at `[WORKSHOP]/1-agent/agent_config.yaml`.
+In the **Agent terminal**, press `Ctrl-C` to stop the agent. Then select the tab
+for your execution path.
 
 {{< tabs id="config-transfer" >}}
 {{% tab title="Same computer" %}}
@@ -57,25 +64,28 @@ Replace `[WORKSHOP]` with the full workshop path.
 {{% /tab %}}
 {{% tab title="Splunk Show instance" %}}
 
-Run `scp` on your local computer, not in the SSH session. Use the same user,
-host, and port as the supplied SSH command. For example, if you connect with
-`ssh -p 2222 splunk@127.0.0.1`, enter:
+In the **Command terminal** on the Splunk Show instance, copy the completed
+configuration into the agent folder:
 
 ```bash
-scp -P 2222 ~/Downloads/agent_config.yaml \
-  splunk@127.0.0.1:~/advanced-otel-workshop/1-agent/agent_config.yaml
+cp ~/workshop/ninja/obs1184/agent_config.solution.yaml \
+  ~/advanced-otel-workshop/1-agent/agent_config.yaml
 ```
 
-At the prompt, enter the password provided for your Splunk Show instance. If
-your supplied SSH command uses different connection details, use those values
-in the `scp` command. The `scp` port option is an uppercase `-P`.
-
-Do not use the host name displayed in the remote shell prompt, such as
-`ip-172-31-40-11`. That internal host name might not resolve from your local
-computer.
+This local copy avoids `scp` and does not require you to paste the completed
+YAML into the SSH session.
 
 {{% /tab %}}
 {{< /tabs >}}
+
+{{% notice title="Recovery copy" style="info" %}}
+If you need a new copy of the completed configuration, Splunk Show attendees
+can copy
+`~/workshop/ninja/obs1184/agent_config.solution.yaml` again. Attendees running
+the Collector on the same computer as the browser can download
+[agent_config.solution.yaml](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.solution.yaml)
+and copy it to `[WORKSHOP]/1-agent/agent_config.yaml`.
+{{% /notice %}}
 
 Move the earlier plain-text log so the File Log receiver reads only the new JSON
 test data:
@@ -87,6 +97,13 @@ test ! -f quotes.log || mv quotes.log quotes.log.before-config-builder
 {{< /step >}}
 
 {{< step "Restart the agent" "3" >}}
+
+{{% notice title="Stop the previous Collector first" style="warning" %}}
+Only one Collector can listen on the workshop ports. Make sure the previous
+Collector stopped after you pressed `Ctrl-C`. In the **Command terminal**, run
+`ps aux | grep '[o]telcol'`. If the command lists the workshop Collector,
+return to its terminal and press `Ctrl-C` before you continue.
+{{% /notice %}}
 
 ```bash
 source ../workshop-env.sh
@@ -103,10 +120,22 @@ Leave the agent running for Step 5.2.
 
 {{% expand title="If the agent does not start" %}}
 
-Use the component and field named in the Collector error to correct the Config
-Builder project. Download the YAML again, replace `agent_config.yaml`, and
-restart the agent. If `workshop-env.sh` is missing, rerun
-`[WORKSHOP]/setup-workshop.sh`.
+1. Read the first startup error. Collector errors usually identify the
+   component, configuration field, or network address that caused the failure.
+2. If the error includes `address already in use`, run
+   `ps aux | grep '[o]telcol'`. Stop the previous workshop Collector with
+   `Ctrl-C`, then start the agent again.
+3. To see more Collector diagnostics, restart it with debug logging:
+
+   ```bash
+   source ../workshop-env.sh
+   SPLUNK_COLLECTOR_LOG_LEVEL=debug ../otelcol --config=agent_config.yaml
+   ```
+
+4. If the error identifies a component or field in `agent_config.yaml`, compare
+   it with the completed configuration described in the **Recovery copy** note.
+   Replace the file with that recovery copy if you cannot resolve the error.
+5. If `workshop-env.sh` is missing, rerun `[WORKSHOP]/setup-workshop.sh`.
 
 {{% /expand %}}
 

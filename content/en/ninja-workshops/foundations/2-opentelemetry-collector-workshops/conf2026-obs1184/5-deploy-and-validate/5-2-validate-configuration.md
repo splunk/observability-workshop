@@ -274,30 +274,4 @@ searchable.
 4. Search for operation `/_healthz` over the same test period and confirm that
    no workshop health-check spans were exported.
 
-### Confirm host metrics
-
-Print the exact host filter detected by the agent:
-
-```bash
-jq -r '
-  .resourceMetrics[].resource.attributes[]
-  | select(.key == "host.name")
-  | "host.name:\(.value.stringValue)"
-' ./agent-metrics.out | sort -u
-```
-
-Open **Infrastructure > Hosts**, paste the resulting
-`host.name:<detected-host-name>` value into the filter bar, and confirm recent
-CPU, memory, load, or network data from the normal `metrics` pipeline.
-
-The workshop `logs/workshop` pipeline intentionally exports to local debug and
-`agent-logs.out`; it does not send these generated quote logs to Splunk
-Observability Cloud.
-
-See
-[Search traces using Trace Analyzer](https://help.splunk.com/en/splunk-observability-cloud/monitor-application-performance/manage-services-spans-and-traces-in-splunk-apm/search-traces-using-trace-analyzer),
-[View spans within a trace](https://help.splunk.com/splunk-observability-cloud/monitor-application-performance/manage-services-spans-and-traces-in-splunk-apm/view-and-filter-for-spans-within-a-trace),
-and
-[Monitor hosts](https://help.splunk.com/en/splunk-observability-cloud/monitor-infrastructure/monitor-services-and-hosts/monitor-hosts).
-
-{{< checkpoint "Local output proves filtering, attribute changes, redaction, and log transformation. Cloud-connected attendees can also verify processed traces and host metrics in Splunk Observability Cloud." >}}
+{{< checkpoint "Local output proves filtering, attribute changes, redaction, and log transformation. Cloud-connected attendees can also verify processed traces in Splunk Observability Cloud." >}}
