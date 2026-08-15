@@ -5,40 +5,19 @@ weight: 6
 time: 7 minutes
 ---
 
-Upload `agent_config.yaml` to see its components and pipelines before you
-modify them.
+Upload the example `agent_config.yaml` to see its components and pipelines
+before you modify them.
 
 {{% exercise title="Open agent_config.yaml in Config Builder" %}}
 
-Make `agent_config.yaml` available to the computer running your browser.
-
-{{< tabs id="config-builder-upload-file" >}}
-{{% tab title="Same computer" %}}
-
-Select `[WORKSHOP]/1-agent/agent_config.yaml` when Config Builder opens the file
-picker.
-
-{{% /tab %}}
-{{% tab title="Splunk Show instance" %}}
-
-Copy the current file from the instance to your local computer. Replace
-`workshop-user` and `workshop-host` with the supplied SSH details:
-
-```bash
-scp \
-  workshop-user@workshop-host:~/advanced-otel-workshop/1-agent/agent_config.yaml \
-  ~/Downloads/agent_config.yaml
-```
-
-This example uses standard SSH port 22. If your facilitator supplies a
-different port or copy command, use those details instead.
-
-{{% /tab %}}
-{{< /tabs >}}
+On the computer running your browser, open the
+[OBS1184 example agent configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml).
+On GitHub, select **Download raw file** and save the file as
+`agent_config.yaml`.
 
 1. In Splunk Observability Cloud, open **Data Management > OTel Collector
    Config Builder**.
-2. Upload or import `agent_config.yaml`.
+2. Upload or import the downloaded `agent_config.yaml`.
 3. Open **Component Inventory**, **Pipelines**, and **Collector YAML**.
 
 {{% notice title="Keep credentials out of Config Builder" style="warning" %}}
