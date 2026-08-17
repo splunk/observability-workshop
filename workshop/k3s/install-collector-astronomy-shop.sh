@@ -13,4 +13,4 @@ helm upgrade --install splunk-otel-collector \
 --set="agent.featureGates=splunk.opamp.enabled" \
 --set="clusterReceiver.featureGates=splunk.opamp.enabled" \
 splunk-otel-collector-chart/splunk-otel-collector \
--f ~/workshop/apm/splunk-astronomy-shop/splunk-astronomy-shop-latest.yaml
+-f ~/workshop/k3s/splunk-astronomy-shop-latest-values.yaml
