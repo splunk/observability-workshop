@@ -1,13 +1,30 @@
-# splunk-astronomy-shop helm values
-# Version:    2.0.7
-# Generated:  2026-07-30T14:01:24Z
-# Source:     kubernetes/splunk-astronomy-shop-2.0.7-values.yaml @ 6174220
+# =============================================================================
+# Splunk Astronomy Shop — Splunk OpenTelemetry Collector Helm values
+# =============================================================================
+# Purpose: values file for the splunk-otel-collector-chart Helm chart. Configures
+#          the OTel Collector (agent daemonset + cluster-receiver) that ingests
+#          the demo's telemetry and forwards it to Splunk Observability Cloud /
+#          Splunk Platform. This is NOT a demo app manifest.
+#
+# Version:    2.0.8
+# Generated:  2026-08-14T14:18:55Z
+# Source:     kubernetes/splunk-astronomy-shop-2.0.8-values.yaml @ 8f6d0bf
+#
+# Requires: splunk-otel-collector-chart >= 0.157.0
+#   (0.157.0 renamed the kubeletstats receiver to kubelet_stats and ships the
+#    postgresql receiver query-sample fix this config relies on; older charts
+#    fail schema validation on kubelet_stats.)
 #
 # Deploy:
 #   helm upgrade --install splunk-otel-collector \
 #     splunk-otel-collector-chart/splunk-otel-collector \
-#     -f splunk-astronomy-shop-2.0.7-values.yaml
+#     --version 0.157.0 -n <namespace> \
+#     -f splunk-astronomy-shop-2.0.8-values.yaml
 #
+# Note: at release time stage-values-with-header.sh stamps the release version
+#       onto the `# Version:` line above and injects Generated/Source provenance
+#       into the published asset copy; this in-repo file stays untouched.
+# =============================================================================
 clusterReceiver:
   extraEnvs:
   - name: WORKSHOP_REALM
@@ -54,14 +71,6 @@ agent:
       receiver_creator:
         watch_observers: [k8s_observer]
         receivers:
-          mysql/online-boutique:
-            rule: type == "port" && pod.name matches "mysql" && port == 3306
-            config:
-              tls:
-                insecure: true
-              username: root
-              password: root
-              database: LxvGChW075
           redis:
             rule: type == "port" && pod.name matches "(redis|valkey)-cart" && port == 6379
             config:
@@ -212,6 +221,45 @@ agent:
                   enabled: true
                 postgresql.connection.max:
                   enabled: true
+          # MySQL receiver - discovered by agent on same node as the mysql pod.
+          mysql/main:
+            rule: type == "port" && pod.name matches "mysql-telescope" && port == 3306
+            resource_attributes:
+              k8s.pod.name: '`pod.name`'
+              db.name: '`pod.annotations["splunk.com/mysql.database"]`'
+            config:
+              endpoint: '`endpoint`'
+              username: otel-user
+              password: otel-user-password
+              collection_interval: 10s
+              resource_attributes:
+                mysql.instance.endpoint:
+                  enabled: true
+              events:
+                db.server.query_sample:
+                  enabled: true
+                db.server.top_query:
+                  enabled: true
+          # Oracle receiver - connects as SYSTEM to the FREEPDB1 pluggable DB.
+          oracledb/main:
+            rule: type == "port" && pod.name matches "oracle-telescope" && port == 1521
+            resource_attributes:
+              k8s.pod.name: '`pod.name`'
+              db.name: '`pod.annotations["splunk.com/oracledb.service"]`'
+            config:
+              endpoint: '`endpoint`'
+              service: FREEPDB1
+              username: system
+              password: oracle
+              collection_interval: 10s
+              resource_attributes:
+                oracledb.instance.name:
+                  enabled: true
+              events:
+                db.server.query_sample:
+                  enabled: true
+                db.server.top_query:
+                  enabled: true
       receiver_creator/kafka:
         watch_observers: [k8s_observer]
         receivers:
@@ -230,6 +278,18 @@ agent:
         headers:
           X-SF-Token: ${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}
           X-splunk-instrumentation-library: dbmon
+        logs_endpoint: https://ingest.${WORKSHOP_REALM}.signalfx.com/v3/event
+        sending_queue:
+          batch:
+            flush_timeout: 15s
+            max_size: 10485760 # 10 MiB
+            sizer: bytes
+      # Exports secureapp security events as logs -> SecureApp /v3/event.
+      # Fed by the routing/logs connector below (scope == "secureapp").
+      otlp_http/secureapp:
+        headers:
+          X-SF-Token: ${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}
+          X-splunk-instrumentation-library: secureapp
         logs_endpoint: https://ingest.${WORKSHOP_REALM}.signalfx.com/v3/event
         sending_queue:
           batch:
@@ -314,6 +374,14 @@ agent:
       transform/dbmon:
         error_mode: ignore
         metric_statements:
+          # PostgreSQL: the postgresql receiver emits no server.address/server.port
+          # (the sqlserver receiver does), which the monitored-DB entity keys on.
+          # Inject them so postgres resolves to a monitored node, not inferred.
+          - conditions:
+              - resource.attributes["db.system.name"] == "postgresql" and resource.attributes["server.address"] == nil
+            statements:
+              - set(resource.attributes["server.address"], "postgresql")
+              - set(resource.attributes["server.port"], 5432)
           # SQL Server: use instance name for identification
           - conditions:
               - resource.attributes["sqlserver.instance.name"] != nil
@@ -325,21 +393,40 @@ agent:
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["postgresql.database.name"]], ""))
           # PostgreSQL fallback: use injected db.name from pod annotation
+          # NOTE: conditions in a list are ORed, so they must be AND-joined into a
+          # single expression — otherwise the guards don't restrict and the
+          # pod-name last-resort rule (below) overwrites this with an unstable name.
           - conditions:
-              - resource.attributes["db.name"] != nil
-              - resource.attributes["postgresql.database.name"] == nil
-              - resource.attributes["sqlserver.instance.name"] == nil
+              - resource.attributes["db.name"] != nil and resource.attributes["postgresql.database.name"] == nil and resource.attributes["sqlserver.instance.name"] == nil
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["db.name"]], ""))
           # PostgreSQL last resort: use k8s pod name
           - conditions:
-              - resource.attributes["k8s.pod.name"] != nil
-              - resource.attributes["postgresql.database.name"] == nil
-              - resource.attributes["db.name"] == nil
-              - resource.attributes["sqlserver.instance.name"] == nil
+              - resource.attributes["k8s.pod.name"] != nil and resource.attributes["postgresql.database.name"] == nil and resource.attributes["db.name"] == nil and resource.attributes["sqlserver.instance.name"] == nil
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["k8s.pod.name"]], ""))
         log_statements:
+          # PostgreSQL: inject server.address/server.port (the postgresql receiver
+          # emits neither, unlike sqlserver) so it resolves to a monitored DB node.
+          # On dbmon log events these are RECORD-level attributes (matching where
+          # the sqlserver receiver puts server.address), so use attributes[...].
+          - conditions:
+              - log.attributes["db.system.name"] == "postgresql" and log.attributes["server.address"] == nil
+            statements:
+              - set(log.attributes["server.address"], "postgresql")
+              - set(log.attributes["server.port"], 5432)
+          # MySQL: same gap — inject server.address/server.port on dbmon events.
+          - conditions:
+              - log.attributes["db.system.name"] == "mysql" and log.attributes["server.address"] == nil
+            statements:
+              - set(log.attributes["server.address"], "mysql-telescope")
+              - set(log.attributes["server.port"], 3306)
+          # Oracle: same gap — inject server.address/server.port on dbmon events.
+          - conditions:
+              - log.attributes["db.system.name"] == "oracle" and log.attributes["server.address"] == nil
+            statements:
+              - set(log.attributes["server.address"], "oracle-telescope")
+              - set(log.attributes["server.port"], 1521)
           # SQL Server: use instance name for identification
           - conditions:
               - resource.attributes["sqlserver.instance.name"] != nil
@@ -351,40 +438,67 @@ agent:
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["postgresql.database.name"]], ""))
           # PostgreSQL fallback: use injected db.name from pod annotation
+          # NOTE: conditions in a list are ORed, so they must be AND-joined into a
+          # single expression — otherwise the guards don't restrict and the
+          # pod-name last-resort rule (below) overwrites this with an unstable name.
           - conditions:
-              - resource.attributes["db.name"] != nil
-              - resource.attributes["postgresql.database.name"] == nil
-              - resource.attributes["sqlserver.instance.name"] == nil
+              - resource.attributes["db.name"] != nil and resource.attributes["postgresql.database.name"] == nil and resource.attributes["sqlserver.instance.name"] == nil
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["db.name"]], ""))
           # PostgreSQL last resort: use k8s pod name
           - conditions:
-              - resource.attributes["k8s.pod.name"] != nil
-              - resource.attributes["postgresql.database.name"] == nil
-              - resource.attributes["db.name"] == nil
-              - resource.attributes["sqlserver.instance.name"] == nil
+              - resource.attributes["k8s.pod.name"] != nil and resource.attributes["postgresql.database.name"] == nil and resource.attributes["db.name"] == nil and resource.attributes["sqlserver.instance.name"] == nil
             statements:
               - set(resource.attributes["service.instance.id"], Concat([resource.attributes["deployment.environment"], " - ", resource.attributes["k8s.pod.name"]], ""))
+
+    connectors:
+      # Split OTLP logs by instrumentation scope. Security-event records emitted
+      # by the secureapp sidecars' "secureapp" logger (scope == "secureapp") are
+      # routed to logs/secureapp -> /v3/event; all other logs stay on the
+      # default logs pipeline (HEC).
+      routing/logs:
+        default_pipelines: [logs]
+        table:
+          - context: log
+            condition: instrumentation_scope.name == "secureapp"
+            pipelines: [logs/secureapp]
 
     service:
       pipelines:
         metrics:
           exporters: [signalfx]
-          processors: [memory_limiter, k8s_attributes, batch, resourcedetection, resource, resource/add_environment, resource/strip_verbose, transform/dbmon]
-          receivers: [host_metrics, kubeletstats, otlp, receiver_creator, receiver_creator/kafka]
+          processors: [memory_limiter, k8s_attributes, batch, resource_detection, resource, resource/add_environment, resource/strip_verbose, transform/dbmon]
+          receivers: [host_metrics, kubelet_stats, otlp, receiver_creator, receiver_creator/kafka]
         traces:
           # signalfx exporter removed from traces — chart 0.153.1 align.
           # OTLP alone is sufficient for trace correlation; dropping signalfx
           # here reduces load on the exporter currently timing out under
           # back-pressure on the cluster-receiver.
           exporters: [otlp_http]
-          processors: [memory_limiter, filter/drop_flagd, transform/dc_not_error, k8s_attributes, batch, resourcedetection, resource, resource/add_environment]
+          processors: [memory_limiter, filter/drop_flagd, transform/dc_not_error, k8s_attributes, batch, resource_detection, resource, resource/add_environment]
           receivers: [otlp, jaeger, zipkin]
         # DBMon logs pipeline - sends query samples and top queries to Splunk O11y
         logs/dbmon:
           receivers: [receiver_creator]
-          processors: [memory_limiter, batch, resourcedetection, resource, resource/add_environment, transform/dbmon]
+          processors: [memory_limiter, batch, resource_detection, resource, resource/add_environment, transform/dbmon]
           exporters: [otlp_http/dbmon]
+        # SecureApp logs routing. otlp logs enter via logs/split, the
+        # routing/logs connector splits scope=="secureapp" off to /v3/event,
+        # everything else falls through to the default logs pipeline (HEC).
+        # The logs pipeline below overrides the chart default to swap the otlp
+        # receiver for routing/logs; receivers/processors/exporters otherwise
+        # mirror the chart default (splunk-otel-collector logs pipeline).
+        logs:
+          receivers: [file_log, routing/logs]
+          processors: [memory_limiter, k8s_attributes, filter/logs, batch, resource_detection, resource, resource/logs, resource/add_environment]
+          exporters: [splunk_hec/o11y, splunk_hec/platform_logs]
+        logs/split:
+          receivers: [otlp]
+          exporters: [routing/logs]
+        logs/secureapp:
+          receivers: [routing/logs]
+          processors: [memory_limiter, batch]
+          exporters: [otlp_http/secureapp]
 
 logsCollection:
   extraFileLogs:
