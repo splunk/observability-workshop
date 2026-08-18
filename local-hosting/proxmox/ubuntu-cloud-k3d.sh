@@ -621,7 +621,7 @@ write_files:
         rum_token: $RUM_TOKEN
         hec_token: $HEC_TOKEN
         hec_url: $HEC_URL
-        url: http://host.k3d.internal
+        url: http://frontend-proxy:8080
 CLOUDCFG_DYNAMIC
 
 cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
@@ -785,12 +785,42 @@ cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
       . /etc/o11y-workshop.env
       . /usr/local/lib/o11y-workshop/lib.sh
 
+      # Workshop content is downloaded when a workshop VM is created — never
+      # baked into a template — so every instance picks up the latest GitHub
+      # release instead of whatever was current when the template was built.
+      download_workshop_content() {
+        /usr/local/sbin/workshop-stage stage 'Downloading workshop content'
+        fetch -o /tmp/workshop.zip https://github.com/splunk/observability-workshop/archive/main.zip
+        unzip -qq /tmp/workshop.zip -d /home/splunk/
+        rm -f /tmp/workshop.zip
+        mkdir -p /home/splunk/workshop
+        mv /home/splunk/observability-workshop-main/workshop/* /home/splunk/workshop
+        mv /home/splunk/workshop/ansible/diab-*.yml /home/splunk
+        rm -rf /home/splunk/observability-workshop-main
+        rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
+
+        # Use the staging build of demo-in-a-box when selected and available
+        if [ "$DIAB_VERSION" = "staging" ] && [ -f /home/splunk/workshop/k3s/demo-in-a-box-staging.zip ]; then
+          cp /home/splunk/workshop/k3s/demo-in-a-box-staging.zip /home/splunk/workshop/k3s/demo-in-a-box.zip
+        fi
+        mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
+
+        # Splunk Observability Content Contrib repo
+        fetch -o /tmp/content-contrib.zip https://github.com/splunk/observability-content-contrib/archive/main.zip
+        unzip -qq /tmp/content-contrib.zip -d /home/splunk/
+        rm -f /tmp/content-contrib.zip
+        mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
+      }
+
       /usr/local/sbin/workshop-stage reset
       exec >>/var/log/o11y-workshop-provision.log 2>&1
       trap '/usr/local/sbin/workshop-stage fail "$?"' ERR
 
+      # Clones inherit the template's tools; only the workshop content is
+      # fetched fresh.
       if [ "$USE_TEMPLATE_CLONE" = "true" ]; then
         /usr/local/sbin/workshop-stage stage 'Using the reusable workshop template'
+        download_workshop_content
         exit 0
       fi
 
@@ -862,27 +892,11 @@ cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
       unset TAG
       rm -f /tmp/k3d-install.sh
 
-      /usr/local/sbin/workshop-stage stage 'Downloading workshop content'
-      fetch -o /tmp/workshop.zip https://github.com/splunk/observability-workshop/archive/main.zip
-      unzip -qq /tmp/workshop.zip -d /home/splunk/
-      rm -f /tmp/workshop.zip
-      mkdir -p /home/splunk/workshop
-      mv /home/splunk/observability-workshop-main/workshop/* /home/splunk/workshop
-      mv /home/splunk/workshop/ansible/diab-*.yml /home/splunk
-      rm -rf /home/splunk/observability-workshop-main
-      rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
-
-      # Use the staging build of demo-in-a-box when selected and available
-      if [ "$DIAB_VERSION" = "staging" ] && [ -f /home/splunk/workshop/k3s/demo-in-a-box-staging.zip ]; then
-        cp /home/splunk/workshop/k3s/demo-in-a-box-staging.zip /home/splunk/workshop/k3s/demo-in-a-box.zip
+      # Template builds stop here: content is fetched by the instance, not
+      # the template.
+      if [ "$TEMPLATE_MODE" != "true" ]; then
+        download_workshop_content
       fi
-      mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
-
-      # Splunk Observability Content Contrib repo
-      fetch -o /tmp/content-contrib.zip https://github.com/splunk/observability-content-contrib/archive/main.zip
-      unzip -qq /tmp/content-contrib.zip -d /home/splunk/
-      rm -f /tmp/content-contrib.zip
-      mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
 
   # Template builds cache the k3s and workshop service images so each clone
   # can create a unique cluster without downloading them again.
@@ -1002,6 +1016,16 @@ cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
         fi
         echo "${CHAOS_MESH_INSTALLER_SHA256}  ${CHAOS_MESH_INSTALLER}" | sha256sum -c -
         bash "$CHAOS_MESH_INSTALLER" --k3s --version "$CHAOS_MESH_VERSION"
+
+        # Point the RUM load generators at the VM's external address so they
+        # exercise the same ingress path as a real user. The DHCP address is
+        # unknown when the snippet is rendered on the Proxmox host, so it is
+        # resolved here at deploy time; on failure the secret keeps the
+        # in-cluster frontend-proxy fallback.
+        PRIMARY_IP=$(ip -4 route get 1.1.1.1 2>/dev/null | awk '{for (i=1; i<NF; i++) if ($i == "src") {print $(i+1); exit}}')
+        if [ -n "$PRIMARY_IP" ]; then
+          sed -i "s|^\( *url:\).*|\1 http://${PRIMARY_IP}|" /home/splunk/workshop-secrets.yaml
+        fi
         kubectl apply -f /home/splunk/workshop-secrets.yaml
 
         /usr/local/sbin/workshop-stage stage 'Checking Kubernetes readiness'
