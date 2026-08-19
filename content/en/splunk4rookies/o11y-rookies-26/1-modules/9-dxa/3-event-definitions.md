@@ -36,11 +36,10 @@ The **element picker** lets product teams define click events by selecting eleme
 2. Review the list of pre-built definitions. Look for events related to:
    - **Ask AI** interactions and quick prompts
    - Checkout steps (homepage, product page, cart, place order, order confirmation)
-   - Frustration-related clicks (for example, the **Show All Reviews** button)
 3. Select one definition and review its filter criteria — note how event category and tags define what counts as that event.
 4. Check the **Occurrences** preview to see matching events from real workshop sessions.
 
-<!-- TODO screenshot: Event Definitions tab listing pre-built definitions for Ask AI, checkout, and frustration events -->
+![List of event definitions for Ask AI quick prompts](../images/event-definitions.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}
