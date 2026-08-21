@@ -75,7 +75,8 @@
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;To stop that from happening, let&amp;rsquo;s detect if our test is taking more than 50 seconds.&lt;/p&gt;</description></item><item><title>5. Create Detector</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-create-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-create-detector/</guid><description>&lt;section class="exercise"&gt;
+&lt;p&gt;To stop that from happening, let&amp;rsquo;s detect if our test is taking more than 50 seconds.&lt;/p&gt;
+&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -96,4 +97,26 @@
 &lt;li&gt;Note that there is now a row of red and white triangles appearing below the spikes in the chart.&lt;/li&gt;
 &lt;li&gt;The red triangles let you know that your detector found that your test was above the given threshold and the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;We will not add a recipient or activate the detector as we don’t want to flood your email with alerts.&lt;/p&gt;</description></item></channel></rss>
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;We will not add a recipient or activate the detector as we don’t want to flood your email with alerts.&lt;/p&gt;</description></item><item><title>5. Test your own site!</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-your-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-your-test/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Start testing in your own Playground&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;Go to the &lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;Splunk website&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ and register to get the Splunk Observability Cloud Free Edition.&lt;/p&gt;
+&lt;p&gt;Follow the link from your email, and sign in at least once a month to keep the Free Edition as long as you need it!&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to Digital Experience &amp;gt; Synthetics, click &lt;code&gt;Create&lt;/code&gt; and add a new &lt;strong&gt;Uptime test&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Point it to a public URL owned by your organization, set a frequency, and set the public locations to test it from.&lt;/li&gt;
+&lt;li&gt;Click &lt;code&gt;Try Now&lt;/code&gt; to validate that the test configuration works as expected.&lt;/li&gt;
+&lt;li&gt;(Optional) Create a detector for uptime &amp;lt;95% or downtime &amp;gt;1%, split by location so you get location-level insights. Add your own email address first to evaluate alert noise before connecting to a team or webhook.&lt;/li&gt;
+&lt;li&gt;Save the test to start getting eyes on that endpoint health!&lt;/li&gt;
+&lt;li&gt;(Optional) Repeat the process, this time with a &lt;strong&gt;Browser test&lt;/strong&gt; running every five or 15 minutes. What do you learn from the results?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;p class="callout__title"&gt;Keep in mind&lt;/p&gt;</description></item></channel></rss>
