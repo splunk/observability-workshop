@@ -11,19 +11,21 @@ hidden: true
 product: "Agent Observability"
 ---
 
-Every prompt, tool call, context, and evaluation adds tokens, latency, and cost. A Gartner study concluded that "Agent models, for example, require between 5-30 times more tokens per task than a standard GenAI chatbot[...]". Token efficiency is becoming the pivotal question of AI adoption.
+Every prompt, tool call, context, and evaluation adds tokens, latency, and cost. A Gartner study concluded that 
+"Agent models require between 5-30 times more tokens per task than a standard GenAI chatbot[...]". Token 
+efficiency is becoming the pivotal question of AI adoption.
 
-This workshop in Splunk Agent Observability, powered by
-Galileo, connects token consumption to the traces, spans, quality signals, and business context
-that produced it.
+This workshop explores the Splunk Agent Observability solution, powered by Galileo, to connect token consumption 
+to the traces, spans, quality signals, and business context that produced it.
 
 {{< objectives title="What you will learn" >}}
 
-* Understand how lightweight instrumentation exposes token usage, latency, cost, and agent
-  behavior in a single trace.
+* Understand how lightweight instrumentation collects token usage, latency, cost, and agent behavior in a single trace.
 * Attribute token consumption to specific models, tools, workflow steps, teams, and outcomes.
-* Compare configurations using consistent datasets and quality measures instead of cost alone.
+* Compare configurations using consistent datasets and quality evaluators instead of cost alone.
+* Identify and mitigate 3 common causes of agent inefficiency.
 * Understand how Luna evaluation models make broad production evaluation economically practical.
+* Extend the monitoring and tracking of AI spend to include code generation AI assistants
 
 {{< /objectives >}}
 
@@ -31,18 +33,18 @@ that produced it.
 
 | Step | Topic | Time |
 |------|-------|------|
-| 1 | From token counts to token value | 5 minutes |
-| 2 | Three Causes | 10 minutes |
+| 0 | How the Lightweight Instrumentation Works | 5 minutes |
+| 1 | From Token Counts to Token Value | 2.5 minutes |
+| 2 | Three Causes | 2.5 minutes |
 | 3 | Gain Visibility | 10 minutes |
-| 4 | Choose the Right Model | 15 minutes |
-| 5 | Simplify the Workflow | 15 minutes |
-| 6 | Connect Spend to Outcomes | 15 minutes |
-| 7 | Bake Off and Optimize | 15 minutes |
-| 8 | Bring It Home | 5 minutes |
+| 4 | Choose the Right Model | 10 minutes |
+| 5 | Simplify the Workflow | 10 minutes |
+| 6 | Connect Spend to Outcomes | 10 minutes |
+| 7 | Optimize Evaluation Costs | 5 minutes |
+| 8 | Tokenomics - The Big Picture | 5 minutes |
+| 9 | Bring It Home | 5 minutes |
 
-The tour works with a live, pre-populated Splunk Agent Observability environment, prepared
-screenshots, or a combination of both. Product interaction is intentionally minimal: open a
-curated trace, inspect aggregate trends, and compare prepared experiment results.
+A browser is the only requirement for participating in this workshop.
 
 
 {{% notice title="Primary references" style="info" %}}
