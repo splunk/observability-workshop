@@ -1,11 +1,11 @@
 ---
-title: From token counts to token value
-linkTitle: 1. From token counts to token value
+title: From Token Counts to Token Value
+linkTitle: 1. From Token Counts to Token Value
 weight: 1
 time: 5 minutes
 ---
 
-For the next 90 minutes, we're going to cover how agentic applications consume tokens and how
+In this workshop, we're going to cover how agentic applications consume tokens and how
 we can validate that those tokens are effectively used.
 
 Our goal is not simply to minimize tokens. The cheapest agent that produces the wrong answer
@@ -14,12 +14,15 @@ context, and expensive model choices make it impossible to scale.
 
 > The question we will keep asking is: **what outcome did we receive for the tokens we spent?**
 
-We will use a number of tools, including the health agent assistant. It looks up patient records
-using an LLM, retrieval, and tools. Bills by themselves do not explain:
+We will use a number of tools, both reactive and proactive. We will investigate the data
+from a high level, all the way down to each granular trace records, reviewing every LLM 
+invocation, chunk retrieval, and tool call. 
+
+LLM provider bills by themselves do not explain:
 
 * Which users, agents, models, and workflow steps consume the tokens?
-* Whether expensive requests are better than inexpensive requests?
-* Whether a prompt, model, retrieval, or tool change would improve the ratio?
+* Are expensive requests better than inexpensive requests?
+* Does a prompt, model, retrieval, or tool change improve the ratio?
 
 {{< checkpoint title="Knowledge Check" >}}
 

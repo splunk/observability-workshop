@@ -2,7 +2,7 @@
 title: Why Agents Become Token-Inefficient
 linkTitle: 2. Three Causes
 weight: 2
-time: 10 minutes
+time: 5 minutes
 ---
 
 ### Cause 1: the wrong model
@@ -24,7 +24,7 @@ Token waste can hide in:
 * Retries that repeat the same failing action.
 * Verbose tool responses passed back into the model unchanged.
 
-Design of your agent is very important.
+Proper design and validation of your agent is very important.
 
 ### Cause 3: spend without outcomes
 
