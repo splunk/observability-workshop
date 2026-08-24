@@ -4,10 +4,10 @@ linkTitle: Tokenomics Fundamentals
 weight: 6
 layout: chapter
 time: 90 minutes
-authors: ["Sam Goldfield"]
+authors: ["Denis Abrantes", "Sam Goldfield"]
 description: Connect token consumption to agent behavior, quality, and business outcomes, then find opportunities to improve efficiency with Splunk Agent Observability.
 draft: true
-hidden: true
+hidden: false
 product: "Agent Observability"
 ---
 

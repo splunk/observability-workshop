@@ -47,7 +47,7 @@ Let's take a closer look at the data Splunk Agent Observability collects.
 
 **2.** If the filter from the last section is still active (only showing the spans with the redundant
 retrieval steps), click on the **Filters** dropdown and then click on **Clear All**. Also, make sure
-to navigate to the **Trends** view.
+to navigate to the **Tracing** view.
 
 ![Agent Stream - Clear Filters](../_images/6/6_02_agentstream_clearfilter.png)
 
