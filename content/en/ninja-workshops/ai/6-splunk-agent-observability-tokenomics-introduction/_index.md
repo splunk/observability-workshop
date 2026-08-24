@@ -6,7 +6,7 @@ layout: chapter
 time: 90 minutes
 authors: ["Denis Abrantes", "Sam Goldfield"]
 description: Connect token consumption to agent behavior, quality, and business outcomes, then find opportunities to improve efficiency with Splunk Agent Observability.
-draft: true
+draft: false
 hidden: false
 product: "Agent Observability"
 ---
