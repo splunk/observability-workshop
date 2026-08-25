@@ -27,4 +27,3 @@ In this 1-hour hands-on session, you'll cover:
 - **Synthetics** - Set up 24/7 monitoring with synthetic tests running every minute
 <!-- - **AI-Assisted Troubleshooting** - Let the AI Assistant and AI Troubleshooting Agent accelerate root cause analysis
  -->
->**Using the Astronomy Shop, we need to generate some data. Let's go shopping!** 🛰️

@@ -12,10 +12,13 @@ params:
 ---
 
 ## Introduction
+Welcome to the *Splunk Observability Cloud workshop for rookies!*   
+In these hands-on lessons, you’ll explore key observability concepts using the OpenTelemetry Demo application, also known as the Astronomy Shop.  
+  
+If you’re new to *Splunk Observability Cloud*, begin with the **Intro** lesson. It provides an overview of the platform and the foundational knowledge you’ll need for the rest of the workshop.  
 
-Each lesson below walks you through a specific concept or challenge in Splunk Observability Cloud using the OpenTelemetry Demo (Astronomy Shop) application. Every lesson is self-contained — pick any one and dive in.
-
-**If this is your first time here, start with the Intro lesson** or follow your instructor's guidance on which lessons to cover.
+After completing the Intro, you can take the remaining lessons in any order. Each lesson is self-contained and focuses on a specific concept or challenge.   
+Your instructor may recommend a particular learning path based on the goal of yours session.
 
 ## Lessons
 
