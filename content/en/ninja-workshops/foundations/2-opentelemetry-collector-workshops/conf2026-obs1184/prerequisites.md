@@ -7,9 +7,7 @@ time: 5 minutes
 
 ## Before you begin
 
-1. Pair up if helpful, and open the published OBS1184 workshop in your browser.
-
-   **Workshop guide:** [Open the OBS1184 workshop](https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/prerequisites/)
+1. Pair up with other attendees (optional).
 
 2. Open Splunk Observability Cloud. Choose one of these options:
 
@@ -23,7 +21,8 @@ time: 5 minutes
 
    The workshop requires `bash`, `curl`, `jq`, a text editor, outbound HTTPS,
    and free local ports `2222`, `4318`, and `13133`. The Splunk Show path also
-   requires `ssh` and `scp` on your local computer.
+   requires `ssh` on your local computer. The `scp` command is optional and is
+   needed only if you choose to transfer files manually.
 
    - **Splunk Show instance:** Open a terminal on your computer and connect to
      the Splunk Show instance with the supplied SSH command. Keep the supplied
@@ -80,8 +79,8 @@ curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/wo
 chmod +x setup-workshop.sh
 ```
 
-Keep the supplied SSH details available; later steps use `scp` to move the YAML
-between the Splunk Show instance and the computer running your browser.
+Keep the supplied SSH details available for each new terminal. The guided
+workshop does not require `scp`.
 
 {{% /tab %}}
 {{% tab title="Linux x86_64" %}}
