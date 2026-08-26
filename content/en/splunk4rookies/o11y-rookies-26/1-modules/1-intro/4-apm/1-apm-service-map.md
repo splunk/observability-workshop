@@ -3,28 +3,34 @@ title: 1. APM Service Map
 weight: 1
 ---
 
-The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
+The APM Service Map shows the backend services involved in processing a request and the connections between them. It helps you understand how a business operation travels through the application and where delays or errors occur.
 
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **WorkFlow Name** (`frontend:/cart/checkout`).
+You arrived here by selecting the `checkout:oteldemo.CheckoutService/PlaceOrder` **Business Operation** from the RUM session. Splunk Observability Cloud automatically applied the relevant filters, so the map focuses on the services involved in that operation during the selected time range.
 
-You can see the services involved in the workflow in the **Service Map**. In the side pane, charts for the selected workflow are displayed. When you select a service in the **Service Map**, the charts in the side pane are updated to show metrics for the selected service.
+Each circle represents a service, and the lines show how requests travel between services. The color of a circle indicates the service’s status. A *red* circle identifies the service where errors originate, while a *red* connection shows the path taken by failed requests.
 
-{{% exercise title="Inspect paymentservice on the map" %}}
+The panel on the right initially summarizes the selected business operation. When you select a service on the map, the panel updates to show metrics for that service, including requests, errors, latency, dependencies, traces, and endpoint performance. 
 
-* Click on the **paymentservice** in the Service Map to select it.
+{{% exercise title="Inspect payment service" %}}
+
+* Select the *red* **payment** service **(1)** in the Service Map.
+
+* Confirm that **payment** appears at the top of the right-hand panel **(3)**.
+
+Examine the ** Service Requests & Errors** chart **(2)**. Compare the number of requests with the number of errors.
 
 ![APM Explore](../images/apm-business-workflow.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**With the `paymentservice` selected, what can you conclude from the Service Requests & Errors chart in the side pane?** **(1)**
+**What does the *Service Requests & Errors* chart tell you about the reliability of the payment service?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The Errors percentage is very high.**
+**The *payment* service is experiencing a high error rate. In this example, approximately half of its requests result in errors. Your exact values may differ, but the chart should show that a significant proportion of payment requests are failing.**
 {{% /tab %}}
 {{< /tabs >}}
 
-* Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
-* In the right-hand pane, click on **paymentservice** in blue **(2)**.
+The Service Map has identified **payment** as the source of the *checkout* errors. Next, you’ll open its *Service-Centric View* to examine the service, its endpoints, and the infrastructure on which it runs.
+In the right-hand panel, select the blue **payment** service name **(3)** to open its *Service-Centric View*.
 
 {{% /exercise %}}
