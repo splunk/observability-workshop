@@ -2,6 +2,7 @@
 title: 1.5 Validate Splunk Observability Cloud
 linkTitle: 1.5 Cloud validation
 weight: 5
+time: 3 minutes
 ---
 
 This optional step confirms that the trace and metrics exporters can reach the
@@ -29,29 +30,46 @@ and are not part of this cloud check.
 
    Continue only when the value is `true` and the agent is running.
 
-2. Print a ready-to-use Infrastructure Monitoring filter containing the exact
-   host name detected by the agent:
+2. Print the exact host name detected by the agent:
 
    ```bash
    jq -r '
      .resourceMetrics[].resource.attributes[]
      | select(.key == "host.name")
-     | "host.name:\(.value.stringValue)"
+     | .value.stringValue
    ' agent-metrics.out | sort -u
    ```
 
-   Copy the resulting `host.name:<detected-host-name>` value. The detected host
-   name can differ from the name shown in your terminal prompt.
+   Copy the resulting host name. The detected host name can differ from the
+   name shown in your terminal prompt.
 
-3. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
+3. In the Splunk Observability Cloud navigation menu, select
+   **Infrastructure**. Search for and select the **Active hosts** navigator.
+
+   ![Infrastructure Overview showing Active hosts in the navigator search results](../images/cloud-validation-active-hosts-navigator.png)
+
+4. Paste the detected host name into the search field. Find the exact host in
+   the results.
+
+   ![Active hosts navigator filtered to show the detected workshop host](../images/cloud-validation-host-search.png)
+
+5. Select the matching host name. Confirm that the host navigator displays
+   recent CPU, memory, disk, load, or network metrics.
+
+   ![Host navigator showing infrastructure metrics for the selected workshop host](../images/cloud-validation-host-navigator.png)
+
+6. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
    choose a recent time range such as the last 15 minutes, and select **All
-   traces**.
-4. Filter for service `cinema-service` and operation `/movie-validator`.
-   Open a returned trace and confirm its span attributes include the sample
-   `user.*` fields and `otelcol.service.mode=agent`.
-5. Select **Infrastructure > Hosts**, choose a recent time range, and paste the
-   `host.name:<detected-host-name>` value into the filter bar. Open the matching
-   host and confirm recent CPU, memory, load, or network data is present.
+   traces**. Filter for service `cinema-service` and operation
+   `/movie-validator`.
+
+   ![Trace Analyzer filtered to cinema-service and movie-validator with matching traces listed](../images/cloud-validation-trace-analyzer.png)
+
+7. Open a returned trace and select the `/movie-validator` span. In **Span
+   properties**, confirm that its attributes include the sample `user.*` fields
+   and `otelcol.service.mode=agent`.
+
+   ![Trace view with the movie-validator span selected and its attributes displayed in Span properties](../images/cloud-validation-trace-span-properties.png)
 
 Telemetry can take a few minutes to become searchable. If nothing appears,
 confirm the trace and workshop CPU metrics are present locally. Then inspect

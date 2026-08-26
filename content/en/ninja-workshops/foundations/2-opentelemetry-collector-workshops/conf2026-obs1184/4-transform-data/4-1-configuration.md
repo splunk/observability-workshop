@@ -2,6 +2,7 @@
 title: 4.1 Transform structured logs
 linkTitle: 4.1 Configure the transform
 weight: 1
+time: 6 minutes
 ---
 
 {{% exercise title="Add the transform processor in Config Builder" %}}

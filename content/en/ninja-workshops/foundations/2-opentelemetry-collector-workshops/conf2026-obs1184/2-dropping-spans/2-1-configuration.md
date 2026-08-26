@@ -2,6 +2,7 @@
 title: 2.1 Build the filter in Config Builder
 linkTitle: 2.1 Configure the filter
 weight: 1
+time: 5 minutes
 ---
 
 {{% exercise title="Add the filter processor in Config Builder" %}}

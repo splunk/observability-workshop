@@ -11,9 +11,9 @@ setup_failed() {
 trap setup_failed ERR
 
 collector_version="0.157.0"
-repo_owner="chentaow-splunk"
+repo_owner="splunk"
 repo_name="observability-workshop"
-repo_ref="codex/advanced-collector-conf2026"
+repo_ref="main"
 asset_path="workshop/ninja/obs1184"
 workshop_root="${PWD}"
 agent_dir="${workshop_root}/1-agent"
@@ -87,9 +87,19 @@ fi
 unset loadgen_help
 
 cloud_setting="${CONF2026_CLOUD_ENABLED:-}"
-if [[ -z "${cloud_setting}" ]]; then
-  read -r -p "Send metrics and traces to Splunk Observability Cloud? [Y/n]: " cloud_setting
+cloud_prompt="Y/n"
+case "${cloud_setting}" in
+  n|N|no|NO|No|false|FALSE|False|0)
+    cloud_prompt="y/N"
+    ;;
+esac
+read -r -p "Send metrics and traces to Splunk Observability Cloud? [${cloud_prompt}]: " cloud_input
+if [[ -n "${cloud_input}" ]]; then
+  cloud_setting="${cloud_input}"
+elif [[ -z "${cloud_setting}" ]]; then
+  cloud_setting="y"
 fi
+unset cloud_input cloud_prompt
 
 case "${cloud_setting}" in
   ""|y|Y|yes|YES|Yes|true|TRUE|True|1)
@@ -114,18 +124,30 @@ splunk_listen_interface="${SPLUNK_LISTEN_INTERFACE:-127.0.0.1}"
 splunk_memory_limit_mib="${SPLUNK_MEMORY_LIMIT_MIB:-512}"
 
 if [[ "${cloud_enabled}" == "true" ]]; then
-  if [[ -z "${realm}" ]]; then
-    read -r -p "Splunk Observability Cloud realm (for example us1): " realm
+  if [[ -n "${realm}" ]]; then
+    read -r -p "Splunk Observability Cloud realm (for example us1) [${realm}]: " realm_input
+  else
+    read -r -p "Splunk Observability Cloud realm (for example us1): " realm_input
   fi
+  if [[ -n "${realm_input}" ]]; then
+    realm="${realm_input}"
+  fi
+  unset realm_input
   if [[ -z "${realm}" ]]; then
     echo "A realm is required for cloud export." >&2
     exit 1
   fi
 
-  if [[ -z "${splunk_access_token}" ]]; then
-    read -r -s -p "Splunk Observability Cloud access token with ingest authorization: " splunk_access_token
-    echo
+  if [[ -n "${splunk_access_token}" ]]; then
+    read -r -s -p "Splunk Observability Cloud access token (press Enter to use the token already provided): " token_input
+  else
+    read -r -s -p "Splunk Observability Cloud access token with ingest authorization: " token_input
   fi
+  echo
+  if [[ -n "${token_input}" ]]; then
+    splunk_access_token="${token_input}"
+  fi
+  unset token_input
   if [[ -z "${splunk_access_token}" ]]; then
     echo "An access token with ingest authorization is required for cloud export." >&2
     exit 1

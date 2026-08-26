@@ -2,6 +2,7 @@
 title: 1.1 Start and verify the agent
 linkTitle: 1.1 Start the agent
 weight: 1
+time: 3 minutes
 ---
 
 The Collector runs in the foreground and uses `agent_config.yaml`.

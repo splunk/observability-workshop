@@ -2,6 +2,7 @@
 title: 3.1 Protect sensitive span attributes
 linkTitle: 3.1 Configure protection
 weight: 1
+time: 6 minutes
 ---
 
 {{% exercise title="Add attributes and redaction processors" %}}
