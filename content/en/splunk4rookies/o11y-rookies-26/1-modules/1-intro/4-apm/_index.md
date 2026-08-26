@@ -18,7 +18,8 @@ You are a **back-end developer** and you have been called in to help investigate
 
 {{< webex chat="Pieter Hagen" date="Today • 28/01/2026" seenby="RC" >}}
 {{< webex-msg from="PH" name="Pieter Hagen" time="09:42" color="#571bc0" >}}
-Hey Robert, I've triaged a customer satisfaction issue with Online Boutique. RUM shows poor page load times. I traced a user session to the backend using Related Content — the latency is coming from the **paymentservice**.
+Hey Robert, I've triaged a customer satisfaction issue with the Astronomy Shop website.
+RUM shows poor page load times. I traced a user session to the backend using Related Content — the latency is coming from the **payment** service.
 {{< /webex-msg >}}
 
 {{< webex-msg from="PH" name="Pieter Hagen" time="09:43" color="#571bc0" >}}
