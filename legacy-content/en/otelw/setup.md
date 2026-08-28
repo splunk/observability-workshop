@@ -25,7 +25,7 @@ Splunk Observability is for **server environments**. This workshop uses **Ubuntu
 
 For optimal learning we recommend that you use a fresh cloud VM running Ubuntu with minimum 12GB RAM and 20GB disk space.  
 
-Splunk provdes AWS EC2 [setup/bootstrap scripts via Terraform](https://github.com/splunk/observability-workshop/tree/main/workshop/aws/ec2). Also, [`cloud-init`](https://github.com/splunk/observability-workshop/blob/main/workshop/cloud-init/k3s.yaml) YAML files are available for Multipass.
+The former AWS EC2 Terraform setup scripts are [archived for reference](https://github.com/splunk/observability-workshop/tree/cd5bfe5e9d625d6c4e2b842258f3aa559b9aa07d/workshop/aws/ec2) and are no longer maintained. [`cloud-init`](https://github.com/splunk/observability-workshop/blob/main/workshop/cloud-init/k3s.yaml) YAML files are available for Multipass.
 
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command:
 
@@ -121,4 +121,3 @@ Moving parts that make APM happen in OpenTelemetry:
   - **Endpoint**: destination to send spans  
   - **Service name**: the name of the application as you want it to appear in a service map  
   - **Environment**: a value for segmenting betwen dev/prod etc. Can be set with instrumentation and not necessarily as part of an ENV variable.
-  
