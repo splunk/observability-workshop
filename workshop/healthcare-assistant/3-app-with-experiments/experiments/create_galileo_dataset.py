@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Create a Galileo dataset from dataset.csv in the app root.
+Create a dataset from dataset.csv in the app root.
 
 Usage:
     python experiments/create_galileo_dataset.py
@@ -19,13 +19,13 @@ from experiments.experiment_helpers import (
     DEFAULT_DATASET_FILE,
     DEFAULT_DATASET_NAME,
     create_dataset_from_csv,
-    galileo_dataset_name,
+    format_dataset_name,
     read_dataset_csv,
 )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Create a Galileo dataset from dataset.csv")
+    parser = argparse.ArgumentParser(description="Create a dataset from dataset.csv")
     parser.add_argument(
         "--dataset-file",
         default=str(DEFAULT_DATASET_FILE),
@@ -34,13 +34,13 @@ def main():
     parser.add_argument(
         "--name",
         default=DEFAULT_DATASET_NAME,
-        help=f"Galileo dataset name (default: {DEFAULT_DATASET_NAME})",
+        help=f"Dataset name (default: {DEFAULT_DATASET_NAME})",
     )
     parser.add_argument(
         "--preview",
         "-p",
         action="store_true",
-        help="Preview the dataset without uploading to Galileo",
+        help="Preview the dataset without uploading",
     )
     args = parser.parse_args()
 
@@ -60,8 +60,8 @@ def main():
         return
 
     dataset_obj = create_dataset_from_csv(args.dataset_file, dataset_name=args.name)
-    galileo_name = galileo_dataset_name(args.name, Path(args.dataset_file))
-    print(f"Dataset created: {galileo_name}")
+    dataset_name = format_dataset_name(args.name, Path(args.dataset_file))
+    print(f"Dataset created: {dataset_name}")
     print(f"ID: {dataset_obj.id}")
 
 

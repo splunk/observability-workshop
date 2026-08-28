@@ -17,17 +17,8 @@ If you open the `~/workshop/healthcare-assistant/2-app-with-instrumentation/requ
 file, you'll see that this package has already been added: 
 
 ````
-galileo
+splunk-ao
 ````
-
-{{% notice title="Note about the SDK" style="info" %}}
-
-This workshop was built using the older `galileo` package. For new deployments, we recommend 
-using the `splunk_ao` package instead. Refer to the 
-[LangChain and LangGraph](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain) document
-for details about this newer SDK.
-
-{{% /notice %}}
 
 {{< /step >}}
 
@@ -50,8 +41,8 @@ export PARTICIPANT_NUMBER=<your participant number>
 Run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key: 
 
 ```bash
-kubectl create secret generic galileo-secret \
-  --from-literal=GALILEO_API_KEY="$GALILEO_API_KEY"
+kubectl create secret generic splunk-ao-secret \
+  --from-literal=SPLUNK_AO_API_KEY="$GALILEO_API_KEY"
 ```
 
 {{< /step >}}
@@ -62,15 +53,15 @@ Run the following command to create a Kubernetes config map, which the applicati
 determine how to send traces to Splunk Agent Observability: 
 
 ```bash
-kubectl create configmap galileo-config \
-  --from-literal=GALILEO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
-  --from-literal=GALILEO_PROJECT="project-$PARTICIPANT_NUMBER" \
-  --from-literal=GALILEO_LOG_STREAM="default"
+kubectl create configmap splunk-ao-config \
+  --from-literal=SPLUNK_AO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
+  --from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
+  --from-literal=SPLUNK_AO_AGENT_STREAM="default"
 ```
 
 {{% notice title="Project and agent stream" style="info" %}}
 
-`GALILEO_PROJECT` and `GALILEO_LOG_STREAM` decide where your traces appear in the Splunk Agent Observability
+`SPLUNK_AO_PROJECT` and `SPLUNK_AO_AGENT_STREAM` decide where your traces appear in the Splunk Agent Observability
 console. If you leave them blank, the SDK falls back to a project and agent stream both named
 `default`. 
 
@@ -83,11 +74,11 @@ console. If you leave them blank, the SDK falls back to a project and agent stre
 
 {{< checkpoint title="Knowledge Check" >}}
 
-If you remove `GALILEO_PROJECT` and `GALILEO_LOG_STREAM` from the `galileo-config` config map, where will
+If you remove `SPLUNK_AO_PROJECT` and `SPLUNK_AO_AGENT_STREAM` from the `splunk-ao-config` config map, where will
 your traces show up?
 
 {{< details summary="Click here to see the answer" >}}
 In a project named `default` and an agent stream named `default`. With those keys empty,
-`setup_env.py` exports empty `GALILEO_PROJECT` / `GALILEO_LOG_STREAM` values, and the Galileo
+`setup_env.py` exports empty `SPLUNK_AO_PROJECT` / `SPLUNK_AO_AGENT_STREAM` values, and the Splunk AO
 SDK falls back to its built-in `default` project and `default` agent stream.
 {{< /details >}}

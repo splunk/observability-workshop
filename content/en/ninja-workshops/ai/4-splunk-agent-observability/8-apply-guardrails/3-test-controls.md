@@ -58,7 +58,7 @@ kubectl logs -l app=healthcare-assistant
 To see what Agent Control is doing, enable console logging in `~/workshop/healthcare-assistant/4-app-with-controls/agent.py`:
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
@@ -67,14 +67,14 @@ Then rebuild the Docker image:
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
-docker push localhost:9999/healthcare-assistant:app-with-controls
+docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls-v2 .
+docker push localhost:9999/healthcare-assistant:app-with-controls-v2
 ```
 
 Update the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file to reference the local image instead:
 
 ````
-image: localhost:9999/healthcare-assistant:app-with-controls
+image: localhost:9999/healthcare-assistant:app-with-controls-v2
 ````
 
 And redeploy the application:
@@ -103,10 +103,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
-INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - galileo.logger - Starting a new session...
-INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - splunk_ao.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - splunk_ao.logger - Starting a new session...
+INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}

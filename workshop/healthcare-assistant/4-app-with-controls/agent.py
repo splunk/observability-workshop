@@ -20,9 +20,9 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
-from galileo import galileo_context
-from galileo.handlers.langchain import GalileoAsyncCallback
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao import splunk_ao_context
+from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 
@@ -124,14 +124,14 @@ class HealthcareAgent:
         self.langgraph_config = {"configurable": {"thread_id": self.session_id}}
         self._control_steps: list[dict] | None = None
 
-    def _init_agent_control(self, galileo_logger) -> None:
-        if galileo_logger is None or self._control_steps is None:
+    def _init_agent_control(self, splunk_ao_logger) -> None:
+        if splunk_ao_logger is None or self._control_steps is None:
             return
-        galileo_logger.enable_agent_control()
+        splunk_ao_logger.enable_agent_control()
         init_agent_control(
-            galileo_logger,
-            project_name=os.getenv("GALILEO_PROJECT", ""),
-            log_stream=os.getenv("GALILEO_LOG_STREAM", ""),
+            splunk_ao_logger,
+            project_name=os.getenv("SPLUNK_AO_PROJECT", ""),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM", ""),
             agent_description="Healthcare assistant demo agent",
             steps=self._control_steps,
         )
@@ -248,7 +248,7 @@ class HealthcareAgent:
                     )
                     last_llm_output["message"] = None
                 except RuntimeError as e:
-                    # Galileo server failed to evaluate a control rule (e.g. misconfigured
+                    # Server failed to evaluate a control rule (e.g. misconfigured
                     # or cloned rule with an internal evaluator error). Log and degrade
                     # gracefully rather than crashing the agent.
                     print(f"  ⚠️  Agent Control server error ({LLM_STEP_NAME}): {e}")
@@ -276,14 +276,14 @@ class HealthcareAgent:
         self,
         langchain_messages: List[BaseMessage],
         *,
-        galileo_logger,
+        splunk_ao_logger,
     ):
-        if galileo_logger.experiment_id is None:
-            galileo_context.start_session(external_id=self.session_id)
+        if splunk_ao_logger.experiment_id is None:
+            splunk_ao_context.start_session(external_id=self.session_id)
 
         # Nest LangGraph spans under the trace started by ensure_trace_started().
-        callback = GalileoAsyncCallback(
-            galileo_logger,
+        callback = SplunkAOAsyncCallback(
+            splunk_ao_logger,
             start_new_trace=False,
             flush_on_chain_end=False,
         )
@@ -303,46 +303,46 @@ class HealthcareAgent:
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
         # Detect experiment mode before opening a log-stream context. Nested
-        # galileo_context(project=..., log_stream=...) switches the singleton
-        # logger key from experiment_id to log_stream, which hides the active
+        # splunk_ao_context(project=..., agent_stream=...) switches the singleton
+        # logger key from experiment_id to agent_stream, which hides the active
         # experiment trace and prevents LangGraph spans from nesting correctly.
-        experiment_logger = galileo_context.get_logger_instance()
+        experiment_logger = splunk_ao_context.get_logger_instance()
         in_experiment = experiment_logger.experiment_id is not None
 
         response = "No response generated"
 
         if in_experiment:
-            galileo_logger = experiment_logger
-            self._init_agent_control(galileo_logger)
-            ensure_trace_started(galileo_logger, langchain_messages, trace_name="Run Agent")
+            splunk_ao_logger = experiment_logger
+            self._init_agent_control(splunk_ao_logger)
+            ensure_trace_started(splunk_ao_logger, langchain_messages, trace_name="Run Agent")
             try:
                 result = await self._invoke_graph(
                     langchain_messages,
-                    galileo_logger=galileo_logger,
+                    splunk_ao_logger=splunk_ao_logger,
                 )
                 if result["messages"]:
                     response = result["messages"][-1].content
                 return response
             finally:
-                finalize_trace(galileo_logger, response)
+                finalize_trace(splunk_ao_logger, response)
         else:
-            with galileo_context(
-                project=os.getenv("GALILEO_PROJECT"),
-                log_stream=os.getenv("GALILEO_LOG_STREAM"),
+            with splunk_ao_context(
+                project=os.getenv("SPLUNK_AO_PROJECT"),
+                agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
             ):
-                galileo_logger = galileo_context.get_logger_instance()
-                self._init_agent_control(galileo_logger)
-                ensure_trace_started(galileo_logger, langchain_messages, trace_name="Run Agent")
+                splunk_ao_logger = splunk_ao_context.get_logger_instance()
+                self._init_agent_control(splunk_ao_logger)
+                ensure_trace_started(splunk_ao_logger, langchain_messages, trace_name="Run Agent")
                 try:
                     result = await self._invoke_graph(
                         langchain_messages,
-                        galileo_logger=galileo_logger,
+                        splunk_ao_logger=splunk_ao_logger,
                     )
                     if result["messages"]:
                         response = result["messages"][-1].content
                     return response
                 finally:
-                    finalize_trace(galileo_logger, response)
+                    finalize_trace(splunk_ao_logger, response)
 
     def process_query(self, messages: List[Dict[str, str]]) -> str:
         try:

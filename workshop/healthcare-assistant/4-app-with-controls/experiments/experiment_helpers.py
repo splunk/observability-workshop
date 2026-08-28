@@ -7,9 +7,9 @@ import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from galileo.datasets import create_dataset, get_dataset, list_datasets
-from galileo.experiments import run_experiment
-from galileo_core.schemas.shared.scorers.scorer_name import ScorerName as GalileoScorers
+from splunk_ao.datasets import create_dataset, get_dataset, list_datasets
+from splunk_ao.experiments import run_experiment
+from splunk_ao.schema.metrics import SplunkAOEvaluators as SplunkAOScorers
 
 from agent import HealthcareAgent
 from config import APP_ROOT
@@ -20,7 +20,7 @@ DEFAULT_DATASET_NAME = "Healthcare Assistant Dataset"
 _SUPPORTED_DATASET_EXTENSIONS = (".csv", ".jsonl", ".json", ".feather")
 
 
-def galileo_dataset_name(name: str = DEFAULT_DATASET_NAME, dataset_file: Path = DEFAULT_DATASET_FILE) -> str:
+def format_dataset_name(name: str = DEFAULT_DATASET_NAME, dataset_file: Path = DEFAULT_DATASET_FILE) -> str:
     """Return the dataset name Galileo stores, with a required file extension.
 
     The Galileo SDK sends ``name`` as the multipart upload filename. The API
@@ -31,17 +31,17 @@ def galileo_dataset_name(name: str = DEFAULT_DATASET_NAME, dataset_file: Path = 
     return f"{name}{Path(dataset_file).suffix or '.csv'}"
 
 DEFAULT_METRICS = [
-    GalileoScorers.ground_truth_adherence,
-    GalileoScorers.prompt_injection,
-    GalileoScorers.chunk_attribution_utilization,
-    GalileoScorers.context_adherence,
+    SplunkAOScorers.ground_truth_adherence,
+    SplunkAOScorers.prompt_injection,
+    SplunkAOScorers.chunk_attribution_utilization,
+    SplunkAOScorers.context_adherence,
 ]
 
 AVAILABLE_METRICS = {
-    "Ground Truth Adherence": GalileoScorers.ground_truth_adherence,
-    "Prompt Injection": GalileoScorers.prompt_injection,
-    "Chunk Attribution Utilization": GalileoScorers.chunk_attribution_utilization,
-    "Context Adherence": GalileoScorers.context_adherence,
+    "Ground Truth Adherence": SplunkAOScorers.ground_truth_adherence,
+    "Prompt Injection": SplunkAOScorers.prompt_injection,
+    "Chunk Attribution Utilization": SplunkAOScorers.chunk_attribution_utilization,
+    "Context Adherence": SplunkAOScorers.context_adherence,
 }
 
 
@@ -72,7 +72,7 @@ def create_dataset_from_csv(
     if not dataset_content:
         raise ValueError("No data found in dataset file")
 
-    name = galileo_dataset_name(dataset_name or DEFAULT_DATASET_NAME, dataset_path)
+    name = format_dataset_name(dataset_name or DEFAULT_DATASET_NAME, dataset_path)
     return create_dataset(name=name, content=dataset_path)
 
 
@@ -123,7 +123,7 @@ def run_healthcare_experiment(
         metrics = DEFAULT_METRICS
 
     if project is None:
-        project = os.environ.get("GALILEO_PROJECT", "default")
+        project = os.environ.get("SPLUNK_AO_PROJECT", "default")
 
     experiment_function = create_experiment_function(model_name=model_name)
 
