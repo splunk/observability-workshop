@@ -4,7 +4,7 @@
 &lt;/span&gt;
 &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
 &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Download and start the completed configuration&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Start the completed configuration&lt;/span&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
@@ -15,7 +15,7 @@ validation easier to follow.&lt;/p&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Download the YAML&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Review the completed YAML&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;In &lt;strong&gt;Collector YAML&lt;/strong&gt;, confirm:&lt;/p&gt;
 &lt;ul&gt;
@@ -29,7 +29,15 @@ validation easier to follow.&lt;/p&gt;
 &lt;code&gt;splunk_hec/profiling&lt;/code&gt;. Do not paste HEC credentials into the YAML; the
 exporters continue to reference environment variables.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Select &lt;strong&gt;Download YAML&lt;/strong&gt; and save the file as &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>5.2 Validate the configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</guid><description>&lt;p&gt;Keep the updated Collector running in the &lt;strong&gt;Agent terminal&lt;/strong&gt;. Run each command
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-completed-config-source-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-completed-config-source-panel-0" tabindex="0" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-completed-config-source-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-completed-config-source-panel-1" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-completed-config-source-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-completed-config-source-tab-0" data-tab-label="Same computer"&gt;Select &lt;strong&gt;Download YAML&lt;/strong&gt; and save the file as &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/div&gt;
+&lt;div id="tabs-completed-config-source-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-completed-config-source-tab-1" hidden data-tab-label="Splunk Show instance"&gt;You do not need to download or transfer the YAML. To avoid file-transfer and
+copy-and-paste issues, Step 2 uses the completed configuration that is already
+available on the Splunk Show instance.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Keep credentials outside the YAML&lt;/p&gt;</description></item><item><title>5.2 Validate the configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/conf2026-obs1184/5-deploy-and-validate/5-2-validate-configuration/</guid><description>&lt;p&gt;Keep the updated Collector running in the &lt;strong&gt;Agent terminal&lt;/strong&gt;. Run each command
 below in the &lt;strong&gt;Command terminal&lt;/strong&gt;, which is already in &lt;code&gt;[WORKSHOP]/1-agent&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="local-validation-1-drop-health-check-spans"&gt;
  &lt;span class="heading-text"&gt;Local validation 1: Drop health-check spans&lt;/span&gt;

@@ -184,9 +184,8 @@ file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;The above map shows all the interactions between all the services. The map may still be in an interim state as it will take the PetClinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of &lt;strong&gt;2 minutes&lt;/strong&gt; by entering &lt;strong&gt;-2m&lt;/strong&gt; will help. You can click on the &lt;strong&gt;Refresh&lt;/strong&gt; button &lt;strong&gt;(1)&lt;/strong&gt; in the top right-hand corner of the screen. The initial startup-related errors indicated by red circles will eventually disappear.&lt;/p&gt;</description></item><item><title>1. APM Service Map</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/4-apm/1-apm-service-map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/4-apm/1-apm-service-map/</guid><description>&lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.&lt;/p&gt;
-&lt;p&gt;When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that &lt;strong&gt;WorkFlow Name&lt;/strong&gt; (&lt;code&gt;frontend:/cart/checkout&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;You can see the services involved in the workflow in the &lt;strong&gt;Service Map&lt;/strong&gt;. In the side pane, charts for the selected workflow are displayed. When you select a service in the &lt;strong&gt;Service Map&lt;/strong&gt;, the charts in the side pane are updated to show metrics for the selected service.&lt;/p&gt;</description></item><item><title>1. APM Service Map</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/4-apm/1-apm-service-map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/4-apm/1-apm-service-map/</guid><description>&lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, business transaction, service, and tag filters.&lt;/p&gt;
+&lt;p&gt;The above map shows all the interactions between all the services. The map may still be in an interim state as it will take the PetClinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of &lt;strong&gt;2 minutes&lt;/strong&gt; by entering &lt;strong&gt;-2m&lt;/strong&gt; will help. You can click on the &lt;strong&gt;Refresh&lt;/strong&gt; button &lt;strong&gt;(1)&lt;/strong&gt; in the top right-hand corner of the screen. The initial startup-related errors indicated by red circles will eventually disappear.&lt;/p&gt;</description></item><item><title>1. APM Service Map</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/4-apm/1-apm-service-map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/4-apm/1-apm-service-map/</guid><description>&lt;p&gt;The APM Service Map shows the backend services involved in processing a request and the connections between them. It helps you understand how a business operation travels through the application and where delays or errors occur.&lt;/p&gt;
+&lt;p&gt;You arrived here by selecting the &lt;code&gt;checkout:oteldemo.CheckoutService/PlaceOrder&lt;/code&gt; &lt;strong&gt;Business Operation&lt;/strong&gt; from the RUM session. Splunk Observability Cloud automatically applied the relevant filters, so the map focuses on the services involved in that operation during the selected time range.&lt;/p&gt;</description></item><item><title>1. APM Service Map</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/4-apm/1-apm-service-map/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/4-apm/1-apm-service-map/</guid><description>&lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, business transaction, service, and tag filters.&lt;/p&gt;
 &lt;p&gt;When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that &lt;strong&gt;Transaction&lt;/strong&gt; (&lt;code&gt;frontend:/cart/checkout&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;You can see the services involved in the workflow in the &lt;strong&gt;Service Map&lt;/strong&gt;. In the side pane, charts for the selected transaction are displayed. When you select a service in the &lt;strong&gt;Service Map&lt;/strong&gt;, the charts in the side pane are updated to show metrics for the selected service.&lt;/p&gt;</description></item><item><title>AWS Setup</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/1-workshop-setup/1-aws-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/1-workshop-setup/1-aws-setup/</guid><description>&lt;h2 id="enable-the-red-hat-openshift-service-in-aws"&gt;
  &lt;span class="heading-text"&gt;Enable the Red Hat OpenShift Service in AWS&lt;/span&gt;
@@ -928,7 +927,26 @@ across tools using a workload you already understand.&lt;/p&gt;</description></i
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>1. Log Filtering</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/1-log-filtering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/5-log-observer/1-log-filtering/</guid><description>&lt;p&gt;&lt;strong&gt;Log Observer (LO)&lt;/strong&gt;, can be used in multiple ways. In the quick tour, you used the LO &lt;strong&gt;no-code interface&lt;/strong&gt; to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the &lt;strong&gt;Related Content&lt;/strong&gt; link.&lt;/p&gt;
 &lt;p&gt;The advantage of this is, as it was with the link between RUM &amp;amp; APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame &lt;strong&gt;(1)&lt;/strong&gt;, which matches that of the trace and the filter &lt;strong&gt;(2)&lt;/strong&gt; which is set to the &lt;strong&gt;trace_id&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>1. Log Filtering</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/7-log-observer/1-log-filtering/</guid><description>&lt;p&gt;&lt;strong&gt;Log Observer (LO)&lt;/strong&gt;, can be used in multiple ways. In the quick tour, you used the LO &lt;strong&gt;no-code interface&lt;/strong&gt; to search for specific entries in the logs. This section, however, assumes you have arrived in LO from a trace in APM using the &lt;strong&gt;Related Content&lt;/strong&gt; link.&lt;/p&gt;
-&lt;p&gt;The advantage of this is, as it was with the link between RUM &amp;amp; APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame &lt;strong&gt;(1)&lt;/strong&gt;, which matches that of the trace and the filter &lt;strong&gt;(2)&lt;/strong&gt; which is set to the &lt;strong&gt;trace_id&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</guid><description>&lt;p&gt;The Splunk OpenTelemetry Collector is the core component for instrumenting infrastructure and applications. Its role is to collect and send:&lt;/p&gt;
+&lt;p&gt;The advantage of this is, as it was with the link between RUM &amp;amp; APM, that you are looking at your logs within the context of your previous actions. In this case, the context is the time frame &lt;strong&gt;(1)&lt;/strong&gt;, which matches that of the trace and the filter &lt;strong&gt;(2)&lt;/strong&gt; which is set to the &lt;strong&gt;trace_id&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Open the RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview-i/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview-i/</guid><description>&lt;p&gt;In this exercise, you&amp;rsquo;ll open the RUM Overview dashboard. The data you&amp;rsquo;ll see here was generated and also includes data from all the attendee&amp;rsquo;s including yourself — it captures the browsing and shopping everyone did in the Astronomy Shop earlier, now surfaced as real user metrics like page views, errors, and load performance. This is your chance to see your own session through the lens of Real User Monitoring.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Open the RUM Overview&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;In Splunk Observability Cloud, from the main menu, hover over &lt;strong&gt;Digital Experience&lt;/strong&gt;, then click on &lt;strong&gt;Overview&lt;/strong&gt; &lt;strong&gt;(1)&lt;/strong&gt; from the &lt;strong&gt;Real User Monitoring&lt;/strong&gt; section as shown below.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-dea.png" alt="RUM" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</guid><description>&lt;p&gt;The Splunk OpenTelemetry Collector is the core component for instrumenting infrastructure and applications. Its role is to collect and send:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Infrastructure metrics (disk, CPU, memory, etc.)&lt;/li&gt;
 &lt;li&gt;Application Performance Monitoring (APM) traces&lt;/li&gt;
@@ -1039,25 +1057,6 @@ with NVIDIA GPUs and NVIDIA AI Enterprise software.&lt;/p&gt;</description></ite
  &lt;img src="../images/rum-metrics-dashboard.png" alt="RUM Dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
-&lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/1-rum-overview/</guid><description>&lt;p&gt;In this exercise, you&amp;rsquo;ll open the RUM Overview dashboard. The data you&amp;rsquo;ll see here was generated and also includes data from all the attendee&amp;rsquo;s including yourself — it captures the browsing and shopping everyone did in the Astronomy Shop earlier, now surfaced as real user metrics like page views, errors, and load performance. This is your chance to see your own session through the lens of Real User Monitoring.&lt;/p&gt;
-&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Filter to your store&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;ul&gt;
-&lt;li&gt;In Splunk Observability Cloud, from the main menu, hover over &lt;strong&gt;Digital Experience&lt;/strong&gt;, then click on &lt;strong&gt;Overview&lt;/strong&gt; &lt;strong&gt;(1)&lt;/strong&gt; from the &lt;strong&gt;Real User Monitoring&lt;/strong&gt; section as shown below.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-de.png" alt="RUM" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>RUM Overview</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/1-rum-overview/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
@@ -1984,7 +1983,7 @@ Configure the gateway to exclude spans with the name &lt;code&gt;/_healthz&lt;/c
 &lt;/span&gt;
 &lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
 &lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Download and start the completed configuration&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Start the completed configuration&lt;/span&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
@@ -1995,7 +1994,7 @@ validation easier to follow.&lt;/p&gt;
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Download the YAML&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Review the completed YAML&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;In &lt;strong&gt;Collector YAML&lt;/strong&gt;, confirm:&lt;/p&gt;
 &lt;ul&gt;
@@ -2009,7 +2008,15 @@ validation easier to follow.&lt;/p&gt;
 &lt;code&gt;splunk_hec/profiling&lt;/code&gt;. Do not paste HEC credentials into the YAML; the
 exporters continue to reference environment variables.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Select &lt;strong&gt;Download YAML&lt;/strong&gt; and save the file as &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>ITSI Create Custom NEAP</title><link>https://splunk.github.io/observability-workshop/en/scenarios/network-event-intelligence/5-create-custom-neap/1-itsi-create-custom-neap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/network-event-intelligence/5-create-custom-neap/1-itsi-create-custom-neap/</guid><description>&lt;p&gt;Because you configured the inbound notification rules for Catalyst Center and Solarwinds in the previous step, you should soon see episodes being generated for those sources. You may notice ITSI is applying the default aggregation policy, which provides quick aggregation value by grouping alerts by source. However, for this dataset we want episodes grouped by location. This enables correlation between Catalyst Center and SolarWinds alerts, a differentiating feature of ITSI event management.&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector Exporters</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/</guid><description>&lt;h2 id="otlp-http-exporter"&gt;
+&lt;div class="tabs" data-tabs&gt;
+&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-completed-config-source-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-completed-config-source-panel-0" tabindex="0" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-completed-config-source-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-completed-config-source-panel-1" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="tabs-completed-config-source-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-completed-config-source-tab-0" data-tab-label="Same computer"&gt;Select &lt;strong&gt;Download YAML&lt;/strong&gt; and save the file as &lt;code&gt;agent_config.yaml&lt;/code&gt;.&lt;/div&gt;
+&lt;div id="tabs-completed-config-source-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-completed-config-source-tab-1" hidden data-tab-label="Splunk Show instance"&gt;You do not need to download or transfer the YAML. To avoid file-transfer and
+copy-and-paste issues, Step 2 uses the completed configuration that is already
+available on the Splunk Show instance.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Keep credentials outside the YAML&lt;/p&gt;</description></item><item><title>ITSI Create Custom NEAP</title><link>https://splunk.github.io/observability-workshop/en/scenarios/network-event-intelligence/5-create-custom-neap/1-itsi-create-custom-neap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/network-event-intelligence/5-create-custom-neap/1-itsi-create-custom-neap/</guid><description>&lt;p&gt;Because you configured the inbound notification rules for Catalyst Center and Solarwinds in the previous step, you should soon see episodes being generated for those sources. You may notice ITSI is applying the default aggregation policy, which provides quick aggregation value by grouping alerts by source. However, for this dataset we want episodes grouped by location. This enables correlation between Catalyst Center and SolarWinds alerts, a differentiating feature of ITSI event management.&lt;/p&gt;</description></item><item><title>OpenTelemetry Collector Exporters</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/1-opentelemetry-collector/5-exporters/1-otlphttp/</guid><description>&lt;h2 id="otlp-http-exporter"&gt;
  &lt;span class="heading-text"&gt;OTLP HTTP Exporter&lt;/span&gt;
  &lt;a class="heading-anchor" href="#otlp-http-exporter" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -2881,40 +2888,7 @@ Cloud in Step 1.5.&lt;/p&gt;</description></item><item><title>Troubleshoot Game 
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;You will now see a dashboard breaking down RUM metrics by &lt;strong&gt;User Experience&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, and a &lt;strong&gt;Map View&lt;/strong&gt;. Current metrics are compared to historic metrics (1 hour by default).&lt;/p&gt;</description></item><item><title>2. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Explore the RUM dashboard&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;ul&gt;
-&lt;li&gt;You will now see a dashboard view breaking down the metrics by &lt;strong&gt;UX Metrics&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt; and a &lt;strong&gt;Map View&lt;/strong&gt; comparing them to historic metrics (1 day by default).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-metric-map-charts.png" alt="RUM Dashboard" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;The tabs available on this page include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;UX Metrics&lt;/strong&gt; Page Views, Page Load and Web Vitals metrics&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Front-end Health&lt;/strong&gt; Breakdown of JavaScript Errors and Long Task duration and count&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Back-end Health&lt;/strong&gt; Network Errors and Requests and Time to First Byte&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Custom Workflows&lt;/strong&gt; RED metrics (Rate, Error &amp;amp; Duration) for custom workflows&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Network Requests&lt;/strong&gt; Network URL grouping and key metrics&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pages&lt;/strong&gt; URL grouping and key metrics and web vitals&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Map View&lt;/strong&gt; Geographical requests by location&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Click through each of the tabs and examine the data.&lt;/p&gt;</description></item><item><title>2. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/2-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/2-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
+&lt;p&gt;You will now see a dashboard breaking down RUM metrics by &lt;strong&gt;User Experience&lt;/strong&gt;, &lt;strong&gt;Front-end Health&lt;/strong&gt;, &lt;strong&gt;Back-end Health&lt;/strong&gt;, &lt;strong&gt;Custom Workflows&lt;/strong&gt;, &lt;strong&gt;Pages&lt;/strong&gt;, &lt;strong&gt;Network Requests&lt;/strong&gt;, and a &lt;strong&gt;Map View&lt;/strong&gt;. Current metrics are compared to historic metrics (1 hour by default).&lt;/p&gt;</description></item><item><title>2. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/2-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/2-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -3348,7 +3322,21 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;Click on the &lt;strong&gt;&lt;code&gt;Agent graph&lt;/code&gt;&lt;/strong&gt; tab, which aggregates agent behavior
 across all traces in the agent stream. It shows the most common execution paths, along with latency and frequency patterns,
-so you can quickly see how the agent is behaving with actual users.&lt;/p&gt;</description></item><item><title>Follow the breadcrumbs</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/3-investigate/2-cause/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/3-investigate/2-cause/</guid><description>&lt;section class="exercise"&gt;
+so you can quickly see how the agent is behaving with actual users.&lt;/p&gt;</description></item><item><title>Explore your Store data</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-overview-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/2-rum-overview-ii/</guid><description>&lt;div class="callout callout--tip"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Tip&lt;/p&gt;&lt;div class="callout__body"&gt;The rum application we used in the screenshots below is named &lt;strong&gt;workshop&lt;/strong&gt;, so &lt;strong&gt;workshop-store&lt;/strong&gt; is used as the example application name.&lt;br&gt;
+Replace [NAME OF WORKSHOP] with the workshop name assigned to you by your instructor.&lt;/div&gt;&lt;/div&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Filter to your store&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To display the data for your own Astronomy Shop, configure the filters marked (2) as follows:&lt;/p&gt;</description></item><item><title>Follow the breadcrumbs</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/3-investigate/2-cause/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/3-investigate/2-cause/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -5132,12 +5120,26 @@ OR (paste the trace ID from the &lt;code&gt;traceparent&lt;/code&gt; header or c
  &lt;span class="heading-text"&gt;Before you begin&lt;/span&gt;
  &lt;a class="heading-anchor" href="#before-you-begin" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Use a Splunk Show instance, a Linux computer, or an Apple silicon Mac. You also
-need &lt;code&gt;bash&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt;, &lt;code&gt;jq&lt;/code&gt;, and a text editor. If you use a Splunk Show instance,
-your local computer also needs &lt;code&gt;ssh&lt;/code&gt; and &lt;code&gt;scp&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Pairing is optional. For cloud verification, sign in or
-&lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;create a free Splunk Observability Cloud organization&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
-.&lt;/p&gt;</description></item><item><title>Setup &amp; Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</guid><description>&lt;h2 id="step-2-prepare-your-files-and-directory-structure"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Pair up with other attendees (optional).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open Splunk Observability Cloud. Choose one of these options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sign in to the Observability Workshop organization provided with your
+Splunk Show instance.&lt;/li&gt;
+&lt;li&gt;Register for a free Splunk Observability Cloud organization and sign in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Registration:&lt;/strong&gt; &lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;Register for Splunk Observability Cloud Free&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Choose one supported execution path.&lt;/p&gt;
+&lt;p&gt;The workshop requires &lt;code&gt;bash&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt;, &lt;code&gt;jq&lt;/code&gt;, a text editor, outbound HTTPS,
+and free local ports &lt;code&gt;2222&lt;/code&gt;, &lt;code&gt;4318&lt;/code&gt;, and &lt;code&gt;13133&lt;/code&gt;. The Splunk Show path also
+requires &lt;code&gt;ssh&lt;/code&gt; on your local computer. The &lt;code&gt;scp&lt;/code&gt; command is optional and is
+needed only if you choose to transfer files manually.&lt;/p&gt;</description></item><item><title>Setup &amp; Configuration</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/4-ansible-automation/2-setup/</guid><description>&lt;h2 id="step-2-prepare-your-files-and-directory-structure"&gt;
  &lt;span class="heading-text"&gt;Step 2: Prepare Your Files and Directory Structure&lt;/span&gt;
  &lt;a class="heading-anchor" href="#step-2-prepare-your-files-and-directory-structure" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -6120,7 +6122,18 @@ activity, and synthesizer).&lt;/p&gt;</description></item><item><title>Apache OT
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;The views in &lt;strong&gt;Tag Spotlight&lt;/strong&gt; are configurable for both the chart and cards. The view defaults to &lt;strong&gt;Requests &amp;amp; Errors&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/3-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/3-auto-instrumentation/</guid><description>&lt;p&gt;The first part of our workshop will demonstrate how auto-instrumentation with OpenTelemetry allows the OpenTelemetry Collector to auto-detect what language your function is written in, and start capturing traces for those functions.&lt;/p&gt;
+&lt;p&gt;The views in &lt;strong&gt;Tag Spotlight&lt;/strong&gt; are configurable for both the chart and cards. The view defaults to &lt;strong&gt;Requests &amp;amp; Errors&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>3. Application View</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/3-rum-app-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/3-rum-app-view/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Explore the RUM dashboard&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;You are now viewing the detailed RUM dashboard for your Astronomy Shop. The filters at the top show the application, environment, data source, and time range currently being analyzed.&lt;/p&gt;
+&lt;p&gt;By default, the dashboard may compare the selected time range with an earlier period (1 day by default). This helps you recognize changes or unusual patterns in application usage, performance, and errors.&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/3-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/3-auto-instrumentation/</guid><description>&lt;p&gt;The first part of our workshop will demonstrate how auto-instrumentation with OpenTelemetry allows the OpenTelemetry Collector to auto-detect what language your function is written in, and start capturing traces for those functions.&lt;/p&gt;
 &lt;p&gt;First, let us take a look at the &lt;code&gt;workshop/lambda/auto&lt;/code&gt; directory, and some of its files. This is where all the content for the auto-instrumentation portion of our workshop resides.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Run the following command to get into the &lt;strong&gt;workshop/lambda/auto&lt;/strong&gt; directory:&lt;/li&gt;
@@ -6839,31 +6852,7 @@ Press return to go back to your prompt.&lt;/p&gt;</description></item><item><tit
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>3. Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/3-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/3-tag-spotlight/</guid><description>&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Filter to slow PlaceOrder sessions&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;ul&gt;
-&lt;li&gt;This dashboard displays all tags associated with the RUM data, key-value pairs automatically generated by the RUM instrumentation. Tags are used to filter data and build charts and tables. The Tag Spotlight view lets you drill down into individual user sessions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-tag-spotlight.png" alt="RUM Tag Spotlight" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Change the timeframe to &lt;strong&gt;Last 1 hour&lt;/strong&gt; &lt;strong&gt;(1)&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Find the &lt;strong&gt;Custom Workflow Name&lt;/strong&gt; chart, locate &lt;strong&gt;PlaceOrder&lt;/strong&gt; in the list &lt;strong&gt;(2)&lt;/strong&gt;, click on it and select &lt;strong&gt;Add to filter&lt;/strong&gt; &lt;strong&gt;(3)&lt;/strong&gt; in the popup window to appl the filter to the page.&lt;/p&gt;</description></item><item><title>3. Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/3-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/3-tag-spotlight/</guid><description>&lt;section class="exercise"&gt;
+&lt;/p&gt;</description></item><item><title>3. Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/3-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/3-tag-spotlight/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -8521,7 +8510,8 @@ confirming the workflow still runs end-to-end with the callback attached:&lt;/p&
 &lt;!--* Click **Add Filters**, select **OS Version**, click **!=** and select **Synthetics** and **RUM.LoadGen** then click the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Apply Filter&lt;/span&gt;&lt;/button&gt; button **(2)**.--&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Find the &lt;strong&gt;Operation&lt;/strong&gt; chart, locate &lt;strong&gt;PlaceOrder&lt;/strong&gt; in the list, click on it and select &lt;strong&gt;Add to filter&lt;/strong&gt; &lt;strong&gt;(2)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>4. Timeline and Patterns</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/4-timeline-and-patterns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/4-timeline-and-patterns/</guid><description>&lt;p&gt;You&amp;rsquo;ve narrowed down to error logs from a single service. Now let&amp;rsquo;s understand &lt;em&gt;when&lt;/em&gt; the problem started and &lt;em&gt;what&lt;/em&gt; the errors look like.&lt;/p&gt;
+&lt;p&gt;Find the &lt;strong&gt;Operation&lt;/strong&gt; chart, locate &lt;strong&gt;PlaceOrder&lt;/strong&gt; in the list, click on it and select &lt;strong&gt;Add to filter&lt;/strong&gt; &lt;strong&gt;(2)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>4. Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/4-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/4-tag-spotlight/</guid><description>&lt;p&gt;&lt;strong&gt;Tag Spotlight&lt;/strong&gt; helps you explore the tags attached to your RUM data. Tags are key-value pairs that describe each interaction, such as its workflow name, application, environment, browser, operating system, or location.
+The panels show the most common values for each tag and their associated performance percentiles, including &lt;strong&gt;P50&lt;/strong&gt;, &lt;strong&gt;P75&lt;/strong&gt;, and &lt;em&gt;P99&lt;/em&gt;. You can select a value and add it as a filter without writing a query. This makes it easier to narrow the data from an application-wide overview to a particular workflow or group of user sessions.&lt;/p&gt;</description></item><item><title>4. Timeline and Patterns</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/4-timeline-and-patterns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/4-timeline-and-patterns/</guid><description>&lt;p&gt;You&amp;rsquo;ve narrowed down to error logs from a single service. Now let&amp;rsquo;s understand &lt;em&gt;when&lt;/em&gt; the problem started and &lt;em&gt;what&lt;/em&gt; the errors look like.&lt;/p&gt;
 &lt;div class="callout callout--success"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
 &lt;/span&gt;&lt;p class="callout__title"&gt;Exercise&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;p&gt;&lt;strong&gt;Step 1: Analyze the Timeline&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -8571,8 +8561,7 @@ confirming the workflow still runs end-to-end with the callback attached:&lt;/p&
  &lt;span class="heading-text"&gt;2. Test SSH Connectivity Manually&lt;/span&gt;
  &lt;a class="heading-anchor" href="#2-test-ssh-connectivity-manually" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;Test connection to each remote host:&lt;/p&gt;</description></item><item><title>4. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/4-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/4-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;User Session&lt;/strong&gt; in RUM represents a single user&amp;rsquo;s complete interaction with your web application from the moment they arrive until they leave or become inactive. Each session captures a timeline of all page views, user interactions (clicks, scrolls, form submissions), network requests, errors, and performance metrics.&lt;/p&gt;
-&lt;p&gt;Sessions are identified by a unique Session ID and include metadata such as browser type, device, geographic location, and custom tags. This allows you to replay and analyze the exact experience a specific user had, making it invaluable for troubleshooting issues, understanding user behavior, and identifying performance bottlenecks.&lt;/p&gt;</description></item><item><title>4. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/4-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/4-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;User Session&lt;/strong&gt; in RUM represents a single user&amp;rsquo;s complete interaction with your web application from the moment they arrive until they leave or become inactive. Each session captures a timeline of all page views, user interactions (clicks, scrolls, form submissions), network requests, errors, and performance metrics.&lt;/p&gt;
+&lt;p&gt;Test connection to each remote host:&lt;/p&gt;</description></item><item><title>4. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/4-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/4-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;User Session&lt;/strong&gt; in RUM represents a single user&amp;rsquo;s complete interaction with your web application from the moment they arrive until they leave or become inactive. Each session captures a timeline of all page views, user interactions (clicks, scrolls, form submissions), network requests, errors, and performance metrics.&lt;/p&gt;
 &lt;p&gt;Sessions are identified by a unique Session ID and include metadata such as browser type, device, geographic location, and custom tags. This allows you to replay and analyze the exact experience a specific user had, making it invaluable for troubleshooting issues, understanding user behavior, and identifying performance bottlenecks.&lt;/p&gt;</description></item><item><title>4. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/4-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/5-rum/4-user-sessions/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
@@ -9208,29 +9197,7 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
 
 &lt;/div&gt;
 
-&lt;p&gt;Note that this deployment now only updates the code changes within the function. Our configuration remains the same.&lt;/p&gt;</description></item><item><title>5. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/5-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/5-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Locate the failing service&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;ul&gt;
-&lt;li&gt;In the &lt;strong&gt;APM Service Map&lt;/strong&gt; you can clearly see there is an issue with the &lt;code&gt;paymentservice&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-to-apm.png" alt="RUM to APM" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;p&gt;We have now successfully navigated from &lt;strong&gt;RUM&lt;/strong&gt; into &lt;strong&gt;APM&lt;/strong&gt;, providing an end-to-end view of the user experience. This integration allows us to trace performance issues from the front-end all the way through to the back-end services, enabling more effective troubleshooting and optimization.&lt;/p&gt;</description></item><item><title>5. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
+&lt;p&gt;Note that this deployment now only updates the code changes within the function. Our configuration remains the same.&lt;/p&gt;</description></item><item><title>5. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -9294,7 +9261,8 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
  &lt;span class="heading-text"&gt;Scenario&lt;/span&gt;
  &lt;a class="heading-anchor" href="#scenario" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;You&amp;rsquo;ve been tasked with monitoring the OS logs of the host running your Kubernetes cluster. We are going to utilize a script that will autodeploy the Splunk Universal Forwarder. You will then configure the Universal Forwarder to send logs to the Splunk Enterprise instance assigned to you.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+&lt;p&gt;You&amp;rsquo;ve been tasked with monitoring the OS logs of the host running your Kubernetes cluster. We are going to utilize a script that will autodeploy the Splunk Universal Forwarder. You will then configure the Universal Forwarder to send logs to the Splunk Enterprise instance assigned to you.&lt;/p&gt;</description></item><item><title>5. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/5-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/5-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;User Session&lt;/strong&gt; represents one person’s activity in the application during a particular visit. Each session has a unique Session ID and contains a chronological timeline of the events captured by RUM.&lt;/p&gt;
+&lt;p&gt;The session view brings browser activity together in one place, including page visits, clicks, form submissions, custom workflows, JavaScript errors, network requests, and performance events. At the top of the page, the Session Timeline summarizes when these events occurred. The detailed list below shows their order, duration, and status.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
  multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
 two things: &lt;code&gt;galileo_context.init(...)&lt;/code&gt; and a single &lt;code&gt;GalileoCallback&lt;/code&gt; on the LangGraph run config.
 With that, every agent node&amp;rsquo;s LLM call now appears as a nested span in a single Splunk Agent Observability trace per
@@ -9365,14 +9333,17 @@ modify them.&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;Make &lt;code&gt;agent_config.yaml&lt;/code&gt; available to the computer running your browser.&lt;/p&gt;
+&lt;p&gt;Make &lt;code&gt;agent_config.yaml&lt;/code&gt; available on the computer running your browser.&lt;/p&gt;
 &lt;div class="tabs" data-tabs&gt;
 &lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-config-builder-upload-file-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-config-builder-upload-file-panel-0" tabindex="0" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-1" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-2" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-3" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-4" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-5" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;
 &lt;/div&gt;
-&lt;div id="tabs-config-builder-upload-file-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-0" data-tab-label="Same computer"&gt;Select &lt;code&gt;[WORKSHOP]/1-agent/agent_config.yaml&lt;/code&gt; when Config Builder opens the file
-picker.&lt;/div&gt;
-&lt;div id="tabs-config-builder-upload-file-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-1" hidden data-tab-label="Splunk Show instance"&gt;&lt;p&gt;Copy the current file from the instance to your local computer. Replace
-&lt;code&gt;workshop-user&lt;/code&gt; and &lt;code&gt;workshop-host&lt;/code&gt; with the supplied SSH details:&lt;/p&gt;</description></item><item><title>Adding Notes and Dashboard Layout</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</guid><description>&lt;h2 id="1-adding-notes"&gt;
+&lt;div id="tabs-config-builder-upload-file-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-0" data-tab-label="Same computer"&gt;Use &lt;code&gt;[WORKSHOP]/1-agent/agent_config.yaml&lt;/code&gt;, which the setup script created on
+your computer.&lt;/div&gt;
+&lt;div id="tabs-config-builder-upload-file-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-1" hidden data-tab-label="Splunk Show instance"&gt;&lt;p&gt;Open the
+&lt;a href="https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml" target="_blank" rel="noopener"&gt;OBS1184 example agent configuration&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+.
+On GitHub, select &lt;strong&gt;Download raw file&lt;/strong&gt; and save &lt;code&gt;agent_config.yaml&lt;/code&gt; on the
+computer running your browser.&lt;/p&gt;</description></item><item><title>Adding Notes and Dashboard Layout</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/</guid><description>&lt;h2 id="1-adding-notes"&gt;
  &lt;span class="heading-text"&gt;1. Adding Notes&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-adding-notes" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -9609,7 +9580,22 @@ which provides persistent storage for Kubernetes.&lt;/p&gt;</description></item>
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;terraform init&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s go ahead and deploy those resources again as well!&lt;/p&gt;</description></item><item><title>6. Scenario 2 — TBD</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/6-scenario-2-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/6-scenario-2-overview/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+ &lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s go ahead and deploy those resources again as well!&lt;/p&gt;</description></item><item><title>6. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/6-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/1-intro/3-rum/6-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Locate the failing service&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Examine the service circles in the APM Service Map. Their color indicates service health and helps identify where an error originated. A red circle marks the service identified as the source of the errors, while the red path shows how the failed requests travelled through the service dependencies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In this example, the &lt;strong&gt;payment&lt;/strong&gt; service is shown as a full &lt;strong&gt;red&lt;/strong&gt; circle, indicating that the &lt;em&gt;checkout&lt;/em&gt; errors originated there. Your map may look slightly different, but the service responsible for the errors should be highlighted in the same way.&lt;/p&gt;</description></item><item><title>6. Scenario 2 — TBD</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/6-scenario-2-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/6-logs/6-scenario-2-overview/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
 &lt;/span&gt;&lt;p class="callout__title"&gt;Under Development&lt;/p&gt;&lt;div class="callout__body"&gt;This scenario is under development. The content below is a placeholder.&lt;/div&gt;&lt;/div&gt;
 &lt;h2 id="candidate-scenarios"&gt;
  &lt;span class="heading-text"&gt;Candidate Scenarios&lt;/span&gt;

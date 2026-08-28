@@ -178,11 +178,14 @@ modify them.&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="exercise__panel"&gt;
 &lt;div class="exercise__body"&gt;
-&lt;p&gt;Make &lt;code&gt;agent_config.yaml&lt;/code&gt; available to the computer running your browser.&lt;/p&gt;
+&lt;p&gt;Make &lt;code&gt;agent_config.yaml&lt;/code&gt; available on the computer running your browser.&lt;/p&gt;
 &lt;div class="tabs" data-tabs&gt;
 &lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-config-builder-upload-file-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-config-builder-upload-file-panel-0" tabindex="0" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-1" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-2" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-3" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-4" tabindex="-1" data-tab-label="Same computer"&gt;Same computer&lt;/button&gt;&lt;button id="tabs-config-builder-upload-file-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-config-builder-upload-file-panel-5" tabindex="-1" data-tab-label="Splunk Show instance"&gt;Splunk Show instance&lt;/button&gt;
 &lt;/div&gt;
-&lt;div id="tabs-config-builder-upload-file-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-0" data-tab-label="Same computer"&gt;Select &lt;code&gt;[WORKSHOP]/1-agent/agent_config.yaml&lt;/code&gt; when Config Builder opens the file
-picker.&lt;/div&gt;
-&lt;div id="tabs-config-builder-upload-file-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-1" hidden data-tab-label="Splunk Show instance"&gt;&lt;p&gt;Copy the current file from the instance to your local computer. Replace
-&lt;code&gt;workshop-user&lt;/code&gt; and &lt;code&gt;workshop-host&lt;/code&gt; with the supplied SSH details:&lt;/p&gt;</description></item></channel></rss>
+&lt;div id="tabs-config-builder-upload-file-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-0" data-tab-label="Same computer"&gt;Use &lt;code&gt;[WORKSHOP]/1-agent/agent_config.yaml&lt;/code&gt;, which the setup script created on
+your computer.&lt;/div&gt;
+&lt;div id="tabs-config-builder-upload-file-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-config-builder-upload-file-tab-1" hidden data-tab-label="Splunk Show instance"&gt;&lt;p&gt;Open the
+&lt;a href="https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml" target="_blank" rel="noopener"&gt;OBS1184 example agent configuration&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+.
+On GitHub, select &lt;strong&gt;Download raw file&lt;/strong&gt; and save &lt;code&gt;agent_config.yaml&lt;/code&gt; on the
+computer running your browser.&lt;/p&gt;</description></item></channel></rss>

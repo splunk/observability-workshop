@@ -2,9 +2,23 @@
  &lt;span class="heading-text"&gt;Before you begin&lt;/span&gt;
  &lt;a class="heading-anchor" href="#before-you-begin" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Use a Splunk Show instance, a Linux computer, or an Apple silicon Mac. You also
-need &lt;code&gt;bash&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt;, &lt;code&gt;jq&lt;/code&gt;, and a text editor. If you use a Splunk Show instance,
-your local computer also needs &lt;code&gt;ssh&lt;/code&gt; and &lt;code&gt;scp&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Pairing is optional. For cloud verification, sign in or
-&lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;create a free Splunk Observability Cloud organization&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
-.&lt;/p&gt;</description></item></channel></rss>
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Pair up with other attendees (optional).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open Splunk Observability Cloud. Choose one of these options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sign in to the Observability Workshop organization provided with your
+Splunk Show instance.&lt;/li&gt;
+&lt;li&gt;Register for a free Splunk Observability Cloud organization and sign in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Registration:&lt;/strong&gt; &lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;Register for Splunk Observability Cloud Free&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Choose one supported execution path.&lt;/p&gt;
+&lt;p&gt;The workshop requires &lt;code&gt;bash&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt;, &lt;code&gt;jq&lt;/code&gt;, a text editor, outbound HTTPS,
+and free local ports &lt;code&gt;2222&lt;/code&gt;, &lt;code&gt;4318&lt;/code&gt;, and &lt;code&gt;13133&lt;/code&gt;. The Splunk Show path also
+requires &lt;code&gt;ssh&lt;/code&gt; on your local computer. The &lt;code&gt;scp&lt;/code&gt; command is optional and is
+needed only if you choose to transfer files manually.&lt;/p&gt;</description></item></channel></rss>
