@@ -8,3 +8,4 @@ must not be deployed without first reviewing and updating their dependencies.
 | --- | --- |
 | AWS | [Browse archived files](https://github.com/splunk/observability-workshop/tree/cd5bfe5e9d625d6c4e2b842258f3aa559b9aa07d/workshop/aws) |
 | GCP | [Browse archived files](https://github.com/splunk/observability-workshop/tree/1e1d80ac4240df97e31543d49868af47715277bb/workshop/gcp) |
+| Legacy content | [Browse archived files](https://github.com/splunk/observability-workshop/tree/b29d80b77a1ccec7d13ec085ceba3283b037459e/legacy-content) |
