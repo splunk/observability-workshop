@@ -44,7 +44,6 @@ Confirm `requirements.txt` includes the Agent Control SDK and evaluators:
 ```text
 agent-control-sdk[splunk-ao]>=7.10.0
 agent-control-evaluators>=7.10.0
-agent-control-evaluator-splunk-ao>=7.10.0
 ```
 
 {{< /step >}}
