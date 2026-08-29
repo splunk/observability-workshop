@@ -13,7 +13,7 @@ match should block or steer.
 
 {{< step title="Open the Controls tab" >}}
 
-In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
+In the Splunk Agent Observability console (`https://console.multitenant.sao.splunkcloud.com`, **`workshop`** org),
 open your project / **`default`** agent stream then click on the **Controls** tab.
 
 ![Log Stream Controls](../../images/galileo-log-stream-controls.png?width=750px)

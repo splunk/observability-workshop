@@ -27,8 +27,8 @@ configure Agent Controls:
 
 ```bash
 kubectl create configmap splunk-agent-control-config \
-  --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.galileocloud.io" \
-  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.galileocloud.io/api/agent-control" \
+  --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.sao.splunkcloud.com" \
+  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.sao.splunkcloud.com/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
   --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \

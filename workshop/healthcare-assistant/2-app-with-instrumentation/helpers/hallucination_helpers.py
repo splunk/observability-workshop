@@ -6,7 +6,6 @@ Examples are defined in config.yaml under `demo_hallucinations`.
 """
 import logging
 import os
-import uuid
 from typing import Any, List, Optional, Union
 
 from splunk_ao import SplunkAOLogger
@@ -47,12 +46,16 @@ def log_hallucination(
         else:
             logger.info("Creating new Splunk AO session for hallucination demo")
             splunk_ao_logger = SplunkAOLogger(project=project_name, agent_stream=agent_stream)
-            splunk_ao_logger.start_session(
-                name=session_name,
-                external_id=external_session_id or str(uuid.uuid4()),
-            )
+
+        if external_session_id:
+            splunk_ao_logger.set_session(external_session_id)
 
         splunk_ao_logger.start_trace(
+            input=question,
+            name="Hallucination Demo",
+        )
+
+        splunk_ao_logger.add_workflow_span(
             input=question,
             name="Hallucination Demo",
         )
@@ -85,6 +88,12 @@ Question: {question}"""
             temperature=0.1,
             status_code=200,
             time_to_first_token_ns=500000,
+        )
+
+        splunk_ao_logger.conclude(
+            output=hallucinated_answer,
+            duration_ns=int(2.5e8),
+            status_code=200,
         )
 
         splunk_ao_logger.conclude(

@@ -8,7 +8,7 @@ time: 5 minutes
 ## Sign In to Splunk Agent Observability 
 
 To access Splunk Agent Observability, navigate to 
-[https://console.multitenant.galileocloud.io`](https://console.multitenant.galileocloud.io) using your browser. 
+[https://console.multitenant.sao.splunkcloud.com`](https://console.multitenant.galileocloud.io) using your browser. 
 
 Use the credentials provided by the workshop organizer to sign in. 
 

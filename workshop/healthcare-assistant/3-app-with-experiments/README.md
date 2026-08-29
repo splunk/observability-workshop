@@ -85,38 +85,29 @@ The initial definition of `_process_query_async` is as follows:
         return "No response generated"
 ```
 
-Update it to use the `SplunkAOAsyncCallback` class as follows: 
+Update it to match the [official SDK example](https://github.com/splunk/splunk-ao-python/blob/main/examples/agent/healthcare-assistant/agent-with-instrumentation.py):
 
 ```python
-    async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
-        if not self.tools:
-            self.load_tools()
-        self.graph = self._build_graph()
-
-        langchain_messages: List[BaseMessage] = []
-        for msg in messages:
-            if msg["role"] == "user":
-                langchain_messages.append(HumanMessage(content=msg["content"]))
-            elif msg["role"] == "assistant":
-                langchain_messages.append(AIMessage(content=msg["content"]))
-
         with splunk_ao_context(
             project=os.getenv("SPLUNK_AO_PROJECT"),
             agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
-            splunk_ao_context.start_session(external_id=self.session_id)
+            splunk_ao_context.set_session(self.session_id)
 
-            # One callback per request keeps each user turn in its own trace.
-            callback = SplunkAOAsyncCallback()
+            callback = SplunkAOAsyncCallback(flush_on_chain_end=True)
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
             result = await self.graph.ainvoke(
                 {"messages": langchain_messages},
                 run_config,
             )
-        if result["messages"]:
-            return result["messages"][-1].content
-        return "No response generated"
+```
+
+In `app.py`, pass only the latest user message:
+
+```python
+        latest_user = [m for m in conversation_messages if m["role"] == "user"][-1:]
+        response = st.session_state.agent.process_query(latest_user)
 ```
 
 ## Troubleshooting 

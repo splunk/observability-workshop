@@ -2,8 +2,8 @@
 import asyncio
 import inspect
 import json
+import threading
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
@@ -13,6 +13,7 @@ from langgraph.graph import START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
+from opentelemetry import context as otel_context
 
 from config import TOOLS_DIR, load_config, load_system_prompt
 from rag import create_rag_tool
@@ -20,21 +21,53 @@ from tools import logic as tools_logic
 
 import os
 from splunk_ao import splunk_ao_context
+from splunk_ao.deployment import DeploymentMode, resolve_deployment
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
+
+from splunk_ao.utils.log_config import enable_console_logging
+
+enable_console_logging()
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-def _run_async(coro):
-    """Run an async coroutine from sync code (e.g. Streamlit)."""
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return asyncio.run(coro)
+_agent_loop: asyncio.AbstractEventLoop | None = None
+_agent_loop_thread: threading.Thread | None = None
+_agent_loop_lock = threading.Lock()
 
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        return executor.submit(asyncio.run, coro).result()
+
+def _clear_otel_context() -> None:
+    """Drop any leaked OTel span context before starting a new trace."""
+    otel_context.attach(otel_context.Context())
+
+
+def _ensure_agent_loop() -> asyncio.AbstractEventLoop:
+    """Run agent async work on a dedicated stdlib asyncio loop (not uvloop)."""
+    global _agent_loop, _agent_loop_thread
+    with _agent_loop_lock:
+        if _agent_loop is None:
+            loop = asyncio.new_event_loop()
+
+            def _run_loop() -> None:
+                asyncio.set_event_loop(loop)
+                loop.run_forever()
+
+            thread = threading.Thread(
+                target=_run_loop,
+                daemon=True,
+                name="healthcare-agent-async",
+            )
+            thread.start()
+            _agent_loop = loop
+            _agent_loop_thread = thread
+    return _agent_loop
+
+
+def _run_async(coro):
+    """Run async agent code off Streamlit's uvloop thread."""
+    loop = _ensure_agent_loop()
+    return asyncio.run_coroutine_threadsafe(coro, loop).result()
 
 
 class HealthcareAgent:
@@ -51,7 +84,39 @@ class HealthcareAgent:
         self.system_prompt = load_system_prompt()
         self.tools = []
         self.graph: CompiledStateGraph | None = None
-        self.langgraph_config = {"configurable": {"thread_id": self.session_id}}
+        self._splunk_ao_context_manager = None
+        # Open one Splunk AO context for the whole chat on the agent asyncio thread.
+        _run_async(self._open_splunk_ao_session())
+
+    async def _open_splunk_ao_session(self) -> None:
+        """Bind project/stream and session once; avoid per-turn context exit flushes."""
+        if self._splunk_ao_context_manager is not None:
+            return
+
+        self._splunk_ao_context_manager = splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+        )
+        self._splunk_ao_context_manager.__enter__()
+
+        if resolve_deployment() == DeploymentMode.STANDALONE:
+            # Standalone validates session IDs through CRUD before accepting OTLP spans.
+            backend_session_id = splunk_ao_context.start_session(
+                external_id=self.session_id,
+            )
+            splunk_ao_context.set_session(backend_session_id)
+        else:
+            # O11y accepts the Streamlit chat UUID directly (official SDK pattern).
+            splunk_ao_context.set_session(self.session_id)
+
+    async def _retry_export_if_rejected(self, splunk_ao_logger) -> None:
+        """Standalone can reject the first OTLP batch; retry once after a short pause."""
+        if resolve_deployment() != DeploymentMode.STANDALONE:
+            return
+        if splunk_ao_logger.export_health.healthy is not False:
+            return
+        await asyncio.sleep(2)
+        await splunk_ao_logger.async_flush()
 
     def load_tools(self) -> None:
         tool_schema_path = TOOLS_DIR / "schema.json"
@@ -129,7 +194,8 @@ class HealthcareAgent:
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
         if not self.tools:
             self.load_tools()
-        self.graph = self._build_graph()
+        if self.graph is None:
+            self.graph = self._build_graph()
 
         langchain_messages: List[BaseMessage] = []
         for msg in messages:
@@ -138,20 +204,23 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with splunk_ao_context(
-            project=os.getenv("SPLUNK_AO_PROJECT"),
-            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
-        ):
-            splunk_ao_context.start_session(external_id=self.session_id)
+        splunk_ao_logger = splunk_ao_context.get_logger_instance()
+        splunk_ao_logger.reset_parent_tracking()
+        _clear_otel_context()
 
-            # One callback per request keeps each user turn in its own trace.
-            callback = SplunkAOAsyncCallback()
-            run_config = {**self.langgraph_config, "callbacks": [callback]}
+        # One callback per request keeps each user turn in its own trace.
+        callback = SplunkAOAsyncCallback(flush_on_chain_end=True)
+        run_config = {
+            "configurable": {"thread_id": str(uuid.uuid4())},
+            "callbacks": [callback],
+        }
 
-            result = await self.graph.ainvoke(
-                {"messages": langchain_messages},
-                run_config,
-            )
+        result = await self.graph.ainvoke(
+            {"messages": langchain_messages},
+            run_config,
+        )
+        await self._retry_export_if_rejected(splunk_ao_logger)
+
         if result["messages"]:
             return result["messages"][-1].content
         return "No response generated"
