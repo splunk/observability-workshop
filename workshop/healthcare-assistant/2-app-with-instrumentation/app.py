@@ -8,13 +8,9 @@ from langchain_core.messages import AIMessage, HumanMessage
 
 from agent import HealthcareAgent
 from config import load_config
-from helpers.hallucination_helpers import (
-    add_hallucination_interaction_to_chat,
-    log_demo_hallucination,
-)
+from helpers.hallucination_helpers import add_hallucination_interaction_to_chat
 from rag import get_rag_system
 from setup_env import setup_environment
-from splunk_ao import splunk_ao_context
 
 load_dotenv()
 
@@ -136,10 +132,8 @@ def render_sidebar(app_config: dict) -> str:
             )
             if st.button("Log Hallucination", key="log_hallucination"):
                 with st.spinner("Logging hallucination to Splunk Agent Observability..."):
-                    success = log_demo_hallucination(
+                    success = st.session_state.agent.log_demo_hallucination(
                         config=app_config,
-                        existing_logger=splunk_ao_context,
-                        session_id=st.session_state.get("session_id"),
                     )
                     if success:
                         add_hallucination_interaction_to_chat(app_config)

@@ -16,6 +16,7 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from opentelemetry import context as otel_context
 
 from config import TOOLS_DIR, load_config, load_system_prompt
+from helpers.otlp_debug import enable_otlp_rejection_detail_logging, log_export_health
 from rag import create_rag_tool
 from tools import logic as tools_logic
 
@@ -25,8 +26,10 @@ from splunk_ao.deployment import DeploymentMode, resolve_deployment
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
 
 from splunk_ao.utils.log_config import enable_console_logging
+import logging 
 
-enable_console_logging()
+enable_console_logging(level=logging.DEBUG)
+enable_otlp_rejection_detail_logging()
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -85,6 +88,7 @@ class HealthcareAgent:
         self.tools = []
         self.graph: CompiledStateGraph | None = None
         self._splunk_ao_context_manager = None
+        self.splunk_ao_backend_session_id: str | None = None
         # Open one Splunk AO context for the whole chat on the agent asyncio thread.
         _run_async(self._open_splunk_ao_session())
 
@@ -105,9 +109,11 @@ class HealthcareAgent:
                 external_id=self.session_id,
             )
             splunk_ao_context.set_session(backend_session_id)
+            self.splunk_ao_backend_session_id = backend_session_id
         else:
             # O11y accepts the Streamlit chat UUID directly (official SDK pattern).
             splunk_ao_context.set_session(self.session_id)
+            self.splunk_ao_backend_session_id = self.session_id
 
     async def _retry_export_if_rejected(self, splunk_ao_logger) -> None:
         """Standalone can reject the first OTLP batch; retry once after a short pause."""
@@ -115,8 +121,10 @@ class HealthcareAgent:
             return
         if splunk_ao_logger.export_health.healthy is not False:
             return
+        log_export_health(splunk_ao_logger, label="Before retry")
         await asyncio.sleep(2)
         await splunk_ao_logger.async_flush()
+        log_export_health(splunk_ao_logger, label="After retry")
 
     def load_tools(self) -> None:
         tool_schema_path = TOOLS_DIR / "schema.json"
@@ -234,3 +242,17 @@ class HealthcareAgent:
 
             traceback.print_exc()
             return f"Error processing your request: {str(e)}"
+
+    def log_demo_hallucination(self, config: dict) -> bool:
+        """Log the hallucination demo trace on the agent thread (shared AO session)."""
+        return _run_async(self._log_demo_hallucination_async(config))
+
+    async def _log_demo_hallucination_async(self, config: dict) -> bool:
+        from helpers.hallucination_helpers import log_demo_hallucination
+
+        return log_demo_hallucination(
+            config=config,
+            existing_logger=splunk_ao_context,
+            session_id=self.session_id,
+            backend_session_id=self.splunk_ao_backend_session_id,
+        )
