@@ -6,7 +6,6 @@ from typing import Optional
 from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
@@ -81,11 +80,9 @@ class HealthcareRAGSystem:
                 ]
             )
             combine_docs_chain = create_stuff_documents_chain(llm, retrieval_qa_chat_prompt)
-            # Keep LangGraph's Splunk AO callback on the tool span only. Internal
-            # retriever callbacks produce output the standalone OTLP receiver rejects.
-            self.retrieval_chain = create_retrieval_chain(
-                retriever, combine_docs_chain
-            ).with_config(RunnableConfig(callbacks=[]))
+            # Let the RAG retriever/LLM spans flow to Splunk AO so the trace shows
+            # the full retrieval subtree (not just the tool span).
+            self.retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
             self._initialized = True
             print(f"✅ RAG system initialized (model: {llm_model})")
         except Exception as e:
@@ -106,7 +103,6 @@ class HealthcareRAGSystem:
             result = await asyncio.to_thread(
                 self.retrieval_chain.invoke,
                 {"input": query},
-                RunnableConfig(callbacks=[]),
             )
             return result["answer"]
         except Exception as e:

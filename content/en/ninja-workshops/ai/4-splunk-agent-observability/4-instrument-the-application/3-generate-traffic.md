@@ -111,13 +111,15 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
 
 {{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
 
-To see exactly what the SDK is doing, you can temporarily add the following near the top of
-`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`:
+The app already enables SDK console logging at `INFO` near the top of
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`. To see even more detail
+about what the SDK is doing, temporarily raise it to `DEBUG`:
 
 ```python
 from splunk_ao.utils.log_config import enable_console_logging
+import logging
 
-enable_console_logging()
+enable_console_logging(level=logging.DEBUG)
 ```
 
 Then rebuild the Docker image: 

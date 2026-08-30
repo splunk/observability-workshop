@@ -9,6 +9,11 @@ The agent runs its LangGraph workflow asynchronously, so you'll attach Splunk Ag
 **async** callback handler. Because the callback is passed at the graph level, it propagates to every
 node automatically, with no per-tool instrumentation required.
 
+Splunk Agent Observability ships traces through its **ingest API**: a lightweight logger buffers the
+spans produced during a turn, then flushes them together when the LangGraph chain ends. All of the
+turns in a single chat are grouped under one **session**, so the whole conversation stays together in
+the console.
+
 {{< exercise title="Add the callback to the agent" >}}
 
 {{< step title="Add the imports" >}}
@@ -19,42 +24,75 @@ to collect traces:
 
 ```python
 import os
-from splunk_ao import splunk_ao_context
-from splunk_ao.deployment import DeploymentMode, resolve_deployment
+from splunk_ao import SplunkAOLogger
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
+from splunk_ao.schema.trace import TracesIngestRequest
 ```
 
 {{< /step >}}
 
-{{< step title="Wrap the graph invocation in a Splunk AO context" >}}
+{{< step title="Create the loggers and register a session" >}}
 
-We've updated `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`
-to open **one** `splunk_ao_context` when the agent is created and keep it open for the
-whole Streamlit chat. Each turn attaches a fresh callback that flushes when the LangGraph
-chain ends:
+We've updated `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` so that when the
+agent is created, it sets up its logging and registers **one** session for the whole Streamlit chat:
 
 ```python
     async def _open_splunk_ao_session(self) -> None:
-        self._splunk_ao_context_manager = splunk_ao_context(
-            project=os.getenv("SPLUNK_AO_PROJECT"),
-            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+        project = os.getenv("SPLUNK_AO_PROJECT")
+        agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM")
+
+        # Backend-connected logger: owns the session and sends traces via the ingest API.
+        self._ingest_logger = SplunkAOLogger(project=project, agent_stream=agent_stream)
+        self._backend_session_id = self._ingest_logger.start_session(
+            external_id=self.session_id,
         )
-        self._splunk_ao_context_manager.__enter__()
 
-        if resolve_deployment() == DeploymentMode.STANDALONE:
-            backend_session_id = splunk_ao_context.start_session(
-                external_id=self.session_id,
-            )
-            splunk_ao_context.set_session(backend_session_id)
-        else:
-            splunk_ao_context.set_session(self.session_id)
+        # Batch-mode logger: the callback buffers spans here, then flushes them
+        # through the ingestion hook (below) when each turn ends.
+        self._traced_logger = SplunkAOLogger(
+            project=project,
+            agent_stream=agent_stream,
+            mode="batch",
+            ingestion_hook=self._ingest_hook,
+        )
 
+    def _ingest_hook(self, request: TracesIngestRequest) -> None:
+        # Tag every buffered trace with the shared session, then send it to the ingest API.
+        request.session_id = uuid.UUID(str(self._backend_session_id))
+        request.log_stream_id = uuid.UUID(str(self._ingest_logger.agent_stream_id))
+        self._ingest_logger.ingest_traces(request)
+```
+
+Two loggers cooperate here. `_ingest_logger` is connected to the backend: it registers the session
+with `start_session(external_id=...)` and performs the actual `ingest_traces` call. `_traced_logger`
+runs in **batch mode** with an *ingestion hook* — the LangChain callback buffers each turn's spans on
+it, and when the turn ends the hook forwards them (retriever documents and all) through `_ingest_logger`.
+
+Because every turn — and the *Log Hallucination* demo — flushes through the same `_ingest_logger` and
+the same `_backend_session_id`, they all land in **one session** in the console.
+
+{{% notice title="Why register the session up front?" style="info" %}}
+
+`start_session(external_id=self.session_id)` is idempotent: the first call creates the session, and
+any later call with the same external id reuses it. Registering it once when the agent is created
+gives every trace in the chat a stable home to group under.
+
+{{% /notice %}}
+
+{{< /step >}}
+
+{{< step title="Attach the callback to each turn" >}}
+
+Each user turn attaches a fresh `SplunkAOAsyncCallback`, pointed at the batch-mode logger, and flushes
+when the LangGraph chain ends:
+
+```python
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
         ...
-        splunk_ao_logger = splunk_ao_context.get_logger_instance()
-        splunk_ao_logger.reset_parent_tracking()
-
-        callback = SplunkAOAsyncCallback(flush_on_chain_end=True)
+        callback = SplunkAOAsyncCallback(
+            splunk_ao_logger=self._traced_logger,
+            flush_on_chain_end=True,
+        )
         run_config = {
             "configurable": {"thread_id": str(uuid.uuid4())},
             "callbacks": [callback],
@@ -64,22 +102,10 @@ chain ends:
             {"messages": langchain_messages},
             run_config,
         )
-        await self._retry_export_if_rejected(splunk_ao_logger)
 ```
 
-Do **not** wrap each turn in its own `with splunk_ao_context(...)`. Exiting that block
-flushes again on every turn. Combined with `flush_on_chain_end=True`, standalone deployments
-can reject the first OTLP batch and leave an empty session in the UI until a later turn succeeds.
-
-On standalone, the agent registers the chat once through the Sessions API
-(`start_session(external_id=...)`). On O11y Cloud it uses the Streamlit UUID with
-`set_session`, matching the [official SDK example](https://github.com/splunk/splunk-ao-python/tree/main/examples/agent/healthcare-assistant).
-If the first export is still rejected, `_retry_export_if_rejected` waits briefly and flushes again.
-
-Streamlit in Docker uses **uvloop**, which cannot be patched by `nest_asyncio`. The agent
-therefore runs `ainvoke` on a dedicated stdlib asyncio thread so Splunk AO context stays
-consistent across turns. Reset parent tracking before each invoke so turns do not share
-trace state.
+Streamlit in Docker uses **uvloop**, which cannot be patched by `nest_asyncio`. The agent therefore
+runs `ainvoke` on a dedicated stdlib asyncio thread so the loggers stay consistent across turns.
 
 {{< /step >}}
 
