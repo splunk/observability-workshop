@@ -140,11 +140,8 @@ class HealthcareAgent:
         with splunk_ao_context(
             project=os.getenv("SPLUNK_AO_PROJECT"),
             agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+            session_id=self.session_id,
         ):
-            try:
-                splunk_ao_context.start_session(external_id=self.session_id)
-            except Exception as e:
-                print(f"[WARN] Session CRUD failed (non-fatal): {e}")
 
             # One callback per request keeps each user turn in its own trace.
             callback = SplunkAOAsyncCallback()
