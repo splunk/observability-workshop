@@ -30,9 +30,9 @@ kubectl create configmap splunk-agent-control-config \
   --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.sao.splunkcloud.com" \
   --from-literal=AGENT_CONTROL_URL="https://console.multitenant.sao.splunkcloud.com/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
-  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-Key" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
-  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="agent_stream"
 ```
 
 {{< /step >}}
