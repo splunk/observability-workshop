@@ -58,7 +58,13 @@ class HealthcareRAGSystem:
                     f"Please run: python helpers/setup_vectordb.py {environment}"
                 )
 
-            embeddings = OpenAIEmbeddings(model=embedding_model)
+            embedding_kwargs = {"model": embedding_model}
+            if os.environ.get("OPENAI_EMBEDDING_BASE_URL"):
+                embedding_kwargs["base_url"] = os.environ["OPENAI_EMBEDDING_BASE_URL"]
+                embedding_kwargs["default_query"] = {
+                    "api-version": os.environ.get("OPENAI_API_VERSION", "2024-12-01-preview")
+                }
+            embeddings = OpenAIEmbeddings(**embedding_kwargs)
             vector_store, _ = create_pgvector_store(embeddings, DOMAIN, environment)
             retriever = vector_store.as_retriever(search_kwargs={"k": self.top_k})
 

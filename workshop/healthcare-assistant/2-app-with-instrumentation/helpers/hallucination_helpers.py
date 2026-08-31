@@ -57,6 +57,14 @@ def log_hallucination(
             name="Hallucination Demo",
         )
 
+        # Wrap spans in a workflow so the console shows "Hallucination Demo" as the
+        # root name — splunk-ao OTel converter derives span names from type+model for
+        # LLM spans, ignoring name=, so a workflow span is needed as the visible root.
+        splunk_ao_logger.add_workflow_span(
+            input=question,
+            name="Hallucination Demo",
+        )
+
         splunk_ao_logger.add_retriever_span(
             input=question,
             output=context_docs,
@@ -85,6 +93,13 @@ Question: {question}"""
             temperature=0.1,
             status_code=200,
             time_to_first_token_ns=500000,
+        )
+
+        # Conclude the workflow span, then the trace
+        splunk_ao_logger.conclude(
+            output=hallucinated_answer,
+            duration_ns=int(2.5e8),
+            status_code=200,
         )
 
         splunk_ao_logger.conclude(

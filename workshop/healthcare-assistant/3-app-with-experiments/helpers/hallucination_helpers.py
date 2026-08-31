@@ -57,6 +57,11 @@ def log_hallucination(
             name="Hallucination Demo",
         )
 
+        splunk_ao_logger.add_workflow_span(
+            input=question,
+            name="Hallucination Demo",
+        )
+
         splunk_ao_logger.add_retriever_span(
             input=question,
             output=context_docs,
@@ -85,6 +90,12 @@ Question: {question}"""
             temperature=0.1,
             status_code=200,
             time_to_first_token_ns=500000,
+        )
+
+        splunk_ao_logger.conclude(
+            output=hallucinated_answer,
+            duration_ns=int(2.5e8),
+            status_code=200,
         )
 
         splunk_ao_logger.conclude(

@@ -17,6 +17,20 @@ from setup_env import setup_environment
 
 load_dotenv()
 
+# Inject api-version for Azure APIM — openai 3.x non-Azure client doesn't append it.
+# Patches both sync and async clients (RAG chain uses sync ChatOpenAI via asyncio.to_thread).
+import openai as _openai_module
+for _cls in (_openai_module.OpenAI, _openai_module.AsyncOpenAI):
+    _orig = _cls.__init__
+    def _make_patch(orig):
+        def _patched(self, *args, **kwargs):
+            dq = dict(kwargs.pop("default_query", None) or {})
+            dq.setdefault("api-version", os.getenv("OPENAI_API_VERSION", "2024-12-01-preview"))
+            kwargs["default_query"] = dq
+            orig(self, *args, **kwargs)
+        return _patched
+    _cls.__init__ = _make_patch(_orig)
+
 if not os.getenv("_ENV_LOADED"):
     setup_environment()
     os.environ["_ENV_LOADED"] = "true"

@@ -26,19 +26,22 @@ spec:
                 name: healthcare-assistant-config
             - configMapRef:
                 name: postgres-config
-            - configMapRef:
-                name: splunk-ao-config
           env:
             - name: OPENAI_BASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: openai-api
-                  key: openai-api-endpoint
+                  name: openai-secrets
+                  key: base-url
+            - name: OPENAI_EMBEDDING_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secrets
+                  key: embedding-base-url
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: openai-api
-                  key: openai-api-key
+                  name: openai-secrets
+                  key: api-key
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -47,18 +50,28 @@ spec:
             - name: SPLUNK_AO_REALM
               valueFrom:
                 secretKeyRef:
-                  name: splunk-ao-secret
+                  name: splunk-ao-secrets
                   key: realm
             - name: SPLUNK_AO_O11Y_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: splunk-ao-secret
+                  name: splunk-ao-secrets
                   key: o11y-token
             - name: SPLUNK_AO_O11Y_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: splunk-ao-secret
+                  name: splunk-ao-secrets
                   key: o11y-api-token
+            - name: SPLUNK_AO_PROJECT
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-ao-secrets
+                  key: project
+            - name: SPLUNK_AO_AGENT_STREAM
+              valueFrom:
+                secretKeyRef:
+                  name: splunk-ao-secrets
+                  key: agent-stream
           resources:
             requests:
               memory: "512Mi"
