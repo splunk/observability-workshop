@@ -14,22 +14,9 @@ from helpers.hallucination_helpers import (
 )
 from rag import get_rag_system
 from setup_env import setup_environment
+from splunk_ao import splunk_ao_context
 
 load_dotenv()
-
-# Inject api-version for Azure APIM — openai 3.x non-Azure client doesn't append it.
-# Patches both sync and async clients (RAG chain uses sync ChatOpenAI via asyncio.to_thread).
-import openai as _openai_module
-for _cls in (_openai_module.OpenAI, _openai_module.AsyncOpenAI):
-    _orig = _cls.__init__
-    def _make_patch(orig):
-        def _patched(self, *args, **kwargs):
-            dq = dict(kwargs.pop("default_query", None) or {})
-            dq.setdefault("api-version", os.getenv("OPENAI_API_VERSION", "2024-12-01-preview"))
-            kwargs["default_query"] = dq
-            orig(self, *args, **kwargs)
-        return _patched
-    _cls.__init__ = _make_patch(_orig)
 
 if not os.getenv("_ENV_LOADED"):
     setup_environment()
@@ -104,7 +91,9 @@ def process_input(user_input: str | None):
                 elif isinstance(message, AIMessage):
                     conversation_messages.append({"role": "assistant", "content": message.content})
 
-        response = st.session_state.agent.process_query(conversation_messages)
+        # Pass only the latest user message to keep each trace a clean single input/output pair.
+        latest_user = [m for m in conversation_messages if m["role"] == "user"][-1:]
+        response = st.session_state.agent.process_query(latest_user)
         st.session_state.messages.append(
             {"message": AIMessage(content=response), "agent": "assistant"}
         )
@@ -147,14 +136,9 @@ def render_sidebar(app_config: dict) -> str:
             )
             if st.button("Log Hallucination", key="log_hallucination"):
                 with st.spinner("Logging hallucination to Splunk Agent Observability..."):
-                    existing_logger = (
-                        st.session_state.get("splunk_ao_logger")
-                        if st.session_state.get("splunk_ao_session_started", False)
-                        else None
-                    )
                     success = log_demo_hallucination(
                         config=app_config,
-                        existing_logger=existing_logger,
+                        existing_logger=splunk_ao_context,
                         session_id=st.session_state.get("session_id"),
                     )
                     if success:

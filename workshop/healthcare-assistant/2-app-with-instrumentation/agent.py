@@ -8,13 +8,12 @@ from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langchain_core.tools import StructuredTool
-from langchain_openai import ChatOpenAI
 from langgraph.graph import START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 
-from config import TOOLS_DIR, load_config, load_system_prompt
+from config import TOOLS_DIR, load_config, load_system_prompt, create_chat_llm
 from rag import create_rag_tool
 from tools import logic as tools_logic
 
@@ -105,7 +104,7 @@ class HealthcareAgent:
         )
         temperature = model_config.get("temperature", 0.1)
 
-        llm_with_tools = ChatOpenAI(
+        llm_with_tools = create_chat_llm(
             model=effective_model,
             temperature=temperature,
             name="Healthcare Assistant",
@@ -142,7 +141,10 @@ class HealthcareAgent:
             project=os.getenv("SPLUNK_AO_PROJECT"),
             agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
-            splunk_ao_context.start_session(external_id=self.session_id)
+            try:
+                splunk_ao_context.start_session(external_id=self.session_id)
+            except Exception as e:
+                print(f"[WARN] Session CRUD failed (non-fatal): {e}")
 
             # One callback per request keeps each user turn in its own trace.
             callback = SplunkAOAsyncCallback()
