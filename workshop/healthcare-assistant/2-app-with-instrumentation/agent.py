@@ -2,8 +2,8 @@
 import asyncio
 import inspect
 import json
-import threading
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
@@ -19,51 +19,27 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
-from splunk_ao import SplunkAOLogger
+from splunk_ao import splunk_ao_context
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
-from splunk_ao.schema.trace import TracesIngestRequest
 
 from splunk_ao.utils.log_config import enable_console_logging
 import logging
 
 enable_console_logging(level=logging.INFO)
 
-
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-_agent_loop: asyncio.AbstractEventLoop | None = None
-_agent_loop_thread: threading.Thread | None = None
-_agent_loop_lock = threading.Lock()
-
-
-def _ensure_agent_loop() -> asyncio.AbstractEventLoop:
-    """Run agent async work on a dedicated stdlib asyncio loop (not uvloop)."""
-    global _agent_loop, _agent_loop_thread
-    with _agent_loop_lock:
-        if _agent_loop is None:
-            loop = asyncio.new_event_loop()
-
-            def _run_loop() -> None:
-                asyncio.set_event_loop(loop)
-                loop.run_forever()
-
-            thread = threading.Thread(
-                target=_run_loop,
-                daemon=True,
-                name="healthcare-agent-async",
-            )
-            thread.start()
-            _agent_loop = loop
-            _agent_loop_thread = thread
-    return _agent_loop
-
-
 def _run_async(coro):
-    """Run async agent code off Streamlit's uvloop thread."""
-    loop = _ensure_agent_loop()
-    return asyncio.run_coroutine_threadsafe(coro, loop).result()
+    """Run an async coroutine from sync code (e.g. Streamlit)."""
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        return asyncio.run(coro)
+
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        return executor.submit(asyncio.run, coro).result()
 
 
 class HealthcareAgent:
@@ -80,50 +56,7 @@ class HealthcareAgent:
         self.system_prompt = load_system_prompt()
         self.tools = []
         self.graph: CompiledStateGraph | None = None
-        self._ingest_logger: SplunkAOLogger | None = None
-        self._traced_logger: SplunkAOLogger | None = None
-        self._backend_session_id: str | None = None
-        # Open one Splunk AO session for the whole chat on the agent asyncio thread.
-        _run_async(self._open_splunk_ao_session())
-
-    async def _open_splunk_ao_session(self) -> None:
-        """Create the loggers and register the session once.
-
-        All telemetry is shipped through the REST ingest API (not OTLP), which
-        matches how the app worked before the SDK migration and lets retriever
-        spans keep their typed documents. Two loggers cooperate:
-
-        * ``_ingest_logger`` is backend-connected: it owns the session and runs
-          ``ingest_traces``.
-        * ``_traced_logger`` runs in batch mode with an ingestion hook, so the
-          LangChain callback buffers spans and flushes them through that hook
-          instead of exporting over OTLP.
-        """
-        if self._ingest_logger is not None:
-            return
-
-        project = os.getenv("SPLUNK_AO_PROJECT")
-        agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM")
-
-        self._ingest_logger = SplunkAOLogger(project=project, agent_stream=agent_stream)
-        # Register (or look up) the session so every trace groups under it.
-        self._backend_session_id = self._ingest_logger.start_session(
-            external_id=self.session_id,
-        )
-        self._traced_logger = SplunkAOLogger(
-            project=project,
-            agent_stream=agent_stream,
-            mode="batch",
-            ingestion_hook=self._ingest_hook,
-        )
-
-    def _ingest_hook(self, request: TracesIngestRequest) -> None:
-        """Ship buffered callback traces via REST ingest, tagged with the session."""
-        # Coerce to UUID: assigning a str to these UUID fields works but triggers
-        # a Pydantic serialization warning.
-        request.session_id = uuid.UUID(str(self._backend_session_id))
-        request.log_stream_id = uuid.UUID(str(self._ingest_logger.agent_stream_id))
-        self._ingest_logger.ingest_traces(request)
+        self.langgraph_config = {"configurable": {"thread_id": self.session_id}}
 
     def load_tools(self) -> None:
         tool_schema_path = TOOLS_DIR / "schema.json"
@@ -201,8 +134,7 @@ class HealthcareAgent:
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
         if not self.tools:
             self.load_tools()
-        if self.graph is None:
-            self.graph = self._build_graph()
+        self.graph = self._build_graph()
 
         langchain_messages: List[BaseMessage] = []
         for msg in messages:
@@ -211,23 +143,20 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        # One callback per request keeps each user turn in its own trace. The
-        # shared batch-mode logger buffers the spans and flushes them through the
-        # ingestion hook (REST ingest) when the chain ends.
-        callback = SplunkAOAsyncCallback(
-            splunk_ao_logger=self._traced_logger,
-            flush_on_chain_end=True,
-        )
-        run_config = {
-            "configurable": {"thread_id": str(uuid.uuid4())},
-            "callbacks": [callback],
-        }
+        with splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+        ):
+            splunk_ao_context.start_session(external_id=self.session_id)
 
-        result = await self.graph.ainvoke(
-            {"messages": langchain_messages},
-            run_config,
-        )
+            # One callback per request keeps each user turn in its own trace.
+            callback = SplunkAOAsyncCallback()
+            run_config = {**self.langgraph_config, "callbacks": [callback]}
 
+            result = await self.graph.ainvoke(
+                {"messages": langchain_messages},
+                run_config,
+            )
         if result["messages"]:
             return result["messages"][-1].content
         return "No response generated"
@@ -241,18 +170,3 @@ class HealthcareAgent:
 
             traceback.print_exc()
             return f"Error processing your request: {str(e)}"
-
-    def log_demo_hallucination(self, config: dict) -> bool:
-        """Log the hallucination demo trace on the agent thread (shared AO session)."""
-        return _run_async(self._log_demo_hallucination_async(config))
-
-    async def _log_demo_hallucination_async(self, config: dict) -> bool:
-        from helpers.hallucination_helpers import log_demo_hallucination
-
-        # Ingest through the same backend logger and session as the chat turns,
-        # so the demo trace groups into the active session.
-        return log_demo_hallucination(
-            config=config,
-            ingest_logger=self._ingest_logger,
-            session_id=self._backend_session_id,
-        )

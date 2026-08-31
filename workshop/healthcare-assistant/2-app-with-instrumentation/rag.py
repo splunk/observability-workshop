@@ -80,8 +80,6 @@ class HealthcareRAGSystem:
                 ]
             )
             combine_docs_chain = create_stuff_documents_chain(llm, retrieval_qa_chat_prompt)
-            # Let the RAG retriever/LLM spans flow to Splunk AO so the trace shows
-            # the full retrieval subtree (not just the tool span).
             self.retrieval_chain = create_retrieval_chain(retriever, combine_docs_chain)
             self._initialized = True
             print(f"✅ RAG system initialized (model: {llm_model})")
@@ -101,8 +99,7 @@ class HealthcareRAGSystem:
 
         try:
             result = await asyncio.to_thread(
-                self.retrieval_chain.invoke,
-                {"input": query},
+                self.retrieval_chain.invoke, {"input": query}
             )
             return result["answer"]
         except Exception as e:

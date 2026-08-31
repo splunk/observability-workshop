@@ -2,17 +2,12 @@
 title: Attach the Splunk Agent Observability Callback
 linkTitle: 2. Attach the Splunk Agent Observability Callback
 weight: 2
-time: 5 minutes
+time: 3 minutes
 ---
 
 The agent runs its LangGraph workflow asynchronously, so you'll attach Splunk Agent Observability's
 **async** callback handler. Because the callback is passed at the graph level, it propagates to every
 node automatically, with no per-tool instrumentation required.
-
-Splunk Agent Observability ships traces through its **ingest API**: a lightweight logger buffers the
-spans produced during a turn, then flushes them together when the LangGraph chain ends. All of the
-turns in a single chat are grouped under one **session**, so the whole conversation stays together in
-the console.
 
 {{< exercise title="Add the callback to the agent" >}}
 
@@ -24,103 +19,49 @@ to collect traces:
 
 ```python
 import os
-from splunk_ao import SplunkAOLogger
+from splunk_ao import splunk_ao_context
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
-from splunk_ao.schema.trace import TracesIngestRequest
 ```
 
 {{< /step >}}
 
-{{< step title="Create the loggers and register a session" >}}
+{{< step title="Wrap the graph invocation in a Splunk AO context" >}}
 
-We've updated `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` so that when the
-agent is created, it sets up its logging and registers **one** session for the whole Streamlit chat:
-
-```python
-    async def _open_splunk_ao_session(self) -> None:
-        project = os.getenv("SPLUNK_AO_PROJECT")
-        agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM")
-
-        # Backend-connected logger: owns the session and sends traces via the ingest API.
-        self._ingest_logger = SplunkAOLogger(project=project, agent_stream=agent_stream)
-        self._backend_session_id = self._ingest_logger.start_session(
-            external_id=self.session_id,
-        )
-
-        # Batch-mode logger: the callback buffers spans here, then flushes them
-        # through the ingestion hook (below) when each turn ends.
-        self._traced_logger = SplunkAOLogger(
-            project=project,
-            agent_stream=agent_stream,
-            mode="batch",
-            ingestion_hook=self._ingest_hook,
-        )
-
-    def _ingest_hook(self, request: TracesIngestRequest) -> None:
-        # Tag every buffered trace with the shared session, then send it to the ingest API.
-        request.session_id = uuid.UUID(str(self._backend_session_id))
-        request.log_stream_id = uuid.UUID(str(self._ingest_logger.agent_stream_id))
-        self._ingest_logger.ingest_traces(request)
-```
-
-Two loggers cooperate here. `_ingest_logger` is connected to the backend: it registers the session
-with `start_session(external_id=...)` and performs the actual `ingest_traces` call. `_traced_logger`
-runs in **batch mode** with an *ingestion hook* — the LangChain callback buffers each turn's spans on
-it, and when the turn ends the hook forwards them (retriever documents and all) through `_ingest_logger`.
-
-Because every turn — and the *Log Hallucination* demo — flushes through the same `_ingest_logger` and
-the same `_backend_session_id`, they all land in **one session** in the console.
-
-{{% notice title="Why register the session up front?" style="info" %}}
-
-`start_session(external_id=self.session_id)` is idempotent: the first call creates the session, and
-any later call with the same external id reuses it. Registering it once when the agent is created
-gives every trace in the chat a stable home to group under.
-
-{{% /notice %}}
-
-{{< /step >}}
-
-{{< step title="Attach the callback to each turn" >}}
-
-Each user turn attaches a fresh `SplunkAOAsyncCallback`, pointed at the batch-mode logger, and flushes
-when the LangGraph chain ends:
+We've updated the `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file
+to update the `_process_query_async` function to open a `splunk_ao_context`, start a session keyed to the agent's `session_id`,
+and attach a fresh `SplunkAOAsyncCallback` to the run config:
 
 ```python
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
-        ...
-        callback = SplunkAOAsyncCallback(
-            splunk_ao_logger=self._traced_logger,
-            flush_on_chain_end=True,
-        )
-        run_config = {
-            "configurable": {"thread_id": str(uuid.uuid4())},
-            "callbacks": [callback],
-        }
+        if not self.tools:
+            self.load_tools()
+        self.graph = self._build_graph()
 
-        result = await self.graph.ainvoke(
-            {"messages": langchain_messages},
-            run_config,
-        )
+        langchain_messages: List[BaseMessage] = []
+        for msg in messages:
+            if msg["role"] == "user":
+                langchain_messages.append(HumanMessage(content=msg["content"]))
+            elif msg["role"] == "assistant":
+                langchain_messages.append(AIMessage(content=msg["content"]))
+
+        with splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+        ):
+            splunk_ao_context.start_session(external_id=self.session_id)
+
+            # One callback per request keeps each user turn in its own trace.
+            callback = SplunkAOAsyncCallback()
+            run_config = {**self.langgraph_config, "callbacks": [callback]}
+
+            result = await self.graph.ainvoke(
+                {"messages": langchain_messages},
+                run_config,
+            )
+        if result["messages"]:
+            return result["messages"][-1].content
+        return "No response generated"
 ```
-
-Streamlit in Docker uses **uvloop**, which cannot be patched by `nest_asyncio`. The agent therefore
-runs `ainvoke` on a dedicated stdlib asyncio thread so the loggers stay consistent across turns.
-
-{{< /step >}}
-
-{{< step title="Send only the latest user message from Streamlit" >}}
-
-In `app.py`, we pass only the most recent user turn to the agent. Sending the full chat history
-on every invoke makes traces look like one long conversation:
-
-```python
-        # Pass only the latest user message to keep each trace a single input/output pair.
-        latest_user = [m for m in conversation_messages if m["role"] == "user"][-1:]
-        response = st.session_state.agent.process_query(latest_user)
-```
-
-The UI still displays the full chat history; only the trace payload is scoped to the current turn.
 
 {{< /step >}}
 
@@ -128,10 +69,10 @@ The UI still displays the full chat history; only the trace payload is scoped to
 
 {{% notice title="Why a single callback per request?" style="info" %}}
 
-Creating one `SplunkAOAsyncCallback(flush_on_chain_end=True)` per call to `_process_query_async`
-keeps each user turn in its own trace. Because it's attached to the LangGraph run config, every
-node's LLM and tool call becomes a nested span under that same trace, giving you the end-to-end
-view of a turn instead of a pile of disconnected spans.
+Creating one `SplunkAOAsyncCallback` per call to `_process_query_async` keeps each user turn
+in its own trace. Because it's attached to the LangGraph run config, every node's LLM and
+tool call becomes a nested span under that same trace, giving you the end-to-end view of a
+turn instead of a pile of disconnected spans.
 
 {{% /notice %}}
 

@@ -3,110 +3,97 @@ Hallucination Demo Helpers
 
 Log intentional hallucinations to Splunk Agent Observability for demos.
 Examples are defined in config.yaml under `demo_hallucinations`.
-
-The demo trace is sent through the SAME backend logger and session the chat
-turns use (via the REST `ingest_traces` API), so it groups into the active
-session alongside the real conversation.
 """
 import logging
+import os
 import uuid
-from typing import List, Optional
+from typing import Any, List, Optional, Union
 
-from langchain_core.messages import AIMessage, HumanMessage
-from galileo_core.schemas.logging.span import LlmMetrics, RetrieverSpan
-from galileo_core.schemas.logging.step import Metrics
-from galileo_core.schemas.shared.document import Document
 from splunk_ao import SplunkAOLogger
-from splunk_ao.schema.logged import LoggedLlmSpan, LoggedTrace
-from splunk_ao.schema.trace import TracesIngestRequest
+from langchain_core.messages import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
 
-def _build_hallucination_trace(
+def log_hallucination(
+    project_name: str,
+    agent_stream: str,
     question: str,
     context_docs: List[str],
     hallucinated_answer: str,
-    model: str,
-) -> LoggedTrace:
-    """Build a trace with a retriever span (real context) and an LLM span (wrong answer)."""
-    context_text = "\n\n".join(context_docs)
-    llm_input = f"""Human: You are a helpful assistant. Given the context below, please answer the following question:
+    model: str = "gpt-4o",
+    session_name: str = "Hallucination Demo",
+    external_session_id: Optional[str] = None,
+    existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
+) -> bool:
+    """
+    Log a hallucination trace to Splunk AO for demonstration purposes.
+
+    Creates a trace with a retriever span (real context) and an LLM span (wrong answer).
+    """
+    try:
+        logger.info(
+            "Logging hallucination to project: %s, agent stream: %s",
+            project_name,
+            agent_stream,
+        )
+
+        if existing_logger:
+            logger.info("Using existing Splunk AO session for hallucination demo")
+            if hasattr(existing_logger, "get_logger_instance"):
+                splunk_ao_logger = existing_logger.get_logger_instance()
+            else:
+                splunk_ao_logger = existing_logger
+        else:
+            logger.info("Creating new Splunk AO session for hallucination demo")
+            splunk_ao_logger = SplunkAOLogger(project=project_name, agent_stream=agent_stream)
+            splunk_ao_logger.start_session(
+                name=session_name,
+                external_id=external_session_id or str(uuid.uuid4()),
+            )
+
+        splunk_ao_logger.start_trace(
+            input=question,
+            name="Hallucination Demo",
+        )
+
+        splunk_ao_logger.add_retriever_span(
+            input=question,
+            output=context_docs,
+            name="RAG Retrieval",
+            duration_ns=int(1.3e8),
+            status_code=200,
+        )
+
+        context_text = "\n\n".join(context_docs)
+        llm_input = f"""Human: You are a helpful assistant. Given the context below, please answer the following question:
 
 {context_text}
 
 Question: {question}"""
 
-    retriever_span = RetrieverSpan(
-        input=question,
-        output=[
-            Document(content=doc, metadata={"source": "demo_hallucination"})
-            for doc in context_docs
-        ],
-        name="RAG Retrieval",
-        metrics=Metrics(duration_ns=int(1.3e8)),
-        status_code=200,
-        id=uuid.uuid4(),
-    )
-    llm_span = LoggedLlmSpan(
-        input=llm_input,
-        output=hallucinated_answer,
-        model=model,
-        name="LLM Response",
-        metrics=LlmMetrics(
-            duration_ns=int(1.2e8),
+        splunk_ao_logger.add_llm_span(
+            input=llm_input,
+            output=hallucinated_answer,
+            model=model,
+            name="LLM Response",
             num_input_tokens=len(llm_input.split()) * 2,
             num_output_tokens=len(hallucinated_answer.split()) * 2,
-            num_total_tokens=len(llm_input.split()) * 2 + len(hallucinated_answer.split()) * 2,
+            total_tokens=len(llm_input.split()) * 2 + len(hallucinated_answer.split()) * 2,
+            duration_ns=int(1.2e8),
+            metadata={"temperature": "0.1", "demo_type": "hallucination"},
+            temperature=0.1,
+            status_code=200,
             time_to_first_token_ns=500000,
-        ),
-        user_metadata={"temperature": "0.1", "demo_type": "hallucination"},
-        temperature=0.1,
-        status_code=200,
-        id=uuid.uuid4(),
-    )
-    trace = LoggedTrace(
-        input=question,
-        output=hallucinated_answer,
-        name="Hallucination Demo",
-        metrics=Metrics(duration_ns=int(2.5e8)),
-        status_code=200,
-        id=uuid.uuid4(),
-    )
-    trace.add_child_span(retriever_span)
-    trace.add_child_span(llm_span)
-    return trace
-
-
-def log_hallucination(
-    ingest_logger: SplunkAOLogger,
-    session_id: Optional[str],
-    question: str,
-    context_docs: List[str],
-    hallucinated_answer: str,
-    model: str = "gpt-4o",
-) -> bool:
-    """
-    Log a hallucination trace to Splunk AO for demonstration purposes.
-
-    Uses the REST ingest API so the retriever documents stay typed and the trace
-    groups under the supplied (chat) session.
-    """
-    try:
-        trace = _build_hallucination_trace(
-            question=question,
-            context_docs=context_docs,
-            hallucinated_answer=hallucinated_answer,
-            model=model,
         )
-        ingest_logger.ingest_traces(
-            TracesIngestRequest(
-                traces=[trace],
-                session_id=session_id,
-                log_stream_id=ingest_logger.agent_stream_id,
-            )
+
+        splunk_ao_logger.conclude(
+            output=hallucinated_answer,
+            duration_ns=int(2.5e8),
+            status_code=200,
         )
-        logger.info("Successfully logged hallucination to session %s", session_id)
+
+        logger.info("Successfully logged hallucination to project: %s", project_name)
         return True
 
     except Exception as e:
@@ -116,11 +103,14 @@ def log_hallucination(
 
 def log_demo_hallucination(
     config: dict,
-    ingest_logger: SplunkAOLogger,
-    session_id: Optional[str],
     hallucination_index: int = 0,
+    existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
+    session_id: Optional[str] = None,
 ) -> bool:
     """Log a demo hallucination from config.yaml to Splunk AO."""
+    project_name = os.getenv("SPLUNK_AO_PROJECT", "healthcare-assistant")
+    agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM", "default")
+
     hallucinations = config.get("demo_hallucinations", [])
     if not hallucinations:
         logger.warning("No hallucination examples defined in config")
@@ -145,12 +135,15 @@ def log_demo_hallucination(
     model = model_config.get("default_model", "gpt-4o")
 
     return log_hallucination(
-        ingest_logger=ingest_logger,
-        session_id=session_id,
+        project_name=project_name,
+        agent_stream=agent_stream,
         question=question,
         context_docs=context_docs,
         hallucinated_answer=hallucinated_answer,
         model=model,
+        session_name="Healthcare Hallucination Demo",
+        external_session_id=session_id,
+        existing_logger=existing_logger,
     )
 
 

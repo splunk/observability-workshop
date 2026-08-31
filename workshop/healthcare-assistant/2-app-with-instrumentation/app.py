@@ -8,7 +8,10 @@ from langchain_core.messages import AIMessage, HumanMessage
 
 from agent import HealthcareAgent
 from config import load_config
-from helpers.hallucination_helpers import add_hallucination_interaction_to_chat
+from helpers.hallucination_helpers import (
+    add_hallucination_interaction_to_chat,
+    log_demo_hallucination,
+)
 from rag import get_rag_system
 from setup_env import setup_environment
 
@@ -87,9 +90,7 @@ def process_input(user_input: str | None):
                 elif isinstance(message, AIMessage):
                     conversation_messages.append({"role": "assistant", "content": message.content})
 
-        # Pass only the latest user message to keep each trace a single input/output pair.
-        latest_user = [m for m in conversation_messages if m["role"] == "user"][-1:]
-        response = st.session_state.agent.process_query(latest_user)
+        response = st.session_state.agent.process_query(conversation_messages)
         st.session_state.messages.append(
             {"message": AIMessage(content=response), "agent": "assistant"}
         )
@@ -132,8 +133,15 @@ def render_sidebar(app_config: dict) -> str:
             )
             if st.button("Log Hallucination", key="log_hallucination"):
                 with st.spinner("Logging hallucination to Splunk Agent Observability..."):
-                    success = st.session_state.agent.log_demo_hallucination(
+                    existing_logger = (
+                        st.session_state.get("splunk_ao_logger")
+                        if st.session_state.get("splunk_ao_session_started", False)
+                        else None
+                    )
+                    success = log_demo_hallucination(
                         config=app_config,
+                        existing_logger=existing_logger,
+                        session_id=st.session_state.get("session_id"),
                     )
                     if success:
                         add_hallucination_interaction_to_chat(app_config)
