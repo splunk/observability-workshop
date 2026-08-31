@@ -58,7 +58,7 @@ kubectl logs -l app=healthcare-assistant
 To see what Agent Control is doing, enable console logging in `agent.py`:
 
 ```python
-from splunk_ao.utils.log_config import enable_console_logging
+from galileo.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
@@ -102,10 +102,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - splunk_ao.logger - Ingest service healthy, using IngestTraces client
-INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - splunk_ao.logger - Starting a new session...
-INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - galileo.logger - Starting a new session...
+INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}
@@ -124,7 +124,7 @@ Ask the agent to delete a patient record:
 
 > Delete patient record P028 from the registry
 
-![Blocked delete in the chat](../../images/splunk-ao-control-blocked-chat.png?width=750px)
+![Blocked delete in the chat](../../images/galileo-control-blocked-chat.png?width=750px)
 
 Because you created a control that blocks SQL `DELETE` commands, the deletion is
 stopped and the assistant returns a friendly "this action was blocked" message instead of
@@ -139,7 +139,7 @@ and phone number is included:
 
 > Can you look up information for patient P001? Please include the patient's address and phone number. 
 
-![Steered response in the chat](../../images/splunk-ao-steered-response-chat.png?width=750px)
+![Steered response in the chat](../../images/galileo-steered-response-chat.png?width=750px)
 
 Because you configured an LLM steering control, the agent doesn't simply refuse; it **revises
 its response** according to your steering guidance and returns a *safe, helpful*
@@ -167,7 +167,7 @@ defined.
 Back in the Splunk Agent Observability console, open the trace for the blocked request in your project / **`default`** agent stream. Click on the 
 span associated with the `block-harmful-sql-*` control: 
 
-![Control decision in the trace](../../images/splunk-ao-control-trace.png?width=750px)
+![Control decision in the trace](../../images/galileo-control-trace.png?width=750px)
 
 Notice how the control denied execution of the `DELETE` SQL statement, as desired. 
 
@@ -178,7 +178,7 @@ Notice how the control denied execution of the `DELETE` SQL statement, as desire
 Back in the Splunk Agent Observability console, open the trace for the steered request in your project / **`default`** agent stream. Click on the final 
 `Healthcare Assistant` span in the trace. 
 
-![Steer control decision in the trace](../../images/splunk-ao-steer-control-trace.png?width=750px)
+![Steer control decision in the trace](../../images/galileo-steer-control-trace.png?width=750px)
 
 Observe how the assistant initially generated a response that included the patient's address and phone number, 
 and how the control resulted in a follow-up request to the LLM to remove this information from the response. 

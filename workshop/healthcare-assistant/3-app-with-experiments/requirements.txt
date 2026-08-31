@@ -13,4 +13,4 @@ langchain-classic
 pyyaml
 toml
 pandas
-splunk-ao
+galileo

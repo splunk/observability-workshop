@@ -13,7 +13,7 @@ langchain-classic
 pyyaml
 toml
 pandas
-splunk-ao
-agent-control-sdk[splunk-ao]>=7.10.0
+galileo
+agent-control-sdk[galileo]>=7.10.0
 agent-control-evaluators>=7.10.0
-agent-control-evaluator-splunk-ao>=7.10.0
+agent-control-evaluator-galileo>=7.10.0

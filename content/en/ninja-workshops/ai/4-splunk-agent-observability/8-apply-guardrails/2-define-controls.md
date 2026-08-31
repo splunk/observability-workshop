@@ -13,10 +13,10 @@ match should block or steer.
 
 {{< step title="Open the Controls tab" >}}
 
-In the Splunk AO console,
+In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
 open your project / **`default`** agent stream then click on the **Controls** tab.
 
-![Log Stream Controls](../../images/splunk-ao-log-stream-controls.png?width=750px)
+![Log Stream Controls](../../images/galileo-log-stream-controls.png?width=750px)
 
 {{< /step >}}
 
@@ -26,7 +26,7 @@ Click the `Add control` button to add a control to your agent stream.
 You'll be presented with a list of controls to clone and attach to your agent stream, 
 as well as the option to create a new control. 
 
-![Log Stream Add Controls](../../images/splunk-ao-log-stream-add-controls.png?width=750px)
+![Log Stream Add Controls](../../images/galileo-log-stream-add-controls.png?width=750px)
 
 {{< /step >}}
 
@@ -35,11 +35,11 @@ as well as the option to create a new control.
 Next, let's add an existing control called `Block-harmful-sql` to our agent stream. 
 To do this, click the `Clone and attach` button beside the `Block-harmful-sql` control: 
 
-![Create a blocking control](../../images/splunk-ao-agent-control-block.png?width=750px)
+![Create a blocking control](../../images/galileo-agent-control-block.png?width=750px)
 
 Click on the control name to see the details of the control: 
 
-![Block Control Details](../../images/splunk-ao-block-control-details.png?width=750px)
+![Block Control Details](../../images/galileo-block-control-details.png?width=750px)
 
 This control is used to detect and block any `DELETE` SQL operations. It's executed 
 **before** the associated tool call, to prevent the agent from deleting patient 

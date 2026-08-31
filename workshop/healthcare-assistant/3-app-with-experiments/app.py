@@ -134,8 +134,8 @@ def render_sidebar(app_config: dict) -> str:
             if st.button("Log Hallucination", key="log_hallucination"):
                 with st.spinner("Logging hallucination to Splunk Agent Observability..."):
                     existing_logger = (
-                        st.session_state.get("splunk_ao_logger")
-                        if st.session_state.get("splunk_ao_session_started", False)
+                        st.session_state.get("galileo_logger")
+                        if st.session_state.get("galileo_session_started", False)
                         else None
                     )
                     success = log_demo_hallucination(
@@ -167,7 +167,7 @@ def main():
     )
 
     if "session_id" not in st.session_state:
-        # session_id must be a valid UUID for grouping traces.
+        # Galileo requires session_id to be a valid UUID when grouping traces.
         st.session_state.session_id = str(uuid.uuid4())
 
     selected_model = render_sidebar(app_config)

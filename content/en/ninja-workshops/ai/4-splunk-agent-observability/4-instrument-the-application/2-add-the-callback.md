@@ -19,13 +19,23 @@ to collect traces:
 
 ```python
 import os
-from splunk_ao import splunk_ao_context
-from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
+from galileo import galileo_context
+from galileo.handlers.langchain import GalileoAsyncCallback
 ```
+
+{{% notice title="Note about the SDK" style="info" %}}
+
+This workshop was built using the Galileo LangChain callback handler, `GalileoAsyncCallback`. 
+For new deployments, we recommend using the `SplunkAOAsyncCallback` package instead.
+Refer to the 
+[LangChain and LangGraph](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain) document
+for details about this newer SDK.
+
+{{% /notice %}}
 
 {{< /step >}}
 
-{{< step title="Wrap the graph invocation in a Splunk AO context" >}}
+{{< step title="Wrap the graph invocation in a Galileo context" >}}
 
 The base version of `_process_query_async` invokes the graph with no tracing:
 
@@ -52,8 +62,8 @@ The base version of `_process_query_async` invokes the graph with no tracing:
 ```
 
 We've updated the `~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py` file 
-to update this function to open a `splunk_ao_context`, start a session keyed to the agent's `session_id`,
-and attach a fresh `SplunkAOAsyncCallback` to the run config:
+to update this function to open a `galileo_context`, start a session keyed to the agent's `session_id`,
+and attach a fresh `GalileoAsyncCallback` to the run config:
 
 ```python
     async def _process_query_async(self, messages: List[Dict[str, str]]) -> str:
@@ -68,14 +78,14 @@ and attach a fresh `SplunkAOAsyncCallback` to the run config:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with splunk_ao_context(
-            project=os.getenv("SPLUNK_AO_PROJECT"),
-            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+        with galileo_context(
+            project=os.getenv("GALILEO_PROJECT"),
+            log_stream=os.getenv("GALILEO_LOG_STREAM"),
         ):
-            splunk_ao_context.start_session(external_id=self.session_id)
+            galileo_context.start_session(external_id=self.session_id)
 
             # One callback per request keeps each user turn in its own trace.
-            callback = SplunkAOAsyncCallback()
+            callback = GalileoAsyncCallback()
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
             result = await self.graph.ainvoke(
@@ -93,7 +103,7 @@ and attach a fresh `SplunkAOAsyncCallback` to the run config:
 
 {{% notice title="Why a single callback per request?" style="info" %}}
 
-Creating one `SplunkAOAsyncCallback` per call to `_process_query_async` keeps each user turn
+Creating one `GalileoAsyncCallback` per call to `_process_query_async` keeps each user turn
 in its own trace. Because it's attached to the LangGraph run config, every node's LLM and
 tool call becomes a nested span under that same trace, giving you the end-to-end view of a
 turn instead of a pile of disconnected spans.
@@ -102,10 +112,10 @@ turn instead of a pile of disconnected spans.
 
 {{< checkpoint title="Knowledge Check" >}}
 
-Why does this app use `SplunkAOAsyncCallback` rather than a synchronous callback?
+Why does this app use `GalileoAsyncCallback` rather than `GalileoCallback`?
 
 {{< details summary="Click here to see the answer" >}}
 Because the agent streams/invokes the graph **asynchronously** (`self.graph.ainvoke(...)`).
 The async callback matches the async run. A synchronous app that called `invoke(...)` would
-use a synchronous callback instead.
+use `GalileoCallback` instead.
 {{< /details >}}

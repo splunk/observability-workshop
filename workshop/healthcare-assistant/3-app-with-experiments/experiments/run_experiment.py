@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run a Splunk AO experiment against the healthcare assistant.
+Run a Galileo experiment against the healthcare assistant.
 
 Usage:
     python experiments/run_experiment.py
@@ -17,14 +17,14 @@ from setup_env import setup_environment
 from experiments.experiment_helpers import (
     DEFAULT_DATASET_NAME,
     DEFAULT_METRICS,
-    format_dataset_name,
+    galileo_dataset_name,
     get_dataset_by_name,
     run_healthcare_experiment,
 )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run a Splunk AO experiment for the healthcare assistant")
+    parser = argparse.ArgumentParser(description="Run a Galileo experiment for the healthcare assistant")
     parser.add_argument(
         "--experiment-name",
         default="healthcare-experiment",
@@ -33,7 +33,7 @@ def main():
     parser.add_argument(
         "--dataset-name",
         default=DEFAULT_DATASET_NAME,
-        help=f"Dataset name (default: {DEFAULT_DATASET_NAME}; stored as name + .csv)",
+        help=f"Galileo dataset name (default: {DEFAULT_DATASET_NAME}; stored as name + .csv)",
     )
     parser.add_argument(
         "--model",
@@ -44,18 +44,18 @@ def main():
 
     setup_environment()
 
-    dataset_name = format_dataset_name(args.dataset_name)
+    galileo_name = galileo_dataset_name(args.dataset_name)
 
     try:
-        dataset = get_dataset_by_name(dataset_name)
-        print(f"Found dataset: {dataset_name}")
+        dataset = get_dataset_by_name(galileo_name)
+        print(f"Found dataset: {galileo_name}")
     except Exception as e:
-        print(f"Error loading dataset '{dataset_name}': {e}")
-        print("Create it first with: python experiments/create_dataset.py")
+        print(f"Error loading dataset '{galileo_name}': {e}")
+        print("Create it first with: python experiments/create_galileo_dataset.py")
         sys.exit(1)
 
     print(f"Running experiment: {args.experiment_name}")
-    print(f"Dataset Name: {dataset_name}")
+    print(f"Dataset Name: {galileo_name}")
     print(f"Dataset: {dataset}")
     print(f"Metrics: {[m.name for m in DEFAULT_METRICS]}")
 

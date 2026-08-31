@@ -9,7 +9,7 @@ from typing import Any, Callable, Optional
 
 import agent_control
 from agent_control import ControlSteerError, ControlViolationError, control
-from splunk_ao.agent_streams import get_agent_stream
+from galileo.log_streams import get_log_stream
 
 _initialized = False
 
@@ -61,26 +61,26 @@ def _extract_trace_input(messages) -> str:
 
 
 def ensure_trace_started(
-    splunk_ao_logger,
+    galileo_logger,
     messages=None,
     *,
     trace_input: Optional[str] = None,
     trace_name: str = "Run Agent",
 ) -> None:
-    """Start a trace when none is active (required before add_llm_span)."""
-    if not splunk_ao_logger or splunk_ao_logger.current_parent() is not None:
+    """Start a Galileo trace when none is active (required before add_llm_span)."""
+    if not galileo_logger or galileo_logger.current_parent() is not None:
         return
     if trace_input is None and messages is not None:
         trace_input = _extract_trace_input(messages)
-    splunk_ao_logger.start_trace(input=trace_input or "", name=trace_name)
+    galileo_logger.start_trace(input=trace_input or "", name=trace_name)
 
 
-def finalize_trace(splunk_ao_logger, output: str) -> None:
+def finalize_trace(galileo_logger, output: str) -> None:
     """Conclude and flush the active trace after a query completes."""
-    if not splunk_ao_logger or splunk_ao_logger.current_parent() is None:
+    if not galileo_logger or galileo_logger.current_parent() is None:
         return
-    splunk_ao_logger.conclude(output=output)
-    splunk_ao_logger.flush()
+    galileo_logger.conclude(output=output)
+    galileo_logger.flush()
 
 
 def notify_control_block(
@@ -91,7 +91,7 @@ def notify_control_block(
 ) -> None:
     """Console notice for Agent Control blocks.
 
-    LLM/tool spans come from LangChain callbacks (SplunkAOAsyncCallback).
+    Galileo LLM/tool spans come from LangChain callbacks (GalileoCallback).
     Control evaluation spans are emitted by enable_agent_control() on the logger.
     """
     label = "STEERED" if guardrail_result == "steered" else "BLOCKED"
@@ -229,7 +229,7 @@ def domain_controlled_tool(
 
 def wrap_controlled_tool(
     func: Callable,
-    splunk_ao_logger,
+    galileo_logger,
     step_name: Optional[str] = None,
 ) -> Callable:
     """Catch ControlViolationError and return a friendly tool response."""
@@ -284,7 +284,7 @@ def wrap_controlled_tool(
     return sync_wrapper
 
 
-def wrap_controlled_langchain_tool(tool, splunk_ao_logger, step_name: str = "retrieval_step"):
+def wrap_controlled_langchain_tool(tool, galileo_logger, step_name: str = "retrieval_step"):
     """Wrap a LangChain BaseTool coroutine/func with Agent Control error handling."""
     from langchain_core.tools import BaseTool
 
@@ -341,43 +341,43 @@ def wrap_controlled_langchain_tool(tool, splunk_ao_logger, step_name: str = "ret
 
 
 def init_agent_control(
-    splunk_ao_logger,
+    galileo_logger,
     project_name: str,
-    agent_stream: str,
+    log_stream: str,
     agent_description: str = "Multi-domain demo agent",
     *,
     steps: Optional[list] = None,
     force: bool = False,
 ) -> bool:
-    """Initialize or refresh Agent Control for the current Splunk AO logger/session."""
+    """Initialize or refresh Agent Control for the current Galileo logger/session."""
     global _initialized
 
-    if splunk_ao_logger is None:
-        print("⚠️ Agent Control not initialized (no Splunk AO logger)")
+    if galileo_logger is None:
+        print("⚠️ Agent Control not initialized (no Galileo logger)")
         return False
 
     server_url = os.environ.get("AGENT_CONTROL_URL")
     agent_name = os.environ.get("AGENT_CONTROL_AGENT_NAME")
-    api_key = os.environ.get("SPLUNK_AO_O11Y_TOKEN")
-    api_key_header = os.environ.get("AGENT_CONTROL_API_KEY_HEADER", "Splunk-AO-Key")
+    api_key = os.environ.get("GALILEO_API_KEY")
+    api_key_header = os.environ.get("AGENT_CONTROL_API_KEY_HEADER", "Galileo-API-Key")
 
     if not all([server_url, agent_name, api_key]):
         print(
             "⚠️ Agent Control not configured "
-            "(set AGENT_CONTROL_URL, AGENT_CONTROL_AGENT_NAME, and SPLUNK_AO_O11Y_TOKEN)"
+            "(set AGENT_CONTROL_URL, AGENT_CONTROL_AGENT_NAME, and GALILEO_API_KEY)"
         )
         return False
 
-    session_key = (agent_name, project_name, agent_stream, server_url)
+    session_key = (agent_name, project_name, log_stream, server_url)
     if not force and getattr(init_agent_control, "_last_session_key", None) == session_key:
         return True
 
-    # Control spans require splunk_ao_logger.enable_agent_control() (done in agent.py).
+    # Control spans require galileo_logger.enable_agent_control() (done in app.py).
 
     try:
-        agent_stream_data = get_agent_stream(name=agent_stream, project_name=project_name)
+        log_stream_data = get_log_stream(name=log_stream, project_name=project_name)
     except Exception as e:
-        print(f"⚠️ Agent Control: failed to resolve agent stream '{agent_stream}': {e}")
+        print(f"⚠️ Agent Control: failed to resolve log stream '{log_stream}': {e}")
         return False
 
     control_steps = steps or STANDARD_AGENT_CONTROL_STEPS
@@ -391,7 +391,7 @@ def init_agent_control(
         observability_enabled=True,
         observability_sink_name="registered",
         target_type="log_stream",
-        target_id=agent_stream_data.id,
+        target_id=log_stream_data.id,
         steps=control_steps,
     )
     _initialized = True
@@ -399,6 +399,6 @@ def init_agent_control(
     step_names = ", ".join(s["name"] for s in control_steps)
     print(
         f"✅ Agent Control initialized for agent '{agent_name}' "
-        f"(project={project_name}, agent_stream={agent_stream}, steps={step_names})"
+        f"(project={project_name}, log_stream={log_stream}, steps={step_names})"
     )
     return True

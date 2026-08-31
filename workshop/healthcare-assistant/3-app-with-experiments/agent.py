@@ -20,9 +20,9 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
-from splunk_ao import splunk_ao_context
-from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
-from splunk_ao.utils.log_config import enable_console_logging
+from galileo import galileo_context
+from galileo.handlers.langchain import GalileoAsyncCallback
+from galileo.utils.log_config import enable_console_logging
 
 enable_console_logging()
 
@@ -135,17 +135,17 @@ class HealthcareAgent:
         langchain_messages: List[BaseMessage],
         *,
         in_experiment: bool,
-        splunk_ao_logger=None,
+        galileo_logger=None,
     ):
         if in_experiment:
-            callback = SplunkAOAsyncCallback(
-                splunk_ao_logger,
+            callback = GalileoAsyncCallback(
+                galileo_logger,
                 start_new_trace=False,
                 flush_on_chain_end=False,
             )
         else:
-            splunk_ao_context.start_session(external_id=self.session_id)
-            callback = SplunkAOAsyncCallback()
+            galileo_context.start_session(external_id=self.session_id)
+            callback = GalileoAsyncCallback()
 
         run_config = {**self.langgraph_config, "callbacks": [callback]}
         return await self.graph.ainvoke({"messages": langchain_messages}, run_config)
@@ -163,22 +163,22 @@ class HealthcareAgent:
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
         # Detect experiment mode before opening a log-stream context. Nested
-        # splunk_ao_context(project=..., agent_stream=...) switches the singleton
-        # logger key from experiment_id to agent_stream, which hides the active
+        # galileo_context(project=..., log_stream=...) switches the singleton
+        # logger key from experiment_id to log_stream, which hides the active
         # experiment trace and prevents LangGraph spans from nesting correctly.
-        experiment_logger = splunk_ao_context.get_logger_instance()
+        experiment_logger = galileo_context.get_logger_instance()
         in_experiment = experiment_logger.experiment_id is not None
 
         if in_experiment:
             result = await self._invoke_graph(
                 langchain_messages,
                 in_experiment=True,
-                splunk_ao_logger=experiment_logger,
+                galileo_logger=experiment_logger,
             )
         else:
-            with splunk_ao_context(
-                project=os.getenv("SPLUNK_AO_PROJECT"),
-                agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
+            with galileo_context(
+                project=os.getenv("GALILEO_PROJECT"),
+                log_stream=os.getenv("GALILEO_LOG_STREAM"),
             ):
                 result = await self._invoke_graph(langchain_messages, in_experiment=False)
 

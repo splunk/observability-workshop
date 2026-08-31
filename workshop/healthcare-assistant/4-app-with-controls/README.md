@@ -9,10 +9,10 @@ Edit the `.streamlit/secrets.toml` file and add the following environment variab
 ```yaml
 # Agent Controls
 # -----------------------------------------------------------------------------
-agent_control_url = "https://app.lab0.observability.splunkcloud.com/api/agent-control" 
+agent_control_url = "https://console.multitenant.galileocloud.io/api/agent-control" 
 agent_control_agent_name = "agent-control-example"
 agent_control_runtime_auth_mode="jwt"
-agent_control_api_key_header = "Splunk-AO-Key"
+agent_control_api_key_header = "Galileo-API-Key"
 agent_control_target_type="log_stream"
 ```
 
@@ -25,13 +25,14 @@ the `AGENT_CONTROL` environment variables:
         env_vars = {
             "OPENAI_API_KEY": secrets.get("openai_api_key", ""),
             "OPENAI_BASE_URL": secrets.get("openai_base_url", "https://api.openai.com/v1"),
-            "SPLUNK_AO_REALM": secrets.get("splunk_ao_realm", ""),
-            "SPLUNK_AO_O11Y_TOKEN": secrets.get("splunk_ao_o11y_token", ""),
-            "SPLUNK_AO_PROJECT": secrets.get("splunk_ao_project", ""),
-            "SPLUNK_AO_AGENT_STREAM": secrets.get("splunk_ao_agent_stream", ""),
+            "GALILEO_API_KEY": secrets.get("galileo_api_key", ""),
+            "GALILEO_CONSOLE_URL": secrets.get("galileo_console_url", ""),
+            "GALILEO_API_URL": secrets.get("galileo_api_url", ""),
+            "GALILEO_PROJECT": secrets.get("galileo_project", ""),
+            "GALILEO_LOG_STREAM": secrets.get("galileo_log_stream", ""),
             "AGENT_CONTROL_URL": secrets.get("agent_control_url", ""),
             "AGENT_CONTROL_AGENT_NAME": secrets.get("agent_control_agent_name", ""),
-            "AGENT_CONTROL_API_KEY_HEADER": secrets.get("agent_control_api_key_header", "Splunk-AO-Key"),
+            "AGENT_CONTROL_API_KEY_HEADER": secrets.get("agent_control_api_key_header", "Galileo-API-Key"),
             "AGENT_CONTROL_RUNTIME_AUTH_MODE": secrets.get("agent_control_runtime_auth_mode", "jwt"),
             "AGENT_CONTROL_TARGET_TYPE": secrets.get("agent_control_target_type", "log_stream"),
             "POSTGRES_HOST": secrets.get("postgres_host", "localhost"),
@@ -48,9 +49,9 @@ the `AGENT_CONTROL` environment variables:
 Open the [requirements.txt](./requirements.txt) file for editing. Add the following packages: 
 
 ````
-agent-control-sdk[splunk-ao]>=7.10.0
+agent-control-sdk[galileo]>=7.10.0
 agent-control-evaluators>=7.10.0
-agent-control-evaluator-splunk-ao>=7.10.0
+agent-control-evaluator-galileo>=7.10.0
 ````
 
 ## Add Agent Control Code 
@@ -69,7 +70,7 @@ from agent_control import ControlSteerError, ControlViolationError, control
 If you need to troubleshoot, add the following to the `agent.py` file: 
 
 ```python
-from splunk_ao.utils.log_config import enable_console_logging
+from galileo.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```

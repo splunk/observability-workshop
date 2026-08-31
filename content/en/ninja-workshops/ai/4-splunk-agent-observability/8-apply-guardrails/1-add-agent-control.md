@@ -26,10 +26,11 @@ Run the following command to create a Kubernetes config map, which the applicati
 configure Agent Controls:
 
 ```bash
-kubectl create configmap splunk-ao-config \
-  --from-literal=AGENT_CONTROL_URL="https://app.lab0.observability.splunkcloud.com/api/agent-control" \
+kubectl create configmap galileo-agent-control-config \
+  --from-literal=GALILEO_API_URL="https://api.multitenant.galileocloud.io" \
+  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.galileocloud.io/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
-  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-Key" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Galileo-API-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
   --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
@@ -41,10 +42,27 @@ kubectl create configmap splunk-ao-config \
 Confirm `requirements.txt` includes the Agent Control SDK and evaluators:
 
 ```text
+agent-control-sdk[galileo]>=7.10.0
+agent-control-evaluators>=7.10.0
+agent-control-evaluator-galileo>=7.10.0
+```
+
+{{% notice title="Note about the SDK" style="info" %}}
+
+This workshop was built using the older `agent-control` packages. For new deployments, we recommend
+using the following packages instead:
+
+```text
 agent-control-sdk[splunk-ao]>=7.10.0
 agent-control-evaluators>=7.10.0
 agent-control-evaluator-splunk-ao>=7.10.0
 ```
+
+Refer to the
+[Agent Control](https://agent-observability-docs.splunk.com/concepts/agent-control/overview) document
+for details about this newer SDK.
+
+{{% /notice %}}
 
 {{< /step >}}
 
@@ -64,8 +82,8 @@ The controls stage uses these in three places (already wired up in this folder):
 * Each tool is registered as a controllable step (`get_patient_info`,
   `delete_patient_record`, and a shared `retrieval_step` for search tools) via the helpers in
   `helpers/agent_control_helpers.py`.
-* The agent enables control spans on the Splunk AO logger
-  (`splunk_ao_logger.enable_agent_control()`) and registers the steps with `init_agent_control(...)`
+* The agent enables control spans on the Galileo logger
+  (`galileo_logger.enable_agent_control()`) and registers the steps with `init_agent_control(...)`
   so the console knows which steps exist for this agent.
 
 {{% notice title="How block and steer are handled in code" style="info" %}}

@@ -9,21 +9,22 @@ time: 5 minutes
 Confirm which organization will be used for the workshop.
 {{% /notice %}}
 
-Now review the experiment in the Splunk AO console: inspect the per-row scores, drill into an
+Now review the experiment in the Galileo console: inspect the per-row scores, drill into an
 individual trace, and compare two runs.
 
-{{< exercise title="Review your experiment in Splunk AO" >}}
+{{< exercise title="Review your experiment in Galileo" >}}
 
 {{< step title="Open the Experiments view" >}}
 
 <!-- PLACEHOLDER UI NAVIGATION: replace with exact console steps + screenshot once finalized -->
 
-In the Splunk AO console, open the **`healthcare-assistant`** project and navigate to the
-**Experiments** view. You should see the experiment you just ran (for example,
-`healthcare-experiment` or `lisinopril-eval`).
+In the Galileo console (`https://console.multitenant.galileocloud.io`, **`ORGANIZATION_PLACEHOLDER`** org),
+open the **`healthcare-assistant`** project and navigate to the **Experiments** view. You
+should see the experiment you just ran (for example, `healthcare-experiment` or
+`lisinopril-eval`).
 
 <!-- TODO screenshot: Experiments list in the healthcare-assistant project showing the experiment run(s) with aggregate metric columns -->
-![Experiments list](../../images/splunk-ao-experiments-list.png?width=750px)
+![Experiments list](../../images/galileo-experiments-list.png?width=750px)
 
 {{< /step >}}
 
@@ -36,7 +37,7 @@ Adherence, Prompt Injection, Chunk Attribution Utilization, and Context Adherenc
 summarize how the agent performed across the whole dataset.
 
 <!-- TODO screenshot: experiment summary showing aggregate metric scores across the dataset -->
-![Experiment aggregate metrics](../../images/splunk-ao-experiment-metrics.png?width=750px)
+![Experiment aggregate metrics](../../images/galileo-experiment-metrics.png?width=750px)
 
 {{< /step >}}
 
@@ -49,7 +50,7 @@ output, and the per-row metric scores. From here you can open the underlying tra
 the same nested spans you explored in Chapter 4, now tied to a scored experiment row.
 
 <!-- TODO screenshot: single experiment row detail showing input, generated output, reference output, per-row metric scores, and a link to the underlying trace -->
-![Experiment row detail](../../images/splunk-ao-experiment-row-detail.png?width=750px)
+![Experiment row detail](../../images/galileo-experiment-row-detail.png?width=750px)
 
 {{< /step >}}
 
@@ -62,7 +63,7 @@ which configuration scored better on each metric. This is the objective comparis
 out to get at the start of the chapter.
 
 <!-- TODO screenshot: side-by-side comparison of two experiment runs (e.g., gpt-4o vs gpt-4o-mini) with metric deltas highlighted -->
-![Experiment comparison](../../images/splunk-ao-experiment-comparison.png?width=750px)
+![Experiment comparison](../../images/galileo-experiment-comparison.png?width=750px)
 
 {{< /step >}}
 

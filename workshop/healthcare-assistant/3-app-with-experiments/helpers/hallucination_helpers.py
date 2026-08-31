@@ -1,7 +1,7 @@
 """
 Hallucination Demo Helpers
 
-Log intentional hallucinations to Splunk Agent Observability for demos.
+Log intentional hallucinations to Galileo for Splunk Agent Observability demos.
 Examples are defined in config.yaml under `demo_hallucinations`.
 """
 import logging
@@ -9,7 +9,7 @@ import os
 import uuid
 from typing import Any, List, Optional, Union
 
-from splunk_ao import SplunkAOLogger
+from galileo import GalileoLogger
 from langchain_core.messages import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
@@ -17,52 +17,47 @@ logger = logging.getLogger(__name__)
 
 def log_hallucination(
     project_name: str,
-    agent_stream: str,
+    log_stream: str,
     question: str,
     context_docs: List[str],
     hallucinated_answer: str,
     model: str = "gpt-4o",
     session_name: str = "Hallucination Demo",
     external_session_id: Optional[str] = None,
-    existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
+    existing_logger: Optional[Union[GalileoLogger, Any]] = None,
 ) -> bool:
     """
-    Log a hallucination trace to Splunk Agent Observability for demonstration purposes.
+    Log a hallucination trace to Galileo for demonstration purposes.
 
     Creates a trace with a retriever span (real context) and an LLM span (wrong answer).
     """
     try:
         logger.info(
-            "Logging hallucination to project: %s, agent stream: %s",
+            "Logging hallucination to project: %s, log stream: %s",
             project_name,
-            agent_stream,
+            log_stream,
         )
 
         if existing_logger:
-            logger.info("Using existing session for hallucination demo")
+            logger.info("Using existing Galileo session for hallucination demo")
             if hasattr(existing_logger, "get_logger_instance"):
-                splunk_ao_logger = existing_logger.get_logger_instance()
+                galileo_logger = existing_logger.get_logger_instance()
             else:
-                splunk_ao_logger = existing_logger
+                galileo_logger = existing_logger
         else:
-            logger.info("Creating new session for hallucination demo")
-            splunk_ao_logger = SplunkAOLogger(project=project_name, agent_stream=agent_stream)
-            splunk_ao_logger.start_session(
+            logger.info("Creating new Galileo session for hallucination demo")
+            galileo_logger = GalileoLogger(project=project_name, log_stream=log_stream)
+            galileo_logger.start_session(
                 name=session_name,
                 external_id=external_session_id or str(uuid.uuid4()),
             )
 
-        splunk_ao_logger.start_trace(
+        galileo_logger.start_trace(
             input=question,
             name="Hallucination Demo",
         )
 
-        splunk_ao_logger.add_workflow_span(
-            input=question,
-            name="Hallucination Demo",
-        )
-
-        splunk_ao_logger.add_retriever_span(
+        galileo_logger.add_retriever_span(
             input=question,
             output=context_docs,
             name="RAG Retrieval",
@@ -77,7 +72,7 @@ def log_hallucination(
 
 Question: {question}"""
 
-        splunk_ao_logger.add_llm_span(
+        galileo_logger.add_llm_span(
             input=llm_input,
             output=hallucinated_answer,
             model=model,
@@ -92,19 +87,13 @@ Question: {question}"""
             time_to_first_token_ns=500000,
         )
 
-        splunk_ao_logger.conclude(
+        galileo_logger.conclude(
             output=hallucinated_answer,
             duration_ns=int(2.5e8),
             status_code=200,
         )
 
-        splunk_ao_logger.conclude(
-            output=hallucinated_answer,
-            duration_ns=int(2.5e8),
-            status_code=200,
-        )
-
-        splunk_ao_logger.flush()
+        galileo_logger.flush()
 
         logger.info("Successfully logged hallucination to project: %s", project_name)
         return True
@@ -117,12 +106,12 @@ Question: {question}"""
 def log_demo_hallucination(
     config: dict,
     hallucination_index: int = 0,
-    existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
+    existing_logger: Optional[Union[GalileoLogger, Any]] = None,
     session_id: Optional[str] = None,
 ) -> bool:
-    """Log a demo hallucination from config.yaml to Splunk Agent Observability."""
-    project_name = os.getenv("SPLUNK_AO_PROJECT", "healthcare-assistant")
-    agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM", "default")
+    """Log a demo hallucination from config.yaml to Galileo."""
+    project_name = os.getenv("GALILEO_PROJECT", "healthcare-assistant")
+    log_stream = os.getenv("GALILEO_LOG_STREAM", "default")
 
     hallucinations = config.get("demo_hallucinations", [])
     if not hallucinations:
@@ -149,7 +138,7 @@ def log_demo_hallucination(
 
     return log_hallucination(
         project_name=project_name,
-        agent_stream=agent_stream,
+        log_stream=log_stream,
         question=question,
         context_docs=context_docs,
         hallucinated_answer=hallucinated_answer,
