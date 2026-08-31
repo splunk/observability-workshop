@@ -2,9 +2,9 @@
 from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_openai import ChatOpenAI
 from sqlalchemy import create_engine
 
+from config import create_chat_llm
 from helpers.pgvector_utils import get_postgres_connection_string
 from helpers.sql_utils import get_table_schema_description, relational_table_name
 
@@ -70,7 +70,7 @@ async def generate_sql(
             f"Lookup request: {use_case_identifier}='{use_case_value}'\n\n"
         )
 
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = create_chat_llm(model=model, temperature=temperature)
     response = await llm.ainvoke(
         [SystemMessage(content=system_prompt), HumanMessage(content=user_prompt)]
     )
