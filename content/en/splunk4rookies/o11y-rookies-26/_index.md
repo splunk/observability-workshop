@@ -22,7 +22,7 @@ Your instructor may recommend a particular learning path based on the goal of yo
 
 ## Lessons
 
-{{% children page="1-modules" depth="1" type="card" description="true" image="true" %}}
+{{% children page="1-modules" depth="1" type="card" description="true" image="true" showhidden="true" %}}
 
 {{% notice style="note" title="Parking Lot" icon="circle-info" %}}
 Login instructions and Astronomy Shop setup details are available at the end of the workshop navigation for reference.
