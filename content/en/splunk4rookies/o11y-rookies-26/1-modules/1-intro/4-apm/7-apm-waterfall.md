@@ -3,15 +3,24 @@ title: 7. APM Waterfall
 weight: 7
 ---
 
-The **Trace Waterfall** view displays all spans within a trace as a hierarchical timeline. Each span appears as a horizontal bar, with the bar's length representing its duration and its position showing when it occurred relative to other spans.
+The **Trace Waterfall** displays every span in a trace as a hierarchical timeline. Each row represents one unit of work, such as a service request or API call. Its position shows when it occurred, and its duration shows how long it took.
 
-A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
+The hierarchy shows how work moved between services. Error badges, such as *401*, highlight the spans associated with a failure. Selecting a span opens its details and tags in the right-hand pane.
 
-A span represents a single unit of work within a trace, capturing information about a specific operation such as an API call, database query, or service request. Each span includes metadata like the operation name, start time, duration, and associated tags or attributes that provide context about the work being performed.
+{{< notice >}}
+The **Trace View** may open with both the *analysis panel* and *Span properties* pane displayed, leaving less room for the waterfall. To create more space, select the panel toggle **(1)** to collapse the analysis panel, and select X **(2)** to close Span properties. You can reopen *Span properties* at any time by selecting a span in the waterfall.
+![panes_open](../images/apm-waterfall-panes-open.png)
+{{< /notice >}}
 
-{{% exercise title="Open the failing span" %}}
+{{% exercise title="Inspect the Failing Payment Span" %}}
 
-* Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
+* In the waterfall, locate the checkout branch containing the `PaymentService/Charge` operation.
+
+* Expand the branch if necessary & look for spans marked with a red error badge or HTTP status **401**.
+
+* Select the failing 'payment: charge' span. The *Span* properties pane opens on the right.
+
+* Review the span details and tags. Scroll through the pane if necessary to find the error information and service version.
 
 ![Trace Waterfall](../images/apm-trace-waterfall.png)
 
@@ -25,3 +34,5 @@ A span represents a single unit of work within a trace, capturing information ab
 {{< /tabs >}}
 
 {{% /exercise %}}
+
+You have identified the failing span and affected service version. Next, use **Related Content** to open the associated logs and investigate the error further.

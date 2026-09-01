@@ -25,17 +25,19 @@ The tabs and available data depend on how your environment is configured. Some v
 {{< /notice >}}
 
 {{% exercise title="Identify the Payment Error" %}}
-Before investigating the errors, confirm the context shown in the filters:
-* Verify that **Environment** is set to your workshop environment.
-* Verify that **Service** is set to *payment*.
-* Set **Time** to *Last 1 hour (-1h)* **(1)**. A wider time range provides enough data to determine whether the problem is recurring.
+First, confirm that the dashboard is showing the correct data.
+* In the filter bar highlighted in red **(1)**, verify the following:
+     * **Time** is set to Last *1 hour (-1h)*.
+    * **Environment** is set to your workshop environment.
+    * **Service** is set to *payment*.    
+The one-hour time range provides enough data to determine whether the problem is recurring rather than limited to one request.
 
 Review the service health:
-* Examine the **Success rate**. A value below *100%* means that some requests were unsuccessful during the selected period.
-* Review the **Service errors** chart. Repeated spikes show that the errors occurred several times and were not limited to a single request.
+* Examine the **Success rate (2)**. A value below *100%* means that some requests were unsuccessful during the selected period.
+* Review the **Service errors (3)** chart. Repeated spikes show that the errors occurred several times and were not limited to a single request.
 
 ![Service Dashboard](../images/apm-service-dashboard-top.png)
 
 {{% /exercise %}}
 
-The service overview confirms that **payment** has recurring unsuccessful requests. Next, you’ll use the *Error breakdown* to identify the type of failure.
+The service overview confirms that **payment** service has a low success rate and recurring errors. On the next page, you’ll examine the *Error* breakdown to identify the type of failure.

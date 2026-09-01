@@ -6,8 +6,8 @@ weight: 3
 
 {{% exercise title="Identify the Payment Error" %}}
 
-* Scroll down to ***Error* breakdown** and expand the section if necessary **(2)**.
-* Examine **Errors by HTTP** status code **(3)**.
+* Scroll down to ***Error* breakdown** and expand the section if necessary **(1)**.
+* Examine **Errors by HTTP** status code **(2)**.
 
 ![Service Dashboard](../images/apm-service-dashboard.png)
 
@@ -23,6 +23,6 @@ weight: 3
 {{% /tab %}}
 {{< /tabs >}}
 {{% /exercise %}}
-The overview confirms that the **payment** service has recurring *authentication* failures, but it does not yet show what the affected requests have in common. To look for a pattern, select the **Tag Spotlight** tab **(4)**.
+The overview confirms that the **payment** service has recurring *authentication* failures, but it does not yet show what the affected requests have in common. To look for a pattern, select the **Tag Spotlight** tab **(3)**.
 
 
