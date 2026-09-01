@@ -1,6 +1,6 @@
 ---
-title: 5. APM Trace Analyzer
-weight: 5
+title: 6. APM Trace Analyzer
+weight: 6
 ---
 
 We have arrived at the **Trace Analyzer**.

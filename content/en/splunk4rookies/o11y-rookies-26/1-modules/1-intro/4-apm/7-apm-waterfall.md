@@ -1,6 +1,6 @@
 ---
-title: 6. APM Waterfall
-weight: 6
+title: 7. APM Waterfall
+weight: 7
 ---
 
 The **Trace Waterfall** view displays all spans within a trace as a hierarchical timeline. Each span appears as a horizontal bar, with the bar's length representing its duration and its position showing when it occurred relative to other spans.

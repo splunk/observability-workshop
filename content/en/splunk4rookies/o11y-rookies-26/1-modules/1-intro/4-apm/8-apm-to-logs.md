@@ -1,6 +1,6 @@
 ---
-title: 7. APM to Logs
-weight: 7
+title: 8. APM to Logs
+weight: 8
 ---
 
 {{% exercise title="Jump from APM to Related Logs" %}}

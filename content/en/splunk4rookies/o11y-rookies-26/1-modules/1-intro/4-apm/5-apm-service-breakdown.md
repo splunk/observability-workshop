@@ -1,6 +1,6 @@
 ---
-title: 4. APM Service Breakdown
-weight: 4
+title: 5. APM Service Breakdown
+weight: 5
 ---
 
 {{% exercise title="Break down the service by version" %}}
