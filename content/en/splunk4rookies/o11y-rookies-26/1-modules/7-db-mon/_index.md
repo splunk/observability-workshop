@@ -5,7 +5,7 @@ weight: 7
 archetype: chapter
 time: 45 minutes
 description: Investigate slow queries and see how database performance impacts your application.
-draft: true
+hidden: true
 params:
   images:
     - images/db-mon.avif

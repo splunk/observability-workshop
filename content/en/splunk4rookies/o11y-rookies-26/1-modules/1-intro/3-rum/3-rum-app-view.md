@@ -25,8 +25,7 @@ Select each tab and take a moment to examine its charts. You do not need to unde
 
 {{< tabs >}}
 {{% tab title="Questions" %}}
-
-1. In **Custom Workflows**, 
+ 
 1. In **Custom Workflows**, in the C**ustom Workflow Duration P75** chart, which workflow has the highest P75 duration and what evidence in the chart supports your answer?
 2. In the **Map View** tab, which location shows the largest request volume??
 

@@ -17,7 +17,7 @@ The panel on the right initially summarizes the selected business operation. Whe
 
 * Confirm that **payment** appears at the top of the right-hand panel **(3)**.
 
-Examine the ** Service Requests & Errors** chart **(2)**. Compare the number of requests with the number of errors.
+Examine the **Service Requests & Errors** chart **(2)**. Compare the number of requests with the number of errors.
 
 ![APM Explore](../images/apm-business-workflow.png)
 

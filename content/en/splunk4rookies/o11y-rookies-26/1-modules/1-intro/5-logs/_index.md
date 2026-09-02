@@ -18,7 +18,7 @@ Remaining in your **back-end developer** role, you need to inspect the logs from
 
 {{< webex chat="Robert Castley" date="Today • 28/01/2026" seenby="PH" >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:42" color="#ef950d" >}}
-I've checked APM and confirmed the issue is with the paymentservice. There's a signifcant latency spike in the traces
+I've checked APM and confirmed the issue is with the payment service. There's a signifcant latency spike in the traces
 {{< /webex-msg >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:43" color="#ef950d">}}
 I'll use Related Content to jump to the logs and see if I can find any errors or anomalies that could explain the latency spike.

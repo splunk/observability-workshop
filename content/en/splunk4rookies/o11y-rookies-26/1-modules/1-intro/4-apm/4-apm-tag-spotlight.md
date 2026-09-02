@@ -10,27 +10,28 @@ Within each card, you can compare tag values using request counts, error counts,
 
 {{% exercise title="Identify the Error Pattern" %}}
 
-You already know that the **payment** service is returning recurring HTTP **401** errors. You’ll now use **Tag Spotlight** to determine which requests are affected and find a more specific clue about the failure.
+You already know that the **payment** service is returning recurring *HTTP* **401** errors. You’ll now use **Tag Spotlight** to determine which requests are affected and find a more specific clue about the failure.
 * Confirm that *Service* is set to *payment* and *Time* remains set to *Last 1 hour (-1h)*.
 * Open the **card-display** options **(1)** and turn **off** *Show tags with no values* *(2)*. This hides empty cards and makes the relevant tags easier to find.
-* Locate the app.loyalty.level card (3). Compare the request and error counts for each loyalty level.
+* Examine the available tag cards. Compare the request count, error count, root-cause-error count, and latency for each tag value.
+* Identify the tag and value that most clearly separate the failed requests from the successful requests.
 
-* Locate the exception.message card (4). Review the messages associated with the errors. If a message is truncated, hover over or select it to display the complete value.
+{{< notice >}}
+**Tag Spotlight** is configurable. The *indexed tags*, *card order* and available *values* may differ from the screenshots. Focus on finding the tag value that has errors while its other values do not.
+{{< /notice >}}
 
 ![APM Tag Spotlight](../images/apm-tag-spotlight.png)
 
-* This view displays a series of cards, each representing an indexed tag (such as Endpoint, Environment, Version, or custom tags like tenant.level). Within each card, you can see the distribution of tag values along with key metrics including request count, error count, root cause errors, and latency percentiles (P50, P90, P99).
-
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Which card exposes the tag that identifies what the problem is?**
+**Which tag and value are most strongly associated with the payment errors, and what evidence supports your conclusion?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The *version* card. The number of requests against `v350.10` matches the number of errors i.e. 100%**
+**The *version* tag shows that version *v350.10* is associated with the errors. In this example, all six requests for *v350.10* failed, while the requests for *v350.9* completed without errors. This suggests that the problem was introduced in, or is specific to, version *v350.10*. Your counts and version names may differ, but the same pattern should be visible.**
 {{% /tab %}}
 {{< /tabs >}}
 
 * Now that we have identified the tag that indicates the issue, let's see if we can find out more information about the error.
-* Click the **APM** link above **paymentservice** at the top of the page to return to the **APM Overview**.
-* In **APM Overview**, click on **Service Map** in the right-hand pane.
+* Click the **APM** link above **payment (3)** at the top of the page to return to the **APM Overview**.
+* In **APM Overview**, select **Service Map** in the right-hand pane. This opens the full *Service Map*, showing the services in your application and the dependencies between them.
 {{% /exercise %}}
