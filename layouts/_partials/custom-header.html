@@ -1,3 +1,14 @@
+{{- if .Param "hideworkshopprogress" }}
+<style>
+/* OBS1184 uses a clean workshop navigation without visited/completed markers. */
+.sidebar-tree__link.is-visited::before,
+.sidebar-tree__self.is-visited::before,
+.sidebar-tree__summary.is-complete .sidebar-tree__chapter::after {
+    display: none;
+}
+</style>
+{{- end }}
+
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
 <script>

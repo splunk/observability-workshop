@@ -8,6 +8,10 @@ original_authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff 
 ai_assistance: "Codex"
 time: 55 minutes
 hidden: true
+hideWorkshopProgress: true
+cascade:
+  params:
+    hideWorkshopProgress: true
 ---
 
 {{% notice title="Workshop credits" style="info" %}}
