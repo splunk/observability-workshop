@@ -2,10 +2,9 @@
 title: Finding the Needle in the Logs
 linkTitle: 6. Finding the Needle in the Logs
 weight: 6
-archetype: chapter
+layout: chapter
 time: 45 minutes
 description: Start from logs alone to triage an incident — filter, group, and spot patterns to find the root cause.
-draft: true
 params:
   images:
     - images/lo.png
