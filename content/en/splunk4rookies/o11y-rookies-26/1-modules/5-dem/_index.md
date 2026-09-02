@@ -6,6 +6,8 @@ weight: 5
 time: 45 minutes
 description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
 hidden: true
+cascade:
+  hidden: true
 params:
   images:
     - images/rum.avif
