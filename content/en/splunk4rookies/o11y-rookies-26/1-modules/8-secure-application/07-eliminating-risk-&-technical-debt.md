@@ -1,6 +1,5 @@
 ---
-title: Eliminating Risk & Tech-Debt
-linkTitle: 07-Eliminating-Risk-&-Tech-Debt
+title: 7. Eliminating Risk & Tech Debt
 weight: 7
 ---
 

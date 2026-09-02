@@ -1,6 +1,6 @@
 ---
 title: Application Security
-linkTitle: 8. Application Security
+linkTitle: Application Security
 weight: 8
 archetype: chapter
 time: 45 minutes

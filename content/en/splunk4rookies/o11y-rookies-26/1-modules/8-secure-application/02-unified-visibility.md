@@ -1,6 +1,5 @@
 ---
-title: Unified Visibility
-linkTitle: 02-Unified-Visibility
+title: 2. Unified Visibility
 weight: 2
 ---
 
