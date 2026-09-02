@@ -5,7 +5,7 @@ weight: 4
 archetype: chapter
 time: 45 minutes
 description: A noisy neighbour is hogging resources — learn how to spot the culprit using infrastructure monitoring.
-hidden: true
+draft: true
 params:
   images:
     - images/im.gif

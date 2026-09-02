@@ -13,7 +13,7 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 1. Return to the project **Analyses** tab and open the **`Frustration`** time series.
 2. Explore the chart, data table, and linked session replays.
 
-![Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop](images/frustration-timeseries.png)
+![Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop](../images/frustration-timeseries.png)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}
@@ -29,7 +29,7 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 
 <!-- TODO screenshot: Session replay showing rage clicks on the non-responsive Show All Reviews button -->
 
-![Session replay showing a user rage clicking the non-responsive Show All Reviews button](images/frustration-replay.png)
+![Session replay showing a user rage clicking the non-responsive Show All Reviews button](../images/frustration-replay.png)
 
 {{% /tab %}}
 {{< /tabs >}}

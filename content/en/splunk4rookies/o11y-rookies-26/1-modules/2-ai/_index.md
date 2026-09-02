@@ -5,7 +5,7 @@ weight: 2
 #archetype: chapter
 time: 45 minutes
 description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
-hidden: true
+draft: true
 params:
   images:
     - images/ai.gif

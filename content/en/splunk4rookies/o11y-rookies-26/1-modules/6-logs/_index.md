@@ -5,7 +5,7 @@ weight: 6
 archetype: chapter
 time: 45 minutes
 description: Start from logs alone to triage an incident — filter, group, and spot patterns to find the root cause.
-hidden: true
+draft: true
 params:
   images:
     - images/lo.png

@@ -6,7 +6,7 @@ archetype: chapter
 time: 45 minutes
 authors: ["Diana Omuoyo"]
 description: Detect and investigate runtime vulnerabilities before attackers find them first.
-hidden: true
+draft: true
 aliases:
   - /o11y-rookies-26/8-secure-application/
 params:

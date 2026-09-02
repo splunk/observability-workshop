@@ -5,7 +5,7 @@ weight: 5
 #archetype: chapter
 time: 45 minutes
 description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
-hidden: true
+draft: true
 params:
   images:
     - images/rum.avif
