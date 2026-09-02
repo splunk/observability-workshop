@@ -10,9 +10,11 @@ When reliability and security live in separate tools, prioritization conversatio
 Splunk Secure Application surfaces vulnerability and attack summaries alongside golden signals on **APM Overview**, **Service Map**, and the **per-service Application Security** workspace. Engineering, application security, and SecOps can share one runtime view without a duplicate agent or workflow.
 
 ### Security posture on APM Overview
+
 We are bringing security together with reliability, allowing teams to review Application Security risks in the same place they understand application performance and behavior
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 1. Navigate to **APM → Overview**.
 2. Set the **environment** filter to 'astronomy-shop-*'.
 3. Scroll to the **Services** tab.
@@ -23,7 +25,8 @@ Observe each service row: alongside standard health metrics, you should see runt
 {{% /notice %}}
 
 ### Service Map runtime security widgets
-Visibility into a summarized view of the top vulnerabilities (CVE title, ID, CVSS score, libraries) and any attack activity (type and outcome)in a cenralized and correlated view of a service.
+
+Visibility into a summarized view of the top vulnerabilities (CVE title, ID, CVSS score, libraries) and any attack activity (type and outcome)in a centralized and correlated view of a service.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

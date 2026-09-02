@@ -2,7 +2,7 @@
 title: Application Security
 linkTitle: Application Security
 weight: 8
-archetype: chapter
+layout: chapter
 time: 45 minutes
 authors: ["Diana Omuoyo"]
 description: Detect and investigate runtime vulnerabilities before attackers find them first.

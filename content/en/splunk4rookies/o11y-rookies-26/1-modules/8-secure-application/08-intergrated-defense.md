@@ -14,6 +14,7 @@ Splunk Secure Application closes the loop with **notification rules** that strea
 Notification integrations are configured to send vulnerability and attack events to the selected SIEM solution, giving the SecOps teams visibility into runtime risks in real-time.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 1. Navigate to **APM → Application Security → Notifications**.
 ![apm](../images/06-notification-sel.png)
 

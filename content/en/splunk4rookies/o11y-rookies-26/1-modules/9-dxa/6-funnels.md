@@ -21,7 +21,7 @@ Think about critical journeys in your own applications. How would you define the
 
 3. Review the funnel visualization and click drop-off segments to view relevant user sessions.
 
-![Conversion funnel from homepage to order confirmation showing drop-off percentages at each checkout step](images/funnel.png)
+![Conversion funnel from homepage to order confirmation showing drop-off percentages at each checkout step](../images/funnel.png)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}
@@ -63,7 +63,7 @@ The most concerning segment is users who placed an order but never reached order
 
 <!-- TODO screenshot: Session replay showing checkout error after placing an order -->
 
-![Session replay showing a checkout error message after the user submits an order](images/funnel-dropoff-replay.png)
+![Session replay showing a checkout error message after the user submits an order](../images/funnel-dropoff-replay.png)
 
 {{% /tab %}}
 {{< /tabs >}}

@@ -18,7 +18,7 @@ Remaining in your **back-end developer** role, you need to inspect the logs from
 
 {{< webex chat="Robert Castley" date="Today • 28/01/2026" seenby="PH" >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:42" color="#ef950d" >}}
-I've checked APM and confirmed I checked APM and confirmed that version v350.10 of the payment service is returning 401 errors. The failing span reports “Invalid request.”
+I've checked APM and confirmed that version v350.10 of the payment service is returning 401 errors. The failing span reports “Invalid request.”
 
 {{< /webex-msg >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:43" color="#ef950d">}}

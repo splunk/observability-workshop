@@ -41,7 +41,7 @@ disableKinds = ["taxonomy", "term"]
     weight     = 3
     contentDir = "content/pt-br"
 
-# Markup configuration — Goldmark with attributes & raw HTML enabled for rich content
+# Markup settings are not inherited from a Hugo module.
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -61,111 +61,30 @@ disableKinds = ["taxonomy", "term"]
     guessSyntax = true
     tabWidth    = 2
 
-# Output formats
+# Output settings are not inherited from a Hugo module.
 [outputs]
   home    = ["HTML", "RSS", "JSON"]
   section = ["HTML", "RSS"]
   page    = ["HTML"]
 
-# ==========================================================================
-# Theme parameters — every visual choice is overridable per-site.
-# Drop these in your own site's hugo.toml to rebrand the theme entirely.
-# ==========================================================================
 [params]
-  # ---- Legacy URL handling -----------------------------------------------
   # Older deployments of this site used a `/latest/` segment in the URL
-  # (e.g. /observability-workshop/latest/en/workshop-setup/). External
-  # bookmarks and search results still point there. With this flag set, the
-  # theme's 404 page rewrites `/…/latest/<rest>` to `/…/<rest>` on the fly
-  # so legacy URLs land on the canonical page instead of GitHub's plain 404.
-  # Set to false (or remove) once you're confident no `/latest/` links remain.
+  # and still need the theme's compatibility redirect.
   legacyLatestRedirect = true
 
-  # ---- Identity ----------------------------------------------------------
-  brandName       = "splunk>"
-  brandTagline    = ""           # set to "" to suppress the "splunk> | workshops" tag pill
-  description     = "Hands-on technical workshops."
-  copyright       = "&copy; {year} Splunk LLC All rights reserved."   # `{year}` expands to the current year; HTML allowed
-  logoLight       = "images/splunk-logo-black.png"
-  logoDark        = "images/splunk-logo-white.png"
-  logoHeight      = "40"
-  favicon         = "favicon.svg"
-
-  # ---- Hero background (the "light trails" gradient bloom) ----------------
-  # Set both to "" to fall back to the bundled CSS radial gradient.
-  heroBackgroundLight = "images/background_Splunk-light-mode2_16x9.webp"
-  heroBackgroundDark  = "images/background_Splunk-dark-mode2_16x9.webp"
-
-  # ---- Mode --------------------------------------------------------------
-  defaultMode     = "auto"
-  showThemeToggle = true
-
-  # ---- Colors (light mode) — Official Splunk brand gradient ---------------
-  # Magenta 50 → Orange 50, 10%/90% stops. Source: Splunk brand guidelines.
-  colorAccent      = "#FF007F"   # Magenta 50  · rgb(255, 0, 127)   · Pantone 213 C — decorative only
-  colorAccent2     = "#FF9000"   # Orange 50   · rgb(255, 144, 0)   · Pantone 151 C
-  colorAccent3     = "#FFAB0F"   # supplementary amber (used for warm callouts only)
-  colorAccentDark  = "#D4006B"   # reserved for borders/shadows; brand pink text is always #FF007F
-  # WCAG-AA-safe accent for body text (Magenta 50 fails contrast at body sizes).
-  # Magenta 60 (#BD0D5F) hits 5.4:1 on white. Magenta 30 (#FF7DBA) hits 8:1 on Splunk dark navy.
-  colorAccentText     = "#BD0D5F"   # Magenta 60 — light mode body links/inline code/markers
-  colorAccentTextDark = "#FF7DBA"   # Magenta 30 — dark mode body links/inline code/markers
-
-  colorInk          = "#0C1724"
-  colorInkMuted     = "#585B61"   # bumped from #4B4D52 to clear the AA threshold (≈4.6:1)
-  colorPaper        = "#FFFFFF"
-  # Cool gray neutrals — paired with the cool navy dark-mode palette so
-  # toggling between modes reads as two ends of one hue family instead of
-  # warm-light + cool-dark mismatch. Splunk magenta brand accents pop
-  # against these neutrals; warm beige muddied them. Harmonizes with the
-  # already-cool --code-bg (#EDF0F4).
-  colorSurface      = "#F4F6FA"
-  colorSurfaceAlt   = "#E9EDF2"
-  colorBorder       = "#E1E5EC"
-  colorBorderStrong = "#C7CDD8"
-
-  # ---- Colors (dark mode) ------------------------------------------------
-  colorInkDark          = "#F4F1EA"
-  colorInkMutedDark     = "#9CA3AF"
-  colorPaperDark        = "#0C1724"
-  colorSurfaceDark      = "#141E2F"
-  colorSurfaceAltDark   = "#1B2740"
-  colorBorderDark       = "#1F2C44"
-  colorBorderStrongDark = "#2A3A56"
-
-  # ---- Typography — Inter (Google Fonts) + JetBrains Mono ----------------
-  # Splunk sites: set `splunkDataSansPro = true` and point fontDisplay/fontBody
-  # at "'Splunk Data Sans Pro', ..." — see exampleSite/hugo.toml for the
-  # canonical Splunk-branded config.
+  # Opt into the official Splunk font instead of the theme's Inter default.
   splunkDataSansPro = true
-  fontUrl     = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
   fontDisplay = "'Splunk Data Sans Pro', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
   fontBody    = "'Splunk Data Sans Pro', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
-  fontMono    = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace"
 
-  # ---- Layout ------------------------------------------------------------
-  showSidebar     = true
-  showToc         = true
-  showProgress    = true
-  showLightTrails = true
+  # Wider than the theme's 720px default.
   contentMaxWidth = "880px"
 
-  # ---- Repo / edit-on-github --------------------------------------------
-  editURL = ""
-  repoURL = ""
-
-  # ---- Workshop version badge (rendered in the site footer) -------------
-  # Set versionBadgeRepo to "owner/repo" on GitHub to render a shields.io
-  # badge with the latest release tag in the site footer. Leave empty to
-  # omit the badge entirely.
-  versionBadgeRepo  = "splunk/observability-workshop"
-  versionBadgeColor = "FF007F"   # hex without the leading #
+  versionBadgeRepo = "splunk/observability-workshop"
   stableOtelVersion = "0.136.0"  # remains for backward compatibility
   legacyOtelVersion = "0.136.0"  # new legacy version for Splunk Show and existing workshops
   latestOtelVersion = "0.158.0"  # new latest version for Splunk Show and Astronomy Shop (Rookies)
 
   [params.social]
-    github   = "https://github.com/splunk/observability-workshop"
-    twitter  = "https://twitter.com/splunk"
-    linkedin = ""
-    youtube  = ""
+    github  = "https://github.com/splunk/observability-workshop"
+    twitter = "https://twitter.com/splunk"

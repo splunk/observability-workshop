@@ -18,7 +18,7 @@ Before diving into DXA, you need real user sessions to analyze. The browsing you
 * **Repeat 2–3 times** to generate more user sessions.
 * If possible, also visit the Astronomy Shop from a mobile device or tablet.
 
-![Ask AI feature and product details on the Astronomy Shop product page](images/ask-ai-astronomy.png)
+![Ask AI feature and product details on the Astronomy Shop product page](../images/ask-ai-astronomy.png)
 
 {{< tabs >}}
 {{% tab title="Question" %}}
