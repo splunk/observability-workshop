@@ -48,16 +48,16 @@ Having full context of the attack helps in actioning mitigation and remediation 
 {{% /notice %}} 
 
 ### Code-Level Forensics
-> *"Identifying exactly which line of code was accessed during this exploit shorterns the loop from alert to remediation."*
+
+> *"Identifying exactly which line of code was accessed during this exploit shortens the loop from alert to remediation."*
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 1. Scroll to the **Stack Trace** attribute at the bottom of the attack detail.
-
-![apm](../images/06-attack-forensics-sel.png)
-
+  ![apm](../images/06-attack-forensics-sel.png)
 2. Expand the stack trace.
 3. Identify the frame and line reference for code accessed during the exploit.
-![apm](../images/06-attack-forensics.png)
+  ![apm](../images/06-attack-forensics.png)
 {{% /notice %}}
 
 ### What you learned

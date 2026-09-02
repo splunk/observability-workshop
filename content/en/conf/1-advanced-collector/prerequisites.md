@@ -1,7 +1,6 @@
 ---
 title: Pre-requisites
 weight: 2.1
-archetype: chapter
 time: 5 minutes
 ---
 

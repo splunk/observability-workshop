@@ -6,7 +6,7 @@ time: 10 minutes
 
 Remember the **Ask AI** feature on Astronomy Shop product detail pages? Product leadership wants to know whether customers are using it — including the quick prompts below the text input field.
 
-![Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page](images/ask-ai-astronomy.png)
+![Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page](../images/ask-ai-astronomy.png)
 
 **Time series analyses** visualize trends over time and let you drill into specific periods with session replay. Adoption trends help product teams decide whether to invest in, redesign, or retire a feature. See [Create a time series analysis](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/analyses-in-digital-experience-analytics/create-a-time-series-analysis) for more.
 
@@ -39,7 +39,7 @@ Remember the **Ask AI** feature on Astronomy Shop product detail pages? Product 
 
 <!-- TODO screenshot: Session replay showing a user interacting with the Ask AI feature and quick prompts -->
 
-![Session replay of a user interacting with the Ask AI feature on a product page](images/ai-feature-adoption-replay.png)
+![Session replay of a user interacting with the Ask AI feature on a product page](../images/ai-feature-adoption-replay.png)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}

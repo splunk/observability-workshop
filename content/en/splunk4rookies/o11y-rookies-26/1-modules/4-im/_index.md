@@ -2,10 +2,9 @@
 title: Neighbours Are a Pain
 linkTitle: 4. Neighbours Are a Pain
 weight: 4
-archetype: chapter
+layout: chapter
 time: 45 minutes
 description: A noisy neighbour is hogging resources — learn how to spot the culprit using infrastructure monitoring.
-hidden: true
 params:
   images:
     - images/im.gif

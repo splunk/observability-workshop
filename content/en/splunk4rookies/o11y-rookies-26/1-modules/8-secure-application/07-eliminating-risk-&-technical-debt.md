@@ -15,25 +15,30 @@ accumulates tech debt.
 ### Organization-Wide Library Inventory
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 1. Navigate to **APM → Application Security → Libraries**.
 ![apm](../images/07-lib-inventory-sel.png)
 2. Here, you will have a comprehensive catalog of all packages deployed across the instrumented application environments.
 3. Observe libraries for vulnerability posture, CVSS, EPSS Risk Score, services and recommendations.
-4. You can filter the applications by Library Type - This will highlight the various languages insrumented within your enevironment.
+4. You can filter the applications by Library Type - This will highlight the various languages instrumented within your environment.
 ![apm](../images/07a-lib-inventory.png)
 ![apm](../images/07b-lib-inventory.png)
 ![apm](../images/07c-lib-inventory.png)
+
 {{% /notice %}}
 
 > *"This gives you the complete picture of what is running in your environment, who owns it and the risk level. It is also a useful view of legacy | unused libraries that still exist within your code-base that may need to be retired"*
 
 ### Vulnerability Status Lifecycle Management
+
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 1. Navigate to **APM → Application Security → Runtime Vulnerabilities**.
 2. Review vulnerabilities against your organization's risk policies i.e risk assessment guidelines.
 3. Select one vulnerability with **current status** of 'Detected' using the row checkmark.
 4. Click **Update Status** and choose **Ignored** or **Confirmed**.
 ![apm](../images/07-lifecycle.png)
+
 {{% /notice %}}
 
 > *"This helps qualify noise and calibrated low risk vulnerabilities versus confirmed work items that require attention - with audit-friendly state transitions."*
