@@ -3,7 +3,7 @@ title: 3. Viewing Log Entries
 weight: 3
 ---
 
-{{% exercise title="Invstigate the error Message" %}}
+{{% exercise title="Investigate the Error Message" %}}
 
 You have narrowed the results to error logs from the selected trace. Now examine an individual record to find the explanation behind the **payment** failure.
 
