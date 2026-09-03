@@ -1,5 +1,5 @@
 ---
-title: Login into Splunk Observability cloud
+title: Log in to Splunk Observability cloud
 linkTitle:  2. Login
 weight: 2
 archetype: chapter

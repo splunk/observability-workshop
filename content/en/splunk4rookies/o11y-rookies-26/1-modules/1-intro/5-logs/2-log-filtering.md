@@ -3,18 +3,26 @@ title: 2. Log Filtering
 weight: 2
 ---
 
-{{% exercise title="Filter to error logs" %}}
+{{% exercise title="Filter to Error Logs" %}}
 
-* We need to focus on just the Error messages in the logs:
-* Click on the **Group By** **(1)** drop-down box and use the filter to find **severity**.
-* Once selected click the {{% button style="blue" %}}Apply{{% /button %}} button (notice that the chart legend changes to show debug, error and info).
+The selected trace contains log records with different severity levels. You’ll first group them by severity, then filter the results to focus on errors.
+* Keep the existing trace ID search filter and time range unchanged.
+* Open **Group by (1)**, search for *severity*, and select it.
+* Select {{% button style="blue" %}}Apply{{% /button %}}. The chart now separates the log records by **severity**, such as *info*, *debug*, and **error**. The values shown depend on your selected trace.
+
+Grouping helps you compare the different **severity** levels, but it does not remove records from the results. To display only error logs:
 
 ![legend](../images/severity-logs.png)
 
-* Selecting just the error logs can be done by either clicking on the word error **(2)** in the legend, followed by selecting **Add to filter**. Then click {{% button style="blue" %}}Run Search{{% /button %}} at the top of the page.
+* Select **ERROR (2)** in the legend, then select **Add to filter**. Click <img src="../images/search.png" alt="Run search" style="display:inline-block; width:24px; height:auto; vertical-align:middle; margin:0 4px;"> **(3)** at the right end of the search bar.
+* Confirm that the filters now include both the original *trace ID* and *severity = error*. The log table should show only error records associated with your selected trace.
+
+
+{{% notice %}}
+The number of matching records may differ from the screenshots. Use the severity value displayed in your environment; capitalization may vary.
+{{% /notice %}}
 
 ![Error Logs](../images/log-observer-errors.png)
-
 {{% /exercise %}}
 
-Next, we will look at log entries in detail.
+Next, you’ll open an error record and examine its details to understand why the payment request failed.

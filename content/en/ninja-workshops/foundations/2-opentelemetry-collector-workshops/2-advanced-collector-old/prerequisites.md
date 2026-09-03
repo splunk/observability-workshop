@@ -22,7 +22,7 @@ time: 90 minutes
 {{% tab title="Splunk Workshop Instance" %}}
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< legacy-otel-version >}}/otelcol_linux_amd64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
 ```
 
@@ -38,7 +38,7 @@ chmod +x otelcol loadgen && \
 {{% tab title="Apple Silicon" %}}
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< legacy-otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
 ```
 

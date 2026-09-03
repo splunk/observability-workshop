@@ -1,6 +1,5 @@
 ---
-title: Conclusion
-linkTitle: 09-Conclusion
+title: 9. Conclusion
 weight: 9
 ---
 

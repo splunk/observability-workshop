@@ -31,6 +31,11 @@ It should start with:
 ![RUM Session](../images/rum-waterfall.png)
 
 * Review the services shown at the bottom of the summary. A red error indicator identifies a service containing one or more errors. In this example, errors are associated with services such as *checkout* or *payment* **(3)**. The exact services and order may differ in your session. 
-* Under **Business Operation**,  select `PlaceOrder`(4) to open the APM Service Map for this business operation. There, you’ll investigate the backend services and their dependencies to identify the root cause of the slow or failed checkout request.
+
+{{< notice >}}
+**Business Operations** can be configured to match your organization’s naming conventions and standards. The name displayed in your environment may therefore differ from the one shown in this workshop.
+{{< /notice >}}
+
+* Under **Business Operation**,  select  the `checkout:oteldemo.CheckoutService/PlaceOrder`(4) to open the APM Service Map for this business operation. There, you’ll investigate the backend services and their dependencies to identify the root cause of the slow or failed checkout request.
 
 {{% /exercise %}}

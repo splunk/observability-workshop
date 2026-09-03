@@ -1,6 +1,5 @@
 ---
-title: Getting Started
-linkTitle: 01-Getting-Started
+title: 1. Getting Started
 weight: 1
 ---
 

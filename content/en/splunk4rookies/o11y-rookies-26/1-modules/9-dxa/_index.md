@@ -2,12 +2,12 @@
 title: Digital Experience Analytics
 linkTitle: 9. Digital Experience Analytics
 weight: 9
-archetype: chapter
 time: 45–60 minutes
 authors: ["Sarah Ware"]
 description: Understand user behavior, friction, and conversion in Astronomy Shop using DXA -- no code changes required.
-draft: false
-hidden: false
+hidden: true
+cascade:
+  hidden: true
 params:
   images:
     - images/funnel.png

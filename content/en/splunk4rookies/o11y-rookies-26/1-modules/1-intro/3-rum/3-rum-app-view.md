@@ -13,6 +13,7 @@ By default, the dashboard may compare the selected time range with an earlier pe
 ![RUM Dashboard](../images/rum-metric-map-charts.png)
 
 The dashboard is organized into several tabs:
+
 * **UX Metrics** — Review page views, page-load performance, route changes, and Core Web Vitals.
 * **Front-end Health** — Investigate JavaScript errors and long-running browser tasks that can make the application feel slow or unresponsive.
 * **Back-end Health** — Examine network requests, request errors, and Time to First Byte (TTFB), which measures how quickly the browser begins receiving a response.
@@ -26,14 +27,13 @@ Select each tab and take a moment to examine its charts. You do not need to unde
 {{< tabs >}}
 {{% tab title="Questions" %}}
 
-1. In **Custom Workflows**, 
 1. In **Custom Workflows**, in the C**ustom Workflow Duration P75** chart, which workflow has the highest P75 duration and what evidence in the chart supports your answer?
 2. In the **Map View** tab, which location shows the largest request volume??
 
 {{% /tab %}}
 {{% tab title="Answers" %}}
 
-1. **PlaceOrder** is considerably slower. Its **P75 duration** is approximately **7.46 seconds**, with repeated spikes approaching 10 seconds, while the other workflows complete in milliseconds or microseconds. (you data may be differetn, but the pattern should be the same )
+1. **PlaceOrder** is considerably slower. Its **P75 duration** is approximately **7.46 seconds**, with repeated spikes approaching 10 seconds, while the other workflows complete in milliseconds or microseconds. (you data may be different, but the pattern should be the same )
 2. **Ireland**
 
 {{% /tab %}}

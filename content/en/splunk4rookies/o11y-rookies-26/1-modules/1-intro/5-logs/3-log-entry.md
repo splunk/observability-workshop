@@ -3,29 +3,40 @@ title: 3. Viewing Log Entries
 weight: 3
 ---
 
-{{% exercise title="Open an error log" %}}
+{{% exercise title="Investigate the Error Message" %}}
 
-* Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too).
+You have narrowed the results to error logs from the selected trace. Now examine an individual record to find the explanation behind the **payment** failure.
+
+* Select an error entry in the **Logs table** to open its details.
+* Check the record’s **service** or **hostname** fields to confirm that it came from the **payment** service. Other services involved in the trace may also have reported errors.
+* Read the complete message and examine the associated fields. Scroll through the details if necessary.
+
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Based on the message, what would you tell the development team to do to resolve the issue?**
+**What does the log message reveal about the *payment* failure, and what should the development team check to resolve it?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The development team needs to rebuild and deploy the container with a valid API Token or rollback to `v350.9`**.
+* **The message reports that *ButtercupPayments* rejected an *invalid API token***. 
+* **The development team should check the payment-provider credentials configured for version `v350.10`, correct or replace the invalid token, and verify that payment requests succeed afterward or rollback to `v350.9`**.
 {{% /tab %}}
 {{< /tabs >}}
 
   ![Log Message](../images/log-observer-log-message.png)
-* Click on the **X** in the log message pane to close it.
+* When you have finished examining the record, select **X** in the log details pane to close it.
 
 {{% /exercise %}}
 
 {{% notice style="blue" title="Congratulations" icon="wine-bottle" %}}
 
-You have **successfully** used Splunk Observability Cloud to understand why you experienced a poor user experience whilst shopping at the Online Boutique. You used RUM, APM and logs to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, **metrics**, **traces** and **logs**.
+**Investigation complete**  
+You have followed a slow checkout interaction in the Astronomy Shop from the browser to its underlying payment failure:
+- **RUM** revealed the poor user experience.
+- **APM** located the failing service and affected version.
+- *Logs* identified the invalid API token reported by the payment provider.
+Along the way, **Tag Spotlight** helped you identify patterns, while **Related Content** kept the investigation connected as you moved between traces and logs.
 
-You also learned how to use Splunk's **intelligent tagging and analysis** with **Tag Spotlight** to detect patterns in your applications' behavior and to use the **full stack correlation** power of **Related Content** to quickly move between the different components whilst keeping in context of the issue.
-
+**Transition to the next section**  
+Next, you’ll explore Synthetic Monitoring and how scheduled tests can help detect problems before customers report them.
 {{% /notice %}}
 
-In the next part of the workshop, we will move from **problem-finding mode** into **mitigation**, **prevention** and **process improvement mode**.
+

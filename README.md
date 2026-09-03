@@ -24,5 +24,5 @@ To get started, please proceed to [The Splunk Observability Cloud Workshops Home
 Workshops that are no longer maintained are listed in [Archived workshops](ARCHIVED_WORKSHOPS.md).
 
 Latest versions of the workshop are:
+- [v6.125](https://splunk.github.io/observability-workshop/)
 - [v6.124](https://splunk.github.io/observability-workshop/)
-

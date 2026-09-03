@@ -1,6 +1,6 @@
 ---
 title: Digital Experience (RUM)
-linkTitle: 3 . Digital Experience (RUM)
+linkTitle: 3. Digital Experience (RUM)
 weight: 3
 archetype: chapter
 time: 15 minutes
