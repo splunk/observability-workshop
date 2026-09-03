@@ -13,8 +13,6 @@ The results contain the available log records correlated with that trace. These 
 
 Even for a small application such as the **Astronomy Shop**, a single transaction can generate many log records. On the next page, you’ll filter these results to find the entries that explain the payment failure.
 
-This view contains the available log records associated with the selected trace, potentially from several services involved in the Astronomy Shop checkout request. Even one transaction can generate many records, so the next step is to narrow the results to the entries that explain the failure.
-
 Before continuing, let’s recap how the three pillars of observability have guided the investigation:
 
 |  Metrics                   | Traces                      |  Logs                      |
