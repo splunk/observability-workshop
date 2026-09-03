@@ -9,17 +9,22 @@ The key advantage, just as with the **RUM** and **APM** integration, is that you
 
 ![Trace Logs](../images/log-observer-trace-logs.png)
 
-This view will include **all** the log lines from **all** services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.
+The results contain the available log records correlated with that trace. These records may come from several services that participated in the checkout request. The exact number of records depends on which services emit logs, whether those logs are ingested, and whether they contain the required trace metadata.
 
-Even in a small application such as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we are investigating.
+Even for a small application such as the **Astronomy Shop**, a single transaction can generate many log records. On the next page, you’ll filter these results to find the entries that explain the payment failure.
 
-Before we go any further, let's quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:
+This view contains the available log records associated with the selected trace, potentially from several services involved in the Astronomy Shop checkout request. Even one transaction can generate many records, so the next step is to narrow the results to the entries that explain the failure.
+
+Before continuing, let’s recap how the three pillars of observability have guided the investigation:
 
 |  Metrics                   | Traces                      |  Logs                      |
 | :-------:                  | :------:                    | :----:                     |
 | _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
 
-* Using **RUM** metrics we identified **we have a problem** with our application. This was obvious from the duration metrics for the user sessions.
-* Using traces and span tags we found **where the problem is**. The **paymentservice** comprises two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
-* We did see that this error from the **paymentservice** `v350.10` caused multiple retries and a long delay in the response back from the Online Boutique checkout.
-* From the trace, using the power of **Related Content**, we arrived at the log entries for the failing **paymentservice** version. Now, we can determine **what the problem is**.
+* **Metrics** revealed the symptom. In **RUM**, the *PlaceOrder* duration showed that customers were experiencing slow checkout interactions.
+
+* **Traces** narrowed the investigation. Following a failing request into **APM** led us to the **payment** service. Comparing its versions showed that the errors were associated with *v350.10*, while *v350.9* completed requests successfully.
+
+* The **waterfall** exposed the failure. The affected request encountered **HTTP 401** errors and repeated *payment* attempts, contributing to the checkout delay. The span reported *“Invalid request,”* but that message alone did not explain why the request was rejected.
+
+* **Logs** provide the next piece of evidence. Using **Related Content**, we opened the log records associated with the same trace. Now we’ll filter those records to uncover the details behind the payment failure.

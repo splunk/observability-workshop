@@ -3,12 +3,9 @@ title: 2. APM Service View
 weight: 2
 ---
 
-The **Service View** brings together the health, performance, dependencies, and troubleshooting data for one backend service. You arrived here by selecting the payment service from the Service Map, so the page is already filtered to that service and your workshop environment.
+The **Service View** brings together the health, performance, dependencies, and troubleshooting data for one backend service. You arrived here by selecting the *payment* service from the *Service Map*, so the page is already filtered to that service and your workshop environment.
 
-**This needs completing**
-The Overview tab provides a quick health summary. It includes the service’s success rate, service-level indicators, request and error activ
-
-The overview confirms that the **payment** service has recurring *authentication* failures, but it does not yet show what the affected requests have in common. To look for a pattern, select the **Tag Spotlight** tab **(4)**.ity, latency, and a map of its immediate dependencies.
+The *Overview* tab provides a quick health summary. It includes the service’s success rate, service-level indicators, request and error activity, latency, and a map of its immediate dependencies.
 
 The navigation bar contains several additional ways to investigate the service:
 
