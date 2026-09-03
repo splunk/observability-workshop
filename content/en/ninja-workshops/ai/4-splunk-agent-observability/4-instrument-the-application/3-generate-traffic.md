@@ -13,18 +13,20 @@ next chapter.
 
 {{< step title="Deploy the healthcare assistant app" >}}
 
-Run the following command to deploy the healthcare assistant app:
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:
 
 ```bash
 cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
 kubectl apply -f k8s.yaml
 ```
 
-> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
-> please use the following command instead:
-> ```bash 
-> kubectl apply -f k8s-o11y.yaml
-> ```
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+```bash 
+cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
+kubectl apply -f k8s-o11y.yaml
+```
 
 Ensure that the new application pod is running:
 

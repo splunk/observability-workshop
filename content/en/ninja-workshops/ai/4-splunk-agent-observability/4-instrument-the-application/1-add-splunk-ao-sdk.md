@@ -38,25 +38,27 @@ export PARTICIPANT_NUMBER=<your participant number>
 
 {{< step title="Create a Kubernetes Secret" >}}
 
-Run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key: 
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key: 
 
 ```bash
 kubectl create secret generic splunk-ao-secret \
   --from-literal=SPLUNK_AO_API_KEY="$GALILEO_API_KEY"
 ```
 
-> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop, 
-> please use the following command instead: 
-> ```bash 
-> kubectl create secret generic splunk-ao-secret \
-> --from-literal=SPLUNK_AO_O11Y_TOKEN="$ACCESS_TOKEN"
-> ```
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop, 
+please use the following command instead: 
+```bash 
+kubectl create secret generic splunk-ao-secret \
+--from-literal=SPLUNK_AO_O11Y_TOKEN="$ACCESS_TOKEN"
+```
 
 {{< /step >}}
 
 {{< step title="Create a Config Map" >}}
 
-Run the following command to create a Kubernetes config map, which the application will use to
+If you're using the standalone version of Splunk Agent Observability for the workshop, 
+run the following command to create a Kubernetes config map, which the application will use to
 determine how to send traces to Splunk Agent Observability: 
 
 ```bash
@@ -66,14 +68,14 @@ kubectl create configmap splunk-ao-config \
   --from-literal=SPLUNK_AO_AGENT_STREAM="default"
 ```
 
-> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
-> please use the following command instead:
-> ```bash 
-> kubectl create configmap splunk-ao-config \
-> --from-literal=SPLUNK_AO_REALM="$REALM" \
-> --from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
-> --from-literal=SPLUNK_AO_AGENT_STREAM="default"
-> ```
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+```bash 
+kubectl create configmap splunk-ao-config \
+--from-literal=SPLUNK_AO_REALM="$REALM" \
+--from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
+--from-literal=SPLUNK_AO_AGENT_STREAM="default"
+```
 
 {{% notice title="Project and agent stream" style="info" %}}
 

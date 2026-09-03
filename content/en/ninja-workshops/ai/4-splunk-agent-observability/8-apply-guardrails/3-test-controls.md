@@ -12,11 +12,20 @@ behavior in the chat *and* in the trace in the console.
 
 {{< step title="Run the app" >}}
 
-Run the following command to deploy the healthcare assistant app:
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:
 
 ```bash
 cd ~/workshop/healthcare-assistant/4-app-with-controls
 kubectl apply -f k8s.yaml
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+
+```bash
+cd ~/workshop/healthcare-assistant/4-app-with-controls
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Ensure that the new application pod is running:

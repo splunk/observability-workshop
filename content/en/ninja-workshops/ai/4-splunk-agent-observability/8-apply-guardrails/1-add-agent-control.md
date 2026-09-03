@@ -22,13 +22,26 @@ cd ~/workshop/healthcare-assistant/4-app-with-controls
 
 {{< step title="Create an Agent Control Config Map" >}}
 
-Run the following command to create a Kubernetes config map, which the application will use to
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes config map, which the application will use to
 configure Agent Controls:
 
 ```bash
 kubectl create configmap splunk-agent-control-config \
   --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.sao.splunkcloud.com" \
   --from-literal=AGENT_CONTROL_URL="https://console.multitenant.sao.splunkcloud.com/api/agent-control" \
+  --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
+  --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="agent_stream"
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+
+```bash
+kubectl create configmap splunk-agent-control-config \
+  --from-literal=AGENT_CONTROL_URL="https://app.$REALM.observability.splunkcloud.com/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
   --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \

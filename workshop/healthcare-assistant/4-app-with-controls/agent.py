@@ -23,8 +23,9 @@ import os
 from splunk_ao import splunk_ao_context
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
 from splunk_ao.utils.log_config import enable_console_logging
+import logging
 
-enable_console_logging()
+enable_console_logging(level=logging.INFO)
 
 from agent_control import ControlSteerError, ControlViolationError, control
 from helpers.agent_control_helpers import (
