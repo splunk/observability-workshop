@@ -45,6 +45,13 @@ kubectl create secret generic splunk-ao-secret \
   --from-literal=SPLUNK_AO_API_KEY="$GALILEO_API_KEY"
 ```
 
+> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop, 
+> please use the following command instead: 
+> ```bash 
+> kubectl create secret generic splunk-ao-secret \
+> --from-literal=SPLUNK_AO_O11Y_TOKEN="$ACCESS_TOKEN"
+> ```
+
 {{< /step >}}
 
 {{< step title="Create a Config Map" >}}
@@ -58,6 +65,15 @@ kubectl create configmap splunk-ao-config \
   --from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
   --from-literal=SPLUNK_AO_AGENT_STREAM="default"
 ```
+
+> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+> please use the following command instead:
+> ```bash 
+> kubectl create configmap splunk-ao-config \
+> --from-literal=SPLUNK_AO_REALM="$REALM" \
+> --from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
+> --from-literal=SPLUNK_AO_AGENT_STREAM="default"
+> ```
 
 {{% notice title="Project and agent stream" style="info" %}}
 

@@ -20,6 +20,12 @@ cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
 kubectl apply -f k8s.yaml
 ```
 
+> If you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+> please use the following command instead:
+> ```bash 
+> kubectl apply -f k8s-o11y.yaml
+> ```
+
 Ensure that the new application pod is running:
 
 {{< tabs id="healthcare-app-monitor" >}}
