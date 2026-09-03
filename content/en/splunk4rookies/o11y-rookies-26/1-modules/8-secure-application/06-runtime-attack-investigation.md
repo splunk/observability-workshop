@@ -1,6 +1,5 @@
 ---
-title: Investigating Attacks
-linkTitle: 06-Investigating-Attacks
+title: 6. Investigating Attacks
 weight: 6
 ---
 

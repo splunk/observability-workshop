@@ -1,6 +1,5 @@
 ---
-title: Integrated Defense
-linkTitle: 08-Integrated-Defense
+title: 8. Integrated Defense
 weight: 8
 ---
 

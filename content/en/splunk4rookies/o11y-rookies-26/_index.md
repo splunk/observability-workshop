@@ -5,9 +5,9 @@ authors: ["Pieter Hagen"]
 time: Variable
 description: Hands-on Splunk Observability Cloud workshop — your instructor may deliver all lessons in sequence or select individual lessons based on your team's goals and available time.
 layout: "hero"
-draft: true
-cascade:
-  draft: true
+build:
+  list: never
+  render: always
 params:
   images:
     - images/o11y-2026.png

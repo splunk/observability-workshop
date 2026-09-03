@@ -1,6 +1,5 @@
 ---
-title: Runtime Vulnerabilities
-linkTitle: 03-Runtime-Vulnerabilities
+title: 3. Runtime Vulnerabilities
 weight: 3
 ---
 

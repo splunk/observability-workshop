@@ -4,6 +4,9 @@ linkTitle: 3. Where Did That Error Come From?
 weight: 3
 time: 45 minutes
 description: Trace an error across microservices to find exactly which service is breaking — and why.
+hidden: true
+cascade:
+  hidden: true
 params:
   images:
     - images/apm.avif

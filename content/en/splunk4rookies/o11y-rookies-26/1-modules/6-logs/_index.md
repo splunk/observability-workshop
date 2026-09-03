@@ -5,6 +5,9 @@ weight: 6
 layout: chapter
 time: 45 minutes
 description: Start from logs alone to triage an incident — filter, group, and spot patterns to find the root cause.
+hidden: true
+cascade:
+  hidden: true
 params:
   images:
     - images/lo.png

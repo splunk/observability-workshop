@@ -5,6 +5,9 @@ weight: 9
 time: 45–60 minutes
 authors: ["Sarah Ware"]
 description: Understand user behavior, friction, and conversion in Astronomy Shop using DXA -- no code changes required.
+hidden: true
+cascade:
+  hidden: true
 params:
   images:
     - images/funnel.png
