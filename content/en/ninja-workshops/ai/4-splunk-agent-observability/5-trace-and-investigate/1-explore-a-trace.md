@@ -44,8 +44,8 @@ nested **LLM span** for the chatbot node and a **tool span** for `search_medicin
 
 {{< step title="Inspect a span" >}}
 
-Select the **`Healthcare Assistant`** span and confirm it captured the **system and user messages**, the **Available
-Tools**, the **Output**, **Token Counts**, **Latency**, and **Agent Cost**. This
+Select the **`chat gpt-4.1-mini`** span and confirm it captured the **system and user messages**, 
+the **Output**, **Token Counts**, **Latency**, and **Agent Cost**. This
 is the detail that lets you explain *why* the agent answered the way it did.
 
 ![Span detail](../../images/galileo-llm-span.png?width=750px)
