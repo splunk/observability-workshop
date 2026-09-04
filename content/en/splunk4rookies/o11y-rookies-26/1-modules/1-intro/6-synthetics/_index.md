@@ -9,18 +9,16 @@ description: In this section, you will learn how to use Splunk Synthetics to mon
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 
-Putting your **SRE** hat back on, you have been asked to set up monitoring for the Online Boutique. You need to ensure that the application is available and performing well 24 hours a day, 7 days a week.
+Putting your **SRE** hat back on, you have been asked to review the *synthetic monitoring* configured for the Astronomy Shop and confirm that it can detect availability and performance problems. In this introduction, you’ll use a preconfigured test. If you wish to learn how to create your own, you can do that in a later lesson.
 
 {{% /notice %}}
 
 > [!IMPORTANT]
-> Wouldn’t it be great if we could have 24/7 monitoring of our application, and be alerted when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.
+> **Synthetic Monitoring** runs scheduled tests that *simulate* user journeys, even when no real customers are using the application. You’ll examine a *prebuilt* test that runs every minute and checks the availability and performance of a typical journey through the *Astronomy Shop*.
 
 {{< webex chat="Bill Grant" date="Today • 28/01/2026" seenby="BG" >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:42" color="#ef950d" >}}
-Hey, Bill, now that we've resolved the `paymentservice` issue, I think we should set up some monitoring to ensure we catch any future issues before they impact our customers.
+Hey Bill, now that we’ve resolved the `payment` service issue, let’s review our *synthetic monitoring* to ensure that we catch any future issues before they impact our customers.
 {{< /webex-msg >}}
-{{< webex-msg from="RC" name="Robert Castley" time="09:43" color="#ef950d">}}
-I suggest we use Synthetics to set up a test that runs every minute and checks the performance and availability of a typical user journey through the Online Boutique. This way, we can be alerted immediately if there are any issues.
-{{< /webex-msg >}}
+
 {{< /webex >}}
