@@ -55,6 +55,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.outputs import ChatResult, ChatGeneration
 from langchain_core.tools import tool
 from langchain_core.runnables import RunnableLambda, RunnableBinding
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI, AzureChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
@@ -365,30 +366,80 @@ class PlannerState(TypedDict):
     poison_events: List[str]
 
 
-def _model_name() -> str:
+def _llm_provider() -> str:
+    """Return the configured LLM provider while preserving legacy auto-detection."""
+    configured_provider = os.getenv("LLM_PROVIDER", "").strip().lower()
+    if configured_provider:
+        if configured_provider not in {"azure", "ollama", "openai"}:
+            raise ValueError(
+                "LLM_PROVIDER must be one of: azure, ollama, openai"
+            )
+        return configured_provider
+
+    azure_config = (
+        "AZURE_OPENAI_API_KEY",
+        "AZURE_OPENAI_ENDPOINT",
+        "AZURE_OPENAI_DEPLOYMENT_NAME",
+        "AZURE_OPENAI_API_VERSION",
+    )
+    if all(os.getenv(name) for name in azure_config):
+        return "azure"
+    return "openai"
+
+
+def _model_name(provider: Optional[str] = None) -> str:
+    provider = provider or _llm_provider()
+    if provider == "ollama":
+        return os.getenv("OLLAMA_MODEL", "llama3.1:8b")
     return os.getenv("OPENAI_MODEL", "gpt-5-nano")
 
 
-def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Union[ChatOpenAI, AzureChatOpenAI]:
-    """Create an AzureChatOpenAI or ChatOpenAI instance decorated with tags/metadata for tracing."""
-    model = _model_name()
+def _create_llm(
+    agent_name: str, *, temperature: float, session_id: str
+) -> BaseChatModel:
+    """Create the selected provider's chat model with tracing metadata."""
+    provider = _llm_provider()
+    model = _model_name(provider)
     tags = [f"agent:{agent_name}", "travel-planner"]
     metadata = {
         "agent_name": agent_name,
         "agent_type": agent_name,
+        "llm_provider": provider,
         "session_id": session_id,
         "thread_id": session_id,
         "ls_model_name": model,
         "ls_temperature": temperature,
     }
 
-    # Check for Azure-specific environment variables
-    azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    azure_deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-    azure_openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+    if provider == "ollama":
+        return ChatOllama(
+            model=model,
+            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+            temperature=temperature,
+            tags=tags,
+            metadata=metadata,
+        )
 
-    if azure_openai_api_key and azure_endpoint and azure_deployment_name and azure_openai_api_version:
+    if provider == "azure":
+        azure_config = {
+            "AZURE_OPENAI_API_KEY": os.getenv("AZURE_OPENAI_API_KEY"),
+            "AZURE_OPENAI_ENDPOINT": os.getenv("AZURE_OPENAI_ENDPOINT"),
+            "AZURE_OPENAI_DEPLOYMENT_NAME": os.getenv(
+                "AZURE_OPENAI_DEPLOYMENT_NAME"
+            ),
+            "AZURE_OPENAI_API_VERSION": os.getenv("AZURE_OPENAI_API_VERSION"),
+        }
+        missing = [name for name, value in azure_config.items() if not value]
+        if missing:
+            raise ValueError(
+                "LLM_PROVIDER=azure requires: " + ", ".join(missing)
+            )
+        azure_deployment_name = str(
+            azure_config["AZURE_OPENAI_DEPLOYMENT_NAME"]
+        )
+        azure_openai_api_version = str(
+            azure_config["AZURE_OPENAI_API_VERSION"]
+        )
 
         # Logic to check if we should send temperature
         # Reasoning models (gpt-5, o1, o3) require temperature to be 1 or omitted
@@ -410,16 +461,15 @@ def _create_llm(agent_name: str, *, temperature: float, session_id: str) -> Unio
 
         # Azure OpenAI Configuration
         return AzureChatOpenAI(**kwargs)
-    else:
-        # Standard OpenAI Configuration
-        return ChatOpenAI(
-            model=model,
-            temperature=temperature,
-            tags=tags,
-            metadata=metadata,
-            http_client=client,
-            # The class will automatically pick up OPENAI_API_KEY from env
-        )
+    # Standard OpenAI Configuration
+    return ChatOpenAI(
+        model=model,
+        temperature=temperature,
+        tags=tags,
+        metadata=metadata,
+        http_client=client,
+        # The class will automatically pick up OPENAI_API_KEY from env
+    )
 
 # ---------------------------------------------------------------------------
 # Prompt poisoning helpers (to trigger instrumentation-side evaluations)
@@ -1091,10 +1141,21 @@ def plan():
 @app.route("/health", methods=["GET"])
 def health():
     """Health check endpoint for k8s."""
-    return jsonify({"status": "healthy", "service": "travel-planner-flask"}), 200
+    provider = _llm_provider()
+    return jsonify(
+        {
+            "status": "healthy",
+            "service": "travel-planner-flask",
+            "llm_provider": provider,
+            "llm_model": _model_name(provider),
+        }
+    ), 200
 
 
 if __name__ == "__main__":
+    logging.info(
+        "[INFO] LLM provider=%s model=%s", _llm_provider(), _model_name()
+    )
     logging.info(
         "[INFO] Starting Flask server on http://0.0.0.0:8080"
     )

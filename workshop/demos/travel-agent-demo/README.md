@@ -7,7 +7,77 @@
 To run the application locally, ensure an instance of the Splunk distribution of the OpenTelemetry 
 collector is running and configured to report data to Splunk Observability Cloud and Splunk core. 
 
-### Option 1: Run the Application with a Proxy
+### Option 1: Run the Application with Ollama
+
+[Ollama](https://ollama.com/) runs the language model locally, so the travel
+planner does not need a paid public LLM API. Install and start Ollama, then pull
+a model that supports tool calling (the specialist agents use tools):
+
+``` bash
+ollama pull llama3.1:8b
+ollama serve
+```
+
+If Ollama is already running as a system service, you do not need to run
+`ollama serve` separately.
+
+Configure the travel planner:
+
+``` bash
+export LLM_PROVIDER=ollama
+export OLLAMA_MODEL=llama3.1:8b
+export OLLAMA_BASE_URL=http://localhost:11434
+export OTEL_SERVICE_NAME=travel-planner
+export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=travel-planner-demo
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=DELTA
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
+export OTEL_PYTHON_EXCLUDED_URLS="^(https?://)?[^/]+(/health)?$"
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT_MODE=SPAN_AND_EVENT
+export OTEL_INSTRUMENTATION_GENAI_EMITTERS=span_metric_event,splunk
+export OTEL_INSTRUMENTATION_GENAI_EVALS_EVALUATORS='length(LLMInvocation(length))'
+```
+
+The `length` evaluator above does not call another LLM. This is important because
+the installed DeepEval integration otherwise defaults to an OpenAI-backed judge.
+If the goal is to keep all inference local, do not replace it with a cloud-backed
+DeepEval evaluator. The planner itself and its mock travel-search tools do not
+need an API key in Ollama mode.
+
+Then run the application:
+
+``` bash
+cd app
+uv venv --python 3.13 .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+python main.py
+```
+
+Verify the selected provider and send a request:
+
+``` bash
+curl http://localhost:8080/health
+
+curl http://localhost:8080/travel/plan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origin": "Seattle",
+    "destination": "Tokyo",
+    "user_request": "Plan a week-long trip from Seattle to Tokyo with a boutique hotel, flights and unique experiences.",
+    "travellers": 2
+  }'
+```
+
+When the app itself runs in Docker, use
+`OLLAMA_BASE_URL=http://host.docker.internal:11434` on Docker Desktop. When it
+runs in Kubernetes, point `OLLAMA_BASE_URL` at an Ollama service reachable from
+the pod.
+
+### Option 2: Run the Application with a Proxy
 
 #### Run the Proxy
 
@@ -122,7 +192,7 @@ Send a request including poison config:
     }'
 ```
 
-### Option 2: Run the Application with Azure OpenAI
+### Option 3: Run the Application with Azure OpenAI
 
 As an alternative to using the Cisco Circuit proxy, you can also run the application 
 using an OpenAI model hosted in Azure directly. This example uses the `gpt-5-mini` 
