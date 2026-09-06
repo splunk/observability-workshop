@@ -21,12 +21,34 @@ Download or copy the {{< rum-example-link >}} and replace the placeholders for `
 
 ## Serve the example over HTTPS
 
-The browser agent should be tested over HTTPS. One simple local approach is to create a trusted development certificate with `mkcert`, then use the Node-based static server:
+The browser agent should be tested over HTTPS. Create a trusted development certificate with `mkcert`, then use the Node-based static server. Run the commands from the repository root.
+
+#### macOS
 
 ```bash
+brew install mkcert nss
 mkcert -install
 mkcert localhost 127.0.0.1 ::1
-npx http-server static -S -C localhost+2.pem -K localhost+2-key.pem -p 8443
+npx --yes --registry=https://registry.npmjs.org http-server static -S -C localhost+2.pem -K localhost+2-key.pem -p 8443
+```
+
+#### Linux (Debian/Ubuntu)
+
+```bash
+sudo apt-get update
+sudo apt-get install -y mkcert libnss3-tools
+mkcert -install
+mkcert localhost 127.0.0.1 ::1
+npx --yes --registry=https://registry.npmjs.org http-server static -S -C localhost+2.pem -K localhost+2-key.pem -p 8443
+```
+
+#### Windows PowerShell
+
+```powershell
+winget install FiloSottile.mkcert
+mkcert -install
+mkcert localhost 127.0.0.1 ::1
+npx --yes --registry=https://registry.npmjs.org http-server .\static -S -C .\localhost+2.pem -K .\localhost+2-key.pem -p 8443
 ```
 
 Open `https://localhost:8443/examples/rum-session-replay/index.html`. If Chrome warns about the certificate, confirm that `mkcert -install` completed successfully and restart the browser. For a workshop, an instructor-provided HTTPS host is also fine.
@@ -35,8 +57,16 @@ Open `https://localhost:8443/examples/rum-session-replay/index.html`. If Chrome 
 
 For a fast localhost smoke test, you can skip the certificate and serve the files over HTTP:
 
+#### macOS/Linux
+
 ```bash
-npx http-server static -p 8080
+npx --yes --registry=https://registry.npmjs.org http-server static -p 8080
+```
+
+#### Windows PowerShell
+
+```powershell
+npx --yes --registry=https://registry.npmjs.org http-server .\static -p 8080
 ```
 
 Open `http://localhost:8080/examples/rum-session-replay/index.html`. This is acceptable only for a disposable local lab. It does not protect the page or any values typed into it, and browser security policies or Session Replay requirements may prevent it from working. Use the HTTPS option above if RUM or replay data does not appear, and never use this approach for real users or production data.
