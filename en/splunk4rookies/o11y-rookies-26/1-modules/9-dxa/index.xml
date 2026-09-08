@@ -25,7 +25,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="images/ask-ai-astronomy.png" alt="Ask AI feature and product details on the Astronomy Shop product page" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/ask-ai-astronomy.png" alt="Ask AI feature and product details on the Astronomy Shop product page" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>2. Getting Started with DXA</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/2-getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/2-getting-started/</guid><description>&lt;p&gt;&lt;strong&gt;Digital Experience Analytics (DXA)&lt;/strong&gt; complements Splunk Real User Monitoring (RUM) and Synthetic Monitoring by adding a product-analytics layer on top of session data you already collect. DXA helps digital product teams identify friction points, refine user journeys, increase conversion rates, and improve feature engagement — without writing queries or changing application code for this workshop.&lt;/p&gt;
@@ -71,7 +71,7 @@
 &lt;p&gt;Event definitions use filter templates to match real user actions:&lt;/p&gt;</description></item><item><title>4. Feature Adoption</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/4-feature-adoption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/4-feature-adoption/</guid><description>&lt;p&gt;Remember the &lt;strong&gt;Ask AI&lt;/strong&gt; feature on Astronomy Shop product detail pages? Product leadership wants to know whether customers are using it — including the quick prompts below the text input field.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="images/ask-ai-astronomy.png" alt="Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/ask-ai-astronomy.png" alt="Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -95,7 +95,7 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="images/frustration-timeseries.png" alt="Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/frustration-timeseries.png" alt="Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>6. Conversion Funnels</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/6-funnels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/1-modules/9-dxa/6-funnels/</guid><description>&lt;p&gt;Individual actions and frustration signals tell part of the story. &lt;strong&gt;Conversion funnel analyses&lt;/strong&gt; show whether users complete multi-step journeys — like browsing to checkout — and where they drop off.&lt;/p&gt;

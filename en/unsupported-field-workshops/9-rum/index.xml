@@ -26,7 +26,7 @@
  &lt;span class="heading-text"&gt;1. Visit the RUM Landing Page&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-visit-the-rum-landing-page" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Login into your Splunk IM/APM/RUM Website. From the left side menu bar select &lt;strong&gt;RUM&lt;/strong&gt; &lt;figure class="figure"&gt;
+&lt;p&gt;Log in to your Splunk IM/APM/RUM Website. From the left side menu bar select &lt;strong&gt;RUM&lt;/strong&gt; &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/RUM_ico.png?classes=inline&amp;amp;height=25px" alt="RUM-ico" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
