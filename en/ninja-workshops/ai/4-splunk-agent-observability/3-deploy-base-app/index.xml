@@ -99,4 +99,10 @@ agent paths.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;healthcare-assistant-d764fc757-l9fxt 1/1 Running 0 20s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser:&lt;/p&gt;</description></item></channel></rss>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Access the Application&lt;/p&gt;</description></item></channel></rss>

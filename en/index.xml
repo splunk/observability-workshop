@@ -106,27 +106,9 @@ and register the controllable steps.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create an Agent Control Config Map&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to create a Kubernetes config map, which the application will use to
-configure Agent Controls:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl create configmap galileo-agent-control-config &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;GALILEO_API_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://api.multitenant.galileocloud.io&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://console.multitenant.galileocloud.io/api/agent-control&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_AGENT_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;agent-control-example&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_API_KEY_HEADER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Galileo-API-Key&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_RUNTIME_AUTH_MODE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;jwt&amp;#34;&lt;/span&gt; &lt;span class="se"&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --from-literal&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;AGENT_CONTROL_TARGET_TYPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;log_stream&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;3&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Add the Agent Control packages&lt;/p&gt;</description></item><item><title>1. Add the OBI Service</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="add-obi-to-docker-composeyaml"&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes config map, which the application will use to
+configure Agent Controls:&lt;/p&gt;</description></item><item><title>1. Add the OBI Service</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/4-docker-obi-magic/1-add-obi-service/</guid><description>&lt;h2 id="add-obi-to-docker-composeyaml"&gt;
  &lt;span class="heading-text"&gt;Add OBI to docker-compose.yaml&lt;/span&gt;
  &lt;a class="heading-anchor" href="#add-obi-to-docker-composeyaml" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -164,8 +146,17 @@ file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;galileo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note about the SDK&lt;/p&gt;</description></item><item><title>Always-On Profiling &amp; Metrics</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</guid><description>&lt;p&gt;When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and &lt;strong&gt;Metrics&lt;/strong&gt;. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.&lt;/p&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;splunk-ao&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create a Kubernetes Secret&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key:&lt;/p&gt;</description></item><item><title>Always-On Profiling &amp; Metrics</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/</guid><description>&lt;p&gt;When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable &lt;strong&gt;AlwaysOn Profiling&lt;/strong&gt; and &lt;strong&gt;Metrics&lt;/strong&gt;. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.&lt;/p&gt;
 &lt;p&gt;When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:&lt;/p&gt;</description></item><item><title>1. APM Explore</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/4-apm/1-apm-explore/</guid><description>&lt;p&gt;When you click into the APM section of Splunk Observability Cloud you are greated with an overview of your APM data including top services by error rates, and R.E.D. metrics for services and workflows.&lt;/p&gt;
 &lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.&lt;/p&gt;</description></item><item><title>1. APM Explore</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/1-apm-explore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/1-apm-explore/</guid><description>&lt;p&gt;The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.&lt;/p&gt;
 &lt;p&gt;When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that &lt;strong&gt;Business Transaction&lt;/strong&gt; (&lt;code&gt;frontend:/cart&lt;/code&gt;).&lt;/p&gt;
@@ -640,9 +631,10 @@ assistant.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your agent stream settings&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;In the Splunk Agent Observability console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
-open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; agent stream.&lt;/p&gt;
-&lt;p&gt;Click the &lt;code&gt;Configure Evaluators&lt;/code&gt; button to open its evaluator configuration.&lt;/p&gt;</description></item><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.sao.splunkcloud.com&lt;/code&gt;
+and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
+&lt;p&gt;Open the &lt;code&gt;Splunk Agent Observability Workshop&lt;/code&gt; project, and select the agent stream that
+matches the Instance ID you found above (such as &lt;code&gt;shw-51ea&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/wall-mount.png" alt="Wall mounted" loading="lazy" decoding="async"&gt;
@@ -707,10 +699,24 @@ open your project and select the &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and agent stream&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Find your Instance ID&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt; and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Open the project using the name you set in the &lt;strong&gt;&lt;code&gt;GALILEO_PROJECT&lt;/code&gt;&lt;/strong&gt; field in the previous step, which is based on your participant number (for example, &lt;code&gt;project-120&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
+&lt;div class="step__body"&gt;&lt;p&gt;Execute the following command using the terminal connected to your EC2 instance:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Make a note of the result, which will be something like &lt;code&gt;shw-51ea&lt;/code&gt;. This will be
+the name of your Agent Stream below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and agent stream&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
 if every workshop participant runs the process individually. For this reason, please observe as the
 workshop instructor completes the steps in this section, rather than performing them yourself.&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Generate Signals for your agent stream and let the platform show you what&amp;rsquo;s trending wrong.&lt;/p&gt;</description></item><item><title>Feature adoption</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/2-analytics/1-adoption/</guid><description>&lt;p&gt;Remember seeing the &amp;ldquo;Ask AI&amp;rdquo; feature on Astronomy Shop product detail pages? We want to understand how our customers are using that feature, including the quick prompts provided below the text input field.
@@ -2928,9 +2934,15 @@ to collect traces:&lt;/p&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;galileo_context&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;galileo.handlers.langchain&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GalileoAsyncCallback&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note about the SDK&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;splunk_ao&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;splunk_ao_context&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;splunk_ao.handlers.langchain&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SplunkAOAsyncCallback&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wrap the graph invocation in a Splunk AO context&lt;/p&gt;</description></item><item><title>Auto-Instrumentation</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/6-lambda-kinesis/2-auto-instrumentation/</guid><description>&lt;h2 id="auto-instrumentation"&gt;
  &lt;span class="heading-text"&gt;Auto-Instrumentation&lt;/span&gt;
  &lt;a class="heading-anchor" href="#auto-instrumentation" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -3096,8 +3108,10 @@ match should block or steer.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open the Controls tab&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;In the Splunk Agent Observability console (&lt;code&gt;https://console.multitenant.galileocloud.io&lt;/code&gt;, &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org),
-open your project / &lt;strong&gt;&lt;code&gt;default&lt;/code&gt;&lt;/strong&gt; agent stream then click on the &lt;strong&gt;Controls&lt;/strong&gt; tab.&lt;/p&gt;</description></item><item><title>2. Deploy the Baseline</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</guid><description>&lt;h2 id="deploy-the-workshop-applications"&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.sao.splunkcloud.com&lt;/code&gt;
+and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
+&lt;p&gt;Open the &lt;code&gt;Splunk Agent Observability Workshop&lt;/code&gt; project, and select the agent stream that
+matches the Instance ID you found above (such as &lt;code&gt;shw-51ea&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>2. Deploy the Baseline</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/4-obi-ebpf/5-kubernetes/2-deploy-baseline/</guid><description>&lt;h2 id="deploy-the-workshop-applications"&gt;
  &lt;span class="heading-text"&gt;Deploy the Workshop Applications&lt;/span&gt;
  &lt;a class="heading-anchor" href="#deploy-the-workshop-applications" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -3292,7 +3306,7 @@ installed. Before proceeding further, let&amp;rsquo;s uninstall it using the fol
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and agent stream&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;Return to your project and the &lt;code&gt;default&lt;/code&gt; agent stream in Splunk Agent Observability.&lt;/div&gt;
+&lt;div class="step__body"&gt;Return to your project and agent stream in Splunk Agent Observability.&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section class="step"&gt;
@@ -3685,7 +3699,7 @@ This is where a hallucinated dosage or a wrong tool call stops being invisible.&
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wait for evaluators to be computed&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Looking at the agent trace, we can see that evaluators are being computed for our traces:&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Looking at the list of traces, we can see that evaluators are being computed:&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../../images/sao-evaluators-computing.png?width=750px" alt="Agent stream evaluator computing" loading="lazy" decoding="async"&gt;
@@ -3823,7 +3837,13 @@ agent paths.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;healthcare-assistant-d764fc757-l9fxt 1/1 Running 0 20s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser:&lt;/p&gt;</description></item><item><title>Setting up your Application</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/</guid><description>&lt;h2 id="environment-setup---application"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Access the Application&lt;/p&gt;</description></item><item><title>Setting up your Application</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/2-setup-app/</guid><description>&lt;h2 id="environment-setup---application"&gt;
  &lt;span class="heading-text"&gt;Environment Setup - Application&lt;/span&gt;
  &lt;a class="heading-anchor" href="#environment-setup---application" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -3903,11 +3923,11 @@ agent paths.&lt;/p&gt;
  &lt;a class="heading-anchor" href="#sign-in-to-splunk-agent-observability" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;To access Splunk Agent Observability, navigate to
-&lt;a href="https://console.multitenant.galileocloud.io" target="_blank" rel="noopener"&gt;https://console.multitenant.galileocloud.io`&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;a href="https://console.multitenant.sao.splunkcloud.com" target="_blank" rel="noopener"&gt;https://console.multitenant.sao.splunkcloud.com`&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  using your browser.&lt;/p&gt;
 &lt;p&gt;Use the credentials provided by the workshop organizer to sign in.&lt;/p&gt;
-&lt;p&gt;After signing in, ensure that the &lt;code&gt;workshop&lt;/code&gt; org is selected. Then, you should see a screen that includes your project name, such as
-the following example:&lt;/p&gt;
+&lt;p&gt;After signing in, ensure that the &lt;code&gt;workshop&lt;/code&gt; org is selected. Then, you should see a screen
+similar to the following example:&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../../images/SplunkAgentObservability.png" alt="Splunk Agent Observability Initial Screen" loading="lazy" decoding="async"&gt;
@@ -6456,15 +6476,8 @@ next chapter.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Deploy the healthcare assistant app&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to deploy the healthcare assistant app:&lt;/p&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/healthcare-assistant/2-app-with-instrumentation
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f k8s.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Ensure that the new application pod is running:&lt;/p&gt;</description></item><item><title>Import JSON</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</guid><description>&lt;p&gt;To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;strong&gt;Import&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; button, we must first give our test a name e.g. &lt;strong&gt;[&lt;code&gt;&amp;lt;your team name&amp;gt;&lt;/code&gt;] &lt;code&gt;&amp;lt;your initials&amp;gt;&lt;/code&gt; - Online Boutique&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:&lt;/p&gt;</description></item><item><title>Import JSON</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/3-import-json/</guid><description>&lt;p&gt;To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the &lt;button class="btn-inline" type="button"&gt;&lt;span&gt;&lt;strong&gt;Import&lt;/strong&gt;&lt;/span&gt;&lt;/button&gt; button, we must first give our test a name e.g. &lt;strong&gt;[&lt;code&gt;&amp;lt;your team name&amp;gt;&lt;/code&gt;] &lt;code&gt;&amp;lt;your initials&amp;gt;&lt;/code&gt; - Online Boutique&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../_img/browser-form.png" alt="Browser edit form" loading="lazy" decoding="async"&gt;
@@ -6852,7 +6865,8 @@ behavior in the chat &lt;em&gt;and&lt;/em&gt; in the trace in the console.&lt;/p
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Run the app&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to deploy the healthcare assistant app:&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
@@ -6860,58 +6874,8 @@ behavior in the chat &lt;em&gt;and&lt;/em&gt; in the trace in the console.&lt;/p
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/healthcare-assistant/4-app-with-controls
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f k8s.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Ensure that the new application pod is running:&lt;/p&gt;
-&lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs-healthcare-app-monitor-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs-healthcare-app-monitor-panel-0" tabindex="0" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-healthcare-app-monitor-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-healthcare-app-monitor-panel-1" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs-healthcare-app-monitor-tab-2" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-healthcare-app-monitor-panel-2" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-healthcare-app-monitor-tab-3" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-healthcare-app-monitor-panel-3" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;&lt;button id="tabs-healthcare-app-monitor-tab-4" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-healthcare-app-monitor-panel-4" tabindex="-1" data-tab-label="Script"&gt;Script&lt;/button&gt;&lt;button id="tabs-healthcare-app-monitor-tab-5" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs-healthcare-app-monitor-panel-5" tabindex="-1" data-tab-label="Example Output"&gt;Example Output&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-0" data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;healthcare-assistant&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-1" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME READY STATUS RESTARTS AGE
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;healthcare-assistant-d764fc757-l9fxt 1/1 Running 0 20s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-2" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-2" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;healthcare-assistant&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-3" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-3" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME READY STATUS RESTARTS AGE
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;healthcare-assistant-d764fc757-l9fxt 1/1 Running 0 20s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-4" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-4" hidden data-tab-label="Script"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get pods -l &lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;healthcare-assistant&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;div id="tabs-healthcare-app-monitor-panel-5" class="tabs__panel" role="tabpanel" aria-labelledby="tabs-healthcare-app-monitor-tab-5" hidden data-tab-label="Example Output"&gt;&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;text&lt;/span&gt;&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NAME READY STATUS RESTARTS AGE
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;healthcare-assistant-d764fc757-l9fxt 1/1 Running 0 20s&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
-For example:&lt;/p&gt;</description></item><item><title>The Healthcare Assistant Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</guid><description>&lt;p&gt;The application you&amp;rsquo;ll observe is Careful Health Provider&amp;rsquo;s &lt;strong&gt;healthcare assistant&lt;/strong&gt;. It runs
+ &lt;/div&gt;&lt;p&gt;Alternatively, if you&amp;rsquo;re using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:&lt;/p&gt;</description></item><item><title>The Healthcare Assistant Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/2-introduction/3-the-healthcare-assistant/</guid><description>&lt;p&gt;The application you&amp;rsquo;ll observe is Careful Health Provider&amp;rsquo;s &lt;strong&gt;healthcare assistant&lt;/strong&gt;. It runs
 an end-to-end chat experience with retrieval-augmented generation (RAG) and text-to-SQL
 tools, but the base version ships with &lt;strong&gt;no observability instrumentation&lt;/strong&gt;. That&amp;rsquo;s what
 you&amp;rsquo;ll add.&lt;/p&gt;

@@ -25,7 +25,7 @@ AI
 <a href=/observability-workshop/en/ninja-workshops/ai/4-splunk-agent-observability/>Splunk Agent Observability</a><span class=breadcrumb__sep>/</span>
 <span aria-current=page>4. Instrument the Application</span></nav><h1>Instrument the Application</h1><div class=workshop-meta><span class=workshop-meta__item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
 <strong>10 minutes</strong></span></div><p>You can&rsquo;t observe what you don&rsquo;t capture. In this chapter you&rsquo;ll add <strong>Splunk Agent
-Observability (Galileo)</strong> tracing to the assistant so that every user turn becomes a trace,
+Observability</strong> tracing to the assistant so that every user turn becomes a trace,
 with a nested span for each LLM and tool call, and you&rsquo;ll do it without rewriting the agent.</p><div class="callout callout--warning"><span class=callout__icon aria-hidden=true><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><p class=callout__title>Persona</p><div class=callout__body>As Careful Health Provider&rsquo;s <strong>AI engineer</strong>, you want end-to-end visibility into the agent&rsquo;s
 decisions with minimal code change and minimal maintenance. Rather than hand-instrument every
 step, you&rsquo;ll attach a single LangChain callback at the graph level and let Splunk Agent
