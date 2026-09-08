@@ -48,12 +48,10 @@ healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
 {{% /tab %}}
 {{< /tabs >}}
 
-Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
-For example: 
+To access the application, click on the **Shop URL** link in the **Connection Information** 
+section of Splunk Show event: 
 
-```text
-  External URL: http://98.86.181.9:81
-```
+![Connection Information](../../images/ConnectionInformation.png)
 
 {{< /step >}}
 

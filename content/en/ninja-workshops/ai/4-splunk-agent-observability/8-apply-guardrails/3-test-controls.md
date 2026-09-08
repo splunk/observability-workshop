@@ -48,19 +48,10 @@ healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
 {{% /tab %}}
 {{< /tabs >}}
 
-Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
-For example:
+Navigate to the healthcare assistant application by clicking on the **Shop URL** link in the **Connection Information**
+section of Splunk Show event:
 
-```text
-  External URL: http://98.86.181.9:81
-```
-
-On startup, watch the terminal for confirmation that Agent Control initialized and
-registered its steps: 
-
-```bash
-kubectl logs -l app=healthcare-assistant
-```
+![Connection Information](../../images/ConnectionInformation.png)
 
 {{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
 
@@ -174,7 +165,7 @@ defined.
 
 {{< step title="Observe the control decisions for the blocked request" >}}
 
-Back in the Splunk Agent Observability console, open the trace for the blocked request in your project / **`default`** agent stream. Click on the 
+Back in the Splunk Agent Observability console, open the trace for the blocked request in your agent stream. Click on the 
 span associated with the `block-harmful-sql-*` control: 
 
 ![Control decision in the trace](../../images/galileo-control-trace.png?width=750px)
@@ -185,8 +176,8 @@ Notice how the control denied execution of the `DELETE` SQL statement, as desire
 
 {{< step title="Observe the control decisions for the steered request" >}}
 
-Back in the Splunk Agent Observability console, open the trace for the steered request in your project / **`default`** agent stream. Click on the final 
-`Healthcare Assistant` span in the trace. 
+Back in the Splunk Agent Observability console, open the trace for the steered request in your agent stream. Click on the final 
+`chat gpt-4.1-mini` span in the trace. 
 
 ![Steer control decision in the trace](../../images/galileo-steer-control-trace.png?width=750px)
 

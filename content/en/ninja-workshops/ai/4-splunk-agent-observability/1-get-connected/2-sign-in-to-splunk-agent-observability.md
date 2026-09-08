@@ -12,8 +12,8 @@ To access Splunk Agent Observability, navigate to
 
 Use the credentials provided by the workshop organizer to sign in. 
 
-After signing in, ensure that the `workshop` org is selected.  Then, you should see a screen that includes your project name, such as 
-the following example: 
+After signing in, ensure that the `workshop` org is selected.  Then, you should see a screen 
+similar to the following example: 
 
 ![Splunk Agent Observability Initial Screen](../../images/SplunkAgentObservability.png)
 

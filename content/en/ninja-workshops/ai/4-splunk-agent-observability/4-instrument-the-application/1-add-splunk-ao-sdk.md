@@ -22,20 +22,6 @@ splunk-ao
 
 {{< /step >}}
 
-{{< step title="Set the Participant Number Environment Variable" >}}
-
-Run the following command to set the `PARTICIPANT_NUMBER` environment variable 
-on your EC2 instance: 
-
-> **Be sure to add the participant number assigned to you in the sign-up sheet before
-> running the following command**
-
-````
-export PARTICIPANT_NUMBER=<your participant number>  
-````
-
-{{< /step >}}
-
 {{< step title="Create a Kubernetes Secret" >}}
 
 If you're using the standalone version of Splunk Agent Observability for the workshop,
@@ -64,8 +50,8 @@ determine how to send traces to Splunk Agent Observability:
 ```bash
 kubectl create configmap splunk-ao-config \
   --from-literal=SPLUNK_AO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
-  --from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
-  --from-literal=SPLUNK_AO_AGENT_STREAM="default"
+  --from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
+  --from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
 ```
 
 Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
@@ -73,8 +59,8 @@ please use the following command instead:
 ```bash 
 kubectl create configmap splunk-ao-config \
 --from-literal=SPLUNK_AO_REALM="$REALM" \
---from-literal=SPLUNK_AO_PROJECT="project-$PARTICIPANT_NUMBER" \
---from-literal=SPLUNK_AO_AGENT_STREAM="default"
+--from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
+--from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
 ```
 
 {{% notice title="Project and agent stream" style="info" %}}

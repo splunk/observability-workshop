@@ -11,7 +11,7 @@ Let's explore other views in Splunk Agent Observability using the traffic you ju
 
 {{< step title="Open your project and agent stream" >}}
 
-Return to your project and the `default` agent stream in Splunk Agent Observability.
+Return to your project and agent stream in Splunk Agent Observability.
 
 {{< /step >}}
 
