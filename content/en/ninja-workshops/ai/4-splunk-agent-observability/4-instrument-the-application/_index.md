@@ -6,7 +6,7 @@ time: 10 minutes
 ---
 
 You can't observe what you don't capture. In this chapter you'll add **Splunk Agent
-Observability (Galileo)** tracing to the assistant so that every user turn becomes a trace,
+Observability** tracing to the assistant so that every user turn becomes a trace,
 with a nested span for each LLM and tool call, and you'll do it without rewriting the agent.
 
 {{% notice title="Persona" style="orange" icon="user" %}}

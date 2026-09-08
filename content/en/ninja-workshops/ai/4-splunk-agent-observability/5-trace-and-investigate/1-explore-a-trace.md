@@ -9,13 +9,26 @@ Open the Splunk Agent Observability and work through a real trace from the traff
 
 {{< exercise title="Investigate agent behavior" >}}
 
+{{< step title="Find your Instance ID" >}}
+
+Execute the following command using the terminal connected to your EC2 instance: 
+
+```bash
+echo $INSTANCE
+```
+
+Make a note of the result, which will be something like `shw-51ea`. This will be 
+the name of your Agent Stream below. 
+
+{{< /step >}}
+
 {{< step title="Open your project and agent stream" >}}
 
-**1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.galileocloud.io` and **`workshop`** org
+**1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com` and **`workshop`** org
 
-**2.** Open the project using the name you set in the **`GALILEO_PROJECT`** field in the previous step, which is based on your participant number (for example, `project-120`)
+**2.** Open the `Splunk Agent Observability Workshop` project. 
 
-**3.** Select the `default` agent stream
+**3.** Select the agent stream that matches the Instance ID you found above (such as `shw-51ea`). 
 
 ![Project and agent stream selection](../../images/galileo-project.png?width=750px)
 
@@ -44,8 +57,8 @@ nested **LLM span** for the chatbot node and a **tool span** for `search_medicin
 
 {{< step title="Inspect a span" >}}
 
-Select the **`Healthcare Assistant`** span and confirm it captured the **system and user messages**, the **Available
-Tools**, the **Output**, **Token Counts**, **Latency**, and **Agent Cost**. This
+Select the **`chat gpt-4.1-mini`** span and confirm it captured the **system and user messages**, 
+the **Output**, **Token Counts**, **Latency**, and **Agent Cost**. This
 is the detail that lets you explain *why* the agent answered the way it did.
 
 ![Span detail](../../images/galileo-llm-span.png?width=750px)

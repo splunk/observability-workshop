@@ -10,7 +10,6 @@ agent paths.
 
 {{< exercise title="Run and try the assistant" >}}
 
-
 {{< step title="Deploy the healthcare assistant app" >}}
 
 Run the following command to deploy the healthcare assistant app: 
@@ -40,11 +39,16 @@ healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
 {{% /tab %}}
 {{< /tabs >}}
 
-Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser: 
+{{< /step >}}
 
-```text
-  External URL: http://98.86.181.9:81
-```
+{{< step title="Access the Application" >}}
+
+To access the application, click on the **Shop URL** link in the **Connection Information**
+section of Splunk Show event:
+
+![Connection Information](../../images/ConnectionInformation.png)
+
+The application will look like the following: 
 
 ![Healthcare assistant home screen](../../images/healthcare-assistant-ui.png?width=750px)
 

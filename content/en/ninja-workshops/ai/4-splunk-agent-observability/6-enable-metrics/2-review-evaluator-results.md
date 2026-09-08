@@ -13,7 +13,7 @@ This is where a hallucinated dosage or a wrong tool call stops being invisible.
 
 {{< step title="Wait for evaluators to be computed" >}}
 
-Looking at the agent trace, we can see that evaluators are being computed for our traces: 
+Looking at the list of traces, we can see that evaluators are being computed: 
 
 ![Agent stream evaluator computing](../../images/sao-evaluators-computing.png?width=750px)
 
@@ -21,8 +21,7 @@ Looking at the agent trace, we can see that evaluators are being computed for ou
 
 {{< step title="Review the scores in the agent stream" >}}
 
-In Splunk Agent Observability, return to the **`default`** agent stream and review the recent traces. Each trace
-now carries evaluator results alongside its spans. 
+After a few moments, each trace now carries evaluator results alongside its spans:
 
 ![Evaluator results on traces](../../images/sao-evaluator-scores.png?width=750px)
 
@@ -35,7 +34,7 @@ Let's click on this trace and take a closer look.
 
 {{< step title="Drill into a flagged trace" >}}
 
-Click on the `LLM Response` span, and notice there are two new evaluator categories on the right-hand side 
+Click on the `chat gpt-4.1-mini` span, and notice there are two new evaluator categories on the right-hand side 
 of the screen: `Output Quality`, which includes the `Correctness` evaluator, and `RAG Quality`, which includes 
 the `Context Adherence` evaluator. 
 

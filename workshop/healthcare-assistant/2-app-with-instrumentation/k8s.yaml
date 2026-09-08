@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: healthcare-assistant
-          image: ghcr.io/splunk/healthcare-assistant:app-with-instrumentation
+          image: ghcr.io/splunk/healthcare-assistant:app-with-instrumentation-v2
           imagePullPolicy: Always
           ports:
             - containerPort: 8501
@@ -27,7 +27,7 @@ spec:
             - configMapRef:
                 name: postgres-config
             - configMapRef:
-                name: galileo-config
+                name: splunk-ao-config
           env:
             - name: OPENAI_BASE_URL
               valueFrom:
@@ -44,11 +44,11 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: POSTGRES_PASSWORD
-            - name: GALILEO_API_KEY
+            - name: SPLUNK_AO_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: galileo-secret
-                  key: GALILEO_API_KEY
+                  name: splunk-ao-secret
+                  key: SPLUNK_AO_API_KEY
           resources:
             requests:
               memory: "512Mi"

@@ -17,12 +17,19 @@ Generate Signals for your agent stream and let the platform show you what's tren
 
 {{< step title="Generate Signals" >}}
 
-In the Splunk Agent Observability console (`https://console.multitenant.galileocloud.io`, **`workshop`** org),
-open your project / **`default`** agent stream. Click on the **AI Assistant** icon. 
+In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com`
+and **`workshop`** org
 
-Change the LLM used by the AI Assistant to be `gpt-5 (Azure)`, then click the **Generate Signals** button.
+Open the `Splunk Agent Observability Workshop` project, and select the agent stream that
+matches the Instance ID you found above (such as `shw-51ea`).
 
-![Generate Signals](../../images/sao-generate-signals.png?width=250px)
+Click on the **Signals** tab: 
+
+![Signals Page](../../images/sao-signals-page.png?width=750px)
+
+Ensure the LLM is set to `gpt-5 (Azure)`, then click the **Generate Signals** button.
+
+![Generate Signals](../../images/sao-generate-signals.png?width=500px)
 
 It will take a few moments to analyze the traces in this agent stream and generate signals. 
 
@@ -33,39 +40,34 @@ It will take a few moments to analyze the traces in this agent stream and genera
 We can see that several signals have been generated for our agent stream (the specific signals will vary from 
 one agent stream to the next): 
 
-<!-- TODO screenshot: Signals view listing detected failure patterns for the healthcare assistant agent stream -->
 ![Signals overview](../../images/sao-signals-overview.png?width=750px)
 
 {{< /step >}}
 
 {{< step title="Open a signal for context" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact signal-detail steps + screenshot once finalized -->
-
 Select a signal and read its actionable context: what the pattern is, why it's happening, and
 the recommended next step. 
 
-For example, let's click on the signal named `Database Metadata Leakage Risk`:
+For example, let's click on the signal named `PII in tool outputs`:
 
-<!-- TODO screenshot: signal detail showing the pattern description, root-cause explanation, and recommended remediation -->
 ![Signal detail](../../images/sao-signal-detail.png?width=250px)
 
-This signals explains how the `get_patient_info` tool output includes raw SQL queries, database source, 
-and table names, which could be leaked to end users if the LLM echoes this metadata.
+This signal explains that the `get_patient_info` tool response contains full patient PII (address and phone) 
+and database/SQL metadata, even though the assistant response to the user only exposes limited fields 
+(name, patient_type, prescription). This still creates a privacy and compliance risk because the sensitive 
+data is present in tool outputs and therefore in your observability logs and in the model context.
 
-It provides a suggestion action to remediate the issue, which is to strip database metadata 
-(SQL queries, table names, source info) from tool outputs before returning them to the LLM.
+It provides a suggested action to remediate the issue, which is to
+minimize and/or redact PII in `get_patient_info` tool outputs (and logs) 
+to prevent sensitive data exposure.
 
 {{< /step >}}
 
 {{< step title="Jump to the underlying traces" >}}
 
-<!-- PLACEHOLDER UI NAVIGATION: replace with exact pivot steps + screenshot once finalized -->
+From the signal, we can pivot into the specific traces that make up the pattern: 
 
-From the signal, we can pivot into the specific traces that make up the pattern by clicking on the 
-`View Affected Spans in Table` button: 
-
-<!-- TODO screenshot: a signal expanded to its contributing traces, with one trace opened -->
 ![Signal to traces](../../images/sao-signal-traces.png?width=750px)
 
 This allows us to go from "there's a recurring problem" to "here are the exact requests behind it" in a couple of clicks,

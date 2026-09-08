@@ -13,11 +13,19 @@ next chapter.
 
 {{< step title="Deploy the healthcare assistant app" >}}
 
-Run the following command to deploy the healthcare assistant app:
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:
 
 ```bash
 cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
 kubectl apply -f k8s.yaml
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+```bash 
+cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Ensure that the new application pod is running:
@@ -40,12 +48,10 @@ healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
 {{% /tab %}}
 {{< /tabs >}}
 
-Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
-For example: 
+To access the application, click on the **Shop URL** link in the **Connection Information** 
+section of Splunk Show event: 
 
-```text
-  External URL: http://98.86.181.9:81
-```
+![Connection Information](../../images/ConnectionInformation.png)
 
 {{< /step >}}
 
@@ -111,27 +117,29 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
 
 {{% notice title="Tip" style="tip" icon="exclamation-triangle" %}}
 
-To see exactly what the SDK is doing, you can temporarily add the following near the top of
-`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`:
+The app already enables SDK console logging at `INFO` near the top of
+`~/workshop/healthcare-assistant/2-app-with-instrumentation/agent.py`. To see even more detail
+about what the SDK is doing, temporarily raise it to `DEBUG`:
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
+import logging
 
-enable_console_logging()
+enable_console_logging(level=logging.DEBUG)
 ```
 
 Then rebuild the Docker image: 
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation .
-docker push localhost:9999/healthcare-assistant:app-with-instrumentation
+docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation-v2 .
+docker push localhost:9999/healthcare-assistant:app-with-instrumentation-v2
 ```
 
 Update the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file to reference the local image instead: 
 
 ````
-image: localhost:9999/healthcare-assistant:app-with-instrumentation
+image: localhost:9999/healthcare-assistant:app-with-instrumentation-v2
 ````
 
 And redeploy the application: 
@@ -160,10 +168,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
-INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - galileo.logger - Starting a new session...
-INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - splunk_ao.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - splunk_ao.logger - Starting a new session...
+INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}

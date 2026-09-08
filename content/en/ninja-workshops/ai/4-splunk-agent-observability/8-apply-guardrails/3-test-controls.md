@@ -12,11 +12,20 @@ behavior in the chat *and* in the trace in the console.
 
 {{< step title="Run the app" >}}
 
-Run the following command to deploy the healthcare assistant app:
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to deploy the healthcare assistant app:
 
 ```bash
 cd ~/workshop/healthcare-assistant/4-app-with-controls
 kubectl apply -f k8s.yaml
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+
+```bash
+cd ~/workshop/healthcare-assistant/4-app-with-controls
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Ensure that the new application pod is running:
@@ -39,26 +48,17 @@ healthcare-assistant-d764fc757-l9fxt   1/1     Running   0          20s
 {{% /tab %}}
 {{< /tabs >}}
 
-Using the IP address of your EC2 instance and port 81, open the healthcare assistant app using your browser.
-For example:
+Navigate to the healthcare assistant application by clicking on the **Shop URL** link in the **Connection Information**
+section of Splunk Show event:
 
-```text
-  External URL: http://98.86.181.9:81
-```
-
-On startup, watch the terminal for confirmation that Agent Control initialized and
-registered its steps: 
-
-```bash
-kubectl logs -l app=healthcare-assistant
-```
+![Connection Information](../../images/ConnectionInformation.png)
 
 {{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
 
 To see what Agent Control is doing, enable console logging in `~/workshop/healthcare-assistant/4-app-with-controls/agent.py`:
 
 ```python
-from galileo.utils.log_config import enable_console_logging
+from splunk_ao.utils.log_config import enable_console_logging
 
 enable_console_logging()
 ```
@@ -67,14 +67,14 @@ Then rebuild the Docker image:
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls .
-docker push localhost:9999/healthcare-assistant:app-with-controls
+docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls-v2 .
+docker push localhost:9999/healthcare-assistant:app-with-controls-v2
 ```
 
 Update the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file to reference the local image instead:
 
 ````
-image: localhost:9999/healthcare-assistant:app-with-controls
+image: localhost:9999/healthcare-assistant:app-with-controls-v2
 ````
 
 And redeploy the application:
@@ -103,10 +103,10 @@ kubectl logs -l app=healthcare-assistant
   Network URL: http://10.42.2.14:8501
   External URL: http://35.175.237.123:8501
 
-INFO - galileo.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
-INFO - galileo.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
-INFO - galileo.logger - Starting a new session...
-INFO - galileo.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
+INFO - splunk_ao.logger - Ingest service healthy at https://api.multitenant.galileocloud.io, using IngestTraces client
+INFO - splunk_ao.logger - Searching for session with external ID: ca0f30ed-9b69-401a-8258-b9c043bdc73a ...
+INFO - splunk_ao.logger - Starting a new session...
+INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2e46ffbc
 ````
 
 {{% /tab %}}
@@ -165,7 +165,7 @@ defined.
 
 {{< step title="Observe the control decisions for the blocked request" >}}
 
-Back in the Splunk Agent Observability console, open the trace for the blocked request in your project / **`default`** agent stream. Click on the 
+Back in the Splunk Agent Observability console, open the trace for the blocked request in your agent stream. Click on the 
 span associated with the `block-harmful-sql-*` control: 
 
 ![Control decision in the trace](../../images/galileo-control-trace.png?width=750px)
@@ -176,8 +176,8 @@ Notice how the control denied execution of the `DELETE` SQL statement, as desire
 
 {{< step title="Observe the control decisions for the steered request" >}}
 
-Back in the Splunk Agent Observability console, open the trace for the steered request in your project / **`default`** agent stream. Click on the final 
-`Healthcare Assistant` span in the trace. 
+Back in the Splunk Agent Observability console, open the trace for the steered request in your agent stream. Click on the final 
+`chat gpt-4.1-mini` span in the trace. 
 
 ![Steer control decision in the trace](../../images/galileo-steer-control-trace.png?width=750px)
 

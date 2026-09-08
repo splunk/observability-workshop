@@ -22,17 +22,30 @@ cd ~/workshop/healthcare-assistant/4-app-with-controls
 
 {{< step title="Create an Agent Control Config Map" >}}
 
-Run the following command to create a Kubernetes config map, which the application will use to
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes config map, which the application will use to
 configure Agent Controls:
 
 ```bash
-kubectl create configmap galileo-agent-control-config \
-  --from-literal=GALILEO_API_URL="https://api.multitenant.galileocloud.io" \
-  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.galileocloud.io/api/agent-control" \
+kubectl create configmap splunk-agent-control-config \
+  --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.sao.splunkcloud.com" \
+  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.sao.splunkcloud.com/api/agent-control" \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
-  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Galileo-API-Key" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
-  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="agent_stream"
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+
+```bash
+kubectl create configmap splunk-agent-control-config \
+  --from-literal=AGENT_CONTROL_URL="https://app.$REALM.observability.splunkcloud.com/api/agent-control" \
+  --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
+  --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="agent_stream"
 ```
 
 {{< /step >}}
@@ -42,27 +55,9 @@ kubectl create configmap galileo-agent-control-config \
 Confirm `requirements.txt` includes the Agent Control SDK and evaluators:
 
 ```text
-agent-control-sdk[galileo]>=7.10.0
-agent-control-evaluators>=7.10.0
-agent-control-evaluator-galileo>=7.10.0
-```
-
-{{% notice title="Note about the SDK" style="info" %}}
-
-This workshop was built using the older `agent-control` packages. For new deployments, we recommend
-using the following packages instead:
-
-```text
 agent-control-sdk[splunk-ao]>=7.10.0
 agent-control-evaluators>=7.10.0
-agent-control-evaluator-splunk-ao>=7.10.0
 ```
-
-Refer to the
-[Agent Control](https://agent-observability-docs.splunk.com/concepts/agent-control/overview) document
-for details about this newer SDK.
-
-{{% /notice %}}
 
 {{< /step >}}
 
@@ -82,8 +77,8 @@ The controls stage uses these in three places (already wired up in this folder):
 * Each tool is registered as a controllable step (`get_patient_info`,
   `delete_patient_record`, and a shared `retrieval_step` for search tools) via the helpers in
   `helpers/agent_control_helpers.py`.
-* The agent enables control spans on the Galileo logger
-  (`galileo_logger.enable_agent_control()`) and registers the steps with `init_agent_control(...)`
+* The agent enables control spans on the Splunk AO logger
+  (`splunk_ao_logger.enable_agent_control()`) and registers the steps with `init_agent_control(...)`
   so the console knows which steps exist for this agent.
 
 {{% notice title="How block and steer are handled in code" style="info" %}}
