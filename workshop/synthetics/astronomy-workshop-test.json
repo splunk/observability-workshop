@@ -1,0 +1,122 @@
+{
+  "test": {   
+    "id": 272,
+    "name": "Workshop Browser Test for $INSTANCE",
+    "deviceId": 1,
+    "active": true,
+    "frequency": 1,    
+    "schedulingStrategy": "round_robin",
+    "locationIds": [
+      "aws-eu-central-1",
+      "aws-eu-west-2",
+      "aws-eu-west-3"
+    ], 
+    "type": "browser",
+    "advancedSettings": {
+      "authentication": null,
+      "cookies": null,
+      "headers": null,
+      "hostOverrides": [],
+      "userAgent": null,
+      "verifyCertificates": true,
+      "collectInteractiveMetrics": true
+    },
+    "transactions": [
+      {
+        "name": "Home",
+        "steps": [
+          {
+            "name": "Astronomy Shop",
+            "type": "go_to_url",
+            "url": "http://$EXTERNALIP:81/",
+            "action": "go_to_url",
+            "options": {
+              "url": "http://$EXTERNALIP:81/"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Shop",
+        "steps": [
+          {
+            "name": "Select Random Product",
+            "type": "run_javascript",
+            "value": "var products = [\n        'OLJCESPC7Z', // National Park Foundation Explorascope\n        '66VCHSJNUP', // Starsense Explorer Refractor Telescope\n        '1YMWWN1N4O', // Eclipsmart Travel Refractor Telescope\n        'L9ECAV7KIM', // Lens Cleaning Kit\n        '2ZYFJ3GM2N', // Roof Binoculars\n        '0PUK6V6EV0', // Solar System Color Imager\n        'LS4PSXUNUM', // Red Flashlight\n        '9SIQT8TOJO', // Optical Tube Assembly\n        '6E92ZMYYFZ', // Solar Filter\n        'HQTGWGPNH4'  // The Comet Book\n      ];\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"http://$EXTERNALIP:81/product/\" + randomProducts, \"_self\");",
+            "waitForNav": true,
+            "waitForNavTimeout": 2000,
+            "waitForNavTimeoutDefault": false
+          }
+        ]
+      },
+      {
+        "name": "Cart",
+        "steps": [
+          {
+            "name": "Add to cart",
+            "type": "click_element",
+            "selectorType": "xpath",
+            "selector": "//*[@id=\"btn-add-to-cart\"]",
+            "waitForNav": true,
+            "waitForNavTimeout": 2000,
+            "waitForNavTimeoutDefault": false
+          }
+        ]
+      },
+      {
+        "name": "Place Order",
+        "steps": [
+          {
+            "name": "Place Order",
+            "type": "click_element",            
+            "selectorType": "xpath",            
+            "selector": "//*[@id=\"btn-place-order\"]",
+            "waitForNav": true,
+            "waitForNavTimeout": 2000,
+            "waitForNavTimeoutDefault": false
+          },
+          {
+            "name": "Wait 20 seconds",
+            "type": "wait",
+            "duration": 20000
+          },
+          {
+            "maxWaitTime": 10000,
+            "maxWaitTimeDefault": false,
+            "name": "confirm checkout",
+            "type": "assert_text_present",
+            "value": "We've sent you a confirmation email"
+          }
+        ]
+      },
+      {
+        "name": "Keep Browsing",
+        "steps": [
+          {
+            "name": "Keep Browsing",
+            "type": "click_element",
+            "selectorType": "xpath", 
+            "selector": "//*[@id=\"btn-order-confirmation-continue-shopping\"]",
+            "waitForNav": true,
+            "waitForNavTimeout": 2000,
+            "waitForNavTimeoutDefault": false
+          }
+        ]
+      }
+    ],
+    "device": {
+      "id": 34,
+      "label": "Default Desktop",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64; Splunk Synthetics) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.7922.137 Safari/537.36",
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "networkConnection": {
+        "description": "Unthrottled",
+        "uploadBandwidth": null,
+        "downloadBandwidth": null,
+        "latency": null,
+        "packetLoss": null
+      }
+    }
+  }
+}

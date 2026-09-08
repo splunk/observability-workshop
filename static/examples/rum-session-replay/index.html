@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Northstar Coffee</title>
+
+    <!-- Load the RUM agent as early and synchronously as possible. -->
+    <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/VERSION/splunk-otel-web.js" crossorigin="anonymous"></script>
+    <!-- Uncomment this script and the recorder init block below to enable Session Replay. -->
+    <!-- <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/VERSION/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script> -->
+    <script>
+      SplunkRum.init({
+        realm: "us0",
+        rumAccessToken: "<RUM_ACCESS_TOKEN>",
+        applicationName: "northstar-coffee",
+        version: "1.0.0",
+        deploymentEnvironment: "workshop",
+        exporter: {
+          // Redact secrets if they ever appear in a URL attribute.
+          onAttributesSerializing: (attributes) => ({
+            ...attributes,
+            "http.url": typeof attributes["http.url"] === "string"
+              ? attributes["http.url"].replace(/([?&]token=)[^&]+(&|$)/g, "$1<redacted>$2")
+              : attributes["http.url"]
+          })
+        }
+      });
+    </script>
+
+    <!-- The defaults keep text and input values masked. -->
+    <!--
+    <script>
+      SplunkSessionRecorder.init({
+        realm: "us0",
+        rumAccessToken: "<RUM_ACCESS_TOKEN>",
+        recorder: "splunk",
+        maskAllInputs: true,
+        maskAllText: true,
+        sensitivityRules: [
+          { rule: "unmask", selector: ".product-name" },
+          { rule: "mask", selector: ".customer-email" },
+          { rule: "exclude", selector: "#payment-form" }
+        ]
+      });
+    </script>
+    -->
+
+    <style>
+      body { font: 1rem system-ui, sans-serif; margin: 2rem auto; max-width: 42rem; padding: 0 1rem; }
+      .product { border: 1px solid #ddd; border-radius: .5rem; padding: 1rem; }
+      label, input, button { display: block; margin-top: .5rem; }
+      input { max-width: 20rem; padding: .5rem; width: 100%; }
+      button { padding: .5rem .75rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Northstar Coffee</h1>
+      <p>Small enough to understand; realistic enough to generate a user session.</p>
+
+      <section class="product" aria-labelledby="product-title">
+        <h2 id="product-title" class="product-name">Aurora Espresso Beans</h2>
+        <p class="product-name">A bright, chocolatey roast for morning missions.</p>
+        <button id="add-to-cart" type="button">Add to cart</button>
+        <p id="cart-status" role="status"></p>
+      </section>
+
+      <form id="payment-form" action="/checkout" method="post">
+        <h2>Checkout</h2>
+        <label for="customer-email">Email address</label>
+        <input id="customer-email" class="customer-email" name="email" type="email" autocomplete="email">
+        <label for="card-number">Card number</label>
+        <input id="card-number" name="card" type="text" inputmode="numeric" autocomplete="cc-number">
+        <button type="submit">Place order</button>
+        <p id="checkout-status" role="status"></p>
+      </form>
+    </main>
+
+    <script>
+      document.getElementById("add-to-cart").addEventListener("click", () => {
+        document.getElementById("cart-status").textContent = "Added to cart (demo only).";
+      });
+
+      document.getElementById("payment-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.getElementById("checkout-status").textContent = "Order submitted (demo only).";
+      });
+    </script>
+  </body>
+</html>
