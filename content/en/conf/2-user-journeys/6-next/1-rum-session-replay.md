@@ -203,9 +203,14 @@ After generating a session, open **Digital Experience** > **Real User Monitoring
 
 ## Protect PII and other sensitive data in Session Replay
 
-Treat replay as user data. The recorder defaults to a conservative posture: input values and text are masked. Keep those defaults unless there is a documented reason to reveal a field.
+Treat replay as user data. A useful replay needs enough context to explain the journey, but it does not need the user's identity or payment details. Use a **default private, selectively useful** approach:
 
-The example app marks product names as safe to show, masks the customer email, and excludes the payment form entirely:
+1. Mask all text and input values by default.
+2. Unmask only UI elements that the application team has classified as safe.
+3. Keep PII masked even when nearby labels are visible.
+4. Exclude areas where recording the content or interaction has no troubleshooting value.
+
+Northstar Coffee uses one stable class for known-safe content and narrow selectors for sensitive areas:
 
 ```html
 <script>
@@ -216,15 +221,23 @@ The example app marks product names as safe to show, masks the customer email, a
     maskAllInputs: true,
     maskAllText: true,
     sensitivityRules: [
-      { rule: "unmask", selector: ".product-name" },
+      { rule: "unmask", selector: ".replay-safe" },
       { rule: "mask", selector: ".customer-email" },
-      { rule: "exclude", selector: "#payment-form" }
+      { rule: "exclude", selector: "#payment-details" }
     ]
   });
 </script>
 ```
 
-Rules are evaluated in order, so put general rules first and specific overrides later. The available actions are:
+The result keeps the replay understandable without exposing the learner's sample data:
+
+| App content | Selector | Replay behavior | Why it remains useful |
+| --- | --- | --- | --- |
+| Header, product, buttons, and status | `.replay-safe` | Visible | Shows the page, product, and successful cart action |
+| Email input | `.customer-email` | Masked | Shows that the learner typed without recording the value |
+| Card-entry block | `#payment-details` | Excluded | Hides the sensitive field while leaving the checkout action and result visible |
+
+The app includes the same privacy map above the product card, so learners can compare the intended policy with the rendered replay. Rules are evaluated in order, so put general rules first and specific overrides later. The available actions are:
 
 * `mask` replaces content with black bars.
 * `unmask` reveals a previously masked element.
@@ -236,7 +249,7 @@ Use stable CSS classes or IDs for data classifications rather than brittle selec
 
 ### RUM span data is a separate concern
 
-Replay masking does not sanitize attributes already collected by RUM. If the application puts a secret in a URL or custom attribute, redact it before export with `exporter.onAttributesSerializing`:
+Replay masking does not sanitize attributes already collected by RUM. If the application puts PII or a secret in a URL attribute, redact only the sensitive query values before export and keep useful routing or campaign context:
 
 ```js
 SplunkRum.init({
@@ -245,22 +258,22 @@ SplunkRum.init({
     onAttributesSerializing: (attributes) => ({
       ...attributes,
       "http.url": typeof attributes["http.url"] === "string"
-        ? attributes["http.url"].replace(/([?&]token=)[^&]+(&|$)/g, "$1<redacted>$2")
+        ? attributes["http.url"].replace(/([?&](?:email|token)=)[^&]*/gi, "$1<redacted>")
         : attributes["http.url"]
     })
   }
 });
 ```
 
-The safest design is to avoid placing PII in URLs, DOM identifiers, custom attributes, or user metadata in the first place. RUM does not automatically capture a named user identity, but current agents can create a persistent anonymous user ID for session and journey correlation. If that is not appropriate, explicitly set `user: { trackingMode: "noTracking" }`; only add approved user identifiers when there is a clear operational need.
+For example, `/checkout?campaign=workshop&email=learner@example.invalid` retains `campaign=workshop` but exports the email value as `<redacted>`. The safest design is still to avoid placing PII in URLs, DOM identifiers, custom attributes, or user metadata in the first place. RUM does not automatically capture a named user identity, but current agents can create a persistent anonymous user ID for session and journey correlation. If that is not appropriate, explicitly set `user: { trackingMode: "noTracking" }`; only add approved user identifiers when there is a clear operational need.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 1. Open the example `index.html`, replace the placeholders, and confirm that **Basic RUM** is already enabled. Use your browser's developer tools to confirm the agent loads before the application script.
 2. Serve the example on `http://localhost`, open it in a private browser window, click **Add to cart**, enter a sample email and dummy card digits, and select **Place order**.
 3. Enable the Session Replay script and initialization, repeat the journey, and open the session in Splunk RUM.
-4. Confirm that product names are visible, the email is masked, and the payment form is excluded from the replay.
-5. Add a sample `?token=do-not-ship-this` query parameter and verify the RUM attribute sanitizer would redact it before export.
+4. Compare the replay with the privacy map in the app. Confirm that the page and product context are visible, the email value is masked, and the card-entry block is replaced by an excluded area. The **Place demo order** action and result should remain visible.
+5. Add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.
 
 {{% /notice %}}
 

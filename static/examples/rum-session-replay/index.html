@@ -17,11 +17,11 @@
         version: "1.0.0",
         deploymentEnvironment: "workshop",
         exporter: {
-          // Redact secrets if they ever appear in a URL attribute.
+          // Preserve useful URL context while removing sensitive query values.
           onAttributesSerializing: (attributes) => ({
             ...attributes,
             "http.url": typeof attributes["http.url"] === "string"
-              ? attributes["http.url"].replace(/([?&]token=)[^&]+(&|$)/g, "$1<redacted>$2")
+              ? attributes["http.url"].replace(/([?&](?:email|token)=)[^&]*/gi, "$1<redacted>")
               : attributes["http.url"]
           })
         }
@@ -38,9 +38,9 @@
         maskAllInputs: true,
         maskAllText: true,
         sensitivityRules: [
-          { rule: "unmask", selector: ".product-name" },
+          { rule: "unmask", selector: ".replay-safe" },
           { rule: "mask", selector: ".customer-email" },
-          { rule: "exclude", selector: "#payment-form" }
+          { rule: "exclude", selector: "#payment-details" }
         ]
       });
     </script>
@@ -118,6 +118,34 @@
       }
 
       .intro { max-width: 42rem; margin-bottom: 2rem; }
+
+      .privacy-guide {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .75rem;
+        margin: 0 0 1.25rem;
+        padding: .85rem;
+        border: 1px solid rgb(73 103 88 / 18%);
+        border-radius: 1rem;
+        background: rgb(255 253 248 / 68%);
+      }
+
+      .privacy-item { display: flex; align-items: center; gap: .65rem; min-width: 0; }
+
+      .privacy-badge {
+        flex: 0 0 auto;
+        padding: .2rem .5rem;
+        border-radius: 999px;
+        font-size: .67rem;
+        font-weight: 850;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+      }
+
+      .privacy-badge.visible { color: #345143; background: #dce9df; }
+      .privacy-badge.masked { color: #664411; background: #f7e5bc; }
+      .privacy-badge.excluded { color: #6e3030; background: #f3dcdc; }
+      .privacy-item span:last-child { overflow: hidden; color: var(--muted); font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
 
       .eyebrow {
         margin: 0 0 .55rem;
@@ -253,6 +281,8 @@
 
       @media (max-width: 760px) {
         main { margin-top: 1.5rem; }
+        .privacy-guide { grid-template-columns: 1fr; }
+        .privacy-item span:last-child { white-space: normal; }
         .shop-grid { grid-template-columns: 1fr; }
         .product { grid-template-columns: 1fr; }
         .product-art { min-height: 18rem; }
@@ -265,21 +295,36 @@
     </style>
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header replay-safe">
       <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span> Northstar Coffee</div>
       <span class="cart-label">Workshop demo</span>
     </header>
 
     <main>
-      <div class="intro">
+      <div class="intro replay-safe">
         <p class="eyebrow">Roasted for the journey</p>
         <h1>Find your true north.</h1>
         <p class="lede">A tiny coffee shop built to create a clear, realistic user session for the observability workshop.</p>
       </div>
 
+      <aside class="privacy-guide replay-safe" aria-label="Session Replay privacy guide">
+        <div class="privacy-item">
+          <span class="privacy-badge visible">Visible</span>
+          <span>Product and journey context</span>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-badge masked">Masked</span>
+          <span>Customer email value</span>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-badge excluded">Excluded</span>
+          <span>Card field and interactions</span>
+        </div>
+      </aside>
+
       <div class="shop-grid">
         <section class="product card" aria-labelledby="product-title">
-          <div class="product-art" aria-hidden="true">
+          <div class="product-art replay-safe" aria-hidden="true">
             <div class="coffee-bag">
               <span>
                 <span class="bag-star">✦</span>
@@ -288,7 +333,7 @@
               </span>
             </div>
           </div>
-          <div class="product-copy">
+          <div class="product-copy replay-safe">
             <p class="kicker">Featured roast</p>
             <h2 id="product-title" class="product-name">Aurora Espresso Beans</h2>
             <p class="product-name product-description">A bright, chocolatey roast for morning missions.</p>
@@ -301,19 +346,23 @@
         <aside class="checkout card" aria-label="Checkout">
           <section aria-labelledby="customer-title">
             <p class="step-label">Step 1</p>
-            <h2 id="customer-title">Customer details</h2>
-            <label for="customer-email">Email address</label>
+            <h2 id="customer-title" class="replay-safe">Customer details</h2>
+            <label for="customer-email" class="replay-safe">Email address</label>
             <input id="customer-email" class="customer-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
           </section>
 
           <form id="payment-form" action="/checkout" method="post">
-            <p class="step-label">Step 2</p>
-            <h2>Payment details</h2>
-            <label for="card-number">Test card number</label>
-            <input id="card-number" name="card" type="text" inputmode="numeric" autocomplete="off" placeholder="Use dummy digits only">
-            <button type="submit">Place demo order</button>
-            <p id="checkout-status" class="status" role="status" aria-live="polite"></p>
-            <p class="fine-print">Demo only. No order or payment is processed.</p>
+            <div class="replay-safe">
+              <p class="step-label">Step 2</p>
+              <h2>Payment details</h2>
+            </div>
+            <div id="payment-details">
+              <label for="card-number">Test card number</label>
+              <input id="card-number" name="card" type="text" inputmode="numeric" autocomplete="off" placeholder="Use dummy digits only">
+            </div>
+            <button class="replay-safe" type="submit">Place demo order</button>
+            <p id="checkout-status" class="status replay-safe" role="status" aria-live="polite"></p>
+            <p class="fine-print replay-safe">Demo only. No order or payment is processed.</p>
           </form>
         </aside>
       </div>
