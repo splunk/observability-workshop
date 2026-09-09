@@ -62,7 +62,7 @@ throughout the workshop:
 {{% notice title="Two risks to keep in mind" style="info" %}}
 
 * **Hallucinated medical guidance**: the medicine Q&A path is where a wrong dosage or
-  interaction could slip through. You'll catch this with metrics and signals, and stop it with
+  interaction could slip through. You'll catch this with evaluators and signals, and stop it with
   guardrails.
 * **Sensitive, irreversible actions**: `delete_patient_record` can permanently remove a
   patient. It's a textbook case for runtime guardrails. You'll return to both later.

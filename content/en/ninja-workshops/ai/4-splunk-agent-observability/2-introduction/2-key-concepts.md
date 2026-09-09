@@ -48,7 +48,7 @@ scoring, accurate enough to run on *all* of your traffic, and fast enough to pow
 
 ## Signals: surfacing the unknown unknowns
 
-Metrics tell you about problems you thought to measure. **Signals** automatically surface
+Evaluators tell you about problems you thought to measure. **Signals** automatically surface
 recurring failure patterns from production traces (planning loops, tool errors,
 hallucinations, routing failures, and more) and explain *what* went wrong, *why*, and *what
 to do next*. They turn weeks of post-incident analysis into minutes of targeted remediation.
