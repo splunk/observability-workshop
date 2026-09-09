@@ -9,6 +9,17 @@ params:
   images:
     - images/featured-o11y.png
 ---
+{{< presenter >}}
+Before the workshop begins, configure the Astronomy Shop’s feature flags:
+
+* Open the *Astronomy Shop URL* provided for your workshop.
+* Append `/Feature` to the URL to open the *Feature* page.
+* Disable all active demonstrations except **paymentFailure**.
+* Set **paymentFailure** to **50%**.
+
+This ensures that approximately half of the payment requests fail, producing the telemetry required for the workshop exercises.
+<img src="images/flagd-payment.png" style="max-height: 160px; width: auto;">
+{{< /presenter >}}
 
 ## Introduction
 
