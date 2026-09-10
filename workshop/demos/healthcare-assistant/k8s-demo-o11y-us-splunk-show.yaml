@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: healthcare-assistant
+  name: healthcare-assistant-us
   labels:
-    app: healthcare-assistant
+    app: healthcare-assistant-us
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: healthcare-assistant
+      app: healthcare-assistant-us
   template:
     metadata:
       labels:
-        app: healthcare-assistant
+        app: healthcare-assistant-us
     spec:
       containers:
-        - name: healthcare-assistant
+        - name: healthcare-assistant-us
           image: ghcr.io/splunk/healthcare-assistant:app-with-controls-v2
           imagePullPolicy: Always
           ports:
@@ -27,9 +27,9 @@ spec:
             - configMapRef:
                 name: postgres-config
             - configMapRef:
-                name: splunk-ao-config
+                name: splunk-ao-config-us-splunk-show
             - configMapRef:
-                name: splunk-agent-control-config
+                name: splunk-agent-control-config-us-splunk-show
           env:
             - name: OPENAI_BASE_URL
               valueFrom:
@@ -49,7 +49,7 @@ spec:
             - name: SPLUNK_AO_O11Y_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: splunk-ao-secret
+                  name: splunk-ao-secret-us-splunk-show
                   key: SPLUNK_AO_O11Y_TOKEN
           resources:
             requests:
@@ -70,10 +70,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: healthcare-assistant-service
+  name: healthcare-assistant-service-us
 spec:
   selector:
-    app: healthcare-assistant
+    app: healthcare-assistant-us
   ports:
     - port: 8501
       protocol: TCP
@@ -82,12 +82,12 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: healthcare-assistant-tls
+  name: healthcare-assistant-tls-us
   namespace: default
 spec:
-  secretName: healthcare-assistant-tls
+  secretName: healthcare-assistant-tls-us
   dnsNames:
-    - healthcare-assistant.splunko11y.com
+    - healthcare-assistant-us-splunk-show.splunko11y.com
   issuerRef:
     name: letsencrypt-prod          # your existing ClusterIssuer
     kind: ClusterIssuer
@@ -96,7 +96,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: healthcare-assistant-ingress
+  name: healthcare-assistant-ingress-us
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     traefik.ingress.kubernetes.io/router.middlewares: default-basicauth@kubernetescrd
@@ -105,17 +105,17 @@ spec:
 
   tls:
     - hosts:
-        - healthcare-assistant.splunko11y.com
-      secretName: healthcare-assistant-tls
+        - healthcare-assistant-us-splunk-show.splunko11y.com
+      secretName: healthcare-assistant-tls-us
 
   rules:
-    - host: healthcare-assistant.splunko11y.com
+    - host: healthcare-assistant-us-splunk-show.splunko11y.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: healthcare-assistant-service
+                name: healthcare-assistant-service-us
                 port:
                   number: 8501
