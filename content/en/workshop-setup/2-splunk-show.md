@@ -10,8 +10,8 @@ Splunk Show offers two templates for Observability workshops. Select the one tha
 
 | Workshop Type | Description | Template | |
 | --- | --- | --- | --- |
-| **Splunk4Rookies - Observability** | This workshop template is designed for beginners. The template pre-deploys the **OpenTelemetry Collector** and the **Online Boutique** application. Attendees only need a browser to participate and complete the workshop. | [**Rookies**](https://show.splunk.com/template/262/) | ![Rookies](../images/rookies.png) |
-| **Splunk4Ninjas - Observability** | This workshop template is tailored for **advanced** users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed. | [**Ninja**](https://show.splunk.com/template/428/) | ![Ninjas](../images/ninjas.png) |
+| **Splunk4Rookies - Observability** | This workshop template is designed for beginners. The template pre-deploys the **OpenTelemetry Collector** and the **Online Boutique** application. Attendees only need a browser to participate and complete the workshop. | [**Rookies**](https://show.splunk.com/template/262/) | ![Rookies](../images/rookies.webp) |
+| **Splunk4Ninjas - Observability** | This workshop template is tailored for **advanced** users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed. | [**Ninja**](https://show.splunk.com/template/428/) | ![Ninjas](../images/ninjas.webp) |
 
 {{% notice  style="primary" title="**Ninja Workshops Only**" icon="user-ninja" %}}
 
