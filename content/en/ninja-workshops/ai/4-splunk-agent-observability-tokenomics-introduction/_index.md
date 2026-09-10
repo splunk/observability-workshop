@@ -1,7 +1,7 @@
 ---
 title: Tokenomics Fundamentals
 linkTitle: Tokenomics Fundamentals
-weight: 6
+weight: 4
 layout: chapter
 time: 90 minutes
 authors: ["Denis Abrantes", "Sam Goldfield"]
