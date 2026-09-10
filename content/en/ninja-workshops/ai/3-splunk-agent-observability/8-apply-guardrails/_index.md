@@ -12,8 +12,8 @@ and either **block** it or **steer** the agent toward a safe response.
 {{% notice title="Persona" style="orange" icon="user" %}}
 
 As Careful Health Provider's **AI engineer**, you've now seen the assistant produce ungrounded
-medical advice and call a sensitive deletion tool. Detection isn't enough; you need to *stop*
-the dangerous deletion and *redirect* the unsafe answer, in production, without taking the
+medical advice. Detection isn't enough; you need to *stop*
+the dangerous behavior and *redirect* the unsafe answer, in production, without taking the
 agent offline.
 
 {{% /notice %}}
