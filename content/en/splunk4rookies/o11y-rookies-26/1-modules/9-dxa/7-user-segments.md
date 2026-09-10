@@ -1,7 +1,6 @@
 ---
 title: 7. User Segments
 weight: 7
-time: 8 minutes
 ---
 
 **User segments** group users by attributes (device type, location), session properties, or behaviors. Segments let you run targeted analyses — for example, comparing checkout conversion on mobile versus desktop — without rebuilding filters each time.

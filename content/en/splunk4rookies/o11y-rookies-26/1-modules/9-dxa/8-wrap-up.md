@@ -1,7 +1,6 @@
 ---
 title: 8. Wrap-Up
 weight: 8
-time: 5 minutes
 ---
 
 ## What you accomplished

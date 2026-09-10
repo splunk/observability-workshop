@@ -1,7 +1,6 @@
 ---
 title: 6. Conversion Funnels
 weight: 6
-time: 10 minutes
 ---
 
 Individual actions and frustration signals tell part of the story. **Conversion funnel analyses** show whether users complete multi-step journeys — like browsing to checkout — and where they drop off.

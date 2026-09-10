@@ -1,7 +1,6 @@
 ---
 title: 4. Feature Adoption
 weight: 4
-time: 10 minutes
 ---
 
 Remember the **Ask AI** feature on Astronomy Shop product detail pages? Product leadership wants to know whether customers are using it — including the quick prompts below the text input field.

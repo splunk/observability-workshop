@@ -1,7 +1,6 @@
 ---
 title: 2. Getting Started with DXA
 weight: 2
-time: 8 minutes
 ---
 
 **Digital Experience Analytics (DXA)** complements Splunk Real User Monitoring (RUM) and Synthetic Monitoring by adding a product-analytics layer on top of session data you already collect. DXA helps digital product teams identify friction points, refine user journeys, increase conversion rates, and improve feature engagement — without writing queries or changing application code for this workshop.

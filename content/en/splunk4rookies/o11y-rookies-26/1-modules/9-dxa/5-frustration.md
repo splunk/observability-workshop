@@ -1,7 +1,6 @@
 ---
 title: 5. Frustration Signals
 weight: 5
-time: 10 minutes
 ---
 
 Not every user interaction is intentional or successful. DXA tracks **frustration signals** — behavioral indicators that suggest users are hitting friction — so teams can fix problems before they drive churn or support tickets.
