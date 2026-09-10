@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Enable Evaluators on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/</link><description>Recent content in Enable Evaluators on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/index.xml" rel="self" type="application/rss+xml"/><item><title>Enable Evaluators on the Agent Stream</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/1-enable-evaluators/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/1-enable-evaluators/</guid><description>&lt;p&gt;Evaluators are configured on the &lt;strong&gt;agent stream&lt;/strong&gt;, so every new trace that lands is scored
+automatically. You&amp;rsquo;ll turn on a set of out-of-the-box evaluators that matter for a healthcare
+assistant.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Enable out-of-the-box evaluators&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your agent stream settings&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.sao.splunkcloud.com&lt;/code&gt;
+and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
+&lt;p&gt;Open the &lt;code&gt;Splunk Agent Observability Workshop&lt;/code&gt; project, and select the agent stream that
+matches the Instance ID you found above (such as &lt;code&gt;shw-51ea&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>Review Evaluator Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</guid><description>&lt;p&gt;After a few moments, we&amp;rsquo;ll see how the existing traces get automatically scored on the
+&lt;code&gt;Context Adherence&lt;/code&gt; and &lt;code&gt;Correctness&lt;/code&gt; evaluators.
+This is where a hallucinated dosage or a wrong tool call stops being invisible.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Review evaluator results&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;1&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Wait for evaluators to be computed&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Looking at the list of traces, we can see that evaluators are being computed:&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../images/sao-evaluators-computing.png?width=750px" alt="Agent stream evaluator computing" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class="step"&gt;
+&lt;div class="step__num"&gt;2&lt;/div&gt;
+&lt;div&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Review the scores in the agent stream&lt;/p&gt;</description></item></channel></rss>
