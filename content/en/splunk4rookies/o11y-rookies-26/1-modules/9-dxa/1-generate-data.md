@@ -1,7 +1,6 @@
 ---
 title: 1. Generate Session Data
 weight: 1
-time: 5 minutes
 ---
 
 Before diving into DXA, you need real user sessions to analyze. The browsing you do now becomes the data you explore in the rest of this module.

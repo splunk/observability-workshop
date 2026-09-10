@@ -1,7 +1,6 @@
 ---
 title: 3. Event Definitions
 weight: 3
-time: 8 minutes
 ---
 
 **Event definitions** are the foundation of DXA analyses. They name and filter user interactions — clicks, navigation, errors, and custom events — so you can track the same behavior consistently across funnels, time series, and segments.
