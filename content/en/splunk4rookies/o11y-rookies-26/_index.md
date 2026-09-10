@@ -26,9 +26,18 @@ If you’re new to *Splunk Observability Cloud*, begin with the **Intro** lesson
 After completing the Intro, you can take the remaining lessons in any order. Each lesson is self-contained and focuses on a specific concept or challenge.
 Your instructor may recommend a particular learning path based on the goal of your session.
 
-## Lessons
+{{< button href="/splunk4rookies/o11y-rookies-26/1-modules/1-intro/" style="primary" icon="play" >}}Start the Introduction Workshop{{< /button >}}
 
-{{% children page="1-modules" depth="1" type="card" description="true" image="true" showhidden="true" %}}
+## Continue your workshop
+
+{{< cards >}}
+{{< card title="Choose Your Path" href="/splunk4rookies/o11y-rookies-26/choose-your-path/" hero-icon="route" >}}
+Follow a recommended route through the modules based on your area of interest.
+{{< /card >}}
+{{< card title="Browse All Modules" href="/splunk4rookies/o11y-rookies-26/1-modules/" hero-icon="library" >}}
+View every available workshop module and choose the ones you want to complete.
+{{< /card >}}
+{{< /cards >}}
 
 {{% notice style="note" title="Parking Lot" icon="circle-info" %}}
 Login instructions and Astronomy Shop setup details are available at the end of the workshop navigation for reference.
