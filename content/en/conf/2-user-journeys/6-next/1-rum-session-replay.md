@@ -171,6 +171,33 @@ The `applicationName`, `version`, and `deploymentEnvironment` values are how you
 
 ![Splunk RUM application overview](../images/rum-overview.png)
 
+### Optional: name an important user journey
+
+Automatic interactions tell you that a user clicked a button. A workflow span adds the business meaning of that action, such as `northstar.cart.add`. Add the `workflow.name` attribute and end the span when the action finishes. Splunk RUM can then show the action as a custom workflow and calculate its count and p75 duration.
+
+Northstar Coffee uses the browser agent's registered OpenTelemetry API so the example does not need another package:
+
+```js
+function recordWorkflow(name, work) {
+  const otel = window[Symbol.for("opentelemetry.js.api.1")];
+  const tracer = otel?.trace?.getTracer("northstar-coffee");
+  if (!tracer) return work();
+
+  const span = tracer.startSpan(name, {
+    attributes: { "workflow.name": name }
+  });
+  try {
+    work();
+  } finally {
+    span.end();
+  }
+}
+```
+
+The example records `northstar.cart.add` and `northstar.demo_order.submit`. Keep workflow names stable and do not add email, card values, or other user data as attributes. If the CDN agent is blocked, the guard lets the demo action continue without instrumentation. [Custom workflow documentation](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/create-custom-workflows)
+
+The **Simulate a UI error** button calls `SplunkRum.error` with a handled demo error. It keeps the page usable while giving you an error to locate beside the interaction in RUM. [Browser error documentation](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/errors-collected-by-the-splunk-rum-browser-agent)
+
 ## Add Session Replay
 
 Session Replay is an additional recorder. Load both scripts first, then initialize RUM and the recorder in that order:
@@ -200,6 +227,18 @@ RUM answers **what** happened and how long it took. Replay adds the visual seque
 After generating a session, open **Digital Experience** > **Real User Monitoring** > **Session Search**. Filter for **Session Replay = Present**, then select the session to open the replay player.
 
 ![RUM Session Search with replay availability](../images/rum-session-search.png)
+
+### Optional: sample complete sessions in production
+
+The lab keeps every session eligible so the replay is easy to find. In production, sample whole sessions when you need to reduce volume or cost; session-level sampling keeps each selected journey intact:
+
+```js
+tracer: {
+  sampler: new SplunkRum.SessionBasedSampler({ ratio: 0.5 })
+}
+```
+
+A ratio of `0.5` means roughly half of sessions are reported. Start with `1.0` while learning, then choose a ratio that fits your organization’s RUM and Session Replay limits. New replay sessions need capacity under both limits and can receive HTTP 429 when either is reached. [Sampling and configuration](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/configure-the-splunk-rum-browser-agent) · [RUM limits](https://help.splunk.com/en/splunk-observability-cloud/administer/org-reference-info/per-product-system-limits-in-splunk-observability-cloud/rum-system-limits)
 
 ## Protect PII and other sensitive data in Session Replay
 
@@ -272,8 +311,10 @@ For example, `/checkout?campaign=workshop&email=learner@example.invalid` retains
 1. Open the example `index.html`, replace the placeholders, and confirm that **Basic RUM** is already enabled. Use your browser's developer tools to confirm the agent loads before the application script.
 2. Serve the example on `http://localhost`, open it in a private browser window, click **Add to cart**, enter a sample email and dummy card digits, and select **Place order**.
 3. Enable the Session Replay script and initialization, repeat the journey, and open the session in Splunk RUM.
-4. Compare the replay with the privacy map in the app. Confirm that the page and product context are visible, the email value is masked, and the card-entry block is replaced by an excluded area. The **Place demo order** action and result should remain visible.
-5. Add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.
+4. Click **Add to cart** and **Place demo order**. Look for `northstar.cart.add` and `northstar.demo_order.submit` as custom workflows or workflow spans.
+5. Click **Simulate a UI error** and find the handled error in the RUM session timeline. Confirm that the page remains usable and no order was sent.
+6. Compare the replay with the privacy map in the app. Confirm that the page and product context are visible, the email value is masked, and the card-entry block is replaced by an excluded area. The **Place demo order** action and result should remain visible.
+7. Add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.
 
 {{% /notice %}}
 

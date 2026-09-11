@@ -276,6 +276,15 @@
       button:focus-visible { outline: 3px solid rgb(217 130 70 / 38%); outline-offset: 3px; }
       button:active { transform: translateY(0); }
 
+      button.secondary {
+        color: var(--coffee);
+        border: 1px solid rgb(117 70 47 / 28%);
+        background: transparent;
+        box-shadow: none;
+      }
+
+      button.secondary:hover { color: var(--coffee-dark); background: rgb(117 70 47 / 7%); }
+
       .status { min-height: 1.5rem; margin: .65rem 0 0; color: var(--sage); font-size: .86rem; font-weight: 700; }
       .fine-print { margin: .9rem 0 0; color: var(--muted); font-size: .75rem; }
 
@@ -340,6 +349,8 @@
             <p class="price">$18.00</p>
             <button id="add-to-cart" type="button">Add to cart</button>
             <p id="cart-status" class="status" role="status" aria-live="polite"></p>
+            <button id="simulate-error" class="secondary" type="button">Simulate a UI error</button>
+            <p id="error-status" class="status" role="status" aria-live="polite"></p>
           </div>
         </section>
 
@@ -369,13 +380,47 @@
     </main>
 
     <script>
+      function recordWorkflow(name, work) {
+        const otel = window[Symbol.for("opentelemetry.js.api.1")];
+        const tracer = otel?.trace?.getTracer("northstar-coffee");
+        if (!tracer) {
+          work();
+          return;
+        }
+
+        const span = tracer.startSpan(name, {
+          attributes: { "workflow.name": name }
+        });
+        try {
+          work();
+        } finally {
+          span.end();
+        }
+      }
+
       document.getElementById("add-to-cart").addEventListener("click", () => {
-        document.getElementById("cart-status").textContent = "Added to cart (demo only).";
+        recordWorkflow("northstar.cart.add", () => {
+          document.getElementById("cart-status").textContent = "Added to cart (demo only).";
+        });
+      });
+
+      document.getElementById("simulate-error").addEventListener("click", () => {
+        const error = new Error("Northstar demo UI error");
+        if (window.SplunkRum?.error) {
+          try {
+            SplunkRum.error(error);
+          } catch (rumError) {
+            // Keep the workshop interaction usable if the agent is blocked.
+          }
+        }
+        document.getElementById("error-status").textContent = "Demo error recorded; no order was sent.";
       });
 
       document.getElementById("payment-form").addEventListener("submit", (event) => {
         event.preventDefault();
-        document.getElementById("checkout-status").textContent = "Order submitted (demo only).";
+        recordWorkflow("northstar.demo_order.submit", () => {
+          document.getElementById("checkout-status").textContent = "Order submitted (demo only).";
+        });
       });
     </script>
   </body>
