@@ -79,7 +79,7 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get replicaset loadgen -n loadgen
 ```
 
-![ReplicaSet](../images/k8s-workload-replicaset.png)
+![ReplicaSet](../images/k8s-workload-replicaset.webp)
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 What impact can you see in the Apache Navigator?

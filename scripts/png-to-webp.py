@@ -3,7 +3,9 @@
 
 Default scan root is content/. Pass one or more directories to limit which
 PNGs are converted. Markdown updates still search the whole content tree so
-a scoped conversion cannot leave stale links elsewhere.
+a scoped conversion cannot leave stale links elsewhere. Every run also lists
+unused PNG and WebP files under the scan path, and renames mixed-case image
+filenames to lowercase.
 
 This is a CLI, not a TUI: the job is batch conversion, needs --dry-run, and
 must run on macOS/Linux without whiptail or extra UI packages.
@@ -19,13 +21,14 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import uuid
 from collections import defaultdict
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from dataclasses import dataclass, field
 from pathlib import Path
 
-PNG_REF = re.compile(
-    r"(?P<path>(?:https?://[^\s)\"']+|(?:\.{1,2}/|/?[\w@.-])[\w./@-]*)\.png)"
+IMG_REF = re.compile(
+    r"(?P<path>(?:https?://[^\s)\"']+|(?:\.{1,2}/|/?[\w@.-])[\w./@-]*)\.(?:png|webp))"
     r"(?P<query>\?[^\s)\"']*)?",
     re.IGNORECASE,
 )
@@ -51,6 +54,15 @@ class Conversion:
     webp_bytes: int = 0
     status: str = "pending"
     markdown: list[Path] = field(default_factory=list)
+    detail: str = ""
+
+
+@dataclass
+class Rename:
+    src: Path
+    dest: Path
+    markdown: list[Path] = field(default_factory=list)
+    status: str = "pending"
     detail: str = ""
 
 
@@ -170,7 +182,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--referenced-only",
         action="store_true",
         help="Convert only PNGs that are referenced by a Markdown file. "
-        "Unused PNGs are still listed in the report.",
+        "Unused PNG and WebP files are still listed in the report.",
     )
     parser.add_argument(
         "--markdown-root",
@@ -206,19 +218,22 @@ def collect_targets(raw_paths: list[str], root: Path) -> list[Path]:
     return targets
 
 
-def find_pngs(targets: list[Path]) -> list[Path]:
+def find_images(targets: list[Path], suffix: str) -> list[Path]:
+    suffix = suffix.lower().lstrip(".")
     found: set[Path] = set()
     for target in targets:
         if target.is_file():
-            if target.suffix.lower() == ".png":
+            if target.suffix.lower() == f".{suffix}" and target.stem:
                 found.add(target.resolve())
             continue
-        for png in target.rglob("*.png"):
-            if png.is_file() and png.stem:
-                found.add(png.resolve())
-        for png in target.rglob("*.PNG"):
-            if png.is_file() and png.stem:
-                found.add(png.resolve())
+        for img in target.rglob(f"*.{suffix}"):
+            if img.is_file() and img.stem:
+                found.add(img.resolve())
+        upper = suffix.upper()
+        if upper != suffix:
+            for img in target.rglob(f"*.{upper}"):
+                if img.is_file() and img.stem:
+                    found.add(img.resolve())
     return sorted(found)
 
 
@@ -239,6 +254,54 @@ def discover_markdown(markdown_root: Path, extra: list[Path]) -> list[Path]:
     return sorted(files)
 
 
+def same_inode(left: Path, right: Path) -> bool:
+    try:
+        a = left.stat()
+        b = right.stat()
+    except OSError:
+        return False
+    return a.st_ino == b.st_ino and a.st_dev == b.st_dev
+
+
+def lowercase_dest(path: Path) -> Path:
+    return path.with_name(path.name.lower())
+
+
+def needs_lowercase(path: Path) -> bool:
+    return bool(path.stem) and path.name != path.name.lower()
+
+
+def collect_renames(images: list[Path], refs: dict[Path, list[Path]]) -> list[Rename]:
+    rows: list[Rename] = []
+    for src in images:
+        if not needs_lowercase(src):
+            continue
+        dest = lowercase_dest(src)
+        detail = ""
+        if dest.exists() and not same_inode(src, dest):
+            detail = "lowercase name already exists"
+        rows.append(Rename(src=src, dest=dest, markdown=refs.get(src, []), detail=detail))
+    return rows
+
+
+def move_to_lowercase(src: Path, dest: Path) -> None:
+    if src.name == dest.name:
+        return
+    if dest.exists() and not same_inode(src, dest):
+        raise RuntimeError(f"lowercase name already exists: {dest.name}")
+    tmp = src.with_name(f".{uuid.uuid4().hex}{src.suffix}")
+    src.rename(tmp)
+    try:
+        tmp.rename(dest)
+    except OSError:
+        tmp.rename(src)
+        raise
+
+
+def remap_path(path: Path, mapping: dict[Path, Path]) -> Path:
+    return mapping.get(path, path)
+
+
 def resolve_png_ref(md_file: Path, ref: str) -> Path | None:
     if ref.startswith(("http://", "https://", "//")):
         return None
@@ -250,9 +313,15 @@ def resolve_png_ref(md_file: Path, ref: str) -> Path | None:
     # File-relative first. Then Hugo leaf-page URL-relative: a page at
     # section/page.md is served as section/page/, so ../images/foo.png
     # means section/images/foo.png, not the parent section's images/.
-    candidates = [(md_file.parent / path).resolve()]
-    if md_file.name != "_index.md":
-        candidates.append((md_file.parent / md_file.stem / path).resolve())
+    relatives = [path]
+    lowered = path.with_name(path.name.lower())
+    if lowered != path:
+        relatives.append(lowered)
+    candidates: list[Path] = []
+    for relative in relatives:
+        candidates.append((md_file.parent / relative).resolve())
+        if md_file.name != "_index.md":
+            candidates.append((md_file.parent / md_file.stem / relative).resolve())
     for candidate in candidates:
         if candidate.exists():
             return candidate
@@ -266,30 +335,56 @@ def index_references(md_files: list[Path]) -> dict[Path, list[Path]]:
             text = md.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
-        for match in PNG_REF.finditer(text):
+        for match in IMG_REF.finditer(text):
             resolved = resolve_png_ref(md, match.group("path"))
             if resolved is not None:
                 refs[resolved].append(md)
-    for png, files in refs.items():
-        refs[png] = sorted(set(files))
+    for image, files in refs.items():
+        refs[image] = sorted(set(files))
     return refs
 
 
-def rewrite_markdown(md_file: Path, converted: set[Path], dry_run: bool) -> bool:
+def _managed_match(resolved: Path, managed: set[Path]) -> Path | None:
+    for path in managed:
+        if resolved == path or same_inode(resolved, path):
+            return path
+    return None
+
+
+def _replace_filename(path: str, new_name: str) -> str:
+    old_name = Path(path).name
+    if path.endswith(old_name):
+        return path[: -len(old_name)] + new_name
+    return path
+
+
+def rewrite_markdown(
+    md_file: Path,
+    converted: set[Path],
+    renamed: set[Path],
+    dry_run: bool,
+) -> bool:
     try:
         text = md_file.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return False
 
     def replace(match: re.Match[str]) -> str:
-        resolved = resolve_png_ref(md_file, match.group("path"))
-        if resolved is None or resolved not in converted:
-            return match.group(0)
         path = match.group("path")
-        updated = re.sub(r"\.png$", ".webp", path, flags=re.IGNORECASE)
-        return updated + (match.group("query") or "")
+        resolved = resolve_png_ref(md_file, path)
+        if resolved is None:
+            return match.group(0)
+        will_webp = _managed_match(resolved, converted) is not None
+        if not will_webp and _managed_match(resolved, renamed) is None:
+            return match.group(0)
+        new_name = Path(path).name.lower()
+        if will_webp:
+            new_name = re.sub(r"\.png$", ".webp", new_name, flags=re.IGNORECASE)
+        if Path(path).name == new_name:
+            return match.group(0)
+        return _replace_filename(path, new_name) + (match.group("query") or "")
 
-    new_text = PNG_REF.sub(replace, text)
+    new_text = IMG_REF.sub(replace, text)
     if new_text == text:
         return False
     if not dry_run:
@@ -329,16 +424,40 @@ def rel_to_repo(path: Path) -> Path:
         return path
 
 
-def confirm(count: int) -> bool:
+def confirm(convert_count: int, rename_count: int) -> bool:
     if not sys.stdin.isatty():
         raise SystemExit("refusing to apply without a TTY; pass --yes or --dry-run")
-    answer = input(f"Convert {count} PNG file(s)? [y/N] ").strip().lower()
+    parts: list[str] = []
+    if convert_count:
+        parts.append(f"convert {convert_count} PNG file(s)")
+    if rename_count:
+        parts.append(f"lowercase {rename_count} image name(s)")
+    if not parts:
+        return True
+    label = " and ".join(parts)
+    answer = input(f"{label[0].upper()}{label[1:]}? [y/N] ").strip().lower()
     return answer in {"y", "yes"}
+
+
+def _print_unused(title: str, unused: list[Path]) -> int:
+    unused_bytes = 0
+    print()
+    print(color(title, "1"))
+    if not unused:
+        print("  none")
+        return 0
+    for image in unused:
+        size = image.stat().st_size if image.exists() else 0
+        unused_bytes += size
+        print(color("  unused     ", "33") + f"{rel_to_repo(image)}  {human(size)}")
+    return unused_bytes
 
 
 def print_report(
     rows: list[Conversion],
     unused: list[Path],
+    unused_webp: list[Path],
+    renames: list[Rename],
     dry_run: bool,
     keep: bool,
     jobs: int,
@@ -346,8 +465,11 @@ def print_report(
     converted = [r for r in rows if r.status == "converted"]
     skipped = [r for r in rows if r.status == "skipped"]
     failed = [r for r in rows if r.status == "failed"]
+    renamed = [r for r in renames if r.status == "renamed"]
     updated_md: set[Path] = set()
     for row in converted:
+        updated_md.update(row.markdown)
+    for row in renamed:
         updated_md.update(row.markdown)
 
     if rows:
@@ -357,9 +479,11 @@ def print_report(
             rel_png = rel_to_repo(row.png)
             if row.status == "converted":
                 saved = row.png_bytes - row.webp_bytes
+                rel_webp = rel_to_repo(row.webp)
                 print(
                     color("  converted  ", "32")
-                    + f"{rel_png}  {human(row.png_bytes)} -> {human(row.webp_bytes)}  "
+                    + f"{rel_png} -> {rel_webp}  "
+                    f"{human(row.png_bytes)} -> {human(row.webp_bytes)}  "
                     f"(saved {human(saved)})"
                 )
                 for md in row.markdown:
@@ -371,16 +495,32 @@ def print_report(
             else:
                 print(color("  failed     ", "31") + f"{rel_png}  {row.detail}")
 
-    unused_bytes = 0
+    converted_keys = {(row.png.parent.resolve(), row.png.stem.lower()) for row in converted}
+    case_only = [
+        row
+        for row in renames
+        if (row.src.parent.resolve(), row.src.stem.lower()) not in converted_keys
+    ]
+
     print()
-    print(color("Unused PNGs", "1"))
-    if not unused:
+    print(color("Lowercased", "1"))
+    if not case_only:
         print("  none")
     else:
-        for png in unused:
-            size = png.stat().st_size if png.exists() else 0
-            unused_bytes += size
-            print(color("  unused     ", "33") + f"{rel_to_repo(png)}  {human(size)}")
+        for row in case_only:
+            rel_src = rel_to_repo(row.src)
+            rel_dest = rel_to_repo(row.dest)
+            if row.status == "renamed":
+                print(color("  renamed    ", "32") + f"{rel_src} -> {rel_dest}")
+                for md in row.markdown:
+                    print(color("    updated   ", "36") + str(rel_to_repo(md)))
+                if not row.markdown:
+                    print(color("    note      ", "33") + "no Markdown references found")
+            else:
+                print(color("  failed     ", "31") + f"{rel_src}  {row.detail}")
+
+    unused_bytes = _print_unused("Unused PNGs", unused)
+    unused_webp_bytes = _print_unused("Unused WebPs", unused_webp)
 
     png_total = sum(r.png_bytes for r in converted)
     webp_total = sum(r.webp_bytes for r in converted)
@@ -396,6 +536,8 @@ def print_report(
     print(f"  skipped:         {len(skipped)}")
     print(f"  failed:          {len(failed)}")
     print(f"  unused pngs:     {len(unused)} ({human(unused_bytes)})")
+    print(f"  unused webps:    {len(unused_webp)} ({human(unused_webp_bytes)})")
+    print(f"  lowercased:      {len([r for r in case_only if r.status == 'renamed'])}")
     print(f"  markdown files:  {len(updated_md)}")
     if not keep and not dry_run:
         print(f"  pngs removed:    {len(converted)}")
@@ -416,55 +558,88 @@ def main(argv: list[str] | None = None) -> int:
     cwebp = require_cwebp()
     root = repo_root()
     targets = collect_targets(args.paths + args.dirs, root)
-    found_pngs = find_pngs(targets)
+    found_pngs = find_images(targets, "png")
+    found_webps = find_images(targets, "webp")
     md_files = discover_markdown(Path(args.markdown_root), targets)
     refs = index_references(md_files)
     unused = [png for png in found_pngs if png not in refs]
+    unused_webp = [webp for webp in found_webps if webp not in refs]
     pngs = [png for png in found_pngs if png in refs] if args.referenced_only else found_pngs
+    renames = collect_renames([*found_pngs, *found_webps], refs)
+    pending_renames = [row for row in renames if not row.detail]
 
-    if not pngs and not unused:
-        print("No PNG files found.")
+    if not pngs and not unused and not unused_webp and not found_webps and not renames:
+        print("No PNG or WebP files found.")
         return 0
-
-    if not pngs:
-        print("No PNG files to convert.")
-        print_report([], unused, args.dry_run, args.keep, args.jobs)
-        return 0
-
-    rows: list[Conversion] = []
-    for png in pngs:
-        rows.append(
-            Conversion(
-                png=png,
-                webp=png.with_suffix(".webp"),
-                png_bytes=png.stat().st_size,
-                markdown=refs.get(png, []),
-            )
-        )
 
     apply = not args.dry_run
-    if apply and not args.yes and not confirm(len(rows)):
+    if apply and not args.yes and not confirm(len(pngs), len(pending_renames)):
         print("Aborted.")
         return 1
 
+    rename_map: dict[Path, Path] = {}
+    for row in renames:
+        if row.detail:
+            row.status = "failed"
+            continue
+        if apply:
+            try:
+                move_to_lowercase(row.src, row.dest)
+                row.status = "renamed"
+                rename_map[row.src] = row.dest
+            except OSError as exc:
+                row.status = "failed"
+                row.detail = str(exc)
+        else:
+            row.status = "renamed"
+
+    if apply and rename_map:
+        found_pngs = [remap_path(path, rename_map) for path in found_pngs]
+        found_webps = [remap_path(path, rename_map) for path in found_webps]
+        pngs = [remap_path(path, rename_map) for path in pngs]
+        unused = [remap_path(path, rename_map) for path in unused]
+        unused_webp = [remap_path(path, rename_map) for path in unused_webp]
+        refs = {remap_path(path, rename_map): files for path, files in refs.items()}
+
+    rows: list[Conversion] = []
     converted_paths: set[Path] = set()
     pending: list[tuple[int, Path]] = []
     tmp_dir: tempfile.TemporaryDirectory[str] | None = None
-    if args.dry_run:
-        tmp_dir = tempfile.TemporaryDirectory(prefix="png-to-webp-")
+    workers = args.jobs
 
-    for index, row in enumerate(rows):
-        if row.webp.exists() and not args.force:
-            row.status = "skipped"
-            row.detail = "webp already exists (use --force to reconvert)"
-            row.webp_bytes = row.webp.stat().st_size
-            continue
-        dest = row.webp
-        if tmp_dir is not None:
-            dest = Path(tmp_dir.name) / f"{index}-{row.png.stem}.webp"
-        pending.append((index, dest))
+    if pngs:
+        for png in pngs:
+            dest = lowercase_dest(png).with_suffix(".webp")
+            rows.append(
+                Conversion(
+                    png=png,
+                    webp=dest,
+                    png_bytes=png.stat().st_size,
+                    markdown=refs.get(png, []),
+                )
+            )
+        if args.dry_run:
+            tmp_dir = tempfile.TemporaryDirectory(prefix="png-to-webp-")
+        for index, row in enumerate(rows):
+            if row.webp.exists() and not args.force:
+                row.status = "skipped"
+                row.detail = "webp already exists (use --force to reconvert)"
+                row.webp_bytes = row.webp.stat().st_size
+                continue
+            dest = row.webp
+            if tmp_dir is not None:
+                dest = Path(tmp_dir.name) / f"{index}-{row.png.stem}.webp"
+            pending.append((index, dest))
+        workers = min(args.jobs, max(1, len(pending))) if pending else args.jobs
+    elif not pending_renames:
+        print("No PNG files to convert.")
+        print_report(
+            [], unused, unused_webp, renames, args.dry_run, args.keep, args.jobs
+        )
+        return 0
+    else:
+        print("No PNG files to convert.")
 
-    workers = min(args.jobs, max(1, len(pending)))
     if pending:
         print(f"Converting {len(pending)} PNG file(s) with {workers} worker(s)...")
         spinner = itertools.cycle("|/-\\")
@@ -500,8 +675,10 @@ def main(argv: list[str] | None = None) -> int:
     if tmp_dir is not None:
         tmp_dir.cleanup()
 
+    renamed_paths = {row.src for row in renames if row.status == "renamed"}
+    renamed_paths.update(row.dest for row in renames if row.status == "renamed")
     for md in md_files:
-        rewrite_markdown(md, converted_paths, args.dry_run)
+        rewrite_markdown(md, converted_paths, renamed_paths, args.dry_run)
 
     for row in rows:
         if row.status == "converted":
@@ -512,8 +689,18 @@ def main(argv: list[str] | None = None) -> int:
             if row.status == "converted" and row.png.exists():
                 row.png.unlink()
 
-    print_report(rows, unused, args.dry_run, args.keep, workers if pending else args.jobs)
-    return 1 if any(row.status == "failed" for row in rows) else 0
+    print_report(
+        rows,
+        unused,
+        unused_webp,
+        renames,
+        args.dry_run,
+        args.keep,
+        workers if pending else args.jobs,
+    )
+    return 1 if any(row.status == "failed" for row in rows) or any(
+        row.status == "failed" for row in renames
+    ) else 0
 
 
 if __name__ == "__main__":

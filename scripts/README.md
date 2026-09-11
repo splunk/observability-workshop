@@ -1,6 +1,6 @@
 # PNG to WebP
 
-`png-to-webp.py` converts workshop PNG assets to WebP, rewrites Markdown references to match, and reports size savings plus unused PNGs.
+`png-to-webp.py` converts workshop PNG assets to WebP, rewrites Markdown references to match, lowercases mixed-case image filenames, and reports size savings plus unused PNG and WebP files.
 
 It is a CLI. Preview with `--dry-run` before writing files.
 
@@ -61,7 +61,7 @@ Without `--dry-run` or `--yes`, the script asks for confirmation. Non-interactiv
 | `--quality N` | `cwebp` quality 0–100. Default: `80`. |
 | `--keep` | Leave the original PNG in place after a successful convert. |
 | `--force` | Reconvert even when a `.webp` file already exists. |
-| `--referenced-only` | Convert only PNGs referenced by Markdown. Unused files are still listed. |
+| `--referenced-only` | Convert only PNGs referenced by Markdown. Unused PNG and WebP files are still listed. |
 | `--markdown-root DIR` | Tree used to find Markdown references. Default: `content/`. |
 | `--jobs N`, `-j N` | Parallel `cwebp` workers. Default: all CPU cores. Use `1` for sequential. |
 
@@ -69,27 +69,28 @@ Without `--dry-run` or `--yes`, the script asks for confirmation. Non-interactiv
 
 PNGs under the path you pass are converted. Markdown updates search the whole `--markdown-root` tree so a scoped convert cannot leave stale links in another section.
 
-These reference forms are rewritten when they resolve to a converted file:
+These reference forms are rewritten when they resolve to a converted or renamed file:
 
 - Front matter: `images/foo.png`
 - Markdown images: `![alt](../images/foo.png)`
 - HTML / shortcodes: `src="images/foo.png"`
 - Query strings are kept: `foo.png?width=20vw` becomes `foo.webp?width=20vw`
+- Mixed-case names: `NVIDIA-Subscriptions.png` becomes `nvidia-subscriptions.webp` (or `.png` if only the filename case changes)
 
 External `http://` / `https://` URLs are left alone.
 
 Leaf pages such as `section/page.md` are served as `section/page/`, so `../images/foo.png` is treated as `section/images/foo.png`.
 
-## Unused PNGs
+## Unused PNG and WebP files
 
-Every run lists PNGs under the scan path that no Markdown file references, with file sizes. That report is independent of conversion.
+Every run lists PNG and WebP files under the scan path that no Markdown file references, with file sizes. That report is independent of conversion, so a folder that is already WebP-only still prints unused WebPs.
 
-- Default: unused PNGs are converted as well, and still appear under **Unused PNGs**.
-- `--referenced-only`: unused PNGs are listed and not converted.
+- Default: unused PNGs are converted as well, and still appear under **Unused PNGs**. Unused WebPs are listed only.
+- `--referenced-only`: unused PNGs are listed and not converted. Unused WebPs are still listed.
 
 ## Report
 
-The script prints each converted file (before/after size), each updated `.md`, unused PNGs, and a summary with worker count and total savings.
+The script prints each converted file (before/after size), each lowercased filename with the Markdown files that were updated, unused PNGs, unused WebPs, and a summary with worker count and total savings.
 
 A progress bar and spinner appear on stderr in an interactive terminal. They are omitted when output is piped or when `NO_PROGRESS=1`. Set `NO_COLOR=1` to disable colour.
 
@@ -97,4 +98,5 @@ A progress bar and spinner appear on stderr in an interactive terminal. They are
 
 - Existing `.webp` files are skipped unless you pass `--force`.
 - Successful converts delete the PNG unless you pass `--keep`.
+- Image filenames with uppercase letters are renamed to lowercase (`NVIDIA-Subscriptions.png` → `nvidia-subscriptions.png`). Markdown that points at those files is updated in the same run. On case-insensitive disks the rename uses a temporary name so the case change is real.
 - Dry-run still runs `cwebp` into a temp directory so the savings numbers are real. Nothing in `content/` is written.
