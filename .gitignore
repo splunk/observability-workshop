@@ -21,6 +21,7 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 /venv/
+.venv/
 /public/
 /site/
 /node_modules/
@@ -67,3 +68,4 @@ workshop/appd/app/target/
 assets/jsconfig.json
 workshop/profiling/doorgame/.gradle/
 assets/jsconfig.json
+__pycache__/
