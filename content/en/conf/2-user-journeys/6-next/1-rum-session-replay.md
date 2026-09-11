@@ -9,6 +9,8 @@ This activity shows how a front-end developer instruments a small application wi
 
 Download the {{< rum-example-link >}} and replace the two centralized placeholders for `NORTHSTAR_REALM` and `NORTHSTAR_RUM_TOKEN`. The example pre-enables Session Replay so the lab requires no code changes beyond those replacements. It uses the current `v3` agent path; for production, pin the exact released version you tested. For this lab, start with the easier, certificate-free `http://localhost` path. An optional HTTPS path is also provided. The browser agent should load synchronously and as early as possible in the page `<head>`.
 
+Session Replay requires an Enterprise subscription. If your organization does not have it, complete the Basic RUM portion and skip the replay-specific checks.
+
 ## Prepare the lab
 
 1. In Splunk Observability Cloud, select **Settings** > **Access Tokens** > **New Token**. You can also reach this token from the guided **Browser Instrumentation** setup under **Digital Experience** > **Real User Monitoring**.
@@ -154,6 +156,8 @@ The `*-key.pem` file is a private key. Do not commit or share either certificate
 
 Basic RUM needs the browser agent and a call to `SplunkRum.init`. This captures front-end telemetry such as page loads, resource and network requests, interactions, errors, and web vitals.
 
+The downloaded example already includes this configuration. The following is reference code; do not create a second initialization block.
+
 ```html
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script>
@@ -171,11 +175,11 @@ The `applicationName`, `version`, and `deploymentEnvironment` values are how you
 
 ![Splunk RUM application overview](../images/rum-overview.png)
 
-### Optional: name an important user journey
+### Included: name an important user journey
 
-Automatic interactions tell you that a user clicked a button. A workflow span adds the business meaning of that action, such as `northstar.cart.add`. Add the `workflow.name` attribute and end the span when the action finishes. Splunk RUM can then show the action as a custom workflow and calculate its count and p75 duration.
+Automatic interactions tell you that a user clicked a button. A workflow span adds the business meaning of that action, such as `northstar.cart.add`. The downloaded example already records two workflows; you do not need to add or edit this code during the lab. Splunk RUM can then show the actions as custom workflows and calculate their count and p75 duration.
 
-Northstar Coffee uses the browser agent's registered OpenTelemetry API so the example does not need another package:
+For reference, Northstar Coffee uses the browser agent's registered OpenTelemetry API so the example does not need another package:
 
 ```js
 function recordWorkflow(name, work) {
@@ -200,7 +204,7 @@ The **Simulate a UI error** button calls `SplunkRum.error` with a handled demo e
 
 ## Add Session Replay
 
-Session Replay is an additional recorder. The downloadable example already loads and initializes both agents in the required order. A compact version of that setup is:
+Session Replay is an additional recorder. The downloadable example already loads and initializes both agents in the required order; attendees do not need to copy this block. A compact reference version is:
 
 ```html
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
@@ -233,9 +237,9 @@ After generating a session, open **Digital Experience** > **Real User Monitoring
 
 ![RUM Session Search with replay availability](../images/rum-session-search.png)
 
-### Optional: sample complete sessions in production
+### Production-only: sample complete sessions
 
-The lab keeps every session eligible so the replay is easy to find. In production, sample whole sessions when you need to reduce volume or cost; session-level sampling keeps each selected journey intact:
+Skip this section during the lab. The lab keeps every session eligible so the replay is easy to find. In production, sample whole sessions when you need to reduce volume or cost; session-level sampling keeps each selected journey intact:
 
 ```js
 SplunkRum.init({
@@ -257,7 +261,7 @@ Treat replay as user data. A useful replay needs enough context to explain the j
 3. Keep PII masked even when nearby labels are visible.
 4. Exclude areas where recording the content or interaction has no troubleshooting value.
 
-Northstar Coffee uses one stable class for known-safe content and narrow selectors for sensitive areas:
+Northstar Coffee already uses one stable class for known-safe content and narrow selectors for sensitive areas. This reference block is included for explanation; do not edit it separately in the downloaded file:
 
 ```html
 <script>
@@ -314,15 +318,16 @@ SplunkRum.init({
 
 For example, `/checkout?campaign=workshop&email=learner@example.invalid` retains `campaign=workshop` but exports the email value as `<redacted>`. The safest design is still to avoid placing PII in URLs, DOM identifiers, custom attributes, or user metadata in the first place. RUM does not automatically capture a named user identity, but current agents can create a persistent anonymous user ID for session and journey correlation. If that is not appropriate, explicitly set `user: { trackingMode: "noTracking" }`; only add approved user identifiers when there is a clear operational need.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="Required exercise" style="green" icon="running" %}}
 
-1. Open the example `index.html`, replace the two centralized placeholders, and confirm that **Basic RUM** and **Session Replay** are already enabled. Use your browser's developer tools to confirm the agents load before the application script.
-2. Serve the example on `http://localhost`, open it in a private browser window, click **Add to cart**, enter a sample email and dummy card digits, and select **Place order**.
-3. Open the session in Splunk RUM and filter for **Session Replay = Present**.
-4. Look for `northstar.cart.add` and `northstar.demo_order.submit` as custom workflows or workflow spans.
-5. Click **Simulate a UI error** and find the handled error in the RUM session timeline. Confirm that the page remains usable and no order was sent.
-6. Compare the replay with the privacy map in the app. Confirm that the page and product context are visible, the email value is masked, and the card-entry block is replaced by an excluded area. The **Place demo order** action and result should remain visible.
-7. Add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.
+1. Download `index.html`, replace the two centralized placeholders, and save the file.
+2. Serve the folder with the Python command above and open `http://localhost:8080/index.html` in a private browser window.
+3. Click **Add to cart**, enter `learner@example.invalid` and dummy card digits such as `0000`, then click **Place demo order**.
+4. In Splunk RUM, open **Digital Experience** > **Real User Monitoring** > **Session Search**, filter for **Session Replay = Present**, and open the newest session.
+5. On the `northstar-coffee` Browser RUM application page, open **Custom Workflows** and confirm `northstar.cart.add` and `northstar.demo_order.submit` appear. If you only see the session, use its event list to confirm the same workflow names.
+6. Return to the app and click **Simulate a UI error**. Refresh Session Search if needed, open the new session, and find the handled error. Confirm that the page remains usable and no order was sent.
+7. In the replay, confirm that page and product context are visible, the email value is masked, the card-entry block is excluded, and the **Place demo order** action and result remain visible.
+8. Optional: add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.
 
 {{% /notice %}}
 
