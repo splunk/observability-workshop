@@ -7,14 +7,14 @@ time: 20 minutes
 
 This activity shows how a front-end developer instruments a small application with **Splunk Real User Monitoring (RUM)** and then adds **Session Replay**. The example is intentionally framework-free so that the configuration is easy to recognize in any application.
 
-Download the {{< rum-example-link >}} and replace the placeholders for `realm` and `rumAccessToken`. The example uses the current `v3` agent path; for production, pin the exact released version you tested. For this lab, start with the easier, certificate-free `http://localhost` path. An optional HTTPS path is also provided. The browser agent should load synchronously and as early as possible in the page `<head>`.
+Download the {{< rum-example-link >}} and replace the two centralized placeholders for `NORTHSTAR_REALM` and `NORTHSTAR_RUM_TOKEN`. The example pre-enables Session Replay so the lab requires no code changes beyond those replacements. It uses the current `v3` agent path; for production, pin the exact released version you tested. For this lab, start with the easier, certificate-free `http://localhost` path. An optional HTTPS path is also provided. The browser agent should load synchronously and as early as possible in the page `<head>`.
 
 ## Prepare the lab
 
 1. In Splunk Observability Cloud, select **Settings** > **Access Tokens** > **New Token**. You can also reach this token from the guided **Browser Instrumentation** setup under **Digital Experience** > **Real User Monitoring**.
 2. Give the token a name and select the **RUM token** authorization scope. A RUM token is a public ingestion key intended for client-side JavaScript; do not use an **Ingest token**, **API token**, admin token, or user session token here.
 3. Find the organization’s realm under **Settings** > your username. For example, `app.us1.observability.splunkcloud.com` uses the `us1` realm.
-4. Use the RUM token and realm in the example app. The RUM token will be visible in client-side code, so use a dedicated lab token and never substitute a broader token. Do not commit the workshop token to this repository.
+4. Use the RUM token and realm in the example app. The downloaded example pre-enables Session Replay and centralizes these values, so replace `NORTHSTAR_REALM` and `NORTHSTAR_RUM_TOKEN` once each. The RUM token will be visible in client-side code, so use a dedicated lab token and never substitute a broader token. Do not commit the workshop token to this repository.
 
 ![Browser Instrumentation Select Token step](../images/rum-token-step.png)
 
@@ -46,8 +46,8 @@ Complete these steps on your own device:
    If the browser opens the file instead of downloading it, use **Save Link As** and keep the filename `index.html`.
 3. Open `index.html` in a text editor and replace:
 
-   * `us0` with your realm, such as `us1`.
-   * `<RUM_ACCESS_TOKEN>` with your RUM token. It appears twice when Session Replay is enabled.
+   * `us0` in `NORTHSTAR_REALM` with your realm, such as `us1`.
+   * `<RUM_ACCESS_TOKEN>` in `NORTHSTAR_RUM_TOKEN` with your RUM token.
 
 4. Choose **one** of the following options. The commands include the full path to the lab folder, so they can be run from any directory. Do not open the file directly with a `file://` URL; using a local web server gives the browser a consistent origin for session tracking.
 
@@ -200,29 +200,34 @@ The **Simulate a UI error** button calls `SplunkRum.error` with a handled demo e
 
 ## Add Session Replay
 
-Session Replay is an additional recorder. Load both scripts first, then initialize RUM and the recorder in that order:
+Session Replay is an additional recorder. The downloadable example already loads and initializes both agents in the required order. A compact version of that setup is:
 
 ```html
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
 <script>
+  const NORTHSTAR_REALM = "us0";
+  const NORTHSTAR_RUM_TOKEN = "<RUM_ACCESS_TOKEN>";
+
   SplunkRum.init({
-    realm: "us0",
-    rumAccessToken: "<RUM_ACCESS_TOKEN>",
+    realm: NORTHSTAR_REALM,
+    rumAccessToken: NORTHSTAR_RUM_TOKEN,
     applicationName: "northstar-coffee",
     version: "1.0.0",
     deploymentEnvironment: "workshop"
   });
 
   SplunkSessionRecorder.init({
-    realm: "us0",
-    rumAccessToken: "<RUM_ACCESS_TOKEN>",
+    realm: NORTHSTAR_REALM,
+    rumAccessToken: NORTHSTAR_RUM_TOKEN,
     recorder: "splunk"
   });
 </script>
 ```
 
 RUM answers **what** happened and how long it took. Replay adds the visual sequence of DOM changes and interactions that helps explain **what the user experienced**. Session Replay requires an Enterprise subscription and RUM browser agent version 2.1.0 or later. Pin and test a released agent version before using it in production.
+
+For this lab, do not add sampling: keeping the default ratio of `1.0` makes every learner session easier to find. The optional production example below shows how to lower volume later.
 
 After generating a session, open **Digital Experience** > **Real User Monitoring** > **Session Search**. Filter for **Session Replay = Present**, then select the session to open the replay player.
 
@@ -233,9 +238,12 @@ After generating a session, open **Digital Experience** > **Real User Monitoring
 The lab keeps every session eligible so the replay is easy to find. In production, sample whole sessions when you need to reduce volume or cost; session-level sampling keeps each selected journey intact:
 
 ```js
-tracer: {
-  sampler: new SplunkRum.SessionBasedSampler({ ratio: 0.5 })
-}
+SplunkRum.init({
+  // ... realm, token, and application settings ...
+  tracer: {
+    sampler: new SplunkRum.SessionBasedSampler({ ratio: 0.5 })
+  }
+});
 ```
 
 A ratio of `0.5` means roughly half of sessions are reported. Start with `1.0` while learning, then choose a ratio that fits your organization’s RUM and Session Replay limits. New replay sessions need capacity under both limits and can receive HTTP 429 when either is reached. [Sampling and configuration](https://help.splunk.com/en/splunk-observability-cloud/manage-data/instrument-front-end-applications/instrument-mobile-and-web-applications-for-splunk-real-user-monitoring-rum/instrument-browser-applications-for-splunk-rum/configure-the-splunk-rum-browser-agent) · [RUM limits](https://help.splunk.com/en/splunk-observability-cloud/administer/org-reference-info/per-product-system-limits-in-splunk-observability-cloud/rum-system-limits)
@@ -308,10 +316,10 @@ For example, `/checkout?campaign=workshop&email=learner@example.invalid` retains
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Open the example `index.html`, replace the placeholders, and confirm that **Basic RUM** is already enabled. Use your browser's developer tools to confirm the agent loads before the application script.
+1. Open the example `index.html`, replace the two centralized placeholders, and confirm that **Basic RUM** and **Session Replay** are already enabled. Use your browser's developer tools to confirm the agents load before the application script.
 2. Serve the example on `http://localhost`, open it in a private browser window, click **Add to cart**, enter a sample email and dummy card digits, and select **Place order**.
-3. Enable the Session Replay script and initialization, repeat the journey, and open the session in Splunk RUM.
-4. Click **Add to cart** and **Place demo order**. Look for `northstar.cart.add` and `northstar.demo_order.submit` as custom workflows or workflow spans.
+3. Open the session in Splunk RUM and filter for **Session Replay = Present**.
+4. Look for `northstar.cart.add` and `northstar.demo_order.submit` as custom workflows or workflow spans.
 5. Click **Simulate a UI error** and find the handled error in the RUM session timeline. Confirm that the page remains usable and no order was sent.
 6. Compare the replay with the privacy map in the app. Confirm that the page and product context are visible, the email value is masked, and the card-entry block is replaced by an excluded area. The **Place demo order** action and result should remain visible.
 7. Add `?campaign=workshop&email=learner@example.invalid&token=do-not-ship-this` to the local URL. In the exported `http.url`, confirm that `campaign=workshop` remains useful while the `email` and `token` values become `<redacted>`.

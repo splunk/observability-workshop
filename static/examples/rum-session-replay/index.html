@@ -7,44 +7,47 @@
 
     <!-- Load the RUM agent as early and synchronously as possible. -->
     <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
-    <!-- Uncomment this script and the recorder init block below to enable Session Replay. -->
-    <!-- <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script> -->
+    <!-- Session Replay is preconfigured below; replace the two placeholders once. -->
+    <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
     <script>
-      SplunkRum.init({
-        realm: "us0",
-        rumAccessToken: "<RUM_ACCESS_TOKEN>",
-        applicationName: "northstar-coffee",
-        version: "1.0.0",
-        deploymentEnvironment: "workshop",
-        exporter: {
-          // Preserve useful URL context while removing sensitive query values.
-          onAttributesSerializing: (attributes) => ({
-            ...attributes,
-            "http.url": typeof attributes["http.url"] === "string"
-              ? attributes["http.url"].replace(/([?&](?:email|token)=)[^&]*/gi, "$1<redacted>")
-              : attributes["http.url"]
-          })
-        }
-      });
-    </script>
+      const NORTHSTAR_REALM = "us0";
+      const NORTHSTAR_RUM_TOKEN = "<RUM_ACCESS_TOKEN>";
 
-    <!-- The defaults keep text and input values masked. -->
-    <!--
-    <script>
-      SplunkSessionRecorder.init({
-        realm: "us0",
-        rumAccessToken: "<RUM_ACCESS_TOKEN>",
-        recorder: "splunk",
-        maskAllInputs: true,
-        maskAllText: true,
-        sensitivityRules: [
-          { rule: "unmask", selector: ".replay-safe" },
-          { rule: "mask", selector: ".customer-email" },
-          { rule: "exclude", selector: "#payment-details" }
-        ]
-      });
+      if (window.SplunkRum) {
+        SplunkRum.init({
+          realm: NORTHSTAR_REALM,
+          rumAccessToken: NORTHSTAR_RUM_TOKEN,
+          applicationName: "northstar-coffee",
+          version: "1.0.0",
+          deploymentEnvironment: "workshop",
+          exporter: {
+            // Preserve useful URL context while removing sensitive query values.
+            onAttributesSerializing: (attributes) => ({
+              ...attributes,
+              "http.url": typeof attributes["http.url"] === "string"
+                ? attributes["http.url"].replace(/([?&](?:email|token)=)[^&]*/gi, "$1<redacted>")
+                : attributes["http.url"]
+            })
+          }
+        });
+      }
+
+      // The defaults keep text and input values masked.
+      if (window.SplunkSessionRecorder) {
+        SplunkSessionRecorder.init({
+          realm: NORTHSTAR_REALM,
+          rumAccessToken: NORTHSTAR_RUM_TOKEN,
+          recorder: "splunk",
+          maskAllInputs: true,
+          maskAllText: true,
+          sensitivityRules: [
+            { rule: "unmask", selector: ".replay-safe" },
+            { rule: "mask", selector: ".customer-email" },
+            { rule: "exclude", selector: "#payment-details" }
+          ]
+        });
+      }
     </script>
-    -->
 
     <style>
       :root {
