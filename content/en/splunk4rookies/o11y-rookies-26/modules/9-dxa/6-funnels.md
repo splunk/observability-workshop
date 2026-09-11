@@ -20,7 +20,7 @@ Think about critical journeys in your own applications. How would you define the
 
 3. Review the funnel visualization and click drop-off segments to view relevant user sessions.
 
-![Conversion funnel from homepage to order confirmation showing drop-off percentages at each checkout step](../images/funnel.png)
+![Conversion funnel from homepage to order confirmation showing drop-off percentages at each checkout step](../images/funnel.webp)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}

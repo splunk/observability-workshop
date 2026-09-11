@@ -9,7 +9,7 @@ cascade:
   hidden: true
 params:
   images:
-    - images/lo.png
+    - images/lo.webp
 ---
 
 {{% notice icon="user" style="orange" title="Persona" %}}

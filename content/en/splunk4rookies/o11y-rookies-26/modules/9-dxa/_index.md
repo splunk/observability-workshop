@@ -7,7 +7,7 @@ authors: ["Sarah Ware"]
 description: Understand user behavior, friction, and conversion in Astronomy Shop using DXA -- no code changes required.
 params:
   images:
-    - images/funnel.png
+    - images/funnel.webp
 ---
 
 **Digital Experience Analytics (DXA)** is a solution within Splunk Observability Cloud that turns RUM session data into actionable insights about end user adoption, friction, and conversion. In this module, you will explore a pre-configured DXA project for the Astronomy Shop — no instrumentation or code changes required.
