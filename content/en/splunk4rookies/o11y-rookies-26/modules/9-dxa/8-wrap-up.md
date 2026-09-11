@@ -56,4 +56,4 @@ There is no single correct answer — strong responses connect a specific signal
 
 {{% /exercise %}}
 
-{{< pager prev="/en/splunk4rookies/o11y-rookies-26/1-modules/" prevLabel="Back to Lessons" >}}
+{{< pager prev="/en/splunk4rookies/o11y-rookies-26/modules/" prevLabel="Back to Lessons" >}}

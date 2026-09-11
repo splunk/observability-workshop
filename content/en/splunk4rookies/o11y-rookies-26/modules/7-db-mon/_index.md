@@ -1,6 +1,5 @@
 ---
-title: What Is That Database Doing...
-linkTitle: 7. What Is That Database Doing...
+title: What is that Database doing?
 weight: 7
 layout: chapter
 time: 45 minutes

@@ -1,6 +1,5 @@
 ---
 title: Digital Experience Analytics
-linkTitle: 9. Digital Experience Analytics
 weight: 9
 layout: chapter
 time: 45–60 minutes

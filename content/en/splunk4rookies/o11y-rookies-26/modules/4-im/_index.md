@@ -1,6 +1,5 @@
 ---
-title: Neighbours Are a Pain
-linkTitle: 4. Neighbours Are a Pain
+title: Neighbours are a pain
 weight: 4
 layout: chapter
 time: 45 minutes
