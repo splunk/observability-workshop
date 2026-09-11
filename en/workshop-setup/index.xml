@@ -25,7 +25,7 @@
 &lt;/td&gt;
  &lt;td&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rookies.png" alt="Rookies" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rookies.webp" alt="Rookies" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -38,7 +38,7 @@
 &lt;/td&gt;
  &lt;td&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/ninjas.png" alt="Ninjas" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/ninjas.webp" alt="Ninjas" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -66,7 +66,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/delete-workshop.png" alt="Delete Workshop" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/delete-workshop.webp" alt="Delete Workshop" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -77,7 +77,7 @@
 &lt;p&gt;The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. &lt;strong&gt;SWiPE&lt;/strong&gt; provides a simple form to configure this. You can find this form in the &lt;strong&gt;Tools&lt;/strong&gt; section of SWiPE.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/log-observer-connect.png" alt="Log Observer Connect" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/log-observer-connect.webp" alt="Log Observer Connect" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
