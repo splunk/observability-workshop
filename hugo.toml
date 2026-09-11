@@ -23,6 +23,12 @@ disableKinds = ["taxonomy", "term"]
     min = "0.161.1"
   [[module.imports]]
     path = "github.com/splunk/hugo-theme-splunk-workshop"
+
+  # Keep runnable workshop examples with the other workshop assets while
+  # publishing them at the stable URL used by the lesson download link.
+  [[module.mounts]]
+    source = "workshop/demos/northstar-coffee"
+    target = "static/examples/rum-session-replay"
 [languages]
   [languages.en]
     label      = "English"
