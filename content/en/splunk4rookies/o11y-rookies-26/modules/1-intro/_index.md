@@ -1,10 +1,10 @@
 ---
 title: Introduction to Observability Cloud
-linkTitle: Intro
+linkTitle: Introduction
 weight: 1
 layout: chapter
 time: 60 minutes
-description: In one hour, we take you through hands-on troubleshooting against a fully instrumented Kubernetes microservices application using Splunk Observability Cloud. This serves as an introduction and a foundation for the follow-up lessons.
+description: In one hour, we take you through hands-on troubleshooting against a fully instrumented Kubernetes microservices application using Splunk Observability Cloud.
 params:
   images:
     - images/featured-o11y.png

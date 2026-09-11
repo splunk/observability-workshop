@@ -1,8 +1,6 @@
 ---
-title: Let's Introduce Our Friend...
-linkTitle: 2. Let's Introduce Our Friend...
+title: Let's introduce our friend ...
 weight: 2
-#archetype: chapter
 time: 45 minutes
 description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
 hidden: true

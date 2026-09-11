@@ -1,6 +1,5 @@
 ---
-title: Find the Issue Before Social Media Does...
-linkTitle: 5. Find the Issue Before Social Media Does...
+title: Beat social media to the issue
 weight: 5
 time: 45 minutes
 description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.

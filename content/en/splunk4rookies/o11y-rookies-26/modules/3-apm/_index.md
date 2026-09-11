@@ -1,6 +1,5 @@
 ---
-title: Where Did That Error Come From?
-linkTitle: 3. Where Did That Error Come From?
+title: Where did that error come from?
 weight: 3
 time: 45 minutes
 description: Trace an error across microservices to find exactly which service is breaking — and why.

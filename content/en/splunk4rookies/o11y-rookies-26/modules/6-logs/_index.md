@@ -1,6 +1,5 @@
 ---
-title: Finding the Needle in the Logs
-linkTitle: 6. Finding the Needle in the Logs
+title: Finding the needle in the Logs
 weight: 6
 layout: chapter
 time: 45 minutes
@@ -28,4 +27,4 @@ This module contains two scenarios:
 
 <!-- TODO screenshot: Log Observer hero image -->
 
-{{< pager prev="/en/splunk4rookies/o11y-rookies-26/1-modules/"  prevLabel="Back to Lessons" >}}
+{{< pager prev="/en/splunk4rookies/o11y-rookies-26/modules/"  prevLabel="Back to Lessons" >}}
