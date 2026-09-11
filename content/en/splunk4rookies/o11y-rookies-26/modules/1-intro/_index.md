@@ -7,7 +7,7 @@ time: 60 minutes
 description: In one hour, we take you through hands-on troubleshooting against a fully instrumented Kubernetes microservices application using Splunk Observability Cloud.
 params:
   images:
-    - images/featured-o11y.png
+    - images/featured-o11y.webp
 ---
 {{< presenter >}}
 Before the workshop begins, configure the Astronomy Shop’s feature flags:

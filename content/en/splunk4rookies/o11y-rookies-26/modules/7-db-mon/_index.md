@@ -9,7 +9,7 @@ cascade:
   hidden: true
 params:
   images:
-    - images/db-mon.avif
+    - images/db-mon.webp
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

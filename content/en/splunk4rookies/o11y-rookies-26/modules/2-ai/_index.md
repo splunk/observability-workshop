@@ -8,7 +8,7 @@ cascade:
   hidden: true
 params:
   images:
-    - images/ai.gif
+    - images/ai.webp
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

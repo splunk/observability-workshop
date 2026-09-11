@@ -10,7 +10,7 @@ aliases:
   - /o11y-rookies-26/8-secure-application/
 params:
   images:
-    - images/secureapp.avif
+    - images/secureapp.webp
 ---
 
 This workshop introduces you to the benefits of embedding application security inside Observability workflows. By the end of these modules, you will understand how engineering and security teams can share one runtime view of risk, prioritize beyond CVSS alone, and feed findings into existing SOC tools.

@@ -8,7 +8,7 @@ cascade:
   hidden: true
 params:
   images:
-    - images/rum.avif
+    - images/rum.webp
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}

@@ -8,7 +8,7 @@ cascade:
   hidden: true
 params:
   images:
-    - images/apm.avif
+    - images/apm.webp
 ---
 
 {{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}
