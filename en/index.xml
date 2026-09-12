@@ -345,9 +345,7 @@ the limitations running the ROSA command-line interface on Mac OS.&lt;/p&gt;</de
  &lt;/div&gt;
  &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/obi/02-obi-docker
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim docker-compose.yaml &lt;span class="c1"&gt;#or editor of choice&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>1. Bonus Bonus Activity: Configure RUM and Session Replay</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/1-rum-session-replay/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/1-rum-session-replay/</guid><description>&lt;p&gt;This activity shows how a front-end developer instruments a small application with &lt;strong&gt;Splunk Real User Monitoring (RUM)&lt;/strong&gt; and then adds &lt;strong&gt;Session Replay&lt;/strong&gt;. The example is intentionally framework-free so that the configuration is easy to recognize in any application.&lt;/p&gt;
-&lt;p&gt;Download or copy the &lt;a href="https://splunk.github.io/observability-workshop/examples/rum-session-replay/index.html"&gt;example &lt;code&gt;index.html&lt;/code&gt;&lt;/a&gt;
- and replace the placeholders for &lt;code&gt;realm&lt;/code&gt;, &lt;code&gt;rumAccessToken&lt;/code&gt;, and the RUM agent &lt;code&gt;VERSION&lt;/code&gt;. Serve the file over &lt;strong&gt;HTTPS&lt;/strong&gt; in a test environment; the browser agent should load synchronously and as early as possible in the page &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+ &lt;/div&gt;&lt;p&gt;Find the &lt;code&gt;splunk-otel-collector&lt;/code&gt; service and replace the four placeholder values with your real credentials:&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -1219,7 +1217,20 @@ The healthcare assistant is pre-loaded under &lt;code&gt;~/workshop/healthcare-a
  &lt;/div&gt;
  
 &lt;/figure&gt;
-&lt;/p&gt;</description></item><item><title>The Challenge</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/2-introduction/1-the-challenge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/2-introduction/1-the-challenge/</guid><description>&lt;h2 id="when-an-agent-gets-it-wrong"&gt;
+&lt;/p&gt;</description></item><item><title>1. Test your own site!</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/1-your-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/1-your-test/</guid><description>&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Start testing in your own Playground&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;p&gt;Go to the &lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;Splunk website&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+ and register to get the Splunk Observability Cloud Free Edition.&lt;/p&gt;
+&lt;p&gt;Follow the link from your email, and sign in at least once a month to keep the Free Edition as long as you need it!&lt;/p&gt;
+&lt;p&gt;You &lt;strong&gt;can&lt;/strong&gt; complete this exercise in the Workshop org, and the tests will get cleaned up later - but if you create tests in your own org, you can keep them running going forward and continue to experiment at your own pace.&lt;/p&gt;</description></item><item><title>The Challenge</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/2-introduction/1-the-challenge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/2-introduction/1-the-challenge/</guid><description>&lt;h2 id="when-an-agent-gets-it-wrong"&gt;
  &lt;span class="heading-text"&gt;When an agent gets it wrong&lt;/span&gt;
  &lt;a class="heading-anchor" href="#when-an-agent-gets-it-wrong" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -3044,7 +3055,9 @@ cd spring-petclinic &amp;&amp; git checkout 276880e
  &lt;span class="heading-text"&gt;config.ini - Smart Agent Configuration&lt;/span&gt;
  &lt;a class="heading-anchor" href="#configini---smart-agent-configuration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;config.ini&lt;/code&gt; file contains the main Smart Agent configuration that will be deployed to all remote hosts.&lt;/p&gt;</description></item><item><title>Connect to the OpenShift Cluster</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/2-workshop/2-connect-to-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/2-workshop/2-connect-to-openshift-cluster/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
+&lt;p&gt;The &lt;code&gt;config.ini&lt;/code&gt; file contains the main Smart Agent configuration that will be deployed to all remote hosts.&lt;/p&gt;</description></item><item><title>2. Configure RUM and Session Replay</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/2-rum-session-replay/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/6-next/2-rum-session-replay/</guid><description>&lt;p&gt;This activity shows how a front-end developer instruments a small application with &lt;strong&gt;Splunk Real User Monitoring (RUM)&lt;/strong&gt; and then adds &lt;strong&gt;Session Replay&lt;/strong&gt;. The example is intentionally framework-free so that the configuration is easy to recognize in any application.&lt;/p&gt;
+&lt;p&gt;Download or copy the &lt;a download href="https://splunk.github.io/observability-workshop/examples/rum-session-replay/index.html"&gt;example &lt;code&gt;index.html&lt;/code&gt;&lt;/a&gt;
+ and replace the placeholders for &lt;code&gt;realm&lt;/code&gt;, &lt;code&gt;rumAccessToken&lt;/code&gt;, and the RUM agent &lt;code&gt;VERSION&lt;/code&gt;. Serve the file over &lt;strong&gt;HTTPS&lt;/strong&gt; in a test environment; the browser agent should load synchronously and as early as possible in the page &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Connect to the OpenShift Cluster</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/2-workshop/2-connect-to-openshift-cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/infrastructure/2-cisco-ai-pods/2-workshop/2-connect-to-openshift-cluster/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -9129,29 +9142,7 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;To stop that from happening, let&amp;rsquo;s detect if our test is taking more than 50 seconds.&lt;/p&gt;</description></item><item><title>5. Test your own site!</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-your-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/5-your-test/</guid><description>&lt;section class="exercise"&gt;
-&lt;header class="exercise__bar"&gt;
-&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
-&lt;/span&gt;
-&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
-&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
-&lt;span class="exercise__bar-title"&gt;Start testing in your own Playground&lt;/span&gt;
-&lt;/header&gt;
-&lt;div class="exercise__panel"&gt;
-&lt;div class="exercise__body"&gt;
-&lt;p&gt;Go to the &lt;a href="https://www.splunk.com/en_us/download/observability-cloud-free-edition.html" target="_blank" rel="noopener"&gt;Splunk website&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
- and register to get the Splunk Observability Cloud Free Edition.&lt;/p&gt;
-&lt;p&gt;Follow the link from your email, and sign in at least once a month to keep the Free Edition as long as you need it!&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Go to Digital Experience &amp;gt; Synthetics, click &lt;code&gt;Create&lt;/code&gt; and add a new &lt;strong&gt;Uptime test&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Point it to a public URL owned by your organization, set a frequency, and set the public locations to test it from.&lt;/li&gt;
-&lt;li&gt;Click &lt;code&gt;Try Now&lt;/code&gt; to validate that the test configuration works as expected.&lt;/li&gt;
-&lt;li&gt;(Optional) Create a detector for uptime &amp;lt;95% or downtime &amp;gt;1%, split by location so you get location-level insights. Add your own email address first to evaluate alert noise before connecting to a team or webhook.&lt;/li&gt;
-&lt;li&gt;Save the test to start getting eyes on that endpoint health!&lt;/li&gt;
-&lt;li&gt;(Optional) Repeat the process, this time with a &lt;strong&gt;Browser test&lt;/strong&gt; running every five or 15 minutes. What do you learn from the results?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/&gt;&lt;/svg&gt;
-&lt;/span&gt;&lt;p class="callout__title"&gt;Keep in mind&lt;/p&gt;</description></item><item><title>Troubleshoot a Problem Using Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</guid><description>&lt;h2 id="explore-apm-data"&gt;
+&lt;p&gt;To stop that from happening, let&amp;rsquo;s detect if our test is taking more than 50 seconds.&lt;/p&gt;</description></item><item><title>Troubleshoot a Problem Using Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/</guid><description>&lt;h2 id="explore-apm-data"&gt;
  &lt;span class="heading-text"&gt;Explore APM Data&lt;/span&gt;
  &lt;a class="heading-anchor" href="#explore-apm-data" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
