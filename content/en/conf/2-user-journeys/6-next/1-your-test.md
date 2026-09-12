@@ -1,12 +1,14 @@
 ---
-title: 5. Test your own site!
-weight: 5
+title: 1. Test your own site!
+weight: 1
 ---
 
 {{% exercise title="Start testing in your own Playground" %}}
 Go to the [Splunk website](https://www.splunk.com/en_us/download/observability-cloud-free-edition.html) and register to get the Splunk Observability Cloud Free Edition. 
 
 Follow the link from your email, and sign in at least once a month to keep the Free Edition as long as you need it!
+
+You **can** complete this exercise in the Workshop org, and the tests will get cleaned up later - but if you create tests in your own org, you can keep them running going forward and continue to experiment at your own pace.
 
 1. Go to Digital Experience > Synthetics, click `Create` and add a new **Uptime test**. 
 1. Point it to a public URL owned by your organization, set a frequency, and set the public locations to test it from. 

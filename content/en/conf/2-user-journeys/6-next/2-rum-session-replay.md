@@ -1,7 +1,7 @@
 ---
-title: "1. Bonus Bonus Activity: Configure RUM and Session Replay"
-linkTitle: "1. Configure RUM and Session Replay"
-weight: 1
+title: "2. Configure RUM and Session Replay"
+linkTitle: "2. Configure RUM and Session Replay"
+weight: 2
 time: 10 minutes
 ---
 

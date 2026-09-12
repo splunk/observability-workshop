@@ -14,4 +14,6 @@ Finish the workshop exercises early?
 
 {{% /exercise %}}
 
-For a deeper technical activity, continue with [**Bonus Bonus Activity: Configure RUM and Session Replay**](1-rum-session-replay/). You will use a small HTML application to compare basic RUM, Session Replay, and Session Replay privacy controls.
+For a deeper technical activity, continue with:
+- [Bonus Activity: Test your site!](1-your-test/)
+- [Bonus Bonus Activity: Configure RUM and Session Replay](2-rum-session-replay/). You will use a small HTML application to compare basic RUM, Session Replay, and Session Replay privacy controls.
