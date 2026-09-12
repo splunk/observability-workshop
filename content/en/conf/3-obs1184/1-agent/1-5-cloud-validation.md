@@ -46,30 +46,30 @@ and are not part of this cloud check.
 3. In the Splunk Observability Cloud navigation menu, select
    **Infrastructure**. Search for and select the **Active hosts** navigator.
 
-   ![Infrastructure Overview showing Active hosts in the navigator search results](../images/cloud-validation-active-hosts-navigator.png)
+   ![Infrastructure Overview showing Active hosts in the navigator search results](../images/cloud-validation-active-hosts-navigator.webp)
 
 4. Paste the detected host name into the search field. Find the exact host in
    the results.
 
-   ![Active hosts navigator filtered to show the detected workshop host](../images/cloud-validation-host-search.png)
+   ![Active hosts navigator filtered to show the detected workshop host](../images/cloud-validation-host-search.webp)
 
 5. Select the matching host name. Confirm that the host navigator displays
    recent CPU, memory, disk, load, or network metrics.
 
-   ![Host navigator showing infrastructure metrics for the selected workshop host](../images/cloud-validation-host-navigator.png)
+   ![Host navigator showing infrastructure metrics for the selected workshop host](../images/cloud-validation-host-navigator.webp)
 
 6. In Splunk Observability Cloud, select **APM > Traces** (Trace Analyzer),
    choose a recent time range such as the last 15 minutes, and select **All
    traces**. Filter for service `cinema-service` and operation
    `/movie-validator`.
 
-   ![Trace Analyzer filtered to cinema-service and movie-validator with matching traces listed](../images/cloud-validation-trace-analyzer.png)
+   ![Trace Analyzer filtered to cinema-service and movie-validator with matching traces listed](../images/cloud-validation-trace-analyzer.webp)
 
 7. Open a returned trace and select the `/movie-validator` span. In **Span
    properties**, confirm that its attributes include the sample `user.*` fields
    and `otelcol.service.mode=agent`.
 
-   ![Trace view with the movie-validator span selected and its attributes displayed in Span properties](../images/cloud-validation-trace-span-properties.png)
+   ![Trace view with the movie-validator span selected and its attributes displayed in Span properties](../images/cloud-validation-trace-span-properties.webp)
 
 Telemetry can take a few minutes to become searchable. If nothing appears,
 confirm the trace and workshop CPU metrics are present locally. Then inspect
