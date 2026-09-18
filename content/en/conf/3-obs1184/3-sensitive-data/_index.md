@@ -31,4 +31,4 @@ mask the Visa and Mastercard values. You leave the Amex value visible so you
 can see what happens when a redaction policy is incomplete.
 
 Continue editing the same Config Builder project from Chapter 2. Both
-processors run in the agent before all trace exporters.
+processors run in the Collector before all trace exporters.

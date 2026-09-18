@@ -18,7 +18,7 @@ In **Options**, add these actions in order:
 2. Hash `user.email`.
 3. Delete `user.password`.
 
-Review **Preview**, then select **Add**. The generated component is equivalent
+Review **Preview**, then click **Save**. The generated component is equivalent
 to:
 
 ```yaml
@@ -90,7 +90,7 @@ This helps when the same kind of sensitive value can appear under different
 keys. In production, review the patterns regularly and test them against every
 format your applications can emit.
 
-Review **Preview**, then select **Add**. The generated component is equivalent
+Review **Preview**, then click **Save**. The generated component is equivalent
 to:
 
 ```yaml

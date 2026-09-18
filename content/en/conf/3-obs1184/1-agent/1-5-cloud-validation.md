@@ -16,7 +16,7 @@ Steps 1.2 through 1.4 is sufficient.
 {{% exercise title="Find workshop traces and host metrics" %}}
 
 Steps 1.2 and 1.3 already generated the telemetry for this validation. When
-cloud export is enabled, the agent continuously sends host metrics and sends
+cloud export is enabled, the Collector continuously sends host metrics and sends
 the `/movie-validator` spans generated in Step 1.3. You do not need to run
 `loadgen` again. The workshop logs generated in Step 1.4 are validated locally
 and are not part of this cloud check.
@@ -28,9 +28,9 @@ and are not part of this cloud check.
    echo "${CONF2026_CLOUD_ENABLED}"
    ```
 
-   Continue only when the value is `true` and the agent is running.
+   Continue only when the value is `true` and the Collector is running.
 
-2. Print the exact host name detected by the agent:
+2. Print the exact host name detected by the Collector:
 
    ```bash
    jq -r '
@@ -73,7 +73,7 @@ and are not part of this cloud check.
 
 Telemetry can take a few minutes to become searchable. If nothing appears,
 confirm the trace and workshop CPU metrics are present locally. Then inspect
-the **Agent terminal** for `401`, DNS, TLS, or export errors and recheck the realm,
+the **Collector terminal** for `401`, DNS, TLS, or export errors and recheck the realm,
 endpoint, and access token's ingest authorization in `workshop-env.sh`.
 
 When both the trace and host metrics appear, the Collector is successfully

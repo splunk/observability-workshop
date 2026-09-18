@@ -22,7 +22,7 @@ your computer.
 {{% tab title="Splunk Show instance" %}}
 
 Open the
-[OBS1184 example agent configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml).
+[OBS1184 example Collector configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml).
 On GitHub, select **Download raw file** and save `agent_config.yaml` on the
 computer running your browser.
 
@@ -44,10 +44,10 @@ Upload `agent_config.yaml`, not `workshop-env.sh`. The YAML contains environment
 variable references; `workshop-env.sh` can contain your access token.
 {{% /notice %}}
 
-{{% expand title="How this agent configuration works" %}}
+{{% expand title="How this Collector configuration works" %}}
 
-The agent has eight pipelines for three signal types. Six come from the
-version `0.157.0` default agent configuration in the Splunk Distribution of
+The Collector has eight pipelines for three signal types. Six come from the
+version `0.157.0` default Collector configuration in the Splunk Distribution of
 the OpenTelemetry Collector. The two pipelines ending in `/workshop` are for
 this workshop:
 
@@ -73,7 +73,7 @@ standard pipelines are intended to deliver production telemetry.
 
 `health_check` provides the readiness endpoint on port `13133`.
 `resource/add_mode` adds `otelcol.service.mode=agent` so you can identify data
-processed by this agent.
+processed by this Collector.
 
 {{% /expand %}}
 
@@ -81,4 +81,4 @@ Keep this Config Builder project open for Chapters 2 through 4.
 
 {{% /exercise %}}
 
-{{< checkpoint "The eight agent pipelines are visible in Config Builder." >}}
+{{< checkpoint "The eight Collector pipelines are visible in Config Builder." >}}

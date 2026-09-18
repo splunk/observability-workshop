@@ -1,5 +1,5 @@
 ---
-title: 1.3 Send traces to the agent
+title: 1.3 Send traces to the Collector
 linkTitle: 1.3 Send traces
 weight: 3
 time: 2 minutes
@@ -7,7 +7,7 @@ time: 2 minutes
 
 {{% exercise title="Send a test trace" %}}
 
-1. Verify that the agent is still running in the **Agent terminal**.
+1. Verify that the Collector is still running in the **Collector terminal**.
 2. In the **Command terminal**, send five spans:
 
 {{% tabs %}}
@@ -18,7 +18,7 @@ time: 2 minutes
 ```
 
 {{% /tab %}}
-{{% tab title="Agent debug output" %}}
+{{% tab title="Collector debug output" %}}
 
 ```text
 Traces  {"otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "traces", "resource spans": 1, "spans": 1}
@@ -55,7 +55,7 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-In the **Agent terminal**, confirm that five `/movie-validator` spans appear.
+In the **Collector terminal**, confirm that five `/movie-validator` spans appear.
 Resource detection adds host information, and `resource/add_mode` adds
 `otelcol.service.mode=agent`.
 

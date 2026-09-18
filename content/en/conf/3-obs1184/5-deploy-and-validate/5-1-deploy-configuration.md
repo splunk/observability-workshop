@@ -49,7 +49,7 @@ The YAML must contain environment-variable references, not token values.
 
 {{< step "Replace the running configuration" "2" >}}
 
-In the **Agent terminal**, press `Ctrl-C` to stop the agent. Then select the tab
+In the **Collector terminal**, press `Ctrl-C` to stop the Collector. Then select the tab
 for your execution path.
 
 {{< tabs id="config-transfer" >}}
@@ -65,7 +65,7 @@ Replace `[WORKSHOP]` with the full workshop path.
 {{% tab title="Splunk Show instance" %}}
 
 In the **Command terminal** on the Splunk Show instance, copy the completed
-configuration into the agent folder:
+configuration into the Collector folder:
 
 ```bash
 cp ~/workshop/ninja/obs1184/agent_config.solution.yaml \
@@ -96,7 +96,7 @@ test ! -f quotes.log || mv quotes.log quotes.log.before-config-builder
 
 {{< /step >}}
 
-{{< step "Restart the agent" "3" >}}
+{{< step "Restart the Collector" "3" >}}
 
 {{% notice title="Stop the previous Collector first" style="warning" %}}
 Only one Collector can listen on the workshop ports. Make sure the previous
@@ -116,15 +116,15 @@ In the **Command terminal**, confirm that the Collector is ready:
 curl -fsS http://127.0.0.1:13133/ && echo "Collector is ready"
 ```
 
-Leave the agent running for Step 5.2.
+Leave the Collector running for Step 5.2.
 
-{{% expand title="If the agent does not start" %}}
+{{% expand title="If the Collector does not start" %}}
 
 1. Read the first startup error. Collector errors usually identify the
    component, configuration field, or network address that caused the failure.
 2. If the error includes `address already in use`, run
    `ps aux | grep '[o]telcol'`. Stop the previous workshop Collector with
-   `Ctrl-C`, then start the agent again.
+   `Ctrl-C`, then start the Collector again.
 3. To see more Collector diagnostics, restart it with debug logging:
 
    ```bash
@@ -143,4 +143,4 @@ Leave the agent running for Step 5.2.
 
 {{% /exercise %}}
 
-{{< checkpoint "The updated single-agent configuration is running." >}}
+{{< checkpoint "The updated single Collector configuration is running." >}}

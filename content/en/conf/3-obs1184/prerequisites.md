@@ -135,7 +135,7 @@ already available. Press **Enter** to use each supplied value, or enter a
 replacement, such as the realm and access token for your Splunk Observability
 Cloud Free organization. Token characters are hidden while you type.
 
-Setup creates one agent configuration:
+Setup creates one Collector configuration:
 
 ```text
 [WORKSHOP]
@@ -167,4 +167,4 @@ If you use your own Splunk Observability Cloud organization:
 
 {{% /exercise %}}
 
-{{< checkpoint "One agent configuration is ready." >}}
+{{< checkpoint "One Collector configuration is ready." >}}

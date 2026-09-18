@@ -20,7 +20,7 @@ For **Component**, select `filter`, then select **Next**.
 
 ![Selecting the filter processor](../../images/config-builder-filter-component.webp)
 
-Use `health` as the component name so its Collector component ID is
+Use `health` as the instance name so its Collector component ID is
 `filter/health`.
 
 In **Options**, set the top-level `error_mode` to `ignore`. Beside
@@ -59,7 +59,7 @@ containing a `conditions` list.
 ![Adding a span-name condition under trace_conditions](../../images/config-builder-filter-trace-conditions.webp)
 
 Select **Preview**, confirm the generated YAML defines
-`processors.filter/health`, and select **Add**.
+`processors.filter/health`, and click **Save**.
 
 ![Previewing and adding the filter health component](../../images/config-builder-filter-health-preview.webp)
 
