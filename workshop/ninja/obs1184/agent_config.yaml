@@ -1,7 +1,7 @@
-# Agent configuration for the .conf26 Advanced Collector workshop.
+# Collector configuration for the .conf26 Advanced Collector workshop.
 #
 # The default components and six default service pipelines are based on the
-# Splunk Distribution of the OpenTelemetry Collector v0.157.0 agent config.
+# Splunk Distribution of the OpenTelemetry Collector v0.157.0 configuration.
 # Gateway-only alternatives are intentionally omitted. The workshop adds local
 # file/debug exporters plus metrics/workshop and logs/workshop pipelines.
 

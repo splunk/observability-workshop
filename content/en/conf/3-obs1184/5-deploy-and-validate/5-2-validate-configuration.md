@@ -5,7 +5,7 @@ weight: 2
 time: 7 minutes
 ---
 
-Keep the updated Collector running in the **Agent terminal**. Run each command
+Keep the updated Collector running in the **Collector terminal**. Run each command
 below in the **Command terminal**, which is already in `[WORKSHOP]/1-agent`.
 
 ## Local validation 1: Drop health-check spans
@@ -25,16 +25,16 @@ does not send them. Find both span names in the output:
 "name": "/_healthz"
 ```
 
-Now send five of each span through the agent:
+Now send five of each span through the Collector:
 
 ```bash
 ../loadgen -health -count 5
 ```
 
-In the **Agent terminal**, the debug exporter prints five
+In the **Collector terminal**, the debug exporter prints five
 `/movie-validator` spans. A processed span resembles this excerpt:
 
-```text { title="Expected agent debug output" }
+```text { title="Expected Collector debug output" }
 InstrumentationScope cinema.library 1.0.0
 Span #0
     Name           : /movie-validator
@@ -103,16 +103,16 @@ user.mastercard   = 5555 5555 5555 4444
 user.amex         = 3782 822463 10005
 ```
 
-Send a new span through the agent:
+Send a new span through the Collector:
 
 ```bash
 ../loadgen -count 1
 ```
 
-The **Agent terminal** shows the span after the `attributes` and `redaction`
+The **Collector terminal** shows the span after the `attributes` and `redaction`
 processors. The payment amount can vary.
 
-```text { title="Expected agent debug output" }
+```text { title="Expected Collector debug output" }
 Attributes:
      -> user.name: Str(George Lucas)
      -> user.phone_number: Str(UNKNOWN NUMBER)
@@ -191,12 +191,12 @@ and timestamp vary.
 }
 ```
 
-The File Log receiver reads the records automatically. In the **Agent
+The File Log receiver reads the records automatically. In the **Collector
 terminal**, confirm that the transform processor sets OpenTelemetry severity,
 promotes the JSON fields to attributes, and keeps only the selected resource
 attributes:
 
-```text { title="Expected agent debug output" }
+```text { title="Expected Collector debug output" }
 Resource attributes:
      -> com.splunk.sourcetype: Str(quotes)
      -> host.name: Str(<detected-host-name>)

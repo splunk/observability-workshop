@@ -52,7 +52,7 @@ it.
 
 Select **Preview**. Confirm that the preview contains one `transform`
 processor, a `resource` context with the `keep_keys` statement, and an empty
-`log` context. Select **Add**.
+`log` context. Click **Save**.
 
 ![Previewing the Transform Processor shell before adding it](../../images/config-builder-transform-preview.webp)
 

@@ -26,13 +26,13 @@ Collector.
 
 During this workshop, you will:
 
-- Run version `0.157.0` of the Collector as one agent.
+- Run version `0.157.0` of the Collector as one Collector process.
 - Generate traces and logs, and collect host metrics.
 - Check all three signals locally and, when available, in Splunk Observability
   Cloud.
 - Upload `agent_config.yaml` and inspect it in OTel Collector Config Builder.
 - Filter noisy spans, protect sensitive attributes, and transform logs.
-- Download the completed configuration, apply it to the agent, and verify the
+- Download the completed configuration, apply it to the Collector, and verify the
   results.
 
 Chapter 6 includes more ways to continue learning after the workshop.

@@ -7,7 +7,7 @@ time: 2 minutes
 
 {{% exercise title="Validate the workshop metrics pipeline locally" %}}
 
-The **Agent terminal** displays a metrics block after startup, similar to:
+The **Collector terminal** displays a metrics block after startup, similar to:
 
 ```text
 Descriptor:

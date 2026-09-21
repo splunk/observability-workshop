@@ -15,12 +15,12 @@ In the **Command terminal**, start the log load generator:
 
 The command writes a continuous stream of quotes to `quotes.log`. The
 `file_log/quotes` receiver reads the file, converts each line into an
-OpenTelemetry log record, and sends it through `logs/workshop` to the agent's
+OpenTelemetry log record, and sends it through `logs/workshop` to the Collector's
 debug and file exporters.
 
-The **Agent terminal** displays output similar to:
+The **Collector terminal** displays output similar to:
 
-```text { title="Agent debug output" }
+```text { title="Collector debug output" }
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
 ObservedTimestamp: 2026-08-02 10:00:00 +0000 UTC
 SeverityText:

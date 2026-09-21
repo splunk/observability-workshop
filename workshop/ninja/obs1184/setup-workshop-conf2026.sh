@@ -203,7 +203,7 @@ echo "Workshop setup complete."
 echo "Collector: ${installed_version}"
 echo "Cloud export: ${cloud_enabled}"
 echo
-echo "Start the agent:"
+echo "Start the Collector:"
 echo "  cd 1-agent"
 echo "  source ../workshop-env.sh"
 echo "  ../otelcol --config=agent_config.yaml"

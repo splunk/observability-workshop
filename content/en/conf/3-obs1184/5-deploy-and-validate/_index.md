@@ -6,8 +6,8 @@ weight: 8
 ---
 
 Your Config Builder project now contains the changes for all three scenarios.
-In this chapter, you download the generated YAML, replace the agent
-configuration, and restart the agent with every processor active.
+In this chapter, you download the generated YAML, replace the Collector
+configuration, and restart the Collector with every processor active.
 
 You will then verify:
 
