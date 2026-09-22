@@ -8,7 +8,7 @@ description: Follow the AI path to use AI-assisted workflows and application tel
 
 Complete these modules in the recommended order:
 
-{{< cards >}}
+{{< cards target="_blank" >}}
 {{< card title="Let's Introduce Our Friend" href="/splunk4rookies/o11y-rookies-26/modules/2-ai/" show-time="true" >}}
 Use Splunk AI capabilities to reduce noise, surface likely causes, and accelerate investigations.
 {{< /card >}}

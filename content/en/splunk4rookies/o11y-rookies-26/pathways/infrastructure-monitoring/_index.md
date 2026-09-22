@@ -8,7 +8,7 @@ description: Follow the infrastructure path to investigate resources, logs, and 
 
 Complete these modules in the recommended order:
 
-{{< cards >}}
+{{< cards target="_blank" >}}
 {{< card title="Neighbours are a pain" href="/splunk4rookies/o11y-rookies-26/modules/4-im/" show-time="true" >}}
 Find a noisy neighbour using Splunk Infrastructure Monitoring.
 {{< /card >}}
