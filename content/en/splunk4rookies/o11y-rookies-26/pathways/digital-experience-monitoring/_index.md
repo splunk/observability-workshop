@@ -7,7 +7,7 @@ description: Follow the digital experience path to understand real user behaviou
 
 Complete these modules in the recommended order:
 
-{{< cards >}}
+{{< cards target="_blank" >}}
 {{< card title="Beat social media to the issue" href="/splunk4rookies/o11y-rookies-26/modules/5-dem/" show-time="true" >}}
 Combine Real User Monitoring and Synthetics to identify and prevent poor customer experiences.
 {{< /card >}}
