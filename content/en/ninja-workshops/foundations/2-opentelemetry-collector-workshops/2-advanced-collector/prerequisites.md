@@ -73,9 +73,9 @@ Connect to the Splunk Show instance with the supplied SSH command, then run:
 
 ```bash
 cd ~/advanced-otel-workshop
-curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_amd64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -88,9 +88,9 @@ workshop does not require `scp`.
 Use this tab for an `x86_64` or `amd64` Linux laptop.
 
 ```bash
-curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_amd64 -o otelcol
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-amd64 -o loadgen
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_amd64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -100,9 +100,9 @@ chmod +x setup-workshop.sh
 Use this tab when `uname -m` reports `arm64` or `aarch64`.
 
 ```bash
-curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_linux_arm64 -o otelcol
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-linux-arm64 -o loadgen
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_arm64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -110,9 +110,9 @@ chmod +x setup-workshop.sh
 {{% tab title="Apple silicon" %}}
 
 ```bash
-curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.157.0/otelcol_darwin_arm64 -o otelcol
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/loadgen/build/loadgen-darwin-arm64 -o loadgen
-curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/obs1184/setup-workshop-conf2026.sh -o setup-workshop.sh
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_darwin_arm64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 

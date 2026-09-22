@@ -22,7 +22,7 @@ your computer.
 {{% tab title="Splunk Show instance" %}}
 
 Open the
-[OBS1184 example Collector configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.yaml).
+[OBS1184 example Collector configuration](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/advanced-otel/agent_config.yaml).
 On GitHub, select **Download raw file** and save `agent_config.yaml` on the
 computer running your browser.
 
@@ -47,7 +47,7 @@ variable references; `workshop-env.sh` can contain your access token.
 {{% expand title="How this Collector configuration works" %}}
 
 The Collector has eight pipelines for three signal types. Six come from the
-version `0.157.0` default Collector configuration in the Splunk Distribution of
+version `0.161.0` default Collector configuration in the Splunk Distribution of
 the OpenTelemetry Collector. The two pipelines ending in `/workshop` are for
 this workshop:
 

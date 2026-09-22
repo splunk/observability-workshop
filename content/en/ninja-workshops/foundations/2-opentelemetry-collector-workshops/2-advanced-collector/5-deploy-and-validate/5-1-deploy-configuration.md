@@ -17,7 +17,7 @@ validation easier to follow.
 In **Collector YAML**, confirm:
 
 - `filter/health`, `attributes`, and `redaction` are connected to `traces`.
-- `transform` is connected to `logs/workshop` after `resourcedetection`.
+- `transform` is connected to `logs/workshop` after `resource_detection`.
 - All eight imported pipelines are present: `traces`, `metrics`,
   `metrics/internal`, `logs/signalfx`, `logs`, `logs/entities`,
   `metrics/workshop`, and `logs/workshop`.
@@ -68,7 +68,7 @@ In the **Command terminal** on the Splunk Show instance, copy the completed
 configuration into the Collector folder:
 
 ```bash
-cp ~/workshop/ninja/obs1184/agent_config.solution.yaml \
+cp ~/workshop/ninja/advanced-otel/agent_config.solution.yaml \
   ~/advanced-otel-workshop/1-agent/agent_config.yaml
 ```
 
@@ -81,9 +81,9 @@ YAML into the SSH session.
 {{% notice title="Recovery copy" style="info" %}}
 If you need a new copy of the completed configuration, Splunk Show attendees
 can copy
-`~/workshop/ninja/obs1184/agent_config.solution.yaml` again. Attendees running
+`~/workshop/ninja/advanced-otel/agent_config.solution.yaml` again. Attendees running
 the Collector on the same computer as the browser can download
-[agent_config.solution.yaml](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/obs1184/agent_config.solution.yaml)
+[agent_config.solution.yaml](https://github.com/splunk/observability-workshop/blob/main/workshop/ninja/advanced-otel/agent_config.solution.yaml)
 and copy it to `[WORKSHOP]/1-agent/agent_config.yaml`.
 {{% /notice %}}
 

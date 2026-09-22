@@ -3,20 +3,11 @@ title: Advanced OpenTelemetry Collector
 description: Practice reviewing and modifying a host-installed OpenTelemetry Collector configuration.
 weight: 2
 type: chapter
-authors: ["Kyle Wang", "Antoine Toulme"]
-original_authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom"]
-ai_assistance: "Codex"
+authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom", "Kyle Wang", "Antoine Toulme"]
 time: 55 minutes
 aliases:
   - /conf/3-obs1184/
 ---
-
-{{% notice title="Workshop credits" style="info" %}}
-**.conf26 edition:** Kyle Wang and Antoine Toulme.
-
-**Original workshop:** Robert Castley, Charity Anderson, Pieter Hagen, and
-Geoff Higginbottom.
-{{% /notice %}}
 
 In this workshop, you run one Splunk Distribution of the OpenTelemetry
 Collector in **agent mode** on a Linux host or Apple silicon Mac. The Collector
@@ -28,7 +19,7 @@ Collector.
 
 During this workshop, you will:
 
-- Run version `0.157.0` of the Collector as one Collector process.
+- Run version `0.161.0` of the Collector as one Collector process.
 - Generate traces and logs, and collect host metrics.
 - Check all three signals locally and, when available, in Splunk Observability
   Cloud.

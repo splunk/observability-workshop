@@ -17,6 +17,9 @@ import (
 // Global flag to ensure the first trace always uses "George Lucas"
 var firstAttempt = true
 
+// previewOnly prints the original OTLP/HTTP JSON payload without sending it.
+var previewOnly bool
+
 // getRandomUserName selects "George Lucas" for the first trace, then randomizes
 func getRandomUserName() string {
 	userNames := []string{
@@ -173,8 +176,10 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	if err := sendJSON("http://localhost:4318/v1/traces", spanJSON); err != nil {
+	if err := sendJSON("http://127.0.0.1:4318/v1/traces", spanJSON); err != nil {
 		log.Printf("Failed to send base trace: %v", err)
+	} else if previewOnly {
+		fmt.Println("Base trace preview shown above; nothing was sent.")
 	} else {
 		fmt.Printf("\nBase trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
 	}
@@ -236,8 +241,10 @@ func sendSecurityTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	if err := sendJSON("http://localhost:4318/v1/traces", securityJSON); err != nil {
+	if err := sendJSON("http://127.0.0.1:4318/v1/traces", securityJSON); err != nil {
 		log.Printf("Failed to send security trace: %v", err)
+	} else if previewOnly {
+		fmt.Println("Security trace preview shown above; nothing was sent.")
 	} else {
 		fmt.Printf("\nSecurity trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
 	}
@@ -290,15 +297,101 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	if err := sendJSON("http://localhost:4318/v1/traces", healthJSON); err != nil {
+	if err := sendJSON("http://127.0.0.1:4318/v1/traces", healthJSON); err != nil {
 		log.Printf("Failed to send health trace: %v", err)
+	} else if previewOnly {
+		fmt.Println("Health trace preview shown above; nothing was sent.")
 	} else {
 		fmt.Printf("\nHealth trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
 	}
 }
 
+// sendCorrelatedLog sends one OTLP log record with the same trace and span IDs
+// as a base trace. This makes the optional Splunk Platform and Log Observer
+// Connect exercise demonstrably correlated instead of merely colocated.
+func sendCorrelatedLog(traceID, spanID string, timestamp int64) {
+	quote, movie := getRandomQuote()
+	logJSON := map[string]interface{}{
+		"resourceLogs": []interface{}{
+			map[string]interface{}{
+				"resource": map[string]interface{}{
+					"attributes": []interface{}{
+						map[string]interface{}{
+							"key": "service.name",
+							"value": map[string]interface{}{
+								"stringValue": "cinema-service",
+							},
+						},
+						map[string]interface{}{
+							"key": "deployment.environment",
+							"value": map[string]interface{}{
+								"stringValue": "production",
+							},
+						},
+					},
+				},
+				"scopeLogs": []interface{}{
+					map[string]interface{}{
+						"scope": map[string]interface{}{
+							"name":    "cinema.library",
+							"version": "1.0.0",
+						},
+						"logRecords": []interface{}{
+							map[string]interface{}{
+								"timeUnixNano":   fmt.Sprintf("%d", timestamp),
+								"severityNumber": 9,
+								"severityText":   "INFO",
+								"body": map[string]interface{}{
+									"stringValue": quote,
+								},
+								"attributes": []interface{}{
+									map[string]interface{}{
+										"key": "movie",
+										"value": map[string]interface{}{
+											"stringValue": movie,
+										},
+									},
+									map[string]interface{}{
+										"key": "workshop.signal",
+										"value": map[string]interface{}{
+											"stringValue": "correlated-log",
+										},
+									},
+								},
+								"traceId": traceID,
+								"spanId":  spanID,
+								"flags":   1,
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	if err := sendJSON("http://127.0.0.1:4318/v1/logs", logJSON); err != nil {
+		log.Printf("Failed to send correlated log: %v", err)
+	} else if previewOnly {
+		fmt.Println("Correlated log preview shown above; nothing was sent.")
+	} else {
+		fmt.Printf("Correlated log sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	}
+}
+
 // Helper function to send JSON data via HTTP POST
 func sendJSON(url string, data interface{}) error {
+	if previewOnly {
+		var formatted bytes.Buffer
+		encoder := json.NewEncoder(&formatted)
+		encoder.SetIndent("", "  ")
+		encoder.SetEscapeHTML(false)
+		if err := encoder.Encode(data); err != nil {
+			return fmt.Errorf("failed to format JSON preview: %w", err)
+		}
+		fmt.Printf("\nOriginal OTLP payload for %s:\n%s", url, formatted.String())
+		return nil
+	}
+
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		return fmt.Errorf("failed to marshal JSON data: %w", err)
@@ -379,7 +472,11 @@ func generateLogEntry(jsonOutput bool) string {
 // Function to write logs to a file
 func writeLogs(jsonOutput bool, count int) {
 	logFile := "quotes.log"
-	fmt.Printf("Writing logs to %s. Press Ctrl+C to stop.\n", logFile)
+	if count == 0 {
+		fmt.Printf("Writing logs to %s. Press Ctrl+C to stop.\n", logFile)
+	} else {
+		fmt.Printf("Writing %d logs to %s.\n", count, logFile)
+	}
 
 	// If count is 0, run infinitely
 	if count == 0 {
@@ -417,12 +514,17 @@ Options:
   -security   Send security traces
   -logs       Enable logging of random quotes to quotes.log
   -json       Output logs in JSON format (only applicable with -logs)
+  -correlated Send an OTLP log correlated to each base trace
+  -preview    Print original OTLP JSON payloads without sending them
   -count      Number of traces or logs to send (default: infinite)
   -h, --help  Display this help message
 
 Example:
   loadgen -health -security -count 10   Send 10 health and security traces
-  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log`)
+  loadgen -preview -health -count 1     Show one original app span and health span without sending
+  loadgen -preview -count 1             Show one original app span without sending
+  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log
+  loadgen -correlated -count 5          Send 5 traces with correlated OTLP logs`)
 }
 
 func main() {
@@ -432,6 +534,8 @@ func main() {
 	securityFlag := flag.Bool("security", false, "Send security traces")
 	logsFlag := flag.Bool("logs", false, "Enable logging of random quotes to quotes.log")
 	jsonFlag := flag.Bool("json", false, "Output logs in JSON format (only applicable with -logs)")
+	correlatedFlag := flag.Bool("correlated", false, "Send an OTLP log correlated to each base trace")
+	previewFlag := flag.Bool("preview", false, "Print original OTLP JSON payloads without sending them")
 	countFlag := flag.Int("count", 0, "Number of traces or logs to send (default: infinite)")
 	helpFlag := flag.Bool("h", false, "Display help message")
 	helpFlagLong := flag.Bool("help", false, "Display help message")
@@ -444,12 +548,23 @@ func main() {
 		os.Exit(0)
 	}
 
-	// Start logging if -logs flag is provided
+	previewOnly = *previewFlag
+
+	// File-only log generation does not need the trace loop. Run it directly so
+	// a finite -count exits as soon as the requested lines have been written.
+	if *logsFlag && !*correlatedFlag {
+		writeLogs(*jsonFlag, *countFlag)
+		return
+	}
 	if *logsFlag {
-		go writeLogs(*jsonFlag, *countFlag) // Run logs in a separate goroutine
+		go writeLogs(*jsonFlag, *countFlag)
 	}
 
-	fmt.Println("Sending traces. Use Ctrl-C to stop.")
+	if previewOnly {
+		fmt.Println("Preview mode: original OTLP payloads are printed but not sent.")
+	} else {
+		fmt.Println("Sending traces. Use Ctrl-C to stop.")
+	}
 
 	for i := 0; *countFlag == 0 || i < *countFlag; i++ {
 		traceID := generateTraceID()
@@ -457,20 +572,30 @@ func main() {
 		currentTime := getCurrentTime()
 		endTime := currentTime + int64(time.Second)
 
-		if *baseFlag && !*logsFlag {
+		if *baseFlag && (!*logsFlag || *correlatedFlag) {
 			sendBaseTrace(traceID, spanID, currentTime, endTime)
 		}
 
+		if *correlatedFlag {
+			sendCorrelatedLog(traceID, spanID, getCurrentTime())
+		}
+
 		if *healthFlag {
-			time.Sleep(2 * time.Second)
+			if !previewOnly {
+				time.Sleep(2 * time.Second)
+			}
 			sendHealthTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
 		}
 
 		if *securityFlag {
-			time.Sleep(2 * time.Second)
+			if !previewOnly {
+				time.Sleep(2 * time.Second)
+			}
 			sendSecurityTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
 		}
 
-		time.Sleep(2 * time.Second)
+		if !previewOnly {
+			time.Sleep(2 * time.Second)
+		}
 	}
 }

@@ -108,7 +108,7 @@ service:
       processors:
         - memory_limiter
         - filter/health
-        - resourcedetection
+        - resource_detection
         - resource/add_mode
         - batch
       exporters:

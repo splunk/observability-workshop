@@ -123,18 +123,18 @@ Select **Pipelines** and select the pencil-shaped **Edit** icon for
 `logs/workshop`.
 Select **+** beside **processors** and add `transform`. Keep every existing
 receiver, processor, and exporter. Use the drag handle to place `transform`
-after `resourcedetection`, then select **Edit**.
+after `resource_detection`, then select **Edit**.
 
 Open **Collector YAML** and confirm:
 
 - `transform` contains one resource context and one log context.
 - `transform` appears exactly once in the processors list under
   `service.pipelines.logs/workshop`.
-- It appears after `resourcedetection`, allowing `host.name` to be detected
+- It appears after `resource_detection`, allowing `host.name` to be detected
   before the resource allowlist is applied.
 - `filter/health`, `attributes`, and `redaction` remain connected to `traces`.
 
-The position after `resourcedetection` is intentional. If `transform` ran
+The position after `resource_detection` is intentional. If `transform` ran
 first, `host.name` might not exist yet and therefore could not survive the
 resource allowlist. `resource/add_mode` runs afterward and adds
 `otelcol.service.mode=agent`, so the final log resource contains both the
@@ -151,7 +151,7 @@ service:
         - file_log/quotes
       processors:
         - memory_limiter
-        - resourcedetection
+        - resource_detection
         - transform
         - resource/add_mode
       exporters:
@@ -160,7 +160,7 @@ service:
 ```
 
 Review **Collector YAML** and resolve any errors shown. If `transform` is not
-after `resourcedetection`, return to the Pipeline editor and use the drag
+after `resource_detection`, return to the Pipeline editor and use the drag
 handle to move it. The resource allowlist must run after host metadata is
 detected.
 

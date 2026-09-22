@@ -111,7 +111,7 @@ Select **Pipelines** and select the pencil-shaped **Edit** icon for `traces`.
 Select **+** beside **processors** to add `attributes`, then repeat to add
 `redaction`. Keep every existing receiver, processor, and exporter. Use the
 drag handles to place both new processors after `filter/health` and before
-`resourcedetection`, then select **Edit**.
+`resource_detection`, then select **Edit**.
 
 This order first removes spans you do not plan to keep, then protects the
 sensitive values in the remaining spans. Resource detection and batching run
@@ -144,7 +144,7 @@ service:
         - filter/health
         - attributes
         - redaction
-        - resourcedetection
+        - resource_detection
         - resource/add_mode
         - batch
       exporters:

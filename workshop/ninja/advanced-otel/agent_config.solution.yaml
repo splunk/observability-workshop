@@ -95,7 +95,7 @@ receivers:
     type: processlist
   zipkin:
     endpoint: "${SPLUNK_LISTEN_INTERFACE}:9411"
-  # Used by setup-workshop-conf2026.sh only when cloud export is disabled.
+  # Used by setup-workshop.sh only when cloud export is disabled.
   nop:
 
 processors:
@@ -125,9 +125,14 @@ processors:
       - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
       - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
     summary: debug
-  resourcedetection:
+  resource_detection:
     detectors: [gcp, ecs, ec2, azure, system]
     override: true
+  transform/limit_histogram_buckets:
+    metric_statements:
+      - context: datapoint
+        statements:
+          - merge_histogram_buckets(32, method="limit_buckets")
   resource/add_mode:
     attributes:
       - action: upsert
@@ -213,33 +218,33 @@ service:
   pipelines:
     traces:
       receivers: [jaeger, otlp, zipkin]
-      processors: [memory_limiter, filter/health, attributes, redaction, resourcedetection, resource/add_mode, batch]
+      processors: [memory_limiter, filter/health, attributes, redaction, resource_detection, resource/add_mode, batch]
       exporters: [debug, file/traces, otlp_http]
     metrics:
       receivers: [host_metrics, otlp]
-      processors: [memory_limiter, batch, resourcedetection]
+      processors: [memory_limiter, transform/limit_histogram_buckets, batch, resource_detection]
       exporters: [signalfx]
     metrics/internal:
       receivers: [prometheus/internal]
-      processors: [memory_limiter, batch, resourcedetection]
+      processors: [memory_limiter, batch, resource_detection]
       exporters: [signalfx]
     logs/signalfx:
       receivers: [smartagent/processlist]
-      processors: [memory_limiter, batch, resourcedetection]
+      processors: [memory_limiter, batch, resource_detection]
       exporters: [signalfx]
     logs:
       receivers: [fluent_forward, otlp]
-      processors: [memory_limiter, batch, resourcedetection]
+      processors: [memory_limiter, batch, resource_detection]
       exporters: [splunk_hec, splunk_hec/profiling]
     logs/entities:
       receivers: [nop]
-      processors: [memory_limiter, batch, resourcedetection]
+      processors: [memory_limiter, batch, resource_detection]
       exporters: [otlp_http/entities]
     metrics/workshop:
       receivers: [host_metrics/workshop]
-      processors: [memory_limiter, resourcedetection, resource/add_mode]
+      processors: [memory_limiter, resource_detection, resource/add_mode]
       exporters: [debug, file/metrics]
     logs/workshop:
       receivers: [otlp, file_log/quotes]
-      processors: [memory_limiter, resourcedetection, transform, resource/add_mode]
+      processors: [memory_limiter, resource_detection, transform, resource/add_mode]
       exporters: [debug, file/logs]
