@@ -9,11 +9,14 @@ Edit the `.streamlit/secrets.toml` file and add the following environment variab
 ```yaml
 # Agent Controls
 # -----------------------------------------------------------------------------
-agent_control_url = "https://console.multitenant.galileocloud.io/api/agent-control" 
+# Standalone:
+agent_control_url = "https://console.multitenant.sao.splunkcloud.com/api/agent-control"
+# Observability Cloud:
+# agent_control_url = "https://app.<realm>.observability.splunkcloud.com/ao/agent-control"
 agent_control_agent_name = "agent-control-example"
 agent_control_runtime_auth_mode="jwt"
-agent_control_api_key_header = "Splunk-AO-Key"
-agent_control_target_type="log_stream"
+agent_control_api_key_header = "Splunk-AO-API-Key"
+agent_control_target_type="agent_stream"
 ```
 
 ## Read New Config

@@ -9,7 +9,6 @@ from typing import Any, Callable, Optional
 
 import agent_control
 from agent_control import ControlSteerError, ControlViolationError, control
-from splunk_ao.agent_streams import get_agent_stream
 
 _initialized = False
 
@@ -349,7 +348,17 @@ def init_agent_control(
     steps: Optional[list] = None,
     force: bool = False,
 ) -> bool:
-    """Initialize or refresh Agent Control for the current Splunk AO logger/session."""
+    """Initialize Agent Control for the current Splunk AO logger/session.
+
+    Configured per the Agent Control docs, identically for standalone and
+    Observability Cloud:
+    https://agent-observability-docs.splunk.com/how-to-guides/agent-control/initialize-and-configure-agent-control
+
+    The deployment-specific server URL and API-key header come straight from the
+    AGENT_CONTROL_* environment variables, and the control target is the agent
+    stream ID the logger resolved when its session started (agent.py starts the
+    session before calling this).
+    """
     global _initialized
 
     if splunk_ao_logger is None:
@@ -357,48 +366,56 @@ def init_agent_control(
         return False
 
     server_url = os.environ.get("AGENT_CONTROL_URL")
-    agent_name = os.environ.get("AGENT_CONTROL_AGENT_NAME")
-    api_key = os.environ.get("SPLUNK_AO_API_KEY")
-    api_key_header = os.environ.get("AGENT_CONTROL_API_KEY_HEADER", "Splunk-AO-Key")
+    agent_name = os.environ.get("AGENT_CONTROL_AGENT_NAME", "default")
+    api_key = os.environ.get("SPLUNK_AO_API_KEY") or os.environ.get("SPLUNK_AO_O11Y_TOKEN")
+    api_key_header = os.environ.get("AGENT_CONTROL_API_KEY_HEADER", "Splunk-AO-API-Key")
+    target_type = os.environ.get("AGENT_CONTROL_TARGET_TYPE", "agent_stream")
+    target_id = getattr(splunk_ao_logger, "agent_stream_id", None)
 
-    if not all([server_url, agent_name, api_key]):
+    if not server_url or not api_key or not target_id:
         print(
-            "⚠️ Agent Control not configured "
-            "(set AGENT_CONTROL_URL, AGENT_CONTROL_AGENT_NAME, and SPLUNK_AO_API_KEY)"
+            "⚠️ Agent Control not configured (need AGENT_CONTROL_URL, a credential in "
+            "SPLUNK_AO_API_KEY/SPLUNK_AO_O11Y_TOKEN, and a started session with a "
+            "resolved agent_stream_id)"
         )
         return False
+
+    # Publish resolved IDs (matches the docs' os.environ pattern).
+    os.environ["SPLUNK_AO_AGENT_STREAM_ID"] = str(target_id)
+    if getattr(splunk_ao_logger, "project_id", None):
+        os.environ["SPLUNK_AO_PROJECT_ID"] = str(splunk_ao_logger.project_id)
 
     session_key = (agent_name, project_name, agent_stream, server_url)
     if not force and getattr(init_agent_control, "_last_session_key", None) == session_key:
         return True
 
     # Control spans require splunk_ao_logger.enable_agent_control() (done in agent.py).
-
-    try:
-        agent_stream_data = get_agent_stream(name=agent_stream, project_name=project_name)
-    except Exception as e:
-        print(f"⚠️ Agent Control: failed to resolve agent stream '{agent_stream}': {e}")
-        return False
-
     control_steps = steps or STANDARD_AGENT_CONTROL_STEPS
 
-    agent_control.init(
-        agent_name=agent_name,
-        agent_description=agent_description,
-        server_url=server_url,
-        api_key=api_key,
-        api_key_header=api_key_header,
-        observability_enabled=True,
-        observability_sink_name="registered",
-        target_type="log_stream",
-        target_id=agent_stream_data.id,
-        steps=control_steps,
-    )
+    try:
+        agent_control.init(
+            agent_name=agent_name,
+            agent_description=agent_description,
+            server_url=server_url,
+            api_key=api_key,
+            api_key_header=api_key_header,
+            observability_enabled=True,
+            observability_sink_name="registered",
+            target_type=target_type,
+            target_id=str(target_id),
+            steps=control_steps,
+        )
+    except Exception as e:
+        print(f"⚠️ Agent Control init failed: {e}")
+        return False
+
     _initialized = True
     init_agent_control._last_session_key = session_key
     step_names = ", ".join(s["name"] for s in control_steps)
     print(
         f"✅ Agent Control initialized for agent '{agent_name}' "
-        f"(project={project_name}, agent_stream={agent_stream}, steps={step_names})"
+        f"(project={project_name}, agent_stream={agent_stream}, "
+        f"server_url={server_url}, api_key_header={api_key_header}, "
+        f"target_type={target_type}, target_id={target_id}, steps={step_names})"
     )
     return True
