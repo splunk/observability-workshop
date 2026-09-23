@@ -2,8 +2,12 @@
 import os
 import uuid
 
-import streamlit as st
 from dotenv import load_dotenv
+
+# Load .env before importing the agent so Agent Control SDK settings see local URLs.
+load_dotenv()
+
+import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
 
 from agent import HealthcareAgent
@@ -14,8 +18,6 @@ from helpers.hallucination_helpers import (
 )
 from rag import get_rag_system
 from setup_env import setup_environment
-
-load_dotenv()
 
 if not os.getenv("_ENV_LOADED"):
     setup_environment()

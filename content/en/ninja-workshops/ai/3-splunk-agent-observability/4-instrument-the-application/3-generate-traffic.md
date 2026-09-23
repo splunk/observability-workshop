@@ -132,14 +132,14 @@ Then rebuild the Docker image:
 
 ```bash
 cd ~/workshop/healthcare-assistant
-docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation-v2 .
-docker push localhost:9999/healthcare-assistant:app-with-instrumentation-v2
+docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthcare-assistant:app-with-instrumentation-v3 .
+docker push localhost:9999/healthcare-assistant:app-with-instrumentation-v3
 ```
 
 Update the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file to reference the local image instead: 
 
 ````
-image: localhost:9999/healthcare-assistant:app-with-instrumentation-v2
+image: localhost:9999/healthcare-assistant:app-with-instrumentation-v3
 ````
 
 And redeploy the application: 

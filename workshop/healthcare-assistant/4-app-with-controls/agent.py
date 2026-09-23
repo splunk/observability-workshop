@@ -2,8 +2,8 @@
 import asyncio
 import inspect
 import json
+import threading
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, Any, Dict, List, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
@@ -16,6 +16,17 @@ from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from config import TOOLS_DIR, load_config, load_system_prompt
+from helpers.agent_control_helpers import (
+    build_agent_control_steps,
+    ensure_trace_started,
+    finalize_trace,
+    format_blocked_message,
+    init_agent_control,
+    infer_control_step_name,
+    make_controlled_tool,
+    notify_control_block,
+    uses_internal_sql_control,
+)
 from rag import create_rag_tool
 from tools import logic as tools_logic
 
@@ -28,17 +39,6 @@ import logging
 enable_console_logging(level=logging.INFO)
 
 from agent_control import ControlSteerError, ControlViolationError, control
-from helpers.agent_control_helpers import (
-    build_agent_control_steps,
-    ensure_trace_started,
-    finalize_trace,
-    format_blocked_message,
-    init_agent_control,
-    infer_control_step_name,
-    make_controlled_tool,
-    notify_control_block,
-    uses_internal_sql_control,
-)
 
 LLM_STEP_NAME = "Healthcare Assistant"
 MAX_STEER_RETRIES = 3
@@ -48,15 +48,40 @@ class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-def _run_async(coro):
-    """Run an async coroutine from sync code (e.g. Streamlit)."""
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return asyncio.run(coro)
+_bg_loop: Optional[asyncio.AbstractEventLoop] = None
+_bg_loop_lock = threading.Lock()
 
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        return executor.submit(asyncio.run, coro).result()
+
+def _get_background_loop() -> asyncio.AbstractEventLoop:
+    """Return a process-wide event loop running on a dedicated daemon thread.
+
+    Streamlit calls process_query() synchronously on every interaction. Using
+    asyncio.run() per call creates and then *closes* a new loop each time, but
+    modern langchain-openai/openai reuse a cached async HTTP client across calls,
+    so its connection pool outlives the loop that created it. When a later request
+    reaps a keep-alive connection bound to that closed loop, httpx raises
+    "RuntimeError: Event loop is closed". Running every coroutine on one stable,
+    long-lived loop keeps the shared client and its pool on a single loop.
+    """
+    global _bg_loop
+    if _bg_loop is not None and not _bg_loop.is_closed():
+        return _bg_loop
+    with _bg_loop_lock:
+        if _bg_loop is None or _bg_loop.is_closed():
+            loop = asyncio.new_event_loop()
+            threading.Thread(
+                target=loop.run_forever,
+                name="agent-async-loop",
+                daemon=True,
+            ).start()
+            _bg_loop = loop
+    return _bg_loop
+
+
+def _run_async(coro):
+    """Run an async coroutine from sync code (e.g. Streamlit) on the shared loop."""
+    loop = _get_background_loop()
+    return asyncio.run_coroutine_threadsafe(coro, loop).result()
 
 
 def _message_content_text(message: BaseMessage) -> str:
@@ -256,7 +281,7 @@ class HealthcareAgent:
                     message = AIMessage(
                         content=(
                             "I'm sorry, I'm unable to process your request right now due to "
-                            "a control evaluation error. Please try again or contact support."
+                            f"a control evaluation error: {e}"
                         )
                     )
                     break
@@ -279,9 +304,6 @@ class HealthcareAgent:
         *,
         splunk_ao_logger,
     ):
-        if splunk_ao_logger.experiment_id is None:
-            splunk_ao_context.start_session(external_id=self.session_id)
-
         # Nest LangGraph spans under the trace started by ensure_trace_started().
         callback = SplunkAOAsyncCallback(
             splunk_ao_logger,
@@ -332,6 +354,9 @@ class HealthcareAgent:
                 agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
             ):
                 splunk_ao_logger = splunk_ao_context.get_logger_instance()
+                # Observability Cloud does not resolve agent_stream_id until a
+                # session starts. Agent Control jwt evaluation requires that ID.
+                splunk_ao_context.start_session(external_id=self.session_id)
                 self._init_agent_control(splunk_ao_logger)
                 ensure_trace_started(splunk_ao_logger, langchain_messages, trace_name="Run Agent")
                 try:

@@ -55,36 +55,8 @@ section of Splunk Show event:
 
 {{% notice title="Troubleshooting" style="tip" icon="exclamation-triangle" %}}
 
-To see what Agent Control is doing, enable console logging in `~/workshop/healthcare-assistant/4-app-with-controls/agent.py`:
-
-```python
-from splunk_ao.utils.log_config import enable_console_logging
-
-enable_console_logging()
-```
-
-Then rebuild the Docker image:
-
-```bash
-cd ~/workshop/healthcare-assistant
-docker build -f 4-app-with-controls/Dockerfile -t localhost:9999/healthcare-assistant:app-with-controls-v2 .
-docker push localhost:9999/healthcare-assistant:app-with-controls-v2
-```
-
-Update the `~/workshop/healthcare-assistant/4-app-with-controls/k8s.yaml` file to reference the local image instead:
-
-````
-image: localhost:9999/healthcare-assistant:app-with-controls-v2
-````
-
-And redeploy the application:
-
-```bash
-cd ~/workshop/healthcare-assistant/4-app-with-controls
-kubectl apply -f k8s.yaml
-```
-
-Use the following command to view the application logs:
+The app already logs to stdout, so you can see what Agent Control is doing directly with
+`kubectl logs` — no code change or image rebuild required. View the application logs:
 
 {{< tabs id="healthcare-app-logs" >}}
 {{% tab title="Script" %}}
@@ -114,6 +86,27 @@ INFO - splunk_ao.logger - Session started with ID: ec03c538-cf9e-4bed-b97e-4b3c2
 
 Watch the terminal for `Agent Control initialized` on startup and `BLOCKED` / `STEERED`
 messages when a control fires.
+
+If you need to dig deeper — for example, to see exactly which environment variables the app
+reads and the full HTTP request/response for every Agent Control call (agent registration,
+runtime token exchange, and control evaluation) — set `AGENT_CONTROL_DEBUG=true` in the
+`splunk-agent-control-config` ConfigMap and restart the app:
+
+```bash
+kubectl patch configmap splunk-agent-control-config --type merge -p '{"data":{"AGENT_CONTROL_DEBUG":"true"}}'
+kubectl rollout restart deployment/healthcare-assistant
+```
+
+Credential headers (such as `X-SF-Token`) are masked in these logs by default. If you need to
+verify the exact token value, add `AGENT_CONTROL_DEBUG_UNMASK=true` the same way:
+
+```bash
+kubectl patch configmap splunk-agent-control-config --type merge -p '{"data":{"AGENT_CONTROL_DEBUG_UNMASK":"true"}}'
+kubectl rollout restart deployment/healthcare-assistant
+```
+
+Leave both unset for normal use — the app only logs a concise `Agent Control initialized`
+line and any configuration warnings.
 
 {{% /notice %}}
 
