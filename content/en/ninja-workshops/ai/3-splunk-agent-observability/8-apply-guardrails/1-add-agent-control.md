@@ -33,7 +33,7 @@ kubectl create configmap splunk-agent-control-config \
   --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
   --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
   --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
-  --from-literal=AGENT_CONTROL_TARGET_TYPE="agent_stream"
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
 
 Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,

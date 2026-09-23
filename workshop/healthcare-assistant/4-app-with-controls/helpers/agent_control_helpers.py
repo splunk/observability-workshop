@@ -502,7 +502,12 @@ def init_agent_control(
     agent_name = os.environ.get("AGENT_CONTROL_AGENT_NAME", "default")
     api_key = os.environ.get("SPLUNK_AO_API_KEY") or os.environ.get("SPLUNK_AO_O11Y_TOKEN")
     api_key_header = os.environ.get("AGENT_CONTROL_API_KEY_HEADER", "Splunk-AO-API-Key")
-    target_type = os.environ.get("AGENT_CONTROL_TARGET_TYPE", "agent_stream")
+    # SAO authorizes the control target as a log_stream (an agent stream *is* a
+    # log stream, and its ID is the target_id). target_type="agent_stream" is
+    # rejected upstream with AUTH_UPSTREAM_REJECTED. The Splunk docs show
+    # "agent_stream", but that value does not work against SAO — default to
+    # log_stream, matching splunk_ao.get_agent_control_target.
+    target_type = os.environ.get("AGENT_CONTROL_TARGET_TYPE", "log_stream")
     observability_sink_name = os.environ.get("AGENT_CONTROL_OBSERVABILITY_SINK_NAME", "registered")
     target_id = getattr(splunk_ao_logger, "agent_stream_id", None)
 
@@ -521,11 +526,11 @@ def init_agent_control(
         )
         return False
 
-    # Publish resolved IDs (matches the docs' os.environ pattern).
-    os.environ["SPLUNK_AO_AGENT_STREAM_ID"] = str(target_id)
-    if getattr(splunk_ao_logger, "project_id", None):
-        os.environ["SPLUNK_AO_PROJECT_ID"] = str(splunk_ao_logger.project_id)
-
+    # NOTE: do not publish SPLUNK_AO_PROJECT_ID / SPLUNK_AO_AGENT_STREAM_ID into
+    # os.environ. The project/agent-stream *names* are already set from the
+    # ConfigMap, and splunk_ao.resolve_routing rejects having both a name and an
+    # ID in the environment ("Cannot configure both project name and ID"). We
+    # pass target_id to agent_control.init() directly from the logger instead.
     session_key = (agent_name, project_name, agent_stream, server_url)
     if not force and getattr(init_agent_control, "_last_session_key", None) == session_key:
         logger.debug("Agent Control already initialized for this session; skipping re-init")
