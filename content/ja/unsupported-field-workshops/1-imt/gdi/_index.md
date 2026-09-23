@@ -40,7 +40,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% tab title="Helm Install" %}}
 
 ```bash
-helm install splunk-otel-collector --version {{< otel-version >}} \
+helm install splunk-otel-collector --version {{< legacy-otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -56,7 +56,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 ```
 <!--
 ``` bash
-helm install splunk-otel-collector --version {{< otel-version >}} \
+helm install splunk-otel-collector --version {{< legacy-otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \

@@ -2,8 +2,8 @@
 import asyncio
 import inspect
 import json
+import threading
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
@@ -19,22 +19,52 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
-from galileo import galileo_context
-from galileo.handlers.langchain import GalileoAsyncCallback
+from splunk_ao import splunk_ao_context
+from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
+
+from splunk_ao.utils.log_config import enable_console_logging
+import logging
+
+enable_console_logging(level=logging.INFO)
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-def _run_async(coro):
-    """Run an async coroutine from sync code (e.g. Streamlit)."""
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return asyncio.run(coro)
+_bg_loop: Optional[asyncio.AbstractEventLoop] = None
+_bg_loop_lock = threading.Lock()
 
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        return executor.submit(asyncio.run, coro).result()
+
+def _get_background_loop() -> asyncio.AbstractEventLoop:
+    """Return a process-wide event loop running on a dedicated daemon thread.
+
+    Streamlit calls process_query() synchronously on every interaction. Using
+    asyncio.run() per call creates and then *closes* a new loop each time, but
+    modern langchain-openai/openai reuse a cached async HTTP client across calls,
+    so its connection pool outlives the loop that created it. When a later request
+    reaps a keep-alive connection bound to that closed loop, httpx raises
+    "RuntimeError: Event loop is closed". Running every coroutine on one stable,
+    long-lived loop keeps the shared client and its pool on a single loop.
+    """
+    global _bg_loop
+    if _bg_loop is not None and not _bg_loop.is_closed():
+        return _bg_loop
+    with _bg_loop_lock:
+        if _bg_loop is None or _bg_loop.is_closed():
+            loop = asyncio.new_event_loop()
+            threading.Thread(
+                target=loop.run_forever,
+                name="agent-async-loop",
+                daemon=True,
+            ).start()
+            _bg_loop = loop
+    return _bg_loop
+
+
+def _run_async(coro):
+    """Run an async coroutine from sync code (e.g. Streamlit) on the shared loop."""
+    loop = _get_background_loop()
+    return asyncio.run_coroutine_threadsafe(coro, loop).result()
 
 
 class HealthcareAgent:
@@ -138,14 +168,14 @@ class HealthcareAgent:
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
 
-        with galileo_context(
-            project=os.getenv("GALILEO_PROJECT"),
-            log_stream=os.getenv("GALILEO_LOG_STREAM"),
+        with splunk_ao_context(
+            project=os.getenv("SPLUNK_AO_PROJECT"),
+            agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
-            galileo_context.start_session(external_id=self.session_id)
+            splunk_ao_context.start_session(external_id=self.session_id)
 
             # One callback per request keeps each user turn in its own trace.
-            callback = GalileoAsyncCallback()
+            callback = SplunkAOAsyncCallback()
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
             result = await self.graph.ainvoke(

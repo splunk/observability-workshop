@@ -1,67 +1,118 @@
 ---
-title: Pre-requisites
+title: Prerequisites
 weight: 2.1
 archetype: chapter
 time: 5 minutes
 ---
 
-## Prerequisites
+## Before you begin
 
-- Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
-- Supported Environments:
-  - A provided Splunk Workshop Instance (preferred). Outbound access to port `2222` is required for `ssh` access.
-  - Apple Mac (Apple Silicon). Installation of `jq` is required - [**https://jqlang.org/download/**](https://jqlang.org/download/)
+1. Pair up with other attendees (optional).
 
-{{% exercise title="Create the workshop directory" %}}
+2. Open Splunk Observability Cloud. Choose one of these options:
 
-{{< step "Initial Setup" "1" >}}
+   - Sign in to the Observability Workshop organization provided with your
+     Splunk Show instance.
+   - Register for a free Splunk Observability Cloud organization and sign in.
 
-In your environment create a new directory and change into it:
+   **Registration:** [Register for Splunk Observability Cloud Free](https://www.splunk.com/en_us/download/observability-cloud-free-edition.html)
 
-``` bash
-mkdir advanced-otel-workshop && \
-cd advanced-otel-workshop
-```
+3. Choose one supported execution path.
 
-We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
+   The workshop requires `bash`, `curl`, `jq`, a text editor, outbound HTTPS,
+   and free local ports `2222`, `4318`, and `13133`. The Splunk Show path also
+   requires `ssh` on your local computer. The `scp` command is optional and is
+   needed only if you choose to transfer files manually.
 
-{{% notice title="Remove any existing OpenTelemetry Collectors" style="warning" %}}
-If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
+   - **Splunk Show instance:** Open a terminal on your computer and connect to
+     the Splunk Show instance with the supplied SSH command. Keep the supplied
+     SSH command and password handy because you use them in each new terminal.
+     For example, enter:
 
-``` bash
-helm delete splunk-otel-collector
-```
+     ```bash
+     ssh -p 2222 splunk@127.0.0.1
+     ```
 
-The EC2 instance in that case may also run some services that can interfere with this workshop , so run the following command to make sure they are stopped if present:
+     At the prompt, enter the provided password.
+   - **Linux laptop or Apple silicon Mac:** Use Terminal locally. Linux systems
+     can use an `x86_64`/`amd64` or `arm64`/`aarch64` processor.
 
-``` bash
-kubectl delete ~/workshop/apm/deployment.yaml
-```
-
+{{% notice title="Windows and Intel-based Mac computers" style="warning" %}}
+Connect to a Splunk Show instance to participate in this workshop remotely.
+Contact a facilitator if you need help.
 {{% /notice %}}
-{{< /step >}}
 
-{{< step "Download workshop binaries" "2" >}}
+{{% exercise title="Set up the workshop" %}}
 
-Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector, Load Generator binaries and setup script:
-
-{{% tabs %}}
-{{% tab title="Splunk Workshop Instance" %}}
+{{< step "Create a folder" "1" >}}
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh && \
+mkdir -p ~/advanced-otel-workshop
+cd ~/advanced-otel-workshop
+```
+
+The remaining pages refer to this folder as `[WORKSHOP]`.
+
+{{< /step >}}
+
+{{< step "Get the three workshop files" "2" >}}
+
+Select the tab for the computer that runs the Collector.
+
+{{% tabs %}}
+{{% tab title="Splunk Show instance" %}}
+
+{{% notice title="Keep your SSH details handy" style="info" %}}
+The SSH command and password for your Splunk Show instance are provided by
+email or by the workshop facilitator. Keep them in a convenient, secure place.
+You must use the SSH command and password each time you open a new terminal and
+connect to the instance.
+{{% /notice %}}
+
+Connect to the Splunk Show instance with the supplied SSH command, then run:
+
+```bash
+cd ~/advanced-otel-workshop
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_amd64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
+chmod +x setup-workshop.sh
+```
+
+Keep the supplied SSH details available for each new terminal. The guided
+workshop does not require `scp`.
+
+{{% /tab %}}
+{{% tab title="Linux x86_64" %}}
+
+Use this tab for an `x86_64` or `amd64` Linux laptop.
+
+```bash
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_amd64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
 {{% /tab %}}
-{{% tab title="Apple Silicon" %}}
+{{% tab title="Linux ARM64" %}}
+
+Use this tab when `uname -m` reports `arm64` or `aarch64`.
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen && \
-curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh && \
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_linux_arm64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
+chmod +x setup-workshop.sh
+```
+
+{{% /tab %}}
+{{% tab title="Apple silicon" %}}
+
+```bash
+curl -fL https://github.com/signalfx/splunk-otel-collector/releases/download/v0.161.0/otelcol_darwin_arm64 -o otelcol
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
+curl -fL https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh
 chmod +x setup-workshop.sh
 ```
 
@@ -70,106 +121,50 @@ chmod +x setup-workshop.sh
 
 {{< /step >}}
 
-{{< step "Run the setup" "3" >}}
-Run the `setup-workshop.sh` script which will configure the correct permissions and also create the initial configurations for the **Agent** and the **Gateway**:
-
-{{% tabs %}}
-{{% tab title="Setup Workshop" %}}
+{{< step "Run setup" "3" >}}
 
 ```bash
 ./setup-workshop.sh
 ```
 
-{{% /tab %}}
-{{% tab title="Verify Setup" %}}
+At the cloud-export prompt, press **Enter** to send metrics and traces to
+Splunk Observability Cloud. To keep all workshop data local, enter `n`.
+The script then asks for your realm and access token. On a Splunk Show
+instance, the supplied realm appears as the default, and an access token is
+already available. Press **Enter** to use each supplied value, or enter a
+replacement, such as the realm and access token for your Splunk Observability
+Cloud Free organization. Token characters are hidden while you type.
+
+Setup creates one Collector configuration:
 
 ```text
-███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
-██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
-███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
-╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
-███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝
-╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝
-
-Welcome to the Splunk Advanced OpenTelemetry Workshop!
-======================================================
-
-macOS detected. Removing quarantine attributes...
-otelcol version v0.126.0
-Usage: loadgen [OPTIONS]
-Options:
-  -base       Send base traces (enabled by default)
-  -health     Send health traces
-  -security   Send security traces
-  -logs       Enable logging of random quotes to quotes.log
-  -json       Output logs in JSON format (only applicable with -logs)
-  -count      Number of traces or logs to send (default: infinite)
-  -h, --help  Display this help message
-
-Example:
-  loadgen -health -security -count 10   Send 10 health and security traces
-  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log
-Creating workshop directories...
-✓ Created subdirectories:
-  ├── 1-agent-gateway
-  ├── 2-building-resilience
-  ├── 3-dropping-spans
-  ├── 4-sensitive-data
-  ├── 5-transform-data
-  ├── 6-routing-data
-  └── 7-sum-count
-
-Creating configuration files for 1-agent-gateway...
-Creating OpenTelemetry Collector agent configuration file: 1-agent-gateway/agent.yaml
-✓ Configuration file created successfully: 1-agent-gateway/agent.yaml
-✓ File size:     4355 bytes
-
-Creating OpenTelemetry Collector gateway configuration file: 1-agent-gateway/gateway.yaml
-✓ Configuration file created successfully: 1-agent-gateway/gateway.yaml
-✓ File size:     3376 bytes
-
-✓ Completed configuration files for 1-agent-gateway
-
-Creating configuration files for 2-building-resilience...
-Creating OpenTelemetry Collector agent configuration file: 2-building-resilience/agent.yaml
-✓ Configuration file created successfully: 2-building-resilience/agent.yaml
-✓ File size:     4355 bytes
-
-Creating OpenTelemetry Collector gateway configuration file: 2-building-resilience/gateway.yaml
-✓ Configuration file created successfully: 2-building-resilience/gateway.yaml
-✓ File size:     3376 bytes
-
-✓ Completed configuration files for 2-building-resilience
-
-Workshop environment setup complete!
-Configuration files created in the following directories:
-  1-agent-gateway/
-    ├── agent.yaml
-    └── gateway.yaml
-  2-building-resilience/
-    ├── agent.yaml
-    └── gateway.yaml
-```
-
-{{% /tab %}}
-{{% /tabs %}}
-
-```text { title="Initial Directory Structure" }
 [WORKSHOP]
-├── 1-agent-gateway
-├── 2-building-resilience
-├── 3-dropping-spans
-├── 4-sensitive-data
-├── 5-transform-data
-├── 6-routing-data
-├── 7-sum-count
+├── 1-agent
+│   └── agent_config.yaml
 ├── loadgen
 ├── otelcol
-└── setup-workshop.sh
+├── setup-workshop.sh
+└── workshop-env.sh
 ```
+
+You learn about the components and pipelines in `agent_config.yaml` in Step
+1.6.
+
+{{% expand title="Optional: find your realm and access token when using your own organization" %}}
+
+Skip this section when you are using a Splunk Show instance.
+
+If you use your own Splunk Observability Cloud organization:
+
+- Find the realm in the organization URL. For example, a URL containing `us1`
+  uses the `us1` realm.
+- Go to **Settings > Access Tokens**. Create a token or use an existing token
+  that has ingest authorization.
+
+{{% /expand %}}
 
 {{< /step >}}
 
 {{% /exercise %}}
 
-{{< checkpoint "Workshop environment is ready — onto **Chapter 1: Agent Configuration**." >}}
+{{< checkpoint "One Collector configuration is ready." >}}

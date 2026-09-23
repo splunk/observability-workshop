@@ -30,7 +30,7 @@ Go to the **Infrastructure** page in the Observability UI and select **Kubernete
 
 Initially, you will see all the workloads for all clusters that are reported into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right in the image below.
 
-![workloads](../images/k8s-workloads-screen.png)
+![workloads](../images/k8s-workloads-screen.webp)
 
 Now, let's find your cluster by filtering on **Cluster** in the filter toolbar.
 
@@ -40,7 +40,7 @@ You can enter a partial name into the search box, such as `emea-ws-7*`, to quick
 Also, it's a very good idea to switch the default time from the default **-4h** back to the last 15 minutes (**-15m**).
 {{% /notice %}}
 
-![workloads-filter](../images/k8s-workloads-filter.png)
+![workloads-filter](../images/k8s-workloads-filter.webp)
 
 You will now just see data just for your own cluster.
 
@@ -52,11 +52,11 @@ How many workloads are running & how many namespaces are in your Cluster?
 
 By default, the **Kubernetes Workloads** table filters by `# Pods Failed` grouped by `k8s.namespace.name`. Go ahead and expand the `default` namespace to see the workloads in the namespace.
 
-![k8s-workload-selection](../images/workload-selection.png)
+![k8s-workload-selection](../images/workload-selection.webp)
 
 Now, let's change the list view to a heatmap view by selecting **Map** icon (next to the **Table** icon). Changing this option will result in the following visualization (or similar):
 
-![k8s-Heat-map](../images/workloads-heatmap.png)
+![k8s-Heat-map](../images/workloads-heatmap.webp)
 
 In this view, you will note that each workload is now a colored square. These squares will change color according to the **Color by** option you select. The colors give a visual indication of health and/or usage. You can check the meaning by hovering over the **legend** exclamation icon {{% icon icon="exclamation-circle" %}} bottom right of the heatmaps.
 
@@ -64,7 +64,7 @@ Another valuable option in this screen is **Find outliers** which provides histo
 
 Now, let's select the **Network transferred (bytes)** from the **Color by** drop-down box, then click on the **Find outliers** and change the **Scope** in the dialog to **Per k8s.namespace.name** and **Deviation from Median** as below:
 
-![k8s-Heat-map](../images/set-find-outliers.png)
+![k8s-Heat-map](../images/set-find-outliers.webp)
 
 The **Find Outliers** view is very useful when you need to view a selection of your workloads (or any service depending on the Navigator used) and quickly need to figure out if something has changed.
 
@@ -74,7 +74,7 @@ It will give you fast insight into items (workloads in our case) that are perfor
 
 The Deployment Overview pane gives you a quick insight into the status of your deployments. You can see at once if the pods of your deployments are Pending, Running, Succeeded, Failed or in an Unknown state.  
 
-![k8s-workload-overview](../images/k8s-deployment-overview.png)
+![k8s-workload-overview](../images/k8s-deployment-overview.webp)
 
 * *Running:* Pod is deployed and in a running state
 * *Pending:* Waiting to be deployed
@@ -86,15 +86,15 @@ You can expand the Workload name by hovering your mouse on it, in case the name 
 
 To filter to a specific workload, you can click on three dots **...** next to the workload name in the **k8s.workload.name** column and choose **Filter** from the dropdown box:
 
-![workload-add-filter](../images/workload-add-filter.png)
+![workload-add-filter](../images/workload-add-filter.webp)
 
 This will add the selected workload to your filters. It would then list a single workload in the **default** namespace:
 
-![workload-add-filter](../images/heatmap-filter-down.png)
+![workload-add-filter](../images/heatmap-filter-down.webp)
 
 From the Heatmap above find the **splunk-otel-collector-k8s-cluster-receiver** in the **default** namespace and click on the square to see more information about the workload:
 
-![workload-add-filter](../images/k8s-workload-detail.png)
+![workload-add-filter](../images/k8s-workload-detail.webp)
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 What are the CPU request  & CPU limit units for the otel-collector?
@@ -115,6 +115,6 @@ extraDimensions:
 
 The Navigator Sidebar will expand and a link to the discovered service will be added as seen in the image below:
 
-![Pivotbar](../images/pivotbar.png)
+![Pivotbar](../images/pivotbar.webp)
 
 This will allow for easy switching between Navigators. The same applies to your Apache server instance, it will have a Navigator Sidebar allowing you to quickly jump back to the Kubernetes Navigator.

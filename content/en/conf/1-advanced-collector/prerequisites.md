@@ -1,7 +1,6 @@
 ---
 title: Pre-requisites
 weight: 2.1
-archetype: chapter
 time: 5 minutes
 ---
 
@@ -44,7 +43,7 @@ kubectl delete ~/workshop/apm/deployment.yaml
 {{% tab title="Splunk Workshop Instance" %}}
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< legacy-otel-version >}}/otelcol_linux_amd64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh && \
 chmod +x setup-workshop.sh
@@ -54,7 +53,7 @@ chmod +x setup-workshop.sh
 {{% tab title="Apple Silicon" %}}
 
 ```bash
-curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< legacy-otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen && \
 curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/setup-workshop.sh -o setup-workshop.sh && \
 chmod +x setup-workshop.sh

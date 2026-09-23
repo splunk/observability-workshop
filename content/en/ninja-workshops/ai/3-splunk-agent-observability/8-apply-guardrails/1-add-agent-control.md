@@ -1,0 +1,111 @@
+---
+title: Add Agent Control to the App
+linkTitle: 1. Add Agent Control to the App
+weight: 1
+time: 8 minutes
+---
+
+First, wire the Agent Control SDK into the app: add the configuration, install the packages,
+and register the controllable steps.
+
+{{< exercise title="Add Agent Control" >}}
+
+{{< step title="Set up the environment" >}}
+
+Change into the agent controls folder: 
+
+```bash
+cd ~/workshop/healthcare-assistant/4-app-with-controls
+```
+
+{{< /step >}}
+
+{{< step title="Create an Agent Control Config Map" >}}
+
+If you're using the standalone version of Splunk Agent Observability for the workshop,
+run the following command to create a Kubernetes config map, which the application will use to
+configure Agent Controls:
+
+```bash
+kubectl create configmap splunk-agent-control-config \
+  --from-literal=SPLUNK_AO_API_URL="https://api.multitenant.sao.splunkcloud.com" \
+  --from-literal=AGENT_CONTROL_URL="https://console.multitenant.sao.splunkcloud.com/api/agent-control" \
+  --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="Splunk-AO-API-Key" \
+  --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
+```
+
+Alternatively, if you're using Splunk Agent Observability within Splunk Observability Cloud for this workshop,
+please use the following command instead:
+
+```bash
+kubectl create configmap splunk-agent-control-config \
+  --from-literal=AGENT_CONTROL_URL="https://app.$REALM.observability.splunkcloud.com/ao/agent-control" \
+  --from-literal=AGENT_CONTROL_AGENT_NAME="agent-control-example" \
+  --from-literal=AGENT_CONTROL_API_KEY_HEADER="X-SF-Token" \
+  --from-literal=AGENT_CONTROL_RUNTIME_TOKEN_HEADER="X-Agent-Control-Runtime-Token" \
+  --from-literal=AGENT_CONTROL_RUNTIME_AUTH_MODE="jwt" \
+  --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
+```
+
+{{< /step >}}
+
+{{< step title="Add the Agent Control packages" >}}
+
+Confirm `requirements.txt` includes the Agent Control SDK and evaluators:
+
+```text
+agent-control-sdk[splunk-ao]>=7.10.0
+agent-control-evaluators>=7.10.0
+```
+
+{{< /step >}}
+
+{{< step title="Add the imports and decorate the steps" >}}
+
+In `agent.py`, we've added the Agent Control imports at the end of the import section: 
+
+```python
+from agent_control import ControlSteerError, ControlViolationError, control
+```
+
+The controls stage uses these in three places (already wired up in this folder):
+
+* The LLM call is wrapped with `@control(step_name=LLM_STEP_NAME)`, where
+  `LLM_STEP_NAME = "Healthcare Assistant"`, so the model's responses can be evaluated,
+  blocked, or steered.
+* Each tool is registered as a controllable step (`get_patient_info`,
+  `delete_patient_record`, and a shared `retrieval_step` for search tools) via the helpers in
+  `helpers/agent_control_helpers.py`.
+* The agent enables control spans on the Splunk AO logger
+  (`splunk_ao_logger.enable_agent_control()`) and registers the steps with `init_agent_control(...)`
+  so the console knows which steps exist for this agent.
+
+{{% notice title="How block and steer are handled in code" style="info" %}}
+
+When a control fires, the SDK raises an exception that the agent catches:
+
+* `ControlViolationError` → the step is **blocked**; the user gets a friendly blocked
+  message.
+* `ControlSteerError` → the step is **steered**; the agent rebuilds the prompt with the
+  steering guidance and retries (up to `MAX_STEER_RETRIES`) before falling back to a safe
+  message.
+
+{{% /notice %}}
+
+{{< /step >}}
+
+{{< /exercise >}}
+
+{{< checkpoint title="Knowledge Check" >}}
+
+What's the difference between how the app handles a `ControlViolationError` and a
+`ControlSteerError`?
+
+{{< details summary="Click here to see the answer" >}}
+A `ControlViolationError` **blocks** the step: the action is stopped and the user receives a
+friendly blocked message. A `ControlSteerError` **steers** the step: the agent retries with
+the steering guidance appended to the prompt (up to a few attempts) to produce a corrected
+response, only falling back to a safe message if it still can't comply.
+{{< /details >}}

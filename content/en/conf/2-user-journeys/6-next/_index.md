@@ -1,9 +1,10 @@
 ---
-title: Bonus activity
+title: Bonus activities
+linkTitle: 6. Bonus activities
 weight: 6
 ---
 
-Finish the workshop excercises early?
+Finish the workshop exercises early?
 
 {{% exercise title="Create a funnel" %}}
  1. Go to the Analyses tab and find the Journey Map that shows all journeys in this application.
@@ -12,3 +13,7 @@ Finish the workshop excercises early?
 
 
 {{% /exercise %}}
+
+For a deeper technical activity, continue with:
+- [Bonus Activity: Test your site!](1-your-test/)
+- [Bonus Bonus Activity: Configure RUM and Session Replay](2-rum-session-replay/). You will use a small HTML application to compare basic RUM, Session Replay, and Session Replay privacy controls.

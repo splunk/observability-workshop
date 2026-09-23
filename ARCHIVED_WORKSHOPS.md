@@ -1,0 +1,14 @@
+# Archived workshops
+
+These workshops are no longer maintained and have been removed from the
+default branch. They remain available in Git history for reference only and
+must not be deployed without first reviewing and updating their dependencies.
+
+| Workshop | Final snapshot |
+| --- | --- |
+| AWS | [Browse archived files](https://github.com/splunk/observability-workshop/tree/cd5bfe5e9d625d6c4e2b842258f3aa559b9aa07d/workshop/aws) |
+| GCP | [Browse archived files](https://github.com/splunk/observability-workshop/tree/1e1d80ac4240df97e31543d49868af47715277bb/workshop/gcp) |
+| Legacy content | [Browse archived files](https://github.com/splunk/observability-workshop/tree/b29d80b77a1ccec7d13ec085ceba3283b037459e/legacy-content) |
+| Advanced OpenTelemetry Collector (agent + gateway) | [Browse archived files](https://github.com/splunk/observability-workshop/tree/12db13707828d859f4d201cde2036261ca82fae8/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector) |
+| Advanced Collector Configuration (earlier in-tree copy) | [Browse archived files](https://github.com/splunk/observability-workshop/tree/12db13707828d859f4d201cde2036261ca82fae8/content/en/ninja-workshops/foundations/2-opentelemetry-collector-workshops/2-advanced-collector-old) |
+| Advanced OpenTelemetry Collector lab assets (agent + gateway) | [Browse archived files](https://github.com/splunk/observability-workshop/tree/8332606fb8cf275dcbd563f5523158ed2fda399e/workshop/ninja/advanced-otel) |

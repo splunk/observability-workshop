@@ -19,7 +19,7 @@ SWiPE automates the following cleanup tasks:
 - **Delete tokens**, including INGEST, API, and RUM tokens.  
 - **Delete user dashboards** created during the workshop.  
 
-![Delete Workshop](../images/delete-workshop.png)
+![Delete Workshop](../images/delete-workshop.webp)
 
 ---
 

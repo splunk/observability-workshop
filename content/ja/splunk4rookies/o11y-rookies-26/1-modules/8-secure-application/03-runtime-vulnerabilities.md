@@ -26,7 +26,7 @@ Splunk Secure Application は、デプロイされたアプリケーションお
 > [!NOTE]
 > このビューには他の代替パスからもナビゲートできます
 >
-> 1. **Sevice-Map** → **Vulnerabilities Widget** または
+> 1. **Sevice map** → **Vulnerabilities Widget** または
 > 2. 左側のナビゲーションから、**APM → Application Security** → **Runtime Vulnerabilities**（**environment** : `astronomy-shop-*` でフィルタし、**service** : 例 'ad' を選択）- 環境内のすべてのインストルメント済みアプリケーションにわたる完全な脆弱性インベントリを表示します
 
 ---

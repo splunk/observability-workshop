@@ -46,7 +46,7 @@ Install the OpenTelemetry Collector Helm with the following commands, do **NOT**
 {{% tab title="helm install" %}}
 
 ``` bash
-helm install splunk-otel-collector --version {{< otel-version >}} \
+helm install splunk-otel-collector --version {{< legacy-otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -101,7 +101,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 
 Or use the installed `k9s` terminal UI.
 
-![k9s](../images/k9s.png)
+![k9s](../images/k9s.webp)
 
 {{% notice title="Deleting a failed installation" style="warning" %}}
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:

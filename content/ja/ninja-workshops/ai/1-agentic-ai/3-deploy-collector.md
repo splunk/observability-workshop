@@ -52,7 +52,7 @@ agent:
 {{% tab title="Script" %}}
 
 ``` bash
-  helm upgrade --install splunk-otel-collector --version {{< otel-version >}} \
+  helm upgrade --install splunk-otel-collector --version {{< legacy-otel-version >}} \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-cluster" \

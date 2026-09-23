@@ -2,8 +2,12 @@
 import os
 import uuid
 
-import streamlit as st
 from dotenv import load_dotenv
+
+# Load .env before importing the agent so Agent Control SDK settings see local URLs.
+load_dotenv()
+
+import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
 
 from agent import HealthcareAgent
@@ -14,8 +18,6 @@ from helpers.hallucination_helpers import (
 )
 from rag import get_rag_system
 from setup_env import setup_environment
-
-load_dotenv()
 
 if not os.getenv("_ENV_LOADED"):
     setup_environment()
@@ -134,8 +136,8 @@ def render_sidebar(app_config: dict) -> str:
             if st.button("Log Hallucination", key="log_hallucination"):
                 with st.spinner("Logging hallucination to Splunk Agent Observability..."):
                     existing_logger = (
-                        st.session_state.get("galileo_logger")
-                        if st.session_state.get("galileo_session_started", False)
+                        st.session_state.get("splunk_ao_logger")
+                        if st.session_state.get("splunk_ao_session_started", False)
                         else None
                     )
                     success = log_demo_hallucination(
@@ -167,7 +169,7 @@ def main():
     )
 
     if "session_id" not in st.session_state:
-        # Galileo requires session_id to be a valid UUID when grouping traces.
+        # session_id must be a valid UUID for grouping traces.
         st.session_state.session_id = str(uuid.uuid4())
 
     selected_model = render_sidebar(app_config)

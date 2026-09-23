@@ -1,8 +1,8 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to our repository! Whether it's a bug report, new feature, or question, we greatly value feedback and contributions from our community. Read through this document before submitting any issues or pull requests to ensure we have all the necessary information to effectively respond to your bug report or contribution.
+Thank you for your interest in contributing to this repository. Whether it is a bug report, new feature, or question, we value feedback and contributions from the community. Read this document before submitting an issue or pull request so that we have the information needed to review it.
 
-In addition to this document, review our [Code of Conduct](CODE_OF_CONDUCT.md). For any code of conduct questions or comments, send an email to [oss@splunk.com](oss@splunk.com).
+In addition to this document, review our [Code of Conduct](CODE_OF_CONDUCT.md). For code of conduct questions or comments, email [oss@splunk.com](mailto:oss@splunk.com).
 
 ## Contributor License Agreement
 
@@ -10,47 +10,32 @@ Before contributing, you must sign the [Splunk Contributor License Agreement (CL
 
 ## Contributing to the Observability Workshop
 
-When working on the workshop, we advise that you review your changes locally before committing them, although we prefer Pull Requests. Use the `hugo server` command to live preview your changes (as you type) on your local machine.
+Review your changes locally and submit them from a branch using a pull request. Use `hugo server` to preview content changes as you work.
 
-## Install Go & Hugo
+## Install the development tools
 
-``` bash
-cd ~
-```
+The site requires Go because the theme is provided as a Hugo module. It also requires Hugo Extended 0.161.1 or later, as configured in `hugo.toml`. On macOS, install both tools with Homebrew:
 
 ``` bash
-brew install go
+brew install go hugo
 ```
 
-``` bash
-brew install hugo
-```
+For other operating systems, follow the official [Go installation](https://go.dev/doc/install) and [Hugo installation](https://gohugo.io/installation/) instructions and select the extended edition of Hugo.
 
-## Install yq
-
-You will also need to install `yq` if it is not already installed on your system.
-
-``` bash
-brew install yq
-```
+The release workflow installs `yq` itself, so it is not required for local authoring or builds.
 
 ## Cloning the repository
 
 ``` bash
 git clone https://github.com/splunk/observability-workshop.git
-```
-
-``` bash
 cd observability-workshop
-```
-
-``` bash
+go mod download
 hugo server
 ```
 
 ## Running the docs server
 
-In most cases, the default settings with `hugo server` work well, and Hugo is available at `http://localhost:1313`. If you need to change the port, you can do so by passing the `--port` flag e.g. `hugo server --port=1314`. The documentation built from your current branch is then accessible through your favorite browser at e.g. `http://localhost:1314`.
+In most cases, the default settings work well and Hugo is available at `http://localhost:1313`. To use another port, run `hugo server --port 1314`. Draft and future-dated content can be included with `hugo server --buildDrafts --buildFuture`.
 
 ## Create Content
 
@@ -66,11 +51,13 @@ Install `optipng`:
 brew install optipng
 ```
 
-and then run the following command in the `content` directory:
+Then run the following command in the `content` directory. It runs one optimization process per CPU core on macOS:
 
 ``` bash
-find . -type f -iname "*.png" -exec optipng -nb -nc {} \;
+find . -type f -iname "*.png" -print0 | xargs -0 -P "$(sysctl -n hw.ncpu)" -n 1 optipng -nb -nc
 ```
+
+On Linux, replace `$(sysctl -n hw.ncpu)` with `$(nproc)`.
 
 ## Test release build locally
 
@@ -85,7 +72,7 @@ This will start a local development server at [http://localhost:1313](http://loc
 To test a production build locally:
 
 ``` bash
-hugo --minify --destination "public" --baseURL "http://localhost:8000/observability-workshop"
+hugo --minify --destination "public" --baseURL "http://localhost:8000/observability-workshop" --noChmod
 ```
 
 Then serve it with [devd][devd] (install with `brew install devd`):
@@ -109,9 +96,12 @@ and visit [http://localhost:8000/](http://localhost:8000/) to inspect the site.
 4. Above the list of workflow runs, select **Run workflow** dropdown.
 
 5. Choose the release type:
+
    - **minor** - for incremental updates (e.g., 6.13 → 6.14)
    - **major** - for breaking changes (e.g., 6.14 → 7.0)
 
-6. Click **Run workflow**.
+6. Enter a meaningful, mandatory release reason. It is recorded in the workflow summary, release commit, tag, and GitHub release.
+
+7. Click **Run workflow**.
 
 The release will run through the CI/CD pipeline and be deployed to `https://splunk.github.io/observability-workshop/` shortly after.

@@ -1,301 +1,209 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Splunk Workshop Setup Script
-# This script displays the Splunk ASCII art and creates workshop directories
-
-echo ""
-echo "███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗"
-echo "██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗"
-echo "███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗"
-echo "╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝"
-echo "███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝"
-echo "╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝"
-echo ""
-echo "Welcome to the Splunk Advanced OpenTelemetry Workshop!"
-echo "======================================================"
-echo ""
-
-# Function to run common commands
-run_commands() {
-    chmod +x otelcol loadgen && \
-    ./otelcol -v && \
-    ./loadgen --help
+setup_failed() {
+  exit_code=$?
+  trap - ERR
+  echo >&2
+  echo "Setup did not complete. Review the error above, then rerun the script." >&2
+  exit "${exit_code}"
 }
+trap setup_failed ERR
 
-# Platform-specific setup
-case "$OSTYPE" in
-    darwin*)
-        echo "macOS detected. Removing quarantine attributes..."
-        xattr -dr com.apple.quarantine otelcol loadgen 2>/dev/null
-        run_commands
-        ;;
-    linux-gnu*)
-        echo "Linux detected."
-        run_commands
-        ;;
-    *)
-        echo "Unsupported platform ($OSTYPE). This script only works on macOS and Linux."
+collector_version="0.161.0"
+repo_owner="splunk"
+repo_name="observability-workshop"
+repo_ref="main"
+asset_path="workshop/ninja/advanced-otel"
+workshop_root="${PWD}"
+agent_dir="${workshop_root}/1-agent"
+config_path="${agent_dir}/agent_config.yaml"
+environment_path="${workshop_root}/workshop-env.sh"
+
+echo
+echo "Splunk Advanced OpenTelemetry Workshop .conf26"
+echo "================================================"
+
+for command_name in curl jq uname sed; do
+  if ! command -v "${command_name}" >/dev/null 2>&1; then
+    echo "Required command not found: ${command_name}" >&2
+    exit 1
+  fi
+done
+
+case "$(uname -s)" in
+  Darwin)
+    if [[ "$(uname -m)" != "arm64" ]]; then
+      echo "This workshop supports Apple silicon Macs, not Intel-based Macs." >&2
+      exit 1
+    fi
+    xattr -dr com.apple.quarantine otelcol loadgen 2>/dev/null || true
+    echo "Apple silicon Mac detected."
+    ;;
+  Linux)
+    case "$(uname -m)" in
+      x86_64|amd64|aarch64|arm64) ;;
+      *)
+        echo "Unsupported Linux CPU architecture: $(uname -m)" >&2
         exit 1
         ;;
+    esac
+    echo "Linux $(uname -m) detected."
+    ;;
+  *)
+    echo "Unsupported platform. Use Linux or an Apple silicon Mac." >&2
+    exit 1
+    ;;
 esac
 
-# Create workshop directories
-echo "Creating workshop directories..."
+if [[ ! -f otelcol || ! -f loadgen ]]; then
+  echo "otelcol and loadgen must be in the current directory." >&2
+  exit 1
+fi
 
-# Common workshop subdirectories
-mkdir -p 1-agent-gateway
-mkdir -p 2-building-resilience
-mkdir -p 3-dropping-spans
-mkdir -p 4-sensitive-data
-mkdir -p 5-transform-data
-mkdir -p 6-routing-data
-mkdir -p 7-sum-count
+chmod +x otelcol loadgen
 
-echo "✓ Created subdirectories:"
-echo "  ├── 1-agent-gateway"
-echo "  ├── 2-building-resilience"
-echo "  ├── 3-dropping-spans"
-echo "  ├── 4-sensitive-data"
-echo "  ├── 5-transform-data"
-echo "  ├── 6-routing-data"
-echo "  └── 7-sum-count"
-echo ""
+if installed_version="$(./otelcol --version 2>&1)"; then
+  :
+else
+  echo "The Collector binary does not run on $(uname -s)/$(uname -m)." >&2
+  exit 1
+fi
 
-# Function to create agent.yaml configuration
-create_agent_config() {
-    local config_file="$1"
-    echo "Creating OpenTelemetry Collector agent configuration file: ${config_file}"
-    
-    cat > "${config_file}" << 'EOF'
-###########################            This section holds all the
-## Configuration section ##            configurations that can be 
-###########################            used in this OpenTelemetry Collector
-extensions:                            # Array of Extensions
-  health_check:                        # Configures the health check extension
-    endpoint: 0.0.0.0:13133            # Endpoint to collect health check data
+if [[ "${installed_version}" != *"${collector_version}"* ]]; then
+  echo "Expected Collector ${collector_version}, but found: ${installed_version}" >&2
+  exit 1
+fi
 
-receivers:                             # Array of Receivers
-  hostmetrics:                         # Receiver Type
-    collection_interval: 3600s         # Scrape metrics every hour
-    scrapers:                          # Array of hostmetric scrapers
-      cpu:                             # Scraper for cpu metrics
-  otlp:                                # Receiver Type
-    protocols:                         # list of Protocols used 
-      http:                            # This wil enable the HTTP Protocol
-        endpoint: "0.0.0.0:4318"       # Endpoint for incoming telemetry data 
-  filelog/quotes:                      # Receiver Type/Name
-    include: ./quotes.log              # The file to read log data from
-    include_file_path: true            # Include file path in the log data
-    include_file_name: false           # Exclude file name from the log data
-    resource:                          # Add custom resource attributes
-      com.splunk.source: ./quotes.log  # Source of the log data
-      com.splunk.sourcetype: quotes    # Source type of the log data
+if ! loadgen_help="$(./loadgen --help 2>&1)"; then
+  echo "The load generator does not run on $(uname -s)/$(uname -m)." >&2
+  exit 1
+fi
+if [[ "${loadgen_help}" != *"-preview"* ]]; then
+  echo "This workshop requires the OBS1184 load generator with -preview support." >&2
+  echo "Download the loadgen binary again by following the Prerequisites." >&2
+  exit 1
+fi
+unset loadgen_help
 
-exporters:                             # Array of Exporters
-  debug:                               # Exporter Type
-    verbosity: detailed                # Enabled detailed debug output
-  otlphttp:                            # Exporter Type
-    endpoint: "http://localhost:5318"  # Gateway OTLP endpoint  
-  file:                                # Exporter Type
-    path: "./agent.out"                # Save path (OTLP JSON)
-    append: false                      # Overwrite the file each time
-processors:                            # Array of Processors
-  memory_limiter:                      # Limits memory usage by Collectors pipeline
-    check_interval: 2s                 # Interval to check memory usage
-    limit_mib: 512                     # Memory limit in MiB
-  resourcedetection:                   # Processor Type
-    detectors: [system]                # Detect system resource information
-    override: true                     # Overwrites existing attributes
-  resource/add_mode:                   # Processor Type/Name
-    attributes:                        # Array of attributes and modifications
-    - action: insert                   # Action is to insert a key
-      key: otelcol.service.mode        # Key name
-      value: "agent"                   # Key value
+cloud_setting="${CONF2026_CLOUD_ENABLED:-}"
+cloud_prompt="Y/n"
+case "${cloud_setting}" in
+  n|N|no|NO|No|false|FALSE|False|0)
+    cloud_prompt="y/N"
+    ;;
+esac
+read -r -p "Send metrics and traces to Splunk Observability Cloud? [${cloud_prompt}]: " cloud_input
+if [[ -n "${cloud_input}" ]]; then
+  cloud_setting="${cloud_input}"
+elif [[ -z "${cloud_setting}" ]]; then
+  cloud_setting="y"
+fi
+unset cloud_input cloud_prompt
 
-###########################            This section controls what
-### Activation Section  ###            configurations will be used
-###########################            by this OpenTelemetry Collector
-service:                               # Services configured for this Collector
-  extensions:                          # Enabled extensions
-  - health_check
-  pipelines:                           # Array of configured pipelines
-    traces:
-      receivers:
-      - otlp
-      processors:
-      - memory_limiter                 # Memory Limiter processor
-      - resourcedetection              # Adds system attributes to the data
-      - resource/add_mode              # Adds collector mode metadata
-      exporters:
-      - debug
-      - file
-      - otlphttp
-    metrics:
-      receivers:
-      - hostmetrics                    # Hostmetric reciever (cpu only)
-      - otlp
-      processors:
-      - memory_limiter                 # Memory Limiter processor
-      - resourcedetection              # Adds system attributes to the data
-      - resource/add_mode              # Adds collector mode metadata
-      exporters:
-      - debug
-      - file
-      - otlphttp
-    logs:
-      receivers:
-      - otlp
-      - filelog/quotes                 # Filelog Receiver
-      processors:
-      - memory_limiter                 # Memory Limiter processor
-      - resourcedetection              # Adds system attributes to the data
-      - resource/add_mode              # Adds collector mode metadata
-      exporters:
-      - debug
-      - file
-      - otlphttp
-EOF
+case "${cloud_setting}" in
+  ""|y|Y|yes|YES|Yes|true|TRUE|True|1)
+    cloud_enabled=true
+    ;;
+  n|N|no|NO|No|false|FALSE|False|0)
+    cloud_enabled=false
+    ;;
+  *)
+    echo "Enter y or n." >&2
+    exit 1
+    ;;
+esac
 
-    # Check if the file was created successfully
-    if [ $? -eq 0 ]; then
-        echo "✓ Configuration file created successfully: ${config_file}"
-        echo "✓ File size: $(wc -c < "${config_file}") bytes"
-        echo ""
-        return 0
-    else
-        echo "✗ Error: Failed to create configuration file: ${config_file}"
-        return 1
-    fi
-}
+realm="${REALM:-}"
+splunk_access_token="${SPLUNK_ACCESS_TOKEN:-${ACCESS_TOKEN:-}}"
+splunk_api_url="${SPLUNK_API_URL:-}"
+splunk_ingest_url="${SPLUNK_INGEST_URL:-}"
+splunk_hec_token="${SPLUNK_HEC_TOKEN:-not-configured}"
+splunk_hec_url="${SPLUNK_HEC_URL:-https://127.0.0.1:8088/services/collector}"
+splunk_listen_interface="${SPLUNK_LISTEN_INTERFACE:-127.0.0.1}"
+splunk_memory_limit_mib="${SPLUNK_MEMORY_LIMIT_MIB:-512}"
 
-# Function to create gateway.yaml configuration
-create_gateway_config() {
-    local config_file="$1"
-    echo "Creating OpenTelemetry Collector gateway configuration file: ${config_file}"
-    
-    cat > "${config_file}" << 'EOF'
-###########################         This section holds all the
-## Configuration section ##         configurations that can be 
-###########################         used in this OpenTelemetry Collector
-extensions:                       # List of extensions
-  health_check:                   # Health check extension
-    endpoint: 0.0.0.0:14133       # Custom port to avoid conflicts
+if [[ "${cloud_enabled}" == "true" ]]; then
+  if [[ -n "${realm}" ]]; then
+    read -r -p "Splunk Observability Cloud realm (for example us1) [${realm}]: " realm_input
+  else
+    read -r -p "Splunk Observability Cloud realm (for example us1): " realm_input
+  fi
+  if [[ -n "${realm_input}" ]]; then
+    realm="${realm_input}"
+  fi
+  unset realm_input
+  if [[ -z "${realm}" ]]; then
+    echo "A realm is required for cloud export." >&2
+    exit 1
+  fi
 
-receivers:
-  otlp:                           # OTLP receiver
-    protocols:
-      http:                       # HTTP protocol
-        endpoint: "0.0.0.0:5318"  # Custom port to avoid conflicts
-        include_metadata: true    # Required for token pass-through
+  if [[ -n "${splunk_access_token}" ]]; then
+    read -r -s -p "Splunk Observability Cloud access token (press Enter to use the token already provided): " token_input
+  else
+    read -r -s -p "Splunk Observability Cloud access token with ingest authorization: " token_input
+  fi
+  echo
+  if [[ -n "${token_input}" ]]; then
+    splunk_access_token="${token_input}"
+  fi
+  unset token_input
+  if [[ -z "${splunk_access_token}" ]]; then
+    echo "An access token with ingest authorization is required for cloud export." >&2
+    exit 1
+  fi
 
-exporters:                        # List of exporters
-  debug:                          # Debug exporter
-    verbosity: detailed           # Enable detailed debug output
-  file/traces:                    # Exporter Type/Name
-    path: "./gateway-traces.out"  # Path for OTLP JSON output for traces
-    append: false                 # Overwrite the file each time
-  file/metrics:                   # Exporter Type/Name
-    path: "./gateway-metrics.out" # Path for OTLP JSON output for metrics
-    append: false                 # Overwrite the file each time
-  file/logs:                      # Exporter Type/Name
-    path: "./gateway-logs.out"    # Path for OTLP JSON output for logs
-    append: false                 # Overwrite the file each time
+  splunk_api_url="${splunk_api_url:-https://api.${realm}.observability.splunkcloud.com}"
+  splunk_ingest_url="${splunk_ingest_url:-https://ingest.${realm}.observability.splunkcloud.com}"
+else
+  realm=""
+  splunk_access_token="not-configured"
+  splunk_api_url="http://127.0.0.1:18089"
+  splunk_ingest_url="http://127.0.0.1:18089"
+fi
 
-processors:                       # List of processors
-  memory_limiter:                 # Limits memory usage
-    check_interval: 2s            # Memory check interval
-    limit_mib: 512                # Memory limit in MiB
-  batch:                          # Batches data before exporting
-    metadata_keys:                # Groups data by token
-    - X-SF-Token
-  resource/add_mode:              # Adds metadata
-    attributes:
-    - action: upsert              # Inserts or updates a key
-      key: otelcol.service.mode   # Key name
-      value: "gateway"            # Key value
+mkdir -p "${agent_dir}"
+config_url="https://github.com/${repo_owner}/${repo_name}/raw/refs/heads/${repo_ref}/${asset_path}/agent_config.yaml"
+curl -fL --retry 3 "${config_url}" -o "${config_path}"
 
-# Connectors
-#connectors:                      # leave this commented out; we will uncomment in an upcoming exercise
+# Keep all eight pipelines in one configuration. Without cloud export, replace
+# active cloud destinations with nop while the workshop pipelines continue
+# local debug and file validation.
+if [[ "${cloud_enabled}" == "false" ]]; then
+  sed -i.bak \
+    -e 's/exporters: \[debug, file\/traces, otlp_http\]/exporters: [debug, file\/traces]/' \
+    -e 's/exporters: \[signalfx\]/exporters: [nop]/' \
+    -e 's/exporters: \[otlp_http\/entities\]/exporters: [nop]/' \
+    -e 's/extensions: \[headers_setter, health_check, http_forwarder, http_forwarder\/opamp_splunk_o11y, opamp\/splunk_o11y, zpages\]/extensions: [health_check, zpages]/' \
+    "${config_path}"
+  rm -f "${config_path}.bak"
+fi
 
-###########################
-### Activation Section  ###
-###########################
-service:                          # Service configuration
-  telemetry:
-    metrics:
-      level: none                 # Disable metrics
-  extensions: [health_check]      # Enabled extensions
-  pipelines:                      # Configured pipelines
-    traces:                       # Traces pipeline
-      receivers:
-      - otlp                      # OTLP receiver
-      processors:                 # Processors for traces
-      - memory_limiter
-      - resource/add_mode
-      - batch
-      exporters:
-      - debug                     # Debug exporter
-      - file/traces
-    metrics:                      # Metrics pipeline
-      receivers:
-      - otlp                      # OTLP receiver
-      processors:                 # Processors for metrics
-      - memory_limiter
-      - resource/add_mode
-      - batch
-      exporters:
-      - debug                     # Debug exporter
-      - file/metrics
-    logs:                         # Logs pipeline
-      receivers:
-      - otlp                      # OTLP receiver
-      processors:                 # Processors for logs
-      - memory_limiter
-      - resource/add_mode
-      - batch
-      exporters:
-      - debug                     # Debug exporter
-      - file/logs
-EOF
+# Remove the obsolete overlay if setup is rerun in an earlier workshop folder.
+rm -f "${agent_dir}/agent_config.local.yaml"
 
-    # Check if the file was created successfully
-    if [ $? -eq 0 ]; then
-        echo "✓ Configuration file created successfully: ${config_file}"
-        echo "✓ File size: $(wc -c < "${config_file}") bytes"
-        echo ""
-        return 0
-    else
-        echo "✗ Error: Failed to create configuration file: ${config_file}"
-        return 1
-    fi
-}
+{
+  printf 'export REALM=%q\n' "${realm}"
+  printf 'export ACCESS_TOKEN=%q\n' "${splunk_access_token}"
+  printf 'export SPLUNK_ACCESS_TOKEN=%q\n' "${splunk_access_token}"
+  printf 'export SPLUNK_API_URL=%q\n' "${splunk_api_url}"
+  printf 'export SPLUNK_INGEST_URL=%q\n' "${splunk_ingest_url}"
+  printf 'export SPLUNK_HEC_TOKEN=%q\n' "${splunk_hec_token}"
+  printf 'export SPLUNK_HEC_URL=%q\n' "${splunk_hec_url}"
+  printf 'export SPLUNK_LISTEN_INTERFACE=%q\n' "${splunk_listen_interface}"
+  printf 'export SPLUNK_MEMORY_LIMIT_MIB=%q\n' "${splunk_memory_limit_mib}"
+  printf 'export CONF2026_CLOUD_ENABLED=%q\n' "${cloud_enabled}"
+} > "${environment_path}"
+chmod 600 "${environment_path}"
+unset splunk_access_token splunk_hec_token
+trap - ERR
 
-# Create configuration files for multiple directories
-DIRECTORIES=("1-agent-gateway" "2-building-resilience")
-
-for dir in "${DIRECTORIES[@]}"; do
-    echo "Creating configuration files for ${dir}..."
-    
-    # Create agent.yaml
-    if ! create_agent_config "${dir}/agent.yaml"; then
-        echo "✗ Failed to create agent.yaml in ${dir}"
-        exit 1
-    fi
-    
-    # Create gateway.yaml
-    if ! create_gateway_config "${dir}/gateway.yaml"; then
-        echo "✗ Failed to create gateway.yaml in ${dir}"
-        exit 1
-    fi
-    
-    echo "✓ Completed configuration files for ${dir}"
-    echo ""
-done
-
-echo "Workshop environment setup complete!"
-echo "Configuration files created in the following directories:"
-for dir in "${DIRECTORIES[@]}"; do
-    echo "  ${dir}/"
-    echo "    ├── agent.yaml"
-    echo "    └── gateway.yaml"
-done
+echo
+echo "Workshop setup complete."
+echo "Collector: ${installed_version}"
+echo "Cloud export: ${cloud_enabled}"
+echo
+echo "Start the Collector:"
+echo "  cd 1-agent"
+echo "  source ../workshop-env.sh"
+echo "  ../otelcol --config=agent_config.yaml"

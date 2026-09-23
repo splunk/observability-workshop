@@ -11,7 +11,7 @@ time: false
 
 **SWiPE** is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access **SWiPE** [**here**](https://swipe.splunk.show).
 
-![SWiPE](../images/swipe.png)
+![SWiPE](../images/swipe.webp)
 
 **SWiPE** will perform the following tasks your workshop environment:
 

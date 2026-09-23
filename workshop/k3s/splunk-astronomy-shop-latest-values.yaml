@@ -6,9 +6,7 @@
 #          the demo's telemetry and forwards it to Splunk Observability Cloud /
 #          Splunk Platform. This is NOT a demo app manifest.
 #
-# Version:    2.0.8
-# Generated:  2026-08-14T14:18:55Z
-# Source:     kubernetes/splunk-astronomy-shop-2.0.8-values.yaml @ 8f6d0bf
+# Version: 2.0.9
 #
 # Requires: splunk-otel-collector-chart >= 0.157.0
 #   (0.157.0 renamed the kubeletstats receiver to kubelet_stats and ships the
@@ -19,7 +17,7 @@
 #   helm upgrade --install splunk-otel-collector \
 #     splunk-otel-collector-chart/splunk-otel-collector \
 #     --version 0.157.0 -n <namespace> \
-#     -f splunk-astronomy-shop-2.0.8-values.yaml
+#     -f splunk-astronomy-shop-2.0.9-values.yaml
 #
 # Note: at release time stage-values-with-header.sh stamps the release version
 #       onto the `# Version:` line above and injects Generated/Source provenance
@@ -356,6 +354,35 @@ agent:
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v1.Service/EventStream"
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v2.Service/EventStream"
           - attributes["url.path"] == "/live/longpoll"
+      # Drop kubelet health-probe spans.
+      #
+      # Every gRPC service in the demo carries a livenessProbe (10s) and a
+      # readinessProbe (5s) against grpc.health.v1.Health/Check, and the
+      # language auto-instrumentation turns each probe into a SERVER span.
+      # That is ~18 spans/min/pod of pure noise which APM counts as service
+      # requests.
+      #
+      # On payment (4 pods) it read as ~390 requests per 5 minutes against
+      # ~15 real Charge calls, so the paymentFailure 50/50 A/B split showed up
+      # as a ~2% error rate instead of ~50%. Same distortion applies to cart,
+      # checkout, product-catalog, ad, recommendation, currency and every
+      # other probed service.
+      #
+      # error_mode: ignore so IsMatch against an absent attribute is a no-op
+      # rather than a pipeline error.
+      filter/drop_health_checks:
+        error_mode: ignore
+        traces:
+          span:
+          # gRPC health service, matched on the RPC attributes and on the span
+          # name (instrumentations differ on which they populate).
+          - attributes["rpc.service"] == "grpc.health.v1.Health"
+          - IsMatch(name, "grpc\\.health\\.v1\\.Health/")
+          # HTTP liveness/readiness endpoints (shipping, quote, llm, frontend,
+          # order-validation, ...). Anchored so real product paths that merely
+          # contain "health" are not dropped.
+          - IsMatch(attributes["url.path"], "^/(health|healthz|healthcheck|livez|readyz|live|ready)$")
+          - IsMatch(attributes["http.target"], "^/(health|healthz|healthcheck|livez|readyz|live|ready)$")
       transform/dc_not_error:
         error_mode: ignore
         trace_statements:
@@ -475,7 +502,7 @@ agent:
           # here reduces load on the exporter currently timing out under
           # back-pressure on the cluster-receiver.
           exporters: [otlp_http]
-          processors: [memory_limiter, filter/drop_flagd, transform/dc_not_error, k8s_attributes, batch, resource_detection, resource, resource/add_environment]
+          processors: [memory_limiter, filter/drop_flagd, filter/drop_health_checks, transform/dc_not_error, k8s_attributes, batch, resource_detection, resource, resource/add_environment]
           receivers: [otlp, jaeger, zipkin]
         # DBMon logs pipeline - sends query samples and top queries to Splunk O11y
         logs/dbmon:

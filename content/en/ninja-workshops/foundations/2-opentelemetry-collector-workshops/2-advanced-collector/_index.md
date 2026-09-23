@@ -1,35 +1,31 @@
 ---
 title: Advanced OpenTelemetry Collector
-description: Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.
+description: Practice reviewing and modifying a host-installed OpenTelemetry Collector configuration.
 weight: 2
 type: chapter
-authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom"]
-time: 75 minutes
+authors: ["Robert Castley", "Charity Anderson", "Pieter Hagen", "Geoff Higginbottom", "Kyle Wang", "Antoine Toulme"]
+time: 55 minutes
+aliases:
+  - /conf/3-obs1184/
 ---
 
-The goal of this workshop is to help you gain confidence in creating and modifying OpenTelemetry Collector configuration files. You’ll start with a minimal `agent.yaml` and `gateway.yaml` file and progressively build them out to handle several advanced, real-world scenarios.
+In this workshop, you run one Splunk Distribution of the OpenTelemetry
+Collector in **agent mode** on a Linux host or Apple silicon Mac. The Collector
+receives sample traces, reads sample logs, and collects host metrics. You then
+use OTel Collector Config Builder to improve the data before it leaves the
+Collector.
 
-A key focus of this workshop is learning how to configure the OpenTelemetry Collector to store telemetry data locally, rather than sending it to a third-party vendor backend. This approach not only simplifies debugging and troubleshooting but is also ideal for testing and development environments where you want to avoid sending data to production systems.
+## Workshop overview
 
-To make the most of this workshop, you should have:
+During this workshop, you will:
 
-- A basic understanding of the OpenTelemetry Collector and its configuration file structure.
-- Proficiency in editing YAML files.
+- Run version `0.161.0` of the Collector as one Collector process.
+- Generate traces and logs, and collect host metrics.
+- Check all three signals locally and, when available, in Splunk Observability
+  Cloud.
+- Upload `agent_config.yaml` and inspect it in OTel Collector Config Builder.
+- Filter noisy spans, protect sensitive attributes, and transform logs.
+- Download the completed configuration, apply it to the Collector, and verify the
+  results.
 
-Everything in this workshop is designed to run locally, ensuring a hands-on and accessible learning experience. Let’s dive in and start building!
-
-## Workshop Overview
-
-During this workshop, we will cover the following topics:
-
-- **Setting up the agent and gateway locally**: Test that metrics, traces, and logs go via the agent to the gateway.
-- **Enhancing agent resilience**: Basic configurations for fault tolerance.
-- **Configuring processors**:
-  - Filter out noise by dropping specific spans (e.g., health checks).
-  - Remove unnecessary tags, and handle sensitive data.
-  - Transform data using OTTL (OpenTelemetry Transformation Language) in the pipeline before exporting.
-- **Configuring Connectors**:
-  - Route data to different endpoints based on the values received.
-  <!--- Convert log and span data to metrics.-->
-
-By the end of this workshop, you'll be familiar with configuring the OpenTelemetry Collector for a variety of real-world use cases.
+Chapter 6 includes more ways to continue learning after the workshop.

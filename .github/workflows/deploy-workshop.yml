@@ -13,12 +13,34 @@ on:
           - minor
           - major
         default: minor
+      release_reason:
+        description: 'Reason for this release'
+        required: true
+        type: string
 
 jobs:
   deploy:
     name: Build and deploy workshop
     runs-on: ubuntu-24.04
     steps:
+      - name: Validate and record release reason
+        env:
+          RELEASE_REASON: ${{ inputs.release_reason }}
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          if [[ -z "${RELEASE_REASON//[[:space:]]/}" ]]; then
+            echo "::error::A meaningful release reason is required."
+            exit 1
+          fi
+
+          {
+            echo "### Release request"
+            echo
+            printf '%s\n' "- **Type:** ${RELEASE_TYPE}"
+            printf '%s\n' "- **Requested by:** @${GITHUB_ACTOR}"
+            printf '%s\n' "- **Reason:** ${RELEASE_REASON}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Checkout sources
         uses: actions/checkout@v5
         with:
@@ -58,6 +80,8 @@ jobs:
       - name: Bump version and create tag
         id: bumpversion
         if: github.repository == 'splunk/observability-workshop'
+        env:
+          RELEASE_REASON: ${{ inputs.release_reason }}
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -79,8 +103,8 @@ jobs:
 
           git fetch --tags origin
           git add README.md
-          git commit --amend -m "Releasing v${TAG}"
-          git tag -a "v${TAG}" -m "Version ${TAG}"
+          git commit --amend -m "Releasing v${TAG}" -m "Reason: ${RELEASE_REASON}"
+          git tag -a "v${TAG}" -m "Version ${TAG}" -m "Reason: ${RELEASE_REASON}"
           git push --follow-tags origin main || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
       - name: Compute deploy metadata (fork)
@@ -131,3 +155,6 @@ jobs:
           name: v${{ steps.bumpversion.outputs.tag_name }}
           tag_name: v${{ steps.bumpversion.outputs.tag_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            **Release reason:** ${{ inputs.release_reason }}
+            **Requested by:** @${{ github.actor }}
