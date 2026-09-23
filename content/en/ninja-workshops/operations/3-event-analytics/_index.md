@@ -1,6 +1,6 @@
 ---
 title: "Zero Touch Event Analytics with ITSI 5.0"
-description: "See how ITSI turns separate payment alerts into consistent, useful information for an operations team."
+description: "See how ITSI turns separate alerts into consistent, useful information for an operations team."
 linkTitle: "Zero Touch Event Analytics"
 time: "90 minutes"
 weight: 3
