@@ -12,7 +12,7 @@ See [Analyses in Digital Experience Analytics](https://help.splunk.com/en/splunk
 1. Return to the project **Analyses** tab and open the **`Homepage to Order Confirmation`** funnel.
 2. Confirm the chart is filtered to show **All users**.
 
-This funnel tracks users from the homepage through shopping and checkout. Drop-off between steps is captured automatically based on the event definitions you reviewed earlier.
+This funnel tracks users from the homepage through shopping and checkout. Drop-off between steps is captured automatically based on the event definitions we reviewed earlier.
 
 {{% notice title="Keep in mind" style="primary" icon="lightbulb" %}}
 Think about critical journeys in your own applications. How would you define the steps you want to monitor?
@@ -51,7 +51,7 @@ The most concerning segment is users who placed an order but never reached order
 {{< tabs >}}
 {{% tab title="Questions" %}}
 
-1. Which segment should you investigate?
+1. Which segment should we investigate?
 1. What happened for the end user in the replay?
 
 {{% /tab %}}
@@ -60,8 +60,6 @@ The most concerning segment is users who placed an order but never reached order
 1. The last drop-off segment — users who did not progress from **Place order** to **Order confirmation**.
 1. In many workshop sessions, the user submits the order form but receives an error message with a phone number to call instead of a confirmation page. The user tried to complete a purchase and failed at the final step — a direct hit to conversion rate and revenue.
 
-<!-- TODO screenshot: Session replay showing checkout error after placing an order -->
-
 ![Session replay showing a checkout error message after the user submits an order](../images/funnel-dropoff-replay.png)
 
 {{% /tab %}}
@@ -69,4 +67,4 @@ The most concerning segment is users who placed an order but never reached order
 
 {{% /exercise %}}
 
-Checkout failure affects all users — but not equally. **User segments** let you compare how different groups experience the same funnel.
+Checkout failure affects all users — but not always equally. **User segments** let us compare how different groups experience the same funnel.

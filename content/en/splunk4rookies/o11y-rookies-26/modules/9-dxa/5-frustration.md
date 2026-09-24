@@ -26,8 +26,6 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 1. The chart tracks frustration signal types over time — rage clicks, errors, and dead clicks. Workshop sessions show multiple users hitting points of friction.
 1. Look for sessions involving the **Show All Reviews** button. Users click it expecting reviews to expand, nothing happens, and they rage click. This is a classic dead-click pattern.
 
-<!-- TODO screenshot: Session replay showing rage clicks on the non-responsive Show All Reviews button -->
-
 ![Session replay showing a user rage clicking the non-responsive Show All Reviews button](../images/frustration-replay.png)
 
 {{% /tab %}}
@@ -36,7 +34,7 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 {{% /exercise %}}
 
 {{% notice title="Business impact" style="info" %}}
-Frustration signals correlate with customer satisfaction, support volume, and churn. Monitoring them over time lets you measure whether UX fixes actually reduce friction — a direct line to NPS and retention KPIs.
+Frustration signals correlate with customer satisfaction, support volume, and churn. Monitoring them over time lets us measure whether UX fixes actually reduce friction — a direct line to NPS and retention KPIs.
 {{% /notice %}}
 
 Individual frustration events explain *where* users struggle. **Conversion funnels** reveal whether those struggles block users from completing critical journeys like checkout.

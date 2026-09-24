@@ -3,7 +3,7 @@ title: 1. Generate Session Data
 weight: 1
 ---
 
-Before diving into DXA, you need real user sessions to analyze. The browsing you do now becomes the data you explore in the rest of this module.
+Before diving into DXA, we need real user sessions to analyze. The browsing we do now becomes the data we explore in the rest of this module.
 
 {{% exercise title="Retail Therapy" %}}
 
