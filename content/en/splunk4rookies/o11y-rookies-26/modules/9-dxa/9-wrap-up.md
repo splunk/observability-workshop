@@ -1,11 +1,9 @@
 ---
-title: 8. Wrap-Up
-weight: 8
+title: 9. Wrap-Up
+weight: 9
 ---
 
-## What you accomplished
-
-In this module, you moved from raw browsing sessions to actionable product insights — all without writing code or changing the Astronomy Shop application:
+## What we accomplished
 
 1. **Generated real user sessions** in the Astronomy Shop
 2. **Navigated DXA** and understood its relationship to RUM
@@ -15,45 +13,30 @@ In this module, you moved from raw browsing sessions to actionable product insig
 6. **Investigated conversion funnels** and checkout drop-off
 7. **Compared user segments** to uncover targeted improvement opportunities
 
-## The DXA workflow
-
-```text
-RUM session data → Event definitions → Analyses → Session replay → Action
-```
-
-DXA turns observability data into product intelligence. Event definitions are reusable; analyses are configurable in the UI; session replay closes the loop from metric to root cause.
-
 ## Connecting signals to business KPIs
+
+Think about how user behavior analytics relate to the success of our applications and our business.
 
 | DXA signal | Business KPI |
 |------------|----------------|
-| Funnel drop-off at checkout | Conversion rate / revenue |
-| Frustration (rage clicks, dead clicks) | Customer satisfaction / NPS |
+| Funnel drop-off | Conversion rate / revenue |
+| Frustration (rage clicks, dead clicks) | User satisfaction, activity completion |
 | Feature adoption time series | Feature ROI / product engagement |
 
 ## What's next
 
+Sign up for a [Free Edition of Splunk Observability Cloud](https://www.splunk.com/en_us/download/observability-cloud-free-edition.html) and start sending in your own application data!
+
 - **Journey maps** — visualize common user paths and friction points across the full application. See [Analyses in Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/analyses-in-digital-experience-analytics).
 - **Create your own analyses** — build funnels and time series for journeys and features that matter to your team.
-- **Define custom events** — use the element picker to track new interactions without engineering support.
+- **Define custom events** — use the element picker to track new interactions without code changes.
 
-For reference:
+Explore relevant documentation:
 
 - [Introduction to Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/introduction-to-digital-experience-analytics)
 - [Create and manage event definitions](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/create-and-manage-event-definitions)
 - [Create user segments](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/create-user-segments)
 
-{{% exercise title="Reflect" %}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-What is one DXA insight from this workshop that you would share with your product team on Monday morning?
-{{% /tab %}}
-{{% tab title="Answer" %}}
-There is no single correct answer — strong responses connect a specific signal to a business outcome. For example: "Our checkout funnel shows a major drop-off between Place order and Order confirmation, and session replay confirms users see an error instead of a confirmation page. That is a direct conversion problem we should prioritize." Or: "Frustration signals spike on the Show All Reviews button — a dead click that erodes trust before users even reach checkout."
-{{% /tab %}}
-{{< /tabs >}}
-
-{{% /exercise %}}
 
 {{< pager prev="/en/splunk4rookies/o11y-rookies-26/modules/" prevLabel="Back to Lessons" >}}

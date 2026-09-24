@@ -3,7 +3,7 @@ title: 3. Event Definitions
 weight: 3
 ---
 
-**Event definitions** are the foundation of DXA analyses. They name and filter user interactions — clicks, navigation, errors, and custom events — so you can track the same behavior consistently across funnels, time series, and segments.
+**Event definitions** are the foundation of DXA analyses. They name and filter user interactions — clicks, navigation, errors, and custom events — so we can track the same behavior consistently across funnels, time series, and segments.
 
 See [Create and manage event definitions](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/create-and-manage-event-definitions) for full details.
 
@@ -16,7 +16,7 @@ DXA recognizes four event categories:
 | **Interaction** | Click, tap, rage click |
 | **Navigation** | Route change, document load, screen name change |
 | **Error** | JavaScript error, application crash |
-| **Custom** | User-defined events from your application |
+| **Custom** | User-defined events from our application |
 
 ## Filter templates
 
@@ -27,7 +27,7 @@ Event definitions use filter templates to match real user actions:
 - **Visited URL** — matches navigation events by `url.full`
 - **Custom** — matches any ingested event name
 
-The **element picker** lets product teams define click events by selecting elements directly on a live page — no code changes required. You will explore pre-built definitions in this exercise rather than creating new ones.
+The **element picker** lets product teams define click events by selecting elements directly on a live page — no code changes required. We will explore pre-built definitions in this exercise rather than creating new ones.
 
 {{% exercise title="Explore pre-built event definitions" %}}
 
@@ -51,4 +51,4 @@ You would create a custom event definition named something like **Newsletter Sig
 
 {{% /exercise %}}
 
-These event definitions power the analyses you will explore next — starting with feature adoption.
+These event definitions power the analyses we will explore next — starting with feature adoption.

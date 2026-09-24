@@ -3,7 +3,7 @@ title: 2. Getting Started with DXA
 weight: 2
 ---
 
-**Digital Experience Analytics (DXA)** complements Splunk Real User Monitoring (RUM) and Synthetic Monitoring by adding a product-analytics layer on top of session data you already collect. DXA helps digital product teams identify friction points, refine user journeys, increase conversion rates, and improve feature engagement — without writing queries or changing application code for this workshop.
+**Digital Experience Analytics (DXA)** complements Splunk Real User Monitoring (RUM) and Synthetic Monitoring by adding an analytics layer on top of session data already collected by RUM. DXA helps product teams identify friction points, refine user journeys, increase conversion rates, and improve feature engagement — without writing queries or changing application code every time.
 
 Learn more in the [Introduction to Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/introduction-to-digital-experience-analytics).
 
@@ -20,7 +20,7 @@ DXA organizes work into four building blocks:
 | **Analyses**          | Visualizations — time series, conversion funnels, and journey maps                                                                                                             |
 
 
-Projects are described further in [Projects in Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/set-up-digital-experience-analytics/projects-in-digital-experience-analytics).
+For more information about Projects in DXA, see [documentation on Projects in Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/set-up-digital-experience-analytics/projects-in-digital-experience-analytics).
 
 {{% notice title="Instrumentation" style="info" %}}
 DXA uses the same RUM agents and instrumentation as Splunk RUM. The Astronomy Shop is already instrumented for this workshop. If you need to set up DXA in your own environment later, see [Set up Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/set-up-digital-experience-analytics).
@@ -32,22 +32,22 @@ DXA uses the same RUM agents and instrumentation as Splunk RUM. The Astronomy Sh
 2. From the left navigation, open **Digital Experience → Digital Experience Analytics**.
 3. Open the workshop **Astronomy Shop** project (your facilitator will confirm the exact project name).
 4. Orient yourself to the project tabs:
-  - **Overview**
-  - **Event Definitions**
-  - **User Segments**
-  - **Analyses**
-
-
+    - Overview
+    - Event Definitions
+    - User Segments
+    - Analyses
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-Why is DXA valuable if we already have RUM dashboards and session replay?
+What value are we trying to get out of DXA if we already have RUM dashboards and session replay?
 {{% /tab %}}
 {{% tab title="Answer" %}}
-RUM tells you *what happened* in individual sessions — page loads, errors, and performance. DXA adds a product-analytics lens: reusable event definitions, conversion funnels, frustration trends, and user segments that connect session-level data to business questions like "Are users adopting our new feature?" or "Where do we lose checkout conversions?" — all configurable in the UI without code changes.
+RUM tells us *what happened* in user sessions over time: page loads, errors, and performance. 
+
+DXA shows us *user impact*, adding an analytics lens to RUM data. DXA does this with reusable event definitions, conversion funnels, frustration trends, and user segments that connect session-level data to business-relevant questions like "Are users adopting our new feature?" or "Where do we lose checkout conversions?" — all configurable in the UI without code changes.
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /exercise %}}
 
-The workshop project includes pre-built analyses you will explore next. First, let's see how **event definitions** translate raw RUM interactions into named, reusable events.
+The workshop project includes pre-built analyses we will explore next. First, let's see how **event definitions** translate raw RUM interactions into named, reusable events.
