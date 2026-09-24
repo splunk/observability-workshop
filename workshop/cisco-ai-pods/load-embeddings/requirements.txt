@@ -1,5 +1,5 @@
 pypdf>=6.14.2
 langchain_community==0.3.27
-langchain-nvidia-ai-endpoints==0.3.7
+langchain-nvidia-ai-endpoints==1.4.2
 langchain-weaviate==0.0.5
 weaviate-client==4.17.0
