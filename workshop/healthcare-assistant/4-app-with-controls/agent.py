@@ -114,12 +114,12 @@ def _build_steering_retry_messages(
     original_text = _message_content_text(original_output)
 
     retry_messages = list(messages)
-    retry_messages.append(
-        AIMessage(
-            content=original_text,
-            tool_calls=getattr(original_output, "tool_calls", None) or [],
-        )
-    )
+    # Present the previous response as plain text for revision. Do NOT carry over
+    # tool_calls: this retry history has no matching tool responses, and
+    # OpenAI/Azure reject an assistant message whose tool_calls aren't followed by
+    # tool messages ("tool_call_ids did not have response messages"). The model
+    # can still choose to call tools in its corrected response.
+    retry_messages.append(AIMessage(content=original_text))
     retry_messages.append(
         HumanMessage(
             content=(
