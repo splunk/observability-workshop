@@ -1,7 +1,7 @@
 ---
 title: Splunk Agent Observability for Engineers
 linkTitle: Splunk Agent Observability for Engineers
-weight: 6
+weight: 7
 layout: chapter
 time: 2 hours
 authors: ["Derek Mitchell", "Sam Goldfield", "Tim Hard"]

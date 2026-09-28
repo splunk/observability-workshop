@@ -24,12 +24,12 @@ splunk-ao
 
 {{< step title="Create a Kubernetes Secret" >}}
 
-Run the following command to create a Kubernetes secret, which stores the 
-Splunk Agent Observability API key: 
+Run the following command to create a Kubernetes secret, which stores the access token 
+used by Splunk Agent Observability to send traces to O11y Cloud: 
 
-```bash
+```bash 
 kubectl create secret generic splunk-ao-secret \
-  --from-literal=SPLUNK_AO_API_KEY="$GALILEO_API_KEY"
+--from-literal=SPLUNK_AO_O11Y_TOKEN="$ACCESS_TOKEN"
 ```
 
 {{< /step >}}
@@ -37,13 +37,13 @@ kubectl create secret generic splunk-ao-secret \
 {{< step title="Create a Config Map" >}}
 
 Run the following command to create a Kubernetes config map, which the application will use to
-determine how to send traces to Splunk Agent Observability: 
+determine how to send traces to Splunk Agent Observability:
 
-```bash
+```bash 
 kubectl create configmap splunk-ao-config \
-  --from-literal=SPLUNK_AO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
-  --from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
-  --from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
+--from-literal=SPLUNK_AO_REALM="$REALM" \
+--from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
+--from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
 ```
 
 {{% notice title="Project and agent stream" style="info" %}}

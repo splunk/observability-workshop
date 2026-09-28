@@ -16,7 +16,7 @@ Run the following command to deploy the healthcare assistant app:
 
 ```bash
 cd ~/workshop/healthcare-assistant/4-app-with-controls
-kubectl apply -f k8s.yaml
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Ensure that the new application pod is running:

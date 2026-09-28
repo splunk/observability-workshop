@@ -15,9 +15,9 @@ next chapter.
 
 Run the following command to deploy the healthcare assistant app:
 
-```bash
+```bash 
 cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
-kubectl apply -f k8s.yaml
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Ensure that the new application pod is running:
@@ -128,7 +128,7 @@ docker build -f 2-app-with-instrumentation/Dockerfile -t localhost:9999/healthca
 docker push localhost:9999/healthcare-assistant:app-with-instrumentation-v3
 ```
 
-Update the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s.yaml` file to reference the local image instead: 
+Update the `~/workshop/healthcare-assistant/2-app-with-instrumentation/k8s-o11y.yaml` file to reference the local image instead: 
 
 ````
 image: localhost:9999/healthcare-assistant:app-with-instrumentation-v3
@@ -138,7 +138,7 @@ And redeploy the application:
 
 ```bash
 cd ~/workshop/healthcare-assistant/2-app-with-instrumentation
-kubectl apply -f k8s.yaml
+kubectl apply -f k8s-o11y.yaml
 ```
 
 Use the following command to view the application logs:
