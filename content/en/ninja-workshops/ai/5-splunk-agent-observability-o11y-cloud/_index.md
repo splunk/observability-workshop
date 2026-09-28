@@ -1,16 +1,14 @@
 ---
-title: Splunk Agent Observability
-linkTitle: Splunk Agent Observability
-weight: 3
+title: Splunk Agent Observability in O11y Cloud
+linkTitle: Splunk Agent Observability in O11y Cloud
+weight: 5
 layout: chapter
 time: 2 hours
 authors: ["Denis Abrantes", "Derek Mitchell", "Sam Goldfield", "Tim Hard"]
 description: See inside your agentic AI applications. Instrument them, trace and evaluate agent behavior, surface emerging issues, and apply runtime guardrails with Splunk Agent Observability (powered by Galileo).
 draft: false
-hidden: false
-aliases:
-  - /ninja-workshops/20-splunk-agent-observability/
-product: "Agent Observability"
+hidden: true
+product: "Observability Cloud"
 ---
 
 Agentic AI applications think, plan, and act on their own. That autonomy is exactly what

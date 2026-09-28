@@ -8,7 +8,7 @@ authors: ["Sam Goldfield"]
 description: Add Splunk Agent Observability tracing to a LangChain app and inspect traces in the console UI.
 aliases:
   - /ninja-workshops/19-agent-observability-galileo/
-product: "Observability Cloud"
+product: "Agent Observability"
 ---
 
 This workshop picks up after workshop [Monitoring Agentic AI Applications](ninja-workshops/ai/1-agentic-ai/) and shows the fastest path to instrumenting a LangChain app with Splunk Agent Observability, powered by Galileo.
