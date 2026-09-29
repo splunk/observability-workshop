@@ -5,6 +5,7 @@ weight: 1
 layout: chapter
 time: 60 minutes
 description: In one hour, we take you through hands-on troubleshooting against a fully instrumented Kubernetes microservices application using Splunk Observability Cloud.
+badge: "New"
 params:
   images:
     - images/featured-o11y.webp

@@ -1,6 +1,6 @@
 ---
 title: Finserv Observability Cloud
-weight: 3
+weight: 4 
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
 time: 30 minutes
 aliases:
