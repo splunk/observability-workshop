@@ -7,7 +7,7 @@ time: 5 minutes
 
 After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 
-![home page](../images/home-page.png)
+![home page](../images/home-page.webp)
 
 1. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
 2. **Org Switcher:** Switch between Organizations (if you are a member of more than one Organization).

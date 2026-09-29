@@ -13,7 +13,7 @@ A span represents a single unit of work within a trace, capturing information ab
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
 
-![Trace Waterfall](../images/apm-trace-waterfall.png)
+![Trace Waterfall](../images/apm-trace-waterfall.webp)
 
 {{< tabs >}}
 {{% tab title="Question" %}}

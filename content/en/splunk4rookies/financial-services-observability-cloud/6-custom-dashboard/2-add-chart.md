@@ -15,13 +15,13 @@ In this section, we are going to use the **Copy and Paste** functionality to ext
 * In the new screen, click on the **x** in the {{% button style="blue" %}}sf_environment:* x{{% /button %}} button **(1)** in the middle of the screen to close it.
 * Click on the {{% button style="blue" %}}**+**{{% /button %}}  to add a new filter and select **sf_environment** then pick the [WORKSHOPNAME] from the drop-down and hit **Apply**. The button will change to **sf_environment:[WORKSHOPNAME]**
 * Do the same with for the {{% button style="blue" %}}sf_service.{{% /button %}} button **(2)**, close it and create a new filter for **sf_service**. Only this time change it to `paymentservice`.
-  ![edit chart](../images/edit-chart.png)
+  ![edit chart](../images/edit-chart.webp)
 * Click the {{% button style="blue" %}}Save and close {{% /button %}} button **(3)**.
 * Repeat the previous 4 steps for the **Request Rate** text chart
 * Click {{% button style="blue" %}}Save{{% /button %}} after you  have update the two charts.
 * As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again.
 * Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below.
-  ![New dashboard look](../images/copyandpastedcharts.png)
+  ![New dashboard look](../images/copyandpastedcharts.webp)
 {{% /notice %}}
 
 Next, we are going to create a custom chart based on our Synthetic test that is running.

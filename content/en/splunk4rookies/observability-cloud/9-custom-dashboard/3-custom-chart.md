@@ -9,7 +9,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 {{% exercise title="Add a custom bar chart" %}}
 
 * At the top of the dashboard click on the **+** and select **Chart**.
-  ![new chart screen](../images/new-chart.png)
+  ![new chart screen](../images/new-chart.webp)
 * First, change the name New Chart to **Overall Test Duration**.
 * For this exercise we want a bar or column chart, so click on the 3rd icon {{% icon icon="chart-bar" %}} in the chart option box.
 * In the **Plot editor** enter `synthetics.run.duration.time.ms` (this is runtime in duration for our test) in the **Signal** box and hit enter.
@@ -17,16 +17,16 @@ In this part of the workshop we are going to create a chart that we will add to 
 * Click the {{% button style="blue" %}}Add analytics{{% /button %}} button.
 * From the drop-down choose the **Mean** option, then pick `mean:aggregation` and click outside the dialog box. Notice how the chart changes to a single color as the metrics are now aggregated.
 * The x-axis does not currently represent time to change this click on the settings {{% icon icon="cog" %}} icon at the end of the plot line. The following following dialog will open:
-  ![signal setup](../images/signal-setup.png)
+  ![signal setup](../images/signal-setup.webp)
 * Change the **Display units** **(2)** in the drop-down box from **None** to **Time (autoscaling)/Milliseconds(ms)**. The drop-down changes to **Millisecond** and the x-axis of the chart now represents the test duration time.
 * Close the dialog, either by clicking on the settings {{% icon icon="cog" %}} icon or the {{% button style="gray" %}}close{{% /button %}} button.
 * Add our detector by clicking the {{% button style="blue" %}}Link Detector{{% /button %}} button and start typing the name of the detector you created earlier.
 * Click on the detector name to select it.
 * Notice that a colored border appears around the chart, indicating the status of the alert, along with a bell icon at the top of the dashboard as shown below:
-  ![detector added](../images/detector-added.png)
+  ![detector added](../images/detector-added.webp)
 * Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
 * In the dashboard, move the charts so they look like the screenshot below:
-  ![Service Health Dashboard](../images/service-health-dashboard.png)
+  ![Service Health Dashboard](../images/service-health-dashboard.webp)
 * For the final task, click three vertical dots **⋮** at the top right of the page (next to **AI Assistant**) and click on **View fullscreen**. This will be the view you would use on the TV monitor on the wall (press Esc to go back).
 
 {{% /exercise %}}

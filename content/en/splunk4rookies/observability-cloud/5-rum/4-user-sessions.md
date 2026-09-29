@@ -11,7 +11,7 @@ weight: 4
 
 {{% /exercise %}}
 
-![RUM Session](../images/rum-waterfall.png)
+![RUM Session](../images/rum-waterfall.webp)
 
 This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.
 
@@ -22,4 +22,4 @@ This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) 
 
 {{% /exercise %}}
 
-![RUM to APM](../images/rum-to-apm.png)
+![RUM to APM](../images/rum-to-apm.webp)

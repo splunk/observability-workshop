@@ -6,7 +6,7 @@ weight: 2
  
 Click **APM** in the main menu and select **Overview**. The APM Home Page is made up of 3 distinct sections:
 
-![APM page](../images/apm-main.png)
+![APM page](../images/apm-main.webp)
 
 1. **Onboarding Pane Pane:** Training videos and links to documentation to get you started with Splunk APM.
 2. **APM Overview Pane:** Real-time metrics for the Top Services and Top Business Workflows.

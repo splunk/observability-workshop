@@ -8,7 +8,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% /notice %}}
 
-![Service Dashboard](../images/apm-service-dashboard.png)
+![Service Dashboard](../images/apm-service-dashboard.webp)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -20,7 +20,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% /notice %}}
 
-![APM Explore](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.webp)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -34,6 +34,6 @@ As a service owners you can use the service view in Splunk APM to get a complete
 {{< /tabs >}}
 {{% /notice %}}
 
-![APM Service Chart](../images/apm-service-popup-chart.png)
+![APM Service Chart](../images/apm-service-popup-chart.webp)
 
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.

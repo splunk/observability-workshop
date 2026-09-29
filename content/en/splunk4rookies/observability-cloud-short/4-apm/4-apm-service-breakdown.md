@@ -17,7 +17,7 @@ weight: 4
 {{% /tab %}}
 {{< /tabs >}}
 
-![APM Service Breakdown](../images/apm-service-breakdown.png)
+![APM Service Breakdown](../images/apm-service-breakdown.webp)
 
 {{% notice title="Span Tags" style="info" %}}
 Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems.

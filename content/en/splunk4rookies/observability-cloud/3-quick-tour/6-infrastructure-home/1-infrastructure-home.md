@@ -7,7 +7,7 @@ hidden: true
 
 Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
 
-![Infra main](../images/infrastructure-main.png)
+![Infra main](../images/infrastructure-main.webp)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Infrastructure Monitoring.
 2. **Time & Filter Pane:** Time window (not configurable at the top level)
@@ -26,7 +26,7 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 * Click on the {{% button %}}Add filters{{% /button %}} button. Type in `k8s.cluster.name` and click on the search result.
 * From the list, select **[NAME OF WORKSHOP]-k3s-cluster** then click on the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
 
-  ![cluster](../images/k8s-cluster.png)
+  ![cluster](../images/k8s-cluster.webp)
 
 * The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state **(1)**. The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
 * Note the tiles to the side, under **Nodes dependencies** **(2)**, specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
@@ -43,7 +43,7 @@ The UI will show services that are running on the node you have selected if they
 
 * Click on the **Redis** tile and this will take you to the **Redis instances** navigator. Under **REDIS INSTANCE** click on **redis-[NAME OF WORKSHOP]**.
 * This will bring you to the **Redis instance**. This navigator will show charts with metric data from the active Redis instance from our e-commerce site.
-  ![redis](../images/redis-2.png)
+  ![redis](../images/redis-2.webp)
 {{< tabs >}}
 {{% tab title="Question" %}}
 **Can you name the Instance dependencies tile in this view?**
@@ -56,7 +56,7 @@ The UI will show services that are running on the node you have selected if they
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
 * To return to the Cluster level, simply click on the link **Cluster** **(1)** at the top of the screen.
 
-![node](../images/node-link.png)
+![node](../images/node-link.webp)
 
 {{% /exercise %}}
 

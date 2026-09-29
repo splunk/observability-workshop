@@ -7,7 +7,7 @@ We have arrived at the **Trace Waterfall** from the **Trace Analyzer**. A trace 
 
 Each span in Splunk APM captures a single operation. Splunk APM considers a span to be an error span if the operation that the span captures results in an error.
 
-![Trace Waterfall](../images/apm-trace-waterfall.png)
+![Trace Waterfall](../images/apm-trace-waterfall.webp)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -40,6 +40,6 @@ Related Content relies on specific metadata that allow APM, Infrastructure Monit
 
 {{% /notice %}}
 
-![Related Logs](../images/apm-related-logs.png)
+![Related Logs](../images/apm-related-logs.webp)
 
 Next, let's find out more about the error in the logs.

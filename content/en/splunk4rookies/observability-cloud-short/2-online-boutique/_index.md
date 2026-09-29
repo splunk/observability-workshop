@@ -37,7 +37,7 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 * When the checkout process is slow, it creates a frustrating user experience. Because this directly impacts customer satisfaction, we should prioritise investigating and resolving the issue.
 
-{{% image src="images/shop.png" align="center" %}}
+{{% image src="images/shop.webp" align="center" %}}
 
 {{% /exercise %}}
 

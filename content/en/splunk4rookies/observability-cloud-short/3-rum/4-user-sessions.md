@@ -12,7 +12,7 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 * In the **User Sessions** table, click on the **Session ID** with the longest **Duration** (over 15 seconds or longer). This will take you to the RUM Session view.
 * Note the length of the span **PlaceOrder**, this is the time it took to complete the order. Not good!
 
-![RUM Session](../images/rum-waterfall-place-order.png)
+![RUM Session](../images/rum-waterfall-place-order.webp)
 
 * Look for the **Fetch** **(1)** which will be either above or below the **PlaceOrder** span.
   * It will look something like `POST https://labob...y.com/cart/checkout`.
@@ -20,6 +20,6 @@ Sessions are identified by a unique Session ID and include metadata such as brow
 * You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
 * Under **Workflow Name** click on `front-end:/cart/checkout` **(3)**, this will bring up the **APM Service Map**. Here we will investigate the backend services and their dependencies to identify the root cause of the issue.
 
-![RUM Session](../images/rum-waterfall.png)
+![RUM Session](../images/rum-waterfall.webp)
 
 {{% /exercise %}}

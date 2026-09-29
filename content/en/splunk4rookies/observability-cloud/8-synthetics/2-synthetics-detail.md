@@ -11,7 +11,7 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 
 {{% /notice %}}
 
-![waterfall](../images/synth-waterfall.png)
+![waterfall](../images/synth-waterfall.webp)
 
 1. **Filter:** Focus in on specific parts of your test; filters the filmstrip, video, and waterfall.
 2. **Filmstrip:** Offers a set of screenshots of site performance so that you can see how the page responds in real-time.

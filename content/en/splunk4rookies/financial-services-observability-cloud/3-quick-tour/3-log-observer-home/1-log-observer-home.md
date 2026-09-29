@@ -6,7 +6,7 @@ weight: 2
 
 Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
 
-![Lo Page](../images/log-observer-main.png)
+![Lo Page](../images/log-observer-main.webp)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Log Observer.
 2. **Filter Bar:** Filter on time, indexes, and fields and also Save Queries.
@@ -35,7 +35,7 @@ Let's run a little search exercise:
 * Under **Top values** click on **visa**, then click on **=** to add it to the filter.
 * Click {{% button style="blue" %}}Run search{{% /button %}}
 
-  ![logo search](../images/log-filter-bar.png?width=920px)
+  ![logo search](../images/log-filter-bar.webp?width=920px)
 
 * Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
 * Let's find all the wire transfer orders that have been compelted. Click on {{% button style="gray" %}}Clear All{{% /button %}} in the filter bar to remove the previous filter.
@@ -43,7 +43,7 @@ Let's run a little search exercise:
 * Click {{% button style="blue" %}}Run search{{% /button %}}
 * You should now only have log lines that contain the word `order`. There are still a lot of log lines -- some of which may not be our service -- so let's filter some more.
 * Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field ...** search box and select it.
-  ![severity](../images/find-severity.png?width=15vw&classes=left)
+  ![severity](../images/find-severity.webp?width=15vw&classes=left)
 * Under **Top values** click on **error**, then click on **=** to add it to the filter.
 * Click {{% button style="blue" %}}Run search{{% /button %}}
 * You should now have a list of wire transfer orders that failed to complete for the last 15 minutes.

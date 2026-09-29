@@ -23,7 +23,7 @@ K8s, short for Kubernetes, is an open-source container orchestration platform. I
 Please select the **K8s nodes** tile from the Tile pane if you have not yet done so.
 (Select **Kubernetes** as your Technology). This will bring you to the Kubernetes Navigator Page.
 
-![Kubernetes](../images/im-kubernetes.png)
+![Kubernetes](../images/im-kubernetes.webp)
 
 The screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters & their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.
 
@@ -31,9 +31,9 @@ Before we dive deeper, let's make sure we are looking at our cluster.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* First, use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
+* First, use the ![k8s filter](../images/k8s-add-filter.webp?classes=inline) option to pick your cluster.
 * This can be done by selecting `k8s.cluster.name` from the filter drop-down box.
-* You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/select-checkmark.png?classes=inline&width=30px).
+* You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/select-checkmark.webp?classes=inline&width=30px).
 * Click the {{% button style="blue"  %}} Apply Filter  {{% /button %}} button to focus on our Cluster
 * We now should have a single cluster visible.
 {{% /notice %}}

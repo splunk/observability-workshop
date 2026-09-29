@@ -8,7 +8,7 @@ Click **Digital Experience** then under Real User Monitoring click **Overview** 
 
 Independent of the type of Status Dashboard used, the RUM Home Page is made up of 3 distinct sections:
 
-![RUM Page](../images/rum-main.png)
+![RUM Page](../images/rum-main.webp)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk RUM. (You can hide this pane in case you need the screen real estate).
 2. **Filter Pane:** Filter on the time frame, environment, application and source type.

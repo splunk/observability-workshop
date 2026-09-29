@@ -13,7 +13,7 @@ You can see the services involved in the workflow in the **Service Map**. In the
 
 * Click on the **paymentservice** in the Service Map to select it.
 
-![APM Explore](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.webp)
 
 {{< tabs >}}
 {{% tab title="Question" %}}

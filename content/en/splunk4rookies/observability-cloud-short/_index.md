@@ -7,7 +7,7 @@ description: The condensed version. Hands-on troubleshooting against a fully ins
 show_toc: false
 params:
   images:
-    - images/featured-o11y.png
+    - images/featured-o11y.webp
 difficulty: Rookie
 ---
 

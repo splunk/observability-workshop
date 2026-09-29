@@ -5,7 +5,7 @@ weight: 3
 
 We now should have a view similar to the one below.
 
-![Place Order](../images/run-results-place-order.png)
+![Place Order](../images/run-results-place-order.webp)
 
 {{% exercise title="Jump from Synthetics to APM" %}}
 
@@ -14,7 +14,7 @@ We now should have a view similar to the one below.
 * Click on the blue {{% icon icon="link" %}} **APM** link on the **POST checkout** line in the waterfall.
 {{% /exercise %}}
 
-![APM trace](../images/apm-trace.png)
+![APM trace](../images/apm-trace.webp)
 
 {{% exercise title="Validate the failed payment in APM" %}}
 

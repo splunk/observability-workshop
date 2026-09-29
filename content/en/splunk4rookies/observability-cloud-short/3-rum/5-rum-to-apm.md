@@ -7,7 +7,7 @@ weight: 5
 
 * In the **APM Service Map** you can clearly see there is an issue with the `paymentservice`.
 
-![RUM to APM](../images/rum-to-apm.png)
+![RUM to APM](../images/rum-to-apm.webp)
 
 {{% /exercise %}}
 

@@ -18,7 +18,7 @@ This makes Trace Analyzer ideal for investigating unknown issues, researching sp
 
 {{% exercise title="Find a failing checkout trace" %}}
 
-![APM Trace Analyzer](../images/apm-trace-analyzer.png)
+![APM Trace Analyzer](../images/apm-trace-analyzer.webp)
 
 * Find a trace with:
   * an error in the **checkoutservice** and the **paymentservice** **(1)**

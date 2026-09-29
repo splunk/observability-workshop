@@ -18,7 +18,7 @@ Splunk Observability Cloud provides several tools for exploring application moni
 
 {{% /exercise %}}
 
-![APM Trace Analyzer](../images/apm-trace-analyzer.png)
+![APM Trace Analyzer](../images/apm-trace-analyzer.webp)
 
 The **Trace & error count** view shows the total traces and traces with errors in a stacked bar chart. You can use your mouse to select a specific period within the available time frame.
 
@@ -28,7 +28,7 @@ The **Trace & error count** view shows the total traces and traces with errors i
 
 {{% /exercise %}}
 
-![APM Trace Analyzer Heat Map](../images/apm-trace-analyzer-heat-map.png)
+![APM Trace Analyzer Heat Map](../images/apm-trace-analyzer-heat-map.webp)
 
 The **Trace Duration** view shows a heatmap of traces by duration.  The heatmap represents 3 dimensions of data:
 
@@ -46,7 +46,7 @@ You can use your mouse to select an area on the heatmap, to focus on a specific 
 * Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 * Click on **Add filters**, type in `orderId` and select **orderId** from the list.
 * Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter. If you didn't capture one, please ask your instructor for one.
-  ![Traces by Duration](../images/apm-trace-by-duration.png)
+  ![Traces by Duration](../images/apm-trace-by-duration.webp)
 
 {{% /exercise %}}
 
