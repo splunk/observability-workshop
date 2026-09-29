@@ -16,7 +16,7 @@ weight: 1
 * Click on **Go to all run results**.
 * Change **All** to **Failure** **(1)**.
 
-  ![Transaction Filter](../images/failed-run-results.png)
+  ![Transaction Filter](../images/failed-run-results.webp)
 
 * Click on one of the failed results.
 

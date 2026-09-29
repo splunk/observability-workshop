@@ -40,6 +40,6 @@ While you are waiting for pages to load, please move your mouse cursor around th
 
 This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
 
-![Online Boutique](images/shop.png)
+![Online Boutique](images/shop.webp)
 
 Let’s go take a look at what the data looks like in **Splunk RUM**.

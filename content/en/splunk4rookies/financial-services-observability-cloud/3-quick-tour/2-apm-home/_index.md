@@ -21,4 +21,4 @@ Splunk APM provides a **NoSample** end-to-end visibility of every service and it
 
 **Monitor database query performance:** Easily identify how slow and high execution queries from SQL and NoSQL databases impact your services, endpoints and business workflows — no instrumentation required.  
 
-![Architecture Overview](./images/arch-overview.png)
+![Architecture Overview](./images/arch-overview.webp)

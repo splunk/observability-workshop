@@ -13,4 +13,4 @@ Log Observer Connect allows you to seamlessly bring in the same log data from yo
 
 **Achieve higher economies of scale and operational efficiency:** By centralizing log management across teams, breaking down data and team silos, and getting better overall support
 
-![Logo graph](./images/logo-image-loop.png)
+![Logo graph](./images/logo-image-loop.webp)

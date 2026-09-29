@@ -26,7 +26,7 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 {{% /tab %}}
 {{< /tabs >}}
 
-  ![Log Message](../images/log-observer-log-message.png)
+  ![Log Message](../images/log-observer-log-message.webp)
 * Click on the **X** in the log message pane to close it.
 
 {{% /notice %}}

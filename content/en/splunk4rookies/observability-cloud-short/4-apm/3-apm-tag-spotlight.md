@@ -7,7 +7,7 @@ weight: 3
 
 * Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
 
-![APM Tag Spotlight](../images/apm-tag-spotlight.png)
+![APM Tag Spotlight](../images/apm-tag-spotlight.webp)
 
 * This view displays a series of cards, each representing an indexed tag (such as Endpoint, Environment, Version, or custom tags like tenant.level). Within each card, you can see the distribution of tag values along with key metrics including request count, error count, root cause errors, and latency percentiles (P50, P90, P99).
 

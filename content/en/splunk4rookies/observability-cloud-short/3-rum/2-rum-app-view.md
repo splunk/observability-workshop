@@ -7,7 +7,7 @@ weight: 2
 
 * You will now see a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health**, **Custom Events**, **Network Requests**, **Pages** and a **Map View** comparing them to historic metrics (1 hour by default).
 
-![RUM Dashboard](../images/rum-metric-map-charts.png)
+![RUM Dashboard](../images/rum-metric-map-charts.webp)
 
 * The tabs available on this page include:
   * **UX Metrics** Page Views, Page Load and Web Vitals metrics
@@ -39,6 +39,6 @@ weight: 2
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Event Latency P75** chart.
 * In the **Custom Event Latency** chart click on the **see all** **(1)** link under the chart title.
 
-![RUM See All](../images/rum-see-all.png)
+![RUM See All](../images/rum-see-all.webp)
 
 {{% /exercise %}}

@@ -15,7 +15,7 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% /exercise %}}
 
-![RUM Session](../images/rum-session.png)
+![RUM Session](../images/rum-session.webp)
 
 {{% exercise title="Watch the Session Replay" %}}
 

@@ -12,18 +12,18 @@ Let's look at creating a **Log Timeline** chart. The Log Timeline chart is used 
 First, we will reduce the amount of information to only the columns we are interested in:
 
 * Click on the Configure Table {{% icon icon="cog" %}} icon above the **Logs table** to open the **Table Settings**, untick `_raw` and ensure the following fields are selected `k8s.pod.name`, `message` and `version`.
-  ![Log Table Settings](../images/log-observer-table.png)
+  ![Log Table Settings](../images/log-observer-table.webp)
 * Remove the fixed time from the time picker, and set it to the **Last 15 minutes**.
 * To make this work for all traces, remove the `trace_id` from the filter and add the fields `sf_service=wire-transfer-service` and `sf_environment=[WORKSHOPNAME]`.
 * Click **Save** and select **Save to Dashboard**.
-  ![save it](../images/save-query.png)
+  ![save it](../images/save-query.webp)
 * In the chart creation dialog box that appears, for the **Chart name** use `Log Timeline`.
 * Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and then click {{% button style="blue" %}}New dashboard{{% /button %}} in the Dashboard Selection dialog box.
 * In the **New dashboard** dialog box, enter a name for the new dashboard (no need to enter a description). Use the following format: `Initials - Service Health Dashboard` and click {{% button style="blue" %}}Save{{% /button %}}
 * Ensure the new dashboard is highlighted in the list **(1)** and click {{% button style="blue" %}}OK{{% /button %}} **(2)**.
-  ![Save dashboard](../images/dashboard-save.png)
+  ![Save dashboard](../images/dashboard-save.webp)
 * Ensure that **Log Timeline** is selected as the **Chart Type**.
-  ![log timeline](../images/log-timeline.png?classes=left&width=25vw)
+  ![log timeline](../images/log-timeline.webp?classes=left&width=25vw)
 * Click the {{% button %}}Save{{% /button %}} button (**do not** click **Save and goto dashboard** at this time).
 
 {{% /notice %}}

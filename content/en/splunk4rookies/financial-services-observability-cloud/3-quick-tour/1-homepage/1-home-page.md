@@ -7,7 +7,7 @@ time: 5 minutes
 
 After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 
-![home page](../images/home-screen.png)
+![home page](../images/home-screen.webp)
 
 1. **Explore your data pane:** Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator.
 2. **Documentation pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.

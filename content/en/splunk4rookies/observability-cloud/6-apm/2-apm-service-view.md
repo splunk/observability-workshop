@@ -8,7 +8,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% /notice %}}
 
-![Service Dashboard](../images/apm-service-dashboard.png)
+![Service Dashboard](../images/apm-service-dashboard.webp)
 
 {{% exercise title="Widen the timeframe and explore the dashboards" %}}
 
@@ -21,7 +21,7 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% /exercise %}}
 
-![APM Explore](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.webp)
 
 {{% exercise title="Read the service map popup" %}}
 

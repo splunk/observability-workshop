@@ -7,7 +7,7 @@ weight: 2
 
 * Now we are looking at the result of a single Synthetic Browser Test.
 
-![waterfall](../images/synth-waterfall.png)
+![waterfall](../images/synth-waterfall.webp)
 
 * By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page, etc.
 

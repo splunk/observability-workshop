@@ -15,7 +15,7 @@ If you have already completed the registration process you can skip the rest and
 * [**https://app.eu0.signalfx.com (EMEA)**](https://app.eu0.signalfx.com)
 * [**https://app.us1.signalfx.com (APAC/AMER)**](https://app.us1.signalfx.com)
 
-![email](images/invite-email.png?width=25vw)
+![email](images/invite-email.webp?width=25vw)
 
 If this is your first time using Splunk Observability Cloud, you will be presented with the registration form. Enter your full name, and desired password. Please note that the password requirements are:
 
@@ -26,4 +26,4 @@ If this is your first time using Splunk Observability Cloud, you will be present
 
 Click the checkbox to agree to the terms and conditions and click the **SIGN IN NOW** button.
 
-![User-Setup](images/enter-password.png?width=25vw)
+![User-Setup](images/enter-password.webp?width=25vw)

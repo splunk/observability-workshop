@@ -15,7 +15,7 @@ weight: 3
 {{% /tab %}}
 {{< /tabs >}}
 
-  ![Log Message](../images/log-observer-log-message.png)
+  ![Log Message](../images/log-observer-log-message.webp)
 * Click on the **X** in the log message pane to close it.
 
 {{% /exercise %}}

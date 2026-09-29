@@ -5,7 +5,7 @@ weight: 1
 
 Click **Digital Experience** then under Real User Monitoring click **Overview** in the main menu. You arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
 
-![multiple apps](../images/rum-dashboard.png)
+![multiple apps](../images/rum-dashboard.webp)
 
 {{% exercise title="Filter RUM to your workshop" %}}
 
@@ -19,7 +19,7 @@ Click **Digital Experience** then under Real User Monitoring click **Overview** 
 
 {{% /exercise %}}
 
-![RUM Dashboard](../images/rum-metrics-dashboard.png)
+![RUM Dashboard](../images/rum-metrics-dashboard.webp)
 
 * **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
 * **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.

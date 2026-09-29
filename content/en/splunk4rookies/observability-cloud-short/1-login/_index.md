@@ -17,7 +17,7 @@ We are going to examine the real user data that has been provided by the telemet
   * **[https://app.eu0.signalfx.com](https://app.eu0.signalfx.com (EMEA))**
   * **[https://app.us1.signalfx.com](https://app.us1.signalfx.com (APAC/AMER))**
 
-![login](images/login-password.png)
+![login](images/login-password.webp)
 
 * You will land on the home page of Splunk Observability Cloud.
 

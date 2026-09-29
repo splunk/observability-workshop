@@ -9,7 +9,7 @@ weight: 3
 
 {{% /exercise %}}
 
-![APM Tag Spotlight](../images/apm-tag-spotlight.png)
+![APM Tag Spotlight](../images/apm-tag-spotlight.webp)
 
 The views in **Tag Spotlight** are configurable for both the chart and cards. The view defaults to **Requests & Errors**.
 

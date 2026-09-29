@@ -10,4 +10,4 @@ Celebrate your achievement by adding this certificate to your {{< badge style="b
 
 Let's recap what we have learned and what you can do next.
 
-![Champagne](images/champagne.png?width=45vw)
+![Champagne](images/champagne.webp?width=45vw)

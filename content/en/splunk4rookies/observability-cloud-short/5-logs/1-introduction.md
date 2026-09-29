@@ -7,7 +7,7 @@ You’ve now navigated directly from an **APM** trace into **Logs** using the **
 
 The key advantage, just as with the **RUM** and **APM** integration, is that you’re viewing your logs in the context of your previous actions. In this case, that context includes the matching time range **(1)** from the trace and a filter **(2)** automatically applied to the `trace_id`.
 
-![Trace Logs](../images/log-observer-trace-logs.png)
+![Trace Logs](../images/log-observer-trace-logs.webp)
 
 This view will include **all** the log lines from **all** services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.
 

@@ -21,4 +21,4 @@ Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observa
 
 **Metrics pipeline management:** Control metrics volume at the point of ingest without re-instrumentation with a set of aggregation and data-dropping rules to store and analyze only the needed data. Reduce metrics volume and optimize observability spend.  
 
-![Infrastructure Overview](./images/infrastructure-over.png)
+![Infrastructure Overview](./images/infrastructure-over.webp)

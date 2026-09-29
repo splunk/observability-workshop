@@ -9,7 +9,7 @@ time: 5 minutes
 
 * In Splunk Observability Cloud, from the main menu, hover over **Digital Experience**, then click on **Overview** **(1)** from the **Real User Monitoring** section as shown below.
 
-![RUM](../images/rum-de.png)
+![RUM](../images/rum-de.webp)
 
 * This will open up the **Application Summary Dashboard**. This section shows a quick overview of **all** the applications being monitored.
 
@@ -22,6 +22,6 @@ time: 5 minutes
   * The **Source** is set to **Browser**.
 * Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart.
 
-![main page](../images/rum-dashboard.png)
+![main page](../images/rum-dashboard.webp)
 
 {{% /exercise %}}

@@ -18,7 +18,7 @@ Related Content relies on specific metadata that allows APM, Infrastructure Moni
 * At the very bottom of the **Trace Waterfall** click on **Logs**. This highlights that there are **Related Logs** for this trace.
 * Click on the **Logs for trace xxx** entry in the pop-up, this will open the logs for the complete trace in **Logs**.
 
-![Related Logs](../images/apm-related-logs.png)
+![Related Logs](../images/apm-related-logs.webp)
 
 * Next, let's find out more about the error in the logs.
 

@@ -15,7 +15,7 @@ You can see the services involved in the workflow in the **Service Map**. In the
 
 {{% /exercise %}}
 
-![APM Explore](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.webp)
 
 Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
 
@@ -25,4 +25,4 @@ Splunk APM also provides built-in **Service Centric Views** to help you see prob
 
 {{% /exercise %}}
 
-![APM Service](../images/apm-service.png)
+![APM Service](../images/apm-service.webp)
