@@ -1,9 +1,9 @@
 ---
-title: Observability Cloud Rookies 2026
-weight: 5
+title: Observability Cloud for Rookies 2026
+weight: 1
 authors: ["Pieter Hagen"]
 time: Variable
-description: Hands-on Splunk Observability Cloud workshop, your instructor may deliver all lessons in sequence or select individual lessons based on your team's goals and available time.
+description: The 2026 Rookies workshop is modular. Start with the introduction, then follow a recommended path or pick individual modules for infrastructure, digital experience, AI, and more.
 layout: "hero"
 build:
   list: never
@@ -11,10 +11,6 @@ build:
 params:
   images:
     - images/o11y-2026.png
-cta:
-  - label: Start the Introduction Workshop
-    href: /splunk4rookies/o11y-rookies-26/modules/1-intro/
-    style: primary
 ---
 
 {{< presenter >}}
@@ -23,13 +19,30 @@ Make sure the Splunk Show instance is started in time , building the EC2 instanc
 
 ## Introduction
 
-Welcome to the *Splunk Observability Cloud workshop for rookies!*
-In these hands-on lessons, you’ll explore key observability concepts using the OpenTelemetry Demo application, also known as the Astronomy Shop.  
-  
-If you’re new to *Splunk Observability Cloud*, begin with the **Intro** lesson. It provides an overview of the platform and the foundational knowledge you’ll need for the rest of the workshop.  
+This is the **2026** Splunk Observability Cloud workshop for rookies. It is no
+longer one fixed sequence of lessons. You complete a short introduction, then
+choose **self-contained modules** or a **recommended path**.
 
-After completing the Intro, you can take the remaining lessons in any order. Each lesson is self-contained and focuses on a specific concept or challenge.
-Your instructor may recommend a particular learning path based on the goal of your session.
+Every module uses the same lab application: the OpenTelemetry Demo, also known
+as the Astronomy Shop. You generate real user, application, and infrastructure
+telemetry, then investigate it in Splunk Observability Cloud.
+
+If you are new to the platform, start with the **Introduction** module. It
+covers login, the Astronomy Shop, and a first pass through RUM, APM, logs, and
+Synthetics.
+
+After that, pick what matches your session:
+
+- A **path** if you want a guided route (infrastructure, digital experience, or
+  AI monitoring).
+- Individual **modules** if you only need one topic, such as logs, databases,
+  application security, or digital experience analytics.
+
+Your instructor may still run a subset of modules to fit the time available.
+
+{{< cta href="/splunk4rookies/o11y-rookies-26/modules/1-intro/" icon="rocket" >}}Start the Introduction module{{< /cta >}}
+
+{{< divider >}}
 
 ### Continue your workshop journey
 
