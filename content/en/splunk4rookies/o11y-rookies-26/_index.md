@@ -5,9 +5,10 @@ authors: ["Pieter Hagen"]
 time: Variable
 description: The 2026 Rookies workshop is modular. Start with the introduction, then follow a recommended path or pick individual modules for infrastructure, digital experience, AI, and more.
 layout: "hero"
-build:
-  list: never
-  render: always
+badge: "Beta"
+#build:
+#  list: never
+#  render: always
 params:
   images:
     - images/o11y-2026.png

@@ -1,6 +1,7 @@
 ---
 title: Beat social media to the issue
 weight: 5
+hidden: true
 time: 45 minutes
 description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
 params:

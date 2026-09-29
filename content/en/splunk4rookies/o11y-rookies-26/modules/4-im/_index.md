@@ -1,6 +1,7 @@
 ---
 title: Neighbours are a pain
 weight: 4
+hidden: true
 layout: chapter
 time: 45 minutes
 description: A noisy neighbour is hogging resources — learn how to spot the culprit using infrastructure monitoring.

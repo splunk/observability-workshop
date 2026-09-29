@@ -1,6 +1,6 @@
 ---
 title: Observability Cloud (3 hours)
-weight: 2
+weight: 3 
 authors: ["Robert Castley", "Pieter Hagen"]
 time: 90 minutes
 aliases:

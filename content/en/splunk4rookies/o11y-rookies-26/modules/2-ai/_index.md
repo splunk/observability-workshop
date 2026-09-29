@@ -1,6 +1,7 @@
 ---
 title: Let's introduce our friend ...
 weight: 2
+hidden: true
 time: 45 minutes
 description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
 params:
