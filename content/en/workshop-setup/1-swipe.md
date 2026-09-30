@@ -46,5 +46,5 @@ time: false
 
 {{< /step >}}
 
-> [!WARNING] Workshops with more than 40 users
-> If your workshop has more than **40 users**, we recommend informing the support team in advance. This ensures that the trial or workshop environment is properly scaled to handle the load.
+> [!WARNING] Workshops with more than 200 users
+> If your workshop has more than **200 users**, we recommend informing the support team in advance. This ensures that the trial or workshop environment is properly scaled to handle the load.
