@@ -1,14 +1,15 @@
 ---
-title: Observability Cloud (3 hours)
+title: Observability Cloud (2 hours)
 weight: 3 
 authors: ["Robert Castley", "Pieter Hagen"]
-time: 90 minutes
+time: 2 hours
 aliases:
   - /s4r/observability-cloud/
-description: Three hours, hands-on. Explore the full Splunk Observability Cloud platform end-to-end against a live microservices app and see the features that differentiate it from other observability tools.
+description: "Explore the full stack in two hours, from user experience to infrastructure."
+badge: "Deprecated"
 params:
   images:
-    - /images/featured.png
+    - /images/card-hero.png
 ---
 
 In this workshop, we'll demonstrate how Splunk Observability Cloud delivers instant visibility into the user experience—covering everything from front-end applications to back-end services. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions:
