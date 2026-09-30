@@ -13,11 +13,13 @@ assistant.
 
 {{< step title="Open your agent stream settings" >}}
 
-In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com` 
-and **`workshop`** org
+**1.** In your browser, navigate to Splunk Observability Cloud at `https://app.us1.signalfx.com/`. Ensure the **`Observability Workshop AMER`** org is selected.
 
-Open the `Splunk Agent Observability Workshop` project, and select the agent stream that 
-matches the Instance ID you found above (such as `shw-51ea`).
+**2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
+
+**3.** Open the `Splunk Agent Observability Workshop` project.
+
+**4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`).
 
 Click the `Configure Evaluators` button to open its evaluator configuration.
 

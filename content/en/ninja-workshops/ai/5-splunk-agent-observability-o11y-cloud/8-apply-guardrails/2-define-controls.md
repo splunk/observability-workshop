@@ -13,11 +13,13 @@ match should block or steer.
 
 {{< step title="Open the Controls tab" >}}
 
-In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com`
-and **`workshop`** org
+**1.** In your browser, navigate to Splunk Observability Cloud at `https://app.us1.signalfx.com/`. Ensure the **`Observability Workshop AMER`** org is selected.
 
-Open the `Splunk Agent Observability Workshop` project, and select the agent stream that
-matches the Instance ID you found above (such as `shw-51ea`).
+**2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
+
+**3.** Open the `Splunk Agent Observability Workshop` project.
+
+**4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`).
 
 Then click on the **Controls** tab.
 
@@ -37,8 +39,8 @@ as well as the option to create a new control.
 
 {{< step title="Add the Block Harmful SQL Control" >}}
 
-Next, let's add an existing control called `Block-harmful-sql` to our agent stream. 
-To do this, click the `Clone and attach` button beside the `Block-harmful-sql` control: 
+Next, let's add an existing control called `block-harmful-sql` to our agent stream. 
+To do this, click the `Clone and attach` button beside the `block-harmful-sql` control: 
 
 ![Create a blocking control](../../images/galileo-agent-control-block.png?width=750px)
 
@@ -60,7 +62,7 @@ Let's add a second control targeting the **Healthcare Assistant** LLM step that 
 response, for example to keep answers within healthcare scope or to enforce a disclaimer.
 
 To do this, click on the `Add control` button and then click `Clone and attach` beside the 
-`steer-output-pii` control.
+`steer-remove-output-pii-regex` control.
 
 This control runs **after** LLM calls, and when a phone number or address are detected in the LLM response, 
 the agent is "steered" towards removing these fields from the final response. 
