@@ -5,7 +5,7 @@ weight: 1
 time: 5 minutes
 ---
 
-Open the Splunk Agent Observability and work through a real trace from the traffic you just generated.
+Open Splunk Agent Observability and work through a real trace from the traffic you just generated.
 
 {{< exercise title="Investigate agent behavior" >}}
 
@@ -17,20 +17,22 @@ Execute the following command using the terminal connected to your EC2 instance:
 echo $INSTANCE
 ```
 
-Make a note of the result, which will be something like `shw-51ea`. This will be 
+Make a note of the result, which will be something like `shw-9787`. This will be 
 the name of your Agent Stream below. 
 
 {{< /step >}}
 
 {{< step title="Open your project and agent stream" >}}
 
-**1.** In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com` and **`workshop`** org
+**1.** In your browser, navigate to Splunk Observability Cloud at `https://app.us1.signalfx.com/`. Ensure the **`Observability Workshop AMER`** org is selected.
 
-**2.** Open the `Splunk Agent Observability Workshop` project. 
+**2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
 
-**3.** Select the agent stream that matches the Instance ID you found above (such as `shw-51ea`). 
+**3.** Open the `Splunk Agent Observability Workshop` project. 
 
-![Project and agent stream selection](../../images/galileo-project.png?width=750px)
+**4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`). 
+
+![Project and agent stream selection](../../images/sao-project.png?width=750px)
 
 {{< /step >}}
 

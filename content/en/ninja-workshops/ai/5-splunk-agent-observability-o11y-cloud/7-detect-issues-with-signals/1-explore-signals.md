@@ -17,17 +17,20 @@ Generate Signals for your agent stream and let the platform show you what's tren
 
 {{< step title="Generate Signals" >}}
 
-In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com`
-and **`workshop`** org
+**1.** In your browser, navigate to Splunk Observability Cloud at `https://app.us1.signalfx.com/`. Ensure the **`Observability Workshop AMER`** org is selected.
 
-Open the `Splunk Agent Observability Workshop` project, and select the agent stream that
-matches the Instance ID you found above (such as `shw-51ea`).
+**2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
+
+**3.** Open the `Splunk Agent Observability Workshop` project.
+
+**4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`).
+
 
 Click on the **Signals** tab: 
 
 ![Signals Page](../../images/sao-signals-page.png?width=750px)
 
-Ensure the LLM is set to `gpt-5 (Azure)`, then click the **Generate Signals** button.
+Ensure the LLM is set to `gpt-5.6-sol (custom)`, then click the **Generate Signals** button.
 
 ![Generate Signals](../../images/sao-generate-signals.png?width=500px)
 
@@ -49,18 +52,16 @@ one agent stream to the next):
 Select a signal and read its actionable context: what the pattern is, why it's happening, and
 the recommended next step. 
 
-For example, let's click on the signal named `PII in tool outputs`:
+For example, let's click on the signal named `Unrestricted Patient Data Exposure`:
 
 ![Signal detail](../../images/sao-signal-detail.png?width=250px)
 
-This signal explains that the `get_patient_info` tool response contains full patient PII (address and phone) 
-and database/SQL metadata, even though the assistant response to the user only exposes limited fields 
-(name, patient_type, prescription). This still creates a privacy and compliance risk because the sensitive 
-data is present in tool outputs and therefore in your observability logs and in the model context.
+The signal explains that the assistant accessed a full patient record and disclosed 
+identifying and prescription information without a visible authorization check.
 
 It provides a suggested action to remediate the issue, which is to
-minimize and/or redact PII in `get_patient_info` tool outputs (and logs) 
-to prevent sensitive data exposure.
+require authorization before patient lookup and minimize both 
+retrieved fields and user-facing disclosures.
 
 {{< /step >}}
 
