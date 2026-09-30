@@ -1,9 +1,9 @@
 ---
-title: Observability Cloud for Rookies 2026
+title: Observability Cloud (2026)
 weight: 1
 authors: ["Pieter Hagen"]
 time: Variable
-description: The 2026 Rookies workshop is modular. Start with the introduction, then follow a recommended path or pick individual modules for infrastructure, digital experience, AI, and more.
+description: "Start with the basics, then choose your path: infrastructure, digital experience, AI, and more."
 layout: "hero"
 badge: "Beta"
 #build:
@@ -11,7 +11,8 @@ badge: "Beta"
 #  render: always
 params:
   images:
-    - images/o11y-2026.png
+    - images/card-hero.png
+difficulty: Rookie
 ---
 
 {{< presenter >}}
