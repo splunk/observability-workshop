@@ -4,14 +4,15 @@ weight: 2
 time: false
 ---
 
-## **Observability Workshop Templates**
+## Observability Workshop Templates
 
 Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:
 
-| Workshop Type | Description | Template | |
-| --- | --- | --- | --- |
-| **Splunk4Rookies - Observability** | This workshop template is designed for beginners. The template pre-deploys the **OpenTelemetry Collector** and the **Online Boutique** application. Attendees only need a browser to participate and complete the workshop. | [**Rookies**](https://show.splunk.com/template/262/) | ![Rookies](../images/rookies.webp) |
-| **Splunk4Ninjas - Observability** | This workshop template is tailored for **advanced** users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed. | [**Ninja**](https://show.splunk.com/template/428/) | ![Ninjas](../images/ninjas.webp) |
+| Workshop Type | Description | Template |   |
+| ------------- | ----------- | -------- | - |
+| **Splunk4Rookies - Astronomy Shop** | This workshop template is designed for beginners. The template pre-deploys the **OpenTelemetry Collector** and the **Astronomy Shop** application. Attendees only need a browser to participate and complete the workshop. | [**Astronomy Shop**](https://show.splunk.com/template/1147/) | ![Rookies](../images/rookies.webp) |
+| **Splunk4Rookies - Online Boutique** | This workshop template is designed for beginners. The template pre-deploys the **OpenTelemetry Collector** and the **Online Boutique** application. Attendees only need a browser to participate and complete the workshop. | [**Online Boutique**](https://show.splunk.com/template/262/) | ![Rookies](../images/rookies.webp) |
+| **Splunk4Ninjas - Observability** | This workshop template is tailored for **advanced** users. The template sets up an instance with all necessary tools for hands-on activities. No resources are deployed or running at launch, allowing attendees to configure and deploy as needed. | [**Ninjas**](https://show.splunk.com/template/428/) | ![Ninjas](../images/ninjas.webp) |
 
 {{% notice  style="primary" title="**Ninja Workshops Only**" icon="user-ninja" %}}
 
@@ -24,7 +25,7 @@ Set the **Estimated Participants** to the number of attendees you expect, and ma
 
 ---
 
-### **Important Configuration Tips**
+### Important Configuration Tips
 
 When provisioning your instances, keep the following in mind:
 
@@ -44,6 +45,6 @@ When provisioning your instances, keep the following in mind:
 
 ---
 
-### **Additional Resources**
+### Additional Resources
 
 For more detailed guidance on using Splunk Show, refer to the [**Splunk Show User Guide**](https://splunk.show/userguide).
