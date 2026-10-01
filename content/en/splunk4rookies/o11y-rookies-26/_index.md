@@ -5,7 +5,7 @@ authors: ["Pieter Hagen"]
 time: Variable
 description: "Start with the basics, then choose your path: infrastructure, digital experience, AI, and more."
 layout: "hero"
-badge: "Beta"
+badge: "New"
 #build:
 #  list: never
 #  render: always
@@ -49,9 +49,11 @@ Your instructor may still run a subset of modules to fit the time available.
 ### Continue your workshop journey
 
 {{< cards >}}
+<!---
 {{< card title="Choose Your Path" href="/splunk4rookies/o11y-rookies-26/pathways/" hero-icon="route" >}}
 Follow a recommended route through the modules based on your area of interest.
 {{< /card >}}
+--->
 {{< card title="Browse All Modules" href="/splunk4rookies/o11y-rookies-26/modules/" hero-icon="library" >}}
 View every available workshop module and choose the ones you want to complete.
 {{< /card >}}
