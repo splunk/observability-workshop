@@ -3,6 +3,7 @@ title: Choose Your Path
 linkTitle: Choose Your Path
 layout: hero
 weight: 1
+hidden: true
 description: Select a recommended route through the workshop based on the observability skills you want to develop.
 ---
 
