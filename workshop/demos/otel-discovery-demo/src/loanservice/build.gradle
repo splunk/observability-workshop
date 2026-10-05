@@ -13,7 +13,7 @@ java {
 
 ext['tomcat.version'] = '10.1.59'
 ext['logback.version'] = '1.5.35'
-ext['jackson-bom.version'] = '2.21.5'
+ext['jackson-bom.version'] = '2.21.6'
 ext['spring-framework.version'] = '6.2.19'
 ext['spring-kafka.version'] = '3.3.16'
 
@@ -26,6 +26,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.kafka:spring-kafka'
+	constraints {
+		implementation('at.yawk.lz4:lz4-java:1.11.1') {
+			because 'CVE-2026-59949'
+		}
+	}
 }
 
 tasks.named('test') {
