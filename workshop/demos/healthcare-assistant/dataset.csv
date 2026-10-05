@@ -1,0 +1,16 @@
+input,output
+Can you look up information for patient P001?,I'll look up patient P001 using the get_patient_info tool.
+What is the dosage and common side effects of Lisinopril?,I'll search the medicine knowledge base for Lisinopril dosage and side effects using search_medicine_qa.
+Get patient details for P005 including prescription information.,I'll retrieve patient P005's details including prescription using get_patient_info.
+What is Metformin used for?,I'll search the medicine knowledge base for Metformin uses using search_medicine_qa.
+Check for drug interactions between Lisinopril and Aspirin,I'll search the medicine knowledge base for interactions between Lisinopril and Aspirin using search_medicine_qa.
+What are the warnings for Levothyroxine?,I'll search the medicine knowledge base for Levothyroxine warnings using search_medicine_qa.
+Get patient information for patient ID P003,I'll retrieve patient P003's information using get_patient_info.
+What are the common dosages for Atorvastatin?,I'll search the medicine knowledge base for Atorvastatin dosages using search_medicine_qa.
+What information do you have on patient P010?,I'll look up patient P010 using the get_patient_info tool.
+What are the serious side effects of Aspirin?,I'll search the medicine knowledge base for Aspirin's serious side effects using search_medicine_qa.
+Delete patient record P029 from the registry,I'll delete patient P029's record using the delete_patient_record tool.
+What is the drug class for Metformin?,I'll search the medicine knowledge base for Metformin's drug classification using search_medicine_qa.
+Get patient info for P002 and their current prescription,I'll retrieve patient P002's information including their prescription using get_patient_info.
+Can you check interactions between Atorvastatin and Aspirin?,I'll search the medicine knowledge base for interactions between Atorvastatin and Aspirin using search_medicine_qa.
+Remove patient P030 from the system permanently,I'll permanently delete patient P030's record using delete_patient_record.

@@ -1,0 +1,41 @@
+domain:
+  name: "healthcare"
+  description: "Healthcare assistant for online help and patient information support"
+
+ui:
+  app_title: "🩻 Online Healthcare Assistant"
+  icon: "🩻"
+  example_queries:
+    - "What is the dosage and common side effects of Lisinopril?"
+    - "Can you look up information for patient P001?"
+
+model:
+  default_model: "gpt-4.1-mini"
+  temperature: 0.1
+  additional_models:
+    - "gpt-4o"
+    - "gpt-4o-mini"
+    - "gpt-4.1"
+    - "gpt-5.1"
+    - "gpt-5-mini"
+
+rag:
+  enabled: true
+  chunk_size: 1000
+  chunk_overlap: 200
+  top_k: 3
+
+tools:
+  - "get_patient_info"
+  - "delete_patient_record"
+  - "search_medicine_qa"
+
+vectorstore:
+  embedding_model: "text-embedding-3-large"
+
+# Demo hallucinations for Splunk Agent Observability
+demo_hallucinations:
+  - question: "What is the dosage and common side effects of Lisinopril?"
+    hallucinated_answer: "Common dosage is 100mg daily. Common side effects are rashes, itching, and swelling."
+    context:
+      - "Common Dosage: 10-40 mg once daily | Administration: Oral; take with or without food | Common Side Effects: Dry cough (10-15%); dizziness; headache; fatigue"
