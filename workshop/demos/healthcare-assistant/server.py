@@ -37,14 +37,18 @@ PROJECT = os.getenv("SPLUNK_AO_PROJECT", "Healthcare Assistant Demo")
 # seconds with no /query. 0 disables (handy for local `uvicorn` dev).
 IDLE_TTL_SECONDS = int(os.getenv("BACKEND_IDLE_TTL_SECONDS", "7200"))
 
-_last_activity = time.monotonic()
+# Wall-clock epoch (not monotonic): the orchestrator reads it off a Deployment
+# annotation to compare last-used across pods, so it must be comparable across
+# processes.
+_last_activity = time.time()
 _activity_lock = threading.Lock()
+LAST_USED_ANNOTATION = "demo.splunk/last-used"
 
 
 def _touch() -> None:
     global _last_activity
     with _activity_lock:
-        _last_activity = time.monotonic()
+        _last_activity = time.time()
 
 
 # --- request/response models -------------------------------------------------
@@ -147,16 +151,21 @@ def log_hallucination(req: HallucinationRequest) -> dict:
 
 
 def _idle_watcher() -> None:
-    """Delete own Service + Deployment and exit once idle past the TTL.
+    """Refresh the last-used annotation and self-terminate once idle past the TTL.
 
-    Removing the Deployment (not just the Pod) is what prevents a restart — see
-    CLAUDE.md §12. Requires the back-end ServiceAccount to have delete rights on
+    Each tick stamps demo.splunk/last-used on our own Deployment so the
+    orchestrator can pick the least-recently-used back-end for eviction. Once
+    idle past the TTL we delete our own Service + Deployment and exit — removing
+    the Deployment (not just the Pod) is what prevents a restart (CLAUDE.md §12).
+    Requires the back-end ServiceAccount to have patch + delete rights on
     deployments/services in its namespace.
     """
     while True:
         time.sleep(60)
         with _activity_lock:
-            idle = time.monotonic() - _last_activity
+            last = _last_activity
+        _update_last_used_annotation(last)
+        idle = time.time() - last
         if idle < IDLE_TTL_SECONDS:
             continue
         logger.info("Idle for %.0fs (TTL %ss) — self-terminating", idle, IDLE_TTL_SECONDS)
@@ -165,6 +174,34 @@ def _idle_watcher() -> None:
         except Exception as e:
             logger.warning("Self-delete failed (%s); exiting process anyway", e)
         os._exit(0)
+
+
+_apps_api = None
+
+
+def _get_apps_api():
+    global _apps_api
+    if _apps_api is None:
+        from kubernetes import client, config as k8s_config
+
+        try:
+            k8s_config.load_incluster_config()
+        except Exception:
+            k8s_config.load_kube_config()
+        _apps_api = client.AppsV1Api()
+    return _apps_api
+
+
+def _update_last_used_annotation(last_used: float) -> None:
+    name = os.getenv("BACKEND_NAME")
+    namespace = os.getenv("POD_NAMESPACE", "default")
+    if not name:
+        return
+    body = {"metadata": {"annotations": {LAST_USED_ANNOTATION: str(int(last_used))}}}
+    try:
+        _get_apps_api().patch_namespaced_deployment(name, namespace, body)
+    except Exception as e:  # best-effort; eviction falls back to creationTimestamp
+        logger.debug("last-used annotation update failed: %s", e)
 
 
 def _self_delete() -> None:

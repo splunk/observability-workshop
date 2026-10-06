@@ -51,6 +51,17 @@ READY_TIMEOUT_SECONDS = int(os.getenv("BACKEND_READY_TIMEOUT_SECONDS", "180"))
 # so allow IfNotPresent for local testing.
 IMAGE_PULL_POLICY = os.getenv("BACKEND_IMAGE_PULL_POLICY", "IfNotPresent")
 
+# Max back-ends allowed on the node at once. 0 = unlimited (fail-open). When a
+# NEW stream would exceed this, the least-recently-used back-end is evicted to
+# make room. Set explicitly per instance — see CLAUDE.md "Capacity & concurrency".
+MAX_BACKEND_PODS = int(os.getenv("MAX_BACKEND_PODS", "0"))
+
+# Label every back-end carries, and the annotation holding its last-used epoch
+# (seconds). The back-end refreshes the annotation from its idle-watcher loop;
+# the orchestrator reads it to pick the LRU eviction victim.
+BACKEND_COMPONENT = "healthcare-backend"
+LAST_USED_ANNOTATION = "demo.splunk/last-used"
+
 _DNS_LABEL_MAX = 63
 _SLUG_BODY_MAX = 40  # leaves room for the "backend-<target>-" prefix + hash suffix
 
@@ -122,7 +133,8 @@ def _deployment_manifest(name: str, stream: str, target_key: str) -> dict:
         "apiVersion": "apps/v1",
         "kind": "Deployment",
         "metadata": {"name": name, "labels": labels,
-                     "annotations": {"demo.splunk/stream": stream}},
+                     "annotations": {"demo.splunk/stream": stream,
+                                     LAST_USED_ANNOTATION: str(int(time.time()))}},
         "spec": {
             "replicas": 1,
             "selector": {"matchLabels": {"app": name}},
@@ -175,34 +187,82 @@ def _service_manifest(name: str, target_key: str) -> dict:
     }
 
 
+def _list_backend_deployments(apps, namespace: str) -> list:
+    return apps.list_namespaced_deployment(
+        namespace, label_selector=f"component={BACKEND_COMPONENT}"
+    ).items
+
+
+def _backend_last_used(dep) -> float:
+    """Epoch seconds a back-end was last active; falls back to creation time."""
+    annotations = dep.metadata.annotations or {}
+    raw = annotations.get(LAST_USED_ANNOTATION)
+    if raw:
+        try:
+            return float(raw)
+        except ValueError:
+            pass
+    ts = dep.metadata.creation_timestamp
+    return ts.timestamp() if ts else 0.0
+
+
+def _delete_backend(apps, core, namespace: str, name: str) -> None:
+    from kubernetes.client.rest import ApiException
+
+    for delete, kind in (
+        (lambda: core.delete_namespaced_service(name, namespace), "Service"),
+        (lambda: apps.delete_namespaced_deployment(name, namespace), "Deployment"),
+    ):
+        try:
+            delete()
+        except ApiException as e:
+            if e.status != 404:
+                logger.warning("Could not delete %s/%s: %s", kind, name, e)
+
+
+def _evict_to_make_room(apps, core, namespace: str, existing: list, cap: int) -> None:
+    """Evict least-recently-used back-ends until a new one fits within `cap`."""
+    survivors = list(existing)
+    for victim in sorted(existing, key=_backend_last_used):
+        if len(survivors) < cap:
+            break
+        name = victim.metadata.name
+        logger.warning("At capacity (%d/%d) — evicting LRU back-end %s",
+                       len(survivors), cap, name)
+        _delete_backend(apps, core, namespace, name)
+        survivors = [d for d in survivors if d.metadata.name != name]
+
+
 def ensure_backend(stream: str, target_key: str, *, wait: bool = True) -> dict:
     """Ensure a back-end exists for (stream, target); return {name, url, ready, detail}.
 
     Idempotent and self-healing: if the Deployment already exists it is *patched*
     to the desired spec, so an upgraded app image/config rolls out instead of
-    serving stale code (a no-op when nothing changed). When wait=True, blocks
-    until the Deployment reports a ready replica or READY_TIMEOUT_SECONDS elapses,
-    failing fast on fatal pod states (e.g. ImagePullBackOff).
+    serving stale code (a no-op when nothing changed). A brand-new stream that
+    would exceed MAX_BACKEND_PODS first evicts the least-recently-used back-end.
+    When wait=True, blocks until the Deployment reports a ready replica or
+    READY_TIMEOUT_SECONDS elapses, failing fast on fatal pod states.
     """
-    from kubernetes.client.rest import ApiException
-
     get_target(target_key)  # validate early
     apps, core = _load_clients()
     ns = _namespace()
     name = backend_name(stream, target_key)
 
+    existing = _list_backend_deployments(apps, ns)
     dep = _deployment_manifest(name, stream, target_key)
-    try:
+
+    if any(d.metadata.name == name for d in existing):
+        # Reconcile an existing back-end to the desired spec. A rolling update
+        # happens only if the pod template actually changed.
+        apps.patch_namespaced_deployment(name, ns, dep)
+        logger.info("Reconciled existing Deployment/%s to desired spec", name)
+    else:
+        if MAX_BACKEND_PODS > 0:
+            _evict_to_make_room(apps, core, ns, existing, MAX_BACKEND_PODS)
         apps.create_namespaced_deployment(ns, dep)
         logger.info("Created Deployment/%s", name)
-    except ApiException as e:
-        if e.status == 409:
-            # Reconcile an existing back-end to the desired spec. A rolling update
-            # happens only if the pod template actually changed.
-            apps.patch_namespaced_deployment(name, ns, dep)
-            logger.info("Reconciled existing Deployment/%s to desired spec", name)
-        else:
-            raise
+
+    from kubernetes.client.rest import ApiException
 
     svc = _service_manifest(name, target_key)
     try:

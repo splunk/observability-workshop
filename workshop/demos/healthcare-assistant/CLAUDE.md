@@ -185,19 +185,24 @@ cold-start cost.
 ## 8. Orchestration mechanics & RBAC
 
 - Front-end pod runs under a dedicated **ServiceAccount** with a namespaced **Role**:
-  `create/get/list/delete` on `deployments` (apps) and `services` (core), scoped to the
-  demo namespace only. This is a real privilege — document it and keep it namespace-scoped;
-  never grant cluster-wide.
+  `create/get/list/watch/update/patch/delete` on `deployments` (apps) and
+  `create/get/list/delete` on `services` (core), scoped to the demo namespace only. This is
+  a real privilege — keep it namespace-scoped; never grant cluster-wide. `update`/`patch`
+  are required for reconcile and the last-used annotation (below). The back-end shares this
+  ServiceAccount so it can stamp its annotation and self-delete.
 - Prefer **Deployment+Service per back-end** over bare Pods (self-healing, stable DNS via
   the Service). One replica each.
 - **Garbage collection** (prevents pod sprawl across many demos):
-  - Each back-end carries a `demo.splunk/last-used` annotation; the front-end bumps it on
-    every `/query`.
-  - A small reaper (CronJob, or a background loop in the front-end) deletes back-ends idle
-    past a TTL (e.g. 2h). Back-ends can also self-terminate after an idle period.
-- **Idempotency / concurrency:** deriving the back-end name deterministically from
-  `(stream, target)` makes "ensure" naturally idempotent; guard creation against races
-  (two presenters, same stream name) by treating `AlreadyExists` as success and waiting.
+  - Each back-end stamps a `demo.splunk/last-used` epoch annotation on its own Deployment
+    from its idle-watcher loop (every 60s) — no per-query API overhead. The orchestrator
+    stamps it once at creation too.
+  - Back-ends **self-terminate** when idle past `BACKEND_IDLE_TTL_SECONDS` (delete own
+    Service+Deployment, then exit). See §12 / §13.
+- **Idempotency / concurrency:** the back-end name is derived deterministically from
+  `(stream, target)`, so "ensure" is naturally idempotent: an existing Deployment is
+  *patched* to the desired spec (rolling update only if the template changed), and a 409 on
+  the Service is treated as reuse. Races (two presenters, same stream name) collapse onto
+  the same object.
 
 ## 9. Build & deploy notes
 
@@ -257,3 +262,40 @@ observe real usage and tune:
 |-----------|-----------------|-----------------|------------------------------------------------------|
 | front-end | `128Mi` / `100m`| `512Mi` / `500m`| Streamlit UI + HTTP client + k8s calls; no LLM/RAG.  |
 | back-end  | `256Mi` / `100m`| `1Gi` / `500m`  | LangGraph + pgvector client; LLM/embeddings are network-bound, not CPU-bound. |
+
+## 13. Capacity & concurrency (single-node EC2/k3d)
+
+The pod-per-stream model is **memory-bound** on a single node — each back-end carries a
+heavy Python/langchain working set (~0.5–0.75 GiB resident), while LLM calls are
+network-bound so CPU stays mostly idle.
+
+**Rough parallel-back-end capacity** (after ~1.5 GiB system + ~0.75 GiB Postgres +
+~0.3 GiB front-end):
+
+| Instance    | vCPU / RAM  | ~Parallel back-ends |
+|-------------|-------------|---------------------|
+| t3.large    | 2 / 8 GiB   | ~6–8                |
+| t3.xlarge   | 4 / 16 GiB  | ~16–18              |
+| t3.2xlarge  | 8 / 32 GiB  | ~35–40              |
+
+Caveats: t3 is **burstable** — a packed room can exhaust CPU credits; prefer `m6i`/`m7i`
+for heavy workshops. The back-end memory *request* (`256Mi`) under-counts real usage, so
+do **not** rely on the scheduler alone to bound the node — it would overcommit and OOM-kill.
+Hence the explicit app-level cap below.
+
+**Cap + eviction (implemented):**
+- `MAX_BACKEND_PODS` (env on the front-end, `0` = unlimited) bounds concurrent back-ends.
+  Set it **explicitly per instance** using:
+  `MAX_BACKEND_PODS = floor((NODE_RAM − 2.5 GiB overhead) / 0.75 GiB)` →
+  t3.large ≈ 6, t3.xlarge ≈ 16, t3.2xlarge ≈ 35.
+- When a **new** stream would exceed the cap, the orchestrator evicts the
+  **least-recently-used** back-end (oldest `demo.splunk/last-used`, falling back to
+  creation time) to make room — so a new presenter can always start. Reconciling an
+  *existing* stream never triggers eviction.
+- `BACKEND_IDLE_TTL_SECONDS` is set aggressively (20 min) to keep the steady-state pool
+  lean; LRU eviction is the hard ceiling for bursts.
+
+**Trade-off:** under genuine over-subscription, LRU eviction can reclaim a back-end from a
+presenter who paused briefly. The aggressive TTL minimizes this; raising the instance size
+(or `MAX_BACKEND_PODS`) is the real fix. For large-scale/elastic needs, a managed cluster
+(EKS + cluster-autoscaler) scales horizontally beyond a single node — out of scope here.
