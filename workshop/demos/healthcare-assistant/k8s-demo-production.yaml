@@ -140,7 +140,7 @@ metadata:
 spec:
   secretName: healthcare-assistant-tls
   dnsNames:
-    - healthcare-assistant-demo.splunko11y.com
+    - healthcare-assistant-v2.splunko11y.com
   issuerRef:
     name: letsencrypt-prod          # your existing ClusterIssuer
     kind: ClusterIssuer
@@ -158,11 +158,11 @@ spec:
 
   tls:
     - hosts:
-        - healthcare-assistant-demo.splunko11y.com
+        - healthcare-assistant-v2.splunko11y.com
       secretName: healthcare-assistant-tls
 
   rules:
-    - host: healthcare-assistant-demo.splunko11y.com
+    - host: healthcare-assistant-v2.splunko11y.com
       http:
         paths:
           - path: /
