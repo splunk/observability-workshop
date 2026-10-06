@@ -48,7 +48,7 @@ markupsafe==2.1.3
     #   flask
     #   jinja2
     #   werkzeug
-msgpack>=1.2.1
+msgpack==1.2.3
     # via locust
 psutil==5.9.7
     # via locust
@@ -62,7 +62,7 @@ six==1.16.0
     # via geventhttpclient
 urllib3==2.7.0
     # via requests
-werkzeug==3.1.6
+werkzeug==3.1.9
     # via
     #   flask
     #   flask-cors
