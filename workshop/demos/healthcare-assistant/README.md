@@ -1,5 +1,11 @@
 # Healthcare Assistant Demo Application
 
+> **Architecture:** this app is split into an always-on **front-end** (Streamlit UI,
+> single URL) and **back-end** agent services created on demand — one per
+> `(agent stream, target)` — so parallel presenters get isolated traces and
+> Agent Control. See [CLAUDE.md](./CLAUDE.md) for the full design. The same image
+> runs both roles (front-end: `streamlit run app.py`; back-end: `uvicorn server:app`).
+
 ## Build Docker Image
 
 ```bash
@@ -67,13 +73,21 @@ kubectl create configmap splunk-agent-control-config \
   --from-literal=AGENT_CONTROL_TARGET_TYPE="log_stream"
 ```
 
-### Install the Applications
+### Install the Front-end
 
-Install the application and its dependencies using the following commands:
+`k8s-demo-local.yaml` deploys only the always-on front-end plus the RBAC the
+orchestrator needs to create back-end pods. Back-ends are created at runtime —
+one per `(agent stream, target)` you choose in the UI — so they are not in this file.
 
 ```bash
 kubectl apply -f ./k8s-demo-local.yaml
 ```
+
+> Point `BACKEND_IMAGE` in `k8s-demo-local.yaml` at your locally built/pushed tag.
+> A back-end only mounts the ConfigMaps/Secrets for the target you pick, so for
+> local testing you only need the config for the target(s) you'll demo (e.g. the
+> standalone ones created above). Picking a target whose Secret is missing will
+> leave its back-end stuck in `ContainerCreating` and the launch spinner will time out.
 
 ### Test the Application
 
@@ -81,9 +95,13 @@ kubectl apply -f ./k8s-demo-local.yaml
 kubectl port-forward svc/healthcare-assistant-service 8501:8501
 ```
 
-The application is accessible via the following URLs:
+Open http://localhost:8501 — enter an **agent stream name** and **target**, wait for
+the back-end to provision (first launch pays a cold start), then chat. Inspect the
+back-ends it creates with:
 
-http://localhost:8501
+```bash
+kubectl get deploy,svc,pod -l component=healthcare-backend
+```
 
 ## Deploy to Production
 

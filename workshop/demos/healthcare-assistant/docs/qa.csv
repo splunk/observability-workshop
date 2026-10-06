@@ -1,0 +1,226 @@
+question,answer
+Lisinopril,"
+            Generic Name: Lisinopril
+            Drug Class: ACE Inhibitor
+            Primary Indication: Hypertension and Heart Failure
+            Mechanism of Action: Inhibits conversion of angiotensin I to angiotensin II
+            Common Dosage: 10-40 mg once daily
+            Administration: Oral; take with or without food
+            Common Side Effects: Dry cough (10-15%); dizziness; headache; fatigue
+            Serious Side Effects: Angioedema; hyperkalemia; acute kidney injury; hypotension
+            Contraindications: Pregnancy; history of angioedema with ACE inhibitors; bilateral renal artery stenosis
+            Drug Interactions: NSAIDs (reduced efficacy); potassium supplements (hyperkalemia); lithium (increased levels)
+            Monitoring Requirements: Blood pressure; serum creatinine and potassium at baseline and periodically; monitor for signs of angioedema
+            Pregnancy Category: Category D - Contraindicated
+            Cost Tier: Low (generic available)
+        "
+Metformin,"
+            Generic Name: Metformin
+            Drug Class: Biguanide
+            Primary Indication: Type 2 Diabetes
+            Mechanism of Action: Decreases hepatic glucose production; increases insulin sensitivity
+            Common Dosage: 500-2000 mg daily (divided doses)
+            Administration: Oral; take with meals to reduce GI upset
+            Common Side Effects: Nausea; diarrhea; abdominal discomfort; metallic taste; vitamin B12 deficiency
+            Serious Side Effects: Lactic acidosis (rare but serious); severe hypoglycemia when combined with insulin/sulfonylureas
+            Contraindications: Severe renal impairment (eGFR <30); metabolic acidosis; acute heart failure
+            Drug Interactions: Contrast dyes (hold 48 hours before/after); alcohol (increased lactic acidosis risk)
+            Monitoring Requirements: Renal function (eGFR) before starting and annually; vitamin B12 levels annually; glucose monitoring
+            Pregnancy Category: Category B - Generally safe
+            Cost Tier: Low (generic available)
+        "
+Atorvastatin,"
+            Generic Name: Atorvastatin
+            Drug Class: Statin (HMG-CoA Reductase Inhibitor)
+            Primary Indication: Hyperlipidemia and ASCVD prevention
+            Mechanism of Action: Inhibits cholesterol synthesis in the liver
+            Common Dosage: 10-80 mg once daily
+            Administration: Oral; take any time of day with or without food
+            Common Side Effects: Muscle aches; headache; nausea; diarrhea; elevated liver enzymes
+            Serious Side Effects: Rhabdomyolysis; liver failure; new-onset diabetes; memory problems
+            Contraindications: Active liver disease; pregnancy; breastfeeding
+            Drug Interactions: Strong CYP3A4 inhibitors increase levels (clarithromycin erythromycin); grapefruit juice; fibrates increase myopathy risk
+            Monitoring Requirements: Lipid panel at baseline and 4-12 weeks; liver enzymes at baseline; monitor for muscle symptoms
+            Pregnancy Category: Category X - Contraindicated
+            Cost Tier: Low (generic available)
+        "
+Amlodipine,"
+            Generic Name: Amlodipine
+            Drug Class: Calcium Channel Blocker (Dihydropyridine)
+            Primary Indication: Hypertension and Angina
+            Mechanism of Action: Blocks calcium entry into vascular smooth muscle causing vasodilation
+            Common Dosage: 2.5-10 mg once daily
+            Administration: Oral; take with or without food
+            Common Side Effects: Peripheral edema (ankle swelling); headache; dizziness; flushing; palpitations
+            Serious Side Effects: Severe hypotension; worsening heart failure; MI (rare)
+            Contraindications: Severe aortic stenosis; cardiogenic shock
+            Drug Interactions: CYP3A4 inhibitors increase levels; simvastatin (limit simvastatin to 20 mg daily)
+            Monitoring Requirements: Blood pressure monitoring; heart rate; signs of peripheral edema
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "
+Levothyroxine,"
+            Generic Name: Levothyroxine Sodium
+            Drug Class: Thyroid Hormone
+            Primary Indication: Hypothyroidism
+            Mechanism of Action: Synthetic T4; converted to active T3 in peripheral tissues
+            Common Dosage: 25-200 mcg once daily (individualized)
+            Administration: Oral; take on empty stomach 30-60 min before breakfast
+            Common Side Effects: Weight changes; headache; insomnia; nervousness; heat intolerance
+            Serious Side Effects: Cardiac arrhythmias; angina; MI; bone loss with excessive doses
+            Contraindications: Untreated thyrotoxicosis; acute MI; uncorrected adrenal insufficiency
+            Drug Interactions: Decreases absorption: calcium iron antacids soy PPIs; increases warfarin effect; decreases effect of diabetes medications
+            Monitoring Requirements: TSH at baseline 6-8 weeks after dose changes then annually; free T4 if indicated; heart rate and blood pressure
+            Pregnancy Category: Category A - Safe in pregnancy
+            Cost Tier: Low (generic available)
+        "
+Aspirin,"
+            Generic Name: Acetylsalicylic Acid
+            Drug Class: NSAID/Antiplatelet
+            Primary Indication: Pain; fever; cardiovascular disease prevention
+            Mechanism of Action: Irreversibly inhibits COX-1 and COX-2; inhibits platelet aggregation
+            Common Dosage: 81-325 mg daily (low-dose); 325-650 mg q4-6h PRN (analgesic)
+            Administration: Oral; enteric-coated formulations available
+            Common Side Effects: Dyspepsia; nausea; stomach upset; easy bruising
+            Serious Side Effects: GI bleeding; hemorrhagic stroke; allergic reactions; Reye's syndrome (children)
+            Contraindications: Active GI bleeding; hemophilia; aspirin allergy; children with viral infections
+            Drug Interactions: Anticoagulants (increased bleeding); NSAIDs (increased GI toxicity); methotrexate (increased toxicity)
+            Monitoring Requirements: No routine monitoring for low-dose; monitor for signs of bleeding; annual CBC if long-term use
+            Pregnancy Category: Category D in 3rd trimester
+            Cost Tier: Low (OTC available)
+        "
+Losartan,"
+            Generic Name: Losartan
+            Drug Class: Angiotensin Receptor Blocker (ARB)
+            Primary Indication: Hypertension; diabetic nephropathy
+            Mechanism of Action: Blocks angiotensin II at AT1 receptors causing vasodilation
+            Common Dosage: 25-100 mg once or twice daily
+            Administration: Oral; take with or without food
+            Common Side Effects: Dizziness; upper respiratory infection; fatigue; back pain
+            Serious Side Effects: Hyperkalemia; acute kidney injury; hypotension; angioedema (rare)
+            Contraindications: Pregnancy; bilateral renal artery stenosis
+            Drug Interactions: NSAIDs (reduced efficacy); potassium supplements (hyperkalemia); lithium (increased levels)
+            Monitoring Requirements: Blood pressure; serum creatinine and potassium at baseline and periodically
+            Pregnancy Category: Category D - Contraindicated
+            Cost Tier: Low (generic available)
+        "
+Metoprolol,"
+            Generic Name: Metoprolol
+            Drug Class: Beta-Blocker (Selective Beta-1)
+            Primary Indication: Hypertension; angina; heart failure; MI
+            Mechanism of Action: Blocks beta-1 adrenergic receptors; reduces heart rate and contractility
+            Common Dosage: 25-200 mg twice daily (tartrate); 25-400 mg daily (succinate ER)
+            Administration: Oral; take with or at same time relative to meals consistently
+            Common Side Effects: Fatigue; dizziness; bradycardia; cold extremities; depression
+            Serious Side Effects: Severe bradycardia; heart block; severe hypotension; bronchospasm; worsening heart failure
+            Contraindications: Sinus bradycardia; 2nd/3rd degree heart block; cardiogenic shock; severe peripheral arterial disease; untreated pheochromocytoma
+            Drug Interactions: Calcium channel blockers (bradycardia hypotension); insulin (masks hypoglycemia); CYP2D6 inhibitors increase levels
+            Monitoring Requirements: Heart rate and blood pressure; EKG if indicated; glucose in diabetics; signs/symptoms of heart failure
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "
+Omeprazole,"
+            Generic Name: Omeprazole
+            Drug Class: Proton Pump Inhibitor (PPI)
+            Primary Indication: GERD; peptic ulcers; Zollinger-Ellison syndrome
+            Mechanism of Action: Irreversibly inhibits gastric H+/K+ ATPase (proton pump)
+            Common Dosage: 20-40 mg once daily
+            Administration: Oral; take 30-60 min before breakfast; do not crush or chew delayed-release capsules
+            Common Side Effects: Headache; nausea; diarrhea; abdominal pain; vitamin B12 deficiency
+            Serious Side Effects: C. difficile infection; bone fractures (long-term use); hypomagnesemia; kidney disease
+            Contraindications: Hypersensitivity to PPIs; concurrent use with rilpivirine
+            Drug Interactions: Clopidogrel (reduced activation); warfarin (increased INR); methotrexate (increased levels)
+            Monitoring Requirements: Magnesium levels if prolonged use or with diuretics/digoxin; vitamin B12 if long-term use; assess need for continued therapy periodically
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic and OTC available)
+        "
+Albuterol,"
+            Generic Name: Albuterol Sulfate
+            Drug Class: Short-Acting Beta-2 Agonist (SABA)
+            Primary Indication: Asthma; COPD (acute bronchospasm)
+            Mechanism of Action: Relaxes bronchial smooth muscle by stimulating beta-2 receptors
+            Common Dosage: 2 puffs (90 mcg/puff) q4-6h PRN; nebulizer 2.5 mg q4-6h PRN
+            Administration: Inhalation; shake MDI before use; rinse mouth after
+            Common Side Effects: Tremor; nervousness; tachycardia; palpitations; headache
+            Serious Side Effects: Paradoxical bronchospasm; severe hypokalemia; cardiac arrhythmias
+            Contraindications: Hypersensitivity to albuterol or any component
+            Drug Interactions: Beta-blockers (reduced bronchodilator effect); diuretics (increased hypokalemia); MAO inhibitors (cardiovascular effects)
+            Monitoring Requirements: Heart rate and blood pressure; frequency of use (>2 times/week indicates poor control); potassium if high doses
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "
+Gabapentin,"
+            Generic Name: Gabapentin
+            Drug Class: Anticonvulsant/Neuropathic Pain Agent
+            Primary Indication: Neuropathic pain; partial seizures; postherpetic neuralgia
+            Mechanism of Action: Unknown; structurally related to GABA but doesn't bind GABA receptors
+            Common Dosage: 300-3600 mg daily in 3 divided doses
+            Administration: Oral; take with or without food; requires renal dose adjustment
+            Common Side Effects: Dizziness; somnolence; ataxia; fatigue; peripheral edema
+            Serious Side Effects: Respiratory depression (with opioids); suicidal thoughts; severe skin reactions (rare)
+            Contraindications: Hypersensitivity to gabapentin
+            Drug Interactions: Opioids (increased respiratory depression); antacids (reduced absorption - separate by 2 hours)
+            Monitoring Requirements: No routine lab monitoring required; assess for suicidal ideation; renal function for dose adjustment
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "
+Sertraline,"
+            Generic Name: Sertraline
+            Drug Class: Selective Serotonin Reuptake Inhibitor (SSRI)
+            Primary Indication: Depression; anxiety; OCD; PTSD
+            Mechanism of Action: Inhibits serotonin reuptake in CNS increasing synaptic serotonin
+            Common Dosage: 25-200 mg once daily
+            Administration: Oral; take with or without food; morning or evening dosing
+            Common Side Effects: Nausea; diarrhea; insomnia; sexual dysfunction; increased sweating
+            Serious Side Effects: Serotonin syndrome; suicidal ideation (especially young adults); bleeding; hyponatremia; seizures
+            Contraindications: Concurrent use with MAO inhibitors (14 day washout required); concurrent use with pimozide
+            Drug Interactions: MAO inhibitors (serotonin syndrome); NSAIDs/anticoagulants (increased bleeding); tamoxifen (reduced efficacy); other serotonergic drugs
+            Monitoring Requirements: Mental status at each visit; suicidal ideation especially first 1-2 months; sodium if risk factors for hyponatremia
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "
+Hydrochlorothiazide,"
+            Generic Name: Hydrochlorothiazide (HCTZ)
+            Drug Class: Thiazide Diuretic
+            Primary Indication: Hypertension; edema
+            Mechanism of Action: Inhibits sodium reabsorption in distal tubule increasing urine output
+            Common Dosage: 12.5-50 mg once daily
+            Administration: Oral; take in morning to avoid nocturia
+            Common Side Effects: Hypokalemia; dizziness; muscle cramps; increased urination
+            Serious Side Effects: Severe electrolyte abnormalities; hypotension; hyperglycemia; hyperuricemia (gout); photosensitivity
+            Contraindications: Anuria; sulfonamide allergy
+            Drug Interactions: NSAIDs (reduced antihypertensive effect); lithium (increased levels); digoxin (hypokalemia increases toxicity)
+            Monitoring Requirements: Blood pressure; electrolytes (sodium potassium) and renal function at baseline and periodically; glucose and lipids
+            Pregnancy Category: Category B - Generally safe
+            Cost Tier: Low (generic available)
+        "
+Warfarin,"
+            Generic Name: Warfarin
+            Drug Class: Vitamin K Antagonist (Anticoagulant)
+            Primary Indication: DVT/PE; atrial fibrillation; mechanical heart valves
+            Mechanism of Action: Inhibits vitamin K-dependent clotting factors (II VII IX X)
+            Common Dosage: Individualized dosing based on INR (typically 2-10 mg daily)
+            Administration: Oral; take same time daily; consistent vitamin K intake
+            Common Side Effects: Bleeding; bruising; nausea
+            Serious Side Effects: Major hemorrhage; skin necrosis; purple toe syndrome
+            Contraindications: Pregnancy; active major bleeding; severe hypertension; recent surgery
+            Drug Interactions: EXTENSIVE - antibiotics NSAIDs acetaminophen many drugs affect INR
+            Monitoring Requirements: INR: daily initially then 2-3 times/week then weekly then every 4 weeks when stable; CBC; assess for bleeding
+            Pregnancy Category: Category X - Contraindicated
+            Cost Tier: Low (generic available)
+        "
+Prednisone,"
+            Generic Name: Prednisone
+            Drug Class: Corticosteroid
+            Primary Indication: Inflammatory conditions; autoimmune diseases; asthma
+            Mechanism of Action: Broad anti-inflammatory and immunosuppressive effects
+            Common Dosage: 5-60 mg daily (dose varies widely by indication)
+            Administration: Oral; take with food; taper slowly when discontinuing after >2 weeks use
+            Common Side Effects: Increased appetite; weight gain; insomnia; mood changes; hyperglycemia
+            Serious Side Effects: Adrenal suppression; infections; osteoporosis; peptic ulcers; cataracts; hyperglycemia
+            Contraindications: Systemic fungal infections
+            Drug Interactions: NSAIDs (increased GI bleed risk); vaccines (reduced efficacy live vaccines contraindicated); diabetes drugs (antagonizes effect)
+            Monitoring Requirements: Blood pressure and glucose regularly especially if diabetic; bone density if long-term use; growth in children; eye exams
+            Pregnancy Category: Category C - Use with caution
+            Cost Tier: Low (generic available)
+        "

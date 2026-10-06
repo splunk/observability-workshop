@@ -1,0 +1,163 @@
+# Production demo stack: a SINGLE always-on front-end at one DNS, behind Traefik
+# TLS + basic auth. The front-end is target-agnostic — presenters pick the
+# target (standalone / US Splunk Show / EU Splunk Show) and their agent stream
+# at launch, and the embedded orchestrator creates a back-end per
+# (agent_stream, target) on demand. Back-end Deployments/Services are created at
+# runtime by orchestrator.py; they are NOT defined here.
+#
+# This consolidates the old per-target files (k8s-demo-standalone.yaml,
+# k8s-demo-o11y-us-splunk-show.yaml, k8s-demo-o11y-eu-splunk-show.yaml), which
+# baked one target per deployment. Those are kept for reference but are
+# superseded by this file.
+#
+#   kubectl apply -f ./k8s-demo-production.yaml
+#   # enable basic auth (Traefik middleware): see password-protection/setup.sh
+#
+# Prereqs (see README.md): postgres.yaml, setup-job.yaml, the openai-api secret,
+# and the ConfigMaps/Secrets for EVERY target a presenter may select — a
+# back-end only mounts the config for the chosen target, but any of the three
+# can be chosen from this single UI:
+#   standalone      → splunk-ao-config,                splunk-agent-control-config,                splunk-ao-secret
+#   us-splunk-show  → splunk-ao-config-us-splunk-show, splunk-agent-control-config-us-splunk-show, splunk-ao-secret-us-splunk-show
+#   eu-splunk-show  → splunk-ao-config-eu-splunk-show, splunk-agent-control-config-eu-splunk-show, splunk-ao-secret-eu-splunk-show
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: healthcare-demo
+---
+# Front-end orchestrator + back-end self-termination both use this SA. Scoped to
+# this namespace only — never widen to cluster scope.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: healthcare-demo-orchestrator
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments/status"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["create", "get", "list", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: healthcare-demo-orchestrator
+subjects:
+  - kind: ServiceAccount
+    name: healthcare-demo
+roleRef:
+  kind: Role
+  name: healthcare-demo-orchestrator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcare-assistant
+  labels:
+    app: healthcare-assistant
+    component: healthcare-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthcare-assistant
+  template:
+    metadata:
+      labels:
+        app: healthcare-assistant
+        component: healthcare-frontend
+    spec:
+      serviceAccountName: healthcare-demo
+      containers:
+        - name: healthcare-assistant
+          image: ghcr.io/splunk/healthcare-assistant:demo-v1
+          imagePullPolicy: Always
+          command: ["streamlit", "run", "app.py"]
+          ports:
+            - containerPort: 8501
+              name: http
+          env:
+            # Image the orchestrator uses for back-end pods — keep in sync with
+            # the front-end image above.
+            - name: BACKEND_IMAGE
+              value: ghcr.io/splunk/healthcare-assistant:demo-v1
+            - name: BACKEND_IMAGE_PULL_POLICY
+              value: Always
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcare-assistant-service
+spec:
+  selector:
+    app: healthcare-assistant
+  ports:
+    - port: 8501
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: healthcare-assistant-tls
+  namespace: default
+spec:
+  secretName: healthcare-assistant-tls
+  dnsNames:
+    - healthcare-assistant-demo.splunko11y.com
+  issuerRef:
+    name: letsencrypt-prod          # your existing ClusterIssuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthcare-assistant-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.middlewares: default-basicauth@kubernetescrd
+spec:
+  ingressClassName: traefik
+
+  tls:
+    - hosts:
+        - healthcare-assistant-demo.splunko11y.com
+      secretName: healthcare-assistant-tls
+
+  rules:
+    - host: healthcare-assistant-demo.splunko11y.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthcare-assistant-service
+                port:
+                  number: 8501
