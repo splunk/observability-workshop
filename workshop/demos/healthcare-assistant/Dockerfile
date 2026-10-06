@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install uv
 
 # Copy requirements and install dependencies
-COPY 4-app-with-controls/requirements.txt /app/
+COPY ./requirements.txt /app/
 RUN uv pip install --system --no-cache -r requirements.txt
 
 # Final stage
@@ -25,8 +25,7 @@ COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/pytho
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy application code and data
-COPY 4-app-with-controls/ /app/
-COPY docs/ /app/docs/
+COPY ./ /app/
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && \
