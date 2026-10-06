@@ -35,7 +35,9 @@ metadata:
 rules:
   - apiGroups: ["apps"]
     resources: ["deployments"]
-    verbs: ["create", "get", "list", "watch", "delete"]
+    # patch/update: orchestrator reconciles existing back-ends; back-ends stamp
+    # their own last-used annotation for LRU eviction.
+    verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
   - apiGroups: ["apps"]
     resources: ["deployments/status"]
     verbs: ["get"]
@@ -89,6 +91,15 @@ spec:
               value: ghcr.io/splunk/healthcare-assistant:demo-v1
             - name: BACKEND_IMAGE_PULL_POLICY
               value: Always
+            # Max parallel back-ends. A new stream beyond this evicts the LRU
+            # back-end. Size to the instance's memory — see CLAUDE.md
+            # "Capacity & concurrency" (t3.large ≈ 6; t3.xlarge ≈ 16;
+            # t3.2xlarge ≈ 32–35).
+            - name: MAX_BACKEND_PODS
+              value: "32"
+            # Aggressive idle self-termination (20 min) to keep the pool lean.
+            - name: BACKEND_IDLE_TTL_SECONDS
+              value: "1200"
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
