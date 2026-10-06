@@ -1,9 +1,55 @@
+# Local demo stack (no Traefik). Deploys ONLY the always-on front-end plus the
+# RBAC the embedded orchestrator needs to create back-end pods on demand.
+# Back-end Deployments/Services are created at runtime by orchestrator.py, one
+# per (agent_stream, target) — they are NOT defined here.
+#
+#   kubectl apply -f ./k8s-demo-local.yaml
+#   kubectl port-forward svc/healthcare-assistant-service 8501:8501
+#
+# Prereqs (see README.md): postgres.yaml, setup-job.yaml, the openai-api secret,
+# and the per-target splunk-ao ConfigMaps/Secrets the back-ends mount.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: healthcare-demo
+---
+# Front-end orchestrator + back-end self-termination both use this SA. Scoped to
+# this namespace only — never widen to cluster scope.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: healthcare-demo-orchestrator
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments/status"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["create", "get", "list", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: healthcare-demo-orchestrator
+subjects:
+  - kind: ServiceAccount
+    name: healthcare-demo
+roleRef:
+  kind: Role
+  name: healthcare-demo-orchestrator
+  apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: healthcare-assistant
   labels:
     app: healthcare-assistant
+    component: healthcare-frontend
 spec:
   replicas: 1
   selector:
@@ -13,51 +59,35 @@ spec:
     metadata:
       labels:
         app: healthcare-assistant
+        component: healthcare-frontend
     spec:
+      serviceAccountName: healthcare-demo
       containers:
         - name: healthcare-assistant
           image: ghcr.io/splunk/healthcare-assistant:demo-v1
           imagePullPolicy: Always
+          command: ["streamlit", "run", "app.py"]
           ports:
             - containerPort: 8501
               name: http
-          envFrom:
-            - configMapRef:
-                name: healthcare-assistant-config
-            - configMapRef:
-                name: postgres-config
-            - configMapRef:
-                name: splunk-ao-config
-            - configMapRef:
-                name: splunk-agent-control-config
           env:
-            - name: OPENAI_BASE_URL
+            # Image the orchestrator uses for back-end pods. Point this at your
+            # locally built/pushed tag when testing.
+            - name: BACKEND_IMAGE
+              value: ghcr.io/splunk/healthcare-assistant:demo-v1
+            - name: BACKEND_IMAGE_PULL_POLICY
+              value: Always
+            - name: POD_NAMESPACE
               valueFrom:
-                secretKeyRef:
-                  name: openai-api
-                  key: openai-api-endpoint
-            - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: openai-api
-                  key: openai-api-key
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: POSTGRES_PASSWORD
-            - name: SPLUNK_AO_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: splunk-ao-secret
-                  key: SPLUNK_AO_API_KEY
+                fieldRef:
+                  fieldPath: metadata.namespace
           resources:
             requests:
-              memory: "512Mi"
-              cpu: "250m"
+              memory: "128Mi"
+              cpu: "100m"
             limits:
-              memory: "2Gi"
-              cpu: "1000m"
+              memory: "512Mi"
+              cpu: "500m"
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true

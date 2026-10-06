@@ -7,6 +7,14 @@ on:
         description: Repo-relative path to the service directory (e.g. workshop/healthcare-assistant/1-base-app)
         required: true
         type: string
+      docker-context:
+        description: >-
+          Docker build context dir. Defaults to the parent of service-path (the
+          workshop healthcare apps COPY from the parent, e.g. docs/). Set to the
+          service-path itself for self-contained Dockerfiles (e.g. the demos app).
+        required: false
+        type: string
+        default: ''
 
 jobs:
   pip-install:
@@ -59,5 +67,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          CONTEXT_DIR=$(dirname "${{ inputs.service-path }}")
+          CONTEXT_DIR="${{ inputs.docker-context }}"
+          if [ -z "$CONTEXT_DIR" ]; then
+            CONTEXT_DIR=$(dirname "${{ inputs.service-path }}")
+          fi
           docker build -f "${{ inputs.service-path }}/Dockerfile" -t smoke-test:latest "$CONTEXT_DIR"

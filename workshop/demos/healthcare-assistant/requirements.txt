@@ -1,4 +1,8 @@
 streamlit
+fastapi
+uvicorn[standard]
+httpx
+kubernetes
 openai
 python-dotenv
 langchain

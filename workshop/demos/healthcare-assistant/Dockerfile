@@ -33,8 +33,10 @@ RUN useradd --create-home --shell /bin/bash app && \
 
 USER app
 
-# Expose port for Streamlit
+# Front-end (Streamlit) listens on 8501; back-end (uvicorn) on 8000.
+# One image, two roles: the back-end Deployment overrides `command` to run
+# `uvicorn server:app` (see orchestrator.py); the default below is the front-end.
 EXPOSE 8501
+EXPOSE 8000
 
-# Run the server
 CMD ["streamlit", "run", "app.py"]
