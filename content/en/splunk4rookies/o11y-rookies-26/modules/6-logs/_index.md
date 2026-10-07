@@ -9,13 +9,12 @@ params:
     - images/lo.webp
 ---
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are an **SRE on-call** and have received an alert about increased error rates in the Astronomy Shop application. Your task is to investigate using logs as your primary starting point — no traces, no metrics dashboards. Just logs.
+{{< persona role="SRE on-call" >}}
+{{< persona-situation >}}You have an alert for increased error rates in the Astronomy Shop. Logs are your only starting point: no traces, and no metrics dashboards.{{< /persona-situation >}}
+{{< persona-goal >}}Name the service behind the errors and the pattern those errors share.{{< /persona-goal >}}
+{{< /persona >}}
 
 > [!splunk] **Log Observer** is Splunk Observability Cloud's no-code interface for exploring and analyzing log data. In this module, you will learn to use it as a standalone investigation tool, starting directly from logs rather than arriving from APM or RUM.
-
-{{% /notice %}}
 
 This module contains two scenarios:
 

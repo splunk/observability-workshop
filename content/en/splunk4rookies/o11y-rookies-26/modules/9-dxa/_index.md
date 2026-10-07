@@ -12,11 +12,10 @@ params:
 
 **Digital Experience Analytics (DXA)** is a solution within Splunk Observability Cloud that turns RUM session data into actionable insights about end user conversion, friction, and feature adoption. In this module, we will explore a pre-configured DXA project for the Astronomy Shop — no additional instrumentation or code changes required.
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are a **product manager** or **digital experience owner** for the Astronomy Shop. Leadership has asked you to improve checkout conversion and understand whether new features like **Ask AI** are delivering value. Your team already has RUM data; now you need business-focused insights without waiting on engineering to ship more code.
-
-{{% /notice %}}
+{{< persona role="Product manager" >}}
+{{< persona-situation >}}Leadership wants better checkout conversion and a read on whether **Ask AI** is delivering value. You already have RUM data, and you need the answer without waiting on a code change.{{< /persona-situation >}}
+{{< persona-goal >}}Show where checkout drops off and whether Ask AI is being used.{{< /persona-goal >}}
+{{< /persona >}}
 
 ## Overview
 

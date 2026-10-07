@@ -6,11 +6,10 @@ time: 10 minutes
 description: Explore the OpenTelemetry Demo application and generate telemetry data for the workshop modules.
 ---
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, star charts, and accessories.
-
-{{% /notice %}}
+{{< persona role="Curious astronomer" >}}
+{{< persona-situation >}}You are browsing the Astronomy Shop for telescopes, star charts, and accessories.{{< /persona-situation >}}
+{{< persona-goal >}}Complete several checkouts so the later modules have telemetry to investigate.{{< /persona-goal >}}
+{{< /persona >}}
 
 > [!IMPORTANT]
 > The **Astronomy Shop** is the Splunk version of the OpenTelemetry Demo — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
