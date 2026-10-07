@@ -2,7 +2,7 @@
 title: Follow the breadcrumbs
 linkTitle:  2. Find cause
 weight: 2
-archetype: chapter
+type: chapter
 time: 7 minutes
 description: 
 ---

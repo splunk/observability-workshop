@@ -15,14 +15,14 @@ You can see the services involved in the workflow in the **Service Map**. In the
 
 ![APM Explore](../images/apm-business-workflow.webp)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**With the `paymentservice` selected, what can you conclude from the Service Requests & Errors chart in the side pane?** **(1)**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**The Errors percentage is very high.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="With the paymentservice selected, what can you conclude from the Service Requests and Errors chart in the side pane?" >}}
+{{< quiz-option correct=true >}}The error percentage is very high.{{< /quiz-option >}}
+{{< quiz-option >}}The error percentage is near zero.{{< /quiz-option >}}
+{{< quiz-option >}}The chart shows latency only, with no errors.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**The error percentage is very high.**
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 * Splunk APM also provides built-in **Service Centric Views** to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
 * In the right-hand pane, click on **paymentservice** in blue **(2)**.

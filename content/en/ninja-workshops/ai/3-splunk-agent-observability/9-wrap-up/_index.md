@@ -2,7 +2,7 @@
 title: Wrap-up
 linkTitle: 9. Wrap-up
 weight: 9
-archetype: chapter
+type: chapter
 time: 5 minutes
 description: Congratulations, you have completed the Splunk Agent Observability workshop.
 ---

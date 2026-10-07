@@ -2,7 +2,7 @@
 title: "Phase 3: Kubernetes"
 linkTitle: 5. Kubernetes
 weight: 5
-archetype: chapter
+type: chapter
 time: 25 minutes
 description: Deploy the same three services to Kubernetes, add the OBI DaemonSet, and get full distributed tracing same zero-code story, enterprise-grade orchestration.
 ---

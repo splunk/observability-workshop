@@ -13,7 +13,7 @@ time: false
 
 ![SWiPE](../images/swipe.webp)
 
-**SWiPE** will perform the following tasks your workshop environment:
+**SWiPE** will perform the following tasks for your workshop environment:
 
 {{< step "**Create and Invite Users to the Organization**" "1" >}}
 

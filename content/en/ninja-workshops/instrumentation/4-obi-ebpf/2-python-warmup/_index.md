@@ -2,7 +2,7 @@
 title: "Phase 0: Python Warm-up"
 linkTitle: 2. Python Warm-up
 weight: 2
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: Run a bare Python app on the host, prove connectivity to Splunk with a custom metric, then use the OBI binary to add APM tracing all without Docker.
 ---

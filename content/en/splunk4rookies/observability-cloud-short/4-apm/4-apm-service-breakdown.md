@@ -8,14 +8,14 @@ weight: 4
 * Select the **paymentservice** in the Service Map.
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
 * Select `version` in the list.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What can you conclude from what you are seeing?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="What can you conclude from what you are seeing?" >}}
+{{< quiz-option correct=true >}}`v350.9` has no errors. `v350.10` has a problem.{{< /quiz-option >}}
+{{< quiz-option >}}Both versions are healthy.{{< /quiz-option >}}
+{{< quiz-option >}}Only `v350.9` is failing.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **There are no errors for `v350.9`, but `v350.10` clearly has a problem.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 ![APM Service Breakdown](../images/apm-service-breakdown.webp)
 

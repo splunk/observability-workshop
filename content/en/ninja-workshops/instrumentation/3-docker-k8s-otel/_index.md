@@ -2,7 +2,7 @@
 title: Hands-On OpenTelemetry, Docker, and K8s
 linkTitle: Hands-On OpenTelemetry, Docker, and K8s
 weight: 3
-archetype: chapter
+type: chapter
 time: 60 minutes
 authors: ["Derek Mitchell"]
 description: Instrument a .NET app with OpenTelemetry, containerize with Docker, deploy to Kubernetes, and configure the OTel Collector via Helm.

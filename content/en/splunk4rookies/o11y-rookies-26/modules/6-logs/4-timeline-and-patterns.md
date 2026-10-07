@@ -11,14 +11,14 @@ You've narrowed down to error logs from a single service. Now let's understand *
 
 * Look at the timeline chart at the top of the page. Focus on the shape of the error bars.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Is the error rate constant, or did it spike at a specific time? What might that tell you?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Is the error rate constant, or did it spike at a specific time? What might that tell you?" >}}
+{{< quiz-option correct=true >}}A spike points to a change at that time. A constant rate means the issue has been there since startup.{{< /quiz-option >}}
+{{< quiz-option >}}A spike means the service has always been broken.{{< /quiz-option >}}
+{{< quiz-option >}}The shape of the chart does not matter.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 A sudden spike suggests a deployment, configuration change, or external dependency failure at that point in time. A constant error rate suggests the issue has been present since the service started. Both patterns are clues to the root cause.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 <!-- TODO screenshot: Timeline showing error spike pattern -->
 
@@ -44,15 +44,15 @@ Examine these key fields:
 * Scroll through several error entries. Do they all have the same message, or are there different error types?
 * Note any version tags, deployment identifiers, or dependency references in the log messages.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Do all the error logs share the same message pattern, or are there multiple distinct errors?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Do all the error logs share the same message pattern, or are there multiple distinct errors?" >}}
+{{< quiz-option correct=true >}}One repeating pattern points to a single root cause. Several patterns can mean cascading failures.{{< /quiz-option >}}
+{{< quiz-option >}}Message text can be ignored. Only the timestamp matters.{{< /quiz-option >}}
+{{< quiz-option >}}Every error log is unrelated to the others.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 <!-- TODO: Update with actual patterns from OTel Demo v2.0.1 -->
 Look for repeating message templates. If all errors share the same pattern, you likely have a single root cause. Multiple patterns may indicate cascading failures.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}
 

@@ -2,7 +2,7 @@
 title: Preparation of the Workshop instance
 linkTitle: 2. Preparation
 weight: 3
-archetype: chapter
+type: chapter
 time: 15 minutes
 ---
 

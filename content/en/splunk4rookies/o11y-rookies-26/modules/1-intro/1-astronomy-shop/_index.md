@@ -6,11 +6,10 @@ time: 10 minutes
 description: Explore the OpenTelemetry Demo application and generate telemetry data for the workshop modules.
 ---
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are a **curious astronomer**, browsing the Astronomy Shop for telescopes, star charts, and accessories.
-
-{{% /notice %}}
+{{< persona role="Curious astronomer" >}}
+{{< persona-situation >}}You are browsing the Astronomy Shop for telescopes, star charts, and accessories.{{< /persona-situation >}}
+{{< persona-goal >}}Complete several checkouts so the later modules have telemetry to investigate.{{< /persona-goal >}}
+{{< /persona >}}
 
 > [!IMPORTANT]
 > The **Astronomy Shop** is the Splunk version of the OpenTelemetry Demo — a microservices e-commerce application fully instrumented with OpenTelemetry. It generates metrics, traces, and logs across multiple services written in different languages. The telemetry data you generate here will be used in whichever modules your trainer selects.
@@ -27,13 +26,13 @@ Explore and interact with the shop as a real customer would:
 
 ![ui](images/1-shop.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Did everything work smoothly, or did you notice anything unusual during checkout?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Did everything work smoothly, or did you notice anything unusual during checkout?" >}}
+{{< quiz-option correct=true >}}Slow responses or errors during checkout are intentional.{{< /quiz-option >}}
+{{< quiz-option >}}Checkout completed instantly, with no errors.{{< /quiz-option >}}
+{{< quiz-option >}}The shop failed to load, so no telemetry was produced.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 Some services in the Astronomy Shop have deliberately injected issues. You may have noticed slow responses or errors during checkout — this is intentional and will be investigated in the workshop modules.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}

@@ -13,14 +13,12 @@ This page is a placeholder. Exercise steps will be added once the scenario is fi
 * Step 2: [TBD]
 * Step 3: [TBD]
 
-{{< tabs >}}
-{{% tab title="Question" %}}
+{{< quiz question="[TBD]" >}}
+{{< quiz-option correct=true >}}[TBD]{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **[TBD]**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**[TBD]**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}
 

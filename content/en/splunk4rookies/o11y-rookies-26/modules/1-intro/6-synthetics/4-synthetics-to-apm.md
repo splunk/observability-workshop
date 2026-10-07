@@ -18,13 +18,13 @@ The synthetic run shows that checkout failed, but its waterfall also provides a 
 
 ![APM trace](../images/apm-trace.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-* **Does the log record show that this synthetic failure was caused by the same payment error found earlier?** 
-{{% /tab %}}
-{{% tab title="Answers" %}}
+{{< quiz question="Does the log record show that this synthetic failure was caused by the same payment error found earlier?" >}}
+{{< quiz-option correct=true >}}Yes. The payment log reports an invalid API token.{{< /quiz-option >}}
+{{< quiz-option >}}No. The synthetic failure is only a browser timeout, with no related payment log.{{< /quiz-option >}}
+{{< quiz-option >}}Yes, but the log shows a database connection error.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Yes. The correlated payment log reports that the payment failed because the request contained an invalid API token, confirming that the synthetic test detected the same underlying problem.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}

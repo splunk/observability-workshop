@@ -1,7 +1,7 @@
 ---
 title: Proactively test with Synthetics
 linkTitle: 5. Proactively test
-archetype: chapter
+type: chapter
 weight: 5
 time: 15 minutes
 description: In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.

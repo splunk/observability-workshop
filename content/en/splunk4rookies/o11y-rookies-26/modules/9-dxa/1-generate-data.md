@@ -19,14 +19,14 @@ Before diving into DXA, we need real user sessions to analyze. The browsing we d
 
 ![Ask AI feature and product details on the Astronomy Shop product page](../images/ask-ai-astronomy.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-Did everything work perfectly, or did you notice anything unusual when interacting with the application?
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Did everything work perfectly, or did you notice anything unusual when interacting with the application?" >}}
+{{< quiz-option correct=true >}}Slow responses, a dead Show All Reviews button, or checkout errors are intentional.{{< /quiz-option >}}
+{{< quiz-option >}}The shop is healthy. Those symptoms are only a local browser glitch.{{< /quiz-option >}}
+{{< quiz-option >}}The application failed to deploy.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 Some elements and services in the Astronomy Shop have deliberately injected issues. You may have noticed slow responses, a non-responsive **Show All Reviews** button, or errors during checkout — this is intentional and will be investigated using DXA in the pages ahead.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

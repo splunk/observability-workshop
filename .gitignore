@@ -70,3 +70,4 @@ workshop/profiling/doorgame/.gradle/
 assets/jsconfig.json
 __pycache__/
 .cursor/
+CONTENT_REVIEW.md

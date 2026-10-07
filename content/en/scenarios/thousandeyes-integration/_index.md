@@ -2,7 +2,7 @@
 title: ThousandEyes Integration with Splunk Observability Cloud
 linkTitle: ThousandEyes Integration
 weight: 5
-archetype: chapter
+type: chapter
 authors: ["Alec Chamberlain"]
 time: 120 minutes
 description: Run a ThousandEyes Enterprise Agent in Kubernetes, stream synthetics into Splunk Observability Cloud, and pivot between ThousandEyes tests and Splunk APM traces.
