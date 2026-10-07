@@ -2,6 +2,15 @@
 title: 4. Feature Adoption
 weight: 4
 ---
+{{< webex chat="Shelly K." date="Today • 28/02/2026" seenby="SK" >}}
+{{< webex-msg from="SK" name="Shelly K." time="14:10" >}}
+Hey - any idea how much the new Ask AI feature is being used? wondering if we should add more prompts or leave it open-ended... is this in RUM already or do we need to push new code to track this?
+{{< /webex-msg >}}
+
+{{< webex-msg me=true time="14:12" >}}
+we can track it in DXA, actually - we don't need to change the app code. I'll get back to you ASAP!
+{{< /webex-msg >}}
+{{< /webex >}}
 
 Remember the **Ask AI** feature on Astronomy Shop product detail pages? Product leadership wants to know whether customers are using it — including the quick prompts below the text input field.
 

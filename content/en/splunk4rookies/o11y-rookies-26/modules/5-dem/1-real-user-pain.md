@@ -5,9 +5,7 @@ weight: 1
 time: 8 minutes
 ---
 
-We could write a synthetic test for every page in the Astronomy Shop, but then we would spend our week maintaining tests instead of fixing problems. RUM tells us where to aim first: it already knows which pages real customers load, how those pages feel, and where the experience breaks down.
-
-In this exercise we use RUM as a **targeting tool**, not as an investigation tool. We are not chasing a single bad session this time — we are choosing the one journey that is worth monitoring around the clock.
+Before we start creating tests with Synthetics, let's look at what real users are doing to prioritize test coverage. RUM tells us which pages real end users interact with, how those pages feel, and where the experience breaks down.
 
 {{% exercise title="Open our store and check the Web Vitals" %}}
 
@@ -27,7 +25,7 @@ In this exercise we use RUM as a **targeting tool**, not as an investigation too
 
 ## Reading Core Web Vitals
 
-Core Web Vitals are Google's three measures of front-end experience, and Google uses them for search ranking. Splunk RUM reports each one at the **75th percentile**, so the number describes the experience of all but our slowest quarter of visitors.
+Core Web Vitals are Google's primary measures of front-end experience, and Google uses them for search ranking. 
 
 | Web Vital | What it measures | Good | Needs improvement | Poor |
 |---|---|---|---|---|
@@ -36,7 +34,7 @@ Core Web Vitals are Google's three measures of front-end experience, and Google 
 | **CLS** — Cumulative Layout Shift | How much the layout jumps around while loading | ≤ 0.1 | 0.1 – 0.25 | > 0.25 |
 
 {{< notice tip >}}
-LCP and INP answer *"is it fast?"*. CLS answers *"is it steady?"* — a high CLS is the page that moves the **Add To Cart** button just as the customer reaches for it.
+LCP and INP answer *"is it fast and responsive?"*. CLS answers *"is it stable?"*; a high CLS is the page that loads an ad late into just where the user wanted to click, causing confusion, distraction, frustration, and distrust.
 {{< /notice >}}
 
 See [Core Web Vitals](https://web.dev/vitals/) for the full definitions and current thresholds.
@@ -63,7 +61,7 @@ Using traffic, performance, and business value together, which single journey th
 
 The **checkout journey** — home page to product page to cart to placed order.
 
-It combines all three arguments: it carries high traffic, it is the only journey that produces revenue, and it is already the journey showing errors. A test on the home page alone would have stayed green through the entire `payment` service incident, because the home page never broke.
+It carries high traffic, it is the only journey that produces revenue, and it is already the journey showing errors. A test on the home page alone would have stayed green through the entire `payment` service incident, because the home page never broke.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -74,10 +72,8 @@ It combines all three arguments: it carries high traffic, it is the only journey
 
 RUM is honest but passive. Every chart we just read exists only because somebody was shopping.
 
-- At 03:00, when nobody is shopping, there is nothing to plot — and nothing to alert on.
+- At 03:00, when nobody is shopping, there is nothing to monitor and nothing to alert on.
 - In a region we have not launched in yet, a broken CDN edge produces no RUM data at all.
 - Straight after a deploy, before traffic arrives, the charts still look exactly like the last known good state.
 
-In each case the first signal that something is wrong comes from a customer. That is the gap **Synthetic Monitoring** closes: a scripted user that completes the checkout journey every few minutes from locations we choose, whether or not real customers are awake.
-
-Next, we build that test.
+In each case the first signal that something is wrong comes from an end user. That is the gap **Synthetic Monitoring** closes: a scripted user that completes the checkout journey every few minutes from locations we choose, whether or not real end users are online.

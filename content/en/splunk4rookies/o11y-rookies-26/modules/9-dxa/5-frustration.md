@@ -37,4 +37,17 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 Frustration signals correlate with customer satisfaction, support volume, and churn. Monitoring them over time lets us measure whether UX fixes actually reduce friction — a direct line to NPS and retention KPIs.
 {{% /notice %}}
 
+{{< webex chat="Shelly K." date="Today • 28/02/2026" seenby="SK" >}}
+{{< webex-msg from="SK" name="Shelly K." time="13:10" >}}
+hey, Sheila from Support let me know that they're not getting as many complaints about the app, which is great! Any idea why?
+{{< /webex-msg >}}
+
+{{< webex-msg me=true time="13:19" >}}
+we made some changes to the UI based on what we saw in session replay, and the release aligns with a drop in frustration signals!{{< /webex-msg >}}
+
+{{< webex-msg from="SK" name="Shelly K." time="13:20" >}}
+AWESOME!
+{{< /webex-msg >}}
+{{< /webex >}}
+
 Individual frustration events explain *where* users struggle. **Conversion funnels** reveal whether those struggles block users from completing critical journeys like checkout.

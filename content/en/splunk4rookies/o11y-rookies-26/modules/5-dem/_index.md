@@ -4,7 +4,7 @@ weight: 5
 layout: chapter
 time: 45 minutes
 authors: ["Sarah Ware"]
-description: Monitor real user experiences and set up proactive tests so we catch problems before our customers complain online.
+description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
 params:
   images:
     - images/rum.webp
@@ -20,17 +20,17 @@ Before the workshop begins:
 * After the session, delete the attendee tests and detectors (search Synthetics for the workshop name). Every attendee leaves one browser test, one uptime test, and one detector behind.
 {{< /presenter >}}
 
-**Real User Monitoring (RUM)** tells us what our customers actually experienced. **Synthetic Monitoring** tells us what they *would* experience right now, whether or not anyone is shopping. Together they are what stands between us and finding out about an outage from a customer's social media post.
+**Real User Monitoring (RUM)** tells us what our end users actually experienced. **Synthetic Monitoring** tells us what they *would* experience right now, whether or not anyone is using our app. Together, RUM and Synthetics help us get ahead of issues before we find out on socials.
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 
-We are the **SRE team** that just finished cleaning up the Astronomy Shop `payment` service incident. The postmortem question has landed on our desk: *how long would it have taken us to notice if nobody had complained?* Our job in this module is to make sure the answer is "minutes, automatically" — not "when it reached Bluesky".
+You are the **SRE** who just finished cleaning up the Astronomy Shop `payment` service incident. The postmortem question landed on your desk: *how long would it have taken us to notice if nobody had complained?*
 
 {{% /notice %}}
 
-{{< webex chat="Bill Grant" date="Today • 28/01/2026" seenby="BG" >}}
-{{< webex-msg from="RC" name="Robert Castley" time="14:10" color="#ef950d" >}}
-Postmortem action item for us: a customer told us about the checkout failures before our monitoring did. 😬 Can you get proactive coverage on the checkout journey?
+{{< webex chat="Shelly K." date="Today • 28/01/2026" seenby="SK" >}}
+{{< webex-msg from="BG" name="Shelly K." time="14:10" color="#ef950d" >}}
+Postmortem action item for us: a customer told us about the checkout failures before our monitoring did 😬 can you get proactive coverage on the checkout journey?
 {{< /webex-msg >}}
 
 {{< webex-msg me=true time="14:12" >}}
@@ -39,7 +39,7 @@ On it. I'll use RUM to work out which journey matters most, then build a Synthet
 {{< /webex >}}
 
 > [!IMPORTANT]
-> This module assumes we have completed the **Introduction** module, where we navigated the RUM Overview, used Tag Spotlight and User Sessions, and reviewed a *prebuilt* Synthetics browser test. Here we build our **own** test and activate a real detector.
+> This module assumes you have completed the **Introduction** module, where you navigated the RUM Overview, used Tag Spotlight and User Sessions, and reviewed a *prebuilt* Synthetics browser test. Here you will build your **own** test and activate a real detector.
 
 ## Overview
 
@@ -48,10 +48,10 @@ In this hands-on module, we will:
 - **Read real user pain** in RUM Web Vitals and per-page metrics to choose the journey worth testing
 - **Build a Synthetics browser test** for the checkout journey, with named steps and synthetic transactions
 - **Run it on demand** and interpret uptime, availability, and transaction-level results
-- **Activate a detector** so a failing checkout pages us instead of surprising us
+- **Activate a detector** so a failing checkout pages you instead of surprising you
 - **Meet the other test types** — uptime, port, API, and SSL certificate tests
 - **Review a combined dashboard** that puts real user and synthetic signals side by side
 
-{{% notice title="What we need" style="info" %}}
-The Astronomy Shop URL for this workshop, and our Splunk Observability Cloud login. The instructor will also give us the workshop name used to prefix test names.
+{{% notice title="What you need" style="info" %}}
+The Astronomy Shop URL for your workshop, and your Splunk Observability Cloud login. Your instructor will also give you the workshop name used to prefix test names.
 {{% /notice %}}
