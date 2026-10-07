@@ -13,14 +13,14 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `wire-transfer-service` spans in the waterfall.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What is the error message and version being reported in the Span Details?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="What is the error message and version being reported in the Span Details?" >}}
+{{< quiz-option correct=true >}}`Invalid request` and `v350.10`{{< /quiz-option >}}
+{{< quiz-option >}}`Timeout` and `v350.9`{{< /quiz-option >}}
+{{< quiz-option >}}`Connection refused` and `v350.8`{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **`Invalid request` and `v350.10`**.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}
 Now that we have identified the version of the **wire-transfer-service** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.

@@ -2,7 +2,7 @@
 title: Wrap Up
 linkTitle: 5. Wrap Up
 weight: 5
-archetype: chapter
+type: chapter
 time: 5 minutes
 description: Summary, cleanup, and next steps.
 ---

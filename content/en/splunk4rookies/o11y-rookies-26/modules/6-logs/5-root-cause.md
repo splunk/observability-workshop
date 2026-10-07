@@ -10,15 +10,15 @@ You've filtered to the right service, analyzed the timeline, and examined the er
 * Click on an error entry in the log table to open the detail pane.
 * Read the `message` field carefully.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Based on the error message, what is the root cause? What would you recommend to the development team?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Based on the error message, what would you recommend to the development team?" >}}
+{{< quiz-option correct=true >}}Investigate the failing component named in the error message.{{< /quiz-option >}}
+{{< quiz-option >}}Restart the cluster and close the incident without reading the message.{{< /quiz-option >}}
+{{< quiz-option >}}Ignore the message if the chart is green.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 <!-- TODO: Update with actual root cause from OTel Demo v2.0.1 fault injection -->
 The error message reveals the specific failure. Based on this, you would recommend the development team investigate the failing component — whether it's an invalid configuration, an expired credential, a missing dependency, or a code defect.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 <!-- TODO screenshot: Log entry detail showing the root cause error message -->
 

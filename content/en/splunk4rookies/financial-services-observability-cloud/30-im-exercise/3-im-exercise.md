@@ -37,7 +37,7 @@ In the **Information Pane**, you should see two tiles for services detected, the
 * First, make sure you no longer have a filter for the development namespace active. (Simply click on the **x** to remove it from the Filter Pane) as there are no databases in the Development Namespace.
 * Hoover on the **Redis** tile, and click on the {{% button style="blue" %}}Goto all my Redis instances{{% /button %}} button
 * The Navigator view should change to the overall Redis instances view.
-* Select the the instance running on your cluster. (Click on the blue link, named **redis-[the name of your workshop]**, in the Redis Instances pane).
+* Select the instance running on your cluster. (Click on the blue link, named **redis-[the name of your workshop]**, in the Redis Instances pane).
 * We should now see just the information for your Redis Instance & there should also be an **Information Pane**.
 * Again we see Meta Data, but we also see that UI is showing in the **Related Content** tiles that this Redis Server runs in a Container running on Kubernetes.
 * Let's verify that by clicking on the **Kubernetes** Tile.

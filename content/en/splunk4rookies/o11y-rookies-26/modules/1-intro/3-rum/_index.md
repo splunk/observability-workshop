@@ -2,7 +2,7 @@
 title: Digital Experience (RUM)
 linkTitle: 3. Digital Experience (RUM)
 weight: 3
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
 ---

@@ -2,7 +2,7 @@
 title: "Phase 1: Docker (Before OBI)"
 linkTitle: 3. Docker Before OBI
 weight: 3
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: Deploy three microservices with Docker Compose and confirm that APM is empty -- no traces exist because there is no instrumentation.
 ---

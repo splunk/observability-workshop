@@ -37,16 +37,16 @@ DXA uses the same RUM agents and instrumentation as Splunk RUM. The Astronomy Sh
     - User Segments
     - Analyses
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-What value are we trying to get out of DXA if we already have RUM dashboards and session replay?
-{{% /tab %}}
-{{% tab title="Answer" %}}
-RUM tells us *what happened* in user sessions over time: page loads, errors, and performance. 
+{{< quiz question="What value are we trying to get out of DXA if we already have RUM dashboards and session replay?" >}}
+{{< quiz-option correct=true >}}DXA adds funnels, frustration, segments, and feature adoption without code changes.{{< /quiz-option >}}
+{{< quiz-option >}}DXA replaces RUM and deletes session replay.{{< /quiz-option >}}
+{{< quiz-option >}}DXA is only a copy of the RUM overview dashboard.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+RUM tells us *what happened* in user sessions over time: page loads, errors, and performance.
 
 DXA shows us *user impact*, adding an analytics lens to RUM data. DXA does this with reusable event definitions, conversion funnels, frustration trends, and user segments that connect session-level data to business-relevant questions like "Are users adopting our new feature?" or "Where do we lose checkout conversions?" — all configurable in the UI without code changes.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

@@ -24,14 +24,14 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**In the Service Map hover over the **wire-transfer-service**. What can you conclude from the popup service chart?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="In the Service Map, hover over the wire-transfer-service. What can you conclude from the popup service chart?" >}}
+{{< quiz-option correct=true >}}The error percentage is very high.{{< /quiz-option >}}
+{{< quiz-option >}}The error percentage is near zero.{{< /quiz-option >}}
+{{< quiz-option >}}The service is not on the map.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **The error percentage is very high.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 {{% /notice %}}
 
 ![APM Service Chart](../images/apm-service-popup-chart.webp)

@@ -7,9 +7,9 @@ time: 3 minutes
 
 ## Background
 
-Let's review a few background concepts on **Open Telemetry** before jumping into the details.
+Let's review a few background concepts on **OpenTelemetry** before jumping into the details.
 
-First we have the **Open Telemetry Collector**, which lives on hosts or kubernetes nodes. These collectors can collect local information (like cpu, disk, memory, etc.). They can also collect metrics from other sources like prometheus (push or pull) or databases and other middleware.
+First we have the **OpenTelemetry Collector**, which lives on hosts or kubernetes nodes. These collectors can collect local information (like cpu, disk, memory, etc.). They can also collect metrics from other sources like prometheus (push or pull) or databases and other middleware.
 
 ![OTel Diagram](../images/otel-diagram.svg?width=60vw)
 Source: [OTel Documentation](https://opentelemetry.io/docs/)

@@ -16,7 +16,7 @@ difficulty: Rookie
 ---
 
 {{< presenter >}}
-Make sure the Splunk Show instance is started in time , building the EC2 instance after boot can take ~30 minutes.
+Make sure the Splunk Show instance is started in time, building the EC2 instance after boot can take ~30 minutes.
 {{< /presenter >}}
 
 ## Introduction

@@ -10,21 +10,21 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 | _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
 
 * Using metrics we identified **we have a problem** with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be.
-* Using traces and span tags we found **where the problem is**. The **wire-transfer-service** comprises of two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
+* Using traces and span tags we found **where the problem is**. The **wire-transfer-service** consists of two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
 * We did see that this error from the **wire-transfer-service** `v350.10` caused multiple retries and a long delay in the response back from the compliance check service.
 * From the trace, using the power of **Related Content**, we arrived at the log entries for the failing **wire-transfer-service** version. Now, we can determine **what the problem is**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on an error entry in the log table (make sure it says `hostname: "wire-transfer-service-xxxx"` in case there is a rare error from a different service in the list too.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Based on the message, what would you tell the development team to do to resolve the issue?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**The development team needs to rebuild and deploy the container with a valid API Token or rollback to `v350.9`**.
-{{% /tab %}}
-{{< /tabs >}}
+* Click on an error entry in the log table (make sure it says `hostname: "wire-transfer-service-xxxx"` in case there is a rare error from a different service in the list too).
+{{< quiz question="Based on the message, what would you tell the development team to do to resolve the issue?" >}}
+{{< quiz-option correct=true >}}Rebuild and deploy the container with a valid API token, or roll back to `v350.9`.{{< /quiz-option >}}
+{{< quiz-option >}}Add more replicas of `v350.10`.{{< /quiz-option >}}
+{{< quiz-option >}}Turn off log collection for the payment service.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**The development team needs to rebuild and deploy the container with a valid API token or roll back to `v350.9`**.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
   ![Log Message](../images/log-observer-log-message.webp)
 * Click on the **X** in the log message pane to close it.

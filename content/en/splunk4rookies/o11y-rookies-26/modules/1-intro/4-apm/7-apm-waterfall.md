@@ -24,14 +24,14 @@ The **Trace View** may open with both the *analysis panel* and *Span properties*
 
 ![Trace Waterfall](../images/apm-trace-waterfall.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What is the error message and version being reported in the Span Details?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="What is the error message and version being reported in the Span Details?" >}}
+{{< quiz-option correct=true >}}`Invalid request` and `v350.10`{{< /quiz-option >}}
+{{< quiz-option >}}`Timeout` and `v350.9`{{< /quiz-option >}}
+{{< quiz-option >}}`Connection refused` and `v350.8`{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **`Invalid request` and `v350.10`**.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

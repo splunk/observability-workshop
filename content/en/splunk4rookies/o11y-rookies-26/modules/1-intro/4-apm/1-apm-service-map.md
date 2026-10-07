@@ -21,14 +21,14 @@ Examine the **Service Requests & Errors** chart **(2)**. Compare the number of r
 
 ![APM Explore](../images/apm-business-workflow.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What does the *Service Requests & Errors* chart tell you about the reliability of the payment service?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="What does the Service Requests & Errors chart tell you about the reliability of the payment service?" >}}
+{{< quiz-option correct=true >}}A significant proportion of payment requests are failing.{{< /quiz-option >}}
+{{< quiz-option >}}The payment service has no errors.{{< /quiz-option >}}
+{{< quiz-option >}}Only the frontend is failing. Payment is healthy.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **The *payment* service is experiencing a high error rate. In this example, approximately half of its requests result in errors. Your exact values may differ, but the chart should show that a significant proportion of payment requests are failing.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 The Service Map has identified **payment** as the source of the *checkout* errors. Next, you’ll open its *Service-Centric View* to examine the service, its endpoints, and the infrastructure on which it runs.
 In the right-hand panel, select the blue **payment** service name **(3)** to open its *Service-Centric View*.

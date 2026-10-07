@@ -6,7 +6,7 @@ weight: 6
 
 ## Custom Attribution (Custom Tags)
 
-To take a deeper look at this issue and make this much easier to debug we will implement Custom Attributes via Opentelemetry Manual Instrumentation.
+To take a deeper look at this issue and make this much easier to debug we will implement Custom Attributes via OpenTelemetry Manual Instrumentation.
 
 To speed up manual instrumentation in Java you can leverage OpenTelemetry Annotations, which automatically create a span around a method without modifying the actual code inside the method. This can be very valuable if you are working with an SRE that may have limited access to source code changes.
 

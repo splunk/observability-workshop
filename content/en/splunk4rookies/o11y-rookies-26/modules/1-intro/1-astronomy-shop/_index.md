@@ -27,13 +27,13 @@ Explore and interact with the shop as a real customer would:
 
 ![ui](images/1-shop.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Did everything work smoothly, or did you notice anything unusual during checkout?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Did everything work smoothly, or did you notice anything unusual during checkout?" >}}
+{{< quiz-option correct=true >}}Slow responses or errors during checkout are intentional.{{< /quiz-option >}}
+{{< quiz-option >}}Checkout completed instantly, with no errors.{{< /quiz-option >}}
+{{< quiz-option >}}The shop failed to load, so no telemetry was produced.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 Some services in the Astronomy Shop have deliberately injected issues. You may have noticed slow responses or errors during checkout — this is intentional and will be investigated in the workshop modules.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}

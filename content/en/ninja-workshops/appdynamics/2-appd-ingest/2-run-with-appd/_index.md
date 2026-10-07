@@ -2,7 +2,7 @@
 title: "Phase 1: Run with AppDynamics"
 linkTitle: 2. Run with AppD
 weight: 2
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: Build the workshop app, download the AppDynamics Java Agent, run the service, and verify data in the AppDynamics Controller.
 ---

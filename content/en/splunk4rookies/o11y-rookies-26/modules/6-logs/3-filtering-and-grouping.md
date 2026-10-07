@@ -31,15 +31,15 @@ You are now viewing only error-level logs from your environment.
 
 * Look at the log entries in the table below. Scan the `service.name` column.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Which service is generating the most error logs?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Which service is generating the most error logs?" >}}
+{{< quiz-option correct=true >}}The service name that appears most often in the error log entries.{{< /quiz-option >}}
+{{< quiz-option >}}The service with the fewest log lines.{{< /quiz-option >}}
+{{< quiz-option >}}A service that only logs info messages.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 <!-- TODO: Update with actual service name from OTel Demo v2.0.1 -->
 Look for the service name that appears most frequently in the error log entries. This is your primary suspect.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 **Step 4: Filter by Service**
 

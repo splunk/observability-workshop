@@ -2,7 +2,7 @@
 title: What is OpenTelemetry & why should you care?
 linkTitle: 2. OpenTelemetry
 weight: 2
-archetype: chapter
+type: chapter
 time: 2 minutes
 description: Learn about OpenTelemetry and why you should care about it.
 ---

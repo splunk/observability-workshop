@@ -2,7 +2,7 @@
 title: "Phase 3: Global Data Links"
 linkTitle: 4. Global Data Links
 weight: 4
-archetype: chapter
+type: chapter
 time: 10 minutes
 description: Create a global data link in Splunk Observability Cloud that navigates directly to the corresponding AppDynamics tier view using the appd.* span attributes.
 ---
