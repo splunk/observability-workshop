@@ -1,17 +1,18 @@
 ---
 title: Digital Experience (Synthetics)
 linkTitle: 6. Digital Experience (Synthetics)
-archetype: chapter
+type: chapter
 weight: 6
 time: 15 minutes
 description: In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.
 ---
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{< persona role="SRE" >}}
+{{< persona-situation >}}You have been asked to review the synthetic monitoring configured for the Astronomy Shop.{{< /persona-situation >}}
+{{< persona-goal >}}Confirm that the preconfigured test can detect availability and performance problems.{{< /persona-goal >}}
+{{< /persona >}}
 
-Putting your **SRE** hat back on, you have been asked to review the *synthetic monitoring* configured for the Astronomy Shop and confirm that it can detect availability and performance problems. In this introduction, you’ll use a preconfigured test. If you wish to learn how to create your own, you can do that in a later lesson.
-
-{{% /notice %}}
+In this introduction, you will use a preconfigured test. If you wish to learn how to create your own, you can do that in a later lesson.
 
 > [!IMPORTANT]
 > **Synthetic Monitoring** runs scheduled tests that *simulate* user journeys, even when no real customers are using the application. You’ll examine a *prebuilt* test that runs every minute and checks the availability and performance of a typical journey through the *Astronomy Shop*.

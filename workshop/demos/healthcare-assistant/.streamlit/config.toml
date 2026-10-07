@@ -1,0 +1,15 @@
+# Splunk-dark theme for the Healthcare Assistant demo front-end.
+# Projects well in a live demo room; the deeper styling lives in app.py's CSS.
+[theme]
+base = "dark"
+primaryColor = "#E5326E"           # Splunk magenta accent
+backgroundColor = "#0B0C0E"        # near-black stage background
+secondaryBackgroundColor = "#16181D"  # surfaces / cards / sidebar
+textColor = "#F5F6F8"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

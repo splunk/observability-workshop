@@ -22,14 +22,14 @@ You already know that the **payment** service is returning recurring *HTTP* **40
 
 ![APM Tag Spotlight](../images/apm-tag-spotlight.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Which tag and value are most strongly associated with the payment errors, and what evidence supports your conclusion?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Which tag and value are most strongly associated with the payment errors?" >}}
+{{< quiz-option correct=true >}}The version tag: v350.10, where the requests match the errors.{{< /quiz-option >}}
+{{< quiz-option >}}The browser tag.{{< /quiz-option >}}
+{{< quiz-option >}}Version v350.9, which has the errors.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **The *version* tag shows that version *v350.10* is associated with the errors. In this example, all six requests for *v350.10* failed, while the requests for *v350.9* completed without errors. This suggests that the problem was introduced in, or is specific to, version *v350.10*. Your counts and version names may differ, but the same pattern should be visible.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 * Now that we have identified the tag that indicates the issue, let's see if we can find out more information about the error.
 * Click the **APM** link above **payment (3)** at the top of the page to return to the **APM Overview**.

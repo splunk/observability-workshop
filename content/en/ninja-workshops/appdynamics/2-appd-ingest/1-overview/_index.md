@@ -2,7 +2,7 @@
 title: Workshop Overview
 linkTitle: 1. Overview
 weight: 1
-archetype: chapter
+type: chapter
 time: 5 minutes
 description: Use case, architecture, prerequisites, and the differences between hybrid and dual signal mode.
 ---

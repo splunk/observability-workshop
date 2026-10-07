@@ -2,7 +2,7 @@
 title: Funnels
 linkTitle: 3. Funnels
 weight: 3
-archetype: chapter
+type: chapter
 time: 2 minutes
 ---
 

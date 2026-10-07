@@ -35,7 +35,7 @@ Once you have identified the statements on the Database Queries window that are 
 5. **Users**: Displays the users that executed this query.
 6. **Query Hashcode**: Displays the unique ID for the query that allows the database server to more quickly locate this SQL statement in the cache.
 7. **Query**: Displays the entire syntax of the selected SQL statement. You can click the pencil icon in the top right corner of the Query card to edit the query name so that it is easy to identify.
-8. **Execution Plan**: Displays the the query execution plan window.
+8. **Execution Plan**: Displays the query execution plan window.
 
 ![Expensive Query Details2](images/04-db-queries-details2.png)
 

@@ -2,7 +2,7 @@
 title: Workshop Wrap-up 🎁
 linkTitle: 7. Workshop Wrap-up
 weight: 7
-archetype: chapter
+type: chapter
 time: 1 minute
 description: Congratulations, you have completed the workshop.
 ---

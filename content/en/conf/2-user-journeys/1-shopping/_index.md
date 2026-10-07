@@ -2,7 +2,7 @@
 title: Go Shopping
 linkTitle: 1. Go Shopping
 weight: 1
-archetype: chapter
+type: chapter
 time: 5 minutes
 ---
 
@@ -29,14 +29,14 @@ You are an **aspiring astronomer**, browsing the Astronomy Shop for telescopes, 
 
 ![Astronomy Shop retail site homepage](images/1-shop.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-Did everything work perfectly, or did you notice anything unusual when interacting with the application?
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Did everything work perfectly, or did you notice anything unusual when interacting with the application?" >}}
+{{< quiz-option correct=true >}}Slow responses or checkout errors are intentional.{{< /quiz-option >}}
+{{< quiz-option >}}The shop is healthy. Those symptoms are only a local browser glitch.{{< /quiz-option >}}
+{{< quiz-option >}}The application failed to deploy.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 Some elements and services in the Astronomy Shop have deliberately injected issues. You may have noticed slow responses or errors during checkout — this is intentional and will be investigated in the workshop modules.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

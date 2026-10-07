@@ -22,7 +22,7 @@ request. We saw that in the previous section, when we looked into one of the tra
 One of the ways to optimize token costs is to send each request to the most appropriate model:
 simple requests should be handled by cheaper models, while more complex or critical tasks should
 be given to more robust (and expensive) models. Sending a simple task to an expensive model will
-yield good results, but cost more than necessary; on the other hand, sending a complex task to a 
+yield good results, but cost more than necessary; on the other hand, sending a complex task to a
 simpler model might cause problems and issues (that might require the task to be re-sent to the
 expensive model).
 
@@ -32,8 +32,9 @@ tasks. One way to do this validation is by leveraging Experiments.
 
 ## Experiments
 
-The goal for this section is to find the best LLM to handle the task. For this lab, we have 2 
+The goal for this section is to find the best LLM to handle the task. For this lab, we have 2
 tasks that the agent must perform:
+
 - **Answer Q&A questions**, which are questions related to policies and procedures, like returns,
 refunds, loyalty, etc. This usually involves a vector search against a knowledge base.
 - **Answer Product related questions**, such as availability, sizes, price, etc. These require
@@ -47,7 +48,7 @@ customer away. These are worth the cost of more robust models, which can provide
 and compelling response. Or so we expect.
 
 To put our theories to the test, we can run an experiment: have 2 datasets, one with Q&A questions,
-and one with Product-related questions. Each dataset contains a curated, representative set of 
+and one with Product-related questions. Each dataset contains a curated, representative set of
 inputs, meant to emulate the type of input that our customers will have, when the agent is running
 in production. These datasets also include the 'Ground Truth', which represents the answer we should
 expect from the agent; this information gives us a strong understanding of response quality.
@@ -56,18 +57,19 @@ expect from the agent; this information gives us a strong understanding of respo
 > When you implement real-time monitoring with Splunk Agent Observability, you can save real production
 prompts as a new dataset to validate against new versions of your agent.
 
-Experiments allows us to compare an agentic workload under different conditions: different models, 
-prompts, datasets, retrieval settings, and more. Instead of changing these conditions at once, 
-we run controlled sets of experiments, changing one condition at a time; otherwise, we would not be 
+Experiments allows us to compare an agentic workload under different conditions: different models,
+prompts, datasets, retrieval settings, and more. Instead of changing these conditions at once,
+we run controlled sets of experiments, changing one condition at a time; otherwise, we would not be
 able to explain the results. In this lab, we will see a simplified version of this iteration, by
 focusing on the models and tools used to fulfill each type of task.
 
 In this comparison, both experiments received the same 18 product questions. One agent used a
 simpler (cheaper) model, with its own options for retrieval, while the other agent leveraged
-the more robust (expensive) model, also with its own retrieval logic. Each LLM determines 
+the more robust (expensive) model, also with its own retrieval logic. Each LLM determines
 how to handle each of the 18 prompts that it received.
 
 The experiments are divided into 2 groups:
+
 - **Product Model Comparison**: evaluates which model is best suited to handle product-related inputs
 - **Q&A Model Comparison**: evaluates how each model handles Q&A questions.
 
@@ -82,6 +84,7 @@ Before we even compare the experiments, we can see the key results at a glance:
 ![Product Questions Experiment](../_images/6/4_01_experiment_product.png?width=750px)
 
 Let's understand what our key metrics represent for these experiments:
+
 - **Context Adherence**: Measures how well the response aligns with the provided context.
 A great eval to detect hallucinations in LLM responses.
 - **Ground Truth Adherence**: Measures how well the response aligns with established ground truth.
@@ -90,32 +93,31 @@ to receive from the agent at the end. This metric helps us evaluate how close to
 the agent got.
 
 Before we even compare these experiments, we can already tell that, by using the simpler (cheaper) LLM,
-we got a number of responses that deviated from the retrieved context, which caused these responses to 
-be quite different from the ground truth. This is not ideal, and it signals that our LLM is hallucinating 
+we got a number of responses that deviated from the retrieved context, which caused these responses to
+be quite different from the ground truth. This is not ideal, and it signals that our LLM is hallucinating
 most of the responses.
 
 Meanwhile, the more robust (and expensive) LLM was able to properly handle all the dataset prompts,
 providing correct answers every time.
 
 Based on these results *alone*, we can confidently say that it's better to keep the more expensive
-model for product-related questions. 
+model for product-related questions.
 
 However, there's more we can learn from these experiments.
 
-
 {{< step title="Product Related Questions Experiment" >}}
 
-Go to the **Compare** tab. Because there are only 2 experiments, they will be automatically selected. 
+Go to the **Compare** tab. Because there are only 2 experiments, they will be automatically selected.
 Alternatively, you can select both experiments and click on the **Compare Experiments** button.
 
 ![Product Questions Experiment Comparison](../_images/6/4_02_experiment_product_comparison.png?width=750px)
 
-The comparison screens shows all information about each experiment: *Details* (including duration, costs and
+The comparison screen shows all information about each experiment: *Details* (including duration, costs and
 token counts), *Evaluators* (we can enable as many as needed in our experiments) and the *Trace* information,
 including the inputs and outputs.
 
 Notice that the input is the exact same between both agents; this happens because each experiment runs with
-the same dataset. The responses, however, will be very different. In the traces with negative Ground Truth 
+the same dataset. The responses, however, will be very different. In the traces with negative Ground Truth
 Adherence, they will be too simple and generic, using nothing of the retrieved documents. Something like:
 
 > We have a selection of footwear that might interest you..
@@ -126,7 +128,7 @@ more details in some cases and always providing a response to the question.
 What do you notice about the two answers? The first is concise to the point where it doesn't really
 help. The second is more useful, but it is also longer. And more compelling to a potential buyer.
 
-#### Compare quality
+### Compare quality
 
 The quality evaluators tell us that the simpler model could not handle the product questions very well.
 In most of the cases, it produced responses that are too simple. Were this to happen in production,
@@ -145,18 +147,18 @@ model are more complete, more compelling and more likely to generate follow-up f
 > If we don't agree with the reasoning that this was indeed a valid response, we can provide feedback that
 will change how the eval is computed. This will help align the evals with the business purpose of our AI agent.
 
-
 #### Compare tokens, latency, and cost
 
 | System metric | Inexpensive model | Expensive model |
-|---------------|-------------------|-----------------|
+| ------------- | ----------------- | --------------- |
 | Input tokens | 279 | 298 |
 | Output tokens | 12 | 59 |
 | Total tokens | 291 | 357 |
 | Latency | 292 ms | 2.36 sec |
 | Agent cost | less than $0.0001 | $0.0026 |
 
-*(PS: These numbers may be different for you)*
+> [!NOTE]
+> These numbers may be different for you
 
 These values describe a single prepared comparison; they are not universal model benchmarks.
 The inexpensive model is faster and cheaper here, but it fails Ground Truth Adherence. The
@@ -166,7 +168,7 @@ expensive model completes the task, but costs more and produces a longer answer.
 > tokens but does not complete the task may create another user turn, an escalation, or an
 > abandoned journey.
 
-In this case, the need for the more expensive model can be clearly justified, since these 
+In this case, the need for the more expensive model can be clearly justified, since these
 responses are meant to stimulate the customer to purchase products. However, this break even
 will be different, depending on the scope of your AI agent.
 
@@ -185,8 +187,7 @@ A configuration should advance only when it:
 2. Improves cost, latency, or both for the target task.
 3. Remains consistent across the dataset, not just one favorable example.
 
-<hr>
-
+{{< divider >}}
 
 Do not conclude that larger models are always better. The right model is workload-specific and
 should be selected with controlled, repeatable evidence.
@@ -211,7 +212,7 @@ Alternatively, you can select both experiments and click on the **Compare Experi
 
 ![Q&A Questions Experiment Comparison](../_images/6/4_05_experiment_qa_comparison_2.png?width=750px)
 
-Browse through the traces. You will see that, even though the responses from the simpler model are 
+Browse through the traces. You will see that, even though the responses from the simpler model are
 shorter, they are usually more concise and to the point, which works well for Q&A type questions.
 Also, there should be no hallucinations in the response (if there are, take a look at the rationale
 for the eval).
@@ -222,7 +223,7 @@ it could impact your budget considerably.
 Based on first impressions, it seems like the cheaper model might be a good option here to keep
 inferencing costs low, without compromising on response quality.
 
-#### Compare quality
+### Compare quality
 
 Overall, quality is very similar between the models, to the point where it becomes hard to
 justify the more expensive model. There are basically no hallucinations in the cheap model.
@@ -238,21 +239,21 @@ type of omission, but it doesn't mean it's not a valid response. Compare the ret
 input with the generated response, and determine whether this was a valid response or not.
 
 > [!TIP]
-> As mentioned before, we can change how the eval reasons over the data. If we believe this this is indeed
+> As mentioned before, we can change how the eval reasons over the data. If we believe this is indeed
 a valid response, we can provide feedback to change and adapt the eval to the business purpose of our agent.
 
-
-#### Compare tokens, latency, and cost
+### Compare tokens, latency, and cost
 
 | System metric | Inexpensive model | Expensive model |
-|---------------|-------------------|-----------------|
+| ------------- | ----------------- | --------------- |
 | Input tokens | 117 | 121 |
 | Output tokens | 22 | 76 |
 | Total tokens | 139 | 197 |
 | Latency | 763 ms | 2.64 sec |
 | Agent cost | less than $0.0001 | $0.0023 |
 
-*(PS: These numbers will be different for you)*
+> [!NOTE]
+> These numbers will be different for you
 
 The performance difference is considerable here, especially the latency. Token costs are also
 something to consider, especially when we think about production scale, with millions of these
@@ -264,16 +265,14 @@ interactions happening over the year.
 
 {{< /step >}}
 
-<hr>
+{{< divider >}}
 
-#### Decide how to route
+### Decide how to route
 
 Based on these experiments, our recommendation would be:
 
 - Leverage the simpler (cheaper) model for the Q&A questions;
 - Rely on the more robust (expensive) model for the product-related questions;
-
-
 
 {{< checkpoint title="Knowledge Check" >}}
 
@@ -282,6 +281,6 @@ fewer tokens and costing less?
 
 {{< details summary="Click here to see the answer" >}}
 What matters is that the agent completes the user's task. The Ground Truth Adherence eval returns
-false when the response fails to provide the proper information. Efficiency must include the outcome, 
+false when the response fails to provide the proper information. Efficiency must include the outcome,
 not just consumption. Quality evals must be taken into account as critically as performance metrics.
 {{< /details >}}

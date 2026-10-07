@@ -106,7 +106,7 @@ We do not need to actually Snooze in this exercise so close the **Snooze Inciden
 
 ## 9 Action Tracking
 
-Now lets fix this issue and update the Incident with what we did.  Add a new message at the top of the right hand panel such as **Discovered rogue process, terminated it**.
+Now let's fix this issue and update the Incident with what we did.  Add a new message at the top of the right hand panel such as **Discovered rogue process, terminated it**.
 
 ![Add Message](../../images/time-line-update-message.png)
 

@@ -5,7 +5,7 @@ python-dotenv>=1.2.2
 flask>=3.1.3
 requests>=2.34.2
 deepeval
-litellm==1.84.0
+litellm==1.93.2
 splunk-otel-instrumentation-langchain==0.1.7
 splunk-otel-genai-emitters-splunk==0.1.7
 splunk-otel-util-genai==0.1.9

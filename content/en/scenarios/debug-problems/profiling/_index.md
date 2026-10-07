@@ -2,7 +2,7 @@
 title: Profiling Workshop
 linkTitle: Profiling Workshop
 weight: 3
-archetype: chapter
+type: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
 description: This workshop shows how Database Query Performance and AlwaysOn Profiling can be used to reduce the time required for engineers to debug problems in microservices. 

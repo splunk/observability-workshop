@@ -26,14 +26,14 @@ Also ensure that the **Show tags with no values** toggle is unchecked.
 
 {{% exercise title="Find the bad version in Tag Spotlight" %}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Which card exposes the tag that identifies what the problem is?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**The *version* card. The number of requests against `v350.10` matches the number of errors i.e. 100%**
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Which card exposes the tag that identifies what the problem is?" >}}
+{{< quiz-option correct=true >}}The version card. Requests for `v350.10` match the errors.{{< /quiz-option >}}
+{{< quiz-option >}}The browser card.{{< /quiz-option >}}
+{{< quiz-option >}}The region card.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**The *version* card. The number of requests against `v350.10` matches the number of errors, 100%.**
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

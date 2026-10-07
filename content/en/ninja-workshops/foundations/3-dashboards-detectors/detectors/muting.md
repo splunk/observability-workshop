@@ -47,7 +47,7 @@ You won't be receiving any email notifications from your detector until you resu
 
 To Resume notifications, click on **Muting Rules**, you will see the name of the detector you muted notifications for under **Detector** heading.
 
-Click on the thee dots **`...`** on the far right, and click on **Resume Notifications**.
+Click on the three dots **`...`** on the far right, and click on **Resume Notifications**.
 
 ![Resume](../../images/muting-list.png)
 

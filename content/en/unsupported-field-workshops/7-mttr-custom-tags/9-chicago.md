@@ -8,7 +8,7 @@ weight: 9
 
 We are nearly done, one more location to go... Chicago.
 
-Since we have been having so many issues related to "location" and we have added that custom attribute via Opentelemetry Manual Instrumentation, lets go to the Splunk Observability UI and look at an APM metric set around that tag that I created for us.
+Since we have been having so many issues related to "location" and we have added that custom attribute via OpenTelemetry Manual Instrumentation, let's go to the Splunk Observability UI and look at an APM metric set around that tag that I created for us.
 
 ![9-chicago-1-metricset](../images/9-chicago-1-metricset.png)
 
@@ -23,7 +23,7 @@ Uh oh! We received a 500 error, something is wrong there as well.
 
 ![9-chicago-3-map](../images/9-chicago-3-map.png)
 
-* Return to the Splunk Observability UI and lets look once again at our Service Map
+* Return to the Splunk Observability UI and let's look once again at our Service Map
 * Select the Instruments Service
 * Click the Breakdowns dropdown on the right and select location
 

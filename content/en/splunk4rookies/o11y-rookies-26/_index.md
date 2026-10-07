@@ -1,21 +1,22 @@
 ---
-title: Observability Cloud for Rookies 2026
+title: Observability Cloud (2026)
 weight: 1
 authors: ["Pieter Hagen"]
 time: Variable
-description: The 2026 Rookies workshop is modular. Start with the introduction, then follow a recommended path or pick individual modules for infrastructure, digital experience, AI, and more.
+description: "Start with the basics, then choose your path: infrastructure, digital experience, AI, and more."
 layout: "hero"
-badge: "Beta"
+badge: "New"
 #build:
 #  list: never
 #  render: always
 params:
   images:
-    - images/o11y-2026.png
+    - images/card-hero.png
+difficulty: Rookie
 ---
 
 {{< presenter >}}
-Make sure the Splunk Show instance is started in time , building the EC2 instance after boot can take ~30 minutes.
+Make sure the Splunk Show instance is started in time, building the EC2 instance after boot can take ~30 minutes.
 {{< /presenter >}}
 
 ## Introduction
@@ -48,9 +49,11 @@ Your instructor may still run a subset of modules to fit the time available.
 ### Continue your workshop journey
 
 {{< cards >}}
+<!---
 {{< card title="Choose Your Path" href="/splunk4rookies/o11y-rookies-26/pathways/" hero-icon="route" >}}
 Follow a recommended route through the modules based on your area of interest.
 {{< /card >}}
+--->
 {{< card title="Browse All Modules" href="/splunk4rookies/o11y-rookies-26/modules/" hero-icon="library" >}}
 View every available workshop module and choose the ones you want to complete.
 {{< /card >}}

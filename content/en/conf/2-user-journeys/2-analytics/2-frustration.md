@@ -2,7 +2,7 @@
 title: Frustration
 linkTitle: 2. Frustration
 weight: 2
-archetype: chapter
+type: chapter
 time: 5 minutes
 ---
 

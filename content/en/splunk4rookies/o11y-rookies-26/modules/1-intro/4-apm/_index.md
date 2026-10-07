@@ -2,16 +2,15 @@
 title: Application Performance Monitoring (APM)
 linkTitle: 4. APM
 weight: 4
-archetype: chapter
+type: chapter
 time: 20 minutes
 description: In this section, we will use APM to drill down and identify where the problem is.
 ---
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are a **back-end developer** and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.
-
-{{% /notice %}}
+{{< persona role="Back-end developer" >}}
+{{< persona-situation >}}An SRE found a poor user experience in the Astronomy Shop and asked you to investigate.{{< /persona-situation >}}
+{{< persona-goal >}}Identify where the problem is in the back end.{{< /persona-goal >}}
+{{< /persona >}}
 
 > [!IMPORTANT]
 > RUM is the client-side view; APM is the server-side view. Following a RUM trace into the matching APM trace is end-to-end visibility in action — and how we'll drill down to the back-end problem.

@@ -2,7 +2,7 @@
 title: Feature adoption
 linkTitle: 1. Feature adoption
 weight: 1
-archetype: chapter
+type: chapter
 time: 5 minutes
 ---
 Remember seeing the "Ask AI" feature on Astronomy Shop product detail pages? We want to understand how our customers are using that feature, including the quick prompts provided below the text input field.

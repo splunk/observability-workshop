@@ -29,7 +29,7 @@ If you want to see what your usage is against your subscription you can select *
 
 ![Left pane](../images/billing-and-usage-menu.png)
 
-This screen may take a few seconds to load whilst it calculates and pulls in the usage.
+This screen may take a few seconds to load while it calculates and pulls in the usage.
 
 ## 3. Understanding usage
 

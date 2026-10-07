@@ -2,13 +2,14 @@
 title: Finserv Observability Cloud
 weight: 4 
 authors: ["Robert Castley", "Pieter Hagen", "Jeremy Hicks", "Deepti Bhutani"]
-time: 30 minutes
+time: 1 hour
 aliases:
   - /s4r/financial-services-observability-cloud/
-description: For financial services teams. See how Splunk Observability Cloud delivers real-time visibility across the FSI digital ecosystem in a 30-minute hands-on session.
+description: "Investigate a wire transfer app with real-time insights into services, infrastructure, and logs."
 params:
   images:
-    - /images/featured.png
+    - /images/card-hero.png
+difficulty: Rookie
 ---
 
 In this workshop, we’ll demonstrate how Splunk Observability Cloud delivers value to our financial services customers due to its ability to provide real-time, full-fidelity, AI-powered monitoring across your entire digital ecosystem from infrastructure to applications to user experiences. It’s purpose-built for modern, cloud-native, microservices-based environments. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions:

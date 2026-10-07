@@ -15,14 +15,14 @@ The **payment** service is now displayed as a separate circle for each version. 
 The available breakdown options depend on the span tags in your environment. Tag names and values may differ if your organization uses different instrumentation or naming standards.
 {{< /notice >}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Which version of the *payment* service is associated with the errors and high latency? What evidence on the map supports your conclusion?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Which version of the payment service is associated with the errors and high latency?" >}}
+{{< quiz-option correct=true >}}v350.10. Its circle is red and its latency is several seconds, while v350.9 is healthy.{{< /quiz-option >}}
+{{< quiz-option >}}Both versions fail equally.{{< /quiz-option >}}
+{{< quiz-option >}}Only v350.9 is slow and in error.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Version *v350.10* is associated with the problem. Its circle is *red* and its latency is *several seconds*, while *v350.9* has no error indication and responds in milliseconds. Your exact latency values may differ, but the contrast between the versions should be similar.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 ![APM Service Breakdown](../images/apm-service-breakdown.png)
 

@@ -18,7 +18,7 @@ Given there are two red boxes or tiles, let's see what is going on and if this w
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* First, set the time window we are working with to the last 15 minutes. You do this by changing the  the Time picker in the filter pane from **-4h** to **Last 15 minutes**.
+* First, set the time window we are working with to the last 15 minutes. You do this by changing the Time picker in the filter pane from **-4h** to **Last 15 minutes**.
 * Hover with your mouse over the Cluster, Node and pods, both **green** and **red** ones.
 * The resulting information pane that appears will tell you the state of the object. Note, That the **red** Pods show that they are in **Pod Phase: Failed**. This means they have crashed and are not working.
 * Examine the Cluster Metric charts that provide information on your cluster. (The charts below the cluster image). They provide general information about the health of your cluster like Memory consumption and the number of pods per node.

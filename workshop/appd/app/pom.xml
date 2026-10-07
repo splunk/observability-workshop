@@ -20,6 +20,7 @@
     <properties>
         <java.version>17</java.version>
         <tomcat.version>10.1.59</tomcat.version>
+        <jackson-bom.version>2.21.6</jackson-bom.version>
     </properties>
 
     <dependencies>
