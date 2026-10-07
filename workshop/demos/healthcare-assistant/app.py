@@ -295,12 +295,10 @@ def render_chat_screen(app_config: dict) -> None:
         "What is the dosage and common side effects of Lisinopril?",
         "Can you look up information for patient P001?",
     ])
-    if not st.session_state.messages:
-        example = show_example_queries(
-            examples[0], examples[1] if len(examples) > 1 else "What can you do?"
-        )
-    else:
-        example = None
+    # Always available — presenters often click an example mid-conversation.
+    example = show_example_queries(
+        examples[0], examples[1] if len(examples) > 1 else "What can you do?"
+    )
     display_chat_history()
 
     user_input = st.chat_input("How can I help you?...") or example

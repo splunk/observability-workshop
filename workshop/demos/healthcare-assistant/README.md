@@ -10,7 +10,7 @@
 
 ```bash
 cd workshop/demos/healthcare-assistant 
-docker build -f ./Dockerfile -t ghcr.io/splunk/healthcare-assistant:demo-v1 .
+docker build -f ./Dockerfile --platform linux/amd64 -t ghcr.io/splunk/healthcare-assistant:demo-v1 .
 docker push ghcr.io/splunk/healthcare-assistant:demo-v1
 ```
 
