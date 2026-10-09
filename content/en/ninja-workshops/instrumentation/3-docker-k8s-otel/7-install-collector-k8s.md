@@ -106,11 +106,10 @@ vi values.yaml
 Then paste the following contents:
 
 ``` yaml
-logsEngine: otel
 agent:
   config:
     receivers:
-      hostmetrics:
+      host_metrics:
         collection_interval: 10s
         root_path: /hostfs
         scrapers:
@@ -142,7 +141,7 @@ Now we can use the following command to install the collector:
 {{% tab title="Script" %}}
 
 ``` bash
-  helm install splunk-otel-collector --version 0.149.0 \
+  helm install splunk-otel-collector --version 0.162.0 \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-cluster" \
@@ -198,7 +197,7 @@ splunk-otel-collector-k8s-cluster-receiver-dbf64995b-xgm9b   1/1     Running   0
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes entities**,
 and then search for your cluster name (which is `$INSTANCE-cluster`):
 
 ![Kubernetes node](../images/k8snode.png)

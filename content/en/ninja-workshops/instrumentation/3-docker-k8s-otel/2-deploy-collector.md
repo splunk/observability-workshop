@@ -78,6 +78,8 @@ sudo sh /tmp/splunk-otel-collector.sh \
 --mode agent \
 --without-instrumentation \
 --deployment-environment otel-$INSTANCE \
+--hec-token $HEC_TOKEN \
+--hec-url $HEC_URL \
 -- $ACCESS_TOKEN
 ```
 
@@ -88,9 +90,9 @@ sudo sh /tmp/splunk-otel-collector.sh \
 Splunk OpenTelemetry Collector Version: latest
 Memory Size in MIB: 512
 Realm: us1
-Ingest Endpoint: https://ingest.us1.signalfx.com
-API Endpoint: https://api.us1.signalfx.com
-HEC Endpoint: https://ingest.us1.signalfx.com/v1/log
+Ingest Endpoint: https://ingest.us1.observability.splunkcloud.com
+API Endpoint: https://api.us1.observability.splunkcloud.com
+HEC Endpoint: https://http-inputs-o11y-workshop-amer.splunkcloud.com:443/services/collector/event
 etc. 
 ```
 

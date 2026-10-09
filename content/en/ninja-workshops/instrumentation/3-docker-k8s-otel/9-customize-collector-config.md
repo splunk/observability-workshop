@@ -58,9 +58,9 @@ Labels:       app=splunk-otel-collector
               app.kubernetes.io/instance=splunk-otel-collector
               app.kubernetes.io/managed-by=Helm
               app.kubernetes.io/name=splunk-otel-collector
-              app.kubernetes.io/version=0.136.1
-              chart=splunk-otel-collector-0.136.0
-              helm.sh/chart=splunk-otel-collector-0.136.0
+              app.kubernetes.io/version=0.162.0
+              chart=splunk-otel-collector-0.162.0
+              helm.sh/chart=splunk-otel-collector-0.162.0
               release=splunk-otel-collector
 Annotations:  meta.helm.sh/release-name: splunk-otel-collector
               meta.helm.sh/release-namespace: default
@@ -70,12 +70,11 @@ Data
 relay:
 ----
 exporters:
-  otlphttp:
+  otlp_http:
     auth:
       authenticator: headers_setter
-    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
-    traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
-    (followed by the rest of the collector config in yaml format) 
+    metrics_endpoint: https://ingest.us1.observability.splunkcloud.com/v2/datapoint/otlp
+    traces_endpoint: https://ingest.us1.observability.splunkcloud.com/v2/trace/otlp
 ```
 
 {{% /tab %}}
@@ -111,7 +110,6 @@ This is done by adding the following line to the `values.yaml` file:
 > Hint: steps to open and save in vi are in previous steps.
 
 ``` yaml
-logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
@@ -198,7 +196,6 @@ can be helpful for troubleshooting OpenTelemetry-related issues.
 Let's add the debug exporter to the bottom of the values.yaml file as follows:
 
 ``` yaml
-logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
