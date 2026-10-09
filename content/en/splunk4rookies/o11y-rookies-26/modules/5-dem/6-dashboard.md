@@ -72,6 +72,15 @@ Any six charts about RUM and six about Synthetics make a dashboard. These specif
 That last row is the whole point of the module. Without the synthetic signal, the 03:00 case produces no data at all, and the first thing to arrive is a customer's post.
 {{< /notice >}}
 
+{{< quiz question="Synthetic LCP is fast, but real-user LCP is slow. Where do you look first?" >}}
+{{< quiz-option correct=true >}}Page weight, distance, or the customers' devices. The lab run already proved the code path is fast.{{< /quiz-option >}}
+{{< quiz-option >}}The payment service. Every slowness in this shop is a back-end error.{{< /quiz-option >}}
+{{< quiz-option >}}The synthetic test. A fast lab result means it measured the wrong page.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+If the lab is fast and reality is slow, the problem is weight, distance, or devices — not the code path. When synthetic checkout duration and real checkout P75 drift apart, the test itself has gone stale.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
+
 ## Two things that will trip us up when we build it
 
 - **Units do not match.** RUM timing metrics are reported in **nanoseconds** and Synthetics timing metrics in **milliseconds**. Set the display units on every timing chart, otherwise a perfectly healthy LCP will render as an alarming nine-digit number. CLS and Lighthouse are scores and need no units.

@@ -4,7 +4,7 @@ weight: 5
 layout: chapter
 time: 45 minutes
 authors: ["Sarah Ware"]
-description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
+description: Monitor real user experiences and set up proactive tests so you catch problems before your users complain online.
 params:
   images:
     - images/rum.webp
@@ -22,19 +22,18 @@ Before the workshop begins:
 
 **Real User Monitoring (RUM)** tells us what our end users actually experienced. **Synthetic Monitoring** tells us what they *would* experience right now, whether or not anyone is using our app. Together, RUM and Synthetics help us get ahead of issues before we find out on socials.
 
-{{% notice icon="user" style="orange" title="Persona" %}}
-
-You are the **SRE** who just finished cleaning up the Astronomy Shop `payment` service incident. The postmortem question landed on your desk: *how long would it have taken us to notice if nobody had complained?*
-
-{{% /notice %}}
+{{< persona role="SRE" >}}
+{{< persona-situation >}}You just finished cleaning up the Astronomy Shop `payment` service incident. The postmortem question landed on your desk: *how long would it have taken us to notice if nobody had complained?*{{< /persona-situation >}}
+{{< persona-goal >}}Set up monitoring that notices a failing checkout before a customer does.{{< /persona-goal >}}
+{{< /persona >}}
 
 {{< webex chat="Shelly K." date="Today • 28/01/2026" seenby="SK" >}}
-{{< webex-msg from="BG" name="Shelly K." time="14:10" color="#ef950d" >}}
+{{< webex-msg from="SK" name="Shelly K." time="14:10" >}}
 Postmortem action item for us: a customer told us about the checkout failures before our monitoring did 😬 can you get proactive coverage on the checkout journey?
 {{< /webex-msg >}}
 
 {{< webex-msg me=true time="14:12" >}}
-On it. I'll use RUM to work out which journey matters most, then build a Synthetics browser test for it with an alert so we hear about it first next time. 👍
+On it. I'll use RUM to figure out which journey matters most, then build a Synthetics browser test for it with an alert so we hear about it first next time. 👍
 {{< /webex-msg >}}
 {{< /webex >}}
 
@@ -45,11 +44,11 @@ On it. I'll use RUM to work out which journey matters most, then build a Synthet
 
 In this hands-on module, we will:
 
-- **Read real user pain** in RUM Web Vitals and per-page metrics to choose the journey worth testing
+- **See real user pain** in Web Vitals, per-page metrics, and custom workflows to choose the journey worth testing
 - **Build a Synthetics browser test** for the checkout journey, with named steps and synthetic transactions
-- **Run it on demand** and interpret uptime, availability, and transaction-level results
+- **Test on demand** and interpret uptime, availability, and transaction-level results
 - **Activate a detector** so a failing checkout pages you instead of surprising you
-- **Meet the other test types** — uptime, port, API, and SSL certificate tests
+- **Check out the other test types** — uptime, port, API, and SSL certificate tests
 - **Review a combined dashboard** that puts real user and synthetic signals side by side
 
 {{% notice title="What you need" style="info" %}}

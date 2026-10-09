@@ -32,20 +32,14 @@ An **uptime test** makes a single request and reports on the response. It record
 <!-- TODO screenshot: HTTP uptime test creation page with GET request, URL, and a 200 response code validation -->
 ![HTTP uptime test configuration](../images/synth-uptime-test.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-Your browser test fails about half the time. What will this uptime test report?
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
-Close to 100% uptime. The storefront is serving pages perfectly well — it is only the payment step that fails, and this test never gets that far.
-
-That contrast is the point. An uptime test is a cheap, reliable answer to "is it up?", and it is completely blind to "can customers actually buy?". If the storefront uptime test were the only monitoring in place, the entire checkout incident would have gone unnoticed.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Your browser test fails about half the time. What will this uptime test report?" >}}
+{{< quiz-option correct=true >}}Close to 100% uptime. This test never reaches the payment step.{{< /quiz-option >}}
+{{< quiz-option >}}About 50% uptime, the same as the browser test.{{< /quiz-option >}}
+{{< quiz-option >}}0% uptime, because the shop is down.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The storefront is serving pages perfectly well — it is only the payment step that fails, and this test never gets that far. An uptime test is a cheap, reliable answer to "is it up?", and it is completely blind to "can customers actually buy?". If it were the only monitoring in place, the entire checkout incident would have gone unnoticed.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

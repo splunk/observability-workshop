@@ -42,7 +42,7 @@ All of us in this workshop test the same Astronomy Shop, so each of us needs to 
 {{% /exercise %}}
 
 {{< notice tip >}}
-Custom properties are not busywork. They become dimensions on every metric the test produces, so later we can build one chart that covers every test tagged `workshop:[NAME OF WORKSHOP]` instead of editing the chart each time somebody adds a test. Keys cannot be named `test` or `test_id`, and each key can hold only one value per test.
+Custom properties become dimensions on every metric the test produces, so later we can build one chart that covers every test tagged `workshop:[NAME OF WORKSHOP]` instead of editing the chart each time somebody adds a test. 
 {{< /notice >}}
 
 ## Add the steps and transactions
@@ -119,27 +119,21 @@ In the **Security** section:
 * Work through any step that reports an error. The usual cause is a selector typo, or a missing **Wait for navigation** on a step that changes the page.
 * Once the **Browse** transaction completes successfully, select {{% button style="blue" %}}Create{{% /button %}}.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-Your **Try now** run may well have failed at step 7. Is your test broken?
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
-Almost certainly not. The Astronomy Shop is deliberately configured so that roughly half of all payment attempts fail, so about half of your runs will not reach an order confirmation.
-
-If steps 1 through 6 all pass and step 7 is the only failure, your test is working exactly as designed — it is detecting a real defect. Run **Try now** again and you should see it pass roughly every other time.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Your Try now run failed at step 7. Is your test broken?" >}}
+{{< quiz-option correct=true >}}No. If steps 1 through 6 passed, step 7 is catching the payment defect.{{< /quiz-option >}}
+{{< quiz-option >}}Yes. A failed assertion always means the selector is wrong.{{< /quiz-option >}}
+{{< quiz-option >}}Yes. Try now only fails when the test was not saved.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The Astronomy Shop is deliberately configured so that roughly half of all payment attempts fail, so about half of your runs will not reach an order confirmation. If steps 1 through 6 all pass and step 7 is the only failure, your test is working as designed — it is detecting a real defect. Run **Try now** again and you should see it pass roughly every other time.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 
 {{% notice title="Try now vs. Run now" style="info" %}}
-**Try now** runs are *ephemeral*: nothing is stored, no metrics are produced, and our uptime numbers are untouched. That is what makes it safe to use while we are still fixing selectors.
+**Try now** runs are *temporary*: nothing is stored, no metrics are produced, and our uptime numbers are untouched. That is what makes it safe to use while we are still fixing selectors.
 
-**Run now**, which we use on the next page, is *persisted*: results are stored, they count toward metrics and subscription usage, and they appear in the UI marked as **Manual**.
+**Run now**, which we use in the next exercise, is *permanent*: results are stored, they count toward metrics and subscription usage, and they appear in the UI marked as **Manual**.
 {{% /notice %}}
 
 Learn more in [Set up a browser test](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/synthetic-monitoring/browser-tests-for-webpages/set-up-a-browser-test) and [Add synthetic transactions to your browser test](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/synthetic-monitoring/browser-tests-for-webpages/add-synthetic-transactions-to-your-browser-test).

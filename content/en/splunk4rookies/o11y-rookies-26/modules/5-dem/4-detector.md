@@ -60,20 +60,14 @@ To see the notification itself, add **only our own email address**, and expect s
 * Find our detector by name and open the active alert.
 * Read what the alert tells us: which test failed, from which location, when, and against which threshold.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-How long did it take, from the checkout breaking to somebody knowing about it?
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
-One test interval — five minutes at the frequency you configured, and it would be one minute at the frequency a real revenue journey would use.
-
-Compare that to the original incident, where the first signal was a customer complaint. The detection did not get faster because anyone was watching more carefully; it got faster because something is now attempting a purchase around the clock and reporting when it cannot.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="How long did it take, from the checkout breaking to somebody knowing about it?" >}}
+{{< quiz-option correct=true >}}One test interval: five minutes at the frequency you configured.{{< /quiz-option >}}
+{{< quiz-option >}}It still waits on a customer to post about it.{{< /quiz-option >}}
+{{< quiz-option >}}Immediately, because RUM alerts as soon as the page renders.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+One test interval — five minutes here, and one minute at the frequency a real revenue journey would use. The detection did not get faster because anyone was watching more carefully. It got faster because something is now attempting a purchase around the clock and reporting when it cannot.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 
@@ -93,6 +87,15 @@ Our detector watches the whole test. It does not have to.
 | **CA certificate-level** | SSL certificate validity and expiry, on SSL tests | "The storefront certificate expires in 30 days" |
 
 The transaction-level detector is the one to reach for next. Because we named our transactions, we can alert on **Duration** scoped to `transaction:Checkout` and hold the checkout flow to its own SLA without the noise of the rest of the journey.
+
+{{< quiz question="You want an alert when the Checkout transaction takes longer than 8 seconds, without paging on the rest of the journey. Which scope do you use?" >}}
+{{< quiz-option correct=true >}}Transaction-level, on Duration scoped to transaction:Checkout.{{< /quiz-option >}}
+{{< quiz-option >}}Test-level uptime. It already covers every step.{{< /quiz-option >}}
+{{< quiz-option >}}Page-level, scoped to the home page.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+Uptime says the journey is broken. Duration scoped to the Checkout transaction says it is slow, and it stays quiet when only browsing gets slower. That scope exists because the transactions were named.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% notice title="In production, tune this down" style="info" %}}
 Firing on a single failure is right for a workshop and wrong for production. There, we would raise **Violates threshold** so a transient blip has to repeat before it pages anyone, keep auto-retry on, and turn on **Split by location** so a single unhappy region does not look like a full outage.

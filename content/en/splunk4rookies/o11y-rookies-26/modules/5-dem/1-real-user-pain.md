@@ -1,6 +1,6 @@
 ---
-title: Which journey deserves a test?
-linkTitle: 1. Which journey deserves a test?
+title: Which journey should we test?
+linkTitle: 1. Which journey should we test?
 weight: 1
 time: 8 minutes
 ---
@@ -51,20 +51,14 @@ See [Core Web Vitals](https://web.dev/vitals/) for the full definitions and curr
 <!-- TODO screenshot: RUM Pages tab sorted by page views, showing performance and Web Vitals columns per page -->
 ![RUM Pages tab comparing traffic and performance per page](../images/rum-pages-tab.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-Using traffic, performance, and business value together, which single journey through the Astronomy Shop would you pick as the best candidate for a 24/7 synthetic test?
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
-The **checkout journey** — home page to product page to cart to placed order.
-
-It carries high traffic, it is the only journey that produces revenue, and it is already the journey showing errors. A test on the home page alone would have stayed green through the entire `payment` service incident, because the home page never broke.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Using traffic, performance, and business value together, which single journey would you pick for a 24/7 synthetic test?" >}}
+{{< quiz-option correct=true >}}The checkout journey, from the home page through to a placed order.{{< /quiz-option >}}
+{{< quiz-option >}}The home page only, because it has the most traffic.{{< /quiz-option >}}
+{{< quiz-option >}}The slowest product page, even if almost nobody visits it.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The **checkout journey** carries high traffic, it is the only journey that produces revenue, and it is already the journey showing errors. A test on the home page alone would have stayed green through the entire `payment` service incident, because the home page never broke.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

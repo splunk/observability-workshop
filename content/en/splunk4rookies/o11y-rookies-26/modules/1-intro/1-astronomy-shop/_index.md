@@ -27,7 +27,11 @@ Explore and interact with the shop as a real customer would:
 ![ui](images/1-shop.png)
 
 {{< quiz question="Did everything work smoothly, or did you notice anything unusual during checkout?" >}}
+<<<<<<< Updated upstream
 {{< quiz-option correct=true >}}Slow responses or errors during checkout are intentional.{{< /quiz-option >}}
+=======
+{{< quiz-option correct=true >}}Slow responses or errors during checkout.{{< /quiz-option >}}
+>>>>>>> Stashed changes
 {{< quiz-option >}}Checkout completed instantly, with no errors.{{< /quiz-option >}}
 {{< quiz-option >}}The shop failed to load, so no telemetry was produced.{{< /quiz-option >}}
 {{< quiz-feedback >}}

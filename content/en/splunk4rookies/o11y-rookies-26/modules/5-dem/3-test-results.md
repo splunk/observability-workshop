@@ -1,6 +1,6 @@
 ---
-title: Run it and read the results
-linkTitle: 3. Run it and read the results
+title: Run the test and read the results
+linkTitle: 3. Run the test and read the results
 weight: 3
 time: 7 minutes
 ---
@@ -33,20 +33,23 @@ Stay on our test's page and work through it from the top.
 <!-- TODO screenshot: Browser test history page showing Uptime trends, Availability, and Performance KPIs -->
 ![Browser test history with uptime, availability, and performance KPIs](../images/synth-test-history.png)
 
-{{< tabs >}}
-{{% tab title="Questions" %}}
+{{< quiz question="Which of your seven steps fails, and is the failure in the click or in the assertion?" >}}
+{{< quiz-option correct=true >}}Step 7, Order confirmed. The assertion fails. The click works.{{< /quiz-option >}}
+{{< quiz-option >}}Step 6, Place the order. The click itself fails.{{< /quiz-option >}}
+{{< quiz-option >}}Step 3, Open a product. The product card selector does not match.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+Step 7, **Order confirmed**, fails, and it is the **assertion** that fails, not a click. The **Place the order** click works; the button is there and it responds. What never arrives is the order confirmation. A test that stopped at step 6 would report 100% uptime through a total checkout outage.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
-1. Which of your seven steps fails, and is the failure in the click or in the assertion?
-2. Your **Browse** transaction succeeds on every single run while **Checkout** fails on about half. What does that split tell you before you look at a single trace?
-
-{{% /tab %}}
-{{% tab title="Answers" %}}
-
-1. Step 7, **Order confirmed**, fails — and it is the **assertion** that fails, not a click. The **Place the order** click works fine; the button is there and it responds. What never arrives is the order confirmation. This is exactly why the last step of a journey should assert the outcome: a test that stopped at step 6 would report 100% uptime through a total checkout outage.
-2. It localises the problem before you open APM. Everything up to and including adding an item to the cart is healthy, so the front end, the product catalog, and the cart are all fine. Only the act of completing a purchase fails. You have narrowed a whole store down to the checkout path using nothing but test results.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Browse succeeds on every run while Checkout fails on about half. What does that tell you before you open a trace?" >}}
+{{< quiz-option correct=true >}}The shop is healthy through add-to-cart. Only completing the purchase fails.{{< /quiz-option >}}
+{{< quiz-option >}}The whole shop is down, including the home page.{{< /quiz-option >}}
+{{< quiz-option >}}The failure is a network problem at one synthetic location.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The split localises the problem before you open APM. Everything up to and including adding an item to the cart is healthy, so the front end, the product catalog, and the cart are all fine. Only the act of completing a purchase fails.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 
