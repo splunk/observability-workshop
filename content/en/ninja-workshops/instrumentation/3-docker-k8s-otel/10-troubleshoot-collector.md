@@ -33,14 +33,13 @@ like this:
       - k8s_attributes
       - filter/logs
       - batch
-      - resourcedetection
+      - resource_detection
       - resource
       - resource/logs
       - resource/add_environment
       receivers:
-      - filelog
+      - file_log
       - otlp
-    ...
     traces:
       exporters:
       - debug
@@ -48,7 +47,7 @@ like this:
       - memory_limiter
       - k8s_attributes
       - batch
-      - resourcedetection
+      - resource_detection
       - resource
       - resource/add_environment
       receivers:
@@ -58,7 +57,7 @@ like this:
 ```
 
 Do you see the problem?  Only the debug exporter is included in the traces and logs pipelines.
-The `otlp_http` and `signalfx` exporters that were present in the traces pipeline configuration previously are gone.
+The `otlp_http` exporter that was present in the traces pipeline configuration previously are gone.
 This is why we no longer see traces in o11y cloud.  And for the logs pipeline, the `splunk_hec/platform_logs`
 exporter has been removed.
 
@@ -73,7 +72,6 @@ exporter has been removed.
 Let's review the customizations we added to the `values.yaml` file:
 
 ``` yaml
-logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
@@ -105,7 +103,6 @@ So when customizing an existing pipeline, we need to fully redefine that part of
 Our `values.yaml` file should thus be updated as follows:
 
 ``` yaml
-logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
@@ -120,7 +117,6 @@ agent:
         traces:
           exporters:
             - otlp_http
-            - signalfx
             - debug
         logs:
           exporters:
@@ -162,7 +158,6 @@ This time, we should see a fully defined exporters pipeline for both logs and tr
     traces:
       exporters:
       - otlp_http
-      - signalfx
       - debug
       processors:
       ...

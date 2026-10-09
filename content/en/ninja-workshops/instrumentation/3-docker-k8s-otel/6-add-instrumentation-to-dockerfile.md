@@ -45,6 +45,9 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 RUN apt-get update && \
  apt-get install -y unzip
 
+# NEW CODE: skip release verification as the GitHub CLI isn't installed
+ENV SKIP_RELEASE_VERIFICATION=true
+
 # NEW CODE: download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 
@@ -65,7 +68,6 @@ It's easiest to simply replace the entire final stage with the following:
 > which can be determined by running `echo $INSTANCE`.
 
 ``` dockerfile
-# CODE ALREADY IN YOUR DOCKERFILE
 FROM base AS final
 
 # NEW CODE: Copy instrumentation file tree
@@ -114,6 +116,9 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 # NEW CODE: add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
  apt-get install -y unzip
+
+# NEW CODE: skip release verification as the GitHub CLI isn't installed
+ENV SKIP_RELEASE_VERIFICATION=true
 
 # NEW CODE: download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
@@ -255,28 +260,15 @@ sudo vi /etc/otel/collector/agent_config.yaml
 Next, add the debug exporter to the traces pipeline, which ensures the traces are written to the collector logs:
 
 ``` yaml
-service:
-  telemetry:
-    logs:
-      level: ${env:SPLUNK_COLLECTOR_LOG_LEVEL:-info}
-    metrics:
-      readers:
-        - pull:
-            exporter:
-              prometheus:
-                host: '127.0.0.1'
-                port: 8888
-  extensions: [headers_setter, health_check, http_forwarder, zpages, smartagent]
   pipelines:
     traces:
       receivers: [jaeger, otlp, zipkin]
       processors:
       - memory_limiter
       - batch
-      - resourcedetection
+      - resource_detection
       #- resource/add_environment
-      # NEW CODE: add the debug exporter here
-      exporters: [otlp_http, signalfx, debug]
+      exporters: [otlp_http, debug]
 ```
 
 Then, restart the collector to apply the configuration changes:
