@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.14'
+	id 'org.springframework.boot' version '4.1.1'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -11,11 +11,10 @@ java {
 	sourceCompatibility = '17'
 }
 
-ext['tomcat.version'] = '10.1.59'
-ext['logback.version'] = '1.5.35'
-ext['jackson-bom.version'] = '2.21.6'
-ext['spring-framework.version'] = '6.2.19'
-ext['spring-kafka.version'] = '3.3.16'
+ext['tomcat.version'] = '11.0.24'
+ext['jackson-bom.version'] = '3.1.7'
+ext['jackson-2-bom.version'] = '2.21.7'
+ext['spring-framework.version'] = '7.0.9'
 
 repositories {
 	mavenCentral()
@@ -27,8 +26,11 @@ dependencies {
 	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.kafka:spring-kafka'
 	constraints {
-		implementation('at.yawk.lz4:lz4-java:1.11.1') {
-			because 'CVE-2026-59949'
+		implementation('at.yawk.lz4:lz4-java:1.11.4') {
+			because 'CVE-2026-106451'
+		}
+		implementation('org.springframework.retry:spring-retry:2.0.13') {
+			because 'CVE-2026-41710'
 		}
 	}
 }
