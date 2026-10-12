@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/</link><description>Recent content in Getting Started on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Page</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/3-quick-tour/1-homepage/1-home-page/</guid><description>&lt;p&gt;After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/home-screen.png" alt="home page" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/home-screen.webp" alt="home page" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;

@@ -19,7 +19,7 @@
  &lt;a class="heading-anchor" href="#2--inspecting-the-html-source" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;The changes needed for RUM are placed in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of the hosts Web page. Right click to view the page source or to inspect the code. Below is an example of the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section with RUM:&lt;/p&gt;</description></item><item><title>RUM Landing Page</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/3-rum-landing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/3-rum-landing/</guid><description>&lt;ul&gt;
-&lt;li&gt;Visit the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)&lt;/li&gt;
+&lt;li&gt;Visit the RUM landing page and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id="1-visit-the-rum-landing-page"&gt;

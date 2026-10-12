@@ -31,8 +31,8 @@ file, you&amp;rsquo;ll see that this package has already been added:&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Create a Kubernetes Secret&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
-run the following command to create a Kubernetes secret, which stores the Splunk Agent Observability API key:&lt;/p&gt;</description></item><item><title>Attach the Splunk Agent Observability Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</guid><description>&lt;p&gt;The agent runs its LangGraph workflow asynchronously, so you&amp;rsquo;ll attach Splunk Agent Observability&amp;rsquo;s
+&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to create a Kubernetes secret, which stores the
+Splunk Agent Observability API key:&lt;/p&gt;</description></item><item><title>Attach the Splunk Agent Observability Callback</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/4-instrument-the-application/2-add-the-callback/</guid><description>&lt;p&gt;The agent runs its LangGraph workflow asynchronously, so you&amp;rsquo;ll attach Splunk Agent Observability&amp;rsquo;s
 &lt;strong&gt;async&lt;/strong&gt; callback handler. Because the callback is passed at the graph level, it propagates to every
 node automatically, with no per-tool instrumentation required.&lt;/p&gt;
 &lt;section class="exercise"&gt;
@@ -85,5 +85,12 @@ next chapter.&lt;/p&gt;
 &lt;div&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Deploy the healthcare assistant app&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;If you&amp;rsquo;re using the standalone version of Splunk Agent Observability for the workshop,
-run the following command to deploy the healthcare assistant app:&lt;/p&gt;</description></item></channel></rss>
+&lt;div class="step__body"&gt;&lt;p&gt;Run the following command to deploy the healthcare assistant app:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/workshop/healthcare-assistant/2-app-with-instrumentation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl apply -f k8s.yaml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Ensure that the new application pod is running:&lt;/p&gt;</description></item></channel></rss>

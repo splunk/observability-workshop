@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Custom Service Health Dashboard 🏥 on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/</link><description>Recent content in Custom Service Health Dashboard 🏥 on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/index.xml" rel="self" type="application/rss+xml"/><item><title>Enhancing the Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/financial-services-observability-cloud/6-custom-dashboard/1-custom-dashboard/</guid><description>&lt;p&gt;As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/wall-mount.png" alt="Wall mounted" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/wall-mount.webp" alt="Wall mounted" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -12,7 +12,7 @@
 &lt;li&gt;Click on the name and this will bring up your previously saved dashboard.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/log-observer-custom-dashboard.png" alt="log list" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/log-observer-custom-dashboard.webp" alt="log list" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -30,7 +30,7 @@
 &lt;li&gt;Do the same with for the &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;sf_service.&lt;/span&gt;&lt;/button&gt; button &lt;strong&gt;(2)&lt;/strong&gt;, close it and create a new filter for &lt;strong&gt;sf_service&lt;/strong&gt;. Only this time change it to &lt;code&gt;paymentservice&lt;/code&gt;.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/edit-chart.png" alt="edit chart" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/edit-chart.webp" alt="edit chart" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -41,7 +41,7 @@
 &lt;li&gt;Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/copyandpastedcharts.png" alt="New dashboard look" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/copyandpastedcharts.webp" alt="New dashboard look" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -53,7 +53,7 @@
 &lt;li&gt;At the top of the dashboard click on the &lt;strong&gt;+&lt;/strong&gt; and select &lt;strong&gt;Chart&lt;/strong&gt;.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/new-chart.png" alt="new chart screen" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/new-chart.webp" alt="new chart screen" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -68,7 +68,7 @@ in the chart option box.&lt;/li&gt;
 &lt;li&gt;From the drop-down choose the &lt;strong&gt;Sum&lt;/strong&gt; option, then pick &lt;code&gt;sum:aggregation&lt;/code&gt; and click &lt;code&gt;version&lt;/code&gt; and then click &lt;code&gt;sf_error&lt;/code&gt; to group by both of these dimensions. Notice how the chart changes as the metrics are now aggregated.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/spans-sum-version-error.png" alt="new chart screen" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/spans-sum-version-error.webp" alt="new chart screen" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -76,7 +76,7 @@ in the chart option box.&lt;/li&gt;
 &lt;li&gt;In the dashboard, move the charts so they look like the screenshot below:
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/service-health-dashboard.png" alt="Service Health Dashboard" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/service-health-dashboard.webp" alt="Service Health Dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;

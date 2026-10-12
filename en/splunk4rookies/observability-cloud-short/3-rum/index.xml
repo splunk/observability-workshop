@@ -13,7 +13,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-de.png" alt="RUM" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rum-de.webp" alt="RUM" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -37,7 +37,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-metric-map-charts.png" alt="RUM Dashboard" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rum-metric-map-charts.webp" alt="RUM Dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -70,7 +70,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-tag-spotlight.png" alt="RUM Tag Spotlight" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rum-tag-spotlight.webp" alt="RUM Tag Spotlight" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -96,7 +96,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-to-apm.png" alt="RUM to APM" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rum-to-apm.webp" alt="RUM to APM" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;

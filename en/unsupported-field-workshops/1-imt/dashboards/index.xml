@@ -22,7 +22,7 @@
  &lt;span class="heading-text"&gt;1. Saving a chart&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-saving-a-chart" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;To start saving your chart, lets give it a name and description. Click the name of the chart &lt;strong&gt;Copy of Latency Histogram&lt;/strong&gt; and rename it to &lt;strong&gt;&amp;ldquo;Active Latency&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To start saving your chart, let&amp;rsquo;s give it a name and description. Click the name of the chart &lt;strong&gt;Copy of Latency Histogram&lt;/strong&gt; and rename it to &lt;strong&gt;&amp;ldquo;Active Latency&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;To change the description click on &lt;strong&gt;Spread of latency values across time.&lt;/strong&gt; and change this to &lt;strong&gt;Overview of latency values in real-time.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;

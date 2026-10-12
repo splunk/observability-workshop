@@ -5,7 +5,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/infra-k8s.png" alt="Kubernetes" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/infra-k8s.webp" alt="Kubernetes" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;

@@ -98,7 +98,7 @@
  &lt;span class="heading-text"&gt;Custom Attribution (Custom Tags)&lt;/span&gt;
  &lt;a class="heading-anchor" href="#custom-attribution-custom-tags" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;To take a deeper look at this issue and make this much easier to debug we will implement Custom Attributes via Opentelemetry Manual Instrumentation.&lt;/p&gt;
+&lt;p&gt;To take a deeper look at this issue and make this much easier to debug we will implement Custom Attributes via OpenTelemetry Manual Instrumentation.&lt;/p&gt;
 &lt;p&gt;To speed up manual instrumentation in Java you can leverage OpenTelemetry Annotations, which automatically create a span around a method without modifying the actual code inside the method. This can be very valuable if you are working with an SRE that may have limited access to source code changes.&lt;/p&gt;</description></item><item><title>Fixing Code</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/7-fixing-code/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/7-mttr-custom-tags/7-fixing-code/</guid><description>&lt;h2 id="finding-the-problem"&gt;
  &lt;span class="heading-text"&gt;Finding the Problem&lt;/span&gt;
  &lt;a class="heading-anchor" href="#finding-the-problem" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -181,7 +181,7 @@
  &lt;a class="heading-anchor" href="#dont-forget-chicago" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;We are nearly done, one more location to go&amp;hellip; Chicago.&lt;/p&gt;
-&lt;p&gt;Since we have been having so many issues related to &amp;ldquo;location&amp;rdquo; and we have added that custom attribute via Opentelemetry Manual Instrumentation, lets go to the Splunk Observability UI and look at an APM metric set around that tag that I created for us.&lt;/p&gt;
+&lt;p&gt;Since we have been having so many issues related to &amp;ldquo;location&amp;rdquo; and we have added that custom attribute via OpenTelemetry Manual Instrumentation, let&amp;rsquo;s go to the Splunk Observability UI and look at an APM metric set around that tag that I created for us.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
  &lt;img src="../images/9-chicago-1-metricset.png" alt="9-chicago-1-metricset" loading="lazy" decoding="async"&gt;

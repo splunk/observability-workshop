@@ -28,7 +28,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/synth-waterfall.png" alt="waterfall" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/synth-waterfall.webp" alt="waterfall" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -52,7 +52,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/run-results-place-order.png" alt="Place Order" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/run-results-place-order.webp" alt="Place Order" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -64,13 +64,13 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/apm-trace.png" alt="APM trace" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/apm-trace.webp" alt="APM trace" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>4. Synthetics Detector</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/6-synthetics/4-synthetics-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/6-synthetics/4-synthetics-detector/</guid><description>&lt;p&gt;Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA—instead of getting informed by social media or uptime websites.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/social-media-post.png" alt="Social media" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/social-media-post.webp" alt="Social media" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;

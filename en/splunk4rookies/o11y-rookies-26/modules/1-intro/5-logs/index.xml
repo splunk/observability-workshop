@@ -31,19 +31,4 @@
 &lt;li&gt;Check the record’s &lt;strong&gt;service&lt;/strong&gt; or &lt;strong&gt;hostname&lt;/strong&gt; fields to confirm that it came from the &lt;strong&gt;payment&lt;/strong&gt; service. Other services involved in the trace may also have reported errors.&lt;/li&gt;
 &lt;li&gt;Read the complete message and examine the associated fields. Scroll through the details if necessary.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-panel-0" tabindex="0" data-tab-label="Question"&gt;Question&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-panel-1" tabindex="-1" data-tab-label="Answer"&gt;Answer&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-tab-0" data-tab-label="Question"&gt;&lt;strong&gt;What does the log message reveal about the &lt;em&gt;payment&lt;/em&gt; failure, and what should the development team check to resolve it?&lt;/strong&gt;&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-o11y-rookies-26-modules-1-intro-5-logs-3-log-entry-md-1-1--0-tab-1" hidden data-tab-label="Answer"&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The message reports that &lt;em&gt;ButtercupPayments&lt;/em&gt; rejected an &lt;em&gt;invalid API token&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The development team should check the payment-provider credentials configured for version &lt;code&gt;v350.10&lt;/code&gt;, correct or replace the invalid token, and verify that payment requests succeed afterward or rollback to &lt;code&gt;v350.9&lt;/code&gt;&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/log-observer-log-message.png" alt="Log Message" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
-&lt;/figure&gt;
-&lt;/p&gt;</description></item></channel></rss>
+&lt;section class="quiz" data-quiz&gt;&lt;p class="quiz__label"&gt;Quick check&lt;/p&gt;</description></item></channel></rss>

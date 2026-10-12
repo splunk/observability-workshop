@@ -19,14 +19,14 @@
 &lt;p&gt;Click the &lt;strong&gt;Appliance&lt;/strong&gt; tab&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Copy your &lt;strong&gt;Account Group Token&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</guid><description>&lt;p&gt;Next we will deploy the open telemetry collector&lt;/p&gt;
+&lt;p&gt;Copy your &lt;strong&gt;Account Group Token&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>OTel Collector</title><link>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/thousandeyes-integration/2-deployment/2_otelcollector/</guid><description>&lt;p&gt;Next we will deploy the OpenTelemetry collector&lt;/p&gt;
 &lt;h2 id="installation-steps"&gt;
  &lt;span class="heading-text"&gt;Installation Steps&lt;/span&gt;
  &lt;a class="heading-anchor" href="#installation-steps" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;h3 id="step-1-deploy-the-open-telemetry-collector"&gt;
- &lt;span class="heading-text"&gt;Step 1: Deploy the Open Telemetry Collector&lt;/span&gt;
- &lt;a class="heading-anchor" href="#step-1-deploy-the-open-telemetry-collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;h3 id="step-1-deploy-the-opentelemetry-collector"&gt;
+ &lt;span class="heading-text"&gt;Step 1: Deploy the OpenTelemetry Collector&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#step-1-deploy-the-opentelemetry-collector" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;If your application is already instrumented and traces are visible in Splunk APM, you can skip to Step 2. Otherwise, the fastest learning path in Kubernetes is to use the Splunk OpenTelemetry Collector with the Operator enabled for zero-code instrumentation.&lt;/p&gt;
 &lt;div class="tabs" data-tabs&gt;

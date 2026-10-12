@@ -18,7 +18,7 @@
 &lt;/table&gt;
 &lt;ul&gt;
 &lt;li&gt;Using metrics we identified &lt;strong&gt;we have a problem&lt;/strong&gt; with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be.&lt;/li&gt;
-&lt;li&gt;Using traces and span tags we found &lt;strong&gt;where the problem is&lt;/strong&gt;. The &lt;strong&gt;wire-transfer-service&lt;/strong&gt; comprises of two versions, &lt;code&gt;v350.9&lt;/code&gt; and &lt;code&gt;v350.10&lt;/code&gt;, and the error rate was &lt;strong&gt;100%&lt;/strong&gt; for &lt;code&gt;v350.10&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Using traces and span tags we found &lt;strong&gt;where the problem is&lt;/strong&gt;. The &lt;strong&gt;wire-transfer-service&lt;/strong&gt; consists of two versions, &lt;code&gt;v350.9&lt;/code&gt; and &lt;code&gt;v350.10&lt;/code&gt;, and the error rate was &lt;strong&gt;100%&lt;/strong&gt; for &lt;code&gt;v350.10&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;We did see that this error from the &lt;strong&gt;wire-transfer-service&lt;/strong&gt; &lt;code&gt;v350.10&lt;/code&gt; caused multiple retries and a long delay in the response back from the compliance check service.&lt;/li&gt;
 &lt;li&gt;From the trace, using the power of &lt;strong&gt;Related Content&lt;/strong&gt;, we arrived at the log entries for the failing &lt;strong&gt;wire-transfer-service&lt;/strong&gt; version. Now, we can determine &lt;strong&gt;what the problem is&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
@@ -37,7 +37,7 @@
 &lt;li&gt;This time Click &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: #1d5d99"&gt;&lt;span&gt;Select Dashboard&lt;/span&gt;&lt;/button&gt; and search for the Dashboard you created in the previous exercise. You can start by typing your initials in the search box &lt;strong&gt;(1)&lt;/strong&gt;.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/search-dashboard.png" alt="search dashboard" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/search-dashboard.webp" alt="search dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -46,7 +46,7 @@
 &lt;li&gt;Ensure &lt;strong&gt;Log View&lt;/strong&gt; is selected as the &lt;strong&gt;Chart Type&lt;/strong&gt;.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/log-view.png?classes=left&amp;amp;width=30vw" alt="log view" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/log-view.webp?classes=left&amp;amp;width=30vw" alt="log view" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -54,7 +54,7 @@
 &lt;li&gt;The result should be similar to the dashboard below:
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/log-observer-custom-dashboard.png" alt="Custom Dashboard" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/log-observer-custom-dashboard.webp" alt="Custom Dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -62,7 +62,7 @@
 &lt;li&gt;At the top of the page, click on the &lt;em&gt;&lt;strong&gt;&amp;hellip;&lt;/strong&gt;&lt;/em&gt; to the left of your dashboard name.
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/linking.png" alt="linking" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/linking.webp" alt="linking" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;
