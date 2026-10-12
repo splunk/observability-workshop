@@ -5,7 +5,7 @@ authors: ["Robert Castley", "Pieter Hagen"]
 time: 1 hour 
 description: "Troubleshoot a live app with traces, logs, and user insights—all in one hour."
 show_toc: false
-badge: "Deprecated"
+#badge: "Deprecated"
 params:
   images:
     - images/card-hero.png
