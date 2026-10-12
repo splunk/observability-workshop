@@ -6,6 +6,7 @@ time: Variable
 description: "Start with the basics, then choose your path: infrastructure, digital experience, AI, and more."
 layout: "hero"
 badge: "New"
+hidden: true
 #build:
 #  list: never
 #  render: always

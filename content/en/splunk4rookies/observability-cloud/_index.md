@@ -6,7 +6,7 @@ time: 2 hours
 aliases:
   - /s4r/observability-cloud/
 description: "Explore the full stack in two hours, from user experience to infrastructure."
-badge: "Deprecated"
+#badge: "Deprecated"
 params:
   images:
     - /images/card-hero.png
