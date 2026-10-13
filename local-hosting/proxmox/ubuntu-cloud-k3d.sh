@@ -104,6 +104,34 @@ select_vm_storage() {
     3>&1 1>&2 2>&3) || user_cancelled
 }
 
+# Moving an imported volume onto virtio0 already drops its unusedN entry.
+# discard is limited to storages where QEMU TRIM is reliable.
+attach_imported_disk() {
+  local vmid=$1
+  local storage=$2
+  local storage_type imported disk_opts unused_key
+
+  storage_type=$(pvesm status --storage "$storage" | awk 'NR > 1 { print $2; exit }')
+  case "$storage_type" in
+    lvmthin|rbd) disk_opts=",discard=on" ;;
+    *) disk_opts="" ;;
+  esac
+
+  imported=$(qm config "$vmid" | sed -n 's/^unused[0-9]\+: //p' | head -n 1)
+  imported=${imported%%,*}
+  [[ -n "$imported" ]] || fatal "Could not find the disk imported onto ${storage} for VM ${vmid}."
+
+  qm set "$vmid" \
+      --scsihw virtio-scsi-pci \
+      --virtio0 "${imported}${disk_opts}" \
+      --ide2 "${storage}:cloudinit" >/dev/null
+
+  unused_key=$(qm config "$vmid" | sed -n 's/^\(unused[0-9]\+\):.*/\1/p' | head -n 1)
+  if [[ -n "$unused_key" ]]; then
+    qm set "$vmid" --delete "$unused_key" >/dev/null
+  fi
+}
+
 format_elapsed() {
   local total_seconds=$1
   local hours=$((total_seconds / 3600))
@@ -1187,13 +1215,7 @@ else
       --cpu host --sockets 1 --cores 4 \
       --net0 virtio,bridge=vmbr0 >/dev/null
   qm importdisk "$VMID" "$VM_IMAGE" "$STORAGE" >/dev/null
-  IMPORTED_DISK=$(qm config "$VMID" | sed -n 's/^unused[0-9]\+: //p' | head -n 1)
-  [[ -n "$IMPORTED_DISK" ]] || fatal "Could not find the disk imported onto ${STORAGE} for VM ${VMID}."
-  qm set "$VMID" \
-      --scsihw virtio-scsi-pci \
-      --virtio0 "${IMPORTED_DISK},discard=on" \
-      --ide2 "$STORAGE:cloudinit" >/dev/null
-  qm set "$VMID" --delete unused0 >/dev/null
+  attach_imported_disk "$VMID" "$STORAGE"
 fi
 
 if [[ "$TEMPLATE_MODE" == "true" ]]; then

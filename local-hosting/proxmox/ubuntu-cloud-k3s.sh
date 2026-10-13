@@ -334,11 +334,20 @@ qm create $VMID --name $HOSTNAME --ostype l26 \
     --net0 virtio,bridge=vmbr0 >/dev/null
 qm importdisk $VMID noble-server-cloudimg-amd64.img $STORAGE >/dev/null
 IMPORTED_DISK=$(qm config $VMID | sed -n 's/^unused[0-9]\+: //p' | head -n 1)
+IMPORTED_DISK=${IMPORTED_DISK%%,*}
 if [[ -z "$IMPORTED_DISK" ]]; then
   header_info && echo -e "${RD}Could not find the disk imported onto ${STORAGE} for VM ${VMID}.${CL}\n" && exit 1
 fi
-qm set $VMID --scsihw virtio-scsi-pci --virtio0 ${IMPORTED_DISK},discard=on >/dev/null
-qm set $VMID --delete unused0 >/dev/null
+STORAGE_TYPE=$(pvesm status --storage "$STORAGE" | awk 'NR > 1 { print $2; exit }')
+case "$STORAGE_TYPE" in
+  lvmthin|rbd) DISK_OPTS=",discard=on" ;;
+  *) DISK_OPTS="" ;;
+esac
+qm set $VMID --scsihw virtio-scsi-pci --virtio0 ${IMPORTED_DISK}${DISK_OPTS} >/dev/null
+UNUSED_KEY=$(qm config $VMID | sed -n 's/^\(unused[0-9]\+\):.*/\1/p' | head -n 1)
+if [[ -n "$UNUSED_KEY" ]]; then
+  qm set $VMID --delete "$UNUSED_KEY" >/dev/null
+fi
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
