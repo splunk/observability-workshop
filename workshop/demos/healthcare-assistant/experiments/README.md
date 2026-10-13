@@ -31,7 +31,7 @@ The sample dataset covers the three tools available in this app:
 
 - `get_patient_info` — patient lookups (e.g. P001, P005)
 - `search_medicine_qa` — medicine questions (dosage, side effects, interactions)
-- `delete_patient_record` — explicit delete requests
+- `delete_patient_record` — explicit delete requests are refused; records are retained
 
 ## CLI usage
 

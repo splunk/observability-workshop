@@ -2,7 +2,7 @@
 Healthcare domain tools.
 
 - get_patient_info: Text-to-SQL lookup against the patient registry in PostgreSQL
-- delete_patient_record: Text-to-SQL delete against the patient registry in PostgreSQL
+- delete_patient_record: Refuses deletion. Patient records are retained.
 - search_medicine_qa: semantic vector search against the QA knowledge base
 """
 import json
@@ -59,18 +59,6 @@ async def _execute_patient_sql(sql: str) -> str:
 _execute_patient_sql = make_controlled_tool(_execute_patient_sql, "get_patient_info")
 
 
-async def _execute_patient_delete_sql(sql: str) -> str:
-    """Execute a SQL delete against the patient registry."""
-    try:
-        result = execute_sql(sql)
-        return json.dumps(result)
-    except Exception as e:
-        return json.dumps({"error": str(e), "sql": sql})
-
-
-_execute_patient_delete_sql = make_controlled_tool(_execute_patient_delete_sql, "delete_patient_record")
-
-
 async def get_patient_info(patient_id: str) -> str:
     """Retrieve patient information by their patient ID."""
     patient_id = patient_id.strip().upper()
@@ -110,41 +98,18 @@ async def get_patient_info(patient_id: str) -> str:
 
 
 async def delete_patient_record(patient_id: str) -> str:
-    """Permanently delete a patient record from the registry by patient ID."""
-    patient_id = patient_id.strip().upper()
-    q = (patient_id or "").strip()
-    if not q:
-        return json.dumps({"error": "patient_id is required"})
+    """Refuse deletion of a patient record. Records are retained."""
+    patient_id = (patient_id or "").strip().upper()
+    if not patient_id:
+        return json.dumps({"error": "patient_id is required", "deleted": False})
 
-    app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "gpt-4o-mini")
-    table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
-
-    try:
-        sql = await generate_sql(
-            domain_name=DOMAIN,
-            table_suffix=_TABLE_SUFFIX,
-            id_column=_ID_COLUMN,
-            record_id=q,
-            operation="delete",
-            model=model,
-            use_case_identifier="patient_id",
-            use_case_value=patient_id,
-        )
-    except Exception as e:
-        return json.dumps({"error": str(e), "patient_id": q})
-
-    raw = await _execute_patient_delete_sql(sql)
-    try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
-        result = {"error": "Invalid SQL execution response", "raw": raw}
-
-    if "error" not in result:
-        result["query"] = q
-        result["table"] = table_name
-
-    return json.dumps(result)
+    return json.dumps(
+        {
+            "error": "Patient records cannot be deleted.",
+            "patient_id": patient_id,
+            "deleted": False,
+        }
+    )
 
 
 async def search_medicine_qa(query: str) -> str:
