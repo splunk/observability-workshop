@@ -26,6 +26,45 @@ GN=$(echo "\033[1;92m")
 DGN=$(echo "\033[32m")
 CL=$(echo "\033[m")
 
+list_image_storages() {
+  pvesm status --content images --enabled 1 | awk 'NR > 1 && $3 == "active" { print $1 "|" $2 "|" $6 }'
+}
+
+select_vm_storage() {
+  local -a options=()
+  local -a menu=()
+  local line name type free_kib
+
+  mapfile -t options < <(list_image_storages)
+  if (( ${#options[@]} == 0 )); then
+    header_info && echo -e "${RD}No active storage with disk image support was found. Enable Images on a storage, then run the script again.${CL}\n" && exit 1
+  fi
+
+  if (( ${#options[@]} == 1 )); then
+    STORAGE=${options[0]%%|*}
+    return 0
+  fi
+
+  for line in "${options[@]}"; do
+    IFS='|' read -r name type free_kib <<< "$line"
+    free_kib=${free_kib:-0}
+    if (( free_kib >= 1048576 )); then
+      menu+=("$name" "${type}, $((free_kib / 1048576)) GiB free")
+    else
+      menu+=("$name" "${type}, $((free_kib / 1024)) MiB free")
+    fi
+  done
+
+  STORAGE=$(whiptail \
+    --backtitle "Splunk" \
+    --title "VM Storage" \
+    --default-item local-lvm \
+    --menu "Choose storage for the VM disks:" \
+    18 78 8 \
+    "${menu[@]}" \
+    3>&1 1>&2 2>&3) || return 1
+}
+
 if whiptail --backtitle "Splunk" --title "Observability Workshop VM" --yesno "This will create a Observability Workshop VM. Proceed?" 10 58; then
   :
 else
@@ -81,7 +120,10 @@ NEXTID=$(pvesh get /cluster/nextid)
 UNIQUE_HOST_ID=$(echo $RANDOM | md5sum | head -c 4)
 RANDOM_ADDITION=$((4000 + RANDOM % 1001))
 VMID=$((NEXTID))
-STORAGE=local-lvm
+if ! select_vm_storage; then
+  header_info && echo -e "${RD}User exited script${CL}\n" && exit
+fi
+echo -e "Storage: ${YW}${STORAGE}${CL}"
 HOSTNAME=$VMID-$ENV_NAME-$UNIQUE_HOST_ID
 USER=splunk
 PASSWORD=Splunk123!
@@ -291,7 +333,12 @@ qm create $VMID --name $HOSTNAME --ostype l26 \
     --cpu host --socket 1 --cores 4 \
     --net0 virtio,bridge=vmbr0 >/dev/null
 qm importdisk $VMID noble-server-cloudimg-amd64.img $STORAGE >/dev/null
-qm set $VMID --scsihw virtio-scsi-pci --virtio0 $STORAGE:vm-$VMID-disk-1,discard=on >/dev/null
+IMPORTED_DISK=$(qm config $VMID | sed -n 's/^unused[0-9]\+: //p' | head -n 1)
+if [[ -z "$IMPORTED_DISK" ]]; then
+  header_info && echo -e "${RD}Could not find the disk imported onto ${STORAGE} for VM ${VMID}.${CL}\n" && exit 1
+fi
+qm set $VMID --scsihw virtio-scsi-pci --virtio0 ${IMPORTED_DISK},discard=on >/dev/null
+qm set $VMID --delete unused0 >/dev/null
 qm set $VMID --boot order=virtio0 >/dev/null
 qm set $VMID --ide2 $STORAGE:cloudinit >/dev/null
 
