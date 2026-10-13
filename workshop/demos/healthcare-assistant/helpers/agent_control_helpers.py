@@ -334,10 +334,7 @@ def make_controlled_tool(
 
 def uses_internal_sql_control(func_name: str) -> bool:
     """Tools that run SQL via an internal _execute_* handler already under @control."""
-    return (
-        (func_name.startswith("get_") and func_name.endswith("_info"))
-        or (func_name.startswith("delete_") and func_name.endswith("_record"))
-    )
+    return func_name.startswith("get_") and func_name.endswith("_info")
 
 
 def domain_controlled_tool(
