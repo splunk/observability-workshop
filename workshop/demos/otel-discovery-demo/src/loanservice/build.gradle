@@ -11,7 +11,7 @@ java {
 	sourceCompatibility = '17'
 }
 
-ext['tomcat.version'] = '11.0.24'
+ext['tomcat.version'] = '11.0.25'
 ext['jackson-bom.version'] = '3.1.7'
 ext['jackson-2-bom.version'] = '2.21.7'
 ext['spring-framework.version'] = '7.0.9'
