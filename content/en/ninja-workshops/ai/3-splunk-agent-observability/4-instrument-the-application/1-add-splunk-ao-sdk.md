@@ -29,7 +29,7 @@ Splunk Agent Observability API key:
 
 ```bash
 kubectl create secret generic splunk-ao-secret \
-  --from-literal=SPLUNK_AO_API_KEY="$GALILEO_API_KEY"
+  --from-literal=SPLUNK_AO_API_KEY="$SPLUNK_AO_API_KEY"
 ```
 
 {{< /step >}}
@@ -41,8 +41,8 @@ determine how to send traces to Splunk Agent Observability:
 
 ```bash
 kubectl create configmap splunk-ao-config \
-  --from-literal=SPLUNK_AO_CONSOLE_URL="$GALILEO_CONSOLE_URL" \
-  --from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
+  --from-literal=SPLUNK_AO_CONSOLE_URL="$SPLUNK_AO_CONSOLE_URL" \
+  --from-literal=SPLUNK_AO_PROJECT="$SPLUNK_AO_PROJECT" \
   --from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
 ```
 

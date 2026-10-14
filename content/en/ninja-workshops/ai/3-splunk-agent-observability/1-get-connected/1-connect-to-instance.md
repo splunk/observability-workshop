@@ -5,21 +5,21 @@ weight: 1
 time: 5 minutes
 ---
 
-## Create a Splunk.com Account
+## Create a Cisco.com Account
 
-You'll need a Splunk.com account to complete this workshop. If you don't already have an account, 
-navigate to https://idp.login.splunk.com/signin/register and complete the form to create your account:  
+You'll need a Cisco.com account to complete this workshop. If you don't already have an account, 
+navigate to https://id.cisco.com/ and complete the form to create your account:  
 
-![Splunk Registration](../../images/SplunkRegistration.png)
+![Cisco Registration](../../images/CiscoRegistration.png)
 
-Check your inbox for an email from no-reply@idp.login.splunk.com. If you don't see the email, please check your spam folder.
+Check your inbox for an email from cisco.com. If you don't see the email, please check your spam folder.
 
 Click on the link in the email to verify your email address. 
 
 ## Access the Splunk Show Event
 
 Access the **Splunk Show** event by clicking the link provided by your workshop instructor. 
-You'll need to sign in using your Splunk.com account. 
+You'll need to sign in using your Cisco.com account. 
 
 ![Enroll in Splunk Show Event](../../images/EnrollSplunkShowEvent.png)
 
