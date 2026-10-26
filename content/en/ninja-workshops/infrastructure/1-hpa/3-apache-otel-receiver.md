@@ -24,6 +24,8 @@ agent:
             rule: type == "port" && pod.name matches "apache" && port == 80
             config:
               endpoint: http://php-apache-svc.apache.svc.cluster.local/server-status?auto
+              extraDimensions:
+                service.name: php-apache
 ```
 
 ## 2.  Observation Rules in the OpenTelemetry config
