@@ -69,9 +69,8 @@ match should block or steer.&lt;/p&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open the Controls tab&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.sao.splunkcloud.com&lt;/code&gt;
-and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
-&lt;p&gt;Open the &lt;code&gt;Splunk Agent Observability Workshop&lt;/code&gt; project, and select the agent stream that
-matches the Instance ID you found above (such as &lt;code&gt;shw-51ea&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>Test the Controls</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/8-apply-guardrails/3-test-controls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/8-apply-guardrails/3-test-controls/</guid><description>&lt;p&gt;With the controls defined, run the app and trigger them. You&amp;rsquo;ll see the block and steer
+and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org.&lt;/p&gt;
+&lt;p&gt;Open the same project and agent stream as before.&lt;/p&gt;</description></item><item><title>Test the Controls</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/8-apply-guardrails/3-test-controls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/8-apply-guardrails/3-test-controls/</guid><description>&lt;p&gt;With the controls defined, run the app and trigger them. You&amp;rsquo;ll see the block and steer
 behavior in the chat &lt;em&gt;and&lt;/em&gt; in the trace in the console.&lt;/p&gt;
 &lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;

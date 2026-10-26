@@ -17,9 +17,9 @@ assistant.&lt;/p&gt;
 &lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your agent stream settings&lt;/p&gt;
 &lt;/header&gt;
 &lt;div class="step__body"&gt;&lt;p&gt;In your browser, go to the Splunk Agent Observability console at &lt;code&gt;https://console.multitenant.sao.splunkcloud.com&lt;/code&gt;
-and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org&lt;/p&gt;
-&lt;p&gt;Open the &lt;code&gt;Splunk Agent Observability Workshop&lt;/code&gt; project, and select the agent stream that
-matches the Instance ID you found above (such as &lt;code&gt;shw-51ea&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>Review Evaluator Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</guid><description>&lt;p&gt;After a few moments, we&amp;rsquo;ll see how the existing traces get automatically scored on the
+and &lt;strong&gt;&lt;code&gt;workshop&lt;/code&gt;&lt;/strong&gt; org.&lt;/p&gt;
+&lt;p&gt;Open the same project and agent stream as before.&lt;/p&gt;
+&lt;p&gt;Click the &lt;code&gt;Configure Evaluators&lt;/code&gt; button to open its evaluator configuration.&lt;/p&gt;</description></item><item><title>Review Evaluator Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/6-enable-metrics/2-review-evaluator-results/</guid><description>&lt;p&gt;After a few moments, we&amp;rsquo;ll see how the existing traces get automatically scored on the
 &lt;code&gt;Context Adherence&lt;/code&gt; and &lt;code&gt;Correctness&lt;/code&gt; evaluators.
 This is where a hallucinated dosage or a wrong tool call stops being invisible.&lt;/p&gt;
 &lt;section class="exercise"&gt;
