@@ -78,7 +78,7 @@ spec:
       serviceAccountName: healthcare-demo
       containers:
         - name: healthcare-assistant
-          image: ghcr.io/splunk/healthcare-assistant:demo-v1
+          image: ghcr.io/splunk/healthcare-assistant:demo-v2
           imagePullPolicy: Always
           command: ["streamlit", "run", "app.py"]
           ports:
@@ -88,7 +88,7 @@ spec:
             # Image the orchestrator uses for back-end pods — keep in sync with
             # the front-end image above.
             - name: BACKEND_IMAGE
-              value: ghcr.io/splunk/healthcare-assistant:demo-v1
+              value: ghcr.io/splunk/healthcare-assistant:demo-v2
             - name: BACKEND_IMAGE_PULL_POLICY
               value: Always
             # Max parallel back-ends. A new stream beyond this evicts the LRU
