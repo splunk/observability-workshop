@@ -13,7 +13,7 @@ on:
       node-version:
         description: Node.js version
         required: false
-        default: '18'
+        default: '22.23.4'
         type: string
       entrypoint:
         description: Main JavaScript file to syntax-check
