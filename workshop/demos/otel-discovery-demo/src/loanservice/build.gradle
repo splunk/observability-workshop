@@ -15,6 +15,7 @@ ext['tomcat.version'] = '11.0.25'
 ext['jackson-bom.version'] = '3.1.7'
 ext['jackson-2-bom.version'] = '2.21.7'
 ext['spring-framework.version'] = '7.0.9'
+ext['kafka.version'] = '4.2.2'
 
 repositories {
 	mavenCentral()
@@ -31,6 +32,9 @@ dependencies {
 		}
 		implementation('org.springframework.retry:spring-retry:2.0.13') {
 			because 'CVE-2026-41710'
+		}
+		implementation('org.apache.kafka:kafka-clients:4.2.2') {
+			because 'CVE-2026-111551'
 		}
 	}
 }
