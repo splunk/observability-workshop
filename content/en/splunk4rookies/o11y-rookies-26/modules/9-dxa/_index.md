@@ -9,6 +9,11 @@ params:
   images:
     - images/funnel.webp
 ---
+{{< presenter title="Preparation" >}}
+You will need to make sure the DXA project is set up to pull in RUM data from this workhop's application. You can either add the application to the `o11y4rookies` project in its settings, or create a new project. Validate all of the DXA views and make sure they are using your workshop app data.
+
+If creating a brand new project, make sure to add at least one journey map, one funnel, a couple of user definitions, and a custom event definition so there are some starting examples.
+{{< /presenter >}}
 
 **Digital Experience Analytics (DXA)** is a solution within Splunk Observability Cloud that turns RUM session data into actionable insights about end user conversion, friction, and feature adoption. In this module, we will explore a pre-configured DXA project for the Astronomy Shop — no additional instrumentation or code changes required.
 

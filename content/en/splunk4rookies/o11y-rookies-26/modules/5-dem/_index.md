@@ -2,7 +2,7 @@
 title: Beat social media to the issue
 weight: 5
 layout: chapter
-time: 45 minutes
+time: 60 minutes
 authors: ["Sarah Ware"]
 description: Monitor real user experiences and set up proactive tests so you catch problems before your users complain online.
 params:
@@ -14,17 +14,17 @@ params:
 Before the workshop begins:
 
 * Open the *Astronomy Shop URL* provided for your workshop, append `/Feature`, and confirm **paymentFailure** is enabled at **50%** with the other demonstrations disabled. Roughly half of the checkout attempts must fail for this module to work.
-* Confirm attendees can **create Synthetics tests and activate detectors** in the workshop org. This module has them save real tests.
-* **Walk the browser test yourself once.** Build the test on page 2 exactly as written and run it. This confirms the `data-cy` selectors and the order confirmation wording still match the deployed build of the shop, and that the shop's certificate does not require turning off TLS/SSL validation. Give attendees any corrections up front — a wrong selector costs a beginner most of the module.
+* Confirm attendees can **create Synthetic tests and activate detectors** in the workshop org. This module has them save real tests.
+* **Validate the browser test yourself once.** Build the test on page 2 exactly as written and run it. This confirms the `data-cy` selectors and the order confirmation wording still match the deployed build of the shop, and that the shop's certificate does not require turning off TLS/SSL validation. Give attendees any corrections up front — a wrong selector costs a beginner most of the module.
 * Note the store's environment and application names so attendees can filter RUM on page 1, and confirm whether the combined dashboard on page 6 exists in this org.
-* After the session, delete the attendee tests and detectors (search Synthetics for the workshop name). Every attendee leaves one browser test, one uptime test, and one detector behind.
+* After the session, **delete the attendee tests and detectors** (search Synthetics for the workshop name). Every attendee leaves one browser test, one uptime test, and one detector behind.
 {{< /presenter >}}
 
 **Real User Monitoring (RUM)** tells us what our end users actually experienced. **Synthetic Monitoring** tells us what they *would* experience right now, whether or not anyone is using our app. Together, RUM and Synthetics help us get ahead of issues before we find out on socials.
 
 {{< persona role="SRE" >}}
-{{< persona-situation >}}You just finished cleaning up the Astronomy Shop `payment` service incident. The postmortem question landed on your desk: *how long would it have taken us to notice if nobody had complained?*{{< /persona-situation >}}
-{{< persona-goal >}}Set up monitoring that notices a failing checkout before a customer does.{{< /persona-goal >}}
+{{< persona-situation >}}You just finished cleaning up the Astronomy Shop `payment` service incident. But *how long would it have taken us to notice if nobody had complained?*{{< /persona-situation >}}
+{{< persona-goal >}}Set up monitoring that notices a failing checkout before an end user does.{{< /persona-goal >}}
 {{< /persona >}}
 
 {{< webex chat="Shelly K." date="Today • 28/01/2026" seenby="SK" >}}
