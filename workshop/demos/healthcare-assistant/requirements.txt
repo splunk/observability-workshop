@@ -17,6 +17,6 @@ langchain-classic
 pyyaml
 toml
 pandas
-splunk-ao
+splunk-ao>=0.7.0
 agent-control-sdk[splunk-ao]>=7.10.0
 agent-control-evaluators>=7.10.0
