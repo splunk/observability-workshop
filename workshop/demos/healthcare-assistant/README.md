@@ -10,8 +10,8 @@
 
 ```bash
 cd workshop/demos/healthcare-assistant 
-docker build -f ./Dockerfile --platform linux/amd64 -t ghcr.io/splunk/healthcare-assistant:demo-v2 .
-docker push ghcr.io/splunk/healthcare-assistant:demo-v2
+docker build -f ./Dockerfile --platform linux/amd64 -t ghcr.io/splunk/healthcare-assistant:demo-v3 .
+docker push ghcr.io/splunk/healthcare-assistant:demo-v3
 ```
 
 ## Run Locally
