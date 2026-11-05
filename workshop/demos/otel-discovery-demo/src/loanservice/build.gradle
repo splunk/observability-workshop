@@ -36,6 +36,9 @@ dependencies {
 		implementation('org.apache.kafka:kafka-clients:4.2.2') {
 			because 'CVE-2026-111551'
 		}
+		implementation('org.xerial.snappy:snappy-java:1.1.10.9') {
+			because 'CVE-2026-108106'
+		}
 	}
 }
 
