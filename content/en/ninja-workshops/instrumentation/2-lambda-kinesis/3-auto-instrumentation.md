@@ -185,7 +185,10 @@ cd ~/workshop/lambda/auto
 The `send_message.py` script is a Python script that will take input at the command line, add it to a JSON dictionary, and send it to your `producer-lambda` function's endpoint repeatedly, as part of a while loop.
 
 * Run the `send_message.py` script as a background process
-  * It requires the `--name` and `--superpower` arguments
+  * It requires the `--name` and `--superpower` arguments, these are custom tags that will appear in traces
+    * For `--name` use a short format version of your name such as `jsmith`
+    * For `--superpower` enter a fun skill you may have, such as `flight`, `super-strength`, `observability`
+    * Both should contain no spaces
 
 ```bash
 nohup ./send_message.py --name CHANGEME --superpower CHANGEME &

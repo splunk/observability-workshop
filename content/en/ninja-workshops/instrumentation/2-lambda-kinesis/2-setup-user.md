@@ -166,7 +166,7 @@ You can get these the following way:
 - `o11y_access_token`: If you run `export | grep ACCESS_TOKEN`, you can use the value returned
 - `o11y_realm`: Your realm (i.e. `us1`, `eu0`, etc.)
 - `otel_lamba_layer`: Use the value for `us-east-1` provided from [here](https://github.com/signalfx/lambda-layer-versions/blob/main/splunk-apm/splunk-apm.md)
-- `prefix`: Use a short form of your name; all lowercase
+- `prefix`: The name of your instance which can be obtained by running `echo $INSTANCE`
 
 Your instructor can help you confirm these values.
 
