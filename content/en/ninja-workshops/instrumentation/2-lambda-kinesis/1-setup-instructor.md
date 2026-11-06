@@ -9,7 +9,7 @@ The instructor is going to setup a user and then provide each user with an `acce
 
 ### Prerequisites
 
-Your students will all need a `Splunk4Ninjas - Observability` instance.
+Your students will all need a `Splunk4Ninjas - Observability` instance.  When deploying the instances, ensure you set a 'DNS Prefix' such as the customer name, this ensures all resources can be easily found in the AWS Console, attendees will use the Instance Name during the workshop.
 
 As preparation before the class, the instructor machine will need:
 
