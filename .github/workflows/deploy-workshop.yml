@@ -150,7 +150,7 @@ jobs:
 
       - name: Publish GitHub release
         if: github.repository == 'splunk/observability-workshop'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: v${{ steps.bumpversion.outputs.tag_name }}
           tag_name: v${{ steps.bumpversion.outputs.tag_name }}
