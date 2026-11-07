@@ -1334,13 +1334,7 @@ The healthcare assistant is pre-loaded under &lt;code&gt;~/workshop/healthcare-a
  &lt;span class="heading-text"&gt;Prerequisites&lt;/span&gt;
  &lt;a class="heading-anchor" href="#prerequisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;Your students will all need a &lt;code&gt;Splunk4Ninjas - Observability&lt;/code&gt; instance.&lt;/p&gt;
-&lt;p&gt;As preparation before the class, the instructor machine will need:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;AWS CLI&lt;/li&gt;
-&lt;li&gt;Terraform&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;When going to the AWS access portal, you can click on the &lt;strong&gt;access keys&lt;/strong&gt; to copy these to the terminal before you do the next step.&lt;/p&gt;</description></item><item><title>1. Synthetics Dashboard</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/1-synthetics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/1-synthetics-dashboard/</guid><description>&lt;section class="exercise"&gt;
+&lt;p&gt;Your students will all need a &lt;code&gt;Splunk4Ninjas - Observability&lt;/code&gt; instance. When deploying the instances, ensure you set a &amp;lsquo;DNS Prefix&amp;rsquo; such as the customer name, this ensures all resources can be easily found in the AWS Console, attendees will use the Instance Name during the workshop.&lt;/p&gt;</description></item><item><title>1. Synthetics Dashboard</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/1-synthetics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/1-synthetics-dashboard/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
