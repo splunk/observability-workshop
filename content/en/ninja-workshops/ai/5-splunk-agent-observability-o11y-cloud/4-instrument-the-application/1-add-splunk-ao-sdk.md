@@ -42,7 +42,7 @@ determine how to send traces to Splunk Agent Observability:
 ```bash 
 kubectl create configmap splunk-ao-config \
 --from-literal=SPLUNK_AO_REALM="$REALM" \
---from-literal=SPLUNK_AO_PROJECT="Splunk Agent Observability Workshop" \
+--from-literal=SPLUNK_AO_PROJECT="$SPLUNK_AO_PROJECT" \
 --from-literal=SPLUNK_AO_AGENT_STREAM="$INSTANCE"
 ```
 
