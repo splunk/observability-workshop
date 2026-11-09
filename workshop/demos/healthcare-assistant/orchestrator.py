@@ -19,18 +19,12 @@ import re
 import sys
 import time
 
+from logging_utils import get_logger
 from targets import COMMON_CONFIG_MAPS, get_target
 
-logger = logging.getLogger("healthcare.orchestrator")
-
-# The front-end (Streamlit) never configures logging, so attach our own stdout
-# handler once so orchestrator activity shows up in `kubectl logs`.
-if not logger.handlers:
-    _h = logging.StreamHandler(sys.stdout)
-    _h.setFormatter(logging.Formatter("%(levelname)s %(name)s: %(message)s"))
-    logger.addHandler(_h)
-    logger.setLevel(logging.INFO)
-    logger.propagate = False
+# The front-end (Streamlit) never configures logging, so attach our own
+# timestamped stdout handler so activity shows up in `kubectl logs`.
+logger = get_logger("healthcare.orchestrator")
 
 # Container "waiting" reasons that won't resolve on their own within a demo —
 # fail fast and report them instead of waiting out the whole readiness timeout.
@@ -274,7 +268,11 @@ def ensure_backend(stream: str, target_key: str, *, wait: bool = True) -> dict:
         else:
             raise
 
+    t0 = time.monotonic()
     ready, detail = _wait_ready(apps, core, ns, name) if wait else (False, "not waited")
+    logger.info("ensure_backend stream=%r target=%s name=%s ready=%s detail=%r waited=%.1fs url=%s",
+                stream, target_key, name, ready, detail, time.monotonic() - t0,
+                backend_url(name, ns))
     return {"name": name, "url": backend_url(name, ns), "ready": ready, "detail": detail}
 
 
@@ -300,9 +298,24 @@ def _wait_ready(apps, core, namespace: str, name: str) -> tuple[bool, str]:
     while time.monotonic() < deadline:
         try:
             dep = apps.read_namespaced_deployment_status(name, namespace)
-            if (dep.status.ready_replicas or 0) >= 1:
+            st = dep.status
+            desired = dep.spec.replicas or 1
+            # "ready_replicas >= 1" alone is fooled during a rolling update: the
+            # OLD pod still counts, so we'd hand back a URL that is about to be
+            # terminated. Require the controller to have observed this spec, every
+            # replica to be on the new template, and no old pods left.
+            rolled_out = (
+                (st.observed_generation or 0) >= (dep.metadata.generation or 0)
+                and (st.updated_replicas or 0) >= desired
+                and (st.replicas or 0) == (st.updated_replicas or 0)
+                and (st.ready_replicas or 0) >= desired
+            )
+            if rolled_out:
                 logger.info("Back-end %s is ready", name)
                 return True, "ready"
+            last = (f"rollout in progress (ready={st.ready_replicas or 0}, "
+                    f"updated={st.updated_replicas or 0}, total={st.replicas or 0}, "
+                    f"want={desired})")
         except Exception as e:  # transient during scheduling
             logger.debug("read status %s: %s", name, e)
         reason = _pod_failure_reason(core, namespace, name)
