@@ -7,16 +7,22 @@ back-end for that (stream, target), and every chat turn is forwarded to it over
 in-cluster HTTP.
 """
 import html
+import time
 import uuid
 
 import httpx
 import streamlit as st
 
 from config import load_config
+from logging_utils import get_logger
 from orchestrator import ensure_backend
 from targets import DEFAULT_TARGET, TARGETS
 
 QUERY_TIMEOUT_SECONDS = 120
+# Separate connect timeout so "can't reach the pod" is distinguishable from
+# "pod is reachable but the query is slow".
+CONNECT_TIMEOUT_SECONDS = 10
+logger = get_logger("healthcare.frontend")
 PAGE_ICON = "🩻"
 
 # Short labels for the compact status pill in the chat header.
@@ -114,16 +120,32 @@ def inject_css() -> None:
 
 # --- back-end HTTP calls -----------------------------------------------------
 def backend_query(messages: list[dict], model: str | None) -> str:
-    resp = httpx.post(
-        f"{st.session_state.backend_url}/query",
-        json={
-            "session_id": st.session_state.session_id,
-            "messages": messages,
-            "model": model,
-        },
-        timeout=QUERY_TIMEOUT_SECONDS,
-    )
-    resp.raise_for_status()
+    url = st.session_state.backend_url
+    sid = st.session_state.session_id[:8]
+    t0 = time.monotonic()
+    logger.info("query start session=%s stream=%r backend=%s turns=%d",
+                sid, st.session_state.get("stream"), url, len(messages))
+    try:
+        resp = httpx.post(
+            f"{url}/query",
+            json={
+                "session_id": st.session_state.session_id,
+                "messages": messages,
+                "model": model,
+            },
+            timeout=httpx.Timeout(QUERY_TIMEOUT_SECONDS, connect=CONNECT_TIMEOUT_SECONDS),
+        )
+        resp.raise_for_status()
+    except Exception as e:
+        # str(httpx timeout) is just "timed out" — log the type (ConnectTimeout vs
+        # ReadTimeout vs ConnectError ...) and elapsed time, which is what tells
+        # a slow query from an unreachable pod.
+        logger.error("query FAILED session=%s stream=%r backend=%s %s after %.1fs: %r",
+                     sid, st.session_state.get("stream"), url,
+                     type(e).__name__, time.monotonic() - t0, e)
+        raise
+    logger.info("query done session=%s backend=%s status=%d in %.1fs",
+                sid, url, resp.status_code, time.monotonic() - t0)
     return resp.json()["response"]
 
 
@@ -183,9 +205,11 @@ def render_setup_screen(app_config: dict) -> None:
             st.write(f"Target: **{TARGETS[target].label}**")
             st.write(f"Agent stream: **{stream.strip()}**")
             st.write("Starting a dedicated back-end (first launch can take a minute)…")
+            logger.info("launch requested stream=%r target=%s", stream.strip(), target)
             try:
                 result = ensure_backend(stream.strip(), target)
             except Exception as e:
+                logger.exception("provisioning failed stream=%r target=%s", stream.strip(), target)
                 status.update(label="Provisioning failed", state="error")
                 st.error(f"Failed to provision back-end: {e}")
                 return
@@ -311,7 +335,7 @@ def render_chat_screen(app_config: dict) -> None:
         try:
             response = backend_query(st.session_state.messages, model)
         except Exception as e:
-            response = f"Error contacting the agent back-end: {e}"
+            response = f"Error contacting the agent back-end: {type(e).__name__}: {e}"
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.session_state.processing = False
         st.rerun()
