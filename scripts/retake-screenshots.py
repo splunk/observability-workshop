@@ -629,6 +629,37 @@ def convert_png(png: Path, quality: int) -> int:
     return subprocess.run(cmd, check=False, env=env).returncode
 
 
+def dest_pair(shot: Shot) -> tuple[Path, Path]:
+    folder = shot.image.parent
+    stem = shot.stem
+    return folder / f"{stem}.png", folder / f"{stem}.webp"
+
+
+def encode_webp(src_png: Path, dest_webp: Path, quality: int) -> None:
+    cwebp = shutil.which("cwebp")
+    if not cwebp:
+        raise RuntimeError("cwebp not found. Install with: brew install webp")
+    dest_webp.parent.mkdir(parents=True, exist_ok=True)
+    result = subprocess.run(
+        [cwebp, "-q", str(quality), "-m", "6", "-quiet", str(src_png), "-o", str(dest_webp)],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0 or not dest_webp.exists() or dest_webp.stat().st_size == 0:
+        if dest_webp.exists() and dest_webp.stat().st_size == 0:
+            dest_webp.unlink()
+        err = (result.stderr or result.stdout or "cwebp failed").strip()
+        raise RuntimeError(err)
+
+
+def ensure_markdown_webp(shot: Shot) -> None:
+    stem = shot.stem
+    for old in (f"{stem}.png", f"{stem}.PNG", f"{stem}.jpg", f"{stem}.jpeg"):
+        for md in [shot.markdown, *shot.extra_pages]:
+            rewrite_name(md, old, f"{stem}.webp")
+
+
 def mark_done(shot: Shot, manifest: Manifest, webp: Path) -> None:
     entry = manifest.get(shot.number) or {}
     entry.update(
@@ -652,17 +683,19 @@ def ingest_one(
     quality: int,
     dry_run: bool,
 ) -> str:
-    dest_png = shot.image.with_name(shot.image.stem.lower() + ".png")
-    webp = dest_png.with_suffix(".webp")
+    dest_png, dest_webp = dest_pair(shot)
     if dry_run:
-        return f"would place {src.name} -> {rel(webp)}"
+        return f"would place {src.name} -> {rel(dest_webp)}"
+    # Always PNG → WebP, including when the live file is already WebP.
     to_png(src, dest_png)
-    code = convert_png(dest_png, quality)
-    if code != 0:
-        raise RuntimeError(f"png-to-webp failed for {dest_png.name} (exit {code})")
-    src.unlink()
-    mark_done(shot, manifest, webp)
-    return f"{src.name} -> {rel(webp)}"
+    encode_webp(dest_png, dest_webp, quality)
+    if dest_png.exists():
+        dest_png.unlink()
+    ensure_markdown_webp(shot)
+    if src.exists():
+        src.unlink()
+    mark_done(shot, manifest, dest_webp)
+    return f"{src.name} -> {rel(dest_webp)}"
 
 
 def cmd_ingest(
@@ -914,7 +947,8 @@ def wait_for_retake(shot: Shot, shots: list[Shot], manifest: Manifest, inbox: Pa
     print()
     print("Take a new screenshot in Shottr or Monosnap.")
     print("Add your arrows or notes there.")
-    print("Save it as a PNG named:")
+    print("Save it as a PNG (even if the lesson file is already WebP).")
+    print("Name it:")
     print()
     print(f"    {shot.save_as}")
     print()
@@ -998,7 +1032,7 @@ def review_loop(
             print("  2) WebP     — already WebP, same as Keep")
         else:
             print("  2) WebP     — convert this picture to WebP and update the page")
-        print("  3) Retake   — you will take a new screenshot")
+        print("  3) Retake   — new PNG from Shottr; we overwrite WebP if needed")
         print("  0) Stop     — back to the module list")
         print()
         open_preview(shown)
@@ -1078,17 +1112,8 @@ def run_app(quality: int) -> int:
         print_shot_list(shots, manifest)
         first = next(
             (s.number for s in shots if shot_state(s, manifest) == "stash"),
-            None,
+            shots[0].number,
         )
-        if first is None:
-            first = next(
-                (
-                    s.number
-                    for s in shots
-                    if shot_state(s, manifest) not in {"webp", "keep"}
-                ),
-                shots[0].number,
-            )
         raw_start = ask("Start at which number", f"{first:02d}")
         if raw_start in {"0", "q"}:
             continue

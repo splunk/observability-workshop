@@ -19,7 +19,7 @@ No extra words after that. A menu appears.
 | --- | --- |
 | **1 Keep** | Leave this file alone. Next picture. |
 | **2 WebP** | Convert this PNG to WebP and update the lesson page. Skip if it is already WebP. |
-| **3 Retake** | You take a new screenshot. When you have saved it, press Enter. |
+| **3 Retake** | New screenshot. Save **PNG** in Shottr; the app overwrites the lesson file as WebP (works if it is already WebP). Press Enter when saved. |
 | **0 Stop** | Back to the module list. |
 
 ## Retake
@@ -31,7 +31,7 @@ Preview keeps showing the **old** picture so you can match it.
 3. Put that file in `scripts/screenshots/inbox`.
 4. Come back to the terminal and **press Enter**. That is how you tell the app you are done.
 
-The app turns it into WebP, updates the page, and opens the next picture.
+The app always goes **PNG → WebP**. If the lesson already has a `.webp`, that file is replaced. Markdown is pointed at `.webp` if it still said `.png`. Then the next picture opens.
 
 Point Shottr/Monosnap’s save folder at `scripts/screenshots/inbox` once so you do not have to hunt for the file.
 
