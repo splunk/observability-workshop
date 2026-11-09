@@ -8,7 +8,7 @@ The synthetic run shows that checkout failed, but its waterfall also provides a 
 
 * In the waterfall, locate the request beginning with `POST checkout`. You may need to scroll down to find it. If it is not present, return to the test results and open another failed run.
 
-![Place Order](../images/run-results-place-order.png)
+![Place Order](../images/run-results-place-order.webp)
 
 * Select the blue **APM** (2) link on the `POST checkout` request. The corresponding distributed trace opens in **APM**. 
 * In the **Trace Flow**, locate the **payment** service **(3)** and confirm that it is marked as having errors. You may need to pan the map to locate the service.

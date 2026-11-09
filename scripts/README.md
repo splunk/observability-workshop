@@ -1,4 +1,14 @@
-# PNG to WebP
+# Workshop image scripts
+
+## Screenshot helper (Shottr / Monosnap → WebP)
+
+```bash
+python3 scripts/retake-screenshots.py
+```
+
+No arguments. Menu: pick a module, walk pictures, Keep / WebP / Retake. Details: **[screenshots/README.md](screenshots/README.md)**.
+
+## PNG to WebP
 
 `png-to-webp.py` converts workshop PNG assets to WebP, rewrites Markdown references to match, lowercases mixed-case image filenames, and reports size savings plus unused PNG and WebP files.
 

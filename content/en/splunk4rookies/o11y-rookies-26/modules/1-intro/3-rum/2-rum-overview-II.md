@@ -27,6 +27,6 @@ Replace [NAME OF WORKSHOP] with the workshop name assigned to you by your instru
 
 * Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart to dive into the data.
 
-![main page](../images/rum-dashboard.png)
+![main page](../images/rum-dashboard.webp)
 
 {{% /exercise %}}

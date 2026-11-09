@@ -27,7 +27,7 @@ To open the logs associated with the trace:
 * Select **Logs** in the Related Content bar. The number beside it indicates how many related log destinations are available.
 * In the pop-up, select **Logs** for trace **<trace ID>**. This opens **Logs** with the trace context and relevant time range already applied.
 
-![Related Logs](../images/apm-related-logs.png)
+![Related Logs](../images/apm-related-logs.webp)
 
 You have now moved from a user-visible failure in *RUM*, through its backend trace in *APM*, to the logs associated with that trace. On the next page, you’ll examine those log records for more information about the payment failure.
 

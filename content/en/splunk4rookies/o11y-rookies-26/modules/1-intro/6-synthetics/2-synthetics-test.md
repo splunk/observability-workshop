@@ -14,7 +14,7 @@ At the top, you can review *duration* trends and overall *uptime*. The *Availabi
 * Examine the **Availability** chart **(2)**. Frequent drops to 0% and red failure markers confirm that the problem occurred repeatedly and was not limited to a single run or location.
 * Compare the **uptime percentages (3)** for the different locations. The exact values may vary, but each location should show a significant number of failures.
 
-![waterfall](../images/synthetic-browser-test.png)
+![waterfall](../images/synthetic-browser-test.webp)
 
 #### Open a failed run
 * Scroll to **Recent** run results at the bottom of the page.
