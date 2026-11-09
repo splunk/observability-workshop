@@ -52,7 +52,7 @@ Workshop cluster workshop-cluster is ready.
 
 Pressing `Ctrl+C` stops following the log. The container keeps running.
 
-Running `./workshop-container.sh` again builds the image, then starts the existing `workshop-k3d` container if it is stopped. It does not replace a container that already exists. To create a new container from a newly built image, remove the old container first. The `workshop-k3d-docker` volume keeps the cluster data:
+Running `./workshop-container.sh` again builds the image, then starts the existing `workshop-k3d` container if it is stopped. It does not replace a container that already exists. Deleting the container also drops the cluster: the node containers remain in the Docker volume, but the files they mount lived in the deleted container. The next run removes those leftover nodes and creates a new cluster. The volume still holds downloaded images, so that create does not download them again.
 
 ```bash
 docker rm -f workshop-k3d
@@ -70,7 +70,7 @@ docker rm -f workshop-k3d
 | Cluster | `workshop-cluster`: one k3d server and two agents |
 | Node memory cap | `8G` on the server and on each agent |
 | Published ports | `81`, `82`, `9999`, `443` |
-| Cluster data | Docker volume `workshop-k3d-docker`, mounted at `/var/lib/docker` |
+| Cluster images | Docker volume `workshop-k3d-docker`, mounted at `/var/lib/docker` |
 | User | `splunk` |
 | Shell | `docker exec -it -u splunk workshop-k3d zsh` |
 
@@ -105,6 +105,7 @@ The log reports these stages:
 - Downloading workshop content, or reporting that the content is already present
 - Creating the cluster, or starting the cluster that is already there
 - Waiting until every node is `Ready`
+- Waiting until the Kubernetes API can validate manifests
 - Applying the workshop registry and waiting for its pod
 - Installing Chaos Mesh, or reporting that it is already installed
 - Fetching the SWiPE workshop and applying `workshop-secret`, when `SWIPE_ID` is set
@@ -152,7 +153,7 @@ docker logs -f workshop-k3d
 # Start a stopped container without rebuilding
 docker start workshop-k3d
 
-# Stop the container. The cluster volume is kept.
+# Stop the container. Start it again with docker start or ./workshop-container.sh.
 docker stop workshop-k3d
 ```
 
@@ -183,8 +184,9 @@ The secret's `url` is `http://localhost:81`.
 - **SWiPE ID was not found**: Confirm the ID and export `SWIPE_ID` again before starting a new container. An existing container keeps the environment it was created with.
 - **Could not reach the SWiPE API**: Check access to `https://swipe.splunk.show` and run the script again.
 - **Cluster create failed**: The script deletes a partial cluster so the next start can create it again. Read the log with `docker logs workshop-k3d`.
-- **Kubernetes is not ready to apply a manifest**: The API is still starting. The script retries the apply. If the container exits before the ready line, start it again with `docker start workshop-k3d` or `./workshop-container.sh`.
-- **Existing container ignores a new image or a new `SWIPE_ID`**: `docker rm -f workshop-k3d` removes the container and keeps the cluster volume. Run `./workshop-container.sh` to create the container again.
+- **Could not apply a manifest**: The script waits until the API can validate manifests, then retries the apply. If the container exits before the ready line, start it again with `docker start workshop-k3d` or `./workshop-container.sh`.
+- **Cluster fails to start after the container was deleted**: The old node containers are still in the Docker volume, and their `meminfo` mounts point at files that were deleted with the container. Run `./workshop-container.sh` again. It removes those nodes and creates a new cluster.
+- **Existing container ignores a new image or a new `SWIPE_ID`**: `docker rm -f workshop-k3d` removes the container. The next run creates a new cluster. Run `./workshop-container.sh` after exporting `SWIPE_ID`.
 - **Start over, including the cluster**: Stop and remove the container, then remove the volume.
 
 ```bash

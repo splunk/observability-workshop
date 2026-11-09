@@ -162,10 +162,28 @@ create_cluster() {
 ensure_cluster() {
     if k3d cluster get "${CLUSTER_NAME}" >/dev/null 2>&1; then
         echo "Starting cluster ${CLUSTER_NAME}."
-        k3d cluster start "${CLUSTER_NAME}"
-        return 0
+        if k3d cluster start "${CLUSTER_NAME}"; then
+            return 0
+        fi
+        echo "The existing cluster did not start. Creating a new one." >&2
+        k3d cluster delete "${CLUSTER_NAME}" || true
     fi
+    discard_lost_cluster
     create_cluster
+}
+
+# A new container has no k3d config, but the Docker volume can still hold the
+# previous node containers. Those nodes mount files that were removed with the
+# old container, including the fake meminfo file, so they cannot start.
+discard_lost_cluster() {
+    local id
+    echo "Removing cluster nodes left by a previous container."
+    while read -r id; do
+        [ -z "${id}" ] && continue
+        docker rm -f "${id}" >/dev/null 2>&1 || true
+    done < <(docker ps -aq --filter "name=k3d-${CLUSTER_NAME}-")
+    docker network rm "k3d-${CLUSTER_NAME}" >/dev/null 2>&1 || true
+    docker volume rm "k3d-${CLUSTER_NAME}-images" >/dev/null 2>&1 || true
 }
 
 write_kubeconfig() {
@@ -199,16 +217,31 @@ wait_for_nodes() {
     return 1
 }
 
-kubectl_apply() {
-    local manifest="$1"
+# Nodes can be Ready before the API can validate a manifest.
+wait_for_api() {
     local attempt
-    for attempt in $(seq 1 30); do
-        if kubectl apply -f "${manifest}"; then
+    echo "Waiting for the Kubernetes API."
+    for attempt in $(seq 1 60); do
+        if kubectl get --raw /openapi/v2 >/dev/null 2>&1; then
             return 0
         fi
-        echo "Kubernetes is not ready to apply ${manifest}. Retrying." >&2
+        sleep 2
+    done
+    echo "Kubernetes API did not become ready." >&2
+    return 1
+}
+
+kubectl_apply() {
+    local manifest="$1"
+    local attempt output
+    for attempt in $(seq 1 30); do
+        if output="$(kubectl apply -f "${manifest}" 2>&1)"; then
+            printf '%s\n' "${output}"
+            return 0
+        fi
         sleep 5
     done
+    printf '%s\n' "${output}" >&2
     echo "Could not apply ${manifest}." >&2
     return 1
 }
@@ -341,6 +374,7 @@ install_content
 ensure_cluster
 write_kubeconfig
 wait_for_nodes
+wait_for_api
 apply_registry
 install_chaos_mesh
 apply_swipe_secret
