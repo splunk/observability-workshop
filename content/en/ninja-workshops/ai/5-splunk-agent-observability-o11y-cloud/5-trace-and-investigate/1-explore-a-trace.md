@@ -9,16 +9,17 @@ Open Splunk Agent Observability and work through a real trace from the traffic y
 
 {{< exercise title="Investigate agent behavior" >}}
 
-{{< step title="Find your Instance ID" >}}
+{{< step title="Find your Project Name and Instance ID" >}}
 
-Execute the following command using the terminal connected to your EC2 instance: 
+Execute the following commands using the terminal connected to your EC2 instance:
 
 ```bash
+echo $SPLUNK_AO_PROJECT
 echo $INSTANCE
 ```
 
-Make a note of the result, which will be something like `shw-9787`. This will be 
-the name of your Agent Stream below. 
+Make a note of the result, which will be something like `splunk-sao-workshop` and `shw-51ea`. This will be
+the name of your Project and Agent Stream below.
 
 {{< /step >}}
 
@@ -28,7 +29,7 @@ the name of your Agent Stream below.
 
 **2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
 
-**3.** Open the `Splunk Agent Observability Workshop` project. 
+**3.** Select the project that matches the project name you found above (such as `splunk-sao-workshop`).
 
 **4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`). 
 
