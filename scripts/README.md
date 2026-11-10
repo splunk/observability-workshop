@@ -6,7 +6,7 @@
 python3 scripts/retake-screenshots.py
 ```
 
-No arguments. Menu: pick a module, walk pictures, Keep / WebP / Retake. Details: **[screenshots/README.md](screenshots/README.md)**.
+No arguments. Menu: pick a module, walk pictures, Keep / WebP / Retake. Prefer Shottr with a **Grab Section** keyboard shortcut so you can capture open panes. Details: **[screenshots/README.md](screenshots/README.md)**.
 
 ## PNG to WebP
 

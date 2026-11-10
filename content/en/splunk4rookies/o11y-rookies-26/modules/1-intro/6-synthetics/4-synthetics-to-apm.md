@@ -16,7 +16,7 @@ The synthetic run shows that checkout failed, but its waterfall also provides a 
 * At the bottom of the waterfall, select *Logs*, which may display a count of available related logs. Then select the **Logs for trace… (5)** link from the **Related Logs** pop-up.
 * As in the earlier **Logs** exercise, filter the correlated records to display only errors, then open a payment error record.
 
-![APM trace](../images/apm-trace.png)
+![APM trace](../images/apm-trace.webp)
 
 {{< quiz question="Does the log record show that this synthetic failure was caused by the same payment error found earlier?" >}}
 {{< quiz-option correct=true >}}Yes. The payment log reports an invalid API token.{{< /quiz-option >}}

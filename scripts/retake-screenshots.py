@@ -195,6 +195,53 @@ def discover_shots(section: Path) -> list[Shot]:
     return shots
 
 
+def disk_images(section: Path) -> list[Path]:
+    files: list[Path] = []
+    for path in section.rglob("*"):
+        if not path.is_file() or path.name.startswith("."):
+            continue
+        if path.suffix.lower() not in IMG_EXTS:
+            continue
+        files.append(path.resolve())
+    files.sort()
+    return files
+
+
+def unused_images(section: Path, shots: list[Shot]) -> list[Path]:
+    used = {shot.image.resolve() for shot in shots}
+    return [path for path in disk_images(section) if path not in used]
+
+
+def unused_lesson_label(section: Path, image: Path) -> str:
+    try:
+        rel_path = image.resolve().relative_to(section.resolve())
+    except ValueError:
+        return str(rel(image.parent))
+    parts = list(rel_path.parts[:-1])
+    if parts and parts[-1] == "images":
+        parts = parts[:-1]
+    if not parts:
+        return section.name
+    return "/".join(parts)
+
+
+def print_unused(section: Path, shots: list[Shot]) -> None:
+    unused = unused_images(section, shots)
+    if not unused:
+        return
+    noun = "file" if len(unused) == 1 else "files"
+    print()
+    print(f"Unused ({len(unused)} {noun} on disk, not in any page)")
+    print("-" * 50)
+    current = None
+    for path in unused:
+        group = unused_lesson_label(section, path)
+        if group != current:
+            current = group
+            print(f"  {group}")
+        print(f"      {path.name}")
+
+
 class Manifest:
     def __init__(self, backup_dir: Path) -> None:
         self.backup_dir = backup_dir
@@ -324,30 +371,39 @@ def shot_state(shot: Shot, manifest: Manifest) -> str:
     return "miss"
 
 
-def print_list(shots: list[Shot], manifest: Manifest, remaining: bool) -> None:
+def print_list(
+    shots: list[Shot],
+    manifest: Manifest,
+    remaining: bool,
+    section: Path | None = None,
+) -> None:
     rows = []
     for shot in shots:
         state = shot_state(shot, manifest)
         if remaining and state in FINISHED:
             continue
         rows.append((shot, state))
-    if not rows:
+    if not shots:
+        print("No screenshots referenced in markdown.")
+    elif not rows:
         print("All shots in this section are already WebP.")
-        return
-    print(f"{'#':<4} {'st':<6} {'save as':<36} {'page'}")
-    print("-" * 92)
-    for shot, state in rows:
-        print(f"{shot.number:02d}   {state:<6} {shot.save_as:<36} {rel(shot.markdown)}")
-        if shot.alt:
-            print(f"       {shot.alt}")
-    still = sum(1 for s in shots if shot_state(s, manifest) not in FINISHED)
-    print()
-    print(f"{len(shots)} shots, {still} still open.")
-    print("next      →  stash original, open it as reference")
-    print("keep      →  original is fine: convert to WebP, no recapture")
-    print("skip      →  leave PNG, don't retake now")
-    print("save      →  Shottr/Monosnap PNG into the inbox as NN-name.png")
-    print("ingest    →  new capture → WebP + rewrite Markdown   (or: watch)")
+    else:
+        print(f"{'#':<4} {'st':<6} {'save as':<36} {'page'}")
+        print("-" * 92)
+        for shot, state in rows:
+            print(f"{shot.number:02d}   {state:<6} {shot.save_as:<36} {rel(shot.markdown)}")
+            if shot.alt:
+                print(f"       {shot.alt}")
+        still = sum(1 for s in shots if shot_state(s, manifest) not in FINISHED)
+        print()
+        print(f"{len(shots)} shots, {still} still open.")
+        print("next      →  stash original, open it as reference")
+        print("keep      →  original is fine: convert to WebP, no recapture")
+        print("skip      →  leave PNG, don't retake now")
+        print("save      →  Shottr/Monosnap PNG into the inbox as NN-name.png")
+        print("ingest    →  new capture → WebP + rewrite Markdown   (or: watch)")
+    if section is not None:
+        print_unused(section, shots)
 
 
 def find_shot(shots: list[Shot], token: str) -> Shot:
@@ -878,7 +934,10 @@ def find_modules() -> list[Path]:
         return []
     modules = []
     for path in sorted(root.iterdir()):
-        if path.is_dir() and not path.name.startswith(".") and discover_shots(path):
+        if not path.is_dir() or path.name.startswith("."):
+            continue
+        shots = discover_shots(path)
+        if shots or unused_images(path, shots):
             modules.append(path)
     return modules
 
@@ -984,7 +1043,7 @@ def wait_for_retake(shot: Shot, shots: list[Shot], manifest: Manifest, inbox: Pa
         return "ok"
 
 
-def print_shot_list(shots: list[Shot], manifest: Manifest) -> None:
+def print_shot_list(shots: list[Shot], manifest: Manifest, section: Path) -> None:
     print()
     print(f"{'#':<4} {'type':<6} {'file'}")
     print("-" * 50)
@@ -997,6 +1056,7 @@ def print_shot_list(shots: list[Shot], manifest: Manifest) -> None:
         print(f"{shot.number:02d}   {kind:<6} {shot.image.name}")
         if shot.alt:
             print(f"       {shot.alt}")
+    print_unused(section, shots)
 
 
 def review_loop(
@@ -1093,9 +1153,12 @@ def run_app(quality: int) -> int:
         print("Which module?")
         print()
         for i, path in enumerate(modules, start=1):
-            count = len(discover_shots(path))
+            shots_here = discover_shots(path)
+            count = len(shots_here)
             label = "picture" if count == 1 else "pictures"
-            print(f"  {i}) {module_title(path)}  ({count} {label})")
+            n_unused = len(unused_images(path, shots_here))
+            extra = f", {n_unused} unused" if n_unused else ""
+            print(f"  {i}) {module_title(path)}  ({count} {label}{extra})")
         print("  0) Quit")
         print()
         raw = ask("Number", "1")
@@ -1109,7 +1172,13 @@ def run_app(quality: int) -> int:
         shots = discover_shots(section)
         print()
         print(module_title(section))
-        print_shot_list(shots, manifest)
+        if not shots:
+            print()
+            print("No pictures referenced in markdown.")
+            print_unused(section, shots)
+            ask("Press Enter to go back to the module list", "")
+            continue
+        print_shot_list(shots, manifest, section)
         first = next(
             (s.number for s in shots if shot_state(s, manifest) == "stash"),
             shots[0].number,
@@ -1135,8 +1204,6 @@ def main(argv: list[str] | None = None) -> int:
         return run_app(args.quality)
     section = resolve_section(args.section)
     shots = discover_shots(section)
-    if not shots:
-        raise SystemExit(f"no screenshots found under {rel(section)}")
     inbox = Path(args.inbox).expanduser()
     backup_dir = Path(args.backup).expanduser()
     if not inbox.is_absolute():
@@ -1146,10 +1213,12 @@ def main(argv: list[str] | None = None) -> int:
     manifest = Manifest(backup_dir)
 
     if args.command == "list":
-        print_list(shots, manifest, args.remaining)
+        print_list(shots, manifest, args.remaining, section)
         print(f"inbox:  {rel(inbox)}")
         print(f"backup: {rel(backup_dir)}")
         return 0
+    if not shots:
+        raise SystemExit(f"no screenshots found under {rel(section)}")
     if args.command == "start":
         if not args.shot:
             raise SystemExit("start requires a shot number, e.g. start 03")
