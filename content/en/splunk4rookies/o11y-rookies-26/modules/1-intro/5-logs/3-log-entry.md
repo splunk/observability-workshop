@@ -21,7 +21,7 @@ You have narrowed the results to error logs from the selected trace. Now examine
 {{< /quiz-feedback >}}
 {{< /quiz >}}
 
-  ![Log Message](../images/log-observer-log-message.png)
+  ![Log Message](../images/log-observer-log-message.webp)
 
 * When you have finished examining the record, select **X** in the log details pane to close it.
 

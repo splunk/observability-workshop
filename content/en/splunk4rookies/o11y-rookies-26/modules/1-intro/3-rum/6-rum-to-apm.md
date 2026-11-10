@@ -9,7 +9,7 @@ weight: 6
 
 * In this example, the **payment** service is shown as a full **red** circle, indicating that the *checkout* errors originated there. Your map may look slightly different, but the service responsible for the errors should be highlighted in the same way.
 
-![RUM to APM](../images/rum-to-apm.png)
+![RUM to APM](../images/rum-to-apm.webp)
 
 {{% /exercise %}}
 

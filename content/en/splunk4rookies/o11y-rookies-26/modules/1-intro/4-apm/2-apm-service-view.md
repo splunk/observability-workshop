@@ -36,7 +36,7 @@ Review the service health:
 * Examine the **Success rate (2)**. A value below *100%* means that some requests were unsuccessful during the selected period.
 * Review the **Service errors (3)** chart. Repeated spikes show that the errors occurred several times and were not limited to a single request.
 
-![Service Dashboard](../images/apm-service-dashboard-top.png)
+![Service Dashboard](../images/apm-service-dashboard-top.webp)
 
 {{% /exercise %}}
 

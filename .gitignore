@@ -23,6 +23,11 @@ override.tf.json
 /venv/
 .venv/
 /public/
+content/en/splunk4rookies/public/
+scripts/screenshots/inbox/*
+!scripts/screenshots/inbox/.gitkeep
+scripts/screenshots/backup/*
+!scripts/screenshots/backup/.gitkeep
 /site/
 /node_modules/
 package-lock.json

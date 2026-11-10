@@ -18,7 +18,7 @@ This makes Trace Analyzer ideal for investigating unknown issues, researching sp
 
 {{% exercise title="Find a failing checkout trace" %}}
 
-![APM Trace Analyzer](../images/apm-trace-analyzer.png)
+![APM Trace Analyzer](../images/apm-trace-analyzer.webp)
 
 The *Trace Analyzer* is already filtered to the affected version of the *payment* service.
 * Confirm that the filters include:
@@ -28,7 +28,7 @@ The *Trace Analyzer* is already filtered to the affected version of the *payment
 * If no traces are displayed, widen the time range until matching traces appear.
 * Review the trace results and find a trace that:
   * contains errors in both the *checkout* and *payment* services **(1)**
-  * has an initiating operation of `frontend-proxy: POST ingress` **(2)**
+  * has an initiating operation of `frontend-proxy: POST/api/*` **(2)** (* can be shop or checkout)
   * has a relatively long duration compared with the other results *(+6 sec)* 
 
 * Select the blue **Trace ID ** for that trace.

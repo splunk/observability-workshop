@@ -7,7 +7,7 @@ You’ve now navigated directly from an **APM** trace into **Logs** using the **
 
 The key advantage, just as with the **RUM** and **APM** integration, is that you’re viewing your logs in the context of your previous actions. In this case, that context includes the matching time range **(1)** from the trace and a filter **(2)** automatically applied to the `trace_id`.
 
-![Trace Logs](../images/log-observer-trace-logs.png)
+![Trace Logs](../images/log-observer-trace-logs.webp)
 
 The results contain the available log records correlated with that trace. These records may come from several services that participated in the checkout request. The exact number of records depends on which services emit logs, whether those logs are ingested, and whether they contain the required trace metadata.
 
