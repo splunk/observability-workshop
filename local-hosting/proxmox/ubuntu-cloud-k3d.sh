@@ -738,6 +738,12 @@ cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
       net.bridge.bridge-nf-call-iptables=1
       net.bridge.bridge-nf-call-ip6tables=1
       net.ipv4.ip_forward=1
+      # Host IPv6 stays off. Router advertisements install a default route
+      # that Python prefers, and outbound IPv6 from this network never
+      # connects. ip6tables stays enabled so k3s can still call it.
+      net.ipv6.conf.all.disable_ipv6=1
+      net.ipv6.conf.default.disable_ipv6=1
+      net.ipv6.conf.lo.disable_ipv6=1
 
       # Increase inotify limits
       fs.inotify.max_user_watches=524288
