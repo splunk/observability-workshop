@@ -1,58 +1,36 @@
 ---
-title: 3. Filtering and Grouping
+title: 3. Find the business event
 weight: 3
+time: 6 minutes
 ---
 
-With Log Observer open and your environment filter set, you're looking at all logs from all services. That's a lot of noise. Let's narrow it down.
+Checkout emits several messages while processing a purchase. Use its **`order placed`** event to focus on completed purchases, then inspect the fields you will use to compare each order's value with its charge.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% exercise title="Inspect the order's business fields" %}}
 
-**Step 1: Group by Severity**
+1. Keep the search scope and investigation window from Step 2.
+2. Select **Add Filter → Keyword**, enter **`order placed`**, and select **include**. Select **Run search**.
+3. Open a row in the **Logs table** and confirm that the `message` field in its JSON body is `order placed`.
 
-* Click on the **Group By** drop-down box **(1)**.
-* Use the search to find and select `severity`.
-* Click the {{% button style="blue" %}}Apply{{% /button %}} button.
+These completion events give you a consistent set of purchases to investigate.
 
-Notice that the timeline chart legend now shows the distribution of log levels — **debug**, **info**, **warn**, and **error**.
+4. Locate **`app.order.amount.usd`** and **`app.order.amount.charged.usd`** in the JSON body or **Fields** list. These are the two fields you will add as columns in Step 4. Use the reference below to distinguish them from the native-currency amounts.
 
-<!-- TODO screenshot: Timeline chart grouped by severity showing legend -->
+| Field | Meaning |
+|---|---|
+| `app.order.id` | Identifies the order |
+| `app.order.currency` | The shopper's currency |
+| `app.order.amount` | Full order value in that currency |
+| `app.order.amount.charged` | Amount charged in that currency |
+| `app.order.amount.usd` | Full order value expressed in USD |
+| `app.order.amount.charged.usd` | Amount charged expressed in USD |
 
-**Step 2: Filter to Errors Only**
+Use the two USD fields to compare order values and charges on a consistent currency basis across rows. Native amounts can be in different currencies, so a JPY value and a USD value are not directly comparable.
 
-* In the timeline chart legend, click on the word **error** **(2)**.
-* Select **Add to filter**.
-* Click {{% button style="blue" %}}Run Search{{% /button %}} at the top of the page.
+![A completed order with matching full and charged amounts in its structured business fields](../images/order-fields-healthy.jpg "Example: an unaffected completed order. Your order IDs and amounts will differ.")
 
-You are now viewing only error-level logs from your environment.
+Close the event details pane to return to the results table. Keep the search filters and time window unchanged.
 
-<!-- TODO screenshot: Log Observer filtered to errors only -->
+{{% /exercise %}}
 
-**Step 3: Identify the Noisy Service**
-
-* Look at the log entries in the table below. Scan the `service.name` column.
-
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Which service is generating the most error logs?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-<!-- TODO: Update with actual service name from OTel Demo v2.0.1 -->
-Look for the service name that appears most frequently in the error log entries. This is your primary suspect.
-{{% /tab %}}
-{{< /tabs >}}
-
-**Step 4: Filter by Service**
-
-* Click on the service name in one of the log entries.
-* Select **Add to filter**.
-* Click {{% button style="blue" %}}Run Search{{% /button %}}.
-
-You are now looking at error logs from a single service. The noise is gone.
-
-<!-- TODO screenshot: Log Observer filtered to errors from a single service -->
-
-{{% /notice %}}
-
-{{% notice title="Info" style="info" %}}
-In just four clicks, you went from thousands of log lines across all services to a focused view of errors from a single suspect service. This is the power of Log Observer's no-code filtering — fast triage without writing queries.
-{{% /notice %}}
+An individual order may be unaffected. Next, add the amount fields as columns so you can compare more orders in the same search.

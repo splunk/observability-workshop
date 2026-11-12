@@ -30,13 +30,12 @@ You have narrowed the results to error logs from the selected trace. Now examine
 
 **Investigation complete**  
 You have followed a slow checkout interaction in the Astronomy Shop from the browser to its underlying payment failure:
+
 - **RUM** revealed the poor user experience.
 - **APM** located the failing service and affected version.
-- *Logs* identified the invalid API token reported by the payment provider.
+- **Logs** identified the invalid API token reported by the payment provider.
+
 Along the way, **Tag Spotlight** helped you identify patterns, while **Related Content** kept the investigation connected as you moved between traces and logs.
 
-**Transition to the next section**  
-Next, you’ll explore Synthetic Monitoring and how scheduled tests can help detect problems before customers report them.
+Next, explore **Synthetic Monitoring** and how scheduled tests help detect problems before customers report them.
 {{% /notice %}}
-
-

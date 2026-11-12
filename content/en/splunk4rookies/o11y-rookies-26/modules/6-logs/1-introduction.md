@@ -1,32 +1,23 @@
 ---
-title: 1. Scenario 1 — Log-First Triage
+title: 1. A business signal
 weight: 1
+time: 6 minutes
 ---
 
-In many real-world incidents, the first signal is an alert or a report from a user — not a trace or a dashboard. The responder opens their logging tool and starts investigating. This is the **log-first** approach, and it's how this scenario works.
+The following handoff sets the scene for your investigation:
 
-Unlike a sequential RUM → APM → Logs path where you arrive at logs with context already established, here you start with a blank slate in Log Observer. No prior trace context. No service map. Just logs and your investigative skills.
+> **Finance:** We have flagged a gap between completed order value and collected payments. Please investigate the discrepancy and identify which orders are affected.
+>
+> **Operations:** We checked the same period. Checkout requests are completing without an increase in errors or latency.
 
-## The 3 Pillars — Inverted
+A request can complete successfully while producing the wrong business outcome. Normal request-health signals are useful context, but they do not explain Finance's discrepancy.
 
-In a typical observability workflow, you might follow this order:
+Start with **checkout**, which coordinates the purchase. Look for completed-order records containing an order identifier, currency, full order value, and amount charged. These fields connect Finance's report to individual purchases.
 
-| Metrics | Traces | Logs |
-| :---: | :---: | :---: |
-| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
+You will investigate directly in **Logs**, using one base search and adding business fields as columns in the results table. This lets you examine each purchase and its charge together.
 
-In this scenario, we **start at the end** — directly in logs — and work backwards:
+{{% notice title="Optional health check" style="info" %}}
+Review the checkout service in **APM**, using the same environment and time window, to confirm the request-health assessment. Completing an APM investigation is not required for this module.
 
-1. **What is the problem?** — Filter and inspect log entries to find the error
-2. **Where is the problem?** — Identify which service and version is responsible
-3. **Do I have a problem?** — Confirm the scope and timeline of the issue
-
-## Investigation Flow
-
-You will follow these steps:
-
-1. Open Log Observer and set your filters
-2. Group by severity and filter to errors
-3. Identify the failing service
-4. Analyze the error timeline and patterns
-5. Inspect a log entry to determine the root cause
+![Checkout service showing a 100% request success rate and latency for the same window used in the log investigation](../images/checkout-health.jpg "Successful requests establish technical health. Logs will explain the business outcome.")
+{{% /notice %}}

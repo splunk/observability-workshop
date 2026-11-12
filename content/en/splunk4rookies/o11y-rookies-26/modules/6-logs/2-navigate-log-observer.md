@@ -1,26 +1,28 @@
 ---
-title: 2. Navigate to Log Observer
+title: 2. Scope the investigation
 weight: 2
+time: 6 minutes
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+Start with a clear scope so that every comparison refers to the same application and period.
 
-* From the main navigation menu in Splunk Observability Cloud, click on **Log Observer**.
-* Set the time range to **Last 15 minutes** using the time picker in the top-right corner.
-* In the filter bar, add a filter for your workshop environment:
-  * Click {{% button style="blue" %}}Add Filter{{% /button %}}
-  * Select `deployment.environment`
-  * Set the value to the environment name provided by your instructor
+{{% exercise title="Open Logs and select your environment" %}}
 
-<!-- TODO screenshot: Log Observer landing page with time range and environment filter set -->
+1. Open **Logs** from the main navigation in Splunk Observability Cloud. Use **Builder** for this exercise.
+2. Select the **connection** and **index** provided by your instructor.
+3. In the time picker, select **Custom → Absolute** and enter the investigation window provided by your instructor. Check the displayed timezone, then select **Apply**. Keep this window unchanged while comparing results.
+4. Remove any trace ID, severity, or other filters left over from an earlier investigation.
+5. Select **Add Filter → Fields**, search for `deployment.environment`, select the field, enter your workshop environment, and select **include**. Repeat for `service.name = checkout`.
+6. Select **Run search**. 
 
-{{% /notice %}}
+{{% /exercise %}}
 
-You should now see the Log Observer landing page with two main areas:
+The **timeline** summarizes matching log activity. The **Logs table** contains individual events, and the **Fields** list helps you explore their structured attributes.
 
-* **Timeline chart** (top) — A bar chart showing log volume over time, giving you an at-a-glance view of log activity
-* **Log table** (bottom) — Individual log entries with timestamps, severity, service names, and messages
+![Checkout logs scoped to the workshop environment, one index, and a fixed investigation window](../images/checkout-scope.jpg)
 
-{{% notice title="Info" style="info" %}}
-Log Observer works with **no-code** filtering — you never need to write SPL or query syntax. Everything is point-and-click, making it accessible to any team member regardless of their Splunk experience.
+Checkout coordinates an order across several services and emits several kinds of events. On the next page, you will choose the event that records a completed purchase.
+
+{{% notice title="Check your scope" style="info" %}}
+If no checkout events appear, check your connection, index, environment, and time window with your instructor. A blank search is not evidence that the application is healthy or that the discrepancy has been resolved.
 {{% /notice %}}
