@@ -64,6 +64,55 @@ kubectl create job --from=cronjob/sao-trace-generator sao-trace-generator-test
 kubectl logs job/sao-trace-generator-test
 ```
 
+## Configure Splunk Observability Cloud
+
+To send the traces to O11y Cloud, configure the following first: 
+
+* Create a new Agent Observability project (i.e. `Healthcare Assistant Demo`)
+* Create a new Agent Stream in the project (i.e. `ctf`)
+* Create a new access token to use to send traces, it should have the `INGEST` role as well as the `API` role, with `agent_observability_admin` privileges
+* Create a new user for the event (i.e. `youruser+ctf@splunk.com`) with `power` and `agent_observability_read_only` roles
+* Share the Agent Observability project with that user as a `Viewer`
+* Create a new LiteLLM key for the event that will use the traces (reach out to the o11y specialists team for this)
+* Create a new custom integration in Agent Observability that uses the LiteLLM key. For example: 
+  
+```yaml
+{
+  "authentication_type": "api_key",
+  "endpoint": "https://<lite LLM domain>/v1",
+  "default_model": "gpt-4.1-mini",
+  "model_properties": [
+    {
+      "name": "gpt-4.1-mini",
+      "alias": "gpt-4.1-mini",
+      "based_on": "gpt-4.1-mini",
+      "supported_parameters": null,
+      "supports_json_schema": false
+    },
+    {
+      "name": "gpt-5.6-sol",
+      "alias": "gpt-5.6-sol",
+      "based_on": "gpt-5.6-sol",
+      "supported_parameters": null,
+      "supports_json_schema": false
+    }
+  ],
+  "token": null,
+  "api_key_header": "Authorization",
+  "api_key_value": "Bearer sk-***",
+  "authentication_scope": null,
+  "oauth2_token_url": null,
+  "headers": null,
+  "custom_llm_config": null,
+  "custom_header_mapping": null,
+  "multi_modal_config": null
+}
+```
+
+* Share the custom integration with the new access token 
+* Configure the `Context Adherence` and `Instruction Adherence` evaluators to use the custom integration 
+* Enable the `Context Adherence` and `Instruction Adherence` evaluators for the agent stream 
+
 ## Run locally
 
 ```bash
