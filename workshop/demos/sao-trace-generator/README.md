@@ -44,8 +44,8 @@ kubectl create secret generic sao-trace-generator-secret \
 
 kubectl create configmap sao-trace-generator-config \
   --from-literal=SPLUNK_AO_REALM='us1' \
-  --from-literal=SPLUNK_AO_PROJECT='healthcare-assistant' \
-  --from-literal=SPLUNK_AO_AGENT_STREAM='default'
+  --from-literal=SPLUNK_AO_PROJECT='Healthcare Assistant Demo' \
+  --from-literal=SPLUNK_AO_AGENT_STREAM='ctf'
 ```
 
 Use the same namespace as the CronJob (add `-n <namespace>` to each command).
@@ -72,8 +72,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 python generate_traces.py --dry-run          # print span trees, send nothing
 
-export SPLUNK_AO_REALM=us1 SPLUNK_AO_PROJECT="Healthcare Assistant Demo" \
-       SPLUNK_AO_AGENT_STREAM=ctf SPLUNK_AO_O11Y_TOKEN=...
+export SPLUNK_AO_REALM=us1 SPLUNK_AO_PROJECT='Healthcare Assistant Demo' \
+       SPLUNK_AO_AGENT_STREAM=ctf SPLUNK_AO_O11Y_TOKEN='<your-o11y-access-token>'
 python generate_traces.py
 ```
 
