@@ -22,11 +22,11 @@ The tenant has been pre-configured with APM-instrumented microservices without r
 
 1. Open your browser and sign in to **Splunk Workshop Realm** 
     (credentials provided by your workshop facilitator).
-2. Confirm you land on the **Splunk Observability Cloud** home experience.
-3. From the left navigation, expand **APM** - you will see the Application Security menu option.
-4. Note the workshop **environment** filter you will use: `astronomy-shop-*` & 'ad'
+2. Confirm you land on the **Splunk Observability Cloud (1)** home experience.
+3. From the left navigation, expand **APM (2)** - you will see the Application Security menu options **(3)**.
 
-![apm](../images/01-home.png)
+![apm](../images/01-home.webp)
+
 
 {{% /notice %}}
 
@@ -34,4 +34,4 @@ The tenant has been pre-configured with APM-instrumented microservices without r
 
 - How to access the workshop tenant and confirm Application Security entitlements.
 - Which core capabilities you will exercise across the remaining modules.
-- Which environment and service anchor the workshop walkthrough.
+
