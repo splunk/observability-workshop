@@ -70,4 +70,20 @@
  &lt;span class="heading-text"&gt;Prerequisites&lt;/span&gt;
  &lt;a class="heading-anchor" href="#prerequisites" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;Run the script from a root shell on a Proxmox VE host. The host requires:&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Run the script from a root shell on a Proxmox VE host. The host requires:&lt;/p&gt;</description></item><item><title>Docker</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/docker/</guid><description>&lt;h2 id="docker-workshop-instance-setup"&gt;
+ &lt;span class="heading-text"&gt;Docker Workshop Instance Setup&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#docker-workshop-instance-setup" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="overview"&gt;
+ &lt;span class="heading-text"&gt;Overview&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#overview" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;workshop-container.sh&lt;/code&gt; builds and starts an Ubuntu 24.04 container that runs a K3s cluster in Docker through k3d. The container installs the workshop tools and content, configures credentials obtained with a SWiPE ID, and waits until Kubernetes is ready before reporting success.&lt;/p&gt;
+&lt;p&gt;The script supports:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Building the workshop image&lt;/li&gt;
+&lt;li&gt;Creating the &lt;code&gt;workshop-k3d&lt;/code&gt; container the first time it is run&lt;/li&gt;
+&lt;li&gt;Starting that container again when it is stopped&lt;/li&gt;
+&lt;li&gt;Following the container log until you stop watching it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is no SSH server in this container. The shell is &lt;code&gt;docker exec&lt;/code&gt;.&lt;/p&gt;</description></item></channel></rss>

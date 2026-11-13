@@ -484,22 +484,21 @@ navigate to &lt;a href="https://id.cisco.com/" target="_blank" rel="noopener"&gt
 &lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;Check your inbox for an email from cisco.com. If you don&amp;rsquo;t see the email, please check your spam folder.&lt;/p&gt;
-&lt;p&gt;Click on the link in the email to verify your email address.&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="create-a-splunkcom-account"&gt;
- &lt;span class="heading-text"&gt;Create a Splunk.com Account&lt;/span&gt;
- &lt;a class="heading-anchor" href="#create-a-splunkcom-account" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;p&gt;Click on the link in the email to verify your email address.&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="create-a-ciscocom-account"&gt;
+ &lt;span class="heading-text"&gt;Create a Cisco.com Account&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#create-a-ciscocom-account" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;You&amp;rsquo;ll need a Splunk.com account to complete this workshop. If you don&amp;rsquo;t already have an account,
-navigate to &lt;a href="https://idp.login.splunk.com/signin/register" target="_blank" rel="noopener"&gt;https://idp.login.splunk.com/signin/register&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;p&gt;You&amp;rsquo;ll need a Cisco.com account to complete this workshop. If you don&amp;rsquo;t already have an account,
+navigate to &lt;a href="https://id.cisco.com/" target="_blank" rel="noopener"&gt;https://id.cisco.com/&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  and complete the form to create your account:&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../../images/SplunkRegistration.png" alt="Splunk Registration" loading="lazy" decoding="async"&gt;
+ &lt;img src="../../images/CiscoRegistration.png" alt="Cisco Registration" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;Check your inbox for an email from &lt;a href="mailto:no-reply@idp.login.splunk.com"&gt;no-reply@idp.login.splunk.com&lt;/a&gt;
-. If you don&amp;rsquo;t see the email, please check your spam folder.&lt;/p&gt;
+&lt;p&gt;Check your inbox for an email from cisco.com. If you don&amp;rsquo;t see the email, please check your spam folder.&lt;/p&gt;
 &lt;p&gt;Click on the link in the email to verify your email address.&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/4-solving-problems-with-o11y-cloud/1-connect-to-instance/</guid><description>&lt;h2 id="connect-to-your-ec2-instance"&gt;
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
@@ -860,24 +859,18 @@ the name of your Project and Agent Stream below.&lt;/p&gt;</description></item><
 &lt;section class="step"&gt;
 &lt;div class="step__num"&gt;1&lt;/div&gt;
 &lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Find your Instance ID&lt;/p&gt;
+&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Find your Project Name and Instance ID&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="step__body"&gt;&lt;p&gt;Execute the following command using the terminal connected to your EC2 instance:&lt;/p&gt;
+&lt;div class="step__body"&gt;&lt;p&gt;Execute the following commands using the terminal connected to your EC2 instance:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
  &lt;span class="code-block__file"&gt;&lt;span class="code-block__lang"&gt;bash&lt;/span&gt;&lt;/span&gt;
  &lt;button class="code-block__copy" type="button" aria-label="Copy code to clipboard"&gt;Copy&lt;/button&gt;
  &lt;/div&gt;
- &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
- &lt;/div&gt;&lt;p&gt;Make a note of the result, which will be something like &lt;code&gt;shw-9787&lt;/code&gt;. This will be
-the name of your Agent Stream below.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;section class="step"&gt;
-&lt;div class="step__num"&gt;2&lt;/div&gt;
-&lt;div&gt;
-&lt;header class="step__head"&gt;&lt;p class="step__title"&gt;Open your project and agent stream&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$SPLUNK_AO_PROJECT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$INSTANCE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;p&gt;Make a note of the result, which will be something like &lt;code&gt;splunk-sao-workshop&lt;/code&gt; and &lt;code&gt;shw-51ea&lt;/code&gt;. This will be
+the name of your Project and Agent Stream below.&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
 if every workshop participant runs the process individually. For this reason, please observe as the
 workshop instructor completes the steps in this section, rather than performing them yourself.&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Generate Signals for your agent stream and let the platform show you what&amp;rsquo;s trending wrong.&lt;/p&gt;</description></item><item><title>Explore Signals</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/7-detect-issues-with-signals/1-explore-signals/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/5-splunk-agent-observability-o11y-cloud/7-detect-issues-with-signals/1-explore-signals/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Caution&lt;/p&gt;&lt;div class="callout__body"&gt;&lt;strong&gt;Generating Signals requires multiple prompts to an LLM, which can result in significant usage costs
@@ -1120,7 +1113,7 @@ across tools using a workload you already understand.&lt;/p&gt;</description></i
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/rum-dea.png" alt="RUM" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/rum-dea.webp" alt="RUM" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>Installing the OpenTelemetry Collector</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/</guid><description>&lt;p&gt;The Splunk OpenTelemetry Collector is the core component for instrumenting infrastructure and applications. Its role is to collect and send:&lt;/p&gt;
@@ -1362,7 +1355,7 @@ The healthcare assistant is pre-loaded under &lt;code&gt;~/workshop/healthcare-a
 &lt;ul&gt;
 &lt;li&gt;In Splunk Observability Cloud from the main menu, select &lt;strong&gt;Digital Experience (1)&lt;/strong&gt;, then select &lt;strong&gt;Synthetics tests (2)&lt;/strong&gt;. This opens the list of configured synthetic tests.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src="../images/get-to-synth.png" alt="Open Synthetics tests from the Digital Experience menu" style="display:block; width:auto; max-width:70%; max-height:300px; margin:1rem auto;"&gt;
+&lt;img src="../images/get-to-synth.webp" alt="Open Synthetics tests from the Digital Experience menu" style="display:block; width:auto; max-width:70%; max-height:300px; margin:1rem auto;"&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Earlier in the workshop, &lt;strong&gt;RUM&lt;/strong&gt; and &lt;strong&gt;APM&lt;/strong&gt; showed that users were experiencing failures during the &lt;em&gt;PlaceOrder&lt;/em&gt; interaction. Let’s see whether the scheduled synthetic test detected the same problem.&lt;/p&gt;</description></item><item><title>1. Synthetics Dashboard</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/6-synthetics/1-synthetics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/6-synthetics/1-synthetics-dashboard/</guid><description>&lt;section class="exercise"&gt;
@@ -4116,7 +4109,7 @@ similar to the following example:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/synthetic-browser-test.png" alt="waterfall" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/synthetic-browser-test.webp" alt="waterfall" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>2. Synthetics Test Detail</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/2-synthetics-detail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/5-synthetics/2-synthetics-detail/</guid><description>&lt;section class="exercise"&gt;
@@ -6395,7 +6388,7 @@ next chapter.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/apm-service-dashboard.png" alt="Service Dashboard" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/apm-service-dashboard.webp" alt="Service Dashboard" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -8097,7 +8090,7 @@ confirming the workflow still runs end-to-end with the callback attached:&lt;/p&
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/run-results-place-order.png" alt="Place Order" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/run-results-place-order.webp" alt="Place Order" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/4-rum/5-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/4-rum/5-tag-spotlight/</guid><description>&lt;section class="exercise"&gt;
@@ -8326,7 +8319,23 @@ The panels show the most common values for each tag and their associated perform
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Adjust parameters if needed&lt;/p&gt;</description></item><item><title>Running Workflows</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/</guid><description>&lt;h2 id="triggering-workflows"&gt;
+&lt;p&gt;Adjust parameters if needed&lt;/p&gt;</description></item><item><title>Docker</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/docker/</guid><description>&lt;h2 id="docker-workshop-instance-setup"&gt;
+ &lt;span class="heading-text"&gt;Docker Workshop Instance Setup&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#docker-workshop-instance-setup" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="overview"&gt;
+ &lt;span class="heading-text"&gt;Overview&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#overview" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;workshop-container.sh&lt;/code&gt; builds and starts an Ubuntu 24.04 container that runs a K3s cluster in Docker through k3d. The container installs the workshop tools and content, configures credentials obtained with a SWiPE ID, and waits until Kubernetes is ready before reporting success.&lt;/p&gt;
+&lt;p&gt;The script supports:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Building the workshop image&lt;/li&gt;
+&lt;li&gt;Creating the &lt;code&gt;workshop-k3d&lt;/code&gt; container the first time it is run&lt;/li&gt;
+&lt;li&gt;Starting that container again when it is stopped&lt;/li&gt;
+&lt;li&gt;Following the container log until you stop watching it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is no SSH server in this container. The shell is &lt;code&gt;docker exec&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Running Workflows</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/appdynamics/1-appd-workshop/6-smartagent/3-github-actions/4-running-workflows/</guid><description>&lt;h2 id="triggering-workflows"&gt;
  &lt;span class="heading-text"&gt;Triggering Workflows&lt;/span&gt;
  &lt;a class="heading-anchor" href="#triggering-workflows" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -8778,7 +8787,7 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
 &lt;p&gt;We have now successfully navigated from &lt;strong&gt;RUM&lt;/strong&gt; into &lt;strong&gt;APM&lt;/strong&gt;, providing an end-to-end view of the user experience. This integration allows us to trace performance issues from the front-end all the way through to the back-end services, enabling more effective troubleshooting and optimization.&lt;/p&gt;</description></item><item><title>5. Synthetics Detector</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/5-synthetics-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/5-synthetics-detector/</guid><description>&lt;p&gt;Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA—instead of getting informed by social media or uptime websites.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/social-media-post.png" alt="Social media" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/social-media-post.webp" alt="Social media" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;

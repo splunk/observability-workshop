@@ -11,7 +11,7 @@
 &lt;ul&gt;
 &lt;li&gt;In Splunk Observability Cloud from the main menu, select &lt;strong&gt;Digital Experience (1)&lt;/strong&gt;, then select &lt;strong&gt;Synthetics tests (2)&lt;/strong&gt;. This opens the list of configured synthetic tests.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src="../images/get-to-synth.png" alt="Open Synthetics tests from the Digital Experience menu" style="display:block; width:auto; max-width:70%; max-height:300px; margin:1rem auto;"&gt;
+&lt;img src="../images/get-to-synth.webp" alt="Open Synthetics tests from the Digital Experience menu" style="display:block; width:auto; max-width:70%; max-height:300px; margin:1rem auto;"&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Earlier in the workshop, &lt;strong&gt;RUM&lt;/strong&gt; and &lt;strong&gt;APM&lt;/strong&gt; showed that users were experiencing failures during the &lt;em&gt;PlaceOrder&lt;/em&gt; interaction. Let’s see whether the scheduled synthetic test detected the same problem.&lt;/p&gt;</description></item><item><title>2. Synthetics Browser Test</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/2-synthetics-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/2-synthetics-test/</guid><description>&lt;p&gt;The browser test page summarizes how a synthetic user journey has performed over time and across its configured locations.&lt;/p&gt;
@@ -33,7 +33,7 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/synthetic-browser-test.png" alt="waterfall" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/synthetic-browser-test.webp" alt="waterfall" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>3. Synthetic Run Details</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/3-synthetic-run/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/3-synthetic-run/</guid><description>&lt;p&gt;The run details page shows what the synthetic user experienced during this specific test run. The failure summary identifies the affected transaction and step, while the filmstrip and video let you review how the application behaved leading up to the failure.&lt;/p&gt;
@@ -69,13 +69,13 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/run-results-place-order.png" alt="Place Order" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/run-results-place-order.webp" alt="Place Order" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>5. Synthetics Detector</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/5-synthetics-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/5-synthetics-detector/</guid><description>&lt;p&gt;Given you can run these tests 24/7, it is an ideal tool to get warned early if your tests are failing or starting to run longer than your agreed SLA—instead of getting informed by social media or uptime websites.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/social-media-post.png" alt="Social media" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/social-media-post.webp" alt="Social media" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
