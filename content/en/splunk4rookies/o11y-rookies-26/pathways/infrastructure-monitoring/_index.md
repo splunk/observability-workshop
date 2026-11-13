@@ -15,7 +15,7 @@ Find a noisy neighbour using Splunk Infrastructure Monitoring.
 {{< card title="Finding the needle in the Logs" href="/splunk4rookies/o11y-rookies-26/modules/6-logs/" show-time="true" >}}
 Use Log Observer to identify patterns and determine the root cause of an incident.
 {{< /card >}}
-{{< card title="What is that Database doing?" href="/splunk4rookies/o11y-rookies-26/modules/7-db-mon/" show-time="true" >}}
+{{< card title="Finding issues in the database" href="/splunk4rookies/o11y-rookies-26/modules/7-db-mon/" show-time="true" >}}
 Investigate database performance and its impact on the application.
 {{< /card >}}
 {{< /cards >}}
