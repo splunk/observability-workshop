@@ -21,7 +21,7 @@ def log_hallucination(
     question: str,
     context_docs: List[str],
     hallucinated_answer: str,
-    model: str = "gpt-4o",
+    model: str = "gpt-6-luna",
     session_name: str = "Hallucination Demo",
     external_session_id: Optional[str] = None,
     existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
@@ -81,8 +81,7 @@ Question: {question}"""
             num_output_tokens=len(hallucinated_answer.split()) * 2,
             total_tokens=len(llm_input.split()) * 2 + len(hallucinated_answer.split()) * 2,
             duration_ns=int(1.2e8),
-            metadata={"temperature": "0.1", "demo_type": "hallucination"},
-            temperature=0.1,
+            metadata={"demo_type": "hallucination"},
             status_code=200,
             time_to_first_token_ns=500000,
         )
@@ -132,7 +131,7 @@ def log_demo_hallucination(
         context_docs = ["[No context available]"]
 
     model_config = config.get("model", {})
-    model = model_config.get("default_model", "gpt-4o")
+    model = model_config.get("default_model", "gpt-6-luna")
 
     return log_hallucination(
         project_name=project_name,

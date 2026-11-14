@@ -10,14 +10,9 @@ ui:
     - "Can you look up information for patient P001?"
 
 model:
-  default_model: "gpt-4.1-mini"
-  temperature: 0.1
-  additional_models:
-    - "gpt-4o"
-    - "gpt-4o-mini"
-    - "gpt-4.1"
-    - "gpt-5.1"
-    - "gpt-5-mini"
+  default_model: "gpt-6-luna"
+  # temperature: 0.1  # gpt-6-luna does not support temperature; leave unset (omitted from requests)
+  additional_models: []
 
 rag:
   enabled: true

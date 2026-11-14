@@ -312,7 +312,7 @@ def show_example_queries(q1: str, q2: str) -> str | None:
 def render_chat_screen(app_config: dict) -> None:
     ui = app_config.get("ui", {})
     render_sidebar(app_config)
-    model = app_config.get("model", {}).get("default_model", "gpt-4.1-mini")
+    model = app_config.get("model", {}).get("default_model", "gpt-6-luna")
     render_header()
 
     examples = ui.get("example_queries", [

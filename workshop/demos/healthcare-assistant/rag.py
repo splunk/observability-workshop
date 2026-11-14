@@ -40,7 +40,7 @@ class HealthcareRAGSystem:
             llm_model = (
                 self.model_name
                 or model_config.get("default_model")
-                or model_config.get("model_name", "gpt-4o")
+                or model_config.get("model_name", "gpt-6-luna")
             )
 
             setup_environment()
@@ -62,10 +62,14 @@ class HealthcareRAGSystem:
             vector_store, _ = create_pgvector_store(embeddings, DOMAIN, environment)
             retriever = vector_store.as_retriever(search_kwargs={"k": self.top_k})
 
+            llm_kwargs = {}
+            if model_config.get("temperature") is not None:
+                llm_kwargs["temperature"] = model_config["temperature"]
             llm = ChatOpenAI(
                 model=llm_model,
-                temperature=0.1,
                 name="Healthcare RAG Assistant",
+                output_version="v0",
+                **llm_kwargs,
             )
 
             retrieval_qa_chat_prompt = ChatPromptTemplate.from_messages(
