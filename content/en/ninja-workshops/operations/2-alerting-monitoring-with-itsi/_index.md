@@ -2,7 +2,7 @@
 title: Alerting and Monitoring
 linkTitle: Alerting and Monitoring
 weight: 2
-archetype: chapter
+type: chapter
 authors: ["Doug Erkkila"]
 time: 90 minutes
 description: Combine Splunk Enterprise, AppDynamics, Observability Cloud, and ITSI for end-to-end alerting and service-level monitoring — from basic alerts to detector-driven ITSI episodes.

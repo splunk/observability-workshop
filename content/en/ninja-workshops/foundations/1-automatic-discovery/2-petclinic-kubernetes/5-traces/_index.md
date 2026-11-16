@@ -2,7 +2,7 @@
 title: APM Features
 linkTitle: 5. APM Features
 weight: 6
-archetype: chapter
+type: chapter
 time: 15 minutes
 ---
 

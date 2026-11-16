@@ -44,14 +44,14 @@ The UI will show services that are running on the node you have selected if they
 * Click on the **Redis** tile and this will take you to the **Redis instances** navigator. Under **REDIS INSTANCE** click on **redis-[NAME OF WORKSHOP]**.
 * This will bring you to the **Redis instance**. This navigator will show charts with metric data from the active Redis instance from our e-commerce site.
   ![redis](../images/redis-2.webp)
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Can you name the Instance dependencies tile in this view?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Can you name the Instance dependencies tile in this view?" >}}
+{{< quiz-option correct=true >}}Kubernetes{{< /quiz-option >}}
+{{< quiz-option >}}There is no dependencies tile.{{< /quiz-option >}}
+{{< quiz-option >}}Only a MySQL tile.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Yes, there is one for Kubernetes.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
 * To return to the Cluster level, simply click on the link **Cluster** **(1)** at the top of the screen.

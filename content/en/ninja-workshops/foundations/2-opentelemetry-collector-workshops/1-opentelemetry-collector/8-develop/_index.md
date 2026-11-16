@@ -6,7 +6,7 @@ weight: 8
 
 ## Developing a custom component
 
-Building a component for the Open Telemetry Collector requires three key parts:
+Building a component for the OpenTelemetry Collector requires three key parts:
 
 1. The Configuration - _What values are exposed to the user to configure_
 1. The Factory - _Make the component using the provided values_

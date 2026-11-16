@@ -14,32 +14,32 @@ After fixing the edge NGINX gateway (step 06), traces may connect from the brows
 This break is a common **Node.js proxy bug**: the service is instrumented and visible in APM, but the outbound `fetch` does not propagate trace context.
 {{% /notice %}}
 
-In Splunk APM you'll see this behaviour:
+In Splunk APM you'll see this behavior:
 
-- `frontend-api` → `payment-gateway` - connected 
-- `payment-gateway` → `payment-api` - **disconnected** 
+- `frontend-api` → `payment-gateway` - connected
+- `payment-gateway` → `payment-api` - **disconnected**
 
 ![nginx-aft1](./images/07-index.png)
 
 The payment gateway still creates its **own spans** (so it shows in the service map), but the upstream call starts a new trace on `payment-api`. This mirrors real teams who add a custom BFF/proxy and forget to propagate context on outbound HTTP calls - or when code uses `suppressTracing()` trying to avoid "double spans" which accidentally breaks propagation.
 
-
 ## The Fix
 
 Open the server.js file and locate **`buildUpstreamHeaders()`**.
 
-```
+```bash
 cd ~/workshop/context-propagation
 vi services/payment-gateway/server.js
 ```
 
-#### Inject W3C trace context into upstream headers 
+### Inject W3C trace context into upstream headers
 
 1. Uncomment/add `propagation.inject()` before the return:
 2. Remove `suppressTracing` on the upstream fetch
 
 {{< tabs >}}
 {{% tab title="Before" %}}
+
 ```javascript
 function buildUpstreamHeaders() {
   const headers = {
@@ -75,7 +75,7 @@ const upstreamContext = context.active();
 {{% /tab %}}
 {{% tab title="Solution File" %}}
 
-```
+```bash
 cp ./services/payment-gateway/server-fixed.js ./services/payment-gateway/server.js
 ```
 
@@ -88,4 +88,5 @@ Run the following command from ./workshop/context-propagation folder to compare 
 ```bash
 diff ./services/payment-gateway/server.js ./services/payment-gateway/server-fixed.js
 ```
+
 {{% / notice %}}

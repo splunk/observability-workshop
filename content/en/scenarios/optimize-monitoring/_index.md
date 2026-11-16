@@ -2,7 +2,7 @@
 title: Optimize Cloud Monitoring
 linkTitle: Optimize Cloud Monitoring
 weight: 1
-archetype: chapter
+type: chapter
 authors: ["Tim Hard"]
 description: For ITOps teams on hybrid cloud — standardize collection with OpenTelemetry, reuse dashboards and alerts across teams, and correlate metrics with logs to cut MTTR.
 time: 45 minutes

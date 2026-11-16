@@ -1,0 +1,119 @@
+# Local demo stack (no Traefik). Deploys ONLY the always-on front-end plus the
+# RBAC the embedded orchestrator needs to create back-end pods on demand.
+# Back-end Deployments/Services are created at runtime by orchestrator.py, one
+# per (agent_stream, target) — they are NOT defined here.
+#
+#   kubectl apply -f ./k8s-demo-local.yaml
+#   kubectl port-forward svc/healthcare-assistant-service 8501:8501
+#
+# Prereqs (see README.md): postgres.yaml, setup-job.yaml, the openai-api secret,
+# and the per-target splunk-ao ConfigMaps/Secrets the back-ends mount.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: healthcare-demo
+---
+# Front-end orchestrator + back-end self-termination both use this SA. Scoped to
+# this namespace only — never widen to cluster scope.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: healthcare-demo-orchestrator
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    # patch/update: orchestrator reconciles existing back-ends; back-ends stamp
+    # their own last-used annotation for LRU eviction.
+    verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments/status"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["create", "get", "list", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: healthcare-demo-orchestrator
+subjects:
+  - kind: ServiceAccount
+    name: healthcare-demo
+roleRef:
+  kind: Role
+  name: healthcare-demo-orchestrator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcare-assistant
+  labels:
+    app: healthcare-assistant
+    component: healthcare-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthcare-assistant
+  template:
+    metadata:
+      labels:
+        app: healthcare-assistant
+        component: healthcare-frontend
+    spec:
+      serviceAccountName: healthcare-demo
+      containers:
+        - name: healthcare-assistant
+          image: ghcr.io/splunk/healthcare-assistant:demo-v1
+          imagePullPolicy: Always
+          command: ["streamlit", "run", "app.py"]
+          ports:
+            - containerPort: 8501
+              name: http
+          env:
+            # Image the orchestrator uses for back-end pods. Point this at your
+            # locally built/pushed tag when testing.
+            - name: BACKEND_IMAGE
+              value: ghcr.io/splunk/healthcare-assistant:demo-v1
+            - name: BACKEND_IMAGE_PULL_POLICY
+              value: Always
+            # Max parallel back-ends. A new stream beyond this evicts the LRU
+            # back-end. Size per instance (see CLAUDE.md "Capacity & concurrency").
+            - name: MAX_BACKEND_PODS
+              value: "6"
+            # Aggressive idle self-termination (20 min) to keep the pool lean.
+            - name: BACKEND_IDLE_TTL_SECONDS
+              value: "1200"
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcare-assistant-service
+spec:
+  selector:
+    app: healthcare-assistant
+  ports:
+    - port: 8501
+      protocol: TCP
+  type: ClusterIP

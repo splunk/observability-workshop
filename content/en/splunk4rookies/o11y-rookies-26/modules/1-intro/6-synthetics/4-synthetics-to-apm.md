@@ -8,7 +8,7 @@ The synthetic run shows that checkout failed, but its waterfall also provides a 
 
 * In the waterfall, locate the request beginning with `POST checkout`. You may need to scroll down to find it. If it is not present, return to the test results and open another failed run.
 
-![Place Order](../images/run-results-place-order.png)
+![Place Order](../images/run-results-place-order.webp)
 
 * Select the blue **APM** (2) link on the `POST checkout` request. The corresponding distributed trace opens in **APM**. 
 * In the **Trace Flow**, locate the **payment** service **(3)** and confirm that it is marked as having errors. You may need to pan the map to locate the service.
@@ -16,15 +16,15 @@ The synthetic run shows that checkout failed, but its waterfall also provides a 
 * At the bottom of the waterfall, select *Logs*, which may display a count of available related logs. Then select the **Logs for trace… (5)** link from the **Related Logs** pop-up.
 * As in the earlier **Logs** exercise, filter the correlated records to display only errors, then open a payment error record.
 
-![APM trace](../images/apm-trace.png)
+![APM trace](../images/apm-trace.webp)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-* **Does the log record show that this synthetic failure was caused by the same payment error found earlier?** 
-{{% /tab %}}
-{{% tab title="Answers" %}}
+{{< quiz question="Does the log record show that this synthetic failure was caused by the same payment error found earlier?" >}}
+{{< quiz-option correct=true >}}Yes. The payment log reports an invalid API token.{{< /quiz-option >}}
+{{< quiz-option >}}No. The synthetic failure is only a browser timeout, with no related payment log.{{< /quiz-option >}}
+{{< quiz-option >}}Yes, but the log shows a database connection error.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Yes. The correlated payment log reports that the payment failed because the request contained an invalid API token, confirming that the synthetic test detected the same underlying problem.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}

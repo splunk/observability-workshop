@@ -2,7 +2,7 @@
 title: Funnel Dropoff
 linkTitle:  1. Funnel Dropoff
 weight: 1
-archetype: chapter
+type: chapter
 time: 2 minutes
 description: 
 ---

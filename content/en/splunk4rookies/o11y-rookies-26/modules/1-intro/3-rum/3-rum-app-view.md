@@ -10,7 +10,7 @@ You are now viewing the detailed RUM dashboard for your Astronomy Shop. The filt
 
 By default, the dashboard may compare the selected time range with an earlier period (1 day by default). This helps you recognize changes or unusual patterns in application usage, performance, and errors.
 
-![RUM Dashboard](../images/rum-metric-map-charts.png)
+![RUM Dashboard](../images/rum-metric-map-charts.webp)
 
 The dashboard is organized into several tabs:
 
@@ -43,7 +43,7 @@ Select each tab and take a moment to examine its charts. You do not need to unde
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Workflow Duration P75** chart.
 * In the **Custom Workflows Duration** chart click on the **see all** **(2)** link under the chart title.
 
-![RUM See All](../images/rum-see-all.png)
+![RUM See All](../images/rum-see-all.webp)
 
 {{< notice tip >}}
 What does P75 mean?

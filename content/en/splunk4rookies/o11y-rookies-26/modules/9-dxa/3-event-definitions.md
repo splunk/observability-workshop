@@ -40,14 +40,14 @@ The **element picker** lets product teams define click events by selecting eleme
 
 ![List of event definitions for Ask AI quick prompts](../images/event-definitions.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-Your marketing team launches a newsletter signup campaign. What event definition would you create to measure its success, and which filter template would you likely use?
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="Your marketing team launches a newsletter signup campaign. What event definition would you create, and which filter template would you likely use?" >}}
+{{< quiz-option correct=true >}}A Newsletter Signup event, using Click on text, Click on element, or Custom.{{< /quiz-option >}}
+{{< quiz-option >}}A page-load event for the home page.{{< /quiz-option >}}
+{{< quiz-option >}}No event is needed. RUM already counts every click.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 You would create a custom event definition named something like **Newsletter Signup**. Depending on implementation, you might use **Click on text** (matching a "Subscribe" button label) or **Click on element** (matching the signup button's XPath). If the app emits a custom event on successful signup, you would use the **Custom** template instead. The same definition can then be reused across multiple analyses and funnels.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

@@ -92,7 +92,7 @@ Enter a **Threshold** of `20`
 
 ![Enter threshold value](../../images/enter_threshold_value.png?width=40vw)
 
-We wont choose any recipients for this alert so click into **Activate** and choose **Activate Alert Rule** and **Save**
+We won't choose any recipients for this alert so click into **Activate** and choose **Activate Alert Rule** and **Save**
 
 ![Activate alert rule and save](../../images/activate_alert_rule_and_save.png?width=40vw)
 

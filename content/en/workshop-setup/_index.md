@@ -54,4 +54,4 @@ To send logs to Splunk Observability Cloud, you’ll need access to a **Splunk C
 
 ### **Trial Org Configuration**
 
-For new trial organizations, you’ll also need to complete the steps outlined in the [**Trial Org Configuration**](4-org-configuration) section.
+For new trial organizations, you’ll also need to complete the steps outlined in the [**Trial Org Configuration**](/workshop-setup/4-org-configuration/) section.

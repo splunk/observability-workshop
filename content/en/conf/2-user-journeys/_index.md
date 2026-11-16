@@ -2,7 +2,7 @@
 title: Understand Critical User Journeys
 description: Optimize and troubleshoot end user experience with Splunk Observability Cloud.
 weight: 2
-archetype: chapter
+type: chapter
 authors: ["Sarah Ware"]
 time: 60 minutes
 hidden: false
@@ -21,13 +21,13 @@ During this workshop, we will cover the following topics:
 
 By the end of this workshop, you'll be familiar with understanding application health and success through the lens of end user experience.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-Why is it important to understand end user experience?
-{{% /tab %}}
-{{% tab title="Answer" %}}
-We measure so that we can improve, and we improve in order to better serve our end users - and ultimately to better achieve our business goals. Happy app users are good for business! 
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Why is it important to understand end user experience?" >}}
+{{< quiz-option correct=true >}}Measuring experience shows what to improve for users and for the business.{{< /quiz-option >}}
+{{< quiz-option >}}End user experience only matters after an outage is over.{{< /quiz-option >}}
+{{< quiz-option >}}Backend latency is the only metric that matters.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+We measure so that we can improve, and we improve in order to better serve our end users - and ultimately to better achieve our business goals. Happy app users are good for business!
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 Before we dive into Observability, let's step into the shoes of our end users.

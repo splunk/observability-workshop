@@ -1,0 +1,102 @@
+name: "[smoke] Healthcare Assistant Demo (multi-tenant)"
+
+# Smoke tests for the multi-tenant demo app (front-end + on-demand back-ends).
+# Reuses the shared healthcare smoke workflow for pip/syntax/docker, and adds
+# app-specific checks: the back-end boots and serves /healthz, and the
+# target/orchestrator isolation logic holds.
+on:
+  push:
+    paths:
+      - 'workshop/demos/healthcare-assistant/**'
+      - '.github/workflows/healthcare-assistant-demo-services.yml'
+      - '.github/workflows/test-healthcare-assistant-smoke.yml'
+  pull_request:
+    paths:
+      - 'workshop/demos/healthcare-assistant/**'
+      - '.github/workflows/healthcare-assistant-demo-services.yml'
+      - '.github/workflows/test-healthcare-assistant-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  # Generic pip-install / syntax-check / docker-build. docker-context is the
+  # service dir itself because the demos Dockerfile is self-contained (unlike
+  # the workshop apps, which COPY from the parent).
+  smoke:
+    uses: ./.github/workflows/test-healthcare-assistant-smoke.yml
+    with:
+      service-path: workshop/demos/healthcare-assistant
+      docker-context: workshop/demos/healthcare-assistant
+
+  backend-smoke-test:
+    name: Back-end Boot & Health
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workshop/demos/healthcare-assistant
+    env:
+      # The back-end only talks to Postgres/LLM/Agent Control on a real /query.
+      # Skip RAG warmup and disable idle self-termination so it boots cleanly in CI.
+      BACKEND_SKIP_RAG_WARM: "true"
+      BACKEND_IDLE_TTL_SECONDS: "0"
+      SPLUNK_AO_AGENT_STREAM: ci-smoke
+      SPLUNK_AO_PROJECT: Healthcare Assistant Demo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: workshop/demos/healthcare-assistant/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Start back-end
+        run: uvicorn server:app --host 0.0.0.0 --port 8000 &
+
+      - name: Wait for back-end to be ready
+        run: |
+          echo "Waiting for back-end on port 8000..."
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8000/healthz > /dev/null 2>&1; then
+              echo "Back-end ready after $((i * 2))s"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Back-end did not start within 60s"
+          exit 1
+
+      - name: Health check
+        run: |
+          response=$(curl -sf http://localhost:8000/healthz)
+          echo "GET /healthz → $response"
+          echo "$response" | python3 -c "
+          import json, sys
+          d = json.load(sys.stdin)
+          assert d.get('status') == 'ok', f'Expected ok, got {d!r}'
+          assert d.get('agent_stream') == 'ci-smoke', f'Wrong agent_stream: {d!r}'
+          print('Health check passed')
+          "
+
+  logic-smoke:
+    name: Target & Orchestrator Logic
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workshop/demos/healthcare-assistant
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: workshop/demos/healthcare-assistant/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run logic smoke test
+        run: python smoke_test.py

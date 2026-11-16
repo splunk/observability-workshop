@@ -36,6 +36,102 @@ user_cancelled() {
   exit 0
 }
 
+# Active storages that can hold VM disks (Images content).
+list_image_storages() {
+  pvesm status --content images --enabled 1 | awk 'NR > 1 && $3 == "active" { print $1 "|" $2 "|" $6 }'
+}
+
+storage_names() {
+  local line
+  for line in "$@"; do
+    printf '%s\n' "${line%%|*}"
+  done
+}
+
+select_vm_storage() {
+  local requested=$1
+  local -a options=()
+  local -a menu=()
+  local line name type free_kib available
+
+  mapfile -t options < <(list_image_storages)
+  (( ${#options[@]} > 0 )) || fatal "No active storage with disk image support was found. Enable Images on a storage, then run the script again."
+
+  if [[ -n "$requested" ]]; then
+    if storage_names "${options[@]}" | grep -qx "$requested"; then
+      STORAGE=$requested
+      return 0
+    fi
+    available=$(storage_names "${options[@]}" | paste -sd ', ' -)
+    fatal "Storage '${requested}' is not an active image storage. Available: ${available}"
+  fi
+
+  if [[ "$NONINTERACTIVE" == "true" ]]; then
+    if storage_names "${options[@]}" | grep -qx local-lvm; then
+      STORAGE=local-lvm
+      return 0
+    fi
+    if (( ${#options[@]} == 1 )); then
+      STORAGE=${options[0]%%|*}
+      return 0
+    fi
+    available=$(storage_names "${options[@]}" | paste -sd ', ' -)
+    fatal "Multiple image storages are available. Pass --storage. Available: ${available}"
+  fi
+
+  if (( ${#options[@]} == 1 )); then
+    STORAGE=${options[0]%%|*}
+    return 0
+  fi
+
+  for line in "${options[@]}"; do
+    IFS='|' read -r name type free_kib <<< "$line"
+    free_kib=${free_kib:-0}
+    if (( free_kib >= 1048576 )); then
+      menu+=("$name" "${type}, $((free_kib / 1048576)) GiB free")
+    else
+      menu+=("$name" "${type}, $((free_kib / 1024)) MiB free")
+    fi
+  done
+
+  STORAGE=$(whiptail \
+    --backtitle "Splunk Observability Workshop" \
+    --title "VM Storage" \
+    --default-item local-lvm \
+    --menu "Choose storage for the VM disks:" \
+    18 78 8 \
+    "${menu[@]}" \
+    3>&1 1>&2 2>&3) || user_cancelled
+}
+
+# Moving an imported volume onto virtio0 already drops its unusedN entry.
+# discard is limited to storages where QEMU TRIM is reliable.
+attach_imported_disk() {
+  local vmid=$1
+  local storage=$2
+  local storage_type imported disk_opts unused_key
+
+  storage_type=$(pvesm status --storage "$storage" | awk 'NR > 1 { print $2; exit }')
+  case "$storage_type" in
+    lvmthin|rbd) disk_opts=",discard=on" ;;
+    *) disk_opts="" ;;
+  esac
+
+  imported=$(qm config "$vmid" | sed -n 's/^unused[0-9]\+: //p' | head -n 1)
+  imported=${imported%%,*}
+  [[ -n "$imported" ]] || fatal "Could not find the disk imported onto ${storage} for VM ${vmid}."
+
+  qm set "$vmid" \
+      --scsihw virtio-scsi-pci \
+      --virtio0 "${imported}${disk_opts}" \
+      --ide2 "${storage}:cloudinit" >/dev/null
+
+  unused_key=$(qm config "$vmid" | sed -n 's/^\(unused[0-9]\+\):.*/\1/p' | head -n 1)
+  if [[ -n "$unused_key" ]]; then
+    qm set "$vmid" --delete "$unused_key" >/dev/null
+  fi
+}
+
 format_elapsed() {
   local total_seconds=$1
   local hours=$((total_seconds / 3600))
@@ -270,6 +366,7 @@ CLI_DIAB_VERSION=""
 CLI_USE_TEMPLATE_CLONE=""
 CLI_TEMPLATE_NAME=""
 CLI_TEMPLATE_VMID=""
+CLI_STORAGE=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -282,8 +379,9 @@ while [[ $# -gt 0 ]]; do
     --use-template-clone) CLI_USE_TEMPLATE_CLONE="${2:-}"; shift 2 ;;
     --template-name) CLI_TEMPLATE_NAME="${2:-}"; shift 2 ;;
     --template-vmid) CLI_TEMPLATE_VMID="${2:-}"; shift 2 ;;
+    --storage) CLI_STORAGE="${2:-}"; shift 2 ;;
     --help|-h)
-      echo "Usage: $0 [--non-interactive] [--assume-yes] [--mode normal|template] [--swipe-id ID] [--env-name NAME] [--diab-version staging|production] [--use-template-clone yes|no] [--template-vmid VMID] [--template-name NAME]"
+      echo "Usage: $0 [--non-interactive] [--assume-yes] [--mode normal|template] [--swipe-id ID] [--env-name NAME] [--diab-version staging|production] [--use-template-clone yes|no] [--template-vmid VMID] [--template-name NAME] [--storage STORAGE]"
       exit 0
       ;;
     *)
@@ -445,7 +543,8 @@ else
 fi
 
 VMID=$(pvesh get /cluster/nextid)
-STORAGE=local-lvm
+select_vm_storage "$CLI_STORAGE"
+echo -e "Storage: ${YW}${STORAGE}${CL}"
 if [[ "$TEMPLATE_MODE" == "true" ]]; then
   HOSTNAME="${ENV_NAME}-${VMID}"
 else
@@ -639,6 +738,12 @@ cat >> "$SNIPPET_PATH" <<'CLOUDCFG_STATIC'
       net.bridge.bridge-nf-call-iptables=1
       net.bridge.bridge-nf-call-ip6tables=1
       net.ipv4.ip_forward=1
+      # Host IPv6 stays off. Router advertisements install a default route
+      # that Python prefers, and outbound IPv6 from this network never
+      # connects. ip6tables stays enabled so k3s can still call it.
+      net.ipv6.conf.all.disable_ipv6=1
+      net.ipv6.conf.default.disable_ipv6=1
+      net.ipv6.conf.lo.disable_ipv6=1
 
       # Increase inotify limits
       fs.inotify.max_user_watches=524288
@@ -1091,8 +1196,8 @@ cleanup() {
 trap cleanup EXIT INT TERM HUP
 
 if [[ "$USE_TEMPLATE_CLONE" == "true" ]]; then
-  echo -e "${YW}Cloning template VM ${TEMPLATE_SOURCE_VMID} (${TEMPLATE_SOURCE_NAME})...${CL}"
-  qm clone "$TEMPLATE_SOURCE_VMID" "$VMID" --name "$HOSTNAME" >/dev/null
+  echo -e "${YW}Cloning template VM ${TEMPLATE_SOURCE_VMID} (${TEMPLATE_SOURCE_NAME}) onto ${STORAGE}...${CL}"
+  qm clone "$TEMPLATE_SOURCE_VMID" "$VMID" --name "$HOSTNAME" --full 1 --storage "$STORAGE" >/dev/null
 else
   WORK_DIR=$(mktemp -d)
   VM_IMAGE="${WORK_DIR}/noble-server-cloudimg-amd64.img"
@@ -1116,10 +1221,7 @@ else
       --cpu host --sockets 1 --cores 4 \
       --net0 virtio,bridge=vmbr0 >/dev/null
   qm importdisk "$VMID" "$VM_IMAGE" "$STORAGE" >/dev/null
-  qm set "$VMID" \
-      --scsihw virtio-scsi-pci \
-      --virtio0 "$STORAGE:vm-$VMID-disk-1,discard=on" \
-      --ide2 "$STORAGE:cloudinit" >/dev/null
+  attach_imported_disk "$VMID" "$STORAGE"
 fi
 
 if [[ "$TEMPLATE_MODE" == "true" ]]; then

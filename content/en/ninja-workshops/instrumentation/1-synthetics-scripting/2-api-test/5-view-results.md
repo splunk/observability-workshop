@@ -25,7 +25,7 @@ A horizontal bar for each request in the transaction, in execution order. Green 
 
 Click any request in the timeline (or the list on the left) to open three tabs:
 
-- **Response** — full response body, headers, and status code. Useful for one-off debugging ("what is Spotify actually returning?") and for verifying that your extraction rules are pointing at the right field. The response body is captured every run, so you can compare today's response against last week's if behaviour has changed.
+- **Response** — full response body, headers, and status code. Useful for one-off debugging ("what is Spotify actually returning?") and for verifying that your extraction rules are pointing at the right field. The response body is captured every run, so you can compare today's response against last week's if behavior has changed.
 - **Request** — exactly what was sent on the wire: method, URL (with global variables already expanded so you can verify the substitution), headers, and body. Sensitive values from concealed variables are still concealed here.
 - **Connection info** — TLS version, cipher suite, certificate chain. Worth a look when you're debugging certificate or protocol-handshake issues.
 

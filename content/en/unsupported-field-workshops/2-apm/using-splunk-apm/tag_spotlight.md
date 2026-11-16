@@ -20,7 +20,7 @@ The Tag Spotlight page is interactive and allows you to add a tag as a filter by
 
 ![Gold Tenant](../../images/gold-tenant.png)
 
-Tag Spotlight is very useful for analysing your data and spotting trends. We can see that for the Gold Tenant that out of the total number of requests, 55 of them are in error (this number will vary in your workshop).
+Tag Spotlight is very useful for analyzing your data and spotting trends. We can see that for the Gold Tenant that out of the total number of requests, 55 of them are in error (this number will vary in your workshop).
 
 If we correlate this to the version tag, we can see that version `350.10` served 55 requests and version `350.9` served 17 requests. This means that all of the requests that went through version `350.10` ended up in an error state.
 

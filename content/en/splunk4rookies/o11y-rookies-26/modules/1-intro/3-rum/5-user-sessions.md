@@ -19,7 +19,7 @@ You previously filtered the data to **PlaceOrder** and sorted the results by dur
 * In the **User Sessions** table, select the **Session ID** associated with the longest *PlaceOrder* duration. Preferably select a duration longer than **6 seconds**. If none are available, select the longest duration shown. Your values may differ from the screenshots.
 * The RUM session view opens. Locate the *PlaceOrder* span in the session timeline.
 
-![RUM Session](../images/rum-waterfall-place-order.png)
+![RUM Session](../images/rum-waterfall-place-order.webp)
 
 * Review its **duration**. The length of the bar shows how long the workflow took to complete. A long bar confirms that this user experienced a slow checkout interaction.
 * Near the *PlaceOrder* span, locate the **Fetch (1)** event for the checkout request. Depending on the order of events in your session, it may appear immediately above or below *PlaceOrder*.  
@@ -28,7 +28,7 @@ It should start with:
 * Check the request’s status code. An *HTTP status code* of **500** indicates that the backend encountered an error while processing the request.
 * Select the blue **APM** link **(2)** and wait for the performance summary to appear. This summary connects the browser request to the backend trace that processed it.
 
-![RUM Session](../images/rum-waterfall.png)
+![RUM Session](../images/rum-waterfall.webp)
 
 * Review the services shown at the bottom of the summary. A red error indicator identifies a service containing one or more errors. In this example, errors are associated with services such as *checkout* or *payment* **(3)**. The exact services and order may differ in your session. 
 

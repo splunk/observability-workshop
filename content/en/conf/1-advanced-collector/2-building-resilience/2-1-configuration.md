@@ -61,7 +61,7 @@ service:
 ```yaml
     metrics:
       receivers:
-      # - hostmetrics                    # Hostmetric reciever (cpu only)
+      # - hostmetrics                    # Hostmetric receiver (cpu only)
       - otlp
 ```
 

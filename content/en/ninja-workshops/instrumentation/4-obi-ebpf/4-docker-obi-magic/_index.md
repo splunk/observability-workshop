@@ -2,7 +2,7 @@
 title: "Phase 2: The OBI Magic"
 linkTitle: 4. Docker with OBI
 weight: 4
-archetype: chapter
+type: chapter
 time: 20 minutes
 description: Add the OBI eBPF agent to your Docker Compose stack. Without changing any application code, full distributed traces appear in Splunk APM.
 ---

@@ -2,7 +2,7 @@
 title: Analyze user behavior
 linkTitle: 2. Analyze user behavior
 weight: 2
-archetype: chapter
+type: chapter
 time: 12 minutes
 ---
 

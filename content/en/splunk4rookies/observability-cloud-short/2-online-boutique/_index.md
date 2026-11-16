@@ -22,18 +22,14 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 * Browse the Online Boutique, add a few items to your cart, and complete a checkout.
 * Repeat this at least 3–5 times to surface the performance issues deliberately built into the application.
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-**The whole checkout process is only supposed to take milliseconds. Did you notice anything about the checkout process?**
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
-**Sometimes slow!** 🐌
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="The whole checkout process is only supposed to take milliseconds. Did you notice anything about the checkout process?" >}}
+{{< quiz-option correct=true >}}It is sometimes slow.{{< /quiz-option >}}
+{{< quiz-option >}}It is always instant.{{< /quiz-option >}}
+{{< quiz-option >}}Checkout never completed.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**Sometimes slow!**
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 * When the checkout process is slow, it creates a frustrating user experience. Because this directly impacts customer satisfaction, we should prioritise investigating and resolving the issue.
 

@@ -30,7 +30,7 @@ If you click into one of the currently on call users, you can see their status. 
 
 ## 3. Timeline
 
-In the centre **Timeline** section you get a realtime view of what is happening within your environment with the newest messages at the top. Here you can quickly post update messages to make your colleagues aware of important developments etc.
+In the center **Timeline** section you get a realtime view of what is happening within your environment with the newest messages at the top. Here you can quickly post update messages to make your colleagues aware of important developments etc.
 
 You can filter the view using the buttons on the top toolbar showing only update messages, GitHub integrations, or apply more advanced filters.
 

@@ -5,7 +5,7 @@ linkTitle: "Zero Touch Event Analytics"
 time: "90 minutes"
 weight: 3
 layout: chapter
-archetype: chapter
+type: chapter
 product: "ITSI"
 hidden: false
 ---

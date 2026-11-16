@@ -3,7 +3,7 @@ title: Improve Timeliness of Alerts
 linkTitle: 5. Improve Timeliness of Alerts
 weight: 1
 authors: ["Tim Hard"]
-time: 1 minutes
+time: 1 minute
 draft: false
 ---
 

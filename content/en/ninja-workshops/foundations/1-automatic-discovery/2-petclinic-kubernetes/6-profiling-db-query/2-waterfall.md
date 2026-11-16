@@ -29,4 +29,4 @@ For further investigation, the UI allows you to click a stack trace so that you 
 
 ![stack trace](../../images/grab-stack-trace.png)
 
-For more details on Profiling, check the the **Debug Problems workshop**, or  check the documents [here](https://docs.splunk.com/observability/en/apm/profiling/intro-profiling.html#introduction-to-alwayson-profiling-for-splunk-apm)> -->
+For more details on Profiling, check the **Debug Problems workshop**, or  check the documents [here](https://docs.splunk.com/observability/en/apm/profiling/intro-profiling.html#introduction-to-alwayson-profiling-for-splunk-apm)> -->

@@ -82,7 +82,7 @@ The same clearing event now stops collection and updates the episode's operation
 ## Review the resulting episode
 
 {{% notice title="Tip" style="primary" %}}
-If you don't see any new episodes using the the **Notable Event Aggregation Policy** you created right away, Don't panic. It may take a few minutes for the workshop scenario to cycle through the events. Try refreshing after a few minutes and new episodes should appear. 
+If you don't see any new episodes using the **Notable Event Aggregation Policy** you created right away, do not panic. It may take a few minutes for the workshop scenario to cycle through the events. Try refreshing after a few minutes and new episodes should appear.
 {{% /notice %}}
 
 **11.** Select **Alerts and Episodes** in the left navigation to open **Episode Review**. Select **Add filter** > **Policy**, choose `WS50 Payment Episodes`, and open a newly generated episode.

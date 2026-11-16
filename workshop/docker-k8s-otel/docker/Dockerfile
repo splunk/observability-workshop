@@ -18,6 +18,8 @@ RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 RUN apt-get update && \
 	apt-get install -y unzip
 
+ENV SKIP_RELEASE_VERIFICATION=true
+
 # Download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 

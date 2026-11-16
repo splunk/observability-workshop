@@ -4,7 +4,7 @@ linkTitle: 3. RUM Landing Page
 weight: 3
 ---
 
-* Visit  the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)
+* Visit the RUM landing page and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)
 
 ---
 
@@ -38,7 +38,7 @@ RUM Application Summary Dashboard consists of 6 major sections. The first is the
 
 ![RUM-SummaryHeader](../images/RUM_SummaryHeader.png)
 
-For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](./4-browser-summary)
+For the workshop let's do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](./4-browser-summary)
 
 ---
 

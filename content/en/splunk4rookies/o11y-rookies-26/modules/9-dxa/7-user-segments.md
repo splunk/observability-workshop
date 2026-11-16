@@ -23,14 +23,14 @@ Segment definitions can combine:
 
 ![Checkout funnel filtered by a user segment showing segment-specific drop-off rates](images/funnel-segment-comparison.png)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-When would segmenting by device type change your remediation priority?
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="When would segmenting by device type change your remediation priority?" >}}
+{{< quiz-option correct=true >}}When mobile checkout drop-off is much higher than desktop, fix mobile first.{{< /quiz-option >}}
+{{< quiz-option >}}Device type never changes what you fix first.{{< /quiz-option >}}
+{{< quiz-option >}}A worse mobile result means you should invest only in desktop.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 If mobile users drop off at checkout at a significantly higher rate than desktop users, you would prioritize mobile-specific fixes — responsive layout issues, payment form usability, or touch-target problems — before investing in desktop-only improvements. Segments turn a generic "checkout is broken" finding into a targeted action plan.
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

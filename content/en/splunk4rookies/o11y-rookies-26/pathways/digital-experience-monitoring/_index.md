@@ -2,7 +2,7 @@
 title: Digital Experience Path
 layout: hero
 weight: 2
-description: Follow the digital experience path to understand real user behaviour and proactively monitor critical journeys.
+description: Follow the digital experience path to understand real user behavior and proactively monitor critical journeys.
 ---
 
 Complete these modules in the recommended order:

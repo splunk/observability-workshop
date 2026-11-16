@@ -2,7 +2,7 @@
 title: Optimize End User Experiences
 linkTitle: Optimize End User Experiences
 weight: 4
-archetype: chapter
+type: chapter
 authors: ["Sarah Ware"]
 time: 90 minutes
 description: Combine Splunk RUM and Synthetics to measure real-user performance, run proactive tests, and alert on the frontend KPIs that matter.

@@ -2,7 +2,7 @@
 title: Workshop Wrap-up 🎁
 linkTitle: 7. Workshop Wrap-up
 weight: 7
-archetype: chapter
+type: chapter
 time: 1 minute
 description: Congratulations, you have completed the workshop.
 ---
@@ -11,4 +11,4 @@ description: Congratulations, you have completed the workshop.
 
 <!-- >[!IMPORTANT]Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="linkedin" >}}{{< linkedin color="#0a66c2" >}}{{< /badge >}} profile." -->
 
-{{% image src="images/champagne.png" align="center" height="50vh" %}}
+{{% image src="images/champagne.webp" align="center" height="50vh" %}}

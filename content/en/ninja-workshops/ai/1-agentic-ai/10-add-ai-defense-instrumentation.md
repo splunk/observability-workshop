@@ -140,7 +140,7 @@ docker push localhost:9999/agentic-ai-app:app-with-ai-defense
 
 ### Create a Secret for AI Defense
 
-Run the following command to create a secret to store the the Cisco AI Defense inspection API key
+Run the following command to create a secret to store the Cisco AI Defense inspection API key
 and endpoint:
 
 ```bash

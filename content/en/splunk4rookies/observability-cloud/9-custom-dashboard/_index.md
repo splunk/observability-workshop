@@ -2,7 +2,7 @@
 title: Custom Service Health Dashboard 🏥
 linkTitle: 9. Service Health Dashboard
 weight: 9
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: In this section, you will learn how to build a custom Service Health Dashboard to monitor the health of your services.
 ---

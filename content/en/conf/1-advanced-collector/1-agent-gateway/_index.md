@@ -107,7 +107,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Loadgen**, and **
           - otlphttp
         metrics:
           receivers:
-          - hostmetrics                    # Hostmetric reciever (cpu only)
+          - hostmetrics                    # Hostmetric receiver (cpu only)
           - otlp
           processors:
           - memory_limiter                 # Memory Limiter processor

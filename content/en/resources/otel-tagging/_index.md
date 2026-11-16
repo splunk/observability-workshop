@@ -107,7 +107,7 @@ For example, suppose your application sends in data for a metric named `custom.m
 
 On the other hand, if `custom.metric` includes an attribute named `customer.id`, and there are thousands of customer ID values, this would generate thousands of metric time series, which may impact costs and query performance.
 
-Splunk Observability Cloud provides a [report](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html) that allows for the management of metrics usage. And [rules](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html) can be created to drop undesirable dimensions.  However, the first line of defence is understanding how attribute name and value combinations can drive increased metric cardinality.
+Splunk Observability Cloud provides a [report](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html) that allows for the management of metrics usage. And [rules](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html) can be created to drop undesirable dimensions.  However, the first line of defense is understanding how attribute name and value combinations can drive increased metric cardinality.
 
 ## Summary
 

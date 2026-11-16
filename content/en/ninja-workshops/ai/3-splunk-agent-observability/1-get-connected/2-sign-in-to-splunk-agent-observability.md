@@ -10,7 +10,14 @@ time: 5 minutes
 To access Splunk Agent Observability, navigate to 
 [https://console.multitenant.sao.splunkcloud.com`](https://console.multitenant.sao.splunkcloud.com) using your browser. 
 
-Use the credentials provided by the workshop organizer to sign in. 
+The credentials are stored as environment variables on your EC2 instance: 
+
+```bash
+echo $SPLUNK_AO_USER
+echo $SPLUNK_AO_PASSWORD
+```
+
+Use these credentials to sign in to Splunk Agent Observability. 
 
 After signing in, ensure that the `workshop` org is selected.  Then, you should see a screen 
 similar to the following example: 

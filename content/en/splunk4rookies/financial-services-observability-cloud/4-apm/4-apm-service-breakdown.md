@@ -11,14 +11,14 @@ weight: 4
 * Back in the Service Map click on **gold** (our most valuable user tier).
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
 * Repeat this for **silver** and **bronze**.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What can you conclude from what you are seeing?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="What can you conclude from what you are seeing?" >}}
+{{< quiz-option correct=true >}}Every `tenant.level` is affected by `v350.10`.{{< /quiz-option >}}
+{{< quiz-option >}}Only one tenant level is affected.{{< /quiz-option >}}
+{{< quiz-option >}}`v350.9` is the version causing the errors.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Every `tenant.level` is being impacted by `v350.10`**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /notice %}}
 

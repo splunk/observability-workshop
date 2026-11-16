@@ -25,8 +25,8 @@ Replace [NAME OF WORKSHOP] with the workshop name assigned to you by your instru
   * Web Vitals, indicating the application’s loading performance, responsiveness, and visual stability.
   * Most Recent Alerts, showing any active alerts associated with the application.  
 
-* Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart to dive into the the data.
+* Next, click on the **[NAME OF WORKSHOP]-store** **(3)** above the **Page Views / JavaScript Errors** chart to dive into the data.
 
-![main page](../images/rum-dashboard.png)
+![main page](../images/rum-dashboard.webp)
 
 {{% /exercise %}}

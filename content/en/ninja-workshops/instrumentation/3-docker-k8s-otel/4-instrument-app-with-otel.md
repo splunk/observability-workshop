@@ -30,24 +30,22 @@ In the terminal, install the distribution as follows
 {{% tab title="Script" %}}
 
 ``` bash
-sh ./splunk-otel-dotnet-install.sh
+SKIP_RELEASE_VERIFICATION=true sh ./splunk-otel-dotnet-install.sh
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ``` bash
-Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dotnet-linux-glibc-x64.zip)...
+Warning: GitHub release and artifact attestation verification is skipped. The ZIP archive will not be verified.
+Downloading v1.16.0 for linux-glibc (/tmp/splunk-otel-dotnet.XXXX/splunk-opentelemetry-dotnet-linux-glibc-x64.zip)...
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-> Note: we may need to include the ARCHITECTURE environment when running the command above:
->
-> ``` bash
-> ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
-> ```
+> Note: Current versions of `splunk-otel-dotnet-install.sh` verify the downloaded archive with the GitHub CLI. That check calls the GitHub API and requires `gh auth login` or a `GH_TOKEN`. This lab does not use a GitHub account, so skip release verification. 
+
 
 ## Activate the Instrumentation
 
@@ -87,21 +85,18 @@ There are two ways we can do this:
 OTEL_TRACES_EXPORTER=otlp,console dotnet run 
 ```
 
-1. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs.
+1. Alternatively, we could add the debug exporter to the traces pipeline, which ensures the traces are written to the collector logs.
 
 ``` yaml
-exporters:
-  debug:
-    verbosity: detailed
-service:
   pipelines:
     traces:
       receivers: [jaeger, otlp, zipkin]
       processors:
       - memory_limiter
       - batch
-      - resourcedetection
-      exporters: [otlphttp, signalfx, debug]
+      - resource_detection
+      #- resource/add_environment
+      exporters: [otlp_http, debug]
 ```
 
 {{< /details >}}
@@ -167,7 +162,7 @@ Resource associated with Activity:
 
 Now that the setup is complete, let's confirm that traces are sent to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
 
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. `otel-instancename`).
+Navigate to **APM** -> **Overview**, then use the **Environment** dropdown to select your environment (i.e. `otel-instancename`).
 
 If everything was deployed correctly, you should see `helloworld` displayed in the list of services:
 

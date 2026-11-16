@@ -135,7 +135,7 @@ splunk    144789   46722  0 20:09 pts/1    00:00:00 grep --color=auto appdynamic
   
 Once all of the components appear on the flow map, you should see an HTTP cloud icon that represents the three HTTP backends called by the Insurance-Services Tier.
 
-Ungroup the the three HTTP backends by following these steps.
+Ungroup the three HTTP backends by following these steps.
 
 1. Right click the HTTP cloud icon labeled 3 HTTP backends
 2. From the drop down menu, select Ungroup Backends

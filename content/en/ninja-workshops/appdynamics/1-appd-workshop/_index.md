@@ -6,7 +6,8 @@ description: Full-stack AppDynamics walkthrough — Java APM, server visibility,
 aliases:
   - /ninja-workshops/15-appd-workshop/
   - /ninja-workshops/appdynamics/15-appd-workshop/
-product: "AppDynamics"
+product: 
+  - ["APPD", "AppDynamics", "green"]
 ---
 
 ## Introduction

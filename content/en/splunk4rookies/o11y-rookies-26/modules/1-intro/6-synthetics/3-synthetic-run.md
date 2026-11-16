@@ -18,15 +18,15 @@ Compare the final screenshots and video with the failure summary. Identify what 
 * In the Video pane, press on the play button **▶** **(1)** to see the test playback.
 * Using the filter above the filmstrip, under the heading **Filter by a synthetic transaction, page, or step** **(2)**, click on **Place Order** under **Synthetic transactions**. -->
 
-![waterfall](../images/synth-waterfall.png)
+![waterfall](../images/synth-waterfall.webp)
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-* **Which step failed, and what condition caused the test to time out?** 
-{{% /tab %}}
-{{% tab title="Answers" %}}
+{{< quiz question="Which step failed, and what condition caused the test to time out?" >}}
+{{< quiz-option correct=true >}}Step 6, confirm checkout. The confirmation text did not appear in time.{{< /quiz-option >}}
+{{< quiz-option >}}Step 1, opening the home page, because the site never loaded.{{< /quiz-option >}}
+{{< quiz-option >}}Step 3, adding to the cart, because the product was out of stock.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **Step 6 – confirm checkout failed. The test timed out because the expected confirmation text, “We’ve sent you a confirmation email,” did not appear within the allowed time.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}

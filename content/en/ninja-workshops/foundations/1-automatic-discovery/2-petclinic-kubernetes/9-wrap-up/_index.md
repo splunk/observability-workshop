@@ -2,7 +2,7 @@
 title: Workshop Wrap-up 🎁
 linkTitle: 9. Workshop Wrap-up
 weight: 9
-archetype: chapter
+type: chapter
 description: Congratulations, you have completed the Spring PetClinic Spring Boot Based Microservices On Kubernetes workshop. Today, you have become familiar with how easy it is to add tracing, Code Profiling and Database Query Performance to your existing Java applications in Kubernetes to immediately improve the observability of your applications and infrastructure.
 ---
 

@@ -11,6 +11,7 @@
 
 {{/* Only instrument GitHub Pages builds; never load RUM in hugo server. */}}
 {{- if and (not hugo.IsServer) (strings.HasSuffix (urls.Parse .Site.BaseURL).Host ".github.io") }}
+<script defer src="https://analytics.splunko11y.com/script.js" data-website-id="e4cc6d01-9829-476f-81c9-9d879ddec85f"></script>
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script src="https://cdn.observability.splunkcloud.com/o11y-gdi-rum/v3/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
 <script>

@@ -25,14 +25,14 @@ As a service owners you can use the service view in Splunk APM to get a complete
 
 {{% exercise title="Read the service map popup" %}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-**In the Service Map  click on the **paymentservice**. What can you conclude from the Service Requests & Errors chart in the sidebar?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
+{{< quiz question="In the Service Map, click paymentservice. What can you conclude from the Service Requests & Errors chart in the sidebar?" >}}
+{{< quiz-option correct=true >}}The error percentage is very high.{{< /quiz-option >}}
+{{< quiz-option >}}The error percentage is near zero.{{< /quiz-option >}}
+{{< quiz-option >}}The chart shows latency only, with no errors.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 **The error percentage is very high.**
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 {{% /exercise %}}
 
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.

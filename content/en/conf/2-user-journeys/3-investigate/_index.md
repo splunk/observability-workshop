@@ -2,7 +2,7 @@
 title: Front end clues to back end issues
 linkTitle:  3. Investigate
 weight: 3
-archetype: chapter
+type: chapter
 time: 9 minutes
 description: 
 ---

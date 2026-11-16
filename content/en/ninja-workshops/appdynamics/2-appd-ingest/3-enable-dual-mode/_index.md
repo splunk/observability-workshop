@@ -2,7 +2,7 @@
 title: "Phase 2: Enable Dual Signal Mode"
 linkTitle: 3. Enable Dual Mode
 weight: 3
-archetype: chapter
+type: chapter
 time: 15 minutes
 description: Install the OpenTelemetry Collector, enable dual signal mode on the AppDynamics agent, and verify traces appear in both AppDynamics and Splunk Observability Cloud.
 ---

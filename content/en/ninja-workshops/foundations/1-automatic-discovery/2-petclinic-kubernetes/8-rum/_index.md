@@ -3,10 +3,10 @@ title: Real User Monitoring
 linkTitle: 8. Real User Monitoring
 weight: 9
 time: 10 minutes
-archetype: chapter
+type: chapter
 ---
 
-To enable Real User Monitoring (RUM) instrumentation for an application, you need to add the Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet to the code base.
+To enable Real User Monitoring (RUM) instrumentation for an application, you need to add the OpenTelemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet to the code base.
 
 The Spring PetClinic application uses a single [**index**](https://github.com/spring-petclinic/spring-petclinic-microservices/blob/main/spring-petclinic-api-gateway/src/main/resources/static/index.html) HTML page, that is reused across all views of the application. This is the perfect location to insert the Splunk RUM instrumentation library as it will be loaded for all pages automatically.
 

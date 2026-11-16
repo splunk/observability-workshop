@@ -94,6 +94,11 @@ resource "aws_lambda_function" "lambda_producer" {
     }
   }
 
+  tags = {
+    "splunkit_data_classification" = "private"
+    "splunkit_environment_type"    = "non-prd"
+  }
+
   layers = var.otel_lambda_layer
 
   timeout = 60
@@ -121,6 +126,12 @@ resource "aws_lambda_function" "lambda_consumer" {
       AWS_LAMBDA_EXEC_WRAPPER = "/opt/nodejs-otel-handler"
     }
   }
+
+  tags = {
+    "splunkit_data_classification" = "private"
+    "splunkit_environment_type"    = "non-prd"
+  }
+
 
   layers = var.otel_lambda_layer
 

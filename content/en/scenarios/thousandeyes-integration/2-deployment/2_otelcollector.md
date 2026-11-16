@@ -6,11 +6,11 @@ time: 15 minutes
 description: Deploy the OTel Collector.
 ---
 
-Next we will deploy the open telemetry collector
+Next we will deploy the OpenTelemetry collector
 
 ## Installation Steps
 
-### Step 1: Deploy the Open Telemetry Collector
+### Step 1: Deploy the OpenTelemetry Collector
 
 If your application is already instrumented and traces are visible in Splunk APM, you can skip to Step 2. Otherwise, the fastest learning path in Kubernetes is to use the Splunk OpenTelemetry Collector with the Operator enabled for zero-code instrumentation.
 

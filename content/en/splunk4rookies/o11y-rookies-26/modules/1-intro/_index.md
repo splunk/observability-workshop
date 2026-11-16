@@ -19,7 +19,7 @@ Before the workshop begins, configure the Astronomy Shop’s feature flags:
 * Set **paymentFailure** to **50%**.
 
 This ensures that approximately half of the payment requests fail, producing the telemetry required for the workshop exercises.
-<img src="images/flagd-payment.png" style="max-height: 160px; width: auto;">
+<img src="images/flagd-payment.webp" style="max-height: 160px; width: auto;">
 {{< /presenter >}}
 
 ## Introduction

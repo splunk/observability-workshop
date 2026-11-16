@@ -50,7 +50,7 @@ You can read up on two of the most common propagation standards:
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Which one are we using?
 
-* _The Splunk Distribution of Opentelemetry JS, which supports our NodeJS functions, [defaults](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js) to the `W3C` standard_
+* _The Splunk Distribution of OpenTelemetry JS, which supports our NodeJS functions, [defaults](https://docs.splunk.com/observability/en/gdi/get-data-in/application/nodejs/splunk-nodejs-otel-distribution.html#defaults-of-the-splunk-distribution-of-opentelemetry-js) to the `W3C` standard_
 
 {{% /notice %}}
 

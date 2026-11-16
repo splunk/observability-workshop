@@ -30,14 +30,14 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 * In the **JavaScript Errors** tile click on the **TypeError** entry that says: *Cannot read properties of undefined (reading 'Prcie')* to see more details. Note that you are given a quick indication of what part of the website the error occurred, allowing you to fix this quickly.
 * Close the pane.
 * The 3rd tile reports **Web Vitals**, a metric that focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**Based on the **Web Vitals** metrics, how do you rate the current web performance of the site?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**According to the *Web Vitals* Metrics, the initial load of the site is OK and is rated *Good***
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Based on the Web Vitals metrics, how do you rate the current web performance of the site?" >}}
+{{< quiz-option correct=true >}}The initial load is rated Good.{{< /quiz-option >}}
+{{< quiz-option >}}The initial load is rated Poor.{{< /quiz-option >}}
+{{< quiz-option >}}Web Vitals are not collected for this site.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**According to the *Web Vitals* metrics, the initial load of the site is OK and is rated *Good*.**
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 * The last tile, **Most recent alerts** tile, will show if any alerts have been triggered for the application.
 * Click on the down **⌵** arrow in front of the Application name to toggle the view to the compact style. Note that you have all the main information available in this view as well. Click anywhere in the compact view to go back to the full view.

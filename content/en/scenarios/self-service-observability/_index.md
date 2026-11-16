@@ -2,7 +2,7 @@
 title: Self-Service Observability
 linkTitle: Self-Service Observability
 weight: 5
-archetype: chapter
+type: chapter
 time: 1 minute
 authors: ["Bill Grant"]
 draft: true

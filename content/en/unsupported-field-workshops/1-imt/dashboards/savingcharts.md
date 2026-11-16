@@ -6,7 +6,7 @@ weight: 2
 
 ## 1. Saving a chart
 
-To start saving your chart, lets give it a name and description. Click the name of the chart **Copy of Latency Histogram** and rename it to **"Active Latency"**.
+To start saving your chart, let's give it a name and description. Click the name of the chart **Copy of Latency Histogram** and rename it to **"Active Latency"**.
 
 To change the description click on **Spread of latency values across time.** and change this to **Overview of latency values in real-time.**
 

@@ -43,7 +43,7 @@ Here we make sure to pass along our environment with `--deployment-environment` 
 
 ## Apply the Workshop Collector Configuration
 
-The default collector config is general-purpose. We will replace it with the workshop-specific config that receives OTLP from the AppDynamics agent and exports to Splunk Observability Cloud. But first lets take a look at what we're adding:
+The default collector config is general-purpose. We will replace it with the workshop-specific config that receives OTLP from the AppDynamics agent and exports to Splunk Observability Cloud. But first let's take a look at what we're adding:
 
 ```bash
 vim ~/workshop/appd/collector-config.yaml

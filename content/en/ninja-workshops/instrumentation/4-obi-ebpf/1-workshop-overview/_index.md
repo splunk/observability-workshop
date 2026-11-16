@@ -2,7 +2,7 @@
 title: Workshop Overview
 linkTitle: 1. Workshop Overview
 weight: 1
-archetype: chapter
+type: chapter
 time: 5 minutes
 description: Goals, prerequisites, and architecture for the OBI workshop.
 ---

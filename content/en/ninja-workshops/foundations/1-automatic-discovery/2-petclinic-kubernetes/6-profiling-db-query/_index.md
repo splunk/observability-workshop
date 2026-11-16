@@ -2,7 +2,7 @@
 title: Always-On Profiling & DB Query Performance
 linkTitle: 6. Advanced Features
 weight: 7
-archetype: chapter
+type: chapter
 time: 15 minutes
 ---
 

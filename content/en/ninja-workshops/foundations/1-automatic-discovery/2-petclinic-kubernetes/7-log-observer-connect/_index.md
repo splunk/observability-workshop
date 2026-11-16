@@ -2,7 +2,7 @@
 title: Log Observer
 linkTitle: 7. Log Observer
 weight: 8
-archetype: chapter
+type: chapter
 time: 10 minutes
 ---
 

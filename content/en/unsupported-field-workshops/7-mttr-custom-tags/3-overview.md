@@ -22,7 +22,7 @@ Let's define a few terms for those new to APM / Software Development or Java
 
 * What Are Custom Attributes / Custom Tags in Splunk APM ?
 
-First, you will hear poeple refer to Custom Attributes in the context of Splunk Enterprise, however in Splunk APM Custom Attributes are called Custom Tags as defined in Opentelemetry and shown in Splunk APM Tag Splotlight.
+First, you will hear people refer to Custom Attributes in the context of Splunk Enterprise, however in Splunk APM Custom Attributes are called Custom Tags as defined in OpenTelemetry and shown in Splunk APM Tag Spotlight.
 
 * What is a Function or a method in Java?
 

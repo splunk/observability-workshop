@@ -2,7 +2,7 @@
 title: Network Event Intelligence with Splunk IT Service Intelligence
 linkTitle: Network Event Intelligence
 weight: 10
-archetype: chapter
+type: chapter
 authors: ["Chris Putnam", "Sam Scudere-Weiss", "Tim Hard"]
 description: Correlate Cisco Catalyst Center and SolarWinds events in Splunk ITSI to cut alert noise and surface the business impact of network incidents.
 time: 30 minutes

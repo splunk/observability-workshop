@@ -4,7 +4,7 @@ linkTitle: Splunk Observability Agent Primer
 weight: 20
 time: 2 minutes
 authors: ["Bill Grant", "Others TBD"]
-description: This workshop will provide a backdrop for understanding the different agents used within Splunk. Then it will go on a deeper dive on Open Telemetry. The workshop may be a good primer to use before going into other ninja workshops tackling a specific challenge. 
+description: This workshop will provide a backdrop for understanding the different agents used within Splunk. Then it will go on a deeper dive on OpenTelemetry. The workshop may be a good primer to use before going into other ninja workshops tackling a specific challenge. 
 draft: false
 hidden: true
 ---
@@ -30,4 +30,4 @@ The easiest way to navigate through this workshop is by using:
 
 * the left/right arrows (**<** | **>**) on the top right of this page
 * the left (◀️) and right (▶️) cursor keys on your keyboard
-  {{% /notice %}}
+{{% /notice %}}

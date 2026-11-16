@@ -24,15 +24,11 @@ Now, let's show engagement on your new Event Definition over time.
 1. Click into a point on the chart and validate that the session replay captures your custom event!
 {{% /exercise %}}
 
-{{< tabs >}}
-{{% tab title="Question" %}}
-
-What is the value in creating Custom Event Definitions within DXA?
-
-{{% /tab %}}
-{{% tab title="Answer" %}}
-
+{{< quiz question="What is the value in creating Custom Event Definitions within DXA?" >}}
+{{< quiz-option correct=true >}}You can change analyses without shipping application code.{{< /quiz-option >}}
+{{< quiz-option >}}Each new analysis requires an application release.{{< /quiz-option >}}
+{{< quiz-option >}}Custom events disable RUM.{{< /quiz-option >}}
+{{< quiz-feedback >}}
 We can change the analyses we are able to do as often as we'd like, without having to push code changes to our application.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}

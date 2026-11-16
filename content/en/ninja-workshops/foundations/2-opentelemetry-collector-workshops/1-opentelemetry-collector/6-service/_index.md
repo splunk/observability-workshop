@@ -23,4 +23,4 @@ service:
   extensions: [health_check, pprof, zpages]
 ```
 
-So lets configure our Metric Pipeline!
+So let's configure our Metric Pipeline!

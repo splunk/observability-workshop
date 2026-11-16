@@ -169,5 +169,5 @@ jobs:
     uses: ./.github/workflows/test-node-consumer-smoke.yml
     with:
       service-path: workshop/demos/otel-discovery-demo/src/riskservice
-      node-version: '18'
+      node-version: '22.23.4'
       entrypoint: consumer.js

@@ -2,7 +2,7 @@
 title: UI - Quick Tour 🚌
 linkTitle: 3. UI - Quick Tour
 weight: 3
-archetype: chapter
+type: chapter
 description: A quick tour of the Splunk Observability Cloud UI.
 ---
 
