@@ -16,14 +16,14 @@ Notification integrations are configured to send vulnerability and attack events
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 1. Navigate to **APM → Application Security → Notifications**.
-![apm](../images/06-notification-sel.png)
+![apm](../images/06-notification-sel.webp)
 
 2. Review any existing notification rules (the demo tenant may have a pre-provisioned Splunk ES integration).
 3. Click **Create Notification Rule** to walk through the configuration flow:
     - **Trigger** - Select vulnerability or exploit event types
     - **Destination** - Choose supported integration (e.g., Splunk ES HTTP Event Collector)
     - **Credentials** - Reference vault-managed secrets
-![apm](../images/06-notification.png)
+![apm](../images/06-notification.webp)
 {{% /notice %}}
 
 > *"Single pipeline from runtime findings to SOC visibility with no duplicate workflow - SecOps gets these events with full context."*

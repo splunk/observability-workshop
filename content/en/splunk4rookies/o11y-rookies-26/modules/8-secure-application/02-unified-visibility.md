@@ -15,13 +15,17 @@ We are bringing security together with reliability, allowing teams to review App
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Navigate to **APM → Overview**.
-2. Set the **environment** filter to 'astronomy-shop-*'.
-3. Scroll to the **Services** tab.
+1. Make the navigation pane size smaller if needed by clicking on the Hamburger icon **(1)**
+2. Navigate to **APM → Overview (2)**.
+![apm](../images/02-overview.webp)
 
-Observe each service row: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries for instrumented services- counts of critical and high CVEs and attacks.
+3. Set the workshop **Environment** filter to **[NAME OF WORKSHOP]-workshop (1)**. 
+4. Close the **APM Overview** pane **(2)**
+5. Scroll to the **Services (3)** tab.
 
-![apm](../images/02-overview.png)
+Observe each service row and find the **ad** Service **(4)**: alongside standard health metrics, you should see runtime vulnerability and threat profile summaries for instrumented services- counts of critical and high CVEs and attacks **(5)**.
+
+![apm](../images/services.webp)
 {{% /notice %}}
 
 ### Service Map runtime security widgets
@@ -30,12 +34,12 @@ Visibility into a summarized view of the top vulnerabilities (CVE title, ID, CVS
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Navigate to **APM → Service Map**.
-2. Open the **Services** filter and select **'ad'**.
-3. Click the **`ad`** node in the service map.
-4. Scroll to the **Runtime Vulnerabilities** and **Attacks** widgets (right-hand side of screen).
+1. Use the Navigation Pane to go to **APM → Service Map**.
+2. Find the **`ad` (1)** service in the map.
+3. Click the **`ad` (1)** node in the service map.
+4. Scroll to the **Runtime Vulnerabilities (2)** and **Attacks (3)** widgets (right-hand side of screen).
 
-![apm](../images/02-servicemap.png)
+![apm](../images/02-servicemap.webp)
 {{% /notice %}}
 
 (Optional) - Drill into a vulnerability or attack detail (from the relevant widget) to review the navigation path.

@@ -15,14 +15,14 @@ exploit attempts against known weaknesses, with forensic context. This allows fo
 > *"Shift from periodic scanning to runtime-aware threat detection."*
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-1. From **APM → Application Security**, select the **Attacks** tab.
-![apm](../images/06-attack-nav.png)
+1. From **APM (1) → Application Security**, select the **Attacks (2)** tab.
+![apm](../images/06-attack-nav.webp)
 
 2. Review the attacks list. For each row, note:
     - **Attack type** - Classification of the exploit attempt
     - **CVE Reached** - How many CVEs weaknesses are implicated
     - **Environment & Service** - Which entities in your stack are impacted
-![apm](../images/06-attack-view.png)
+![apm](../images/06-attack-view.webp)
 {{% /notice %}}
 
 ### Investigate Attack Detail
@@ -31,14 +31,14 @@ Having full context of the attack helps in actioning mitigation and remediation 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 1. Select one attack activity to open the detailed view.
-![apm](../images/06-attack-select.png)
+![apm](../images/06-attack-select.webp)
 
 2. Review forensic fields:
     - Attacked **service**, **environment**, and **CVE**
     - **Sequence of events** and actions performed
     - Specific **event** and **trigger**
     - **Vulnerable Method** where in the code this vulnerability risk exists
-![apm](../images/06-attack-details.png)
+![apm](../images/06-attack-details.webp)
 {{% /notice %}}
 
 {{% notice title="Note" style="info" %}}
@@ -53,10 +53,11 @@ Having full context of the attack helps in actioning mitigation and remediation 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 1. Scroll to the **Stack Trace** attribute at the bottom of the attack detail.
-  ![apm](../images/06-attack-forensics-sel.png)
+  ![apm](../images/06-attack-forensics-sel.webp)
 2. Expand the stack trace.
 3. Identify the frame and line reference for code accessed during the exploit.
-  ![apm](../images/06-attack-forensics.png)
+  
+  ![apm](../images/06-attack-forensics.webp)
 {{% /notice %}}
 
 ### What you learned

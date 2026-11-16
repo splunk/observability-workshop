@@ -12,6 +12,17 @@ params:
   images:
     - images/secureapp.webp
 ---
+{{< presenter >}}
+Before the workshop begins, configure the Astronomy Shop’s feature flags:
+
+* Open the *Astronomy Shop URL* provided for your workshop.
+* Append `/Feature` to the URL to open the *Feature* page.
+* Disable all active demonstrations except **paymentFailure**, keep it at **50%**.
+* Set **secureappAtack*** to **max**
+
+This keeps the Astronomyshop application behaving as in earlier lessons, while also generating a large number of attacks against the Ad service for attendees to discover.
+<img src="images/flagd-secureapp.webp" style="max-height: 160px; width: auto;">
+{{< /presenter >}}
 
 This workshop introduces you to the benefits of embedding application security inside Observability workflows. By the end of these modules, you will understand how engineering and security teams can share one runtime view of risk, prioritize beyond CVSS alone, and feed findings into existing SOC tools.
 

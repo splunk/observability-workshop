@@ -16,13 +16,13 @@ accumulates tech debt.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 1. Navigate to **APM → Application Security → Libraries**.
-![apm](../images/07-lib-inventory-sel.png)
+![apm](../images/07-lib-inventory-sel.webp)
 2. Here, you will have a comprehensive catalog of all packages deployed across the instrumented application environments.
 3. Observe libraries for vulnerability posture, CVSS, EPSS Risk Score, services and recommendations.
 4. You can filter the applications by Library Type - This will highlight the various languages instrumented within your environment.
-![apm](../images/07a-lib-inventory.png)
-![apm](../images/07b-lib-inventory.png)
-![apm](../images/07c-lib-inventory.png)
+![apm](../images/07a-lib-inventory.webp)
+![apm](../images/07b-lib-inventory.webp)
+![apm](../images/07c-lib-inventory.webp)
 
 {{% /notice %}}
 
@@ -36,7 +36,7 @@ accumulates tech debt.
 2. Review vulnerabilities against your organization's risk policies i.e risk assessment guidelines.
 3. Select one vulnerability with **current status** of 'Detected' using the row checkmark.
 4. Click **Update Status** and choose **Ignored** or **Confirmed**.
-![apm](../images/07-lifecycle.png)
+![apm](../images/07-lifecycle.webp)
 
 {{% /notice %}}
 
@@ -47,7 +47,7 @@ accumulates tech debt.
 1. Open the **Status** dropdown and select **Not Vulnerable**.
 2. Observe which libraries may show no known CVE data, which means that they are healthy relative to known and existing risk. 
 3. Select **Export** (or equivalent) to produce a shareable subset for a mock engineering or SecOps handoff.
-![apm](../images/07-export.png)
+![apm](../images/07-export.webp)
 {{% /notice %}}
 {{% notice title="Note" style="info" %}}
 The risk profile changes as new vulnerabilities are discovered. So while some of the libraries in the application stack may have no known vulnerabilities at this time, the status may change. It is critical to have real-time active detection in place to track these shifts including `Zero Day Vulnerabilities` across all your active workloads

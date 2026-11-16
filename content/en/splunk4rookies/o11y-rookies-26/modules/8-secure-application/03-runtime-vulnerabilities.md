@@ -13,16 +13,16 @@ Splunk Secure Application discovers vulnerabilities **at runtime**, correlated t
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-1. Navigate to the **Sevice map** → **Vulnerabilities Widget** 
-2. Click on the **Runtime Vulnerabilities** label to open the Vulnerabilities list
+1. Navigate to the **Sevice map** (keep the **`ad`** service selected **(1)**)→ **Vulnerabilities Widget** 
+2. Click on the **Runtime Vulnerabilities (2)** label to open the Vulnerabilities list
 
-![apm](../images/03a-runtime-vuln-lbl.png)
+![apm](../images/03a-runtime-vuln-lbl.webp)
 
 {{% /notice %}}
 
 ### Stakeholder Views
 
-You will now see a list of vulnerabilities across the instrumented applications with the following details.
+You will now see a list of vulnerabilities **(3)** across the instrumented applications with the following details.
 
     - **CVE ID** - Standard vulnerability identifier
     - **CVSS Score** - Theoretical vulnerability severity score 
@@ -30,7 +30,7 @@ You will now see a list of vulnerabilities across the instrumented applications 
     - **Library** - vulnerable library identifier
     - **Status** - Triage states (e.g., Detected, Fixed, Ignored)
     - **Recommended action** - Remediation option for resolving the identified vulnerability
-![apm](../images/03a-runtime-vuln-lst.png)
+![apm](../images/03a-runtime-vuln-lst.webp)
 
 > [!NOTE]
 > You can search for a specific CVE if you have the details. You can also sort the list of vulnerabilities by **CVSS Score** to review CVEs by severity **Critical, Medium or Low**, 
