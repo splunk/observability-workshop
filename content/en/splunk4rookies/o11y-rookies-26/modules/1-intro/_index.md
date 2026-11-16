@@ -35,7 +35,7 @@ In this 1-hour hands-on session, you'll cover:
 - **Generate Real User Data** - Browse the Astronomy Shop website to generate metrics, traces, and logs
 - **RUM** - Identify poorly performing browser sessions and begin troubleshooting
 - **APM** - Link front-end RUM traces to back-end APM traces to detect anomalies and errors
-- **Log Observer** - Use "Related Content" to navigate from APM traces to related logs
+- **Logs** - Follow Related Content from a trace and identify the cause of the payment failure
 - **Synthetics** - Set up 24/7 monitoring with synthetic tests running every minute
 <!-- - **AI-Assisted Troubleshooting** - Let the AI Assistant and AI Troubleshooting Agent accelerate root cause analysis
  -->
