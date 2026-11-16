@@ -11,7 +11,7 @@ The panels show the most common values for each tag and their associated perform
 
 In this exercise, you’ll use **Tag Spotlight** to focus on the **PlaceOrder** workflow. You’ll then open the matching user sessions and sort them to find the slowest interactions.
 
-![RUM Tag Spotlight](../images/rum-tag-spotlight.png)
+![RUM Tag Spotlight](../images/rum-tag-spotlight.webp)
 
 * Change the timeframe to **Last 1 hour** **(1)**.
 
@@ -23,6 +23,6 @@ The charts and results now focus on interactions associated with this workflow.
 
 * You now have a list of **sessions** containing the **PlaceOrder** workflow, with the slowest interactions shown first. The results were narrowed using the PlaceOrder tag before you opened the User Sessions tab. We could apply more filters to further narrow down the data, e.g. *OS version*, *browser version*, etc.
 
-![RUM Tag Spotlight](../images/rum-user-sessions.png)
+![RUM Tag Spotlight](../images/rum-user-sessions.webp)
 
 {{% /exercise %}}

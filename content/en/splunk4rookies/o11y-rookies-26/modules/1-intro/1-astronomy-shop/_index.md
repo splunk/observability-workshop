@@ -24,7 +24,7 @@ Explore and interact with the shop as a real customer would:
 * Repeat this process **three to five times**, purchasing different items each time. These interactions will generate the telemetry data used throughout the workshop.
 * If possible, also access the shop using a mobile phone or tablet. Using different devices helps generate more varied and interesting telemetry data.
 
-![ui](images/1-shop.png)
+![ui](images/1-shop.webp)
 
 {{< quiz question="Did everything work smoothly, or did you notice anything unusual during checkout?" >}}
 {{< quiz-option correct=true >}}Slow responses or errors during checkout are intentional.{{< /quiz-option >}}

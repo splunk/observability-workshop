@@ -223,12 +223,19 @@ class HealthcareAgent:
             or model_config.get("default_model")
             or model_config.get("model_name")
         )
-        temperature = model_config.get("temperature", 0.1)
+        # Some models (e.g. gpt-6-luna) reject `temperature`; only send it if configured.
+        llm_kwargs = {}
+        if model_config.get("temperature") is not None:
+            llm_kwargs["temperature"] = model_config["temperature"]
 
         llm_with_tools = ChatOpenAI(
             model=effective_model,
-            temperature=temperature,
             name=LLM_STEP_NAME,
+            # Keep message.content a plain string. Reasoning models otherwise put
+            # reasoning items (incl. encrypted_content) into content, which then
+            # shows up in the trace output and fails Context Adherence.
+            output_version="v0",
+            **llm_kwargs,
         ).bind_tools(self.tools)
 
         last_llm_output: Dict[str, Any] = {"message": None}
@@ -237,7 +244,13 @@ class HealthcareAgent:
         async def _invoke_llm(msgs, config: RunnableConfig):
             result = await llm_with_tools.ainvoke(msgs, config)
             last_llm_output["message"] = result
-            return result
+            # Reasoning models return content as a list of blocks (reasoning items
+            # with encrypted payloads, call ids, ...). Agent Control evaluates the
+            # returned value, so hand it only the plain text; otherwise regex
+            # controls (phone/address) match noise inside ids and encrypted blobs.
+            # Text only: no id / tool_calls, whose random strings can also trip the
+            # phone-number regex. The raw message is used for graph state instead.
+            return AIMessage(content=_message_content_text(result))
 
         async def invoke_chatbot(state, config: RunnableConfig):
             messages = list(state["messages"])
@@ -250,7 +263,10 @@ class HealthcareAgent:
 
             for attempt in range(MAX_STEER_RETRIES):
                 try:
-                    message = await _invoke_llm(llm_messages, config)
+                    await _invoke_llm(llm_messages, config)
+                    # Keep the raw message (reasoning blocks etc.) for graph state;
+                    # only the text-only copy was evaluated by Agent Control.
+                    message = last_llm_output["message"]
                     break
                 except ControlViolationError as e:
                     notify_control_block(e, step_name=LLM_STEP_NAME)
@@ -344,7 +360,7 @@ class HealthcareAgent:
                     splunk_ao_logger=splunk_ao_logger,
                 )
                 if result["messages"]:
-                    response = result["messages"][-1].content
+                    response = _message_content_text(result["messages"][-1])
                 return response
             finally:
                 finalize_trace(splunk_ao_logger, response)
@@ -365,7 +381,7 @@ class HealthcareAgent:
                         splunk_ao_logger=splunk_ao_logger,
                     )
                     if result["messages"]:
-                        response = result["messages"][-1].content
+                        response = _message_content_text(result["messages"][-1])
                     return response
                 finally:
                     finalize_trace(splunk_ao_logger, response)

@@ -19,7 +19,7 @@ The panel on the right initially summarizes the selected business operation. Whe
 
 Examine the **Service Requests & Errors** chart **(2)**. Compare the number of requests with the number of errors.
 
-![APM Explore](../images/apm-business-workflow.png)
+![APM Explore](../images/apm-business-workflow.webp)
 
 {{< quiz question="What does the Service Requests & Errors chart tell you about the reliability of the payment service?" >}}
 {{< quiz-option correct=true >}}A significant proportion of payment requests are failing.{{< /quiz-option >}}

@@ -1,5 +1,5 @@
 """Text-to-SQL helpers for patient lookup and delete tools."""
-from typing import Literal
+from typing import Literal, Optional
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
@@ -30,8 +30,8 @@ async def generate_sql(
     id_column: str,
     record_id: str,
     operation: SqlOperation = "select",
-    model: str = "gpt-4o-mini",
-    temperature: float = 0.0,
+    model: str = "gpt-6-luna",
+    temperature: Optional[float] = None,
     use_case_identifier: str = "",
     use_case_value: str = "",
 ) -> str:
@@ -70,7 +70,8 @@ async def generate_sql(
             f"Lookup request: {use_case_identifier}='{use_case_value}'\n\n"
         )
 
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm_kwargs = {"temperature": temperature} if temperature is not None else {}
+    llm = ChatOpenAI(model=model, output_version="v0", **llm_kwargs)
     response = await llm.ainvoke(
         [SystemMessage(content=system_prompt), HumanMessage(content=user_prompt)]
     )

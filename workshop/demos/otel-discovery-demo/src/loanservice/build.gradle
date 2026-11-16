@@ -12,7 +12,7 @@ java {
 }
 
 ext['tomcat.version'] = '11.0.25'
-ext['jackson-bom.version'] = '3.1.7'
+ext['jackson-bom.version'] = '3.1.8'
 ext['jackson-2-bom.version'] = '2.21.7'
 ext['spring-framework.version'] = '7.0.9'
 ext['kafka.version'] = '4.2.2'

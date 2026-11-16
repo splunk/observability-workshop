@@ -17,9 +17,7 @@ assistant.
 
 **2.** Using the left-hand menu, navigate to `Agent Observability` -> `All projects`.
 
-**3.** Open the `Splunk Agent Observability Workshop` project.
-
-**4.** Select the agent stream that matches the Instance ID you found above (such as `shw-9787`).
+**3.** Open the same project and agent stream as before.
 
 Click the `Configure Evaluators` button to open its evaluator configuration.
 

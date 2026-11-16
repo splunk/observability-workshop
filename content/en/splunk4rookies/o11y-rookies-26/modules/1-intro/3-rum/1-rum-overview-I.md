@@ -11,7 +11,7 @@ In this exercise, you'll open the RUM Overview dashboard. The data you'll see he
 
 * In Splunk Observability Cloud, from the main menu, hover over **Digital Experience**, then click on **Overview** **(1)** from the **Real User Monitoring** section as shown below.
 
-![RUM](../images/rum-dea.png)
+![RUM](../images/rum-dea.webp)
 
 * This opens the Real User Monitoring (RUM) Overview, where the Application Summary Dashboard provides a quick overview of all monitored web applications.
 

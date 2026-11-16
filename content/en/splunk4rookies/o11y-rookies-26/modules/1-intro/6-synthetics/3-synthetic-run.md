@@ -18,7 +18,7 @@ Compare the final screenshots and video with the failure summary. Identify what 
 * In the Video pane, press on the play button **▶** **(1)** to see the test playback.
 * Using the filter above the filmstrip, under the heading **Filter by a synthetic transaction, page, or step** **(2)**, click on **Place Order** under **Synthetic transactions**. -->
 
-![waterfall](../images/synth-waterfall.png)
+![waterfall](../images/synth-waterfall.webp)
 
 {{< quiz question="Which step failed, and what condition caused the test to time out?" >}}
 {{< quiz-option correct=true >}}Step 6, confirm checkout. The confirmation text did not appear in time.{{< /quiz-option >}}

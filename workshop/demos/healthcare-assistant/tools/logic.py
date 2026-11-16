@@ -67,7 +67,7 @@ async def get_patient_info(patient_id: str) -> str:
         return json.dumps({"error": "patient_id is required"})
 
     app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "gpt-4o-mini")
+    model = app_config.get("model", {}).get("default_model", "gpt-6-luna")
     table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
 
     try:

@@ -17,7 +17,7 @@ The **1m** label in the chart indicates that the data is displayed at one-minute
 
 > [!WARNING] Do not add a recipient, activate, or save this detector. The workshop application is intentionally generating frequent slow runs, which could produce a large number of alerts.
 
-![Detector](../images/synth-detector.png)
+![Detector](../images/synth-detector.webp)
 
 * In a production environment, you would tune the threshold and alert conditions to reflect normal application performance and avoid unnecessary alerts.
 
