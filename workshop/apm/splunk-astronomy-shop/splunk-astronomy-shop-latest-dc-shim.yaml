@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest - dc-shim
-# Version: 2.0.8
-# Generated on: 2026-10-23T10:37:09Z
+# Version: 2.0.9
+# Generated on: 2026-11-18T10:23:29Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -58,7 +58,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
         - name: shop-dc-shim
-          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-shim:2.0.8
+          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-shim:2.0.9
           imagePullPolicy: Always
           ports:
             - containerPort: 8070
@@ -69,7 +69,7 @@ spec:
           - /bin/bash
           - -c
           - |
-            export OTEL_RESOURCE_ATTRIBUTES="service.name=shop-dc-shim-service,deployment.environment=${ENV_VALUE}-datacenter-b01,service.version=2.0.8,service.namespace=shop-dc-shim"
+            export OTEL_RESOURCE_ATTRIBUTES="service.name=shop-dc-shim-service,deployment.environment=${ENV_VALUE}-datacenter-b01,service.version=2.0.9,service.namespace=shop-dc-shim"
             sed -i "s|http://splunk-otel-collector-agent:4318|http://${NODE_IP}:4318|g" /app/start-app-dual.sh
             exec /app/start-app-dual.sh
           env:
@@ -79,7 +79,7 @@ spec:
                   name: workshop-secret
                   key: env
             - name: TPM
-              value: "10"  # Transactions Per Minute - scales both request frequency and processing load
+              value: "10"  # Processing intensity only (CPU/memory work per request). Independent of loadgen TPM.
             # Memory optimization - uncomment to reduce memory usage
             # - name: AUDIT_LOG_ENABLED
             #   value: "false"  # Disable audit log generation
@@ -279,10 +279,10 @@ spec:
               cpu: "50m"
       containers:
         - name: load-generator
-          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-loadgenerator:2.0.8
+          image: ghcr.io/splunk/opentelemetry-demo/otel-shop-dc-loadgenerator:2.0.9
           env:
             - name: TPM
-              value: "10"  # Transactions Per Minute - adjust to control load (e.g., 5, 10, 25, 50)
+              value: "2"  # Request rate only. Keep shop-dc-shim TPM at 10 so per-request CPU/memory stay heavy.
           args: ["--url", "http://shop-dc-shim:8070", "--mode", "continuous", "--duration", "0"]
           resources:
             limits:

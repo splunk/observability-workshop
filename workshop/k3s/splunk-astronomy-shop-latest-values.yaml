@@ -6,9 +6,9 @@
 #          the demo's telemetry and forwards it to Splunk Observability Cloud /
 #          Splunk Platform. This is NOT a demo app manifest.
 #
-# Version:    2.0.8
-# Generated:  2026-10-23T10:37:19Z
-# Source:     kubernetes/splunk-astronomy-shop-2.0.8-values.yaml @ faa0ac7
+# Version:    2.0.9
+# Generated:  2026-11-18T10:23:40Z
+# Source:     kubernetes/splunk-astronomy-shop-2.0.9-values.yaml @ 12eb39b
 #
 # Requires: splunk-otel-collector-chart >= 0.157.0
 #   (0.157.0 renamed the kubeletstats receiver to kubelet_stats and ships the
@@ -19,7 +19,7 @@
 #   helm upgrade --install splunk-otel-collector \
 #     splunk-otel-collector-chart/splunk-otel-collector \
 #     --version 0.157.0 -n <namespace> \
-#     -f splunk-astronomy-shop-2.0.8-values.yaml
+#     -f splunk-astronomy-shop-2.0.9-values.yaml
 #
 # Note: at release time stage-values-with-header.sh stamps the release version
 #       onto the `# Version:` line above and injects Generated/Source provenance
@@ -340,7 +340,20 @@ agent:
           - {action: delete, key: host.arch}
           - {action: delete, key: container.image.tag}
           - {action: delete, key: deployment.environment}
+      # Drop flagd client noise so APM does not infer a gRPC "flagd" service.
+      #
+      # Classic OTel RPC semconv sets rpc.method=ResolveBoolean. .NET
+      # GrpcNetClient (cart) and newer Go otelgrpc stash the full
+      # flagd.evaluation.v2.Service/ResolveBoolean path in rpc.method and
+      # the span name, with no rpc.service. Envoy frontend-proxy uses the
+      # public URL /flagservice/flagd.evaluation.v1.Service/EventStream, not
+      # http://flagd:8013/.... Exact equality on the bare method / in-cluster
+      # URL therefore misses both; Splunk infers a service from the leftover
+      # CLIENT span because flagd emits no SERVER span.
+      #
+      # error_mode: ignore so IsMatch against an absent attribute is a no-op.
       filter/drop_flagd:
+        error_mode: ignore
         traces:
           span:
           - attributes["rpc.method"] == "EventStream"
@@ -348,14 +361,30 @@ agent:
           - attributes["rpc.method"] == "ResolveBoolean"
           - attributes["rpc.method"] == "ResolveFloat"
           - attributes["rpc.method"] == "ResolveInt"
+          - IsMatch(name, "flagd\\.evaluation\\.v[12]\\.Service")
+          - IsMatch(attributes["rpc.method"], "flagd\\.evaluation\\.v[12]\\.Service")
+          - IsMatch(attributes["rpc.service"], "flagd\\.evaluation\\.v[12]\\.Service")
           - attributes["http.url"] == "http://flagd:8016/ofrep/v1/evaluate/flags/loadGeneratorFloodHomepage"
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v1.Service/ResolveBoolean"
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v2.Service/ResolveBoolean"
+          - IsMatch(attributes["url.full"], "flagd\\.evaluation\\.v[12]\\.Service")
+          - IsMatch(attributes["http.url"], "flagd\\.evaluation\\.v[12]\\.Service")
           - attributes["otel.scope.name"] == "flagd.evaluation.v1"
           - attributes["otel.scope.name"] == "flagd.evaluation.v2"
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v1.Service/EventStream"
           - attributes["url.full"] == "http://flagd:8013/flagd.evaluation.v2.Service/EventStream"
           - attributes["url.path"] == "/live/longpoll"
+          # Envoy CLIENT "router flagservice egress" 404s. FlagdWebProvider
+          # EventStream is rewritten onto flagd:8016 (OFREP), which 404s.
+          # drop_flagd already removes the SERVER parent (url has
+          # flagd.evaluation.v1.Service); the CLIENT child has no URL, so
+          # it was leaking through as a 404 error on frontend-proxy.
+          - name == "router flagservice egress" and attributes["http.status_code"] == 404
+          - name == "router flagservice egress" and attributes["http.status_code"] == "404"
+          - name == "router flagservice egress" and attributes["http.response.status_code"] == 404
+          - name == "router flagservice egress" and attributes["http.response.status_code"] == "404"
+          - attributes["upstream_cluster"] == "flagservice" and attributes["http.status_code"] == 404
+          - attributes["upstream_cluster"] == "flagservice" and attributes["http.status_code"] == "404"
       # Drop kubelet health-probe spans.
       #
       # Every gRPC service in the demo carries a livenessProbe (10s) and a
