@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest
-# Version: 2.0.8
-# Generated on: 2026-10-23T10:37:01Z
+# Version: 2.0.9
+# Generated on: 2026-11-18T10:23:22Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -15,7 +15,7 @@ kind: ServiceAccount
 metadata:
   name: splunk-opentelemetry-demo
   labels:
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 
 ---
@@ -33,7 +33,7 @@ metadata:
     opentelemetry.io/name: accounting
     app.kubernetes.io/component: accounting
     app.kubernetes.io/name: accounting
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -64,7 +64,7 @@ spec:
             value: "3"
       containers:
       - name: accounting
-        image: ghcr.io/splunk/opentelemetry-demo/otel-accounting:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-accounting:2.0.9
         imagePullPolicy: Always
         env:
         - name: OTEL_SERVICE_NAME
@@ -109,7 +109,7 @@ spec:
         - name: OTEL_SEMCONV_STABILITY_OPT_IN
           value: 'database/dup'
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=spanlink
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=spanlink
         - name: SPLUNK_PROFILER_ENABLED
           value: 'true'
         - name: SPLUNK_PROFILER_MEMORY_ENABLED
@@ -144,7 +144,7 @@ metadata:
     opentelemetry.io/name: ad
     app.kubernetes.io/component: ad
     app.kubernetes.io/name: ad
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -163,7 +163,7 @@ metadata:
     opentelemetry.io/name: ad
     app.kubernetes.io/component: ad
     app.kubernetes.io/name: ad
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -181,7 +181,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: ad
-        image: ghcr.io/splunk/opentelemetry-demo/otel-ad:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-ad:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -190,7 +190,7 @@ spec:
         args:
         - -c
         - |
-          export OTEL_RESOURCE_ATTRIBUTES="service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,deployment.environment=${DEPLOYMENT_ENVIRONMENT}"
+          export OTEL_RESOURCE_ATTRIBUTES="service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,deployment.environment=${DEPLOYMENT_ENVIRONMENT}"
           exec ./build/install/opentelemetry-demo-ad/bin/Ad
         env:
         - name: DEPLOYMENT_ENVIRONMENT
@@ -246,14 +246,14 @@ spec:
       # avoid collision with the ad container's 8080.
       initContainers:
       - name: secureapp
-        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-java:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-java:2.0.9
         imagePullPolicy: Always
         restartPolicy: Always
         command: ["/bin/sh"]
         args:
         - -c
         - |
-          export OTEL_RESOURCE_ATTRIBUTES="service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,deployment.environment=${DEPLOYMENT_ENVIRONMENT}"
+          export OTEL_RESOURCE_ATTRIBUTES="service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,deployment.environment=${DEPLOYMENT_ENVIRONMENT}"
           exec ./entrypoint.sh
         env:
         - name: OTEL_SERVICE_NAME
@@ -324,23 +324,184 @@ metadata:
 data:
   local-file: |
     /* eslint-disable no-console */
-    const { Console } = require('console');
+    const { execFileSync } = require('child_process');
     const puppeteer = require('puppeteer');
-    const customUserAgent = 'Mozilla/5.0 (X11; Linux x86_64; Splunk RUM_LoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36';
 
     // Debug logging flag (set via DEBUG_LOGGING env var)
     const debugEnabled = process.env.DEBUG_LOGGING === 'true';
-    if (debugEnabled) console.log('DEBUG: Using User Agent:', customUserAgent);
+    const fallbackChromeVersion = '142.0.0.0';
 
-    // Global browser instance for reuse across cycles
-    let globalBrowser = null;
+    function debug(...args) {
+      if (debugEnabled) console.log('[DEBUG]', ...args);
+    }
 
+    function positiveInt(value, fallback) {
+      const parsed = Number(value);
+      if (!Number.isFinite(parsed) || parsed < 1) {
+        return fallback;
+      }
+      return Math.floor(parsed);
+    }
 
-    async function launchBrowser() {
-      console.log('🔹 Starting headless browser...');
-      const browser = await puppeteer.launch({
+    function detectChromiumVersion() {
+      const fromEnv = process.env.RUM_CHROME_VERSION;
+      if (fromEnv && /^\d+\.\d+\.\d+\.\d+$/.test(fromEnv)) {
+        return fromEnv;
+      }
+      const candidates = [
+        process.env.PUPPETEER_EXECUTABLE_PATH,
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+      ].filter(Boolean);
+      for (const bin of candidates) {
+        try {
+          const output = execFileSync(bin, ['--version'], { encoding: 'utf8', timeout: 10000 });
+          const match = output.match(/(\d+\.\d+\.\d+\.\d+)/);
+          if (match) {
+            return match[1];
+          }
+        } catch (error) {
+          debug('Could not read Chromium version from', bin, error.message);
+        }
+      }
+      console.log('Could not read Chromium version, using fallback:', fallbackChromeVersion);
+      return fallbackChromeVersion;
+    }
+
+    // Chrome's GREASE brand is a pure function of the major version.
+    // https://wicg.github.io/ua-client-hints/#create-arbitrary-brands-section
+    function clientHintBrands(major, fullVersion) {
+      const chars = [' ', '(', ':', '-', '.', '/', ')', ';', '=', '?', '_'];
+      const greasedVersions = ['8', '99', '24'];
+      const greaseVersion = greasedVersions[major % greasedVersions.length];
+      const greaseBrand = `Not${chars[major % chars.length]}A${chars[(major + 1) % chars.length]}Brand`;
+      const entries = [
+        { brand: greaseBrand, major: greaseVersion, full: `${greaseVersion}.0.0.0` },
+        { brand: 'Chromium', major: String(major), full: fullVersion },
+        { brand: 'Google Chrome', major: String(major), full: fullVersion },
+      ];
+      const orders = [
+        [0, 1, 2],
+        [0, 2, 1],
+        [1, 0, 2],
+        [1, 2, 0],
+        [2, 0, 1],
+        [2, 1, 0],
+      ];
+      const order = orders[major % orders.length];
+      return {
+        brands: order.map(index => ({ brand: entries[index].brand, version: entries[index].major })),
+        fullVersionList: order.map(index => ({ brand: entries[index].brand, version: entries[index].full })),
+      };
+    }
+
+    function buildPersonas(fullVersion) {
+      const major = Number(fullVersion.split('.')[0]);
+      const reduced = `${major}.0.0.0`;
+      const hints = clientHintBrands(major, fullVersion);
+      const chrome = uaPlatform => (
+        `Mozilla/5.0 (${uaPlatform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${reduced} Safari/537.36`
+      );
+      const metadata = (platform, platformVersion) => ({
+        brands: hints.brands,
+        fullVersionList: hints.fullVersionList,
+        fullVersion,
+        platform,
+        platformVersion,
+        architecture: 'x86',
+        model: '',
+        mobile: false,
+        bitness: '64',
+        wow64: false,
+      });
+
+      return [
+        {
+          name: 'windows-en-us',
+          locale: 'en-US',
+          acceptLanguage: 'en-US,en;q=0.9',
+          languages: ['en-US', 'en'],
+          timezone: 'America/Chicago',
+          navPlatform: 'Win32',
+          viewport: { width: 1920, height: 1080, deviceScaleFactor: 1 },
+          userAgent: chrome('Windows NT 10.0; Win64; x64'),
+          metadata: metadata('Windows', '15.0.0'),
+        },
+        {
+          name: 'mac-en-gb',
+          locale: 'en-GB',
+          acceptLanguage: 'en-GB,en;q=0.9',
+          languages: ['en-GB', 'en'],
+          timezone: 'Europe/London',
+          navPlatform: 'MacIntel',
+          viewport: { width: 1440, height: 900, deviceScaleFactor: 1 },
+          userAgent: chrome('Macintosh; Intel Mac OS X 10_15_7'),
+          metadata: metadata('macOS', '14.6.1'),
+        },
+        {
+          name: 'windows-en-au',
+          locale: 'en-AU',
+          acceptLanguage: 'en-AU,en;q=0.9',
+          languages: ['en-AU', 'en'],
+          timezone: 'Australia/Sydney',
+          navPlatform: 'Win32',
+          viewport: { width: 1536, height: 864, deviceScaleFactor: 1 },
+          userAgent: chrome('Windows NT 10.0; Win64; x64'),
+          metadata: metadata('Windows', '10.0.0'),
+        },
+      ];
+    }
+
+    async function applyUserAgent(page, persona) {
+      try {
+        await page.setUserAgent({
+          userAgent: persona.userAgent,
+          userAgentMetadata: persona.metadata,
+        });
+      } catch (error) {
+        debug('Object setUserAgent failed, using string form:', error.message);
+        await page.setUserAgent(persona.userAgent, persona.metadata);
+      }
+    }
+
+    async function applyPersona(page, persona) {
+      await page.setViewport(persona.viewport);
+      try {
+        await page.emulateTimezone(persona.timezone);
+      } catch (error) {
+        debug('Timezone emulation skipped:', error.message);
+      }
+      await page.setExtraHTTPHeaders({
+        'Accept-Language': persona.acceptLanguage,
+      });
+      await applyUserAgent(page, persona);
+      await page.evaluateOnNewDocument(profile => {
+        const define = (object, key, value) => {
+          try {
+            Object.defineProperty(object, key, {
+              get: () => value,
+              configurable: true,
+            });
+          } catch (error) {
+            // Some native getters are non-configurable.
+          }
+        };
+        define(Navigator.prototype, 'webdriver', false);
+        define(navigator, 'platform', profile.navPlatform);
+        define(navigator, 'language', profile.languages[0]);
+        define(navigator, 'languages', profile.languages);
+      }, {
+        navPlatform: persona.navPlatform,
+        languages: persona.languages,
+      });
+    }
+
+    function launchOptions(persona) {
+      const viewport = persona.viewport;
+      const options = {
         headless: true,
-        defaultViewport: null,
+        defaultViewport: viewport,
+        ignoreDefaultArgs: ['--enable-automation'],
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -361,17 +522,75 @@ data:
           // On plain-HTTP deploys they break Chromium fetch/hydration and every
           // cycle fails at waitForSelector. See CERT_FLAG_NOTE.md.
           '--allow-insecure-localhost',
-          `--user-agent=${customUserAgent}`
-        ]
-      });
+          '--disable-blink-features=AutomationControlled',
+          `--lang=${persona.locale}`,
+          `--window-size=${viewport.width},${viewport.height}`,
+          `--user-agent=${persona.userAgent}`,
+        ],
+      };
+      if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+        options.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+      }
+      return options;
+    }
+
+    const fullVersion = detectChromiumVersion();
+    let personas = buildPersonas(fullVersion);
+    if (process.env.RUM_USER_AGENT) {
+      console.log('RUM_USER_AGENT is set; using that string instead of a desktop Chrome user agent');
+      personas = personas.map(persona => ({ ...persona, userAgent: process.env.RUM_USER_AGENT }));
+    }
+    const profileCount = Math.min(
+      positiveInt(process.env.RUM_PROFILE_COUNT, personas.length),
+      personas.length,
+    );
+    const cyclesPerProfile = positiveInt(process.env.RUM_PROFILE_CYCLES, 6);
+    console.log(`Chrome ${fullVersion}; rotating ${profileCount} shopper profiles every ${cyclesPerProfile} cycles`);
+
+    // Global browser instance for reuse across cycles; relaunched when the shopper persona rotates.
+    let globalBrowser = null;
+    let profileSlot = 0;
+    let cyclesOnProfile = 0;
+
+    function currentPersona() {
+      return personas[profileSlot % profileCount];
+    }
+
+    async function closeBrowser() {
+      if (!globalBrowser) {
+        return;
+      }
+      const closing = globalBrowser;
+      globalBrowser = null;
+      try {
+        await closing.close();
+      } catch (error) {
+        debug('Error closing browser:', error.message);
+      }
+    }
+
+    async function launchBrowser(persona) {
+      console.log('🔹 Starting headless browser...');
+      console.log(`Chromium shopper ${persona.name}: ${persona.userAgent}`);
+      const browser = await puppeteer.launch(launchOptions(persona));
       console.log('✅ Browser started.');
       return browser;
     }
 
     async function ensureBrowser() {
-      if (!globalBrowser || !globalBrowser.isConnected()) {
+      if (cyclesOnProfile >= cyclesPerProfile) {
+        console.log(`🔄 Rotating shopper after ${cyclesOnProfile} cycles`);
+        await closeBrowser();
+        profileSlot = (profileSlot + 1) % profileCount;
+        cyclesOnProfile = 0;
+      }
+      if (globalBrowser && typeof globalBrowser.isConnected === 'function' && !globalBrowser.isConnected()) {
+        console.log('🔄 Chromium disconnected; launching again');
+        globalBrowser = null;
+      }
+      if (!globalBrowser) {
         console.log('🔄 Launching new global browser instance...');
-        globalBrowser = await launchBrowser();
+        globalBrowser = await launchBrowser(currentPersona());
       }
       return globalBrowser;
     }
@@ -596,6 +815,9 @@ data:
         page = await ctx.newPage();
         page.setDefaultNavigationTimeout(45000);
         page.setDefaultTimeout && page.setDefaultTimeout(30000);
+        const persona = currentPersona();
+        await applyPersona(page, persona);
+        console.log(`🧑 Shopper ${persona.name} (${persona.locale}, ${persona.timezone})`);
 
         // Log all responses for debugging (when DEBUG_LOGGING=true)
         if (debugEnabled) {
@@ -807,6 +1029,7 @@ data:
         } catch (e) {
           console.error(`❌ Cycle #${cycle} failed:`, e && e.stack ? e.stack : e);
         }
+        cyclesOnProfile += 1;
         cycle += 1;
         await delay(cycleDelayMs);
       }
@@ -874,6 +1097,14 @@ spec:
           value: "1000"
         - name: DEBUG_LOGGING
           value: ""  # Set to "true" to enable debug logging
+        # Desktop Chrome Client Hints personas (windows-en-us, mac-en-gb,
+        # windows-en-au). UA string uses Chrome's reduced form; full version
+        # and GREASE brands go out as Client Hints. Optional overrides:
+        # RUM_USER_AGENT (string only), RUM_CHROME_VERSION (a.b.c.d).
+        - name: RUM_PROFILE_COUNT
+          value: "3"
+        - name: RUM_PROFILE_CYCLES
+          value: "6"
         - name: QUICK_PROMPT_INTERVAL_MS
           value: "300000"  # How often AI quick prompts run (ms). Default 300000 (5min). Set "0" for every cycle.
         - name: SHIPPING_API
@@ -920,7 +1151,7 @@ metadata:
     opentelemetry.io/name: cart
     app.kubernetes.io/component: cart
     app.kubernetes.io/name: cart
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -939,7 +1170,7 @@ metadata:
     opentelemetry.io/name: cart
     app.kubernetes.io/component: cart
     app.kubernetes.io/name: cart
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -957,7 +1188,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: cart
-        image: ghcr.io/splunk/opentelemetry-demo/otel-cart:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-cart:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -991,7 +1222,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_PROTOCOL
           value: http/protobuf
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         - name: SPLUNK_PROFILER_LOGS_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4318/v1/logs
         - name: SPLUNK_PROFILER_ENABLED
@@ -1041,7 +1272,7 @@ metadata:
     opentelemetry.io/name: checkout
     app.kubernetes.io/component: checkout
     app.kubernetes.io/name: checkout
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9-hotfix-checkout-1
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1060,7 +1291,7 @@ metadata:
     opentelemetry.io/name: checkout
     app.kubernetes.io/component: checkout
     app.kubernetes.io/name: checkout
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9-hotfix-checkout-1
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -1078,7 +1309,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: checkout
-        image: ghcr.io/splunk/opentelemetry-demo/otel-checkout:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-checkout:2.0.9-hotfix-checkout-1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -1122,7 +1353,7 @@ spec:
         - name: GOMEMLIMIT
           value: 16MiB
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9-hotfix-checkout-1,service.kafka=no
         resources:
           limits:
             memory: 20Mi
@@ -1617,7 +1848,51 @@ data:
             "off": false
           },
           "defaultVariant": "off"
-    
+        },
+        "S-Noisy-neighbour": {
+          "description": "Noisy neighbor + scheduling blast radius. On creates dummy otel-collector-noisy (sandbox script holds memory; logs the allocation) and storefront-spread (5 replicas, required hostname anti-affinity so extras Pending on a 3-node cluster). Does not patch the real Splunk collector or shop Deployments. Off deletes both.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
+        "S-Degraded-deployments": {
+          "description": "Degraded deployments inventory. On creates dummy paymentservice (5 replicas, required hostname anti-affinity) so K8s Overview shows 3/5 available on a 3-node cluster. Does not patch live payment. Off deletes the dummy.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
+        "S-imagePullBackoff": {
+          "description": "Create dummy cart-imagepull Deployment that pulls otel-cart:lastest (typo of latest) so Kubernetes emits ImagePullBackOff. Does not change the real cart service. Off deletes the dummy pod.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
+        "S-Resource-management": {
+          "description": "APM-to-K8s email OOM. On creates dummy email-oom (service.name=email) that leaks until the 100Mi limit, OOMKills, and restarts (sawtooth + probe failures). Does not patch live email. Off deletes it. Fix in the story: raise the container memory limit.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
+        },
+        "S-TEST-shelltester": {
+          "description": "Controller watchdog test. On launches a dummy shell-tester pod that POSTs OTLP gauge scenariotest_metric (0→100 then reset) to the node collector. Off terminates the script. Does not change live shop services.",
+          "state": "ENABLED",
+          "variants": {
+            "on": true,
+            "off": false
+          },
+          "defaultVariant": "off"
         },
         "emailMemoryLeak": {
           "description": "Memory leak in the email service.",
@@ -1783,7 +2058,7 @@ metadata:
     opentelemetry.io/name: fraud-detection
     app.kubernetes.io/component: fraud-detection
     app.kubernetes.io/name: fraud-detection
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -1801,7 +2076,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: fraud-detection
-        image: ghcr.io/splunk/opentelemetry-demo/otel-fraud-detection:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-fraud-detection:2.0.9
         imagePullPolicy: Always
         env:
         - name: OTEL_SERVICE_NAME
@@ -1836,7 +2111,7 @@ spec:
         - name: OTEL_SEMCONV_STABILITY_OPT_IN
           value: database/dup
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=propagation
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=propagation
         - name: SQL_SERVER_HOST
           value: sql-server-fraud
         - name: SQL_SERVER_PORT
@@ -1894,7 +2169,7 @@ metadata:
     opentelemetry.io/name: frontend
     app.kubernetes.io/component: frontend
     app.kubernetes.io/name: frontend
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -1913,7 +2188,7 @@ metadata:
     opentelemetry.io/name: frontend
     app.kubernetes.io/component: frontend
     app.kubernetes.io/name: frontend
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -1931,7 +2206,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: frontend
-        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -1986,7 +2261,7 @@ spec:
           value: grpc
         - name: OTEL_LOG_LEVEL
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         - name: API_TOKEN
           valueFrom:
             secretKeyRef:
@@ -2027,7 +2302,7 @@ spec:
       # with restartPolicy: Always, k8s >= 1.29).
       initContainers:
       - name: secureapp
-        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-node:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-node:2.0.9
         imagePullPolicy: Always
         restartPolicy: Always
         command: ["node", "-r", "@splunk/otel/instrument.js", "src/server.js"]
@@ -2059,7 +2334,7 @@ spec:
         - name: OTEL_LOGS_EXPORTER
           value: otlp
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,deployment.environment.name=$(DEPLOY_ENV)
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,deployment.environment.name=$(DEPLOY_ENV)
         - name: SERVER_PORT
           value: "8180"
         - name: SPLUNK_SECUREAPP_AGENT_ENABLED
@@ -2096,7 +2371,7 @@ metadata:
     opentelemetry.io/name: frontend-proxy
     app.kubernetes.io/component: frontend-proxy
     app.kubernetes.io/name: frontend-proxy
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -2115,7 +2390,7 @@ metadata:
     opentelemetry.io/name: frontend-proxy
     app.kubernetes.io/component: frontend-proxy
     app.kubernetes.io/name: frontend-proxy
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -2133,7 +2408,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: frontend-proxy
-        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend-proxy:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-frontend-proxy:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -2185,7 +2460,7 @@ spec:
         - name: OTEL_COLLECTOR_PORT_HTTP
           value: '4318'
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         - name: SECUREAPP_HOST
           value: secureapp-loadgen
         - name: SECUREAPP_PORT
@@ -2235,7 +2510,7 @@ metadata:
     opentelemetry.io/name: image-provider
     app.kubernetes.io/component: image-provider
     app.kubernetes.io/name: image-provider
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -2254,7 +2529,7 @@ metadata:
     opentelemetry.io/name: image-provider
     app.kubernetes.io/component: image-provider
     app.kubernetes.io/name: image-provider
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -2272,7 +2547,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: image-provider
-        image: ghcr.io/splunk/opentelemetry-demo/otel-image-provider:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-image-provider:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8081
@@ -2298,7 +2573,7 @@ spec:
         - name: OTEL_COLLECTOR_HOST
           value: $(OTEL_COLLECTOR_NAME)
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         resources:
           limits:
             memory: 50Mi
@@ -2409,6 +2684,149 @@ spec:
 
 ---
 
+# === k8s-scenario-controller ===
+# Kubernetes scenario controller
+# Polls flagd and applies demo workloads (ImagePullBackOff, later OOM / memory).
+# Uses a dedicated ServiceAccount — do not reuse splunk-opentelemetry-demo.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-scenario-controller
+  labels:
+    opentelemetry.io/name: k8s-scenario-controller
+    app.kubernetes.io/component: k8s-scenario-controller
+    app.kubernetes.io/name: k8s-scenario-controller
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: k8s-scenario-controller
+  labels:
+    opentelemetry.io/name: k8s-scenario-controller
+    app.kubernetes.io/component: k8s-scenario-controller
+    app.kubernetes.io/name: k8s-scenario-controller
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
+rules:
+  # Enough for scenario 2 (Deployments) and later OOM / memory modules
+  # (ConfigMaps for scripts, Services if a dummy endpoint is needed).
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods", "configmaps", "services"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: k8s-scenario-controller
+  labels:
+    opentelemetry.io/name: k8s-scenario-controller
+    app.kubernetes.io/component: k8s-scenario-controller
+    app.kubernetes.io/name: k8s-scenario-controller
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: k8s-scenario-controller
+subjects:
+  - kind: ServiceAccount
+    name: k8s-scenario-controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-scenario-controller
+  labels:
+    opentelemetry.io/name: k8s-scenario-controller
+    app.kubernetes.io/component: k8s-scenario-controller
+    app.kubernetes.io/name: k8s-scenario-controller
+    app.kubernetes.io/version: 2.0.9
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      opentelemetry.io/name: k8s-scenario-controller
+  template:
+    metadata:
+      labels:
+        opentelemetry.io/name: k8s-scenario-controller
+        app.kubernetes.io/component: k8s-scenario-controller
+        app.kubernetes.io/name: k8s-scenario-controller
+    spec:
+      serviceAccountName: k8s-scenario-controller
+      # Time to delete dummy Deployments on SIGTERM before kubelet SIGKILLs.
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: k8s-scenario-controller
+          image: ghcr.io/splunk/opentelemetry-demo/otel-k8s-scenario-controller:2.0.9
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: health
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: FLAGD_OFREP_URL
+              value: http://flagd:8016
+            - name: RECONCILE_INTERVAL_SECONDS
+              value: "5"
+            - name: HEALTH_PORT
+              value: "8080"
+            # Comma-separated module names, or * for every enabled module.
+            - name: SCENARIO_MODULES
+              value: "*"
+            - name: IMAGEPULL_BAD_IMAGE
+              value: ghcr.io/splunk/opentelemetry-demo/otel-cart:lastest
+            - name: SHELLTESTER_IMAGE
+              value: docker.io/library/busybox:1.37.0
+            - name: SHELLTESTER_METRIC
+              value: scenariotest_metric
+            - name: SHELLTESTER_INTERVAL_SECONDS
+              value: "1"
+            # S-Noisy-neighbour: hog size (MiB) and spread replica count.
+            # Keep hog modest on shared shop nodes; raise only on a demo node.
+            - name: NOISY_NEIGHBOR_MIB
+              value: "256"
+            - name: NOISY_SPREAD_REPLICAS
+              value: "5"
+            - name: NOISY_NEIGHBOR_IMAGE
+              value: docker.io/library/python:3.12-alpine3.23
+            # S-Degraded-deployments: 5 replicas on a 3-node cluster → 3/5.
+            - name: DEGRADED_PAYMENT_REPLICAS
+              value: "5"
+            # S-Resource-management: dummy email-oom memory limit.
+            - name: EMAIL_OOM_LIMIT_MIB
+              value: "100"
+            - name: EMAIL_OOM_IMAGE
+              value: docker.io/library/python:3.12-alpine3.23
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
+
+---
+
 # === llm ===
 # Kubernetes manifest for llm
 # Auto-generated from opentelemetry-demo.yaml
@@ -2422,7 +2840,7 @@ metadata:
     opentelemetry.io/name: llm
     app.kubernetes.io/component: llm
     app.kubernetes.io/name: llm
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -2441,7 +2859,7 @@ metadata:
     opentelemetry.io/name: llm
     app.kubernetes.io/component: llm
     app.kubernetes.io/name: llm
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -2459,7 +2877,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: llm
-        image: ghcr.io/splunk/opentelemetry-demo/otel-llm:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-llm:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
@@ -2485,7 +2903,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4317
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         resources:
           limits:
             memory: 100Mi
@@ -2499,7 +2917,7 @@ spec:
 # SPDX-License-Identifier: Apache-2.0
 
 # Payment Service Version A - Stable/Conservative Version
-# This manifest deploys payment service v1.7.0-a with version-specific configuration
+# This manifest deploys payment service v350.9 (stable) with version-specific configuration
 
 ---
 apiVersion: v1
@@ -2521,7 +2939,7 @@ metadata:
     opentelemetry.io/name: payment-va
     app.kubernetes.io/component: payment
     app.kubernetes.io/name: payment-va
-    app.kubernetes.io/version: "1.7.0-a"
+    app.kubernetes.io/version: "v350.9"
 spec:
   replicas: 2
   selector:
@@ -2562,7 +2980,7 @@ spec:
 
       containers:
       - name: payment
-        image: ghcr.io/splunk/opentelemetry-demo/otel-payment:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-payment:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -2574,9 +2992,9 @@ spec:
         - name: PAYMENT_VERSION
           value: "350.9"
 
-        # Service version for logger (must match image tag)
+        # Buttercup demo version for logs/APM (distinct from shop image tag)
         - name: SERVICE_VERSION
-          value: "1.7.2-a"
+          value: "v350.9"
 
         # Token from dedicated secret for version A
         - name: PAYMENT_API_TOKEN
@@ -2616,7 +3034,7 @@ spec:
 
         # Resource attributes (includes version-specific tags)
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: "service.name=payment,service.version=2.0.8,payment.variant=A"
+          value: "service.name=payment,service.version=v350.9,payment.variant=A"
 
         # Splunk OpenTelemetry configuration
         - name: SPLUNK_INSTRUMENTATION_METRICS_ENABLED
@@ -2703,7 +3121,7 @@ spec:
 # SPDX-License-Identifier: Apache-2.0
 
 # Payment Service Version B - Optimized/Next-gen Version
-# This manifest deploys payment service v1.7.0-b with version-specific configuration
+# This manifest deploys payment service v350.10 (canary) with version-specific configuration
 
 ---
 apiVersion: v1
@@ -2725,7 +3143,7 @@ metadata:
     opentelemetry.io/name: payment-vb
     app.kubernetes.io/component: payment
     app.kubernetes.io/name: payment-vb
-    app.kubernetes.io/version: "1.7.0-b"
+    app.kubernetes.io/version: "v350.10"
 spec:
   replicas: 2
   selector:
@@ -2766,7 +3184,7 @@ spec:
 
       containers:
       - name: payment
-        image: ghcr.io/splunk/opentelemetry-demo/otel-payment:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-payment:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -2778,9 +3196,9 @@ spec:
         - name: PAYMENT_VERSION
           value: "350.10"
 
-        # Service version for logger (must match image tag)
+        # Buttercup demo version for logs/APM (distinct from shop image tag)
         - name: SERVICE_VERSION
-          value: "1.7.2-b"
+          value: "v350.10"
 
         # Token from dedicated secret for version B
         - name: PAYMENT_API_TOKEN
@@ -2820,7 +3238,7 @@ spec:
 
         # Resource attributes (includes version-specific tags)
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: "service.name=payment,service.version=2.0.8,payment.variant=B"
+          value: "service.name=payment,service.version=v350.10,payment.variant=B"
 
         # Splunk OpenTelemetry configuration
         - name: SPLUNK_INSTRUMENTATION_METRICS_ENABLED
@@ -3280,7 +3698,7 @@ metadata:
     opentelemetry.io/name: product-catalog
     app.kubernetes.io/component: product-catalog
     app.kubernetes.io/name: product-catalog
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3299,7 +3717,7 @@ metadata:
     opentelemetry.io/name: product-catalog
     app.kubernetes.io/component: product-catalog
     app.kubernetes.io/name: product-catalog
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -3317,7 +3735,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: product-catalog
-        image: ghcr.io/splunk/opentelemetry-demo/otel-product-catalog:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-product-catalog:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -3351,7 +3769,7 @@ spec:
         - name: GOMEMLIMIT
           value: 200MiB
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         resources:
           limits:
             memory: 300Mi
@@ -3370,7 +3788,7 @@ kind: ConfigMap
 metadata:
   name: product-catalog-products
   labels:
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 data:
   # yamllint disable rule:line-length
@@ -3541,7 +3959,7 @@ metadata:
     opentelemetry.io/name: product-reviews
     app.kubernetes.io/component: product-reviews
     app.kubernetes.io/name: product-reviews
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3560,7 +3978,7 @@ metadata:
     opentelemetry.io/name: product-reviews
     app.kubernetes.io/component: product-reviews
     app.kubernetes.io/name: product-reviews
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -3578,7 +3996,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: product-reviews
-        image: ghcr.io/splunk/opentelemetry-demo/otel-product-reviews:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-product-reviews:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 3551
@@ -3628,7 +4046,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4317
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         resources:
           limits:
             memory: 500Mi
@@ -3650,7 +4068,7 @@ metadata:
     opentelemetry.io/name: quote
     app.kubernetes.io/component: quote
     app.kubernetes.io/name: quote
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3669,7 +4087,7 @@ metadata:
     opentelemetry.io/name: quote
     app.kubernetes.io/component: quote
     app.kubernetes.io/name: quote
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -3687,7 +4105,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: quote
-        image: ghcr.io/splunk/opentelemetry-demo/otel-quote:quote-2.0.8-php
+        image: ghcr.io/splunk/opentelemetry-demo/otel-quote:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -3715,7 +4133,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4318
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         resources:
           limits:
             memory: 40Mi
@@ -3743,7 +4161,7 @@ metadata:
     opentelemetry.io/name: recommendation
     app.kubernetes.io/component: recommendation
     app.kubernetes.io/name: recommendation
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3762,7 +4180,7 @@ metadata:
     opentelemetry.io/name: recommendation
     app.kubernetes.io/component: recommendation
     app.kubernetes.io/name: recommendation
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -3780,7 +4198,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: recommendation
-        image: ghcr.io/splunk/opentelemetry-demo/otel-recommendation:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-recommendation:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -3817,7 +4235,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4317
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,service.kafka=no
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,service.kafka=no
         - name: SPLUNK_PROFILER_LOGS_ENDPOINT
           value: http://$(OTEL_COLLECTOR_NAME):4317
         - name: SPLUNK_PROFILER_CALL_STACK_INTERVAL
@@ -3845,7 +4263,7 @@ spec:
       # (initContainer with restartPolicy: Always, k8s >= 1.29).
       initContainers:
       - name: secureapp
-        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-python:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-secureapp-loadgen-python:2.0.9
         imagePullPolicy: Always
         restartPolicy: Always
         command:
@@ -3884,7 +4302,7 @@ spec:
         - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
           value: "false"
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,deployment.environment.name=$(DEPLOY_ENV)
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,deployment.environment.name=$(DEPLOY_ENV)
         - name: SERVER_PORT
           value: "8180"
         - name: SPLUNK_SECUREAPP_AGENT_ENABLED
@@ -3929,7 +4347,7 @@ metadata:
     opentelemetry.io/name: order-ledger
     app.kubernetes.io/component: order-ledger
     app.kubernetes.io/name: order-ledger
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
@@ -3948,7 +4366,7 @@ metadata:
     opentelemetry.io/name: order-ledger
     app.kubernetes.io/component: order-ledger
     app.kubernetes.io/name: order-ledger
-    app.kubernetes.io/version: 2.0.8
+    app.kubernetes.io/version: 2.0.9
     app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
@@ -3966,7 +4384,7 @@ spec:
       serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: order-ledger
-        image: ghcr.io/splunk/opentelemetry-demo/otel-order-ledger:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-order-ledger:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -3992,7 +4410,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
           value: cumulative
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9
         # Splunk Java agent (baked into the image).
         - name: JAVA_TOOL_OPTIONS
           value: -javaagent:/usr/src/app/splunk-otel-javaagent-csa.jar
