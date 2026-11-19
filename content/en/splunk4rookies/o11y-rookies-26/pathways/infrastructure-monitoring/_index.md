@@ -15,7 +15,7 @@ Find a noisy neighbour using Splunk Infrastructure Monitoring.
 {{< card title="The silent revenue leak" href="/splunk4rookies/o11y-rookies-26/modules/6-logs/" show-time="true" >}}
 Use structured logs to explain a payment shortfall while request-health signals look normal.
 {{< /card >}}
-{{< card title="What is that Database doing?" href="/splunk4rookies/o11y-rookies-26/modules/7-db-mon/" show-time="true" >}}
-Investigate database performance and its impact on the application.
+{{< card title="Finding issues in the database" href="/splunk4rookies/o11y-rookies-26/modules/7-db-mon/" show-time="true" >}}
+Follow a slow recommendation request into PostgreSQL and use Database Monitoring to identify the root cause.
 {{< /card >}}
 {{< /cards >}}
