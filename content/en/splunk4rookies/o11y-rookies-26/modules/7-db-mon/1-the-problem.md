@@ -3,7 +3,7 @@ title: 1. The Problem
 weight: 1
 ---
 
-## “Why are recommendations taking so long?”
+## "Why are recommendations taking so long?"
 
 Customers can browse the Astronomy Shop, but product recommendations sometimes take several seconds to appear. The page eventually returns results, and the requests may show no errors. From the customer's perspective, though, the shop feels slow.
 
@@ -13,7 +13,7 @@ The recommendation service retrieves product information from PostgreSQL. Somewh
 
 ## Your investigation
 
-You are the SRE on call. Your task is to move from **“recommendations are slow”** to an explanation the application and database teams can act on.
+You are the SRE on call. Your task is to move from **"recommendations are slow"** to an explanation the application and database teams can act on.
 
 Start with three questions:
 

@@ -9,19 +9,21 @@ A **normalized query** replaces literal values with placeholders such as `?`, ma
 
 1. Read the **Query statement** at the top of the details pane. Identify `products`, `product_tags`, the category and tag filters, and the ordering by relevance score.
 2. Inspect the **JOIN** condition. How are the tables related?
-3. See the **Explain plans**, select the available plan if necessary, and use the **List** and **Graph** to inspect it. Are there specific nodes that are taking up the bulk of the execution?
+3. Open the **Explain plans** tab, select the plan if needed, and switch between the **List** and **Graph** views. Which nodes account for most of the plan cost?
 
-![Normalized query and execution-plan graph showing a high-cost Sort above a Nested Loop](../images/execution-plan.png)
+![Normalized query and execution-plan List view showing row estimates and a high-cost Sort above a Nested Loop](../images/execution-plan.png)
 
 {{% /exercise %}}
 
 ## Explain the row explosion
 
+Notice the join condition is `ON ? = ?`. It compares two placeholder values, rather than a column from `products` with a column from `product_tags`. In this scenario, the original condition is always true, so every qualifying product matches every qualifying tag. The placeholders hide the literal values; `? = ?` alone does not prove that every normalized query has an always-true condition.
+
 A join should connect each product to its associated tags. If that relationship is missing and the condition is always true, every qualifying product is paired with every qualifying tag: a **Cartesian product**. PostgreSQL then has a much larger intermediate result to sort before applying the limit.
 
-For example, 1,000 qualifying products paired with 1,000 qualifying tags produce 1,000,000 combinations. This is an illustration, not an expected count for your environment.
+In the screenshot, the plan estimates about **1k products** and **10k product tags**, producing **10,000k (10 million) rows** entering the Sort. Compare those estimates with your own plan; your counts may differ.
 
-The demo's plan and SQL together point to the missing relationship. A nested loop by itself is not a defect, and normalized placeholders alone do not reveal their original values. Look for the combination of the missing column relationship, the plan's row estimates, and the expensive downstream sort.
+The plan and SQL together point to the missing relationship. A nested loop by itself is not a defect, and normalized placeholders alone do not reveal their original values. Look for the combination of the missing column relationship, the plan's row estimates, and the expensive downstream sort.
 
 {{% notice title="Cost is not elapsed time" style="info" %}}
 The screenshot labels the Sort with approximately **94% of plan cost**. This is not a measurement that 94% of elapsed time was spent sorting. Keep planner estimates separate from observed query duration and distinguish estimated row counts from actual rows processed.

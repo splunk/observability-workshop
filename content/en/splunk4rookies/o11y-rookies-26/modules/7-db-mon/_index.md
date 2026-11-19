@@ -3,15 +3,13 @@ title: Finding issues in the database
 weight: 7
 layout: chapter
 time: 45 minutes
-description: Follow a slow recommendation request into PostgreSQL, investigate its execution plan, and identify a missing JOIN condition with Database Monitoring.
+description: Follow a slow recommendation request into PostgreSQL, investigate its execution plan, and identify the root cause of a query regression with Database Monitoring.
 params:
   images:
     - images/slow-recommendations.png
 ---
 
-<!-- Adapted from Splunk DB-Mon Demo, version 16 (2026-10-14):
-https://splunk.atlassian.net/wiki/spaces/O11YS/pages/1079950050021/Splunk+DB-Mon+Demo
-Lesson screenshots are from that demo; participant access does not require Confluence. -->
+<!-- Adapted from the Splunk DB-Mon demo. -->
 
 {{< persona role="SRE on-call" >}}
 {{< persona-situation >}}Customers report that product recommendations in the Astronomy Shop sometimes load slowly. The application still returns results, but a database call is taking seconds.{{< /persona-situation >}}
@@ -44,16 +42,18 @@ Your instructor will provide an Astronomy Shop environment with PostgreSQL monit
 Before the session, verify that:
 
 - The deployed Astronomy Shop version supports the Cartesian recommendation query scenario, with PostgreSQL telemetry and execution plans available in Database Monitoring.
-- **Database Monitoring** with AI assistance are available.
+- **Database Monitoring** with AI assistance is available.
 - The **Summarize** button and **AI recommendations** tab work for participant access.
 
-Feature flags can be checked at the Astronomy Shop frontend's `/feature` path.
+Confirm that **`recommendationCartesianQuery`** is **ON** and recent traffic includes the slow recommendation query. Feature flags can be checked at the Astronomy Shop frontend's `/feature` path; ask the environment owner to check shared environments.
+
+Test **Summarize** and **Generate recommendations** before the session. An AI recommendations issue has been reported for this workshop; if generation fails, use the supplied example screenshots and clearly identify them as example evidence.
 
 | Symptom | Facilitator check |
 | --- | --- |
 | Database Monitoring is absent | Confirm feature availability and participant access in the selected organization. |
 | PostgreSQL instance is missing | Confirm database collection, environment filter, and time window. |
-| Slow recommendation query is missing | Confirm the deployed scenario, feature flag, and recent demo traffic; allow new telemetry to arrive. |
+| Slow recommendation query is missing | Confirm the deployed scenario, `recommendationCartesianQuery` flag, and recent demo traffic; allow new telemetry to arrive. |
 | Query is visible but no plan is available | Confirm execution-plan collection and a recent captured execution. |
 | AI controls are unavailable | Confirm AI availability; participants can still interpret the supplied example screenshots and SQL, clearly distinguishing those from live evidence. |
 

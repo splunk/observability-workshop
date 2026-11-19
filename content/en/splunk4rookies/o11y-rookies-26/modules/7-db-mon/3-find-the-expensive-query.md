@@ -7,16 +7,17 @@ Database Monitoring lets you move from an instance-level view to the queries res
 
 {{% exercise title="Identify the recommendation query" %}}
 
-1. Click on the Postgres database
-2. Under **Database Instances** on the right, click on the database instance. (If there are more than one, click the one with the longest average duration).
-3. Compare **Total duration**, **Avg. duration**, and **Executions**. Look for the product recommendation query beginning with the following text:
+1. From the APM service map, open **APM → Database Monitoring → Overview**. Filter to **PostgreSQL** and your workshop environment, keeping the same time window.
+2. Select the PostgreSQL database for your workshop. Under **Database Instances** on the right, select the database instance. If there is more than one, select the one with the longest average duration.
+3. Open the **Workload** tab and locate the **Queries** table.
+4. Compare **Total duration**, **Avg. duration**, and **Executions**. Look for the product recommendation query beginning with the following text:
 
-```sql
-SELECT p.product_id, p.name, p.price, pt.tag, pt.relevance_score
-FROM products
-```
+   ```sql
+   SELECT p.product_id, p.name, p.price, pt.tag, pt.relevance_score
+   FROM products
+   ```
 
-4. Note  its average duration and execution count, then select the query to open its details.
+5. Note its average duration and execution count, then select the query to open its details.
 
 ![Queries table highlighting the product recommendation query and its multi-second average duration](../images/queries.png)
 

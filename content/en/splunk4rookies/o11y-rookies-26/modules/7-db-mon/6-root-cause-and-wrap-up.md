@@ -24,7 +24,7 @@ Using your observations, prepare a short explanation that includes:
 | APM service map | The recommendation service had a slow PostgreSQL dependency. |
 | Database Monitoring queries | A product recommendation query took seconds per execution. |
 | SQL and execution plan | The missing join relationship produced excessive intermediate combinations and an expensive sort. |
-| AI assistance | A proposed join correction and additional tuning ideas to assess. |
+| AI assistance | AI suggested a join correction and additional tuning ideas to assess. |
 | Validation plan | How to check correctness and measure improvement before declaring the incident resolved. |
 
 {{% notice title="Congratulations" style="blue" icon="wine-bottle" %}}

@@ -16,6 +16,6 @@ Find a noisy neighbour using Splunk Infrastructure Monitoring.
 Use Log Observer to identify patterns and determine the root cause of an incident.
 {{< /card >}}
 {{< card title="Finding issues in the database" href="/splunk4rookies/o11y-rookies-26/modules/7-db-mon/" show-time="true" >}}
-Investigate database performance and its impact on the application.
+Follow a slow recommendation request into PostgreSQL and use Database Monitoring to identify the root cause.
 {{< /card >}}
 {{< /cards >}}
