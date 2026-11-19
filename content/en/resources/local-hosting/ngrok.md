@@ -8,7 +8,7 @@ description: Use ngrok to give attendees a public URL for an application running
 
 A locally hosted instance is only reachable from your own machine or network. Attendees, Splunk Synthetic Monitoring tests, and anyone outside your network cannot open `http://localhost:81` or a private address such as `http://192.168.205.185:81`.
 
-[ngrok](https://ngrok.com/) creates a secure tunnel from a public HTTPS URL to a port on your machine. Share that URL with attendees and they can use the workshop application as if it were hosted in the cloud.
+[ngrok](https://ngrok.com/) puts a service running on your machine online at a public HTTPS URL. Share that URL with attendees and they can use the workshop application as if it were hosted in the cloud.
 
 The workshop application listens on port `81` on every local hosting option:
 
@@ -37,13 +37,7 @@ Install ngrok on the machine that runs the instance. On a Mac:
 brew install ngrok
 ```
 
-On Windows:
-
-```bash
-winget install ngrok -s msstore
-```
-
-On Linux, follow the [ngrok installation instructions](https://ngrok.com/downloads/linux).
+On Windows and Linux, get the agent from the [ngrok download page](https://ngrok.com/download).
 
 Add your authtoken. This only needs to be done once:
 
@@ -68,50 +62,46 @@ ngrok http 81
 Replace `<instance-ip>` with the IP address of your instance:
 
 ```bash
-ngrok http http://<instance-ip>:81
+ngrok http <instance-ip>:81
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-ngrok displays a session summary. The `Forwarding` line contains the public URL to share with attendees:
+ngrok prints the public URL to share with attendees. Keep the terminal open. Closing it, or pressing `Ctrl+C`, stops the tunnel.
 
-```text
-Session Status                online
-Account                       Workshop Host (Plan: Free)
-Region                        Europe (eu)
-Web Interface                 http://127.0.0.1:4040
-Forwarding                    https://a1b2-203-0-113-10.ngrok-free.app -> http://192.168.205.185:81
-```
+Every ngrok account, including the free plan, has a dev domain such as `your-assigned-name.ngrok-free.app`. `ngrok http` uses it automatically and it does not change when you restart the agent, so attendees can keep using the same URL if the tunnel is restarted.
 
-Keep the terminal open. Closing it, or pressing `Ctrl+C`, stops the tunnel.
+## Free plan limits
 
-## Use a fixed URL
+The free plan is enough for small workshops, but check its [limits](https://ngrok.com/docs/pricing-limits/free-plan-limits/) before a large session. These are the limits most likely to matter:
 
-By default, ngrok assigns a new random URL each time the tunnel starts. To avoid sending attendees a new link after a restart, claim the free static domain in the ngrok dashboard under **Universal Gateway → Domains**, then start the tunnel with it:
+| Limit | Free plan |
+| --- | --- |
+| HTTP requests | 20,000 per month |
+| Data transfer out | 1 GB per month |
+| HTTP request rate | 4,000 per minute |
+| Concurrent agents | 3 |
 
-```bash
-ngrok http 81 --url https://<your-domain>.ngrok-free.app
-```
+Every page load in the application makes many HTTP requests, so a large group of attendees can use up the monthly quotas quickly. Check current usage on the **Usage** page in the ngrok dashboard, and consider a paid plan for large workshops.
 
 ## Free plan browser warning
 
-On the free plan, ngrok shows a warning page the first time a browser visits the URL. Attendees select **Visit Site** to continue to the application.
+On the free plan, ngrok shows an interstitial warning page in front of all HTML browser traffic. Attendees select **Visit** to continue to the application. A cookie then hides the warning for that domain for 7 days.
 
-The warning page can interfere with Splunk Synthetic Monitoring browser tests and RUM sessions recorded by the tests. To skip it, add the request header `ngrok-skip-browser-warning` with any value to the test. A paid ngrok plan removes the warning page.
+The warning page can block Splunk Synthetic Monitoring browser tests. To skip it, add the request header `ngrok-skip-browser-warning` with any value to the test, or set the `User-Agent` header to a non-standard value such as `MyApp/0.0.1`. Upgrading to any paid ngrok plan removes the warning page.
 
 ## Monitor attendee traffic
 
-Open the ngrok web interface at `http://127.0.0.1:4040` to see every request coming through the tunnel. It is useful for confirming that attendees are reaching the application and for troubleshooting failed requests.
+Open the ngrok web inspection interface at `http://localhost:4040` on the machine running ngrok. It shows every HTTP request coming through the tunnel, including the time, duration, source IP, status, and headers. This is useful for confirming that attendees are reaching the application and for troubleshooting failed requests.
 
 ## Stop the tunnel
 
-Press `Ctrl+C` in the terminal running ngrok. The public URL stops working immediately.
+Press `Ctrl+C` in the terminal running ngrok. The public URL stops working.
 
 ## Troubleshooting
 
-- **`ERR_NGROK_4018` or authentication failed**: The authtoken is missing or wrong. Run `ngrok config add-authtoken <your-authtoken>` again.
-- **`ERR_NGROK_8012` or a 502 Bad Gateway page**: ngrok cannot reach the application. Check that `http://localhost:81` or `http://<instance-ip>:81` loads in your browser, and that the application pods are running with `kubectl get pods`.
-- **Tunnel will not start**: VPNs and proxies such as ZScaler or Cisco AnyConnect can block ngrok. Disconnect them and try again.
-- **`ERR_NGROK_108` or session limit reached**: The free plan allows one agent session at a time. Stop any other running ngrok process.
-- **Attendees see a new URL**: The tunnel was restarted without a static domain. Use a [fixed URL](#use-a-fixed-url).
+- **`ERR_NGROK_4018`**: The ngrok session is not authenticated. Run `ngrok config add-authtoken <your-authtoken>` with the authtoken from the dashboard.
+- **`ERR_NGROK_8012`**: Traffic reached the ngrok agent, but the agent could not connect to the application. Check that `http://localhost:81` or `http://<instance-ip>:81` loads in your browser, that the port in the ngrok command is `81`, and that the application pods are running with `kubectl get pods`.
+- **`ERR_NGROK_108`**: Your account has reached its limit of simultaneous agent sessions, which is 3 on the free plan. Stop other running ngrok processes.
+- **`ERR_NGROK_6024`**: This is the free plan browser warning page, not a fault. Select **Visit** to continue.
