@@ -72,14 +72,14 @@ FROM base AS final
 
 # NEW CODE: Copy instrumentation file tree
 WORKDIR "//home/app/.splunk-otel-dotnet"
-COPY --from=build /root/.splunk-otel-dotnet/ .
+COPY --chown=app:app --from=build /root/.splunk-otel-dotnet/ .
 
 # CODE ALREADY IN YOUR DOCKERFILE
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --chown=app:app --from=publish /app/publish .
 
 # NEW CODE: copy the entrypoint.sh script
-COPY entrypoint.sh .
+COPY --chown=app:app entrypoint.sh .
 
 # NEW CODE: set OpenTelemetry environment variables
 ENV OTEL_SERVICE_NAME=helloworld
@@ -134,13 +134,13 @@ FROM base AS final
 
 # NEW CODE: Copy instrumentation file tree
 WORKDIR "//home/app/.splunk-otel-dotnet"
-COPY --from=build /root/.splunk-otel-dotnet/ .
+COPY --chown=app:app --from=build /root/.splunk-otel-dotnet/ .
 
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --chown=app:app --from=publish /app/publish .
 
 # NEW CODE: copy the entrypoint.sh script
-COPY entrypoint.sh .
+COPY --chown=app:app entrypoint.sh .
 
 # NEW CODE: set OpenTelemetry environment variables
 ENV OTEL_SERVICE_NAME=helloworld

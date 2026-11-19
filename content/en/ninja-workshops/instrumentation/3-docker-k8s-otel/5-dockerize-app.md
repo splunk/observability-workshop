@@ -82,7 +82,7 @@ RUN dotnet publish "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --chown=app:app --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
@@ -167,7 +167,7 @@ defines the entry point for our application:
 ``` dockerfile
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --chown=app:app --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
