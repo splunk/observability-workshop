@@ -1,6 +1,7 @@
 ---
 title: 4. Understand the Execution Plan
 weight: 4
+draft: true
 ---
 
 A **normalized query** replaces literal values with placeholders such as `?`, making it easier to group similar statements. An **execution plan** describes how PostgreSQL processes a query: reading tables, combining rows, sorting, and returning results.

@@ -23,7 +23,7 @@ As a Kubernetes admin you want a **single pane of glass** across the cluster, no
 
 This is a dummy workload created for the lab. It is **not** the live Astronomy Shop `payment` service that checkout uses.
 
-<!-- TODO screenshot: Kubernetes Overview Top issues showing paymentservice degraded (1/5 or 3/5) -->
+![Kubernetes Overview Top issues showing paymentservice degraded](images/degraded-paymentservice.webp)
 
 {{% /exercise %}}
 

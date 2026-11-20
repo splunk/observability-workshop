@@ -21,7 +21,7 @@ Email looks fine when you log in — Kubernetes already restarted the pod. You s
 
 This dummy emits traces as `service.name=email` so APM can link to the pod. It is **not** the live email Deployment checkout uses.
 
-<!-- TODO screenshot: APM email Instances highlighting the email-oom pod -->
+![APM email Instances highlighting the email-oom pod](images/apm-email-instances.webp)
 
 {{% /exercise %}}
 

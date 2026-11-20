@@ -38,7 +38,7 @@ Replace [NAME OF WORKSHOP] with the workshop name assigned to you by your instru
 
 You should now see a single cluster. Keep this filter for the rest of the module.
 
-<!-- TODO screenshot: Kubernetes new experience filtered to [NAME OF WORKSHOP]-k3d-cluster -->
+![Kubernetes new experience filtered to the workshop k3d cluster](images/k8s-cluster-filter.webp)
 
 {{% /exercise %}}
 

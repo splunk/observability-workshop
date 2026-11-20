@@ -1,6 +1,7 @@
 ---
 title: 2. Follow the Slow Request
 weight: 2
+draft: true
 ---
 
 Start with the customer symptom: recommendations sometimes take too long to appear. APM helps locate the dependency contributing to that delay.

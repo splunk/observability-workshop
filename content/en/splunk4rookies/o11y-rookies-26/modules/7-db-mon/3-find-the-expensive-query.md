@@ -1,6 +1,7 @@
 ---
 title: 3. Find the Expensive Query
 weight: 3
+draft: true
 ---
 
 Database Monitoring lets you move from an instance-level view to the queries responsible for its workload.

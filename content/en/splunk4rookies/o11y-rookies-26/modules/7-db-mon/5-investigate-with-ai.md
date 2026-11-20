@@ -1,6 +1,7 @@
 ---
 title: 5. Investigate with AI Assistance
 weight: 5
+draft: true
 ---
 
 Use AI assistance to explain the query and develop a remediation proposal. Compare its suggestions with the SQL and plan you just inspected.
