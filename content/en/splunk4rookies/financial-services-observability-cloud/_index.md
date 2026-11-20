@@ -10,6 +10,7 @@ params:
   images:
     - /images/card-hero.png
 difficulty: Rookie
+badge: Deprecated
 ---
 
 In this workshop, we’ll demonstrate how Splunk Observability Cloud delivers value to our financial services customers due to its ability to provide real-time, full-fidelity, AI-powered monitoring across your entire digital ecosystem from infrastructure to applications to user experiences. It’s purpose-built for modern, cloud-native, microservices-based environments. You’ll have the opportunity to explore some of the platform’s most powerful features, which set it apart from other observability solutions:

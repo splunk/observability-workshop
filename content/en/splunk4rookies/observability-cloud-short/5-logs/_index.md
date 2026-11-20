@@ -16,7 +16,7 @@ Remaining in your **back-end developer** role, you need to inspect the logs from
 > [!IMPORTANT]
 > Using the content related to the **APM** trace (logs) we will now use **Logs** to drill down further to understand exactly what the problem is. Related Content is a powerful feature that allows you to jump from one component to another and is available for **metrics**, **traces** and **logs**.
 
-{{< webex chat="Robert Castley" date="Today • 28/01/2026" seenby="PH" >}}
+{{< webex chat="Robert Castley" date="Today • 02/01/2027" seenby="PH" >}}
 {{< webex-msg from="RC" name="Robert Castley" time="09:42" color="#ef950d" >}}
 I've checked APM and confirmed the issue is with the paymentservice. There's a significant latency spike in the traces
 {{< /webex-msg >}}
