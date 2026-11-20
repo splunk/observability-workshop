@@ -4,6 +4,8 @@ weight: 5
 hidden: true
 time: 45 minutes
 description: Monitor real user experiences and set up proactive tests so you catch problems before your customers complain online.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/5-dem/
 params:
   images:
     - images/rum.webp

@@ -5,6 +5,8 @@ draft: true
 layout: chapter
 time: 45 minutes
 description: A noisy neighbor is hogging resources — learn how to spot the culprit using infrastructure monitoring.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/4-im/
 params:
   images:
     - images/im.webp

@@ -3,6 +3,8 @@ title: Digital Experience Path
 layout: hero
 weight: 2
 description: Follow the digital experience path to understand real user behavior and proactively monitor critical journeys.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/pathways/digital-experience-monitoring/
 ---
 
 Complete these modules in the recommended order:

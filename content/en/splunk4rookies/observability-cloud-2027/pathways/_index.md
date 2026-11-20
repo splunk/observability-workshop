@@ -5,6 +5,8 @@ layout: hero
 weight: 1
 hidden: true
 description: Select a recommended route through the workshop based on the observability skills you want to develop.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/pathways/
 ---
 
 Each path starts with the introduction and then guides you through the modules most relevant to your area of interest.

@@ -5,6 +5,8 @@ weight: 4
 type: chapter
 time: 20 minutes
 description: In this section, we will use APM to drill down and identify where the problem is.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/4-apm/
 ---
 
 {{< persona role="Back-end developer" >}}

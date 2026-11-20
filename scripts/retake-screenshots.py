@@ -23,13 +23,13 @@ from typing import Any
 
 IMG_EXTS = {".png", ".jpg", ".jpeg", ".webp"}
 DEFAULT_SECTION = (
-    "content/en/splunk4rookies/o11y-rookies-26/modules/1-intro"
+    "content/en/splunk4rookies/observability-cloud-2027/modules/1-intro"
 )
 FRONT_MATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---", re.DOTALL)
 WEIGHT = re.compile(r"^weight:\s*(\d+)\s*$", re.MULTILINE)
 TITLE = re.compile(r"^title:\s*[\"']?(.*?)[\"']?\s*$", re.MULTILINE)
 ROOKIES_MODULES = (
-    "content/en/splunk4rookies/o11y-rookies-26/modules"
+    "content/en/splunk4rookies/observability-cloud-2027/modules"
 )
 ALT_MD_BEFORE = re.compile(r"!\[([^\]]*)\]\(\s*$")
 ALT_HTML = re.compile(r"alt=[\"']([^\"']*)[\"']", re.IGNORECASE)
@@ -295,7 +295,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--section",
         default=DEFAULT_SECTION,
-        help="Workshop section to retake (default: o11y-rookies-26 intro).",
+        help="Workshop section to retake (default: observability-cloud-2027 intro).",
     )
     parser.add_argument(
         "--inbox",

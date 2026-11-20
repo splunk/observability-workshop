@@ -5,6 +5,8 @@ layout: chapter
 time: 45–60 minutes
 authors: ["Sarah Ware"]
 description: Understand user behavior, friction, and conversion in Astronomy Shop using DXA -- no code changes required.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/9-dxa/
 params:
   images:
     - images/funnel.webp

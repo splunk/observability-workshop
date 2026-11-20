@@ -5,6 +5,8 @@ weight: 3
 type: chapter
 time: 15 minutes
 description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/3-rum/
 ---
 
 {{< persona role="Frontend engineer" >}}

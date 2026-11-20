@@ -4,6 +4,8 @@ linkTitle: 1. The Astronomy Shop
 weight: 1
 time: 10 minutes
 description: Explore the OpenTelemetry Demo application and generate telemetry data for the workshop modules.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/1-astronomy-shop/
 ---
 
 {{< persona role="Curious astronomer" >}}

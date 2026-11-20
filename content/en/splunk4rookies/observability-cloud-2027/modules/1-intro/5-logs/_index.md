@@ -5,6 +5,8 @@ weight: 5
 type: chapter
 time: 20 minutes
 description: Follow Related Content from an APM trace and use Logs to explain the payment failure.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/5-logs/
 ---
 
 {{< persona role="Back-end developer" >}}

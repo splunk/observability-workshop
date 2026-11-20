@@ -4,6 +4,8 @@ weight: 6
 layout: chapter
 time: 30 minutes
 description: Investigate a payment shortfall in an apparently healthy application using structured logs, comparisons, and reusable searches.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/6-logs/
 params:
   images:
     - images/lo.webp

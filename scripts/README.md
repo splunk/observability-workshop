@@ -49,13 +49,13 @@ Run from the repository root:
 python3 scripts/png-to-webp.py --dry-run
 
 # Convert one workshop
-python3 scripts/png-to-webp.py --yes content/en/splunk4rookies/o11y-rookies-26
+python3 scripts/png-to-webp.py --yes content/en/splunk4rookies/observability-cloud-2027
 
 # Convert only PNGs that Markdown actually links to
 python3 scripts/png-to-webp.py --referenced-only --dry-run content/en
 
 # Keep the original PNGs
-python3 scripts/png-to-webp.py --keep --yes content/en/splunk4rookies/o11y-rookies-26/modules/4-im
+python3 scripts/png-to-webp.py --keep --yes content/en/splunk4rookies/observability-cloud-2027/modules/4-im
 ```
 
 Without `--dry-run` or `--yes`, the script asks for confirmation. Non-interactive runs must pass one of those flags.

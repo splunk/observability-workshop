@@ -4,6 +4,8 @@ linkTitle: AI Monitoring
 layout: hero
 weight: 3
 description: Follow the AI path to use AI-assisted workflows and application telemetry to investigate problems faster.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/pathways/ai-monitoring/
 ---
 
 Complete these modules in the recommended order:

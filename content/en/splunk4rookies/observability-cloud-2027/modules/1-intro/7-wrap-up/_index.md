@@ -5,6 +5,8 @@ weight: 7
 type: chapter
 time: 1 minute
 description: Congratulations, you have completed the workshop.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/7-wrap-up/
 ---
 
 {{< checkpoint "Congratulations, you have completed the **Splunk4Rookies - Observability Cloud Workshop - Intro**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure." >}}

@@ -4,6 +4,8 @@ weight: 2
 hidden: true
 time: 45 minutes
 description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/2-ai/
 params:
   images:
     - images/ai.webp

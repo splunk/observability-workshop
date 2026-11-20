@@ -5,6 +5,8 @@ type: chapter
 weight: 6
 time: 15 minutes
 description: In this section, you will learn how to use Splunk Synthetics to monitor the performance and availability of your applications.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/1-intro/6-synthetics/
 ---
 
 {{< persona role="SRE" >}}

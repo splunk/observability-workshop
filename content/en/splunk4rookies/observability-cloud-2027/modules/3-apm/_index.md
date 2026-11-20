@@ -4,6 +4,8 @@ weight: 3
 hidden: true
 time: 45 minutes
 description: Trace an error across microservices to find exactly which service is breaking — and why.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/3-apm/
 params:
   images:
     - images/apm.webp

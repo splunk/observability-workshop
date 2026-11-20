@@ -4,6 +4,8 @@ linkTitle: Infrastructure Monitoring
 layout: hero
 weight: 1
 description: Follow the infrastructure path to investigate resources, logs, and databases supporting the Astronomy Shop.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/pathways/infrastructure-monitoring/
 ---
 
 Complete these modules in the recommended order:

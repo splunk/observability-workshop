@@ -8,6 +8,8 @@ authors: ["Diana Omuoyo"]
 description: Detect and investigate runtime vulnerabilities before attackers find them first.
 aliases:
   - /observability-cloud-2027/8-secure-application/
+  - /o11y-rookies-26/8-secure-application/
+  - /splunk4rookies/o11y-rookies-26/modules/8-secure-application/
 params:
   images:
     - images/secureapp.webp
