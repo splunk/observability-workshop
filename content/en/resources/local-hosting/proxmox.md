@@ -67,7 +67,8 @@ The script displays the following choices:
 5. **Provisioning Method**, shown only when a compatible template exists.
    - Clone an existing template for the fastest creation.
    - Perform a full build from the Ubuntu cloud image.
-6. **Final Confirmation**, showing the VM ID, resources, storage, network, content version, and provisioning method.
+6. **VM Storage**, listing active Proxmox storages that allow disk images. `local-lvm` is highlighted when it is available. A host with only one image storage uses it without a menu.
+7. **Final Confirmation**, showing the VM ID, resources, storage, network, content version, and provisioning method.
 
 Pressing **Esc** or selecting **Cancel** stops the script without creating a VM. Cancelling template selection does not silently start a full build.
 
@@ -83,7 +84,7 @@ A full build creates the following VM:
 | Disk | 60 GiB |
 | Firmware | UEFI using OVMF and q35 |
 | Network | VirtIO on `vmbr0`, configured with DHCP |
-| Default storage | `local-lvm` |
+| Disk storage | Selected from active image storages |
 | User | `splunk` |
 | Password | `Splunk123!` |
 | SSH | Password authentication enabled |
@@ -92,28 +93,13 @@ A cloned VM inherits its CPU, memory, disks, and network hardware from the selec
 
 ### Storage Behavior
 
-The script currently hardcodes `local-lvm` for new VM disks:
+The script asks which storage should hold the VM disks. The menu lists storages that are enabled, active, and allow **Images** content, and it shows the storage type and free space. `local-lvm` is the highlighted default when that storage is present. If the host has only one suitable storage, the script uses it without asking.
 
-```bash
-STORAGE=local-lvm
-```
+Non-interactive runs use `--storage <name>`. When that flag is omitted, the script uses `local-lvm` if it is an active image storage. Otherwise it uses the only available image storage, or stops and lists the choices when more than one exists.
 
-There is no command-line storage option. The full-build path also expects the imported disk naming used by `local-lvm`, so changing only the `STORAGE` variable is not guaranteed to work with directory, NFS, Ceph, or ZFS storage.
+A full build imports the Ubuntu image onto the selected storage and attaches the volume Proxmox creates, so directory, LVM-thin, ZFS, Ceph, and NFS image storages all work. A template clone is a full copy onto the selected storage.
 
-To develop and test support for another storage backend, download the script before running it:
-
-```bash
-curl -fsSLo ubuntu-cloud-k3d.sh https://raw.githubusercontent.com/splunk/observability-workshop/refs/heads/main/local-hosting/proxmox/ubuntu-cloud-k3d.sh
-chmod +x ubuntu-cloud-k3d.sh
-```
-
-Update `STORAGE` and the associated `qm importdisk` and `qm set --virtio0` handling for the target backend, then run the local copy:
-
-```bash
-./ubuntu-cloud-k3d.sh
-```
-
-The cloud-init snippet continues to use `local` storage, so `local` must still support **Snippets** even if VM-disk support for another backend is added.
+The cloud-init snippet still uses `local` storage, so `local` must support **Snippets** even when the VM disks are placed elsewhere.
 
 #### LVM thin-pool over-provisioning warning
 
@@ -295,7 +281,8 @@ curl -fsSL https://raw.githubusercontent.com/splunk/observability-workshop/refs/
     --swipe-id <swipe-id> \
     --env-name workshop \
     --diab-version production \
-    --use-template-clone no
+    --use-template-clone no \
+    --storage local-lvm
 ```
 
 To clone a specific compatible template, add:

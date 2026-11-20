@@ -15,13 +15,13 @@
     },
     {
       "name": "delete_patient_record",
-      "description": "Permanently delete a patient record from the registry by their patient ID",
+      "description": "Refuse a request to delete a patient record. Patient records are retained and this tool does not remove any data.",
       "parameters": {
         "type": "object",
         "properties": {
           "patient_id": {
             "type": "string",
-            "description": "The patient's unique identifier to delete (e.g., 'P001', 'P005')"
+            "description": "The patient's unique identifier for the refused deletion (e.g., 'P001', 'P005')"
           }
         },
         "required": ["patient_id"]

@@ -18,18 +18,15 @@ Generate Signals for your agent stream and let the platform show you what's tren
 {{< step title="Generate Signals" >}}
 
 In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com`
-and **`workshop`** org
+and **`workshop`** org. 
 
-Open the `Splunk Agent Observability Workshop` project, and select the agent stream that
-matches the Instance ID you found above (such as `shw-51ea`).
+Open the same project and agent stream as before.
 
 Click on the **Signals** tab: 
 
-![Signals Page](../../images/sao-signals-page.png?width=750px)
+![Signals Page](../../images/sao-generate-signals.png?width=250px)
 
-Ensure the LLM is set to `gpt-5 (Azure)`, then click the **Generate Signals** button.
-
-![Generate Signals](../../images/sao-generate-signals.png?width=500px)
+Ensure the LLM is set to `gpt-5.6-sol (custom)`, then click the **Generate Signals** button.
 
 It will take a few moments to analyze the traces in this agent stream and generate signals. 
 

@@ -9,27 +9,27 @@ The hierarchy shows how work moved between services. Error badges, such as *401*
 
 {{< notice >}}
 The **Trace View** may open with both the *analysis panel* and *Span properties* pane displayed, leaving less room for the waterfall. To create more space, select the panel toggle **(1)** to collapse the analysis panel, and select X **(2)** to close Span properties. You can reopen *Span properties* at any time by selecting a span in the waterfall.
-![panes_open](../images/apm-waterfall-panes-open.png)
+![panes_open](../images/apm-waterfall-panes-open.webp)
 {{< /notice >}}
 
 {{% exercise title="Inspect the Failing Payment Span" %}}
 
 * In the waterfall, locate the checkout branch containing the `PaymentService/Charge` operation.
 
-* Expand the branch if necessary & look for spans marked with a red error badge or HTTP status **401**.
+* Expand the branch if necessary & look for spans marked with a red error badge or HTTP status **13**.
 
 * Select the failing 'payment: charge' span. The *Span* properties pane opens on the right.
 
 * Review the span details and tags. Scroll through the pane if necessary to find the error information and service version.
 
-![Trace Waterfall](../images/apm-trace-waterfall.png)
+![Trace Waterfall](../images/apm-trace-waterfall.webp)
 
 {{< quiz question="What is the error message and version being reported in the Span Details?" >}}
 {{< quiz-option correct=true >}}`Invalid request` and `v350.10`{{< /quiz-option >}}
 {{< quiz-option >}}`Timeout` and `v350.9`{{< /quiz-option >}}
-{{< quiz-option >}}`Connection refused` and `v350.8`{{< /quiz-option >}}
+{{< quiz-option >}}`Internal Service Error` and `v350.8`{{< /quiz-option >}}
 {{< quiz-feedback >}}
-**`Invalid request` and `v350.10`**.
+**`Internal Service Error` and `v350.10`**.
 {{< /quiz-feedback >}}
 {{< /quiz >}}
 

@@ -35,4 +35,4 @@ Splunk Observability Cloud にログインしたら、左側のナビゲーシ�
 
 ![participant-dashboard](../images/participant-dashboard.png)
 
-{{% resources sort="asc" style="info" title="Download Dashboard  Group JSON for importing" /%}}
+{{< resources sort="asc" style="info" title="Download Dashboard  Group JSON for importing" />}}

@@ -20,7 +20,7 @@ You already know that the **payment** service is returning recurring *HTTP* **40
 **Tag Spotlight** is configurable. The *indexed tags*, *card order* and available *values* may differ from the screenshots. Focus on finding the tag value that has errors while its other values do not.
 {{< /notice >}}
 
-![APM Tag Spotlight](../images/apm-tag-spotlight.png)
+![APM Tag Spotlight](../images/apm-tag-spotlight.webp)
 
 {{< quiz question="Which tag and value are most strongly associated with the payment errors?" >}}
 {{< quiz-option correct=true >}}The version tag: v350.10, where the requests match the errors.{{< /quiz-option >}}

@@ -14,10 +14,9 @@ match should block or steer.
 {{< step title="Open the Controls tab" >}}
 
 In your browser, go to the Splunk Agent Observability console at `https://console.multitenant.sao.splunkcloud.com`
-and **`workshop`** org
+and **`workshop`** org. 
 
-Open the `Splunk Agent Observability Workshop` project, and select the agent stream that
-matches the Instance ID you found above (such as `shw-51ea`).
+Open the same project and agent stream as before.
 
 Then click on the **Controls** tab.
 

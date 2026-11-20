@@ -1,6 +1,6 @@
 # Splunk Astronomy Shop Kubernetes Manifest - throttle-demo
-# Version: 2.0.8
-# Generated on: 2026-08-14T14:18:44Z
+# Version: 2.0.9
+# Generated on: 2026-11-18T11:08:43Z
 #
 # This manifest combines service deployments for the Splunk Astronomy Shop
 # Services are defined in services.yaml
@@ -25,8 +25,8 @@ metadata:
     opentelemetry.io/name: order-validation
     app.kubernetes.io/component: order-validation
     app.kubernetes.io/name: order-validation
-    app.kubernetes.io/version: 2.0.8
-    app.kubernetes.io/part-of: opentelemetry-demo
+    app.kubernetes.io/version: 2.0.9
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   type: ClusterIP
   ports:
@@ -44,8 +44,8 @@ metadata:
     opentelemetry.io/name: order-validation
     app.kubernetes.io/component: order-validation
     app.kubernetes.io/name: order-validation
-    app.kubernetes.io/version: 2.0.8
-    app.kubernetes.io/part-of: opentelemetry-demo
+    app.kubernetes.io/version: 2.0.9
+    app.kubernetes.io/part-of: splunk-opentelemetry-demo
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -59,10 +59,10 @@ spec:
         app.kubernetes.io/component: order-validation
         app.kubernetes.io/name: order-validation
     spec:
-      serviceAccountName: opentelemetry-demo
+      serviceAccountName: splunk-opentelemetry-demo
       containers:
       - name: order-validation
-        image: ghcr.io/splunk/opentelemetry-demo/otel-order-validation:2.0.8
+        image: ghcr.io/splunk/opentelemetry-demo/otel-order-validation:2.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -89,7 +89,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
           value: cumulative
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.8,deployment.environment=$(WORKSHOP_ENV)-throttle-demo
+          value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=2.0.9,deployment.environment=$(WORKSHOP_ENV)-throttle-demo
         - name: OTEL_PYTHON_LOG_CORRELATION
           value: 'true'
         # Skip liveness/readiness probe spans — they swamp the signal from

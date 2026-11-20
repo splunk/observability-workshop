@@ -26,19 +26,19 @@ description: Kubernetes に ThousandEyes Enterprise Agent をデプロイし、�
 
 ### コアパス
 
-- [概要](./1-overview/_index.md) - ThousandEyes のエージェントタイプとアーキテクチャを理解する
-- [デプロイメント](./2-deployment/_index.md) - Kubernetes に Enterprise Agent をデプロイする
-- [Splunk 統合](./3-splunk-integration/_index.md) - ThousandEyes メトリクスを Splunk Observability Cloud にストリーミングする
-- [分散トレーシング](./4-distributed-tracing/_index.md) - ThousandEyes と Splunk APM 間のサポートされた双方向ドリルダウンを有効にする
+- [概要](/scenarios/thousandeyes-integration/1-overview/) - ThousandEyes のエージェントタイプとアーキテクチャを理解する
+- [デプロイメント](/scenarios/thousandeyes-integration/2-deployment/) - Kubernetes に Enterprise Agent をデプロイする
+- [Splunk 統合](/scenarios/thousandeyes-integration/3-splunk-integration/) - ThousandEyes メトリクスを Splunk Observability Cloud にストリーミングする
+- [分散トレーシング](/scenarios/thousandeyes-integration/4-distributed-tracing/) - ThousandEyes と Splunk APM 間のサポートされた双方向ドリルダウンを有効にする
 
 ### シナリオ拡張
 
-- [Kubernetes テスト](./4-kubernetes-testing/_index.md) - シンセティックモニタリングとトレース相関の両方に役立つ内部テストを作成する
-- [RUM](./6-rum-thousandeyes/_index.md) - ThousandEyes のネットワークシグナルと Splunk RUM を相関させてエンドユーザー調査を行う
+- [Kubernetes テスト](/scenarios/thousandeyes-integration/4-distributed-tracing/3_create_tests/) - シンセティックモニタリングとトレース相関のための内部テストを作成する
+- [RUM（近日公開）](/scenarios/thousandeyes-integration/5-rum-thousandeyes/) - 利用可能なデモを確認する
 
 ### サポート
 
-- [トラブルシューティング](./5-troubleshooting/_index.md) - よくある問題と解決策
+- [トラブルシューティング](/scenarios/thousandeyes-integration/7-troubleshooting/) - よくある問題と解決策
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 このシナリオは2つの連携した統合と考えてください：OpenTelemetry ストリームが ThousandEyes メトリクスを Splunk に取り込み、分散トレーシングが Splunk APM から ThousandEyes への逆方向のパスを提供します。

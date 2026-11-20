@@ -26,19 +26,19 @@ By the end of this workshop, you will:
 
 ### Core path
 
-- [Overview](./1-overview/_index.md) - Understand ThousandEyes agent types and architecture
-- [Deployment](./2-deployment/_index.md) - Deploy the Enterprise Agent in Kubernetes
-- [Splunk Integration](./3-splunk-integration/_index.md) - Stream ThousandEyes metrics into Splunk Observability Cloud
-- [Distributed Tracing](./4-distributed-tracing/_index.md) - Enable supported bi-directional drilldowns between ThousandEyes and Splunk APM
+- [Overview](/scenarios/thousandeyes-integration/1-overview/) - Understand ThousandEyes agent types and architecture
+- [Deployment](/scenarios/thousandeyes-integration/2-deployment/) - Deploy the Enterprise Agent in Kubernetes
+- [Splunk Integration](/scenarios/thousandeyes-integration/3-splunk-integration/) - Stream ThousandEyes metrics into Splunk Observability Cloud
+- [Distributed Tracing](/scenarios/thousandeyes-integration/4-distributed-tracing/) - Enable supported bi-directional drilldowns between ThousandEyes and Splunk APM
 
 ### Scenario extensions
 
-- [Kubernetes Testing](./4-kubernetes-testing/_index.md) - Create internal tests that are useful for both synthetic monitoring and trace correlation
-- [RUM](./6-rum-thousandeyes/_index.md) - Correlate ThousandEyes network signals with Splunk RUM for end-user investigations
+- [Kubernetes Testing](/scenarios/thousandeyes-integration/4-distributed-tracing/3_create_tests/) - Create internal tests for synthetic monitoring and trace correlation
+- [RUM (coming soon)](/scenarios/thousandeyes-integration/5-rum-thousandeyes/) - Explore the available demo examples
 
 ### Support
 
-- [Troubleshooting](./5-troubleshooting/_index.md) - Common issues and solutions
+- [Troubleshooting](/scenarios/thousandeyes-integration/7-troubleshooting/) - Common issues and solutions
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Think of this scenario as two connected integrations: the OpenTelemetry stream gets ThousandEyes metrics into Splunk, and distributed tracing gives you the reverse path back into ThousandEyes from Splunk APM.

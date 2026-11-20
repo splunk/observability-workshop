@@ -24,7 +24,7 @@ The available breakdown options depend on the span tags in your environment. Tag
 {{< /quiz-feedback >}}
 {{< /quiz >}}
 
-![APM Service Breakdown](../images/apm-service-breakdown.png)
+![APM Service Breakdown](../images/apm-service-breakdown.webp)
 
 #### Why this matters
 Breaking a service down by span tags helps isolate a problem to a specific version or other deployment characteristic. In this case, the comparison suggests that the issue is specific to v350.10, rather than affecting every instance of the payment service.

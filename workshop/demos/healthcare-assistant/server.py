@@ -27,8 +27,9 @@ from pydantic import BaseModel
 from config import load_config
 from setup_env import setup_environment
 
-logger = logging.getLogger("healthcare.server")
-logging.basicConfig(level=logging.INFO)
+from logging_utils import get_logger, timestamp_uvicorn_logs
+
+logger = get_logger("healthcare.server")
 
 # --- identity of this back-end (injected by the orchestrator) ----------------
 AGENT_STREAM = os.getenv("SPLUNK_AO_AGENT_STREAM", "default")
@@ -95,9 +96,38 @@ def _get_agent(session_id: str, model: Optional[str]):
         return agent
 
 
+def _warm_rag() -> None:
+    """Pre-build every RAG/vector-store cache entry the first /query will touch.
+
+    get_rag_system() caches per (top_k, model), so warming only the default entry
+    leaves the agent's own lookups cold: load_tools() asks for (config top_k,
+    effective model) and search_medicine_qa asks for top_k=1. Each cold entry
+    costs a pgvector connection + embeddings client on the first user's query.
+    """
+    from rag import get_rag_system
+
+    cfg = load_config()
+    model_cfg = cfg.get("model", {})
+    default_model = model_cfg.get("default_model") or model_cfg.get("model_name")
+    top_k = cfg.get("rag", {}).get("top_k", 5)
+
+    t0 = time.monotonic()
+    get_rag_system()                                   # default entry
+    get_rag_system(top_k, model_name=default_model)    # create_rag_tool() in load_tools()
+    get_rag_system(top_k=1)                            # search_medicine_qa tool
+    try:
+        from tools.logic import _get_vector_store
+        _get_vector_store()
+    except Exception as e:
+        logger.warning("vector store warmup failed (will retry lazily): %s", e)
+    logger.info("RAG system warmed in %.1fs", time.monotonic() - t0)
+
+
 @app.on_event("startup")
 def _startup() -> None:
     global _ready
+    timestamp_uvicorn_logs()
+    _t_start = time.monotonic()
     setup_environment()
     logger.info(
         "Back-end starting: project=%r agent_stream=%r idle_ttl=%ss",
@@ -111,12 +141,11 @@ def _startup() -> None:
         logger.info("BACKEND_SKIP_RAG_WARM set — skipping RAG warmup")
     else:
         try:
-            from rag import get_rag_system
-            get_rag_system()
-            logger.info("RAG system warmed")
+            _warm_rag()
         except Exception as e:  # pragma: no cover - warmup is best-effort
             logger.warning("RAG warmup failed (will retry lazily): %s", e)
     _ready = True
+    logger.info("Back-end ready after %.1fs startup", time.monotonic() - _t_start)
     if IDLE_TTL_SECONDS > 0:
         threading.Thread(target=_idle_watcher, name="idle-watcher", daemon=True).start()
 
@@ -134,9 +163,27 @@ def ready() -> dict:
 @app.post("/query", response_model=QueryResponse)
 def query(req: QueryRequest) -> QueryResponse:
     _touch()
-    agent = _get_agent(req.session_id, req.model)
-    messages = [{"role": m.role, "content": m.content} for m in req.messages]
-    response = agent.process_query(messages)
+    sid = req.session_id[:8]
+    t0 = time.monotonic()
+    first_for_session = (req.session_id, req.model) not in _agents
+    logger.info(
+        "/query start session=%s model=%s turns=%d first_for_session=%s last_user=%r",
+        sid, req.model, len(req.messages), first_for_session,
+        (req.messages[-1].content[:80] if req.messages else ""),
+    )
+    try:
+        agent = _get_agent(req.session_id, req.model)
+        t_agent = time.monotonic() - t0
+        messages = [{"role": m.role, "content": m.content} for m in req.messages]
+        response = agent.process_query(messages)
+    except Exception:
+        logger.exception("/query FAILED session=%s after %.1fs", sid, time.monotonic() - t0)
+        raise
+    total = time.monotonic() - t0
+    # Anything near the front-end's 120s read timeout deserves a loud line.
+    log = logger.warning if total > 60 else logger.info
+    log("/query done session=%s total=%.1fs agent_init=%.1fs response_chars=%d active_agents=%d",
+        sid, total, t_agent, len(response), len(_agents))
     return QueryResponse(response=response)
 
 
@@ -146,7 +193,9 @@ def log_hallucination(req: HallucinationRequest) -> dict:
     _touch()
     from helpers.hallucination_helpers import log_demo_hallucination
 
+    t0 = time.monotonic()
     ok = log_demo_hallucination(config=load_config(), session_id=req.session_id)
+    logger.info("/log-hallucination done success=%s in %.1fs", bool(ok), time.monotonic() - t0)
     return {"success": bool(ok)}
 
 

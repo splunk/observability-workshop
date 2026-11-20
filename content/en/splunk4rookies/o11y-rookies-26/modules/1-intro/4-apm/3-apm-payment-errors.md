@@ -9,7 +9,7 @@ weight: 3
 * Scroll down to ***Error* breakdown** and expand the section if necessary **(1)**.
 * Examine **Errors by HTTP** status code **(2)**.
 
-![Service Dashboard](../images/apm-service-dashboard.png)
+![Service Dashboard](../images/apm-service-dashboard.webp)
 
 {{< tabs >}}
 {{% tab title="Questions" %}}

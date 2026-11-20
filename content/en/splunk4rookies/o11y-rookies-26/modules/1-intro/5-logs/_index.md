@@ -4,7 +4,7 @@ linkTitle: 5. Logs
 weight: 5
 type: chapter
 time: 20 minutes
-description: In this section, we will use Log Observer to drill down and identify what the problem is.
+description: Follow Related Content from an APM trace and use Logs to explain the payment failure.
 ---
 
 {{< persona role="Back-end developer" >}}
