@@ -1,0 +1,38 @@
+---
+title: Digital Experience Analytics
+weight: 9
+layout: chapter
+time: 45–60 minutes
+authors: ["Sarah Ware"]
+description: Understand user behavior, friction, and conversion in Astronomy Shop using DXA -- no code changes required.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/9-dxa/
+params:
+  images:
+    - images/funnel.webp
+---
+
+**Digital Experience Analytics (DXA)** is a solution within Splunk Observability Cloud that turns RUM session data into actionable insights about end user conversion, friction, and feature adoption. In this module, we will explore a pre-configured DXA project for the Astronomy Shop — no additional instrumentation or code changes required.
+
+{{< persona role="Product manager" >}}
+{{< persona-situation >}}Leadership wants better checkout conversion and a read on whether **Ask AI** is delivering value. You already have RUM data, and you need the answer without waiting on a code change.{{< /persona-situation >}}
+{{< persona-goal >}}Show where checkout drops off and whether Ask AI is being used.{{< /persona-goal >}}
+{{< /persona >}}
+
+## Overview
+
+In this hands-on module, we will:
+
+- **Generate real user sessions** by browsing the Astronomy Shop
+- **Navigate DXA** and understand how it adds more context to existing RUM data
+- **Explore event definitions** that power analyses without custom instrumentation
+- **Analyze feature adoption** with a time series and session replay
+- **Monitor frustration signals** like rage clicks and dead clicks
+- **Investigate conversion funnels** and checkout drop-off
+- **Compare user segments** to uncover targeted improvement opportunities
+
+For background, see the [Introduction to Digital Experience Analytics](https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/digital-experience-analytics/introduction-to-digital-experience-analytics) documentation.
+
+{{% notice title="Note" style="info" %}}
+The workshop tenant includes a pre-configured DXA project with analyses, event definitions, and user segments. We will explore and interpret these artifacts — not build them from scratch.
+{{% /notice %}}

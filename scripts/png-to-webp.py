@@ -132,7 +132,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""examples:
   %(prog)s --dry-run
-  %(prog)s content/en/splunk4rookies/o11y-rookies-26
+  %(prog)s content/en/splunk4rookies/observability-cloud-2027
   %(prog)s --quality 85 --yes modules/4-im
   %(prog)s --jobs 8 --dry-run content/en
   %(prog)s --referenced-only --keep content/en

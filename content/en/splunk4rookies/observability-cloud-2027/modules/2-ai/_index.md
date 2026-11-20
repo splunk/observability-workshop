@@ -1,0 +1,18 @@
+---
+title: Let's introduce our friend ...
+weight: 2
+hidden: true
+time: 45 minutes
+description: In this lesson you learn how Splunk AI can help you find and resolve issues faster.
+aliases:
+  - /splunk4rookies/o11y-rookies-26/modules/2-ai/
+params:
+  images:
+    - images/ai.webp
+---
+
+{{% notice title="Coming Soon" style="warning" icon="triangle-exclamation" %}}
+This module is under development and will be available in a future update.
+{{% /notice %}}
+
+In this lesson you learn how Splunk AI can help you find and resolve issues faster — using AI-driven insights to cut through noise, surface root causes, and accelerate your investigations.

@@ -34,11 +34,11 @@ FROM base AS final
 
 # Copy instrumentation file tree
 WORKDIR "//home/app/.splunk-otel-dotnet"
-COPY --from=build /root/.splunk-otel-dotnet/ .
+COPY --chown=app:app --from=build /root/.splunk-otel-dotnet/ .
 
 WORKDIR /app
-COPY --from=publish /app/publish .
-COPY entrypoint.sh .
+COPY --chown=app:app --from=publish /app/publish .
+COPY --chown=app:app entrypoint.sh .
 
 ENTRYPOINT ["sh", "entrypoint.sh"]
 CMD ["dotnet", "helloworld.dll"]

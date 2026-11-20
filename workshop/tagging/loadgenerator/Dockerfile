@@ -31,7 +31,7 @@ WORKDIR /loadgen
 COPY --from=builder /install /usr/local
 
 # Add application code.
-COPY locustfile.py .
+COPY --chmod=644 locustfile.py .
 
 # enable gevent support in debugger
 ENV GEVENT_SUPPORT=True

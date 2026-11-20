@@ -16,7 +16,7 @@ You are a **back-end developer** and you have been called in to help investigate
 > [!IMPORTANT]
 > RUM is the client-side view; APM is the server-side view. Following a RUM trace into the matching APM trace is end-to-end visibility in action — and how we'll drill down to the back-end problem.
 
-{{< webex chat="Pieter Hagen" date="Today • 28/01/2026" seenby="RC" >}}
+{{< webex chat="Pieter Hagen" date="Today • 02/01/2027" seenby="RC" >}}
 {{< webex-msg from="PH" name="Pieter Hagen" time="09:42" color="#571bc0" >}}
 Hey Robert, I've triaged a customer satisfaction issue with Online Boutique. RUM shows poor page load times. I traced a user session to the backend using Related Content — the latency is coming from the **paymentservice**.
 {{< /webex-msg >}}
