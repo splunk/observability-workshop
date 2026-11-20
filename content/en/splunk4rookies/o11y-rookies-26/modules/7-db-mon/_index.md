@@ -4,6 +4,7 @@ weight: 7
 layout: chapter
 time: 45 minutes
 description: Follow a slow recommendation request into PostgreSQL, investigate its execution plan, and identify the root cause of a query regression with Database Monitoring.
+draft: true
 params:
   images:
     - images/slow-recommendations.png

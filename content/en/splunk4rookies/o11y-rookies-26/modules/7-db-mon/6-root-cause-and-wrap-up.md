@@ -1,6 +1,7 @@
 ---
 title: 6. Root Cause and Wrap-Up
 weight: 6
+draft: true
 ---
 
 You have followed a slow application dependency into the database and identified the work behind it. Turn that evidence into a useful handoff to the development team.
