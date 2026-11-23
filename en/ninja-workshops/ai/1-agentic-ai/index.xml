@@ -2,23 +2,19 @@
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Access the &lt;strong&gt;Splunk Show&lt;/strong&gt; event by clicking on the link for your region&lt;/li&gt;
-&lt;li&gt;Click &lt;strong&gt;Enroll&lt;/strong&gt; on the top-right corner&lt;/li&gt;
-&lt;li&gt;Then look near the bottom of the page for your EC2 instance details&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;You should see connection information such as the following:&lt;/p&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/ConnectionInformation.png" alt="Connection Information" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;Using the IP address (which is part of the &lt;strong&gt;SSH Command&lt;/strong&gt;)
-and &lt;strong&gt;SSH Password&lt;/strong&gt; provided as part of the &lt;strong&gt;Connection Information&lt;/strong&gt;,
-connect to your EC2 instance using one of the methods below:&lt;/p&gt;</description></item><item><title>Review Azure OpenAI Metrics, Dashboards, and Navigators</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/2-review-azure-ai-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/2-review-azure-ai-metrics/</guid><description>&lt;p&gt;This workshop will use OpenAI models running in Azure.&lt;/p&gt;
+&lt;h2 id="retrieve-your-instance-name"&gt;
+ &lt;span class="heading-text"&gt;Retrieve your Instance Name&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#retrieve-your-instance-name" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Once you&amp;rsquo;ve logged into your EC2 instance via ssh, use the following command to
+get your instance name:&lt;/p&gt;</description></item><item><title>Review Azure OpenAI Metrics, Dashboards, and Navigators</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/2-review-azure-ai-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/2-review-azure-ai-metrics/</guid><description>&lt;p&gt;This workshop will use OpenAI models running in Azure.&lt;/p&gt;
 &lt;p&gt;You can monitor the performance of Azure OpenAI applications by configuring your
 Azure OpenAI applications to send metrics to Splunk Observability Cloud.&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve already integrated our Azure account with the workshop instance

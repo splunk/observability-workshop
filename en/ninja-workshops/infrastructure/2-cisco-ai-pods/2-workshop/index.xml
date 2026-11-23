@@ -15,25 +15,12 @@ with NVIDIA GPUs and NVIDIA AI Enterprise software.&lt;/p&gt;</description></ite
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.&lt;/p&gt;
-&lt;p&gt;Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Mac OS / Linux
-&lt;ul&gt;
-&lt;li&gt;ssh splunk@IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Windows 10+
-&lt;ul&gt;
-&lt;li&gt;Use the OpenSSH client&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Earlier versions of Windows
-&lt;ul&gt;
-&lt;li&gt;Use Putty&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="set-the-workshop-participant-number"&gt;
  &lt;span class="heading-text"&gt;Set the Workshop Participant Number&lt;/span&gt;

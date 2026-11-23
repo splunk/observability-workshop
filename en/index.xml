@@ -456,23 +456,19 @@ the limitations running the ROSA command-line interface on Mac OS.&lt;/p&gt;</de
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Access the &lt;strong&gt;Splunk Show&lt;/strong&gt; event by clicking on the link for your region&lt;/li&gt;
-&lt;li&gt;Click &lt;strong&gt;Enroll&lt;/strong&gt; on the top-right corner&lt;/li&gt;
-&lt;li&gt;Then look near the bottom of the page for your EC2 instance details&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;You should see connection information such as the following:&lt;/p&gt;
-&lt;p&gt;&lt;figure class="figure"&gt;
- &lt;div class="figure__inner"&gt;
- &lt;img src="../images/ConnectionInformation.png" alt="Connection Information" loading="lazy" decoding="async"&gt;
- &lt;/div&gt;
- 
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;Using the IP address (which is part of the &lt;strong&gt;SSH Command&lt;/strong&gt;)
-and &lt;strong&gt;SSH Password&lt;/strong&gt; provided as part of the &lt;strong&gt;Connection Information&lt;/strong&gt;,
-connect to your EC2 instance using one of the methods below:&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="create-a-ciscocom-account"&gt;
+&lt;h2 id="retrieve-your-instance-name"&gt;
+ &lt;span class="heading-text"&gt;Retrieve your Instance Name&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#retrieve-your-instance-name" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Once you&amp;rsquo;ve logged into your EC2 instance via ssh, use the following command to
+get your instance name:&lt;/p&gt;</description></item><item><title>Connect to EC2 Instance</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/1-get-connected/1-connect-to-instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/3-splunk-agent-observability/1-get-connected/1-connect-to-instance/</guid><description>&lt;h2 id="create-a-ciscocom-account"&gt;
  &lt;span class="heading-text"&gt;Create a Cisco.com Account&lt;/span&gt;
  &lt;a class="heading-anchor" href="#create-a-ciscocom-account" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -506,23 +502,12 @@ navigate to &lt;a href="https://id.cisco.com/" target="_blank" rel="noopener"&gt
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. Using the IP address and password provided by your instructor, connect to your EC2 instance using one of the methods below:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;macOS / Linux
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ssh splunk@IP address&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Windows 10+
-&lt;ul&gt;
-&lt;li&gt;Use the OpenSSH client&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Earlier versions of Windows
-&lt;ul&gt;
-&lt;li&gt;Use Putty&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="editing-files"&gt;
  &lt;span class="heading-text"&gt;Editing Files&lt;/span&gt;
@@ -532,25 +517,12 @@ navigate to &lt;a href="https://id.cisco.com/" target="_blank" rel="noopener"&gt
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.&lt;/p&gt;
-&lt;p&gt;Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Mac OS / Linux
-&lt;ul&gt;
-&lt;li&gt;ssh splunk@IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Windows 10+
-&lt;ul&gt;
-&lt;li&gt;Use the OpenSSH client&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Earlier versions of Windows
-&lt;ul&gt;
-&lt;li&gt;Use Putty&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Copying and editing charts</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/4-dashboards/1-copying-charts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/4-dashboards/1-copying-charts/</guid><description>&lt;p&gt;We have some good charts in our dashboard, but let&amp;rsquo;s add a few more.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -3015,25 +2987,12 @@ cd spring-petclinic &amp;&amp; git checkout 276880e
  &lt;span class="heading-text"&gt;Connect to your EC2 Instance&lt;/span&gt;
  &lt;a class="heading-anchor" href="#connect-to-your-ec2-instance" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee.&lt;/p&gt;
-&lt;p&gt;Using the IP address and password provided by your instructor, connect to your EC2 instance
-using one of the methods below:&lt;/p&gt;
+&lt;p&gt;We’ve prepared an Ubuntu Linux instance in AWS/EC2 for each attendee. To connect to your EC2 instance:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Mac OS / Linux
-&lt;ul&gt;
-&lt;li&gt;ssh splunk@IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Windows 10+
-&lt;ul&gt;
-&lt;li&gt;Use the OpenSSH client&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Earlier versions of Windows
-&lt;ul&gt;
-&lt;li&gt;Use Putty&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;Web SSH&lt;/code&gt; URL from your instance information in Splunk Show.&lt;/li&gt;
+&lt;li&gt;Paste the URL in your browser.&lt;/li&gt;
+&lt;li&gt;When prompted, input &lt;code&gt;splunk&lt;/code&gt; as the user name.&lt;/li&gt;
+&lt;li&gt;For the password, copy the &lt;code&gt;SSH Password&lt;/code&gt; value from Splunk Show.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="set-the-workshop-participant-number"&gt;
  &lt;span class="heading-text"&gt;Set the Workshop Participant Number&lt;/span&gt;
