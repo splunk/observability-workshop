@@ -80,6 +80,10 @@ disableKinds = ["taxonomy", "term"]
   # Wider than the theme's 720px default.
   contentMaxWidth = "880px"
 
+  # "Report an issue" link in the right rail of workshop pages.
+  github_repo           = "https://github.com/splunk/observability-workshop"
+  github_issue_template = "page-issue.yml"
+
   versionBadgeRepo = "splunk/observability-workshop"
   stableOtelVersion = "0.136.0"  # remains for backward compatibility
   legacyOtelVersion = "0.136.0"  # new legacy version for Splunk Show and existing workshops
