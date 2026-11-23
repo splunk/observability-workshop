@@ -1,0 +1,44 @@
+name: Report a page issue
+description: Something is wrong, outdated or unclear on a workshop page.
+labels: [documentation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. The page link and title are filled in from the page you were on. Fill in the sections below so we can find and fix the problem.
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Link to the workshop page.
+      placeholder: https://splunk.github.io/observability-workshop/en/...
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong?
+      description: Quote the text, step or command that has the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: What should the page say, or what should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Only needed if a step or command doesn't work.
+      placeholder: |
+        1. Go to ...
+        2. Run ...
+        3. See ...
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Paste or drag images here if they help show the problem.
