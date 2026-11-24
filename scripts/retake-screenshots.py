@@ -273,13 +273,36 @@ class Manifest:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Workshop screenshot helper. Run with no arguments for the menu.",
+        description=(
+            "Workshop screenshot helper. No arguments opens the numbered menu "
+            "(pick a module, walk pictures). Use -w to convert every PNG in a "
+            "module to WebP."
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""examples:
-  %(prog)s                   # menu: pick module, walk pictures
+  %(prog)s              menu: pick a module, walk pictures
+  %(prog)s -w           pick a module, list PNGs, convert all to WebP on confirm
+  %(prog)s -h           this help
   %(prog)s list
   %(prog)s start 03
+
+-w  WebP batch
+  1. Type the module number.
+  2. Review PNG files (will convert) and unused files (on disk, not in any page).
+  3. Type y or ok to convert. Markdown image links are rewritten to .webp.
+  4. Each file is reported, then a summary. Original PNGs are removed.
+
+Need cwebp once:  brew install webp
 """,
+    )
+    parser.add_argument(
+        "-w",
+        "--webp",
+        action="store_true",
+        help=(
+            "Pick a module, list PNG and unused files, then convert all PNGs "
+            "to WebP and update markdown on confirm."
+        ),
     )
     parser.add_argument(
         "command",
@@ -1135,6 +1158,107 @@ def review_loop(
     ask("Press Enter to go back to the module list", "")
 
 
+def print_png_inventory(section: Path, shots: list[Shot]) -> list[Path]:
+    used = {shot.image.resolve(): shot for shot in shots}
+    pngs = [path for path in disk_images(section) if path.suffix.lower() == ".png"]
+    unused = unused_images(section, shots)
+    print()
+    print(f"PNG files ({len(pngs)})")
+    print("-" * 50)
+    if not pngs:
+        print("  none")
+    else:
+        for path in pngs:
+            size = p2w.human(path.stat().st_size) if path.exists() else "missing"
+            shot = used.get(path.resolve())
+            if shot is not None:
+                where = rel(shot.markdown)
+            else:
+                where = "unused"
+            print(f"  {rel(path)}  {size}  [{where}]")
+    print()
+    print(f"Unused files ({len(unused)} on disk, not in any page)")
+    print("-" * 50)
+    if not unused:
+        print("  none")
+    else:
+        current = None
+        for path in unused:
+            group = unused_lesson_label(section, path)
+            if group != current:
+                current = group
+                print(f"  {group}")
+            kind = path.suffix.lower().lstrip(".")
+            size = p2w.human(path.stat().st_size) if path.exists() else "missing"
+            print(f"      {path.name}  ({kind}, {size})")
+    return pngs
+
+
+def pick_module(modules: list[Path]) -> Path | None:
+    print()
+    print("Which module?")
+    print()
+    for i, path in enumerate(modules, start=1):
+        shots_here = discover_shots(path)
+        count = len(shots_here)
+        label = "picture" if count == 1 else "pictures"
+        n_unused = len(unused_images(path, shots_here))
+        extra = f", {n_unused} unused" if n_unused else ""
+        print(f"  {i}) {module_title(path)}  ({count} {label}{extra})")
+    print("  0) Quit")
+    print()
+    raw = ask("Number", "1")
+    if raw in {"0", "q", "quit"}:
+        return None
+    if not raw.isdigit() or not (1 <= int(raw) <= len(modules)):
+        print("That is not a module number.")
+        return pick_module(modules)
+    return modules[int(raw) - 1]
+
+
+def run_webp_batch(quality: int) -> int:
+    p2w.require_cwebp()
+    modules = find_modules()
+    if not modules:
+        print("I could not find any workshop modules with pictures.")
+        return 1
+    print()
+    print("Convert PNGs to WebP")
+    print("====================")
+    section = pick_module(modules)
+    if section is None:
+        print("Bye.")
+        return 0
+    shots = discover_shots(section)
+    print()
+    print(module_title(section))
+    pngs = print_png_inventory(section, shots)
+    if not pngs:
+        print()
+        print("No PNG files to convert.")
+        return 0
+    print()
+    raw = ask(
+        f"Convert {len(pngs)} PNG file(s) to WebP and update markdown? [y/N]",
+        "n",
+    )
+    if raw.lower() not in {"y", "yes", "ok"}:
+        print("Aborted.")
+        return 0
+    print()
+    print(f"Converting {len(pngs)} PNG file(s) in {rel(section)}...")
+    return p2w.main(
+        [
+            "--yes",
+            "--quality",
+            str(quality),
+            "--jobs",
+            "1",
+            str(section),
+        ]
+    )
+
+
 def run_app(quality: int) -> int:
     inbox = default_inbox()
     backup_dir = default_backup()
@@ -1200,6 +1324,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if not 0 <= args.quality <= 100:
         raise SystemExit("--quality must be between 0 and 100")
+    if args.webp:
+        if args.command:
+            raise SystemExit("-w cannot be combined with a command; omit list/start/...")
+        return run_webp_batch(args.quality)
     if args.command is None:
         return run_app(args.quality)
     section = resolve_section(args.section)

@@ -4,9 +4,11 @@
 
 ```bash
 python3 scripts/retake-screenshots.py
+python3 scripts/retake-screenshots.py -w    # convert all PNGs in a module to WebP
+python3 scripts/retake-screenshots.py -h
 ```
 
-No arguments. Menu: pick a module, walk pictures, Keep / WebP / Retake. Prefer Shottr with a **Grab Section** keyboard shortcut so you can capture open panes. Details: **[screenshots/README.md](screenshots/README.md)**.
+No arguments. Menu: pick a module, walk pictures, Keep / WebP / Retake. Prefer Shottr with a **Grab Section** keyboard shortcut so you can capture open panes. `-w` lists PNG and unused files for a module, then converts every PNG to WebP and updates markdown after you confirm. Details: **[screenshots/README.md](screenshots/README.md)**.
 
 ## PNG to WebP
 
