@@ -22,20 +22,17 @@ Think about critical journeys in your own applications. How would you define the
 
 ![Conversion funnel from homepage to order confirmation showing drop-off percentages at each checkout step](../images/funnel.webp)
 
-{{< tabs >}}
-{{% tab title="Questions" %}}
+Funnels like this help teams monitor whether users succeed, troubleshoot where they fail, and optimize journeys for better conversion.
 
-1. How could a funnel like this be leveraged for your application?
-1. Which drop-off segments seem more expected, and which are most worth investigating first?
-
-{{% /tab %}}
-{{% tab title="Answers" %}}
-
-1. Funnels monitor expected user success, troubleshoot issues, and optimize apps for better conversion — a core tool for product and growth teams.
-1. Visiting a homepage or product page, or abandoning a cart, are relatively expected. A high drop-off between **Place order** and **Order confirmation** is alarming — users who intend to buy should reach confirmation.
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< quiz question="Which drop-off segment is most worth investigating first?" >}}
+{{< quiz-option >}}Between Homepage and Click product.{{< /quiz-option >}}
+{{< quiz-option >}}Between Click product and Add to cart.{{< /quiz-option >}}
+{{< quiz-option >}}Between Add to cart and Place order.{{< /quiz-option >}}
+{{< quiz-option correct=true >}}Between Place order and Order confirmation.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+Leaving from the homepage or a product page, or abandoning a cart, is relatively expected. A high drop-off between **Place order** and **Order confirmation** is alarming, because users who intend to buy should reach confirmation.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 
@@ -48,22 +45,16 @@ The most concerning segment is users who placed an order but never reached order
 1. On the **`Homepage to Order Confirmation`** funnel, click the drop-off segment between **Place order** and **Order confirmation**.
 2. Open a session replay from that segment. Pause, click events in the timeline, and scrub through the playback.
 
-{{< tabs >}}
-{{% tab title="Questions" %}}
-
-1. Which segment should we investigate?
-1. What happened for the end user in the replay?
-
-{{% /tab %}}
-{{% tab title="Answers" %}}
-
-1. The last drop-off segment — users who did not progress from **Place order** to **Order confirmation**.
-1. In many workshop sessions, the user submits the order form but receives an error message with a phone number to call instead of a confirmation page. The user tried to complete a purchase and failed at the final step — a direct hit to conversion rate and revenue.
+{{< quiz question="What happened for the end user in the replay?" >}}
+{{< quiz-option >}}The order was confirmed, but the confirmation page took a long time to load.{{< /quiz-option >}}
+{{< quiz-option correct=true >}}The user submitted the order form but received an error message with a phone number to call instead of a confirmation page.{{< /quiz-option >}}
+{{< quiz-option >}}The user abandoned the cart before submitting the order form.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+In many workshop sessions, the user submits the order form but receives an error message with a phone number to call instead of a confirmation page. The user tried to complete a purchase and failed at the final step, which is a direct hit to conversion rate and revenue.
 
 ![Session replay showing a checkout error message after the user submits an order](../images/funnel-dropoff-replay.png)
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 

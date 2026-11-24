@@ -16,6 +16,25 @@ A **normalized query** replaces literal values with placeholders such as `?`, ma
 
 {{% /exercise %}}
 
+{{< quiz question="How does the JOIN condition relate products to product_tags?" >}}
+{{< quiz-option >}}It matches each product's ID to the product ID on each tag.{{< /quiz-option >}}
+{{< quiz-option >}}It matches products and tags that share the same category.{{< /quiz-option >}}
+{{< quiz-option correct=true >}}It does not relate them: ON ? = ? compares two placeholder values instead of a column from each table.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The join condition is `ON ? = ?`. It compares two placeholder values, rather than a column from `products` with a column from `product_tags`, so nothing ties a product to its own tags.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
+
+{{< quiz question="Which node accounts for most of the plan cost?" >}}
+{{< quiz-option >}}The scan of the products table.{{< /quiz-option >}}
+{{< quiz-option >}}The Nested Loop.{{< /quiz-option >}}
+{{< quiz-option correct=true >}}The Sort above the Nested Loop.{{< /quiz-option >}}
+{{< quiz-option >}}The Limit.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+The **Sort** carries most of the estimated plan cost, because it has to order every row the Nested Loop produces before the limit is applied. Plan cost is a planner estimate, not a measurement of elapsed time.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
+
 ## Explain the row explosion
 
 Notice the join condition is `ON ? = ?`. It compares two placeholder values, rather than a column from `products` with a column from `product_tags`. In this scenario, the original condition is always true, so every qualifying product matches every qualifying tag. The placeholders hide the literal values; `? = ?` alone does not prove that every normalized query has an always-true condition.
