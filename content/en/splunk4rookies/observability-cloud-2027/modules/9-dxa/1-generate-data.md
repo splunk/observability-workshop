@@ -17,7 +17,7 @@ Before diving into DXA, we need real user sessions to analyze. The browsing we d
 * **Repeat 2–3 times** to generate more user sessions.
 * If possible, also visit the Astronomy Shop from a mobile device or tablet.
 
-![Ask AI feature and product details on the Astronomy Shop product page](../images/ask-ai-astronomy.png)
+![Ask AI feature and product details on the Astronomy Shop product page](../images/ask-ai-astronomy.webp)
 
 {{< quiz question="Did everything work perfectly, or did you notice anything unusual when interacting with the application?" >}}
 {{< quiz-option correct=true >}}Slow responses, a dead Show All Reviews button, or checkout errors are intentional.{{< /quiz-option >}}

@@ -8,7 +8,7 @@ Have some extra time? Nice! Let's do a little configuration.
 {{% exercise title="Create a new Event Definition" %}}
 
 1. In the DXA project, go to the Event Definitions tab and click "Pick from page"
-![DXA Event Definitions table with pick from page button highlighted](../images/dxa-picker.png)
+![DXA Event Definitions table with pick from page button highlighted](../images/dxa-picker.webp)
 1. Enter the URL where you want to capture a new Event Definition, like a single product page in the Astronomy Shop for this workshop.
 1. Activate the Element Picker
 1. Select an element on the page to capture, like one of the "Ask AI" prompts or "Show All Reviews", and see how the Element Picker both updates the target element code and provides a preview of how many interactions have been captured recently.
