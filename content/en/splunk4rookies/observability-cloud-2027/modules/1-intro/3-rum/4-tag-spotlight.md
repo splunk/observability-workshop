@@ -9,7 +9,7 @@ The panels show the most common values for each tag and their associated perform
 
 {{% exercise title="Find slow PlaceOrder sessions" %}}
 
-In this exercise, you’ll use **Tag Spotlight** to focus on the **PlaceOrder** workflow. You’ll then open the matching user sessions and sort them to find the slowest interactions.
+In this exercise, you’ll use **Tag Spotlight** to focus on the **PlaceOrder** workflow. You’ll then open **Related Sessions** and sort them to find the slowest interactions.
 
 ![RUM Tag Spotlight](../images/rum-tag-spotlight.webp)
 
@@ -17,12 +17,13 @@ In this exercise, you’ll use **Tag Spotlight** to focus on the **PlaceOrder** 
 
 * Find the **Custom Workflow Name** chart, locate **PlaceOrder** in the list **(2)**, click on it and select **Add to filter** **(3)** in the popup window to apply the filter to the page.
 * Confirm that the **PlaceOrder** filter appears at the end of the filter pane at the top of the page **(1)**.  
-The charts and results now focus on interactions associated with this workflow.
-* Select the **User Sessions** tab (4).
-* Select the **Duration** column heading (5) until the longest durations appear at the top. A *downward arrow* indicates that the results are sorted from longest to shortest.
+The charts and results now focus on interactions associated with this workflow. The **Related Sessions** tab is next to **Tag Spotlight**.
 
-* You now have a list of **sessions** containing the **PlaceOrder** workflow, with the slowest interactions shown first. The results were narrowed using the PlaceOrder tag before you opened the User Sessions tab. We could apply more filters to further narrow down the data, e.g. *OS version*, *browser version*, etc.
+![RUM Related Sessions](../images/rum-user-sessions.webp)
 
-![RUM Tag Spotlight](../images/rum-user-sessions.webp)
+* Select the **Related Sessions** tab **(4)**.
+* Select the **Duration** column heading **(5)** until the longest durations appear at the top. A *downward arrow* indicates that the results are sorted from longest to shortest.
+
+* You now have a list of **Related Sessions** containing the **PlaceOrder** workflow, with the slowest interactions shown first. The results were narrowed using the PlaceOrder tag before you opened the **Related Sessions** tab. We could apply more filters to further narrow down the data, e.g. *OS version*, *browser version*, etc.
 
 {{% /exercise %}}
