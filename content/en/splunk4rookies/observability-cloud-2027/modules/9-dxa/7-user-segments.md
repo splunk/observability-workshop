@@ -21,7 +21,7 @@ Segment definitions can combine:
 3. Switch the filter to a pre-built user segment. Your facilitator will confirm the segment name — common examples include **Mobile users** or **New users**.
 4. Compare drop-off rates and segment sizes between **All users** and your selected segment.
 
-![Checkout funnel filtered by a user segment showing segment-specific drop-off rates](images/funnel-segment-comparison.png)
+![Checkout funnel filtered by a user segment showing segment-specific drop-off rates](images/funnel-segment-comparison.webp)
 
 {{< quiz question="When would segmenting by device type change your remediation priority?" >}}
 {{< quiz-option correct=true >}}When mobile checkout drop-off is much higher than desktop, fix mobile first.{{< /quiz-option >}}

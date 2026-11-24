@@ -60,7 +60,7 @@ The most concerning segment is users who placed an order but never reached order
 1. The last drop-off segment — users who did not progress from **Place order** to **Order confirmation**.
 1. In many workshop sessions, the user submits the order form but receives an error message with a phone number to call instead of a confirmation page. The user tried to complete a purchase and failed at the final step — a direct hit to conversion rate and revenue.
 
-![Session replay showing a checkout error message after the user submits an order](../images/funnel-dropoff-replay.png)
+![Session replay showing a checkout error message after the user submits an order](../images/funnel-dropoff-replay.webp)
 
 {{% /tab %}}
 {{< /tabs >}}
