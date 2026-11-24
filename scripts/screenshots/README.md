@@ -11,9 +11,11 @@ Need `cwebp` once: `brew install webp`
 ```bash
 cd ~/GIT/observability-workshop
 python3 scripts/retake-screenshots.py
+python3 scripts/retake-screenshots.py -w
+python3 scripts/retake-screenshots.py -h
 ```
 
-No extra words after that. A menu appears.
+No extra words after that. A menu appears. `-w` is the batch WebP converter (see below). `-h` prints the same instructions.
 
 1. Type the **module number** (Introduction is 1). Type **0** to quit.
 2. It lists every picture that a lesson page actually uses. Type the **starting number**, or press Enter.
@@ -94,6 +96,19 @@ It reads the **markdown**, not the `images/` folder listing.
 - The same file used on two pages is still one item.
 
 A file that sits in `images/` but is never mentioned in markdown is **Unused**, not a numbered picture. Remote `https://…` images are ignored.
+
+## Convert a module’s PNGs (`-w`)
+
+Use this when a module still has PNG screenshots and you want them all as WebP, without walking picture by picture.
+
+```bash
+python3 scripts/retake-screenshots.py -w
+```
+
+1. Type the **module number**.
+2. It lists every **PNG** (path, size, which page uses it) and **unused** files (on disk, not in any page).
+3. Type **y** or **ok** to convert. **N** or Enter aborts.
+4. Each PNG is converted, markdown links are rewritten to `.webp`, and the PNG is removed. Unused files are listed, not deleted.
 
 ## Optional CLI
 
