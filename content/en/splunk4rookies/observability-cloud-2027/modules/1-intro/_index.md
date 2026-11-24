@@ -28,6 +28,22 @@ This ensures that approximately half of the payment requests fail, producing the
 
 Gain hands-on experience troubleshooting issues using Splunk Observability Cloud. You'll work with a fully instrumented microservices application — the **Astronomy Shop** — running on Kubernetes and sending metrics, traces, and logs for real-time analysis.
 
+{{% notice title="Note" style="info" %}}
+Depending on where this workshop is run, the headers for the Splunk Observability suite may look different:
+
+<div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;">
+<div>
+
+* **Cisco Cloud Control** — a light (white) header
+* **Splunk Observability Cloud** — a dark header
+
+</div>
+<img src="images/headers.webp" alt="Cisco Cloud Control and Splunk Observability headers" style="max-width:320px; width:100%; height:auto;">
+</div>
+
+Use the left navigation and page titles to follow the steps. Ignore header color differences between your screen and the screenshots — this does not impact the workshop.
+{{% /notice %}}
+
 <!-- Along the classic troubleshooting path you'll also meet the newest members of the platform: the **AI Assistant** and the **AI Troubleshooting Agent**, which turn plain-English questions and firing alerts into evidence-backed root cause analysis. -->
 
 ## Workshop Overview
