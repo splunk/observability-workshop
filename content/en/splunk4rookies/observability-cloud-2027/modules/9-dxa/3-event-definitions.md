@@ -27,7 +27,9 @@ Event definitions use filter templates to match real user actions:
 - **Visited URL** — matches navigation events by `url.full`
 - **Custom** — matches any ingested event name
 
-The **element picker** lets product teams define click events by selecting elements directly on a live page — no code changes required. We will explore pre-built definitions in this exercise rather than creating new ones.
+The **element picker** lets product teams define click events by selecting elements directly on a live page — no code changes required. We will explore pre-built definitions in this exercise, with an option to create new Event Definitions in the Bonus Activity at the end of the workshop.
+
+![List of event definitions for Ask AI quick prompts](../images/event-definitions.webp)
 
 {{% exercise title="Explore pre-built event definitions" %}}
 
@@ -37,8 +39,6 @@ The **element picker** lets product teams define click events by selecting eleme
    - Checkout steps (homepage, product page, cart, place order, order confirmation)
 3. Select one definition and review its filter criteria — note how event category and tags define what counts as that event.
 4. Check the **Occurrences** preview to see matching events from real workshop sessions.
-
-![List of event definitions for Ask AI quick prompts](../images/event-definitions.png)
 
 {{< quiz question="Your marketing team launches a newsletter signup campaign. What event definition would you create, and which filter template would you likely use?" >}}
 {{< quiz-option correct=true >}}A Newsletter Signup event, using Click on text, Click on element, or Custom.{{< /quiz-option >}}

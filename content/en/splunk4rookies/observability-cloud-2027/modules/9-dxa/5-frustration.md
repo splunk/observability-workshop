@@ -12,7 +12,7 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 1. Return to the project **Analyses** tab and open the **`Frustration`** time series.
 2. Explore the chart, data table, and linked session replays.
 
-![Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop](../images/frustration-timeseries.png)
+![Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop](../images/frustration-timeseries.webp)
 
 Look at the chart. It tracks each type of frustration signal over time: rage clicks, errors and dead clicks. Workshop sessions show multiple users hitting points of friction. Open some of the linked session replays to see what users were doing.
 
@@ -24,7 +24,7 @@ Look at the chart. It tracks each type of frustration signal over time: rage cli
 {{< quiz-feedback >}}
 Users click **Show All Reviews** expecting the reviews to expand, but nothing happens, so they click it again and again. Clicking an element that does not respond is a classic **dead-click** pattern, and repeated clicking turns it into a **rage click**.
 
-![Session replay showing a user rage clicking the non-responsive Show All Reviews button](../images/frustration-replay.png)
+![Session replay showing a user rage clicking the non-responsive Show All Reviews button](../images/frustration-replay.webp)
 {{< /quiz-feedback >}}
 {{< /quiz >}}
 
