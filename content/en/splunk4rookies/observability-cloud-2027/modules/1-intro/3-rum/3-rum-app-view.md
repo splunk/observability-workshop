@@ -24,20 +24,17 @@ The dashboard is organized into several tabs:
 
 Select each tab and take a moment to examine its charts. You do not need to understand every metric yet. Focus on the chart titles, their units, and any visible spikes or unusual patterns.
 
-{{< tabs >}}
-{{% tab title="Questions" %}}
+{{< quiz question="In the Custom Workflow Duration P75 chart, which workflow has the highest P75 duration?" >}}
+{{< quiz-option >}}AddToCart{{< /quiz-option >}}
+{{< quiz-option correct=true >}}PlaceOrder{{< /quiz-option >}}
+{{< quiz-option >}}CheckoutError{{< /quiz-option >}}
+{{< quiz-option >}}OrderConfirmed{{< /quiz-option >}}
+{{< quiz-feedback >}}
+**PlaceOrder** is considerably slower than the other workflows. Its **P75 duration** is several seconds, with repeated spikes approaching 10 seconds, while the other workflows complete in milliseconds. Your values may differ, but the pattern should be the same.
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
-1. In **Custom Workflows**, in the **Custom Workflow Duration P75** chart, which workflow has the highest P75 duration and what evidence in the chart supports your answer?
-2. In the **Map View** tab, which location shows the largest request volume?
-
-{{% /tab %}}
-{{% tab title="Answers" %}}
-
-1. **PlaceOrder** is considerably slower. Its **P75 duration** is approximately **7.46 seconds**, with repeated spikes approaching 10 seconds, while the other workflows complete in milliseconds or microseconds. (your data may be different, but the pattern should be the same)
-2. **Ireland**
-
-{{% /tab %}}
-{{< /tabs >}}
+Open the **Map View** tab and note which locations your application activity is coming from. Your results depend on where you and other attendees are browsing from.
 
 * Make sure you are on the **Custom Workflows** tab **(1)**.
 * To identify problematic user sessions, we will use the latency spikes in the **Custom Workflow Duration P75** chart.

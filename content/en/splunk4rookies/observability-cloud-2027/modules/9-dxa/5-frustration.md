@@ -14,22 +14,19 @@ Common frustration signals include **rage clicks** (rapid repeated clicks), **de
 
 ![Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop](../images/frustration-timeseries.webp)
 
-{{< tabs >}}
-{{% tab title="Questions" %}}
+Look at the chart. It tracks each type of frustration signal over time: rage clicks, errors and dead clicks. Workshop sessions show multiple users hitting points of friction. Open some of the linked session replays to see what users were doing.
 
-1. What does this chart tell us?
-1. Can you identify why users are expressing frustration?
-
-{{% /tab %}}
-{{% tab title="Answers" %}}
-
-1. The chart tracks frustration signal types over time — rage clicks, errors, and dead clicks. Workshop sessions show multiple users hitting points of friction.
-1. Look for sessions involving the **Show All Reviews** button. Users click it expecting reviews to expand, nothing happens, and they rage click. This is a classic dead-click pattern.
+{{< quiz question="Which part of the Astronomy Shop is causing users to express frustration?" >}}
+{{< quiz-option >}}The Ask AI text input on the product page.{{< /quiz-option >}}
+{{< quiz-option >}}The Add To Cart button.{{< /quiz-option >}}
+{{< quiz-option correct=true >}}The Show All Reviews button.{{< /quiz-option >}}
+{{< quiz-option >}}The currency selector.{{< /quiz-option >}}
+{{< quiz-feedback >}}
+Users click **Show All Reviews** expecting the reviews to expand, but nothing happens, so they click it again and again. Clicking an element that does not respond is a classic **dead-click** pattern, and repeated clicking turns it into a **rage click**.
 
 ![Session replay showing a user rage clicking the non-responsive Show All Reviews button](../images/frustration-replay.webp)
-
-{{% /tab %}}
-{{< /tabs >}}
+{{< /quiz-feedback >}}
+{{< /quiz >}}
 
 {{% /exercise %}}
 
