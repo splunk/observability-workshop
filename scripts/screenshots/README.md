@@ -8,8 +8,9 @@ A small terminal app. You pick a module, look at each picture, and choose **Keep
 
 Need `cwebp` once: `brew install webp`
 
+Run from the root of your clone of the repository:
+
 ```bash
-cd ~/GIT/observability-workshop
 python3 scripts/retake-screenshots.py
 python3 scripts/retake-screenshots.py -w
 python3 scripts/retake-screenshots.py -h
