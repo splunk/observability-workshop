@@ -1,0 +1,3 @@
+# Merged over the root hugo.toml for `hugo server` only. Production builds
+# keep enableGitInfo = true so pages show accurate "last updated" dates.
+enableGitInfo = false
