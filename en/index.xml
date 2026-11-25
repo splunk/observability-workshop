@@ -927,7 +927,7 @@ workshop instructor completes the steps in this section, rather than performing 
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/ask-ai-astronomy.png" alt="Ask AI feature and product details on the Astronomy Shop product page" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/ask-ai-astronomy.webp" alt="Ask AI feature and product details on the Astronomy Shop product page" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>Find the payment services and raw alerts</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/1-getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/1-getting-started/</guid><description>&lt;p&gt;Before you configure an alert connection, get familiar with the environment it will support. You will locate the three payment services, then inspect their raw records. This gives you a reference for checking whether the normalized alerts still describe the original symptoms correctly.&lt;/p&gt;
@@ -1416,7 +1416,37 @@ infrastructure and APM monitoring alone.&lt;/p&gt;</description></item><item><ti
 &lt;blockquote&gt;&lt;p&gt;A metric is a measurement of a service captured at runtime. The moment of capturing a measurement is known as a metric event, which consists not only of the measurement itself, but also the time at which it was captured and associated metadata.&lt;/p&gt;</description></item><item><title>User Sessions</title><link>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/4-rum/1-rum-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/conf/2-user-journeys/4-rum/1-rum-sessions/</guid><description>&lt;p&gt;In Splunk RUM, a &lt;strong&gt;session&lt;/strong&gt; is a continuous period of user activity on your app (up to four hours, ending after inactivity or when the app closes). RUM sessions inform analyses like funnels and feature adoption timeseries.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Session details&lt;/strong&gt; show metadata, replay events, and a waterfall of spans (loads, requests, custom events, web vitals, errors). See &lt;a href="https://help.splunk.com/en/splunk-observability-cloud/digital-experience-monitoring/real-user-monitoring/key-concepts-in-splunk-rum" target="_blank" rel="noopener"&gt;Key concepts in Splunk RUM&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  for more info.&lt;/p&gt;</description></item><item><title>Select the RUM view for the Petclinic App</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/</guid><description>&lt;p&gt;Let&amp;rsquo;s start with a quick, high level tour of RUM by clicking &lt;strong&gt;Digital Experience → Real user monitoring → Overview&lt;/strong&gt; in the left-hand menu. Then change the &lt;strong&gt;Environment&lt;/strong&gt; filter &lt;strong&gt;(1)&lt;/strong&gt; to the name of your workshop instance from the dropdown box, selecting &lt;strong&gt;&lt;code&gt;&amp;lt;INSTANCE&amp;gt;-workshop&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;(1)&lt;/strong&gt; (where &lt;strong&gt;&lt;code&gt;INSTANCE&lt;/code&gt;&lt;/strong&gt; is the value from the shell script you ran earlier). Make sure it is the only instance selected.&lt;/p&gt;
-&lt;p&gt;Then change the &lt;strong&gt;App&lt;/strong&gt; &lt;strong&gt;(2)&lt;/strong&gt; dropdown box to the name of your app, it will be &lt;strong&gt;&lt;code&gt;&amp;lt;INSTANCE&amp;gt;-store&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Locating our Sample Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-dashboards-detectors/dashboards/1-01-sample_data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-dashboards-detectors/dashboards/1-01-sample_data/</guid><description>&lt;h2 id="1-exploring-the-sample-data"&gt;
+&lt;p&gt;Then change the &lt;strong&gt;App&lt;/strong&gt; &lt;strong&gt;(2)&lt;/strong&gt; dropdown box to the name of your app, it will be &lt;strong&gt;&lt;code&gt;&amp;lt;INSTANCE&amp;gt;-store&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Which journey should we test?</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/1-real-user-pain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/1-real-user-pain/</guid><description>&lt;p&gt;Before we start creating tests with Synthetics, let&amp;rsquo;s look at what real users are doing to prioritize test coverage. RUM tells us which pages real end users interact with, how those pages feel, and where the experience breaks down.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Open our store and check the Web Vitals&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;From the main menu, select &lt;strong&gt;Digital Experience&lt;/strong&gt;, then &lt;strong&gt;Overview&lt;/strong&gt; under &lt;strong&gt;Real User Monitoring&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Set the filters to our own store:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time frame&lt;/strong&gt;: &lt;strong&gt;-1h&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Environment&lt;/strong&gt;: &lt;strong&gt;[NAME OF WORKSHOP]-workshop&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;App&lt;/strong&gt;: &lt;strong&gt;[NAME OF WORKSHOP]-store&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;: &lt;strong&gt;Browser&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;[NAME OF WORKSHOP]-store&lt;/strong&gt; link above the &lt;strong&gt;Page Views / JavaScript Errors&lt;/strong&gt; chart to open the application view.&lt;/li&gt;
+&lt;li&gt;On the &lt;strong&gt;UX Metrics&lt;/strong&gt; tab, find the three &lt;strong&gt;Core Web Vitals&lt;/strong&gt; charts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- TODO screenshot: RUM application view, UX Metrics tab, with the three Core Web Vitals charts visible --&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-web-vitals.webp" alt="Core Web Vitals in the RUM application view" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Locating our Sample Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-dashboards-detectors/dashboards/1-01-sample_data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/3-dashboards-detectors/dashboards/1-01-sample_data/</guid><description>&lt;h2 id="1-exploring-the-sample-data"&gt;
  &lt;span class="heading-text"&gt;1. Exploring the Sample Data&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-exploring-the-sample-data" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -2911,7 +2941,13 @@ to collect traces:&lt;/p&gt;
 
 &lt;/div&gt;
 
-&lt;p&gt;Inspect the contents of the files in this directory. Take a look at the serverless.yml template.&lt;/p&gt;</description></item><item><title>Building the Spring PetClinic Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/</guid><description>&lt;p&gt;The first thing we need to set up APM is&amp;hellip; well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (via Spring Boot).&lt;/p&gt;
+&lt;p&gt;Inspect the contents of the files in this directory. Take a look at the serverless.yml template.&lt;/p&gt;</description></item><item><title>Build our browser test</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/2-build-browser-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/2-build-browser-test/</guid><description>&lt;p&gt;A &lt;strong&gt;browser test&lt;/strong&gt; drives a real Google Chrome browser through a journey we script, from the locations we choose, on the schedule we set. In the Introduction module we reviewed a browser test somebody else had built. Now we build our own, for the checkout journey we just chose.&lt;/p&gt;
+&lt;p&gt;Two concepts do most of the work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;step&lt;/strong&gt; is one interaction — go to a URL, click something, or assert that something is there. Steps have names, and those names are what we read when a test fails.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;synthetic transaction&lt;/strong&gt; is a named group of steps representing a business-critical flow. Each transaction gets its own &lt;strong&gt;duration&lt;/strong&gt;, &lt;strong&gt;requests&lt;/strong&gt;, and &lt;strong&gt;size&lt;/strong&gt; metrics, which is how we end up able to say &amp;ldquo;checkout got slower&amp;rdquo; rather than just &amp;ldquo;the test got slower&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Everyone shares one shop&lt;/p&gt;</description></item><item><title>Building the Spring PetClinic Application</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/</guid><description>&lt;p&gt;The first thing we need to set up APM is&amp;hellip; well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (via Spring Boot).&lt;/p&gt;
 &lt;p&gt;First, clone the Spring PetClinic GitHub repository. Later, we will compile, build, package and test the application:&lt;/p&gt;
 &lt;div class="code-block"&gt;
  &lt;div class="code-block__header"&gt;
@@ -6369,23 +6405,7 @@ next chapter.&lt;/p&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
-&lt;div class="tabs" data-tabs&gt;
-&lt;div class="tabs__list" role="tablist"&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-tab-0" class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-panel-0" tabindex="0" data-tab-label="Questions"&gt;Questions&lt;/button&gt;&lt;button id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-tab-1" class="tabs__btn" role="tab" aria-selected="false" aria-controls="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-panel-1" tabindex="-1" data-tab-label="Answers"&gt;Answers&lt;/button&gt;
-&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-panel-0" class="tabs__panel is-active" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-tab-0" data-tab-label="Questions"&gt;&lt;ul&gt;
-&lt;li&gt;Which &lt;em&gt;HTTP status code&lt;/em&gt; is associated with the &lt;em&gt;payment&lt;/em&gt; errors, and what does it usually indicate?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-panel-1" class="tabs__panel" role="tabpanel" aria-labelledby="tabs---home-runner-work-observability-workshop-observability-workshop-content-en-splunk4rookies-observability-cloud-2027-modules-1-intro-4-apm-3-apm-payment-errors-md-1-1--0-tab-1" hidden data-tab-label="Answers"&gt;&lt;ol&gt;
-&lt;li&gt;The errors return &lt;em&gt;HTTP status code&lt;/em&gt; &lt;strong&gt;401&lt;/strong&gt;. This means &lt;em&gt;Unauthorized&lt;/em&gt; and usually indicates that authentication credentials are missing, invalid, or no longer accepted.&lt;/li&gt;
-&lt;li&gt;Notice that &lt;strong&gt;401&lt;/strong&gt; also appears in the &lt;em&gt;exception&lt;/em&gt; and &lt;em&gt;gRPC&lt;/em&gt; breakdowns. This confirms that the same authentication-related failure is being recorded consistently across the service telemetry.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;p&gt;The overview confirms that the &lt;strong&gt;payment&lt;/strong&gt; service has recurring &lt;em&gt;authentication&lt;/em&gt; failures, but it does not yet show what the affected requests have in common. To look for a pattern, select the &lt;strong&gt;Tag Spotlight&lt;/strong&gt; tab &lt;strong&gt;(3)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>3. Real User Monitoring</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/4-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/4-rum/</guid><description>&lt;p&gt;For the Real User Monitoring (RUM) instrumentation, we will add the OpenTelemetry Javascript &lt;a href="https://github.com/signalfx/splunk-otel-js-web" target="_blank" rel="noopener"&gt;&lt;strong&gt;https://github.com/signalfx/splunk-otel-js-web&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;section class="quiz" data-quiz&gt;&lt;p class="quiz__label"&gt;Quick check&lt;/p&gt;&lt;p class="quiz__question"&gt;Which HTTP status code is associated with the payment errors, and what does it usually indicate?&lt;/p&gt;&lt;ul class="quiz__options"&gt;&lt;li&gt;&lt;button class="quiz__option" type="button" data-correct="false"&gt;&lt;span class="quiz__marker"&gt;A&lt;/span&gt;&lt;span class="quiz__option-text"&gt;403: the credentials are valid, but the caller is not allowed to access the resource.&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&lt;li&gt;&lt;button class="quiz__option" type="button" data-correct="true"&gt;&lt;span class="quiz__marker"&gt;B&lt;/span&gt;&lt;span class="quiz__option-text"&gt;401: the authentication credentials are missing, invalid, or no longer accepted.&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&lt;li&gt;&lt;button class="quiz__option" type="button" data-correct="false"&gt;&lt;span class="quiz__marker"&gt;C&lt;/span&gt;&lt;span class="quiz__option-text"&gt;404: the requested resource does not exist.&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&lt;li&gt;&lt;button class="quiz__option" type="button" data-correct="false"&gt;&lt;span class="quiz__marker"&gt;D&lt;/span&gt;&lt;span class="quiz__option-text"&gt;500: the server hit an unexpected internal error.&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class="quiz__feedback" role="status" aria-live="polite" aria-atomic="true"&gt;&lt;p&gt;The errors return &lt;em&gt;HTTP status code&lt;/em&gt; &lt;strong&gt;401&lt;/strong&gt;, which means &lt;em&gt;Unauthorized&lt;/em&gt;. It usually indicates that authentication credentials are missing, invalid, or no longer accepted. A &lt;strong&gt;403&lt;/strong&gt; is different: the caller has been identified but is not permitted to perform the action.&lt;/p&gt;</description></item><item><title>3. Real User Monitoring</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/4-rum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/foundations/1-automatic-discovery/1-petclinic-monolith/4-rum/</guid><description>&lt;p&gt;For the Real User Monitoring (RUM) instrumentation, we will add the OpenTelemetry Javascript &lt;a href="https://github.com/signalfx/splunk-otel-js-web" target="_blank" rel="noopener"&gt;&lt;strong&gt;https://github.com/signalfx/splunk-otel-js-web&lt;/strong&gt;&lt;svg class="link-ext" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M7 17 17 7"/&gt;&lt;path d="M9 7h8v8"/&gt;&lt;/svg&gt;&lt;/a&gt;
  snippet to the pages returned by the Spring PetClinic application. To do this, in Splunk Observability Cloud, navigate to &lt;strong&gt;Data Management → Available Integrations → RUM Instrumentation → Browser Instrumentation&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;. Your instructor will inform you which token to select from the Access token dropdown. Click &lt;strong&gt;Next&lt;/strong&gt; again. Enter &lt;strong&gt;App name&lt;/strong&gt; and &lt;strong&gt;Environment&lt;/strong&gt; using the following syntax:&lt;/p&gt;</description></item><item><title>Review Experiment Results</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/7-splunk-agent-observability-for-engineers/7-run-experiments/3-review-experiments/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/7-splunk-agent-observability-for-engineers/7-run-experiments/3-review-experiments/</guid><description>&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;TODO&lt;/p&gt;&lt;div class="callout__body"&gt;Confirm which organization will be used for the workshop.&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Now review the experiment in the Galileo console: inspect the per-row scores, drill into an
@@ -6481,7 +6501,23 @@ individual trace, and compare two runs.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Wait for the Spring Boot startup banner to appear (about 10-15 seconds).
-Press return to go back to your prompt.&lt;/p&gt;</description></item><item><title>3. Runtime Vulnerabilities</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/8-secure-application/03-runtime-vulnerabilities/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/8-secure-application/03-runtime-vulnerabilities/</guid><description>&lt;h2 id="why-a-single-inventory-view-matters"&gt;
+Press return to go back to your prompt.&lt;/p&gt;</description></item><item><title>Run the test and read the results</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/3-test-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/3-test-results/</guid><description>&lt;p&gt;Our test now runs every five minutes, but we do not have to wait five minutes to see results. &lt;strong&gt;Run now&lt;/strong&gt; triggers a scheduled-quality run on demand.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Trigger runs on demand&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;On our test&amp;rsquo;s page, select &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: var(--color-ink-muted)"&gt;&lt;span&gt;Run test now&lt;/span&gt;&lt;/button&gt;. We can also do this from the Synthetics test list, using the vertical dots &lt;strong&gt;⋮&lt;/strong&gt; next to the test.&lt;/li&gt;
+&lt;li&gt;Trigger &lt;strong&gt;three or four&lt;/strong&gt; runs, waiting for each to finish before starting the next. Because roughly half of all checkouts fail, a handful of runs gives us a mix of passes and failures to look at.&lt;/li&gt;
+&lt;li&gt;Runs triggered this way are labelled &lt;strong&gt;Manual&lt;/strong&gt; in the results list, to distinguish them from the scheduled ones.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;</description></item><item><title>3. Runtime Vulnerabilities</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/8-secure-application/03-runtime-vulnerabilities/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/8-secure-application/03-runtime-vulnerabilities/</guid><description>&lt;h2 id="why-a-single-inventory-view-matters"&gt;
  &lt;span class="heading-text"&gt;Why a Single Inventory View Matters&lt;/span&gt;
  &lt;a class="heading-anchor" href="#why-a-single-inventory-view-matters" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -7563,7 +7599,20 @@ debug and file exporters.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;section class="quiz" data-quiz&gt;&lt;p class="quiz__label"&gt;Quick check&lt;/p&gt;&lt;p class="quiz__question"&gt;What can you conclude from what you are seeing?&lt;/p&gt;</description></item><item><title>4. APM Tag Spotlight</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/4-apm/4-apm-tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/4-apm/4-apm-tag-spotlight/</guid><description>&lt;p&gt;&lt;strong&gt;Tag Spotlight&lt;/strong&gt; groups service telemetry by indexed &lt;em&gt;tags&lt;/em&gt;, such as endpoint, environment, customer attributes, and exception message. This helps you determine whether errors or latency are concentrated around a particular group of requests without writing a query.&lt;/p&gt;
 &lt;p&gt;Each card represents one &lt;em&gt;tag&lt;/em&gt;. Because indexed tags can be configured for each environment, different users may see a different selection or order of cards.&lt;/p&gt;
-&lt;p&gt;Within each card, you can compare tag values using request counts, error counts, root-cause errors, and latency percentiles.&lt;/p&gt;</description></item><item><title>Check Browser Applications health at a glance</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</guid><description>&lt;ul&gt;
+&lt;p&gt;Within each card, you can compare tag values using request counts, error counts, root-cause errors, and latency percentiles.&lt;/p&gt;</description></item><item><title>Beat the tweet</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/4-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/4-detector/</guid><description>&lt;p&gt;A test that finds a problem nobody is told about is just a nicely formatted record of an outage. The thing that actually beats social media to the issue is the &lt;strong&gt;detector&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In the Introduction module we previewed a detector on run duration and closed it without saving. This time we are going to activate one.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../1-intro/6-synthetics/images/social-media-post.webp" alt="Social media post about the shop being down" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id="alert-on-uptime-not-on-duration"&gt;
+ &lt;span class="heading-text"&gt;Alert on uptime, not on duration&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#alert-on-uptime-not-on-duration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run duration is a good signal for &lt;em&gt;slow&lt;/em&gt;. For &lt;em&gt;broken&lt;/em&gt;, we use &lt;strong&gt;Uptime&lt;/strong&gt;, because the uptime metric is &lt;code&gt;0&lt;/code&gt; on a failed run and &lt;code&gt;100&lt;/code&gt; on a successful one. That makes it the one metric that catches every kind of failure — a timeout, a failed assertion, a certificate problem, or the site being gone entirely — without us having to predict which.&lt;/p&gt;</description></item><item><title>Check Browser Applications health at a glance</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/2-rum/4-browser-summary/</guid><description>&lt;ul&gt;
 &lt;li&gt;Get familiar with the UI and options available from this landing page&lt;/li&gt;
 &lt;li&gt;Identify Page Views/JavaScript Errors and Request/Errors in a single view &lt;/br&gt;
 Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application&lt;/li&gt;
@@ -7630,7 +7679,7 @@ NVIDIA GPU and NIM operators in our OpenShift cluster.&lt;/p&gt;</description></
 &lt;p&gt;Navigate to &lt;strong&gt;APM -&amp;gt; Trace Analyzer&lt;/strong&gt;. With &lt;strong&gt;Trace Analyzer&lt;/strong&gt; we can add filters to search for traces of interest. For example, we can filter on traces where the credit score starts with &lt;code&gt;7&lt;/code&gt;:&lt;/p&gt;</description></item><item><title>4. Feature Adoption</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/9-dxa/4-feature-adoption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/9-dxa/4-feature-adoption/</guid><description>&lt;p&gt;Remember the &lt;strong&gt;Ask AI&lt;/strong&gt; feature on Astronomy Shop product detail pages? Product leadership wants to know whether customers are using it — including the quick prompts below the text input field.&lt;/p&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/ask-ai-astronomy.png" alt="Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/ask-ai-astronomy.webp" alt="Ask AI feature with quick prompt buttons on an Astronomy Shop product detail page" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
  
 &lt;/figure&gt;
@@ -8522,7 +8571,8 @@ The &lt;strong&gt;payment&lt;/strong&gt; service is now displayed as a separate 
 &lt;li&gt;&lt;strong&gt;Drill down to specific traces&lt;/strong&gt;: Quickly find the exact trace you need, whether investigating a customer complaint or debugging a specific transaction.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This makes Trace Analyzer ideal for investigating unknown issues, researching specific transactions, and performing root cause analysis when you need to find a needle in a haystack.&lt;/p&gt;</description></item><item><title>5. APM Trace Analyzer</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/5-apm-trace-analyzer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud/6-apm/5-apm-trace-analyzer/</guid><description>&lt;p&gt;As Splunk APM provides a &lt;strong&gt;NoSample&lt;/strong&gt; end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the &lt;strong&gt;Order Confirmation ID&lt;/strong&gt; is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.&lt;/p&gt;
-&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Trace Analyzer&lt;/p&gt;</description></item><item><title>Code Profiling - Payment Service</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/</guid><description>&lt;h2 id="1-alwayson-profiling-for-the-payment-service"&gt;
+&lt;div class="callout callout--info"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" y1="16" x2="12" y2="12"/&gt;&lt;line x1="12" y1="8" x2="12.01" y2="8"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Trace Analyzer&lt;/p&gt;</description></item><item><title>Beyond the browser test</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/5-other-test-types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/5-other-test-types/</guid><description>&lt;p&gt;Browser tests prove a customer can complete a workflow, regardless of the resources and endpoints involved.&lt;/p&gt;
+&lt;p&gt;Uptime tests focus on the health of critical &lt;strong&gt;endpoints&lt;/strong&gt; that are required for your end users to complete their tasks. These tests are much more lightweight and can be run much more frequently, so that while our browser tests are evaluating health of workflows, uptime tests are pinpointing health of individual pieces of those workflows.&lt;/p&gt;</description></item><item><title>Code Profiling - Payment Service</title><link>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/</guid><description>&lt;h2 id="1-alwayson-profiling-for-the-payment-service"&gt;
  &lt;span class="heading-text"&gt;1. AlwaysOn Profiling for the Payment Service&lt;/span&gt;
  &lt;a class="heading-anchor" href="#1-alwayson-profiling-for-the-payment-service" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -8650,7 +8700,7 @@ so you don&amp;rsquo;t need to rely on what&amp;rsquo;s installed on the host.&a
 &lt;/ol&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/frustration-timeseries.png" alt="Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/frustration-timeseries.webp" alt="Time series chart showing rage clicks, errors, and dead clicks over time in the Astronomy Shop" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>Group related alerts with EventiQ Detect</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/5-group-with-eventiq-detect/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/5-group-with-eventiq-detect/</guid><description>&lt;p&gt;One failure can trigger alerts across several services and monitoring tools. Operators then have to separate repeated symptoms from distinct problems, identify the affected business service, and coordinate an investigation. Treating each alert as a separate incident adds noise and duplicates work.&lt;/p&gt;
@@ -8741,7 +8791,8 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
 
 &lt;/div&gt;
 
-&lt;p&gt;Note that this deployment now only updates the code changes within the function. Our configuration remains the same.&lt;/p&gt;</description></item><item><title>5. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
+&lt;p&gt;Note that this deployment now only updates the code changes within the function. Our configuration remains the same.&lt;/p&gt;</description></item><item><title>5. Related Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/3-rum/5-related-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/3-rum/5-related-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;Related Session&lt;/strong&gt; or &lt;strong&gt;User Session&lt;/strong&gt; represents one person’s activity in the application during a particular visit. Each session has a unique Session ID and contains a chronological timeline of the events captured by RUM.&lt;/p&gt;
+&lt;p&gt;The session view brings browser activity together in one place, including page visits, clicks, form submissions, custom workflows, JavaScript errors, network requests, and performance events. At the top of the page, the Session Timeline summarizes when these events occurred. The detailed list below shows their order, duration, and status.&lt;/p&gt;</description></item><item><title>5. RUM to APM</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-short/3-rum/5-rum-to-apm/</guid><description>&lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
 &lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
 &lt;/span&gt;
@@ -8808,8 +8859,7 @@ applications that leverage Large Language Models (LLMs).&lt;/p&gt;</description>
  &lt;span class="heading-text"&gt;Scenario&lt;/span&gt;
  &lt;a class="heading-anchor" href="#scenario" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;You&amp;rsquo;ve been tasked with monitoring the OS logs of the host running your Kubernetes cluster. We are going to utilize a script that will autodeploy the Splunk Universal Forwarder. You will then configure the Universal Forwarder to send logs to the Splunk Enterprise instance assigned to you.&lt;/p&gt;</description></item><item><title>5. User Sessions</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/3-rum/5-user-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/1-intro/3-rum/5-user-sessions/</guid><description>&lt;p&gt;A &lt;strong&gt;User Session&lt;/strong&gt; represents one person’s activity in the application during a particular visit. Each session has a unique Session ID and contains a chronological timeline of the events captured by RUM.&lt;/p&gt;
-&lt;p&gt;The session view brings browser activity together in one place, including page visits, clicks, form submissions, custom workflows, JavaScript errors, network requests, and performance events. At the top of the page, the Session Timeline summarizes when these events occurred. The detailed list below shows their order, duration, and status.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
+&lt;p&gt;You&amp;rsquo;ve been tasked with monitoring the OS logs of the host running your Kubernetes cluster. We are going to utilize a script that will autodeploy the Splunk Universal Forwarder. You will then configure the Universal Forwarder to send logs to the Splunk Enterprise instance assigned to you.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/2-agent-observability-galileo/5-wrap-up/</guid><description>&lt;p&gt;You took the workshop &lt;a href="https://splunk.github.io/observability-workshop/en/ninja-workshops/ai/1-agentic-ai/"&gt;Monitoring Agentic AI Applications&lt;/a&gt;
  multi-agent travel planner and instrumented it with Splunk Agent Observability by adding just
 two things: &lt;code&gt;galileo_context.init(...)&lt;/code&gt; and a single &lt;code&gt;GalileoCallback&lt;/code&gt; on the LangGraph run config.
 With that, every agent node&amp;rsquo;s LLM call now appears as a nested span in a single Splunk Agent Observability trace per
@@ -9112,7 +9162,71 @@ VAST, and NetApp.&lt;/p&gt;
  &lt;a class="heading-anchor" href="#how-do-we-capture-pure-storage-metrics" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;Cisco AI PODs that utilize Pure Storage also use a technology called Portworx,
-which provides persistent storage for Kubernetes.&lt;/p&gt;</description></item><item><title>Deploying Lambda Functions &amp; Generating Trace Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/6-redeploy-lambdas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/6-redeploy-lambdas/</guid><description>&lt;p&gt;Now that we know how to apply manual instrumentation to the functions and services we wish to capture trace data for, let&amp;rsquo;s go about deploying our Lambda functions again, and generating traffic against our &lt;code&gt;producer-lambda&lt;/code&gt; endpoint.&lt;/p&gt;
+which provides persistent storage for Kubernetes.&lt;/p&gt;</description></item><item><title>One view, multiple perspectives</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/6-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/6-dashboard/</guid><description>&lt;p&gt;Synthetics provides the &lt;strong&gt;lab&lt;/strong&gt; perspective of user experience, while RUM provides the &lt;strong&gt;field&lt;/strong&gt; perspective. While the lab is controlled and operating regardless of user traffic, the field reflects the reality of our end users - including all uncontrolled variables like activity, device version, network, geolocation, and so on.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Read the combined dashboard&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;From the main menu, select &lt;strong&gt;Dashboards&lt;/strong&gt; and open the &lt;strong&gt;Digital Experience — Astronomy Shop&lt;/strong&gt; dashboard group for this workshop.&lt;/li&gt;
+&lt;li&gt;Work down the dashboard and answer these three questions in order:
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Is it available?&lt;/strong&gt; Check the synthetic uptime and failed run count.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What&amp;rsquo;s happening for end users?&lt;/strong&gt; Check whether real user errors and checkout durations move at the same time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is broken?&lt;/strong&gt; Check the synthetic transaction durations to see whether browsing or checkout degraded.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 
+![Combined RUM and Synthetics dashboard](../images/dem-dashboard.png)
+--&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;!--
+## What goes on it
+
+The dashboard is two rows. The top row is the synthetic test — always on, always comparable. The bottom row is real users — the ground truth.
+
+### Row 1: synthetic (our test)
+
+Filter these on the custom property `workshop:[NAME OF WORKSHOP]`, so the charts pick up everyone's test without being edited.
+
+| Chart | Metric | Notes |
+|---|---|---|
+| Uptime | `synthetics.run.uptime.percent` | Single value chart, with our detector linked to it |
+| Failed runs | `synthetics.run.count` | Filter `failed:true` |
+| Run duration | `synthetics.run.duration.time.ms` | Mean aggregation, display units milliseconds |
+| Transaction duration | `synthetics.duration.time.ms` | Split by the `transaction` dimension so `Browse` and `Checkout` plot separately |
+| Synthetic LCP | `synthetics.webvitals_lcp.time.ms` | The lab measurement |
+| Lighthouse score | `synthetics.lighthouse.score` | Requires interactive metrics enabled on the test |
+
+### Row 2: real users (RUM)
+
+Filter these to our environment and application, the same way we filtered the RUM Overview on page 1.
+
+| Chart | Metric | Notes |
+|---|---|---|
+| Page views | `rum.page_view.count` | Traffic context — a metric that only makes sense next to the others |
+| JavaScript errors | `rum.client_error.count` | All RUM errors carry the dimension `sf_error=true` |
+| Checkout duration P75 | `rum.workflow.time.ns.p75` | Scoped to the `PlaceOrder` workflow |
+| Real user LCP | `rum.webvitals_lcp.time.ns.p75` | The experience measurement |
+| Real user CLS | `rum.webvitals_cls.score.p75` | A score, not a time — no units to set |
+| Time to first byte | `rum.resource_request.ttfb.time.ns.p75` | Where front-end slowness turns into a back-end question |
+
+Add a **text note** panel at the top left explaining what the dashboard is for and who owns it, and link the uptime detector to the uptime chart so its alert status shows as a coloured border and a bell icon on the dashboard itself.
+--&gt;
+&lt;h2 id="better-together"&gt;
+ &lt;span class="heading-text"&gt;Better together&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#better-together" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;What does comparing Synthetic metrics to RUM help us understand? Here are some examples.&lt;/p&gt;</description></item><item><title>Deploying Lambda Functions &amp; Generating Trace Data</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/6-redeploy-lambdas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/instrumentation/2-lambda-kinesis/6-redeploy-lambdas/</guid><description>&lt;p&gt;Now that we know how to apply manual instrumentation to the functions and services we wish to capture trace data for, let&amp;rsquo;s go about deploying our Lambda functions again, and generating traffic against our &lt;code&gt;producer-lambda&lt;/code&gt; endpoint.&lt;/p&gt;
 &lt;p&gt;Seeing as we&amp;rsquo;re in a new directory, we will need to initialize Terraform here once again.&lt;/p&gt;
 &lt;section class="exercise"&gt;
 &lt;header class="exercise__bar"&gt;
@@ -9504,7 +9618,7 @@ before running the following commands:&lt;/p&gt;</description></item><item><titl
 &lt;/ol&gt;
 &lt;p&gt;&lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="images/funnel-segment-comparison.png" alt="Checkout funnel filtered by a user segment showing segment-specific drop-off rates" loading="lazy" decoding="async"&gt;
+ &lt;img src="images/funnel-segment-comparison.webp" alt="Checkout funnel filtered by a user segment showing segment-specific drop-off rates" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/p&gt;</description></item><item><title>View test results</title><link>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/7-view-test-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/scenarios/optimize-end-user-experiences/3-advanced-synthetics/7-view-test-results/</guid><description>&lt;p&gt;1. Click into a spike or failure in your test run results.&lt;/p&gt;
@@ -9529,7 +9643,23 @@ before running the following commands:&lt;/p&gt;</description></item><item><titl
 &lt;/h2&gt;
 &lt;p&gt;Now that we have configured the OpenTelemetry Collector to send metrics to Splunk Observability Cloud, let&amp;rsquo;s take a look at the data in Splunk Observability Cloud. If you have not received an invite to Splunk Observability Cloud, your instructor will provide you with login credentials.&lt;/p&gt;
 &lt;p&gt;Before that, let&amp;rsquo;s make things a little more interesting and run a stress test on the instance. This in turn will light up the dashboards.&lt;/p&gt;</description></item><item><title>Review your event analytics workflow</title><link>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/7-workshop-review/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/ninja-workshops/operations/3-event-analytics/7-workshop-review/</guid><description>&lt;p&gt;You started with payment alerts that described symptoms on separate components. An operator reviewing those alerts individually would need to reconcile different severities, find the right support teams, recognize the shared incident, and search for evidence explaining what happened.&lt;/p&gt;
-&lt;p&gt;You now have a workflow that brings those tasks together. The alert connection onboards the source, normalization makes its fields consistent, and enrichment adds ownership and business context. &lt;strong&gt;EventiQ Detect&lt;/strong&gt; helps bring related symptoms into an episode, your clearing action automates its resolution, and &lt;strong&gt;EventiQ Diagnose&lt;/strong&gt; supports the investigation with a suspected cause and source evidence.&lt;/p&gt;</description></item><item><title>Sharing with Cloudflare Quick Tunnels</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/cloudflare/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/cloudflare/</guid><description>&lt;h2 id="overview"&gt;
+&lt;p&gt;You now have a workflow that brings those tasks together. The alert connection onboards the source, normalization makes its fields consistent, and enrichment adds ownership and business context. &lt;strong&gt;EventiQ Detect&lt;/strong&gt; helps bring related symptoms into an episode, your clearing action automates its resolution, and &lt;strong&gt;EventiQ Diagnose&lt;/strong&gt; supports the investigation with a suspected cause and source evidence.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/7-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/7-wrap-up/</guid><description>&lt;h2 id="what-we-accomplished"&gt;
+ &lt;span class="heading-text"&gt;What we accomplished&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#what-we-accomplished" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Used RUM to choose a target&lt;/strong&gt; — Core Web Vitals, per-page comparison, and front-end health, to pick the one journey worth monitoring around the clock&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Built a Synthetics browser test&lt;/strong&gt; with named steps and two synthetic transactions covering that journey&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validated and ran it on demand&lt;/strong&gt;, and read uptime, availability, and transaction-level results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Activated a detector&lt;/strong&gt; on the uptime metric, then watched it fire on a failing checkout&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Added an uptime test&lt;/strong&gt; and met the other test types, including SSL certificate tests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviewed a combined dashboard&lt;/strong&gt; pairing lab measurements with real customer experience&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-habit-worth-taking-away"&gt;
+ &lt;span class="heading-text"&gt;The habit worth taking away&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-habit-worth-taking-away" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Our checkout test asserts that an order was confirmed, not that a button was clickable. That single design choice is what turns a monitoring setup from decorative into useful. Everything else on this page is mechanics.&lt;/p&gt;</description></item><item><title>Sharing with Cloudflare Quick Tunnels</title><link>https://splunk.github.io/observability-workshop/en/resources/local-hosting/cloudflare/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/resources/local-hosting/cloudflare/</guid><description>&lt;h2 id="overview"&gt;
  &lt;span class="heading-text"&gt;Overview&lt;/span&gt;
  &lt;a class="heading-anchor" href="#overview" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
 &lt;/h2&gt;
@@ -9607,7 +9737,7 @@ which is in the &lt;code&gt;~/workshop/agentic-ai/app-with-agents-and-tools&lt;/
 &lt;li&gt;In the DXA project, go to the Event Definitions tab and click &amp;ldquo;Pick from page&amp;rdquo;
 &lt;figure class="figure"&gt;
  &lt;div class="figure__inner"&gt;
- &lt;img src="../images/dxa-picker.png" alt="DXA Event Definitions table with pick from page button highlighted" loading="lazy" decoding="async"&gt;
+ &lt;img src="../images/dxa-picker.webp" alt="DXA Event Definitions table with pick from page button highlighted" loading="lazy" decoding="async"&gt;
  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;/li&gt;

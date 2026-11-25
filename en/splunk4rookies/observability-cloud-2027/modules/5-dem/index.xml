@@ -1,1 +1,147 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Beat social media to the issue on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/</link><description>Recent content in Beat social media to the issue on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Beat social media to the issue on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/</link><description>Recent content in Beat social media to the issue on Splunk Observability Cloud Workshops</description><generator>Hugo</generator><language>en</language><atom:link href="https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/index.xml" rel="self" type="application/rss+xml"/><item><title>Which journey should we test?</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/1-real-user-pain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/1-real-user-pain/</guid><description>&lt;p&gt;Before we start creating tests with Synthetics, let&amp;rsquo;s look at what real users are doing to prioritize test coverage. RUM tells us which pages real end users interact with, how those pages feel, and where the experience breaks down.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Open our store and check the Web Vitals&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;From the main menu, select &lt;strong&gt;Digital Experience&lt;/strong&gt;, then &lt;strong&gt;Overview&lt;/strong&gt; under &lt;strong&gt;Real User Monitoring&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Set the filters to our own store:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time frame&lt;/strong&gt;: &lt;strong&gt;-1h&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Environment&lt;/strong&gt;: &lt;strong&gt;[NAME OF WORKSHOP]-workshop&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;App&lt;/strong&gt;: &lt;strong&gt;[NAME OF WORKSHOP]-store&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;: &lt;strong&gt;Browser&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;[NAME OF WORKSHOP]-store&lt;/strong&gt; link above the &lt;strong&gt;Page Views / JavaScript Errors&lt;/strong&gt; chart to open the application view.&lt;/li&gt;
+&lt;li&gt;On the &lt;strong&gt;UX Metrics&lt;/strong&gt; tab, find the three &lt;strong&gt;Core Web Vitals&lt;/strong&gt; charts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- TODO screenshot: RUM application view, UX Metrics tab, with the three Core Web Vitals charts visible --&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../images/rum-web-vitals.webp" alt="Core Web Vitals in the RUM application view" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Build our browser test</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/2-build-browser-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/2-build-browser-test/</guid><description>&lt;p&gt;A &lt;strong&gt;browser test&lt;/strong&gt; drives a real Google Chrome browser through a journey we script, from the locations we choose, on the schedule we set. In the Introduction module we reviewed a browser test somebody else had built. Now we build our own, for the checkout journey we just chose.&lt;/p&gt;
+&lt;p&gt;Two concepts do most of the work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;step&lt;/strong&gt; is one interaction — go to a URL, click something, or assert that something is there. Steps have names, and those names are what we read when a test fails.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;synthetic transaction&lt;/strong&gt; is a named group of steps representing a business-critical flow. Each transaction gets its own &lt;strong&gt;duration&lt;/strong&gt;, &lt;strong&gt;requests&lt;/strong&gt;, and &lt;strong&gt;size&lt;/strong&gt; metrics, which is how we end up able to say &amp;ldquo;checkout got slower&amp;rdquo; rather than just &amp;ldquo;the test got slower&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--warning"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/&gt;&lt;line x1="12" y1="9" x2="12" y2="13"/&gt;&lt;line x1="12" y1="17" x2="12.01" y2="17"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Everyone shares one shop&lt;/p&gt;</description></item><item><title>Run the test and read the results</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/3-test-results/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/3-test-results/</guid><description>&lt;p&gt;Our test now runs every five minutes, but we do not have to wait five minutes to see results. &lt;strong&gt;Run now&lt;/strong&gt; triggers a scheduled-quality run on demand.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Trigger runs on demand&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;On our test&amp;rsquo;s page, select &lt;button class="btn-inline btn-inline--filled" type="button" style="--btn-color: var(--color-ink-muted)"&gt;&lt;span&gt;Run test now&lt;/span&gt;&lt;/button&gt;. We can also do this from the Synthetics test list, using the vertical dots &lt;strong&gt;⋮&lt;/strong&gt; next to the test.&lt;/li&gt;
+&lt;li&gt;Trigger &lt;strong&gt;three or four&lt;/strong&gt; runs, waiting for each to finish before starting the next. Because roughly half of all checkouts fail, a handful of runs gives us a mix of passes and failures to look at.&lt;/li&gt;
+&lt;li&gt;Runs triggered this way are labelled &lt;strong&gt;Manual&lt;/strong&gt; in the results list, to distinguish them from the scheduled ones.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="callout callout--note"&gt;&lt;span class="callout__icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 13h6 M9 17h6"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;p class="callout__title"&gt;Note&lt;/p&gt;</description></item><item><title>Beat the tweet</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/4-detector/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/4-detector/</guid><description>&lt;p&gt;A test that finds a problem nobody is told about is just a nicely formatted record of an outage. The thing that actually beats social media to the issue is the &lt;strong&gt;detector&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In the Introduction module we previewed a detector on run duration and closed it without saving. This time we are going to activate one.&lt;/p&gt;
+&lt;p&gt;&lt;figure class="figure"&gt;
+ &lt;div class="figure__inner"&gt;
+ &lt;img src="../../1-intro/6-synthetics/images/social-media-post.webp" alt="Social media post about the shop being down" loading="lazy" decoding="async"&gt;
+ &lt;/div&gt;
+ 
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id="alert-on-uptime-not-on-duration"&gt;
+ &lt;span class="heading-text"&gt;Alert on uptime, not on duration&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#alert-on-uptime-not-on-duration" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Run duration is a good signal for &lt;em&gt;slow&lt;/em&gt;. For &lt;em&gt;broken&lt;/em&gt;, we use &lt;strong&gt;Uptime&lt;/strong&gt;, because the uptime metric is &lt;code&gt;0&lt;/code&gt; on a failed run and &lt;code&gt;100&lt;/code&gt; on a successful one. That makes it the one metric that catches every kind of failure — a timeout, a failed assertion, a certificate problem, or the site being gone entirely — without us having to predict which.&lt;/p&gt;</description></item><item><title>Beyond the browser test</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/5-other-test-types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/5-other-test-types/</guid><description>&lt;p&gt;Browser tests prove a customer can complete a workflow, regardless of the resources and endpoints involved.&lt;/p&gt;
+&lt;p&gt;Uptime tests focus on the health of critical &lt;strong&gt;endpoints&lt;/strong&gt; that are required for your end users to complete their tasks. These tests are much more lightweight and can be run much more frequently, so that while our browser tests are evaluating health of workflows, uptime tests are pinpointing health of individual pieces of those workflows.&lt;/p&gt;</description></item><item><title>One view, multiple perspectives</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/6-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/6-dashboard/</guid><description>&lt;p&gt;Synthetics provides the &lt;strong&gt;lab&lt;/strong&gt; perspective of user experience, while RUM provides the &lt;strong&gt;field&lt;/strong&gt; perspective. While the lab is controlled and operating regardless of user traffic, the field reflects the reality of our end users - including all uncontrolled variables like activity, device version, network, geolocation, and so on.&lt;/p&gt;
+&lt;section class="exercise"&gt;
+&lt;header class="exercise__bar"&gt;
+&lt;span class="exercise__bar-icon" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="6"/&gt;&lt;circle cx="12" cy="12" r="2"/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span class="exercise__bar-label"&gt;Exercise&lt;/span&gt;
+&lt;span class="exercise__bar-divider" aria-hidden="true"&gt;·&lt;/span&gt;
+&lt;span class="exercise__bar-title"&gt;Read the combined dashboard&lt;/span&gt;
+&lt;/header&gt;
+&lt;div class="exercise__panel"&gt;
+&lt;div class="exercise__body"&gt;
+&lt;ul&gt;
+&lt;li&gt;From the main menu, select &lt;strong&gt;Dashboards&lt;/strong&gt; and open the &lt;strong&gt;Digital Experience — Astronomy Shop&lt;/strong&gt; dashboard group for this workshop.&lt;/li&gt;
+&lt;li&gt;Work down the dashboard and answer these three questions in order:
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Is it available?&lt;/strong&gt; Check the synthetic uptime and failed run count.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What&amp;rsquo;s happening for end users?&lt;/strong&gt; Check whether real user errors and checkout durations move at the same time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is broken?&lt;/strong&gt; Check the synthetic transaction durations to see whether browsing or checkout degraded.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 
+![Combined RUM and Synthetics dashboard](../images/dem-dashboard.png)
+--&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;!--
+## What goes on it
+
+The dashboard is two rows. The top row is the synthetic test — always on, always comparable. The bottom row is real users — the ground truth.
+
+### Row 1: synthetic (our test)
+
+Filter these on the custom property `workshop:[NAME OF WORKSHOP]`, so the charts pick up everyone's test without being edited.
+
+| Chart | Metric | Notes |
+|---|---|---|
+| Uptime | `synthetics.run.uptime.percent` | Single value chart, with our detector linked to it |
+| Failed runs | `synthetics.run.count` | Filter `failed:true` |
+| Run duration | `synthetics.run.duration.time.ms` | Mean aggregation, display units milliseconds |
+| Transaction duration | `synthetics.duration.time.ms` | Split by the `transaction` dimension so `Browse` and `Checkout` plot separately |
+| Synthetic LCP | `synthetics.webvitals_lcp.time.ms` | The lab measurement |
+| Lighthouse score | `synthetics.lighthouse.score` | Requires interactive metrics enabled on the test |
+
+### Row 2: real users (RUM)
+
+Filter these to our environment and application, the same way we filtered the RUM Overview on page 1.
+
+| Chart | Metric | Notes |
+|---|---|---|
+| Page views | `rum.page_view.count` | Traffic context — a metric that only makes sense next to the others |
+| JavaScript errors | `rum.client_error.count` | All RUM errors carry the dimension `sf_error=true` |
+| Checkout duration P75 | `rum.workflow.time.ns.p75` | Scoped to the `PlaceOrder` workflow |
+| Real user LCP | `rum.webvitals_lcp.time.ns.p75` | The experience measurement |
+| Real user CLS | `rum.webvitals_cls.score.p75` | A score, not a time — no units to set |
+| Time to first byte | `rum.resource_request.ttfb.time.ns.p75` | Where front-end slowness turns into a back-end question |
+
+Add a **text note** panel at the top left explaining what the dashboard is for and who owns it, and link the uptime detector to the uptime chart so its alert status shows as a coloured border and a bell icon on the dashboard itself.
+--&gt;
+&lt;h2 id="better-together"&gt;
+ &lt;span class="heading-text"&gt;Better together&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#better-together" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;What does comparing Synthetic metrics to RUM help us understand? Here are some examples.&lt;/p&gt;</description></item><item><title>Wrap-up</title><link>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/7-wrap-up/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/en/splunk4rookies/observability-cloud-2027/modules/5-dem/7-wrap-up/</guid><description>&lt;h2 id="what-we-accomplished"&gt;
+ &lt;span class="heading-text"&gt;What we accomplished&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#what-we-accomplished" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Used RUM to choose a target&lt;/strong&gt; — Core Web Vitals, per-page comparison, and front-end health, to pick the one journey worth monitoring around the clock&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Built a Synthetics browser test&lt;/strong&gt; with named steps and two synthetic transactions covering that journey&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validated and ran it on demand&lt;/strong&gt;, and read uptime, availability, and transaction-level results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Activated a detector&lt;/strong&gt; on the uptime metric, then watched it fire on a failing checkout&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Added an uptime test&lt;/strong&gt; and met the other test types, including SSL certificate tests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviewed a combined dashboard&lt;/strong&gt; pairing lab measurements with real customer experience&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-habit-worth-taking-away"&gt;
+ &lt;span class="heading-text"&gt;The habit worth taking away&lt;/span&gt;
+ &lt;a class="heading-anchor" href="#the-habit-worth-taking-away" aria-label="Permalink" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Our checkout test asserts that an order was confirmed, not that a button was clickable. That single design choice is what turns a monitoring setup from decorative into useful. Everything else on this page is mechanics.&lt;/p&gt;</description></item></channel></rss>
